@@ -520,7 +520,6 @@
   },
   "fixture_progress": {
     "remaining_functions": [
-      "F01",
       "F02",
       "F03",
       "F04",
@@ -533,10 +532,16 @@
       "state": "draft_basic_typed_and_qualification_cases_pending_semantic_review",
       "qualification_calls": 56,
       "qualification_typed_cells": 1008
+    },
+    "F01": {
+      "basic_calls": 22,
+      "typed_expected_cells": 198,
+      "nested_condition_cells": 76,
+      "state": "draft_basic_typed_cases_independent_qualification_pending"
     }
   },
   "pending": [
-    "6関数の内部比較/typed部分期待/対単体oracleの具体化",
+    "5関数の内部比較/typed部分期待/対単体oracleの具体化、F01の独立qualificationと返却例",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -21336,8 +21341,3555 @@
         "execution_state": "not_executed"
       },
       "basic_oracle_sha256": "fed767d19a7b1906a7052d16738bcb6de56048fe76f99482ad413b9cd0a17a55",
-      "fixture_state": "not_authored",
-      "comparison_rule": "原sourceの具体内容とtyped部分結果を照合。署名/digest/link存在だけで技術品質や人間受容を生成しない。"
+      "fixture_state": "draft_basic_typed_cases_independent_qualification_pending",
+      "comparison_rule": "原sourceの具体内容とtyped部分結果を照合。署名/digest/link存在だけで技術品質や人間受容を生成しない。",
+      "cases": [
+        {
+          "id": "H003-L8-F01-NORMAL",
+          "basic_case_ref": "H003-F01-NORMAL",
+          "basic_case_sha256": "5afce48d90fe1d3f5f9603dcb99e276e38e157ab0d0a31c3c33d7e6d83c6cdd5",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-NORMAL",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "5da448d2555550a439f9d44d99999bd1f1814136382543ebbcaf67f9931b231a",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "proceed_condition": {
+              "state": "known",
+              "value": "supported_synthetic_condition",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-NORMAL-freeze",
+          "basic_case_ref": "H003-F01-NORMAL-freeze",
+          "basic_case_sha256": "ed02ef1605d54c53c694aa755566d1da403e34b46991fe2f684c513a7b5cce94",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-NORMAL-freeze",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "402a515038db5c88c7f3da9038cd9292c4f810a9ac4b9150aecb2b9b5bc8d1ba",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "freeze",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair",
+                "verification",
+                "unresolved"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "verification": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "unresolved": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "proceed_condition": {
+              "state": "known",
+              "value": "supported_synthetic_condition",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-freeze",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-NORMAL-backflow",
+          "basic_case_ref": "H003-F01-NORMAL-backflow",
+          "basic_case_sha256": "618a5d0a812c91e46728f586656542ed0af93378e2f94c9312036707c602666a",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-NORMAL-backflow",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "39504fc3f63a248875ed7b212f788721057172ca70fbbb70f2cebaad0b8ff4fe",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "backflow",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-backflow",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "finding_route"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-backflow",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "finding_route": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-backflow",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-backflow",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-backflow",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-backflow",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "proceed_condition": {
+              "state": "known",
+              "value": "supported_synthetic_condition",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-backflow",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-backflow",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-backflow",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-backflow",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-NORMAL-reopen",
+          "basic_case_ref": "H003-F01-NORMAL-reopen",
+          "basic_case_sha256": "612bca885d2d381fd6a7fde3d9046b06642b081aed62ad34903845ebb851f679",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-NORMAL-reopen",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "3b09a389b0c66bff45f87058a38daa53dceba764526d47a42f1046dff4d51b2f",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "reopen",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair",
+                "verification",
+                "unresolved"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "verification": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "unresolved": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "proceed_condition": {
+              "state": "known",
+              "value": "supported_synthetic_condition",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-reopen",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-NORMAL-complete",
+          "basic_case_ref": "H003-F01-NORMAL-complete",
+          "basic_case_sha256": "c0cad53ff4428db6e3b4b8787fe6a9caa2e7eaf7a58c9e49dc4887c3ed68ba4d",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-NORMAL-complete",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "e0d806e9272140c607ac43e456b6dac13d6127758bad15ff905fde26aace04ce",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "complete",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-complete",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair",
+                "verification",
+                "unresolved"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-complete",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-complete",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-complete",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-complete",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "verification": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-complete",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "unresolved": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-NORMAL-complete",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-complete",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-complete",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-complete",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "proceed_condition": {
+              "state": "known",
+              "value": "supported_synthetic_condition",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-complete",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-complete",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-complete",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-NORMAL-complete",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-MISSING-agreement",
+          "basic_case_ref": "H003-F01-MISSING-agreement",
+          "basic_case_sha256": "ea36626991c9d68ce8be1977d57796e904ba5f687a67c5da87601fd2c97aa10b",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-MISSING-agreement",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "078322b360d125da7c33fe7fda0bd649ad921176dde2f16beb2f166236e32dec",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-agreement",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-agreement",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "missing",
+                  "value": null,
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-MISSING-agreement",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-MISSING-agreement",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-MISSING-agreement",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-agreement",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-agreement",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-agreement",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "proceed_condition": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-agreement",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-agreement",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-agreement",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-agreement",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-MISSING-requirements_approval",
+          "basic_case_ref": "H003-F01-MISSING-requirements_approval",
+          "basic_case_sha256": "d9f3b7df235b31eb842e9e887caa98c2d34657605d75cd6c72c68643356b0557",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "705323fa230c13bcb4d0c9158c54f255f0394e8b3d607c4f1df2abbeec7b6a7b",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "missing",
+                  "value": null,
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "proceed_condition": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-requirements_approval",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-MISSING-pair",
+          "basic_case_ref": "H003-F01-MISSING-pair",
+          "basic_case_sha256": "1e91745578df0481316448ded91eaa0c12880b44a0fb6f54ef3951e0d44a5492",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-MISSING-pair",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "61bfc3f396853b9938339cb890ae51a23f97842417a2250ad182e1a270ad2510",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-pair",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-pair",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-MISSING-pair",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-MISSING-pair",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "missing",
+                  "value": null,
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-MISSING-pair",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-pair",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-pair",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-pair",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "proceed_condition": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-pair",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-pair",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-pair",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-MISSING-pair",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程が指定した必要条件の欠落を保持する。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-FOREIGN-APPROVAL",
+          "basic_case_ref": "H003-F01-FOREIGN-APPROVAL",
+          "basic_case_sha256": "ab8043ca2f55e1334c39d64dd511cb33c2e4caf4bff642bb239db137b7e2dd64",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "37108a58770369d1107a279d09d6347fef22a9d421f0be205ef6964b3db08c75",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "別revisionの要件承認を流用しない。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "別revisionの要件承認を流用しない。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "stale",
+                  "value": null,
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "別revisionの要件承認を流用しない。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "別revisionの要件承認を流用しない。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "別revisionの要件承認を流用しない。"
+            },
+            "proceed_condition": {
+              "state": "stale",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "別revisionの要件承認を流用しない。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "別revisionの要件承認を流用しない。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "別revisionの要件承認を流用しない。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FOREIGN-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "別revisionの要件承認を流用しない。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-CONSULTATION-AS-APPROVAL",
+          "basic_case_ref": "H003-F01-CONSULTATION-AS-APPROVAL",
+          "basic_case_sha256": "566fd8b4ab2d08a87686b887ddb59bd35c262528419467e2f6b824dd0c603ed3",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "a039bf7642d86cf2ddb6b32fe38b85963635a9e36c33ee5845300408bb710de9",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談/依頼/採択/操作認可は要件承認の代替ではない。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談/依頼/採択/操作認可は要件承認の代替ではない。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "conflict",
+                  "value": null,
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談/依頼/採択/操作認可は要件承認の代替ではない。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談/依頼/採択/操作認可は要件承認の代替ではない。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談/依頼/採択/操作認可は要件承認の代替ではない。"
+            },
+            "proceed_condition": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談/依頼/採択/操作認可は要件承認の代替ではない。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談/依頼/採択/操作認可は要件承認の代替ではない。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談/依頼/採択/操作認可は要件承認の代替ではない。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談/依頼/採択/操作認可は要件承認の代替ではない。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-WORK_REQUEST-AS-APPROVAL",
+          "basic_case_ref": "H003-F01-WORK_REQUEST-AS-APPROVAL",
+          "basic_case_sha256": "0768e7113b8281f498ad58df35f55e3440fb2da62dd3f33e284892565288c88a",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "9b7906b49719dcbe421b2749566c929f813d5c8b7b3f89e68193ebf867509989",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "conflict",
+                  "value": null,
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "proceed_condition": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-WORK_REQUEST-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-SELECTION-AS-APPROVAL",
+          "basic_case_ref": "H003-F01-SELECTION-AS-APPROVAL",
+          "basic_case_sha256": "0c43c33f683387444b408865fb8aca7a4c738b4567df84430d1459f3544e6c7c",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "1d478de310fbb1a0b2995748b30482557831d6e229d3a2b562e128555ff513a3",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "conflict",
+                  "value": null,
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "proceed_condition": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-SELECTION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+          "basic_case_ref": "H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+          "basic_case_sha256": "77c8b591ff11b25199e5d5e449d1aa5dfe5d42669ed2d81044ef053df6df41dd",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "fb5982a264febe837b46e5cc205937f986e7ab55910aaf075a3963e65e61f3d6",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "conflict",
+                  "value": null,
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "proceed_condition": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-OPERATION_AUTHORIZATION-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "異なる判断役割から要件承認を生成しない。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-UNDELEGATED-MEANING",
+          "basic_case_ref": "H003-F01-UNDELEGATED-MEANING",
+          "basic_case_sha256": "71c5798c9ed64ec17ec0021ecf4b1605ec94739fd79a28eea4dfdc0a9a517874",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "f38c77c3e806a5ef8add668598642a8a815602e47ad07f095e62e68137f20832",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "未委任の要求意味変更は該当ownerへ戻す。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "未委任の要求意味変更は該当ownerへ戻す。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "未委任の要求意味変更は該当ownerへ戻す。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": true,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "未委任の要求意味変更は該当ownerへ戻す。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": "product-requirement-owner",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "未委任の要求意味変更は該当ownerへ戻す。"
+            },
+            "proceed_condition": {
+              "state": "known",
+              "value": "return_to_owner",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "未委任の要求意味変更は該当ownerへ戻す。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "未委任の要求意味変更は該当ownerへ戻す。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "未委任の要求意味変更は該当ownerへ戻す。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "未委任の要求意味変更は該当ownerへ戻す。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-UNDELEGATED-AUTHORITY",
+          "basic_case_ref": "H003-F01-UNDELEGATED-AUTHORITY",
+          "basic_case_sha256": "988725d62f13cd36c1ba7baa6e713601362df491b6a124e058010e631142065d",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "7be0ee6fcc932bc06528dc9aa8a0f39b86b47fe34f44c6395478964d5dbe7f61",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "既存authority境界を技術具体化から変更しない。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "既存authority境界を技術具体化から変更しない。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "既存authority境界を技術具体化から変更しない。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": true,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "既存authority境界を技術具体化から変更しない。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": "product-requirement-owner",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "既存authority境界を技術具体化から変更しない。"
+            },
+            "proceed_condition": {
+              "state": "known",
+              "value": "return_to_owner",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "既存authority境界を技術具体化から変更しない。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "既存authority境界を技術具体化から変更しない。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "既存authority境界を技術具体化から変更しない。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-UNDELEGATED-AUTHORITY",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "既存authority境界を技術具体化から変更しない。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-REPEAT-APPROVAL-FOR-DETAIL",
+          "basic_case_ref": "H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+          "basic_case_sha256": "52178875a5eed8886772000c09d8f0b7a8cd3804a6eb9bb13b54ac2b22386d47",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "5da448d2555550a439f9d44d99999bd1f1814136382543ebbcaf67f9931b231a",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "委任内技術具体化に新しい反復承認を求めない。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "委任内技術具体化に新しい反復承認を求めない。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "委任内技術具体化に新しい反復承認を求めない。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "委任内技術具体化に新しい反復承認を求めない。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "委任内技術具体化に新しい反復承認を求めない。"
+            },
+            "proceed_condition": {
+              "state": "known",
+              "value": "supported_synthetic_condition",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "委任内技術具体化に新しい反復承認を求めない。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "委任内技術具体化に新しい反復承認を求めない。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "委任内技術具体化に新しい反復承認を求めない。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REPEAT-APPROVAL-FOR-DETAIL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "委任内技術具体化に新しい反復承認を求めない。"
+            }
+          },
+          "candidate_constraint": {
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "additional_approval_needed"
+          },
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-IMPLEMENTATION-AS-COMPLETION",
+          "basic_case_ref": "H003-F01-IMPLEMENTATION-AS-COMPLETION",
+          "basic_case_sha256": "53cb4ddef5ba4e57c31670b54b8576c8e94e544ad25a822d31866043f40ae431",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "5da448d2555550a439f9d44d99999bd1f1814136382543ebbcaf67f9931b231a",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "実装成功だけで当該工程完了を生成しない。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "実装成功だけで当該工程完了を生成しない。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "実装成功だけで当該工程完了を生成しない。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "実装成功だけで当該工程完了を生成しない。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "実装成功だけで当該工程完了を生成しない。"
+            },
+            "proceed_condition": {
+              "state": "known",
+              "value": "supported_synthetic_condition",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "実装成功だけで当該工程完了を生成しない。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "実装成功だけで当該工程完了を生成しない。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "実装成功だけで当該工程完了を生成しない。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-IMPLEMENTATION-AS-COMPLETION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "実装成功だけで当該工程完了を生成しない。"
+            }
+          },
+          "candidate_constraint": {
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_completion"
+          },
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+          "basic_case_ref": "H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+          "basic_case_sha256": "fac3404a0ae58c91487579c28f4294823316c854ac54eb0bf40e370fda649700",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "5da448d2555550a439f9d44d99999bd1f1814136382543ebbcaf67f9931b231a",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談を実承認へ昇格しない。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談を実承認へ昇格しない。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談を実承認へ昇格しない。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談を実承認へ昇格しない。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談を実承認へ昇格しない。"
+            },
+            "proceed_condition": {
+              "state": "known",
+              "value": "supported_synthetic_condition",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談を実承認へ昇格しない。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談を実承認へ昇格しない。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談を実承認へ昇格しない。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-CONSULTATION-AS-ACTUAL-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "相談を実承認へ昇格しない。"
+            }
+          },
+          "candidate_constraint": {
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_field": "actual_approval_created"
+          },
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-FREEZE-VERIFICATION",
+          "basic_case_ref": "H003-F01-FREEZE-VERIFICATION",
+          "basic_case_sha256": "d5c35cd466d07d657f1cf161055ee5fe52eadb4b7385721b1405282bca4afca9",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "db6b7c3e59506f1870c81d04232cf613a3d5492450f083ed86ef90609fb8e226",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "freeze",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair",
+                "verification",
+                "unresolved"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "verification": {
+                  "state": "missing",
+                  "value": null,
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "unresolved": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "proceed_condition": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-FREEZE-VERIFICATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-REOPEN-UNRESOLVED",
+          "basic_case_ref": "H003-F01-REOPEN-UNRESOLVED",
+          "basic_case_sha256": "5e3595d8b17b881309487d97904584bc9dbb3817bcf63a632f6a96ca9458617f",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "52cd982dc6d87ec748d7308cff07b44845472a90f9cf2f8f14c4215f7cb5a6b9",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "reopen",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair",
+                "verification",
+                "unresolved"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "verification": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "unresolved": {
+                  "state": "conflict",
+                  "value": null,
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "proceed_condition": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-REOPEN-UNRESOLVED",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-COMPLETE-PAIR",
+          "basic_case_ref": "H003-F01-COMPLETE-PAIR",
+          "basic_case_sha256": "638bac94f374de965ee287b23cb018250fe9b38f6c381e87f4e08ea0f4df735e",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "58f73f2f6117148e14ca457a4c86cf2e32aa5f8ab7924860d89f0d7f73f8e39d",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "complete",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair",
+                "verification",
+                "unresolved"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "missing",
+                  "value": null,
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "verification": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "unresolved": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "proceed_condition": {
+              "state": "missing",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-COMPLETE-PAIR",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-APPROVAL-UNKNOWN",
+          "basic_case_ref": "H003-F01-APPROVAL-UNKNOWN",
+          "basic_case_sha256": "eb2c39714432f8df3e8b95971ba1f1e72560969bd4602d8634499692a568928f",
+          "original_source_packet_ref": {
+            "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "independent-fixture-owner"
+          },
+          "original_source_packet_sha256": "79ba9f89397142851b2dca12bfcb8e08275fb6ea15f6c4e67053d1dea74d4530",
+          "input_rule": "固定L9 basic_caseのexact raw_utf8と、存在する場合はsubmitted_candidateを別入力として読む。資格タグの存在で実owner/authorityを生成しない。",
+          "expected_partial_values": {
+            "action": {
+              "state": "known",
+              "value": "start",
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "required_conditions": {
+              "state": "known",
+              "value": [
+                "agreement",
+                "requirements_approval",
+                "pair"
+              ],
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "condition_results": {
+              "state": "known",
+              "value": {
+                "agreement": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "requirements_approval": {
+                  "state": "unknown",
+                  "value": null,
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                },
+                "pair": {
+                  "state": "known",
+                  "value": "supported_synthetic_material",
+                  "source_packet_ref": {
+                    "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+                    "revision": "fixture-r1",
+                    "scope": "PRODUCT-P",
+                    "owner": "independent-fixture-owner"
+                  },
+                  "reason": "当該必要条件の原資料内容・kind・revision/scope不足を個別保持し、他条件を消さない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "additional_approval_needed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "meaning_authority_return_owner": {
+              "state": "known",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "proceed_condition": {
+              "state": "unknown",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_progressed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_approval_created": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "SOURCE-H003-F01-APPROVAL-UNKNOWN",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "independent-fixture-owner"
+              },
+              "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+            }
+          },
+          "candidate_constraint": {},
+          "effect": "none",
+          "execution_state": "not_executed"
+        }
+      ],
+      "remaining": [
+        "Context/carrier/phase契約/materials各6条件/delegationの独立qualificationと未確定membership・混在状態・非必要資料不足の反例",
+        "owner返却と無関係scope保持の具体値",
+        "正式schema/codec/resolver/実owner資格と実oracle凍結→実装前Red→Green→Refactor/再検証",
+        "独立reviewと実L9/L10"
+      ]
     },
     {
       "id": "HARNESS-L8-003-F02",

@@ -520,7 +520,6 @@
   },
   "fixture_progress": {
     "remaining_functions": [
-      "F01",
       "F02",
       "F03",
       "F04",
@@ -533,10 +532,16 @@
       "state": "draft_basic_typed_and_qualification_cases_pending_semantic_review",
       "qualification_calls": 56,
       "qualification_typed_cells": 1008
+    },
+    "F01": {
+      "basic_calls": 22,
+      "typed_expected_cells": 198,
+      "nested_condition_cells": 76,
+      "state": "draft_basic_typed_cases_independent_qualification_pending"
     }
   },
   "pending": [
-    "6関数の内部比較/typed部分期待/対単体oracleの具体化",
+    "5関数の内部比較/typed部分期待/対単体oracleの具体化、F01の独立qualificationと返却例",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -731,7 +736,7 @@
         "partial_values": {
           "action": "PartialValue",
           "required_conditions": "PartialValue",
-          "condition_results": "PartialValue",
+          "condition_results": "PartialValue（knownのvalueはConditionIdentity→PartialValue map。必要条件集合が未確定ならnull）",
           "additional_approval_needed": "PartialValue",
           "meaning_authority_return_owner": "PartialValue",
           "proceed_condition": "PartialValue",
@@ -744,11 +749,56 @@
         "operation_effect": "none"
       },
       "internal_steps": [
-        "原sourceとcandidateを分け、各Ref/context/kind/owner/qualificationを独立照合。",
-        "基本契約の各input/output/invariantを内容で比較し、fieldごとの不足/意味差/戻し先を返す。",
-        "候補の強制成立/未知消去を原資料へ照合し、実操作は生成しない。"
+        "Contextの対象revision/scope、工程、操作種別を独立原資料へ照合し、source packet carrier資格とembedded各資料資格を分離する。",
+        "phase_condition_materialの承認済み原契約から当該actionのrequired_by_actionだけを取得する。対象actionの記載欠落・未解決では必要条件を空集合/defaultへ補わない。合成例の条件集合を全工程の共通承認手続きへ拡張しない。",
+        "必要条件ごとに独立sourceの資格・Ref・binding revision/scope・kind・具体内容を照合する。ひとつの不足で他の既知条件を消さず、condition_resultsは既知membership内の個別PartialValue mapを返す。membership自体が未確定ならcontainerを未解決/nullとし、読めた資料診断は別に保持する。",
+        "agreementの対象要求、requirements_approvalのL3/L10と既存委任、pairの左右層/revision、verificationの期待/観測ownerと対象検証、unresolvedの当該scope未解決items、finding_routeのfinding/戻し層/影響scopeを原契約に照合する。相談/依頼/採択/操作認可をrequirements_approvalへ変換しない。",
+        "delegationの独立sourceから意図scope・技術具体化の範囲・意味変更・authority変更を確認する。既存委任内の技術具体化には追加承認を生成せず、未委任の意味/権限差分だけを当該ownerへ返す。未解決委任を追加承認要/不要のboolへ補わない。",
+        "各required conditionと委任差分を合わせて進行条件候補を返す。複数の異なる未解決状態がある場合は集約をunknown/nullとし、個別状態/理由/原参照を全て保持する。失敗優先順位で状態を消さない。",
+        "candidateは原資料と別に比較し、反復承認要求・相談由来の実承認・実装成功由来の完了などの意味差をfieldで返す。candidateの宣言で元資料の資格/結果を更新しない。",
+        "実進行/承認生成/工程完了はこの照合関数の作用として全てfalse、operation_effectはnone。実進行と記録はOS、原authority判断は当該ownerの責務に保持する。"
       ],
-      "detail_state": "signature_only_content_comparison_pending"
+      "detail_state": "draft_internal_comparison_and_basic_typed_cases_qualification_pending",
+      "progression_detail": {
+        "condition_membership_source": "対象revision/scope・工程・actionに束縛されたphase契約の独立原資料。fixtureのrequired_by_actionをglobal defaultへしない。",
+        "source_dependencies": {
+          "action": [
+            "context"
+          ],
+          "required_conditions": [
+            "context",
+            "phase_condition_material"
+          ],
+          "condition_results": [
+            "context",
+            "phase_condition_material",
+            "各必要conditionのmaterials原資料"
+          ],
+          "additional_approval_needed": [
+            "context",
+            "delegation"
+          ],
+          "meaning_authority_return_owner": [
+            "context",
+            "delegation"
+          ],
+          "proceed_condition": [
+            "context",
+            "phase_condition_material",
+            "各必要conditionのmaterials原資料",
+            "delegation"
+          ]
+        },
+        "constant_false_fields": [
+          "actual_progressed",
+          "actual_approval_created",
+          "actual_completion"
+        ],
+        "independent_qualification_limit": "現段階は基本例の内容比較をtypedに分解した案。Context/carrier/phase契約/6資料/delegationの独立qualification入力と反例は未起草。source_packet_refはcarrier参照で、embedded sourceの実資格・human provenanceを代替しない。",
+        "partial_result_rule": "既知required集合のcondition_results containerはknownで保持し、当該conditionだけをmissing/unknown/conflict/stale・value nullへする。known false/nullと未知nullはstateで区別する。",
+        "owner_return_rule": "不足条件の原資料参照/対象revision/scope/理由/該当ownerへ返却候補を作る。未解決ownerを別ownerや新規承認主体で補わない。無関係scopeの有効材料を保持する。",
+        "logical_type_limit": "論理型/関数契約案。正式schema/codec/resolver/実権限や運転の成立ではない。"
+      }
     },
     {
       "id": "HARNESS-L5-003-F02",
