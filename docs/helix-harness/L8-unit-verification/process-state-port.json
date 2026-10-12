@@ -531,9 +531,11 @@
       "basic_calls": 22,
       "typed_expected_cells": 198,
       "nested_condition_cells": 76,
-      "state": "draft_basic_typed_and_qualification_cases_pending_semantic_review",
+      "state": "draft_basic_typed_qualification_and_content_cases_pending_semantic_review",
       "qualification_calls": 52,
-      "qualification_typed_cells": 468
+      "qualification_typed_cells": 468,
+      "content_counterexamples": 4,
+      "content_counterexample_typed_cells": 36
     },
     "F02": {
       "basic_calls": 24,
@@ -571,7 +573,7 @@
     }
   },
   "pending": [
-    "全7関数のbasic typed例を起草済み。F01未定義action、F02〜F05/N01独立qualification/追加内容/返却例は未完",
+    "全7関数のbasic typed例を起草済み。F02〜F05/N01独立qualification/追加内容/返却例と全関数の組合せ・実bindingは未完",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -21371,7 +21373,7 @@
         "execution_state": "not_executed"
       },
       "basic_oracle_sha256": "fed767d19a7b1906a7052d16738bcb6de56048fe76f99482ad413b9cd0a17a55",
-      "fixture_state": "draft_basic_typed_and_qualification_cases_pending_semantic_review",
+      "fixture_state": "draft_basic_typed_qualification_and_content_cases_pending_semantic_review",
       "comparison_rule": "原sourceの具体内容とtyped部分結果を照合。署名/digest/link存在だけで技術品質や人間受容を生成しない。",
       "cases": [
         {
@@ -24916,7 +24918,7 @@
       ],
       "remaining": [
         "実resolver/実owner・authority資格/隔離・資源と正式schema/codec",
-        "合成例にない原内容の組合せ、未定義action/必要条件集合の具体比較、実返却先binding",
+        "合成例にない原内容の組合せ、owner/返却先の実資格・binding。未定義action/必要集合の内容4例は起草済みで独立review未成立。",
         "独立reviewと実oracle凍結→実装前Red→最小Green→Refactor/再検証、実L9/L10"
       ],
       "qualification_cases": [
@@ -38063,6 +38065,730 @@
               "additional_approval_needed"
             ]
           ]
+        }
+      ],
+      "content_counterexamples": [
+        {
+          "id": "H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING",
+          "function_ref": "HARNESS-L5-003-F01",
+          "base_basic_case_ref": "H003-F01-NORMAL-freeze",
+          "base_basic_case_sha256": "ed02ef1605d54c53c694aa755566d1da403e34b46991fe2f684c513a7b5cce94",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "phase_condition_material",
+              "required_by_action",
+              "freeze"
+            ],
+            "before": [
+              "agreement",
+              "requirements_approval",
+              "pair",
+              "verification",
+              "unresolved"
+            ],
+            "after": null,
+            "delete": true
+          },
+          "reference_preparation": [
+            {
+              "path": [
+                "phase_condition_material",
+                "source",
+                "revision"
+              ],
+              "before": "fixture-r1-content-ac12ea3c219086271eec1c07cdfb94e798621d62308cbabd824e07103f30d568",
+              "after": "detail-content-c1af2026d5453102befeca9225fb4e18ae5ff4cdbfa9229ace51883403844609"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-content-owner"
+            },
+            "raw_utf8": "{\"action\":\"freeze\",\"consultation\":{\"kind\":\"consultation\",\"text\":\"工程条件はどうなるか\"},\"delegation\":{\"authority_change\":false,\"intent_scope\":\"PRODUCT-P\",\"meaning_change\":false,\"technical_detail_within_delegation\":true,\"unassigned_owner\":\"product-requirement-owner\"},\"implementation_observation\":{\"synthetic_expected_debits\":1,\"synthetic_observed_debits\":1},\"materials\":{\"agreement\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"requirement_agreement\",\"ref\":{\"identity\":\"REQUIREMENT_AGREEMENT\",\"owner\":\"requirement-agreement-owner\",\"revision\":\"fixture-r1-content-9216f528aebe73ea5681f3583847b00d2647cbb226ed36f2cb324612b395222b\",\"scope\":\"PRODUCT-P\"}},\"finding_route\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"affected_scope\":\"PRODUCT-P\",\"finding\":\"FINDING-BOUNDARY\",\"return_layer\":\"L4\"},\"kind\":\"backflow_route\",\"ref\":{\"identity\":\"BACKFLOW_ROUTE\",\"owner\":\"finding-original-owner\",\"revision\":\"fixture-r1-content-ed34f9e435ace70e40e70996a9284a87974d95716a70d3aa2d2a38bec3f68017\",\"scope\":\"PRODUCT-P\"}},\"pair\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"left\":\"REQ@r1\",\"left_layer\":\"L3\",\"right\":\"TEST@r1\",\"right_layer\":\"L10\"},\"kind\":\"paired_artifacts\",\"ref\":{\"identity\":\"PAIRED_ARTIFACTS\",\"owner\":\"pair-original-owner\",\"revision\":\"fixture-r1-content-7cce9c4751120d8e824d867d2f9cfe0b1e4cc9c377a5f3765a35045af5a92655\",\"scope\":\"PRODUCT-P\"}},\"requirements_approval\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"delegated\":true,\"l10\":\"TEST@r1\",\"l3\":\"REQ@r1\"},\"kind\":\"requirements_approval\",\"ref\":{\"identity\":\"REQUIREMENTS_APPROVAL\",\"owner\":\"delegated-approval-original-owner\",\"revision\":\"fixture-r1-content-34d45bf5b8f6a5c4e9485da812e11977d17b333d032af859d37e0efc62724c0c\",\"scope\":\"PRODUCT-P\"}},\"unresolved\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"items\":[]},\"kind\":\"unresolved_findings\",\"ref\":{\"identity\":\"UNRESOLVED_FINDINGS\",\"owner\":\"finding-original-owner\",\"revision\":\"fixture-r1-content-78477b59db20b93e073901cfe70a03fde73952d19b940dddb5bb547278d27967\",\"scope\":\"PRODUCT-P\"}},\"verification\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"executed_in_fixture\":true,\"expected_state_owners\":[\"OS\"],\"observed_state_owners\":[\"OS\"]},\"kind\":\"independent_design_review\",\"ref\":{\"identity\":\"INDEPENDENT_DESIGN_REVIEW\",\"owner\":\"independent-review-original-owner\",\"revision\":\"fixture-r1-content-1aa7f29a0b290e2a76f83f6254e70984707e03828ee56d2cea155de21a8432f9\",\"scope\":\"PRODUCT-P\"}}},\"phase\":\"L4\",\"phase_condition_material\":{\"basis\":\"対象工程が指定した必要条件を照合する例。全工程に同じ承認ceremonyを新設しない。\",\"required_by_action\":{\"backflow\":[\"finding_route\"],\"complete\":[\"agreement\",\"requirements_approval\",\"pair\",\"verification\",\"unresolved\"],\"reopen\":[\"agreement\",\"requirements_approval\",\"pair\",\"verification\",\"unresolved\"],\"start\":[\"agreement\",\"requirements_approval\",\"pair\"]},\"source\":{\"identity\":\"PHASE-CONDITIONS\",\"owner\":\"phase-contract-owner\",\"revision\":\"detail-content-c1af2026d5453102befeca9225fb4e18ae5ff4cdbfa9229ace51883403844609\",\"scope\":\"PRODUCT-P\"}},\"scenario_kind\":\"synthetic_phase_condition_fixture_not_actual_approval\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "5a70cff0d46b773039bdd35f067798ae9e08c5639d9909c65f004c4ec6159fb2",
+            "effect": "none"
+          },
+          "expected_typed_assessment": {
+            "partial_values": {
+              "action": {
+                "state": "known",
+                "value": "freeze",
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "required_conditions": {
+                "state": "missing",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "condition_results": {
+                "state": "missing",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "additional_approval_needed": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "meaning_authority_return_owner": {
+                "state": "known",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "proceed_condition": {
+                "state": "missing",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "actual_progressed": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "actual_approval_created": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "actual_completion": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-MISSING",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              }
+            },
+            "readable_original_materials": [
+              "agreement",
+              "requirements_approval",
+              "pair",
+              "verification",
+              "unresolved",
+              "finding_route"
+            ],
+            "definition_return": {
+              "state": "missing",
+              "original_source_ref": {
+                "identity": "PHASE-CONDITIONS",
+                "revision": "detail-content-c1af2026d5453102befeca9225fb4e18ae5ff4cdbfa9229ace51883403844609",
+                "scope": "PRODUCT-P",
+                "owner": "phase-contract-owner"
+              },
+              "affected_context": {
+                "revision": "REQ@r1",
+                "scope": "PRODUCT-P"
+              },
+              "reason": "必要条件原定義または操作Contextの不足を当該source ownerへ返す候補。独立owner資格と実配送先bindingは未成立。",
+              "owner_target_state": "unknown",
+              "owner_target": null,
+              "operation_effect": "none"
+            },
+            "unaffected_scope": {
+              "ref": {
+                "identity": "UNRELATED-Q",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-Q",
+                "owner": "synthetic-Q-owner"
+              },
+              "value": "valid_synthetic_unaffected"
+            },
+            "operation_effect": "none"
+          },
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN",
+          "function_ref": "HARNESS-L5-003-F01",
+          "base_basic_case_ref": "H003-F01-NORMAL-freeze",
+          "base_basic_case_sha256": "ed02ef1605d54c53c694aa755566d1da403e34b46991fe2f684c513a7b5cce94",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "phase_condition_material",
+              "required_by_action",
+              "freeze"
+            ],
+            "before": [
+              "agreement",
+              "requirements_approval",
+              "pair",
+              "verification",
+              "unresolved"
+            ],
+            "after": null,
+            "delete": false
+          },
+          "reference_preparation": [
+            {
+              "path": [
+                "phase_condition_material",
+                "source",
+                "revision"
+              ],
+              "before": "fixture-r1-content-ac12ea3c219086271eec1c07cdfb94e798621d62308cbabd824e07103f30d568",
+              "after": "detail-content-2df3d3ac3b26deb00a316a09d29f23a39c585fd046ce4241914eae49355d0481"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-content-owner"
+            },
+            "raw_utf8": "{\"action\":\"freeze\",\"consultation\":{\"kind\":\"consultation\",\"text\":\"工程条件はどうなるか\"},\"delegation\":{\"authority_change\":false,\"intent_scope\":\"PRODUCT-P\",\"meaning_change\":false,\"technical_detail_within_delegation\":true,\"unassigned_owner\":\"product-requirement-owner\"},\"implementation_observation\":{\"synthetic_expected_debits\":1,\"synthetic_observed_debits\":1},\"materials\":{\"agreement\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"requirement_agreement\",\"ref\":{\"identity\":\"REQUIREMENT_AGREEMENT\",\"owner\":\"requirement-agreement-owner\",\"revision\":\"fixture-r1-content-9216f528aebe73ea5681f3583847b00d2647cbb226ed36f2cb324612b395222b\",\"scope\":\"PRODUCT-P\"}},\"finding_route\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"affected_scope\":\"PRODUCT-P\",\"finding\":\"FINDING-BOUNDARY\",\"return_layer\":\"L4\"},\"kind\":\"backflow_route\",\"ref\":{\"identity\":\"BACKFLOW_ROUTE\",\"owner\":\"finding-original-owner\",\"revision\":\"fixture-r1-content-ed34f9e435ace70e40e70996a9284a87974d95716a70d3aa2d2a38bec3f68017\",\"scope\":\"PRODUCT-P\"}},\"pair\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"left\":\"REQ@r1\",\"left_layer\":\"L3\",\"right\":\"TEST@r1\",\"right_layer\":\"L10\"},\"kind\":\"paired_artifacts\",\"ref\":{\"identity\":\"PAIRED_ARTIFACTS\",\"owner\":\"pair-original-owner\",\"revision\":\"fixture-r1-content-7cce9c4751120d8e824d867d2f9cfe0b1e4cc9c377a5f3765a35045af5a92655\",\"scope\":\"PRODUCT-P\"}},\"requirements_approval\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"delegated\":true,\"l10\":\"TEST@r1\",\"l3\":\"REQ@r1\"},\"kind\":\"requirements_approval\",\"ref\":{\"identity\":\"REQUIREMENTS_APPROVAL\",\"owner\":\"delegated-approval-original-owner\",\"revision\":\"fixture-r1-content-34d45bf5b8f6a5c4e9485da812e11977d17b333d032af859d37e0efc62724c0c\",\"scope\":\"PRODUCT-P\"}},\"unresolved\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"items\":[]},\"kind\":\"unresolved_findings\",\"ref\":{\"identity\":\"UNRESOLVED_FINDINGS\",\"owner\":\"finding-original-owner\",\"revision\":\"fixture-r1-content-78477b59db20b93e073901cfe70a03fde73952d19b940dddb5bb547278d27967\",\"scope\":\"PRODUCT-P\"}},\"verification\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"executed_in_fixture\":true,\"expected_state_owners\":[\"OS\"],\"observed_state_owners\":[\"OS\"]},\"kind\":\"independent_design_review\",\"ref\":{\"identity\":\"INDEPENDENT_DESIGN_REVIEW\",\"owner\":\"independent-review-original-owner\",\"revision\":\"fixture-r1-content-1aa7f29a0b290e2a76f83f6254e70984707e03828ee56d2cea155de21a8432f9\",\"scope\":\"PRODUCT-P\"}}},\"phase\":\"L4\",\"phase_condition_material\":{\"basis\":\"対象工程が指定した必要条件を照合する例。全工程に同じ承認ceremonyを新設しない。\",\"required_by_action\":{\"backflow\":[\"finding_route\"],\"complete\":[\"agreement\",\"requirements_approval\",\"pair\",\"verification\",\"unresolved\"],\"freeze\":null,\"reopen\":[\"agreement\",\"requirements_approval\",\"pair\",\"verification\",\"unresolved\"],\"start\":[\"agreement\",\"requirements_approval\",\"pair\"]},\"source\":{\"identity\":\"PHASE-CONDITIONS\",\"owner\":\"phase-contract-owner\",\"revision\":\"detail-content-2df3d3ac3b26deb00a316a09d29f23a39c585fd046ce4241914eae49355d0481\",\"scope\":\"PRODUCT-P\"}},\"scenario_kind\":\"synthetic_phase_condition_fixture_not_actual_approval\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "f47856bb261008a9db31fd895e5a580a067820b44948cf110616b185d7da4c50",
+            "effect": "none"
+          },
+          "expected_typed_assessment": {
+            "partial_values": {
+              "action": {
+                "state": "known",
+                "value": "freeze",
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "required_conditions": {
+                "state": "unknown",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "condition_results": {
+                "state": "unknown",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "additional_approval_needed": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "meaning_authority_return_owner": {
+                "state": "known",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "proceed_condition": {
+                "state": "unknown",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "actual_progressed": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "actual_approval_created": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "actual_completion": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-UNKNOWN",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              }
+            },
+            "readable_original_materials": [
+              "agreement",
+              "requirements_approval",
+              "pair",
+              "verification",
+              "unresolved",
+              "finding_route"
+            ],
+            "definition_return": {
+              "state": "unknown",
+              "original_source_ref": {
+                "identity": "PHASE-CONDITIONS",
+                "revision": "detail-content-2df3d3ac3b26deb00a316a09d29f23a39c585fd046ce4241914eae49355d0481",
+                "scope": "PRODUCT-P",
+                "owner": "phase-contract-owner"
+              },
+              "affected_context": {
+                "revision": "REQ@r1",
+                "scope": "PRODUCT-P"
+              },
+              "reason": "必要条件原定義または操作Contextの不足を当該source ownerへ返す候補。独立owner資格と実配送先bindingは未成立。",
+              "owner_target_state": "unknown",
+              "owner_target": null,
+              "operation_effect": "none"
+            },
+            "unaffected_scope": {
+              "ref": {
+                "identity": "UNRELATED-Q",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-Q",
+                "owner": "synthetic-Q-owner"
+              },
+              "value": "valid_synthetic_unaffected"
+            },
+            "operation_effect": "none"
+          },
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-CONTENT-ACTION-CONTRACT-WRONG-SHAPE",
+          "function_ref": "HARNESS-L5-003-F01",
+          "base_basic_case_ref": "H003-F01-NORMAL-freeze",
+          "base_basic_case_sha256": "ed02ef1605d54c53c694aa755566d1da403e34b46991fe2f684c513a7b5cce94",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "phase_condition_material",
+              "required_by_action",
+              "freeze"
+            ],
+            "before": [
+              "agreement",
+              "requirements_approval",
+              "pair",
+              "verification",
+              "unresolved"
+            ],
+            "after": "all",
+            "delete": false
+          },
+          "reference_preparation": [
+            {
+              "path": [
+                "phase_condition_material",
+                "source",
+                "revision"
+              ],
+              "before": "fixture-r1-content-ac12ea3c219086271eec1c07cdfb94e798621d62308cbabd824e07103f30d568",
+              "after": "detail-content-dadef74e2ffc374c3dcd1ec818bad44da8c2101e102fb4e5918baa136466f8eb"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-WRONG-SHAPE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-content-owner"
+            },
+            "raw_utf8": "{\"action\":\"freeze\",\"consultation\":{\"kind\":\"consultation\",\"text\":\"工程条件はどうなるか\"},\"delegation\":{\"authority_change\":false,\"intent_scope\":\"PRODUCT-P\",\"meaning_change\":false,\"technical_detail_within_delegation\":true,\"unassigned_owner\":\"product-requirement-owner\"},\"implementation_observation\":{\"synthetic_expected_debits\":1,\"synthetic_observed_debits\":1},\"materials\":{\"agreement\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"requirement_agreement\",\"ref\":{\"identity\":\"REQUIREMENT_AGREEMENT\",\"owner\":\"requirement-agreement-owner\",\"revision\":\"fixture-r1-content-9216f528aebe73ea5681f3583847b00d2647cbb226ed36f2cb324612b395222b\",\"scope\":\"PRODUCT-P\"}},\"finding_route\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"affected_scope\":\"PRODUCT-P\",\"finding\":\"FINDING-BOUNDARY\",\"return_layer\":\"L4\"},\"kind\":\"backflow_route\",\"ref\":{\"identity\":\"BACKFLOW_ROUTE\",\"owner\":\"finding-original-owner\",\"revision\":\"fixture-r1-content-ed34f9e435ace70e40e70996a9284a87974d95716a70d3aa2d2a38bec3f68017\",\"scope\":\"PRODUCT-P\"}},\"pair\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"left\":\"REQ@r1\",\"left_layer\":\"L3\",\"right\":\"TEST@r1\",\"right_layer\":\"L10\"},\"kind\":\"paired_artifacts\",\"ref\":{\"identity\":\"PAIRED_ARTIFACTS\",\"owner\":\"pair-original-owner\",\"revision\":\"fixture-r1-content-7cce9c4751120d8e824d867d2f9cfe0b1e4cc9c377a5f3765a35045af5a92655\",\"scope\":\"PRODUCT-P\"}},\"requirements_approval\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"delegated\":true,\"l10\":\"TEST@r1\",\"l3\":\"REQ@r1\"},\"kind\":\"requirements_approval\",\"ref\":{\"identity\":\"REQUIREMENTS_APPROVAL\",\"owner\":\"delegated-approval-original-owner\",\"revision\":\"fixture-r1-content-34d45bf5b8f6a5c4e9485da812e11977d17b333d032af859d37e0efc62724c0c\",\"scope\":\"PRODUCT-P\"}},\"unresolved\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"items\":[]},\"kind\":\"unresolved_findings\",\"ref\":{\"identity\":\"UNRESOLVED_FINDINGS\",\"owner\":\"finding-original-owner\",\"revision\":\"fixture-r1-content-78477b59db20b93e073901cfe70a03fde73952d19b940dddb5bb547278d27967\",\"scope\":\"PRODUCT-P\"}},\"verification\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"executed_in_fixture\":true,\"expected_state_owners\":[\"OS\"],\"observed_state_owners\":[\"OS\"]},\"kind\":\"independent_design_review\",\"ref\":{\"identity\":\"INDEPENDENT_DESIGN_REVIEW\",\"owner\":\"independent-review-original-owner\",\"revision\":\"fixture-r1-content-1aa7f29a0b290e2a76f83f6254e70984707e03828ee56d2cea155de21a8432f9\",\"scope\":\"PRODUCT-P\"}}},\"phase\":\"L4\",\"phase_condition_material\":{\"basis\":\"対象工程が指定した必要条件を照合する例。全工程に同じ承認ceremonyを新設しない。\",\"required_by_action\":{\"backflow\":[\"finding_route\"],\"complete\":[\"agreement\",\"requirements_approval\",\"pair\",\"verification\",\"unresolved\"],\"freeze\":\"all\",\"reopen\":[\"agreement\",\"requirements_approval\",\"pair\",\"verification\",\"unresolved\"],\"start\":[\"agreement\",\"requirements_approval\",\"pair\"]},\"source\":{\"identity\":\"PHASE-CONDITIONS\",\"owner\":\"phase-contract-owner\",\"revision\":\"detail-content-dadef74e2ffc374c3dcd1ec818bad44da8c2101e102fb4e5918baa136466f8eb\",\"scope\":\"PRODUCT-P\"}},\"scenario_kind\":\"synthetic_phase_condition_fixture_not_actual_approval\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "3b8de8d6542d52ba8373152692e170959d88aa6884ac39f47031f32f52d41c98",
+            "effect": "none"
+          },
+          "expected_typed_assessment": {
+            "partial_values": {
+              "action": {
+                "state": "known",
+                "value": "freeze",
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-WRONG-SHAPE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "required_conditions": {
+                "state": "conflict",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-WRONG-SHAPE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "condition_results": {
+                "state": "conflict",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-WRONG-SHAPE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "additional_approval_needed": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-WRONG-SHAPE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "meaning_authority_return_owner": {
+                "state": "known",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-WRONG-SHAPE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "proceed_condition": {
+                "state": "conflict",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-WRONG-SHAPE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "actual_progressed": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-WRONG-SHAPE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "actual_approval_created": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-WRONG-SHAPE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "actual_completion": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-ACTION-CONTRACT-WRONG-SHAPE",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              }
+            },
+            "readable_original_materials": [
+              "agreement",
+              "requirements_approval",
+              "pair",
+              "verification",
+              "unresolved",
+              "finding_route"
+            ],
+            "definition_return": {
+              "state": "conflict",
+              "original_source_ref": {
+                "identity": "PHASE-CONDITIONS",
+                "revision": "detail-content-dadef74e2ffc374c3dcd1ec818bad44da8c2101e102fb4e5918baa136466f8eb",
+                "scope": "PRODUCT-P",
+                "owner": "phase-contract-owner"
+              },
+              "affected_context": {
+                "revision": "REQ@r1",
+                "scope": "PRODUCT-P"
+              },
+              "reason": "必要条件原定義または操作Contextの不足を当該source ownerへ返す候補。独立owner資格と実配送先bindingは未成立。",
+              "owner_target_state": "unknown",
+              "owner_target": null,
+              "operation_effect": "none"
+            },
+            "unaffected_scope": {
+              "ref": {
+                "identity": "UNRELATED-Q",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-Q",
+                "owner": "synthetic-Q-owner"
+              },
+              "value": "valid_synthetic_unaffected"
+            },
+            "operation_effect": "none"
+          },
+          "effect": "none",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H003-L8-F01-CONTENT-UNRECOGNIZED-ACTION",
+          "function_ref": "HARNESS-L5-003-F01",
+          "base_basic_case_ref": "H003-F01-NORMAL-freeze",
+          "base_basic_case_sha256": "ed02ef1605d54c53c694aa755566d1da403e34b46991fe2f684c513a7b5cce94",
+          "mutation_lane": "original",
+          "mutation": {
+            "path": [
+              "action"
+            ],
+            "before": "freeze",
+            "after": "promote",
+            "delete": false
+          },
+          "reference_preparation": [],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-UNRECOGNIZED-ACTION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-content-owner"
+            },
+            "raw_utf8": "{\"action\":\"promote\",\"consultation\":{\"kind\":\"consultation\",\"text\":\"工程条件はどうなるか\"},\"delegation\":{\"authority_change\":false,\"intent_scope\":\"PRODUCT-P\",\"meaning_change\":false,\"technical_detail_within_delegation\":true,\"unassigned_owner\":\"product-requirement-owner\"},\"implementation_observation\":{\"synthetic_expected_debits\":1,\"synthetic_observed_debits\":1},\"materials\":{\"agreement\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"requirement\":\"USER-REQ@r1\"},\"kind\":\"requirement_agreement\",\"ref\":{\"identity\":\"REQUIREMENT_AGREEMENT\",\"owner\":\"requirement-agreement-owner\",\"revision\":\"fixture-r1-content-9216f528aebe73ea5681f3583847b00d2647cbb226ed36f2cb324612b395222b\",\"scope\":\"PRODUCT-P\"}},\"finding_route\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"affected_scope\":\"PRODUCT-P\",\"finding\":\"FINDING-BOUNDARY\",\"return_layer\":\"L4\"},\"kind\":\"backflow_route\",\"ref\":{\"identity\":\"BACKFLOW_ROUTE\",\"owner\":\"finding-original-owner\",\"revision\":\"fixture-r1-content-ed34f9e435ace70e40e70996a9284a87974d95716a70d3aa2d2a38bec3f68017\",\"scope\":\"PRODUCT-P\"}},\"pair\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"left\":\"REQ@r1\",\"left_layer\":\"L3\",\"right\":\"TEST@r1\",\"right_layer\":\"L10\"},\"kind\":\"paired_artifacts\",\"ref\":{\"identity\":\"PAIRED_ARTIFACTS\",\"owner\":\"pair-original-owner\",\"revision\":\"fixture-r1-content-7cce9c4751120d8e824d867d2f9cfe0b1e4cc9c377a5f3765a35045af5a92655\",\"scope\":\"PRODUCT-P\"}},\"requirements_approval\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"delegated\":true,\"l10\":\"TEST@r1\",\"l3\":\"REQ@r1\"},\"kind\":\"requirements_approval\",\"ref\":{\"identity\":\"REQUIREMENTS_APPROVAL\",\"owner\":\"delegated-approval-original-owner\",\"revision\":\"fixture-r1-content-34d45bf5b8f6a5c4e9485da812e11977d17b333d032af859d37e0efc62724c0c\",\"scope\":\"PRODUCT-P\"}},\"unresolved\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"items\":[]},\"kind\":\"unresolved_findings\",\"ref\":{\"identity\":\"UNRESOLVED_FINDINGS\",\"owner\":\"finding-original-owner\",\"revision\":\"fixture-r1-content-78477b59db20b93e073901cfe70a03fde73952d19b940dddb5bb547278d27967\",\"scope\":\"PRODUCT-P\"}},\"verification\":{\"binding\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"executed_in_fixture\":true,\"expected_state_owners\":[\"OS\"],\"observed_state_owners\":[\"OS\"]},\"kind\":\"independent_design_review\",\"ref\":{\"identity\":\"INDEPENDENT_DESIGN_REVIEW\",\"owner\":\"independent-review-original-owner\",\"revision\":\"fixture-r1-content-1aa7f29a0b290e2a76f83f6254e70984707e03828ee56d2cea155de21a8432f9\",\"scope\":\"PRODUCT-P\"}}},\"phase\":\"L4\",\"phase_condition_material\":{\"basis\":\"対象工程が指定した必要条件を照合する例。全工程に同じ承認ceremonyを新設しない。\",\"required_by_action\":{\"backflow\":[\"finding_route\"],\"complete\":[\"agreement\",\"requirements_approval\",\"pair\",\"verification\",\"unresolved\"],\"freeze\":[\"agreement\",\"requirements_approval\",\"pair\",\"verification\",\"unresolved\"],\"reopen\":[\"agreement\",\"requirements_approval\",\"pair\",\"verification\",\"unresolved\"],\"start\":[\"agreement\",\"requirements_approval\",\"pair\"]},\"source\":{\"identity\":\"PHASE-CONDITIONS\",\"owner\":\"phase-contract-owner\",\"revision\":\"fixture-r1-content-ac12ea3c219086271eec1c07cdfb94e798621d62308cbabd824e07103f30d568\",\"scope\":\"PRODUCT-P\"}},\"scenario_kind\":\"synthetic_phase_condition_fixture_not_actual_approval\",\"target\":{\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "f1bc4820ed64c094038671b9edde0003c17eb8aa08dfeacbc8f70ec8725ac0e8",
+            "effect": "none"
+          },
+          "expected_typed_assessment": {
+            "partial_values": {
+              "action": {
+                "state": "conflict",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-UNRECOGNIZED-ACTION",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "required_conditions": {
+                "state": "conflict",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-UNRECOGNIZED-ACTION",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "condition_results": {
+                "state": "conflict",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-UNRECOGNIZED-ACTION",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "additional_approval_needed": {
+                "state": "conflict",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-UNRECOGNIZED-ACTION",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "meaning_authority_return_owner": {
+                "state": "conflict",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-UNRECOGNIZED-ACTION",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "proceed_condition": {
+                "state": "conflict",
+                "value": null,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-UNRECOGNIZED-ACTION",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該action/必要条件の原定義が欠落/不明/不一致。既定集合や他actionの条件を補完しない。"
+              },
+              "actual_progressed": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-UNRECOGNIZED-ACTION",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "actual_approval_created": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-UNRECOGNIZED-ACTION",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              },
+              "actual_completion": {
+                "state": "known",
+                "value": false,
+                "source_packet_ref": {
+                  "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-UNRECOGNIZED-ACTION",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-content-owner"
+                },
+                "reason": "当該工程/actionが指定した条件と委任内具体化を別々に保持する。"
+              }
+            },
+            "readable_original_materials": [
+              "agreement",
+              "requirements_approval",
+              "pair",
+              "verification",
+              "unresolved",
+              "finding_route"
+            ],
+            "definition_return": {
+              "state": "conflict",
+              "original_source_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F01-CONTENT-UNRECOGNIZED-ACTION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-content-owner"
+              },
+              "affected_context": {
+                "revision": "REQ@r1",
+                "scope": "PRODUCT-P"
+              },
+              "reason": "必要条件原定義または操作Contextの不足を当該source ownerへ返す候補。独立owner資格と実配送先bindingは未成立。",
+              "owner_target_state": "unknown",
+              "owner_target": null,
+              "operation_effect": "none"
+            },
+            "unaffected_scope": {
+              "ref": {
+                "identity": "UNRELATED-Q",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-Q",
+                "owner": "synthetic-Q-owner"
+              },
+              "value": "valid_synthetic_unaffected"
+            },
+            "operation_effect": "none"
+          },
+          "effect": "none",
+          "execution_state": "not_executed"
         }
       ]
     },

@@ -531,9 +531,11 @@
       "basic_calls": 22,
       "typed_expected_cells": 198,
       "nested_condition_cells": 76,
-      "state": "draft_basic_typed_and_qualification_cases_pending_semantic_review",
+      "state": "draft_basic_typed_qualification_and_content_cases_pending_semantic_review",
       "qualification_calls": 52,
-      "qualification_typed_cells": 468
+      "qualification_typed_cells": 468,
+      "content_counterexamples": 4,
+      "content_counterexample_typed_cells": 36
     },
     "F02": {
       "basic_calls": 24,
@@ -571,7 +573,7 @@
     }
   },
   "pending": [
-    "全7関数のbasic typed例を起草済み。F01未定義action、F02〜F05/N01独立qualification/追加内容/返却例は未完",
+    "全7関数のbasic typed例を起草済み。F02〜F05/N01独立qualification/追加内容/返却例と全関数の組合せ・実bindingは未完",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -790,7 +792,7 @@
         "candidateは原資料と別に比較し、反復承認要求・相談由来の実承認・実装成功由来の完了などの意味差をfieldで返す。candidateの宣言で元資料の資格/結果を更新しない。",
         "実進行/承認生成/工程完了はこの照合関数の作用として全てfalse、operation_effectはnone。実進行と記録はOS、原authority判断は当該ownerの責務に保持する。"
       ],
-      "detail_state": "draft_internal_basic_typed_and_qualification_cases_pending_semantic_review",
+      "detail_state": "draft_basic_typed_qualification_and_content_cases_pending_semantic_review",
       "progression_detail": {
         "condition_membership_source": "対象revision/scope・工程・actionに束縛されたphase契約の独立原資料。fixtureのrequired_by_actionをglobal defaultへしない。",
         "source_dependencies": {
@@ -889,7 +891,8 @@
             ]
           ]
         },
-        "qualification_return_rule": "未知の必要条件membershipはunknown/null、未知の委任は承認要/不要へ補完しない。sourceごとの理由/原参照を残し、owner資格が未成立ならowner_targetを当該state/nullにする。非必要資料の不足は診断だけを保持し、無関係Qを消さない。"
+        "qualification_return_rule": "未知の必要条件membershipはunknown/null、未知の委任は承認要/不要へ補完しない。sourceごとの理由/原参照を残し、owner資格が未成立ならowner_targetを当該state/nullにする。非必要資料の不足は診断だけを保持し、無関係Qを消さない。",
+        "undefined_action_rule": "phase契約の当該actionキー欠落はmissing、内容nullはunknown、必要集合の型不一致や未定義操作kindはconflictとして当該field/nullへ返す。別actionの集合や空集合を既定にしない。これらは論理型案の合成比較で正式schemaではない。"
       }
     },
     {
