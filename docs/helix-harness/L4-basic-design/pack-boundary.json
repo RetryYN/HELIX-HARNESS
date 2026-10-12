@@ -56,7 +56,7 @@
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
-      "lines": "54–58、110–115、133–135",
+      "lines": "54–58、64–72、82–87、110–115、125–127",
       "disposition": "semantic_rederivation",
       "keep": "一意の所有、局所義務と構成体義務の分離、変更対象と非対象の版・証拠、releaseとdeploymentの区別。",
       "change": "旧Module/Bundle名称・版・11候補集合・全量nightlyへのfallbackを採用しない。",
@@ -169,9 +169,11 @@
         "exclusion_reasons",
         "pack_qualification_refs",
         "release_unit_revision",
-        "product_revision"
+        "product_revision",
+        "release_unit_maturity_state_ref",
+        "product_maturity_state_ref"
       ],
-      "behavior": "指定された候補母集合を、収載・理由付き除外・未解決へ照合する。適格packだけを収載候補にできる。pack版/成熟度、release単位版、製品版は独立した参照で、下位成功から上位証明を作らない。",
+      "behavior": "指定された候補母集合を、収載・理由付き除外・未解決へ照合する。適格packだけを収載候補にできる。母集合外の未指定packを暗黙追加しない。pack版/成熟度、release単位版、製品版と各上位の成熟度/状態は独立した参照で、下位成功から上位証明を作らない。",
       "backflow": "意味/境界差はHARNESS L3/L4、製品適用不足はCORE、登録/保存/観測欠落はOS/当該producerへ返す。"
     },
     {
