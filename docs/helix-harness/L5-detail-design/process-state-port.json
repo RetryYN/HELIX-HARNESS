@@ -572,7 +572,11 @@
       "typed_expected_cells": 638,
       "nested_port_cells": 232,
       "nested_backfill_cells": 348,
-      "state": "draft_basic_typed_cases_independent_qualification_pending"
+      "state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
+      "qualification_source_groups": 58,
+      "qualification_baselines": 2,
+      "qualification_single_source_examples": 464,
+      "qualification_mixed_examples": 4
     },
     "N01": {
       "basic_calls": 38,
@@ -582,7 +586,7 @@
     }
   },
   "pending": [
-    "全7関数のbasic typed例とF03/F04独立資格例を起草済み。F05/N01の独立qualification、全関数の追加内容/組合せ/返却例・実bindingは未完",
+    "全7関数のbasic typed例とF03/F04/F05独立資格例を起草済み。N01の独立qualification、全関数の追加内容/組合せ/返却例・実bindingは未完",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -1916,7 +1920,7 @@
         "Reverse fullbackの原実結果と対象選択方式の原資料から戻り先を照合する。not_executedを成功にせず、戻り層unknownを適当な層へ補完せず当該ownerへ返す。再開/凍結条件はF01へ結ぶ。",
         "candidateを原資料と別に比較し、当該義務/原資料/理由/該当ownerへの返却候補と無関係scopeの有効材料を保持する。実Incident/配備/記録/ticketはOS、既存認可はSECURITY、方式の意味は要求ownerが保持する。"
       ],
-      "detail_state": "draft_internal_comparison_and_basic_typed_cases_qualification_pending",
+      "detail_state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
       "port_detail": {
         "port_fields": [
           "proofs",
@@ -1952,7 +1956,1075 @@
         "constant_false_limit": "この合成初回scopeは実作用非選択。将来の許可/実施成立ではない。未知scopeをfalseへ変換する汎用規則ではない。",
         "extra_field_derivation": "承認済みF05/基本契約のPort個別義務・開始時定義・検出/暫定対処/postmortem/L12 feedback/backfillを内部部分結果へ明示する。要求意味/版/基本期待を変更しない。",
         "legacy_preservation": "旧v1.3:29–66の層/受入とGitHub非authority、security-engagement-authority-requests:14–29の既存認可/対象期限/原結果区別を意味再導出する。旧runtime/追加approval経路/旧Security業務の包括許可は採用しない。",
-        "source_binding_limit": "合成例の独立原内容比較。実owner/authority/資格と正式schema/codec、実release/Incident/deployの成立ではない。"
+        "source_binding_limit": "合成例の独立原内容比較。実owner/authority/資格と正式schema/codec、実release/Incident/deployの成立ではない。",
+        "qualification_dependencies": {
+          "carrier": {
+            "material_locator": [],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_missing"
+              ],
+              [
+                "port_conflicts"
+              ],
+              [
+                "authority_result"
+              ],
+              [
+                "scope_result"
+              ],
+              [
+                "can_execute"
+              ],
+              [
+                "convergence_result"
+              ],
+              [
+                "permanent_remedy_result"
+              ],
+              [
+                "backfill_missing"
+              ],
+              [
+                "return_layer_result"
+              ],
+              [
+                "reverse_fullback_result"
+              ],
+              [
+                "port_condition_results"
+              ],
+              [
+                "port_timing_result"
+              ],
+              [
+                "backfill_results"
+              ],
+              [
+                "detection_result"
+              ],
+              [
+                "mitigation_result"
+              ],
+              [
+                "postmortem_result"
+              ],
+              [
+                "feedback_result"
+              ]
+            ],
+            "qualification_role": "target_membership",
+            "member": null
+          },
+          "context": {
+            "material_locator": [
+              "target"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_missing"
+              ],
+              [
+                "port_conflicts"
+              ],
+              [
+                "authority_result"
+              ],
+              [
+                "scope_result"
+              ],
+              [
+                "can_execute"
+              ],
+              [
+                "convergence_result"
+              ],
+              [
+                "permanent_remedy_result"
+              ],
+              [
+                "backfill_missing"
+              ],
+              [
+                "return_layer_result"
+              ],
+              [
+                "reverse_fullback_result"
+              ],
+              [
+                "port_condition_results"
+              ],
+              [
+                "port_timing_result"
+              ],
+              [
+                "backfill_results"
+              ],
+              [
+                "detection_result"
+              ],
+              [
+                "mitigation_result"
+              ],
+              [
+                "postmortem_result"
+              ],
+              [
+                "feedback_result"
+              ]
+            ],
+            "qualification_role": "target_membership",
+            "member": null
+          },
+          "change_kind": {
+            "material_locator": [
+              "change_kind"
+            ],
+            "affected_partial_paths": [],
+            "qualification_role": "diagnostic_only_same_port_obligations",
+            "member": null
+          },
+          "port_definition": {
+            "material_locator": [
+              "port",
+              "ref"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_missing"
+              ],
+              [
+                "port_conflicts"
+              ],
+              [
+                "port_condition_results"
+              ],
+              [
+                "port_timing_result"
+              ]
+            ],
+            "qualification_role": "port_membership",
+            "member": null
+          },
+          "port_required": {
+            "material_locator": [
+              "port",
+              "required"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_missing"
+              ],
+              [
+                "port_conflicts"
+              ],
+              [
+                "port_condition_results"
+              ]
+            ],
+            "qualification_role": "port_membership",
+            "member": null
+          },
+          "development_start": {
+            "material_locator": [
+              "development_start_seq"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_timing_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "port_defined_seq": {
+            "material_locator": [
+              "port",
+              "defined_seq"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_timing_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "port_proofs_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "proofs"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "proofs"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "proofs"
+          },
+          "port_proofs_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "proofs",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "proofs"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "proofs"
+          },
+          "port_proofs_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "proofs",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "proofs"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "proofs"
+          },
+          "port_artifact_identity_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "artifact_identity"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "artifact_identity"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "artifact_identity"
+          },
+          "port_artifact_identity_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "artifact_identity",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "artifact_identity"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "artifact_identity"
+          },
+          "port_artifact_identity_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "artifact_identity",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "artifact_identity"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "artifact_identity"
+          },
+          "port_environment_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "environment"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "environment"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "environment"
+          },
+          "port_environment_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "environment",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "environment"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "environment"
+          },
+          "port_environment_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "environment",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "environment"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "environment"
+          },
+          "port_dependencies_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "dependencies"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "dependencies"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "dependencies"
+          },
+          "port_dependencies_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "dependencies",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "dependencies"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "dependencies"
+          },
+          "port_dependencies_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "dependencies",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "dependencies"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "dependencies"
+          },
+          "port_security_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "security"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "security"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "security"
+          },
+          "port_security_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "security",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "security"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "security"
+          },
+          "port_security_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "security",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "security"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "security"
+          },
+          "port_rollback_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "rollback"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "rollback"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "rollback"
+          },
+          "port_rollback_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "rollback",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "rollback"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "rollback"
+          },
+          "port_rollback_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "rollback",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "rollback"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "rollback"
+          },
+          "port_deployment_conditions_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "deployment_conditions"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "deployment_conditions"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "deployment_conditions"
+          },
+          "port_deployment_conditions_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "deployment_conditions",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "deployment_conditions"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "deployment_conditions"
+          },
+          "port_deployment_conditions_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "deployment_conditions",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "deployment_conditions"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "deployment_conditions"
+          },
+          "port_acceptance_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "acceptance"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "acceptance"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "acceptance"
+          },
+          "port_acceptance_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "acceptance",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "acceptance"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "acceptance"
+          },
+          "port_acceptance_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "acceptance",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "acceptance"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "acceptance"
+          },
+          "authority_root": {
+            "material_locator": [
+              "existing_authority"
+            ],
+            "affected_partial_paths": [
+              [
+                "authority_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "authority_binding": {
+            "material_locator": [
+              "existing_authority",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "authority_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "initial_scope": {
+            "material_locator": [
+              "initial_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "scope_result"
+              ],
+              [
+                "can_execute"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_detection": {
+            "material_locator": [
+              "incident",
+              "detection"
+            ],
+            "affected_partial_paths": [
+              [
+                "detection_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_mitigation": {
+            "material_locator": [
+              "incident",
+              "mitigation"
+            ],
+            "affected_partial_paths": [
+              [
+                "mitigation_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_convergence": {
+            "material_locator": [
+              "incident",
+              "convergence"
+            ],
+            "affected_partial_paths": [
+              [
+                "convergence_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_postmortem": {
+            "material_locator": [
+              "incident",
+              "postmortem"
+            ],
+            "affected_partial_paths": [
+              [
+                "postmortem_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_L12_feedback": {
+            "material_locator": [
+              "incident",
+              "L12_feedback"
+            ],
+            "affected_partial_paths": [
+              [
+                "feedback_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_permanent_remedy": {
+            "material_locator": [
+              "incident",
+              "permanent_remedy"
+            ],
+            "affected_partial_paths": [
+              [
+                "permanent_remedy_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_reverse_fullback": {
+            "material_locator": [
+              "incident",
+              "reverse_fullback"
+            ],
+            "affected_partial_paths": [
+              [
+                "reverse_fullback_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_selected_style": {
+            "material_locator": [
+              "incident",
+              "selected_style"
+            ],
+            "affected_partial_paths": [
+              [
+                "return_layer_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_return_layer": {
+            "material_locator": [
+              "incident",
+              "return_layer"
+            ],
+            "affected_partial_paths": [
+              [
+                "return_layer_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "backfill_membership": {
+            "material_locator": [
+              "incident",
+              "current_backfill"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results"
+              ],
+              [
+                "backfill_missing"
+              ]
+            ],
+            "qualification_role": "backfill_membership",
+            "member": null
+          },
+          "backfill_L1": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L1"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L1"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L1"
+          },
+          "backfill_L2": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L2"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L2"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L2"
+          },
+          "backfill_L3": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L3"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L3"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L3"
+          },
+          "backfill_L4": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L4"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L4"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L4"
+          },
+          "backfill_L5": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L5"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L5"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L5"
+          },
+          "backfill_L6": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L6"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L6"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L6"
+          },
+          "backfill_L7": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L7"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L7"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L7"
+          },
+          "backfill_L8": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L8"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L8"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L8"
+          },
+          "backfill_L9": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L9"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L9"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L9"
+          },
+          "backfill_L10": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L10"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L10"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L10"
+          },
+          "backfill_L11": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L11"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L11"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L11"
+          },
+          "backfill_L12": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L12"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L12"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L12"
+          },
+          "incident_deployment_receipt": {
+            "material_locator": [
+              "incident",
+              "deployment_receipt"
+            ],
+            "affected_partial_paths": [],
+            "qualification_role": "diagnostic_only_no_remedy_or_backfill_proof",
+            "member": null
+          },
+          "incident_issue_closed": {
+            "material_locator": [
+              "incident",
+              "issue_closed"
+            ],
+            "affected_partial_paths": [],
+            "qualification_role": "diagnostic_only_no_remedy_or_backfill_proof",
+            "member": null
+          }
+        },
+        "qualification_rule": "Portの義務集合/開始時定義、各観測のroot/binding/意味原観測、既存authority/対象scope、Incident各段階と各層backfillを独立に資格照合する。未解決sourceが他義務の読める原結果を消さず、hotfixでも通常Portの必要集合を減らさない。初回scope資格がunknownならcan_executeはunknown/nullでありfalseへの一括補完をしない。"
       }
     },
     {
