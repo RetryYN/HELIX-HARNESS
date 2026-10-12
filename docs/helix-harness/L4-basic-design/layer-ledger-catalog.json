@@ -98,7 +98,7 @@
   "authority_effect": "none",
   "operation_effect": "none",
   "remaining": [
-    "F01/F02/F03/F04の具体原packet/正常/負例・field/edge/content変異を起草済み。B01/N01の具体oracleと全関数の独立資格/内容組合せ・未見例は未完",
+    "全6関数の初回具体原packet/正常/負例を起草済み。全関数の独立資格/必要集合/内容組合せ・実未見例、意味reviewと対詳細設計は未完",
     "実owner-qualified L1/L2/authority/template版・対象scope/revision/互換契約binding",
     "L5/L8内部比較・edge casesと正式schema/codec/resolver",
     "独立reviewと所見閉包。実oracle凍結/Red/Green/Refactor・実L9/L10は未成立",
@@ -358,7 +358,12 @@
         "OS運転owner"
       ],
       "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "concrete_comparison_rule": [
+        "必要入力を独立原内容へ照合。対象L1/canonical pair/authority-sourceは常時、operation scope/revision/互換は操作選択時、L0/template exact版/scope/authorityは選択時のみ必要。",
+        "選択宣言unknownを非選択へ補完しない。分類ごと/fieldごとに未成立を保持し意味契約owner・authority-source owner・選択owner・OS実運転ownerへ別々の候補を返す。",
+        "OS実保存の未観測と意味条件の未成立は別。receipt/旧runtime/025026完了有無から承認/authority/実運転を生成しない。"
+      ]
     },
     {
       "id": "HARNESS-L4-040-N01",
@@ -394,7 +399,12 @@
         "authority owner"
       ],
       "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "concrete_comparison_rule": [
+        "同scope/root authority/互換の資格を原bindingへ比較。unknown/missingは差分集合nullと評価限界で保持し、対象外へ除外しない。",
+        "新node/edge/pair契約の内容をcatalog/coverage双方へ照合。revision更新だけ/claim completeだけでは消込まない。未対応は変更layerへ局所stale/uncoveredとし他層/Qを保持。",
+        "pair差分は既存canonical pairのoracle/revision内容差であり第七pairを追加しない。旧writer/snapshot生成/coverage保存発行holdingを現行の能力へ転用しない。"
+      ]
     }
   ],
   "fixture_progress": {
@@ -403,10 +413,7 @@
       "negative_cases": 25,
       "state": "draft_concrete_catalog_cases_pending_qualification_detail_and_review"
     },
-    "remaining_concrete_functions": [
-      "B01",
-      "N01"
-    ],
+    "remaining_concrete_functions": [],
     "F02": {
       "normal_cases": 12,
       "negative_cases": 2,
@@ -425,6 +432,16 @@
       "content_mutation_cases": 33,
       "comparison_axes": 332,
       "state": "draft_concrete_snapshot_coverage_cases_pending_qualification_and_review"
+    },
+    "B01": {
+      "normal_cases": 3,
+      "negative_cases": 21,
+      "state": "draft_concrete_dependency_owner_cases_pending_qualification_and_review"
+    },
+    "N01": {
+      "normal_cases": 2,
+      "negative_cases": 10,
+      "state": "draft_concrete_revision_delta_cases_pending_qualification_and_review"
     }
   }
 }
