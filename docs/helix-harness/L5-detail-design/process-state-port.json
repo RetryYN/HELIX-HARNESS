@@ -520,7 +520,6 @@
   },
   "fixture_progress": {
     "remaining_functions": [
-      "F02",
       "F03",
       "F04",
       "F05",
@@ -540,10 +539,16 @@
       "state": "draft_basic_typed_and_qualification_cases_pending_semantic_review",
       "qualification_calls": 52,
       "qualification_typed_cells": 468
+    },
+    "F02": {
+      "basic_calls": 24,
+      "typed_expected_cells": 336,
+      "nested_return_cells": 120,
+      "state": "draft_basic_typed_cases_independent_qualification_pending"
     }
   },
   "pending": [
-    "5関数の内部比較/typed部分期待/対単体oracleの具体化、F01の未定義action/必要条件集合の具体比較",
+    "4関数の内部比較/typed部分期待/対単体oracle、F01未定義action、F02独立qualification/追加原内容反例の具体化",
     "正式schema/codec/resolver/実owner・authority・隔離/資源",
     "独立reviewと所見閉包",
     "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
@@ -890,24 +895,58 @@
           "poc_applicability": "PartialValue",
           "prototype_na_result": "PartialValue",
           "poc_result": "PartialValue",
-          "return_chain_results": "PartialValue",
+          "return_chain_results": "PartialValue（knownのvalueは還流identity→PartialValue map。必要membershipが未確定ならnull）",
           "unresolved_return_fields": "PartialValue",
           "refreeze_condition": "PartialValue",
           "actual_requirement_adopted": "PartialValue",
           "actual_requirements_approved": "PartialValue",
           "actual_l3_frozen": "PartialValue",
-          "actual_completion": "PartialValue"
+          "actual_completion": "PartialValue",
+          "prototype_result": "PartialValue（適用時の操作/状態/failure原観測、非適用時の記録成立を別に返す）",
+          "poc_na_result": "PartialValue（非適用PoCの6属性、適用時はnot_required）"
         },
         "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
         "unaffected_scope": "元の有効な非対象資料",
         "operation_effect": "none"
       },
       "internal_steps": [
-        "原sourceとcandidateを分け、各Ref/context/kind/owner/qualificationを独立照合。",
-        "基本契約の各input/output/invariantを内容で比較し、fieldごとの不足/意味差/戻し先を返す。",
-        "候補の強制成立/未知消去を原資料へ照合し、実操作は生成しない。"
+        "対象Context/carrierとL2原記録、001のPrototype/PoC独立適用判定、各N/A記録、各原結果、還流各段を独立sourceとして解決/資格照合する。非UI判定からPoC省略やL2欠落を補完しない。",
+        "Prototype/PoCのstatusを独立に確認する。not_applicableではnot_applicable・理由・判定者・対象HEAD・要求影響・再評価条件の6属性を保持し、未解決statusを非適用にしない。",
+        "適用Prototypeはoperationと期待/観測state・failureを具体比較し、PoCは期待/観測と技術的unknown解消を比較する。適用時の結果欠落/未知/不一致を、他方の成功で補完しない。",
+        "両方の独立N/Aが成立して結果なしの場合だけ、L2.5結果のない例として還流chainをnot_requiredへする。未実施結果や還流を捏造せずL2と両N/Aを保持する。",
+        "結果がある対象はBackflow→008二次形成→Decide採用/不採用/方針変更→対象合意→対再凍結条件を各原source内容・role・対象revision/scopeで照合する。Decideを実験担当AI解釈から生成しない。",
+        "還流の必要membershipと各段の未解決を分けて返す。既知集合の不足段だけをstate/nullにし、読めた他段とunresolved_return_fieldsを保持する。未知membershipを空集合/全not_requiredへ変換しない。",
+        "要求/設計変更に影響する合意と対のrevisionを再照合し、古い合意をstaleとして対象ownerへ戻す。影響しないscopeの有効材料を一括停止しない。",
+        "candidateを原資料と別に比較する。PoC/Prototype成功・還流成立から要求採用/要件承認/L3凍結/完了を生成せず、関数の実作用はnoneに保つ。"
       ],
-      "detail_state": "signature_only_content_comparison_pending"
+      "detail_state": "draft_internal_comparison_and_basic_typed_cases_qualification_pending",
+      "backflow_detail": {
+        "additional_field_derivation": "承認済みF02と基本契約はPrototype/PoCを独立に扱う。基本例の原資料に既存のPrototype観測とPoC N/Aを、prototype_result/poc_na_resultとして内部出力へ明示する。要求意味・基本期待・適用範囲は変更しない。",
+        "na_fields": [
+          "not_applicable",
+          "reason",
+          "decider",
+          "target_head",
+          "requirement_impact",
+          "reevaluation"
+        ],
+        "required_return_chain": [
+          "backflow",
+          "secondary_008",
+          "decide",
+          "agreement",
+          "pair_refreeze"
+        ],
+        "branch_rule": "両方独立N/AとL2が確認できる結果なしの場合だけ当該還流を不要にする。未知/不成立はN/Aではない。",
+        "constant_false_fields": [
+          "actual_requirement_adopted",
+          "actual_requirements_approved",
+          "actual_l3_frozen",
+          "actual_completion"
+        ],
+        "source_binding_limit": "typed basic期待は内容比較の合成例。source_packet_refはcarrier参照で、embedded sourceの実資格を代替しない。",
+        "legacy_preservation": "v1.3:29–66のL2/N/AとV-pair、AVS:24–50の異なるauthority、RFA:23–38の反復と局所影響を内部部分結果へ意味再導出する。旧runtime/CIと未採用候補の能力を採用しない。"
+      }
     },
     {
       "id": "HARNESS-L5-003-F03",
