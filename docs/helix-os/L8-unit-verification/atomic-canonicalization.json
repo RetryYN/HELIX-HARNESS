@@ -299,7 +299,6 @@
       "requirement_ref": "HELIXOS-L3-053-F01",
       "system_oracle_ref": "HELIXOS-L10-053-F01",
       "symbol": "freeze_write_plan",
-      "normal_fixture": "fixture rootに上記normal_inputだけを適用。期待root/source/owner/authority/closureを変異に合わせて再生成しない。",
       "normal_expected": {
         "result": "ready",
         "findings": [],
@@ -312,10 +311,7 @@
           "input_locator": "/writes/jA/owner_ref",
           "single_change": "owner一件欠落",
           "expected_code": "owner_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F01-M02",
@@ -323,10 +319,7 @@
           "input_locator": "/bases/B",
           "single_change": "Bのbase欠落",
           "expected_code": "closure_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F01-M03",
@@ -334,10 +327,7 @@
           "input_locator": "/writes/pA",
           "single_change": "projection1の必要writeを除去",
           "expected_code": "closure_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F01-M04",
@@ -345,10 +335,7 @@
           "input_locator": "/writes/rec/required_links",
           "single_change": "receipt link除去",
           "expected_code": "link_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F01-M05",
@@ -356,10 +343,7 @@
           "input_locator": "/closure_ref",
           "single_change": "inputと同時にclosureを切り詰めようとする",
           "expected_code": "closure_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         }
       ],
       "integration_negative_strings_retained": [
@@ -381,7 +365,6 @@
       "requirement_ref": "HELIXOS-L3-053-F02",
       "system_oracle_ref": "HELIXOS-L10-053-F02",
       "symbol": "persist_atomic_bundle",
-      "normal_fixture": "fixture rootに上記normal_inputだけを適用。期待root/source/owner/authority/closureを変異に合わせて再生成しない。",
       "normal_expected": {
         "result": "committed",
         "generation": "G1",
@@ -398,10 +381,7 @@
           "input_locator": "/driver/save/each_write",
           "single_change": "13write各保存fault",
           "expected_code": "write_failed",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-F02-M02",
@@ -409,10 +389,7 @@
           "input_locator": "/driver/verify/each_write",
           "single_change": "13write各内容照合fault",
           "expected_code": "content_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-F02-M03",
@@ -420,10 +397,7 @@
           "input_locator": "/driver/current_heads/order",
           "single_change": "commit前にcurrentだけ公開",
           "expected_code": "boundary_violation",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-F02-M04",
@@ -431,10 +405,7 @@
           "input_locator": "/read/reader_ref",
           "single_change": "writer接続の途中SELECTを公開readへ転用",
           "expected_code": "read_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F02-M05",
@@ -442,10 +413,7 @@
           "input_locator": "/driver/commit/response",
           "single_change": "commit応答喪失",
           "expected_code": "commit_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-F02-M06",
@@ -453,10 +421,7 @@
           "input_locator": "/driver/after_cas",
           "single_change": "全base CAS成功後commit前に単独fault",
           "expected_code": "write_failed",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-F02-M07",
@@ -464,10 +429,7 @@
           "input_locator": "/driver/commit/transaction_state",
           "single_change": "commitが拒否されtransactionが残存（BUSY等）",
           "expected_code": "commit_refused",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-F02-M08",
@@ -475,10 +437,7 @@
           "input_locator": "/driver/commit/auto_rollback",
           "single_change": "commit errorで自動rollbackを確認できる",
           "expected_code": "commit_refused",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-F02-M09",
@@ -486,10 +445,7 @@
           "input_locator": "/driver/commit/rollback_unknown",
           "single_change": "commit errorでrollback有無を確認できない",
           "expected_code": "rollback_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         }
       ],
       "integration_negative_strings_retained": [
@@ -515,7 +471,6 @@
       "requirement_ref": "HELIXOS-L3-053-F03",
       "system_oracle_ref": "HELIXOS-L10-053-F03",
       "symbol": "recover_failed_operation",
-      "normal_fixture": "fixture rootに上記normal_inputだけを適用。期待root/source/owner/authority/closureを変異に合わせて再生成しない。",
       "normal_expected": {
         "result": "incomplete",
         "code": "write_failed",
@@ -532,10 +487,7 @@
           "input_locator": "/failure/rollback_observation_ref",
           "single_change": "rollback呼出しのみで完了主張",
           "expected_code": "rollback_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F03-M02",
@@ -543,10 +495,7 @@
           "input_locator": "/failure/isolation_ref",
           "single_change": "復旧先不明",
           "expected_code": "rollback_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F03-M03",
@@ -554,10 +503,7 @@
           "input_locator": "/read/current_generation_ref",
           "single_change": "隔離bytesをcurrent扱い",
           "expected_code": "read_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F03-M04",
@@ -565,10 +511,7 @@
           "input_locator": "/driver/rollback/result",
           "single_change": "rollback自身が失敗",
           "expected_code": "rollback_failed",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-F03-M05",
@@ -576,10 +519,7 @@
           "input_locator": "/driver/read/result",
           "single_change": "rollback後read不能",
           "expected_code": "read_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         }
       ],
       "integration_negative_strings_retained": [
@@ -601,7 +541,6 @@
       "requirement_ref": "HELIXOS-L3-053-F04",
       "system_oracle_ref": "HELIXOS-L10-053-F04",
       "symbol": "compare_all_bases",
-      "normal_fixture": "fixture rootに上記normal_inputだけを適用。期待root/source/owner/authority/closureを変異に合わせて再生成しない。",
       "normal_expected": {
         "result": "stale",
         "code": "base_conflict",
@@ -618,10 +557,7 @@
           "input_locator": "/bases/A/expected_ref",
           "single_change": "Aだけbaseを変更",
           "expected_code": "base_conflict",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F04-M02",
@@ -629,10 +565,7 @@
           "input_locator": "/bases/B/expected_ref",
           "single_change": "Bだけbaseを変更",
           "expected_code": "base_conflict",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F04-M03",
@@ -640,10 +573,7 @@
           "input_locator": "/driver/transaction_boundary",
           "single_change": "CAS比較後にwriter排他を解放して別writerをcommit",
           "expected_code": "boundary_violation",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-F04-M04",
@@ -651,10 +581,7 @@
           "input_locator": "/identity/scope_ref",
           "single_change": "他scope receiptでbase条件を充足",
           "expected_code": "identity_conflict",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         }
       ],
       "integration_negative_strings_retained": [
@@ -683,7 +610,6 @@
       "requirement_ref": "HELIXOS-L3-053-F05",
       "system_oracle_ref": "HELIXOS-L10-053-F05",
       "symbol": "resolve_command_replay",
-      "normal_fixture": "fixture rootに上記normal_inputだけを適用。期待root/source/owner/authority/closureを変異に合わせて再生成しない。",
       "normal_expected": {
         "result": "replay",
         "operation": "O/r1",
@@ -697,10 +623,7 @@
           "input_locator": "/identity/payload_digest",
           "single_change": "同ID異payload",
           "expected_code": "identity_conflict",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F05-M02",
@@ -708,10 +631,7 @@
           "input_locator": "/identity/scope_ref",
           "single_change": "別scope再送",
           "expected_code": "identity_conflict",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F05-M03",
@@ -719,10 +639,7 @@
           "input_locator": "/identity/bases",
           "single_change": "別base再送",
           "expected_code": "identity_conflict",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F05-M04",
@@ -730,10 +647,7 @@
           "input_locator": "/identity/result_ref",
           "single_change": "052 evidence missing",
           "expected_code": "identity_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F05-M05",
@@ -741,10 +655,7 @@
           "input_locator": "/resolutions/identity/state",
           "single_change": "052 unknown",
           "expected_code": "identity_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F05-M06",
@@ -752,10 +663,7 @@
           "input_locator": "/driver/semantic_normalization_call",
           "single_change": "OS独自正規化で同一と判定",
           "expected_code": "boundary_violation",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-F05-M07",
@@ -763,10 +671,7 @@
           "input_locator": "/failure/recovery_obligations",
           "single_change": "先行未完の復旧をdrop",
           "expected_code": "link_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         }
       ],
       "integration_negative_strings_retained": [
@@ -791,7 +696,6 @@
       "requirement_ref": "HELIXOS-L3-053-F06",
       "system_oracle_ref": "HELIXOS-L10-053-F06",
       "symbol": "verify_committed_receipt",
-      "normal_fixture": "fixture rootに上記normal_inputだけを適用。期待root/source/owner/authority/closureを変異に合わせて再生成しない。",
       "normal_expected": {
         "result": "committed",
         "receipt_write_count": 13,
@@ -805,10 +709,7 @@
           "input_locator": "/receipt/write_outcomes",
           "single_change": "count13を保ちwrite一行を別IDへ",
           "expected_code": "closure_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F06-M02",
@@ -816,10 +717,7 @@
           "input_locator": "/read/records/pA/source_ref",
           "single_change": "別revision projection",
           "expected_code": "read_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F06-M03",
@@ -827,10 +725,7 @@
           "input_locator": "/receipt/failure_point",
           "single_change": "失敗位置欠落",
           "expected_code": "schema_invalid",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F06-M04",
@@ -838,10 +733,7 @@
           "input_locator": "/receipt/scope_ref",
           "single_change": "success/failure scope混在",
           "expected_code": "reference_conflict",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F06-M05",
@@ -849,10 +741,7 @@
           "input_locator": "/read/routes_observed",
           "single_change": "receiptだけを見てactual readなし",
           "expected_code": "read_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F06-M06",
@@ -860,10 +749,7 @@
           "input_locator": "/read/records/pA/after_ref",
           "single_change": "commit確定後の独立projection readが別revisionを返す",
           "expected_code": "read_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F06-M07",
@@ -871,10 +757,7 @@
           "input_locator": "/read/route_failures/canonical",
           "single_change": "commit確定後の独立canonical readが不能",
           "expected_code": "read_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F06-M08",
@@ -882,10 +765,7 @@
           "input_locator": "/receipt/future_read_result",
           "single_change": "receiptにcommit後read実施済みfieldを先書き",
           "expected_code": "schema_invalid",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F06-M09",
@@ -893,10 +773,7 @@
           "input_locator": "/driver/receipt_update_after_commit",
           "single_change": "read不一致をreceipt後書き更新で成功にする",
           "expected_code": "boundary_violation",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         }
       ],
       "integration_negative_strings_retained": [
@@ -922,7 +799,6 @@
       "requirement_ref": "HELIXOS-L3-053-F07",
       "system_oracle_ref": "HELIXOS-L10-053-F07",
       "symbol": "recover_failed_operation",
-      "normal_fixture": "fixture rootに上記normal_inputだけを適用。期待root/source/owner/authority/closureを変異に合わせて再生成しない。",
       "normal_expected": {
         "result": "incomplete",
         "success_receipt": false,
@@ -937,10 +813,7 @@
           "input_locator": "/driver/success_claim_without_receipt",
           "single_change": "口頭成功だけ",
           "expected_code": "receipt_missing",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-F07-M02",
@@ -948,10 +821,7 @@
           "input_locator": "/driver/new_fallback_path",
           "single_change": "records/へ新fallbackを作る",
           "expected_code": "boundary_violation",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-F07-M03",
@@ -959,10 +829,7 @@
           "input_locator": "/evidence_route/scope_ref",
           "single_change": "Eはあるが別scope",
           "expected_code": "evidence_route_invalid",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F07-M04",
@@ -970,10 +837,7 @@
           "input_locator": "/resolutions/evidence_route/state",
           "single_change": "E内容unknown",
           "expected_code": "reference_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F07-M05",
@@ -981,10 +845,7 @@
           "input_locator": "/receipt/visibility",
           "single_change": "receipt候補の存在を成功扱い",
           "expected_code": "receipt_missing",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         }
       ],
       "integration_negative_strings_retained": [
@@ -1006,7 +867,6 @@
       "requirement_ref": "HELIXOS-L3-053-F08",
       "system_oracle_ref": "HELIXOS-L10-053-F08",
       "symbol": "freeze_write_plan",
-      "normal_fixture": "fixture rootに上記normal_inputだけを適用。期待root/source/owner/authority/closureを変異に合わせて再生成しない。",
       "normal_expected": {
         "json_update": "ready",
         "view_only_canonical_revision_increment": 0,
@@ -1019,10 +879,7 @@
           "input_locator": "/writes/jA/kind",
           "single_change": "view成功をJSON write代替",
           "expected_code": "owner_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F08-M02",
@@ -1030,10 +887,7 @@
           "input_locator": "/writes/pA/source_ref",
           "single_change": "別JSON revision viewをcurrent結合",
           "expected_code": "link_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-F08-M03",
@@ -1041,10 +895,7 @@
           "input_locator": "/driver/derive_meaning_from_view",
           "single_change": "view bytesからowner意味を逆生成",
           "expected_code": "boundary_violation",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         }
       ],
       "integration_negative_strings_retained": [
@@ -1065,7 +916,6 @@
       "requirement_ref": "HELIXOS-L3-053-N01",
       "system_oracle_ref": "HELIXOS-L10-053-N01",
       "symbol": "summarize_fault_observations",
-      "normal_fixture": "fixture rootに上記normal_inputだけを適用。期待root/source/owner/authority/closureを変異に合わせて再生成しない。",
       "normal_expected": {
         "result": "ready",
         "unobserved_points": [],
@@ -1078,10 +928,7 @@
           "input_locator": "/read/unobserved_routes",
           "single_change": "pointerだけ確認して他2経路成功",
           "expected_code": "read_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-N01-M02",
@@ -1089,10 +936,7 @@
           "input_locator": "/read/unobserved_routes",
           "single_change": "canonicalだけ確認",
           "expected_code": "read_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-N01-M03",
@@ -1100,10 +944,7 @@
           "input_locator": "/read/unobserved_routes",
           "single_change": "projectionだけ確認",
           "expected_code": "read_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-N01-M04",
@@ -1111,10 +952,7 @@
           "input_locator": "/read/reader_ref",
           "single_change": "writer private viewだけ観測",
           "expected_code": "read_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-N01-M05",
@@ -1122,10 +960,7 @@
           "input_locator": "/read/route_failures",
           "single_change": "read失敗を空集合成功へ",
           "expected_code": "read_unknown",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-N01-M06",
@@ -1133,10 +968,7 @@
           "input_locator": "/fault_matrix/operation_boundaries",
           "single_change": "全base CAS後commit前faultを母集合から除外",
           "expected_code": "closure_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-N01-M07",
@@ -1144,10 +976,7 @@
           "input_locator": "/fault_matrix/commit",
           "single_change": "commit faultを応答喪失で代用",
           "expected_code": "closure_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-N01-M08",
@@ -1155,10 +984,7 @@
           "input_locator": "/driver/commit/transaction_state",
           "single_change": "commit残存transactionを成功扱い",
           "expected_code": "commit_refused",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         }
       ],
       "integration_negative_strings_retained": [
@@ -1183,7 +1009,6 @@
       "requirement_ref": "HELIXOS-L3-053-N02",
       "system_oracle_ref": "HELIXOS-L10-053-N02",
       "symbol": "verify_committed_receipt",
-      "normal_fixture": "fixture rootに上記normal_inputだけを適用。期待root/source/owner/authority/closureを変異に合わせて再生成しない。",
       "normal_expected": {
         "normal": "committed",
         "missing_source": "reference_missing",
@@ -1197,10 +1022,7 @@
           "input_locator": "/receipt/scope_ref",
           "single_change": "他scope receiptで補完",
           "expected_code": "reference_conflict",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-N02-M02",
@@ -1208,10 +1030,7 @@
           "input_locator": "/receipt/write_outcomes",
           "single_change": "countのみで成功",
           "expected_code": "closure_mismatch",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         },
         {
           "id": "OS-L8-053-N02-M03",
@@ -1219,10 +1038,7 @@
           "input_locator": "/driver/new_trace_fallback",
           "single_change": "任意fallbackでtrace補完",
           "expected_code": "boundary_violation",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-N02-M04",
@@ -1230,10 +1046,7 @@
           "input_locator": "/failure/operation_ref",
           "single_change": "他operationの成功でO未完を消す",
           "expected_code": "reference_conflict",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "input_or_port_observation",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "input_or_port_observation"
         }
       ],
       "integration_negative_strings_retained": [
@@ -1254,7 +1067,6 @@
       "requirement_ref": "HELIXOS-L3-053-B01",
       "system_oracle_ref": "HELIXOS-L10-053-B01",
       "symbol": "freeze_write_plan",
-      "normal_fixture": "fixture rootに上記normal_inputだけを適用。期待root/source/owner/authority/closureを変異に合わせて再生成しない。",
       "normal_expected": {
         "result": "ready",
         "authority_adoption_calls": 0,
@@ -1269,10 +1081,7 @@
           "input_locator": "/result/requirement_adoption",
           "single_change": "O成功で要求採択",
           "expected_code": "boundary_violation",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-B01-M02",
@@ -1280,10 +1089,7 @@
           "input_locator": "/result/po_accepted",
           "single_change": "O成功でPO Accepted",
           "expected_code": "boundary_violation",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-B01-M03",
@@ -1291,10 +1097,7 @@
           "input_locator": "/driver/history_transform",
           "single_change": "O成功でFR53履歴変換",
           "expected_code": "boundary_violation",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-B01-M04",
@@ -1302,10 +1105,7 @@
           "input_locator": "/driver/legacy_schema",
           "single_change": "旧DB名/schema生成",
           "expected_code": "boundary_violation",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         },
         {
           "id": "OS-L8-053-B01-M05",
@@ -1313,10 +1113,7 @@
           "input_locator": "/driver/legacy_runtime",
           "single_change": "旧runtime fallback",
           "expected_code": "boundary_violation",
-          "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、当該異常で新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
-          "oracle_frozen_before_implementation": true,
-          "mutation_surface": "adapter_or_implementation_protocol",
-          "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。実装側に違反を自己申告させて検出を代用しない。"
+          "mutation_surface": "adapter_or_implementation_protocol"
         }
       ],
       "integration_negative_strings_retained": [
@@ -1406,5 +1203,10 @@
     "禁止call（current先行公開、receipt後書き、Python DB/意味正規化、外部fallback）がゼロ。",
     "実toolchain/API/linked SQLite/OS-VFS、実独立readのfault観測は別に必要。"
   ],
-  "execution_state": "not_executed"
+  "execution_state": "not_executed",
+  "mutation_policy": {
+    "expected_invariant": "原closure/owner/authority/rootを保全。失敗/未完を同O/Sへ返し、新current部分集合/先行bindingの上書き/意味authority昇格なし。commit後異常は実commitを保全しreceipt成功応答なし。",
+    "expected_code_role": "input系はdomain finding。禁止call/順序/出力field系は固定oracleがprotocol違反を検出するcode。違反の自己申告で検出を代用しない。",
+    "definition_order": "各入力・期待値・母集合はL6/L7で実装前に独立定義・凍結する。このcandidateは未reviewの検証設計であり、実装前testコード凍結の完了は主張しない。"
+  }
 }
