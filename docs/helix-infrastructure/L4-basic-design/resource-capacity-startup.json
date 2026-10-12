@@ -1,0 +1,225 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-003",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_basic_content_pending_source_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2a",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+    "boundary": "選択scopeの001資源snapshotと起動前容量情報。高度autoscalingや全Modelの能力を依存条件にしない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        29,
+        30
+      ],
+      "quote": "Requirement、Definition、Contract、Release、Deploymentの意味authorityはHELIX-HARNESSに置く。runtime observation、log、metric、\ntrace、notification、provider control plane、DevOS、`harness.db`は証拠またはprojectionであり、意味authorityとして手編集しない。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "e277f6a891b50c2662b4f4fea61d172ea9757d108ad870e462cf51aaf5cfe4a3",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "意味authorityとruntime observation/projectionを分離する。",
+      "change": "旧OPSの製品配備/runtime/DB/認証と未承認NIO規律をそのまま移植せず、9/26のINFRA配置/Worker統一と9/28採択/10/12限定003の実資源参照へ再導出する。",
+      "reason": "CORE設計意味/INFRA target-actual/OS作業/SEC権限/INT配置/LABO評価の正本ownerを分け、未観測/非対象を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "read_lines": [
+        9,
+        9
+      ],
+      "quote": "| NIO-L3-03 | measurement evidenceはmetric定義、単位、scope、source、authority、timestamp、freshness、collector health、sample count、digestを持つ。 |",
+      "file_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "selected_lines_sha256": "be8e79cf3b6169071eae8e99d3199e4476335108aec215096b4bd3fd7d2f5a8c",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+        "disposition": "unresolved",
+        "source_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧未承認候補のscope/source/revision/freshness観測意味を比較資料として参照する。",
+      "change": "旧OPSの製品配備/runtime/DB/認証と未承認NIO規律をそのまま移植せず、9/26のINFRA配置/Worker統一と9/28採択/10/12限定003の実資源参照へ再導出する。",
+      "reason": "CORE設計意味/INFRA target-actual/OS作業/SEC権限/INT配置/LABO評価の正本ownerを分け、未観測/非対象を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "read_lines": [
+        15,
+        15
+      ],
+      "quote": "| NIO-L3-09 | designed/implemented/verified/observed/operatedの状態遷移は証拠付きで、collector停止・欠測・staleをhealthyへ変換しない。 |",
+      "file_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "selected_lines_sha256": "8ab66cd6f2752242c6548e1c96cb4db026f636cb0ecf4ba202b87ef445652ee0",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+        "disposition": "unresolved",
+        "source_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧未承認候補の欠測/staleをhealthyへ変換しない意味を比較資料として参照する。",
+      "change": "旧OPSの製品配備/runtime/DB/認証と未承認NIO規律をそのまま移植せず、9/26のINFRA配置/Worker統一と9/28採択/10/12限定003の実資源参照へ再導出する。",
+      "reason": "CORE設計意味/INFRA target-actual/OS作業/SEC権限/INT配置/LABO評価の正本ownerを分け、未観測/非対象を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        88,
+        92
+      ],
+      "quote": "### OPS-R-04 provider中立planner\n\nRequirement、Design、dependency、Release Artifact、Environment current stateからDeployment Planを決定的に生成する。\nlocal、VPS、container、serverless、AWS、Azure、GCP等はtyped adapter portで接続し、provider固有schemaやcommandをCoreへ埋め込まない。\nunknown capability、ambiguous target、artifact／config digest欠落、migration互換不明、health check欠落、権限不足をfail-closeする。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "ac043660ec828f7c422773e8330ae74e495fe6e7635e68300e1ac38770a383d4",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧provider中立planner/typed adapterとunknown capability/ambiguous target/権限不足等のfail-closeを参照する。",
+      "change": "旧製品配備の固有方式を新runtimeへ移植せず、選択資源方式の容量観測と既存ownerの条件参照/unknownへ再導出する。",
+      "reason": "採択003は方式/閾値/配置採否を推測で新設せず、OS/INT判断とSEC/Worker境界へ保持する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実資源/要求必要量/条件元/観測のowner-qualified bindingとfreshness/単位/境界/予約中資源の実資格は未成立。",
+    "正式schema/codec/条件resolver、全属性組合せ、並行起動と判定後の資源変動、L5/L8の設計と対oracle凍結は未完。",
+    "実装前Red実観測→最小Green→Refactor→再検証、実L9/L10、PO L11受入、全92親430対の閉包は未成立。"
+  ],
+  "document_id": "HELIXINFRASTRUCTURE-L4-003",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "selected_resource_observation_reader",
+      "startup_capacity_condition_reader",
+      "shortage_information_router"
+    ],
+    "flow": [
+      "001資源snapshot→属性ごとの観測/source/未観測保持",
+      "起動要求必要量＋実容量＋既存条件参照→適格/不足/unknownの情報",
+      "不足/unknown＋待機要求＋snapshot＋未完→OS/INT判断owner"
+    ],
+    "python_boundary": "予定するPython接続は原入力を読み、条件元と対象を対照して情報を返す。正式schema/実resolver/実資源接続は未設計であり、本合成入力はPython実装契約を確定しない。",
+    "concurrency_limit": "合成比較は同時起動の予約/残容量/判定後変動を保証しない。正式起動経路の対設計で実資格を定義する。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-003-F01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-003-F01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-003-F01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-003-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-003",
+        "title": "共通資源と容量の観測",
+        "obligation": "選択したlocal/VPS/server/VM/container/GPU/Worker資源のCPU/RAM/GPU/VRAM/storage/network/runtime/capacity/health/availabilityと、utilization/queue/concurrency/saturation/rejection/backpressureを対象版へ結ぶ。Model属性は001のscope条件を適用する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-003-F01"
+      },
+      "content_rules": [
+        "選択された001 resource snapshotをresource identity/revision/environment/scopeへ束縛する。方式はlocal/VPS/dedicated server/cloud VM/container/GPU node/Worker nodeとして識別し、未選択方式を推測で追加しない。",
+        "CPU/RAM/GPU/VRAM/storage/network/runtime/capacity/health/availability、utilization/queue/concurrency/saturation/rejection/backpressureの各値をsource/revision/対象へ結ぶ。単位・観測範囲は元情報を保持し、未観測とstaleをhealthyや十分へ変換しない。",
+        "物理networkとstorage属性は001の該当対象版の参照を保持し、論理CONNECT接続や別環境の成功へ読み替えない。Model属性は001の選択scopeのみ、知能評価はINTELLIGENCE/LABOへ保持する。",
+        "共通属性の比較ができない方式固有値を一律換算/推定しない。不足は資源観測元へ返し、起動受入は生成しない。"
+      ],
+      "representation_limit": "合成例の数値・単位・条件・owner識別子は実製品の閾値/schema/条件資格を採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-003-F02",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-003-F02",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-003-F02",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-003-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-003",
+        "title": "起動前の容量条件",
+        "obligation": "Job/Worker/Model/CIの起動前に必要量と実容量を比較する。十分性の閾値/適用条件が未設定ならunknownを返し、観測値の存在やfixture数値から製品閾値を作らない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-003-F02"
+      },
+      "content_rules": [
+        "Job/Worker/Model/CI起動要求の必要量、F01の実容量と観測範囲、十分性の閾値/適用条件の既存owner参照を同一対象版/scopeへ結ぶ。",
+        "条件未設定、境界不明、対象違い、単位/必要量/実容量不足、staleではunknownを返す。観測値の存在やfixtureの比較値だけから条件を生成しない。",
+        "条件が対象へ適用でき、必要量と実容量が比較できる場合のみ当該条件の結果を適格/不足として情報提供する。適格情報は実起動許可や資源予約ではなく、判定時snapshotを保持する。",
+        "unknown/不足をOS/INTELLIGENCEのdecision ownerへ返し、起動要求・待機状態・snapshot・未完義務を保全する。無制限Job追加やfixture上限の製品採用を拒否する。"
+      ],
+      "representation_limit": "合成例の数値・単位・条件・owner識別子は実製品の閾値/schema/条件資格を採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-003-B01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-003-B01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-003-B01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-003-B01",
+        "parent": "HELIXINFRASTRUCTURE-L2-003",
+        "title": "不足情報と配置判断",
+        "obligation": "不足をqueue/delay、低費用/別node候補、reject、人へのescalation判断経路へ渡し、INFRA自身が配置や費用を採否/実行しない。高度autoscalingを依存にしない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-003-B01"
+      },
+      "content_rules": [
+        "不足/unknownと要求/snapshot/未完の同対象参照をOS/INTELLIGENCEの該当decision ownerへ渡す。",
+        "queue/delay、低費用/別node候補、reject、人へのescalationの各経路を区別し、選ばれていない候補は未決のまま保持する。",
+        "情報提供、配置/費用判断、OS作業、SEC authority、Worker実操作を分離する。INFRAは候補採否、node移動、費用選択、起動を実行しない。",
+        "容量確認の省略や高度autoscalingを必須依存とする要求を拒否し、既存ownerへ未完を返す。"
+      ],
+      "representation_limit": "合成例の数値・単位・条件・owner識別子は実製品の閾値/schema/条件資格を採用しない。"
+    }
+  ]
+}
