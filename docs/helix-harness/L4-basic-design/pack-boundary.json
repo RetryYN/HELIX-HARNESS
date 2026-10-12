@@ -1,0 +1,220 @@
+{
+  "document_id": "HARNESS-L4-010-PACK-BOUNDARY",
+  "layer": "L4",
+  "paired_document": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
+  "status": "candidate_pending_independent_review",
+  "source_main": "066dea64717cbd27c6f1feb068e4ce146021a4c9",
+  "parent": "HARNESS-L2-010",
+  "purpose": "限定前提構築に必要なpack境界・宣言・局所証明と組合せのarchitecture。pack登録writer、release/cutover運転、全L4配置の実装ではない。",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md",
+      "sha256": "2c700ffcbb89c034d9f0b43a7f69483e785abbef28bb07601857a1d0caa72030"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-conclusion-2026-10-12.md",
+      "sha256": "9e194d92dc57cf9b80e707d39619f8a4b1ff4b1d78480984791e6e04d9f60b56"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+      "lines": "102–173",
+      "disposition": "semantic_rederivation",
+      "keep": "意味・実装・検証設計・検証コードを区別し、正本・生成物・履歴と実行状態を分ける。",
+      "change": "docsの機構×層とpack単位のsrc/tests同居へ対応。旧TS/Node固定、旧runtime state、旧root configは移さない。",
+      "reason": "10/9配置基本方針と現行Conceptの所有境界。",
+      "sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+      "lines": "54–58、64–72、82–87、110–115、125–127",
+      "disposition": "semantic_rederivation",
+      "keep": "一意の所有、局所義務と構成体義務の分離、変更対象と非対象の版・証拠、releaseとdeploymentの区別。",
+      "change": "旧Module/Bundle名称・版・11候補集合・全量nightlyへのfallbackを採用しない。",
+      "reason": "採用済み010のpack/リリース単位/製品の別状態と限定CI範囲へ再導出。",
+      "sha256": "336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/source-boundary-architecture.md",
+      "lines": "11–18、47–57",
+      "disposition": "semantic_rederivation",
+      "keep": "analyzerはimmutable input→finding。副作用と意味を分離し、未指定の依存を暗黙許可しない。",
+      "change": "旧symbol/path/TypeScript parserを復元せず、現行pack境界の入力依存集合を照合する。",
+      "reason": "010-F02の宣言外依存拒否とConceptのHARNESS/OS分離。",
+      "sha256": "6bee024905701ca99ccd09e2a357e3b91fbf5370e4118630cfb1da5119d07610"
+    }
+  ],
+  "authority_boundary": {
+    "semantic_owner": "HELIX-HARNESS",
+    "product_application_owner": "HELIX-HARNESS-CORE",
+    "registration_execution_state_owner": "HELIX-OS",
+    "security_owner": "HELIX-SECURITY",
+    "runtime_resource_owner": "HELIX-INFRASTRUCTURE",
+    "knowledge_owner": "HELIX-BRAIN",
+    "effect": "immutable inputから候補/findingを返す。DB/Git/GitHub/file write、登録、実切替、権限発行を行わない。"
+  },
+  "architecture": {
+    "inputs": [
+      "対象要求・oracleのexact revision/scope",
+      "一意登録の参照snapshot（writerはOS側）",
+      "pack宣言・所有・全候補集合",
+      "同対象の依存観測・局所証拠・再現環境"
+    ],
+    "flow": [
+      "参照とscope整合を確認",
+      "behavior境界とownerを照合",
+      "宣言と実利用依存を比較",
+      "収載/除外/未解決を構成候補へ結ぶ",
+      "局所置換の影響と復旧候補を比較",
+      "独立した局所/上位未証明状態を返す"
+    ],
+    "outputs": [
+      "identity/revision/scopeに束縛された候補集合",
+      "義務とoracleへ結んだ境界finding",
+      "不足のownerと戻し先",
+      "対象/非対象の版・証拠参照"
+    ],
+    "dependency_direction": "入力snapshot/契約→純粋な照合→候補/finding→OS側consumer。HARNESSから登録writer/runtime操作への直接edgeを持たない。機構をまたぐ実接続はCONNECT対設計で別途定義する。",
+    "failure_propagation": "missing/unknown/conflict/staleは該当候補を未成立にする。独立して証明済みの別packは隠さず、未完の上位へ成功を伝播しない。"
+  },
+  "placement": {
+    "semantic_canonical": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+    "verification_canonical": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
+    "runtime_target": "helix/helix-harness/units/<登録されたpack identity>/src・tests。型番の実値と登録はOS契約に従い後段で具体化。",
+    "declaration_boundary": "docsは意味、declarationsは横断宣言、pack内宣言は局所contract、台帳は登録の事実。別ownerの登録/状態を本JSONへ複製しない。",
+    "not_materialized": [
+      "runtime target",
+      "登録台帳",
+      "release manifest",
+      "instance state"
+    ]
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-010-F01",
+      "requirement_ref": "HARNESS-L3-010-F01",
+      "system_oracle_ref": "HARNESS-L10-010-F01",
+      "oracle_ref": "HARNESS-L9-010-F01",
+      "boundary": "PackBoundary",
+      "title": "packの意味境界と一意owner",
+      "required_input_meanings": [
+        "behavior_contract_ref",
+        "owner_ref",
+        "consumer_refs",
+        "kind",
+        "identity",
+        "revision"
+      ],
+      "behavior": "宣言されたbehaviorの入出力と分割時に失う不変条件を対象要求へ結ぶ。ownerは一件、consumerは別集合。共用能力は部品またはCOREへ所属させる。フォルダ存在・関数名だけからpack登録や適格性を作らない。",
+      "backflow": "意味/境界差はHARNESS L3/L4、製品適用不足はCORE、登録/保存/観測欠落はOS/当該producerへ返す。"
+    },
+    {
+      "id": "HARNESS-L4-010-F02",
+      "requirement_ref": "HARNESS-L3-010-F02",
+      "system_oracle_ref": "HARNESS-L10-010-F02",
+      "oracle_ref": "HARNESS-L9-010-F02",
+      "boundary": "PackContract",
+      "title": "宣言と使用依存の境界",
+      "required_input_meanings": [
+        "input_contract_refs",
+        "output_contract_refs",
+        "required_dependency_refs",
+        "local_obligation_refs",
+        "local_oracle_refs",
+        "contract_revision",
+        "observed_dependency_refs"
+      ],
+      "behavior": "same revision/scopeの完全な宣言と、build/runtime検証から渡される実利用依存の観測集合を比較する。未宣言の実利用依存、unknown owner/版/互換、不足項目は対象findingとして返す。観測未供給を空依存へ丸めない。",
+      "backflow": "意味/境界差はHARNESS L3/L4、製品適用不足はCORE、登録/保存/観測欠落はOS/当該producerへ返す。"
+    },
+    {
+      "id": "HARNESS-L4-010-F03",
+      "requirement_ref": "HARNESS-L3-010-F03",
+      "system_oracle_ref": "HARNESS-L10-010-F03",
+      "oracle_ref": "HARNESS-L9-010-F03",
+      "boundary": "CompositionCandidate",
+      "title": "収載と版の独立性",
+      "required_input_meanings": [
+        "included_pack_refs",
+        "excluded_pack_refs",
+        "exclusion_reasons",
+        "pack_qualification_refs",
+        "release_unit_revision",
+        "product_revision",
+        "release_unit_maturity_state_ref",
+        "product_maturity_state_ref"
+      ],
+      "behavior": "指定された候補母集合を、収載・理由付き除外・未解決へ照合する。適格packだけを収載候補にできる。母集合外の未指定packを暗黙追加しない。pack版/成熟度、release単位版、製品版と各上位の成熟度/状態は独立した参照で、下位成功から上位証明を作らない。",
+      "backflow": "意味/境界差はHARNESS L3/L4、製品適用不足はCORE、登録/保存/観測欠落はOS/当該producerへ返す。"
+    },
+    {
+      "id": "HARNESS-L4-010-F04",
+      "requirement_ref": "HARNESS-L3-010-F04",
+      "system_oracle_ref": "HARNESS-L10-010-F04",
+      "oracle_ref": "HARNESS-L9-010-F04",
+      "boundary": "ReplacementCandidate",
+      "title": "固定入力からの再現と局所置換",
+      "required_input_meanings": [
+        "input_snapshot_refs",
+        "tool_environment_refs",
+        "old_pack_ref",
+        "new_pack_ref",
+        "unchanged_pack_evidence_refs",
+        "recovery_candidate_ref"
+      ],
+      "behavior": "入力bytes/revision、依存版、tool/環境条件と意味成果の比較条件を束縛する。置換提案は対象packだけを変更し非対象packの版と証拠を保持する。失敗時の直前適格版または明示置換先が不明なら不足を返す。切替・起動・rollbackの実操作は出力しない。",
+      "backflow": "意味/境界差はHARNESS L3/L4、製品適用不足はCORE、登録/保存/観測欠落はOS/当該producerへ返す。"
+    },
+    {
+      "id": "HARNESS-L4-010-B01",
+      "requirement_ref": "HARNESS-L3-010-B01",
+      "system_oracle_ref": "HARNESS-L10-010-B01",
+      "oracle_ref": "HARNESS-L9-010-B01",
+      "boundary": "QualificationProjection",
+      "title": "局所状態を保持した上位への受渡し",
+      "required_input_meanings": [
+        "pack_qualification_refs",
+        "composition_obligation_refs",
+        "unresolved_refs"
+      ],
+      "behavior": "各packの適格/未完と、構成固有義務の未証明を別々に返す。適格Aは上位未完でも表示できる。出力は候補と不足であり製品Accepted/Release/実行許可ではない。",
+      "backflow": "意味/境界差はHARNESS L3/L4、製品適用不足はCORE、登録/保存/観測欠落はOS/当該producerへ返す。"
+    }
+  ],
+  "remaining": [
+    "L5/L8で正式field型/schema・純粋判定関数・結果型・不正入力分類と局所oracleを具体化する。",
+    "L6/L7の実装前test/oracle凍結、実観測Red、実装/Green/原子CIは未成立。",
+    "四つのL4配置論点全体、toolchain、OS保存/登録、SEC権限、INFRA実資源、CONNECT実往復は別の親対設計で閉じる。",
+    "旧053→042参照不整合とrename/move/supersede停止を保持する。本設計の局所置換候補から当該操作の許可を作らない。",
+    "VT104〜106の未採用内容を正式templateとして参照しない。対oracleは採用010とHARNESS003/005の既決pair意味から導出する。"
+  ]
+}
