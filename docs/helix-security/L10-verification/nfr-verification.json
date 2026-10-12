@@ -13,7 +13,11 @@
     "HELIXSECURITY-L2-009",
     "HELIXSECURITY-L2-015",
     "HELIXSECURITY-L2-016",
-    "HELIXSECURITY-L2-024"
+    "HELIXSECURITY-L2-024",
+    "HELIXSECURITY-L2-010",
+    "HELIXSECURITY-L2-011",
+    "HELIXSECURITY-L2-012",
+    "HELIXSECURITY-L2-013"
   ],
   "version_target_by_parent": {
     "HELIXSECURITY-L2-001": "1.0",
@@ -27,7 +31,11 @@
     "HELIXSECURITY-L2-009": "1.0",
     "HELIXSECURITY-L2-015": "1.0 foundation; operational protection 1.x",
     "HELIXSECURITY-L2-016": "1.0 classification foundation; exposure/sink application 1.x",
-    "HELIXSECURITY-L2-024": "1.0"
+    "HELIXSECURITY-L2-024": "1.0",
+    "HELIXSECURITY-L2-010": "1.0",
+    "HELIXSECURITY-L2-011": "1.0",
+    "HELIXSECURITY-L2-012": "1.0",
+    "HELIXSECURITY-L2-013": "1.0"
   },
   "historical_stage_by_parent": {
     "HELIXSECURITY-L2-001": "Stage 1",
@@ -41,12 +49,16 @@
     "HELIXSECURITY-L2-009": "Stage 1",
     "HELIXSECURITY-L2-015": "Stage 1",
     "HELIXSECURITY-L2-016": "Stage 1",
-    "HELIXSECURITY-L2-024": "Stage 4"
+    "HELIXSECURITY-L2-024": "Stage 4",
+    "HELIXSECURITY-L2-010": "Stage 1",
+    "HELIXSECURITY-L2-011": "Stage 1",
+    "HELIXSECURITY-L2-012": "Stage 1",
+    "HELIXSECURITY-L2-013": "Stage 1"
   },
   "status": "draft",
   "authority_effect": "none",
-  "source_revision": "990ffad297804dd39d4da1474545e90ddc060c7f",
-  "scope": "初回BRAIN032→CORE009→OS002と前提規律の成立に必要なSEC001..008/015/016/024の限定規範、および該当停止・隔離を閉じる追加条件付き009。024歴史Stage4を保持し、必要契約入力のみ先行著述する。1.x/Web/全Guard/全Bot/供給網/更新/学習等の全能力を前倒ししない。",
+  "source_revision": "db408d7eac33f0d8c9bc15f08f6431a69de7aa7b",
+  "scope": "初回BRAIN032→CORE009→OS002と前提規律の成立に必要なSEC001..008/015/016/024の限定規範、および該当停止・隔離を閉じる追加条件付き009。024歴史Stage4を保持し、必要契約入力のみ先行著述する。1.x/Web/全Guard/全Bot/供給網/更新/学習等の全能力を前倒ししない。 追加は初回の開発tool/依存/runtime/configを選択して採用・更新・実行するためのStage1/1.0の010/011/012/013の必要規範。既存35組は不変。全15更新対象・9資産種の意味は保持する。必要な023の構成体規範は別Stage4 PRへ分け、初回実運転の前に閉じる。実tool採用・供給検証・更新運転・全target実装・release/deploy許可を生成しない。",
   "source_pins": [
     {
       "path": "docs/concept/helix-concept.md",
@@ -148,7 +160,11 @@
       "HELIXSECURITY-L2-009",
       "HELIXSECURITY-L2-015",
       "HELIXSECURITY-L2-016",
-      "HELIXSECURITY-L2-024"
+      "HELIXSECURITY-L2-024",
+      "HELIXSECURITY-L2-010",
+      "HELIXSECURITY-L2-011",
+      "HELIXSECURITY-L2-012",
+      "HELIXSECURITY-L2-013"
     ],
     "boundary": "採択固定identityと同じ意味・責務・版。最新full-file pinにある未選択/別revision条件を採用しない。007の九制御、既決権限再利用、tenant非捏造、分類1.0/強制1.xの受入境界を保持。"
   },
@@ -189,10 +205,10 @@
         "locator": "secret predicate単一正本:63"
       }
     ],
-    "preserve": "action-specific tuple/least privilege/失効後in-flight停止/値非露出/特権fallback禁止/外部命令隔離/監査/unknown拒否/独立性。旧文書greenはruntime完成ではない。",
-    "change": "9/26原文と9/28A判断に従いSECはpolicy/authority、実環境は強制、OSは進行、CONNECTは通信、INFRAは実資源へ再導出。検出依存から直接authority経路遮断へ重点を移し、全操作境界と既決許可再利用を保持。旧special engagement固有のtyped profile/追加admission/通常taskの毎回人承認、旧broker/CLI/DBを移植しない。",
+    "preserve": "action-specific tuple/least privilege/失効後in-flight停止/値非露出/特権fallback禁止/外部命令隔離/監査/unknown拒否/独立性。旧文書greenはruntime完成ではない。 更新candidate/provenance/能力差/検証実体の分離、unknown非昇格、実作用別許可とrollback。",
+    "change": "9/26原文と9/28A判断に従いSECはpolicy/authority、実環境は強制、OSは進行、CONNECTは通信、INFRAは実資源へ再導出。検出依存から直接authority経路遮断へ重点を移し、全操作境界と既決許可再利用を保持。旧special engagement固有のtyped profile/追加admission/通常taskの毎回人承認、旧broker/CLI/DBを移植しない。 本追補は採択済みL2-010..013の材料と順序を初回必要規範へ再導出する。旧SEA追加gate/旧supply-chain scanner/旧runtimeを移植しない。",
     "reason": "採択済み責務・適用条件と10/12限定前提形成を満たし、初回の安全境界を文書存在/自己申告/別greenから生成しないため。",
-    "consumer": "OS018/027の割当/初回適格性、OS020検収、BRAIN/CORE/OSの分類/権限を要する選択操作、CONNECT/INFRAの該当実境界。009は005/008/024等の条件付き停止閉包として追加。全機構全能力の初回必須化はしない。",
+    "consumer": "OS018/027の割当/初回適格性、OS020検収、BRAIN/CORE/OSの分類/権限を要する選択操作、CONNECT/INFRAの該当実境界。009は005/008/024等の条件付き停止閉包として追加。全機構全能力の初回必須化はしない。 010..013/023はHARNESS010/011の初回tool/依存、OS020検収とOS001/053の進行、INFRA010の更新/復旧へ条件付きに接続する。",
     "uncompleted_source": "旧SEA全profile/finding lifecycle/特権engagement/distribution等の採択や全consumer closureは含まない。旧test/runtime/CIは非実行。"
   },
   "remaining": [
@@ -237,7 +253,71 @@
       "negative_input": "一制御greenやreceipt数で全適用、read-only観測省略、未見環境へ旧結果転用。",
       "failure_observation": "該当実行の不足を残し、全能力/実安全成立を文書から生成しない。",
       "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L10-010-N01",
+      "parent": "HELIXSECURITY-L2-010",
+      "title": "未見候補と列挙縮小の検出",
+      "requirement_ref": "HELIXSECURITY-L3-010-N01",
+      "positive_input": "元候補と伏せた別種類/別revisionに同じ義務を照合する。",
+      "expected_observation": "未見の欠落/unknownと対象集合縮小の不足を識別できる。",
+      "negative_input": "一package成功で15対象受入、loop縮小でも全件pass、未見候補を別版で補完。",
+      "failure_observation": "未確認の対象/軸を未完と保持し、適用範囲だけの証拠へ限定する。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L10-011-N01",
+      "parent": "HELIXSECURITY-L2-011",
+      "title": "未見能力差分の内容証拠",
+      "requirement_ref": "HELIXSECURITY-L3-011-N01",
+      "positive_input": "未見の能力変更と同名別revisionを同判定へ入力する。",
+      "expected_observation": "具体的な能力変化または比較不足を検出できる。",
+      "negative_input": "欄あり/件数一致だけで能力不変、新版へ旧判定継承。",
+      "failure_observation": "当該候補の能力diffを未完にし再比較ownerへ返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L10-012-N01",
+      "parent": "HELIXSECURITY-L2-012",
+      "title": "未見資産と対象集合",
+      "requirement_ref": "HELIXSECURITY-L3-012-N01",
+      "positive_input": "未見kindと別producer/推移依存を加えた集合を比較する。",
+      "expected_observation": "欠けた対象/fieldと元資産を個別に示せる。",
+      "negative_input": "直接依存だけで全依存を確認済み、loop縮小で全9種成功。",
+      "failure_observation": "不足資産/依存を未完と残し適用範囲へ証拠を限定する。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L10-013-N01",
+      "parent": "HELIXSECURITY-L2-013",
+      "title": "未見artifactと鎖の欠落",
+      "requirement_ref": "HELIXSECURITY-L3-013-N01",
+      "positive_input": "未見artifactの途中差替えと同artifactを比較する。",
+      "expected_observation": "差替えた工程と未観測工程を示せる。",
+      "negative_input": "別binary実行を同HEAD結果化、未配布をrelease合格。",
+      "failure_observation": "当該鎖/昇格を未完に保ち影響工程へ戻す。",
+      "execution_state": "not_executed"
     }
   ],
-  "system_specific_obligation": "同operation/project/revision/scopeで未信頼→authority非直結、分類/権限/実強制、recipient別失効/回収を固有に照合する。単体green/通知/設定/自己申告から接続・構成体・実安全/実受入を生成しない。secret/credential/PIIの生値をfixture/証跡へ置かない。"
+  "system_specific_obligation": "同operation/project/revision/scopeで未信頼→authority非直結、分類/権限/実強制、recipient別失効/回収を固有に照合する。単体green/通知/設定/自己申告から接続・構成体・実安全/実受入を生成しない。secret/credential/PIIの生値をfixture/証跡へ置かない。",
+  "conditional_tool_prerequisites": {
+    "selected_operation": "初回前提構築に選ぶ開発tool/dependency/runtime/configの採用・更新・実行",
+    "parents": [
+      "HELIXSECURITY-L2-010",
+      "HELIXSECURITY-L2-011",
+      "HELIXSECURITY-L2-012",
+      "HELIXSECURITY-L2-013"
+    ],
+    "reason": "HARNESS023の選択sourceと必要安全依存を閉じ、未知の出所/能力差/別artifactを適格にしない。",
+    "constant_candidate_inputs": "010 candidate revisionは最終審査前に存在する入力であり、011/012/013へ最終accept結果を前提にしない。",
+    "stage_order": "candidate材料→SEC審査→実隔離run→HARNESS検証→OS進行。各実結果は当該段階の後で得る。",
+    "cross_owner_inputs": [
+      "HARNESS010/011/023/005/022",
+      "OS001/018/019/020/023/053",
+      "SEC004/007/008/024",
+      "INFRA010"
+    ],
+    "nonselected": "全外部plugin/MCP/model/Guard/配布/release/deploy等の実運転を一律必須にしない。必要な選択operationでのみ依存を実適用する。",
+    "unclosed_composite": "HELIXSECURITY-L2-023（歴史Stage4）は本Stage1追補に混載せず、必要構成体規範の別PRでL3/L10を閉じる。010..013の文書承認から初回実行・昇格の成立を生成しない。"
+  }
 }
