@@ -269,7 +269,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "同source/version/候補revisionと評価自身revisionを別に追う。failure/反例/未評価を保持。",
           "execution_state": "not_executed",
@@ -388,7 +389,7 @@
               ],
               "limitation": "fixtureだけで全条件の適合を保証しない"
             },
-            "submitted_target_result": "same_exact_candidate_in_fixture",
+            "submitted_target_result": "candidate_target_information_unknown",
             "unknown_original_evaluation_fields": [],
             "receipt_candidate": {
               "source": "SOURCE-P@source-r1",
@@ -416,7 +417,10 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": [
+              "revision"
+            ]
           },
           "basis": "原候補版/source情報unknownは元評価と内容一致でも対象資格を確定しない。",
           "execution_state": "not_executed",
@@ -535,7 +539,7 @@
               ],
               "limitation": "fixtureだけで全条件の適合を保証しない"
             },
-            "submitted_target_result": "same_exact_candidate_in_fixture",
+            "submitted_target_result": "candidate_target_information_unknown",
             "unknown_original_evaluation_fields": [],
             "receipt_candidate": {
               "source": "SOURCE-P@source-r1",
@@ -563,7 +567,10 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": [
+              "version"
+            ]
           },
           "basis": "原候補版/source情報unknownは元評価と内容一致でも対象資格を確定しない。",
           "execution_state": "not_executed",
@@ -682,7 +689,7 @@
               ],
               "limitation": "fixtureだけで全条件の適合を保証しない"
             },
-            "submitted_target_result": "same_exact_candidate_in_fixture",
+            "submitted_target_result": "candidate_target_information_unknown",
             "unknown_original_evaluation_fields": [],
             "receipt_candidate": {
               "source": null,
@@ -710,7 +717,10 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": [
+              "source"
+            ]
           },
           "basis": "原候補版/source情報unknownは元評価と内容一致でも対象資格を確定しない。",
           "execution_state": "not_executed",
@@ -856,7 +866,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "評価各項目の個別欠落を成功/空集合で埋めない。",
           "execution_state": "not_executed",
@@ -1002,7 +1013,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "評価各項目の個別欠落を成功/空集合で埋めない。",
           "execution_state": "not_executed",
@@ -1148,7 +1160,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "評価各項目の個別欠落を成功/空集合で埋めない。",
           "execution_state": "not_executed",
@@ -1287,7 +1300,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "評価各項目の個別欠落を成功/空集合で埋めない。",
           "execution_state": "not_executed",
@@ -1433,7 +1447,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "評価各項目の個別欠落を成功/空集合で埋めない。",
           "execution_state": "not_executed",
@@ -1579,7 +1594,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "評価各項目の個別欠落を成功/空集合で埋めない。",
           "execution_state": "not_executed",
@@ -1723,7 +1739,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "評価各項目の個別欠落を成功/空集合で埋めない。",
           "execution_state": "not_executed",
@@ -1869,7 +1886,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "評価各項目の個別欠落を成功/空集合で埋めない。",
           "execution_state": "not_executed",
@@ -2013,7 +2031,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "評価各項目の個別欠落を成功/空集合で埋めない。",
           "execution_state": "not_executed",
@@ -2157,7 +2176,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "評価各項目の個別欠落を成功/空集合で埋めない。",
           "execution_state": "not_executed",
@@ -2301,7 +2321,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "評価各項目の個別欠落を成功/空集合で埋めない。",
           "execution_state": "not_executed",
@@ -2447,7 +2468,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "評価各項目の個別欠落を成功/空集合で埋めない。",
           "execution_state": "not_executed",
@@ -2594,7 +2616,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "別候補revision/source/version/scopeの評価を当該候補へ充当しない。",
           "execution_state": "not_executed",
@@ -2741,7 +2764,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "別候補revision/source/version/scopeの評価を当該候補へ充当しない。",
           "execution_state": "not_executed",
@@ -2888,7 +2912,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "別候補revision/source/version/scopeの評価を当該候補へ充当しない。",
           "execution_state": "not_executed",
@@ -3035,7 +3060,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "別候補revision/source/version/scopeの評価を当該候補へ充当しない。",
           "execution_state": "not_executed",
@@ -3180,7 +3206,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "原反例未観測を空反例として候補資格確定しない。",
           "execution_state": "not_executed",
@@ -3325,7 +3352,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "承認L10の欠落成功補完/限界削除/評価と候補版混同を拒否。",
           "execution_state": "not_executed",
@@ -3470,7 +3498,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "承認L10の欠落成功補完/限界削除/評価と候補版混同を拒否。",
           "execution_state": "not_executed",
@@ -3619,7 +3648,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "承認L10の欠落成功補完/限界削除/評価と候補版混同を拒否。",
           "execution_state": "not_executed",
@@ -3766,7 +3796,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "unknown_original_candidate_fields": []
           },
           "basis": "承認L10の欠落成功補完/限界削除/評価と候補版混同を拒否。",
           "execution_state": "not_executed",
@@ -5606,7 +5637,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "content_corresponding_in_fixture"
           },
           "basis": "Infrastructure maturity選択時だけ同revisionの原state/evidenceを追う。",
           "execution_state": "not_executed",
@@ -5678,7 +5710,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "content_corresponding_in_fixture"
           },
           "basis": "原state/evidence未定を提出一致で観測済みにしない。",
           "execution_state": "not_executed",
@@ -5746,7 +5779,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "content_corresponding_in_fixture"
           },
           "basis": "原state/evidence未定を提出一致で観測済みにしない。",
           "execution_state": "not_executed",
@@ -5791,7 +5825,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "not_selected_not_required"
           },
           "basis": "非該当入力へINFRA知識/資源稼働を要求しない。",
           "execution_state": "not_executed",
@@ -5839,7 +5874,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "selection_unknown"
           },
           "basis": "該当条件unknownを非該当へ補完しない。",
           "execution_state": "not_executed",
@@ -5863,7 +5899,7 @@
           },
           "expected_material": {
             "selection": true,
-            "maturity_result": "missing",
+            "maturity_result": "unknown_original_maturity_information",
             "retained_maturity": null,
             "submitted_maturity": null,
             "maturity_requirement": "INFRA017_selected_candidate_only",
@@ -5887,7 +5923,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "missing"
           },
           "basis": "原maturity不明でもaccepted/matureへ補完しない。",
           "execution_state": "not_executed",
@@ -5947,7 +5984,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "missing"
           },
           "basis": "提出maturity欠落は原情報で実成立を補完しない。",
           "execution_state": "not_executed",
@@ -6019,7 +6057,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "content_conflict"
           },
           "basis": "別版/状態/evidenceを元maturityに上書きしない。",
           "execution_state": "not_executed",
@@ -6091,7 +6130,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "content_conflict"
           },
           "basis": "別版/状態/evidenceを元maturityに上書きしない。",
           "execution_state": "not_executed",
@@ -6163,7 +6203,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "content_conflict"
           },
           "basis": "別版/状態/evidenceを元maturityに上書きしない。",
           "execution_state": "not_executed",
@@ -6233,7 +6274,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "content_conflict"
           },
           "basis": "別版/状態/evidenceを元maturityに上書きしない。",
           "execution_state": "not_executed",
@@ -6305,7 +6347,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "content_corresponding_in_fixture"
           },
           "basis": "原評価maturityが旧候補なら同内容でも当該Pへ適用しない。",
           "execution_state": "not_executed",
@@ -6377,7 +6420,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "content_conflict"
           },
           "basis": "一成功普遍化/欠落補完/非該当全INFRA gateを拒否。",
           "execution_state": "not_executed",
@@ -6401,7 +6445,7 @@
           },
           "expected_material": {
             "selection": true,
-            "maturity_result": "content_conflict",
+            "maturity_result": "unknown_original_maturity_information",
             "retained_maturity": null,
             "submitted_maturity": {
               "identity": "MATURITY-P",
@@ -6437,7 +6481,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "original_unknown"
           },
           "basis": "一成功普遍化/欠落補完/非該当全INFRA gateを拒否。",
           "execution_state": "not_executed",
@@ -6482,7 +6527,8 @@
               "actual_authority": false,
               "actual_implementation_ready": false,
               "actual_acceptance": false
-            }
+            },
+            "submitted_maturity_result": "not_selected_not_required"
           },
           "basis": "一成功普遍化/欠落補完/非該当全INFRA gateを拒否。",
           "execution_state": "not_executed",

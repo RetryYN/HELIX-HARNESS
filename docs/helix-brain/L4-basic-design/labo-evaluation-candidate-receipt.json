@@ -150,7 +150,8 @@
       ],
       "content_comparison": [
         "評価自身のrevisionと評価対象候補のrevisionを混同しない。",
-        "反例/未評価/failureを消去・成功補完しない。不一致/unknownは当該候補を止めLABOへ返す。"
+        "反例/未評価/failureを消去・成功補完しない。不一致/unknownは当該候補を止めLABOへ返す。",
+        "原候補の未定fieldをunknown_original_candidate_fieldsへ明示。null同士の内容対応をexact対象一致と呼ばない。"
       ],
       "qualification_rule": "合成対応を実source資格/正式binding/実評価/登録/成熟/採用/authority/設計閉包へ昇格しない。",
       "operation_effect": "none"
@@ -208,7 +209,8 @@
       ],
       "content_comparison": [
         "該当候補のmaturityだけINFRA017へ結ぶ。非該当へ全Infrastructure知識/資源実稼働を要求しない。",
-        "一成功/欠落補完でuniversal/accepted/matureへ昇格しない。"
+        "一成功/欠落補完でuniversal/accepted/matureへ昇格しない。",
+        "原maturity unknownと提出maturity欠落を別結果にし、submitted_maturity_resultも保持する。"
       ],
       "qualification_rule": "合成対応を実source資格/正式binding/実評価/登録/成熟/採用/authority/設計閉包へ昇格しない。",
       "operation_effect": "none"
