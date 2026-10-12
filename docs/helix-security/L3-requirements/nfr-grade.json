@@ -61,7 +61,7 @@
   "status": "draft",
   "authority_effect": "none",
   "source_revision": "7b2f7c05ba80830646bb9a1a3c4274fa0c84bccc",
-  "scope": "先行する限定前提35対と開発tool安全前提20対の項目内容を保持する。本追補は歴史Stage4/1.0の023構成体の初回必要規範5対のみ。010..013のStage1入力は承認済みmainのexact revisionへ束縛する。初回対象外の全更新対象/全Stage4運転、実tool採用、実authority/隔離/資源/検証/OS進行、実装/CI、release/tag/内部デプロイ/配布の成立や許可を生成しない。",
+  "scope": "初回BRAIN032→CORE009→OS002と前提規律の成立に必要なSEC001..008/015/016/024の限定規範、および該当停止・隔離を閉じる追加条件付き009。024歴史Stage4を保持し、必要契約入力のみ先行著述する。1.x/Web/全Guard/全Bot/供給網/更新/学習等の全能力を前倒ししない。 追加は初回の開発tool/依存/runtime/configを選択して採用・更新・実行するためのStage1/1.0の010/011/012/013の必要規範。既存35組は不変。全15更新対象・9資産種の意味は保持する。必要な023の構成体規範は別Stage4 PRへ分け、初回実運転の前に閉じる。実tool採用・供給検証・更新運転・全target実装・release/deploy許可を生成しない。 本Stage4追補は023の初回必要構成体規範5対を起草する。先行Stage1記録にある023別PRの未完は本追補の対象revision独立委任承認・main収録で文書規範に限り閉じる。全更新対象/全Stage4実運転、実tool採用/authority/隔離/資源/検証/進行、実装/CI/利用者受入の未完は保持する。",
   "source_pins": [
     {
       "path": "docs/concept/helix-concept.md",
@@ -309,6 +309,11 @@
       "revision": "7b2f7c05ba80830646bb9a1a3c4274fa0c84bccc",
       "decision": "docs/governance/decisions/helix-security-tool-prerequisites-l3-l10-delegated-decision-2026-10-12.md",
       "boundary": "010..013は先行Stage1承認。023は本Stage4の独立委任review対象であり、先行単体成功から構成体成功を生成しない。"
+    },
+    "unclosed_composite": "HELIXSECURITY-L2-023（歴史Stage4）は本Stage1追補に混載せず、必要構成体規範の別PRでL3/L10を閉じる。010..013の文書承認から初回実行・昇格の成立を生成しない。",
+    "composite_resolution": {
+      "prior_status_revision": "7b2f7c05ba80830646bb9a1a3c4274fa0c84bccc",
+      "draft_resolution": "023の歴史Stage4追補5対を起草。対象revisionの独立委任承認・main収録後に文書規範の未完だけ閉じ、実運転の未完は保持する。"
     }
   },
   "prior_stage_input_basis": [
