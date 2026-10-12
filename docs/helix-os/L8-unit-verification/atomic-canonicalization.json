@@ -47,7 +47,19 @@
         "before": "G0/jA",
         "after": "G1/jA",
         "source": "SRC/jA/r1",
-        "content_contract": "CONTRACT/jA/r1"
+        "content_contract": "CONTRACT/jA/r1",
+        "depends_on_write_ids": [],
+        "required_links": [
+          {
+            "variant": "Ref",
+            "address": "SRC/jA/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/jA/r1"
+          }
+        ],
+        "content_bytes": "{\"asset\":\"A\",\"revision\":\"a2\",\"value\":10}\n"
       },
       {
         "id": "jB",
@@ -57,7 +69,19 @@
         "before": "G0/jB",
         "after": "G1/jB",
         "source": "SRC/jB/r1",
-        "content_contract": "CONTRACT/jB/r1"
+        "content_contract": "CONTRACT/jB/r1",
+        "depends_on_write_ids": [],
+        "required_links": [
+          {
+            "variant": "Ref",
+            "address": "SRC/jB/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/jB/r1"
+          }
+        ],
+        "content_bytes": "{\"asset\":\"B\",\"revision\":\"b2\",\"value\":20}\n"
       },
       {
         "id": "revA",
@@ -67,7 +91,25 @@
         "before": "G0/revA",
         "after": "G1/revA",
         "source": "SRC/revA/r1",
-        "content_contract": "CONTRACT/revA/r1"
+        "content_contract": "CONTRACT/revA/r1",
+        "depends_on_write_ids": [
+          "jA"
+        ],
+        "required_links": [
+          {
+            "variant": "Locator",
+            "address": "G1/jA"
+          },
+          {
+            "variant": "Ref",
+            "address": "SRC/revA/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/revA/r1"
+          }
+        ],
+        "content_bytes": "{\"fixture_record\":\"revA\",\"operation\":\"O/r1\",\"scope\":\"S/r1\",\"revision\":\"r1\",\"links\":[\"G1/jA\",\"SRC/revA/r1\",\"CONTRACT/revA/r1\"]}\n"
       },
       {
         "id": "revB",
@@ -77,7 +119,25 @@
         "before": "G0/revB",
         "after": "G1/revB",
         "source": "SRC/revB/r1",
-        "content_contract": "CONTRACT/revB/r1"
+        "content_contract": "CONTRACT/revB/r1",
+        "depends_on_write_ids": [
+          "jB"
+        ],
+        "required_links": [
+          {
+            "variant": "Locator",
+            "address": "G1/jB"
+          },
+          {
+            "variant": "Ref",
+            "address": "SRC/revB/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/revB/r1"
+          }
+        ],
+        "content_bytes": "{\"fixture_record\":\"revB\",\"operation\":\"O/r1\",\"scope\":\"S/r1\",\"revision\":\"r1\",\"links\":[\"G1/jB\",\"SRC/revB/r1\",\"CONTRACT/revB/r1\"]}\n"
       },
       {
         "id": "ev",
@@ -87,7 +147,30 @@
         "before": "G0/ev",
         "after": "G1/ev",
         "source": "SRC/ev/r1",
-        "content_contract": "CONTRACT/ev/r1"
+        "content_contract": "CONTRACT/ev/r1",
+        "depends_on_write_ids": [
+          "revA",
+          "revB"
+        ],
+        "required_links": [
+          {
+            "variant": "Locator",
+            "address": "G1/revA"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/revB"
+          },
+          {
+            "variant": "Ref",
+            "address": "SRC/ev/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/ev/r1"
+          }
+        ],
+        "content_bytes": "{\"fixture_record\":\"ev\",\"operation\":\"O/r1\",\"scope\":\"S/r1\",\"revision\":\"r1\",\"links\":[\"G1/revA\",\"G1/revB\",\"SRC/ev/r1\",\"CONTRACT/ev/r1\"]}\n"
       },
       {
         "id": "trA",
@@ -97,7 +180,25 @@
         "before": "G0/trA",
         "after": "G1/trA",
         "source": "SRC/trA/r1",
-        "content_contract": "CONTRACT/trA/r1"
+        "content_contract": "CONTRACT/trA/r1",
+        "depends_on_write_ids": [
+          "revA"
+        ],
+        "required_links": [
+          {
+            "variant": "Locator",
+            "address": "G1/revA"
+          },
+          {
+            "variant": "Ref",
+            "address": "SRC/trA/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/trA/r1"
+          }
+        ],
+        "content_bytes": "{\"fixture_record\":\"trA\",\"operation\":\"O/r1\",\"scope\":\"S/r1\",\"revision\":\"r1\",\"links\":[\"G1/revA\",\"SRC/trA/r1\",\"CONTRACT/trA/r1\"]}\n"
       },
       {
         "id": "trB",
@@ -107,7 +208,25 @@
         "before": "G0/trB",
         "after": "G1/trB",
         "source": "SRC/trB/r1",
-        "content_contract": "CONTRACT/trB/r1"
+        "content_contract": "CONTRACT/trB/r1",
+        "depends_on_write_ids": [
+          "revB"
+        ],
+        "required_links": [
+          {
+            "variant": "Locator",
+            "address": "G1/revB"
+          },
+          {
+            "variant": "Ref",
+            "address": "SRC/trB/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/trB/r1"
+          }
+        ],
+        "content_bytes": "{\"fixture_record\":\"trB\",\"operation\":\"O/r1\",\"scope\":\"S/r1\",\"revision\":\"r1\",\"links\":[\"G1/revB\",\"SRC/trB/r1\",\"CONTRACT/trB/r1\"]}\n"
       },
       {
         "id": "imA",
@@ -117,7 +236,25 @@
         "before": "G0/imA",
         "after": "G1/imA",
         "source": "SRC/imA/r1",
-        "content_contract": "CONTRACT/imA/r1"
+        "content_contract": "CONTRACT/imA/r1",
+        "depends_on_write_ids": [
+          "trA"
+        ],
+        "required_links": [
+          {
+            "variant": "Locator",
+            "address": "G1/trA"
+          },
+          {
+            "variant": "Ref",
+            "address": "SRC/imA/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/imA/r1"
+          }
+        ],
+        "content_bytes": "{\"fixture_record\":\"imA\",\"operation\":\"O/r1\",\"scope\":\"S/r1\",\"revision\":\"r1\",\"links\":[\"G1/trA\",\"SRC/imA/r1\",\"CONTRACT/imA/r1\"]}\n"
       },
       {
         "id": "imB",
@@ -127,7 +264,25 @@
         "before": "G0/imB",
         "after": "G1/imB",
         "source": "SRC/imB/r1",
-        "content_contract": "CONTRACT/imB/r1"
+        "content_contract": "CONTRACT/imB/r1",
+        "depends_on_write_ids": [
+          "trB"
+        ],
+        "required_links": [
+          {
+            "variant": "Locator",
+            "address": "G1/trB"
+          },
+          {
+            "variant": "Ref",
+            "address": "SRC/imB/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/imB/r1"
+          }
+        ],
+        "content_bytes": "{\"fixture_record\":\"imB\",\"operation\":\"O/r1\",\"scope\":\"S/r1\",\"revision\":\"r1\",\"links\":[\"G1/trB\",\"SRC/imB/r1\",\"CONTRACT/imB/r1\"]}\n"
       },
       {
         "id": "st",
@@ -137,7 +292,30 @@
         "before": "G0/st",
         "after": "G1/st",
         "source": "SRC/st/r1",
-        "content_contract": "CONTRACT/st/r1"
+        "content_contract": "CONTRACT/st/r1",
+        "depends_on_write_ids": [
+          "imA",
+          "imB"
+        ],
+        "required_links": [
+          {
+            "variant": "Locator",
+            "address": "G1/imA"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/imB"
+          },
+          {
+            "variant": "Ref",
+            "address": "SRC/st/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/st/r1"
+          }
+        ],
+        "content_bytes": "{\"fixture_record\":\"st\",\"operation\":\"O/r1\",\"scope\":\"S/r1\",\"revision\":\"r1\",\"links\":[\"G1/imA\",\"G1/imB\",\"SRC/st/r1\",\"CONTRACT/st/r1\"]}\n"
       },
       {
         "id": "pA",
@@ -147,7 +325,25 @@
         "before": "G0/pA",
         "after": "G1/pA",
         "source": "SRC/pA/r1",
-        "content_contract": "CONTRACT/pA/r1"
+        "content_contract": "CONTRACT/pA/r1",
+        "depends_on_write_ids": [
+          "jA"
+        ],
+        "required_links": [
+          {
+            "variant": "Locator",
+            "address": "G1/jA"
+          },
+          {
+            "variant": "Ref",
+            "address": "SRC/pA/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/pA/r1"
+          }
+        ],
+        "content_bytes": "A a2 value=10\n"
       },
       {
         "id": "pB",
@@ -157,7 +353,25 @@
         "before": "G0/pB",
         "after": "G1/pB",
         "source": "SRC/pB/r1",
-        "content_contract": "CONTRACT/pB/r1"
+        "content_contract": "CONTRACT/pB/r1",
+        "depends_on_write_ids": [
+          "jB"
+        ],
+        "required_links": [
+          {
+            "variant": "Locator",
+            "address": "G1/jB"
+          },
+          {
+            "variant": "Ref",
+            "address": "SRC/pB/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/pB/r1"
+          }
+        ],
+        "content_bytes": "B b2 value=20\n"
       },
       {
         "id": "rec",
@@ -167,7 +381,80 @@
         "before": "G0/rec",
         "after": "G1/rec",
         "source": "SRC/rec/r1",
-        "content_contract": "CONTRACT/rec/r1"
+        "content_contract": "CONTRACT/rec/r1",
+        "depends_on_write_ids": [
+          "jA",
+          "jB",
+          "revA",
+          "revB",
+          "ev",
+          "trA",
+          "trB",
+          "imA",
+          "imB",
+          "st",
+          "pA",
+          "pB"
+        ],
+        "required_links": [
+          {
+            "variant": "Locator",
+            "address": "G1/jA"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/jB"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/revA"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/revB"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/ev"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/trA"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/trB"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/imA"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/imB"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/st"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/pA"
+          },
+          {
+            "variant": "Locator",
+            "address": "G1/pB"
+          },
+          {
+            "variant": "Ref",
+            "address": "SRC/rec/r1"
+          },
+          {
+            "variant": "Ref",
+            "address": "CONTRACT/rec/r1"
+          }
+        ],
+        "content_bytes": "条件付きReceiptRecordはfixture.receipt_payload_templateの全field値から、12 record metadata shaを固定してからencodeする。自己sha/未来readは含まない。"
       }
     ],
     "independent_closure_ids": [
@@ -206,7 +493,158 @@
       "unchanged_Z": "z1",
       "receipt_post_commit_update_calls": 0
     },
-    "record_address_notation": "G0/jA等はgenerationとmemberの表示用notation。record identityはjA等を保ちrevisionはbefore/after値、operation/generation/newrecordはLocator、既存source/closure/evidenceはRef。格納shaはpayload外metadata。各Refのbytes/digestは独立fixtureへ固定する。"
+    "record_address_notation": "G0/jA等はgenerationとmemberの表示用notation。record identityはjA等を保ちrevisionはbefore/after値、operation/generation/newrecordはLocator、既存source/closure/evidenceはRef。格納shaはpayload外metadata。各Refのbytes/digestは独立fixtureへ固定する。",
+    "receipt_payload_template": {
+      "operation_ref": "O/r1",
+      "episode_id": "ep1",
+      "command_id": "C",
+      "scope_ref": "S/r1",
+      "bases": {
+        "A": "a1",
+        "B": "b1"
+      },
+      "before_generation_ref": "G0",
+      "after_generation_ref": "G1",
+      "write_count": 13,
+      "write_outcomes": [
+        {
+          "write_id": "jA",
+          "stage": "content_verified_private",
+          "failure_code": null,
+          "observed_ref": null
+        },
+        {
+          "write_id": "jB",
+          "stage": "content_verified_private",
+          "failure_code": null,
+          "observed_ref": null
+        },
+        {
+          "write_id": "revA",
+          "stage": "content_verified_private",
+          "failure_code": null,
+          "observed_ref": null
+        },
+        {
+          "write_id": "revB",
+          "stage": "content_verified_private",
+          "failure_code": null,
+          "observed_ref": null
+        },
+        {
+          "write_id": "ev",
+          "stage": "content_verified_private",
+          "failure_code": null,
+          "observed_ref": null
+        },
+        {
+          "write_id": "trA",
+          "stage": "content_verified_private",
+          "failure_code": null,
+          "observed_ref": null
+        },
+        {
+          "write_id": "trB",
+          "stage": "content_verified_private",
+          "failure_code": null,
+          "observed_ref": null
+        },
+        {
+          "write_id": "imA",
+          "stage": "content_verified_private",
+          "failure_code": null,
+          "observed_ref": null
+        },
+        {
+          "write_id": "imB",
+          "stage": "content_verified_private",
+          "failure_code": null,
+          "observed_ref": null
+        },
+        {
+          "write_id": "st",
+          "stage": "content_verified_private",
+          "failure_code": null,
+          "observed_ref": null
+        },
+        {
+          "write_id": "pA",
+          "stage": "content_verified_private",
+          "failure_code": null,
+          "observed_ref": null
+        },
+        {
+          "write_id": "pB",
+          "stage": "content_verified_private",
+          "failure_code": null,
+          "observed_ref": null
+        },
+        {
+          "write_id": "rec",
+          "stage": "included_in_same_commit",
+          "failure_code": null,
+          "observed_ref": null
+        }
+      ],
+      "owner_refs": [
+        "owner-A",
+        "owner-B",
+        "owner-O"
+      ],
+      "content_links": [
+        "G1/jA",
+        "G1/jB",
+        "G1/revA",
+        "G1/revB",
+        "G1/ev",
+        "G1/trA",
+        "G1/trB",
+        "G1/imA",
+        "G1/imB",
+        "G1/st",
+        "G1/pA",
+        "G1/pB"
+      ],
+      "projection_refs": [
+        "G1/pA",
+        "G1/pB"
+      ],
+      "record_kind": "transaction_writes_verified",
+      "failure_point": null,
+      "private_visibility": [
+        "jA",
+        "jB",
+        "revA",
+        "revB",
+        "ev",
+        "trA",
+        "trB",
+        "imA",
+        "imB",
+        "st",
+        "pA",
+        "pB",
+        "rec"
+      ],
+      "rollback": "not_needed",
+      "isolation_ref": "ISOLATION/S/r1",
+      "recovery_obligations": []
+    },
+    "save_order": [
+      "jA",
+      "jB",
+      "pA",
+      "pB",
+      "revA",
+      "revB",
+      "ev",
+      "trA",
+      "imA",
+      "trB",
+      "imB",
+      "st",
+      "rec"
+    ]
   },
   "symbol_cases": [
     {
@@ -311,7 +749,10 @@
           "input_locator": "/writes/jA/owner_ref",
           "single_change": "owner一件欠落",
           "expected_code": "owner_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-owner_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         },
         {
           "id": "OS-L8-053-F01-M02",
@@ -319,7 +760,10 @@
           "input_locator": "/bases/B",
           "single_change": "Bのbase欠落",
           "expected_code": "closure_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-closure_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         },
         {
           "id": "OS-L8-053-F01-M03",
@@ -327,7 +771,10 @@
           "input_locator": "/writes/pA",
           "single_change": "projection1の必要writeを除去",
           "expected_code": "closure_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-closure_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         },
         {
           "id": "OS-L8-053-F01-M04",
@@ -335,7 +782,10 @@
           "input_locator": "/writes/rec/required_links",
           "single_change": "receipt link除去",
           "expected_code": "link_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-link_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         },
         {
           "id": "OS-L8-053-F01-M05",
@@ -343,7 +793,10 @@
           "input_locator": "/closure_ref",
           "single_change": "inputと同時にclosureを切り詰めようとする",
           "expected_code": "closure_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-closure_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         }
       ],
       "integration_negative_strings_retained": [
@@ -381,7 +834,10 @@
           "input_locator": "/driver/save/each_write",
           "single_change": "13write各保存fault",
           "expected_code": "write_failed",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-write_failed",
+          "expected_result": "incomplete",
+          "checked_function_ref": "OS-L5-053-S04"
         },
         {
           "id": "OS-L8-053-F02-M02",
@@ -389,7 +845,10 @@
           "input_locator": "/driver/verify/each_write",
           "single_change": "13write各内容照合fault",
           "expected_code": "content_mismatch",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-content_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S04"
         },
         {
           "id": "OS-L8-053-F02-M03",
@@ -397,7 +856,10 @@
           "input_locator": "/driver/current_heads/order",
           "single_change": "commit前にcurrentだけ公開",
           "expected_code": "boundary_violation",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-boundary_violation",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S04"
         },
         {
           "id": "OS-L8-053-F02-M04",
@@ -405,7 +867,10 @@
           "input_locator": "/read/reader_ref",
           "single_change": "writer接続の途中SELECTを公開readへ転用",
           "expected_code": "read_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-read_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S04"
         },
         {
           "id": "OS-L8-053-F02-M05",
@@ -413,7 +878,10 @@
           "input_locator": "/driver/commit/response",
           "single_change": "commit応答喪失",
           "expected_code": "commit_unknown",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-commit_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S04"
         },
         {
           "id": "OS-L8-053-F02-M06",
@@ -421,7 +889,10 @@
           "input_locator": "/driver/after_cas",
           "single_change": "全base CAS成功後commit前に単独fault",
           "expected_code": "write_failed",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-write_failed",
+          "expected_result": "incomplete",
+          "checked_function_ref": "OS-L5-053-S04"
         },
         {
           "id": "OS-L8-053-F02-M07",
@@ -429,7 +900,10 @@
           "input_locator": "/driver/commit/transaction_state",
           "single_change": "commitが拒否されtransactionが残存（BUSY等）",
           "expected_code": "commit_refused",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-commit_refused",
+          "expected_result": "incomplete",
+          "checked_function_ref": "OS-L5-053-S04"
         },
         {
           "id": "OS-L8-053-F02-M08",
@@ -437,7 +911,10 @@
           "input_locator": "/driver/commit/auto_rollback",
           "single_change": "commit errorで自動rollbackを確認できる",
           "expected_code": "commit_refused",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-commit_refused",
+          "expected_result": "incomplete",
+          "checked_function_ref": "OS-L5-053-S04"
         },
         {
           "id": "OS-L8-053-F02-M09",
@@ -445,7 +922,10 @@
           "input_locator": "/driver/commit/rollback_unknown",
           "single_change": "commit errorでrollback有無を確認できない",
           "expected_code": "rollback_unknown",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-rollback_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S04"
         }
       ],
       "integration_negative_strings_retained": [
@@ -478,7 +958,10 @@
         "failed_write": "jB",
         "rollback": "confirmed",
         "recovery_episode": "O/ep1",
-        "success_receipt": false
+        "success_receipt": false,
+        "saved_private": [
+          "jA"
+        ]
       },
       "mutations": [
         {
@@ -487,7 +970,10 @@
           "input_locator": "/failure/rollback_observation_ref",
           "single_change": "rollback呼出しのみで完了主張",
           "expected_code": "rollback_unknown",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-rollback_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S07"
         },
         {
           "id": "OS-L8-053-F03-M02",
@@ -495,7 +981,10 @@
           "input_locator": "/failure/isolation_ref",
           "single_change": "復旧先不明",
           "expected_code": "rollback_unknown",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-rollback_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S07"
         },
         {
           "id": "OS-L8-053-F03-M03",
@@ -503,7 +992,10 @@
           "input_locator": "/read/current_generation_ref",
           "single_change": "隔離bytesをcurrent扱い",
           "expected_code": "read_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-read_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S07"
         },
         {
           "id": "OS-L8-053-F03-M04",
@@ -511,7 +1003,10 @@
           "input_locator": "/driver/rollback/result",
           "single_change": "rollback自身が失敗",
           "expected_code": "rollback_failed",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-rollback_failed",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S07"
         },
         {
           "id": "OS-L8-053-F03-M05",
@@ -519,7 +1014,10 @@
           "input_locator": "/driver/read/result",
           "single_change": "rollback後read不能",
           "expected_code": "read_unknown",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-read_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S07"
         }
       ],
       "integration_negative_strings_retained": [
@@ -531,7 +1029,24 @@
       ],
       "execution_state": "not_executed",
       "normal_input": {
-        "fault": "jB保存でerror、jAのみsaved_private、transaction active→ROLLBACK inactive、3read G0、failure receipt保存成功。"
+        "fault": "jB save error、各先行writeはsave/verify成功、ROLLBACK inactiveと独立before G0一致、failure-only記録成功。",
+        "saved_private": [
+          "jA"
+        ],
+        "failed_write": "jB",
+        "not_attempted": [
+          "pA",
+          "pB",
+          "revA",
+          "revB",
+          "ev",
+          "trA",
+          "imA",
+          "trB",
+          "imB",
+          "st",
+          "rec"
+        ]
       }
     },
     {
@@ -557,7 +1072,10 @@
           "input_locator": "/bases/A/expected_ref",
           "single_change": "Aだけbaseを変更",
           "expected_code": "base_conflict",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-base_conflict",
+          "expected_result": "stale",
+          "checked_function_ref": "OS-L5-053-S03"
         },
         {
           "id": "OS-L8-053-F04-M02",
@@ -565,7 +1083,10 @@
           "input_locator": "/bases/B/expected_ref",
           "single_change": "Bだけbaseを変更",
           "expected_code": "base_conflict",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-base_conflict",
+          "expected_result": "stale",
+          "checked_function_ref": "OS-L5-053-S03"
         },
         {
           "id": "OS-L8-053-F04-M03",
@@ -573,7 +1094,10 @@
           "input_locator": "/driver/transaction_boundary",
           "single_change": "CAS比較後にwriter排他を解放して別writerをcommit",
           "expected_code": "boundary_violation",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-boundary_violation",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S03"
         },
         {
           "id": "OS-L8-053-F04-M04",
@@ -581,7 +1105,10 @@
           "input_locator": "/identity/scope_ref",
           "single_change": "他scope receiptでbase条件を充足",
           "expected_code": "identity_conflict",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-identity_conflict",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S03"
         }
       ],
       "integration_negative_strings_retained": [
@@ -623,7 +1150,10 @@
           "input_locator": "/identity/payload_digest",
           "single_change": "同ID異payload",
           "expected_code": "identity_conflict",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-identity_conflict",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S02"
         },
         {
           "id": "OS-L8-053-F05-M02",
@@ -631,7 +1161,10 @@
           "input_locator": "/identity/scope_ref",
           "single_change": "別scope再送",
           "expected_code": "identity_conflict",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-identity_conflict",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S02"
         },
         {
           "id": "OS-L8-053-F05-M03",
@@ -639,7 +1172,10 @@
           "input_locator": "/identity/bases",
           "single_change": "別base再送",
           "expected_code": "identity_conflict",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-identity_conflict",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S02"
         },
         {
           "id": "OS-L8-053-F05-M04",
@@ -647,7 +1183,10 @@
           "input_locator": "/identity/result_ref",
           "single_change": "052 evidence missing",
           "expected_code": "identity_unknown",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-identity_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S02"
         },
         {
           "id": "OS-L8-053-F05-M05",
@@ -655,7 +1194,10 @@
           "input_locator": "/resolutions/identity/state",
           "single_change": "052 unknown",
           "expected_code": "identity_unknown",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-identity_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S02"
         },
         {
           "id": "OS-L8-053-F05-M06",
@@ -663,7 +1205,10 @@
           "input_locator": "/driver/semantic_normalization_call",
           "single_change": "OS独自正規化で同一と判定",
           "expected_code": "boundary_violation",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-boundary_violation",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S02"
         },
         {
           "id": "OS-L8-053-F05-M07",
@@ -671,7 +1216,10 @@
           "input_locator": "/failure/recovery_obligations",
           "single_change": "先行未完の復旧をdrop",
           "expected_code": "link_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-link_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S02"
         }
       ],
       "integration_negative_strings_retained": [
@@ -709,7 +1257,10 @@
           "input_locator": "/receipt/write_outcomes",
           "single_change": "count13を保ちwrite一行を別IDへ",
           "expected_code": "closure_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-closure_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S06"
         },
         {
           "id": "OS-L8-053-F06-M02",
@@ -717,7 +1268,10 @@
           "input_locator": "/read/records/pA/source_ref",
           "single_change": "別revision projection",
           "expected_code": "read_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-read_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S06"
         },
         {
           "id": "OS-L8-053-F06-M03",
@@ -725,7 +1279,10 @@
           "input_locator": "/receipt/failure_point",
           "single_change": "失敗位置欠落",
           "expected_code": "schema_invalid",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-schema_invalid",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S06"
         },
         {
           "id": "OS-L8-053-F06-M04",
@@ -733,7 +1290,10 @@
           "input_locator": "/receipt/scope_ref",
           "single_change": "success/failure scope混在",
           "expected_code": "reference_conflict",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-reference_conflict",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S06"
         },
         {
           "id": "OS-L8-053-F06-M05",
@@ -741,7 +1301,10 @@
           "input_locator": "/read/routes_observed",
           "single_change": "receiptだけを見てactual readなし",
           "expected_code": "read_unknown",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-read_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S06"
         },
         {
           "id": "OS-L8-053-F06-M06",
@@ -749,7 +1312,10 @@
           "input_locator": "/read/records/pA/after_ref",
           "single_change": "commit確定後の独立projection readが別revisionを返す",
           "expected_code": "read_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-read_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S06"
         },
         {
           "id": "OS-L8-053-F06-M07",
@@ -757,7 +1323,10 @@
           "input_locator": "/read/route_failures/canonical",
           "single_change": "commit確定後の独立canonical readが不能",
           "expected_code": "read_unknown",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-read_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S06"
         },
         {
           "id": "OS-L8-053-F06-M08",
@@ -765,7 +1334,10 @@
           "input_locator": "/receipt/future_read_result",
           "single_change": "receiptにcommit後read実施済みfieldを先書き",
           "expected_code": "schema_invalid",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-schema_invalid",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S06"
         },
         {
           "id": "OS-L8-053-F06-M09",
@@ -773,7 +1345,10 @@
           "input_locator": "/driver/receipt_update_after_commit",
           "single_change": "read不一致をreceipt後書き更新で成功にする",
           "expected_code": "boundary_violation",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-boundary_violation",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S06"
         }
       ],
       "integration_negative_strings_retained": [
@@ -813,7 +1388,10 @@
           "input_locator": "/driver/success_claim_without_receipt",
           "single_change": "口頭成功だけ",
           "expected_code": "receipt_missing",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-receipt_missing",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S07"
         },
         {
           "id": "OS-L8-053-F07-M02",
@@ -821,7 +1399,10 @@
           "input_locator": "/driver/new_fallback_path",
           "single_change": "records/へ新fallbackを作る",
           "expected_code": "boundary_violation",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-boundary_violation",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S07"
         },
         {
           "id": "OS-L8-053-F07-M03",
@@ -829,7 +1410,10 @@
           "input_locator": "/evidence_route/scope_ref",
           "single_change": "Eはあるが別scope",
           "expected_code": "evidence_route_invalid",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-evidence_route_invalid",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S07"
         },
         {
           "id": "OS-L8-053-F07-M04",
@@ -837,7 +1421,10 @@
           "input_locator": "/resolutions/evidence_route/state",
           "single_change": "E内容unknown",
           "expected_code": "reference_unknown",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-reference_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S07"
         },
         {
           "id": "OS-L8-053-F07-M05",
@@ -845,7 +1432,10 @@
           "input_locator": "/receipt/visibility",
           "single_change": "receipt候補の存在を成功扱い",
           "expected_code": "receipt_missing",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-receipt_missing",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S07"
         }
       ],
       "integration_negative_strings_retained": [
@@ -879,7 +1469,10 @@
           "input_locator": "/writes/jA/kind",
           "single_change": "view成功をJSON write代替",
           "expected_code": "owner_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-owner_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         },
         {
           "id": "OS-L8-053-F08-M02",
@@ -887,7 +1480,10 @@
           "input_locator": "/writes/pA/source_ref",
           "single_change": "別JSON revision viewをcurrent結合",
           "expected_code": "link_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-link_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         },
         {
           "id": "OS-L8-053-F08-M03",
@@ -895,7 +1491,10 @@
           "input_locator": "/driver/derive_meaning_from_view",
           "single_change": "view bytesからowner意味を逆生成",
           "expected_code": "boundary_violation",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-boundary_violation",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         }
       ],
       "integration_negative_strings_retained": [
@@ -928,7 +1527,10 @@
           "input_locator": "/read/unobserved_routes",
           "single_change": "pointerだけ確認して他2経路成功",
           "expected_code": "read_unknown",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-read_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S08"
         },
         {
           "id": "OS-L8-053-N01-M02",
@@ -936,7 +1538,10 @@
           "input_locator": "/read/unobserved_routes",
           "single_change": "canonicalだけ確認",
           "expected_code": "read_unknown",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-read_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S08"
         },
         {
           "id": "OS-L8-053-N01-M03",
@@ -944,7 +1549,10 @@
           "input_locator": "/read/unobserved_routes",
           "single_change": "projectionだけ確認",
           "expected_code": "read_unknown",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-read_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S08"
         },
         {
           "id": "OS-L8-053-N01-M04",
@@ -952,7 +1560,10 @@
           "input_locator": "/read/reader_ref",
           "single_change": "writer private viewだけ観測",
           "expected_code": "read_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-read_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S08"
         },
         {
           "id": "OS-L8-053-N01-M05",
@@ -960,7 +1571,10 @@
           "input_locator": "/read/route_failures",
           "single_change": "read失敗を空集合成功へ",
           "expected_code": "read_unknown",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-read_unknown",
+          "expected_result": "unknown",
+          "checked_function_ref": "OS-L5-053-S08"
         },
         {
           "id": "OS-L8-053-N01-M06",
@@ -968,7 +1582,10 @@
           "input_locator": "/fault_matrix/operation_boundaries",
           "single_change": "全base CAS後commit前faultを母集合から除外",
           "expected_code": "closure_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-closure_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S08"
         },
         {
           "id": "OS-L8-053-N01-M07",
@@ -976,7 +1593,10 @@
           "input_locator": "/fault_matrix/commit",
           "single_change": "commit faultを応答喪失で代用",
           "expected_code": "closure_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-closure_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S08"
         },
         {
           "id": "OS-L8-053-N01-M08",
@@ -984,7 +1604,10 @@
           "input_locator": "/driver/commit/transaction_state",
           "single_change": "commit残存transactionを成功扱い",
           "expected_code": "commit_refused",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-commit_refused",
+          "expected_result": "incomplete",
+          "checked_function_ref": "OS-L5-053-S08"
         }
       ],
       "integration_negative_strings_retained": [
@@ -1022,7 +1645,10 @@
           "input_locator": "/receipt/scope_ref",
           "single_change": "他scope receiptで補完",
           "expected_code": "reference_conflict",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-reference_conflict",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S06"
         },
         {
           "id": "OS-L8-053-N02-M02",
@@ -1030,7 +1656,10 @@
           "input_locator": "/receipt/write_outcomes",
           "single_change": "countのみで成功",
           "expected_code": "closure_mismatch",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-closure_mismatch",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S06"
         },
         {
           "id": "OS-L8-053-N02-M03",
@@ -1038,7 +1667,10 @@
           "input_locator": "/driver/new_trace_fallback",
           "single_change": "任意fallbackでtrace補完",
           "expected_code": "boundary_violation",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-boundary_violation",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S06"
         },
         {
           "id": "OS-L8-053-N02-M04",
@@ -1046,7 +1678,10 @@
           "input_locator": "/failure/operation_ref",
           "single_change": "他operationの成功でO未完を消す",
           "expected_code": "reference_conflict",
-          "mutation_surface": "input_or_port_observation"
+          "mutation_surface": "input_or_port_observation",
+          "rule_ref": "OS-L5-053-R-reference_conflict",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S06"
         }
       ],
       "integration_negative_strings_retained": [
@@ -1081,7 +1716,10 @@
           "input_locator": "/result/requirement_adoption",
           "single_change": "O成功で要求採択",
           "expected_code": "boundary_violation",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-boundary_violation",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         },
         {
           "id": "OS-L8-053-B01-M02",
@@ -1089,7 +1727,10 @@
           "input_locator": "/result/po_accepted",
           "single_change": "O成功でPO Accepted",
           "expected_code": "boundary_violation",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-boundary_violation",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         },
         {
           "id": "OS-L8-053-B01-M03",
@@ -1097,7 +1738,10 @@
           "input_locator": "/driver/history_transform",
           "single_change": "O成功でFR53履歴変換",
           "expected_code": "boundary_violation",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-boundary_violation",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         },
         {
           "id": "OS-L8-053-B01-M04",
@@ -1105,7 +1749,10 @@
           "input_locator": "/driver/legacy_schema",
           "single_change": "旧DB名/schema生成",
           "expected_code": "boundary_violation",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-boundary_violation",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         },
         {
           "id": "OS-L8-053-B01-M05",
@@ -1113,7 +1760,10 @@
           "input_locator": "/driver/legacy_runtime",
           "single_change": "旧runtime fallback",
           "expected_code": "boundary_violation",
-          "mutation_surface": "adapter_or_implementation_protocol"
+          "mutation_surface": "adapter_or_implementation_protocol",
+          "rule_ref": "OS-L5-053-R-boundary_violation",
+          "expected_result": "conflict",
+          "checked_function_ref": "OS-L5-053-S01"
         }
       ],
       "integration_negative_strings_retained": [
@@ -1134,61 +1784,121 @@
       "id": "X01",
       "symbol": "freeze_write_plan",
       "input": "jAのcanonical_locationをexternal_requiredへ変更し、DB snapshotだけでrequired write達成とする。",
-      "expected": "external_write_unclosed、SQL callゼロ、jA未完を保持。"
+      "expected": "SQL0、jA external義務未完を保持。",
+      "expected_result": "incomplete",
+      "expected_code": "external_write_unclosed",
+      "rule_ref": "OS-L5-053-R-external_write_unclosed",
+      "checked_function_ref": "OS-L5-053-S01"
     },
     {
       "id": "X02",
       "symbol": "persist_atomic_bundle",
       "input": "G0の未更新member ZをG1継承から除く。",
-      "expected": "closure_mismatch/link_mismatch。head公開なし、Z保持。"
+      "expected": "Z欠落をgeneration継承集合の不一致として検出。公開なし、G0/Z保持。",
+      "expected_result": "conflict",
+      "expected_code": "closure_mismatch",
+      "rule_ref": "OS-L5-053-R-closure_mismatch",
+      "checked_function_ref": "OS-L5-053-S04"
     },
     {
       "id": "X03",
       "symbol": "resolve_command_replay",
       "input": "先行C/O/G1成功後、現在headを別O2/G2へ進め、同一C/元baseの再送。",
-      "expected": "replay O/G1/元receipt、追加write0、current G2は保持して別field。元baseが今のbaseと異なるだけで新CASや二重revisionなし。"
+      "expected": "O/G1/元receipt、write0、observed_current=G2。新CASなし。",
+      "expected_result": "replay",
+      "expected_code": null,
+      "rule_ref": null,
+      "checked_function_ref": "OS-L5-053-S02"
     },
     {
       "id": "X04",
       "symbol": "persist_atomic_bundle",
-      "input": "2writerのBEGIN順とCASの間へ競合を入れる。",
-      "expected": "先行commit後の全base相違を検出。writer排他を跨ぐcompare/publish禁止。"
+      "input": "先行writerがBをb2へcommitし終了、後続writerが元B b1条件でBEGINを成功させる。",
+      "expected": "先行writerがB b2をcommitして終了後、後続writerがBEGIN成功し、元B b1との差分Bを検出。head Gx保持、新write0。",
+      "expected_result": "stale",
+      "expected_code": "base_conflict",
+      "rule_ref": "OS-L5-053-R-base_conflict",
+      "checked_function_ref": "OS-L5-053-S04"
     },
     {
       "id": "X05",
       "symbol": "recover_failed_operation",
       "input": "rollback成功後、failure-only receipt transactionの保存も失敗し、既存EvidenceRouteは無し。",
-      "expected": "unknown/復旧義務、headはG0、成功receipt/任意file生成なし。"
+      "expected": "rollback G0 confirmedだがfailure receipt永続化不能。元write原因も保持、成功receipt/任意fileなし。",
+      "expected_result": "unknown",
+      "expected_code": "receipt_failed",
+      "rule_ref": "OS-L5-053-R-receipt_failed",
+      "checked_function_ref": "OS-L5-053-S07"
     },
     {
       "id": "X06",
       "symbol": "verify_committed_receipt",
       "input": "receipt payloadへ自分の格納shaを必須fieldとして埋込む。",
-      "expected": "schema_invalid。格納shaは外metadataで自己payloadへ持たない。"
+      "expected": "自己payload shaを禁止し、格納metadataへ分離。",
+      "expected_result": "conflict",
+      "expected_code": "schema_invalid",
+      "rule_ref": "OS-L5-053-R-schema_invalid",
+      "checked_function_ref": "OS-L5-053-S06"
     },
     {
       "id": "X07",
       "symbol": "read_committed_bundle",
       "input": "canonical SELECT後にread transactionを閉じてprojectionを別latestで読む。",
-      "expected": "read_mismatch。全routeは同snapshotへ固定、一response old/new混在なし。"
+      "expected": "同read responseが別snapshotへ分断。G1保存済み事実を保持。",
+      "expected_result": "conflict",
+      "expected_code": "read_mismatch",
+      "rule_ref": "OS-L5-053-R-read_mismatch",
+      "checked_function_ref": "OS-L5-053-S05"
     },
     {
       "id": "X08",
       "symbol": "resolve_command_replay",
       "input": "command検索keyをscope+Cとして、異scope同Cを新規扱いする。",
-      "expected": "identity_conflict、既存binding/receipt保護。"
+      "expected": "scope付き検索で既存Cを隠すprotocolに対し、command Cの独立bindingを照合して拒否。",
+      "expected_result": "conflict",
+      "expected_code": "identity_conflict",
+      "rule_ref": "OS-L5-053-R-identity_conflict",
+      "checked_function_ref": "OS-L5-053-S02"
     },
     {
       "id": "X09",
       "symbol": "persist_atomic_bundle",
       "input": "PRAGMA設定の読戻しだけを期待値と違える。",
-      "expected": "configuration_mismatchでoperation開始ゼロ。"
+      "expected": "起動時設定読戻し相違、operation開始0。",
+      "expected_result": "incomplete",
+      "expected_code": "configuration_mismatch",
+      "rule_ref": "OS-L5-053-R-configuration_mismatch",
+      "checked_function_ref": "OS-L5-053-S04"
     },
     {
       "id": "X10",
-      "symbol": "verify_committed_receipt",
-      "input": "commit後readを実施済みfieldとしてreceiptへ先書きする。",
-      "expected": "schema_invalid。未来のread証拠はreceiptに無い。"
+      "symbol": "freeze_write_plan",
+      "input": "jA sourceのResolution.stateだけをstaleへ変える。",
+      "expected": "jA source Resolutionのみstale。原Refを保全、SQL0、latest補完0。",
+      "expected_result": "stale",
+      "expected_code": "reference_stale",
+      "rule_ref": "OS-L5-053-R-reference_stale",
+      "checked_function_ref": "OS-L5-053-S01"
+    },
+    {
+      "id": "X11",
+      "symbol": "persist_atomic_bundle",
+      "input": "別readerがG0 SHARED lockを保持しwriter COMMITがBUSY、transaction active。reader終了後rollback確認とfailure-only記録成功。",
+      "expected": "COMMIT1回、ROLLBACK1回、G0、成功generation公開0、自動retry0。",
+      "expected_result": "incomplete",
+      "expected_code": "commit_refused",
+      "rule_ref": "OS-L5-053-R-commit_refused",
+      "checked_function_ref": "OS-L5-053-S04"
+    },
+    {
+      "id": "X12",
+      "symbol": "read_committed_bundle",
+      "input": "writer PENDING中、独立readerのBEGINまたは最初のSELECTがBUSY。",
+      "expected": "開始/SELECTは各1回、route未観測を保持、head/receipt変更0、自動retry0。",
+      "expected_result": "unknown",
+      "expected_code": "read_unknown",
+      "rule_ref": "OS-L5-053-R-read_unknown",
+      "checked_function_ref": "OS-L5-053-S05"
     }
   ],
   "fault_expansion": {
@@ -1198,7 +1908,7 @@
     "expected": "commit前はG0保持、部分G1なし。commit後read不一致/不能は保存済み事実と復旧義務を保全。未観測はnot_proven。"
   },
   "evidence_contract": [
-    "11 L3/L4/L9/L10参照、8symbolsの局所oracle、64既存変異と10追加familyを保持。",
+    "11 L3/L4/L9/L10参照、8symbolsの局所oracle、64既存変異と12追加familyを保持。",
     "call trace/transaction-state/record内容を期待fixtureへ照合し、count/hash/文字列存在だけでPASSしない。",
     "禁止call（current先行公開、receipt後書き、Python DB/意味正規化、外部fallback）がゼロ。",
     "実toolchain/API/linked SQLite/OS-VFS、実独立readのfault観測は別に必要。"

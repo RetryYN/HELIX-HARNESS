@@ -119,6 +119,42 @@
       "change": "旧template schema/lifecycleを移さず、053のoperation/write/receipt型へ導出。",
       "reason": "template意味と保存契約は別ownerで、artifact bytesはowner契約へ束縛する。",
       "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-005-distribution-model-and-central-ui.md",
+      "lines": "71–75",
+      "sha256": "dc6f09d05556442518fb09dd7fa38536562b0ab60e6947d044593500e5d3f16f",
+      "disposition": "semantic_rederivation",
+      "keep": "SQLiteによる確定済み内容の独立read。",
+      "change": "旧中央UIの非正本projection向けWALを、今回の正本storeのDELETE+EXTRAへ変更。",
+      "reason": "旧箇所はdirection-onlyで正本ではない。原子性をrollback-journalで追跡し、directory syncを含む耐障害条件を明示する。WALが原子性に劣るという理由ではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-328-github-preflight-and-audit-hardening.md",
+      "lines": "189–193",
+      "sha256": "398d41d23e5d91135c53fc7309898e554e0153be4141b84ecfec2e39a41394c7",
+      "disposition": "semantic_rederivation",
+      "keep": "並行read/write、BEGIN IMMEDIATE、last committedだけを読む。",
+      "change": "WAL/busy timeoutとmemory rebuild fallbackを継承せず、timeout0と明示未完episodeにする。",
+      "reason": "同期APIの暗黙待機と再構築fallbackでunknownを隠さない。readerによるcommit拒否を許容失敗として保全し、可用性の実測は未成立。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/destructive-command-guard.md",
+      "lines": "90–96",
+      "sha256": "2260ac4f0d1e7fa83ec33f3f44fd1077266b4ad6be0252b90d5fc47997207062",
+      "disposition": "semantic_rederivation",
+      "keep": "一意identity、競合後の再読、retry上限、非BUSYはfail closed。",
+      "change": "guard固有5attempts/10–40ms自動retryを移さず、各call1attempt、同operationの明示次episodeだけ再試行する。",
+      "reason": "053ではcommitの成否を確認せず再書込みできない。暗黙retryゼロ、episodeごと全identity/base/権限を再照合。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/nfr-consolidation-improvement-audit-2026-07-19.md",
+      "lines": "15、27",
+      "sha256": "98081a8eab744ef8be52823f76eae2ccd343520752d1bb6a0c25b38f6e45f532",
+      "disposition": "semantic_rederivation",
+      "keep": "V-04のハング履歴と性能/競合/回復の観測必要性。",
+      "change": "根本原因未同定の履歴をDELETEやtimeout0の性能保証にしない。",
+      "reason": "待機を有限にし未観測を保持する動機であり、現行可用性を証明した旧実測ではない。"
     }
   ],
   "failure_basis": {
@@ -142,7 +178,7 @@
         "ref": "Ref",
         "state": "valid | missing | unknown | stale | conflict",
         "value": "kindに対応する下記の閉じたrecord。任意objectは不可。",
-        "kind": "asset_contract | closure | identity_result | authority | resource | evidence_route | toolchain"
+        "kind": "asset_contract | closure | identity_result | authority | resource | evidence_route | toolchain | fault_basis"
       },
       "AssetContract": {
         "asset_ref": "Ref",
@@ -354,7 +390,15 @@
         "observation_ref": "Ref | null"
       },
       "ScriptDriver": "ProtocolCallの固定tuple。引数はPlan/Write/ReadRequest/ReceiptRecordから対応する閉じた値を供給し、非定義callはoracleがboundary_violationとして拒否。実SQLiteの成立証拠ではない。",
-      "FindingCode": "type_contract.finding_codesの閉じたenum"
+      "FindingCode": "type_contract.finding_codesの閉じたenum",
+      "FaultBasis": {
+        "operation_ref": "Locator",
+        "scope_ref": "Ref",
+        "write_ids": "unique Text tuple",
+        "expected_points": "FaultPoint tuple",
+        "required_routes": "pointer/canonical/projection exact tuple",
+        "source_refs": "Ref tuple（独立L9 root）"
+      }
     },
     "finding_codes": [
       "schema_invalid",
@@ -383,7 +427,185 @@
       "boundary_violation",
       "configuration_mismatch"
     ],
-    "reference_roles": "Refは既存の根拠bytesへsha256で束縛する。Locatorはoperation/generation/新recordの論理addressであり、単独では成立証拠ではない。新recordの内容shaは格納metadata/read観測で照合する。operation/generation Locatorやreceipt自身のLocatorへ自己のpayload hashを要求しない。source/closure/identity/authority/resource等の根拠は必ずRefで解決する。"
+    "reference_roles": "Refは既存の根拠bytesへsha256で束縛する。Locatorはoperation/generation/新recordの論理addressであり、単独では成立証拠ではない。新recordの内容shaは格納metadata/read観測で照合する。operation/generation Locatorやreceipt自身のLocatorへ自己のpayload hashを要求しない。source/closure/identity/authority/resource等の根拠は必ずRefで解決する。",
+    "finding_rules": [
+      {
+        "id": "OS-L5-053-R-schema_invalid",
+        "condition": "閉じた型の必須field/enum/variant/重複が不正、receipt自己hashまたは未来read fieldを含む。specialized missing/axis checks後、残る構造不正。",
+        "code": "schema_invalid",
+        "result_variant": "conflict",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-reference_missing",
+        "condition": "必須の非identity入力Refのbytes/valueがmissing。",
+        "code": "reference_missing",
+        "result_variant": "unknown",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-reference_unknown",
+        "condition": "必須の非identity Resolution.state=unknown、内容未観測。",
+        "code": "reference_unknown",
+        "result_variant": "unknown",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-reference_stale",
+        "condition": "必須の非identity Resolution.state=stale。原Refは保持しlatestへ補完しない。",
+        "code": "reference_stale",
+        "result_variant": "stale",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-reference_conflict",
+        "condition": "非identity Refのscope/operation/revision/owner/bytesまたはResolution.state=conflictが要求参照と相違。",
+        "code": "reference_conflict",
+        "result_variant": "conflict",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-owner_mismatch",
+        "condition": "Writeのowner_refが欠落/相違、またはkindが独立AssetContract.canonical_kindと相違。viewはjson_canonical義務を代替できない。",
+        "code": "owner_mismatch",
+        "result_variant": "conflict",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-closure_mismatch",
+        "condition": "独立rootのwrite/base/receipt行/fault点/継承memberのexact集合と対象集合が相違。",
+        "code": "closure_mismatch",
+        "result_variant": "conflict",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-content_mismatch",
+        "condition": "同transaction verifyのrecord bytes/metadataが原Write/owner契約と相違。",
+        "code": "content_mismatch",
+        "result_variant": "conflict",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-link_mismatch",
+        "condition": "Write.required_links/source revision/依存、または先行failure recovery_obligationsの包含が原独立契約と相違。",
+        "code": "link_mismatch",
+        "result_variant": "conflict",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-external_write_unclosed",
+        "condition": "AssetContract.canonical_location=external_required、または同instanceの全writeに閉じない。SQL未開始。",
+        "code": "external_write_unclosed",
+        "result_variant": "incomplete",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-base_conflict",
+        "condition": "同active writer snapshotの全base/head exact比較で一件以上相違。identity same先行commit replayは対象外。",
+        "code": "base_conflict",
+        "result_variant": "stale",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-identity_conflict",
+        "condition": "command_idは同一だがscope/base/digest/ruleのいずれかが相違、またはHARNESS052 classification=conflict。identity軸を他scope receiptから補う行為も相違。",
+        "code": "identity_conflict",
+        "result_variant": "conflict",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-identity_unknown",
+        "condition": "HARNESS052 Ref missing/unknown/stale、またはclassification=unknown。同一判定をOS側で補わない。",
+        "code": "identity_unknown",
+        "result_variant": "unknown",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-write_failed",
+        "condition": "論理write save、CAS後commit前のportがerror。rollback/失敗記録を別観測し原因write IDを保持。",
+        "code": "write_failed",
+        "result_variant": "incomplete",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-commit_refused",
+        "condition": "BEGIN/COMMITが拒否、またはCOMMIT後transaction active。確定したrollbackをsuccess commitにしない。",
+        "code": "commit_refused",
+        "result_variant": "incomplete",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-commit_unknown",
+        "condition": "COMMIT応答lostで当該generation/receiptの独立readも未成立。既存確定の完全readが有ればこのruleでなくreplay/committed。",
+        "code": "commit_unknown",
+        "result_variant": "unknown",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-rollback_unknown",
+        "condition": "rollback観測、isolation_ref、transaction状態またはbefore snapshotのいずれかが未観測でrollback完了を確認できない。",
+        "code": "rollback_unknown",
+        "result_variant": "unknown",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-rollback_failed",
+        "condition": "ROLLBACK portがerror。後続成功を推定せず隔離/復旧義務保持。",
+        "code": "rollback_failed",
+        "result_variant": "unknown",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-read_unknown",
+        "condition": "read_begin/first SELECT/各routeがBUSY/error/未観測、またはrequired route欠落。",
+        "code": "read_unknown",
+        "result_variant": "unknown",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-read_mismatch",
+        "condition": "独立read内のgeneration/record/source/projectionが相違、writer privateを観測とする、または3routeが異snapshot。",
+        "code": "read_mismatch",
+        "result_variant": "conflict",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-receipt_missing",
+        "condition": "成功を主張するがimmutable成功receiptと確定generationの独立確認が欠落。candidateの存在だけでは不足。",
+        "code": "receipt_missing",
+        "result_variant": "unknown",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-receipt_failed",
+        "condition": "原update rollback後のfailure-only receipt save/commitがerrorで永続失敗記録を確認できない。未完義務と最後の確認G0を保持。",
+        "code": "receipt_failed",
+        "result_variant": "unknown",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-evidence_route_invalid",
+        "condition": "既存EvidenceRouteのoperation/scope/authority/storeが当該failureと不一致。新fallbackを作らない。",
+        "code": "evidence_route_invalid",
+        "result_variant": "unknown",
+        "surface": "domain_or_observed_port"
+      },
+      {
+        "id": "OS-L5-053-R-boundary_violation",
+        "condition": "固定protocolの禁止call、保存/公開/排他解除の順序違反、意味owner/authority/Accepted/history/legacy/fallback副作用をoracleが観測。実装自身が返すfindingで検出を代用しない。",
+        "code": "boundary_violation",
+        "result_variant": "conflict",
+        "surface": "oracle_protocol"
+      },
+      {
+        "id": "OS-L5-053-R-configuration_mismatch",
+        "condition": "起動probeのjournal/sync/FK/read isolation/toolchain/store rootが固定ResourceBasisと相違。operation開始ゼロ。",
+        "code": "configuration_mismatch",
+        "result_variant": "incomplete",
+        "surface": "domain_or_observed_port"
+      }
+    ],
+    "finding_precedence": "単独変異は該当ruleを一意選択する。複数原因は全findingを独立に保持し、新primary成功へ丸めない。shape読取不能→schema_invalid。読取可能ならidentity専用rule、owner/kind欠落専用ruleを一般Ref/構造ruleより先に評価する。保存原因と復旧不能の両方がある場合、最終Resultはunknown優先、conflict、stale、incompleteの順に選択し、元原因codeも失わない。"
   },
   "adapter_choice": {
     "design_target": "Node.js v24.21.0のnode:sqlite DatabaseSync、単一file SQLite。旧Node単一commit責務を保持し、Python意味コアへDB path/credentialを渡さない。Node/sqliteのrelease candidateをstableと呼ばず、実API/linked SQLite/compile optionsをtoolchain snapshotで確認する。",
@@ -399,7 +621,18 @@
       "sql": "許可した固定DDL/SQLとprepared bound valuesだけ。ATTACH/任意SQL/運用中DDLはこのoperationから実行しない。"
     },
     "startup": "resource/authority参照からrepo外の固定store rootを解決する。symlinkや別instance/storeへのすり替えを通さず、権限/隔離と実root一致をSEC/INFRAで確かめる。schema/config/toolchainを読戻しで照合し、不一致は当該operationを未開始。初期schema作成は既存operation authorityと対設計条件を満たす別初期化であり、初回updateの隠れた副作用にしない。",
-    "binding_limit": "このadapterはowner contractがそのinstance内のstore_recordをcanonical locationと指定した全writeだけを実現する。repo docs/Git/file/remoteに正本writeが必要な契約をsnapshot copyだけで更新済みにしない。external_requiredをexternal_write_unclosedで返し、同義務/owner/対象Refを未完へ保持する。全体の実装準備完了には外部bindingの対設計と実現も必要。"
+    "binding_limit": "このadapterはowner contractがそのinstance内のstore_recordをcanonical locationと指定した全writeだけを実現する。repo docs/Git/file/remoteに正本writeが必要な契約をsnapshot copyだけで更新済みにしない。external_requiredをexternal_write_unclosedで返し、同義務/owner/対象Refを未完へ保持する。全体の実装準備完了には外部bindingの対設計と実現も必要。",
+    "journal_comparison": {
+      "DELETE_EXTRA": "選択。rollback journal削除時のdirectory syncを含む。readのSHARED lockがwriter COMMITを阻み、PENDING/EXCLUSIVE writerが新readerを阻む。単一writerでも読取非ブロックにはならない。実VFS/電源断耐久性は別実測。",
+      "WAL_FULL": "比較候補。writer/readの並行性を高め、FULLはWAL commitをsyncする。EXTRAはWALではFULLへ追加しない。同一hostのWAL/shared-memory、checkpointとsidecarも資源・復旧の対象になる。耐久性がDELETEより劣るとは主張しない。",
+      "selection_reason": "今回は単一DB rollback-journalの公開/rollback境界を先に閉じ、WAL/checkpointの追加状態を採用しない。読取が書込を拒否する可用性コストを明示し、無故障並行処理の成立を主張しない。性能/可用性要件を満たさないと実測で判定されたら、同じ上流義務を保持してadapterの対設計を見直す。"
+    },
+    "busy_contract": {
+      "bound": "各begin/commit/read_begin/first SELECTは最大1attempt、timeout0。sleep/backoff/内部再COMMITゼロ。",
+      "commit_busy": "transaction activeならcommit_refused/incomplete。明示ROLLBACK1回、inactiveと独立G0全内容readで確認。readerがまだ存在してfailure-only記録もBUSYならreceipt_failed/unknown。未観測をrollback済みにしない。",
+      "read_busy": "read_beginまたは最初のSELECTのBUSYはread_unknown/unknown。終了処理と未観測routeを記録する。commit済みreceipt/currentを変更しない。",
+      "next_episode": "自動episode発行なし。明示された同operationの次episodeは、先行commit/rollbackの独立確認、先行復旧義務と全identity/base/authority/resource再照合が成立した場合だけ。attempt上限を回避する内側loopは無い。"
+    }
   },
   "storage_model": {
     "database_file": "<INFRA固定instance root>/canonicalization.sqlite。旧harness.db/.helixは使用しない。",
@@ -516,12 +749,24 @@
       "effect": "OS writer/reader adapterへの明示callだけ。純粋比較部はimmutable入力を変更しない。",
       "algorithm": [
         "全recordのfield/type/enumと重複ID/Refを検査する。Resolutionのrefがscope/revision/ownerを含めexactに解決し、state validで対象valueと原bytesの内容が一致するかを確認。digest一致だけではvalueを認めない。",
-        "独立Closureのexpected write/base集合とPlanの双方の差分を出す。各Writeのowner/before/after/source/content contract/required links/bytes/storeをAssetContractの同IDと全fieldで比較する。source/closureをcallerのwritesから生成し直さない。",
+        "独立Closureのexpected write/base集合とPlanの双方の差分を出す。各Writeのkind/owner/before/after/source/content contract/required links/bytes/storeをAssetContractの同IDと全fieldで比較する。source/closureをcallerのwritesから生成し直さない。",
         "全writeの依存が閉じ循環が無いか確認し、依存を満たす順に固定。同順位はwrite_idのコードポイント順。JSON/projectionのsource revision/ownerを別kindで保全する。",
         "全AssetContractがstore_recordで同storeならこのadapter候補へready。それ以外のexternal_requiredはexternal_write_unclosedを返し、対象writeと未完義務を保存し、SQLを一件も始めない。外部義務の削除/N/A化はしない。",
         "authority/resourceの根拠内容を同operation/scope/allowed effects/storeに結ぶ。owner判断は再裁定せず、不足は当該ownerへ返す。全findingが無い場合のみimmutable Planを返す。"
       ],
-      "failure": "原因Ref/field/write IDと未完義務を保持。unknownをtrue/空集合/新identityへ変えない。"
+      "failure": "type_contract.finding_rulesのcondition→code→Resultを適用。委譲先のfindingは原rule IDと原因Ref/write/field/episodeを保持して返す。定義外code/Resultやunknownから成功への補完は禁止。",
+      "failure_rules": [
+        "OS-L5-053-R-schema_invalid",
+        "OS-L5-053-R-reference_missing",
+        "OS-L5-053-R-reference_unknown",
+        "OS-L5-053-R-reference_stale",
+        "OS-L5-053-R-reference_conflict",
+        "OS-L5-053-R-owner_mismatch",
+        "OS-L5-053-R-closure_mismatch",
+        "OS-L5-053-R-link_mismatch",
+        "OS-L5-053-R-external_write_unclosed",
+        "OS-L5-053-R-boundary_violation"
+      ]
     },
     {
       "id": "OS-L5-053-S02",
@@ -539,7 +784,15 @@
         "異payload/scope/base/ruleまたはHARNESS conflictはidentity_conflict。先行binding/receiptを変更しない。missing/unknownはidentity_unknown。",
         "先行failure/incompleteは同じoperationの新episodeへ結び、先行復旧義務を引継ぐ。未確認commit/receipt無しの先行episodeをnewとして再開始しない。"
       ],
-      "failure": "原因Ref/field/write IDと未完義務を保持。unknownをtrue/空集合/新identityへ変えない。"
+      "failure": "type_contract.finding_rulesのcondition→code→Resultを適用。委譲先のfindingは原rule IDと原因Ref/write/field/episodeを保持して返す。定義外code/Resultやunknownから成功への補完は禁止。",
+      "failure_rules": [
+        "OS-L5-053-R-schema_invalid",
+        "OS-L5-053-R-identity_conflict",
+        "OS-L5-053-R-identity_unknown",
+        "OS-L5-053-R-link_mismatch",
+        "OS-L5-053-R-receipt_missing",
+        "OS-L5-053-R-boundary_violation"
+      ]
     },
     {
       "id": "OS-L5-053-S03",
@@ -556,7 +809,17 @@
         "一件でも異なれば全差分をbase_conflictへ返し、新canonical/content/member/headを作らずtransactionをrollbackする。NULLは未記載ではなくownerが指定した新規不存在条件。",
         "全一致から全write/current公開まで同じtransactionを維持。途中にCOMMIT、connection切替、writer排他解除を入れない。"
       ],
-      "failure": "原因Ref/field/write IDと未完義務を保持。unknownをtrue/空集合/新identityへ変えない。"
+      "failure": "type_contract.finding_rulesのcondition→code→Resultを適用。委譲先のfindingは原rule IDと原因Ref/write/field/episodeを保持して返す。定義外code/Resultやunknownから成功への補完は禁止。",
+      "failure_rules": [
+        "OS-L5-053-R-schema_invalid",
+        "OS-L5-053-R-base_conflict",
+        "OS-L5-053-R-identity_conflict",
+        "OS-L5-053-R-reference_missing",
+        "OS-L5-053-R-reference_unknown",
+        "OS-L5-053-R-reference_stale",
+        "OS-L5-053-R-reference_conflict",
+        "OS-L5-053-R-boundary_violation"
+      ]
     },
     {
       "id": "OS-L5-053-S04",
@@ -579,7 +842,27 @@
         "COMMIT例外ではdatabase.isTransactionと独立readを取得してrecover_failed_operationへ。BUSY残存をcommit成功にしない。自動commit retry/後続writeはしない。COMMIT応答喪失は既存generation/receipt/all memberのexact readで既存確定のみ再確認する。",
         "COMMIT正常後は別connection/read transactionでread_committed_bundle→verify_committed_receipt。後からreceiptを成功fieldで更新せず、read-afterを別結果として返す。"
       ],
-      "failure": "原因Ref/field/write IDと未完義務を保持。unknownをtrue/空集合/新identityへ変えない。"
+      "failure": "type_contract.finding_rulesのcondition→code→Resultを適用。委譲先のfindingは原rule IDと原因Ref/write/field/episodeを保持して返す。定義外code/Resultやunknownから成功への補完は禁止。",
+      "failure_rules": [
+        "OS-L5-053-R-schema_invalid",
+        "OS-L5-053-R-configuration_mismatch",
+        "OS-L5-053-R-write_failed",
+        "OS-L5-053-R-content_mismatch",
+        "OS-L5-053-R-closure_mismatch",
+        "OS-L5-053-R-link_mismatch",
+        "OS-L5-053-R-base_conflict",
+        "OS-L5-053-R-identity_conflict",
+        "OS-L5-053-R-identity_unknown",
+        "OS-L5-053-R-commit_refused",
+        "OS-L5-053-R-commit_unknown",
+        "OS-L5-053-R-rollback_unknown",
+        "OS-L5-053-R-rollback_failed",
+        "OS-L5-053-R-read_unknown",
+        "OS-L5-053-R-read_mismatch",
+        "OS-L5-053-R-receipt_missing",
+        "OS-L5-053-R-receipt_failed",
+        "OS-L5-053-R-boundary_violation"
+      ]
     },
     {
       "id": "OS-L5-053-S05",
@@ -599,7 +882,19 @@
         "current以外の確定generationを読む場合、observed current refを別fieldで返す。別operation G2が既に進めたcurrentをO/G1と表示しない。Oのreceipt確認はG1のimmutable recordsへ束縛し、G2が進んだというだけでOの過去成功を抹消しない。",
         "read transactionを必ず終了する。read failure/route未観測はread_unknownと当該route/最後の確認Refを返す。writer private SELECTを公開readの観測Refに使わない。"
       ],
-      "failure": "原因Ref/field/write IDと未完義務を保持。unknownをtrue/空集合/新identityへ変えない。"
+      "failure": "type_contract.finding_rulesのcondition→code→Resultを適用。委譲先のfindingは原rule IDと原因Ref/write/field/episodeを保持して返す。定義外code/Resultやunknownから成功への補完は禁止。",
+      "failure_rules": [
+        "OS-L5-053-R-schema_invalid",
+        "OS-L5-053-R-reference_missing",
+        "OS-L5-053-R-reference_unknown",
+        "OS-L5-053-R-reference_stale",
+        "OS-L5-053-R-reference_conflict",
+        "OS-L5-053-R-closure_mismatch",
+        "OS-L5-053-R-read_unknown",
+        "OS-L5-053-R-read_mismatch",
+        "OS-L5-053-R-receipt_missing",
+        "OS-L5-053-R-boundary_violation"
+      ]
     },
     {
       "id": "OS-L5-053-S06",
@@ -618,7 +913,21 @@
         "route内容不一致はread_mismatch/conflict、不能/未観測はread_unknown/unknown。保存receipt/generation/実commitの観測を保全して復旧義務を返す。receipt後書き補修、G0へ復元したとの推定、口頭成功は無い。",
         "同operation再送は先行exact generationへの全内容照合でreplay。現在headがG2でも、先行G1をcurrentとして返さず、observed currentと先行確定結果を分ける。"
       ],
-      "failure": "原因Ref/field/write IDと未完義務を保持。unknownをtrue/空集合/新identityへ変えない。"
+      "failure": "type_contract.finding_rulesのcondition→code→Resultを適用。委譲先のfindingは原rule IDと原因Ref/write/field/episodeを保持して返す。定義外code/Resultやunknownから成功への補完は禁止。",
+      "failure_rules": [
+        "OS-L5-053-R-schema_invalid",
+        "OS-L5-053-R-reference_missing",
+        "OS-L5-053-R-reference_unknown",
+        "OS-L5-053-R-reference_stale",
+        "OS-L5-053-R-reference_conflict",
+        "OS-L5-053-R-closure_mismatch",
+        "OS-L5-053-R-link_mismatch",
+        "OS-L5-053-R-content_mismatch",
+        "OS-L5-053-R-read_unknown",
+        "OS-L5-053-R-read_mismatch",
+        "OS-L5-053-R-receipt_missing",
+        "OS-L5-053-R-boundary_violation"
+      ]
     },
     {
       "id": "OS-L5-053-S07",
@@ -639,7 +948,25 @@
         "既存のfailure記録先かつ権限/適用scopeがあるEvidenceRouteだけを参照する。DBが読めない時にfile/records/remoteを新設しない。route missing/invalidならunknown、当該writerは復旧確認まで隔離して次operationへ無条件再利用しない。",
         "commit応答喪失で既存success generation/receiptが完全に読めるなら既存結果へ戻す。commit実行有無不明、三route不一致、rollback未知はunknown/conflictと先行復旧義務を保持。failure-only記録をsuccessへ書換えない。"
       ],
-      "failure": "原因Ref/field/write IDと未完義務を保持。unknownをtrue/空集合/新identityへ変えない。"
+      "failure": "type_contract.finding_rulesのcondition→code→Resultを適用。委譲先のfindingは原rule IDと原因Ref/write/field/episodeを保持して返す。定義外code/Resultやunknownから成功への補完は禁止。",
+      "failure_rules": [
+        "OS-L5-053-R-schema_invalid",
+        "OS-L5-053-R-reference_missing",
+        "OS-L5-053-R-reference_unknown",
+        "OS-L5-053-R-reference_stale",
+        "OS-L5-053-R-reference_conflict",
+        "OS-L5-053-R-write_failed",
+        "OS-L5-053-R-commit_refused",
+        "OS-L5-053-R-commit_unknown",
+        "OS-L5-053-R-rollback_unknown",
+        "OS-L5-053-R-rollback_failed",
+        "OS-L5-053-R-read_unknown",
+        "OS-L5-053-R-read_mismatch",
+        "OS-L5-053-R-receipt_missing",
+        "OS-L5-053-R-receipt_failed",
+        "OS-L5-053-R-evidence_route_invalid",
+        "OS-L5-053-R-boundary_violation"
+      ]
     },
     {
       "id": "OS-L5-053-S08",
@@ -657,7 +984,20 @@
         "全point×required routeにscope/operation/episode/実snapshot/failure_refを結び、無観測・read不能・異scope・writer-private偽観測を未完へ返す。3routeはread snapshot内で同generation、異episodeを一つの成功として混ぜない。",
         "transaction残存/rollback未知/commit不明を成功にしない。内容上の部分G1やscope相違はconflict、未観測/不能はunknown。件数一致だけなら不足は消えない。"
       ],
-      "failure": "母集合不一致closure_mismatch、route欠落read_unknown、偽snapshot/read不一致read_mismatch。観測被覆の一致を実原子性の合格へ昇格しない。"
+      "failure": "type_contract.finding_rulesのcondition→code→Resultを適用。委譲先のfindingは原rule IDと原因Ref/write/field/episodeを保持して返す。定義外code/Resultやunknownから成功への補完は禁止。",
+      "failure_rules": [
+        "OS-L5-053-R-schema_invalid",
+        "OS-L5-053-R-reference_missing",
+        "OS-L5-053-R-reference_unknown",
+        "OS-L5-053-R-reference_stale",
+        "OS-L5-053-R-reference_conflict",
+        "OS-L5-053-R-closure_mismatch",
+        "OS-L5-053-R-read_unknown",
+        "OS-L5-053-R-read_mismatch",
+        "OS-L5-053-R-commit_refused",
+        "OS-L5-053-R-rollback_unknown",
+        "OS-L5-053-R-boundary_violation"
+      ]
     }
   ],
   "contract_trace": [
