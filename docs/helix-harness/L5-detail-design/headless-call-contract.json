@@ -276,7 +276,7 @@
       "ObservationKind": "progress | result | effect | access | stop | recording",
       "Observation": {
         "observation_id": "Text",
-        "binding": "Binding",
+        "binding": "EvidenceBinding; 他fieldはBinding同様必須、欠落fieldはInputIssue。correlation nullは意味上のmissing。",
         "producer_ref": "Ref",
         "sequence": "nonnegative exact int excluding bool",
         "predecessor_refs": "Ref tuple",
@@ -349,7 +349,8 @@
         "budget_ref": "Ref",
         "observation_refs": "Ref tuple",
         "control": "ControlInput",
-        "resolutions": "unique Resolution tuple"
+        "resolutions": "unique Resolution tuple",
+        "boundary_observations": "BoundaryObservation tuple; 未供給はemptyで実境界未証明、宣言やpath名から分類を推測しない。"
       },
       "ControlInput": {
         "mode": "new | inspect | stop | resume",
@@ -457,6 +458,31 @@
         "authority": "AuthorityAnalysis",
         "observations": "ObservationAnalysis",
         "control": "ControlAnalysis"
+      },
+      "EvidenceBinding": {
+        "call_id": "Text",
+        "attempt_id": "Text",
+        "correlation_id": "Text | null; 未観測ヘッダーに限りnull。nullを生成値へ補完しない。",
+        "input_ref": "Ref",
+        "scope": "Scope",
+        "capability_name": "Text",
+        "contract_ref": "Ref",
+        "configuration_ref": "Ref",
+        "command_identity_ref": "Ref",
+        "idempotency_key": "Text"
+      },
+      "BoundaryObservation": {
+        "ref": "Ref; qualified owner observation",
+        "state": "valid | missing | unknown | stale | conflict",
+        "kind": "declared_input | runtime_dependency | parent_scope | result_claim | persistence_claim | execution_claim",
+        "required_ref": "Ref | null",
+        "observed_ref": "Ref | null",
+        "classification": "declared | undeclared | helix_internal_shared | web_scope | in_scope | claim",
+        "source_refs": "Ref tuple",
+        "required": "boolean; valid runtime/declared_inputだけ",
+        "claimed_state": "Text | null; result/persistence/execution claimだけ",
+        "claimed_step_refs": "Ref tuple; claimed result被覆母集合",
+        "basis_refs": "Ref tuple; 比較/版軸/出力意味等のowner根拠"
       }
     },
     "finding_rules": [
@@ -866,7 +892,7 @@
       "budget": "BudgetBody",
       "observation_body": "ObservationBody"
     },
-    "structural_failure": "input_state invalid/unresolvedとInputIssueは形/資格/解決不足の境界。意味finding34codeと別に保持し、InputIssueありの候補/意味成功は返さない。",
+    "structural_failure": "input_state invalid/unresolvedとInputIssueは形/資格/解決不足の境界。意味finding34codeと別に保持し、InputIssueありの候補/意味成功は返さない。 観測headerのnull correlationは許された型の意味missingでcorrelation_missing finding。CallInput本体のfield欠落とは分ける。未確認状態そのものによるheld（例:期限到来でdispatch不可）と、成功主張によるexpiry_success findingを別に扱う。",
     "metadata_encoding": "metadataはstrict UTF8 JSON object、BOM禁止、object_pairs_hook相当でdecoded duplicate key拒否、parse_constantでNaN/Infinity拒否、Unicode scalar検査、追加field拒否。JSON numberとして扱うsequence/budgetはexact intでboolを除外、tickはcanonical decimal stringで受ける。opaque input原bytesをmetadataとして再parseしない。ownerのbudget解決前は入力消費を開始しない。budget/資格解決自体の資源限界はcallerの既決port条件が必須で未解決ならunresolved。"
   },
   "functions": [
@@ -875,7 +901,7 @@
       "signature": "validate_call_input(raw_bytes: bytes, resolutions: tuple[Resolution,...]) -> ValidationResult",
       "steps": [
         "strict UTF8/JSON object、decoded duplicate key/unknown field、Unicode scalar、null条件、bool≠int、IntTick、Budget上限を検査。未供給budgetはunresolvedで既定値を作らない。入力port callbackは受け取らない。",
-        "CallInput/Binding/Controlの必須fieldを閉集合で検査。入力binding不成立ならinvalidでInputIssueを返しcall result unknown、utilization held。invalidを34意味findingへ無理に割り当てない。",
+        "CallInput/Binding/Controlの必須fieldを閉集合で検査。入力binding不成立ならinvalidでInputIssueを返しcall result unknown、utilization held。invalidを34意味findingへ無理に割り当てない。 CallInput.bindingのcorrelation欠落はinvalid missing_field。ObservationのEvidenceBindingはcorrelation_id=nullを意味上の未観測として受け取り、後続bind_call_observationsへ渡す。",
         "ResolutionはRef/kind/stateで一意に索引し、同Ref重複を同内容でもInputIssueへする。validのraw bytes SHAとtyped projectionをfieldwise照合、kind/reference/owner/scopeとqualificationを照合する。非validはtyped valueを消費しない。",
         "同Refのsha一致はauthorityや実観測の正当性を代用しない。caller自己宣言のqualificationは解決不足。外部ownerの資格解決が無ければunresolvedで保持。",
         "valid inputはdeep immutable valueへ変換し、入力raw/projection/resolutionを変更しない。raw全体はoutputへ転記しない。"
@@ -897,43 +923,10 @@
         "HARNESS-L4-011-F05",
         "HARNESS-L4-011-N01"
       ],
-      "failure_rule_refs": [
-        "R-absence_blindness",
-        "R-authority_missing",
-        "R-authority_stale",
-        "R-authority_unverified",
-        "R-axis_substitution",
-        "R-capability_mismatch",
-        "R-checkpoint_missing",
-        "R-configuration_drift",
-        "R-correlation_missing",
-        "R-coverage_shrink",
-        "R-deadline_substitution",
-        "R-dependency_mismatch",
-        "R-dependency_unknown",
-        "R-duplicate_effect_risk",
-        "R-evidence_cross_binding",
-        "R-expiry_success",
-        "R-hidden_dependency",
-        "R-hidden_input",
-        "R-internal_shared_dependency",
-        "R-isolation_mismatch",
-        "R-meaning_mismatch",
-        "R-observation_insufficient",
-        "R-observation_missing",
-        "R-partial_success",
-        "R-progress_result_conflation",
-        "R-result_unproven",
-        "R-resume_identity_conflict",
-        "R-scope_expansion",
-        "R-stale_binding",
-        "R-stop_unobserved",
-        "R-unauthorized_effect",
-        "R-unproven_execution",
-        "R-unproven_persistence",
-        "R-unsupported_contract"
-      ],
-      "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし"
+      "failure_rule_refs": [],
+      "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし",
+      "classification_steps": [],
+      "classification_role": "構造InputIssueのみ。34意味findingは生成しない。"
     },
     {
       "symbol": "match_call_contract",
@@ -942,7 +935,8 @@
         "capability/pack/input契約/contract revision/構成をexact解決し、version_targetを版に使わない。",
         "宣言required dependencyを基準集合とする。各requested版とobserved版をowner mappingのexact allowed pairへ照合。missing/unknownはdependency_unknown、解決内容の矛盾はInputIssue conflicting_resolution、実版差はdependency_mismatch、元構成古さはstale_binding。",
         "runtime_binding_requirementsとsupplied bindingsをexactに照合。未宣言read/provider/CI依存はcallerが提供する実edge/観測からhidden_input/hidden_dependencyとして検出。実edge未供給では環境非依存は未証明、推測でhidden依存を作らない。",
-        "同宣言入力の別consumer結果比較ではinput/output契約と意味identity根拠を照合し、raw出力bytes差だけでmeaning_mismatchを作らない。052結果はqualified Refで参照し再normalizerを作らない。"
+        "同宣言入力の別consumer結果比較ではinput/output契約と意味identity根拠を照合し、raw出力bytes差だけでmeaning_mismatchを作らない。052結果はqualified Refで参照し再normalizerを作らない。",
+        "owner-qualified境界観測のruntime_dependencyがhelix_internal_sharedならinternal_shared_dependency、parent_scopeがweb_scopeならscope_expansion。実caller必須依存にHELIX本体DB/鍵/統制共有を混入している観測と親011のscopeを比較する。未観測を分類済みにしない。contractのrequested/resolved版差についてowner-qualified互換mappingが無ければunsupported_contract。依存実版のmapping不足はdependency_mismatchとしてcontract自身の差と区別する。"
       ],
       "post": "requested/resolved/observed差分、対応互換根拠、不足を返す。利用候補≠実環境の証明。",
       "design_refs": [
@@ -960,12 +954,92 @@
         "R-dependency_unknown",
         "R-hidden_dependency",
         "R-hidden_input",
+        "R-internal_shared_dependency",
         "R-meaning_mismatch",
         "R-scope_expansion",
         "R-stale_binding",
         "R-unsupported_contract"
       ],
-      "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし"
+      "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし",
+      "classification_steps": [
+        {
+          "rule_ref": "R-axis_substitution",
+          "code": "axis_substitution",
+          "predicate": "requested契約版の値が版根拠ではなくStage/version_target/maturity参照から供給されている境界観測を照合。",
+          "utilization": "held",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-capability_mismatch",
+          "code": "capability_mismatch",
+          "predicate": "input.binding.capability_nameとvalid ContractBody.capability_nameの不一致。",
+          "utilization": "rejected",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-dependency_mismatch",
+          "code": "dependency_mismatch",
+          "predicate": "required dependencyのrequested/observed revision pairがvalid MappingBody.allowed_revision_pairsに無い。",
+          "utilization": "held",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-dependency_unknown",
+          "code": "dependency_unknown",
+          "predicate": "required dependencyのobserved_refがmissing/unknown。",
+          "utilization": "held",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-hidden_dependency",
+          "code": "hidden_dependency",
+          "predicate": "valid runtime_dependency観測のundeclared required_refがruntime_binding_requirementsに含まれない。",
+          "utilization": "held",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-hidden_input",
+          "code": "hidden_input",
+          "predicate": "valid declared_input観測のundeclared read参照がinput_contract_refのrequired input集合に含まれない。",
+          "utilization": "held",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-internal_shared_dependency",
+          "code": "internal_shared_dependency",
+          "predicate": "valid runtime_dependency観測がhelix_internal_sharedかつcallerに必須である。",
+          "utilization": "held",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-meaning_mismatch",
+          "code": "meaning_mismatch",
+          "predicate": "qualified052 comparisonが同宣言入力に対してdifferentで、差分根拠が未宣言sourceに束縛されている。",
+          "utilization": "unproven",
+          "affected_axis": "result"
+        },
+        {
+          "rule_ref": "R-scope_expansion",
+          "code": "scope_expansion",
+          "predicate": "valid parent_scope観測がweb_scopeで対象親011 scope外の成果を含む。",
+          "utilization": "rejected",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-stale_binding",
+          "code": "stale_binding",
+          "predicate": "contract/configuration対応Resolution.state=stale。",
+          "utilization": "held",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-unsupported_contract",
+          "code": "unsupported_contract",
+          "predicate": "requested/resolved contract版が異なり、当該contract pairのowner-qualified MappingBodyが無い。",
+          "utilization": "held",
+          "affected_axis": "identity"
+        }
+      ]
     },
     {
       "symbol": "bind_call_authority",
@@ -987,17 +1061,53 @@
         "R-authority_missing",
         "R-authority_stale",
         "R-authority_unverified",
-        "R-internal_shared_dependency",
         "R-isolation_mismatch",
         "R-unauthorized_effect"
       ],
-      "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし"
+      "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし",
+      "classification_steps": [
+        {
+          "rule_ref": "R-authority_missing",
+          "code": "authority_missing",
+          "predicate": "required action/resourceについてauthority owner判断Refがmissing。",
+          "utilization": "held",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-authority_stale",
+          "code": "authority_stale",
+          "predicate": "authority validity/revocation観測が失効又は元scope不適合。",
+          "utilization": "rejected",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-authority_unverified",
+          "code": "authority_unverified",
+          "predicate": "authority判断のissuer/qualificationを正当ownerの根拠へ解決できない。",
+          "utilization": "held",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-isolation_mismatch",
+          "code": "isolation_mismatch",
+          "predicate": "AuthorityBody又はvalid access観測のproject/tenant/environmentがcurrent bindingと異なる。",
+          "utilization": "rejected",
+          "affected_axis": "effects"
+        },
+        {
+          "rule_ref": "R-unauthorized_effect",
+          "code": "unauthorized_effect",
+          "predicate": "valid effect観測のresource/actionが許可対象外でobserved_applied。",
+          "utilization": "rejected",
+          "affected_axis": "effects"
+        }
+      ]
     },
     {
       "symbol": "bind_call_observations",
       "signature": "bind_call_observations(input: ValidatedCall) -> ObservationAnalysis",
       "steps": [
-        "各current observationのRef/raw bytes/producer/qualificationを解決し、header.body_refをobservation_bodyへ解決してkindとtyped payloadを照合。bindingはcurrent call/attempt/scope/contract/構成へexact束縛する。異所属はevidence_cross_binding、元所属不変で有効集合から外す。headerの欠落correlationはInputIssue missing_field、解決済み意味の不一致は既存ruleへ返す。",
+        "各current observationのRef/raw bytes/producer/qualificationを解決し、header.body_refをobservation_bodyへ解決してkindとtyped payloadを照合。bindingはcurrent call/attempt/scope/contract/構成へexact束縛する。異所属はevidence_cross_binding、元所属不変で有効集合から外す。headerの欠落correlationはInputIssue missing_field、解決済み意味の不一致は既存ruleへ返す。 EvidenceBinding.correlation_id=nullはcorrelation_missingを返して対象結果unknown、当該headerをqualified集合から外す。既知current BindingをFinding.bindingへ保持し、元headerはreported側へ保全する。raw headerにfield自体が無ければ構造InputIssue missing_fieldで別入力である。",
         "observation ID重複はsame raw bytes+binding+kindなら一件へ吸収、異内容ならInputIssue conflicting_resolutionで対象結果unknown。sequenceとpredecessorは同call/attemptの因果DAGへ照合。欠落/cycle/同sequence矛盾はunresolved、到着順で最新を決めない。",
         "Progress/Result/Effect/Access/Stop/Recordを別集合へ分割。result successはoutput契約充足のowner証拠とrequired evidence exact setが全validである場合のみ保持。exit0/emptyはresult_unproven。",
         "effect_planの全step/resource集合を観測被覆の基準にする。未供給をunobserved、declared hashやmockはobservation_missing/insufficient、coverage削減はcoverage_shrink。観測集合で基準母集合を作らない。",
@@ -1019,27 +1129,97 @@
       ],
       "failure_rule_refs": [
         "R-absence_blindness",
-        "R-authority_missing",
-        "R-authority_stale",
-        "R-authority_unverified",
         "R-correlation_missing",
         "R-coverage_shrink",
         "R-evidence_cross_binding",
-        "R-hidden_dependency",
-        "R-hidden_input",
-        "R-internal_shared_dependency",
-        "R-isolation_mismatch",
-        "R-meaning_mismatch",
         "R-observation_insufficient",
         "R-observation_missing",
         "R-partial_success",
         "R-progress_result_conflation",
         "R-result_unproven",
-        "R-scope_expansion",
-        "R-unauthorized_effect",
-        "R-unproven_persistence"
+        "R-unproven_persistence",
+        "R-stop_unobserved"
       ],
-      "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし"
+      "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし",
+      "classification_steps": [
+        {
+          "rule_ref": "R-absence_blindness",
+          "code": "absence_blindness",
+          "predicate": "effect unobserved又は観測不能なrequired resourceを、valid result_claimがobserved_not_appliedへ変換したと示す。",
+          "utilization": "unproven",
+          "affected_axis": "effects"
+        },
+        {
+          "rule_ref": "R-correlation_missing",
+          "code": "correlation_missing",
+          "predicate": "観測header EvidenceBinding.correlation_idがnull。",
+          "utilization": "unproven",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-coverage_shrink",
+          "code": "coverage_shrink",
+          "predicate": "valid result_claimの観測被覆集合がeffect_plan全required stepから未完stepを除き全体成立を主張。",
+          "utilization": "unproven",
+          "affected_axis": "effects"
+        },
+        {
+          "rule_ref": "R-evidence_cross_binding",
+          "code": "evidence_cross_binding",
+          "predicate": "headerのnonnull binding memberがcurrent Bindingと不一致。",
+          "utilization": "unproven",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-observation_insufficient",
+          "code": "observation_insufficient",
+          "predicate": "必要実境界のsource qualificationがmock/局所scopeで、実作用/未作用のscopeを覆わない。",
+          "utilization": "unproven",
+          "affected_axis": "effects"
+        },
+        {
+          "rule_ref": "R-observation_missing",
+          "code": "observation_missing",
+          "predicate": "effect_planのrequired stepに資格付き実観測Refが無く、宣言/hashしかない。",
+          "utilization": "unproven",
+          "affected_axis": "effects"
+        },
+        {
+          "rule_ref": "R-partial_success",
+          "code": "partial_success",
+          "predicate": "qualified result_claimが一部のみ完了したeffect_planを全体successと主張。",
+          "utilization": "unproven",
+          "affected_axis": "result"
+        },
+        {
+          "rule_ref": "R-progress_result_conflation",
+          "code": "progress_result_conflation",
+          "predicate": "qualified result_claimがprogress endedだけをsuccess根拠にする。",
+          "utilization": "unproven",
+          "affected_axis": "result"
+        },
+        {
+          "rule_ref": "R-result_unproven",
+          "code": "result_unproven",
+          "predicate": "reported successのrequired意味output根拠が空又はexit0だけで未成立。",
+          "utilization": "unproven",
+          "affected_axis": "result"
+        },
+        {
+          "rule_ref": "R-unproven_persistence",
+          "code": "unproven_persistence",
+          "predicate": "保存がrequiredなのにrecord subject/binding一致receiptが無く、表示又はresult successを保存根拠にする。",
+          "utilization": "unproven",
+          "affected_axis": "recording"
+        },
+        {
+          "rule_ref": "R-stop_unobserved",
+          "code": "stop_unobserved",
+          "predicate": "stop ACKが有るが実停止ownerのsource_refsが未解決又は無い。",
+          "utilization": "held",
+          "affected_axis": "progress"
+        }
+      ]
     },
     {
       "symbol": "evaluate_call_control",
@@ -1063,21 +1243,66 @@
         "HARNESS-L4-011-N01"
       ],
       "failure_rule_refs": [
-        "R-absence_blindness",
         "R-checkpoint_missing",
         "R-configuration_drift",
-        "R-coverage_shrink",
         "R-deadline_substitution",
         "R-duplicate_effect_risk",
         "R-expiry_success",
-        "R-observation_insufficient",
-        "R-observation_missing",
-        "R-partial_success",
         "R-resume_identity_conflict",
-        "R-stop_unobserved",
         "R-unproven_execution"
       ],
-      "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし"
+      "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし",
+      "classification_steps": [
+        {
+          "rule_ref": "R-checkpoint_missing",
+          "code": "checkpoint_missing",
+          "predicate": "resumeの記録済みcheckpoint又は同subject/origin binding保存receiptがmissing。",
+          "utilization": "held",
+          "affected_axis": "recording"
+        },
+        {
+          "rule_ref": "R-configuration_drift",
+          "code": "configuration_drift",
+          "predicate": "resume current configuration_refがorigin checkpoint構成と不一致。",
+          "utilization": "held",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-deadline_substitution",
+          "code": "deadline_substitution",
+          "predicate": "origin deadlineと供給deadlineが異なり正当continuation根拠が無い。",
+          "utilization": "held",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-duplicate_effect_risk",
+          "code": "duplicate_effect_risk",
+          "predicate": "resume origin作用にunobserved stepが有り、そのstepを再候補に要求。",
+          "utilization": "held",
+          "affected_axis": "effects"
+        },
+        {
+          "rule_ref": "R-expiry_success",
+          "code": "expiry_success",
+          "predicate": "now>=expiryかつqualified result_claimが対象call全体successを主張。",
+          "utilization": "held",
+          "affected_axis": "result"
+        },
+        {
+          "rule_ref": "R-resume_identity_conflict",
+          "code": "resume_identity_conflict",
+          "predicate": "origin/currentのattempt条件又はcall/input/scope/契約/相関/意味キー条件が不一致。",
+          "utilization": "rejected",
+          "affected_axis": "identity"
+        },
+        {
+          "rule_ref": "R-unproven_execution",
+          "code": "unproven_execution",
+          "predicate": "qualified execution_claimが052 same又は局所greenを実exactly-once receipt根拠にしている。",
+          "utilization": "unproven",
+          "affected_axis": "effects"
+        }
+      ]
     },
     {
       "symbol": "build_call_analysis",
@@ -1107,7 +1332,10 @@
         "HARNESS-L4-011-F05",
         "HARNESS-L4-011-N01"
       ],
-      "failure_rule_refs": [
+      "failure_rule_refs": [],
+      "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし",
+      "classification_steps": [],
+      "propagated_rule_refs": [
         "R-absence_blindness",
         "R-authority_missing",
         "R-authority_stale",
@@ -1143,7 +1371,7 @@
         "R-unproven_persistence",
         "R-unsupported_contract"
       ],
-      "effect": "pure; callbacks/files/DB/Git/network/clock/env/authority writerなし"
+      "classification_role": "自分で新しい意味findingを判定せず、他4関数のfindingをstate reductionへ集約。"
     }
   ],
   "contracts": [
