@@ -153,7 +153,7 @@
   },
   "authority_boundary": "10/12限定再開の範囲2と85103aa7の011全6組への委任承認。10/8一般解禁は失効。011の個別version_target未指定とroster Stage1/1.0対象を別軸で保持する。対象意味・版・承認を変更せずL4/L9起草と独立reviewを行う。",
   "knowledge_use": {
-    "template": "DT-MSG-001の意味内容のみMSGCONTENT限定採用の条件内で照合。template-work-allocationの採否と上流のpair意味に従う。VT104〜106を正式知識へ昇格しない。",
+    "template": "DT-MSG-001は必読seedとして照合した材料。MSGCONTENTは初回要求整理への限定採用であり、本設計への正式template適用/運用promotionを生成しない。6義務の契約とoracleは承認済み011のL3/L10、現行Concept、旧比較から再導出する。VT104〜106を正式知識へ昇格しない。",
     "limits": "正式schema/方式/数値をseedから写さない。BRAINのregistry/promoteとCORE適用writerを新設しない。"
   },
   "architecture": {
