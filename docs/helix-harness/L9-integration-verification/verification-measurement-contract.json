@@ -2448,10 +2448,67 @@
           "basis": "全製品同値要求を拒否。",
           "execution_state": "not_executed",
           "effect": "none"
+        },
+        {
+          "id": "H034-F02-UNBOUNDED-NO-SOURCE",
+          "requirement_ref": "HARNESS-L3-034-F02",
+          "system_oracle_ref": "HARNESS-L10-034-F02",
+          "l4_ref": "HARNESS-L4-034-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-H034-F02-UNBOUNDED-NO-SOURCE",
+              "revision": "fixture-content-8d82209dc3f760d2bdaf6c7a5211068c0ae736a5fbe54d0d8090d427a70c54cb",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"domains\":{\"accessibility\":{\"applicability\":\"required\",\"reason\":\"scope P uses accessibility\",\"target_source\":\"TARGET-accessibility@r1\"},\"availability\":{\"applicability\":\"required\",\"reason\":\"scope P uses availability\",\"target_source\":\"TARGET-availability@r1\"},\"compatibility\":{\"applicability\":\"required\",\"reason\":\"scope P uses compatibility\",\"target_source\":\"TARGET-compatibility@r1\"},\"cost_resource\":{\"applicability\":\"required\",\"reason\":\"scope P uses cost_resource\",\"target_source\":\"TARGET-cost_resource@r1\"},\"data_quality\":{\"applicability\":\"required\",\"reason\":\"scope P uses data_quality\",\"target_source\":\"TARGET-data_quality@r1\"},\"maintainability\":{\"applicability\":\"required\",\"reason\":\"scope P uses maintainability\",\"target_source\":\"TARGET-maintainability@r1\"},\"observability\":{\"applicability\":\"required\",\"reason\":\"scope P uses observability\",\"target_source\":\"TARGET-observability@r1\"},\"operability\":{\"applicability\":\"required\",\"reason\":\"scope P uses operability\",\"target_source\":\"TARGET-operability@r1\"},\"performance\":{\"applicability\":\"required\",\"claim_domain_satisfied\":true,\"limit_basis\":null,\"proposed_limit\":\"unbounded\",\"reason\":\"scope P uses performance\",\"target_source\":null},\"privacy\":{\"applicability\":\"required\",\"reason\":\"scope P uses privacy\",\"target_source\":\"TARGET-privacy@r1\"},\"recoverability\":{\"applicability\":\"required\",\"reason\":\"scope P uses recoverability\",\"target_source\":\"TARGET-recoverability@r1\"},\"reliability\":{\"applicability\":\"required\",\"reason\":\"scope P uses reliability\",\"target_source\":\"TARGET-reliability@r1\"},\"security\":{\"applicability\":\"required\",\"reason\":\"scope P uses security\",\"target_source\":\"TARGET-security@r1\"}},\"impose_same_threshold\":false,\"other_product\":{\"environment\":\"ENV-R\",\"scope\":\"PRODUCT-R\",\"target_source\":\"TARGET-R@r1\"},\"scope\":\"PRODUCT-P\"}",
+            "sha256": "8d82209dc3f760d2bdaf6c7a5211068c0ae736a5fbe54d0d8090d427a70c54cb",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "domain_results": {
+              "performance": "unknown",
+              "reliability": "required_in_fixture",
+              "availability": "required_in_fixture",
+              "recoverability": "required_in_fixture",
+              "security": "required_in_fixture",
+              "privacy": "required_in_fixture",
+              "accessibility": "required_in_fixture",
+              "compatibility": "required_in_fixture",
+              "operability": "required_in_fixture",
+              "maintainability": "required_in_fixture",
+              "cost_resource": "required_in_fixture",
+              "data_quality": "required_in_fixture",
+              "observability": "required_in_fixture"
+            },
+            "shared_threshold_imposed": false,
+            "effects": {
+              "actual_measurement": false,
+              "actual_probe_execution": false,
+              "actual_OS_save": false,
+              "actual_system_complete": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "適用performanceの上限を根拠なく無制限にしない。当該目標出所はunknownのまま、他12領域/Q/作用falseを保持。",
+          "execution_state": "not_executed",
+          "effect": "none"
         }
       ],
       "execution_state": "not_executed",
-      "effect": "none"
+      "effect": "none",
+      "review_negative_case_map": [
+        {
+          "approved_negative_clause": "根拠なし無制限",
+          "case_refs": [
+            "H034-F02-UNBOUNDED-NO-SOURCE"
+          ],
+          "finding": "PR2998-F1"
+        }
+      ]
     },
     {
       "id": "HARNESS-L9-034-F03",
@@ -2764,10 +2821,72 @@
           "basis": "R好成績/test green/Accepted claimでPの不足を相殺しない。",
           "execution_state": "not_executed",
           "effect": "none"
+        },
+        {
+          "id": "H034-F03-AVERAGE-COMPENSATION-REJECTED",
+          "requirement_ref": "HARNESS-L3-034-F03",
+          "system_oracle_ref": "HARNESS-L10-034-F03",
+          "l4_ref": "HARNESS-L4-034-F03",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-H034-F03-AVERAGE-COMPENSATION-REJECTED",
+              "revision": "fixture-content-94b2ec10b322c75f29bf24d6dbd21f542e7cb68d319d4d4e4b9c8d8648f8a52d",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"aggregate_claim\":{\"claim_METRIC_P_satisfied\":true,\"max_mean_ratio\":1.0,\"mean_normalized_ratio\":1.0,\"metric_refs\":[\"METRIC-P\",\"METRIC-R\"],\"normalized_ratios\":[1.25,0.75]},\"claim_accepted\":true,\"code_doc_test_green\":true,\"required_metrics\":{\"METRIC-P\":{\"environment\":\"ENV-P\",\"max\":20,\"revision\":\"NFR-P@r1\"},\"METRIC-R\":{\"environment\":\"ENV-R\",\"max\":80,\"revision\":\"NFR-R@r1\"}},\"results\":{\"METRIC-P\":{\"environment\":\"ENV-P\",\"representative\":true,\"revision\":\"NFR-P@r1\",\"value\":25},\"METRIC-R\":{\"environment\":\"ENV-R\",\"representative\":true,\"revision\":\"NFR-R@r1\",\"value\":60}}}",
+            "sha256": "94b2ec10b322c75f29bf24d6dbd21f542e7cb68d319d4d4e4b9c8d8648f8a52d",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "metric_conditions": {
+              "METRIC-P": {
+                "measured": "supported_synthetic_condition",
+                "current": "supported_synthetic_condition",
+                "representative": "supported_synthetic_condition",
+                "threshold": "failed"
+              },
+              "METRIC-R": {
+                "measured": "supported_synthetic_condition",
+                "current": "supported_synthetic_condition",
+                "representative": "supported_synthetic_condition",
+                "threshold": "supported_synthetic_condition"
+              }
+            },
+            "measurement_obligations_supported_in_fixture": false,
+            "system_completion_established": false,
+            "acceptance_established": false,
+            "effects": {
+              "actual_measurement": false,
+              "actual_probe_execution": false,
+              "actual_OS_save": false,
+              "actual_system_complete": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q",
+            "aggregate_substitution_results": {
+              "METRIC-P": "conflict",
+              "METRIC-R": "not_substituted"
+            }
+          },
+          "basis": "Pは25/20=1.25で閾値未達、Rは60/80=.75。平均1.0が集約閾値内でもPの失敗は残し、平均によるP充足claimをconflictへ返す。他条件/R/Q/作用falseを保持。",
+          "execution_state": "not_executed",
+          "effect": "none"
         }
       ],
       "execution_state": "not_executed",
-      "effect": "none"
+      "effect": "none",
+      "review_negative_case_map": [
+        {
+          "approved_negative_clause": "平均や他環境passで相殺",
+          "case_refs": [
+            "H034-F03-AVERAGE-COMPENSATION-REJECTED"
+          ],
+          "finding": "PR2998-F1"
+        }
+      ]
     },
     {
       "id": "HARNESS-L9-034-F04",
@@ -6276,10 +6395,56 @@
           "basis": "005を超えた一律検査は生成しない。",
           "execution_state": "not_executed",
           "effect": "none"
+        },
+        {
+          "id": "H034-N02-UNIVERSAL-FAILURE-REJECTED",
+          "requirement_ref": "HARNESS-L3-034-N02",
+          "system_oracle_ref": "HARNESS-L10-034-N02",
+          "l4_ref": "HARNESS-L4-034-N02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-H034-N02-UNIVERSAL-FAILURE-REJECTED",
+              "revision": "fixture-content-46a94304a131c04e251f2385476802ed5fb677ecc5fd8fa253ff8b9edff89d8e",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"all_ticket_fixed_CI\":false,\"format_only_pass\":false,\"heldout_context\":{\"AI\":false,\"environment\":\"NEW-ENV\",\"provider\":\"NEW-PROVIDER\",\"requirement\":\"NFR-HELD@r1\",\"storage\":\"NEW-STORAGE\",\"workload\":\"NEW-WORKLOAD\"},\"original_representative\":null,\"original_target\":null,\"proposed_representative\":null,\"proposed_target\":null,\"reuse_old_fixture_value\":false,\"universal_claim\":\"all_targets_fail\"}",
+            "sha256": "46a94304a131c04e251f2385476802ed5fb677ecc5fd8fa253ff8b9edff89d8e",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "target_result": "unknown",
+            "representative_result": "unknown",
+            "content_validation_result": "requires_14_fields_quality_and_four_failure_content",
+            "universal_claim": "rejected",
+            "all_ticket_fixed_CI": false,
+            "effects": {
+              "actual_measurement": false,
+              "actual_probe_execution": false,
+              "actual_OS_save": false,
+              "actual_system_complete": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "未見一例から全対象失敗を生成しない。当該target/代表性はunknown、内容確認義務/他scope/作用falseを保持。",
+          "execution_state": "not_executed",
+          "effect": "none"
         }
       ],
       "execution_state": "not_executed",
-      "effect": "none"
+      "effect": "none",
+      "review_negative_case_map": [
+        {
+          "approved_negative_clause": "未見を普遍成功/失敗",
+          "case_refs": [
+            "H034-N02-UNIVERSAL-FAILURE-REJECTED"
+          ],
+          "finding": "PR2998-F1"
+        }
+      ]
     },
     {
       "id": "HARNESS-L9-034-B01",
@@ -6652,8 +6817,8 @@
   "fixture_progress": {
     "cases_by_function": {
       "F01": 19,
-      "F02": 28,
-      "F03": 6,
+      "F02": 29,
+      "F03": 7,
       "F04": 6,
       "F05": 4,
       "F06": 6,
@@ -6662,7 +6827,7 @@
       "F09": 12,
       "F10": 7,
       "N01": 8,
-      "N02": 6,
+      "N02": 7,
       "B01": 8
     },
     "synthetic_only": true,
