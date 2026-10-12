@@ -125,9 +125,21 @@
           "id": "HARNESS-L9-053-F01-NEG-01",
           "change": "同pathのBを旧Aへ併合",
           "expected_classification": "path_identity_inference",
-          "expected": "Bを別IDに保持、A/B差分と当該同一性claimをunknownへ。",
+          "expected": "Bを別IDに保持、原A/B identityはmatched、確定した別IDを同一とするclaimはconflict。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F01-NEG-02",
@@ -135,7 +147,19 @@
           "expected_classification": "name_identity_inference",
           "expected": "A/Bは別ID、名前一致をidentity oracleへしない。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F01-NEG-03",
@@ -143,7 +167,19 @@
           "expected_classification": "identity_conflict",
           "expected": "A/r1当該identity/owner対応はconflict、両sourceを保持、無関係B照合は継続。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1",
+              "axis": "identity",
+              "state": "conflict"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F01-NEG-04",
@@ -151,7 +187,19 @@
           "expected_classification": "identity_missing",
           "expected": "identity missingを対象recordへ返し採番/推測0。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A record slot",
+              "axis": "identity",
+              "state": "missing"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F01-NEG-05",
@@ -159,7 +207,24 @@
           "expected_classification": "location_identity_change",
           "expected": "原ID Aを保全、供給location履歴へ対応し新IDclaimを拒否。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1",
+              "axis": "identity",
+              "state": "matched"
+            },
+            {
+              "subject": "A/r1",
+              "axis": "location_history",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F01-NEG-06",
@@ -167,7 +232,19 @@
           "expected_classification": "hash_identity_inference",
           "expected": "原別ID保持、digestをimmutable IDへ変換しない。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         }
       ],
       "execution_state": "not_executed"
@@ -189,7 +266,24 @@
           "expected_classification": "location_as_semantic",
           "expected": "ID A/r1の意味を保全しlocation軸の差だけを返す。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1",
+              "axis": "semantic_revision",
+              "state": "matched"
+            },
+            {
+              "subject": "A/r1",
+              "axis": "location_history",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F02-NEG-02",
@@ -197,7 +291,29 @@
           "expected_classification": "semantic_as_location",
           "expected": "A/r1→r2とsemantic diffの意味差を保全、影響OA/EAへtrace。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1→r2",
+              "axis": "semantic_revision",
+              "state": "matched"
+            },
+            {
+              "subject": "A/r1→r2",
+              "axis": "oracle_mapping",
+              "state": "matched"
+            },
+            {
+              "subject": "A/r1→r2",
+              "axis": "typed_edge_mapping",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F02-NEG-03",
@@ -205,7 +321,24 @@
           "expected_classification": "semantic_identity_change",
           "expected": "供給before/after同Aを保全し異IDclaimと切断箇所を返す。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1→r2",
+              "axis": "identity",
+              "state": "matched"
+            },
+            {
+              "subject": "A/r1→r2",
+              "axis": "semantic_revision",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F02-NEG-04",
@@ -213,7 +346,19 @@
           "expected_classification": "semantic_source_missing",
           "expected": "before意味軸missing、差分unknown、after存在で補完しない。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1 before",
+              "axis": "semantic_revision",
+              "state": "missing"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F02-NEG-05",
@@ -221,7 +366,29 @@
           "expected_classification": "semantic_impact_missing",
           "expected": "semantic diff自体と影響の欠落を別に返す、全対応成立にしない。",
           "backflow_owner": "trace_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1→r2",
+              "axis": "semantic_revision",
+              "state": "matched"
+            },
+            {
+              "subject": "A/r1→r2",
+              "axis": "oracle_mapping",
+              "state": "missing"
+            },
+            {
+              "subject": "A/r1→r2",
+              "axis": "typed_edge_mapping",
+              "state": "missing"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F02-NEG-06",
@@ -229,7 +396,19 @@
           "expected_classification": "revision_conflict",
           "expected": "同ID/revisionの意味対応conflict、両原sourceを保持。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1",
+              "axis": "semantic_revision",
+              "state": "conflict"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         }
       ],
       "execution_state": "not_executed"
@@ -251,7 +430,19 @@
           "expected_classification": "history_mapping_missing",
           "expected": "LS history_mapping missing、B/Cから親を推測しない。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "history_mapping",
+              "state": "missing"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F03-NEG-02",
@@ -259,7 +450,24 @@
           "expected_classification": "lineage_endpoint_missing",
           "expected": "LM元endpoint B/b1の不足を返しCだけでmerge閉包にしない。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LM B/b1",
+              "axis": "identity",
+              "state": "missing"
+            },
+            {
+              "subject": "LM",
+              "axis": "lineage_relation",
+              "state": "unknown"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F03-NEG-03",
@@ -267,7 +475,19 @@
           "expected_classification": "relation_kind_missing",
           "expected": "LX relation missing、path/名前からsupersedeを生成しない。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LX",
+              "axis": "lineage_relation",
+              "state": "missing"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F03-NEG-04",
@@ -275,7 +495,24 @@
           "expected_classification": "base_revision_mismatch",
           "expected": "LS base revision conflict、元r1/r2差を保持。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS A/r1 vs r2",
+              "axis": "semantic_revision",
+              "state": "conflict"
+            },
+            {
+              "subject": "LS",
+              "axis": "history_mapping",
+              "state": "conflict"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F03-NEG-05",
@@ -283,7 +520,24 @@
           "expected_classification": "lineage_target_missing",
           "expected": "LX target D/d1 missing、latest推測0、他relationの既知状態保持。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LX D/d1",
+              "axis": "identity",
+              "state": "missing"
+            },
+            {
+              "subject": "LX",
+              "axis": "lineage_relation",
+              "state": "unknown"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F03-NEG-06",
@@ -291,7 +545,19 @@
           "expected_classification": "lineage_as_authority_transfer",
           "expected": "location照合とauthority対応/実権限を別軸に返し移転成立にしない。",
           "backflow_owner": "authority_record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/r1 rename",
+              "axis": "location_history",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F03-NEG-07",
@@ -299,7 +565,39 @@
           "expected_classification": "scope_cross_binding",
           "expected": "当該LSのscope差を返し対応unknown、原scope/source保持。",
           "backflow_owner": "record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "unknown"
+            },
+            {
+              "subject": "LS",
+              "axis": "history_mapping",
+              "state": "unknown"
+            },
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "unknown"
+            },
+            {
+              "subject": "LS",
+              "axis": "oracle_mapping",
+              "state": "unknown"
+            },
+            {
+              "subject": "LS",
+              "axis": "typed_edge_mapping",
+              "state": "unknown"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         }
       ],
       "execution_state": "not_executed"
@@ -321,7 +619,34 @@
           "expected_classification": "authority_mapping_missing",
           "expected": "LS authority_mapping missing、QO/QE/historyのmatchedは保持し全closure成功にしない。",
           "backflow_owner": "authority_record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "missing"
+            },
+            {
+              "subject": "LS",
+              "axis": "oracle_mapping",
+              "state": "matched"
+            },
+            {
+              "subject": "LS",
+              "axis": "typed_edge_mapping",
+              "state": "matched"
+            },
+            {
+              "subject": "LS",
+              "axis": "history_mapping",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F04-NEG-02",
@@ -329,7 +654,29 @@
           "expected_classification": "oracle_mapping_missing",
           "expected": "LS oracle_mapping missing、QA/QE保持、受入可能を生成しない。",
           "backflow_owner": "oracle_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "oracle_mapping",
+              "state": "missing"
+            },
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "matched"
+            },
+            {
+              "subject": "LS",
+              "axis": "typed_edge_mapping",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F04-NEG-03",
@@ -337,7 +684,29 @@
           "expected_classification": "typed_edge_mapping_missing",
           "expected": "LS typed_edge_mapping missing、QA/QO保持、closure成功へしない。",
           "backflow_owner": "trace_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "typed_edge_mapping",
+              "state": "missing"
+            },
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "matched"
+            },
+            {
+              "subject": "LS",
+              "axis": "oracle_mapping",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F04-NEG-04",
@@ -345,7 +714,19 @@
           "expected_classification": "authority_mapping_unknown",
           "expected": "LS authority_mapping unknown、原未検証source保持。",
           "backflow_owner": "authority_record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "unknown"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F04-NEG-05",
@@ -353,7 +734,19 @@
           "expected_classification": "oracle_revision_mismatch",
           "expected": "oracle対象revision conflict、元Refと要求Ref差を返す。",
           "backflow_owner": "oracle_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "oracle_mapping",
+              "state": "conflict"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-F04-NEG-06",
@@ -361,7 +754,19 @@
           "expected_classification": "typed_edge_kind_mismatch",
           "expected": "typed edge対応conflict、関係kind差を消さない。",
           "backflow_owner": "trace_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "typed_edge_mapping",
+              "state": "conflict"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         }
       ],
       "execution_state": "not_executed"
@@ -383,7 +788,19 @@
           "expected_classification": "reference_meaning_mismatch",
           "expected": "053→042 unresolved維持、dependent operation held、局所記録比較は継続。",
           "backflow_owner": "harness053_requirement_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-N01-NEG-02",
@@ -391,7 +808,19 @@
           "expected_classification": "reference_substitution",
           "expected": "原042参照とunresolvedを保持し代替採択を生成しない。",
           "backflow_owner": "harness053_requirement_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-N01-NEG-03",
@@ -399,7 +828,19 @@
           "expected_classification": "unselected_operation",
           "expected": "operation held/not_selected、変換/保存0、理由ownerを返す。",
           "backflow_owner": "harness053_requirement_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "held",
+          "expected_operation_selection": "not_selected",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-N01-NEG-04",
@@ -407,7 +848,19 @@
           "expected_classification": "local_as_global_completion",
           "expected": "局所一致と未完履歴/未決参照/非選択操作を別に残す。",
           "backflow_owner": "harness053_requirement_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-N01-NEG-05",
@@ -415,7 +868,19 @@
           "expected_classification": "global_stop_added",
           "expected": "dependent操作はheld、A/B局所照合を返す。全体gateを足さない。",
           "backflow_owner": "harness053_requirement_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         }
       ],
       "execution_state": "not_executed"
@@ -437,7 +902,19 @@
           "expected_classification": "record_as_persistence",
           "expected": "記録照合と実保存は別、実保存未証明を保存ownerへ。",
           "backflow_owner": "persistence_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-B01-NEG-02",
@@ -445,7 +922,19 @@
           "expected_classification": "fixture_as_rollback",
           "expected": "実rollback未証明、fixtureをreceiptへ昇格しない。",
           "backflow_owner": "persistence_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-B01-NEG-03",
@@ -453,7 +942,19 @@
           "expected_classification": "record_as_permission",
           "expected": "Refの対応と実権限を分離、権限発行0。",
           "backflow_owner": "authority_record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-B01-NEG-04",
@@ -461,7 +962,19 @@
           "expected_classification": "record_as_acceptance",
           "expected": "原採択/受入authority未成立を保全、PO判断を生成しない。",
           "backflow_owner": "PO",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-B01-NEG-05",
@@ -469,7 +982,19 @@
           "expected_classification": "legacy_completion_claim",
           "expected": "保持した意味と非選択実操作を分け、全旧FR53移管を主張しない。",
           "backflow_owner": "harness053_requirement_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "unknown",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-B01-NEG-06",
@@ -477,7 +1002,19 @@
           "expected_classification": "owner_boundary_change",
           "expected": "各既存ownerの条件を保持し053照合で置換しない。",
           "backflow_owner": "harness053_requirement_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "lineage_relation",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-B01-NEG-07",
@@ -485,7 +1022,19 @@
           "expected_classification": "new_precondition",
           "expected": "053承認入力だけで局所照合し052gateを新設しない。",
           "backflow_owner": "harness053_requirement_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "A/B",
+              "axis": "identity",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         },
         {
           "id": "HARNESS-L9-053-B01-NEG-08",
@@ -493,7 +1042,19 @@
           "expected_classification": "authority_procedure_added",
           "expected": "対応unknownをauthority ownerへ返し、新裁定/人承認手続きを作らない。",
           "backflow_owner": "authority_record_owner",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_record_axes": [
+            {
+              "subject": "LS",
+              "axis": "authority_mapping",
+              "state": "matched"
+            }
+          ],
+          "expected_claim_state": "conflict",
+          "expected_operation_state": "not_requested",
+          "expected_operation_selection": "not_requested",
+          "expected_reference_state": "unresolved",
+          "expected_side_effect_count": 0
         }
       ],
       "execution_state": "not_executed"
@@ -501,7 +1062,7 @@
   ],
   "evidence_contract": {
     "binding": "同request revision/scope/source snapshotにID/semantic revision/location/relation/endpoint/history/authority/oracle/typed edgeを結び、原因と返却ownerを個別観測する。",
-    "negative": "各mutationを独立入力へ。対象外記録/根拠は正例固定。未知軸、原ID/revision、affected relation、差分、ownerとoperation heldを比較し、全部同じunknownだけで合格にしない。",
+    "negative": "各mutationを独立入力へ。対象外記録/根拠は正例固定。未知軸、原ID/revision、affected relation、差分、ownerとoperation heldを比較し、全部同じunknownだけで合格にしない。 各negativeのexpected_record_axes/expected_claim_state/expected_operation_state/expected_operation_selection/expected_reference_stateを個別assertする。記載外のsubject/axisは正例を保持。operation fieldは実操作の要求についてで、record_comparisonの照合をheldへしない。",
     "metamorphic": [
       "同snapshotの記録到着順を反転→同結果/source所属。",
       "path/nameだけ変更→同ID/意味revision、location履歴だけ差分。",
@@ -513,7 +1074,8 @@
       "fixture/receipt存在",
       "実保存/権限の自己申告",
       "旧runtime/CI/test合格"
-    ]
+    ],
+    "state_definition": "原記録axisの状態と成立claimの状態は別field。owner-qualifiedな既知値/境界とclaimが矛盾すればclaim conflict、必要根拠がmissing/unknownで真偽を判定できなければclaim unknown。未知に対する自己申告でmatchedにしない。確定したA/B別IDを同一とするclaimはconflict。実保存/rollback/権限/受入は記録照合で証明できないためclaim unknown、純粋結果から成立させない。原記録の既知axisまでclaimの未知で上書きしない。"
   },
   "completion": {
     "execution_state": "not_executed",
