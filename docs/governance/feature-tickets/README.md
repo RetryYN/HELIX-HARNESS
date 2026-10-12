@@ -26,3 +26,5 @@ GitHubへ送ったexact source commit、file SHA-256、remote revision、read-af
 | 11 | [FT-OS-REVIEWHANDOFF-001](FT-OS-REVIEWHANDOFF-001.md) | 共通ルール参照とVS Code GUIレーン間通知 | proposed_upstream_waiting（仮組みは別identity SCF-B-0003） | [#1884](https://github.com/RetryYN/HELIX-HARNESS/issues/1884)、親 #1864。[投影receipt](../audits/source-rebaseline/github-review-handoff-projection-2026-09-20.md) |
 
 [FT-GOV-AGENTREAD-001](FT-GOV-AGENTREAD-001.md)は、エージェント作業規則の入口にConcept・七大原則・JSON方針・テンプレートseedへの参照リンクを置く作業指示である。
+
+[FT-GOV-FAILURE-FOUNDATION-001](FT-GOV-FAILURE-FOUNDATION-001.md)は、過去失敗を現限定要件と照合し、開発基盤・制度の詳細ロードマップへ降ろす作業指示である。順序と成立条件は参照する正本文書に置く。

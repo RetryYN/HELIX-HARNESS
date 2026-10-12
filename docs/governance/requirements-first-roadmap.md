@@ -4,7 +4,7 @@
 
 HARNESSの工程定義、COREの意味導出、BRAINの汎用知識、OSの案件運転をつなぎ、HELIX自身の開発・更新・評価を一周できる最小構成を整理する。要件定義の最初に扱う横断的な整理の入口とする。
 
-現在はL2／L11の要求整理と接続条件の照合を行う。[10/10巻き戻し判断](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)によるL3以下の停止を保持する。ロードマップの起票は正式L3の再開、要件承認、実装、CI起動、内部デプロイの実施を意味しない。各機構・StageのL3／L10は再開後に現行の著述・reviewの単位で導出する。
+現在は[10/12再開判断](decisions/requirements-entry-restart-po-decision-2026-10-12.md)が採用した限定前提構築の範囲で進める。[限定L3/L10文書の独立監査](audits/prerequisite-l3-l10-definition-audit-conclusion-2026-10-12.md)は87親・405組・32接続の文書要件を確認した。実物の開発基盤が成立したという判定ではない。本書前半の「現在」「停止」「再開案」は各準備時点の経緯として読み、現在の順序は採用済み4段階と本書末尾の詳細ロードマップへ結ぶ。[10/10巻き戻し判断](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)による対象外の停止とカットは保持する。ロードマップやIssueの状態から要件承認、実装・CI・内部デプロイの許可を生成しない。
 
 ## 指示の出典
 
@@ -397,3 +397,47 @@ L3/L10の本文承認は[10/5の委任](decisions/l3-l10-approval-delegation-po-
 旧sourceは`archive/legacy-generation-2026-09-14/root/CLAUDE.md:49–63`（仕組みを土台に機能を積む、意味処理と外部作用の分離）、`docs/governance/candidates/functional-release-slice-requests.md:23–67`（archive root内。選択集合・局所影響・必要安全依存・内部先行利用・組合せ検収）、`docs/design/helix/L4-basic-design/design-template-json-authority.md:19–46`（同root内。意味契約・生成view・portfolio・pair）を読取り起点にした。
 
 保持するのは仕組み先行、選択した小さな経路、必要な安全依存、版・検証・復旧の追跡である。変更するのは今回の指示による最初の整理主題を、現行BRAIN／CORE／OSと支援・評価の接続へ割り当てる点であり、旧Node固定・旧DB・旧runtime・旧test／CIを継承しない。新しい承認手続きや全件完了gateは加えない。
+
+## 失敗対策を開発基盤へ降ろす詳細ロードマップ
+
+2026-10-12の指示「失敗を繰り返さないための開発基盤と開発の制度」を、採用済み限定範囲へ具体化する。[失敗対策の照合入力](audits/failure-development-foundation-audit-2026-10-12.md)とJSONは、過去62型・旧37弱点を現契約へ対応付ける。以下は既存要件から設計/実装/実証へ降ろす作業計画であり、新しい製品要求・tool採用・承認gate・全能力前倒しではない。
+
+開発repoのticketは作業種別と内容だけを持つimmutable指示である。順序・前提・成立証拠は本ロードマップと対象要件/対検証/設計へ置き、ticketの状態・依存・存在を開始/CI/merge gateにしない。作業内容が変われば新ticketを発行し、元の#2903/#2905等へ構築状態を書き戻さない。
+
+| 順 | 作業・責務 | 入力と具体化する成果 | 確認内容と不成立時の戻し先 |
+|---:|---|---|---|
+| 1 | 限定要件の失敗被覆照合（各意味owner） | 62失敗型/37弱点、10/10原因6項目、採択親と現限定対（本監査時92親・430対、監査JSONの`denominators`参照）を照合。選択/非選択/部分/運用/仮設を全行処置する | 失敗→義務→具体負例→後続作業が辿れる。必要契約missing/unknownは完了にせず対象L3/L10へ追補。上流意味変更だけL2/POへ戻す |
+| 2 | HARNESSの工程・検査義務具体化 | 001/003/004/005/015/022/023/040/041/048/056と対oracle。identity/owner/domain/依存方向/六pair/影響/凍結/戻し先を対象へ適用する | 規則の文字列・件数でなく、義務を落とした負例を説明できる。既決scope内の不足はownerへ。全旧source移管を一律条件にしない |
+| 3 | BRAINの知識入力とCOREの適用 | 限定採用済み032/MSG/VT/SDOP/技法、知識版/出所/適用条件とquery/receipt。CORE009がexact set、kind固有義務、不足、N/A、Backflow入力を導く | 定義欠落と案件値未決を区別。必須field/分岐の脱落、古い知識、根拠無しN/Aを負例にする。汎用定義はBRAIN、製品値はCORE/要求形成へ |
+| 4 | L4/L9：正本・配置・更新境界 | 既決配置基本案とL4の4論点を再起草。JSON意味正本/宣言/台帳一意性、source/view/判断/証拠/runtime配置、ReleaseManifest/pointer/実起動/rollback区別、公開/配布区別、記録ID/path/権限/CASを設計する | カット済みL4を復元しない。path変更をidentity/意味/許可変更へ変換しない。未選択release/実renameを発行しない。unknownは配置/意味ownerへ |
+| 5 | L4/L9：最小開発環境と検査構成 | 対象OS/CPU/shell、Python意味コア、必要外部境界、runtime/tool対応版、依存manifest/lock、設定、setup/更新/復旧、検査の対象集合と省略回収を導く | インストール済み版/旧lockを採用根拠にしない。OSS一次資料から既存toolを比較し最小構成を選ぶ。local/CIで同じ契約/設定/対象集合を再現できる対oracleを持つ |
+| 6 | L5/L8・L6/L7：schema・検査・接続の対設計 | 正式JSON schema/semantic projection、双方向trace、query/receipt/operation/event版、同一input決定性、原子CAS、各検査commandと結果形式を具体化。実装前にtest/oracleと負例を定義・凍結する | formatter/lintは形式・言語規律、文書監査はID/参照/pair/authority/生成差分、behavior testは意味を判定。schema validやリンク存在だけで意味成立にしない。対設計不足は該当ownerへ |
+| 7 | クリーン環境で前提構成を再現（OS/INFRA/SEC） | 固定manifest/lock/tool版/設定と最小setup。実interpreter、入力revision、環境、実行集合、権限/隔離/資源を照合し現用host依存を除く | lock不一致/未対応版/必要checkなし/対象0/skip/隔離不能を成功にしない。setup失敗は環境/依存/資源へ。削除の安全や全platform対応を成功から外挿しない |
+| 8 | 原子実装と局所検証（Worker、OS検収） | 凍結oracleに対して実装前Red→最小本体実装→同oracle Green→局所Refactor。formatter/lint/型/文書監査/局所testを設計どおり実装する | 環境エラーを意図したRedにしない。検査を弱めてGreenにしない。実装後mutation等はriskと適用根拠を持つ別証拠。出力はProvisional |
+| 9 | 対象CIと独立review（OS020、別担当） | HARNESS005の原子/境界/構成体義務から必要profileを構成。localとCIのtool/設定/入力/対象集合/省略義務を対応付け、exact HEADで独立reviewする | check定義だけでなく実起動と結果回収を確認。path filter/rename元/必要検査欠落/別HEAD green/denied/skippedを負例にする。未回収検査を成功にしない。全量/nightlyを既定復活しない |
+| 10 | 実接続・更新・故障・再開の検証 | BRAIN→CORE→OSの同revision往復、未完受理、CONNECT envelope/互換/再送/ACK、OS053の各write/CAS/receipt fault、実SEC/INFRA条件と復旧を検証する | 単体成功を接続へ伝播しない。publish≠受領、ACK≠解決。途中故障でpartial-current公開を拒否し、元episodeの未完/累積制約を引き継ぐ。失敗は該当接続/保存/意味ownerへ |
+| 11 | 構成体L10と計測・評価（HARNESS/OS/LABO） | 一つの要求例が知識→適用→義務→実行→検収→Backflowを一周する。固有不変条件と下位proof差分、未見fixture、必要metric/代表環境/分母/未観測/再発を同scopeへ結ぶ | 文書上のpair組数や全view生成を実systemの証拠にしない。省略義務/計測欠落/stale/未代表/未達を残し、fieldやscoreだけでVerifiedにしない。配置案/評価/採用を各ownerへ保持 |
+| 12 | POの実物L11受入→通常L3 | 局所/接続/構成体の実証拠、内容oracleの成功/反例、revision/scope、未完、利用者判断をまとめる。受入済み範囲から通常BRAIN032→CORE009→OS002を進める | 文書承認/CI/AI VerifiedをAcceptedへ変換しない。PO事後確認と実物受入を別記録にする。未受入範囲とrelease/tag/内部デプロイ/配布切替は既存停止境界へ |
+
+順1〜3は限定文書要件の充足を確かめる作業で、順4〜12の実成果の完成を段階1の文書完了条件へ前倒ししない。一方、順4以降に必要な意味義務そのものの欠落は「設計で決める」として逃がさず順1へ戻す。依存する入出力は直列に具体化し、異なる責務の独立作業だけを既存原子PR単位で並行できる。
+
+### formatter・lint・文書監査の設計入力
+
+| 検査役割 | 対象と成立証拠 | 現限定要件の根拠 |
+|---|---|---|
+| 基本整形/formatter | 選択言語とJSON/Markdownの適用範囲、tool版/設定、checkと修正の区別、生成viewの再生成。整形成功を意味変更許可にしない | HARNESS010-F04、005-F01、BRAIN032-F05、OS053-F08と旧coding-rulesの最小設定 |
+| lint/型/依存方向/命名 | 選択言語の検査範囲、domain/owner/依存表、identity-symbol-oracle対応、既存toolで検出できる違反と固有gap | HARNESS005-F05/F06/F08、048-F01/F02、010-F02 |
+| JSON・文書の監査 | schema/必須field、stable ID重複、親revision/authority、参照・anchor、全対象span/atom/gap、六pair双方向trace、JSON/view driftを内容に対応付ける | HARNESS004-F01/F04、040-F03/F04、041-F02/F03、056-F01/F02、OS015/053 |
+| 検査が実行されたことの監査 | 同じ設定・対象集合・HEAD/oracle/環境をlocal/CIから呼び、実行/非実行/失敗と省略回収を区別。負例に必要check脱落と空集合を含める | HARNESS005-F01〜F04、022、OS020-F01〜F03、019-N02 |
+
+表は初回開発で設計すべき検査役割であり、外部利用者へ特定toolや全formatter/lintの一律必須を追加する製品要求ではない。具体的なtool名・版・command名・設定・除外と代替方法は順5〜6の対象設計で確定し、根拠と不採用理由を残す。独自検出器は実際の再発欠陥、既存toolのgap、誤検知境界、統合/撤去条件に結び、仕組みの成立後は仮設と運用規則の残留を既存手順で回収する。
+
+### Conceptとエージェント原則の適用
+
+各順で[Conceptと七原則の照合表](audits/failure-development-foundation-audit-2026-10-12.md#conceptと七大原則の照合)へ戻る。初回対象の責務はHARNESSの工程契約、BRAINの汎用知識、COREの製品適用、OSの義務と運転を保持する。実装都合でownerを変えない。必要な規範の不足を先に閉じ、機構×歴史Stageの原子PRで独立reviewし、共通入力が確定してから後続へ降ろす。
+
+環境/ツールを選ぶ順5と再現する順7には、選択実資産の出所・能力差・同じ実体を検証/実行する条件が必要である。採択済みSECURITY010〜013と構成体023のL3/L10は、[Stage1の20対](https://github.com/RetryYN/HELIX-HARNESS/pull/2963)と[Stage4の5対](https://github.com/RetryYN/HELIX-HARNESS/pull/2964)で文書規範を閉じた。設計では、審査前candidate材料と審査/実行後に生じるreceiptを区別する。未知を安全に補完しない。023の歴史Stage4は保持して別PRで定義済みであり、全Stage4運転を初回必須にしない。
+
+### 限定要件定義を閉じるための確認
+
+失敗型の全行処置、10/10原因6項目、選択templateの全義務と対oracle、必要依存/責務/版/未決、開発基盤の検査役割、順4〜12の入力/成果/負例/戻し先が対象revisionで辿れることを独立reviewで確認する。件数・ID対応・hashだけの合格では閉じない。新しい上流意味が必要な未解決事項を残して完了にせず、既決契約内の技術具体化と未選択の将来能力を区別する。これは今回の文書充足の照合範囲であり、新たなCI/merge admissionを追加するものではない。
