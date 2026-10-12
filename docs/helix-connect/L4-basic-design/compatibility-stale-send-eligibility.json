@@ -202,12 +202,14 @@
       ],
       "output_meanings": [
         "互換性を保持した別送信適格候補/理由",
-        "SEC/source/contract owner局所返却"
+        "SEC/source/contract owner局所返却",
+        "receipt対象と実使用tuple・互換state・許可validity・data stateの個別判定、withheld理由と該当owner。"
       ],
       "content_comparison": [
         "送信要求時だけ互換と有効SEC tuple/data条件の双方を必要とする。",
         "actor/target/operation/revision/environment/scope/expiry欠落・失効・unknownではwithheld。",
-        "互換性と認可を代替せず、参照だけではnot_evaluated。合成eligibleも実permission/attemptを生成しない。"
+        "互換性と認可を代替せず、参照だけではnot_evaluated。合成eligibleも実permission/attemptを生成しない。",
+        "原/提出内容一致と操作適格を分け、receipt対象対実使用tupleの不一致/原unknown・互換不成立・許可失効/取消/unknown・data条件不適格を各理由と該当owner付きで返す。"
       ],
       "qualification_rule": "原member/access/SEC/recheckは合成例。実source資格/必要集合/正式binding/互換適格/実認可/実stale解除/Accepted/設計閉包へ昇格しない。",
       "operation_effect": "none"
