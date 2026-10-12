@@ -1,0 +1,519 @@
+{
+  "parent": "HARNESS-L2-034",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 3",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "55fc4365720c0ea8888af85f4b2e3aa530ef5226",
+    "boundary": "限定計測契約/判定意味。実計測/CI/完成/受入は成立させない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-measurement034-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9a3fcd37e7acd0c3d01b38216ee71b14375fef5008d72d53336077013241d94f"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    }
+  ],
+  "source_pin_limit": "bytes固定は全文精読や全内容被覆ではない。",
+  "legacy_comparison": {
+    "selected_sources": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "read_lines": [
+          245,
+          252
+        ],
+        "quote": "### 4.3 検証・計測基盤\n\n設計エンジンはtest caseだけでなく、system完成度を実証する`verification_measurement_contract`を各requirement/NFRから生成する。最低限、性能、信頼性、可用性、回復性、security、privacy、accessibility、互換性、運用性、保守性、cost/resource、data quality、observabilityを対象にする。\n\n各contractはmetric ID、対象requirement/NFR、測定対象、workload/environment/data、baseline、target/SLO、許容差、sampling/window、tool/probe、evidence schema、判定oracle、owner、実行layer、再測定triggerを持つ。code/doc/testがgreenでも必須metricが未測定、stale、非代表環境、閾値未達ならsystem completionを拒否する。\n\n計測はL5で設計し、L7でprobe/fixtureを実装、L8〜L10で局所からsystemへ拡張、L11で利用実態、L12で時間軸/SLO/改善効果を検証する。計測のために本番secret/PIIを露出せず、測定自体のoverheadと再現性も記録する。\n",
+        "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "selected_lines_sha256": "026f389cd2551163319412d0a557a971296c31b191c9ab7b7bfa6548d7363470",
+        "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+        "read_lines": [
+          369,
+          375
+        ],
+        "quote": "| `HR-NFR-REG-001` | 各NFRはstable ID、quality characteristic、source authority、対象surface、metric、workload、environment、data、baseline、target、error budget、hard limit、window、probe、oracle、owner、evidence path、再測定triggerを持つ |\n| `HR-NFR-REG-002` | L1は能力、L3は観測可能な挙動、ADRは技術選択、policyは閾値運用、runtime profileは環境値を担い、実装方式をNFR本文へ混在させない |\n| `HR-NFR-REG-003` | 標準品質特性とAI固有特性（判断再現性、worker/verifier独立性、grounding、loop停止性、cost、provider縮退、memory汚染耐性）を分類する |\n| `HR-NFR-REG-004` | DB size、query/projection p95/p99、lock待機、busy timeout縮退、rebuild、archive/vacuum、並行runtime、長時間soakを測定する。未再現の単一障害原因を確定事実にしない |\n| `HR-NFR-REG-005` | gate、approval、cutover、projection、GitHub、memory、feedbackへfault injection、race、soak、crash recoveryを適用する |\n| `HR-NFR-REG-006` | property-based、model-based state machine、differential、mutation、fuzz、snapshot compatibilityをriskに応じて選択し、手法追加自体を完成証拠にしない |\n| `HR-NFR-REG-007` | 実測値を時系列保存し、P4 metric event、requirement、release、regression、改善episodeへjoinする |",
+        "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+        "selected_lines_sha256": "660efb6d781035a6dbefc3f9ea1224ae8a726dcb2aa395ee74c673a6fc441a3f",
+        "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5"
+      }
+    ],
+    "archive_disposition": "source_snapshot_preservation",
+    "reuse": "semantic_rederivation",
+    "preserve": "13品質領域/14項目/4非相殺、NFR識別・閾値区別、AI/storage/risk/時系列、安全・overhead・再現。",
+    "change": "旧層番号/DB/metric event schema/固定技術/runtimeを移さず現行001の層とHARNESS意味/OS等実運転を分離。",
+    "reason": "採択034と承認13対に従い、未来実測を契約起草の必須にしない。具体方式/数値は各対象の根拠付き入力へ残す。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実source資格/必要metric集合/内容組合せ/実未見と独立意味review。",
+    "022/005/003004/001/CORE trace・実行/SEC/data-use/INFRA/選択CONNECT/LABOへのowner-qualified exact bindingと正式schema/codec/probe。",
+    "L5/L8内部型・実oracle凍結→実装前Red→最小Green→Refactor→再検証、実L9/L10/計測/PO L11。",
+    "全92親430対の基本/詳細設計閉包・実装準備。"
+  ],
+  "document_id": "HARNESS-L4-034",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "measurement_contract_reader",
+      "quality_applicability_reader",
+      "measurement_completion_reader",
+      "measurement_stage_reader",
+      "measurement_backflow_reader",
+      "nfr_threshold_reader",
+      "ai_quality_reader",
+      "storage_measurement_reader",
+      "risk_method_reader",
+      "measurement_lineage_reader",
+      "measurement_safety_reader",
+      "heldout_measurement_reader",
+      "measurement_owner_router"
+    ],
+    "flow": [
+      "要求と目標出所→項目/適用/閾値契約",
+      "実結果候補→metric別条件/段階別未完",
+      "AI/storage/risk/安全→適用内容と不足",
+      "時系列原関係→OS/LABO候補",
+      "未完/変更意味→各owner返却"
+    ],
+    "python_boundary": "immutable source snapshotのpure照合。実probe/資源確保/測定/保存/OS/GitHub/DB/network/fs/clock/env/認可/採択/受入を行わない。",
+    "representation_limit": "以下の値/field/metric/日付/単位/署名は合成対照の表現。製品の目標/数値/測定方式/schema/codec/probe採用ではない。"
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-034-F01",
+      "requirement_ref": "HARNESS-L3-034-F01",
+      "system_oracle_ref": "HARNESS-L10-034-F01",
+      "oracle_ref": "HARNESS-L9-034-F01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-F01",
+        "parent": "HARNESS-L2-034",
+        "title": "要求別の14項目計測契約",
+        "obligation": "対象requirement/NFR revision/scopeと対設計/受入、既決目標/判断出所から、metric ID・対象requirement/NFR・測定対象・workload/environment/data・baseline・target/SLO・許容差・sampling/window・tool/probe・evidence schema・判定oracle・owner・実行layer・再測定triggerを区別した版付き契約を提供する。欠落を別fieldや自由文で相殺せず未知値/schema/probeを既決にしない。",
+        "oracle_ref": "HARNESS-L10-034-F01"
+      },
+      "component": "measurement_contract_reader",
+      "input_meanings": [
+        "要求/NFR revision/scope/対設計/022受入/CORE trace/目標根拠",
+        "独立14項目原契約と提示契約"
+      ],
+      "output_meanings": [
+        "項目別一致/不足/unknown/衝突",
+        "対象owner返却候補"
+      ],
+      "content_comparison": [
+        "14項目を区別して原意味と比較。同metric IDの意味衝突、無関係oracle、再現不能probeを拒否。未知目標を0/無制限にしない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-034-F02",
+      "requirement_ref": "HARNESS-L3-034-F02",
+      "system_oracle_ref": "HARNESS-L10-034-F02",
+      "oracle_ref": "HARNESS-L9-034-F02",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-F02",
+        "parent": "HARNESS-L2-034",
+        "title": "品質領域の適用判断",
+        "obligation": "性能/信頼性/可用性/回復性/security/privacy/accessibility/互換性/運用性/保守性/cost-resource/data quality/observabilityの適用または理由付き非適用をscopeへ結ぶ。材料不足はunknownで保持し全製品へ同数値/環境を強制しない。",
+        "oracle_ref": "HARNESS-L10-034-F02"
+      },
+      "component": "quality_applicability_reader",
+      "input_meanings": [
+        "品質13領域の対象根拠",
+        "対象別適用/理由付き非適用/unknown"
+      ],
+      "output_meanings": [
+        "領域別適用と判断不足"
+      ],
+      "content_comparison": [
+        "性能/信頼性/可用性/回復性/security/privacy/accessibility/互換性/運用性/保守性/cost-resource/data quality/observabilityを個別照合。材料不足はunknown、全製品同値は不可。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-034-F03",
+      "requirement_ref": "HARNESS-L3-034-F03",
+      "system_oracle_ref": "HARNESS-L10-034-F03",
+      "oracle_ref": "HARNESS-L9-034-F03",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-F03",
+        "parent": "HARNESS-L2-034",
+        "title": "4条件と完成判定拒否",
+        "obligation": "対象要求の必須metricの未測定/stale/非代表環境/閾値未達が一件でもあれば対象system completionを成立させない。code/doc/test green、他metric好成績、別revision/環境のpassで相殺せず022へ計測義務と実結果/未完を渡す。",
+        "oracle_ref": "HARNESS-L10-034-F03"
+      },
+      "component": "measurement_completion_reader",
+      "input_meanings": [
+        "独立必要metric集合/対象frame",
+        "metric別実結果/代表性/閾値"
+      ],
+      "output_meanings": [
+        "metric別4条件不足",
+        "022への義務/実結果/未完候補"
+      ],
+      "content_comparison": [
+        "未測定/stale/非代表環境/閾値未達が一つでもあれば対象completionを成立させない。別metric/test green/別revision環境で相殺しない。計測充足からAcceptedを生成しない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-034-F04",
+      "requirement_ref": "HARNESS-L3-034-F04",
+      "system_oracle_ref": "HARNESS-L10-034-F04",
+      "oracle_ref": "HARNESS-L9-034-F04",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-F04",
+        "parent": "HARNESS-L2-034",
+        "title": "工程・対・実行責務",
+        "obligation": "計測方法設計→probe/fixture実装→局所からsystem検証→利用実態受入→時間軸/SLO/改善効果評価を現行pair/実行責務へ対応させる。旧L5/L7番号や実行結果を転記しない。契約起草と未来の実測/改善完成を分け、局所成功でsystem/利用/時間軸を完了にしない。",
+        "oracle_ref": "HARNESS-L10-034-F04"
+      },
+      "component": "measurement_stage_reader",
+      "input_meanings": [
+        "設計/probe実装/局所/system/利用受入/時間軸の意味と現行pair参照",
+        "段階別観測"
+      ],
+      "output_meanings": [
+        "段階別未実行/未受入/未評価",
+        "対象設計/検証/受入/評価owner返却"
+      ],
+      "content_comparison": [
+        "工程を現行層意味へ束縛し旧番号から推定しない。局所成功はsystem/利用/時間軸の証拠ではない。未来実測を起草開始に要求しない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-034-F05",
+      "requirement_ref": "HARNESS-L3-034-F05",
+      "system_oracle_ref": "HARNESS-L10-034-F05",
+      "oracle_ref": "HARNESS-L9-034-F05",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-F05",
+        "parent": "HARNESS-L2-034",
+        "title": "不足と技術具体化の引継ぎ",
+        "obligation": "不足field・目標unknown・古い結果・代表性不明・未達を個別に記録し、owner/停止理由/未完metric/再測定triggerを保持する。意味を保った技術具体化は通常L3へ根拠付きに導出し、要求意味変更が必要な差分だけ003/004 Backflowへ戻す。session交代で未完を消さない。",
+        "oracle_ref": "HARNESS-L10-034-F05"
+      },
+      "component": "measurement_backflow_reader",
+      "input_meanings": [
+        "独立未完metric/owner/理由/trigger原記録",
+        "引継ぎ提案",
+        "変更前後の要求意味"
+      ],
+      "output_meanings": [
+        "未完保持と欠落finding",
+        "通常L3具体化または003004 Backflow候補"
+      ],
+      "content_comparison": [
+        "session交代でも未完を消さない。意味不変の技術具体化へ新承認を作らず、要求意味差分だけ003/004へ戻す。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-034-F06",
+      "requirement_ref": "HARNESS-L3-034-F06",
+      "system_oracle_ref": "HARNESS-L10-034-F06",
+      "oracle_ref": "HARNESS-L9-034-F06",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-F06",
+        "parent": "HARNESS-L2-034",
+        "title": "NFR identityと閾値の区別",
+        "obligation": "stable NFR identity・quality characteristic・source authority・対象surfaceを契約へ結び、通常targetとerror budgetと超過不可hard limitを区別する。能力/観測可能挙動/ADR技術選択/policy閾値運用/runtime環境値を分離し旧技術選定を意味へ混在させない。",
+        "oracle_ref": "HARNESS-L10-034-F06"
+      },
+      "component": "nfr_threshold_reader",
+      "input_meanings": [
+        "NFR identity/quality/source authority/surface",
+        "target/error budget/hard limit/baseline",
+        "能力/挙動/ADR/policy/runtime分類"
+      ],
+      "output_meanings": [
+        "識別と閾値別結果/unknown",
+        "分類違反"
+      ],
+      "content_comparison": [
+        "target内でもhard limit超過を拒否。budgetをhard limitへ変換せずbaseline unknownを0にしない。旧技術選定を能力意味に混在させない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-034-F07",
+      "requirement_ref": "HARNESS-L3-034-F07",
+      "system_oracle_ref": "HARNESS-L10-034-F07",
+      "oracle_ref": "HARNESS-L9-034-F07",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-F07",
+        "parent": "HARNESS-L2-034",
+        "title": "AI固有品質のscope",
+        "obligation": "AI対象には判断再現性/Worker-verifier独立性/根拠対応/反復停止性/費用/provider縮退/memory汚染耐性を適用scopeで照合する。非AI対象へ一律に課さず非適用理由を残す。",
+        "oracle_ref": "HARNESS-L10-034-F07"
+      },
+      "component": "ai_quality_reader",
+      "input_meanings": [
+        "AI有無の対象宣言と根拠",
+        "七品質条件別適用と内容結果"
+      ],
+      "output_meanings": [
+        "条件別適用/不足/非適用"
+      ],
+      "content_comparison": [
+        "判断再現性/Worker-verifier独立性/根拠対応/反復停止性/費用/provider縮退/memory汚染耐性を適用scopeで照合。非AIは理由付き非適用、手法存在は品質成立ではない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-034-F08",
+      "requirement_ref": "HARNESS-L3-034-F08",
+      "system_oracle_ref": "HARNESS-L10-034-F08",
+      "oracle_ref": "HARNESS-L9-034-F08",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-F08",
+        "parent": "HARNESS-L2-034",
+        "title": "保存・並行運転の測定条件",
+        "obligation": "DB/投影/継続stateを選ぶ対象ではdata量/query-projection p95-p99/lock待ち/busy timeout縮退/再構築/archive保守/並行実行/長時間soakを選択保存方式の対応条件へ導出する。旧harness.db/SQLite/vacuumを採用せず、未再現単一障害の原因を確定しない。",
+        "oracle_ref": "HARNESS-L10-034-F08"
+      },
+      "component": "storage_measurement_reader",
+      "input_meanings": [
+        "保存選択/方式と対応条件",
+        "data量/分位点/lock/縮退/再構築/保守/並行/soak",
+        "原因再現根拠"
+      ],
+      "output_meanings": [
+        "方式別条件不足/非適用",
+        "原因未確定"
+      ],
+      "content_comparison": [
+        "選択保存方式の対応条件を保持し旧DB/vacuumを強制しない。未再現単一障害から根因を断定しない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-034-F09",
+      "requirement_ref": "HARNESS-L3-034-F09",
+      "system_oracle_ref": "HARNESS-L10-034-F09",
+      "oracle_ref": "HARNESS-L9-034-F09",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-F09",
+        "parent": "HARNESS-L2-034",
+        "title": "異常条件とrisk別手法",
+        "obligation": "適用するgate/approval/cutover/projection/GitHub/memory/feedback相当境界にはfault injection/race/soak/crash recoveryの適用条件を残す。property-based/model-based state machine/differential/mutation/fuzz/snapshot compatibilityはriskから選択/非適用根拠を残し005のticket別未完義務へ結ぶ。全ticket固定CIにせず手法導入を完成証拠にしない。",
+        "oracle_ref": "HARNESS-L10-034-F09"
+      },
+      "component": "risk_method_reader",
+      "input_meanings": [
+        "ticket/risk/対象状態境界",
+        "fault/race/soak/crashと検証六手法の選択/非適用根拠",
+        "005未完義務"
+      ],
+      "output_meanings": [
+        "手法別選択/理由不足",
+        "未完検証義務"
+      ],
+      "content_comparison": [
+        "risk別の適用/非適用根拠を照合し全ticket固定CIにしない。手法導入だけを検証完成としない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-034-F10",
+      "requirement_ref": "HARNESS-L3-034-F10",
+      "system_oracle_ref": "HARNESS-L10-034-F10",
+      "oracle_ref": "HARNESS-L9-034-F10",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-F10",
+        "parent": "HARNESS-L2-034",
+        "title": "時系列と改善参照",
+        "obligation": "実測値を時点/対象revision/要求/release/regression/改善episodeへ辿り計測履歴と比較母集団を保持する。OS証拠とLABO比較評価へ同じ関係を渡し、旧P4 event schemaを正本にしない。未発生releaseや改善完了を捏造しない。",
+        "oracle_ref": "HARNESS-L10-034-F10"
+      },
+      "component": "measurement_lineage_reader",
+      "input_meanings": [
+        "時点/revision/要求/release/regression/episode/母集団の原関係",
+        "OS記録/LABO比較候補"
+      ],
+      "output_meanings": [
+        "関係別欠落/衝突/未観測",
+        "比較母集団保持"
+      ],
+      "content_comparison": [
+        "同じ関係をOSとLABOへ渡し旧P4 schemaを採用しない。未発生release/未来改善完了や時刻だけの因果を生成しない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-034-N01",
+      "requirement_ref": "HARNESS-L3-034-N01",
+      "system_oracle_ref": "HARNESS-L10-034-N01",
+      "oracle_ref": "HARNESS-L9-034-N01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-N01",
+        "parent": "HARNESS-L2-034",
+        "title": "安全・overhead・再現",
+        "obligation": "計測overheadと再現条件を残し、本番secret/PIIを露出しない。scope/revision/契約/oracle版を同証拠へ結び、probe交換後も実結果/overhead/再現性/再測定triggerを辿る。",
+        "oracle_ref": "HARNESS-L10-034-N01"
+      },
+      "component": "measurement_safety_reader",
+      "input_meanings": [
+        "SEC/data-use分類結果",
+        "overhead/再現条件/metric結果",
+        "scope/revision/契約/oracle/probe交換/trigger"
+      ],
+      "output_meanings": [
+        "禁止内容拒否/証拠不足",
+        "probe交換後のtrace"
+      ],
+      "content_comparison": [
+        "secret/PIIは露出せず禁止分類の合成標識だけを対照。overhead/再現条件と同frameを保持し旧結果で新scopeを成立させない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-034-N02",
+      "requirement_ref": "HARNESS-L3-034-N02",
+      "system_oracle_ref": "HARNESS-L10-034-N02",
+      "oracle_ref": "HARNESS-L9-034-N02",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-N02",
+        "parent": "HARNESS-L2-034",
+        "title": "未見条件と内容oracle",
+        "obligation": "伏せた要求/workload/環境/保存方式/provider/非AI対象でも同14項目・品質適用・4failureを内容oracleへ照合する。旧fixture数値を目標/閾値/代表性へ推定せずunknownを保持し、field存在やfixture greenを全能力/Acceptedへ外挿しない。",
+        "oracle_ref": "HARNESS-L10-034-N02"
+      },
+      "component": "heldout_measurement_reader",
+      "input_meanings": [
+        "伏せた要求/workload/環境/保存方式/provider/非AIの原内容",
+        "14項目/品質適用/4failureの同内容oracle"
+      ],
+      "output_meanings": [
+        "原内容照合とunknown",
+        "普遍成功/Acceptedの拒否"
+      ],
+      "content_comparison": [
+        "過去fixture値を目標/代表性へ外挿せず未知は未知。体裁だけ合格にせず005を超えた一律検査を追加しない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-034-B01",
+      "requirement_ref": "HARNESS-L3-034-B01",
+      "system_oracle_ref": "HARNESS-L10-034-B01",
+      "oracle_ref": "HARNESS-L9-034-B01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-034-B01",
+        "parent": "HARNESS-L2-034",
+        "title": "契約・実行・観測・評価のowner",
+        "obligation": "HARNESSは契約/義務/判定、OSまたは利用者手段は許可範囲の実計測、INFRAは本体資源/環境観測、LABOは選択比較評価を保持する。実測操作のSEC/data-use/資源、機構間通信を選ぶ場合CONNECTを照合し、外部利用に内部OS一式や後続INFRA能力を必須化しない。",
+        "oracle_ref": "HARNESS-L10-034-B01"
+      },
+      "component": "measurement_owner_router",
+      "input_meanings": [
+        "HARNESS契約原意味",
+        "OS/外部利用者手段の選択/実計測依存",
+        "INFRA観測/選択LABO比較/機構間CONNECT"
+      ],
+      "output_meanings": [
+        "owner別不足/返却",
+        "選択手段と作用境界"
+      ],
+      "content_comparison": [
+        "HARNESS契約/OSまたは利用者実行/INFRA資源/LABO比較を分離。実測時のSEC/data-use/資源と選択通信時CONNECTを照合。内部OSや後続INFRAを外部利用の常時必須にしない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 19,
+      "F02": 28,
+      "F03": 6,
+      "F04": 6,
+      "F05": 4,
+      "F06": 6,
+      "F07": 10,
+      "F08": 15,
+      "F09": 12,
+      "F10": 7,
+      "N01": 8,
+      "N02": 6,
+      "B01": 8
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
