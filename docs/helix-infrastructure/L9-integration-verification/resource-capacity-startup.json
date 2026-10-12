@@ -5158,6 +5158,178 @@
           },
           "execution_state": "not_executed",
           "effect": "none"
+        },
+        {
+          "id": "I003-F01-MODEL-SCOPE-False",
+          "basis": "001のowner由来の選択scopeがModel非対象である場合、Model属性を必須化/未観測不足へしない。",
+          "requirement_ref": "HELIXINFRASTRUCTURE-L3-003-F01",
+          "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-I003-F01-MODEL-SCOPE-False",
+              "revision": "fixture-c303d96c22709c11c20cbf10cabb829d662c3d75ccadb82a0a1017e8f36f156c",
+              "owner": "synthetic-fixture-owner",
+              "scope": "PRODUCT-P"
+            },
+            "raw_utf8": "{\"autoscaling\":\"unselected_future\",\"candidates\":[{\"kind\":\"queue\",\"owner\":\"OS/INTELLIGENCE-decision-owner\",\"state\":\"unselected\"},{\"kind\":\"delay\",\"owner\":\"OS/INTELLIGENCE-decision-owner\",\"state\":\"unselected\"},{\"kind\":\"low_cost_environment\",\"owner\":\"OS/INTELLIGENCE-decision-owner\",\"state\":\"unselected\"},{\"kind\":\"other_node\",\"owner\":\"OS/INTELLIGENCE-decision-owner\",\"state\":\"unselected\"},{\"kind\":\"reject\",\"owner\":\"OS/INTELLIGENCE-decision-owner\",\"state\":\"unselected\"},{\"kind\":\"human_escalation\",\"owner\":\"OS/INTELLIGENCE-decision-owner\",\"state\":\"unselected\"}],\"capacity_condition\":{\"applies_to\":\"Job\",\"boundary\":\"inclusive_in_fixture_only\",\"owner\":\"capacity-condition-owner\",\"ref\":\"OWNER-CONDITION-P@r2\",\"rule\":\"available_at_least_needed_in_fixture_only\",\"state\":\"approved_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"RESOURCE-P\",\"resource_revision\":\"RESOURCE-P-r2\",\"scope\":\"PRODUCT-P\"},\"unit\":\"fixture-capacity\"},\"claims\":[],\"model_scope_ref\":{\"identity\":\"CORE-SCOPE-P\",\"model_selected\":false,\"owner\":\"CORE-scope-owner\",\"revision\":\"CORE-SCOPE-P-r2\",\"selected_resource_kinds\":[\"local_compute\"],\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"RESOURCE-P\",\"resource_revision\":\"RESOURCE-P-r2\",\"scope\":\"PRODUCT-P\"}},\"model_scope_selected\":false,\"network_attributes_ref\":\"I001-NETWORK-P@r2\",\"observation\":{\"attributes\":{\"CPU\":{\"unit\":\"fixture-core\",\"value\":4},\"GPU\":{\"unit\":\"fixture-device\",\"value\":1},\"RAM\":{\"unit\":\"fixture-memory\",\"value\":8},\"VRAM\":{\"unit\":\"fixture-memory\",\"value\":4},\"availability\":\"available_in_fixture_only\",\"backpressure\":\"BACKPRESSURE-P@r2\",\"capacity\":{\"unit\":\"fixture-capacity\",\"value\":8},\"concurrency\":\"CONCURRENCY-P@r2\",\"health\":\"healthy_in_fixture_only\",\"network\":\"NETWORK-P@r2\",\"queue\":\"QUEUE-P@r2\",\"rejection\":\"REJECTION-P@r2\",\"runtime\":\"RUNTIME-P@r2\",\"saturation\":\"SATURATION-P@r2\",\"storage\":{\"unit\":\"fixture-storage\",\"value\":16},\"utilization\":\"UTIL-P@r2\"},\"freshness\":\"current_in_fixture_only\",\"source_ref\":\"RESOURCE-OBS-P@r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"RESOURCE-P\",\"resource_revision\":\"RESOURCE-P-r2\",\"scope\":\"PRODUCT-P\"},\"unobserved_fields\":[]},\"provider_kind\":\"local\",\"request\":{\"identity\":\"JOB-P\",\"kind\":\"Job\",\"needed\":{\"unit\":\"fixture-capacity\",\"value\":4},\"revision\":\"JOB-P-r2\",\"state\":\"waiting\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"RESOURCE-P\",\"resource_revision\":\"RESOURCE-P-r2\",\"scope\":\"PRODUCT-P\"}},\"resource_snapshot_ref\":\"I001-RESOURCE-P@r2\",\"shortage\":{\"request_ref\":\"JOB-P@r2\",\"snapshot_ref\":\"I001-RESOURCE-P@r2\",\"state\":\"not_evaluated_in_fixture_only\",\"unfinished\":[\"startup_not_executed\"]},\"storage_attributes_ref\":\"I001-STORAGE-P@r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"RESOURCE-P\",\"resource_revision\":\"RESOURCE-P-r2\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "c303d96c22709c11c20cbf10cabb829d662c3d75ccadb82a0a1017e8f36f156c"
+          },
+          "expected_material": {
+            "information_state": "model_not_selected",
+            "failure_reasons": [],
+            "return_owners": [],
+            "retained_request": {
+              "identity": "JOB-P",
+              "revision": "JOB-P-r2",
+              "kind": "Job",
+              "target": {
+                "scope": "PRODUCT-P",
+                "environment": "ENV-STAGING",
+                "resource": "RESOURCE-P",
+                "resource_revision": "RESOURCE-P-r2"
+              },
+              "needed": {
+                "value": 4,
+                "unit": "fixture-capacity"
+              },
+              "state": "waiting"
+            },
+            "retained_observation": {
+              "source_ref": "RESOURCE-OBS-P@r2",
+              "target": {
+                "scope": "PRODUCT-P",
+                "environment": "ENV-STAGING",
+                "resource": "RESOURCE-P",
+                "resource_revision": "RESOURCE-P-r2"
+              },
+              "freshness": "current_in_fixture_only",
+              "attributes": {
+                "CPU": {
+                  "value": 4,
+                  "unit": "fixture-core"
+                },
+                "RAM": {
+                  "value": 8,
+                  "unit": "fixture-memory"
+                },
+                "GPU": {
+                  "value": 1,
+                  "unit": "fixture-device"
+                },
+                "VRAM": {
+                  "value": 4,
+                  "unit": "fixture-memory"
+                },
+                "storage": {
+                  "value": 16,
+                  "unit": "fixture-storage"
+                },
+                "network": "NETWORK-P@r2",
+                "runtime": "RUNTIME-P@r2",
+                "capacity": {
+                  "value": 8,
+                  "unit": "fixture-capacity"
+                },
+                "health": "healthy_in_fixture_only",
+                "availability": "available_in_fixture_only",
+                "utilization": "UTIL-P@r2",
+                "queue": "QUEUE-P@r2",
+                "concurrency": "CONCURRENCY-P@r2",
+                "saturation": "SATURATION-P@r2",
+                "rejection": "REJECTION-P@r2",
+                "backpressure": "BACKPRESSURE-P@r2"
+              },
+              "unobserved_fields": []
+            },
+            "retained_condition_source": {
+              "ref": "OWNER-CONDITION-P@r2",
+              "owner": "capacity-condition-owner",
+              "state": "approved_in_fixture_only",
+              "target": {
+                "scope": "PRODUCT-P",
+                "environment": "ENV-STAGING",
+                "resource": "RESOURCE-P",
+                "resource_revision": "RESOURCE-P-r2"
+              },
+              "applies_to": "Job",
+              "rule": "available_at_least_needed_in_fixture_only",
+              "boundary": "inclusive_in_fixture_only",
+              "unit": "fixture-capacity"
+            },
+            "retained_shortage": {
+              "request_ref": "JOB-P@r2",
+              "snapshot_ref": "I001-RESOURCE-P@r2",
+              "state": "not_evaluated_in_fixture_only",
+              "unfinished": [
+                "startup_not_executed"
+              ]
+            },
+            "retained_candidates": [
+              {
+                "kind": "queue",
+                "state": "unselected",
+                "owner": "OS/INTELLIGENCE-decision-owner"
+              },
+              {
+                "kind": "delay",
+                "state": "unselected",
+                "owner": "OS/INTELLIGENCE-decision-owner"
+              },
+              {
+                "kind": "low_cost_environment",
+                "state": "unselected",
+                "owner": "OS/INTELLIGENCE-decision-owner"
+              },
+              {
+                "kind": "other_node",
+                "state": "unselected",
+                "owner": "OS/INTELLIGENCE-decision-owner"
+              },
+              {
+                "kind": "reject",
+                "state": "unselected",
+                "owner": "OS/INTELLIGENCE-decision-owner"
+              },
+              {
+                "kind": "human_escalation",
+                "state": "unselected",
+                "owner": "OS/INTELLIGENCE-decision-owner"
+              }
+            ],
+            "rejected_claims": [],
+            "actual_effects": {
+              "startup": false,
+              "reservation": false,
+              "placement_adoption": false,
+              "cost_adoption": false,
+              "node_move": false,
+              "source_overwrite": false,
+              "permission": false,
+              "deployment": false,
+              "acceptance": false,
+              "implementation_ready": false
+            },
+            "qualification": "synthetic_only_no_actual_capacity_condition_or_observation_qualification",
+            "retained_model_scope_ref": {
+              "identity": "CORE-SCOPE-P",
+              "revision": "CORE-SCOPE-P-r2",
+              "owner": "CORE-scope-owner",
+              "target": {
+                "environment": "ENV-STAGING",
+                "resource": "RESOURCE-P",
+                "resource_revision": "RESOURCE-P-r2",
+                "scope": "PRODUCT-P"
+              },
+              "selected_resource_kinds": [
+                "local_compute"
+              ],
+              "model_selected": false
+            },
+            "model_attributes_required": false,
+            "model_unobserved_deficiency": false
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
         }
       ],
       "coverage_limit": "初期内容例。実観測/条件資格/全組合せ/実起動/TDDのRed-Green証拠は未成立。"
