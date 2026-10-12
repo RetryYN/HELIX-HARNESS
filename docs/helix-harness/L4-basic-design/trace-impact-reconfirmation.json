@@ -110,15 +110,35 @@
       "reuse": "semantic_rederivation",
       "line_quotes": [
         {
-          "line": 24,
-          "text": ""
+          "line": 27,
+          "text": "相談、質問、仮説、叱責、不満、実況、比喩、作業依頼を、文字列や口調だけで`PO指示`、`PO判断`、承認済みdecisionへ昇格しない。AIの解釈へhuman provenanceを付与しない。"
         },
         {
-          "line": 50,
-          "text": ""
+          "line": 37,
+          "text": "要求・設計・route・model・test・artifactの採択は`selection`、L3 freeze・検収・不可逆actionの認可は`approval`、Issue・PR・finding・proposal・S4の処理結果は`disposition`、validatorやAIの一時的技術評価は`runtime_judgment`として保持する。"
+        },
+        {
+          "line": 41,
+          "text": "明示的なrequest／directiveも作業入力であり、requirements、design、ADR、approvalの代替authorityではない。AIは目的、正本、受入条件、可逆性、安全境界、代替案を評価し、`指示だから`を理由に検証を省略しない。"
+        },
+        {
+          "line": 43,
+          "text": "directiveは許可された作業scopeや優先度を与え得るが、実装方式、技術的正しさ、完了、安全性を自動的に確定しない。AIは独立した技術理由と反証可能な検証結果を保持し、指示への服従をrationale、review verdict、completion evidenceとして再利用しない。"
+        },
+        {
+          "line": 49,
+          "text": "harness memoryはTTL付きagent coordination envelopeとtyped pointerだけを運ぶ。decision本文、approval本文、project要求・設計、利用者profileを保存せず、長期authorityは各正本へ置く。"
         }
       ],
-      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "read_line_locators": [
+        27,
+        37,
+        41,
+        43,
+        49
+      ],
+      "locator_semantics": "explicit individual content lines; file bytes unchanged"
     },
     {
       "asset_id": "LEGACY-ASSET-19E54587EB063625EC53",
@@ -146,8 +166,24 @@
       "reuse": "semantic_rederivation",
       "line_quotes": [
         {
-          "line": 9,
-          "text": ""
+          "line": 10,
+          "text": "- DGH-BR-01: 外部の実例と既存資産を前提に、論点ごとに根拠を揃えてDesign候補を形成する。DG-R-01..04へ分解する。"
+        },
+        {
+          "line": 11,
+          "text": "- DGH-BR-02: 人間の反応とAI解釈を分離し、客観品質と主観意味を相殺せず必要なscopeだけ再作業する。HR-R-01..04へ分解する。"
+        },
+        {
+          "line": 12,
+          "text": "- DGH-BR-03: 反復で受容した軸を保持し、findingの解消・再発・未解決から収束を検証する。DC-R-01..04へ分解する。"
+        },
+        {
+          "line": 15,
+          "text": "人間の相談・反応を指示/承認へ勝手に昇格しない。半永続的な設計判断はADR、採否・認可はscope付き証拠、作業連絡は期限付きmemoryへ分離する。"
+        },
+        {
+          "line": 16,
+          "text": "Fullの成立とLiteへの昇格は別。Web製品化、別研究engine、全体planner解放、包括的公開権限は非対象。"
         }
       ],
       "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
@@ -156,7 +192,15 @@
         "actual_file_end": 16,
         "meaning_change": false,
         "note": "不存在の17〜19行を引用しない。004承認元のlegacy locatorは変更せず本設計の引用範囲を実在行に限定。"
-      }
+      },
+      "read_line_locators": [
+        10,
+        11,
+        12,
+        15,
+        16
+      ],
+      "locator_semantics": "explicit individual content lines; file bytes unchanged"
     },
     {
       "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
@@ -192,11 +236,41 @@
           "text": "`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`で小さく収束する。S4の採用判断は"
         },
         {
-          "line": 27,
-          "text": ""
+          "line": 14,
+          "text": "Scrum内でproduct authorityを変更せず、正規Vモデルの該当層へScrum Reverseする。"
+        },
+        {
+          "line": 16,
+          "text": "product要求・設計・実装はcanonical L1〜L12のForwardで進める。管理上の緊急性を理由にVペア、"
+        },
+        {
+          "line": 17,
+          "text": "上下edge、TDD、review、acceptanceを省略しない。"
+        },
+        {
+          "line": 24,
+          "text": "- Project Statusから上流意味、承認、完了状態を逆書込みしない。"
+        },
+        {
+          "line": 28,
+          "text": "Issueは観測、影響範囲、再発回数、提案するgate／checklist、現在のScrum stage、Scrum Reverse先を"
+        },
+        {
+          "line": 29,
+          "text": "欠落なく保持する。同一findingを重複起票せず、既存Issueへ観測証拠を追記する。"
         }
       ],
-      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "read_line_locators": [
+        13,
+        14,
+        16,
+        17,
+        24,
+        28,
+        29
+      ],
+      "locator_semantics": "explicit individual content lines; file bytes unchanged"
     },
     {
       "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
@@ -256,15 +330,65 @@
       "reuse": "semantic_rederivation",
       "line_quotes": [
         {
-          "line": 1,
-          "text": "---"
+          "line": 28,
+          "text": "> 2026-09-05、PLAN-L3-77固有のL3 human gateが成立した。本書は承認済みcandidateだが、"
+        },
+        {
+          "line": 29,
+          "text": "> canonical promotionとG3再freezeが成立するまではcurrent authorityではない。runtime completion、"
+        },
+        {
+          "line": 30,
+          "text": "> authority自動write、merge／publish／release／cutoverは別境界に残す。"
+        },
+        {
+          "line": 40,
+          "text": "UILで正規化されたeventとfindingからRF0候補を導出する規則を、version、authority digest、source／detector identity、"
+        },
+        {
+          "line": 41,
+          "text": "baseline revision、比較演算、threshold source、観測window、minimum sample、hysteresis、cooldown、expiry、severity、"
+        },
+        {
+          "line": 42,
+          "text": "counterevidence、unknown dispositionへ束縛する。source registryの定義を複製せず、policy値をruntimeへ重複hardcodeしない。"
+        },
+        {
+          "line": 46,
+          "text": "invariant違反、再発、metric budget超過、悪化傾向、structural drift、release boundary、provider change、"
+        },
+        {
+          "line": 47,
+          "text": "scheduled safety-netを別trigger identityとして扱う。LOC、file size、Issue数、AI評価、単一瞬間値だけでは候補をadmitしない。"
+        },
+        {
+          "line": 48,
+          "text": "蓄積評価はversioned windowとminimum sampleを満たし、lifecycle boundaryは評価契機であって悪化証拠なしにrefactorを強制しない。"
+        },
+        {
+          "line": 53,
+          "text": "UIL candidateからRF0へ渡すadmissionはcandidate／finding／trigger evidenceのexact identityとdigest、source registry、"
         },
         {
           "line": 54,
           "text": "trigger policy、baseline、primary scopeはexactly one、related scope、semantic parity、route candidate、suppression、"
         }
       ],
-      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "read_line_locators": [
+        28,
+        29,
+        30,
+        40,
+        41,
+        42,
+        46,
+        47,
+        48,
+        53,
+        54
+      ],
+      "locator_semantics": "explicit individual content lines; file bytes unchanged"
     },
     {
       "asset_id": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
@@ -282,7 +406,25 @@
           "text": "| ④ テストコード | `tests/` |"
         }
       ],
-      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "semantic_rederivation": {
+        "preserve": "設計文書・実装コード・test設計・testコードを異なる成果物として双方向traceで結ぶ（122–131）。",
+        "change": "旧docs/design・src・docs/test-design・tests、旧TS命名と.helix物理構成は採用しない。新世代004のtrace意味へ導き、正式配置とcode bindingは後続詳細設計へ残す。",
+        "reason": "現行のHARNESS/OS責務分離、JSON正本、現行V12の設計と実装の区別、10/9配置方針を保持するため。旧sourceのtrace義務を旧物理pathへ依存させない。",
+        "applies_to": [
+          "HARNESS-L4-004-F01",
+          "HARNESS-L9-004-F01"
+        ],
+        "source_lines": [
+          122,
+          124,
+          128,
+          129,
+          130,
+          131
+        ],
+        "adoption": "semantic_rederivation_only_not_old_layout_or_runtime"
+      }
     },
     {
       "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
@@ -304,7 +446,25 @@
           "text": "| **HIL-FR-50** | Ledger Design Refactorはlayer ledgerの重複、責務混在、semantic/name collision、変更波及、孤立edgeを比較し、externalize/commonize/objectize/semantic-rename/split/merge候補を生成する。全上下・左右consumer、before/after oracle、pair保持、rollbackが揃うbehavior-preserving変更だけをDesignRefactorへ送り、要求/公開contract/永続state変更はRedesign/Retrofitへrerouteする。 | ledger diff、refactor candidate/plan、pair-preservation receipt、reroute receipt |"
         }
       ],
-      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。"
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "semantic_rederivation": {
+        "preserve": "HIL-FR-39のsemantic signature/consumerとbefore-after oracle、45のstable ID/immutable revision/source atom disposition/downstream stale、50の全consumer/pairと意味保存・意味変更の別route（129/135/140）。",
+        "change": "旧Design Refactor Gate/Requirement Definition Ledger/Ledger Design Refactorのruntime、台帳schema、固定route、旧L6実装pairやcopy機構を採用しない。004の型付きrelation候補・影響/成立の分離・無損失分割と最上流Backflow/OS実運転境界へ意味を再導出する。",
+        "reason": "承認済み004と003のowner境界および現行V12のpairを満たし、旧graphや旧成功が要求authority/完了の根拠になる失敗を避けるため。意味変更・移管・retireは既存上流判断へ戻す。",
+        "applies_to": [
+          "HARNESS-L4-004-F02",
+          "HARNESS-L4-004-F03",
+          "HARNESS-L4-004-F04",
+          "HARNESS-L4-004-F05",
+          "HARNESS-L4-004-B01"
+        ],
+        "source_lines": [
+          129,
+          135,
+          140
+        ],
+        "adoption": "selected_semantic_comparison_not_whole_legacy_requirement_or_runtime"
+      }
     }
   ],
   "legacy_rederivation_basis": {
@@ -700,8 +860,8 @@
     },
     "F01": {
       "normal": 1,
-      "negative": 24,
-      "source_packets": 25,
+      "negative": 26,
+      "source_packets": 27,
       "state": "draft_not_executed"
     },
     "F05": {
@@ -728,5 +888,13 @@
       "source_packets": 40,
       "state": "draft_not_executed"
     }
+  },
+  "synthetic_reference_binding": {
+    "qualification": "synthetic_content_bound_revision_not_formal_schema_or_actual_owner",
+    "rule": "各content-bearing ref/source/basisのrevisionは、同一node内で当該refを除いた内容のcanonical JSON SHA-256へ束縛する。子参照を先に束縛する。内容を変えた材料は別revisionとし、同じexact refへ別内容を結合しない。",
+    "mutation_replay": "reference_preparationの参照revisionのみをbefore/afterで先に照合・適用し、その後に記録された内容mutationを適用する。準備変更は意味期待やauthorityの成立を変更しない。",
+    "standalone_refs": "参照だけで内容nodeがない値は未資格の合成参照のまま。実owner bytes/資格はL5/L8で閉じる。",
+    "actual_identity_assigned": false,
+    "linked_ref_rule": "source_ref/target_ref/destination_ref/decision_refが同一内容nodeを指す場合は資格付けした同一revisionへ結ぶ。参照の誤りを意図した負例は誤りを保持する。不存在の参照はbaselineの資格付き参照で保持し、存在を生成しない。"
   }
 }
