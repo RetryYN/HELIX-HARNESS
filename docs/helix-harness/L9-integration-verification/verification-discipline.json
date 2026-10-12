@@ -800,7 +800,7 @@
               },
               {
                 "ref": {
-                  "identity": "RUN-B",
+                  "identity": "RUN-B-SAME-PROVIDER",
                   "revision": "r1",
                   "scope": {
                     "project": "P",
@@ -4093,7 +4093,7 @@
             ],
             "combination_contract": {
               "ref": {
-                "identity": "COMBINATION-X",
+                "identity": "COMBINATION-X-NOUNIQUE",
                 "revision": "r1",
                 "scope": {
                   "project": "P",
@@ -4111,7 +4111,7 @@
               "covered_by_lower_refs": [],
               "no_unresolved_unique_basis": {
                 "ref": {
-                  "identity": "COMBINATION-X",
+                  "identity": "COMBINATION-X-NOUNIQUE-BASIS",
                   "revision": "r1",
                   "scope": {
                     "project": "P",
@@ -8449,7 +8449,7 @@
               {
                 "kind": "restore",
                 "ref": {
-                  "identity": "RESTORE-R",
+                  "identity": "RESTORE-R-OBSERVED",
                   "revision": "r1",
                   "scope": {
                     "project": "P",
