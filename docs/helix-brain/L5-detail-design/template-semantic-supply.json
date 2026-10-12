@@ -329,9 +329,10 @@
           "subject_ref": "Ref",
           "subject_sha256": "string|null",
           "applicable_scope": "RawValue",
-          "qualification_body": "RawValue"
+          "qualification_body": "RawValue",
+          "root_ref": "Ref"
         },
-        "meaning": "既存ownerの資格記録をそのまま解決する入力。自己申告/digestだけでは追加しない。trust resolverの実成立は本unit外。"
+        "meaning": "既存ownerの資格記録をそのまま解決する入力。自己申告/digestだけでは追加しない。trust resolverの実成立は本unit外。 root_refは同snapshotの独立qualification_rootsへ完全対応。未解決rootから新しいrootを生成しない。"
       },
       "MeaningFact": {
         "fields": {
@@ -341,7 +342,8 @@
           "meaning": "RawValue",
           "condition": "RawValue",
           "reason": "string|null",
-          "oracle_ref": "Ref|null"
+          "oracle_ref": "Ref|null",
+          "ref": "Ref"
         },
         "meaning": "意味bodyを含む原根拠。key/label存在は意味定義ではない。相反meaningはownerの原semantic比較根拠へ照合し、単なる文面差を矛盾と決めない。"
       },
@@ -388,7 +390,8 @@
           "source_ref": "Ref|null",
           "reason": "string|null",
           "origin": "project_owner | reference_fixture | absent",
-          "applicability_ref": "Ref|null"
+          "applicability_ref": "Ref|null",
+          "ref": "Ref"
         },
         "meaning": "value=nullはunknown。reference_fixtureの90秒/1CPU/256MiBは稼働値へ採用しない。新閾値・実値を生成しない。"
       },
@@ -558,9 +561,11 @@
       "Comparison": {
         "fields": {
           "axes": "AxisResult[]",
-          "findings": "Finding[]"
+          "findings": "Finding[]",
+          "producer_symbol": "string",
+          "input_binding": "Binding"
         },
-        "meaning": "局所比較結果。無関係なvalid candidateは保持し、不足を別候補成功で相殺しない。"
+        "meaning": "局所比較結果。無関係なvalid candidateは保持し、不足を別候補成功で相殺しない。 producer_symbol/input_bindingは評価器が入力由来で付ける。caller supplied cached結果の再利用はしない。"
       },
       "SupplyAnalysis": {
         "fields": {
@@ -575,6 +580,71 @@
           "side_effect_count": "integer"
         },
         "meaning": "候補・不足・比較材料だけ。選択/採択/許可/義務消込/Accepted/実受領の成立fieldを出力しない。side_effect_countはpure設計の期待0でありruntime証明ではない。"
+      },
+      "DefinitionContext": {
+        "fields": {
+          "validated": "ValidatedSupply"
+        },
+        "meaning": "同一immutable入力から指定関数が計算した比較結果。callerの任意主張を比較結果として注入しない。別binding/snapshot結果は結合しない。"
+      },
+      "ValueContext": {
+        "fields": {
+          "validated": "ValidatedSupply",
+          "definitions": "Comparison"
+        },
+        "meaning": "同一immutable入力から指定関数が計算した比較結果。callerの任意主張を比較結果として注入しない。別binding/snapshot結果は結合しない。"
+      },
+      "IdentityContext": {
+        "fields": {
+          "validated": "ValidatedSupply"
+        },
+        "meaning": "同一immutable入力から指定関数が計算した比較結果。callerの任意主張を比較結果として注入しない。別binding/snapshot結果は結合しない。"
+      },
+      "OracleContext": {
+        "fields": {
+          "validated": "ValidatedSupply",
+          "definitions": "Comparison",
+          "identity_trace": "Comparison"
+        },
+        "meaning": "同一immutable入力から指定関数が計算した比較結果。callerの任意主張を比較結果として注入しない。別binding/snapshot結果は結合しない。"
+      },
+      "PromotionContext": {
+        "fields": {
+          "validated": "ValidatedSupply"
+        },
+        "meaning": "同一immutable入力から指定関数が計算した比較結果。callerの任意主張を比較結果として注入しない。別binding/snapshot結果は結合しない。"
+      },
+      "DependencyContext": {
+        "fields": {
+          "validated": "ValidatedSupply",
+          "definitions": "Comparison"
+        },
+        "meaning": "同一immutable入力から指定関数が計算した比較結果。callerの任意主張を比較結果として注入しない。別binding/snapshot結果は結合しない。"
+      },
+      "ClaimContext": {
+        "fields": {
+          "validated": "ValidatedSupply",
+          "definitions": "Comparison",
+          "values_applicability": "Comparison",
+          "identity_trace": "Comparison",
+          "oracle_view": "Comparison",
+          "promotion": "Comparison",
+          "dependencies_handoff": "Comparison"
+        },
+        "meaning": "同一immutable入力から指定関数が計算した比較結果。callerの任意主張を比較結果として注入しない。別binding/snapshot結果は結合しない。"
+      },
+      "AnalysisContext": {
+        "fields": {
+          "validated": "ValidatedSupply",
+          "claims": "Comparison",
+          "definitions": "Comparison",
+          "values_applicability": "Comparison",
+          "identity_trace": "Comparison",
+          "oracle_view": "Comparison",
+          "promotion": "Comparison",
+          "dependencies_handoff": "Comparison"
+        },
+        "meaning": "同一immutable入力から指定関数が計算した比較結果。callerの任意主張を比較結果として注入しない。別binding/snapshot結果は結合しない。"
       }
     },
     "invariants": [
@@ -583,13 +653,29 @@
       "意味比較はownerの独立根拠。caller主張と文字列差を意味資格にしない。",
       "decode可能semantic null/欠落/相反は比較へ渡す。",
       "MSG3候補のfield最終照合・relation先未完を保持。合成正常モデルは採択ではない。"
-    ]
+    ],
+    "reference_comparison": "Ref.identity/revision/scope/ownerを比較。sha256が両方供給された場合はdigestも比較。参照側digest未供給はsource bytes不在を補わず、source本体のdigest/bytes検証を独立必須とする。Ref.source_locatorは所在であってidentityではない。"
   },
   "functions": [
     {
       "id": "HELIXBRAIN-L5-032-validate_supply_input",
       "symbol": "validate_supply_input",
-      "contract_refs": [],
+      "contract_refs": [
+        "HELIXBRAIN-L5-032-B01",
+        "HELIXBRAIN-L5-032-B02",
+        "HELIXBRAIN-L5-032-F01",
+        "HELIXBRAIN-L5-032-F02",
+        "HELIXBRAIN-L5-032-F03",
+        "HELIXBRAIN-L5-032-F04",
+        "HELIXBRAIN-L5-032-F05",
+        "HELIXBRAIN-L5-032-F06",
+        "HELIXBRAIN-L5-032-F07",
+        "HELIXBRAIN-L5-032-F08",
+        "HELIXBRAIN-L5-032-F09",
+        "HELIXBRAIN-L5-032-N01",
+        "HELIXBRAIN-L5-032-N02",
+        "HELIXBRAIN-L5-032-N03"
+      ],
       "input": "RawValue",
       "output": "ValidatedSupply",
       "effect": "none",
@@ -599,7 +685,17 @@
         "原sourceの相反factsはshape duplicateで捨てず意味比較へ渡す。未解決入力に依存する項目だけunknownへ保持し、無関係なqualified項目を比較する。実trust resolver/parser/資源予算はL6/L7で別に成立させる。"
       ],
       "failure_rules": [],
-      "unit_case_refs": []
+      "unit_case_refs": [
+        "HELIXBRAIN-L8-032-ADD-01",
+        "HELIXBRAIN-L8-032-ADD-02",
+        "HELIXBRAIN-L8-032-ADD-03",
+        "HELIXBRAIN-L8-032-ADD-04",
+        "HELIXBRAIN-L8-032-ADD-05",
+        "HELIXBRAIN-L8-032-ADD-06",
+        "HELIXBRAIN-L8-032-ADD-07",
+        "HELIXBRAIN-L8-032-ADD-08"
+      ],
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-validate_supply_input"
     },
     {
       "id": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
@@ -608,7 +704,7 @@
         "HELIXBRAIN-L5-032-F01",
         "HELIXBRAIN-L5-032-F02"
       ],
-      "input": "ValidatedSupply",
+      "input": "DefinitionContext",
       "output": "Comparison",
       "effect": "none",
       "algorithm": [
@@ -720,8 +816,11 @@
         "HELIXBRAIN-L8-032-F02-NEG-44",
         "HELIXBRAIN-L8-032-F02-NEG-45",
         "HELIXBRAIN-L8-032-F02-NEG-46",
-        "HELIXBRAIN-L8-032-F02-NEG-47"
-      ]
+        "HELIXBRAIN-L8-032-F02-NEG-47",
+        "HELIXBRAIN-L8-032-ADD-09",
+        "HELIXBRAIN-L8-032-ADD-10"
+      ],
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_descriptor_definitions"
     },
     {
       "id": "HELIXBRAIN-L5-032-compare_values_and_applicability",
@@ -730,7 +829,7 @@
         "HELIXBRAIN-L5-032-F03",
         "HELIXBRAIN-L5-032-N03"
       ],
-      "input": "ValidatedSupply",
+      "input": "ValueContext",
       "output": "Comparison",
       "effect": "none",
       "algorithm": [
@@ -754,8 +853,11 @@
         "HELIXBRAIN-L8-032-F03-NEG-04",
         "HELIXBRAIN-L8-032-N03-NEG-01",
         "HELIXBRAIN-L8-032-N03-NEG-02",
-        "HELIXBRAIN-L8-032-N03-NEG-03"
-      ]
+        "HELIXBRAIN-L8-032-N03-NEG-03",
+        "HELIXBRAIN-L8-032-ADD-11",
+        "HELIXBRAIN-L8-032-ADD-12"
+      ],
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability"
     },
     {
       "id": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
@@ -764,7 +866,7 @@
         "HELIXBRAIN-L5-032-F04",
         "HELIXBRAIN-L5-032-N01"
       ],
-      "input": "ValidatedSupply",
+      "input": "IdentityContext",
       "output": "Comparison",
       "effect": "none",
       "algorithm": [
@@ -798,8 +900,11 @@
         "HELIXBRAIN-L8-032-F04-NEG-09",
         "HELIXBRAIN-L8-032-F04-NEG-10",
         "HELIXBRAIN-L8-032-N01-NEG-01",
-        "HELIXBRAIN-L8-032-N01-NEG-02"
-      ]
+        "HELIXBRAIN-L8-032-N01-NEG-02",
+        "HELIXBRAIN-L8-032-ADD-13",
+        "HELIXBRAIN-L8-032-ADD-14"
+      ],
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_identity_versions_and_trace"
     },
     {
       "id": "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary",
@@ -808,7 +913,7 @@
         "HELIXBRAIN-L5-032-F05",
         "HELIXBRAIN-L5-032-F06"
       ],
-      "input": "ValidatedSupply",
+      "input": "OracleContext",
       "output": "Comparison",
       "effect": "none",
       "algorithm": [
@@ -832,8 +937,10 @@
         "HELIXBRAIN-L8-032-F06-NEG-01",
         "HELIXBRAIN-L8-032-F06-NEG-02",
         "HELIXBRAIN-L8-032-F06-NEG-03",
-        "HELIXBRAIN-L8-032-F06-NEG-04"
-      ]
+        "HELIXBRAIN-L8-032-F06-NEG-04",
+        "HELIXBRAIN-L8-032-ADD-15"
+      ],
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_oracle_and_view_boundary"
     },
     {
       "id": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
@@ -841,7 +948,7 @@
       "contract_refs": [
         "HELIXBRAIN-L5-032-F08"
       ],
-      "input": "ValidatedSupply",
+      "input": "PromotionContext",
       "output": "Comparison",
       "effect": "none",
       "algorithm": [
@@ -859,8 +966,10 @@
         "HELIXBRAIN-L8-032-F08-NEG-01",
         "HELIXBRAIN-L8-032-F08-NEG-02",
         "HELIXBRAIN-L8-032-F08-NEG-03",
-        "HELIXBRAIN-L8-032-F08-NEG-04"
-      ]
+        "HELIXBRAIN-L8-032-F08-NEG-04",
+        "HELIXBRAIN-L8-032-ADD-16"
+      ],
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_knowledge_promotion"
     },
     {
       "id": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
@@ -869,7 +978,7 @@
         "HELIXBRAIN-L5-032-B02",
         "HELIXBRAIN-L5-032-F09"
       ],
-      "input": "ValidatedSupply",
+      "input": "DependencyContext",
       "output": "Comparison",
       "effect": "none",
       "algorithm": [
@@ -895,8 +1004,12 @@
         "HELIXBRAIN-L8-032-F09-NEG-03",
         "HELIXBRAIN-L8-032-F09-NEG-04",
         "HELIXBRAIN-L8-032-F09-NEG-05",
-        "HELIXBRAIN-L8-032-F09-NEG-06"
-      ]
+        "HELIXBRAIN-L8-032-F09-NEG-06",
+        "HELIXBRAIN-L8-032-ADD-17",
+        "HELIXBRAIN-L8-032-ADD-18",
+        "HELIXBRAIN-L8-032-ADD-19"
+      ],
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_dependencies_and_handoff"
     },
     {
       "id": "HELIXBRAIN-L5-032-compare_claim_boundaries",
@@ -906,7 +1019,7 @@
         "HELIXBRAIN-L5-032-F07",
         "HELIXBRAIN-L5-032-N02"
       ],
-      "input": "ValidatedSupply",
+      "input": "ClaimContext",
       "output": "Comparison",
       "effect": "none",
       "algorithm": [
@@ -948,14 +1061,31 @@
         "HELIXBRAIN-L8-032-N02-NEG-07",
         "HELIXBRAIN-L8-032-N02-NEG-08",
         "HELIXBRAIN-L8-032-N02-NEG-09",
-        "HELIXBRAIN-L8-032-N02-NEG-10"
-      ]
+        "HELIXBRAIN-L8-032-N02-NEG-10",
+        "HELIXBRAIN-L8-032-ADD-20"
+      ],
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_claim_boundaries"
     },
     {
       "id": "HELIXBRAIN-L5-032-build_supply_analysis",
       "symbol": "build_supply_analysis",
-      "contract_refs": [],
-      "input": "Comparison[] + ValidatedSupply",
+      "contract_refs": [
+        "HELIXBRAIN-L5-032-B01",
+        "HELIXBRAIN-L5-032-B02",
+        "HELIXBRAIN-L5-032-F01",
+        "HELIXBRAIN-L5-032-F02",
+        "HELIXBRAIN-L5-032-F03",
+        "HELIXBRAIN-L5-032-F04",
+        "HELIXBRAIN-L5-032-F05",
+        "HELIXBRAIN-L5-032-F06",
+        "HELIXBRAIN-L5-032-F07",
+        "HELIXBRAIN-L5-032-F08",
+        "HELIXBRAIN-L5-032-F09",
+        "HELIXBRAIN-L5-032-N01",
+        "HELIXBRAIN-L5-032-N02",
+        "HELIXBRAIN-L5-032-N03"
+      ],
+      "input": "AnalysisContext",
       "output": "SupplyAnalysis",
       "effect": "none",
       "algorithm": [
@@ -964,7 +1094,13 @@
         "opaque identity/revision/scope/descriptor/source/axisを供給snapshot内で決定的順に整列。外部時計/env/fs/network/DBなし。入力がdecode不能でも所在を返し、無関係入力の成立を捏造しない。"
       ],
       "failure_rules": [],
-      "unit_case_refs": []
+      "unit_case_refs": [
+        "HELIXBRAIN-L8-032-ADD-21",
+        "HELIXBRAIN-L8-032-ADD-22",
+        "HELIXBRAIN-L8-032-ADD-23",
+        "HELIXBRAIN-L8-032-ADD-24"
+      ],
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
     }
   ],
   "contracts": [
@@ -985,7 +1121,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-B01",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_claim_boundaries"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_claim_boundaries",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1005,7 +1143,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-B02",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_dependencies_and_handoff"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1025,7 +1165,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-F01",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_descriptor_definitions"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1045,7 +1187,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-F02",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_descriptor_definitions"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1065,7 +1209,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-F03",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_values_and_applicability"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_values_and_applicability",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1085,7 +1231,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-F04",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_identity_versions_and_trace"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1105,7 +1253,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-F05",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1125,7 +1275,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-F06",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1145,7 +1297,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-F07",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_claim_boundaries"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_claim_boundaries",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1165,7 +1319,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-F08",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_knowledge_promotion"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1185,7 +1341,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-F09",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_dependencies_and_handoff"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1205,7 +1363,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-N01",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_identity_versions_and_trace"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1225,7 +1385,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-N02",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_claim_boundaries"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_claim_boundaries",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     },
     {
@@ -1245,7 +1407,9 @@
       "backflow": "汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。",
       "basic_design_ref": "HELIXBRAIN-L4-032-N03",
       "function_refs": [
-        "HELIXBRAIN-L5-032-compare_values_and_applicability"
+        "HELIXBRAIN-L5-032-validate_supply_input",
+        "HELIXBRAIN-L5-032-compare_values_and_applicability",
+        "HELIXBRAIN-L5-032-build_supply_analysis"
       ]
     }
   ],
@@ -2724,14 +2888,83 @@
   "determinism": "供給immutable snapshotだけを読みtemplate/knowledge identity/revision、descriptor identity、source Ref、axisで決定的に並べる。異scope/版を併合しない。時計/env/fs/network/DB参照なし。",
   "implementation_preparation": {
     "state": "not_ready",
-    "next": "60負例のtyped入力/判定を具体化して追加分岐を著述し、exact source/trace静的検証と独立意味reviewを完了する。",
+    "next": "関数context/source資格/具体fixtureと追加分岐の静的照合・独立意味reviewを実施する。設計候補の著述だけではformal fixture凍結や実装着手の成立にしない。",
     "runtime_evidence": "none"
   },
   "remaining": [
-    "L5/L8で論理型、descriptor/source解決、claim、条件別依存とpure関数、単体oracleを具体化。",
+    "L5/L8候補で論理型、descriptor/source解決、claim、条件別依存とpure関数、単体oracleを具体化した。独立review待ち。",
     "正式schema/key/型/式木/wire/registry/resolver、各field意味/要否/oracle最終照合、BRAIN運用promotionと全seed採用は未成立。",
     "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。",
-    "105負例の具体typed mutationとpredicateは候補として著述。各関数の正常対照とshape/null/資格/locality/determinism追加unit分岐は未著述。件数のみで詳細設計完成としない。",
-    "論理typeの参照閉包、関数間のcomparison入力対応、wire/parser/実source資格resolver/資源条件/言語・依存・配置、実fixture・oracle凍結・実装前Red・Greenは未成立。独立意味review未実施。"
-  ]
+    "105負例と24追加unit分岐・9正常function oracleをlogical候補として著述。source/ref/資格とbranch十分性の意味review未完。",
+    "formal wire/parser/実source資格resolver/資源条件/言語・依存・配置と実fixture/oracle凍結/実装前Red/Greenは未成立。独立意味review未実施。"
+  ],
+  "evaluation_order": [
+    {
+      "symbol": "validate_supply_input",
+      "reads": []
+    },
+    {
+      "symbol": "compare_descriptor_definitions",
+      "reads": []
+    },
+    {
+      "symbol": "compare_identity_versions_and_trace",
+      "reads": []
+    },
+    {
+      "symbol": "compare_knowledge_promotion",
+      "reads": []
+    },
+    {
+      "symbol": "compare_values_and_applicability",
+      "reads": [
+        "compare_descriptor_definitions"
+      ]
+    },
+    {
+      "symbol": "compare_oracle_and_view_boundary",
+      "reads": [
+        "compare_descriptor_definitions",
+        "compare_identity_versions_and_trace"
+      ]
+    },
+    {
+      "symbol": "compare_dependencies_and_handoff",
+      "reads": [
+        "compare_descriptor_definitions"
+      ]
+    },
+    {
+      "symbol": "compare_claim_boundaries",
+      "reads": [
+        "compare_descriptor_definitions",
+        "compare_values_and_applicability",
+        "compare_identity_versions_and_trace",
+        "compare_oracle_and_view_boundary",
+        "compare_knowledge_promotion",
+        "compare_dependencies_and_handoff"
+      ]
+    },
+    {
+      "symbol": "build_supply_analysis",
+      "reads": [
+        "compare_descriptor_definitions",
+        "compare_values_and_applicability",
+        "compare_identity_versions_and_trace",
+        "compare_oracle_and_view_boundary",
+        "compare_knowledge_promotion",
+        "compare_dependencies_and_handoff",
+        "compare_claim_boundaries"
+      ]
+    }
+  ],
+  "execution_contract": {
+    "entry": "validate_supply_input → evaluation_order → build_supply_analysis",
+    "invalid_raw": "decode不能input=nullなら意味関数はempty Comparisonを返すが成功claimなし。InputIssueをbuildが必ず保存する。欠落required集合はdecode可能意味欠落としてnull入力にしない。",
+    "qualification": "未資格sourceに依存する原意味はunknown。異bindingの有資格項目は比較できる。異版/異scopeのresult混入はinput_issueで保持し結果を使わない。",
+    "normal_outcome": "各原axisを保持したcandidate material。原handoff=not_receivedと全definition=knownの併存を許す。案件採用/義務完成の出力なし。",
+    "comparison_composition": "各関数のproducer_symbol/input_bindingを検査。依存Comparisonの未供給/異bindingは関連axis未評価として返し、clock/filesystemへ補充しない。",
+    "claim_locality": "同じClaimは根拠を読む担当関数の特定ruleへ対応。別group ruleで同一claimを二重裁定せず、原axis resultは担当意味関数に残す。",
+    "duplicate_policy": "同source/bodyの入力重複はoriginal refsへ保持。異sourceの相反は独立意味比較へ渡す。重複を勝手にauthorityにしない。"
+  }
 }
