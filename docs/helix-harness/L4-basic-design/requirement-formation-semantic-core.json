@@ -256,7 +256,22 @@
         "event_registration_execution_owner": "OS",
         "external_consumer": "独立consumerは008の再検証契約を実装し、自分のauthorityで処理する。OSを意味処理の必須基盤にしない。"
       },
-      "failure_return": "当該source/identity/revision/scope/版と読めた原資料を保持し、不足/unknown/conflict/staleを当該ownerへ返す。未解決で依存する下流成立を生成しない。"
+      "failure_return": "当該source/identity/revision/scope/版と読めた原資料を保持し、不足/unknown/conflict/staleを当該ownerへ返す。未解決で依存する下流成立を生成しない。",
+      "meaning_operation_detail": {
+        "source_basis": "承認済み008-B01、旧ADR010:29–47の意味/外部作用分離、RDJ-FR002/006/008/010と§2のcandidate/人間意図/compile/freeze分離を意味再導出。旧Node/DB/CLI/runtime/G1G3を採用しない。",
+        "meaning_owner": "HARNESS",
+        "generic_knowledge_owner": "BRAIN",
+        "application_owner": "CORE009",
+        "management_owner": "OS",
+        "authority_limit": "合意/承認/操作/学習のownerは合成原資料の期待profile。実際の人/委任系統/認証/認可/学習採用は各承認済みowner契約で別に成立させる。新しい承認手続きを追加しない。",
+        "consultation": "相談のみでOS登録を必須化しない。意味候補の未知と判断待ちは維持する。",
+        "pending": [
+          "実owner/source資格とauthority契約のexact binding",
+          "正式event/record型と原bytes",
+          "実管理登録/実行/監視",
+          "実合意/委任承認/操作認可/知識採用"
+        ]
+      }
     },
     {
       "id": "HARNESS-L4-008-B02",
@@ -768,7 +783,6 @@
       "state": "draft_not_executed"
     },
     "remaining_contracts": [
-      "B01",
       "N01"
     ],
     "F01": {
@@ -811,6 +825,12 @@
       "normal": 3,
       "negative": 38,
       "source_packets": 41,
+      "state": "draft_not_executed"
+    },
+    "B01": {
+      "normal": 6,
+      "negative": 76,
+      "source_packets": 82,
       "state": "draft_not_executed"
     }
   }
