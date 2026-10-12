@@ -255,7 +255,8 @@
       ],
       "content_comparison": [
         "必要参照を参考扱いにしない。unknownの選択を全不要にしない。",
-        "未選択実験全能力の完成を待たず、単体greenで全構成成立にしない。"
+        "未選択実験全能力の完成を待たず、単体greenで全構成成立にしない。",
+        "構成候補で必要となる009、Infrastructure maturityで必要となるINFRA017の欠落・原版unknown・別版を局所保留する。原版unknownはnull一致で閉じない。"
       ],
       "qualification_rule": "合成対応を実source資格/独立性/必要集合/正式binding/評価/登録/採用/成熟/authority/設計閉包へ昇格しない。",
       "operation_effect": "none"
@@ -324,7 +325,7 @@
       "F01": 19,
       "F02": 17,
       "F03": 15,
-      "F04": 23,
+      "F04": 29,
       "N01": 12,
       "B01": 8
     },

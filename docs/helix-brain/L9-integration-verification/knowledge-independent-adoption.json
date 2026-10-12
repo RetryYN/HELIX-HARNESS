@@ -10410,6 +10410,420 @@
           "basis": "必要参照参考化/未知全不要/非選択完成gate/単体green全構成claimを拒否。",
           "execution_state": "not_executed",
           "effect": "none"
+        },
+        {
+          "id": "B025-F04-009-SELECTED-NEEDED-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-025-F04",
+          "system_oracle_ref": "HELIXBRAIN-L10-025-F04",
+          "l4_ref": "HELIXBRAIN-L4-025-F04",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B025-F04-009-SELECTED-NEEDED-MISSING",
+              "revision": "fixture-content-b55fee1fe1a92b2242a4d0f0dcf6eb43c137425dbcc508a32b1f2e3b2956bcd6",
+              "scope": "ADOPTION-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"needed_as_reference_only\":false,\"unit_green_all_composition\":false,\"unknown_all_unneeded\":false,\"unselected_experiment_completion_gate\":false},\"original_base_needed\":[\"007\",\"008\",\"012\",\"LABO\",\"OS\",\"BRAIN-change\"],\"original_contract_references\":{\"007\":{\"identity\":\"007\",\"revision\":\"contract-007-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"008\":{\"identity\":\"008\",\"revision\":\"contract-008-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"009\":{\"identity\":\"009\",\"revision\":\"contract-009-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"011\":{\"identity\":\"011\",\"revision\":\"contract-011-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"012\":{\"identity\":\"012\",\"revision\":\"contract-012-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"020\":{\"identity\":\"020\",\"revision\":\"contract-020-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"BRAIN-change\":{\"identity\":\"BRAIN-change\",\"revision\":\"contract-BRAIN-change-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"INFRA017\":{\"identity\":\"INFRA017\",\"revision\":\"contract-INFRA017-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"LABO\":{\"identity\":\"LABO\",\"revision\":\"contract-LABO-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"OS\":{\"identity\":\"OS\",\"revision\":\"contract-OS-r1\",\"scope\":\"ADOPTION-SCOPE-P\"}},\"original_optional_needed_by_condition\":{\"composition_candidate\":\"009\",\"core_origin\":\"011\",\"evaluation_connection\":\"020\",\"infrastructure_maturity\":\"INFRA017\"},\"original_selection\":{\"composition_candidate\":true,\"core_origin\":true,\"evaluation_connection\":true,\"infrastructure_maturity\":false},\"submitted_contract_references\":{\"007\":{\"identity\":\"007\",\"revision\":\"contract-007-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"008\":{\"identity\":\"008\",\"revision\":\"contract-008-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"011\":{\"identity\":\"011\",\"revision\":\"contract-011-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"012\":{\"identity\":\"012\",\"revision\":\"contract-012-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"020\":{\"identity\":\"020\",\"revision\":\"contract-020-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"BRAIN-change\":{\"identity\":\"BRAIN-change\",\"revision\":\"contract-BRAIN-change-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"LABO\":{\"identity\":\"LABO\",\"revision\":\"contract-LABO-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"OS\":{\"identity\":\"OS\",\"revision\":\"contract-OS-r1\",\"scope\":\"ADOPTION-SCOPE-P\"}},\"submitted_selection\":{\"composition_candidate\":true,\"core_origin\":true,\"evaluation_connection\":true,\"infrastructure_maturity\":false}}",
+            "sha256": "b55fee1fe1a92b2242a4d0f0dcf6eb43c137425dbcc508a32b1f2e3b2956bcd6",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "selection_results": {
+              "core_origin": "content_corresponding_in_fixture",
+              "composition_candidate": "content_corresponding_in_fixture",
+              "evaluation_connection": "content_corresponding_in_fixture",
+              "infrastructure_maturity": "content_corresponding_in_fixture"
+            },
+            "unknown_original_selection": [],
+            "needed_reference_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "009": "missing",
+              "020": "content_corresponding_in_fixture"
+            },
+            "unselected_references": [
+              "INFRA017"
+            ],
+            "retained_selection": {
+              "core_origin": true,
+              "composition_candidate": true,
+              "evaluation_connection": true,
+              "infrastructure_maturity": false
+            },
+            "candidate_closure": "held",
+            "non_selected_paths": "unobserved_not_completion_gate",
+            "claim_results": {
+              "needed_as_reference_only": "none",
+              "unknown_all_unneeded": "none",
+              "unselected_experiment_completion_gate": "none",
+              "unit_green_all_composition": "none"
+            },
+            "effects": {
+              "actual_evaluation": false,
+              "actual_registration": false,
+              "actual_independent_verification": false,
+              "actual_adoption": false,
+              "actual_maturity": false,
+              "actual_upstream_changed": false,
+              "actual_operation_permission": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "条件選択により必要となった009の欠落を採否成立にせず局所保留する。非選択経路へ完成gateを追加しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B025-F04-009-SELECTED-NEEDED-REVISION-UNKNOWN",
+          "requirement_ref": "HELIXBRAIN-L3-025-F04",
+          "system_oracle_ref": "HELIXBRAIN-L10-025-F04",
+          "l4_ref": "HELIXBRAIN-L4-025-F04",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B025-F04-009-SELECTED-NEEDED-REVISION-UNKNOWN",
+              "revision": "fixture-content-6777e40266542f02b7ac21e5c3728a8095351dd25a1522a413ac7e0992d6fd93",
+              "scope": "ADOPTION-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"needed_as_reference_only\":false,\"unit_green_all_composition\":false,\"unknown_all_unneeded\":false,\"unselected_experiment_completion_gate\":false},\"original_base_needed\":[\"007\",\"008\",\"012\",\"LABO\",\"OS\",\"BRAIN-change\"],\"original_contract_references\":{\"007\":{\"identity\":\"007\",\"revision\":\"contract-007-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"008\":{\"identity\":\"008\",\"revision\":\"contract-008-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"009\":{\"identity\":\"009\",\"revision\":null,\"scope\":\"ADOPTION-SCOPE-P\"},\"011\":{\"identity\":\"011\",\"revision\":\"contract-011-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"012\":{\"identity\":\"012\",\"revision\":\"contract-012-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"020\":{\"identity\":\"020\",\"revision\":\"contract-020-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"BRAIN-change\":{\"identity\":\"BRAIN-change\",\"revision\":\"contract-BRAIN-change-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"INFRA017\":{\"identity\":\"INFRA017\",\"revision\":\"contract-INFRA017-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"LABO\":{\"identity\":\"LABO\",\"revision\":\"contract-LABO-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"OS\":{\"identity\":\"OS\",\"revision\":\"contract-OS-r1\",\"scope\":\"ADOPTION-SCOPE-P\"}},\"original_optional_needed_by_condition\":{\"composition_candidate\":\"009\",\"core_origin\":\"011\",\"evaluation_connection\":\"020\",\"infrastructure_maturity\":\"INFRA017\"},\"original_selection\":{\"composition_candidate\":true,\"core_origin\":true,\"evaluation_connection\":true,\"infrastructure_maturity\":false},\"submitted_contract_references\":{\"007\":{\"identity\":\"007\",\"revision\":\"contract-007-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"008\":{\"identity\":\"008\",\"revision\":\"contract-008-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"009\":{\"identity\":\"009\",\"revision\":null,\"scope\":\"ADOPTION-SCOPE-P\"},\"011\":{\"identity\":\"011\",\"revision\":\"contract-011-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"012\":{\"identity\":\"012\",\"revision\":\"contract-012-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"020\":{\"identity\":\"020\",\"revision\":\"contract-020-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"BRAIN-change\":{\"identity\":\"BRAIN-change\",\"revision\":\"contract-BRAIN-change-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"LABO\":{\"identity\":\"LABO\",\"revision\":\"contract-LABO-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"OS\":{\"identity\":\"OS\",\"revision\":\"contract-OS-r1\",\"scope\":\"ADOPTION-SCOPE-P\"}},\"submitted_selection\":{\"composition_candidate\":true,\"core_origin\":true,\"evaluation_connection\":true,\"infrastructure_maturity\":false}}",
+            "sha256": "6777e40266542f02b7ac21e5c3728a8095351dd25a1522a413ac7e0992d6fd93",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "selection_results": {
+              "core_origin": "content_corresponding_in_fixture",
+              "composition_candidate": "content_corresponding_in_fixture",
+              "evaluation_connection": "content_corresponding_in_fixture",
+              "infrastructure_maturity": "content_corresponding_in_fixture"
+            },
+            "unknown_original_selection": [],
+            "needed_reference_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "009": "unknown_original_reference_information",
+              "020": "content_corresponding_in_fixture"
+            },
+            "unselected_references": [
+              "INFRA017"
+            ],
+            "retained_selection": {
+              "core_origin": true,
+              "composition_candidate": true,
+              "evaluation_connection": true,
+              "infrastructure_maturity": false
+            },
+            "candidate_closure": "held",
+            "non_selected_paths": "unobserved_not_completion_gate",
+            "claim_results": {
+              "needed_as_reference_only": "none",
+              "unknown_all_unneeded": "none",
+              "unselected_experiment_completion_gate": "none",
+              "unit_green_all_composition": "none"
+            },
+            "effects": {
+              "actual_evaluation": false,
+              "actual_registration": false,
+              "actual_independent_verification": false,
+              "actual_adoption": false,
+              "actual_maturity": false,
+              "actual_upstream_changed": false,
+              "actual_operation_permission": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "条件選択により必要となった009の原版不明（null一致）を採否成立にせず局所保留する。非選択経路へ完成gateを追加しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B025-F04-009-SELECTED-NEEDED-REVISION-FOREIGN",
+          "requirement_ref": "HELIXBRAIN-L3-025-F04",
+          "system_oracle_ref": "HELIXBRAIN-L10-025-F04",
+          "l4_ref": "HELIXBRAIN-L4-025-F04",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B025-F04-009-SELECTED-NEEDED-REVISION-FOREIGN",
+              "revision": "fixture-content-090f3614072efe75fa0c57f850a9329b944d083d389104c0fe3039436bcb8623",
+              "scope": "ADOPTION-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"needed_as_reference_only\":false,\"unit_green_all_composition\":false,\"unknown_all_unneeded\":false,\"unselected_experiment_completion_gate\":false},\"original_base_needed\":[\"007\",\"008\",\"012\",\"LABO\",\"OS\",\"BRAIN-change\"],\"original_contract_references\":{\"007\":{\"identity\":\"007\",\"revision\":\"contract-007-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"008\":{\"identity\":\"008\",\"revision\":\"contract-008-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"009\":{\"identity\":\"009\",\"revision\":\"contract-009-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"011\":{\"identity\":\"011\",\"revision\":\"contract-011-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"012\":{\"identity\":\"012\",\"revision\":\"contract-012-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"020\":{\"identity\":\"020\",\"revision\":\"contract-020-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"BRAIN-change\":{\"identity\":\"BRAIN-change\",\"revision\":\"contract-BRAIN-change-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"INFRA017\":{\"identity\":\"INFRA017\",\"revision\":\"contract-INFRA017-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"LABO\":{\"identity\":\"LABO\",\"revision\":\"contract-LABO-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"OS\":{\"identity\":\"OS\",\"revision\":\"contract-OS-r1\",\"scope\":\"ADOPTION-SCOPE-P\"}},\"original_optional_needed_by_condition\":{\"composition_candidate\":\"009\",\"core_origin\":\"011\",\"evaluation_connection\":\"020\",\"infrastructure_maturity\":\"INFRA017\"},\"original_selection\":{\"composition_candidate\":true,\"core_origin\":true,\"evaluation_connection\":true,\"infrastructure_maturity\":false},\"submitted_contract_references\":{\"007\":{\"identity\":\"007\",\"revision\":\"contract-007-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"008\":{\"identity\":\"008\",\"revision\":\"contract-008-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"009\":{\"identity\":\"009\",\"revision\":\"contract-009-OTHER-r2\",\"scope\":\"ADOPTION-SCOPE-P\"},\"011\":{\"identity\":\"011\",\"revision\":\"contract-011-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"012\":{\"identity\":\"012\",\"revision\":\"contract-012-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"020\":{\"identity\":\"020\",\"revision\":\"contract-020-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"BRAIN-change\":{\"identity\":\"BRAIN-change\",\"revision\":\"contract-BRAIN-change-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"LABO\":{\"identity\":\"LABO\",\"revision\":\"contract-LABO-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"OS\":{\"identity\":\"OS\",\"revision\":\"contract-OS-r1\",\"scope\":\"ADOPTION-SCOPE-P\"}},\"submitted_selection\":{\"composition_candidate\":true,\"core_origin\":true,\"evaluation_connection\":true,\"infrastructure_maturity\":false}}",
+            "sha256": "090f3614072efe75fa0c57f850a9329b944d083d389104c0fe3039436bcb8623",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "selection_results": {
+              "core_origin": "content_corresponding_in_fixture",
+              "composition_candidate": "content_corresponding_in_fixture",
+              "evaluation_connection": "content_corresponding_in_fixture",
+              "infrastructure_maturity": "content_corresponding_in_fixture"
+            },
+            "unknown_original_selection": [],
+            "needed_reference_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "009": "content_conflict",
+              "020": "content_corresponding_in_fixture"
+            },
+            "unselected_references": [
+              "INFRA017"
+            ],
+            "retained_selection": {
+              "core_origin": true,
+              "composition_candidate": true,
+              "evaluation_connection": true,
+              "infrastructure_maturity": false
+            },
+            "candidate_closure": "held",
+            "non_selected_paths": "unobserved_not_completion_gate",
+            "claim_results": {
+              "needed_as_reference_only": "none",
+              "unknown_all_unneeded": "none",
+              "unselected_experiment_completion_gate": "none",
+              "unit_green_all_composition": "none"
+            },
+            "effects": {
+              "actual_evaluation": false,
+              "actual_registration": false,
+              "actual_independent_verification": false,
+              "actual_adoption": false,
+              "actual_maturity": false,
+              "actual_upstream_changed": false,
+              "actual_operation_permission": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "条件選択により必要となった009の提出別版を採否成立にせず局所保留する。非選択経路へ完成gateを追加しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B025-F04-INFRA017-SELECTED-NEEDED-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-025-F04",
+          "system_oracle_ref": "HELIXBRAIN-L10-025-F04",
+          "l4_ref": "HELIXBRAIN-L4-025-F04",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B025-F04-INFRA017-SELECTED-NEEDED-MISSING",
+              "revision": "fixture-content-3c440b208293b8f21b6b72541744b5dabdd313d8f0440306e89e883ed5daf0fe",
+              "scope": "ADOPTION-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"needed_as_reference_only\":false,\"unit_green_all_composition\":false,\"unknown_all_unneeded\":false,\"unselected_experiment_completion_gate\":false},\"original_base_needed\":[\"007\",\"008\",\"012\",\"LABO\",\"OS\",\"BRAIN-change\"],\"original_contract_references\":{\"007\":{\"identity\":\"007\",\"revision\":\"contract-007-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"008\":{\"identity\":\"008\",\"revision\":\"contract-008-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"009\":{\"identity\":\"009\",\"revision\":\"contract-009-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"011\":{\"identity\":\"011\",\"revision\":\"contract-011-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"012\":{\"identity\":\"012\",\"revision\":\"contract-012-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"020\":{\"identity\":\"020\",\"revision\":\"contract-020-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"BRAIN-change\":{\"identity\":\"BRAIN-change\",\"revision\":\"contract-BRAIN-change-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"INFRA017\":{\"identity\":\"INFRA017\",\"revision\":\"contract-INFRA017-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"LABO\":{\"identity\":\"LABO\",\"revision\":\"contract-LABO-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"OS\":{\"identity\":\"OS\",\"revision\":\"contract-OS-r1\",\"scope\":\"ADOPTION-SCOPE-P\"}},\"original_optional_needed_by_condition\":{\"composition_candidate\":\"009\",\"core_origin\":\"011\",\"evaluation_connection\":\"020\",\"infrastructure_maturity\":\"INFRA017\"},\"original_selection\":{\"composition_candidate\":false,\"core_origin\":true,\"evaluation_connection\":true,\"infrastructure_maturity\":true},\"submitted_contract_references\":{\"007\":{\"identity\":\"007\",\"revision\":\"contract-007-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"008\":{\"identity\":\"008\",\"revision\":\"contract-008-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"011\":{\"identity\":\"011\",\"revision\":\"contract-011-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"012\":{\"identity\":\"012\",\"revision\":\"contract-012-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"020\":{\"identity\":\"020\",\"revision\":\"contract-020-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"BRAIN-change\":{\"identity\":\"BRAIN-change\",\"revision\":\"contract-BRAIN-change-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"LABO\":{\"identity\":\"LABO\",\"revision\":\"contract-LABO-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"OS\":{\"identity\":\"OS\",\"revision\":\"contract-OS-r1\",\"scope\":\"ADOPTION-SCOPE-P\"}},\"submitted_selection\":{\"composition_candidate\":false,\"core_origin\":true,\"evaluation_connection\":true,\"infrastructure_maturity\":true}}",
+            "sha256": "3c440b208293b8f21b6b72541744b5dabdd313d8f0440306e89e883ed5daf0fe",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "selection_results": {
+              "core_origin": "content_corresponding_in_fixture",
+              "composition_candidate": "content_corresponding_in_fixture",
+              "evaluation_connection": "content_corresponding_in_fixture",
+              "infrastructure_maturity": "content_corresponding_in_fixture"
+            },
+            "unknown_original_selection": [],
+            "needed_reference_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "INFRA017": "missing"
+            },
+            "unselected_references": [
+              "009"
+            ],
+            "retained_selection": {
+              "core_origin": true,
+              "composition_candidate": false,
+              "evaluation_connection": true,
+              "infrastructure_maturity": true
+            },
+            "candidate_closure": "held",
+            "non_selected_paths": "unobserved_not_completion_gate",
+            "claim_results": {
+              "needed_as_reference_only": "none",
+              "unknown_all_unneeded": "none",
+              "unselected_experiment_completion_gate": "none",
+              "unit_green_all_composition": "none"
+            },
+            "effects": {
+              "actual_evaluation": false,
+              "actual_registration": false,
+              "actual_independent_verification": false,
+              "actual_adoption": false,
+              "actual_maturity": false,
+              "actual_upstream_changed": false,
+              "actual_operation_permission": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "条件選択により必要となったINFRA017の欠落を採否成立にせず局所保留する。非選択経路へ完成gateを追加しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B025-F04-INFRA017-SELECTED-NEEDED-REVISION-UNKNOWN",
+          "requirement_ref": "HELIXBRAIN-L3-025-F04",
+          "system_oracle_ref": "HELIXBRAIN-L10-025-F04",
+          "l4_ref": "HELIXBRAIN-L4-025-F04",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B025-F04-INFRA017-SELECTED-NEEDED-REVISION-UNKNOWN",
+              "revision": "fixture-content-ef90976c8af562675f8fdd9aa88f030fa0930e6f64a3673ff8cbc2f97d63ab25",
+              "scope": "ADOPTION-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"needed_as_reference_only\":false,\"unit_green_all_composition\":false,\"unknown_all_unneeded\":false,\"unselected_experiment_completion_gate\":false},\"original_base_needed\":[\"007\",\"008\",\"012\",\"LABO\",\"OS\",\"BRAIN-change\"],\"original_contract_references\":{\"007\":{\"identity\":\"007\",\"revision\":\"contract-007-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"008\":{\"identity\":\"008\",\"revision\":\"contract-008-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"009\":{\"identity\":\"009\",\"revision\":\"contract-009-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"011\":{\"identity\":\"011\",\"revision\":\"contract-011-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"012\":{\"identity\":\"012\",\"revision\":\"contract-012-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"020\":{\"identity\":\"020\",\"revision\":\"contract-020-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"BRAIN-change\":{\"identity\":\"BRAIN-change\",\"revision\":\"contract-BRAIN-change-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"INFRA017\":{\"identity\":\"INFRA017\",\"revision\":null,\"scope\":\"ADOPTION-SCOPE-P\"},\"LABO\":{\"identity\":\"LABO\",\"revision\":\"contract-LABO-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"OS\":{\"identity\":\"OS\",\"revision\":\"contract-OS-r1\",\"scope\":\"ADOPTION-SCOPE-P\"}},\"original_optional_needed_by_condition\":{\"composition_candidate\":\"009\",\"core_origin\":\"011\",\"evaluation_connection\":\"020\",\"infrastructure_maturity\":\"INFRA017\"},\"original_selection\":{\"composition_candidate\":false,\"core_origin\":true,\"evaluation_connection\":true,\"infrastructure_maturity\":true},\"submitted_contract_references\":{\"007\":{\"identity\":\"007\",\"revision\":\"contract-007-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"008\":{\"identity\":\"008\",\"revision\":\"contract-008-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"011\":{\"identity\":\"011\",\"revision\":\"contract-011-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"012\":{\"identity\":\"012\",\"revision\":\"contract-012-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"020\":{\"identity\":\"020\",\"revision\":\"contract-020-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"BRAIN-change\":{\"identity\":\"BRAIN-change\",\"revision\":\"contract-BRAIN-change-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"INFRA017\":{\"identity\":\"INFRA017\",\"revision\":null,\"scope\":\"ADOPTION-SCOPE-P\"},\"LABO\":{\"identity\":\"LABO\",\"revision\":\"contract-LABO-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"OS\":{\"identity\":\"OS\",\"revision\":\"contract-OS-r1\",\"scope\":\"ADOPTION-SCOPE-P\"}},\"submitted_selection\":{\"composition_candidate\":false,\"core_origin\":true,\"evaluation_connection\":true,\"infrastructure_maturity\":true}}",
+            "sha256": "ef90976c8af562675f8fdd9aa88f030fa0930e6f64a3673ff8cbc2f97d63ab25",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "selection_results": {
+              "core_origin": "content_corresponding_in_fixture",
+              "composition_candidate": "content_corresponding_in_fixture",
+              "evaluation_connection": "content_corresponding_in_fixture",
+              "infrastructure_maturity": "content_corresponding_in_fixture"
+            },
+            "unknown_original_selection": [],
+            "needed_reference_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "INFRA017": "unknown_original_reference_information"
+            },
+            "unselected_references": [
+              "009"
+            ],
+            "retained_selection": {
+              "core_origin": true,
+              "composition_candidate": false,
+              "evaluation_connection": true,
+              "infrastructure_maturity": true
+            },
+            "candidate_closure": "held",
+            "non_selected_paths": "unobserved_not_completion_gate",
+            "claim_results": {
+              "needed_as_reference_only": "none",
+              "unknown_all_unneeded": "none",
+              "unselected_experiment_completion_gate": "none",
+              "unit_green_all_composition": "none"
+            },
+            "effects": {
+              "actual_evaluation": false,
+              "actual_registration": false,
+              "actual_independent_verification": false,
+              "actual_adoption": false,
+              "actual_maturity": false,
+              "actual_upstream_changed": false,
+              "actual_operation_permission": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "条件選択により必要となったINFRA017の原版不明（null一致）を採否成立にせず局所保留する。非選択経路へ完成gateを追加しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B025-F04-INFRA017-SELECTED-NEEDED-REVISION-FOREIGN",
+          "requirement_ref": "HELIXBRAIN-L3-025-F04",
+          "system_oracle_ref": "HELIXBRAIN-L10-025-F04",
+          "l4_ref": "HELIXBRAIN-L4-025-F04",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B025-F04-INFRA017-SELECTED-NEEDED-REVISION-FOREIGN",
+              "revision": "fixture-content-817d90893d3fcbcc1e4b82837e0e5ba6832670ecb4e3c4beaee57cb3e07c269a",
+              "scope": "ADOPTION-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"needed_as_reference_only\":false,\"unit_green_all_composition\":false,\"unknown_all_unneeded\":false,\"unselected_experiment_completion_gate\":false},\"original_base_needed\":[\"007\",\"008\",\"012\",\"LABO\",\"OS\",\"BRAIN-change\"],\"original_contract_references\":{\"007\":{\"identity\":\"007\",\"revision\":\"contract-007-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"008\":{\"identity\":\"008\",\"revision\":\"contract-008-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"009\":{\"identity\":\"009\",\"revision\":\"contract-009-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"011\":{\"identity\":\"011\",\"revision\":\"contract-011-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"012\":{\"identity\":\"012\",\"revision\":\"contract-012-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"020\":{\"identity\":\"020\",\"revision\":\"contract-020-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"BRAIN-change\":{\"identity\":\"BRAIN-change\",\"revision\":\"contract-BRAIN-change-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"INFRA017\":{\"identity\":\"INFRA017\",\"revision\":\"contract-INFRA017-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"LABO\":{\"identity\":\"LABO\",\"revision\":\"contract-LABO-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"OS\":{\"identity\":\"OS\",\"revision\":\"contract-OS-r1\",\"scope\":\"ADOPTION-SCOPE-P\"}},\"original_optional_needed_by_condition\":{\"composition_candidate\":\"009\",\"core_origin\":\"011\",\"evaluation_connection\":\"020\",\"infrastructure_maturity\":\"INFRA017\"},\"original_selection\":{\"composition_candidate\":false,\"core_origin\":true,\"evaluation_connection\":true,\"infrastructure_maturity\":true},\"submitted_contract_references\":{\"007\":{\"identity\":\"007\",\"revision\":\"contract-007-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"008\":{\"identity\":\"008\",\"revision\":\"contract-008-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"011\":{\"identity\":\"011\",\"revision\":\"contract-011-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"012\":{\"identity\":\"012\",\"revision\":\"contract-012-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"020\":{\"identity\":\"020\",\"revision\":\"contract-020-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"BRAIN-change\":{\"identity\":\"BRAIN-change\",\"revision\":\"contract-BRAIN-change-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"INFRA017\":{\"identity\":\"INFRA017\",\"revision\":\"contract-INFRA017-OTHER-r2\",\"scope\":\"ADOPTION-SCOPE-P\"},\"LABO\":{\"identity\":\"LABO\",\"revision\":\"contract-LABO-r1\",\"scope\":\"ADOPTION-SCOPE-P\"},\"OS\":{\"identity\":\"OS\",\"revision\":\"contract-OS-r1\",\"scope\":\"ADOPTION-SCOPE-P\"}},\"submitted_selection\":{\"composition_candidate\":false,\"core_origin\":true,\"evaluation_connection\":true,\"infrastructure_maturity\":true}}",
+            "sha256": "817d90893d3fcbcc1e4b82837e0e5ba6832670ecb4e3c4beaee57cb3e07c269a",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "selection_results": {
+              "core_origin": "content_corresponding_in_fixture",
+              "composition_candidate": "content_corresponding_in_fixture",
+              "evaluation_connection": "content_corresponding_in_fixture",
+              "infrastructure_maturity": "content_corresponding_in_fixture"
+            },
+            "unknown_original_selection": [],
+            "needed_reference_results": {
+              "007": "content_corresponding_in_fixture",
+              "008": "content_corresponding_in_fixture",
+              "012": "content_corresponding_in_fixture",
+              "LABO": "content_corresponding_in_fixture",
+              "OS": "content_corresponding_in_fixture",
+              "BRAIN-change": "content_corresponding_in_fixture",
+              "011": "content_corresponding_in_fixture",
+              "020": "content_corresponding_in_fixture",
+              "INFRA017": "content_conflict"
+            },
+            "unselected_references": [
+              "009"
+            ],
+            "retained_selection": {
+              "core_origin": true,
+              "composition_candidate": false,
+              "evaluation_connection": true,
+              "infrastructure_maturity": true
+            },
+            "candidate_closure": "held",
+            "non_selected_paths": "unobserved_not_completion_gate",
+            "claim_results": {
+              "needed_as_reference_only": "none",
+              "unknown_all_unneeded": "none",
+              "unselected_experiment_completion_gate": "none",
+              "unit_green_all_composition": "none"
+            },
+            "effects": {
+              "actual_evaluation": false,
+              "actual_registration": false,
+              "actual_independent_verification": false,
+              "actual_adoption": false,
+              "actual_maturity": false,
+              "actual_upstream_changed": false,
+              "actual_operation_permission": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "条件選択により必要となったINFRA017の提出別版を採否成立にせず局所保留する。非選択経路へ完成gateを追加しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
         }
       ],
       "execution_state": "not_executed",
@@ -12034,7 +12448,7 @@
       "F01": 19,
       "F02": 17,
       "F03": 15,
-      "F04": 23,
+      "F04": 29,
       "N01": 12,
       "B01": 8
     },
