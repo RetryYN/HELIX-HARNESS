@@ -1,0 +1,2102 @@
+{
+  "status": "draft_candidate_not_independently_reviewed",
+  "authority_effect": "none",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "1df0aa1bdb1b5fcbe2beba5e202601fa0d27fdeb5419e58d8db5cc3691d927fb"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "650264f78387d317eb5dec7a58c14197ac2c97ef712f05cd30ce5e11869cd5ea"
+    },
+    {
+      "path": "docs/governance/decisions/dddstrict-adoption-po-decision-2026-10-11.md",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "5bf5652f37b71ed1c21850b8c88358a4d18202d6c1ecb5b237691589f42258cd"
+    },
+    {
+      "path": "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "5a4c8d85acc89166b68868824fdffd09e2c50810dae463e1724c5e146cc1cc05"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "c67edf6f5f2553e79e790ac519a8e7dc335b213fc2ce243cc6881e74fc7ac4b5"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "revision": "d62ecc220a089ecdb888a0e162ed5c88dd3c521e",
+      "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    }
+  ],
+  "authority_boundary": {
+    "approved_parent": "HARNESS-L2-005",
+    "approved_l3_l10_content": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+    "restart": "2026-10-12採用範囲2。10/8一般設計解禁は10/10に失効。",
+    "version_target": "既決1.0を保持",
+    "historical_stage": "005の歴史的Stage未割当を保持。今回Stage1限定規範著述で全能力運転を移さない。",
+    "scope": "12承認義務の一つのL4/L9 pair。全限定92親430対の完了・実CI・実物受入を含まない。"
+  },
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "reuse_class": "semantic_rederivation",
+      "archive_disposition": "source_snapshot_preservation",
+      "individual_lines": [
+        33,
+        81
+      ],
+      "preserve": "FR02のtest Red→本体Green、FR50の5規律、旧rulesの実検出/同oracle/具体期待、影響範囲検査と省略保全。",
+      "change": "旧rulesのred_at<=green_atだけとFR02の実装前順序は同値ではない。REDFIRST Aにより実装前実観測を明示。9/26判断によりCI範囲の起点をticketとし回収を合流先へ移し、merge直後full/nightly既定を廃止。",
+      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。",
+      "boundary": "参照行の採択済み意味facetだけ再導出。旧固有tool/gate/層番号/全原文要求の採否は変更しない。",
+      "line_quotes": [
+        {
+          "line": 33,
+          "text": "| **FR-L1-02** | TDD 強制フロー (テストファースト順序厳守・実装先行禁止) | L7-implementation | L6 機能設計 (関数仕様 / クラス設計 / エッジケース) | テストコード (red) → 本体実装 (green) | P0 | PM-02 (L7 工程) / HM-07 |"
+        },
+        {
+          "line": 81,
+          "text": "| **FR-L1-50** | DDD/TDD 厳格化 automation (domain boundary / invariant trace / Red-first evidence / oracle strength / integration GWT) | PO directed 2026-06-09 / IMP-097..101 | DDD/TDD rule SSoT、PLAN evidence、source/test docs、L7/L8 test-design | doctor lint findings、workflow anchor、L7 oracle、L8 GWT compliance | P1 | HM-07 / PM-04 |"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "reuse_class": "semantic_rederivation",
+      "archive_disposition": "unresolved",
+      "individual_lines": [
+        23,
+        24,
+        42,
+        46,
+        50,
+        54,
+        58
+      ],
+      "preserve": "FR02のtest Red→本体Green、FR50の5規律、旧rulesの実検出/同oracle/具体期待、影響範囲検査と省略保全。",
+      "change": "旧rulesのred_at<=green_atだけとFR02の実装前順序は同値ではない。REDFIRST Aにより実装前実観測を明示。9/26判断によりCI範囲の起点をticketとし回収を合流先へ移し、merge直後full/nightly既定を廃止。",
+      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。",
+      "boundary": "参照行の採択済み意味facetだけ再導出。旧固有tool/gate/層番号/全原文要求の採否は変更しない。",
+      "line_quotes": [
+        {
+          "line": 23,
+          "text": "4. **TDDは検証契約**: Redは「testを書いた時刻」ではなく、意図した欠陥を実際に検出する証拠である。"
+        },
+        {
+          "line": 24,
+          "text": "   Greenは最小実装、Refactorは同じoracleがgreenのまま構造を単純化した証拠で閉じる。"
+        },
+        {
+          "line": 42,
+          "text": "    intent: source module は governance/domain boundary をまたいで上位 runtime または CLI module を import してはならない。"
+        },
+        {
+          "line": 46,
+          "text": "    intent: 宣言されたすべての domain invariant は L7 U-* oracle を明示しなければならない。"
+        },
+        {
+          "line": 50,
+          "text": "    intent: tdd_red_required が付いた confirmed TDD PLAN は red_at と green_at を時系列順に記録しなければならない。"
+        },
+        {
+          "line": 54,
+          "text": "    intent: test case は明示的な expect/assert oracle を含まなければならず、truthiness check だけに依存してはならない。"
+        },
+        {
+          "line": 58,
+          "text": "    intent: L9 IT-* 行は Given/When/Then 粒度を持たなければならない。"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-58CBC57F44DFDD288961",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
+      "sha256": "52af19a483d6222f31d1d52031482fc60c62c504fe97496687d8175aa7a53756",
+      "reuse_class": "semantic_rederivation",
+      "archive_disposition": "unresolved",
+      "individual_lines": [
+        29,
+        54,
+        57,
+        58,
+        59,
+        60
+      ],
+      "preserve": "FR02のtest Red→本体Green、FR50の5規律、旧rulesの実検出/同oracle/具体期待、影響範囲検査と省略保全。",
+      "change": "旧rulesのred_at<=green_atだけとFR02の実装前順序は同値ではない。REDFIRST Aにより実装前実観測を明示。9/26判断によりCI範囲の起点をticketとし回収を合流先へ移し、merge直後full/nightly既定を廃止。",
+      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。",
+      "boundary": "参照行の採択済み意味facetだけ再導出。旧固有tool/gate/層番号/全原文要求の採否は変更しない。",
+      "line_quotes": [
+        {
+          "line": 29,
+          "text": "5. **Atomic CI**: PRはtargeted+critical、合流後はfull、nightlyは未回収・driftだけを補完する。"
+        },
+        {
+          "line": 54,
+          "text": "PR CIはsource HEADとbase HEADからversion管理されたimpact DAGを評価し、typecheck、変更behaviorのtargeted oracle、"
+        },
+        {
+          "line": 57,
+          "text": "PRで省略したtest/gate集合はdigest付きで記録し、main合流直後のfull regression・全doctor・全traceを一次回収とする。"
+        },
+        {
+          "line": 58,
+          "text": "nightlyはfull inventoryを再検証し、post-merge receipt欠落・失敗・driftだけを補完Recoveryへ送る。各省略itemは"
+        },
+        {
+          "line": 59,
+          "text": "最初のterminal recovery receiptへexactly-oneでlinkし、nightly再実行を二重回収として分母へ加算しない。"
+        },
+        {
+          "line": 60,
+          "text": "targeted greenをfull greenの代替にせず、unknown node/edge、selector変更、high-risk分類、依存cycleはPR時点でfull profileへfail-closeする。"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "reuse_class": "semantic_rederivation",
+      "archive_disposition": "unresolved",
+      "individual_lines": [
+        319
+      ],
+      "preserve": "FR02のtest Red→本体Green、FR50の5規律、旧rulesの実検出/同oracle/具体期待、影響範囲検査と省略保全。",
+      "change": "旧rulesのred_at<=green_atだけとFR02の実装前順序は同値ではない。REDFIRST Aにより実装前実観測を明示。9/26判断によりCI範囲の起点をticketとし回収を合流先へ移し、merge直後full/nightly既定を廃止。",
+      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。",
+      "boundary": "参照行の採択済み意味facetだけ再導出。旧固有tool/gate/層番号/全原文要求の採否は変更しない。",
+      "line_quotes": [
+        {
+          "line": 319,
+          "text": "閉じたTicketに後日見つかった不具合、rollback、Recovery、Requirement Re-entryを証拠付きrelationで接続する。時間的近接や同じpathだけで原因Ticketを断定しない。元のclosureは保存し、追補assessmentを新発行する。観測窓未満、未追跡、打切りを0 defectsとしない。一般Ticket closeを長期観測窓待ちにしない。"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5166C9AB5D52E9926082",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l10-acceptance-candidates.md",
+      "sha256": "009abecf1ef9bb6ac0d69da4bc472e15461481001d88df23ae172147cfedc620",
+      "reuse_class": "semantic_rederivation",
+      "archive_disposition": "unresolved",
+      "individual_lines": [
+        10,
+        11
+      ],
+      "preserve": "FR02のtest Red→本体Green、FR50の5規律、旧rulesの実検出/同oracle/具体期待、影響範囲検査と省略保全。",
+      "change": "旧rulesのred_at<=green_atだけとFR02の実装前順序は同値ではない。REDFIRST Aにより実装前実観測を明示。9/26判断によりCI範囲の起点をticketとし回収を合流先へ移し、merge直後full/nightly既定を廃止。",
+      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。",
+      "boundary": "参照行の採択済み意味facetだけ再導出。旧固有tool/gate/層番号/全原文要求の採否は変更しない。",
+      "line_quotes": [
+        {
+          "line": 10,
+          "text": "| NIO-L10-04 | backup名・snapshot存在だけでrestore成功を主張した場合はRED。隔離restoreとintegrity検証を要求する。 |"
+        },
+        {
+          "line": 11,
+          "text": "| NIO-L10-05 | rollback成功だけで恒久修復・再発防止完了を主張した場合はRED。原因・修復・再検証を別状態にする。 |"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D888FB040D52499EE09E",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md",
+      "sha256": "04e44d8382a5029a1dbe6e8bc69d6882ea15ee1410c3fc781136aad7db6b2391",
+      "individual_lines": [
+        20,
+        21,
+        27,
+        28,
+        29,
+        30,
+        31,
+        66,
+        67,
+        75,
+        76,
+        98,
+        99
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "read-only影響/検証inventoryとproposal planner/原HEAD束縛/省略集合/性能とcorrectnessの分離。",
+      "change": "CI実行/receipt保存をOS/利用者へ分離し、postmerge/full/nightly profileと旧時間予算は採用しない。省略回収は合流先ticket。",
+      "reason": "005承認済み分離と9/26CI順序差分に従う。",
+      "boundary": "旧full/default/時間/DB/runtime/CLI/GreenDefinitionは元holdingに保持。本pairで縮退/retireしない。",
+      "line_quotes": [
+        {
+          "line": 20,
+          "text": "検査範囲は削らず、PRで省略した集合をmain merge直後とnightlyでexact回収する。性能判定はcorrectness判定と"
+        },
+        {
+          "line": 21,
+          "text": "別receiptにし、予算超過だけでgreenな変更を偽redにしない。"
+        },
+        {
+          "line": 27,
+          "text": "| `ChangeImpactResolver` | merge-base、current PR body、changed path、PLAN、trace/relation graph | `ImpactSet` | read-only | base不明、PR body stale、relation未解決 |"
+        },
+        {
+          "line": 28,
+          "text": "| `VerificationInventory` | repository-owned gate/test catalog | versioned `VerificationItem[]`とinventory digest | read-only SSoT | ID重複、owner欠落、digest drift |"
+        },
+        {
+          "line": 29,
+          "text": "| `CiProfilePlanner` | `ImpactSet`、risk signal、inventory | `CiExecutionPlan` | proposal-only | unknown/high-riskをtargetedへ縮退 |"
+        },
+        {
+          "line": 30,
+          "text": "| `CiReceiptRecorder` | execution plan、各item terminal result | HEAD束縛receiptとitem→terminal link | append-only | 別HEAD、item欠落、二重terminal |"
+        },
+        {
+          "line": 31,
+          "text": "| `PerformanceRecoveryClassifier` | correctness receipt、duration series、budget | merge判定とRecovery packet | proposal-only | 性能超過をcorrectness redへ変換、証拠欠落 |"
+        },
+        {
+          "line": 66,
+          "text": "selector自身、security、permission、secret、schema、migration、rollback、DB checkpoint、authority root、unknown impactを"
+        },
+        {
+          "line": 67,
+          "text": "変更する場合は`fullAdmissionRequired=true`とする。"
+        },
+        {
+          "line": 75,
+          "text": "| `post_merge_full` | main merge commit | PRで未実行のdeferred exact set＋main整合 | p95 3分 | 各deferred itemを最初のterminal receiptへexactly once接続 |"
+        },
+        {
+          "line": 76,
+          "text": "| `nightly_full` | schedule | full inventory、historical、compatibility、未回収補完 | p95 3分 | post-merge欠落・flake・driftを補完しIssue化 |"
+        },
+        {
+          "line": 98,
+          "text": "receiptはprofile、event/run/attempt、source HEAD、base HEAD、runner/environment、cold/warm、worker数、CPU/RSS、"
+        },
+        {
+          "line": 99,
+          "text": "inventory digest、selected/deferred exact set、itemごとの開始・終了・duration・exit code・output digestを持つ。"
+        }
+      ]
+    }
+  ],
+  "legacy_source_limit": "HCV4-L11-003/004は現行L11の移管条件を起点とする。archive/root/docsでIDと語句を検索したが直接の旧原文行は未特定であり、現行crosswalkを旧原文の代替出典にしない。NIO候補全件の採用ではなく現行005へ移管済みの回復結果分離を具体化する。",
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "lines": [
+      65,
+      101
+    ],
+    "cases": [
+      "UTW-005",
+      "UTW-009",
+      "UTW-014",
+      "UTW-020",
+      "UTW-021"
+    ],
+    "use": "対象HEADずれ/重い全件/欠落空集合化/巨大aggregate/自己申告を、採択済み005条件の反例として使う。新要求/gateを生成しない。"
+  },
+  "document_id": "HARNESS-L4-005-VERIFICATION-DISCIPLINE",
+  "layer": "L4",
+  "pair": "L9",
+  "purpose": "対象と変更に必要な検証義務と証拠条件を導き、設計ownerの規律と実観測を照合する。",
+  "architecture": {
+    "components": [
+      {
+        "id": "DutyDerivation",
+        "responsibility": "理由/対象要求revision/artifact/入力/oracle/expected failure/有効期限/戻し先を持つ検証義務候補。省略集合と合流先ticket回収、scope外差分と未回収Port条件を局所照合。",
+        "input_owners": [
+          "CORE適用状態",
+          "設計ownerのticket/変更scope・risk・影響関係",
+          "HARNESS対象規範"
+        ],
+        "boundary": "CI組立/実行・ticket発行・Port通過を実行しない。小/中/大は起点で、高risk/密結合の上位義務を相殺しない。",
+        "model_kind": "pure_comparison",
+        "effect": "none"
+      },
+      {
+        "id": "ProofComposition",
+        "responsibility": "下位有効proof+組合せ契約と上位固有未解決の差分。固有なしを契約が示す場合の機械導出候補と、別証明が必要な固有非機能を分ける。",
+        "input_owners": [
+          "対象kindと組合せ契約の設計owner",
+          "実検証ownerの下位proof",
+          "上位固有義務/oracleのowner"
+        ],
+        "boundary": "単体greenの個数や全件再実行を接続/構成体証明へ変換しない。",
+        "model_kind": "pure_comparison",
+        "effect": "none"
+      },
+      {
+        "id": "ImpactAndCausalTrace",
+        "responsibility": "PRで必要な接続/composite検査集合と不足、Design-refactor材料、元closureを保存した追補assessmentの材料。",
+        "input_owners": [
+          "設計owner影響scope",
+          "実失敗原記録",
+          "OS原ticket closureと証拠付きrelation",
+          "LABO評価入力scope"
+        ],
+        "boundary": "時間/pathだけで因果を確定せず、OS発行・LABO評価成功は生成しない。",
+        "model_kind": "pure_comparison",
+        "effect": "none"
+      },
+      {
+        "id": "DisciplineComparison",
+        "responsibility": "規律identityごとに違反/入力不足/未評価/正当非適用を独立表示。各invariantと同対象具体oracle、順序証拠とbehavior判定内容、GWT前提/操作/期待+失敗経路を照合。",
+        "input_owners": [
+          "CORE009理由/判定者/revision/再評価条件",
+          "設計ownerの方向表/循環条件/不変条件",
+          "検証設計ownerの具体oracle/GWT",
+          "実検証ownerの凍結/本体変更前Red/最小Green実観測"
+        ],
+        "boundary": "方向表や境界の新設、unknownのN/A/0違反化、他規律成功の相殺、時刻記述の実Red化、実装出力の期待値化をしない。",
+        "model_kind": "pure_comparison",
+        "effect": "none"
+      },
+      {
+        "id": "EvidenceContinuity",
+        "responsibility": "交代/修復前後で同じ対象・oracle/expected failure/独立性/再検証/受入/差戻し条件の保持または不足を照合。",
+        "input_owners": [
+          "HARNESS検証規範",
+          "OS/利用者環境の実結果/保存/実行主体",
+          "対象HEAD/digest/独立review/consumer受入原record"
+        ],
+        "boundary": "provider名/固定Worker数/保存成功/CI green/未実行/projectionから完了を生成しない。",
+        "model_kind": "pure_comparison",
+        "effect": "none"
+      },
+      {
+        "id": "RecoveryResultPartition",
+        "responsibility": "backup存在/restore/rollback/恒久修復/再発防止を別結果として照合し、未実行/unknown/別環境を保持。",
+        "input_owners": [
+          "対象製品のL11/L10/L12 oracleと実結果",
+          "各環境/revision/scopeの原証拠"
+        ],
+        "boundary": "RTO/RPO/保持期間を全製品へ固定せず、一成功を他成功/受入へ昇格しない。",
+        "model_kind": "pure_comparison",
+        "effect": "none"
+      }
+    ],
+    "flow": [
+      "対象のticket/変更/layer/pair/riskとCORE適用原状態→義務/省略/回収の比較候補",
+      "下位proof/組合せ/上位固有差分→機械導出候補または別証明不足",
+      "宣言方向/不変条件/oracle/実RedGreen/GWT→個別の違反/不足/未評価",
+      "OS/利用者の原結果→独立性/修復条件/元closure保存/回復結果分離を照合",
+      "CI組立/運転/状態保存/発行/受入/Releaseは該当ownerへ渡す"
+    ],
+    "no_code_first": "現行005に当該比較の正式実装なし。現行001/009のpair/適用意味と既存005証拠条件を参照し重複定義しない。新class/state/DB/runner/CIを増やさず純粋比較をL5で具体化。旧sourceは意味再導出のみ。"
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-005-B01",
+      "requirement_ref": "HARNESS-L3-005-B01",
+      "system_oracle_ref": "HARNESS-L10-005-B01",
+      "oracle_ref": "HARNESS-L9-005-B01",
+      "title": "規範と実行・修復の分離",
+      "behavior": "HARNESSは検証規則/oracleを定め、CI組立・運転・結果保存はOS検収または利用者環境へ渡す。自動/手動修復後も要求revision/oracle/expected failure/独立検証/consumer受入/差戻し条件を保持し、test削除/閾値緩和/scope拡張/無審査の意味digest更新でgreen化しない。独立性と再検証/証拠有効性をprovider名/固定Worker数に依存させない。未実行oracle、不一致digest、別HEAD review、projectionのみを完了証拠にしない。runtime交代後も同じ工程/対象/証拠条件を維持し、不足時は再開不可の理由を明示する。",
+      "component_refs": [
+        "EvidenceContinuity"
+      ],
+      "input_contract": {
+        "binding": "同じrequirement/artifact/pair/oracle identity・revision・project/tenant/environment、選択された実操作と適用条件",
+        "fields": [
+          "binding",
+          "source_assumption",
+          "claims",
+          "non_target",
+          "normative_contract",
+          "runs",
+          "independent_review",
+          "consumer_acceptance",
+          "repair_diff"
+        ],
+        "source_qualification": "各owner原内容と根拠を参照解決して比較。string/件数/digest一致だけを内容成立にしない。missing/null/empty/unknown/conflict/staleを区別。実resolverはL5/L8へ。",
+        "variant_refs": [
+          "HARNESS-L9-005-B01-SAME-PROVIDER-INDEPENDENT"
+        ]
+      },
+      "comparison_order": [
+        "規範の対象HEAD/oracle/meaning digest/expected failure/修復scopeと各runを別々に照合。",
+        "修復前後のtest/期待閾値/scope/意味変更差分を比較し、再検証・独立reviewのidentity/context/authority/routeを確認。provider一致だけでは決めない。",
+        "consumer受入原状態と欠落を保持。保存・実行・検証・受入を別結果へ。"
+      ],
+      "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
+      "output_observation_ref": "HARNESS-L9-005-B01.expected_material",
+      "negative_classifications": [
+        {
+          "code": "saved_as_verified",
+          "change": "OS保存receiptだけで検証成功を主張",
+          "axis": "owner",
+          "state": "conflict",
+          "backflow_owner": "HARNESS005/OS検収",
+          "expected": "保存は保存。実oracle不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "保存は保存。実oracle不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "test_deleted_green",
+          "change": "修復で必要testを削除してgreen化",
+          "axis": "repair",
+          "state": "conflict",
+          "backflow_owner": "検証設計owner",
+          "expected": "削除で失った義務を保持し修復成立にしない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "削除で失った義務を保持し修復成立にしない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "threshold_relaxed_green",
+          "change": "修復で凍結した期待閾値を緩める",
+          "axis": "repair",
+          "state": "conflict",
+          "backflow_owner": "検証設計owner",
+          "expected": "元oracleの期待と緩和差分を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "元oracleの期待と緩和差分を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "repair_scope_expansion",
+          "change": "修復scopeを原対象外へ広げる",
+          "axis": "scope",
+          "state": "conflict",
+          "backflow_owner": "設計owner/OS",
+          "expected": "元scopeと未許可差分を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "元scopeと未許可差分を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unchecked_digest_update",
+          "change": "意味digestを独立照合なしで更新",
+          "axis": "revision",
+          "state": "unknown",
+          "backflow_owner": "意味owner",
+          "expected": "新digestは検証成立を示さない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "新digestは検証成立を示さない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "self_report_independent",
+          "change": "作成Worker自身の自己報告を独立検証とする",
+          "axis": "independence",
+          "state": "conflict",
+          "backflow_owner": "review-owner",
+          "expected": "identity/context/authority/routeの不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "identity/context/authority/routeの不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unexecuted_as_complete",
+          "change": "未実行oracleを完了とする",
+          "axis": "execution",
+          "state": "missing",
+          "backflow_owner": "execution-owner",
+          "expected": "実観測欠落を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "実観測欠落を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "digest_mismatch_accepted",
+          "change": "実結果の意味digestを別値へ変更",
+          "axis": "revision",
+          "state": "stale",
+          "backflow_owner": "意味owner/execution-owner",
+          "expected": "当該結果を元対象の証拠へ数えない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "当該結果を元対象の証拠へ数えない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "other_head_review",
+          "change": "独立reviewが別HEADを対象にする",
+          "axis": "revision",
+          "state": "stale",
+          "backflow_owner": "review-owner",
+          "expected": "review対象不一致を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "review対象不一致を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "projection_as_complete",
+          "change": "表示projectionだけで工程完了を主張",
+          "axis": "evidence",
+          "state": "unknown",
+          "backflow_owner": "OS/検証owner",
+          "expected": "原実結果未供給を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "原実結果未供給を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "runtime_exchange_skip",
+          "change": "runtime交代を理由に元証拠条件を省略",
+          "axis": "continuity",
+          "state": "missing",
+          "backflow_owner": "OS/実行環境",
+          "expected": "同じ義務を保持し再開不足理由を示す。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "同じ義務を保持し再開不足理由を示す。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L4-005-F01",
+      "requirement_ref": "HARNESS-L3-005-F01",
+      "system_oracle_ref": "HARNESS-L10-005-F01",
+      "oracle_ref": "HARNESS-L9-005-F01",
+      "title": "対象と検証条件",
+      "behavior": "ticketとの関係（Forward小/中/大、V-pair、触るconnector、変更種別）と変更内容/layer/riskから、対象要求revision・artifact・入力・oracle・expected failure・実結果・証拠の有効期限・差戻し先を含む検証義務を導く。required/conditional/informational/N/Aを理由付きで区別し、unknownをskipへ変えない。",
+      "component_refs": [
+        "DutyDerivation"
+      ],
+      "input_contract": {
+        "binding": "同じrequirement/artifact/pair/oracle identity・revision・project/tenant/environment、選択された実操作と適用条件",
+        "fields": [
+          "binding",
+          "source_assumption",
+          "claims",
+          "non_target",
+          "ticket",
+          "declared_change_contract",
+          "duties",
+          "derivation_rules",
+          "duty_catalog"
+        ],
+        "source_qualification": "各owner原内容と根拠を参照解決して比較。string/件数/digest一致だけを内容成立にしない。missing/null/empty/unknown/conflict/staleを区別。実resolverはL5/L8へ。",
+        "variant_refs": [
+          "HARNESS-L9-005-F01-MEDIUM-CONNECTION",
+          "HARNESS-L9-005-F01-LARGE-COMPOSITE"
+        ]
+      },
+      "comparison_order": [
+        "ticket関係/変更subject/connector/change kind/layer/pair/riskと規範ruleの条件を照合し、一致する義務を対象catalogへ結ぶ。宣言affected refsだけで答えを受理しない。",
+        "required/conditional/informational/N_A/unknownを理由・条件・CORE属性付きで区分し、各義務の対象要求/artifact/入力/oracle/expected failure/期限・失効条件/戻し先を検査。",
+        "条件falseと未実行は義務消込へ変換せず、未知rule・未解決refを元scopeへ残す。"
+      ],
+      "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
+      "output_observation_ref": "HARNESS-L9-005-F01.expected_material",
+      "negative_classifications": [
+        {
+          "code": "duty_missing_requirement_revision",
+          "change": "検証義務のrequirement_revisionを除去",
+          "axis": "input",
+          "state": "missing",
+          "backflow_owner": "検証契約owner",
+          "expected": "当該義務のrequirement_revision不足を特定して成立させない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "当該義務のrequirement_revision不足を特定して成立させない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "duty_missing_artifact",
+          "change": "検証義務のartifactを除去",
+          "axis": "input",
+          "state": "missing",
+          "backflow_owner": "検証契約owner",
+          "expected": "当該義務のartifact不足を特定して成立させない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "当該義務のartifact不足を特定して成立させない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "duty_missing_input",
+          "change": "検証義務のinputを除去",
+          "axis": "input",
+          "state": "missing",
+          "backflow_owner": "検証契約owner",
+          "expected": "当該義務のinput不足を特定して成立させない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "当該義務のinput不足を特定して成立させない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "duty_missing_oracle",
+          "change": "検証義務のoracleを除去",
+          "axis": "input",
+          "state": "missing",
+          "backflow_owner": "検証契約owner",
+          "expected": "当該義務のoracle不足を特定して成立させない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "当該義務のoracle不足を特定して成立させない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "duty_missing_expected_failure",
+          "change": "検証義務のexpected_failureを除去",
+          "axis": "input",
+          "state": "missing",
+          "backflow_owner": "検証契約owner",
+          "expected": "当該義務のexpected_failure不足を特定して成立させない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "当該義務のexpected_failure不足を特定して成立させない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "duty_missing_evidence_validity",
+          "change": "検証義務のevidence_validityを除去",
+          "axis": "input",
+          "state": "missing",
+          "backflow_owner": "検証契約owner",
+          "expected": "当該義務のevidence_validity不足を特定して成立させない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "当該義務のevidence_validity不足を特定して成立させない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "duty_missing_backflow_owner",
+          "change": "検証義務のbackflow_ownerを除去",
+          "axis": "input",
+          "state": "missing",
+          "backflow_owner": "検証契約owner",
+          "expected": "当該義務のbackflow_owner不足を特定して成立させない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "当該義務のbackflow_owner不足を特定して成立させない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unknown_as_skip",
+          "change": "適用unknownをskipへ変換",
+          "axis": "applicability",
+          "state": "unknown",
+          "backflow_owner": "CORE/005",
+          "expected": "不明義務を未評価として保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "不明義務を未評価として保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "worker_as_duty",
+          "change": "Worker名だけで必要義務を決める",
+          "axis": "derivation",
+          "state": "conflict",
+          "backflow_owner": "005契約owner",
+          "expected": "元変更/layer/risk/pair根拠不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "元変更/layer/risk/pair根拠不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "conditional_as_discharged",
+          "change": "未充足conditionalを合格消込",
+          "axis": "applicability",
+          "state": "conflict",
+          "backflow_owner": "CORE/005",
+          "expected": "条件falseと未充足義務を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "条件falseと未充足義務を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "informational_as_required",
+          "change": "理由なくinformationalをrequiredへ変更",
+          "axis": "applicability",
+          "state": "conflict",
+          "backflow_owner": "CORE/005",
+          "expected": "元分類を保持し余分な必須化を拒否。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "元分類を保持し余分な必須化を拒否。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L4-005-F02",
+      "requirement_ref": "HARNESS-L3-005-F02",
+      "system_oracle_ref": "HARNESS-L10-005-F02",
+      "oracle_ref": "HARNESS-L9-005-F02",
+      "title": "構造別義務と差分証明",
+      "behavior": "unitは単体、connectionは境界/結合、compositeはシステム固有のoracle/expected failure/証拠条件を持つ。下位proofと組合せ契約を証拠に積み上げ、上位固有義務の差分を証明する。下位proofで表せない固有非機能は別証明し、下位proof/組合せ契約が揃い未解決固有義務が無いことを契約で示せる場合は機械導出してよい。",
+      "component_refs": [
+        "ProofComposition"
+      ],
+      "input_contract": {
+        "binding": "同じrequirement/artifact/pair/oracle identity・revision・project/tenant/environment、選択された実操作と適用条件",
+        "fields": [
+          "binding",
+          "source_assumption",
+          "claims",
+          "non_target",
+          "structure",
+          "lower_proofs",
+          "combination_contract",
+          "unique_obligations"
+        ],
+        "source_qualification": "各owner原内容と根拠を参照解決して比較。string/件数/digest一致だけを内容成立にしない。missing/null/empty/unknown/conflict/staleを区別。実resolverはL5/L8へ。",
+        "variant_refs": [
+          "HARNESS-L9-005-F02-NO-UNIQUE-OBLIGATIONS"
+        ]
+      },
+      "comparison_order": [
+        "各unit/connection下位proofを同subject/revision/scope/oracleと実結果へ結び、組合せ契約の必要subject集合と比較。",
+        "上位全義務の母集合・下位で表せる部分・上位固有差分・未解決を内容で照合。固有非機能を下位件数で充足させない。",
+        "下位と組合せが有効で、固有未解決なしを契約が示す場合だけ機械導出候補。固有ありなら別証明不足を保持し端から端の一律再実行を足さない。"
+      ],
+      "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
+      "output_observation_ref": "HARNESS-L9-005-F02.expected_material",
+      "negative_classifications": [
+        {
+          "code": "units_as_connection",
+          "change": "全単体proofで接続完了を主張",
+          "axis": "composition",
+          "state": "missing",
+          "backflow_owner": "接続設計/検証owner",
+          "expected": "接続固有oracle不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "接続固有oracle不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "lower_as_composite",
+          "change": "下位proofで未証明上位固有UX1を相殺",
+          "axis": "composition",
+          "state": "missing",
+          "backflow_owner": "構成体検証owner",
+          "expected": "UX1の別証明不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "UX1の別証明不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "combination_missing",
+          "change": "組合せ契約を欠く",
+          "axis": "composition",
+          "state": "missing",
+          "backflow_owner": "構成体設計owner",
+          "expected": "原下位proofを保持し合成根拠不足を示す。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "原下位proofを保持し合成根拠不足を示す。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unique_nfr_cancelled",
+          "change": "固有非機能を単体proofで充足扱い",
+          "axis": "composition",
+          "state": "conflict",
+          "backflow_owner": "構成体検証owner",
+          "expected": "固有非機能の独立oracleを維持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "固有非機能の独立oracleを維持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unconditional_e2e",
+          "change": "固有なしを示す契約と全下位有効proofがあるのに端から端再実行を一律強制",
+          "axis": "composition",
+          "state": "conflict",
+          "backflow_owner": "005/構成体設計owner",
+          "expected": "契約根拠付き機械導出を可能とし新しい一律gateを拒否。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "契約根拠付き機械導出を可能とし新しい一律gateを拒否。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "count_as_composition",
+          "change": "proof件数一致だけで必要subject充足",
+          "axis": "composition",
+          "state": "conflict",
+          "backflow_owner": "構成体検証owner",
+          "expected": "subject/oracle/revisionごとの不足を特定。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "subject/oracle/revisionごとの不足を特定。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L4-005-F03",
+      "requirement_ref": "HARNESS-L3-005-F03",
+      "system_oracle_ref": "HARNESS-L10-005-F03",
+      "oracle_ref": "HARNESS-L9-005-F03",
+      "title": "ticket起点のCI範囲と省略回収",
+      "behavior": "PR前CIはForward小=原子、中=境界/触るconnector、大=システム証明を基本に、認証/DB migration/security/release等の高riskでは小さくても上位証明を早めに求める。ticket範囲外変更は止める。省略検査を記録し小→中/大、中→大の合流先ticketで回収する。未回収はRelease Portで止め、merge直後全件/夜間補完を既定にしない。",
+      "component_refs": [
+        "DutyDerivation"
+      ],
+      "input_contract": {
+        "binding": "同じrequirement/artifact/pair/oracle identity・revision・project/tenant/environment、選択された実操作と適用条件",
+        "fields": [
+          "binding",
+          "source_assumption",
+          "claims",
+          "non_target",
+          "ticket",
+          "actual_diff_refs",
+          "risk",
+          "inventory",
+          "selected_refs",
+          "omitted",
+          "joining_ticket",
+          "release_port_requested"
+        ],
+        "source_qualification": "各owner原内容と根拠を参照解決して比較。string/件数/digest一致だけを内容成立にしない。missing/null/empty/unknown/conflict/staleを区別。実resolverはL5/L8へ。",
+        "variant_refs": [
+          "HARNESS-L9-005-F03-SMALL-LOW-RISK",
+          "HARNESS-L9-005-F03-MEDIUM-LOW-RISK",
+          "HARNESS-L9-005-F03-LARGE-LOW-RISK",
+          "HARNESS-L9-005-F03-RECOVERED-AT-JOIN"
+        ]
+      },
+      "comparison_order": [
+        "ticket小/中/大と実差分scope、触るconnector、risk・密結合影響を照合してPR前必要集合を導く。高riskの上位集合は明示設計根拠から得て固定段数を足さない。",
+        "inventoryの同対象集合を選択/省略へ分け、必要検査欠落・scope外差分・省略の無記録を識別。",
+        "省略itemを小→中/大、中→大の合流先ticketと回収原結果へ結び、未回収をPort材料へ残す。merge直後full/nightlyを既定にしない。"
+      ],
+      "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
+      "output_observation_ref": "HARNESS-L9-005-F03.expected_material",
+      "negative_classifications": [
+        {
+          "code": "fixed_full_default",
+          "change": "ticket関係を無視して全件CIを既定化",
+          "axis": "selection",
+          "state": "conflict",
+          "backflow_owner": "005/OS検収",
+          "expected": "ticket/risk由来の集合と必要上位義務を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "ticket/risk由来の集合と必要上位義務を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "omission_lost",
+          "change": "省略した検査の集合を記録しない",
+          "axis": "omission",
+          "state": "missing",
+          "backflow_owner": "OS検収/005",
+          "expected": "省略itemと回収先を未完として保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "省略itemと回収先を未完として保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "outside_ticket_change",
+          "change": "実差分にticket scope外Bを追加",
+          "axis": "scope",
+          "state": "conflict",
+          "backflow_owner": "OS/設計owner",
+          "expected": "scope外Bを特定し当該合流未成立。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "scope外Bを特定し当該合流未成立。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "high_risk_unit_only",
+          "change": "小ticketだから高riskのC1/X1を省略",
+          "axis": "risk",
+          "state": "missing",
+          "backflow_owner": "OS検収/005",
+          "expected": "C1/X1のPR前証明不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "C1/X1のPR前証明不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unrecovered_release",
+          "change": "未回収省略C1を残してPort通過を主張",
+          "axis": "omission",
+          "state": "missing",
+          "backflow_owner": "OS/Release Port owner",
+          "expected": "未回収C1とPort未成立を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "未回収C1とPort未成立を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "wrong_join_ticket",
+          "change": "小から小へ省略を渡して回収済み扱い",
+          "axis": "omission",
+          "state": "conflict",
+          "backflow_owner": "OS推進/検収",
+          "expected": "小→中/大、中→大の元関係と不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "小→中/大、中→大の元関係と不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "nightly_recovery_default",
+          "change": "省略回収先を夜間全件へ黙って変更",
+          "axis": "omission",
+          "state": "conflict",
+          "backflow_owner": "005/OS",
+          "expected": "採択した合流先ticket回収を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "採択した合流先ticket回収を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L4-005-F04",
+      "requirement_ref": "HARNESS-L3-005-F04",
+      "system_oracle_ref": "HARNESS-L10-005-F04",
+      "oracle_ref": "HARNESS-L9-005-F04",
+      "title": "密結合と後日失敗の還流",
+      "behavior": "影響が広がる密結合では当該PRで影響する接続/composite検査を広げ、成立まで合流しない。その後は恒常的にCIを重くせず設計不具合としてDesign-refactor発行の材料へ戻す。すり抜けて後日見つかった失敗は証拠付きrelationで閉じた元ticketへ接続し、元のcompletion/closureを保存したまま追補assessmentを保持する。LABOが原子CI/connector契約不足を評価する入力へ結び。",
+      "component_refs": [
+        "ImpactAndCausalTrace"
+      ],
+      "input_contract": {
+        "binding": "同じrequirement/artifact/pair/oracle identity・revision・project/tenant/environment、選択された実操作と適用条件",
+        "fields": [
+          "binding",
+          "source_assumption",
+          "claims",
+          "non_target",
+          "declared_impact",
+          "current_pr_results",
+          "original_closure",
+          "late_failure",
+          "assessment",
+          "labo_input"
+        ],
+        "source_qualification": "各owner原内容と根拠を参照解決して比較。string/件数/digest一致だけを内容成立にしない。missing/null/empty/unknown/conflict/staleを区別。実resolverはL5/L8へ。",
+        "variant_refs": []
+      },
+      "comparison_order": [
+        "元影響scopeと境界oracleから当該PRの接続/composite必要検査と実結果不足を比較。",
+        "密結合解消はDesign-refactor材料とし、発行・恒常全件化を現PR検査の成功へ写さない。",
+        "後日失敗の原record/証拠付きrelation/元closure/追補assessmentを別identityで保持し、時間/pathだけの因果は未決。LABOへ原材料だけ渡す。"
+      ],
+      "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
+      "output_observation_ref": "HARNESS-L9-005-F04.expected_material",
+      "negative_classifications": [
+        {
+          "code": "coupling_unit_only",
+          "change": "AB/Xへ影響するのに小の単体だけで合流",
+          "axis": "impact",
+          "state": "missing",
+          "backflow_owner": "OS検収/接続構成体owner",
+          "expected": "当該PRのAB/X実証不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "当該PRのAB/X実証不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "refactor_as_proof",
+          "change": "Design-refactor発行だけで当該PR検査成立",
+          "axis": "impact",
+          "state": "conflict",
+          "backflow_owner": "OS/設計owner",
+          "expected": "発行材料と現PR検査の成立を分離。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "発行材料と現PR検査の成立を分離。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "permanent_full_as_fix",
+          "change": "恒常全件CIで密結合設計不足を完了扱い",
+          "axis": "impact",
+          "state": "conflict",
+          "backflow_owner": "設計owner",
+          "expected": "結合解消の別設計材料を残す。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "結合解消の別設計材料を残す。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "path_as_cause",
+          "change": "同じpathだけで後日失敗の原因ticket確定",
+          "axis": "causality",
+          "state": "unknown",
+          "backflow_owner": "assessment-owner/LABO",
+          "expected": "因果根拠未決を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "因果根拠未決を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "time_as_cause",
+          "change": "時刻近接だけで原因ticket確定",
+          "axis": "causality",
+          "state": "unknown",
+          "backflow_owner": "assessment-owner/LABO",
+          "expected": "証拠付きrelation不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "証拠付きrelation不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "overwrite_old_closure",
+          "change": "後日失敗で元closedをfailedへ上書き",
+          "axis": "history",
+          "state": "conflict",
+          "backflow_owner": "OS管理",
+          "expected": "元closureと追補assessmentを別に保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "元closureと追補assessmentを別に保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "material_as_labo_success",
+          "change": "LABO入力供給だけで評価成功を主張",
+          "axis": "owner",
+          "state": "unknown",
+          "backflow_owner": "LABO",
+          "expected": "原記録集合は保持し評価結果不足を残す。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "原記録集合は保持し評価結果不足を残す。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L4-005-F05",
+      "requirement_ref": "HARNESS-L3-005-F05",
+      "system_oracle_ref": "HARNESS-L10-005-F05",
+      "oracle_ref": "HARNESS-L9-005-F05",
+      "title": "宣言依存方向の照合",
+      "behavior": "適用domainでは設計ownerが宣言した依存方向表/循環条件を対象revisionと設計authority状態へ結ぶ。禁止方向/循環は不成立、変更が必要なら設計ownerへ戻す。表/適用状態不明を補完せず、検証規範から構成/境界を決めない。旧HELIX固有lint/runtime/schema/CLI方向表を外部製品へ必須化しない。",
+      "component_refs": [
+        "DisciplineComparison"
+      ],
+      "input_contract": {
+        "binding": "同じrequirement/artifact/pair/oracle identity・revision・project/tenant/environment、選択された実操作と適用条件",
+        "fields": [
+          "binding",
+          "source_assumption",
+          "claims",
+          "non_target",
+          "applicability",
+          "direction_table",
+          "actual_edges"
+        ],
+        "source_qualification": "各owner原内容と根拠を参照解決して比較。string/件数/digest一致だけを内容成立にしない。missing/null/empty/unknown/conflict/staleを区別。実resolverはL5/L8へ。",
+        "variant_refs": [
+          "HARNESS-L9-005-F05-CYCLE-ISOLATED-BASIS"
+        ]
+      },
+      "comparison_order": [
+        "CORE適用原状態と宣言ownerの方向表・循環条件・対象設計authorityを結ぶ。",
+        "同scopeのactual dependency edgeごとに方向表へ照合し、cycle許可条件も独立照合。表不足を旧HELIX表で補完しない。",
+        "違反edge/cycleと戻し先を特定し、表・境界の意味変更は設計ownerへ返す。"
+      ],
+      "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
+      "output_observation_ref": "HARNESS-L9-005-F05.expected_material",
+      "negative_classifications": [
+        {
+          "code": "forbidden_edge",
+          "change": "domain→application禁止edgeを追加",
+          "axis": "dependency",
+          "state": "conflict",
+          "backflow_owner": "設計owner",
+          "expected": "禁止edgeを特定し元方向表を保存。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "禁止edgeを特定し元方向表を保存。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "forbidden_cycle",
+          "change": "CYCLE-ISOLATED-BASISの全辺許可・循環禁止tableを保持したままactualへcontract→applicationを追加",
+          "axis": "dependency",
+          "state": "conflict",
+          "backflow_owner": "設計owner",
+          "expected": "cycleの辺を特定し無関係edgeを保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "cycleの辺を特定し無関係edgeを保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0,
+          "fixture_ref": "HARNESS-L9-005-F05-CYCLE-ISOLATED-BASIS"
+        },
+        {
+          "code": "direction_table_missing",
+          "change": "宣言方向表を除去",
+          "axis": "input",
+          "state": "missing",
+          "backflow_owner": "設計owner",
+          "expected": "表不足をunknownへ保持し旧表fallbackしない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "表不足をunknownへ保持し旧表fallbackしない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "foreign_scope_table",
+          "change": "PへQの方向表を転用",
+          "axis": "scope",
+          "state": "conflict",
+          "backflow_owner": "設計owner",
+          "expected": "別scope表を被覆に数えない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "別scope表を被覆に数えない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "old_direction_auto_apply",
+          "change": "旧src/lint/runtime/schema表を全製品へ自動適用",
+          "axis": "owner",
+          "state": "conflict",
+          "backflow_owner": "設計owner",
+          "expected": "旧表の原意味は保持し今回の宣言表を置換しない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "旧表の原意味は保持し今回の宣言表を置換しない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "direction_authority_unknown",
+          "change": "表の設計authority状態を不明化",
+          "axis": "authority",
+          "state": "unknown",
+          "backflow_owner": "設計authority-owner",
+          "expected": "当該表で合格を生成しない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "当該表で合格を生成しない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L4-005-F06",
+      "requirement_ref": "HARNESS-L3-005-F06",
+      "system_oracle_ref": "HARNESS-L10-005-F06",
+      "oracle_ref": "HARNESS-L9-005-F06",
+      "title": "domain不変条件のoracle trace",
+      "behavior": "適用scopeの宣言された各domain不変条件を、同じ対象の単体検証設計の明示oracle identityへ結ぶ。欠落/未解決/別revision/別条件だけを検証するoracleは当該不変条件の被覆に数えず、traceの存在で振る舞い成功を生成しない。",
+      "component_refs": [
+        "DisciplineComparison"
+      ],
+      "input_contract": {
+        "binding": "同じrequirement/artifact/pair/oracle identity・revision・project/tenant/environment、選択された実操作と適用条件",
+        "fields": [
+          "binding",
+          "source_assumption",
+          "claims",
+          "non_target",
+          "declared_invariants",
+          "oracle_designs",
+          "actual_results"
+        ],
+        "source_qualification": "各owner原内容と根拠を参照解決して比較。string/件数/digest一致だけを内容成立にしない。missing/null/empty/unknown/conflict/staleを区別。実resolverはL5/L8へ。",
+        "variant_refs": []
+      },
+      "comparison_order": [
+        "宣言不変条件母集合を各同対象/revisionの明示oracleへ解決。",
+        "各oracleの具体期待behaviorが当該不変条件を判定するか照合。link/件数一致や別条件のoracleでは被覆にしない。",
+        "未被覆条件を局所化し、trace成立と未実行実結果を分離。"
+      ],
+      "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
+      "output_observation_ref": "HARNESS-L9-005-F06.expected_material",
+      "negative_classifications": [
+        {
+          "code": "invariant_oracle_missing",
+          "change": "INV2に対応するoracleを除去",
+          "axis": "trace",
+          "state": "missing",
+          "backflow_owner": "検証設計owner",
+          "expected": "INV2不足とINV1有効対応を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "INV2不足とINV1有効対応を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "invariant_oracle_unresolved",
+          "change": "INV2 oracle参照を未解決にする",
+          "axis": "trace",
+          "state": "unknown",
+          "backflow_owner": "検証設計owner",
+          "expected": "参照存在を被覆へ数えない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "参照存在を被覆へ数えない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "invariant_wrong_revision",
+          "change": "INV2 oracleの対象revisionをr0へ変更",
+          "axis": "revision",
+          "state": "stale",
+          "backflow_owner": "検証設計owner",
+          "expected": "当該旧oracleはr1被覆にならない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "当該旧oracleはr1被覆にならない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "invariant_wrong_behavior",
+          "change": "INV2 oracleを残高非負だけへ変更",
+          "axis": "behavior",
+          "state": "conflict",
+          "backflow_owner": "検証設計owner",
+          "expected": "件数/linkが同じでも重複event義務未被覆。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "件数/linkが同じでも重複event義務未被覆。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "trace_as_execution",
+          "change": "traceのみで振る舞い実成功を主張",
+          "axis": "execution",
+          "state": "missing",
+          "backflow_owner": "execution-owner",
+          "expected": "trace成立と未実行を分離。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "trace成立と未実行を分離。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L4-005-F07",
+      "requirement_ref": "HARNESS-L3-005-F07",
+      "system_oracle_ref": "HARNESS-L10-005-F07",
+      "oracle_ref": "HARNESS-L9-005-F07",
+      "title": "TDDの実観測と順序",
+      "behavior": "TDD適用scopeでは意図した欠陥を検出したRedと凍結oracleを最小実装で満たしたGreenの実観測を同じ対象/oracleへ結び、欠落/時系列不明/Greenより後のRedを拒否する。003/015の実装前凍結とREDFIRSTの実装前Redを保持し、静的reviewや人の受入全般にRed実行を拡張しない。",
+      "component_refs": [
+        "DisciplineComparison"
+      ],
+      "input_contract": {
+        "binding": "同じrequirement/artifact/pair/oracle identity・revision・project/tenant/environment、選択された実操作と適用条件",
+        "fields": [
+          "binding",
+          "source_assumption",
+          "claims",
+          "non_target",
+          "applicability",
+          "freeze",
+          "red",
+          "body_change",
+          "green",
+          "postimplementation_mutation"
+        ],
+        "source_qualification": "各owner原内容と根拠を参照解決して比較。string/件数/digest一致だけを内容成立にしない。missing/null/empty/unknown/conflict/staleを区別。実resolverはL5/L8へ。",
+        "variant_refs": []
+      },
+      "comparison_order": [
+        "TDD適用契約、同oracleの凍結、元本体H0→H1と実Red/Greenの対象/因果順序を照合。",
+        "凍結→意図欠陥を検出した実Red→最小本体変更→凍結oracleの実Greenを照合。順序不明/別oracle/起動失敗を不足へ。",
+        "実装後mutationは強度の別証拠として保持し実装前Redへ転用しない。静的reviewや人の受入へRedを拡張しない。"
+      ],
+      "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
+      "output_observation_ref": "HARNESS-L9-005-F07.expected_material",
+      "negative_classifications": [
+        {
+          "code": "red_missing",
+          "change": "Red原結果を除去",
+          "axis": "execution",
+          "state": "missing",
+          "backflow_owner": "execution-owner/015",
+          "expected": "実装前Red不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "実装前Red不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "red_after_green",
+          "change": "RedをGreen後sequence5へ変更",
+          "axis": "ordering",
+          "state": "conflict",
+          "backflow_owner": "execution-owner/015",
+          "expected": "同oracleでも逆順を不成立。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "同oracleでも逆順を不成立。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "red_after_body",
+          "change": "Redを本体変更後かつGreen前sequence3.5へ変更",
+          "axis": "ordering",
+          "state": "conflict",
+          "backflow_owner": "execution-owner/015",
+          "expected": "Green前だけでは実装前Red保証を満たさない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "Green前だけでは実装前Red保証を満たさない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "red_not_executed",
+          "change": "Redをtest記述時刻だけへ置換",
+          "axis": "execution",
+          "state": "missing",
+          "backflow_owner": "execution-owner/015",
+          "expected": "実観測と記述を区別。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "実観測と記述を区別。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "ordering_unknown",
+          "change": "sequence/因果orderの根拠を除去",
+          "axis": "ordering",
+          "state": "unknown",
+          "backflow_owner": "execution-owner/015",
+          "expected": "壁時計文字列だけで順序を推測しない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "壁時計文字列だけで順序を推測しない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "mutation_as_pre_red",
+          "change": "実装後mutationを実装前Redの代替にする",
+          "axis": "ordering",
+          "state": "conflict",
+          "backflow_owner": "execution-owner/015",
+          "expected": "別の強度証拠を保持し実装前欠落を残す。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "別の強度証拠を保持し実装前欠落を残す。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "green_oracle_changed",
+          "change": "Green oracleを凍結時と別revisionへ変更",
+          "axis": "oracle",
+          "state": "stale",
+          "backflow_owner": "検証設計owner/015",
+          "expected": "元凍結oracleのGreen不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "元凍結oracleのGreen不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "red_wrong_failure",
+          "change": "Red実失敗を起動エラーへ変更",
+          "axis": "behavior",
+          "state": "conflict",
+          "backflow_owner": "検証設計owner/015",
+          "expected": "意図した欠陥検出の不足を特定。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "意図した欠陥検出の不足を特定。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L4-005-F08",
+      "requirement_ref": "HARNESS-L3-005-F08",
+      "system_oracle_ref": "HARNESS-L10-005-F08",
+      "oracle_ref": "HARNESS-L9-005-F08",
+      "title": "具体的behaviorを判定するoracle",
+      "behavior": "単体testは具体的な期待behaviorを判定する明示assertionまたは同等oracleを持つ。実行のみ/assertionなし/期待behaviorを判定しないtruthinessのみを十分とせず、実装から期待値を逆算して正本にしない。oracle不足は対設計ownerへ戻し、library/assertion syntaxを固定しない。",
+      "component_refs": [
+        "DisciplineComparison"
+      ],
+      "input_contract": {
+        "binding": "同じrequirement/artifact/pair/oracle identity・revision・project/tenant/environment、選択された実操作と適用条件",
+        "fields": [
+          "binding",
+          "source_assumption",
+          "claims",
+          "non_target",
+          "behavior_basis",
+          "oracle_design",
+          "comparison_examples",
+          "example_kind"
+        ],
+        "source_qualification": "各owner原内容と根拠を参照解決して比較。string/件数/digest一致だけを内容成立にしない。missing/null/empty/unknown/conflict/staleを区別。実resolverはL5/L8へ。",
+        "variant_refs": []
+      },
+      "comparison_order": [
+        "独立した要求/設計の具体behaviorとoracle期待の出所を照合。",
+        "判定内容を正解5/違反6などの固定意味例へ照合し、assertion名・truthiness・実装出力の自己期待化を十分としない。",
+        "oracle弱化の対象期待と戻し先を示し、合成例比較を実製品runや汎用意味証明へ昇格しない。"
+      ],
+      "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
+      "output_observation_ref": "HARNESS-L9-005-F08.expected_material",
+      "negative_classifications": [
+        {
+          "code": "oracle_no_assertion",
+          "change": "oracleの判定内容を除去",
+          "axis": "oracle",
+          "state": "missing",
+          "backflow_owner": "検証設計owner",
+          "expected": "実行欄だけでは具体期待を判定しない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "実行欄だけでは具体期待を判定しない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "oracle_truthiness",
+          "change": "equal5を結果truthinessだけへ変更",
+          "axis": "oracle",
+          "state": "conflict",
+          "backflow_owner": "検証設計owner",
+          "expected": "5/6両方truthyで欠陥を見逃す弱さを指摘。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "5/6両方truthyで欠陥を見逃す弱さを指摘。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "expected_from_implementation",
+          "change": "実装が返す6を期待値の正本とする",
+          "axis": "owner",
+          "state": "conflict",
+          "backflow_owner": "検証設計owner",
+          "expected": "独立期待5と不一致を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "独立期待5と不一致を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "same_pass_defect",
+          "change": "違反6と正解5へ同じ成功を返す",
+          "axis": "oracle",
+          "state": "conflict",
+          "backflow_owner": "検証設計owner",
+          "expected": "欠陥非識別を対象behaviorへ結ぶ。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "欠陥非識別を対象behaviorへ結ぶ。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L4-005-F09",
+      "requirement_ref": "HARNESS-L3-005-F09",
+      "system_oracle_ref": "HARNESS-L10-005-F09",
+      "oracle_ref": "HARNESS-L9-005-F09",
+      "title": "結合のGiven/When/Then",
+      "behavior": "適用結合検証では前提状態/入力、操作/事象、期待観測を別々に識別し、境界/依存/失敗経路と同じpair oracleへ結ぶ。旧L8/L9表記は保持し、現行pair/kindへの対応を入力契約で示して使う。層番号だけで対応済みにしない。",
+      "component_refs": [
+        "DisciplineComparison"
+      ],
+      "input_contract": {
+        "binding": "同じrequirement/artifact/pair/oracle identity・revision・project/tenant/environment、選択された実操作と適用条件",
+        "fields": [
+          "binding",
+          "source_assumption",
+          "claims",
+          "non_target",
+          "pair_mapping",
+          "integration_design"
+        ],
+        "source_qualification": "各owner原内容と根拠を参照解決して比較。string/件数/digest一致だけを内容成立にしない。missing/null/empty/unknown/conflict/staleを区別。実resolverはL5/L8へ。",
+        "variant_refs": []
+      },
+      "comparison_order": [
+        "旧labelとcurrent pair/kindの明示意味対応と同scope境界を解決。",
+        "Given状態/入力、When操作、Then具体期待を独立照合し、境界/依存/失敗経路の同oracleへ結ぶ。",
+        "空のlabel/Then欠落/別scope/旧番号だけの対応を未成立として元期待を保持。"
+      ],
+      "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
+      "output_observation_ref": "HARNESS-L9-005-F09.expected_material",
+      "negative_classifications": [
+        {
+          "code": "gwt_then_missing",
+          "change": "Then期待を除去",
+          "axis": "oracle",
+          "state": "missing",
+          "backflow_owner": "結合検証設計owner",
+          "expected": "前提/操作を保持し期待観測不足を示す。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "前提/操作を保持し期待観測不足を示す。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "gwt_labels_only",
+          "change": "Given/When/Thenを空の名前だけへ変更",
+          "axis": "oracle",
+          "state": "missing",
+          "backflow_owner": "結合検証設計owner",
+          "expected": "名前で被覆を生成しない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "名前で被覆を生成しない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "gwt_foreign_scope",
+          "change": "結合oracleにQ結果を転用",
+          "axis": "scope",
+          "state": "conflict",
+          "backflow_owner": "結合検証設計owner",
+          "expected": "Pの同pair不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "Pの同pair不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "old_layer_label_only",
+          "change": "旧L8/L9番号だけでcurrent pairを適用",
+          "axis": "pair",
+          "state": "unknown",
+          "backflow_owner": "設計/検証owner",
+          "expected": "意味/種類/対応根拠不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "意味/種類/対応根拠不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "gwt_failure_missing",
+          "change": "失敗経路の期待を除去",
+          "axis": "oracle",
+          "state": "missing",
+          "backflow_owner": "結合検証設計owner",
+          "expected": "再送重複eventの失敗経路を未被覆へ。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "再送重複eventの失敗経路を未被覆へ。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L4-005-N01",
+      "requirement_ref": "HARNESS-L3-005-N01",
+      "system_oracle_ref": "HARNESS-L10-005-N01",
+      "oracle_ref": "HARNESS-L9-005-N01",
+      "title": "適用・unknown・未見の意味証拠",
+      "behavior": "適用規律のidentity/根拠、対象revision/scope、oracle/実結果、違反/不足箇所、未評価範囲と戻し先を既存005証拠条件へ結ぶ。domain/TDD/結合対象無しと入力不明/未実行を区別し、非適用は009の理由/判定者/revision/再評価条件へ結ぶ。5規律の一律実行や新gateを追加しない。",
+      "component_refs": [
+        "DisciplineComparison"
+      ],
+      "input_contract": {
+        "binding": "同じrequirement/artifact/pair/oracle identity・revision・project/tenant/environment、選択された実操作と適用条件",
+        "fields": [
+          "binding",
+          "source_assumption",
+          "claims",
+          "non_target",
+          "discipline_applications",
+          "observed_rules",
+          "unseen_case_contract"
+        ],
+        "source_qualification": "各owner原内容と根拠を参照解決して比較。string/件数/digest一致だけを内容成立にしない。missing/null/empty/unknown/conflict/staleを区別。実resolverはL5/L8へ。",
+        "variant_refs": []
+      },
+      "comparison_order": [
+        "規律identity/根拠/対象revision/scope/CORE適用を照合し、正当非適用の4属性とunknown/未実行を分離。",
+        "各規律のoracle/実結果/違反・不足/未評価を独立照合。他規律成功を相殺や不明identityのfallbackにしない。",
+        "独立未公開caseは固定意味oracleへ束縛して実行前に定めるが、未実行を合格へ写さない。要求不足は008、境界/oracle不足は設計検証ownerへ。"
+      ],
+      "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
+      "output_observation_ref": "HARNESS-L9-005-N01.expected_material",
+      "negative_classifications": [
+        {
+          "code": "unknown_as_na",
+          "change": "integration unknownをN/Aへ変更",
+          "axis": "applicability",
+          "state": "unknown",
+          "backflow_owner": "CORE/005",
+          "expected": "入力不明と正当非適用を分離。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "入力不明と正当非適用を分離。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unknown_as_zero",
+          "change": "規律未評価を0違反へ変更",
+          "axis": "applicability",
+          "state": "unknown",
+          "backflow_owner": "005/検証owner",
+          "expected": "未評価scopeと戻し先を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "未評価scopeと戻し先を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unknown_rule_fallback",
+          "change": "identity不明ruleを既知directionへ置換",
+          "axis": "identity",
+          "state": "unknown",
+          "backflow_owner": "005契約owner",
+          "expected": "原identity不明をそのまま不足とする。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "原identity不明をそのまま不足とする。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "other_rule_cancels",
+          "change": "direction成功でintegration不足を相殺",
+          "axis": "applicability",
+          "state": "conflict",
+          "backflow_owner": "005/検証owner",
+          "expected": "規律ごとの未完義務を独立保存。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "規律ごとの未完義務を独立保存。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "na_reason_missing",
+          "change": "TDD N/A理由を除去",
+          "axis": "applicability",
+          "state": "missing",
+          "backflow_owner": "CORE009",
+          "expected": "判定者/revision/再評価条件も既存009へ結ぶ。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "判定者/revision/再評価条件も既存009へ結ぶ。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "na_decider_missing",
+          "change": "TDD N/A判定者を除去",
+          "axis": "applicability",
+          "state": "missing",
+          "backflow_owner": "CORE009",
+          "expected": "N/Aの原判断不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "N/Aの原判断不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "na_revision_wrong",
+          "change": "TDD N/A対象revisionをr0へ変更",
+          "axis": "revision",
+          "state": "stale",
+          "backflow_owner": "CORE009",
+          "expected": "r1へN/A継承しない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "r1へN/A継承しない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "na_reevaluation_missing",
+          "change": "TDD N/A再評価条件を除去",
+          "axis": "applicability",
+          "state": "missing",
+          "backflow_owner": "CORE009",
+          "expected": "N/A消込にせず不足を残す。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "N/A消込にせず不足を残す。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unseen_as_proven",
+          "change": "未公開検証未実行を成功へ変更",
+          "axis": "execution",
+          "state": "missing",
+          "backflow_owner": "independent-verification-owner",
+          "expected": "未観測/未実行を維持し新一律gateを追加しない。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "未観測/未実行を維持し新一律gateを追加しない。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L4-005-N02",
+      "requirement_ref": "HARNESS-L3-005-N02",
+      "system_oracle_ref": "HARNESS-L10-005-N02",
+      "oracle_ref": "HARNESS-L9-005-N02",
+      "title": "回復結果の独立した判定",
+      "behavior": "backupの存在、restore成功、rollback成功、恒久修復、再発防止を独立した結果として対象revision/scope/環境/oracleへ結ぶ。一結果から他結果を生成せず、個別製品の実結果は当該製品のL11/L10/L12で判定する。HARNESSはRTO/RPOや環境/保持期間を全製品へ固定しない。",
+      "component_refs": [
+        "RecoveryResultPartition"
+      ],
+      "input_contract": {
+        "binding": "同じrequirement/artifact/pair/oracle identity・revision・project/tenant/environment、選択された実操作と適用条件",
+        "fields": [
+          "binding",
+          "source_assumption",
+          "claims",
+          "non_target",
+          "recovery_contract",
+          "original_results"
+        ],
+        "source_qualification": "各owner原内容と根拠を参照解決して比較。string/件数/digest一致だけを内容成立にしない。missing/null/empty/unknown/conflict/staleを区別。実resolverはL5/L8へ。",
+        "variant_refs": [
+          "HARNESS-L9-005-N02-RESTORE-SEPARATE"
+        ]
+      },
+      "comparison_order": [
+        "製品ownerの回復kind母集合と製品L11/L10/L12 oracle・対象revision/scope/環境へ各実結果を別々に結ぶ。",
+        "backup存在/restore/rollback/恒久修復/再発防止の独立原結果を照合。未実行/unknownを保持し別環境成功を転用しない。",
+        "一結果から他結果/consumer受入を生成せずRTO/RPO/保持期間は当該製品ownerへ。"
+      ],
+      "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
+      "output_observation_ref": "HARNESS-L9-005-N02.expected_material",
+      "negative_classifications": [
+        {
+          "code": "backup_as_restore",
+          "change": "backup/snapshot存在でrestore成功を主張",
+          "axis": "recovery",
+          "state": "missing",
+          "backflow_owner": "product-verification-owner",
+          "expected": "restore未実行を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "restore未実行を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "rollback_as_permanent",
+          "change": "rollback成功で恒久修復完了を主張",
+          "axis": "recovery",
+          "state": "unknown",
+          "backflow_owner": "product-verification-owner",
+          "expected": "恒久修復の別結果不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "恒久修復の別結果不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "rollback_as_prevention",
+          "change": "rollback成功で再発防止完了を主張",
+          "axis": "recovery",
+          "state": "missing",
+          "backflow_owner": "product-verification-owner",
+          "expected": "再発防止未実行を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "再発防止未実行を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "foreign_environment_recovery",
+          "change": "別環境restore結果を今回へ転用",
+          "axis": "scope",
+          "state": "conflict",
+          "backflow_owner": "product-verification-owner",
+          "expected": "対象環境のrestore不足を保持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "対象環境のrestore不足を保持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "fixed_global_rto",
+          "change": "規範から全製品同じRTO/RPOを生成",
+          "axis": "owner",
+          "state": "conflict",
+          "backflow_owner": "product-requirement-owner",
+          "expected": "個別製品値未供給と元結果を維持。",
+          "expected_preserved": {
+            "binding": "同じ対象要求revision/scope/元owner snapshot",
+            "observable": "個別製品値未供給と元結果を維持。",
+            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+          },
+          "expected_side_effect_count": 0
+        }
+      ]
+    }
+  ],
+  "cross_owner_boundary": {
+    "HARNESS": "検証規範とoracle契約。対象境界/方向の意味を設計ownerに代わって決めない。",
+    "CORE009": "適用/N_A理由/判定者/対象revision/再評価条件。005は原状態を照合。",
+    "OS_or_consumer_environment": "ticket/CI組立/実行/実結果/元記録/状態遷移。005候補だけで合流/Port/完了を決めない。",
+    "LABO": "後日失敗や原子CI/connector不足の評価。005は材料だけ。",
+    "product_owner": "回復結果/受入・RTO/RPO等は当該製品のL11/L10/L12。",
+    "SECURITY_INFRASTRUCTURE_CONNECT": "実operationの既存authority/隔離/資源/接続。規範文書から実許可や割当を作らない。"
+  },
+  "implementation_preparation": {
+    "state": "not_ready",
+    "remaining": [
+      "各契約の具体原owner sourceと全正常/負例fixtureの独立意味review",
+      "L5/L8 logical型/algorithm/単独data変異/typed期待出力",
+      "正式schema/codec/resolver/trustと実CI owner binding",
+      "L6/L7実oracle定義凍結→本体実装前実Red→最小Green",
+      "実L9/L10/計測/実物PO L11受入・通常L3再開"
+    ]
+  },
+  "remaining_draft_work": [
+    "独立source/資格/元expectationと全正常・単独負例の意味照合",
+    "負例局所化の具体data差分と全元期待の保持をL5/L8へ",
+    "旧facet保留とsource-limitのexact対応再確認"
+  ]
+}
