@@ -6947,7 +6947,8 @@
           "byte_sha256": "fixture bytes digest",
           "qualification_basis": "SyntheticFixtureQualification",
           "source_change": "null|OriginalMutation",
-          "embedded_reference_state": "explicit comparison boundary"
+          "embedded_reference_state": "explicit comparison boundary",
+          "source_preparation": "Field<FixtureInputPreparation>"
         },
         "meaning": "合成原materialの固定。正式wire codecではない。"
       },
@@ -6968,6 +6969,53 @@
           "referents": "Field<immutable collection<OriginalSourceEntry>>"
         },
         "meaning": "入力の資格を先に仮定しない。fixture_rootはL8合成入力の固定に限り、referentsは埋込参照先の独立owner資料。referents missingは空集合でもqualifiedでもなく、関連義務の肯定結果を未成立とする。実adapterのtrust/codec/resolverは未構築。"
+      },
+      "VerificationInput": {
+        "variants": [
+          "B01VerificationInput",
+          "F01VerificationInput",
+          "F02VerificationInput",
+          "F03VerificationInput",
+          "F04VerificationInput",
+          "F05VerificationInput",
+          "F06VerificationInput",
+          "F07VerificationInput",
+          "F08VerificationInput",
+          "F09VerificationInput",
+          "N01VerificationInput",
+          "N02VerificationInput"
+        ],
+        "meaning": "各関数の宣言input_typeで選択する論理union。root packetの型をpath/nameやcaller success claimから推測しない。正式codecのdiscriminatorは未定義。"
+      },
+      "OriginalMutation": {
+        "fields": {
+          "lane": "original",
+          "operation": "remove|replace|append",
+          "field_path": "exact logical field path",
+          "before": "Field<logical value>",
+          "after": "Field<logical value>|key_absent",
+          "semantic_change": "Field<string>"
+        },
+        "meaning": "原fixtureへの主差分。候補出力の差分をowner sourceの原本にしない。key_absentは削除を示す設計表現で、正式wire値ではない。"
+      },
+      "FixtureInputPreparation": {
+        "fields": {
+          "operation": "remove|replace|append",
+          "field_path": "exact logical field path",
+          "before": "Field<logical value>",
+          "after": "Field<logical value>|key_absent",
+          "purpose": "string"
+        },
+        "meaning": "候補変異と分けた合成対照の前提。F07のRed欠落対照で使用し、原sourceの差分履歴を消さない。authorityの変更や実fixtureの凍結成立ではない。"
+      },
+      "TddOracleSourceContent": {
+        "fields": {
+          "ref": "Ref",
+          "expected_failure": "Field<concrete intended failure behavior>",
+          "green_expected": "Field<concrete frozen behavior>",
+          "interpretation": "Field<fixture interpretation statement>"
+        },
+        "meaning": "verification-design-ownerの独立oracle内容。F07 fixtureでは具体stringを使う。実出力との意味照合は実owner資料に結び、Red自身のexpected labelやtest/library名だけを期待の正本にしない。"
       }
     },
     "partial_observation_mapping": "各<B01..N02>VerificationObservationの宣言field形をObservationField<T>で包む。expected_observationはknown fieldのvalue表現で、source_refとexecution_kindを付けて比較する。negativeのpreserved_original_materialは不変期待の保全欄でcomputed正常値と同一視しない。"
@@ -7486,7 +7534,7 @@
       "algorithm": [
         "TDD原適用とfreeze/red/body_change/greenを別originalへ解決する。freeze前本体H0、変更H0→H1、Red H0、Green H1、同oracle identity/revision/scopeを照合する。",
         "原因順序freeze<Red<body<Greenを照合する。合成sequenceはorderのfixture値だけで実時刻規格ではない。欠落/順序不明をunknown、body後Red/Green後Redをconflictとして区別する。",
-        "Redのexecuted trueとactual_failure==independent expected_failureを照合し、起動エラー/構文エラー/テスト記述時刻を意図欠陥の実Redへ数えない。Greenは同freeze oracleの実観測と最小変更の対象を照合する。",
+        "Redのexecuted trueとactual_failure==independent expected_failureを照合し、起動エラー/構文エラー/テスト記述時刻を意図欠陥の実Redへ数えない。Greenは同freeze oracleの実観測と最小変更の対象を照合する。 期待失敗はfreeze.oracle_refの独立owner内容から読み、Red自身のexpected_failureラベルだけで判定しない。",
         "postimplementation mutationは別強度証拠として保持し実装前Redへ転用しない。静的reviewや人の受入にはこの実Red順序を拡張せず、比較結果だけで実装完了を作らない。"
       ],
       "failure_rules": [
@@ -7546,7 +7594,8 @@
           "backflow_owner": "検証設計owner/015",
           "preserve": "意図した欠陥検出の不足を特定。"
         }
-      ]
+      ],
+      "detail_contract": "tdd_observation_detail"
     },
     {
       "name": "compare_behavior_oracle",
@@ -7936,7 +7985,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "106 root source packetを固定し、F08の5呼出しは独立behavior/oracle合成referentsと型付き部分期待を起草した。他101呼出しの参照先、残る80負例の型付き部分結果、全体のnull/empty型は未完。",
+      "106主呼出しのrootを固定し、F07/F08の14件の独立合成referentsと12負例の部分期待を起草。残る92主呼出しの参照先と72負例の部分結果、全体のnull/empty型は未完。",
       "null/empty/open_slotのdomain型具体化・比較precedence",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
@@ -7990,9 +8039,9 @@
     },
     "normal_sources": "各L9正常/variantの合成owner materialをimmutable root source_refへ固定する。",
     "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
-    "negative_candidate_sources": "original source packetは正常値を保持し、candidateの一fieldだけを変更する。candidateがowner materialを生成・資格付けする経路はない。",
+    "negative_candidate_sources": "原資料をcandidateから分離する。F07 mutation_as_pre_redは、Redを除く明示fixture_preparationを候補変異と分け、同じ原mutation記録を保持する。その他candidate負例は正常owner材料を保持する。",
     "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
-    "referent_input_state": "主106呼出しのうちF08の5件へ独立behavior/oracle合成referentsを供給。他101件はmissingを明示。F08追加source対照3件は同じ正常root packetを保ち、参照未供給・空集合・候補での資格補完を拒否する期待を持つ。合成sourceを実owner/trustや実観測へ昇格しない。"
+    "referent_input_state": "106主呼出しのうちF07/F08の14件へ独立合成referentsを供給。他92件はmissingを明示。source欠落対照は同じrootを保ち資格不足を成功で埋めない。実owner/trustや実観測へ昇格しない。"
   },
   "behavior_oracle_detail": {
     "design_ref": "HARNESS-L5-005-F08",
@@ -8037,5 +8086,58 @@
     },
     "candidate_comparison": "computed observationがknownのfieldだけclaimと比較する。same_pass_defect候補を拒否しても原example_decisionsを候補へ合わせない。source不明の場合は候補一致判定も未成立。",
     "limits": "5呼出しの合成source/部分期待の設計。正式schema/実trust/実凍結/実run/全F08の一般behavior評価の成立ではない。"
+  },
+  "tdd_observation_detail": {
+    "design_ref": "HARNESS-L5-005-F07",
+    "requirement_ref": "HARNESS-L3-005-F07",
+    "basic_oracle_ref": "HARNESS-L9-005-F07",
+    "independent_oracle_fixture": {
+      "ref": {
+        "identity": "TDD-O",
+        "revision": "r1",
+        "scope": {
+          "project": "P",
+          "tenant": "synthetic-T",
+          "environment": "synthetic-test"
+        },
+        "owner": "verification-design-owner"
+      },
+      "expected_failure": "missing debit rejection",
+      "green_expected": "frozen behavior satisfied",
+      "interpretation": "このL8合成対照でverification-design-ownerが供給する凍結oracle内容。Red側のexpected_failureは照合される側であり正本ではない。"
+    },
+    "fixture_authoring_basis": "基本fixtureの意図欠陥とGreen挙動を、実runとは独立した検証設計ownerの合成資料として固定する。この仮定から実owner資格や実test凍結の過去事実を生成しない。負例のred.expected_failureやcandidateから内容を採らない。",
+    "source_roles": {
+      "applicability": "COREの原適用。requiredは実TDD成功ではない。",
+      "freeze": "検証設計ownerのoracle bindingと変更前HEAD。",
+      "oracle": "freeze.oracle_refへ解決する独立検証設計内容。Red記録の期待labelを正本へしない。",
+      "red": "実行ownerの観測record。合成executed=trueを実製品runへ昇格しない。",
+      "body_change": "実装ownerの原H0→H1。purpose labelだけで最小実装や実差分を証明しない。",
+      "green": "同凍結oracleの原run候補。別revisionを元oracleの成功にしない。",
+      "postimplementation_mutation": "強度の別資料。実装前Redを埋めない。"
+    },
+    "field_derivation": {
+      "same_oracle": "freeze/red/greenのoracle Refを独立entryへ解決してidentity/revision/scope/ownerを比較。原Red無しならmissing、別Green revisionならknown(false)とstale issue。",
+      "freeze_before_body": "原freezeとbody_changeの順序だけの照合。Red不足でこの独立比較を消さない。",
+      "real_red_before_body": "原Redのexecuted、凍結oracle/HEAD、独立expected_failureとactual_failureの一致、freeze<Red<bodyの全条件。原実行欠落はmissing、順序不明はunknown、起動失敗や実装後Redはknown(false)と対象issue。",
+      "red_before_green": "実行された原RedとGreenの観測順序。未実行Redはsequenceだけで肯定しない。これはGreenのoracle適格性や全TDD成功とは別。",
+      "target_transition": "原body_changeのfrom/toとfreeze変更前HEAD・Green対象HEADの対応を保持。最小変更の実証ではない。",
+      "postimplementation_mutation_role": "元mutation recordをseparate_strength_evidenceとして保全。候補のpreimplementation_red_replacementへ変更しない。",
+      "implementation_completion": "not_generated。比較した合成fixtureのtrue、資料保存、purpose labelから実工程の完了を出力しない。"
+    },
+    "missing_null_empty": {
+      "record_missing": "当該original_field_pathを保持してmissing。別recordの肯定結果や無関係Qを消さない。",
+      "record_null": "ownerが内容未定義。unknown、空の成功recordへ置換しない。",
+      "record_empty": "必要ref/oracle/観測field不足をmissing。",
+      "sequence_missing": "観測recordがあっても因果順序はunknown。壁時計や配列順で補完しない。",
+      "executed_false": "test記述・記録の存在を実Redにしない。sequenceの順序も実Redの証拠へ数えない。"
+    },
+    "candidate_with_missing_red": "同じ原freeze/body/Green/mutationを残し、Redを除いた対照を使う。candidateはmutation役割だけを置換しようとする。役割のconflictと元Redのmissingを併記し、候補に合わせて計算結果を成功へ変更しない。",
+    "limits": "合成sourceと部分結果の設計。実oracle凍結、実装前Red実観測、最小実装、Green、Refactor/CI/PO受入の成立ではない。",
+    "source_content_types": {
+      "oracle": "TddOracleSourceContent",
+      "oracle-other-revision": "TddOracleSourceContent",
+      "record_roles": "F07VerificationInput.normal_shapeの対応role。欠落/null/emptyをFieldとして保全する。"
+    }
   }
 }
