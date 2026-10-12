@@ -1,0 +1,113 @@
+{
+  "document_id": "HARNESS-L9-001-V12-LAYER-CONTRACT",
+  "layer": "L9",
+  "paired_document": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+  "parent": "HARNESS-L2-001",
+  "status": "candidate_pending_independent_review",
+  "source_main": "066dea64717cbd27c6f1feb068e4ce146021a4c9",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    }
+  ],
+  "scope": "001のL4意味照合境界とconsumerへの受渡しの検証設計。実行結果は未供給。",
+  "cases": [
+    {
+      "id": "HARNESS-L9-001-F01",
+      "design_ref": "HARNESS-L4-001-F01",
+      "requirement_ref": "HARNESS-L3-001-F01",
+      "system_oracle_ref": "HARNESS-L10-001-F01",
+      "positive_fixture": "旧L0–L14 pathの資料と現行L2要求/L11受入、L3要件/L10総合の四artifactを、明示したcurrent meaning refsから分類する。L0は独立anchorに残す。 現行Concept成果と実装成果Iを追加し、Iのkindはimplementation、対応する凍結L6設計DとL7検証Vの参照を明示する。意味source未供給artifactも一件追加する。",
+      "expected_observation": [
+        "L2要求の対はL11受入、L3要件の対はL10総合として別identityを維持する。",
+        "旧pathの番号からcurrent layerを生成せず、12層の外にL0 anchorが一件残る。",
+        "current source不足のartifactはunknownとして返り、他の正しいpairと区別される。",
+        "Conceptは層外の上位意味根拠、Iは層外工程の実装成果として区別し、DのL6設計とVのL7検証へのtraceを保持する。IをL6設計やauthority anchorへ変更しない。"
+      ],
+      "negative_fixture_mutations": [
+        "L2↔L10を登録",
+        "L0を13番目の層に追加",
+        "L0の第七pairを登録",
+        "旧pathの数字だけからcurrent layerを決定",
+        "L2要求とL3要件を同一artifactへまとめる",
+        "意味source未供給をpathで補う",
+        "旧L6実装ラベルから実装成果を現行L6設計に分類",
+        "旧L7 closureラベルから現行L7を決定",
+        "Concept成果をL1企画へ自動分類",
+        "実装成果を第十三層/第七pairへ挿入",
+        "実装成果からL6設計/L7検証へのtraceを削除"
+      ],
+      "failure_observation": "誤ったartifact/edgeと期待pair、不足source、ownerを返す。無関係の正しいpairを不成立にせず、六pair全体成立へも昇格しない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-001-F02",
+      "design_ref": "HARNESS-L4-001-F02",
+      "requirement_ref": "HARNESS-L3-001-F02",
+      "system_oracle_ref": "HARNESS-L10-001-F02",
+      "positive_fixture": "UIなし/不確実性なし、UIなし/不確実性あり、UIあり/不確実性なし、UIあり/不確実性ありの4組とunknown組を独立scopeで渡す。双方非適用の組には各N/A5属性を与え、Prototype/PoC成功だが要求合意なしの組も与える。",
+      "expected_observation": [
+        "UIなし/不確実性なしは両者非適用で各N/A5属性が解決。UIなし/不確実性ありはPrototype非適用/PoC適用。",
+        "UIあり/不確実性なしはPrototype適用/PoC非適用。UIあり/不確実性ありは両者適用。",
+        "画面有無または技術成立性がunknownの組では該当適用がunknownのまま、非適用へ丸めない。",
+        "Prototype/PoC成功だが要求合意なしの組では合意不足と003/008への戻し先が残り、L3凍結可能を返さない。"
+      ],
+      "negative_fixture_mutations": [
+        "非UIを根拠にPoC不要とする",
+        "技術不明をfalseに丸める",
+        "画面有無不明をfalseに丸める",
+        "Prototype/PoC成功でL2合意を生成",
+        "L2を省略",
+        "N/A理由欠落",
+        "判定者欠落",
+        "対象HEAD欠落",
+        "要求影響欠落",
+        "再評価条件欠落"
+      ],
+      "failure_observation": "scopeごとの二つの適用結果とN/A不足、003/008への戻し先を返す。L3凍結/要求合意の不足は残し、試作成功から補完しない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L9-001-B01",
+      "design_ref": "HARNESS-L4-001-B01",
+      "requirement_ref": "HARNESS-L3-001-B01",
+      "system_oracle_ref": "HARNESS-L10-001-B01",
+      "positive_fixture": "同じ12層/6pair構成について合意/承認/実証がある入力とない入力を別scopeで照合。いずれも層対応は正しいが不足状態は異なる。",
+      "expected_observation": [
+        "合意/承認/実証ありとなしの両scopeで層/pairの対応結果は同一。",
+        "なしのscopeに不足authority/実証参照が残り、ありのscopeの証拠を流用しない。",
+        "outputにOS ticket/登録/状態write指示や旧runtime起動が含まれない。"
+      ],
+      "negative_fixture_mutations": [
+        "catalog存在からL1承認を作る",
+        "catalog存在からL2合意を作る",
+        "catalog存在からL3承認を作る",
+        "検証設計だけで実検証成功",
+        "照合結果からOS ticketを発行",
+        "旧runtimeを実行fallbackにする"
+      ],
+      "failure_observation": "層対応は同じでも根拠のない成立を返さない。不足のidentity/revisionと意味owner/実運転ownerを分けて返す。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "evidence_contract": [
+    "producer→HARNESS→consumer各境界の入力/output bytes・identity/revision/scope・現行意味/source版",
+    "対応と適用結果、authority不足の実観測をcase期待値と比較した差分",
+    "正常と各単独変異の観測・未実行・失敗・戻し先",
+    "各L4契約/L9case/親L3/上位L10と実証拠の双方向trace"
+  ],
+  "completion": "3caseの正常fixtureと列挙負例を同一scopeの実接続で観測し、未解決/未実行/別revisionを除去せず残す。設計凍結からL9成功を生成しない。"
+}
