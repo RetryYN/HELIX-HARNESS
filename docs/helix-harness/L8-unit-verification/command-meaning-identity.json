@@ -130,6 +130,8 @@
       "detail_ref": "HARNESS-L5-052-compare_prior_identity",
       "symbol": "compare_prior_identity",
       "contract_case_refs": [
+        "HARNESS-L8-052-F01",
+        "HARNESS-L8-052-F02",
         "HARNESS-L8-052-F03",
         "HARNESS-L8-052-F04",
         "HARNESS-L8-052-F06"
@@ -164,6 +166,7 @@
       "detail_ref": "HARNESS-L5-052-build_comparison_trace",
       "symbol": "build_comparison_trace",
       "contract_case_refs": [
+        "HARNESS-L8-052-F04",
         "HARNESS-L8-052-N01",
         "HARNESS-L8-052-B01"
       ],
@@ -181,7 +184,8 @@
       "system_oracle_ref": "HARNESS-L10-052-F01",
       "symbols": [
         "validate_command_input",
-        "build_command_identity"
+        "build_command_identity",
+        "compare_prior_identity"
       ],
       "positive_fixture": "C/Sr1/Aa1Bb1/Rr1/Dで初回と再送を比較。path/PR/到着時刻だけを変える等価入力と、意味payload内atom変更を独立に観測。 意味path比較の別fixtureはbefore payload={a:1,b:[2,3],path:p1}、afterでpathだけp2（Rr1はpathを意味fieldとする）。",
       "expected_observation": [
@@ -281,7 +285,8 @@
       "symbols": [
         "validate_command_input",
         "normalize_payload",
-        "build_command_identity"
+        "build_command_identity",
+        "compare_prior_identity"
       ],
       "positive_fixture": "Rr1/Sr1の規則で二raw payloadを正規化。規則revisionだけRr2へ変える別入力も評価。",
       "expected_observation": [
@@ -460,7 +465,8 @@
       "requirement_ref": "HARNESS-L3-052-F04",
       "system_oracle_ref": "HARNESS-L10-052-F04",
       "symbols": [
-        "compare_prior_identity"
+        "compare_prior_identity",
+        "build_comparison_trace"
       ],
       "positive_fixture": "同Cのpayload atom a=2、scope S2、base B=b2、rule Rr2の4独立後続入力。",
       "expected_observation": [
@@ -1138,7 +1144,8 @@
       "input_change": "Python↔Node envelopeのrawbytesをbase64標準padding以外/再encoding不一致で供給",
       "expected": "transport decodeはschema_invalid、rawJSONを先にNode parseして情報を落とす経路はnormalization_basis。OS adapterの局所前提検証、実接続未成立。",
       "symbols": [
-        "validate_command_input"
+        "validate_command_input",
+        "normalize_payload"
       ],
       "finding_codes": [
         "schema_invalid",
@@ -1148,8 +1155,8 @@
     },
     {
       "id": "HARNESS-L8-052-X24",
-      "input_change": "decimalで1e999999999999999999999999のtarget指数域超過、binary64で1e-400の2独立case",
-      "expected": "decimal constructor不能はunknown(number_domain)、rawtoken保持。binary64はowner nearest_even宣言時だけ0/同digestとraw差保持。declared profileに従い、decimal精度の意味値をbinary64へ縮小0。",
+      "input_change": "decimalで1e999999999999999999999999のtarget指数域超過、binary64で1e-400の2独立case decimal指数域超過はInvalidOperation trap有効/無効の両contextで独立に観測する。",
+      "expected": "decimal constructor不能はunknown(number_domain)、rawtoken保持。binary64はowner nearest_even宣言時だけ0/同digestとraw差保持。declared profileに従い、decimal精度の意味値をbinary64へ縮小0。 trap有効の例外とtrap無効の非finite戻り値を必須is_finite検査で同じnumber_domainへ分類し、contextを変更しない。",
       "symbols": [
         "normalize_payload"
       ],

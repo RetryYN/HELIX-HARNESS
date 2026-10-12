@@ -487,7 +487,7 @@
       {
         "id": "HARNESS-L5-052-R-rule_conflict",
         "code": "rule_conflict",
-        "condition": "解決済み同ID規則のrevision/本文/適用scope差、またはalgorithm/number/zero意味の組合せが契約不一致。",
+        "condition": "単一入力のowner規則解決内でalgorithm/number/zero/roundingの組合せまたは適用scope宣言が矛盾する場合に限る。valid今回規則とvalid先行規則のrevision差はidentity_conflictであり、このruleへ重複分類しない。同identity/revisionで原content解決が違う場合はreference_conflict。",
         "result_field": "semantic",
         "result_state": "conflict"
       },
@@ -644,7 +644,8 @@
       "receipt_binding": "ReceiptBindingBody",
       "budget": "BudgetBody"
     },
-    "resolution_mapping_contract": "Resolution.ref.sha256は供給content_bytes全体を検査。valueは当該既存owner source/contractに指定されたfieldの閉じたread projectionであり、任意の自己申告snapshotは不可。projectionのself Ref（ScopeBody.scope_ref/RuleBody.rule_ref/IdentityBasisBodyを指すref等）は外envelopeの検証済みResolution.refから付すmetadataであり、content_bytesへ自身shaを埋込まない。投影fieldごとに原sourceのpath/値へ逆照合し、source/contract/抽出値不明はrequired_missing/resolution_unknown。新sourceをこの型で設計する場合もselfrefはenvelopeにのみ置く。"
+    "resolution_mapping_contract": "Resolution.ref.sha256は供給content_bytes全体を検査。valueは当該既存owner source/contractに指定されたfieldの閉じたread projectionであり、任意の自己申告snapshotは不可。projectionのself Ref（ScopeBody.scope_ref/RuleBody.rule_ref/IdentityBasisBodyを指すref等）は外envelopeの検証済みResolution.refから付すmetadataであり、content_bytesへ自身shaを埋込まない。投影fieldごとに原sourceのpath/値へ逆照合し、source/contract/抽出値不明はrequired_missing/resolution_unknown。新sourceをこの型で設計する場合もselfrefはenvelopeにのみ置く。",
+    "finding_disambiguation": "原Ref/content解決の不一致はreference_conflict、単一RuleBody内の意味profile組合せ矛盾はrule_conflict、各々validと解決した今回/先行identityの規則版を含む差はidentity_conflict。異なる原因が同時にある入力では原因fieldごと併記し、同じ差を二codeへ重複分類しない。各codeのResult.field/stateはfinding_rulesに従う。"
   },
   "normalization_selection": {
     "owner_binding": "profileを一律採用せず、ScopeBody/RuleBodyとowner原契約がnumber semantics/zero semanticsを明示した時だけ適用。未知意味はrule_unsupportedとして上流へ戻す。新profile選択のために既存意味規則の版を黙って変更しない。",
@@ -730,7 +731,7 @@
         "規則profileをownerのexact RuleRef本文から選ぶ。decimal_json_v1はexact_decimal、binary64_jcs_v1はieee754_binary64を必須にする。binary64のzeroはunsignedだけ。未知profile/projection/domainはrule_unsupported、矛盾組合せはrule_conflict。caller profile override不可。 binary64_rounding=nearest_evenのowner明示が必須、decimalはnot_applicable。規則の自己Ref metadataはResolution外envelope由来。",
         "bytesをUTF8 strictでdecodeしBOM拒否。json.loadsへobject_pairs_hookでdecoded key重複を全階層で拒否、parse_int/parse_floatでNumberToken(raw token)を保存、parse_constantでNaN/Infinity/-Infinityを拒否。余剰tail/不正構文も拒否。読み込んだ全string/keyをUnicode scalarとして検査しlone surrogate拒否。",
         "raw JSONから生成したASTだけをimmutable tupleへ変換。key全体/array全項目を保持し、意味path/空文字/null/falseをstripしない。array順保持、objectkeyはUTF16BE byte順。NFC/NFD/trim/casefoldはしない。node/depth/token制約を検査。",
-        "decimal_json_v1: NumberTokenをDecimal(token)で正確に読みas_tuple()のsign/digits/exponentから生成する。context付きnormalize/quantizeやfloat変換は使わない。末尾0を除去しその個数をexponentへ加える。非zeroのcoefficientはleading zeroなし、signは負の場合だけ、exponent=0はcoefficientのみ、他はcoefficient+小文字e+指数（+とleadingzeroなし）。全zeroはunsignedなら0、signedならraw負符号を保持し-0/0。例100.0→1e2、0.0100→1e-2、1.0000000000000001は全桁保持。 Decimal constructorのInvalidOperation/ValueError/指数がtarget実装域を超える場合はnumber_domain/unknown（有限全domain成立にしない）。係数/指数の整数操作は正確に行い、正指数/負指数の長さも元token資源制約内で処理。",
+        "decimal_json_v1: NumberTokenをDecimal(token)で正確に読みas_tuple()のsign/digits/exponentから生成する。context付きnormalize/quantizeやfloat変換は使わない。末尾0を除去しその個数をexponentへ加える。非zeroのcoefficientはleading zeroなし、signは負の場合だけ、exponent=0はcoefficientのみ、他はcoefficient+小文字e+指数（+とleadingzeroなし）。全zeroはunsignedなら0、signedならraw負符号を保持し-0/0。例100.0→1e2、0.0100→1e-2、1.0000000000000001は全桁保持。 Decimal constructorのInvalidOperation/ValueError/指数がtarget実装域を超える場合はnumber_domain/unknown（有限全domain成立にしない）。係数/指数の整数操作は正確に行い、正指数/負指数の長さも元token資源制約内で処理。 Decimal文字列constructorの戻り値は、as_tupleを使う前に必ずis_finite()で確認する。InvalidOperationを送出するcontextならその例外をnumber_domainへ、trap無効でNaNが戻るcontextでもis_finite()==falseを同じnumber_domainへ分類。正常finiteの係数/指数処理はcontextの精度/丸めに依存しない。thread-local contextを書き換えない。",
         "decimal profileのstring/keyはstdlib json.dumps(ensure_ascii=False,separators=(comma,colon),allow_nan=False)のJSON string escapingだけを使う。null/true/falseは固定token、array/objectは上記順/区切りへ連結しUTF8 bytes。json.dumpsのfloat/Decimal serializationやsort_keysを意味normalizerとして使わない。",
         "binary64_jcs_v1: ownerがIEEE754 semanticsと丸めを宣言したNumberTokenだけfloat(token)へ変換しfiniteを検査。すべてのnumeric tokenはfloatへ（safe integerだけのprovider int domainへ勝手に制限しない）。bool/null/string/array/objectは同ASTから標準型へ投影しrfc8785.dumps public APIを一度使う。Unicode/key/array contractは共通、OSへsecondnormalizerを置かない。宣言なしでIEEE丸めを許さない。 underflowはnearest_even宣言に従う0でrawtoken/digestを保持し、上流のdecimal精度が必要な値へこのprofileを流用しない。",
         "出力bytesの上限確認後、hashlib.sha256(normalized_bytes).hexdigestへsha256:prefixを付ける。raw hashは別field。claimed digestがある場合独立semantic_digestと照合。先行rawも同じ境界へ通してnormalized bytes/digestと保存根拠を照合する。部分出力やprovider例外を成功にしない。 JSONDecodeError/UnicodeDecodeError/invalid constant/duplicate keyはpayload_invalid、Decimal InvalidOperation/float OverflowErrorはnumber_domain、MemoryError/RecursionErrorはresource_limit、publicproviderのCanonicalizationError/UnicodeEncodeError/その他Exceptionはprovider_failureへ分類し原原因を残す。捕捉後default出力は禁止。"
@@ -773,6 +774,8 @@
       "id": "HARNESS-L5-052-compare_prior_identity",
       "symbol": "compare_prior_identity",
       "design_refs": [
+        "HARNESS-L4-052-F01",
+        "HARNESS-L4-052-F02",
         "HARNESS-L4-052-F03",
         "HARNESS-L4-052-F04",
         "HARNESS-L4-052-F06"
@@ -850,6 +853,7 @@
       "id": "HARNESS-L5-052-build_comparison_trace",
       "symbol": "build_comparison_trace",
       "design_refs": [
+        "HARNESS-L4-052-F04",
         "HARNESS-L4-052-N01",
         "HARNESS-L4-052-B01"
       ],
@@ -884,7 +888,8 @@
       "oracle_ref": "HARNESS-L8-052-F01",
       "symbols": [
         "validate_command_input",
-        "build_command_identity"
+        "build_command_identity",
+        "compare_prior_identity"
       ]
     },
     {
@@ -896,7 +901,8 @@
       "symbols": [
         "validate_command_input",
         "normalize_payload",
-        "build_command_identity"
+        "build_command_identity",
+        "compare_prior_identity"
       ]
     },
     {
@@ -917,7 +923,8 @@
       "system_oracle_ref": "HARNESS-L10-052-F04",
       "oracle_ref": "HARNESS-L8-052-F04",
       "symbols": [
-        "compare_prior_identity"
+        "compare_prior_identity",
+        "build_comparison_trace"
       ]
     },
     {
