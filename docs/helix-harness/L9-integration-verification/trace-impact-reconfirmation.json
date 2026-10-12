@@ -2236,7 +2236,8 @@
           "implementation_connection": "record自体が無ければmissing、設計とのjoinが不明ならunknown_design_join。合成recordの対応は実code/接続の成立を示さない。",
           "partial_return": "不足/矛盾条件をUnknownとして返し、別条件の有効原資料を保持。changed_conditionsの検証候補は記録上のtargetであり、実行資格/検証済みを意味しない。"
         },
-        "evidence_origin_limit": "current relation/verificationと旧graph/旧CIの参照材料をoriginで分離し、旧成功で欠落traceや未対応検証を埋めない。候補検証IDの列挙とcurrent条件成立は別に返す。"
+        "evidence_origin_limit": "current relation/verificationと旧graph/旧CIの参照材料をoriginで分離し、旧成功で欠落traceや未対応検証を埋めない。候補検証IDの列挙とcurrent条件成立は別に返す。",
+        "reverification_target_limit": "current検証資料のみを再検証target候補に列挙する。旧CIのrecordはrejected_external_verification_record_idsへ返し、欠けるcurrent条件はunresolved_reverification_conditionsへ残す。旧recordでcurrent targetを埋めない。"
       },
       "fixture_state": "draft_concrete_fixtures_pending_semantic_review",
       "normal_cases": [
@@ -2303,7 +2304,8 @@
             "actual_requirement_approved": false,
             "actual_completion": false,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none"
@@ -2379,7 +2381,8 @@
             "unmatched_record_ids": [
               "DESIGN-UNSELECTED"
             ],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -2530,7 +2533,8 @@
             ],
             "unresolved_reverification_conditions": [
               "COND-1"
-            ]
+            ],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -2679,7 +2683,8 @@
             "reason": "正しい型とIDでも期待値2は要求の期待1と違う。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -2764,7 +2769,8 @@
             "reason": "要求条件を設計が別の意味へ変えている。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -2849,7 +2855,8 @@
             "reason": "別revisionのdesign traceを流用しない。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -2932,7 +2939,8 @@
             "reason": "要求原文のdigestとdesignのsourceを結ぶ。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -3015,7 +3023,8 @@
             "reason": "要求→設計の一方向だけを双方向traceにしない。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -3188,7 +3197,8 @@
             "reason": "設計→検証の一方向だけを対の成立にしない。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -3361,7 +3371,8 @@
             "reason": "所有未指定を暗黙ownerで補完しない。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -3446,7 +3457,8 @@
             "reason": "二重所有を一つのcomponentとして隠さない。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -3534,7 +3546,8 @@
             "reason": "未所属を件数や名前で補完しない。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -3619,7 +3632,8 @@
             "reason": "設計の存在から実装traceを生成しない。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -3711,7 +3725,8 @@
             "reason": "実装traceの存在から接続traceを生成しない。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -3804,7 +3819,8 @@
             "candidate_conflicting_field": "actual_all_conditions_verified",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -3855,7 +3871,8 @@
             "actual_requirement_approved": false,
             "actual_completion": false,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           }
         },
         {
@@ -3924,7 +3941,8 @@
             "candidate_conflicting_field": "actual_implementation_complete",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -3975,7 +3993,8 @@
             "actual_requirement_approved": false,
             "actual_completion": false,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           }
         },
         {
@@ -4044,7 +4063,8 @@
             "candidate_conflicting_field": "actual_connection_complete",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -4095,7 +4115,8 @@
             "actual_requirement_approved": false,
             "actual_completion": false,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           }
         },
         {
@@ -4164,7 +4185,8 @@
             "candidate_conflicting_field": "actual_requirement_approved",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -4215,7 +4237,8 @@
             "actual_requirement_approved": true,
             "actual_completion": false,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           }
         },
         {
@@ -4284,7 +4307,8 @@
             "candidate_conflicting_field": "actual_completion",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -4335,7 +4359,8 @@
             "actual_requirement_approved": false,
             "actual_completion": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           }
         },
         {
@@ -4404,7 +4429,8 @@
             "actual_completion": false,
             "unmatched_record_ids": [],
             "unresolved_reverification_conditions": [],
-            "retain_unaffected_material": true
+            "retain_unaffected_material": true,
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -4494,7 +4520,8 @@
             "actual_completion": false,
             "unmatched_record_ids": [],
             "unresolved_reverification_conditions": [],
-            "retain_unaffected_material": true
+            "retain_unaffected_material": true,
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -4576,7 +4603,8 @@
             "actual_completion": false,
             "unmatched_record_ids": [],
             "unresolved_reverification_conditions": [],
-            "retain_unaffected_material": true
+            "retain_unaffected_material": true,
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -4658,7 +4686,8 @@
             "actual_completion": false,
             "unmatched_record_ids": [],
             "unresolved_reverification_conditions": [],
-            "retain_unaffected_material": true
+            "retain_unaffected_material": true,
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -4741,7 +4770,8 @@
             "actual_completion": false,
             "unmatched_record_ids": [],
             "unresolved_reverification_conditions": [],
-            "retain_unaffected_material": true
+            "retain_unaffected_material": true,
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -4824,7 +4854,8 @@
             "actual_completion": false,
             "unmatched_record_ids": [],
             "unresolved_reverification_conditions": [],
-            "retain_unaffected_material": true
+            "retain_unaffected_material": true,
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -4911,7 +4942,8 @@
             "reason": "旧graphの逆edgeを足してもcurrent pair片側欠落はmissingのまま。COND-2と他の原記録を保持し、旧graphを実行/昇格しない。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [],
-            "unresolved_reverification_conditions": []
+            "unresolved_reverification_conditions": [],
+            "rejected_external_verification_record_ids": []
           },
           "execution_state": "not_executed",
           "effect": "none",
@@ -5073,22 +5105,23 @@
             "unresolved_conditions": [
               "COND-1"
             ],
-            "reverification_targets": [
-              "LEGACY-TEST-COND-1"
-            ],
+            "reverification_targets": [],
             "impact_condition": "Unknown",
             "actual_all_conditions_verified": false,
             "actual_implementation_complete": false,
             "actual_connection_complete": false,
             "actual_requirement_approved": false,
             "actual_completion": false,
-            "reason": "旧CI成功と同じoracle内容でもcurrent検証の代用はconflict。現在の検証対象の不足COND-1を残し、COND-2と未対応recordを保持する。旧CIは実行しない。",
+            "reason": "旧CI recordはconflictの診断根拠として残し、current再検証targetを補わない。COND-1をunresolved_reverification_conditionsへ保持し、COND-2を保全。旧CIは実行しない。",
             "retain_unaffected_material": true,
             "unmatched_record_ids": [
               "TEST-UNSELECTED"
             ],
             "unresolved_reverification_conditions": [
               "COND-1"
+            ],
+            "rejected_external_verification_record_ids": [
+              "LEGACY-TEST-COND-1"
             ]
           },
           "execution_state": "not_executed",

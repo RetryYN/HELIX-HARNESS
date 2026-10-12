@@ -581,7 +581,8 @@
           "implementation_connection": "record自体が無ければmissing、設計とのjoinが不明ならunknown_design_join。合成recordの対応は実code/接続の成立を示さない。",
           "partial_return": "不足/矛盾条件をUnknownとして返し、別条件の有効原資料を保持。changed_conditionsの検証候補は記録上のtargetであり、実行資格/検証済みを意味しない。"
         }
-      }
+      },
+      "reverification_target_limit": "current検証資料のみを再検証target候補に列挙する。旧CIのrecordはrejected_external_verification_record_idsへ返し、欠けるcurrent条件はunresolved_reverification_conditionsへ残す。旧recordでcurrent targetを埋めない。"
     },
     {
       "id": "HARNESS-L4-004-F02",
