@@ -411,7 +411,7 @@
       "historical_operation": "―",
       "source_line": 48,
       "scope_assessment": "selected_correspondence",
-      "assessment": "開始入力と対象revisionを束縛し、古いcheckoutをcurrent判断へ混ぜない。latest baseとの差分は作業開始/独立reviewで照合する。自動同期daemonを要件から生成しない。",
+      "assessment": "開始入力と対象revisionを束縛し、古いcheckoutをcurrent判断へ混ぜない。古いbaseからの正本更新はcommit時CASでstale/conflictとし、stale base拒否・実差分/baseに応じた検証profileへ結ぶ。作業開始時の最新baseへの追随は開発repo運用で照合し、自動同期daemonを要件から生成しない。",
       "current_pair_evidence": [
         {
           "requirement": {
@@ -487,6 +487,84 @@
               "expected_observation": "各変更条件の対設計と検証、欠けるtraceと再検証対象が辿れる。未所属/二重所有と各欠落を区別してownerへ返す。",
               "negative_input": "件数一致で全対応、変更条件のoracle欠落、別revision trace、旧graph/CIで補完。未所属・二重所有を隠す、所有/実装/接続/検証欠落を影響なしへ扱う。",
               "failure_observation": "漏れた要求条件/pairを特定し、対象ownerへ返す。",
+              "execution_state": "not_executed"
+            }
+          }
+        },
+        {
+          "requirement": {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "content": {
+              "id": "HELIXOS-L3-053-F04",
+              "parent": "HELIXOS-L2-053",
+              "title": "全baseのCAS",
+              "obligation": "operation開始時の対象base revisionをcommit時にcompare-and-swapする。currentが変わった対象があれば新canonical revisionを作らずstale/conflictとし、既存状態と不成立義務を返す。",
+              "oracle_ref": "HELIXOS-L10-053-F04"
+            }
+          },
+          "oracle": {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "content": {
+              "id": "HELIXOS-L10-053-F04",
+              "parent": "HELIXOS-L2-053",
+              "title": "全baseのCAS",
+              "requirement_ref": "HELIXOS-L3-053-F04",
+              "positive_input": "同じ開始baseから競合する更新が先に確定した後、元operationをcommitしようとする。",
+              "expected_observation": "競合したbaseが示され、旧baseの上書きと新revision公開がない。",
+              "negative_input": "対象baseの一つだけを変える、他scopeの成功receiptを使う。",
+              "failure_observation": "operation全体をstale/conflictとして止め、競合/未完writeをscope付きで返す。",
+              "execution_state": "not_executed"
+            }
+          }
+        },
+        {
+          "requirement": {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "content": {
+              "id": "HELIXOS-L3-001-F04",
+              "parent": "HELIXOS-L2-001",
+              "title": "更新故障と六条件不足の別判定",
+              "obligation": "stale base拒否、初期write/receipt faultでのpartial-current防止、複数revision証拠混在拒否を、六つの一条件不足oracleから分けて照合する。OS053の原子的保存とHARNESS052のcommand意味判定を参照し、旧shadow/互換Markdown/Issue本文から最新JSONを巻き戻さない。",
+              "oracle_ref": "HELIXOS-L10-001-F04"
+            }
+          },
+          "oracle": {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "content": {
+              "id": "HELIXOS-L10-001-F04",
+              "parent": "HELIXOS-L2-001",
+              "title": "更新故障と六条件不足の別判定",
+              "requirement_ref": "HELIXOS-L3-001-F04",
+              "positive_input": "同じ意味変更で三種の更新故障と六条件の独立不足を比較する。",
+              "expected_observation": "故障段階・当該owner・未完義務が別に示され、成功時は要求/契約/受入/失効/view/DB/receiptへ同じ更新から辿れる。",
+              "negative_input": "初期write成功を全六条件成功、旧PLAN transaction/読取り検査を更新証拠、旧shadowから最新JSON再生成。",
+              "failure_observation": "別oracleの未完を相殺せず、復旧先/旧revision/原文を保持する。",
+              "execution_state": "not_executed"
+            }
+          }
+        },
+        {
+          "requirement": {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "content": {
+              "id": "HELIXOS-L3-020-F01",
+              "parent": "HELIXOS-L2-020",
+              "title": "変更に必要なCI profile",
+              "obligation": "承認済み要求/pair/oracle、HARNESS版/検証義務、ticket graph、実差分/base、runner/環境、必要connection/evidenceから、当該変更に必要なCI profileを組み立てる。exact HEAD/oracle/環境/run identityへ束縛し、全案件固定段数や検証義務の欠落を許さない。",
+              "oracle_ref": "HELIXOS-L10-020-F01"
+            }
+          },
+          "oracle": {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "content": {
+              "id": "HELIXOS-L10-020-F01",
+              "parent": "HELIXOS-L2-020",
+              "title": "変更に必要なCI profile",
+              "requirement_ref": "HELIXOS-L3-020-F01",
+              "positive_input": "異なる変更集合と同じ義務/環境を入力し、選択profileと要求義務を双方向照合する。",
+              "expected_observation": "profileの選択と義務/HEAD/base/環境/runの根拠が辿れる。",
+              "negative_input": "必要check欠落、別HEAD green、runner不明、全案件固定段数。",
+              "failure_observation": "不足する義務/runner/変更範囲を未完にし、HARNESS/ticket/資源ownerへ返す。",
               "execution_state": "not_executed"
             }
           }
