@@ -236,7 +236,7 @@
       },
       "steps": [
         "十二層集合と6pair集合をcanonical値と双方向比較。L0/L2.5/Concept/implementationをlayer/pairへ追加しない。",
-        "各ArtifactClaimをartifact exact Refからcurrent Meaningへ照合。canonical_meaningでkind/layer/pairを確認。path_labelは表示だけで判定に使用しない。source missing/unknownは当該未解決として保持。",
+        "各ArtifactClaimをartifact exact Refからcurrent Meaningへ照合。canonical_meaningでkind/layer/pairを確認。path_labelは表示だけで判定に使用しない。source missing/unknownは当該未解決として保持。 meaning source未解決のartifactはcorrespondencesへ一件も入れずunresolved_artifact_refsへ保持する。inputに明示layer/kindがあっても分類結果へ転写しない。",
         "同じartifact identity/revision/owner/scopeをL2要求とL3要件など複数意味へ割り当てたらartifact_identity_conflict。別artifactの正常pairは保持。",
         "charter/conceptは独立したkindで層外、layer/paired_layerはnull。implementationも層外であり、L6設計とL7検証のexact RefをMeaningの指定traceへ照合する。両参照が不足ならimplementation_trace_missing、誤参照ならreference_conflict。実装をauthority anchorとして利用しない。 input charter_ref/concept_refもcurrent Meaningのcharter/concept exact identityへ照合し、交換/implementationへの転用はreference_conflict。非implementationのdesign/test refsはnullでなければartifact_meaning_mismatch。",
         "照合したkind/layer/pairとtraceのみ返す。旧L6実装/L7 closureのpath/labelから現行layerを埋めない。未知を消さず結果全体成立へ昇格しない。",

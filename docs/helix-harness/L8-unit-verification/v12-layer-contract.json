@@ -22,7 +22,16 @@
     "meaning": "current Meaningは12 canonical kind/layer/pair、独立charter C0/concept C、implementation I（trace D6/V7）を持つ。Q2 requirement L2/L11とQ3 specification L3/L10は別identity。Uはsource unknown。旧pathラベルはdisplayだけ。 基準正常にはknown K4 basic_design L4/L9があり、unknown別fixtureは同じindexのK4をUへ置換する。両contextとoracleはtest定義時に別々に固定。",
     "reference_contents": "C0/C/I/D6/V7/Q2/Q3/current meaningとbasis/source_checkは同対象の意味内容を確認できる合成原文を持つ。D6はfunction_design L6/V7、V7はfunction_verification L7/D6の同義務trace。",
     "applicability": "4 scopeのscreen/tech Factは(no,no),(no,yes),(yes,no),(yes,yes)。no側は理由、PO判定者Ref、r1、要求影響Ref、再評価条件の5属性を独立に持つ。第5scopeは両fact unknown。各scopeのQ2とcurrent l2_agreementがある。第6scopeはscreen=yes/tech=yes・両result実証はあるがl2_agreement missing。 各非適用側の5属性は同route/subjectのcontext NaBasisにも固定。Poc/PrototypeのNaBasisは別であり入力の説明に合わせて変更しない。",
-    "authority": "同じ層意味の2scopeを先に固定。Pは全5signal currentでcurrent意味/合意/承認/実観測のcontent根拠あり。Mは全5signal missingだがcatalogと層対応は正常。design-only Vはactual_verification missing、検証設計Refだけあり。"
+    "authority": "同じ層意味の2scopeを先に固定。Pは全5signal currentでcurrent意味/合意/承認/実観測のcontent根拠あり。Mは全5signal missingだがcatalogと層対応は正常。design-only Vはactual_verification missing、検証設計Refだけあり。",
+    "unknown_claim_U": {
+      "artifact_ref": "U@r1",
+      "kind": "basic_design（未確認のinput claim、Meaning根拠はunknown）",
+      "layer": null,
+      "paired_layer": null,
+      "path_label": "old/L4",
+      "implementation_design_ref": null,
+      "implementation_test_ref": null
+    }
   },
   "cases": [
     {
@@ -31,8 +40,8 @@
       "l9_ref": "HARNESS-L9-001-F01",
       "requirement_ref": "HARNESS-L3-001-F01",
       "symbol": "check_artifact_layer_correspondence",
-      "positive_input": "12層/6pairのcanonical集合。基準artifacts順序Q2,Q3,D6,I,K4,C,C0,V7で全current。別のunknown正常はindex4だけU/source unknownを持つ独立fixture。IはD6/V7 trace。",
-      "expected_observation": "基準はsatisfied、Q2=L2/L11、Q3=L3/L10、D6=L6/L7、K4=L4/L9、V7=L7/L6。C0/C/I layer=null、I trace保持。unknown別正常だけUをunresolvedとしてoutcome=unknown、他の対応は同じ。",
+      "positive_input": "12層/6pairのcanonical集合。基準artifacts順序Q2,Q3,D6,I,K4,C,C0,V7で全current。別のunknown正常はindex4だけU/source unknownを持つ独立fixture。IはD6/V7 trace。 unknown別正常のU claimはfixture_basis.unknown_claim_Uの全field、layer=null/paired_layer=null/path_label=old/L4。",
+      "expected_observation": "基準はsatisfied、Q2=L2/L11、Q3=L3/L10、D6=L6/L7、K4=L4/L9、V7=L7/L6。C0/C/I layer=null、I trace保持。unknown別正常だけUをunresolvedとしてoutcome=unknown、他の対応は同じ。 unknown別正常のcorrespondencesにUのentryは一件も無く、unresolved_artifact_refsにUが一件残る。",
       "negative_mutations": [
         {
           "l9_mutation_index": 1,
@@ -93,11 +102,20 @@
           "l9_mutation_index": 6,
           "mutation": "意味source未供給をpathで補う",
           "input_pointer": "/artifacts/4/layer",
-          "change": "unknown Uのlayerをpath_labelからL4で埋める。context U unknownは保持",
+          "change": "unknown正常のU claimのlayerだけをnullからL4へ変更。kind/paired_layer=null/path_label=old/L4とcontext U unknownは不変。",
           "expected": {
             "finding_code": "reference_unknown",
             "outcome": "unknown",
-            "finding_pointer": "/artifacts/4/layer"
+            "finding_pointer": "/artifacts/4/layer",
+            "output_constraints": {
+              "forbidden_correspondence_refs": [
+                "U@r1"
+              ],
+              "required_unresolved_refs": [
+                "U@r1"
+              ],
+              "retained_correspondences": "Q2,Q3,D6,I,C,C0,V7のkind/layer/pair/traceはunknown正常と不変。UをL4で出す実装は、unknown finding併記でも失敗。"
+            }
           }
         },
         {
@@ -137,11 +155,21 @@
           "l9_mutation_index": 10,
           "mutation": "実装成果を第十三層/第七pairへ挿入",
           "input_pointer": "/layer_universe",
-          "change": "implementationの第十三層を追加し/pairsへ第七pair追加",
+          "change": "基準fixtureの/layer_universeへimplementationだけを追加。/pairsは六組のまま保持。第七pair挿入は下の別単独変異。",
           "expected": {
             "finding_code": "layer_universe_mismatch",
             "outcome": "conflict",
             "finding_pointer": "/layer_universe"
+          },
+          "independent_variant": {
+            "input_pointer": "/pairs",
+            "change": "別の基準fixtureから/pairsへ{left:implementation,right:L7}だけを追加。/layer_universeは十二層のまま。",
+            "expected": {
+              "finding_code": "pair_mismatch",
+              "outcome": "conflict",
+              "finding_pointer": "/pairs"
+            },
+            "l9_mutation_index": 10
           }
         },
         {
@@ -399,7 +427,7 @@
   ],
   "evidence_contract": [
     "同一revisionの固定input/context/oracle bytes、3symbol→L8→L4/L9→L3/L10双方向trace",
-    "3正常family、27保持負例と追加familyの入力/期待/実観測/差分。不正型だけで内容oracleを代替しない。",
+    "3正常family、L9の27保持項目に対応する28独立変異と5追加familyの入力/期待/実観測/差分。不正型だけで内容oracleを代替しない。",
     "未実行/未知/不足/失敗とowner戻し先、実検証・PO受入へ局所成功を転写しない。"
   ],
   "completion": "実装前oracle凍結後に実物で観測する。文書存在/型検査/件数/hash/設計reviewを実L8成功にしない。"
