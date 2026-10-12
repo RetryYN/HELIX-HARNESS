@@ -1,0 +1,173 @@
+{
+  "parent": "HELIXCONNECT-L2-001",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0473767cb338041ae83a9e3c95ca48a55eb4eae6",
+    "boundary": "接続登録・端点契約・共通descriptorの宣言内容照合だけ。登録/通信/権限/業務承認を実成立にしない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    }
+  ],
+  "source_pin_limit": "固定bytesは全source精読/資格/意味被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "read_lines": [
+        41,
+        57
+      ],
+      "quote": "## §1 componentとauthority\n\n| component | 責務 | authority | 禁止 |\n|---|---|---|---|\n| `ProductDataConnectorRegistry` | source、connector/schema/mapping version、credential reference、classification、sync/read-write policy、owner、freshness/retentionを管理 | Node registry event | credential値保存、不明version、write権限の暗黙付与 |\n| `ProductDataIngestionCoordinator` | full/incremental run、lease/fence、state、idempotency、checkpointを順序制御 | run event | connector固有mapping、Python結果の直接commit |\n| `ProductDataReadConnectorPort` | versioned requestを外部read adapterへ渡しrecord pageとcursorを返す | bounded ephemeral observation | arbitrary query、write-back、credential本文の返却、raw inputのpersistent seal |\n| `ProductDataProjectionWorker` | raw pageからcanonical entity/mapping proposalを導出 | Python proposal artifactだけ | harness.db、current pointer、watermarkへのwrite |\n| `ProductDataProposalIngestionPort` | worker envelope、source/schema/mapping/lineage/digestをNodeで再検証 | staged proposal | partial result、late fence、schema不明resultの昇格 |\n| `ProductDataPolicyGate` | classification、redaction、retention、freshness、agent-context field allowlistを評価 | policy receipt | PII/secret/raw payload複製、unknown classificationの通過 |\n| `ProductDataProjectionCommitter` | entity/mapping、旧current、snapshot、watermarkを一transactionでcommit | Node `HarnessDbPort`だけ | Python/connectorからのDB write、watermark先行更新 |\n| `ProductDataQuarantineStore` | drift/policy/authority findingとrelease条件をappend-only管理 | quarantine event | raw payload保存、無期限・ownerなしrelease |\n\nPythonは共通`PythonWorkerBroker`を通じてproposalだけを返す。run output root以外のwrite、DB pathの受領、repository/current\npointerへのアクセスを許可しない。Nodeは`complete`後にresult set、schema、provenance、lease/fence、artifact digestを再検証し、\n検証済みproposalだけをprojection transactionへ渡す。`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN`は\n`HIL_PYTHON_AUTHORITY_BYPASS`をproduct-data境界で失わず集約する。",
+      "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "selected_lines_sha256": "fcee7a502821376a85ced4c9850dbc8f97ee283d7c3a3b311c7cd92d147a5d4d",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "disposition": "unresolved",
+        "source_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+      },
+      "reuse": "reference_only; adopted CONNECT001 registration/endpoint contract meanings rederived",
+      "preserve": "source/connector-schema-mapping版/owner/classification、unknown版とwrite権限の暗黙付与拒否、registry/adapter/proposal/policy責務の分離。",
+      "change": "旧Node/Python broker/DB/projection実装を移植せず、一般connection identity/両端意味契約/共通descriptorと登録receiptの境界へ再導出する。",
+      "reason": "採択001と10/12承認が個別identityと端点共有許容、登録/利用許可/通信/業務承認の分離を要求する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実endpoint/owner/意味契約/adapter/transport/source宣言の資格とscope別必要集合、owner-qualified exact binding。",
+    "正式schema/codec/registry/互換range評価/transportとL5/L8詳細、test/oracle凍結→実装前Red→最小Green→Refactor→再検証。",
+    "実L9/L10・PO L11、全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXCONNECT-L4-001",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "connection_declaration_reader",
+      "common_descriptor_receipt_reader"
+    ],
+    "flow": [
+      "原両端宣言/個別identity→不足/unknown/異宣言衝突照合→局所receipt候補",
+      "共通descriptorと適用条件→field内容/共通義務照合→未完とowner返却候補"
+    ],
+    "python_boundary": "immutable入力のpure内容対照だけ。registry書込/通信/SEC判定/DB/network/fs/env/clock/業務判断を行わない。",
+    "representation_limit": "field・slot・版・範囲・期限は合成意味例。実schema/codec/ID生成/compatibility algorithm/時計やSEC規則を新設しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXCONNECT-L4-001-F01",
+      "requirement_ref": "HELIXCONNECT-L3-001-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F01",
+      "oracle_ref": "HELIXCONNECT-L9-001-F01",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-001-F01",
+        "parent": "HELIXCONNECT-L2-001",
+        "title": "接続identityと両端契約",
+        "obligation": "source/consumer・端点owner・目的/能力名・方向・scope・意味契約identity/revision・adapter/transport revision・成果物/依存版・互換範囲・運用状態を個別connectionへ結び、登録receiptを返す。同一端点の共有は別identity/意味契約/scopeで識別できれば許容する。同identityの異宣言、identity衝突、端点または契約の欠落・unknownでは登録や通信を利用可能にしない。",
+        "oracle_ref": "HELIXCONNECT-L10-001-F01"
+      },
+      "component": "connection_declaration_reader",
+      "input_meanings": [
+        "両端ownerの独立原宣言/個別connection/登録revision",
+        "同端点の別接続と同identityの宣言集合",
+        "提出宣言"
+      ],
+      "output_meanings": [
+        "接続別/field別の不足・unknown・異宣言衝突",
+        "原宣言/owner/局所receipt候補"
+      ],
+      "content_comparison": [
+        "端点共有とidentity衝突を分ける。同identityの異宣言は利用可能にしない。",
+        "原unknownはnull一致でも保留。Pの不足を理由に独立Qを隠さない。",
+        "登録receiptは通信成立/利用許可/業務承認を生成しない。"
+      ],
+      "qualification_rule": "合成宣言一致からsource資格/正式binding/登録/互換適格/通信/許可/authority/Accepted/設計閉包を生成しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXCONNECT-L4-001-F02",
+      "requirement_ref": "HELIXCONNECT-L3-001-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+      "oracle_ref": "HELIXCONNECT-L9-001-F02",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-001-F02",
+        "parent": "HELIXCONNECT-L2-001",
+        "title": "共通descriptorと登録境界",
+        "obligation": "能力名、契約/成果物/依存版、scope、correlation、期限、idempotency、result state、適用SECURITY許可/data-use/classification参照を同接続へ保持する。HARNESS010/011の宣言・互換・検証・更新/切戻し/未完義務を参照し、登録を利用許可や業務承認へ変えない。",
+        "oracle_ref": "HELIXCONNECT-L10-001-F02"
+      },
+      "component": "common_descriptor_receipt_reader",
+      "input_meanings": [
+        "原共通descriptor/適用条件/非適用理由",
+        "HARNESS010/011の宣言・互換・検証・更新・切戻し・未完原参照",
+        "提出descriptor/適用条件"
+      ],
+      "output_meanings": [
+        "同接続に束縛した必須field対照と元未完",
+        "適用SEC/source参照の不足と非適用理由/owner返却"
+      ],
+      "content_comparison": [
+        "適用される許可/data-use/classification参照は必要。原適用unknownを全不要にしない。",
+        "原版unknownはnull一致や推測で補完しない。元未完を消去しない。",
+        "登録の宣言対照へ通信実行を必須にせず、許可/業務承認の成立を生成しない。"
+      ],
+      "qualification_rule": "合成宣言一致からsource資格/正式binding/登録/互換適格/通信/許可/authority/Accepted/設計閉包を生成しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 33,
+      "F02": 39
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
