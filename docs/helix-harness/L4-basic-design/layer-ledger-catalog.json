@@ -1,6 +1,6 @@
 {
   "parent": "HARNESS-L2-040",
-  "status": "draft_basic_contracts_partial_concrete_oracles_pending",
+  "status": "draft_basic_contracts_initial_concrete_cases_pending_qualification_detail_review",
   "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
   "scope": {
     "version_target": "1.0",
@@ -88,6 +88,38 @@
       "preserve": "十二層のledger契約、六pair、L0層外anchor、stable row identity/revision/source/owner/双方向edge、snapshot/coverage内容条件。",
       "change": "実登録writer/snapshot生成/coverage保存発行と旧DB/runtimeを移さずHARNESSの意味とOSの運転を分離。",
       "reason": "9/29採択040-002、対象L3/L10委任承認とMPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001のholdingを保持。旧runtime不在を置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "read_lines": [
+        209,
+        209
+      ],
+      "line_sha256": "f30d5a844de9d622f8754b5b9ace72e74dc44886635095de76183d544678c9a3",
+      "quote": "| **HIL-NFR-29** | Layer Ledger Chainはtemplate/file/章/aggregate親の存在をpair coverageに算入せず、原子的obligationとoracleを分母にする。上下・左右edgeは両方向、同一revision/snapshot、意味粒度一致を要求し、deferred、stale、未実行、片肺pairをgreenにしない。 |",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "reference_only_semantic_comparison",
+      "preserve": "NFR29の原子的義務と両方向/同revisionの内容照合を、既に承認された040-F04の全件/未完/stale条件の文脈として参照する。",
+      "change": "旧coverage算出/green gate/table/schema/runtimeを採用しない。HARNESSの意味比較とOSの保存発行の責務を分離する。",
+      "reason": "採択040-002とL3-040-F04の明示した内容条件を旧sourceへ照合するため。NFR29全体の上流要求採用を追加するものではなく、旧runtime不在を置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "read_lines": [
+        391,
+        435
+      ],
+      "quote": "### §4.8 Layer Ledger Chain（上下pair・左右V-pair）\n\n各layerは文書一覧ではなく、その粒度で確定・保留・検証する原子的subject/obligationのledgerを持つ。\n\n| layer | ledger subject | 下流出力 | 正規左右pair |\n|---|---|---|---|\n| L1 | 企画、価値仮説、planning intent | L2 requirement authority | L12 operations/value feedback |\n| L2 | business/technical/NFR要求定義 | L3/L4 carry | L11 acceptance |\n| L3 | system要求、FR、AC | L4 architecture/function/data obligation | L10 total/system verification |\n| L4 | architecture、service、domain、external/data契約 | L5 module/API/DB contract | L9 system verification |\n| L5 | module、internal processing、physical data、IF詳細 | L6 function/class/edge case | L8 integration verification |\n| L6 | implementation unit、function/class signature、invariant、edge caseの定義 | L7 TDD closure | L7 unit/TDD evidence |\n| L7 | TDD closure、code/test artifact、implementation判断 | L8 verification input | L6 implementation oracle |\n| L8 | integration run/assertion記録 | L9 verification input、L5 backprop | L5 detail design |\n| L9 | system run/assertion記録 | L10 input、L4 backprop | L4 basic design |\n| L10 | total/system acceptance finding記録 | L11 input、L3 backprop | L3 requirement/AC |\n| L11 | acceptance/review finding記録 | L12 input、L2 backprop | L2 requirement |\n| L12 | operational/time/value evidence記録 | L1 feedback | L1 planning/value oracle |\n\n正規V-pairは`L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7`である。L0 charterは層外authority anchorであり、L12からL1へのfeedbackを介して企画判断へ接続する。\n\n| table | 主key | 必須field・不変条件 |\n|---|---|---|\n| `layer_ledger_types` | layer＋ledger種別＋version | subject kind、grain、authority、input/output、template version、entry/exit gate、status |\n| `layer_ledger_snapshots` | layer＋scope＋snapshot | source/template/catalog digest、parent snapshot、status、created_at。current一意 |\n| `layer_ledger_rows` | 安定subject ID＋revision | layer/type、source spans、semantic digest、authority、owner、status、applicability |\n| `layer_ledger_obligations` | obligation識別子 | row、template atom/rule、required facet、cardinality、status、stale reason |\n| `layer_ledger_edges` | edge識別子 | from/to row revision、`vertical_down/vertical_backprop/vpair_design/vpair_verification/supersedes`、reverse edge、snapshot digest |\n| `layer_ledger_addition_receipts` | proposal＋target台帳 | extractor/actor、source/template digest、duplicate check、authority、review verdict |\n| `layer_ledger_pair_receipts` | pair種別＋scope＋snapshot | expected/actual edge、granularity、oracle、execution evidence、unresolved count、verdict |\n| `layer_ledger_refactor_receipts` | refactor計画 | before/after graph、all-consumer pair set、oracle、behavior digest、rollback、route |\n| `layer_ledger_findings` | finding識別子 | failure code、layer/row/edge、evidence、fingerprint、status |\n| `layer_ledger_events` | aggregate＋連番 | operation ID、previous/event digest、actor、from/to、occurred_at。append-only |\n\nTemplate Obligation Extractorはactive templateの章、field、table row/column、applicability、done-when、pair contractを1 obligationずつ抽出する。Python workerはAST/YAML/Markdown解析候補だけを返し、Nodeがschema・digest・authorityを検証してledger proposalへcommitする。抽出不能は`HIL_LAYER_TEMPLATE_EXTRACTION_EMPTY`、未対応要素は`HIL_LAYER_TEMPLATE_ATOM_ORPHAN`としてfreezeをblockする。\n\n上下pairは隣接layerの`vertical_down`と`vertical_backprop`を一組にし、上位obligationの未降下と下位findingの未逆伝播を別々に検出する。左右pairは上表のV-pairを`vpair_design`と`vpair_verification`で結び、同じoracle identityとsnapshot lineageを要求する。片側edge、aggregate親、未実行oracle、stale revisionはcovered weight 0とする。\n\n`LedgerDesignRefactorPlanner`はledger graphの重複、責務混在、semantic/name collision、fan-in/out、change impact、orphanを候補化する。各stepは1 transformだけを適用し、全vertical/V-pair edgeとoracle identityがbefore/afterで保存される場合だけ既存DesignRefactorへ送る。requirement semantics/public contract変更はRedesign、persisted schema/state変更はRetrofitへrerouteする。\n\n## §5 source capabilityのcoverage\n\n`SourceSnapshot`は次を同一bundleに固定する。\n\n- ZIP: archive digest、全entry path/size/digest、抽出器version。",
+      "line_sha256": "354d5ac7c9c1ef59a8261ddf15ece0a0302ffd42badf7ba40c8f85d12301e08a",
+      "archive_disposition": "unresolved",
+      "reuse": "reference_only_semantic_context",
+      "preserve": "十二層の原子subject、snapshotのsource/template/catalog、row revision、両方向edgeとpair内容の識別を参照する。",
+      "change": "旧table/schema/DB/runtimeと旧L8/L9名称を移植しない。canonical層の意味は現行001/040の承認revisionから導出し、実登録/保存/発行は旧holdingに残す。",
+      "reason": "040-F04が比較するsnapshot/coverageの内容を、旧consumerが持つ行・edge・版の文脈へ照合するため。unresolved資産の採否/再利用実行/authority昇格ではない。旧runtime不在を変更理由にしない。"
     }
   ],
   "full_goal_scope_preserved": {
@@ -314,9 +346,13 @@
             391,
             435
           ],
-          "disposition": "unresolved_reference_only",
+          "disposition": "unresolved",
           "preserve": "台帳の原子subject、snapshot/source/template/catalog、row revisionと両方向edgeの内容照合を参照。FR46/NFR29と現行承認済み040を起点とする。",
-          "not_adopted": "旧table/schema/runtimeと旧L8/L9名称は移さない。canonical層の意味は現行001/040の承認revisionへ照合する。"
+          "not_adopted": "旧table/schema/runtimeと旧L8/L9名称は移さない。canonical層の意味は現行001/040の承認revisionへ照合する。",
+          "reuse": "reference_only_semantic_context",
+          "reason": "040-F04が比較するsnapshot/coverageの内容を、旧consumerが持つ行・edge・版の文脈へ照合するため。unresolved資産の採否/再利用実行/authority昇格ではない。旧runtime不在を変更理由にしない。",
+          "quote": "### §4.8 Layer Ledger Chain（上下pair・左右V-pair）\n\n各layerは文書一覧ではなく、その粒度で確定・保留・検証する原子的subject/obligationのledgerを持つ。\n\n| layer | ledger subject | 下流出力 | 正規左右pair |\n|---|---|---|---|\n| L1 | 企画、価値仮説、planning intent | L2 requirement authority | L12 operations/value feedback |\n| L2 | business/technical/NFR要求定義 | L3/L4 carry | L11 acceptance |\n| L3 | system要求、FR、AC | L4 architecture/function/data obligation | L10 total/system verification |\n| L4 | architecture、service、domain、external/data契約 | L5 module/API/DB contract | L9 system verification |\n| L5 | module、internal processing、physical data、IF詳細 | L6 function/class/edge case | L8 integration verification |\n| L6 | implementation unit、function/class signature、invariant、edge caseの定義 | L7 TDD closure | L7 unit/TDD evidence |\n| L7 | TDD closure、code/test artifact、implementation判断 | L8 verification input | L6 implementation oracle |\n| L8 | integration run/assertion記録 | L9 verification input、L5 backprop | L5 detail design |\n| L9 | system run/assertion記録 | L10 input、L4 backprop | L4 basic design |\n| L10 | total/system acceptance finding記録 | L11 input、L3 backprop | L3 requirement/AC |\n| L11 | acceptance/review finding記録 | L12 input、L2 backprop | L2 requirement |\n| L12 | operational/time/value evidence記録 | L1 feedback | L1 planning/value oracle |\n\n正規V-pairは`L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7`である。L0 charterは層外authority anchorであり、L12からL1へのfeedbackを介して企画判断へ接続する。\n\n| table | 主key | 必須field・不変条件 |\n|---|---|---|\n| `layer_ledger_types` | layer＋ledger種別＋version | subject kind、grain、authority、input/output、template version、entry/exit gate、status |\n| `layer_ledger_snapshots` | layer＋scope＋snapshot | source/template/catalog digest、parent snapshot、status、created_at。current一意 |\n| `layer_ledger_rows` | 安定subject ID＋revision | layer/type、source spans、semantic digest、authority、owner、status、applicability |\n| `layer_ledger_obligations` | obligation識別子 | row、template atom/rule、required facet、cardinality、status、stale reason |\n| `layer_ledger_edges` | edge識別子 | from/to row revision、`vertical_down/vertical_backprop/vpair_design/vpair_verification/supersedes`、reverse edge、snapshot digest |\n| `layer_ledger_addition_receipts` | proposal＋target台帳 | extractor/actor、source/template digest、duplicate check、authority、review verdict |\n| `layer_ledger_pair_receipts` | pair種別＋scope＋snapshot | expected/actual edge、granularity、oracle、execution evidence、unresolved count、verdict |\n| `layer_ledger_refactor_receipts` | refactor計画 | before/after graph、all-consumer pair set、oracle、behavior digest、rollback、route |\n| `layer_ledger_findings` | finding識別子 | failure code、layer/row/edge、evidence、fingerprint、status |\n| `layer_ledger_events` | aggregate＋連番 | operation ID、previous/event digest、actor、from/to、occurred_at。append-only |\n\nTemplate Obligation Extractorはactive templateの章、field、table row/column、applicability、done-when、pair contractを1 obligationずつ抽出する。Python workerはAST/YAML/Markdown解析候補だけを返し、Nodeがschema・digest・authorityを検証してledger proposalへcommitする。抽出不能は`HIL_LAYER_TEMPLATE_EXTRACTION_EMPTY`、未対応要素は`HIL_LAYER_TEMPLATE_ATOM_ORPHAN`としてfreezeをblockする。\n\n上下pairは隣接layerの`vertical_down`と`vertical_backprop`を一組にし、上位obligationの未降下と下位findingの未逆伝播を別々に検出する。左右pairは上表のV-pairを`vpair_design`と`vpair_verification`で結び、同じoracle identityとsnapshot lineageを要求する。片側edge、aggregate親、未実行oracle、stale revisionはcovered weight 0とする。\n\n`LedgerDesignRefactorPlanner`はledger graphの重複、責務混在、semantic/name collision、fan-in/out、change impact、orphanを候補化する。各stepは1 transformだけを適用し、全vertical/V-pair edgeとoracle identityがbefore/afterで保存される場合だけ既存DesignRefactorへ送る。requirement semantics/public contract変更はRedesign、persisted schema/state変更はRetrofitへrerouteする。\n\n## §5 source capabilityのcoverage\n\n`SourceSnapshot`は次を同一bundleに固定する。\n\n- ZIP: archive digest、全entry path/size/digest、抽出器version。",
+          "line_sha256": "354d5ac7c9c1ef59a8261ddf15ece0a0302ffd42badf7ba40c8f85d12301e08a"
         }
       ]
     },
@@ -443,5 +479,14 @@
       "negative_cases": 10,
       "state": "draft_concrete_revision_delta_cases_pending_qualification_and_review"
     }
+  },
+  "review_corrections": {
+    "reviewed_head": "37ba22b8db4bf8a5a5ba2326e4a7912542603fc4",
+    "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2994#issuecomment-6131102830",
+    "F1": "NFR29と旧L4 §4.8の原文/行SHA・台帳と同じdisposition・保持/変更/理由を文書単位へ追加。参照用途と採否を分離。",
+    "F2": "全6関数の初回具体fixture起草済み、追加資格/必要集合/組合せ/独立review/詳細設計未完をstatus/completionへ明記。",
+    "Info_follow_up": "F3 packet表現統一とF4旧層番号意味差の直接caseは、原内容/hash/参照整合を保って後続具体化する。",
+    "independent_closure": "pending_rereview_of_corrected_HEAD",
+    "authority_effect": "none"
   }
 }
