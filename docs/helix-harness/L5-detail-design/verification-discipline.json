@@ -6902,9 +6902,9 @@
           "original_bytes": "Field<bytes>",
           "decoded_payload": "Field<logical value>",
           "owner_qualification": "Field<qualification evidence>",
-          "source_state": "missing|unknown|conflict|stale|qualified"
+          "source_state": "missing|unknown|conflict|stale|qualified|qualified_for_synthetic_design_comparison"
         },
-        "meaning": "同ref/revision/scope/ownerで別payloadならconflict。bytesとdomain内容の両方を照合する。"
+        "meaning": "同ref/revision/scope/ownerで別payloadならconflict。bytesとdomain内容の両方を照合する。 qualified_for_synthetic_design_comparisonは合成入力を独立資料として供給する仮定の状態に限る。実資格や実operationのqualifiedへ読み替えない。"
       },
       "Comparison": {
         "fields": {
@@ -7558,7 +7558,7 @@
       "effect": "none",
       "algorithm": [
         "独立したrequirement/design behavior原根拠とoracleのbasis ref/expected_originを解決する。実装出力を期待の正本へ逆流させない。",
-        "observable/relation/expectedを明示照合する。合成sum(2,3)=5の場合equal5は5と6を区別し、truthinessは両方trueなので不十分。assertion/libraryの名前があるだけでは十分としない。",
+        "observable/relation/expectedを明示照合する。合成sum(2,3)=5の場合equal5は5と6を区別し、truthinessは両方trueなので不十分。assertion/libraryの名前があるだけでは十分としない。 正常5のpassと欠陥6のfailを要求に照合する。equal6は正常をfail・欠陥をpassするため、結果が異なるだけで十分としない。",
         "固定正常/欠陥例それぞれのexpected behaviorへの一致/違反を返す。両例へ同じ成功を返す候補をoracle強度不足へ戻す。任意の自然言語behaviorをこの有限例で全証明したとしない。",
         "元concrete期待と対設計ownerを保持し、合成比較を実製品runや凍結済み実testへ昇格しない。"
       ],
@@ -7591,7 +7591,8 @@
           "backflow_owner": "検証設計owner",
           "preserve": "欠陥非識別を対象behaviorへ結ぶ。"
         }
-      ]
+      ],
+      "detail_contract": "behavior_oracle_detail"
     },
     {
       "name": "compare_integration_gwt",
@@ -7935,7 +7936,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "106呼出しのroot原source packet/basis/bytesとcandidate分離を起草済み。埋込referent source/資格と84分類の型付き部分field値の確定は未完。",
+      "106 root source packetを固定し、F08の5呼出しは独立behavior/oracle合成referentsと型付き部分期待を起草した。他101呼出しの参照先、残る80負例の型付き部分結果、全体のnull/empty型は未完。",
       "null/empty/open_slotのdomain型具体化・比較precedence",
       "独立意味review",
       "正式schema/codec/resolver/trustと実owner binding",
@@ -7991,6 +7992,50 @@
     "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
     "negative_candidate_sources": "original source packetは正常値を保持し、candidateの一fieldだけを変更する。candidateがowner materialを生成・資格付けする経路はない。",
     "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
-    "referent_input_state": "106呼出しのreferentsはmissingを明示する。埋込原sourceの資格なしで正常期待をcomputed肯定結果として出力しない。正常/負例のdomain検出能力は独立referentを具体化した後に意味reviewする。"
+    "referent_input_state": "主106呼出しのうちF08の5件へ独立behavior/oracle合成referentsを供給。他101件はmissingを明示。F08追加source対照3件は同じ正常root packetを保ち、参照未供給・空集合・候補での資格補完を拒否する期待を持つ。合成sourceを実owner/trustや実観測へ昇格しない。"
+  },
+  "behavior_oracle_detail": {
+    "design_ref": "HARNESS-L5-005-F08",
+    "requirement_ref": "HARNESS-L3-005-F08",
+    "basic_oracle_ref": "HARNESS-L9-005-F08",
+    "source_roles": {
+      "behavior_basis": "requirement-ownerの独立原期待。candidate/実装出力/oracle設計を期待のownerへしない。",
+      "oracle_design": "verification-design-ownerが提出した判定内容。原sourceとして読めても、要求期待に対する正しさは別に照合する。",
+      "comparison_examples": "合成packetの数値対照5と6。実runではない。",
+      "binding_and_non_target": "原packetの対象を保全する属性。要求・oracleの資格を代用しない。"
+    },
+    "referent_comparison": [
+      "roleに指定したref/revision/scope/ownerと独立entryをexact照合する。decoded payloadが同ref原資料と異なればcontent conflictを先に保持する。",
+      "oracle_design.basis_refをbehavior_basis.refの原entryへ解決し、candidateの期待欄へ解決しない。",
+      "正常・3つの原oracle負例・candidate負例には合成owner sourceを供給する。反例でoracleの意味内容を変えるときは別identityへ固定し、同ref別payloadの衝突で意味検出を代用しない。"
+    ],
+    "finite_basis_interpretation": {
+      "source_text": "adding 2 and 3 yields 5",
+      "source_field": "behavior_basis.expected",
+      "binding": "HARNESS-L9-005-F08.normal_fixture.input.behavior_basis",
+      "inputs": [
+        2,
+        3
+      ],
+      "observable": "sum_result",
+      "relation": "equal",
+      "expected": 5,
+      "limit": "この固定対照の解釈。任意自然言語を数値5へ変換する汎用規則や製品の既定値ではない。一般のbehaviorはその独立設計ownerが具体期待を提供する。"
+    },
+    "oracle_presence": {
+      "missing_key": "assertion未供給。oracle_discriminates_defectはmissing、独立要求側の具体期待は保持。",
+      "null": "明示未定義。unknown、数値0/false/空oracleへ置換しない。",
+      "empty_object": "判定のobservable/relationが未供給。missing、assertion名の存在で有効にしない。",
+      "equal": "observableと独立concrete expectedが一致し、正常をpass・違反をfailすることを比較。",
+      "truthy": "数値5と6は両方pass。要求一致/違反の識別には不十分。"
+    },
+    "field_derivation": {
+      "example_decisions": "要求側の独立期待との比較。oracle自身の判定と区別。",
+      "concrete_expected": "独立behavior basisから得る5。implementation返り値6で更新しない。",
+      "oracle_discriminates_defect": "この固定対照で正常5をpass、違反6をfailする判定のみtrue。逆転するequal6はfalse。判定未供給はmissing/unknown。",
+      "real_execution": "合成入力のnot_executedを保持。knownは実行済みの意味ではない。"
+    },
+    "candidate_comparison": "computed observationがknownのfieldだけclaimと比較する。same_pass_defect候補を拒否しても原example_decisionsを候補へ合わせない。source不明の場合は候補一致判定も未成立。",
+    "limits": "5呼出しの合成source/部分期待の設計。正式schema/実trust/実凍結/実run/全F08の一般behavior評価の成立ではない。"
   }
 }
