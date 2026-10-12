@@ -438,7 +438,9 @@
           "meaning_deltas": "MeaningDelta[]",
           "impact_evidence": "ImpactEvidence[]",
           "claims": "Claim[]",
-          "nonsemantic_metadata": "RawValue"
+          "nonsemantic_metadata": "RawValue",
+          "semantic_records": "SemanticRecord[]",
+          "trace_requirements": "TraceRequirement[]"
         },
         "meaning": "immutable原snapshot。必要集合を現入力から消さない。source resolver/authorityは外部owner境界の供給根拠へ照合し、ここで新設しない。 AI/言語/project表示名はnonsemantic_metadataへ保存し適用理由へ使わない。製品scope/要求kind/domain等の意味をmetadata扱いへ落とさない。"
       },
@@ -594,6 +596,28 @@
           "check_application_claims": "Comparison"
         },
         "meaning": "同immutable入力の指定producer比較結果のみを読む。外部/cached比較結果の自己主張を採用しない。"
+      },
+      "SemanticRecord": {
+        "fields": {
+          "ref": "Ref",
+          "binding": "ApplicationBinding",
+          "kind": "string",
+          "meaning": "RawValue",
+          "source_ref": "Ref|null"
+        },
+        "meaning": "個別meaning/field値/authority/compatibility/非適用理由へ解決するlogical原記録。資格付きsource bodyの同ref/payloadへ照合。意味はexpected結果ではない。"
+      },
+      "TraceRequirement": {
+        "fields": {
+          "ref": "Ref",
+          "binding": "ApplicationBinding",
+          "from_ref": "Ref",
+          "to_ref": "Ref",
+          "kind": "string",
+          "direction": "string",
+          "source_ref": "Ref|null"
+        },
+        "meaning": "required trace集合の独立根拠。供給edgeから逆算せず欠落端/向きを照合する。"
       }
     },
     "invariants": [
@@ -638,7 +662,8 @@
         "HARNESS-L8-009-ADD-05",
         "HARNESS-L8-009-ADD-06",
         "HARNESS-L8-009-ADD-07"
-      ]
+      ],
+      "oracle_ref": "HARNESS-L8-009-NORMAL-validate_application_input"
     },
     {
       "id": "HARNESS-L5-009-compare_required_axes",
@@ -742,7 +767,8 @@
         "HARNESS-L8-009-F01-NEG-41",
         "HARNESS-L8-009-F01-NEG-42",
         "HARNESS-L8-009-ADD-08"
-      ]
+      ],
+      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_required_axes"
     },
     {
       "id": "HARNESS-L5-009-compare_candidate_universe",
@@ -775,7 +801,8 @@
         "HARNESS-L8-009-F02-NEG-06",
         "HARNESS-L8-009-ADD-09",
         "HARNESS-L8-009-ADD-10"
-      ]
+      ],
+      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_candidate_universe"
     },
     {
       "id": "HARNESS-L5-009-compare_applicability",
@@ -814,7 +841,8 @@
         "HARNESS-L8-009-ADD-11",
         "HARNESS-L8-009-ADD-12",
         "HARNESS-L8-009-ADD-13"
-      ]
+      ],
+      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_applicability"
     },
     {
       "id": "HARNESS-L5-009-compare_kind_obligation_trace",
@@ -848,7 +876,8 @@
         "HARNESS-L8-009-F04-NEG-06",
         "HARNESS-L8-009-F04-NEG-07",
         "HARNESS-L8-009-ADD-14"
-      ]
+      ],
+      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_kind_obligation_trace"
     },
     {
       "id": "HARNESS-L5-009-compare_requirement_gaps",
@@ -883,7 +912,8 @@
         "HARNESS-L8-009-F05-NEG-07",
         "HARNESS-L8-009-ADD-15",
         "HARNESS-L8-009-ADD-16"
-      ]
+      ],
+      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_requirement_gaps"
     },
     {
       "id": "HARNESS-L5-009-compare_selected_knowledge",
@@ -917,7 +947,8 @@
         "HARNESS-L8-009-F06-NEG-06",
         "HARNESS-L8-009-F06-NEG-07",
         "HARNESS-L8-009-ADD-17"
-      ]
+      ],
+      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_selected_knowledge"
     },
     {
       "id": "HARNESS-L5-009-compare_meaning_impacts",
@@ -961,7 +992,8 @@
         "HARNESS-L8-009-F08-NEG-04",
         "HARNESS-L8-009-ADD-18",
         "HARNESS-L8-009-ADD-19"
-      ]
+      ],
+      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_meaning_impacts"
     },
     {
       "id": "HARNESS-L5-009-compare_semantic_equivalence",
@@ -989,7 +1021,8 @@
         "HARNESS-L8-009-B02-NEG-03",
         "HARNESS-L8-009-B02-NEG-04",
         "HARNESS-L8-009-ADD-20"
-      ]
+      ],
+      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_semantic_equivalence"
     },
     {
       "id": "HARNESS-L5-009-check_application_claims",
@@ -1038,7 +1071,8 @@
         "HARNESS-L8-009-N01-NEG-05",
         "HARNESS-L8-009-N01-NEG-06",
         "HARNESS-L8-009-ADD-21"
-      ]
+      ],
+      "oracle_ref": "HARNESS-L8-009-NORMAL-check_application_claims"
     },
     {
       "id": "HARNESS-L5-009-build_application_analysis",
@@ -1069,7 +1103,8 @@
         "HARNESS-L8-009-ADD-22",
         "HARNESS-L8-009-ADD-23",
         "HARNESS-L8-009-ADD-24"
-      ]
+      ],
+      "oracle_ref": "HARNESS-L8-009-NORMAL-build_application_analysis"
     }
   ],
   "contracts": [
@@ -3368,7 +3403,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "runtime_execution": "not_executed",
-    "next": "正常fixtureの完全typed input/source/ref/資格、11normal oracle、追加24分岐を具体化し、静的/独立意味reviewを完了する。"
+    "next": "6正常fixtureの参照/型/owner body/資格を検証し、gap4/impact/別scope/等価比較の具体fixtureと24追加変異を閉じて独立reviewへ送る。"
   },
   "remaining": [
     "L5/L8でlogical型/各axis判定/集合/適用/N/A/trace/gap/影響pure関数と単体oracleへ降ろす。",
@@ -3382,5 +3417,13 @@
     "finding_axis": "106原oracleのexpected_axis/stateは不成立分類。claim根拠のunknownと原condition value=falseのknownを分け、消込claimの充足未証明を原条件そのものの未知にしない。",
     "application_candidates": "required/conditional/N/A/unresolvedは候補dispositionでありOS selected/used/完了stateではない。conditional条件true/false/unknownと未完義務を独立に保存。",
     "meaning_comparison": "same_meaning=falseは元意味不一致。条件充足/非適用根拠/未完義務への対応は元ApplicationPolicyに従い、falseを一律N/A/全体失敗にしない。"
+  },
+  "reference_resolution_contract": {
+    "identity": "Ref.identity/revision/scope/ownerを元recordへexact解決。所在はidentityでない。参照側digestが供給されていれば元source digestも比較。",
+    "body": "SourceEnvelope body内recordsの同ref/type/payloadへ原意味を照合する。source_ref/digest/資格はenvelope側で検査し自己hashをbodyへ再帰埋込みしない。",
+    "qualification": "qualification_ref→Qualification→root_ref ∈ 独立qualification_roots。同owner/subject/revision/scope/bytes digestを照合。実trust root成立はunit外。",
+    "required_trace": "required_trace_refs→trace_requirementsの同refから要求された端/向き/kind/版/scopeを解決。trace_edgesの実収載だけで必要集合を作らない。",
+    "comparison": "SemanticComparison両端をAxisFact/semantic_recordsへ解決し有資格根拠の同subject/bindingを確認。文字列同名だけでmeaningを決定しない。",
+    "snapshot_binding": "関数contextは入力snapshotの要求/product/process/application契約へ固定。record固有template/knowledge/oracle版は別軸。無関係scopeは原owner qualificationとscopeで保持し対象scopeへ統合しない。"
   }
 }
