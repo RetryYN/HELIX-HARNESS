@@ -1,0 +1,1225 @@
+{
+  "document_id": "HARNESS-L8-052-COMMAND-MEANING-IDENTITY",
+  "layer": "L8",
+  "paired_document": "docs/helix-harness/L5-detail-design/command-meaning-identity.json",
+  "parent": "HARNESS-L2-052",
+  "status": "candidate_pending_independent_review",
+  "source_main": "e3ebf6cd675c690760893145502e99ca530cd11f",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L4-basic-design/command-meaning-identity.json",
+      "sha256": "b50bcc43fc293e0678a7f9f59b2b4bd05ecfffecd4e47cca657cfd85f88be90a"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/command-meaning-identity.json",
+      "sha256": "abe3babce359ca12302d30656bb40dde6f38de29276d35d2071d404db49297c3"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-prerequisite-contracts-l3-l10-delegated-decision-2026-10-12.md",
+      "sha256": "06a2fd8afd05c2fa5721732dd7614c0bad3040bb71a56437336e5ff44687ae6e"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
+      "sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+      "sha256": "30fb55d761550e9407ba818a048b8e1bde89d6671f5044a32fe5217ed86486ea"
+    }
+  ],
+  "verification_scope": "7 pure関数/8承認義務/既存L9の50独立反例を保持。28追加familyは局所型/数値/encoding/参照/receipt観測の反証。実Python provider/OS/CI/TDD/受入の実証拠ではない。",
+  "fixture": {
+    "basis": "L9のC/Sr1/Aa1Bb1/Rr1と独立query先行snapshotを詳細化。Ref hashはL6のfixture exactbytes生成時に凍結する。単なるsymbol名を解決済みRefへ昇格しない。",
+    "raw_payload_utf8": "{\"a\":1,\"b\":[2,3]}",
+    "equivalent_raw_payload_utf8": "{ \"b\": [2,3], \"a\":1 }",
+    "normalized_utf8": "{\"a\":1,\"b\":[2,3]}",
+    "semantic_digest": "sha256:efbd0040190fb0871831e606c581f8a66db79d8e2bb836745a70051306956070",
+    "rule": "R/r1、decimal_json_v1/exact_decimal/zero unsigned、wholeJSON/arrayordered/keyUTF16/stringexact。fixtureownerがこのprofileを宣言、他scopeへ流用しない。binary64extrasは独立Rbin/r1。 decimal rounding=not_applicable、binary64独立規則はrounding nearest_even。各algorithmの選択owner根拠は別Ref。",
+    "target_root": [
+      "A/a1",
+      "B/b1"
+    ],
+    "prior": "lookupquery Cだけ、foundT1→O1/M1/REC1。qualifiedabsentT0は独立queryOS観測。priorbasisは原raw/同ownerRule/scope/base/normalizedbytes/digest/result/receiptを全解決。",
+    "comparison_ref": "KはPythonのcomparison本文固定後にOSがaddress+shaを付す。K自身/未来結果を本文へ含めない。",
+    "os_receipt_snapshot": "REC1→binding(C,O1,Sr1)→M1、K→同M1/REC1を具体原bytesから逆照合。未供給は未観測。 結合不足のeffective OS state unknown/binding_conflictでもreported_state/原OS根拠を保持。",
+    "limits": "全Ref/owner/root/budget/actualprocessは局所合成。L6fixtureでexact入力tuple/bytes/出力値と禁止callを凍結してから実装。",
+    "raw_alternatives": "raw payload根拠は必須でdigest単独は不可。claimed_payload_digest=nullはcaller未供給として許すが、NormalizedPayload.semantic_digestはPython成功時必須。F06のdigest/basis missingは独立結果欠落のfixture。"
+  },
+  "function_oracles": [
+    {
+      "id": "HARNESS-L8-052-validate_command_input",
+      "detail_ref": "HARNESS-L5-052-validate_command_input",
+      "symbol": "validate_command_input",
+      "contract_case_refs": [
+        "HARNESS-L8-052-F01",
+        "HARNESS-L8-052-F02",
+        "HARNESS-L8-052-F06",
+        "HARNESS-L8-052-B01"
+      ],
+      "observation": "引数immutable全snapshot、出力各field/分類/軸/bytes/原Ref/sideeffectcall0を逆照合。production関数を期待値生成に使わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-normalize_payload",
+      "detail_ref": "HARNESS-L5-052-normalize_payload",
+      "symbol": "normalize_payload",
+      "contract_case_refs": [
+        "HARNESS-L8-052-F02",
+        "HARNESS-L8-052-F06"
+      ],
+      "observation": "引数immutable全snapshot、出力各field/分類/軸/bytes/原Ref/sideeffectcall0を逆照合。production関数を期待値生成に使わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-build_command_identity",
+      "detail_ref": "HARNESS-L5-052-build_command_identity",
+      "symbol": "build_command_identity",
+      "contract_case_refs": [
+        "HARNESS-L8-052-F01",
+        "HARNESS-L8-052-F02"
+      ],
+      "observation": "引数immutable全snapshot、出力各field/分類/軸/bytes/原Ref/sideeffectcall0を逆照合。production関数を期待値生成に使わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-compare_prior_identity",
+      "detail_ref": "HARNESS-L5-052-compare_prior_identity",
+      "symbol": "compare_prior_identity",
+      "contract_case_refs": [
+        "HARNESS-L8-052-F01",
+        "HARNESS-L8-052-F02",
+        "HARNESS-L8-052-F03",
+        "HARNESS-L8-052-F04",
+        "HARNESS-L8-052-F06"
+      ],
+      "observation": "引数immutable全snapshot、出力各field/分類/軸/bytes/原Ref/sideeffectcall0を逆照合。production関数を期待値生成に使わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-bind_os_outcome",
+      "detail_ref": "HARNESS-L5-052-bind_os_outcome",
+      "symbol": "bind_os_outcome",
+      "contract_case_refs": [
+        "HARNESS-L8-052-F05",
+        "HARNESS-L8-052-B01"
+      ],
+      "observation": "引数immutable全snapshot、出力各field/分類/軸/bytes/原Ref/sideeffectcall0を逆照合。production関数を期待値生成に使わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-bind_receipt_basis",
+      "detail_ref": "HARNESS-L5-052-bind_receipt_basis",
+      "symbol": "bind_receipt_basis",
+      "contract_case_refs": [
+        "HARNESS-L8-052-F03",
+        "HARNESS-L8-052-N01"
+      ],
+      "observation": "引数immutable全snapshot、出力各field/分類/軸/bytes/原Ref/sideeffectcall0を逆照合。production関数を期待値生成に使わない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-build_comparison_trace",
+      "detail_ref": "HARNESS-L5-052-build_comparison_trace",
+      "symbol": "build_comparison_trace",
+      "contract_case_refs": [
+        "HARNESS-L8-052-F04",
+        "HARNESS-L8-052-N01",
+        "HARNESS-L8-052-B01"
+      ],
+      "observation": "引数immutable全snapshot、出力各field/分類/軸/bytes/原Ref/sideeffectcall0を逆照合。production関数を期待値生成に使わない。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "cases": [
+    {
+      "id": "HARNESS-L8-052-F01",
+      "detail_ref": "HARNESS-L5-052-F01",
+      "design_ref": "HARNESS-L4-052-F01",
+      "integration_oracle_ref": "HARNESS-L9-052-F01",
+      "requirement_ref": "HARNESS-L3-052-F01",
+      "system_oracle_ref": "HARNESS-L10-052-F01",
+      "symbols": [
+        "validate_command_input",
+        "build_command_identity",
+        "compare_prior_identity"
+      ],
+      "positive_fixture": "C/Sr1/Aa1Bb1/Rr1/Dで初回と再送を比較。path/PR/到着時刻だけを変える等価入力と、意味payload内atom変更を独立に観測。 意味path比較の別fixtureはbefore payload={a:1,b:[2,3],path:p1}、afterでpathだけp2（Rr1はpathを意味fieldとする）。",
+      "expected_observation": [
+        "4軸を同じ対象へ結び、transport差だけでは新identityなし。",
+        "同IDでscope/base/payloadが違う場合、相違軸が返る。"
+      ],
+      "negative_cases": [
+        {
+          "change": "command IDだけ比較してscope差を隠す",
+          "expected": "conflict(scope)、先行M1/REC1不変。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "identity_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-identity_conflict"
+          ]
+        },
+        {
+          "change": "pathをidentity keyにする",
+          "expected": "transport pathだけの変更ではsame O1/M1、意味変更/revision発行0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [],
+          "failure_rule_refs": []
+        },
+        {
+          "change": "PR/Issue番号をidentity keyにする",
+          "expected": "番号差だけでsameをnewへ分岐させない。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [],
+          "failure_rule_refs": []
+        },
+        {
+          "change": "到着時刻をidentity keyにする",
+          "expected": "時刻差だけでsameをnewへ分岐させない。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [],
+          "failure_rule_refs": []
+        },
+        {
+          "change": "B baseをtarget集合とともにdrop",
+          "expected": "独立target rootはA/Bのまま、unknown missing B。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "target_missing"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-target_missing"
+          ]
+        },
+        {
+          "change": "payload内の意味path atomを勝手にstrip",
+          "expected": "owner意味差はconflict(payload)、transport除外に混ぜない。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "identity_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-identity_conflict"
+          ]
+        },
+        {
+          "change": "異command IDのC2を同じpayloadだけでCとsameにする",
+          "expected": "query=C2の根拠付きabsentならnew候補。先行C/O1/M1/REC1不変、C identityへ統合0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [],
+          "failure_rule_refs": []
+        },
+        {
+          "change": "base集合の並びだけB,Aへ変えて別identityにする",
+          "expected": "同じ全base exact集合としてsame O1/M1、新意味revision0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [],
+          "failure_rule_refs": []
+        },
+        {
+          "change": "同asset Aのbaseを異revisionで重複させる",
+          "expected": "conflict(base A重複/矛盾)、一件へ勝手にdedupしない。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "base_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-base_conflict"
+          ]
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-F02",
+      "detail_ref": "HARNESS-L5-052-F02",
+      "design_ref": "HARNESS-L4-052-F02",
+      "integration_oracle_ref": "HARNESS-L9-052-F02",
+      "requirement_ref": "HARNESS-L3-052-F02",
+      "system_oracle_ref": "HARNESS-L10-052-F02",
+      "symbols": [
+        "validate_command_input",
+        "normalize_payload",
+        "build_command_identity",
+        "compare_prior_identity"
+      ],
+      "positive_fixture": "Rr1/Sr1の規則で二raw payloadを正規化。規則revisionだけRr2へ変える別入力も評価。",
+      "expected_observation": [
+        "Rr1/Sr1で宣言した等価payloadは同じnormalized bytes/D。",
+        "規則/scope revision差はdigest文字列一致でもconflict。"
+      ],
+      "negative_cases": [
+        {
+          "change": "rule revisionを欠落",
+          "expected": "unknown(rule revision)、default採用0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "required_missing"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-required_missing"
+          ]
+        },
+        {
+          "change": "ruleをRr2へ変更しdigest Dだけ維持",
+          "expected": "conflict(rule)、same判定0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "identity_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-identity_conflict"
+          ]
+        },
+        {
+          "change": "scope revisionをSr2へ変更しDだけ維持",
+          "expected": "conflict(scope revision)、same判定0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "identity_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-identity_conflict"
+          ]
+        },
+        {
+          "change": "caller digestだけを信頼しnormalized bytes差を無視",
+          "expected": "conflict(payload bytes/digest binding)、先行不変。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "payload_binding_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-payload_binding_conflict"
+          ]
+        },
+        {
+          "change": "array順序を勝手にsort",
+          "expected": "Rr1が順序を意味とする[3,2]はconflict(payload)。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "identity_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-identity_conflict"
+          ]
+        },
+        {
+          "change": "OS側だけでpayload正規化",
+          "expected": "classification=unknown、原因normalization_basis（HARNESS規則による独立正規化根拠なし）。OS outcome=not_observed、new/same禁止。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "normalization_basis"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-normalization_basis"
+          ]
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-F03",
+      "detail_ref": "HARNESS-L5-052-F03",
+      "design_ref": "HARNESS-L4-052-F03",
+      "integration_oracle_ref": "HARNESS-L9-052-F03",
+      "requirement_ref": "HARNESS-L3-052-F03",
+      "system_oracle_ref": "HARNESS-L10-052-F03",
+      "symbols": [
+        "compare_prior_identity",
+        "bind_receipt_basis"
+      ],
+      "positive_fixture": "先行C/O1がfound、全軸/規則/normalized bytes一致。初回は独立query=C/absent T0。 比較結果Kは今回/先行の全比較根拠とM1/REC1へ束縛。独立OS結合snapshotはREC1→command binding(C,O1,Sr1)→M1を解決し、K→M1/REC1と逆照合する。",
+      "expected_observation": [
+        "初回はnew候補、再送はsame O1/M1、先行REC1参照不変。",
+        "再送で新意味revision0、実retry/commit成功の証拠は別。",
+        "scope/base/rule・scope revision/normalized bytes/digestの同一比較根拠がKとM1へ結ばれ、REC1から同command binding経由で同じM1へ辿れる。再送でKを供給しても既存binding/M1/REC1全内容は不変。結合の観測状態とsemantic sameは別field。"
+      ],
+      "negative_cases": [
+        {
+          "change": "全一致再送をnewとする",
+          "expected": "same O1/M1だけ、新意味変更0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [],
+          "failure_rule_refs": []
+        },
+        {
+          "change": "sameから実retry成功を出す",
+          "expected": "OS not_observedを保持、未実証運転はnot_proven。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        },
+        {
+          "change": "lookupをscope+Cで行い異scope既存Cを隠す",
+          "expected": "classification=unknown、原因lookup_query（command ID単独queryの根拠不成立）。OS outcome=not_observed、new禁止。異scopeのvalid foundを得た別caseのconflict(scope)とは区別。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "lookup_query"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-lookup_query"
+          ]
+        },
+        {
+          "change": "foundから先行identityを除く",
+          "expected": "unknown(prior identity)、absentに変換0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "prior_missing"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-prior_missing"
+          ]
+        },
+        {
+          "change": "absent根拠なしの空recordをnewとする",
+          "expected": "unknown(lookup証拠)、new禁止。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "lookup_unknown"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-lookup_unknown"
+          ]
+        },
+        {
+          "change": "receiptからcomparison basisへの結合snapshotを欠落",
+          "expected": "semantic sameを保持、OS outcome binding=unknown(receipt_comparison_binding)。結合成立は未観測、OS053へbackflow、receipt更新0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "receipt_binding_unknown"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-receipt_binding_unknown"
+          ]
+        },
+        {
+          "change": "receiptのcommand bindingが別identity result M2へ結ぶ",
+          "expected": "semantic sameを保持、OS outcome binding=binding_conflict(receipt_comparison_binding)。M1/REC1不変、別根拠で結合成立にしない。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "receipt_binding_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-receipt_binding_conflict"
+          ]
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-F04",
+      "detail_ref": "HARNESS-L5-052-F04",
+      "design_ref": "HARNESS-L4-052-F04",
+      "integration_oracle_ref": "HARNESS-L9-052-F04",
+      "requirement_ref": "HARNESS-L3-052-F04",
+      "system_oracle_ref": "HARNESS-L10-052-F04",
+      "symbols": [
+        "compare_prior_identity",
+        "build_comparison_trace"
+      ],
+      "positive_fixture": "同Cのpayload atom a=2、scope S2、base B=b2、rule Rr2の4独立後続入力。",
+      "expected_observation": [
+        "それぞれconflictと対象相違軸を返す。",
+        "先行O1/M1/REC1のidentity/revision/bytesは不変、二つ目意味revision0。"
+      ],
+      "negative_cases": [
+        {
+          "change": "異payloadを同ID冪等でsameにする",
+          "expected": "conflict(payload)。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "identity_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-identity_conflict"
+          ]
+        },
+        {
+          "change": "異scopeで先行receiptを置換",
+          "expected": "conflict(scope)、REC1全内容不変。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "identity_conflict",
+            "prior_mutated"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-identity_conflict",
+            "HARNESS-L5-052-R-prior_mutated"
+          ]
+        },
+        {
+          "change": "異baseで先行結果を置換",
+          "expected": "conflict(base B)、M1全内容不変。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "identity_conflict",
+            "prior_mutated"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-identity_conflict",
+            "HARNESS-L5-052-R-prior_mutated"
+          ]
+        },
+        {
+          "change": "異rule revisionを同digestでsameとする",
+          "expected": "conflict(rule)、D一致では相殺しない。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "identity_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-identity_conflict"
+          ]
+        },
+        {
+          "change": "conflict後に別command IDを捏造して再受理",
+          "expected": "原Cとconflict保持、新command生成0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "identity_conflict",
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-identity_conflict",
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-F05",
+      "detail_ref": "HARNESS-L5-052-F05",
+      "design_ref": "HARNESS-L4-052-F05",
+      "integration_oracle_ref": "HARNESS-L9-052-F05",
+      "requirement_ref": "HARNESS-L3-052-F05",
+      "system_oracle_ref": "HARNESS-L10-052-F05",
+      "symbols": [
+        "bind_os_outcome"
+      ],
+      "positive_fixture": "意味sameとOS staleを同O1/C/Sr1/Aa1Bb1/result refへ束縛する。先行O1はincompleteで、同一意味の次episodeの全base CASをOSが拒否したfixture。これと独立した第二fixtureでは先行O1/G1/REC1はcommitted、後続別operationがcurrent G2へ進めた同一再送をOSがreplayする。",
+      "expected_observation": [
+        "semantic sameは保持するがOS staleを新canonicalization成功にしない。",
+        "過去O1/G1成功はcurrent G2と区別し、OS側のexact先行結果を参照。"
+      ],
+      "negative_cases": [
+        {
+          "change": "payload D一致でOS staleを消す",
+          "expected": "semantic same＋OS stale保持、新保存成功0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        },
+        {
+          "change": "HARNESSがbase CASを実行",
+          "expected": "禁止CAS call0、OSへ不足を戻す。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        },
+        {
+          "change": "別scopeのOS成功receiptで補完",
+          "expected": "binding_conflict、当該OS結果は未成立。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "os_binding_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-os_binding_conflict"
+          ]
+        },
+        {
+          "change": "別command/operationのOS結果で補完",
+          "expected": "binding_conflict、元O1の未観測/未完保持。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "os_binding_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-os_binding_conflict"
+          ]
+        },
+        {
+          "change": "未観測OS結果をcommittedにする",
+          "expected": "OS not_observed、canonicalization成立主張なし。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "os_not_observed",
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-os_not_observed",
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        },
+        {
+          "change": "current G2を先行O1/G1成功として表示",
+          "expected": "先行G1とobserved current G2を別fieldで返す。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [],
+          "failure_rule_refs": []
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-F06",
+      "detail_ref": "HARNESS-L5-052-F06",
+      "design_ref": "HARNESS-L4-052-F06",
+      "integration_oracle_ref": "HARNESS-L9-052-F06",
+      "requirement_ref": "HARNESS-L3-052-F06",
+      "system_oracle_ref": "HARNESS-L10-052-F06",
+      "symbols": [
+        "validate_command_input",
+        "normalize_payload",
+        "compare_prior_identity"
+      ],
+      "positive_fixture": "正常入力からcommand ID、scope、base B、payload/digest、rule revision、found prior identityを各一つだけ欠落。",
+      "expected_observation": [
+        "各不足をunknownと原field/ownerへ返す。",
+        "内容/scope/revision矛盾はconflict、別oracleによる補完なし。"
+      ],
+      "negative_cases": [
+        {
+          "change": "command ID欠落を到着時刻から補完",
+          "expected": "unknown(command ID)、捏造ID0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "required_missing"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-required_missing"
+          ]
+        },
+        {
+          "change": "scope欠落を先行recordから補完",
+          "expected": "unknown(scope)、他scope補完0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "required_missing"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-required_missing"
+          ]
+        },
+        {
+          "change": "base B欠落をcurrent Bから補完",
+          "expected": "unknown(base B)、CAS運転代行0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "target_missing"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-target_missing"
+          ]
+        },
+        {
+          "change": "payload digest/根拠missingを同一とする",
+          "expected": "unknown(payload digest/basis)、same禁止。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "required_missing"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-required_missing"
+          ]
+        },
+        {
+          "change": "Resolution unknownを空集合へ丸める",
+          "expected": "unknown(元Ref)、原対象集合を保持。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "resolution_unknown"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-resolution_unknown"
+          ]
+        },
+        {
+          "change": "他scope oracleで不足を埋める",
+          "expected": "conflict(oracle scope)、passにしない。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "oracle_mismatch"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-oracle_mismatch"
+          ]
+        },
+        {
+          "change": "別revision prior identityで補完",
+          "expected": "conflict(prior revision)、原不足保持。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "reference_conflict"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-reference_conflict"
+          ]
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-N01",
+      "detail_ref": "HARNESS-L5-052-N01",
+      "design_ref": "HARNESS-L4-052-N01",
+      "integration_oracle_ref": "HARNESS-L9-052-N01",
+      "requirement_ref": "HARNESS-L3-052-N01",
+      "system_oracle_ref": "HARNESS-L10-052-N01",
+      "symbols": [
+        "bind_receipt_basis",
+        "build_comparison_trace"
+      ],
+      "positive_fixture": "new/same/conflict/unknownとOS結果あり/未観測をそれぞれ入力根拠へ逆照合。",
+      "expected_observation": [
+        "入力4軸/規則scope版/先行今回digest/bytesとclassification/戻し先が追跡可能。",
+        "先行receipt全内容不変、実運転未観測はnot_proven。"
+      ],
+      "negative_cases": [
+        {
+          "change": "同名fixtureだけで実retry成功とする",
+          "expected": "局所fixtureだけ、実retry not_proven。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        },
+        {
+          "change": "意味sameで多artifact原子性を証明",
+          "expected": "OS実観測なし、atomicity not_proven。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        },
+        {
+          "change": "意味sameで旧FR52/53全体closureを証明",
+          "expected": "旧全体closure not_proven、履歴操作追加0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        },
+        {
+          "change": "先行receiptを他scope Refへ変更",
+          "expected": "conflict(receipt binding)、元REC1保持。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "receipt_binding_conflict",
+            "prior_mutated"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-receipt_binding_conflict",
+            "HARNESS-L5-052-R-prior_mutated"
+          ]
+        },
+        {
+          "change": "count/hashだけでcomparison trace成功",
+          "expected": "入力/相違軸/owner/backflow不足をunknownへ。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "trace_unknown"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-trace_unknown"
+          ]
+        }
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-B01",
+      "detail_ref": "HARNESS-L5-052-B01",
+      "design_ref": "HARNESS-L4-052-B01",
+      "integration_oracle_ref": "HARNESS-L9-052-B01",
+      "requirement_ref": "HARNESS-L3-052-B01",
+      "system_oracle_ref": "HARNESS-L10-052-B01",
+      "symbols": [
+        "validate_command_input",
+        "bind_os_outcome",
+        "build_comparison_trace"
+      ],
+      "positive_fixture": "pure比較とOS保存結果を別owner参照へ対応。",
+      "expected_observation": [
+        "意味比較以外の書込み/要求採択/authority/PO Accepted/履歴call0。",
+        "OSに保存/rollback/command durabilityと既存義務を保持。"
+      ],
+      "negative_cases": [
+        {
+          "change": "意味sameからdurability成功を生成",
+          "expected": "運転未観測を保持、durability成立主張0。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        },
+        {
+          "change": "意味sameからrollback成功を生成",
+          "expected": "rollback未観測、OS復旧義務保持。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        },
+        {
+          "change": "意味sameから要求採択/承認を生成",
+          "expected": "authority変化0、境界違反。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        },
+        {
+          "change": "FR53 rename/split/mergeを追加",
+          "expected": "履歴call0、未選択操作停止保持。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        },
+        {
+          "change": "旧DB/CLI/runtimeへfallback",
+          "expected": "旧runtime call0、現行未完を保持。",
+          "local_observation": "当該単独変異のComparison各axis/OSBinding/ReceiptBindingResult/原入力全bytes・先行参照不変/禁止IO traceを照合。実OS成功の証拠ではない。",
+          "finding_codes": [
+            "boundary_violation"
+          ],
+          "failure_rule_refs": [
+            "HARNESS-L5-052-R-boundary_violation"
+          ]
+        }
+      ],
+      "execution_state": "not_executed"
+    }
+  ],
+  "additional_cases": [
+    {
+      "id": "HARNESS-L8-052-X01",
+      "input_change": "raw={\"a\":1,\"a\":2}、別case raw={\"a\":1,\"\\u0061\":2}",
+      "expected": "各case unknown(payload_invalid)。decoded key重複をlastwinsにしない。",
+      "symbols": [
+        "normalize_payload"
+      ],
+      "finding_codes": [
+        "payload_invalid"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X02",
+      "input_change": "rawUTF8 BOM、UTF16 bytes、trailing text、NaN、Infinity、lone surrogateの6独立入力",
+      "expected": "各case unknown(payload_invalid)、partial normalized/digest無し。",
+      "symbols": [
+        "normalize_payload"
+      ],
+      "finding_codes": [
+        "payload_invalid"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X03",
+      "input_change": "decimal profile raw=1.0000000000000001 と先行1を比較",
+      "expected": "normalized 10000000000000001e-16 と1を全桁保持、同Cならconflict(payload)。係数+指数のencodingでraw小数表記を保持するという意味ではない。",
+      "symbols": [
+        "normalize_payload",
+        "compare_prior_identity"
+      ],
+      "finding_codes": [
+        "identity_conflict"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X04",
+      "input_change": "decimal profile raw=9007199254740993 と9007199254740992",
+      "expected": "両方exact bytes、整数桁をbinary64へ丸めずconflict(payload)。任意桁も資源制約内で同手順。",
+      "symbols": [
+        "normalize_payload",
+        "compare_prior_identity"
+      ],
+      "finding_codes": [
+        "identity_conflict"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X05",
+      "input_change": "decimal raw=100.0、1e2、0.0100",
+      "expected": "最初2件 normalized=1e2同digest、第三は1e-2。Decimal context precision変更でも同bytes。",
+      "symbols": [
+        "normalize_payload"
+      ],
+      "finding_codes": [],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X06",
+      "input_change": "zero unsignedで-0/0/-0.0、signedで-0/0を独立実行",
+      "expected": "unsignedは全0同digest、signedは-0/0別bytes。owner profile宣言を使いcalleroverride無し。",
+      "symbols": [
+        "normalize_payload"
+      ],
+      "finding_codes": [],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X07",
+      "input_change": "binary64規則で1.0000000000000001 と1.0を評価",
+      "expected": "owner IEEE754丸め宣言がある時だけ両方1、declared意味として等価。宣言欠落はunknown/required_missing。decimal profileへ勝手に切替0。",
+      "symbols": [
+        "normalize_payload"
+      ],
+      "finding_codes": [
+        "required_missing"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X08",
+      "input_change": "binary64 raw=9007199254740992、1e-7、1e-6、1e20、1e21",
+      "expected": "JCS期待bytesは9007199254740992、1e-7、0.000001、100000000000000000000、1e+21。整数をprovider intへ供給してsafeinteger制限で誤拒否しない。",
+      "symbols": [
+        "normalize_payload"
+      ],
+      "finding_codes": [],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X09",
+      "input_change": "binary64 raw=1e400または-1e400",
+      "expected": "非finiteconversionはunknown(number_domain)、string化/無限値/成功digest無し。",
+      "symbols": [
+        "normalize_payload"
+      ],
+      "finding_codes": [
+        "number_domain"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X10",
+      "input_change": "raw objectのkeys U+FB33とU+1F600を逆順で入力",
+      "expected": "UTF16 key順はU+1F600→U+FB33。UTF32/codepoint順とは違う。rawkey順に依存せず同bytes。",
+      "symbols": [
+        "normalize_payload"
+      ],
+      "finding_codes": [],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X11",
+      "input_change": "payload string U+00E9 と e+U+0301",
+      "expected": "NFCで混ぜず異normalized bytes、同Cはconflict(payload)。",
+      "symbols": [
+        "normalize_payload",
+        "compare_prior_identity"
+      ],
+      "finding_codes": [
+        "identity_conflict"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X12",
+      "input_change": "raw=1、true、null、\"1\"、[]、{}の6独立入力",
+      "expected": "全部型と意味bytesを区別。boolをintとして扱わない。null/emptyはmissingではなく存在する意味値。",
+      "symbols": [
+        "normalize_payload"
+      ],
+      "finding_codes": [],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X13",
+      "input_change": "先行normalized bytes Aと今回Bは異なるがclaimed/先行digest文字列を同じDに偽装",
+      "expected": "独立再計算が不一致はpayload_binding_conflict、digestcollision fixtureでもbyte差はidentity_conflict。どちらも先行不変。",
+      "symbols": [
+        "normalize_payload",
+        "compare_prior_identity"
+      ],
+      "finding_codes": [
+        "payload_binding_conflict",
+        "identity_conflict"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X14",
+      "input_change": "RuleRef同identity/revisionだが解決content bytesだけ変更、別case規則revisionRr2",
+      "expected": "前者reference_conflict、後者valid別ruleならidentity_conflict/difference rule。digest同値で相殺0。",
+      "symbols": [
+        "validate_command_input",
+        "compare_prior_identity"
+      ],
+      "finding_codes": [
+        "reference_conflict",
+        "identity_conflict"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X15",
+      "input_change": "caller/target両方Bをdrop、独立source TargetSet解決はA/Bのまま",
+      "expected": "target_missing B、caller改変targetを独立sourceとみなさない。",
+      "symbols": [
+        "validate_command_input"
+      ],
+      "finding_codes": [
+        "target_missing"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X16",
+      "input_change": "Budget未解決、各byte/depth/node/number/outputlimit超過、MemoryError/RecursionError",
+      "expected": "未解決budget_unknown、個別超過/資源例外resource_limit。出力partialbytes成功0。制約数値はfixture資源ownerから明示。",
+      "symbols": [
+        "validate_command_input",
+        "normalize_payload"
+      ],
+      "finding_codes": [
+        "budget_unknown",
+        "resource_limit"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X17",
+      "input_change": "未対応algorithm/projection、JCSproviderversion違い/欠落/例外",
+      "expected": "rule_unsupportedまたはprovider_failure、default/旧TSfallback無し。原scope未完を保持。",
+      "symbols": [
+        "normalize_payload"
+      ],
+      "finding_codes": [
+        "rule_unsupported",
+        "provider_failure"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X18",
+      "input_change": "K本文を固定してからOSbinding/M1/REC1を供給。別caseK本文へ自己Kを埋込む",
+      "expected": "正常はKの原bytes/digest不変、観測は別envelope。自己Kfieldはclosed comparison本文にないためschema_invalid、hash再生成で循環を隠さない。",
+      "symbols": [
+        "build_comparison_trace"
+      ],
+      "finding_codes": [
+        "schema_invalid"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X19",
+      "input_change": "先行M1/REC1のrevision/bytes before-after一つだけ変更",
+      "expected": "prior_mutated/trace conflict、元先行Ref/bytes保持、補修0。",
+      "symbols": [
+        "build_comparison_trace"
+      ],
+      "finding_codes": [
+        "prior_mutated"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X20",
+      "input_change": "found/incomplete、receipt_required=false/null、意味same、OSstaleの新episode",
+      "expected": "meaning sameとOSstale/receipt unknown又は未観測を独立保持。new/committed/receipt捏造0。",
+      "symbols": [
+        "compare_prior_identity",
+        "bind_os_outcome",
+        "bind_receipt_basis"
+      ],
+      "finding_codes": [],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X21",
+      "input_change": "先行committedO1/G1、current G2、same replayとK→M1/REC1結合",
+      "expected": "historical G1/current G2、先行M1/REC1不変、OSreplay、receipt bound。新operation/write0。",
+      "symbols": [
+        "bind_os_outcome",
+        "bind_receipt_basis"
+      ],
+      "finding_codes": [],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X22",
+      "input_change": "raw payload内path=p1→p2 とtransport pathだけ変更を独立入力",
+      "expected": "payloadpathはconflict(payload)、transportだけはsame。意味keyを名前でstrip0。",
+      "symbols": [
+        "normalize_payload",
+        "build_command_identity",
+        "compare_prior_identity"
+      ],
+      "finding_codes": [
+        "identity_conflict"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X23",
+      "input_change": "Python↔Node envelopeのrawbytesをbase64標準padding以外/再encoding不一致で供給",
+      "expected": "transport decodeはschema_invalid、rawJSONを先にNode parseして情報を落とす経路はnormalization_basis。OS adapterの局所前提検証、実接続未成立。",
+      "symbols": [
+        "validate_command_input",
+        "normalize_payload"
+      ],
+      "finding_codes": [
+        "schema_invalid",
+        "normalization_basis"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X24",
+      "input_change": "decimalで1e999999999999999999999999のtarget指数域超過、binary64で1e-400の2独立case decimal指数域超過はInvalidOperation trap有効/無効の両contextで独立に観測する。",
+      "expected": "decimal constructor不能はunknown(number_domain)、rawtoken保持。binary64はowner nearest_even宣言時だけ0/同digestとraw差保持。declared profileに従い、decimal精度の意味値をbinary64へ縮小0。 trap有効の例外とtrap無効の非finite戻り値を必須is_finite検査で同じnumber_domainへ分類し、contextを変更しない。",
+      "symbols": [
+        "normalize_payload"
+      ],
+      "finding_codes": [
+        "number_domain"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X25",
+      "input_change": "ScopeBody.owner_refとRuleBody.owner_basis_refの解決ownerだけを別ownerに変える",
+      "expected": "owner_mismatch/semantic conflict、他scopeownerで補完0。",
+      "symbols": [
+        "validate_command_input"
+      ],
+      "finding_codes": [
+        "owner_mismatch"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X26",
+      "input_change": "decimal algorithmにieee754 semantics、またはbinary64にsigned zeroを宣言する2独立規則",
+      "expected": "rule_conflict/semantic conflict。解決済み規則の矛盾をdefaultで補完0。",
+      "symbols": [
+        "normalize_payload"
+      ],
+      "finding_codes": [
+        "rule_conflict"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X27",
+      "input_change": "OS結果Resolutionをunknown/staleにし、commit文字列だけ残す",
+      "expected": "OSBinding state=unknown/ reported_stateは未解決なのでnull、原未解決Ref保持。semantic same不変、成功観測へ昇格0。",
+      "symbols": [
+        "bind_os_outcome"
+      ],
+      "finding_codes": [
+        "os_unknown"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L8-052-X28",
+      "input_change": "pure same比較でOS結果とreceipt結合snapshot双方未供給",
+      "expected": "OSBinding not_observed、ReceiptBindingResult not_observed、same不変。未観測をunknown故障と混ぜず結合boundにしない。",
+      "symbols": [
+        "bind_receipt_basis"
+      ],
+      "finding_codes": [
+        "receipt_not_observed"
+      ],
+      "execution_state": "not_executed"
+    }
+  ],
+  "evidence_contract": [
+    "各caseの入力raw/規則/root/先行Ref/OS/receipt結合、対象L5/L4/L3/L10と実環境revisionを固定。正常と単独変異の出力値を比較。",
+    "byte/digest expectedは上記独立fixture literalとprimary RFC vectorsから定め、production normalize関数をoracle生成に使わない。RFC/OSS試験合格をHELIXownerdomainの合格へ読み替えない。",
+    "findings code/field_pointer/owner/backflowと各分類を固定。missingとabsent、semanticとOS/receipt観測状態を区別。全上流50反例の期待を保持。",
+    "実装前test/oracle凍結→実装前Red実観測→最小Greenは後続L6/L7。今回JSON parse/参照/hash/trace静的検証のみ、全not_executed。",
+    "runtime実運転証拠なしを保持。局所IOcall0はOS保存/復旧/多artifact原子性の証明ではない。"
+  ],
+  "remaining": "providerartifact/targetruntime/resource/root/実OSsnapshot/正式transport/schema/実testは未成立。全92親430義務の基本/詳細/実装準備の完了を主張しない。"
+}
