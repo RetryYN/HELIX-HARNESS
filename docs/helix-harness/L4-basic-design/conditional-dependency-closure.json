@@ -1,0 +1,690 @@
+{
+  "document_id": "HARNESS-L4-023-CONDITIONAL-DEPENDENCY-CLOSURE",
+  "layer": "L4",
+  "paired_document": "docs/helix-harness/L9-integration-verification/conditional-dependency-closure.json",
+  "parent": "HARNESS-L2-023",
+  "status": "candidate_pending_independent_review",
+  "source_main": "ca97260680279be280236e8691eaf0844e8c64e4",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-prerequisite-contracts-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "06a2fd8afd05c2fa5721732dd7614c0bad3040bb71a56437336e5ff44687ae6e"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/headless-call-contract.json",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "c17d939d378909555b7ecbf30dde8af47137c03d55317b4b17c4849b6071fb7b"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "d030634a263087dca369ae44d99ad186566a0326bb436e98e0ce127e4c6111f9"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/headless-call-contract.json",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "a9a934b4654e41c04c3d4774a94e7ee826171c383c054aec2d560bcfc407bb84"
+    },
+    {
+      "path": "docs/governance/template-work-allocation.md",
+      "revision": "ca97260680279be280236e8691eaf0844e8c64e4",
+      "sha256": "40f509ff73620c9c8f3a8a79cf91f618b3f9d68f0734fdbf879bd2837c3461a0"
+    }
+  ],
+  "purpose": "023承認6義務から、利用条件別の依存宣言/局所閉包/実利用未成立の境界を導出。",
+  "authority_boundary": "10/12限定再開範囲2と85103aa7の023承認6対。023 version_target1.0を保持。10/8一般解禁失効、未選択sourceを全体の完成分母から削除しない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/distribution-lite-dependency-closure.md",
+      "asset_id": "LEGACY-ASSET-42A34FA10C651E19C463",
+      "sha256": "eaa3ef510cc95b374f9ff79789e9e052cb97604e14e571fadc4d4db6b232d649",
+      "keep": "明示ownershipとrequired dependency exact set、入力順に依存しないtrace、未収載依存はmissing、拒否ではhandler不実行。",
+      "change": "旧Lite provider dry-run、CLI/doctor、64KiB、旧AST/runtime方式を新規023へ自動採用しない。現4条件分類とscope/ownerの保持から再導出。",
+      "future_scope": "HARNESS023次のinventory-first材料。現在PR2974のauthority/設計へ追加していない。",
+      "lines": "全53行、read-only",
+      "reuse_mode": "意味の再導出、旧runtime/source/test実行なし、完全一致copyなし"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+      "sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "keep": "局所影響追跡/安全閉包/同入力再現。",
+      "change": "旧Slice/Module/Bundle配布形式を新023へ継承しない。",
+      "reason": "現行L2-023が保持/変更を指定するため、旧構造ではなく現4区分と010/011へ意味を対応させる。",
+      "lines": "38–47、64–67",
+      "reuse_mode": "意味の再導出、旧runtime/source/test実行なし、完全一致copyなし"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "keep": "owner不変、必要verification依存閉包、unknownの空集合禁止、必要な安全条件のmandatory。",
+      "change": "旧full verificationへの一律送りと旧registry/CI形式を現行の局所保留と3返却先へ再導出。",
+      "reason": "現行L2-023が保持/変更を指定するため、旧構造ではなく現4区分と010/011へ意味を対応させる。",
+      "lines": "129–144、209–214",
+      "reuse_mode": "意味の再導出、旧runtime/source/test実行なし、完全一致copyなし"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+      "sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "keep": "owner変更/検証削減/unknown成功/安全optional化を独立負例で拒否。",
+      "change": "旧CI合格と旧Slice gateを新世代合格証拠へ使わず、現L3/L10から対oracleを作る。",
+      "reason": "現行L2-023が保持/変更を指定するため、旧構造ではなく現4区分と010/011へ意味を対応させる。",
+      "lines": "45–47、58",
+      "reuse_mode": "意味の再導出、旧runtime/source/test実行なし、完全一致copyなし"
+    }
+  ],
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "lines": "65–101",
+    "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+    "meaning": "UTW010必須旧runtime、013fail-open、014空集合化、020巨大集約、021自己申告、022安全後付けを持ち込まず局所closureと実evidenceを分離。"
+  },
+  "architecture": {
+    "ownership": "宣言のownerは010既存pack owner。023は条件適用と理由を算出する能力で、新registry/owner/DBを作らない。011は呼出しと相関証拠。SECURITYはauthority、OSは保存/運転/receipt、CONNECTは選択sourceの実接続。",
+    "logical_input": "exact要求/pack/contract revision、全宣言集合、操作/source選択/scope/actor、条件根拠snapshot、依存ownerの実版/互換根拠、authority/実evidenceを明示供給。missingと空集合を区別する。",
+    "condition_states": [
+      "true",
+      "false",
+      "missing",
+      "unknown",
+      "ambiguous",
+      "conflict",
+      "stale"
+    ],
+    "dependency_states": [
+      "required",
+      "excluded_condition_false",
+      "unselected_unobserved",
+      "reference",
+      "pending"
+    ],
+    "classification_states": [
+      "valid",
+      "valid_with_unresolved",
+      "unresolved"
+    ],
+    "utilization_states": [
+      "candidate",
+      "held",
+      "rejected"
+    ],
+    "required_closure": "分類は全宣言母集合の条件を照合し、always/true operation/true selected sourceをseedとして到達宣言を固定点展開。依存先の区分とscope/operation/source根拠を再評価し、必要安全/意味拘束を消さない。visited exact identity/revisionで既知cycleを有限処理。条件や到達宣言unknownはpendingで利用held、空集合へしない。",
+    "condition_scope": "operation=falseはその操作を含まないscopeだけ対象外。source=falseは明示未選択で、そのsourceの実体を未観測にする。条件falseのowner根拠が不足すればpending。安全適用条件がfalseでも、その条件の根拠がqualifiedで他のalways安全依存が満たされる範囲に限り対象外。",
+    "reference_limit": "backgroundとされた資料にも実行/成果/authority/oracle/安全への意味拘束があればreference不可。宣言した役割とowner資格付き要求根拠を比較する。単にMarkdownかどうかで分類しない。",
+    "qualification": "condition/compatibility/authority/evidenceはownerの正当なsource/判定根拠へ解決して初めて消費する。plain object/文字列/hash/countは実資格にしない。version rangeの解釈/互換profileは010契約ownerが供給し、独自semver/latest互換を発明しない。",
+    "result_reduction": "分類の未解決と実利用の不足を別fieldへ保持。原宣言の意味/版変更を試みた場合utilization rejected、それ以外のrequired/pending不足はheld。有効全required根拠が揃ったscopeだけcandidate。candidateは実executorの再認可/期限/資源/保存を代替しない。無関係scopeの根拠付き候補まで停止しない。",
+    "determinism": "根拠snapshotを注入しclock/env/networkを暗黙参照しない。各集合はidentity/revision/scope/ownerのUnicode scalar昇順、理由はdependency/condition/owner/source Refに束縛。順序変更だけで意味が変わらない。",
+    "backflow_split": "不足fieldと元条件状態を保持し、010契約改訂/011入力修正又は再実行/authority owner又はPOへ別に返す。必要人判断をAI代行で生成しない。返却先未特定はunknownとして保留する。"
+  },
+  "placement": "JSONはdocs/helix-harness対象layer正本。具体module/schema/runtime/台帳/pipeはL5以下で設計し、既存010/011正本の意味を複製更新しない。",
+  "contracts": [
+    {
+      "id": "HARNESS-L4-023-F01",
+      "requirement_ref": "HARNESS-L3-023-F01",
+      "system_oracle_ref": "HARNESS-L10-023-F01",
+      "oracle_ref": "HARNESS-L9-023-F01",
+      "boundary": "ConditionalDependencyClosure",
+      "title": "4区分の意味",
+      "behavior": "pack/contract revisionに束縛された全宣言を母集合として、always/operation/source/referenceの4区分を保持する。alwaysは当該利用で必須、operationは条件trueのみ必須、falseはその操作を含まない当該利用だけ対象外。sourceは明示選択trueの全依存を必須、非選択falseは未観測、選択unknownは保留。referenceは当該成果/authority/oracle/安全へ効かない背景のみ。区分で機能/owner/親要求/版/成熟度を変えない。",
+      "inputs": [
+        "010 pack/contract exact revisionとdependency宣言",
+        "011 call/input/operation/source/scope/correlation",
+        "各dependency ownerのversion/適用条件/authority/evidence解決snapshot"
+      ],
+      "outputs": [
+        "依存ごとのrequired/excluded_condition_false/unselected_unobserved/reference/pending",
+        "classification状態とutilization状態の別軸",
+        "条件/根拠/版/scope/戻し先の差分"
+      ],
+      "backflow": "不足identity/区分/条件/range→010契約owner。呼出しinput/version/receipt→011呼出しowner。安全authority→authority owner。親意味→PO。"
+    },
+    {
+      "id": "HARNESS-L4-023-F02",
+      "requirement_ref": "HARNESS-L3-023-F02",
+      "system_oracle_ref": "HARNESS-L10-023-F02",
+      "oracle_ref": "HARNESS-L9-023-F02",
+      "boundary": "ConditionalDependencyClosure",
+      "title": "条件の未知と保留",
+      "behavior": "条件の解決状態がmissing/unknown/ambiguous/conflict/stale又は版互換根拠不明ならpendingへ保持し、falseや空集合へ補完しない。不足をpack宣言/呼出し入力/authority又は親scopeに分け、010契約owner/011呼出しowner/authority owner又はPOへ根拠付きで返す。無関係な操作まで停止せず、当該未成立を他source/手作業/参照へ迂回しない。",
+      "inputs": [
+        "010 pack/contract exact revisionとdependency宣言",
+        "011 call/input/operation/source/scope/correlation",
+        "各dependency ownerのversion/適用条件/authority/evidence解決snapshot"
+      ],
+      "outputs": [
+        "依存ごとのrequired/excluded_condition_false/unselected_unobserved/reference/pending",
+        "classification状態とutilization状態の別軸",
+        "条件/根拠/版/scope/戻し先の差分"
+      ],
+      "backflow": "不足identity/区分/条件/range→010契約owner。呼出しinput/version/receipt→011呼出しowner。安全authority→authority owner。親意味→PO。"
+    },
+    {
+      "id": "HARNESS-L4-023-F03",
+      "requirement_ref": "HARNESS-L3-023-F03",
+      "system_oracle_ref": "HARNESS-L10-023-F03",
+      "oracle_ref": "HARNESS-L9-023-F03",
+      "boundary": "ConditionalDependencyClosure",
+      "title": "選択sourceと安全依存",
+      "behavior": "選択sourceの宣言済み到達依存を固定点で展開し、該当する認可/authority/隔離/排他/credential/data-use/監査/停止復旧と検証oracle・実行条件・source authorityの文書をrequiredへ保持する。条件不明はpending、必要なのにreference又はoptionalへ落とした宣言は誤分類として拒否。未選択sourceはunobservedで、存在/不在/適格性/成功を推測しない。",
+      "inputs": [
+        "010 pack/contract exact revisionとdependency宣言",
+        "011 call/input/operation/source/scope/correlation",
+        "各dependency ownerのversion/適用条件/authority/evidence解決snapshot"
+      ],
+      "outputs": [
+        "依存ごとのrequired/excluded_condition_false/unselected_unobserved/reference/pending",
+        "classification状態とutilization状態の別軸",
+        "条件/根拠/版/scope/戻し先の差分"
+      ],
+      "backflow": "不足identity/区分/条件/range→010契約owner。呼出しinput/version/receipt→011呼出しowner。安全authority→authority owner。親意味→PO。"
+    },
+    {
+      "id": "HARNESS-L4-023-F04",
+      "requirement_ref": "HARNESS-L3-023-F04",
+      "system_oracle_ref": "HARNESS-L10-023-F04",
+      "oracle_ref": "HARNESS-L9-023-F04",
+      "boundary": "ConditionalDependencyClosure",
+      "title": "分類と実利用の分離",
+      "behavior": "分類成立は宣言と条件根拠から不足を含む結果を生成できること。必要依存の実装実体がmissingでも分類できる。実利用候補はrequiredのidentity/版/authority/実evidenceを全て当該callへ束縛できた場合だけ返し、分類結果から利用許可/機能完成/dispatch/受入を生成しない。全source実装を分類能力への一律前提にしない。",
+      "inputs": [
+        "010 pack/contract exact revisionとdependency宣言",
+        "011 call/input/operation/source/scope/correlation",
+        "各dependency ownerのversion/適用条件/authority/evidence解決snapshot"
+      ],
+      "outputs": [
+        "依存ごとのrequired/excluded_condition_false/unselected_unobserved/reference/pending",
+        "classification状態とutilization状態の別軸",
+        "条件/根拠/版/scope/戻し先の差分"
+      ],
+      "backflow": "不足identity/区分/条件/range→010契約owner。呼出しinput/version/receipt→011呼出しowner。安全authority→authority owner。親意味→PO。"
+    },
+    {
+      "id": "HARNESS-L4-023-N01",
+      "requirement_ref": "HARNESS-L3-023-N01",
+      "system_oracle_ref": "HARNESS-L10-023-N01",
+      "oracle_ref": "HARNESS-L9-023-N01",
+      "boundary": "ConditionalDependencyClosure",
+      "title": "決定論と追跡",
+      "behavior": "同一要求入力/pack/contract revision/条件根拠のsnapshotから、同一required/excluded/unselected/reference/pending集合と理由を再現する。出力をcall/correlation/input/scope/pack/contractと依存実版の根拠へ結ぶ。時刻/到着順/フォルダ名を意味条件に使わず、版変更の差分は影響依存だけへ局所化する。",
+      "inputs": [
+        "010 pack/contract exact revisionとdependency宣言",
+        "011 call/input/operation/source/scope/correlation",
+        "各dependency ownerのversion/適用条件/authority/evidence解決snapshot"
+      ],
+      "outputs": [
+        "依存ごとのrequired/excluded_condition_false/unselected_unobserved/reference/pending",
+        "classification状態とutilization状態の別軸",
+        "条件/根拠/版/scope/戻し先の差分"
+      ],
+      "backflow": "不足identity/区分/条件/range→010契約owner。呼出しinput/version/receipt→011呼出しowner。安全authority→authority owner。親意味→PO。"
+    },
+    {
+      "id": "HARNESS-L4-023-B01",
+      "requirement_ref": "HARNESS-L3-023-B01",
+      "system_oracle_ref": "HARNESS-L10-023-B01",
+      "oracle_ref": "HARNESS-L9-023-B01",
+      "boundary": "ConditionalDependencyClosure",
+      "title": "同契約での代行",
+      "behavior": "実施者が人かWorkerかをactorの別軸に保持し、同じ宣言・条件・closure・authority/隔離/版/検証/記録/受領を適用する。人の口頭受領や代行自己申告をqualified receiptへしない。成果のsource/actor/revision/scope/receiptを011へ束縛する。",
+      "inputs": [
+        "010 pack/contract exact revisionとdependency宣言",
+        "011 call/input/operation/source/scope/correlation",
+        "各dependency ownerのversion/適用条件/authority/evidence解決snapshot"
+      ],
+      "outputs": [
+        "依存ごとのrequired/excluded_condition_false/unselected_unobserved/reference/pending",
+        "classification状態とutilization状態の別軸",
+        "条件/根拠/版/scope/戻し先の差分"
+      ],
+      "backflow": "不足identity/区分/条件/range→010契約owner。呼出しinput/version/receipt→011呼出しowner。安全authority→authority owner。親意味→PO。"
+    }
+  ],
+  "failure_classifications": [
+    {
+      "code": "authority_unknown",
+      "oracle_refs": [
+        "HARNESS-L9-023-F02-NEG-07",
+        "HARNESS-L9-023-F04-NEG-05"
+      ],
+      "conditions": [
+        "authority/安全/親scope矛盾を呼出しownerが補完",
+        "自己発行authorityをowner-qualifiedとする"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "authority_owner",
+        "authority_owner_or_PO"
+      ]
+    },
+    {
+      "code": "backflow_mismatch",
+      "oracle_refs": [
+        "HARNESS-L9-023-F02-NEG-06"
+      ],
+      "conditions": [
+        "呼出しoperation/source/scope/receipt不足を010へ返す"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "call_owner"
+      ]
+    },
+    {
+      "code": "binding_document_omission",
+      "oracle_refs": [
+        "HARNESS-L9-023-F03-NEG-04",
+        "HARNESS-L9-023-F03-NEG-05"
+      ],
+      "conditions": [
+        "required oracle文書を背景へ分類",
+        "source authority文書を参照へ分類"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "authority_owner",
+        "pack_contract_owner"
+      ]
+    },
+    {
+      "code": "classification_as_use",
+      "oracle_refs": [
+        "HARNESS-L9-023-F04-NEG-01"
+      ],
+      "conditions": [
+        "classification validをdispatch許可とする"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "call_owner"
+      ]
+    },
+    {
+      "code": "classification_change",
+      "oracle_refs": [
+        "HARNESS-L9-023-F01-NEG-01"
+      ],
+      "conditions": [
+        "未選択Bをalwaysへ変更"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "pack_contract_owner"
+      ]
+    },
+    {
+      "code": "compatibility_unknown",
+      "oracle_refs": [
+        "HARNESS-L9-023-F04-NEG-04"
+      ],
+      "conditions": [
+        "明示mappingの無い依存版差をlatestへ読む"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "call_owner"
+      ]
+    },
+    {
+      "code": "completion_scope_change",
+      "oracle_refs": [
+        "HARNESS-L9-023-F01-NEG-09"
+      ],
+      "conditions": [
+        "未選択Bの1.0完成義務を延期"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "pack_contract_owner"
+      ]
+    },
+    {
+      "code": "condition_conflict",
+      "oracle_refs": [
+        "HARNESS-L9-023-F02-NEG-09"
+      ],
+      "conditions": [
+        "宣言矛盾をfalseとして除外"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "pack_contract_owner"
+      ]
+    },
+    {
+      "code": "condition_stale",
+      "oracle_refs": [
+        "HARNESS-L9-023-F02-NEG-03"
+      ],
+      "conditions": [
+        "condition根拠staleをtrueへ継承"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "call_owner"
+      ]
+    },
+    {
+      "code": "condition_unknown",
+      "oracle_refs": [
+        "HARNESS-L9-023-F02-NEG-01",
+        "HARNESS-L9-023-F02-NEG-02",
+        "HARNESS-L9-023-F03-NEG-06"
+      ],
+      "conditions": [
+        "operation条件unknownをfalseへ変換",
+        "source selection unknownを未選択へ変換",
+        "停止/復旧又はdata-useの条件unknownを除外"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "authority_owner",
+        "call_owner"
+      ]
+    },
+    {
+      "code": "coverage_shrink",
+      "oracle_refs": [
+        "HARNESS-L9-023-F03-NEG-09"
+      ],
+      "conditions": [
+        "closed母集合の失敗dependencyを除いてgreen"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "pack_contract_owner"
+      ]
+    },
+    {
+      "code": "declaration_ambiguous",
+      "oracle_refs": [
+        "HARNESS-L9-023-F02-NEG-05"
+      ],
+      "conditions": [
+        "区分/条件/版rangeが曖昧"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "pack_contract_owner"
+      ]
+    },
+    {
+      "code": "declaration_missing",
+      "oracle_refs": [
+        "HARNESS-L9-023-F02-NEG-04"
+      ],
+      "conditions": [
+        "declared dependency identity欠落"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "pack_contract_owner"
+      ]
+    },
+    {
+      "code": "delegate_obligation_omission",
+      "oracle_refs": [
+        "HARNESS-L9-023-B01-NEG-01",
+        "HARNESS-L9-023-B01-NEG-02"
+      ],
+      "conditions": [
+        "人の代行で権限/隔離を省略",
+        "人の代行で版照合/検証を省略"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "authority_owner",
+        "call_owner"
+      ]
+    },
+    {
+      "code": "evidence_unproven",
+      "oracle_refs": [
+        "HARNESS-L9-023-F04-NEG-06"
+      ],
+      "conditions": [
+        "局所mock/hashを実依存evidenceとする"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "call_owner"
+      ]
+    },
+    {
+      "code": "global_gate_added",
+      "oracle_refs": [
+        "HARNESS-L9-023-F04-NEG-02"
+      ],
+      "conditions": [
+        "全source実装を分類開始条件とする"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "pack_contract_owner"
+      ]
+    },
+    {
+      "code": "implicit_fallback",
+      "oracle_refs": [
+        "HARNESS-L9-023-F02-NEG-08",
+        "HARNESS-L9-023-F03-NEG-08"
+      ],
+      "conditions": [
+        "不足条件を別sourceで迂回",
+        "選択source失敗で暗黙fallback"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "call_owner"
+      ]
+    },
+    {
+      "code": "meaning_change",
+      "oracle_refs": [
+        "HARNESS-L9-023-F01-NEG-03",
+        "HARNESS-L9-023-F01-NEG-04",
+        "HARNESS-L9-023-F01-NEG-05",
+        "HARNESS-L9-023-F01-NEG-06"
+      ],
+      "conditions": [
+        "区分でtarget ownerを変更",
+        "区分で親要求scopeを変更",
+        "区分で機能を削除",
+        "区分で版又は成熟度を昇格"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "PO",
+        "pack_contract_owner"
+      ]
+    },
+    {
+      "code": "nondeterministic_closure",
+      "oracle_refs": [
+        "HARNESS-L9-023-N01-NEG-01",
+        "HARNESS-L9-023-N01-NEG-02"
+      ],
+      "conditions": [
+        "同snapshotを到着順だけで異closureにする",
+        "時刻だけで条件falseへする"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "pack_contract_owner"
+      ]
+    },
+    {
+      "code": "receipt_unproven",
+      "oracle_refs": [
+        "HARNESS-L9-023-B01-NEG-03"
+      ],
+      "conditions": [
+        "口頭受領で記録/receipt成立"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "call_owner"
+      ]
+    },
+    {
+      "code": "required_omission",
+      "oracle_refs": [
+        "HARNESS-L9-023-F01-NEG-02",
+        "HARNESS-L9-023-F03-NEG-01"
+      ],
+      "conditions": [
+        "必須Aを対応可能一覧へ落とす",
+        "選択Sの到達依存Qを欠落"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "pack_contract_owner"
+      ]
+    },
+    {
+      "code": "safety_omission",
+      "oracle_refs": [
+        "HARNESS-L9-023-F01-NEG-08",
+        "HARNESS-L9-023-F03-NEG-02",
+        "HARNESS-L9-023-F03-NEG-03"
+      ],
+      "conditions": [
+        "1.0安全依存Cを後続版として除外",
+        "credential条件Cをoptional化",
+        "認可/隔離/排他条件を参照資料にする"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "authority_owner"
+      ]
+    },
+    {
+      "code": "trace_cross_binding",
+      "oracle_refs": [
+        "HARNESS-L9-023-N01-NEG-03",
+        "HARNESS-L9-023-N01-NEG-04",
+        "HARNESS-L9-023-B01-NEG-04"
+      ],
+      "conditions": [
+        "別contract revisionの理由を付け替え",
+        "別call/correlation/scopeへreceiptを混入",
+        "人の成果を別source/revisionへ転記"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "call_owner"
+      ]
+    },
+    {
+      "code": "unselected_claim",
+      "oracle_refs": [
+        "HARNESS-L9-023-F03-NEG-07"
+      ],
+      "conditions": [
+        "未選択Bをsuccess又は不存在とする"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "call_owner"
+      ]
+    },
+    {
+      "code": "utilization_unproven",
+      "oracle_refs": [
+        "HARNESS-L9-023-F04-NEG-03"
+      ],
+      "conditions": [
+        "required実版がmissingでも利用可"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "call_owner"
+      ]
+    },
+    {
+      "code": "version_scope_change",
+      "oracle_refs": [
+        "HARNESS-L9-023-F01-NEG-07"
+      ],
+      "conditions": [
+        "後続版能力を1.0利用へ強制"
+      ],
+      "effect": "実dispatch/保存/権限発行0、原要求/宣言/根拠を保全",
+      "backflow_owners": [
+        "pack_contract_owner"
+      ]
+    }
+  ],
+  "remaining": [
+    "依存宣言・条件根拠・closure結果の型、pure関数、版互換解決portと不足reasonはL5/L8へ。",
+    "選択source実接続と安全/authority/資源/receiptは各ownerの対設計と実観測が必要。L6/L7 oracle凍結/実装前Red/Green、CI、PO実物受入は未成立。",
+    "全92親430対の基本/詳細、配置4論点、toolchainと実装準備は未完。release/内部デプロイ/通常L3は成立しない。"
+  ]
+}
