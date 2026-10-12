@@ -618,6 +618,102 @@
           "source_ref": "Ref|null"
         },
         "meaning": "required trace集合の独立根拠。供給edgeから逆算せず欠落端/向きを照合する。"
+      },
+      "RequiredAxesMaterial": {
+        "fields": {
+          "required_axis_refs": "Ref[]",
+          "facts": "AxisFact[]",
+          "nonselected_operations": "string[]"
+        },
+        "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+      },
+      "CandidateUniverseMaterial": {
+        "fields": {
+          "universe_refs": "Ref[]",
+          "candidate_member_refs": "Ref[]",
+          "missing_member_refs": "Ref[]",
+          "extra_member_refs": "Ref[]"
+        },
+        "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+      },
+      "ApplicabilityMaterial": {
+        "fields": {
+          "template_refs": "Ref[]",
+          "disposition": "string",
+          "original_condition_refs": "Ref[]",
+          "original_condition_values": "RawValue[]",
+          "unfinished_obligation_refs": "Ref[]",
+          "na_candidate_records": "NARecord[]"
+        },
+        "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+      },
+      "KindTraceMaterial": {
+        "fields": {
+          "obligations": "KindObligation[]",
+          "required_trace_refs": "Ref[]",
+          "matched_edge_refs": "Ref[]",
+          "missing_trace_refs": "Ref[]"
+        },
+        "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+      },
+      "FieldCheckMaterial": {
+        "fields": {
+          "field_ref": "Ref",
+          "definition_refs": "Ref[]|null",
+          "value_refs": "Ref[]|null",
+          "definition_state": "string",
+          "value_state": "string"
+        },
+        "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+      },
+      "GapReturnMaterial": {
+        "fields": {
+          "field_checks": "FieldCheckMaterial[]",
+          "candidate_proposals": "GapProposal[]",
+          "unfinished_obligation_refs": "Ref[]"
+        },
+        "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+      },
+      "KnowledgeUseMaterial": {
+        "fields": {
+          "selected_knowledge_refs": "Ref[]",
+          "checked_field_refs": "Ref[]",
+          "usable_candidate_refs": "Ref[]",
+          "unselected_unobserved_refs": "Ref[]"
+        },
+        "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+      },
+      "MeaningImpactMaterial": {
+        "fields": {
+          "operation_selected": "boolean",
+          "delta_refs": "Ref[]",
+          "impact_evidence_refs": "Ref[]",
+          "affected_consumer_refs": "Ref[]",
+          "unaffected_consumer_refs": "Ref[]",
+          "unknown_consumer_refs": "Ref[]",
+          "original_consumers": "ConsumerSnapshot[]"
+        },
+        "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+      },
+      "SemanticEquivalenceMaterial": {
+        "fields": {
+          "comparison_state": "string",
+          "obligation_refs": "Ref[]",
+          "comparison_basis_refs": "Ref[]",
+          "missing_obligation_refs": "Ref[]",
+          "extra_obligation_refs": "Ref[]",
+          "not_evaluated_refs": "Ref[]"
+        },
+        "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+      },
+      "ClaimCheckMaterial": {
+        "fields": {
+          "original_claim_refs": "Ref[]",
+          "rejected_claim_refs": "Ref[]",
+          "unresolved_claim_refs": "Ref[]",
+          "original_consumers": "ConsumerSnapshot[]"
+        },
+        "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
       }
     },
     "invariants": [
@@ -3404,7 +3500,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "runtime_execution": "not_executed",
-    "next": "24追加入力の静的構築/原根拠閉包を確認した。次は各関数の具体的な正常出力・候補分類の原根拠照合・影響根拠の強度を詰め、独立reviewへ送る。実trust/実行oracle凍結/実装準備完了は未成立。"
+    "next": "11正常期待出力/24追加入力/106原負例/21pinsの静的整合を確認した。分類と影響根拠の強度を独立reviewで確かめ、指摘修正後HEADを再確認する。実trust/実行oracle凍結/Red/Green/全限定範囲の実装準備完了は未成立。"
   },
   "remaining": [
     "L5/L8でlogical型/各axis判定/集合/適用/N/A/trace/gap/影響pure関数と単体oracleへ降ろす。",
@@ -3426,5 +3522,26 @@
     "required_trace": "required_trace_refs→trace_requirementsの同refから要求された端/向き/kind/版/scopeを解決。trace_edgesの実収載だけで必要集合を作らない。",
     "comparison": "SemanticComparison両端をAxisFact/semantic_recordsへ解決し有資格根拠の同subject/bindingを確認。文字列同名だけでmeaningを決定しない。",
     "snapshot_binding": "関数contextは入力snapshotの要求/product/process/application契約へ固定。record固有template/knowledge/oracle版は別軸。無関係scopeは原owner qualificationとscopeで保持し対象scopeへ統合しない。"
+  },
+  "comparison_material_contract": {
+    "kind": "logical_output_design_not_formal_wire_schema",
+    "function_types": {
+      "compare_required_axes": "RequiredAxesMaterial",
+      "compare_candidate_universe": "CandidateUniverseMaterial",
+      "compare_applicability": "ApplicabilityMaterial",
+      "compare_kind_obligation_trace": "KindTraceMaterial",
+      "compare_requirement_gaps": "GapReturnMaterial",
+      "compare_selected_knowledge": "KnowledgeUseMaterial",
+      "compare_meaning_impacts": "MeaningImpactMaterial",
+      "compare_semantic_equivalence": "SemanticEquivalenceMaterial",
+      "check_application_claims": "ClaimCheckMaterial"
+    },
+    "rules": [
+      "Comparison.producer_symbol fixes the logical type of material; never accept caller-selected type or a cached result as proof.",
+      "RawValue material must conform to the selected logical type. Unknown/null/unobserved and empty evaluated sets are separate states.",
+      "Arrays of refs/records compare as identity/revision/scope/owner-bound sets with multiplicity preserved. Do not silently deduplicate conflicting original facts.",
+      "Baseline equivalence has only one snapshot and no whole-obligation comparison evidence: not_evaluated with original obligations preserved. Empty differences do not prove semantic equivalence. ADD20 separately evaluates baseline and metadata-only variant, then compares their trace-bound material; domain/risk/scope changes are not metadata.",
+      "No output type adds OS selected/used/Accepted/event/permission or an overall completed flag."
+    ]
   }
 }
