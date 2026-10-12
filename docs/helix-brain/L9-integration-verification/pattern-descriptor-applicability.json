@@ -1,0 +1,1657 @@
+{
+  "parent": "HELIXBRAIN-L2-003",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+    "boundary": "Pattern descriptorと適用条件の限定比較。存在/知識受領を製品採用や義務完了へ変えない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-pattern-connection-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1f3475dd13bac30f47a8921ff44fdcb90bbb024ab0a1fff7ba3e436971aefb33"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    }
+  ],
+  "source_pin_limit": "bytes固定は全文精読/全意味被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "read_lines": [
+        61,
+        82
+      ],
+      "quote": "## §4 applicabilityとcompletionの型境界\n\n適用条件は自由文booleanでなく、次の閉じた式木を使う。\n\n```json\n{\n  \"all\": [\n    { \"field\": \"layer\", \"op\": \"eq\", \"value\": \"L4\" },\n    {\n      \"any\": [\n        { \"field\": \"risk.security\", \"op\": \"eq\", \"value\": true },\n        { \"field\": \"artifact_kind\", \"op\": \"contains\", \"value\": \"interface\" }\n      ]\n    },\n    { \"not\": { \"field\": \"disposition\", \"op\": \"eq\", \"value\": \"rejected\" } }\n  ]\n}\n```\n\nfield、operator、value type、enumはschema registryのallowlistで閉じる。unknownは`false`へ丸めず\nevaluation errorとしてfail-closeする。N/Aはreason、authority、re-evaluation triggerを必須にする。\n",
+      "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "selected_lines_sha256": "b061ecca1f244d11811bbb38e6b2c2f38cd98bdd33df08e9b043fc4e3e1673c7",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "disposition": "unresolved",
+        "source_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      },
+      "reuse": "reference_only; selected applicability meaning rederivation per adopted BRAIN003",
+      "preserve": "定義/適用と義務completionの分離、unknownをPASSにしないこと、内容の正本とschema/runtime未完の区別。",
+      "change": "旧predicate wire/operator/registry runtimeを移植せずPattern descriptor/条件意味/案件値へ分ける。",
+      "reason": "9/26 PO原文L1-003/9/28採択003/10/12委任承認が定義不足/値不足/充足/不充足/未知を別に要求する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実Pattern内容/source資格/条件意味/案件input/未見組合せと必要集合。",
+    "032/CORE009/030のowner-qualified exact binding、正式schema・codec/条件演算子と値型。",
+    "L5/L8型/比較関数/単体oracle、実装前oracle凍結→実Red→最小Green→Refactor→再検証、実L9/L10/PO L11。",
+    "全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXBRAIN-L9-003",
+  "layer": "L9",
+  "pair": "L4",
+  "verification_obligations": [
+    {
+      "id": "HELIXBRAIN-L9-003-F01",
+      "l4_ref": "HELIXBRAIN-L4-003-F01",
+      "requirement_ref": "HELIXBRAIN-L3-003-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+      "approved_l10": {
+        "id": "HELIXBRAIN-L10-003-F01",
+        "parent": "HELIXBRAIN-L2-003",
+        "title": "Patternの意味descriptor",
+        "requirement_ref": "HELIXBRAIN-L3-003-F01",
+        "positive_input": "全項目を持つPatternとnegative/failure/evidenceを欠く候補を別々に与える。",
+        "expected_observation": "項目別の意味と根拠、欠落と当該knowledge revisionが辿れる。",
+        "negative_input": "名称だけをPattern契約、negative/failure/evidence無しを有効、maturity不明を成熟済み。",
+        "failure_observation": "定義不足はBRAIN/該当上流meaning ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "connection_scope": "独立Pattern原内容/条件定義/案件input→pure比較→局所不足/未充足とowner返却候補。実resolver未binding。",
+      "concrete_cases": [
+        {
+          "id": "B003-F01-FULL-MEANING-DESCRIPTOR",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-FULL-MEANING-DESCRIPTOR",
+              "revision": "fixture-content-d518ed949e2e5b6565018e607567ff5713b62be7dfb03dc60798c68528d005ba",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "d518ed949e2e5b6565018e607567ff5713b62be7dfb03dc60798c68528d005ba",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "12項目の原意味/根拠/版を個別比較。成熟stateは未評価のまま。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-PROBLEM-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-PROBLEM-MISSING",
+              "revision": "fixture-content-b9ef3701043ce7bb957be25f309c05dbcc28e468b265333807f133d46e7ef08a",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "b9ef3701043ce7bb957be25f309c05dbcc28e468b265333807f133d46e7ef08a",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "missing",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "当該意味の欠落だけ保持。他11項目/参照/Qを保つ。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-PREMISE-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-PREMISE-MISSING",
+              "revision": "fixture-content-785e7cb945c47b782bba24396d6453d7114218043e4c6f94592ed9114d2920d8",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "785e7cb945c47b782bba24396d6453d7114218043e4c6f94592ed9114d2920d8",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "missing",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "当該意味の欠落だけ保持。他11項目/参照/Qを保つ。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-APPLICABILITY-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-APPLICABILITY-MISSING",
+              "revision": "fixture-content-25519a3c443bea2bb41c82fe972ade95f6a173babf469afc8a6e81ea6829f48f",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "25519a3c443bea2bb41c82fe972ade95f6a173babf469afc8a6e81ea6829f48f",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "missing",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "当該意味の欠落だけ保持。他11項目/参照/Qを保つ。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-REQUIRED_INPUT-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-REQUIRED_INPUT-MISSING",
+              "revision": "fixture-content-dbb981a01256b27ed7113db96a600ad57cf7695646ed22e3330518e2542d470e",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "dbb981a01256b27ed7113db96a600ad57cf7695646ed22e3330518e2542d470e",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "missing",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "当該意味の欠落だけ保持。他11項目/参照/Qを保つ。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-CONSTRAINT-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-CONSTRAINT-MISSING",
+              "revision": "fixture-content-5b1be8408a1979f59b9d6b96e0fabc7797c1d42d1962ff954f9bd10bfc5070d0",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "5b1be8408a1979f59b9d6b96e0fabc7797c1d42d1962ff954f9bd10bfc5070d0",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "missing",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "当該意味の欠落だけ保持。他11項目/参照/Qを保つ。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-TRADE_OFF-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-TRADE_OFF-MISSING",
+              "revision": "fixture-content-f3a71a69e77f94d8e828ae7b1ab749e7a92e14c7db829a1737a30e1340391986",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "f3a71a69e77f94d8e828ae7b1ab749e7a92e14c7db829a1737a30e1340391986",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "missing",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "当該意味の欠落だけ保持。他11項目/参照/Qを保つ。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-NEGATIVE_CASE-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-NEGATIVE_CASE-MISSING",
+              "revision": "fixture-content-3a8b21ed5f669a7eaa2c84956eb217689799f5a1a3ad548bb4d4cd99b652752a",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "3a8b21ed5f669a7eaa2c84956eb217689799f5a1a3ad548bb4d4cd99b652752a",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "missing",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "当該意味の欠落だけ保持。他11項目/参照/Qを保つ。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-FAILURE_MODE-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-FAILURE_MODE-MISSING",
+              "revision": "fixture-content-500fb446dfb6f4785bd0e5a65e663b434e05ef7ae710a96084ae429705e2535a",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "500fb446dfb6f4785bd0e5a65e663b434e05ef7ae710a96084ae429705e2535a",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "missing",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "当該意味の欠落だけ保持。他11項目/参照/Qを保つ。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-COMPATIBLE_PATTERN-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-COMPATIBLE_PATTERN-MISSING",
+              "revision": "fixture-content-81a1f2c801490eefa4babe625c300d531be03e79cc66b47053e949add0a775d5",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "81a1f2c801490eefa4babe625c300d531be03e79cc66b47053e949add0a775d5",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "missing",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "当該意味の欠落だけ保持。他11項目/参照/Qを保つ。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-INCOMPATIBLE_PATTERN-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-INCOMPATIBLE_PATTERN-MISSING",
+              "revision": "fixture-content-5e393eae86b66387afaa734acba85c2d03130929a0e1dc4d135e78b427e18d72",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "5e393eae86b66387afaa734acba85c2d03130929a0e1dc4d135e78b427e18d72",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "missing",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "当該意味の欠落だけ保持。他11項目/参照/Qを保つ。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-EVIDENCE-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-EVIDENCE-MISSING",
+              "revision": "fixture-content-34462354c9ec2fc2113ba306c5fa60c60b475bf5bfecf1928cfdd710950e6ac2",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "34462354c9ec2fc2113ba306c5fa60c60b475bf5bfecf1928cfdd710950e6ac2",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "missing",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "当該意味の欠落だけ保持。他11項目/参照/Qを保つ。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-MATURITY-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-MATURITY-MISSING",
+              "revision": "fixture-content-f134b9be4e9c33eccedf09e932858ecd9c9c7186288d976d458eb320cf7d6910",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "f134b9be4e9c33eccedf09e932858ecd9c9c7186288d976d458eb320cf7d6910",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "missing"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "当該意味の欠落だけ保持。他11項目/参照/Qを保つ。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-NAME-ONLY-PATTERN",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-NAME-ONLY-PATTERN",
+              "revision": "fixture-content-ffb0910c5a00373b11749855eb296da271efb4c2c0c42746a000facdc2668d7c",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"name\":\"Pattern P\"},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"name_only\"}",
+            "sha256": "ffb0910c5a00373b11749855eb296da271efb4c2c0c42746a000facdc2668d7c",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "missing",
+              "premise": "missing",
+              "applicability": "missing",
+              "required_input": "missing",
+              "constraint": "missing",
+              "trade_off": "missing",
+              "negative_case": "missing",
+              "failure_mode": "missing",
+              "compatible_pattern": "missing",
+              "incompatible_pattern": "missing",
+              "evidence": "missing",
+              "maturity": "missing"
+            },
+            "representation_result": "name_only_rejected",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "名称だけでPattern成立条件の全内容を生成しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-REVISION-FOREIGN",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-REVISION-FOREIGN",
+              "revision": "fixture-content-0e5252d2599366dc9ebea0dd57ac9b13115f37fb9bf62570ada8e90839bd357c",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r2\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "0e5252d2599366dc9ebea0dd57ac9b13115f37fb9bf62570ada8e90839bd357c",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_conflict",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "descriptor fieldが揃っても元source/知識版と別対象なら対応にしない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-SOURCE_REF-FOREIGN",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-SOURCE_REF-FOREIGN",
+              "revision": "fixture-content-ac7f56274f3903101ec9ae5ec1c21c773fa012dd06de145f02b03e5b65d67896",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-R\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "ac7f56274f3903101ec9ae5ec1c21c773fa012dd06de145f02b03e5b65d67896",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_conflict",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "descriptor fieldが揃っても元source/知識版と別対象なら対応にしない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-NEGATIVE-MEANING-FOREIGN",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-NEGATIVE-MEANING-FOREIGN",
+              "revision": "fixture-content-3bf8b6cc2b6781d05853897abc74d2d679f3d1853b4604889c84a55cd4ac16f6",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"別Patternの反例\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "3bf8b6cc2b6781d05853897abc74d2d679f3d1853b4604889c84a55cd4ac16f6",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_conflict",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_corresponding_in_fixture"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "field存在だけで反例意味の対応にしない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F01-UNKNOWN-MATURITY-AS-MATURE",
+          "requirement_ref": "HELIXBRAIN-L3-003-F01",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+          "l4_ref": "HELIXBRAIN-L4-003-F01",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F01-UNKNOWN-MATURITY-AS-MATURE",
+              "revision": "fixture-content-696430cdb74fc09e41558df0ce3688554e5306b73374b5476caaee582160b016",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"original_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"not_evaluated\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"original_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"provided_descriptor\":{\"applicability\":{\"meaning\":\"合成の原Pattern applicability\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"compatible_pattern\":{\"meaning\":\"合成の原Pattern compatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"constraint\":{\"meaning\":\"合成の原Pattern constraint\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"evidence\":{\"meaning\":\"合成の原Pattern evidence\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"failure_mode\":{\"meaning\":\"合成の原Pattern failure_mode\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"incompatible_pattern\":{\"meaning\":\"合成の原Pattern incompatible_pattern\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"maturity\":{\"meaning\":\"合成の原Pattern maturity\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"mature\"},\"negative_case\":{\"meaning\":\"合成の原Pattern negative_case\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"premise\":{\"meaning\":\"合成の原Pattern premise\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"problem\":{\"meaning\":\"合成の原Pattern problem\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"required_input\":{\"meaning\":\"合成の原Pattern required_input\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"},\"trade_off\":{\"meaning\":\"合成の原Pattern trade_off\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"},\"value_state\":\"defined_fixture_only\"}},\"provided_ref\":{\"identity\":\"PATTERN-P\",\"revision\":\"knowledge-r1\",\"source_ref\":{\"identity\":\"SOURCE-P\",\"revision\":\"source-r1\"}},\"representation\":\"meaning_descriptor\"}",
+            "sha256": "696430cdb74fc09e41558df0ce3688554e5306b73374b5476caaee582160b016",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "reference_result": "content_corresponding_in_fixture",
+            "descriptor_results": {
+              "problem": "content_corresponding_in_fixture",
+              "premise": "content_corresponding_in_fixture",
+              "applicability": "content_corresponding_in_fixture",
+              "required_input": "content_corresponding_in_fixture",
+              "constraint": "content_corresponding_in_fixture",
+              "trade_off": "content_corresponding_in_fixture",
+              "negative_case": "content_corresponding_in_fixture",
+              "failure_mode": "content_corresponding_in_fixture",
+              "compatible_pattern": "content_corresponding_in_fixture",
+              "incompatible_pattern": "content_corresponding_in_fixture",
+              "evidence": "content_corresponding_in_fixture",
+              "maturity": "content_conflict"
+            },
+            "representation_result": "meaning_descriptor_in_fixture",
+            "knowledge_state": "candidate_only",
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "未評価を成熟済みに補完しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        }
+      ],
+      "execution_state": "not_executed",
+      "effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L9-003-F02",
+      "l4_ref": "HELIXBRAIN-L4-003-F02",
+      "requirement_ref": "HELIXBRAIN-L3-003-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+      "approved_l10": {
+        "id": "HELIXBRAIN-L10-003-F02",
+        "parent": "HELIXBRAIN-L2-003",
+        "title": "適用条件の充足・不充足・未知",
+        "requirement_ref": "HELIXBRAIN-L3-003-F02",
+        "positive_input": "同Patternへ充足/不充足/unknown/定義欠落/定義済み値欠落を個別に与える。",
+        "expected_observation": "定義不足と値不足、適用条件と採用判断を区別する。",
+        "negative_input": "unknownを適用可能、定義欠落を値未決扱い、存在で今回の採用、知識受領で義務完了。",
+        "failure_observation": "知識定義はBRAIN、製品要求値/適用はCOREへ返し、未成立を残す。",
+        "execution_state": "not_executed"
+      },
+      "connection_scope": "独立Pattern原内容/条件定義/案件input→pure比較→局所不足/未充足とowner返却候補。実resolver未binding。",
+      "concrete_cases": [
+        {
+          "id": "B003-F02-CONDITION-SATISFIED",
+          "requirement_ref": "HELIXBRAIN-L3-003-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+          "l4_ref": "HELIXBRAIN-L4-003-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F02-CONDITION-SATISFIED",
+              "revision": "fixture-content-9a617ec1f98ded71a366e0b2e469cb0174f8fe97858f7a2811d136f560b0223b",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_definition_missing_as_value_unset\":false,\"claims_existence_adopted\":false,\"claims_received_obligation_complete\":false,\"claims_unknown_applicable\":false,\"original_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"},\"product_input\":{\"identity\":\"INPUT-MODE\",\"state\":\"supplied_fixture_only\",\"value\":\"A\"},\"provided_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"}}",
+            "sha256": "9a617ec1f98ded71a366e0b2e469cb0174f8fe97858f7a2811d136f560b0223b",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "definition_result": "content_corresponding_in_fixture",
+            "product_input_result": "supplied_fixture_only",
+            "applicability_result": "satisfied_in_fixture_only",
+            "proposal_state": "candidate_for_CORE_only",
+            "unfulfilled_contract_refs": [],
+            "claim_results": {
+              "unknown_applicable": "none",
+              "definition_missing_as_value_unset": "none",
+              "existence_adopted": "none",
+              "received_obligation_complete": "none"
+            },
+            "owner_return_candidates": [],
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "独立必要値Aと案件inputAを内容比較。適用条件充足は今回採用でない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F02-CONDITION-UNSATISFIED",
+          "requirement_ref": "HELIXBRAIN-L3-003-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+          "l4_ref": "HELIXBRAIN-L4-003-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F02-CONDITION-UNSATISFIED",
+              "revision": "fixture-content-6196faf4fad68d601380d079f0045187efb60adad6dfe930ba15bbb06c2c3f08",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_definition_missing_as_value_unset\":false,\"claims_existence_adopted\":false,\"claims_received_obligation_complete\":false,\"claims_unknown_applicable\":false,\"original_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"},\"product_input\":{\"identity\":\"INPUT-MODE\",\"state\":\"supplied_fixture_only\",\"value\":\"B\"},\"provided_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"}}",
+            "sha256": "6196faf4fad68d601380d079f0045187efb60adad6dfe930ba15bbb06c2c3f08",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "definition_result": "content_corresponding_in_fixture",
+            "product_input_result": "supplied_fixture_only",
+            "applicability_result": "unsatisfied_in_fixture_only",
+            "proposal_state": "not_applicable_in_fixture",
+            "unfulfilled_contract_refs": [],
+            "claim_results": {
+              "unknown_applicable": "none",
+              "definition_missing_as_value_unset": "none",
+              "existence_adopted": "none",
+              "received_obligation_complete": "none"
+            },
+            "owner_return_candidates": [],
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "定義済みAに対する実inputBは不充足。unknownと区別。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F02-INPUT-UNKNOWN",
+          "requirement_ref": "HELIXBRAIN-L3-003-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+          "l4_ref": "HELIXBRAIN-L4-003-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F02-INPUT-UNKNOWN",
+              "revision": "fixture-content-453b79160d5c62c78d0aac9e1da9ae5573681cecb9375e442d09a002950f8201",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_definition_missing_as_value_unset\":false,\"claims_existence_adopted\":false,\"claims_received_obligation_complete\":false,\"claims_unknown_applicable\":false,\"original_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"},\"product_input\":{\"identity\":\"INPUT-MODE\",\"state\":\"unknown\",\"value\":null},\"provided_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"}}",
+            "sha256": "453b79160d5c62c78d0aac9e1da9ae5573681cecb9375e442d09a002950f8201",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "definition_result": "content_corresponding_in_fixture",
+            "product_input_result": "unknown",
+            "applicability_result": "unknown",
+            "proposal_state": "held",
+            "unfulfilled_contract_refs": [
+              "BRAIN032",
+              "HARNESS009",
+              "BRAIN030"
+            ],
+            "claim_results": {
+              "unknown_applicable": "none",
+              "definition_missing_as_value_unset": "none",
+              "existence_adopted": "none",
+              "received_obligation_complete": "none"
+            },
+            "owner_return_candidates": [
+              "CORE-input-owner"
+            ],
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "定義済みinputの不明/値未決/欠落/別対象を当該不足として保持。定義の不足とは別。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F02-DEFINED-VALUE-UNSET",
+          "requirement_ref": "HELIXBRAIN-L3-003-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+          "l4_ref": "HELIXBRAIN-L4-003-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F02-DEFINED-VALUE-UNSET",
+              "revision": "fixture-content-13b90057db910cff4cfee0165b5e590eef86152a6e977b741201b3387e6cc1d0",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_definition_missing_as_value_unset\":false,\"claims_existence_adopted\":false,\"claims_received_obligation_complete\":false,\"claims_unknown_applicable\":false,\"original_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"},\"product_input\":{\"identity\":\"INPUT-MODE\",\"state\":\"value_unset\",\"value\":null},\"provided_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"}}",
+            "sha256": "13b90057db910cff4cfee0165b5e590eef86152a6e977b741201b3387e6cc1d0",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "definition_result": "content_corresponding_in_fixture",
+            "product_input_result": "value_unset",
+            "applicability_result": "unknown",
+            "proposal_state": "held",
+            "unfulfilled_contract_refs": [
+              "BRAIN032",
+              "HARNESS009",
+              "BRAIN030"
+            ],
+            "claim_results": {
+              "unknown_applicable": "none",
+              "definition_missing_as_value_unset": "none",
+              "existence_adopted": "none",
+              "received_obligation_complete": "none"
+            },
+            "owner_return_candidates": [
+              "CORE-input-owner"
+            ],
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "定義済みinputの不明/値未決/欠落/別対象を当該不足として保持。定義の不足とは別。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F02-REQUIRED-INPUT-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+          "l4_ref": "HELIXBRAIN-L4-003-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F02-REQUIRED-INPUT-MISSING",
+              "revision": "fixture-content-023fc81135e185ed96397c78a9839f73a22665860107f19669d2a49bb4142ccc",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_definition_missing_as_value_unset\":false,\"claims_existence_adopted\":false,\"claims_received_obligation_complete\":false,\"claims_unknown_applicable\":false,\"original_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"},\"product_input\":null,\"provided_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"}}",
+            "sha256": "023fc81135e185ed96397c78a9839f73a22665860107f19669d2a49bb4142ccc",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "definition_result": "content_corresponding_in_fixture",
+            "product_input_result": "missing",
+            "applicability_result": "unknown",
+            "proposal_state": "held",
+            "unfulfilled_contract_refs": [
+              "BRAIN032",
+              "HARNESS009",
+              "BRAIN030"
+            ],
+            "claim_results": {
+              "unknown_applicable": "none",
+              "definition_missing_as_value_unset": "none",
+              "existence_adopted": "none",
+              "received_obligation_complete": "none"
+            },
+            "owner_return_candidates": [
+              "CORE-input-owner"
+            ],
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "定義済みinputの不明/値未決/欠落/別対象を当該不足として保持。定義の不足とは別。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F02-REQUIRED-INPUT-FOREIGN",
+          "requirement_ref": "HELIXBRAIN-L3-003-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+          "l4_ref": "HELIXBRAIN-L4-003-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F02-REQUIRED-INPUT-FOREIGN",
+              "revision": "fixture-content-dc12c63fb8f48f956db6024c31e51b2139ab2719055ea2d7babef977e10d73ff",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_definition_missing_as_value_unset\":false,\"claims_existence_adopted\":false,\"claims_received_obligation_complete\":false,\"claims_unknown_applicable\":false,\"original_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"},\"product_input\":{\"identity\":\"OTHER-INPUT\",\"state\":\"supplied_fixture_only\",\"value\":\"A\"},\"provided_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"}}",
+            "sha256": "dc12c63fb8f48f956db6024c31e51b2139ab2719055ea2d7babef977e10d73ff",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "definition_result": "content_corresponding_in_fixture",
+            "product_input_result": "identity_conflict",
+            "applicability_result": "unknown",
+            "proposal_state": "held",
+            "unfulfilled_contract_refs": [
+              "BRAIN032",
+              "HARNESS009",
+              "BRAIN030"
+            ],
+            "claim_results": {
+              "unknown_applicable": "none",
+              "definition_missing_as_value_unset": "none",
+              "existence_adopted": "none",
+              "received_obligation_complete": "none"
+            },
+            "owner_return_candidates": [
+              "CORE-input-owner"
+            ],
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "定義済みinputの不明/値未決/欠落/別対象を当該不足として保持。定義の不足とは別。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F02-CONDITION-DEFINITION-MISSING",
+          "requirement_ref": "HELIXBRAIN-L3-003-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+          "l4_ref": "HELIXBRAIN-L4-003-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F02-CONDITION-DEFINITION-MISSING",
+              "revision": "fixture-content-daf031e67f833d2e22cdf0a98fe38c503d0afbd7eac93b0e86d41cec7e8a6c4f",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_definition_missing_as_value_unset\":false,\"claims_existence_adopted\":false,\"claims_received_obligation_complete\":false,\"claims_unknown_applicable\":false,\"original_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"},\"product_input\":{\"identity\":\"INPUT-MODE\",\"state\":\"supplied_fixture_only\",\"value\":\"A\"},\"provided_condition\":null}",
+            "sha256": "daf031e67f833d2e22cdf0a98fe38c503d0afbd7eac93b0e86d41cec7e8a6c4f",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "definition_result": "missing",
+            "product_input_result": "supplied_fixture_only",
+            "applicability_result": "definition_missing",
+            "proposal_state": "held",
+            "unfulfilled_contract_refs": [],
+            "claim_results": {
+              "unknown_applicable": "none",
+              "definition_missing_as_value_unset": "none",
+              "existence_adopted": "none",
+              "received_obligation_complete": "none"
+            },
+            "owner_return_candidates": [
+              "BRAIN-definition-owner"
+            ],
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "必須条件の意味定義がないと適用提案を停止。案件値未決に読み替えない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F02-CONDITION-MEANING-FOREIGN",
+          "requirement_ref": "HELIXBRAIN-L3-003-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+          "l4_ref": "HELIXBRAIN-L4-003-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F02-CONDITION-MEANING-FOREIGN",
+              "revision": "fixture-content-0012f0a18806ae56bd85927a2e7260ec9298e045884304343447e685cb9f7c96",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_definition_missing_as_value_unset\":false,\"claims_existence_adopted\":false,\"claims_received_obligation_complete\":false,\"claims_unknown_applicable\":false,\"original_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"},\"product_input\":{\"identity\":\"INPUT-MODE\",\"state\":\"supplied_fixture_only\",\"value\":\"A\"},\"provided_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"別の必須条件の意味\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"}}",
+            "sha256": "0012f0a18806ae56bd85927a2e7260ec9298e045884304343447e685cb9f7c96",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "definition_result": "content_conflict",
+            "product_input_result": "supplied_fixture_only",
+            "applicability_result": "definition_conflict",
+            "proposal_state": "held",
+            "unfulfilled_contract_refs": [],
+            "claim_results": {
+              "unknown_applicable": "none",
+              "definition_missing_as_value_unset": "none",
+              "existence_adopted": "none",
+              "received_obligation_complete": "none"
+            },
+            "owner_return_candidates": [
+              "BRAIN-definition-owner"
+            ],
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "条件field存在でも元意味が別なら定義不一致。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F02-UNKNOWN-AS-APPLICABLE",
+          "requirement_ref": "HELIXBRAIN-L3-003-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+          "l4_ref": "HELIXBRAIN-L4-003-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F02-UNKNOWN-AS-APPLICABLE",
+              "revision": "fixture-content-43aecf52941c081a0fdd5e22d3b38b0d74f5fbe84ee285c92b2296fd93b3023e",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_definition_missing_as_value_unset\":false,\"claims_existence_adopted\":false,\"claims_received_obligation_complete\":false,\"claims_unknown_applicable\":true,\"original_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"},\"product_input\":{\"identity\":\"INPUT-MODE\",\"state\":\"unknown\",\"value\":null},\"provided_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"}}",
+            "sha256": "43aecf52941c081a0fdd5e22d3b38b0d74f5fbe84ee285c92b2296fd93b3023e",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "definition_result": "content_corresponding_in_fixture",
+            "product_input_result": "unknown",
+            "applicability_result": "unknown",
+            "proposal_state": "held",
+            "unfulfilled_contract_refs": [
+              "BRAIN032",
+              "HARNESS009",
+              "BRAIN030"
+            ],
+            "claim_results": {
+              "unknown_applicable": "rejected",
+              "definition_missing_as_value_unset": "none",
+              "existence_adopted": "none",
+              "received_obligation_complete": "none"
+            },
+            "owner_return_candidates": [
+              "CORE-input-owner"
+            ],
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "unknownを適用可能にせず未充足を保持。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F02-DEFINITION-MISSING-AS-VALUE-UNSET",
+          "requirement_ref": "HELIXBRAIN-L3-003-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+          "l4_ref": "HELIXBRAIN-L4-003-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F02-DEFINITION-MISSING-AS-VALUE-UNSET",
+              "revision": "fixture-content-7bcbd5650ab24d9017efba5c31b9578f4fe814c3a482df16738667ecdddd74df",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_definition_missing_as_value_unset\":true,\"claims_existence_adopted\":false,\"claims_received_obligation_complete\":false,\"claims_unknown_applicable\":false,\"original_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"},\"product_input\":{\"identity\":\"INPUT-MODE\",\"state\":\"supplied_fixture_only\",\"value\":\"A\"},\"provided_condition\":null}",
+            "sha256": "7bcbd5650ab24d9017efba5c31b9578f4fe814c3a482df16738667ecdddd74df",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "definition_result": "missing",
+            "product_input_result": "supplied_fixture_only",
+            "applicability_result": "definition_missing",
+            "proposal_state": "held",
+            "unfulfilled_contract_refs": [],
+            "claim_results": {
+              "unknown_applicable": "none",
+              "definition_missing_as_value_unset": "rejected",
+              "existence_adopted": "none",
+              "received_obligation_complete": "none"
+            },
+            "owner_return_candidates": [
+              "BRAIN-definition-owner"
+            ],
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "定義欠落はBRAINに返しCORE案件値未決へ付け替えない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F02-EXISTENCE_ADOPTED",
+          "requirement_ref": "HELIXBRAIN-L3-003-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+          "l4_ref": "HELIXBRAIN-L4-003-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F02-EXISTENCE_ADOPTED",
+              "revision": "fixture-content-d4b0930c2acfd2b1021e78d6db1e74eed1668a458d6e85c6f6376346bfe954ed",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_definition_missing_as_value_unset\":false,\"claims_existence_adopted\":true,\"claims_received_obligation_complete\":false,\"claims_unknown_applicable\":false,\"original_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"},\"product_input\":{\"identity\":\"INPUT-MODE\",\"state\":\"supplied_fixture_only\",\"value\":\"A\"},\"provided_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"}}",
+            "sha256": "d4b0930c2acfd2b1021e78d6db1e74eed1668a458d6e85c6f6376346bfe954ed",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "definition_result": "content_corresponding_in_fixture",
+            "product_input_result": "supplied_fixture_only",
+            "applicability_result": "satisfied_in_fixture_only",
+            "proposal_state": "candidate_for_CORE_only",
+            "unfulfilled_contract_refs": [],
+            "claim_results": {
+              "unknown_applicable": "none",
+              "definition_missing_as_value_unset": "none",
+              "existence_adopted": "rejected",
+              "received_obligation_complete": "none"
+            },
+            "owner_return_candidates": [
+              "CORE-application-obligation-owner"
+            ],
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "Pattern存在や知識受領で採用/義務完了を生成しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "B003-F02-RECEIVED_OBLIGATION_COMPLETE",
+          "requirement_ref": "HELIXBRAIN-L3-003-F02",
+          "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+          "l4_ref": "HELIXBRAIN-L4-003-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-B003-F02-RECEIVED_OBLIGATION_COMPLETE",
+              "revision": "fixture-content-cb3590341c73c95a2209f841ca1c33e46a6d222565b8cc64d6d35050eb2e04c0",
+              "scope": "KNOWLEDGE-SCOPE-P",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims_definition_missing_as_value_unset\":false,\"claims_existence_adopted\":false,\"claims_received_obligation_complete\":true,\"claims_unknown_applicable\":false,\"original_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"},\"product_input\":{\"identity\":\"INPUT-MODE\",\"state\":\"supplied_fixture_only\",\"value\":\"A\"},\"provided_condition\":{\"identity\":\"CONDITION-MODE\",\"meaning\":\"合成条件: INPUT-MODEの案件値が原必要値Aと対応する\",\"required_input_identity\":\"INPUT-MODE\",\"required_value\":\"A\",\"revision\":\"r1\"}}",
+            "sha256": "cb3590341c73c95a2209f841ca1c33e46a6d222565b8cc64d6d35050eb2e04c0",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "definition_result": "content_corresponding_in_fixture",
+            "product_input_result": "supplied_fixture_only",
+            "applicability_result": "satisfied_in_fixture_only",
+            "proposal_state": "candidate_for_CORE_only",
+            "unfulfilled_contract_refs": [],
+            "claim_results": {
+              "unknown_applicable": "none",
+              "definition_missing_as_value_unset": "none",
+              "existence_adopted": "none",
+              "received_obligation_complete": "rejected"
+            },
+            "owner_return_candidates": [
+              "CORE-application-obligation-owner"
+            ],
+            "effects": {
+              "actual_knowledge_adopted": false,
+              "actual_knowledge_mature": false,
+              "actual_product_selected": false,
+              "actual_CORE_applied": false,
+              "actual_obligation_completed": false,
+              "actual_connection": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            },
+            "unaffected_Q": "original_Q"
+          },
+          "basis": "Pattern存在や知識受領で採用/義務完了を生成しない。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        }
+      ],
+      "execution_state": "not_executed",
+      "effect": "none"
+    }
+  ],
+  "completion": "初回合成対照のみ。実資格/必要集合/未見組合せ/実binding/詳細/実演算と設計閉包は未成立。",
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 18,
+      "F02": 12
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
