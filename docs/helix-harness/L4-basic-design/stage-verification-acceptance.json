@@ -298,7 +298,6 @@
   ],
   "fixture_progress": {
     "remaining_contracts": [
-      "F03",
       "F04",
       "N01",
       "B01"
@@ -314,11 +313,17 @@
       "negative": 109,
       "source_packets": 113,
       "state": "draft_not_executed"
+    },
+    "F03": {
+      "normal": 4,
+      "negative": 99,
+      "source_packets": 103,
+      "state": "draft_not_executed"
     }
   },
   "pending": [
-    "F03/F04/N01/B01の具体的な原入力/独立期待/正常/反例と内容検証。F01/F02は設計例の静的検証のみで、独立reviewと実観測は未成立。",
-    "003/004/005の必要object/義務への残りexact binding。F02は該当6契約を固定参照し、F01/F03/F04/N01/B01の接続は未完。",
+    "F04/N01/B01の具体的な原入力/独立期待/正常/反例と内容検証。F01/F02/F03は設計例の静的検証のみで、独立reviewと実観測は未成立。",
+    "003/004/005の必要object/義務への残りexact binding。F02/F03は該当契約を固定参照し、F01/F04/N01/B01の接続は未完。",
     "正式stage proof/schema/codecとowner資格",
     "L5/L8詳細設計/実oracle凍結/実装前Red/Green/Refactor",
     "実L9/L10/利用者受入/新CI/計測/PO L11 Accepted"
@@ -585,7 +590,82 @@
         "input": "各設計/要件/oracle/原result/evidence/利用者判断のowner-qualified資料",
         "operation": "OSまたは利用者CI/受入手段が実行/記録。④やOSを一律依存にしない。"
       },
-      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。"
+      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。",
+      "verified_difference_detail": {
+        "whole_obligation_fixture": {
+          "UNIT-A": {
+            "command_identity_retained": true
+          },
+          "UNIT-B": {
+            "one_commit_per_identity": true
+          },
+          "CONNECTION-AB": {
+            "retry_identity_retained": true
+          },
+          "SYSTEM-QUALITY": {
+            "whole_system_result_count": 1
+          },
+          "SYSTEM-SECURITY": {
+            "cancelled_command_commit_count": 0
+          }
+        },
+        "lower_coverage_fixture": {
+          "unit_A": [
+            "UNIT-A"
+          ],
+          "unit_B": [
+            "UNIT-B"
+          ],
+          "connection_AB": [
+            "CONNECTION-AB"
+          ]
+        },
+        "unique_difference_fixture": [
+          "SYSTEM-QUALITY",
+          "SYSTEM-SECURITY"
+        ],
+        "comparison": "独立L3全義務とL10対設計を同revision/scopeへ結ぶ。下位proofと組合せ契約が表せる部分を内容で照合し、残る固有oracle/result/evidenceを個別に必要とする。",
+        "compositional_case": "下位proof/組合せ契約が全義務を表せて固有未解決が無いと示す別の合成契約では機械導出候補を許す。一律のsystem全再実行を追加しない。",
+        "partial_result": "system固有証拠未実行/別revision/内容不一致ではVerifiedを導かず、読めたIntegrated原根拠と下位proofを個別に保持。",
+        "fixture_limit": "数値1/0はこの合成behaviorの例。実製品の数値要件/正式oracle/全製品品質保証へ採用しない。",
+        "qualified_dependency_bindings": [
+          {
+            "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+            "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+            "document_sha256": "f683d35fa834eca85e9770544bd55c0a3bcc1328cc7317e6c1d2845080596734",
+            "contract_id": "HARNESS-L4-003-F04",
+            "contract_object_sha256": "6dcaa04b9bc1a72bf2eb652896377837ec9253e184c798f0c7588288b3f465a6",
+            "selected_meaning": "Working→Provisional→Integrated→Verified→Accepted→Release-eligible→Deployed→Observedを別状態にし、原子CI、境界照合/Refactor/結合証明、L10 system証明、L11利用者受入、Port必須条件、対象環境配備、L12運用評価を各成立根拠へ結ぶ。022/005の固有義務差分と受入記録条件を保ち、前状態の成立から次状態を推定しない。",
+            "retained_role": "段階別原根拠と影響/成立の分離、下位proof・組合せ契約・system固有差分の内容照合を保持。依存先の残る未完条件は継承する。",
+            "limit": "統合済み設計の該当義務への参照。022の実proof/正式schema/owner資格や依存先の未完条件を成立させない。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/trace-impact-reconfirmation.json",
+            "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+            "document_sha256": "bb31b5abe547b5caaea80a62992fa3e967f94a2273430ffd64b17e50c7fd36b2",
+            "contract_id": "HARNESS-L4-004-F02",
+            "contract_object_sha256": "d42eba412f8bfa17c3d7c664994b625f0da4a66115dd9d5a1936ac4de48ef1ea",
+            "selected_meaning": "単体/接続/構成体のrequirement-design-verification relationから影響をAffected/Unaffected/Unknownへ区別する。証拠/影響はrelationを通じて上へ伝えるが、下位の成立状態を上位へ直接伝えない。UnknownをUnaffectedにせず、再検証結果によってだけ上位成立状態を改める。",
+            "retained_role": "段階別原根拠と影響/成立の分離、下位proof・組合せ契約・system固有差分の内容照合を保持。依存先の残る未完条件は継承する。",
+            "limit": "統合済み設計の該当義務への参照。022の実proof/正式schema/owner資格や依存先の未完条件を成立させない。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/verification-discipline.json",
+            "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+            "document_sha256": "f5aaccff49e5e6d0584169af009e15aaf59d963018f8f8cceb230d45de321ebb",
+            "contract_id": "HARNESS-L4-005-F02",
+            "contract_object_sha256": "2e08d5f738203c6572b08227a9e62628297665b607e361c57f1954ef161a8e60",
+            "selected_meaning": "unitは単体、connectionは境界/結合、compositeはシステム固有のoracle/expected failure/証拠条件を持つ。下位proofと組合せ契約を証拠に積み上げ、上位固有義務の差分を証明する。下位proofで表せない固有非機能は別証明し、下位proof/組合せ契約が揃い未解決固有義務が無いことを契約で示せる場合は機械導出してよい。",
+            "retained_role": "段階別原根拠と影響/成立の分離、下位proof・組合せ契約・system固有差分の内容照合を保持。依存先の残る未完条件は継承する。",
+            "limit": "統合済み設計の該当義務への参照。022の実proof/正式schema/owner資格や依存先の未完条件を成立させない。"
+          }
+        ],
+        "pending": [
+          "正式差分/証拠schemaとowner資格",
+          "実L10/result/evidenceと実state運転",
+          "L5/L8の内部比較契約"
+        ]
+      }
     },
     {
       "id": "HARNESS-L4-022-F04",
