@@ -1,0 +1,606 @@
+{
+  "parent": "HARNESS-L2-003",
+  "source_main": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+  "status": "draft_incomplete_fixtures_and_independent_review_pending",
+  "authority_effect": "none",
+  "scope": {
+    "authoring_stage": 1,
+    "historical_stage": "unassigned",
+    "version_target": "1.0",
+    "approved_pair_count": 7,
+    "delegated_content_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+    "approved_object_comparison": "14 complete objects equal to delegated revision",
+    "effect": "限定前提の工程規範。実操作・通常L3再開・実物受入は成立させない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-process-trace-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "d58a704fd5163a3469374f9d6aae38b6bb26975bf4a6b3cd2cbffab7529ea864"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        29,
+        66
+      ],
+      "line_quotes": [
+        {
+          "line": 29,
+          "text": "### 要求の参照範囲と最新化"
+        },
+        {
+          "line": 66,
+          "text": "2. CLI、library、HARNESS等の非UI案件もL2を暗黙に飛ばしてはならない。`not_applicable`、理由、判定者、対象HEAD、要求への影響、再評価条件をreceiptへ残す。"
+        }
+      ],
+      "locator_correction": null
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+      "sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        24,
+        50
+      ],
+      "line_quotes": [
+        {
+          "line": 24,
+          "text": ""
+        },
+        {
+          "line": 50,
+          "text": ""
+        }
+      ],
+      "locator_correction": null
+    },
+    {
+      "asset_id": "LEGACY-ASSET-19E54587EB063625EC53",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
+      "sha256": "f6379e1294bf4c68c93430903f24949d5373a60b82e5286ac34d51a5eb614a2e",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        23,
+        38
+      ],
+      "line_quotes": [
+        {
+          "line": 23,
+          "text": "| RFA-BR-01 | 目的・前提・選択肢を証拠で整理し、利用者意図の取り違えと監視負担を減らす | RFA-RF-01..04 |"
+        },
+        {
+          "line": 38,
+          "text": "既存CI高速化・Recovery・Cursor限定実行を本候補の完成待ちへ一括変更しない。"
+        }
+      ],
+      "locator_correction": null
+    },
+    {
+      "asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        9,
+        16
+      ],
+      "line_quotes": [
+        {
+          "line": 9,
+          "text": ""
+        },
+        {
+          "line": 16,
+          "text": "Fullの成立とLiteへの昇格は別。Web製品化、別研究engine、全体planner解放、包括的公開権限は非対象。"
+        }
+      ],
+      "locator_correction": {
+        "upstream_end": 19,
+        "actual_end": 16,
+        "meaning_change": false
+      }
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        20,
+        42
+      ],
+      "line_quotes": [
+        {
+          "line": 20,
+          "text": "| AAFD-AC-006 | AAFD-R-06 | 11 changed dimension、previous/observed、unknown、invalidation exact setを欠落なく保持する |"
+        },
+        {
+          "line": 42,
+          "text": "- unknownを0、neutral、unchanged、observedへ変換する。"
+        }
+      ],
+      "locator_correction": null
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5DAB2F0E1C13F846CABB",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md",
+      "sha256": "33462610beba32ec952b1eb4cb3ef4f57886a0ddb7f116ea9949d50042099f59",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        13,
+        27
+      ],
+      "line_quotes": [
+        {
+          "line": 13,
+          "text": "`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`で小さく収束する。S4の採用判断は"
+        },
+        {
+          "line": 27,
+          "text": ""
+        }
+      ],
+      "locator_correction": null
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        47,
+        47
+      ],
+      "line_quotes": [
+        {
+          "line": 47,
+          "text": "| **FR-L1-16** | Incidentワークフロー（本番障害: 検出 → hotfix → 即release → 収束 → current L1〜L12へbackfill） | incident-workflow | 本番障害alert／SLO逸脱 | troubleshoot/recovery PLAN、postmortem、L12 feedback。Reverse fullback経由で選択済みdevelopment styleへ戻す | P0 | PM-03 (障害シグナル) / HM-06 |"
+        }
+      ],
+      "locator_correction": null
+    },
+    {
+      "asset_id": "LEGACY-ASSET-322CD23B625A08E2BFB3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
+      "sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        14,
+        29
+      ],
+      "line_quotes": [
+        {
+          "line": 14,
+          "text": "HELIXが、資産所有者から明示的に認可されたサイバーセキュリティ業務を、既存の安全capability broker、"
+        },
+        {
+          "line": 29,
+          "text": "- findingの再現、修正、独立検証、remediation evidence"
+        }
+      ],
+      "locator_correction": null
+    },
+    {
+      "asset_id": "LEGACY-ASSET-08373C0AEE18881133D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md",
+      "sha256": "17c7a6f8781768e4daf6da9fc2d9f09320a19d51bf17c4dfb8ca789ea3b51f01",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        7,
+        13
+      ],
+      "line_quotes": [
+        {
+          "line": 7,
+          "text": "| NIO-L1-01 | HELIXは要求形成時に、対象systemの可用性・信頼性・性能・容量・費用・security・privacy・運用・保守・回復・observabilityの適用性を導出し、未決を隠さない。 |"
+        },
+        {
+          "line": 13,
+          "text": "数値SLO、target環境、予算、保持期間、blast radiusは対象RequirementまたはRelease契約で別途承認する。"
+        }
+      ],
+      "locator_correction": null
+    },
+    {
+      "asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+      "sha256": "4776830ec12a6a464732db56e6ff8d93f89e8e89a6dcb8c175728a82482cc754",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        1,
+        54
+      ],
+      "line_quotes": [
+        {
+          "line": 1,
+          "text": "---"
+        },
+        {
+          "line": 54,
+          "text": "trigger policy、baseline、primary scopeはexactly one、related scope、semantic parity、route candidate、suppression、"
+        }
+      ],
+      "locator_correction": null
+    }
+  ],
+  "legacy_rederivation_basis": {
+    "reuse_class": "semantic_rederivation",
+    "preserve": "正規pair/traceと意味変更のBackflow、指示と承認/技術証拠の分離、委任内自走と局所再確定、unknownを補完しない、元source/consumer保持とIncident還流。",
+    "change": "9/24のL2.5/Decide分離、9/26の右側Scoped Reverse/状態/Portと構造影響非成立伝播、10/11のhotfix即releaseを通常Portへ置換。旧S0-S4/DB/runtime/triggerを固定工程へ移さない。",
+    "reason": "既決の003/004親条件とPO差分を保持する。source候補全件採用や旧IR全移管ではない。",
+    "source_limit": "HBR-P3/HNFR-P3はarchiveのdocs/design/harnessとdocs/governance/candidatesでID検索したが直接行未特定。v1.3/AVS/RFA/DGH/AAFD/Management/FR16の実読原文と現在の採択L2/L11を区別し、近い文から旧sourceを捏造しない。",
+    "failure_basis": "RFAのWP調査不足/意図逸脱は利用者報告であり原因確定済みとしない。指示忠実性を完了証拠にするAVS、管理緊急性でpairを省略するManagement、旧即releaseのPort例外を防ぐ。",
+    "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
+  },
+  "remaining": [
+    "全7契約の具体的な正常/負例・独立原資料bytesと期待部分結果",
+    "L9接続10観点ごとの具体的不足caseとowner参照",
+    "未統合015基本設計と後続022等のexact binding",
+    "独立exact HEAD意味review・main admission",
+    "L5/L8の型・関数・証拠資格・エラー・case凍結",
+    "正式実装/実認可/実証拠/CI/実物PO受入"
+  ],
+  "layer": "L4",
+  "pair": "L9",
+  "contracts": [
+    {
+      "id": "HARNESS-L4-003-B01",
+      "requirement_ref": "HARNESS-L3-003-B01",
+      "l9_ref": "HARNESS-L9-003-B01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-B01",
+        "parent": "HARNESS-L2-003",
+        "title": "根拠・技術品質・人間受容と運転owner",
+        "obligation": "目的/前提/既存資産/外部実例/比較根拠、受容済み軸と未解決findingを工程条件へ結ぶ。技術理由/反証可能な検証と人間受容を独立に確認し、一方で他方を相殺しない。HARNESSは進行条件、OSは判断/反応の原記録と実行/監視を持ち、相談/反応のAI解釈へhuman provenanceを付けない。管理観測/改善から製品要求を直接変更せず、意味が変わる上流へ返す。",
+        "oracle_ref": "HARNESS-L10-003-B01"
+      },
+      "component": "GroundingAndHumanConvergence",
+      "input_materials": [
+        "目的・前提・旧資産・外部実例・候補比較の根拠",
+        "技術品質の反証可能な結果",
+        "OS保有の人間の原反応・受容済み軸・未解決finding"
+      ],
+      "output_materials": [
+        "根拠不足、技術品質不足、人間未受容を独立に返す",
+        "受容済み軸を保持し未解決軸だけを反復対象にする",
+        "管理改善候補は意味が変わるL1/L2/L3等のownerへ返す"
+      ],
+      "owner_connections": [
+        "OS原反応→HARNESSの収束条件照合",
+        "HARNESS不足/影響scope→OSの実行・監視"
+      ],
+      "invariants": [
+        "人の発言とAI解釈を別原記録identityにする",
+        "一方の成功で他方の不足を消さない"
+      ],
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。"
+    },
+    {
+      "id": "HARNESS-L4-003-F01",
+      "requirement_ref": "HARNESS-L3-003-F01",
+      "l9_ref": "HARNESS-L9-003-F01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-F01",
+        "parent": "HARNESS-L2-003",
+        "title": "revision別の開始・凍結・差戻し・再開",
+        "obligation": "工程の開始/凍結/差戻し/再開/完了条件を対象scope/revision、必要合意/対成果物/検証/未解決事項へ結ぶ。相談/依頼/採択/要件承認/操作認可を区別し、指示や別revisionから成立を生成しない。委任済み意図の技術的具体化へ不要な反復承認を求めず、未委任の意味/権限変更は対象ownerの判断へ戻す。実装成功だけで完了にしない。",
+        "oracle_ref": "HARNESS-L10-003-F01"
+      },
+      "component": "RevisionBoundProgression",
+      "input_materials": [
+        "対象scope/revision・工程・必要合意/対成果物/検証",
+        "判断種別と既存委任scope",
+        "未解決findingと影響先"
+      ],
+      "output_materials": [
+        "開始/凍結/差戻し/再開/完了の各条件について充足・missing・unknown・stale・conflictを個別返却",
+        "委任内の技術具体化は追加承認を生成せず継続候補を返す",
+        "未委任の意味/権限差分は当該ownerへ返す"
+      ],
+      "owner_connections": [
+        "authority ownerの判断参照→HARNESS照合",
+        "HARNESS進行条件→OSの実停止・再割当・記録"
+      ],
+      "invariants": [
+        "相談・依頼・採択・要件承認・操作認可は別役割で結合",
+        "同revision/scopeを外れた根拠は当該条件を成立させない"
+      ],
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。"
+    },
+    {
+      "id": "HARNESS-L4-003-F02",
+      "requirement_ref": "HARNESS-L3-003-F02",
+      "l9_ref": "HARNESS-L9-003-F02",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-F02",
+        "parent": "HARNESS-L2-003",
+        "title": "L2.5の還流と再凍結",
+        "obligation": "001のPrototype/PoC独立適用を使い、適用時は操作/状態/failureや技術成立性をL2.5で確かめる。結果はBackflow/008二次要求形成からDecideの採用/不採用/方針変更と合意へ結び、検証成功だけでL3をfreezeしない。非適用でもL2と非適用記録を残す。要求/設計の変更時は影響する合意と対の再凍結条件を照合する。",
+        "oracle_ref": "HARNESS-L10-003-F02"
+      },
+      "component": "PrototypePocBackflow",
+      "input_materials": [
+        "001のPrototypeとPoCの独立した適用判定",
+        "L2.5操作/状態/failure・技術成立性の原結果",
+        "008二次形成・Decide採否/方針変更・対象合意"
+      ],
+      "output_materials": [
+        "結果→Backflow→二次形成→Decide→合意→対象pair再凍結の依存を保持",
+        "両方非適用時もL2と非適用理由/判定者/HEAD/影響/再評価条件を保持",
+        "変更したscopeの古い合意と対成果物をstaleとして戻す"
+      ],
+      "owner_connections": [
+        "001適用判断→L2.5結果入力",
+        "結果→008/Decide owner→合意→F01再開/凍結条件"
+      ],
+      "invariants": [
+        "成功したPoC/Prototypeを要求採用や要件承認に読み替えない",
+        "非UIからPoC非適用やL2省略を導かない"
+      ],
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。"
+    },
+    {
+      "id": "HARNESS-L4-003-F03",
+      "requirement_ref": "HARNESS-L3-003-F03",
+      "l9_ref": "HARNESS-L9-003-F03",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-F03",
+        "parent": "HARNESS-L2-003",
+        "title": "Vの谷と右側の照合範囲",
+        "obligation": "005/015の凍結→実装前Red実観測→最小Green→局所Refactor/原子CIと双方向traceを同対象へ結び、出力をProvisionalにする。右側では結合scopeを広げるごとに実物を対設計へ照合し、L8↔L5/L9↔L4/L10↔L3を保つ。正規由来が分かる変更は当該scopeのScoped Reverse、由来不明/旧資産/trace欠落/設計を信用できない/大きなずれは全体Reverseの復旧候補に分ける。L9ではinterface、依存の向き、state/dataの所有、transaction、失敗伝播、retry、timeout、冪等性、結合度、責務重複を照合する。通常の照合ではticketを発行しない。明らかな設計/実装のずれ、由来欠落、同種findingの再発、性能退行、障害後の恒久対策、Scrum Reverse checkpoint、大きな設計退行ではReverse ticketの発行条件となる。小さな境界Refactorは現在のForward ticket内、独立した大きな構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactor ticketへ区別する。HARNESSは条件と種類の意味を提供し、実発行はOSが所有する。",
+        "oracle_ref": "HARNESS-L10-003-F03"
+      },
+      "component": "ValleyAndScopedReverse",
+      "input_materials": [
+        "005/015の同対象凍結・実装前Red・最小Green・局所Refactor・原子CI・双方向trace",
+        "実物とL5/L4/L3の対設計の各scope参照",
+        "由来・finding・性能/障害/ checkpoint・改善の意味差分"
+      ],
+      "output_materials": [
+        "谷の当該証拠が揃う場合だけProvisionalの条件材料を返す",
+        "正規由来ならScoped Reverse、由来不明/旧資産/trace欠落/信用できない設計/大きなずれなら全体Reverse復旧候補",
+        "通常照合はticket非発行、各triggerと改善規模からOSへ種類/発行条件を渡す"
+      ],
+      "owner_connections": [
+        "005/015の谷証拠→003の工程条件",
+        "実物+対設計→右側照合→上流Backflow owner",
+        "HARNESSの発行条件/種類→OSの実ticket発行"
+      ],
+      "invariants": [
+        "L8↔L5・L9↔L4・L10↔L3を維持",
+        "小さな境界Refactorは今のForward内、独立した構造/横断/architecture改善は独立ticket",
+        "実発行とReverse実行成功をHARNESSの照合結果から生成しない"
+      ],
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。"
+    },
+    {
+      "id": "HARNESS-L4-003-F04",
+      "requirement_ref": "HARNESS-L3-003-F04",
+      "l9_ref": "HARNESS-L9-003-F04",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-F04",
+        "parent": "HARNESS-L2-003",
+        "title": "八状態と段階別の証明",
+        "obligation": "Working→Provisional→Integrated→Verified→Accepted→Release-eligible→Deployed→Observedを別状態にし、原子CI、境界照合/Refactor/結合証明、L10 system証明、L11利用者受入、Port必須条件、対象環境配備、L12運用評価を各成立根拠へ結ぶ。022/005の固有義務差分と受入記録条件を保ち、前状態の成立から次状態を推定しない。",
+        "oracle_ref": "HARNESS-L10-003-F04"
+      },
+      "component": "ArtifactStateEvidence",
+      "input_materials": [
+        "同scope/revisionの成果物identityと状態別の原証拠",
+        "005/022の上位固有義務",
+        "L11利用者受入・Port・対象環境配備・L12原記録"
+      ],
+      "output_materials": [
+        "八状態を各根拠と結ぶ照合材料を返す",
+        "前状態と成立済み証拠を保持し欠けた次状態のownerへ返す",
+        "L11意味差分はL2要求へBackflowし必要なForwardを再形成"
+      ],
+      "owner_connections": [
+        "F03谷→Provisional・右側結合→Integrated",
+        "L10+022固有差分→Verified・L11原受入→Accepted",
+        "F05 Port→Release-eligible・OS配備記録→Deployed・L12→Observed"
+      ],
+      "invariants": [
+        "状態の実保存/更新はOS、状態条件の意味はHARNESS",
+        "CI・L10・受入・配備を互いの代替にしない"
+      ],
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。"
+    },
+    {
+      "id": "HARNESS-L4-003-F05",
+      "requirement_ref": "HARNESS-L3-003-F05",
+      "l9_ref": "HARNESS-L9-003-F05",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-F05",
+        "parent": "HARNESS-L2-003",
+        "title": "開始時からのRelease Portとhotfix",
+        "obligation": "開発開始時から必要証明/artifact識別/対象環境/依存/security/rollback/配備条件/受入状態のPort義務を持ち、満たしたもの/未充足を各工程へ結ぶ。hotfixにも通常Portと既存操作authorityを適用し、緊急性や暫定収束で省略しない。検出/収束/postmortem/L12 feedback/current L1–L12 backfill/Reverse fullbackから選択方式へ戻る未完を分け、配備成功で恒久対策/未完backfillを完了にしない。初回では実release/Incident運転を選択しない。",
+        "oracle_ref": "HARNESS-L10-003-F05"
+      },
+      "component": "ReleasePortAndIncidentReturn",
+      "input_materials": [
+        "開始時に定義した証明・artifact・環境・依存・security・rollback・配備・受入の義務",
+        "通常/hotfixと既存操作authority参照",
+        "検出/暫定対処/収束/postmortem/L12/backfill/fullback/選択方式への戻り先"
+      ],
+      "output_materials": [
+        "Port各義務の充足/不足を各工程へ結ぶ",
+        "hotfixにも通常Portを適用し緊急性で省略しない",
+        "暫定収束・恒久対策・L1–L12 backfill・戻り先未決を別結果に保持"
+      ],
+      "owner_connections": [
+        "開始時Port→工程ごとの証拠→F04状態条件",
+        "SECURITYの既存認可+OS Incident/continuity/ticket記録→HARNESS条件照合",
+        "L12/Postmortem→Backflow/Reverse fullback→選択済み方式の該当層"
+      ],
+      "invariants": [
+        "初回scopeで実release/Incident運転を選択しない",
+        "Port成立は操作の実施/新許可の生成ではない",
+        "配備/Issue closeから恒久対策/backfill完了を導かない"
+      ],
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。"
+    },
+    {
+      "id": "HARNESS-L4-003-N01",
+      "requirement_ref": "HARNESS-L3-003-N01",
+      "l9_ref": "HARNESS-L9-003-N01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-N01",
+        "parent": "HARNESS-L2-003",
+        "title": "品質・securityの適用と状態",
+        "obligation": "対象製品が承認した品質領域の適用/非適用/unknown/ownerと、保護対象/data/操作/環境/network/severity/開示条件を設計/検証/独立review/利用者受入へ結ぶ。designed/implemented/verified/observed/operatedと推定/再現/検証/修復/再検証/運用成立を分け、根拠無しSLO/RTO/RPO/保持期間を生成しない。特権/credentialの方針・authorityはSECURITY、ticket割当/運転はOSを参照する。",
+        "oracle_ref": "HARNESS-L10-003-N01"
+      },
+      "component": "QualitySecurityApplicability",
+      "input_materials": [
+        "製品が承認した品質領域と適用/非適用理由/unknown/owner",
+        "保護資産/data/操作/環境/network/severity/開示条件",
+        "設計/実装/検証/観測/運用とfinding各段階の原証拠"
+      ],
+      "output_materials": [
+        "当該環境・操作・対象の不足/未観測を設計/検証/review/受入へ返す",
+        "品質状態とfinding状態を別系列で保持",
+        "数値未決は当該製品要求/Release ownerへ返す"
+      ],
+      "owner_connections": [
+        "製品品質owner/SECURITY方針→HARNESS適用照合",
+        "HARNESS不足→設計/検証/review/L11 owner",
+        "OS割当・運転の原記録→対象運用証拠"
+      ],
+      "invariants": [
+        "未観測をhealthyにしない",
+        "別環境や旧provider/CIで証拠不足を相殺しない",
+        "SLO/RTO/RPO/保持期間/認可を工程から生成しない"
+      ],
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。"
+    }
+  ],
+  "reverse_triggers": [
+    "明らかな設計/実装のずれ",
+    "由来欠落",
+    "同種findingの再発",
+    "性能退行",
+    "障害後の恒久対策",
+    "Scrum Reverse checkpoint",
+    "大きな設計退行"
+  ],
+  "l9_dimensions": [
+    "interface",
+    "依存の向き",
+    "state/data所有",
+    "transaction",
+    "失敗伝播",
+    "retry",
+    "timeout",
+    "冪等性",
+    "結合度",
+    "責務重複"
+  ],
+  "artifact_state_basis": [
+    {
+      "state": "Working",
+      "basis": "作業中。後続証明なし"
+    },
+    {
+      "state": "Provisional",
+      "basis": "同対象の谷証拠と原子CI"
+    },
+    {
+      "state": "Integrated",
+      "basis": "境界照合・Refactor・結合の固有証明"
+    },
+    {
+      "state": "Verified",
+      "basis": "L10 system証明と005/022固有義務差分"
+    },
+    {
+      "state": "Accepted",
+      "basis": "同対象L11利用者原受入"
+    },
+    {
+      "state": "Release-eligible",
+      "basis": "通常Release Portの全必須条件"
+    },
+    {
+      "state": "Deployed",
+      "basis": "対象環境の実配備記録"
+    },
+    {
+      "state": "Observed",
+      "basis": "対象のL12運用評価"
+    }
+  ]
+}
