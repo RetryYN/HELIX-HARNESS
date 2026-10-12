@@ -1047,7 +1047,8 @@
       "required_input_meanings": [
         "原eventの出所/因果/旧scope/失敗",
         "旧分類・訂正event・新分類の各参照",
-        "各schema/engine版または原未供給状態"
+        "各schema/engine版または原未供給状態",
+        "旧分類のstale状態と原因の訂正/新分類参照、変更前後engine/schema版を原owner出力で供給。原失敗を消さず新分類のcurrentと区別する。"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -1090,6 +1091,34 @@
             "original_binding": "変異対象の原record/project/scope/要求・template版",
             "observable": "E1原失敗/旧scopeとC1/C2訂正履歴、未分類/未解決を保持。",
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "old_projection_not_stale",
+          "change": "訂正後のC1をstaleにせずcurrentとして返す",
+          "axis": "projection_currency_history",
+          "state": "conflict",
+          "backflow_owner": "OS007/019/原分類owner",
+          "expected": "C1のstale化漏れをconflictとして返し、E1原失敗/C1旧分類/stale原根拠/C2現行を保持。",
+          "expected_preserved": {
+            "original_binding": "E1原要求r1/project P/template v1、C1/ENGINE-A/SCHEMA-A、E2/C2/ENGINE-B/SCHEMA-B",
+            "observable": "C1のstale化漏れをconflictとして返し、E1原失敗/C1旧分類/stale原根拠/C2現行を保持。",
+            "effects": "原event/旧分類/訂正/両版は保存。DB write/新authority/評価/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "old_projection_removed",
+          "change": "C1をstaleとして保持せず出力から削除する",
+          "axis": "projection_currency_history",
+          "state": "missing",
+          "backflow_owner": "OS007/019/原分類owner",
+          "expected": "C1旧分類の欠落をmissingとして返し、E1原失敗/C1旧分類/stale原根拠/C2現行を保持。",
+          "expected_preserved": {
+            "original_binding": "E1原要求r1/project P/template v1、C1/ENGINE-A/SCHEMA-A、E2/C2/ENGINE-B/SCHEMA-B",
+            "observable": "C1旧分類の欠落をmissingとして返し、E1原失敗/C1旧分類/stale原根拠/C2現行を保持。",
+            "effects": "原event/旧分類/訂正/両版は保存。DB write/新authority/評価/全体完了なし。"
           },
           "expected_side_effect_count": 0
         }

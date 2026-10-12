@@ -5557,7 +5557,84 @@
               },
               "owner": "OS-original-owner"
             },
-            "classification": "failure"
+            "classification": "failure",
+            "currency_state": "stale",
+            "stale_basis": {
+              "correction_ref": {
+                "identity": "CORRECTION-E2",
+                "revision": "e1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "replacement_projection_ref": {
+                "identity": "CLASS-C2",
+                "revision": "class2",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "engine_change": {
+                "from": {
+                  "identity": "ENGINE-A",
+                  "revision": "engine1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "OS-original-owner"
+                },
+                "to": {
+                  "identity": "ENGINE-B",
+                  "revision": "engine2",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "OS-original-owner"
+                }
+              },
+              "schema_change": {
+                "from": {
+                  "identity": "SCHEMA-A",
+                  "revision": "schema1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "OS-original-owner"
+                },
+                "to": {
+                  "identity": "SCHEMA-B",
+                  "revision": "schema2",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "OS-original-owner"
+                }
+              },
+              "source_ref": {
+                "identity": "SOURCE-CORRECTION",
+                "revision": "source1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            }
           },
           "correction": {
             "event_ref": {
@@ -5652,12 +5729,23 @@
               },
               "owner": "OS-original-owner"
             },
-            "classification": "reclassified failure"
+            "classification": "reclassified failure",
+            "currency_state": "current",
+            "supersedes_projection_ref": {
+              "identity": "CLASS-C1",
+              "revision": "class1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            }
           }
         },
         "source_assumption": "合成の独立owner原snapshotが有資格で供給されるという基本比較前提。実source resolver/trustはL5/L6への未完義務。expected_materialを評価inputへ渡さない。"
       },
-      "expected_observation": "原E1旧失敗/P/r1、C1、E2因果、C2と両engine/schema版を保持。訂正で原eventを上書きしない。",
+      "expected_observation": "E1原失敗/旧scopeを保持し、C1のfailure分類とstale状態を訂正E2/新分類C2/engine A→B/schema A→Bの原根拠へ結ぶ。C2はcurrentとしてC1と区別し、両分類・両版・訂正参照を削除/上書きしない。",
       "negative_cases": [
         {
           "code": "overwrite_original",
@@ -5698,6 +5786,34 @@
             "original_binding": "変異対象の原record/project/scope/要求・template版",
             "observable": "E1原失敗/旧scopeとC1/C2訂正履歴、未分類/未解決を保持。",
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "old_projection_not_stale",
+          "change": "訂正後のC1をstaleにせずcurrentとして返す",
+          "axis": "projection_currency_history",
+          "state": "conflict",
+          "backflow_owner": "OS007/019/原分類owner",
+          "expected": "C1のstale化漏れをconflictとして返し、E1原失敗/C1旧分類/stale原根拠/C2現行を保持。",
+          "expected_preserved": {
+            "original_binding": "E1原要求r1/project P/template v1、C1/ENGINE-A/SCHEMA-A、E2/C2/ENGINE-B/SCHEMA-B",
+            "observable": "C1のstale化漏れをconflictとして返し、E1原失敗/C1旧分類/stale原根拠/C2現行を保持。",
+            "effects": "原event/旧分類/訂正/両版は保存。DB write/新authority/評価/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "old_projection_removed",
+          "change": "C1をstaleとして保持せず出力から削除する",
+          "axis": "projection_currency_history",
+          "state": "missing",
+          "backflow_owner": "OS007/019/原分類owner",
+          "expected": "C1旧分類の欠落をmissingとして返し、E1原失敗/C1旧分類/stale原根拠/C2現行を保持。",
+          "expected_preserved": {
+            "original_binding": "E1原要求r1/project P/template v1、C1/ENGINE-A/SCHEMA-A、E2/C2/ENGINE-B/SCHEMA-B",
+            "observable": "C1旧分類の欠落をmissingとして返し、E1原失敗/C1旧分類/stale原根拠/C2現行を保持。",
+            "effects": "原event/旧分類/訂正/両版は保存。DB write/新authority/評価/全体完了なし。"
           },
           "expected_side_effect_count": 0
         }
@@ -5867,7 +5983,84 @@
             },
             "owner": "OS-original-owner"
           },
-          "classification": "failure"
+          "classification": "failure",
+          "currency_state": "stale",
+          "stale_basis": {
+            "correction_ref": {
+              "identity": "CORRECTION-E2",
+              "revision": "e1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "replacement_projection_ref": {
+              "identity": "CLASS-C2",
+              "revision": "class2",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            },
+            "engine_change": {
+              "from": {
+                "identity": "ENGINE-A",
+                "revision": "engine1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "to": {
+                "identity": "ENGINE-B",
+                "revision": "engine2",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            },
+            "schema_change": {
+              "from": {
+                "identity": "SCHEMA-A",
+                "revision": "schema1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              },
+              "to": {
+                "identity": "SCHEMA-B",
+                "revision": "schema2",
+                "scope": {
+                  "project": "P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-test"
+                },
+                "owner": "OS-original-owner"
+              }
+            },
+            "source_ref": {
+              "identity": "SOURCE-CORRECTION",
+              "revision": "source1",
+              "scope": {
+                "project": "P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-test"
+              },
+              "owner": "OS-original-owner"
+            }
+          }
         },
         "new_projection": {
           "ref": {
@@ -5920,7 +6113,18 @@
             },
             "owner": "OS-original-owner"
           },
-          "classification": "reclassified failure"
+          "classification": "reclassified failure",
+          "currency_state": "current",
+          "supersedes_projection_ref": {
+            "identity": "CLASS-C1",
+            "revision": "class1",
+            "scope": {
+              "project": "P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-test"
+            },
+            "owner": "OS-original-owner"
+          }
         }
       },
       "content_comparison": "原ref identity/revision/scope/owner、各内容と個別状態を照合。record_count等は補助観測であり意味合格を代替しない。"
@@ -8258,7 +8462,7 @@
     "meaning_coverage": "unproven",
     "global92_430_completion": "unproven",
     "contract_count": 13,
-    "negative_case_count": 69,
+    "negative_case_count": 71,
     "remaining": "正常合成input/expected materialを具体化。原根拠の意味/未知保持と各負例の分類精度、独立review、実input/output/副作用観測は未完。"
   },
   "legacy_facet_dispositions": [
