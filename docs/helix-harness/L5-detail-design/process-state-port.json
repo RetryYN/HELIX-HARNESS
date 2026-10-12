@@ -552,9 +552,11 @@
       "typed_expected_cells": 731,
       "nested_l9_dimension_cells": 430,
       "nested_pair_cells": 129,
-      "state": "draft_basic_typed_and_qualification_matrix_pending_content_and_review",
+      "state": "draft_basic_typed_qualification_and_valley_content_pending_review",
       "qualification_source_groups": 34,
-      "qualification_matrix_cases": 141
+      "qualification_matrix_cases": 141,
+      "valley_content_counterexamples": 8,
+      "valley_content_typed_cells": 136
     },
     "F04": {
       "basic_calls": 30,
@@ -1089,7 +1091,7 @@
         "小さな意味保存境界Refactorはcurrent_Forward、独立構造/横断/architecture/性能改善はRefactor/Design-refactor/Performance-refactor候補。behavior/architecture/requirement/stateの意味差はBackflowへ返し、当該上流ownerの意味を局所Refactorで上書きしない。",
         "candidateを原資料と別に照合し、通常照合で全体Reverse/新ticket、HARNESS発行、谷から品質/Accepted/Release、候補からReverse実行成功を生成しない。ticket_issuerは責務意味OS、実発行と実記録はOSが保持する。"
       ],
-      "detail_state": "draft_basic_typed_and_qualification_matrix_pending_content_and_review",
+      "detail_state": "draft_basic_typed_qualification_and_valley_content_pending_review",
       "reverse_detail": {
         "canonical_pairs": {
           "L8": "L5",
@@ -1430,7 +1432,8 @@
             ]
           ]
         },
-        "qualification_rule": "各source資格を独立に読む。合成正常基準に対する単一資格不足matrixは該当依存結果のみstate/null。混在状態は個別診断を保持し、同一結果の複数異種不足はunknown/null。実作用6項目のfalseと発行責務OSは設計の不変値であり実資格ではない。"
+        "qualification_rule": "各source資格を独立に読む。合成正常基準に対する単一資格不足matrixは該当依存結果のみstate/null。混在状態は個別診断を保持し、同一結果の複数異種不足はunknown/null。実作用6項目のfalseと発行責務OSは設計の不変値であり実資格ではない。",
+        "valley_content_rule": "凍結→本体前Red実観測→最小Green→意味保存Refactor→変更後HEADの再検証を同一oracleへ結ぶ。Red未実行/欠陥未検出、凍結後付け、Greenの別oracle、Refactor意味変更、変更前HEAD/未実行/退行した再検証は谷のconflictでありProvisionalを成立させない。他の独立sourceの対/観点/trigger結果は保持する。"
       }
     },
     {
