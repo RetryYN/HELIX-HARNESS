@@ -1,0 +1,177 @@
+{
+  "document_id": "HARNESS-L4-001-V12-LAYER-CONTRACT",
+  "layer": "L4",
+  "paired_document": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json",
+  "parent": "HARNESS-L2-001",
+  "status": "candidate_pending_independent_review",
+  "source_main": "066dea64717cbd27c6f1feb068e4ce146021a4c9",
+  "scope": "限定前提の12層と対の意味照合、L2.5適用とauthority分離。全工程の実行engine、040のcatalog writer、056の結果判定、OS状態遷移を一括実装する設計ではない。",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+      "lines": "43–63、580–596",
+      "disposition": "semantic_rederivation",
+      "keep": "12層、六pair、L0層外、4artifactの区別。",
+      "change": "旧L6実装/L7closureの記述・physical pathをcurrent分類の正本にせず、現行001の成果意味を参照する。",
+      "reason": "採用001の層対応とConceptのL4〜L6契約、採用済み各層ownerの意味を保つ。",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+      "lines": "106–107、121–130",
+      "disposition": "semantic_rederivation",
+      "keep": "工程定義とsource referenceを区別。設計・実装・検証設計・検証コードの4artifactを双方向traceする。",
+      "change": "旧docs/process、docs/design、docs/test-design、src/testsの場所を復元しない。",
+      "reason": "10/9の機構×層とpack配置へ対応する。",
+      "sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262"
+    }
+  ],
+  "pair_relation": [
+    [
+      "L1",
+      "L12"
+    ],
+    [
+      "L2",
+      "L11"
+    ],
+    [
+      "L3",
+      "L10"
+    ],
+    [
+      "L4",
+      "L9"
+    ],
+    [
+      "L5",
+      "L8"
+    ],
+    [
+      "L6",
+      "L7"
+    ]
+  ],
+  "layer_universe": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5",
+    "L6",
+    "L7",
+    "L8",
+    "L9",
+    "L10",
+    "L11",
+    "L12"
+  ],
+  "outside_layer_anchor": "L0 charterは上位source identity/revisionで参照し、layer/pair universeへ挿入しない。L2.5はL2とL3の間のPrototype/PoC判定であり、第十三層/pairを増設しない。",
+  "architecture": {
+    "owner": "HELIX-HARNESS",
+    "input_port": "OS/CORE等consumerが供給するimmutableでsource付きの意味/authority snapshot。読み出し・保存・権限取得はここに含めない。",
+    "components": [
+      "ArtifactLayerCorrespondence：artifactの現行意味参照とlayer/pairの整合",
+      "PrototypePocApplicability：二つの適用とN/A根拠",
+      "AuthorityBoundaryProjection：対応と他ownerの未成立を分離"
+    ],
+    "data_flow": [
+      "対象identity/revision/scopeとsource不足を特定",
+      "意味参照とcanonical layer/pairを照合",
+      "PrototypeとPoCを独立判定",
+      "対応/適用結果とauthority不足を別に返す"
+    ],
+    "output_port": "scope付き対応・適用結果・source/authority不足・003/008/各ownerへのBackflow候補。実発行や状態writeはしない。",
+    "dependency_direction": "snapshot→HARNESS純粋照合→CORE/OS consumer。catalog/結果/保存のproducer契約は各ownerからの参照とし、001の照合がその実生成/登録を呼び出さない。",
+    "failure": "unknown/conflict/staleは対象の成果/参照/適用scopeへ局所化し、欠落をN/A、成功、無影響へ変換しない。"
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-001-F01",
+      "requirement_ref": "HARNESS-L3-001-F01",
+      "system_oracle_ref": "HARNESS-L10-001-F01",
+      "oracle_ref": "HARNESS-L9-001-F01",
+      "title": "成果の意味から層と対を照合する境界",
+      "required_input_meanings": [
+        "artifact identity/revision/scope",
+        "成果kindと意味ownerの現行契約参照",
+        "対象Concept/L1/L2 revision",
+        "対象層とpairの明示参照",
+        "層外charter anchor参照"
+      ],
+      "behavior": "artifactの明示された意味と対象層を現行契約へ照合し、十二層と六pairの対応を返す。path/title/旧番号から層を推測しない。L2要求とL3要件は別artifactとして保持し、L0 anchorは十二層の外へ結ぶ。意味owner/sourceが不明なら該当artifactの分類をunknownにする。",
+      "backflow": "層/pair意味は001、catalogは040、結果意味は056、Prototype/PoCと要求形成は003/008、実authority/運転は各ownerへ返す。"
+    },
+    {
+      "id": "HARNESS-L4-001-F02",
+      "requirement_ref": "HARNESS-L3-001-F02",
+      "system_oracle_ref": "HARNESS-L10-001-F02",
+      "oracle_ref": "HARNESS-L9-001-F02",
+      "title": "Prototype/PoC判定から要求へ返す境界",
+      "required_input_meanings": [
+        "画面の有無と判定根拠",
+        "技術的成立性の不明の有無と根拠",
+        "各N/Aの理由/判定者/対象HEAD/要求影響/再評価条件",
+        "Prototype/PoC結果参照",
+        "要求二次形成/合意の参照と不足"
+      ],
+      "behavior": "Prototypeは画面有無、PoCは画面非依存の技術不確実性から別々に適用判定する。両者非適用かつ各N/A根拠が完全なscopeだけL2.5非適用を返す。不明は非適用へ丸めない。結果は003/008の要求二次形成/Backflowへ返し、要求合意の意味と独立に保持する。",
+      "backflow": "層/pair意味は001、catalogは040、結果意味は056、Prototype/PoCと要求形成は003/008、実authority/運転は各ownerへ返す。"
+    },
+    {
+      "id": "HARNESS-L4-001-B01",
+      "requirement_ref": "HARNESS-L3-001-B01",
+      "system_oracle_ref": "HARNESS-L10-001-B01",
+      "oracle_ref": "HARNESS-L9-001-B01",
+      "title": "層の対応と他ownerの状態を独立に保持",
+      "required_input_meanings": [
+        "層/pair照合結果",
+        "authority/合意/承認の現行revision参照",
+        "実検証結果の有無と対象revision",
+        "OS運転consumerの契約参照"
+      ],
+      "behavior": "層/pairの意味上の対応と、authority/合意/承認/操作/検証の各根拠を別に返す。HARNESS001は層と成果の意味、040はcatalog契約、056はpair結果の意味、OSはticket/実行/登録/保存を所有する。層の存在で他ownerの成立を生成せず、旧runtimeへfallbackしない。",
+      "backflow": "層/pair意味は001、catalogは040、結果意味は056、Prototype/PoCと要求形成は003/008、実authority/運転は各ownerへ返す。"
+    }
+  ],
+  "remaining": [
+    "L5/L8で閉じた入力/結果型、参照解決・三値判定・不正pair識別・N/A検査の関数と先行テスト設計を凍結。",
+    "L6/L7の実装/TDD、L9実接続、L10総合、L11受入は未成立。",
+    "040のcatalog/ledger具体化、056のatomic oracle結果、003/008の要求二次形成、OS実保存/実行は各親の対設計に残す。",
+    "未採用VT104〜106をtemplate正本として用いない。採用済み001と対L10の意味から対検証を導出する。"
+  ]
+}
