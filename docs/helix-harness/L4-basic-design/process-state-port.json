@@ -100,7 +100,8 @@
           "text": "2. CLI、library、HARNESS等の非UI案件もL2を暗黙に飛ばしてはならない。`not_applicable`、理由、判定者、対象HEAD、要求への影響、再評価条件をreceiptへ残す。"
         }
       ],
-      "locator_correction": null
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators"
     },
     {
       "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
@@ -114,15 +115,28 @@
       ],
       "line_quotes": [
         {
-          "line": 24,
-          "text": ""
+          "line": 27,
+          "text": "相談、質問、仮説、叱責、不満、実況、比喩、作業依頼を、文字列や口調だけで`PO指示`、`PO判断`、承認済みdecisionへ昇格しない。AIの解釈へhuman provenanceを付与しない。"
         },
         {
-          "line": 50,
-          "text": ""
+          "line": 37,
+          "text": "要求・設計・route・model・test・artifactの採択は`selection`、L3 freeze・検収・不可逆actionの認可は`approval`、Issue・PR・finding・proposal・S4の処理結果は`disposition`、validatorやAIの一時的技術評価は`runtime_judgment`として保持する。"
+        },
+        {
+          "line": 41,
+          "text": "明示的なrequest／directiveも作業入力であり、requirements、design、ADR、approvalの代替authorityではない。AIは目的、正本、受入条件、可逆性、安全境界、代替案を評価し、`指示だから`を理由に検証を省略しない。"
+        },
+        {
+          "line": 43,
+          "text": "directiveは許可された作業scopeや優先度を与え得るが、実装方式、技術的正しさ、完了、安全性を自動的に確定しない。AIは独立した技術理由と反証可能な検証結果を保持し、指示への服従をrationale、review verdict、completion evidenceとして再利用しない。"
+        },
+        {
+          "line": 49,
+          "text": "harness memoryはTTL付きagent coordination envelopeとtyped pointerだけを運ぶ。decision本文、approval本文、project要求・設計、利用者profileを保存せず、長期authorityは各正本へ置く。"
         }
       ],
-      "locator_correction": null
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators"
     },
     {
       "asset_id": "LEGACY-ASSET-19E54587EB063625EC53",
@@ -144,7 +158,8 @@
           "text": "既存CI高速化・Recovery・Cursor限定実行を本候補の完成待ちへ一括変更しない。"
         }
       ],
-      "locator_correction": null
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators"
     },
     {
       "asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
@@ -158,8 +173,20 @@
       ],
       "line_quotes": [
         {
-          "line": 9,
-          "text": ""
+          "line": 10,
+          "text": "- DGH-BR-01: 外部の実例と既存資産を前提に、論点ごとに根拠を揃えてDesign候補を形成する。DG-R-01..04へ分解する。"
+        },
+        {
+          "line": 11,
+          "text": "- DGH-BR-02: 人間の反応とAI解釈を分離し、客観品質と主観意味を相殺せず必要なscopeだけ再作業する。HR-R-01..04へ分解する。"
+        },
+        {
+          "line": 12,
+          "text": "- DGH-BR-03: 反復で受容した軸を保持し、findingの解消・再発・未解決から収束を検証する。DC-R-01..04へ分解する。"
+        },
+        {
+          "line": 15,
+          "text": "人間の相談・反応を指示/承認へ勝手に昇格しない。半永続的な設計判断はADR、採否・認可はscope付き証拠、作業連絡は期限付きmemoryへ分離する。"
         },
         {
           "line": 16,
@@ -170,7 +197,8 @@
         "upstream_end": 19,
         "actual_end": 16,
         "meaning_change": false
-      }
+      },
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators"
     },
     {
       "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
@@ -180,6 +208,7 @@
       "reuse": "semantic_rederivation",
       "read_lines": [
         20,
+        25,
         42
       ],
       "line_quotes": [
@@ -188,11 +217,28 @@
           "text": "| AAFD-AC-006 | AAFD-R-06 | 11 changed dimension、previous/observed、unknown、invalidation exact setを欠落なく保持する |"
         },
         {
+          "line": 25,
+          "text": "| AAFD-AC-011 | AAFD-R-11 | stale directive、unresolved unknown、missing receiptからassignment/release/retireを発行しない |"
+        },
+        {
           "line": 42,
           "text": "- unknownを0、neutral、unchanged、observedへ変換する。"
         }
       ],
-      "locator_correction": null
+      "locator_correction": {
+        "previous_basic_design_locator": [
+          20,
+          42
+        ],
+        "approved_l3_locator": [
+          20,
+          25,
+          42
+        ],
+        "reason": "F4: 25行を落とした著述誤りを承認L3へ合わせて訂正。要求意味・旧資産採否・source bytesは変えない。",
+        "meaning_change": false
+      },
+      "read_lines_semantics": "explicit individual line locators matching approved L3 process_trace.sources"
     },
     {
       "asset_id": "LEGACY-ASSET-5DAB2F0E1C13F846CABB",
@@ -202,7 +248,7 @@
       "reuse": "semantic_rederivation",
       "read_lines": [
         13,
-        27
+        29
       ],
       "line_quotes": [
         {
@@ -210,11 +256,43 @@
           "text": "`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`で小さく収束する。S4の採用判断は"
         },
         {
-          "line": 27,
-          "text": ""
+          "line": 14,
+          "text": "Scrum内でproduct authorityを変更せず、正規Vモデルの該当層へScrum Reverseする。"
+        },
+        {
+          "line": 16,
+          "text": "product要求・設計・実装はcanonical L1〜L12のForwardで進める。管理上の緊急性を理由にVペア、"
+        },
+        {
+          "line": 17,
+          "text": "上下edge、TDD、review、acceptanceを省略しない。"
+        },
+        {
+          "line": 24,
+          "text": "- Project Statusから上流意味、承認、完了状態を逆書込みしない。"
+        },
+        {
+          "line": 28,
+          "text": "Issueは観測、影響範囲、再発回数、提案するgate／checklist、現在のScrum stage、Scrum Reverse先を"
+        },
+        {
+          "line": 29,
+          "text": "欠落なく保持する。同一findingを重複起票せず、既存Issueへ観測証拠を追記する。"
         }
       ],
-      "locator_correction": null
+      "locator_correction": {
+        "previous_range": [
+          13,
+          27
+        ],
+        "actual_read_range": [
+          13,
+          29
+        ],
+        "reason": "F4: 管理上の緊急性でもV-pair/受入を省略しない本文とIssue最小契約の内容行まで読む。空の27行を根拠引用として使わない。",
+        "meaning_change": false
+      },
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators"
     },
     {
       "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
@@ -232,7 +310,8 @@
           "text": "| **FR-L1-16** | Incidentワークフロー（本番障害: 検出 → hotfix → 即release → 収束 → current L1〜L12へbackfill） | incident-workflow | 本番障害alert／SLO逸脱 | troubleshoot/recovery PLAN、postmortem、L12 feedback。Reverse fullback経由で選択済みdevelopment styleへ戻す | P0 | PM-03 (障害シグナル) / HM-06 |"
         }
       ],
-      "locator_correction": null
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators"
     },
     {
       "asset_id": "LEGACY-ASSET-322CD23B625A08E2BFB3",
@@ -254,7 +333,8 @@
           "text": "- findingの再現、修正、独立検証、remediation evidence"
         }
       ],
-      "locator_correction": null
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators"
     },
     {
       "asset_id": "LEGACY-ASSET-08373C0AEE18881133D5",
@@ -276,7 +356,8 @@
           "text": "数値SLO、target環境、予算、保持期間、blast radiusは対象RequirementまたはRelease契約で別途承認する。"
         }
       ],
-      "locator_correction": null
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators"
     },
     {
       "asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
@@ -290,15 +371,52 @@
       ],
       "line_quotes": [
         {
-          "line": 1,
-          "text": "---"
+          "line": 28,
+          "text": "> 2026-09-05、PLAN-L3-77固有のL3 human gateが成立した。本書は承認済みcandidateだが、"
+        },
+        {
+          "line": 29,
+          "text": "> canonical promotionとG3再freezeが成立するまではcurrent authorityではない。runtime completion、"
+        },
+        {
+          "line": 30,
+          "text": "> authority自動write、merge／publish／release／cutoverは別境界に残す。"
+        },
+        {
+          "line": 40,
+          "text": "UILで正規化されたeventとfindingからRF0候補を導出する規則を、version、authority digest、source／detector identity、"
+        },
+        {
+          "line": 41,
+          "text": "baseline revision、比較演算、threshold source、観測window、minimum sample、hysteresis、cooldown、expiry、severity、"
+        },
+        {
+          "line": 42,
+          "text": "counterevidence、unknown dispositionへ束縛する。source registryの定義を複製せず、policy値をruntimeへ重複hardcodeしない。"
+        },
+        {
+          "line": 46,
+          "text": "invariant違反、再発、metric budget超過、悪化傾向、structural drift、release boundary、provider change、"
+        },
+        {
+          "line": 47,
+          "text": "scheduled safety-netを別trigger identityとして扱う。LOC、file size、Issue数、AI評価、単一瞬間値だけでは候補をadmitしない。"
+        },
+        {
+          "line": 48,
+          "text": "蓄積評価はversioned windowとminimum sampleを満たし、lifecycle boundaryは評価契機であって悪化証拠なしにrefactorを強制しない。"
+        },
+        {
+          "line": 53,
+          "text": "UIL candidateからRF0へ渡すadmissionはcandidate／finding／trigger evidenceのexact identityとdigest、source registry、"
         },
         {
           "line": 54,
           "text": "trigger policy、baseline、primary scopeはexactly one、related scope、semantic parity、route candidate、suppression、"
         }
       ],
-      "locator_correction": null
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators"
     }
   ],
   "legacy_rederivation_basis": {
@@ -765,20 +883,20 @@
     },
     "F03": {
       "normal": 4,
-      "negative": 35,
-      "source_packets": 39,
+      "negative": 39,
+      "source_packets": 43,
       "state": "draft_not_executed"
     },
     "B01": {
       "normal": 1,
-      "negative": 19,
-      "source_packets": 20,
+      "negative": 22,
+      "source_packets": 23,
       "state": "draft_not_executed"
     },
     "N01": {
-      "normal": 1,
-      "negative": 26,
-      "source_packets": 27,
+      "normal": 3,
+      "negative": 35,
+      "source_packets": 38,
       "state": "draft_not_executed"
     },
     "F01": {
@@ -793,5 +911,12 @@
       "source_packets": 24,
       "state": "draft_not_executed"
     }
+  },
+  "synthetic_reference_binding": {
+    "qualification": "synthetic_content_bound_revision_not_formal_schema_or_actual_owner",
+    "rule": "各content-bearing ref/source/basisのrevisionは、同一node内で当該refを除いた内容のcanonical JSON SHA-256へ束縛する。子参照を先に束縛する。内容を変えた材料は別revisionとし、同じexact refへ別内容を結合しない。",
+    "mutation_replay": "reference_preparationの参照revisionのみをbefore/afterで先に照合・適用し、その後に記録された内容mutationを適用する。準備変更は意味期待やauthorityの成立を変更しない。",
+    "standalone_refs": "参照だけで内容nodeがない値は未資格の合成参照のまま。実owner bytes/資格はL5/L8で閉じる。",
+    "actual_identity_assigned": false
   }
 }
