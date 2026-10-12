@@ -117,9 +117,9 @@
         33,
         81
       ],
-      "preserve": "FR02のtest Red→本体Green、FR50の5規律、旧rulesの実検出/同oracle/具体期待、影響範囲検査と省略保全。",
-      "change": "旧rulesのred_at<=green_atだけとFR02の実装前順序は同値ではない。REDFIRST Aにより実装前実観測を明示。9/26判断によりCI範囲の起点をticketとし回収を合流先へ移し、merge直後full/nightly既定を廃止。",
-      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。",
+      "preserve": "FR02のテスト先行・本体実装前Redと、FR50の依存方向・不変条件trace・Red証拠・oracle強度・結合GWTの5規律を保持する。",
+      "change": "旧L7実装/L7単体oracle/L8結合の番号を現行の意味pairへ対応させ、F05〜F09の比較義務として具体化する。旧doctor/workflow/DB自体は移植しない。",
+      "reason": "採択済みDDDSTRICTとREDFIRST Aに従い、要求の意味と旧実行経路を分ける。FR02の実装前順序を保持し、実証拠は未成立のまま残す。",
       "boundary": "参照行の採択済み意味facetだけ再導出。旧固有tool/gate/層番号/全原文要求の採否は変更しない。",
       "line_quotes": [
         {
@@ -147,9 +147,9 @@
         54,
         58
       ],
-      "preserve": "FR02のtest Red→本体Green、FR50の5規律、旧rulesの実検出/同oracle/具体期待、影響範囲検査と省略保全。",
-      "change": "旧rulesのred_at<=green_atだけとFR02の実装前順序は同値ではない。REDFIRST Aにより実装前実観測を明示。9/26判断によりCI範囲の起点をticketとし回収を合流先へ移し、merge直後full/nightly既定を廃止。",
-      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。",
+      "preserve": "行23/24の意図した欠陥の実検出・最小Green・同oracleのRefactor、行42/46/50/54/58の宣言方向・全不変条件の具体oracle・Red/Green証拠・truthinessだけに依存しない期待・GWT粒度をF05〜F09へ保持する。",
+      "change": "旧red_at<=green_atの時刻比較だけから完了を出さず、REDFIRST Aの凍結→実装前実Red→本体→同oracle Greenを照合する。旧方向表・層番号・confirmed PLAN・doctor/DB gateは現行へ自動移植しない。",
+      "reason": "DDDSTRICT/REDFIRSTの承認済み義務から同revision/scopeと実観測の内容を比較する。時刻順だけではFR02の実装先行禁止を保証できないため。",
       "boundary": "参照行の採択済み意味facetだけ再導出。旧固有tool/gate/層番号/全原文要求の採否は変更しない。",
       "line_quotes": [
         {
@@ -196,9 +196,9 @@
         59,
         60
       ],
-      "preserve": "FR02のtest Red→本体Green、FR50の5規律、旧rulesの実検出/同oracle/具体期待、影響範囲検査と省略保全。",
-      "change": "旧rulesのred_at<=green_atだけとFR02の実装前順序は同値ではない。REDFIRST Aにより実装前実観測を明示。9/26判断によりCI範囲の起点をticketとし回収を合流先へ移し、merge直後full/nightly既定を廃止。",
-      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。",
+      "preserve": "行54/57〜60の変更影響に応じた必要検証、critical/high-riskの上位証明、省略集合の保全と回収先への結合、targeted成功を全範囲成功に代用しない意味をF03へ保持する。",
+      "change": "行29/57/58のmerge直後fullとnightly既定を採用せず、小/中/大ticketをCI範囲の起点とし、省略は合流先ticketへ回収する。旧固定profile・時間予算・doctor実行は移植しない。",
+      "reason": "承認済み005 F03と9/26のVの谷の順序差分に従う。必要集合を保全したまま回収の主体・時点を現行ticketへ再導出する。",
       "boundary": "参照行の採択済み意味facetだけ再導出。旧固有tool/gate/層番号/全原文要求の採否は変更しない。",
       "line_quotes": [
         {
@@ -236,9 +236,9 @@
       "individual_lines": [
         319
       ],
-      "preserve": "FR02のtest Red→本体Green、FR50の5規律、旧rulesの実検出/同oracle/具体期待、影響範囲検査と省略保全。",
-      "change": "旧rulesのred_at<=green_atだけとFR02の実装前順序は同値ではない。REDFIRST Aにより実装前実観測を明示。9/26判断によりCI範囲の起点をticketとし回収を合流先へ移し、merge直後full/nightly既定を廃止。",
-      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。",
+      "preserve": "行319の後日不具合等を証拠付きrelationで元Ticketへ結び、時間/pathだけで因果を断定せず、元closureを保存して追補assessmentを分離する意味をF04へ保持する。",
+      "change": "元closure/因果relation/追補assessmentを別材料にし、OSの原記録とLABOの評価責務へ対応させる。一般Ticketのcloseに長期観測待ちを追加しない。",
+      "reason": "承認済み005 F04の因果照合とLABO評価境界を具体化する。旧candidate全体の採用や新たな閉鎖条件の追加には広げない。",
       "boundary": "参照行の採択済み意味facetだけ再導出。旧固有tool/gate/層番号/全原文要求の採否は変更しない。",
       "line_quotes": [
         {
@@ -257,9 +257,9 @@
         10,
         11
       ],
-      "preserve": "FR02のtest Red→本体Green、FR50の5規律、旧rulesの実検出/同oracle/具体期待、影響範囲検査と省略保全。",
-      "change": "旧rulesのred_at<=green_atだけとFR02の実装前順序は同値ではない。REDFIRST Aにより実装前実観測を明示。9/26判断によりCI範囲の起点をticketとし回収を合流先へ移し、merge直後full/nightly既定を廃止。",
-      "reason": "採択済みVの谷/DDDSTRICT/REDFIRSTに従う。旧lint/層番号/方向表/GreenDefinition/history/DB gateを移植せず保留sourceに残す。",
+      "preserve": "行10のbackup/snapshot存在と隔離restore・integrity成功の区別、行11のrollback成功と恒久修復・再発防止の区別をN02へ保持する。",
+      "change": "5結果を独立状態で扱い、restore等のoracle・RTO/RPO・環境条件は対象製品のL11/L10/L12へ参照する。旧candidate全体や一律の数値・環境・保存期間を採用しない。",
+      "reason": "承認済み005 N02の製品固有条件と独立結果に対応させる。backup/rollbackの一件の成功から未実行/unknownの他結果を完了にしないため。",
       "boundary": "参照行の採択済み意味facetだけ再導出。旧固有tool/gate/層番号/全原文要求の採否は変更しない。",
       "line_quotes": [
         {
@@ -349,7 +349,8 @@
           "line": 99,
           "text": "inventory digest、selected/deferred exact set、itemごとの開始・終了・duration・exit code・output digestを持つ。"
         }
-      ]
+      ],
+      "archive_disposition": "unresolved"
     }
   ],
   "legacy_source_limit": "HCV4-L11-003/004は現行L11の移管条件を起点とする。archive/root/docsでIDと語句を検索したが直接の旧原文行は未特定であり、現行crosswalkを旧原文の代替出典にしない。NIO候補全件の採用ではなく現行005へ移管済みの回復結果分離を具体化する。",
