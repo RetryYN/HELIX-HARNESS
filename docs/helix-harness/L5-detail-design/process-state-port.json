@@ -555,8 +555,8 @@
       "state": "draft_basic_typed_qualification_and_valley_content_pending_review",
       "qualification_source_groups": 34,
       "qualification_matrix_cases": 141,
-      "valley_content_counterexamples": 8,
-      "valley_content_typed_cells": 136
+      "valley_content_counterexamples": 10,
+      "valley_content_typed_cells": 170
     },
     "F04": {
       "basic_calls": 30,
@@ -760,7 +760,8 @@
         "mixed_failure_rule": "同一fieldに異なる不成立stateがある場合はfieldをunknown/nullとし、個別source_qualification_results/qualification_returnsで全stateを保持。優先順位で不足を捨てない。",
         "source_binding_limit": "source_packet_refは物理carrier参照。primitive/listのlocator refは合成例の内容参照で、実原記録/owner資格ではない。",
         "logical_type_limit": "内部論理型案。正式schema/codec/trust/署名方式を採用しない。"
-      }
+      },
+      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。"
     },
     {
       "id": "HARNESS-L5-003-F01",
@@ -1445,7 +1446,8 @@
         },
         "qualification_rule": "各source資格を独立に読む。合成正常基準に対する単一資格不足matrixは該当依存結果のみstate/null。混在状態は個別診断を保持し、同一結果の複数異種不足はunknown/null。実作用6項目のfalseと発行責務OSは設計の不変値であり実資格ではない。",
         "valley_content_rule": "凍結→本体前Red実観測→最小Green→意味保存Refactor→変更後HEADの再検証を同一oracleへ結ぶ。Red未実行/欠陥未検出、凍結後付け、Greenの別oracle、Refactor意味変更、変更前HEAD/未実行/退行した再検証は谷のconflictでありProvisionalを成立させない。他の独立sourceの対/観点/trigger結果は保持する。"
-      }
+      },
+      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。"
     },
     {
       "id": "HARNESS-L5-003-F04",
@@ -1863,7 +1865,8 @@
           }
         },
         "qualification_rule": "状態root/bindingと各工程・観測・人間原受入・AI解釈・Port条件・配備・運用原材料を個別に照合する。状態固有資格が未成立でも他状態の原結果を保持し、連続frontierは最初の未成立の前で止める。原受入の資格不足をAI解釈で補わない。"
-      }
+      },
+      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。"
     },
     {
       "id": "HARNESS-L5-003-F05",
@@ -6032,7 +6035,14 @@
           }
         },
         "qualification_rule": "各対象Context/領域membership/原適用・N/A根拠、品質5段とfinding6段のroot/binding/原内容、各数値根拠とsecurity7軸/policy/authorityを個別SourceCellとして照合する。未観測nullと未資格sourceを区別し、無関係targetを保持する。全域のhealthyや操作許可/数値既定を部分的な原資料から生成しない。"
-      }
+      },
+      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。"
     }
-  ]
+  ],
+  "review_corrections": {
+    "reviewed_head": "89e08fd64237c2b106c7611dd42625f9b72c35a4",
+    "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2993#issuecomment-6130558104",
+    "F1": "43case/fieldのflat→typed写像をexact basic hashと理由付きで記録。L9原bytes無改変。独立再review未成立。",
+    "F2": "Green未実行/期待不一致の谷原内容反例2件を追加。実TDD未実行。"
+  }
 }

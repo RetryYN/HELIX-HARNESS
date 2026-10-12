@@ -555,8 +555,8 @@
       "state": "draft_basic_typed_qualification_and_valley_content_pending_review",
       "qualification_source_groups": 34,
       "qualification_matrix_cases": 141,
-      "valley_content_counterexamples": 8,
-      "valley_content_typed_cells": 136
+      "valley_content_counterexamples": 10,
+      "valley_content_typed_cells": 170
     },
     "F04": {
       "basic_calls": 30,
@@ -2816,7 +2816,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-B01-HUMAN-MISSING",
+            "source_basic_case_sha256": "c57a56f013136c6c3ab2cc726032f129bd64fa3d9d18b99570ec389cca954dd8",
+            "field": "retained_accepted_axes",
+            "source_flat_expected_value": [],
+            "source_flat_convention": "この固定basic caseの[]は当該scopeで主張可能な原受容軸が無いというflat表現。原受容を観測した既知空集合ではない。",
+            "typed_expected_state": "missing",
+            "typed_expected_value": null,
+            "reason": "原反応欠落/AI解釈の原反応への誤昇格/別scopeを、原資料が示すmissing/conflict/staleとして型付けし、既知の空の人間受容へ変換しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-B01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-B01-HUMAN-UNACCEPTED-AXIS",
@@ -3250,7 +3264,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-B01-AI-AS-ORIGINAL",
+            "source_basic_case_sha256": "dfa496da139b607e2bb1a50ec265e7c04f3082610315eb0ffbc652358ec66673",
+            "field": "retained_accepted_axes",
+            "source_flat_expected_value": [],
+            "source_flat_convention": "この固定basic caseの[]は当該scopeで主張可能な原受容軸が無いというflat表現。原受容を観測した既知空集合ではない。",
+            "typed_expected_state": "conflict",
+            "typed_expected_value": null,
+            "reason": "原反応欠落/AI解釈の原反応への誤昇格/別scopeを、原資料が示すmissing/conflict/staleとして型付けし、既知の空の人間受容へ変換しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-B01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-B01-HUMAN-FOREIGN-SCOPE",
@@ -3466,7 +3494,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-B01-HUMAN-FOREIGN-SCOPE",
+            "source_basic_case_sha256": "a72e1dc5332ff015791671394823db0eb5aabfd94c9c781e986024aef7d8411c",
+            "field": "retained_accepted_axes",
+            "source_flat_expected_value": [],
+            "source_flat_convention": "この固定basic caseの[]は当該scopeで主張可能な原受容軸が無いというflat表現。原受容を観測した既知空集合ではない。",
+            "typed_expected_state": "stale",
+            "typed_expected_value": null,
+            "reason": "原反応欠落/AI解釈の原反応への誤昇格/別scopeを、原資料が示すmissing/conflict/staleとして型付けし、既知の空の人間受容へ変換しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-B01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-B01-UNRESOLVED-FINDING",
@@ -74090,7 +74132,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-F03-PRE-BODY-RED-ABSENT",
+            "source_basic_case_sha256": "b1c16a7a23040611654d7d5285cfca8799b3a10072ebaafd8db02a057c082d58",
+            "field": "state_ceiling_from_valley",
+            "source_flat_expected_value": null,
+            "source_flat_convention": "この固定basic caseのnullは実装前Red欠落により谷から状態上限を成立させないというflat表現。known nullの観測値ではない。",
+            "typed_expected_state": "conflict",
+            "typed_expected_value": null,
+            "reason": "valley_resultのconflictを上限の資格状態へ明示し、Provisionalを生成しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-F03",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-F03-PUBLIC-MEANING-CHANGE",
@@ -89468,6 +89524,788 @@
           },
           "execution_state": "not_executed",
           "effect": "none"
+        },
+        {
+          "id": "H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+          "function_ref": "HARNESS-L5-003-F03",
+          "baseline_source_case_ref": "H003-F03-NORMAL",
+          "baseline_source_case_sha256": "6a89fc861c41a651ee24c290bf0299a4466958ad9c5648e41d112599e2121c77",
+          "mutations": [
+            {
+              "path": [
+                "valley",
+                "content",
+                "steps",
+                3,
+                "executed"
+              ],
+              "before": true,
+              "after": false
+            }
+          ],
+          "reference_preparation": [
+            {
+              "path": [
+                "valley",
+                "ref",
+                "revision"
+              ],
+              "before": "fixture-r1-content-2cdbc36f0f6ab822d9eab1f8924c44c8872ba2f07c46dbe0e178520d2149e60b",
+              "after": "fixture-content-b45ceb1d6cd1f0ee6f112a6c0a02b55b2bb06083339dc94080741264a52ba7c8",
+              "rule": "合成変更後valleyのrefを除く内容digestへ結び直す。実署名/資格ではない。"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+              "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-content-counterexample-owner"
+            },
+            "raw_utf8": "{\"design_trust\":{\"disputed\":false,\"owner\":{\"identity\":\"DESIGN-TRUST\",\"owner\":\"original-design-owner\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"},\"source_revision\":\"DESIGN-DUP@r1\"},\"improvement\":{\"architecture_after\":\"ARCH@r1\",\"architecture_before\":\"ARCH@r1\",\"behavior_after\":\"PUBLIC@r1\",\"behavior_before\":\"PUBLIC@r1\",\"independent\":false,\"kind\":\"local_boundary\",\"requirement_after\":\"REQ@r1\",\"requirement_before\":\"REQ@r1\",\"scope\":\"CONNECTION-C\",\"state_after\":\"STATE@r1\",\"state_before\":\"STATE@r1\"},\"l9_dimensions\":[{\"expected\":{\"consumer\":\"HARNESS-condition-reader\",\"input\":[\"REQ@r1\",\"PRODUCT-P\"],\"output\":[\"ARTIFACT-A@h2\",\"state-proof-ref\"],\"provider\":\"OS-record-reader\"},\"id\":\"interface\",\"observed\":{\"consumer\":\"HARNESS-condition-reader\",\"input\":[\"REQ@r1\",\"PRODUCT-P\"],\"output\":[\"ARTIFACT-A@h2\",\"state-proof-ref\"],\"provider\":\"OS-record-reader\"},\"source\":{\"identity\":\"BOUNDARY-interface\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-602feeff09b89e68cb1688ac6df070dfa074116e2c77d1392e29b1eb180d3e0f\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"depends\":[\"HARNESS-condition-reader\",\"OS-record-read-contract\"],\"reverse_dependency\":false},\"id\":\"dependency_direction\",\"observed\":{\"depends\":[\"HARNESS-condition-reader\",\"OS-record-read-contract\"],\"reverse_dependency\":false},\"source\":{\"identity\":\"BOUNDARY-dependency_direction\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-3be17bfb83a6cbf6326bd1b40d25d663cae549ddeb815b2edd0da06f4452b18f\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"HARNESS_writes_state\":false,\"state_writer\":\"OS\"},\"id\":\"state_data_ownership\",\"observed\":{\"HARNESS_writes_state\":false,\"state_writer\":\"OS\"},\"source\":{\"identity\":\"BOUNDARY-state_data_ownership\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-7b209497e13aa1e8e7dfa146bfc13563724f7e144f3af5bfb2075e0ffd03a089\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"mixed_revision\":false,\"operation\":\"read-proof-set\",\"snapshot_revision\":\"SNAPSHOT@r1\"},\"id\":\"transaction\",\"observed\":{\"mixed_revision\":false,\"operation\":\"read-proof-set\",\"snapshot_revision\":\"SNAPSHOT@r1\"},\"source\":{\"identity\":\"BOUNDARY-transaction\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-957373c66e0daf5b85f4ae36e3094d41b76b5dcf199a141b764f82cd33a25c04\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"OS_return\":\"original-proof-owner\",\"condition_result\":\"missing\",\"read_failure\":\"missing_source\"},\"id\":\"failure_propagation\",\"observed\":{\"OS_return\":\"original-proof-owner\",\"condition_result\":\"missing\",\"read_failure\":\"missing_source\"},\"source\":{\"identity\":\"BOUNDARY-failure_propagation\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-8bad354a013f90a5620df4253eda14ed239bd823a53c8d427931da725f6f6563\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"original_source_revision\":\"SNAPSHOT@r1\",\"repeated_read_key\":\"READ-01\",\"source_revision_after_retry\":\"SNAPSHOT@r1\",\"writes\":0},\"id\":\"retry\",\"observed\":{\"original_source_revision\":\"SNAPSHOT@r1\",\"repeated_read_key\":\"READ-01\",\"source_revision_after_retry\":\"SNAPSHOT@r1\",\"writes\":0},\"source\":{\"identity\":\"BOUNDARY-retry\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-6fafe9032f219d41ff210b0de5e931efa886b3b3280ee72ba8936cdc7daaecef\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"assumed_success\":false,\"condition_result\":\"unknown\",\"synthetic_failure\":\"source_read_timeout\"},\"id\":\"timeout\",\"observed\":{\"assumed_success\":false,\"condition_result\":\"unknown\",\"synthetic_failure\":\"source_read_timeout\"},\"source\":{\"identity\":\"BOUNDARY-timeout\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-e3f15cc5a612ee89dae3c47b9643393989cf7f41c9c8954d12a7459c84ae2f8a\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"repeated_results\":[\"RESULT@r1\",\"RESULT@r1\"],\"same_read_key\":\"READ-01\",\"state_writes\":0},\"id\":\"idempotency\",\"observed\":{\"repeated_results\":[\"RESULT@r1\",\"RESULT@r1\"],\"same_read_key\":\"READ-01\",\"state_writes\":0},\"source\":{\"identity\":\"BOUNDARY-idempotency\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-a958fa6d76f2d93af001842b008dd30661306005093b2b00281b6d912008d13d\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"changed_scope\":\"PRODUCT-P\",\"rechecked_scopes\":[\"PRODUCT-P\"],\"unrelated_scope\":\"PRODUCT-Q\",\"unrelated_state_changed\":false},\"id\":\"coupling\",\"observed\":{\"changed_scope\":\"PRODUCT-P\",\"rechecked_scopes\":[\"PRODUCT-P\"],\"unrelated_scope\":\"PRODUCT-Q\",\"unrelated_state_changed\":false},\"source\":{\"identity\":\"BOUNDARY-coupling\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-b04eb5a95bc9a9c6a26c04f3af1266cf4e2ba10067fbeb3162de5994b9741202\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"actual_ticket_issuer\":[\"OS\"],\"meaning_owner\":[\"HARNESS\"],\"state_record_owner\":[\"OS\"]},\"id\":\"responsibility_duplication\",\"observed\":{\"actual_ticket_issuer\":[\"OS\"],\"meaning_owner\":[\"HARNESS\"],\"state_record_owner\":[\"OS\"]},\"source\":{\"identity\":\"BOUNDARY-responsibility_duplication\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-a2319c513399c9a9c2c6254c852921863b1da20a1263920dc3260c1be781e040\",\"scope\":\"PRODUCT-P\"}}],\"large_deviation\":{\"expected_architecture\":\"ARCH@r1\",\"finding_ref\":null,\"observed_architecture\":\"ARCH@r1\"},\"legacy_asset\":false,\"origin\":{\"artifact\":\"ARTIFACT-A@h2\",\"design\":\"DESIGN-DUP@r1\",\"pair\":\"PAIR-DUP@r1\",\"requirement\":\"REQ@r1\",\"ticket\":\"FORWARD-01\"},\"paired_comparisons\":[{\"left\":\"L5\",\"observed_design\":\"UNIT-DESIGN@r1\",\"required_design\":\"UNIT-DESIGN@r1\",\"revision\":\"REQ@r1\",\"right\":\"L8\",\"scope\":\"UNIT-U\"},{\"left\":\"L4\",\"observed_design\":\"BOUNDARY@r1\",\"required_design\":\"BOUNDARY@r1\",\"revision\":\"REQ@r1\",\"right\":\"L9\",\"scope\":\"CONNECTION-C\"},{\"left\":\"L3\",\"observed_design\":\"REQ@r1\",\"required_design\":\"REQ@r1\",\"revision\":\"REQ@r1\",\"right\":\"L10\",\"scope\":\"PRODUCT-P\"}],\"scenario_kind\":\"synthetic_condition_fixture_no_actual_ticket_or_reverse_execution\",\"scope_extents\":{\"CONNECTION-C\":\"PRODUCT-P\",\"PRODUCT-P\":\"PRODUCT-P\",\"UNIT-U\":\"PRODUCT-P\"},\"target\":{\"artifact\":\"ARTIFACT-A@h2\",\"environment\":\"ENV-A\",\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"trace\":[[\"REQ@r1\",\"DESIGN-DUP@r1\"],[\"DESIGN-DUP@r1\",\"REQ@r1\"],[\"DESIGN-DUP@r1\",\"BOUNDARY@r1\"],[\"BOUNDARY@r1\",\"DESIGN-DUP@r1\"]],\"trace_role\":\"upper_requirement_design_pair_origin_separate_from_valley_trace\",\"trigger_materials\":{\"design_implementation_drift\":{\"expected_contract\":\"CONTRACT-DUP@r1\",\"observed_contract\":\"CONTRACT-DUP@r1\"},\"incident_permanent_remedy\":{\"incident_ref\":null,\"permanent_remedy_required\":false},\"performance\":{\"baseline\":10,\"meaning\":\"fixture_comparison_not_product_SLO\",\"metric\":\"synthetic_case_elapsed_units\",\"observed\":10,\"source\":{\"identity\":\"PERFORMANCE-DELTA\",\"owner\":\"normalized-performance-finding-owner\",\"revision\":\"fixture-r1-content-cd04910d0a4188f95a9878494eae8263223baa85686c626cc0c1b318d302f7c3\",\"scope\":\"PRODUCT-P\"}},\"recurrence\":{\"current_occurrences\":0,\"finding_kind\":\"duplicate_debit\",\"previous_occurrences\":0},\"scrum_checkpoint\":{\"checkpoint_ref\":null,\"checkpoint_required\":false,\"style\":\"V-model\"}},\"valley\":{\"binding\":{\"artifact\":\"ARTIFACT-A@h2\",\"environment\":\"ENV-A\",\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"contract\":\"CONTRACT-DUP@r1\",\"oracle\":\"ORACLE-DUP@r1\",\"steps\":[{\"kind\":\"freeze\",\"oracle\":\"ORACLE-DUP@r1\",\"seq\":1},{\"executed\":true,\"expected_debits\":1,\"failure\":\"duplicate_debit\",\"head\":\"h0\",\"kind\":\"pre_body_red\",\"observed_debits\":2,\"oracle\":\"ORACLE-DUP@r1\",\"seq\":2},{\"from_head\":\"h0\",\"kind\":\"minimum_body\",\"minimal_scope\":\"one_command_duplicate_debit\",\"oracle\":\"ORACLE-DUP@r1\",\"seq\":3,\"to_head\":\"h1\"},{\"executed\":false,\"expected_debits\":1,\"head\":\"h1\",\"kind\":\"green\",\"observed_debits\":1,\"oracle\":\"ORACLE-DUP@r1\",\"seq\":4},{\"architecture_after\":\"ARCH@r1\",\"architecture_before\":\"ARCH@r1\",\"from_head\":\"h1\",\"kind\":\"local_refactor\",\"oracle\":\"ORACLE-DUP@r1\",\"public_contract_after\":\"CONTRACT-DUP@r1\",\"public_contract_before\":\"CONTRACT-DUP@r1\",\"requirement_after\":\"REQ@r1\",\"requirement_before\":\"REQ@r1\",\"seq\":5,\"state_after\":\"STATE@r1\",\"state_before\":\"STATE@r1\",\"to_head\":\"h2\"},{\"executed\":true,\"expected_debits\":1,\"head\":\"h2\",\"kind\":\"atomic_ci\",\"observed_debits\":1,\"oracle\":\"ORACLE-DUP@r1\",\"seq\":6}],\"trace\":[[\"DESIGN-DUP@r1\",\"CODE-DUP@h2\"],[\"CODE-DUP@h2\",\"DESIGN-DUP@r1\"],[\"DESIGN-DUP@r1\",\"TD-DUP@r1\"],[\"TD-DUP@r1\",\"DESIGN-DUP@r1\"],[\"CODE-DUP@h2\",\"TC-DUP@h2\"],[\"TC-DUP@h2\",\"CODE-DUP@h2\"],[\"TD-DUP@r1\",\"TC-DUP@h2\"],[\"TC-DUP@h2\",\"TD-DUP@r1\"]],\"trace_artifacts\":{\"design\":\"DESIGN-DUP@r1\",\"implementation\":\"CODE-DUP@h2\",\"test_code\":\"TC-DUP@h2\",\"test_design\":\"TD-DUP@r1\"}},\"ref\":{\"identity\":\"PROOF-Provisional\",\"owner\":\"execution-owner\",\"revision\":\"fixture-content-b45ceb1d6cd1f0ee6f112a6c0a02b55b2bb06083339dc94080741264a52ba7c8\",\"scope\":\"PRODUCT-P\"}}}",
+            "sha256": "bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+            "qualification": "synthetic_known_source_contents_not_actual_owner_authority",
+            "effect": "none"
+          },
+          "expected_partial_values": {
+            "valley_result": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "Greenの期待値が書かれていても実観測が未実行であり、最小実装が凍結oracleを満たした証拠ではない。"
+            },
+            "state_ceiling_from_valley": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "Greenの期待値が書かれていても実観測が未実行であり、最小実装が凍結oracleを満たした証拠ではない。"
+            },
+            "reverse_scope_candidate": {
+              "state": "known",
+              "value": "Scoped Reverse",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "reverse_trigger_materials": {
+              "state": "known",
+              "value": [],
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "reverse_ticket_candidate": {
+              "state": "known",
+              "value": "none",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "ticket_issuer": {
+              "state": "known",
+              "value": "OS",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "improvement_route": {
+              "state": "known",
+              "value": "current_Forward",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "meaning_backflow": {
+              "state": "known",
+              "value": [],
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "pair_result": {
+              "state": "known",
+              "value": "supported_synthetic_condition",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "l9_dimension_results": {
+              "state": "known",
+              "value": {
+                "interface": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "dependency_direction": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "state_data_ownership": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "transaction": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "failure_propagation": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "retry": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "timeout": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "idempotency": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "coupling": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "responsibility_duplication": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "actual_ticket_issued": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "actual_reverse_executed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "actual_quality_accepted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "actual_user_accepted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "actual_release": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "pair_results": {
+              "state": "known",
+              "value": {
+                "L8": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該対の層/revision/scope/実物と対設計を比較し、他対の結果を保持する。"
+                },
+                "L9": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該対の層/revision/scope/実物と対設計を比較し、他対の結果を保持する。"
+                },
+                "L10": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                    "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該対の層/revision/scope/実物と対設計を比較し、他対の結果を保持する。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-NOT-EXECUTED",
+                "revision": "fixture-content-bfb51b6518328e6fb9d10696d9cb087b8fa96e60109ec18b3c91db7a299f1fe4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "当該原資料と固定基本oracleの合成期待を部分結果で保持。実成立ではない。"
+            }
+          },
+          "expected_owner_return": {
+            "original_source_ref": {
+              "identity": "PROOF-Provisional",
+              "revision": "fixture-content-b45ceb1d6cd1f0ee6f112a6c0a02b55b2bb06083339dc94080741264a52ba7c8",
+              "scope": "PRODUCT-P",
+              "owner": "execution-owner"
+            },
+            "reason": "Greenの期待値が書かれていても実観測が未実行であり、最小実装が凍結oracleを満たした証拠ではない。",
+            "owner_target_state": "unknown",
+            "owner_target": null,
+            "operation_effect": "none"
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "H003-L8-F03-CONTENT-GREEN-REGRESSION",
+          "function_ref": "HARNESS-L5-003-F03",
+          "baseline_source_case_ref": "H003-F03-NORMAL",
+          "baseline_source_case_sha256": "6a89fc861c41a651ee24c290bf0299a4466958ad9c5648e41d112599e2121c77",
+          "mutations": [
+            {
+              "path": [
+                "valley",
+                "content",
+                "steps",
+                3,
+                "observed_debits"
+              ],
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "reference_preparation": [
+            {
+              "path": [
+                "valley",
+                "ref",
+                "revision"
+              ],
+              "before": "fixture-r1-content-2cdbc36f0f6ab822d9eab1f8924c44c8872ba2f07c46dbe0e178520d2149e60b",
+              "after": "fixture-content-df6e543847c9d2943fe014ddd6a7fb9c582b8d92597d51634692faa5b81cc31d",
+              "rule": "合成変更後valleyのrefを除く内容digestへ結び直す。実署名/資格ではない。"
+            }
+          ],
+          "independent_source_packet": {
+            "ref": {
+              "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+              "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-content-counterexample-owner"
+            },
+            "raw_utf8": "{\"design_trust\":{\"disputed\":false,\"owner\":{\"identity\":\"DESIGN-TRUST\",\"owner\":\"original-design-owner\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"},\"source_revision\":\"DESIGN-DUP@r1\"},\"improvement\":{\"architecture_after\":\"ARCH@r1\",\"architecture_before\":\"ARCH@r1\",\"behavior_after\":\"PUBLIC@r1\",\"behavior_before\":\"PUBLIC@r1\",\"independent\":false,\"kind\":\"local_boundary\",\"requirement_after\":\"REQ@r1\",\"requirement_before\":\"REQ@r1\",\"scope\":\"CONNECTION-C\",\"state_after\":\"STATE@r1\",\"state_before\":\"STATE@r1\"},\"l9_dimensions\":[{\"expected\":{\"consumer\":\"HARNESS-condition-reader\",\"input\":[\"REQ@r1\",\"PRODUCT-P\"],\"output\":[\"ARTIFACT-A@h2\",\"state-proof-ref\"],\"provider\":\"OS-record-reader\"},\"id\":\"interface\",\"observed\":{\"consumer\":\"HARNESS-condition-reader\",\"input\":[\"REQ@r1\",\"PRODUCT-P\"],\"output\":[\"ARTIFACT-A@h2\",\"state-proof-ref\"],\"provider\":\"OS-record-reader\"},\"source\":{\"identity\":\"BOUNDARY-interface\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-602feeff09b89e68cb1688ac6df070dfa074116e2c77d1392e29b1eb180d3e0f\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"depends\":[\"HARNESS-condition-reader\",\"OS-record-read-contract\"],\"reverse_dependency\":false},\"id\":\"dependency_direction\",\"observed\":{\"depends\":[\"HARNESS-condition-reader\",\"OS-record-read-contract\"],\"reverse_dependency\":false},\"source\":{\"identity\":\"BOUNDARY-dependency_direction\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-3be17bfb83a6cbf6326bd1b40d25d663cae549ddeb815b2edd0da06f4452b18f\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"HARNESS_writes_state\":false,\"state_writer\":\"OS\"},\"id\":\"state_data_ownership\",\"observed\":{\"HARNESS_writes_state\":false,\"state_writer\":\"OS\"},\"source\":{\"identity\":\"BOUNDARY-state_data_ownership\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-7b209497e13aa1e8e7dfa146bfc13563724f7e144f3af5bfb2075e0ffd03a089\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"mixed_revision\":false,\"operation\":\"read-proof-set\",\"snapshot_revision\":\"SNAPSHOT@r1\"},\"id\":\"transaction\",\"observed\":{\"mixed_revision\":false,\"operation\":\"read-proof-set\",\"snapshot_revision\":\"SNAPSHOT@r1\"},\"source\":{\"identity\":\"BOUNDARY-transaction\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-957373c66e0daf5b85f4ae36e3094d41b76b5dcf199a141b764f82cd33a25c04\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"OS_return\":\"original-proof-owner\",\"condition_result\":\"missing\",\"read_failure\":\"missing_source\"},\"id\":\"failure_propagation\",\"observed\":{\"OS_return\":\"original-proof-owner\",\"condition_result\":\"missing\",\"read_failure\":\"missing_source\"},\"source\":{\"identity\":\"BOUNDARY-failure_propagation\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-8bad354a013f90a5620df4253eda14ed239bd823a53c8d427931da725f6f6563\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"original_source_revision\":\"SNAPSHOT@r1\",\"repeated_read_key\":\"READ-01\",\"source_revision_after_retry\":\"SNAPSHOT@r1\",\"writes\":0},\"id\":\"retry\",\"observed\":{\"original_source_revision\":\"SNAPSHOT@r1\",\"repeated_read_key\":\"READ-01\",\"source_revision_after_retry\":\"SNAPSHOT@r1\",\"writes\":0},\"source\":{\"identity\":\"BOUNDARY-retry\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-6fafe9032f219d41ff210b0de5e931efa886b3b3280ee72ba8936cdc7daaecef\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"assumed_success\":false,\"condition_result\":\"unknown\",\"synthetic_failure\":\"source_read_timeout\"},\"id\":\"timeout\",\"observed\":{\"assumed_success\":false,\"condition_result\":\"unknown\",\"synthetic_failure\":\"source_read_timeout\"},\"source\":{\"identity\":\"BOUNDARY-timeout\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-e3f15cc5a612ee89dae3c47b9643393989cf7f41c9c8954d12a7459c84ae2f8a\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"repeated_results\":[\"RESULT@r1\",\"RESULT@r1\"],\"same_read_key\":\"READ-01\",\"state_writes\":0},\"id\":\"idempotency\",\"observed\":{\"repeated_results\":[\"RESULT@r1\",\"RESULT@r1\"],\"same_read_key\":\"READ-01\",\"state_writes\":0},\"source\":{\"identity\":\"BOUNDARY-idempotency\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-a958fa6d76f2d93af001842b008dd30661306005093b2b00281b6d912008d13d\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"changed_scope\":\"PRODUCT-P\",\"rechecked_scopes\":[\"PRODUCT-P\"],\"unrelated_scope\":\"PRODUCT-Q\",\"unrelated_state_changed\":false},\"id\":\"coupling\",\"observed\":{\"changed_scope\":\"PRODUCT-P\",\"rechecked_scopes\":[\"PRODUCT-P\"],\"unrelated_scope\":\"PRODUCT-Q\",\"unrelated_state_changed\":false},\"source\":{\"identity\":\"BOUNDARY-coupling\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-b04eb5a95bc9a9c6a26c04f3af1266cf4e2ba10067fbeb3162de5994b9741202\",\"scope\":\"PRODUCT-P\"}},{\"expected\":{\"actual_ticket_issuer\":[\"OS\"],\"meaning_owner\":[\"HARNESS\"],\"state_record_owner\":[\"OS\"]},\"id\":\"responsibility_duplication\",\"observed\":{\"actual_ticket_issuer\":[\"OS\"],\"meaning_owner\":[\"HARNESS\"],\"state_record_owner\":[\"OS\"]},\"source\":{\"identity\":\"BOUNDARY-responsibility_duplication\",\"owner\":\"integration-original-owner\",\"revision\":\"fixture-r1-content-a2319c513399c9a9c2c6254c852921863b1da20a1263920dc3260c1be781e040\",\"scope\":\"PRODUCT-P\"}}],\"large_deviation\":{\"expected_architecture\":\"ARCH@r1\",\"finding_ref\":null,\"observed_architecture\":\"ARCH@r1\"},\"legacy_asset\":false,\"origin\":{\"artifact\":\"ARTIFACT-A@h2\",\"design\":\"DESIGN-DUP@r1\",\"pair\":\"PAIR-DUP@r1\",\"requirement\":\"REQ@r1\",\"ticket\":\"FORWARD-01\"},\"paired_comparisons\":[{\"left\":\"L5\",\"observed_design\":\"UNIT-DESIGN@r1\",\"required_design\":\"UNIT-DESIGN@r1\",\"revision\":\"REQ@r1\",\"right\":\"L8\",\"scope\":\"UNIT-U\"},{\"left\":\"L4\",\"observed_design\":\"BOUNDARY@r1\",\"required_design\":\"BOUNDARY@r1\",\"revision\":\"REQ@r1\",\"right\":\"L9\",\"scope\":\"CONNECTION-C\"},{\"left\":\"L3\",\"observed_design\":\"REQ@r1\",\"required_design\":\"REQ@r1\",\"revision\":\"REQ@r1\",\"right\":\"L10\",\"scope\":\"PRODUCT-P\"}],\"scenario_kind\":\"synthetic_condition_fixture_no_actual_ticket_or_reverse_execution\",\"scope_extents\":{\"CONNECTION-C\":\"PRODUCT-P\",\"PRODUCT-P\":\"PRODUCT-P\",\"UNIT-U\":\"PRODUCT-P\"},\"target\":{\"artifact\":\"ARTIFACT-A@h2\",\"environment\":\"ENV-A\",\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"trace\":[[\"REQ@r1\",\"DESIGN-DUP@r1\"],[\"DESIGN-DUP@r1\",\"REQ@r1\"],[\"DESIGN-DUP@r1\",\"BOUNDARY@r1\"],[\"BOUNDARY@r1\",\"DESIGN-DUP@r1\"]],\"trace_role\":\"upper_requirement_design_pair_origin_separate_from_valley_trace\",\"trigger_materials\":{\"design_implementation_drift\":{\"expected_contract\":\"CONTRACT-DUP@r1\",\"observed_contract\":\"CONTRACT-DUP@r1\"},\"incident_permanent_remedy\":{\"incident_ref\":null,\"permanent_remedy_required\":false},\"performance\":{\"baseline\":10,\"meaning\":\"fixture_comparison_not_product_SLO\",\"metric\":\"synthetic_case_elapsed_units\",\"observed\":10,\"source\":{\"identity\":\"PERFORMANCE-DELTA\",\"owner\":\"normalized-performance-finding-owner\",\"revision\":\"fixture-r1-content-cd04910d0a4188f95a9878494eae8263223baa85686c626cc0c1b318d302f7c3\",\"scope\":\"PRODUCT-P\"}},\"recurrence\":{\"current_occurrences\":0,\"finding_kind\":\"duplicate_debit\",\"previous_occurrences\":0},\"scrum_checkpoint\":{\"checkpoint_ref\":null,\"checkpoint_required\":false,\"style\":\"V-model\"}},\"valley\":{\"binding\":{\"artifact\":\"ARTIFACT-A@h2\",\"environment\":\"ENV-A\",\"revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"content\":{\"contract\":\"CONTRACT-DUP@r1\",\"oracle\":\"ORACLE-DUP@r1\",\"steps\":[{\"kind\":\"freeze\",\"oracle\":\"ORACLE-DUP@r1\",\"seq\":1},{\"executed\":true,\"expected_debits\":1,\"failure\":\"duplicate_debit\",\"head\":\"h0\",\"kind\":\"pre_body_red\",\"observed_debits\":2,\"oracle\":\"ORACLE-DUP@r1\",\"seq\":2},{\"from_head\":\"h0\",\"kind\":\"minimum_body\",\"minimal_scope\":\"one_command_duplicate_debit\",\"oracle\":\"ORACLE-DUP@r1\",\"seq\":3,\"to_head\":\"h1\"},{\"executed\":true,\"expected_debits\":1,\"head\":\"h1\",\"kind\":\"green\",\"observed_debits\":2,\"oracle\":\"ORACLE-DUP@r1\",\"seq\":4},{\"architecture_after\":\"ARCH@r1\",\"architecture_before\":\"ARCH@r1\",\"from_head\":\"h1\",\"kind\":\"local_refactor\",\"oracle\":\"ORACLE-DUP@r1\",\"public_contract_after\":\"CONTRACT-DUP@r1\",\"public_contract_before\":\"CONTRACT-DUP@r1\",\"requirement_after\":\"REQ@r1\",\"requirement_before\":\"REQ@r1\",\"seq\":5,\"state_after\":\"STATE@r1\",\"state_before\":\"STATE@r1\",\"to_head\":\"h2\"},{\"executed\":true,\"expected_debits\":1,\"head\":\"h2\",\"kind\":\"atomic_ci\",\"observed_debits\":1,\"oracle\":\"ORACLE-DUP@r1\",\"seq\":6}],\"trace\":[[\"DESIGN-DUP@r1\",\"CODE-DUP@h2\"],[\"CODE-DUP@h2\",\"DESIGN-DUP@r1\"],[\"DESIGN-DUP@r1\",\"TD-DUP@r1\"],[\"TD-DUP@r1\",\"DESIGN-DUP@r1\"],[\"CODE-DUP@h2\",\"TC-DUP@h2\"],[\"TC-DUP@h2\",\"CODE-DUP@h2\"],[\"TD-DUP@r1\",\"TC-DUP@h2\"],[\"TC-DUP@h2\",\"TD-DUP@r1\"]],\"trace_artifacts\":{\"design\":\"DESIGN-DUP@r1\",\"implementation\":\"CODE-DUP@h2\",\"test_code\":\"TC-DUP@h2\",\"test_design\":\"TD-DUP@r1\"}},\"ref\":{\"identity\":\"PROOF-Provisional\",\"owner\":\"execution-owner\",\"revision\":\"fixture-content-df6e543847c9d2943fe014ddd6a7fb9c582b8d92597d51634692faa5b81cc31d\",\"scope\":\"PRODUCT-P\"}}}",
+            "sha256": "cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+            "qualification": "synthetic_known_source_contents_not_actual_owner_authority",
+            "effect": "none"
+          },
+          "expected_partial_values": {
+            "valley_result": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "最小実装後のGreen観測が期待値と不一致であり、凍結oracleを満たしていない。"
+            },
+            "state_ceiling_from_valley": {
+              "state": "conflict",
+              "value": null,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "最小実装後のGreen観測が期待値と不一致であり、凍結oracleを満たしていない。"
+            },
+            "reverse_scope_candidate": {
+              "state": "known",
+              "value": "Scoped Reverse",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "reverse_trigger_materials": {
+              "state": "known",
+              "value": [],
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "reverse_ticket_candidate": {
+              "state": "known",
+              "value": "none",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "ticket_issuer": {
+              "state": "known",
+              "value": "OS",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "improvement_route": {
+              "state": "known",
+              "value": "current_Forward",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "meaning_backflow": {
+              "state": "known",
+              "value": [],
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "pair_result": {
+              "state": "known",
+              "value": "supported_synthetic_condition",
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "l9_dimension_results": {
+              "state": "known",
+              "value": {
+                "interface": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "dependency_direction": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "state_data_ownership": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "transaction": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "failure_propagation": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "retry": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "timeout": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "idempotency": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "coupling": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                },
+                "responsibility_duplication": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該L9観点の原期待/観測を比較。他観点の成功で不足を埋めない。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "actual_ticket_issued": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "actual_reverse_executed": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "actual_quality_accepted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "actual_user_accepted": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "actual_release": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "actual_completion": {
+              "state": "known",
+              "value": false,
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "谷/対/L9観点/復旧scope/trigger/改善種類/実作用を独立に保持する。"
+            },
+            "pair_results": {
+              "state": "known",
+              "value": {
+                "L8": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該対の層/revision/scope/実物と対設計を比較し、他対の結果を保持する。"
+                },
+                "L9": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該対の層/revision/scope/実物と対設計を比較し、他対の結果を保持する。"
+                },
+                "L10": {
+                  "state": "known",
+                  "value": "supported_synthetic_condition",
+                  "source_packet_ref": {
+                    "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                    "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-content-counterexample-owner"
+                  },
+                  "reason": "当該対の層/revision/scope/実物と対設計を比較し、他対の結果を保持する。"
+                }
+              },
+              "source_packet_ref": {
+                "identity": "DETAIL-SOURCE-H003-L8-F03-CONTENT-GREEN-REGRESSION",
+                "revision": "fixture-content-cc537ad69cd2a60914ad6d5eddc8ab302b62e0bccd7c3a59d99d26f270b5c8d6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-content-counterexample-owner"
+              },
+              "reason": "当該原資料と固定基本oracleの合成期待を部分結果で保持。実成立ではない。"
+            }
+          },
+          "expected_owner_return": {
+            "original_source_ref": {
+              "identity": "PROOF-Provisional",
+              "revision": "fixture-content-df6e543847c9d2943fe014ddd6a7fb9c582b8d92597d51634692faa5b81cc31d",
+              "scope": "PRODUCT-P",
+              "owner": "execution-owner"
+            },
+            "reason": "最小実装後のGreen観測が期待値と不一致であり、凍結oracleを満たしていない。",
+            "owner_target_state": "unknown",
+            "owner_target": null,
+            "operation_effect": "none"
+          },
+          "execution_state": "not_executed",
+          "effect": "none"
         }
       ]
     },
@@ -91183,7 +92021,21 @@
           },
           "failure_return_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-F04-MISSING-Working",
+            "source_basic_case_sha256": "b65fb30f0841c27afa997482041428587ea0c4bc05e2baf4b2a0872efade0ee4",
+            "field": "contiguous_frontier",
+            "source_flat_expected_value": null,
+            "source_flat_convention": "この固定basic caseのnullは先頭Working根拠欠落で連続成立のfrontierを示せないというflat表現。known nullの状態到達ではない。",
+            "typed_expected_state": "missing",
+            "typed_expected_value": null,
+            "reason": "Working根拠のmissingをfrontierへ明示し、後段proofの存在で先頭欠落を埋めない。",
+            "approved_requirement_ref": "HARNESS-L3-003-F04",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-F04-MISSING-Provisional",
@@ -114233,7 +115085,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-NORMAL",
+            "source_basic_case_sha256": "5cd9a2ef265bf86352c37303f7e26f591638d4e6c25ca85ca0da468c34c6609c",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-OBSERVED-CURRENT-SYNTHETIC",
@@ -114869,7 +115735,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-OBSERVED-CURRENT-SYNTHETIC",
+            "source_basic_case_sha256": "486002f6d0307aaed6ea9626929f19cadef2dbbfb7780dd7d7afff62a1f2bd35",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-OPERATED-CURRENT-SYNTHETIC",
@@ -115505,7 +116385,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-OPERATED-CURRENT-SYNTHETIC",
+            "source_basic_case_sha256": "1f76a57872f4745b76a59796f605a8fb33646a31cc9c505d63ef25a9b3cc1816",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-DESIGN-FOREIGN-ENVIRONMENT",
@@ -116141,7 +117035,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-DESIGN-FOREIGN-ENVIRONMENT",
+            "source_basic_case_sha256": "e71f9674f95c0a5eceea41e74ac060eae543b94a9b63827ff53dab1fc4419bcc",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-DESIGN-DOUBLE-OWNER",
@@ -116777,7 +117685,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-DESIGN-DOUBLE-OWNER",
+            "source_basic_case_sha256": "ef5ff348df3b4d9eb8d76f9654067afeac57322f30c536e03b22d8cbe68f5564",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-DESIGN-MISSING",
@@ -117413,7 +118335,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-DESIGN-MISSING",
+            "source_basic_case_sha256": "43f3a1a95e523ab8c74e5f719b228bf54076ce5433263a8089c0b59ae6973a42",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-APPLICABILITY-UNKNOWN",
@@ -118049,7 +118985,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-APPLICABILITY-UNKNOWN",
+            "source_basic_case_sha256": "1683971188d070dc0c30b38c18dff5f835c7f0725a32eb96a0408cc49f03eaa2",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-NA-WITHOUT-REASON",
@@ -118685,7 +119635,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-NA-WITHOUT-REASON",
+            "source_basic_case_sha256": "051c3567d9340ebdb4600dd5a29e578f55551734afdda67d83be87cc7f988630",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-SECURITY-FOREIGN-ENVIRONMENT",
@@ -119321,7 +120285,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-SECURITY-FOREIGN-ENVIRONMENT",
+            "source_basic_case_sha256": "1b4cb0e57c1d8bfeceb1ae74c708d87ad490ca593e33b8257039f04140132b74",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-SECURITY-AS-OS-POLICY",
@@ -119957,7 +120935,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-SECURITY-AS-OS-POLICY",
+            "source_basic_case_sha256": "e2f3a5902c1809d461e5c8c67ec7b95e929ad1c75d1095fbafc3e707be42e10e",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-HARNESS-AS-TICKET-OWNER",
@@ -120593,7 +121585,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-HARNESS-AS-TICKET-OWNER",
+            "source_basic_case_sha256": "777c0e3b36e54efdd76f19534ab4eb11540a13237c998d864755afa549ab3109",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-INFERENCE-FOREIGN-SCOPE",
@@ -121229,7 +122235,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-INFERENCE-FOREIGN-SCOPE",
+            "source_basic_case_sha256": "4c3329924cf5314731b0bb8fb114d1376c549163ee8054b19f20dcc38b9d73a1",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-UNOBSERVED-AS-HEALTHY",
@@ -121868,7 +122888,21 @@
             "candidate_conflicting_field": "healthy"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-UNOBSERVED-AS-HEALTHY",
+            "source_basic_case_sha256": "311a67ce3fe7a339f6fadf27993a54f7af1bd5b54f5ed1c769a2d98772666a75",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-DESIGN-AS-OPERATION",
@@ -122507,7 +123541,21 @@
             "candidate_conflicting_field": "actual_security_operation"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-DESIGN-AS-OPERATION",
+            "source_basic_case_sha256": "0d136b0107976fa731380970f5255d98c478b20e8ed8762e41dcc417233237ca",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-REFERENCE-AS-PERMISSION",
@@ -123146,7 +124194,21 @@
             "candidate_conflicting_field": "actual_operation_approved"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-REFERENCE-AS-PERMISSION",
+            "source_basic_case_sha256": "f3a282dc273a1238d384c9a90728545e9899c439b3566a175701b58245d4ba85",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-DESIGN-AS-COMPLETION",
@@ -123785,7 +124847,21 @@
             "candidate_conflicting_field": "actual_completion"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-DESIGN-AS-COMPLETION",
+            "source_basic_case_sha256": "0a91f76a3dc015321218aafae0577926c46fc96d1f623faf5d6808d4e4c8f743",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-DESIGN-AS-IMPLEMENTED",
@@ -124424,7 +125500,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-DESIGN-AS-IMPLEMENTED",
+            "source_basic_case_sha256": "346474b1bbcc71c2bc97134ffb291d7fae55798aa9fc76f04c9ede83acf92fa7",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-DESIGN-AS-VERIFIED",
@@ -125063,7 +126153,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-DESIGN-AS-VERIFIED",
+            "source_basic_case_sha256": "c08531ebdf5457a623287d52284dcbc242a71d91f55c95276076a94cec772874",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-DESIGN-AS-OBSERVED",
@@ -125702,7 +126806,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-DESIGN-AS-OBSERVED",
+            "source_basic_case_sha256": "8904e1da1f87bf1e66b5bfedf1432b9476fabb7ddb7151093c7942856f3bb3d2",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-DESIGN-AS-OPERATED",
@@ -126341,7 +127459,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-DESIGN-AS-OPERATED",
+            "source_basic_case_sha256": "6704bf86d2791cf49bcec1bcf4d6fa8b2dce5c4feba9afedc36bf793c89de164",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-INFERENCE-AS-REPRODUCED",
@@ -126980,7 +128112,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-INFERENCE-AS-REPRODUCED",
+            "source_basic_case_sha256": "3d0178b9066da473c35f042abae6187cbcecf370e6f5e749f5c134a37ba86855",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-INFERENCE-AS-VERIFIED",
@@ -127619,7 +128765,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-INFERENCE-AS-VERIFIED",
+            "source_basic_case_sha256": "9c91b77be250a15337e71e7c69ef367ded7d3124fb02a7803f9cb1280dc647c0",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-INFERENCE-AS-REPAIRED",
@@ -128258,7 +129418,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-INFERENCE-AS-REPAIRED",
+            "source_basic_case_sha256": "433015ae2d6992fcb9e84259e8608a252b80b715b100397e8827d471d9775324",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-INFERENCE-AS-REVERIFIED",
@@ -128897,7 +130071,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-INFERENCE-AS-REVERIFIED",
+            "source_basic_case_sha256": "8eb7822f6db8c5f71b71d97daf299045c0f201839e5364a0d2296312bb18cde2",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-INFERENCE-AS-OPERATED",
@@ -129536,7 +130724,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-INFERENCE-AS-OPERATED",
+            "source_basic_case_sha256": "9f2ac9b5c26f4184fcdfd0b894fdd17aeec056d7f1b3bd4cc506799f5fd2595a",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-INVENT-SLO",
@@ -130175,7 +131377,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-INVENT-SLO",
+            "source_basic_case_sha256": "a19d503fd9a636cb69a163c9e9d4f6483c64be6f3e69f77458340879c795a7db",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-INVENT-RTO",
@@ -130814,7 +132030,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-INVENT-RTO",
+            "source_basic_case_sha256": "46ea96d0bf132bddb6a7a7bba6aa287237015bd83d7f7de9a91500f6cd253b7a",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-INVENT-RPO",
@@ -131453,7 +132683,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-INVENT-RPO",
+            "source_basic_case_sha256": "1735707c5052ed78131edf5bc6bda5572f2a747aa815fca429ae2c7bac92bb67",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-INVENT-RETENTION",
@@ -132092,7 +133336,21 @@
             "candidate_conflicting_field": "target_results"
           },
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-INVENT-RETENTION",
+            "source_basic_case_sha256": "fbcd0e3386d27072f3a258d45fbd511dc6ad0ecf233b0874014c3841ada256a0",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-OBSERVED-FOREIGN-ENVIRONMENT",
@@ -132728,7 +133986,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-OBSERVED-FOREIGN-ENVIRONMENT",
+            "source_basic_case_sha256": "1f6d0ca846e54ab409183cd1f3757763ba45394614271f03bc32b580fcdb63ae",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-OBSERVED-NOT-EXECUTED",
@@ -133364,7 +134636,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-OBSERVED-NOT-EXECUTED",
+            "source_basic_case_sha256": "d9090dd61fffc0ac8a6405f792ff4d96d0e2be8a14e6502b50e3d815738e829c",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-OBSERVED-OWNER-CONTENT-CONFLICT",
@@ -134000,7 +135286,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-OBSERVED-OWNER-CONTENT-CONFLICT",
+            "source_basic_case_sha256": "1d060ceb740f97e733ea6d6e4263c68ced8589278e570b263fd316841612c6ce",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-OPERATED-FOREIGN-ENVIRONMENT",
@@ -134636,7 +135936,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-OPERATED-FOREIGN-ENVIRONMENT",
+            "source_basic_case_sha256": "20040156d27a5779f69507b0fc772dcd078af52f374c2fe429e26579ebe3dff9",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-OPERATED-NOT-EXECUTED",
@@ -135272,7 +136586,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-OPERATED-NOT-EXECUTED",
+            "source_basic_case_sha256": "2481f87f99f7456175a884960be68df5ce88bbf6c100754268f8af7e6b036870",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-OPERATED-OWNER-CONTENT-CONFLICT",
@@ -135908,7 +137236,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-OPERATED-OWNER-CONTENT-CONFLICT",
+            "source_basic_case_sha256": "c11feda9503da714f6e378b5526cd5bc9587d86ce54ebff2ef87d82598254a91",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-OPERATED-LEGACY_BROKER",
@@ -136544,7 +137886,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-OPERATED-LEGACY_BROKER",
+            "source_basic_case_sha256": "2a38fecb80ac646374bfe0e6e63efb3de90399a9d77698c4f7b9b250ac116cf9",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-OPERATED-LEGACY_PROVIDER",
@@ -137180,7 +138536,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-OPERATED-LEGACY_PROVIDER",
+            "source_basic_case_sha256": "f28e56a70ac453aedb9235a1b79ab3622b60f3f93aaee902473ca06c2b99b0e0",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         },
         {
           "id": "H003-L8-N01-OPERATED-LEGACY_CI",
@@ -137816,7 +139186,21 @@
           },
           "candidate_constraint": {},
           "effect": "none",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "expected_projection": {
+            "source_basic_case_ref": "H003-N01-OPERATED-LEGACY_CI",
+            "source_basic_case_sha256": "c0e39a0a7e68c1aff2ef7b14910ed1d51eb21d748425f0b43fa43be3ea146783",
+            "field": "healthy",
+            "source_flat_expected_value": false,
+            "source_flat_convention": "この固定basic caseのfalseはhealthy主張を成立させないというflat否定表現。未観測の実診断値falseではない。",
+            "typed_expected_state": "unknown",
+            "typed_expected_value": null,
+            "reason": "原適用unknown/未実装・未検証・未観測・未運用/未決数値を保持し、根拠なく健全trueや不健全falseを確定しない。",
+            "approved_requirement_ref": "HARNESS-L3-003-N01",
+            "projection_scope": "このexact basic_case/hashのこのfieldだけ。一般のknown false/空集合/nullをunknownへ変換しない。",
+            "upstream_effect": "L9 raw bytes/flat期待は無改変で保全。後続比較はこの写像を明示して行い、L9とL8の生の表現を直接同値としない。",
+            "authority_effect": "none"
+          }
         }
       ],
       "remaining": [
@@ -137837,7 +139221,7 @@
             },
             "source_packet_sha256": "54cf9652456e94a6c004fe86e72f7b043c83cff8e13b5bcd4e87c2227a80be60",
             "typed_case_ref": "H003-L8-N01-NORMAL",
-            "typed_case_sha256": "f49cf3667fe711c1a2d495194cd73733d9861d96fe89a826ced400df255be92a",
+            "typed_case_sha256": "f845ab26f81aa5129c25945513a121053a9a80f754dfe473c7474e387b2d109d",
             "source_value_sha256": {
               "carrier": "1fdf793bf43a8da01df094cfbaa01d71cbe197c1c3f360f78f19aa91be29c263",
               "target_membership": "c8cd0bddc68a1c8f36e58db99513a05c1c23729ea14718147a09e3eef20affcf",
@@ -137980,7 +139364,7 @@
             },
             "source_packet_sha256": "9bc12dcaacdf72bc2b4e10e67d71b1e76cbceb8768e2ec5b45e966783a84ec63",
             "typed_case_ref": "H003-L8-N01-OBSERVED-CURRENT-SYNTHETIC",
-            "typed_case_sha256": "ff5a03fffcaecc208b451aece1d38e9b6ff56c5003ff3950d13541e50babf32e",
+            "typed_case_sha256": "5e02f57d7c1b9711c73f5007d81400186ee88f18640e72f019f0667236a6e976",
             "source_value_sha256": {
               "carrier": "121f4e3b2cb8e8e11ca196b1e1d611705a2434bb3ba7b5f7203bcb4448255f8d",
               "target_membership": "54b9aa5261ebbcbe85a5526d02e1de0c69b17e3bfcace153f3227c76472a6b13",
@@ -138123,7 +139507,7 @@
             },
             "source_packet_sha256": "f322443fe88bdb8a6cf6cd16b6f7f316690ca794226ccefd755b8850353da6cf",
             "typed_case_ref": "H003-L8-N01-OPERATED-CURRENT-SYNTHETIC",
-            "typed_case_sha256": "c8a1dfe86dcca62be5316e3e11edff86f85f4ceb4790c41124ebc51af798fdd3",
+            "typed_case_sha256": "edf5298fa5889269a225804aa46a76ce8673ec323f8ecde9262a229eca70ddfa",
             "source_value_sha256": {
               "carrier": "4eb80b7c8d7df1b0b4d592a238d3eb042f2aa2f142431a904b44d42abad6954d",
               "target_membership": "b4ae4eab179a4a83b3468aa04fcd06fce0551788fd6ce22697dc39a059df453a",
@@ -141307,5 +142691,11 @@
         "effect": "none"
       }
     }
-  ]
+  ],
+  "review_corrections": {
+    "reviewed_head": "89e08fd64237c2b106c7611dd42625f9b72c35a4",
+    "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2993#issuecomment-6130558104",
+    "F1": "43case/fieldのflat→typed写像をexact basic hashと理由付きで記録。L9原bytes無改変。独立再review未成立。",
+    "F2": "Green未実行/期待不一致の谷原内容反例2件を追加。実TDD未実行。"
+  }
 }
