@@ -45,16 +45,16 @@
       "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
       "lines": "43–63、580–596",
       "disposition": "semantic_rederivation",
-      "keep": "12層、六pair、L0層外、4artifactの区別。",
-      "change": "旧L6実装/L7closureの記述・physical pathをcurrent分類の正本にせず、現行001の成果意味を参照する。",
-      "reason": "採用001の層対応とConceptのL4〜L6契約、採用済み各層ownerの意味を保つ。",
+      "keep": "12層と六pair、要求/要件/設計/検証/受入/運用の工程意味を区別すること。",
+      "change": "v1.3:584のL0 charter→L1企画の互換mappingは現行001へ転写せず、L0を層外上位根拠として独立参照する。旧L6実装/L7closureのラベル・physical pathもcurrent分類の正本にせず、現行001のConcept/層内設計/実装/検証の成果区別へ対応する。",
+      "reason": "v1.3の互換mappingと旧repository-structure:66/109の層外anchor表現には食い違いがある。採用済み001と現行ConceptのL0層外・L4〜L6設計→実装→L7〜L10検証を正にし、旧番号からの推定を拒否する。",
       "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
-      "lines": "106–107、121–130",
+      "lines": "66、109、121–130、157",
       "disposition": "semantic_rederivation",
-      "keep": "工程定義とsource referenceを区別。設計・実装・検証設計・検証コードの4artifactを双方向traceする。",
+      "keep": "L0層外anchor、工程定義とsource referenceの区別。設計・実装・検証設計・検証コードの4artifactを双方向traceする。",
       "change": "旧docs/process、docs/design、docs/test-design、src/testsの場所を復元しない。",
       "reason": "10/9の機構×層とpack配置へ対応する。",
       "sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262"
@@ -100,7 +100,7 @@
     "L11",
     "L12"
   ],
-  "outside_layer_anchor": "L0 charterは上位source identity/revisionで参照し、layer/pair universeへ挿入しない。L2.5はL2とL3の間のPrototype/PoC判定であり、第十三層/pairを増設しない。",
+  "outside_layer_anchor": "L0 charterは上位source identity/revisionで参照し、layer/pair universeへ挿入しない。L2.5はL2とL3の間のPrototype/PoC判定であり、第十三層/pairを増設しない。 Conceptの成果と実装の成果も層内成果とは別kindに区別する。Conceptは上位意味根拠、実装は設計から検証へ渡す実物であり、実装をauthority anchorにはしない。",
   "architecture": {
     "owner": "HELIX-HARNESS",
     "input_port": "OS/CORE等consumerが供給するimmutableでsource付きの意味/authority snapshot。読み出し・保存・権限取得はここに含めない。",
@@ -131,9 +131,11 @@
         "成果kindと意味ownerの現行契約参照",
         "対象Concept/L1/L2 revision",
         "対象層とpairの明示参照",
-        "層外charter anchor参照"
+        "層外charter anchor参照",
+        "Concept成果/実装成果/層内成果を区別するartifact kind",
+        "実装成果から凍結済みL6設計と対L7検証へ結ぶ参照"
       ],
-      "behavior": "artifactの明示された意味と対象層を現行契約へ照合し、十二層と六pairの対応を返す。path/title/旧番号から層を推測しない。L2要求とL3要件は別artifactとして保持し、L0 anchorは十二層の外へ結ぶ。意味owner/sourceが不明なら該当artifactの分類をunknownにする。",
+      "behavior": "artifactの明示された意味と対象層を現行契約へ照合し、十二層と六pairの対応を返す。path/title/旧番号から層を推測しない。L2要求とL3要件は別artifactとして保持し、L0 anchorは十二層の外へ結ぶ。意味owner/sourceが不明なら該当artifactの分類をunknownにする。 Concept成果は層外の上位意味根拠、実装成果はL4–L6設計後からL7–L10検証へ渡す実物の成果として層内設計とは別kindで返す。実装成果をL6設計へ分類せず、対象のL6設計契約と対L7検証へのtraceを保持する。Concept/実装のkindを十三番目の層や第七pairにしない。旧L6実装/L7 closureというラベルから現行L6設計/L7検証を推定しない。",
       "backflow": "層/pair意味は001、catalogは040、結果意味は056、Prototype/PoCと要求形成は003/008、実authority/運転は各ownerへ返す。"
     },
     {

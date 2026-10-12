@@ -30,11 +30,12 @@
       "design_ref": "HARNESS-L4-001-F01",
       "requirement_ref": "HARNESS-L3-001-F01",
       "system_oracle_ref": "HARNESS-L10-001-F01",
-      "positive_fixture": "旧L0–L14 pathの資料と現行L2要求/L11受入、L3要件/L10総合の四artifactを、明示したcurrent meaning refsから分類する。L0は独立anchorに残す。",
+      "positive_fixture": "旧L0–L14 pathの資料と現行L2要求/L11受入、L3要件/L10総合の四artifactを、明示したcurrent meaning refsから分類する。L0は独立anchorに残す。 現行Concept成果と実装成果Iを追加し、Iのkindはimplementation、対応する凍結L6設計DとL7検証Vの参照を明示する。意味source未供給artifactも一件追加する。",
       "expected_observation": [
         "L2要求の対はL11受入、L3要件の対はL10総合として別identityを維持する。",
         "旧pathの番号からcurrent layerを生成せず、12層の外にL0 anchorが一件残る。",
-        "current source不足のartifactはunknownとして返り、他の正しいpairと区別される。"
+        "current source不足のartifactはunknownとして返り、他の正しいpairと区別される。",
+        "Conceptは層外の上位意味根拠、Iは層外工程の実装成果として区別し、DのL6設計とVのL7検証へのtraceを保持する。IをL6設計やauthority anchorへ変更しない。"
       ],
       "negative_fixture_mutations": [
         "L2↔L10を登録",
@@ -42,7 +43,12 @@
         "L0の第七pairを登録",
         "旧pathの数字だけからcurrent layerを決定",
         "L2要求とL3要件を同一artifactへまとめる",
-        "意味source未供給をpathで補う"
+        "意味source未供給をpathで補う",
+        "旧L6実装ラベルから実装成果を現行L6設計に分類",
+        "旧L7 closureラベルから現行L7を決定",
+        "Concept成果をL1企画へ自動分類",
+        "実装成果を第十三層/第七pairへ挿入",
+        "実装成果からL6設計/L7検証へのtraceを削除"
       ],
       "failure_observation": "誤ったartifact/edgeと期待pair、不足source、ownerを返す。無関係の正しいpairを不成立にせず、六pair全体成立へも昇格しない。",
       "execution_state": "not_executed"
