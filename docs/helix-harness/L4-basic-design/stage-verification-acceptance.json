@@ -298,7 +298,6 @@
   ],
   "fixture_progress": {
     "remaining_contracts": [
-      "F04",
       "N01",
       "B01"
     ],
@@ -319,11 +318,17 @@
       "negative": 99,
       "source_packets": 103,
       "state": "draft_not_executed"
+    },
+    "F04": {
+      "normal": 6,
+      "negative": 60,
+      "source_packets": 66,
+      "state": "draft_not_executed"
     }
   },
   "pending": [
-    "F04/N01/B01の具体的な原入力/独立期待/正常/反例と内容検証。F01/F02/F03は設計例の静的検証のみで、独立reviewと実観測は未成立。",
-    "003/004/005の必要object/義務への残りexact binding。F02/F03は該当契約を固定参照し、F01/F04/N01/B01の接続は未完。",
+    "N01/B01の具体的な原入力/独立期待/正常/反例と内容検証。F01〜F04は設計例で、独立reviewと実観測は未成立。",
+    "003/004/005の必要object/義務への残りexact binding。F02/F03/F04は該当契約を固定参照し、F01/N01/B01の接続は未完。",
     "正式stage proof/schema/codecとowner資格",
     "L5/L8詳細設計/実oracle凍結/実装前Red/Green/Refactor",
     "実L9/L10/利用者受入/新CI/計測/PO L11 Accepted"
@@ -696,7 +701,71 @@
         "input": "各設計/要件/oracle/原result/evidence/利用者判断のowner-qualified資料",
         "operation": "OSまたは利用者CI/受入手段が実行/記録。④やOSを一律依存にしない。"
       },
-      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。"
+      "failure_return": "当該artifact/revision/scope/oracle/sourceと読めた有効な下位段階を保持し、不足/unknown/conflict/staleを当該ownerへ返す。実state/受入/権限を生成しない。",
+      "accepted_content_receipt_detail": {
+        "content_contract_fixture": {
+          "Verified_basis": {
+            "stage": "Verified",
+            "basis": "same_revision_L10_system_difference_proof_synthetic"
+          },
+          "L2_meaning": {
+            "success": "one_result_per_command",
+            "counterexample": "duplicate_after_cancel"
+          },
+          "L11_oracle": {
+            "target": "L2@r1",
+            "success_expected": {
+              "command": "CMD1",
+              "result_count": 1
+            },
+            "counterexample_expected": {
+              "scenario": "cancel_then_retry",
+              "duplicate_commit_count": 0
+            }
+          },
+          "L11_content_result": {
+            "success_observation": {
+              "command": "CMD1",
+              "result_count": 1
+            },
+            "counterexample_observation": {
+              "scenario": "cancel_then_retry",
+              "duplicate_commit_count": 0
+            }
+          }
+        },
+        "distinct_user_source": "利用者の原判断を内容oracle/resultと別に読む。受入記録はそのidentity/revision/受入者/対象へ結ぶ。reject/deferも有効な利用者判断として保持する。",
+        "partial_result": "Verifiedの有効な根拠、確認済み成功/反例の範囲、利用者判断/記録の不足を別に返す。",
+        "backflow": "L2要求とL11内容oracleの意味差は003/004の上流意味ownerへ返す。oracleを実装結果に合わせて弱めない。",
+        "qualified_dependency_bindings": [
+          {
+            "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+            "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+            "document_sha256": "f683d35fa834eca85e9770544bd55c0a3bcc1328cc7317e6c1d2845080596734",
+            "contract_id": "HARNESS-L4-003-F04",
+            "contract_object_sha256": "6dcaa04b9bc1a72bf2eb652896377837ec9253e184c798f0c7588288b3f465a6",
+            "selected_meaning": "Working→Provisional→Integrated→Verified→Accepted→Release-eligible→Deployed→Observedを別状態にし、原子CI、境界照合/Refactor/結合証明、L10 system証明、L11利用者受入、Port必須条件、対象環境配備、L12運用評価を各成立根拠へ結ぶ。022/005の固有義務差分と受入記録条件を保ち、前状態の成立から次状態を推定しない。",
+            "retained_role": "状態別の原根拠と意味変更の戻し先を保持。L11意味差は要求へ返し、CI/L10成功を実利用者受入へ変換しない。",
+            "limit": "統合済み設計の該当義務への参照。022の実proof/正式schema/owner資格や依存先の未完条件を成立させない。"
+          },
+          {
+            "path": "docs/helix-harness/L4-basic-design/trace-impact-reconfirmation.json",
+            "revision": "a82b96031e1179b6ddf3d15b506b70461d636d85",
+            "document_sha256": "bb31b5abe547b5caaea80a62992fa3e967f94a2273430ffd64b17e50c7fd36b2",
+            "contract_id": "HARNESS-L4-004-F03",
+            "contract_object_sha256": "650979f0105d9f130186ba88d6e9e26fe290ff0559d53034637dd2f5bf8439b3",
+            "selected_meaning": "要求/public contract変更、trace欠落、Scrum実装事実の合流では影響する設計/対検証を再確定し必要なpair凍結を確認する。影響しない有効作業を一律失効させない。意味保存可能な不一致は右側Refactor/再検証、詳細L5/architecture境界L4/要件要求受入L3L2/価値L1の意味変更は該当層へBackflowし、発見層だけで戻し先を固定しない。通常照合のticket非発行と、明らかなずれ/由来欠落/同種finding再発/性能退行/障害後恒久対策/Scrum Reverse checkpoint/大きな設計退行のReverse ticket条件を003-F03へ結ぶ。局所は現在のForward ticket、独立構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactorの種類へ分け、実発行はOSへ返す。",
+            "retained_role": "状態別の原根拠と意味変更の戻し先を保持。L11意味差は要求へ返し、CI/L10成功を実利用者受入へ変換しない。",
+            "limit": "統合済み設計の該当義務への参照。022の実proof/正式schema/owner資格や依存先の未完条件を成立させない。"
+          }
+        ],
+        "fixture_limit": "全資料は合成設計例。PO/実利用者の受入意思・本人性・実Accepted・release/deployを生成しない。",
+        "pending": [
+          "実利用者の資格/authority/本人性と原受入記録",
+          "正式receipt/schema/codecと原資料resolver",
+          "L5/L8内部契約と実L11内容検証"
+        ]
+      }
     },
     {
       "id": "HARNESS-L4-022-N01",
