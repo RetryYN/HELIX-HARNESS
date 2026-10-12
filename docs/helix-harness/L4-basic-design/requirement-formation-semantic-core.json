@@ -1,7 +1,7 @@
 {
   "parent": "HARNESS-L2-008",
   "source_main": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
-  "status": "draft_incomplete_fixtures_and_independent_review_pending",
+  "status": "draft_basic_design_independent_review_pending",
   "authority_effect": "none",
   "scope": {
     "authoring_stage": 1,
@@ -772,7 +772,19 @@
         "event_registration_execution_owner": "OS",
         "external_consumer": "独立consumerは008の再検証契約を実装し、自分のauthorityで処理する。OSを意味処理の必須基盤にしない。"
       },
-      "failure_return": "当該source/identity/revision/scope/版と読めた原資料を保持し、不足/unknown/conflict/staleを当該ownerへ返す。未解決で依存する下流成立を生成しない。"
+      "failure_return": "当該source/identity/revision/scope/版と読めた原資料を保持し、不足/unknown/conflict/staleを当該ownerへ返す。未解決で依存する下流成立を生成しない。",
+      "unseen_detail": {
+        "source_basis": "承認済み008-N01と旧RDJ-FR001/003/006/007/008/009の質問理由/unknown/合意条件/traceを意味再導出。旧2iteration/固定IR/G1G3/score閾値/旧実行を採用しない。",
+        "input_separation": "production入力と評価側独立期待を別に保持。期待をproductionへ渡した場合は漏洩findingとして返す。",
+        "observation_limit": "合成構造化meaning比較であり実未見評価でも自然文解析品質でもない。input/engine/pack bindingと個別未評価を残す。",
+        "decision_limit": "質問/訂正/意味一致は要求合意/学習許可/実物受入を生成しない。数値閾値/方式/反復承認を追加しない。",
+        "pending": [
+          "正式productionと評価資料の分離型/経路",
+          "自然文解析と実未見oracle/原資料",
+          "実engine入力漏洩防止の検証",
+          "実評価/計測/合意と受入"
+        ]
+      }
     }
   ],
   "fixture_progress": {
@@ -782,9 +794,7 @@
       "source_packets": 32,
       "state": "draft_not_executed"
     },
-    "remaining_contracts": [
-      "N01"
-    ],
+    "remaining_contracts": [],
     "F01": {
       "normal": 4,
       "negative": 21,
@@ -831,6 +841,12 @@
       "normal": 6,
       "negative": 76,
       "source_packets": 82,
+      "state": "draft_not_executed"
+    },
+    "N01": {
+      "normal": 3,
+      "negative": 27,
+      "source_packets": 30,
       "state": "draft_not_executed"
     }
   }
