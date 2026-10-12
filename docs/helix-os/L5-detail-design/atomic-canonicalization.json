@@ -750,7 +750,7 @@
       "algorithm": [
         "全recordのfield/type/enumと重複ID/Refを検査する。Resolutionのrefがscope/revision/ownerを含めexactに解決し、state validで対象valueと原bytesの内容が一致するかを確認。digest一致だけではvalueを認めない。",
         "独立Closureのexpected write/base集合とPlanの双方の差分を出す。各Writeのkind/owner/before/after/source/content contract/required links/bytes/storeをAssetContractの同IDと全fieldで比較する。source/closureをcallerのwritesから生成し直さない。",
-        "全writeの依存が閉じ循環が無いか確認し、依存を満たす順に固定。同順位はwrite_idのコードポイント順。JSON/projectionのsource revision/ownerを別kindで保全する。",
+        "全writeの依存が閉じ循環が無いか確認する。保存順は逐次Kahn方式: 各stepで、依存write IDがすべて保存順の既選択集合に含まれる未選択writeの中から、write_idのコードポイント辞書順の最小1件を選ぶ。選択を1件追加するごとに候補集合を再計算する。依存の深さ別batch順にはしない。未選択が残り候補ゼロなら循環としてlink_mismatch/conflict。receiptは全12非receiptに依存し最後。JSON/projectionのsource revision/ownerを別kindで保全する。",
         "全AssetContractがstore_recordで同storeならこのadapter候補へready。それ以外のexternal_requiredはexternal_write_unclosedを返し、対象writeと未完義務を保存し、SQLを一件も始めない。外部義務の削除/N/A化はしない。",
         "authority/resourceの根拠内容を同operation/scope/allowed effects/storeに結ぶ。owner判断は再裁定せず、不足は当該ownerへ返す。全findingが無い場合のみimmutable Planを返す。"
       ],

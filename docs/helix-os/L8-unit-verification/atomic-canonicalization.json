@@ -1818,7 +1818,8 @@
       "expected_result": "stale",
       "expected_code": "base_conflict",
       "rule_ref": "OS-L5-053-R-base_conflict",
-      "checked_function_ref": "OS-L5-053-S04"
+      "checked_function_ref": "OS-L5-053-S04",
+      "coverage_role": "F04の局所base比較と同一競合状態を、S04のBEGIN→S02再送判定→S03全base比較→rollbackという統合呼出し経路で確認する。新しい故障familyとは数えず、12追加caseの一つとして記録。"
     },
     {
       "id": "X05",
@@ -1908,7 +1909,7 @@
     "expected": "commit前はG0保持、部分G1なし。commit後read不一致/不能は保存済み事実と復旧義務を保全。未観測はnot_proven。"
   },
   "evidence_contract": [
-    "11 L3/L4/L9/L10参照、8symbolsの局所oracle、64既存変異と12追加familyを保持。",
+    "11 L3/L4/L9/L10参照、8symbolsの局所oracle、64既存変異と12追加case（X04は既存base競合の統合経路確認）を保持。",
     "call trace/transaction-state/record内容を期待fixtureへ照合し、count/hash/文字列存在だけでPASSしない。",
     "禁止call（current先行公開、receipt後書き、Python DB/意味正規化、外部fallback）がゼロ。",
     "実toolchain/API/linked SQLite/OS-VFS、実独立readのfault観測は別に必要。"
