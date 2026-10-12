@@ -126,7 +126,8 @@
       "content_comparison": [
         "端点共有とidentity衝突を分ける。同identityの異宣言は利用可能にしない。",
         "原unknownはnull一致でも保留。Pの不足を理由に独立Qを隠さない。",
-        "登録receiptは通信成立/利用許可/業務承認を生成しない。"
+        "登録receiptは通信成立/利用許可/業務承認を生成しない。",
+        "原宣言集合と提出宣言集合の両方で同identity異宣言を照合する。どちらかで衝突するidentityを名乗る宣言は全てheldにし、原/提出の衝突理由を分けて返す。"
       ],
       "qualification_rule": "合成宣言一致からsource資格/正式binding/登録/互換適格/通信/許可/authority/Accepted/設計閉包を生成しない。",
       "operation_effect": "none"
@@ -156,7 +157,8 @@
       "content_comparison": [
         "適用される許可/data-use/classification参照は必要。原適用unknownを全不要にしない。",
         "原版unknownはnull一致や推測で補完しない。元未完を消去しない。",
-        "登録の宣言対照へ通信実行を必須にせず、許可/業務承認の成立を生成しない。"
+        "登録の宣言対照へ通信実行を必須にせず、許可/業務承認の成立を生成しない。",
+        "原適用trueを提出falseと非適用理由だけで不要にしない。非適用理由の欠落・別版も局所保留する。"
       ],
       "qualification_rule": "合成宣言一致からsource資格/正式binding/登録/互換適格/通信/許可/authority/Accepted/設計閉包を生成しない。",
       "operation_effect": "none"
@@ -165,7 +167,7 @@
   "fixture_progress": {
     "cases_by_function": {
       "F01": 33,
-      "F02": 39
+      "F02": 48
     },
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false

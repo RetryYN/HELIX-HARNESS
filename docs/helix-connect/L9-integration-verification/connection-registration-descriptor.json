@@ -207,7 +207,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -291,7 +293,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -413,7 +417,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -497,7 +503,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -619,7 +627,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -703,7 +713,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -825,7 +837,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -909,7 +923,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -1031,7 +1047,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -1115,7 +1133,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -1237,7 +1257,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -1321,7 +1343,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -1443,7 +1467,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -1527,7 +1553,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -1649,7 +1677,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -1733,7 +1763,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -1855,7 +1887,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -1939,7 +1973,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -2061,7 +2097,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -2145,7 +2183,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -2267,7 +2307,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -2351,7 +2393,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -2473,7 +2517,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -2557,7 +2603,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -2679,7 +2727,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -2763,7 +2813,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -2885,7 +2937,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -2969,7 +3023,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -3091,7 +3147,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -3175,7 +3233,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -3297,7 +3357,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -3381,7 +3443,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -3503,7 +3567,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -3587,7 +3653,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -3702,7 +3770,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -3786,7 +3856,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -3908,7 +3980,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -3992,7 +4066,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -4115,7 +4191,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -4199,7 +4277,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -4322,7 +4402,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -4406,7 +4488,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -4529,7 +4613,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -4613,7 +4699,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -4736,7 +4824,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -4820,7 +4910,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -4943,7 +5035,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -5027,7 +5121,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -5150,7 +5246,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -5234,7 +5332,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -5357,7 +5457,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -5441,7 +5543,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -5564,7 +5668,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -5648,7 +5754,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -5771,7 +5879,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -5855,7 +5965,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -5978,7 +6090,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": true,
+                "submitted_declaration_collision": true
               },
               "Q": {
                 "field_results": {
@@ -6062,7 +6176,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": true,
+                "submitted_declaration_collision": true
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -6178,14 +6294,16 @@
                   },
                   "operational_state": "declared_not_executed"
                 },
-                "identity_collision": false,
-                "registration_receipt_candidate": "requires_actual_qualification",
+                "identity_collision": true,
+                "registration_receipt_candidate": "held",
                 "return_owners": {
                   "source": "BRAIN",
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": true
               },
               "Q": {
                 "field_results": {
@@ -6262,14 +6380,16 @@
                   },
                   "operational_state": "declared_not_executed"
                 },
-                "identity_collision": false,
+                "identity_collision": true,
                 "registration_receipt_candidate": "held",
                 "return_owners": {
                   "source": "BRAIN",
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": true
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -6392,7 +6512,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -6476,7 +6598,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -6599,7 +6723,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               },
               "Q": {
                 "field_results": {
@@ -6683,7 +6809,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": false,
+                "submitted_declaration_collision": false
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -6806,7 +6934,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": true,
+                "submitted_declaration_collision": true
               },
               "Q": {
                 "field_results": {
@@ -6890,7 +7020,9 @@
                   "consumer": "PRODUCT-CORE",
                   "adapter_transport": "HELIX-CONNECT"
                 },
-                "communication_readiness": "not_proved_by_registration"
+                "communication_readiness": "not_proved_by_registration",
+                "original_declaration_collision": true,
+                "submitted_declaration_collision": true
               }
             },
             "shared_endpoints_are_not_a_collision": true,
@@ -12483,6 +12615,1302 @@
           "basis": "登録から送信権/業務承認/版推測や通信必須条件を生成しない。",
           "execution_state": "not_executed",
           "effect": "none"
+        },
+        {
+          "id": "C001-F02-SECURITY_PERMISSION_REF-APPLICABLE-FLIPPED-NON-APPLICABLE",
+          "requirement_ref": "HELIXCONNECT-L3-001-F02",
+          "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+          "l4_ref": "HELIXCONNECT-L4-001-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-C001-F02-SECURITY_PERMISSION_REF-APPLICABLE-FLIPPED-NON-APPLICABLE",
+              "revision": "fixture-content-3c73f00219a75db2aa8e4d7389777631adf5038004054bf6b5ca5ab2cacd3d20",
+              "scope": "REGISTRATION-SCOPE",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"communication_required_for_registration\":false,\"dependency_version_guessed\":false,\"registration_business_approval\":false,\"registration_send_permission\":false},\"original_applicability\":{\"classification_ref\":true,\"data_use_ref\":true,\"security_permission_ref\":true},\"original_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"original_non_applicability_reasons\":{},\"submitted_applicability\":{\"classification_ref\":true,\"data_use_ref\":true,\"security_permission_ref\":false},\"submitted_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\"},\"submitted_non_applicability_reasons\":{\"security_permission_ref\":{\"owner\":\"synthetic-fixture-owner\",\"reason\":\"当該合成操作では非適用と独立原宣言\",\"reevaluate\":\"operation/scope変更時\",\"revision\":\"applicability-P-r1\"}},\"transport_execution_state\":\"not_executed\"}",
+            "sha256": "3c73f00219a75db2aa8e4d7389777631adf5038004054bf6b5ca5ab2cacd3d20",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "field_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "registration_revision": "content_corresponding_in_fixture",
+              "capability": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "artifact_revision": "content_corresponding_in_fixture",
+              "dependency_revision": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "deadline": "content_corresponding_in_fixture",
+              "idempotency": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture",
+              "common_declaration_ref": "content_corresponding_in_fixture",
+              "common_compatibility_ref": "content_corresponding_in_fixture",
+              "common_validation_ref": "content_corresponding_in_fixture",
+              "common_update_ref": "content_corresponding_in_fixture",
+              "common_rollback_ref": "content_corresponding_in_fixture",
+              "common_unfinished_obligations": "content_corresponding_in_fixture",
+              "security_permission_ref": "missing"
+            },
+            "applicability_results": {
+              "security_permission_ref": "content_conflict",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture"
+            },
+            "unknown_original_applicability": [],
+            "non_applicability_reason_results": {},
+            "retained_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "submitted_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "registration_receipt_candidate": "held",
+            "retained_unfinished_obligations": [
+              {
+                "owner": "CONTRACT-P",
+                "identity": "UNFINISHED-P",
+                "revision": "obligation-r1",
+                "state": "unfinished"
+              }
+            ],
+            "not_selected_security_references": [],
+            "transport_execution_state": "not_executed",
+            "transport_required_for_declaration_comparison": false,
+            "return_owners": {
+              "declaration": "CONNECTION-P-declaration-owner",
+              "security_permission_ref": "HELIX-SECURITY",
+              "data_use_ref": "SOURCE-P-owner",
+              "classification_ref": "SOURCE-P-owner",
+              "common_obligations": "HARNESS010/011-contract-owner"
+            },
+            "claim_results": {
+              "registration_send_permission": "none",
+              "registration_business_approval": "none",
+              "dependency_version_guessed": "none",
+              "communication_required_for_registration": "none"
+            },
+            "effects": {
+              "actual_registration": false,
+              "actual_send_permission": false,
+              "actual_transport": false,
+              "actual_business_approval": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "C001-F02-SECURITY_PERMISSION_REF-NON-APPLICABLE-REASON-MISSING",
+          "requirement_ref": "HELIXCONNECT-L3-001-F02",
+          "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+          "l4_ref": "HELIXCONNECT-L4-001-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-C001-F02-SECURITY_PERMISSION_REF-NON-APPLICABLE-REASON-MISSING",
+              "revision": "fixture-content-ee4790a02a5053b1ad20ef13584a49202e4d3bdabfa10b5bb0bae142dc3c3787",
+              "scope": "REGISTRATION-SCOPE",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"communication_required_for_registration\":false,\"dependency_version_guessed\":false,\"registration_business_approval\":false,\"registration_send_permission\":false},\"original_applicability\":{\"classification_ref\":true,\"data_use_ref\":true,\"security_permission_ref\":false},\"original_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"original_non_applicability_reasons\":{\"security_permission_ref\":{\"owner\":\"synthetic-fixture-owner\",\"reason\":\"当該合成操作では非適用と独立原宣言\",\"reevaluate\":\"operation/scope変更時\",\"revision\":\"applicability-P-r1\"}},\"submitted_applicability\":{\"classification_ref\":true,\"data_use_ref\":true,\"security_permission_ref\":false},\"submitted_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\"},\"submitted_non_applicability_reasons\":{},\"transport_execution_state\":\"not_executed\"}",
+            "sha256": "ee4790a02a5053b1ad20ef13584a49202e4d3bdabfa10b5bb0bae142dc3c3787",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "field_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "registration_revision": "content_corresponding_in_fixture",
+              "capability": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "artifact_revision": "content_corresponding_in_fixture",
+              "dependency_revision": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "deadline": "content_corresponding_in_fixture",
+              "idempotency": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture",
+              "common_declaration_ref": "content_corresponding_in_fixture",
+              "common_compatibility_ref": "content_corresponding_in_fixture",
+              "common_validation_ref": "content_corresponding_in_fixture",
+              "common_update_ref": "content_corresponding_in_fixture",
+              "common_rollback_ref": "content_corresponding_in_fixture",
+              "common_unfinished_obligations": "content_corresponding_in_fixture"
+            },
+            "applicability_results": {
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture"
+            },
+            "unknown_original_applicability": [],
+            "non_applicability_reason_results": {
+              "security_permission_ref": "missing"
+            },
+            "retained_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "submitted_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "registration_receipt_candidate": "held",
+            "retained_unfinished_obligations": [
+              {
+                "owner": "CONTRACT-P",
+                "identity": "UNFINISHED-P",
+                "revision": "obligation-r1",
+                "state": "unfinished"
+              }
+            ],
+            "not_selected_security_references": [
+              "security_permission_ref"
+            ],
+            "transport_execution_state": "not_executed",
+            "transport_required_for_declaration_comparison": false,
+            "return_owners": {
+              "declaration": "CONNECTION-P-declaration-owner",
+              "security_permission_ref": "HELIX-SECURITY",
+              "data_use_ref": "SOURCE-P-owner",
+              "classification_ref": "SOURCE-P-owner",
+              "common_obligations": "HARNESS010/011-contract-owner"
+            },
+            "claim_results": {
+              "registration_send_permission": "none",
+              "registration_business_approval": "none",
+              "dependency_version_guessed": "none",
+              "communication_required_for_registration": "none"
+            },
+            "effects": {
+              "actual_registration": false,
+              "actual_send_permission": false,
+              "actual_transport": false,
+              "actual_business_approval": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "C001-F02-SECURITY_PERMISSION_REF-NON-APPLICABLE-REASON-FOREIGN",
+          "requirement_ref": "HELIXCONNECT-L3-001-F02",
+          "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+          "l4_ref": "HELIXCONNECT-L4-001-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-C001-F02-SECURITY_PERMISSION_REF-NON-APPLICABLE-REASON-FOREIGN",
+              "revision": "fixture-content-4a35854db2a6ca34345006ddeff6b4afd42874fe62bea83d2d22fe8545d0a76c",
+              "scope": "REGISTRATION-SCOPE",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"communication_required_for_registration\":false,\"dependency_version_guessed\":false,\"registration_business_approval\":false,\"registration_send_permission\":false},\"original_applicability\":{\"classification_ref\":true,\"data_use_ref\":true,\"security_permission_ref\":false},\"original_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"original_non_applicability_reasons\":{\"security_permission_ref\":{\"owner\":\"synthetic-fixture-owner\",\"reason\":\"当該合成操作では非適用と独立原宣言\",\"reevaluate\":\"operation/scope変更時\",\"revision\":\"applicability-P-r1\"}},\"submitted_applicability\":{\"classification_ref\":true,\"data_use_ref\":true,\"security_permission_ref\":false},\"submitted_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\"},\"submitted_non_applicability_reasons\":{\"security_permission_ref\":{\"owner\":\"synthetic-fixture-owner\",\"reason\":\"当該合成操作では非適用と独立原宣言\",\"reevaluate\":\"operation/scope変更時\",\"revision\":\"OTHER-applicability-r2\"}},\"transport_execution_state\":\"not_executed\"}",
+            "sha256": "4a35854db2a6ca34345006ddeff6b4afd42874fe62bea83d2d22fe8545d0a76c",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "field_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "registration_revision": "content_corresponding_in_fixture",
+              "capability": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "artifact_revision": "content_corresponding_in_fixture",
+              "dependency_revision": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "deadline": "content_corresponding_in_fixture",
+              "idempotency": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture",
+              "common_declaration_ref": "content_corresponding_in_fixture",
+              "common_compatibility_ref": "content_corresponding_in_fixture",
+              "common_validation_ref": "content_corresponding_in_fixture",
+              "common_update_ref": "content_corresponding_in_fixture",
+              "common_rollback_ref": "content_corresponding_in_fixture",
+              "common_unfinished_obligations": "content_corresponding_in_fixture"
+            },
+            "applicability_results": {
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture"
+            },
+            "unknown_original_applicability": [],
+            "non_applicability_reason_results": {
+              "security_permission_ref": "content_conflict"
+            },
+            "retained_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "submitted_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "registration_receipt_candidate": "held",
+            "retained_unfinished_obligations": [
+              {
+                "owner": "CONTRACT-P",
+                "identity": "UNFINISHED-P",
+                "revision": "obligation-r1",
+                "state": "unfinished"
+              }
+            ],
+            "not_selected_security_references": [
+              "security_permission_ref"
+            ],
+            "transport_execution_state": "not_executed",
+            "transport_required_for_declaration_comparison": false,
+            "return_owners": {
+              "declaration": "CONNECTION-P-declaration-owner",
+              "security_permission_ref": "HELIX-SECURITY",
+              "data_use_ref": "SOURCE-P-owner",
+              "classification_ref": "SOURCE-P-owner",
+              "common_obligations": "HARNESS010/011-contract-owner"
+            },
+            "claim_results": {
+              "registration_send_permission": "none",
+              "registration_business_approval": "none",
+              "dependency_version_guessed": "none",
+              "communication_required_for_registration": "none"
+            },
+            "effects": {
+              "actual_registration": false,
+              "actual_send_permission": false,
+              "actual_transport": false,
+              "actual_business_approval": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "C001-F02-DATA_USE_REF-APPLICABLE-FLIPPED-NON-APPLICABLE",
+          "requirement_ref": "HELIXCONNECT-L3-001-F02",
+          "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+          "l4_ref": "HELIXCONNECT-L4-001-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-C001-F02-DATA_USE_REF-APPLICABLE-FLIPPED-NON-APPLICABLE",
+              "revision": "fixture-content-37afa48e5061fe155c0160c1121f9dfa1a4a4943354bbb0264726ea6a753321f",
+              "scope": "REGISTRATION-SCOPE",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"communication_required_for_registration\":false,\"dependency_version_guessed\":false,\"registration_business_approval\":false,\"registration_send_permission\":false},\"original_applicability\":{\"classification_ref\":true,\"data_use_ref\":true,\"security_permission_ref\":true},\"original_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"original_non_applicability_reasons\":{},\"submitted_applicability\":{\"classification_ref\":true,\"data_use_ref\":false,\"security_permission_ref\":true},\"submitted_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"submitted_non_applicability_reasons\":{\"data_use_ref\":{\"owner\":\"synthetic-fixture-owner\",\"reason\":\"当該合成操作では非適用と独立原宣言\",\"reevaluate\":\"operation/scope変更時\",\"revision\":\"applicability-P-r1\"}},\"transport_execution_state\":\"not_executed\"}",
+            "sha256": "37afa48e5061fe155c0160c1121f9dfa1a4a4943354bbb0264726ea6a753321f",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "field_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "registration_revision": "content_corresponding_in_fixture",
+              "capability": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "artifact_revision": "content_corresponding_in_fixture",
+              "dependency_revision": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "deadline": "content_corresponding_in_fixture",
+              "idempotency": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture",
+              "common_declaration_ref": "content_corresponding_in_fixture",
+              "common_compatibility_ref": "content_corresponding_in_fixture",
+              "common_validation_ref": "content_corresponding_in_fixture",
+              "common_update_ref": "content_corresponding_in_fixture",
+              "common_rollback_ref": "content_corresponding_in_fixture",
+              "common_unfinished_obligations": "content_corresponding_in_fixture",
+              "data_use_ref": "missing"
+            },
+            "applicability_results": {
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_conflict",
+              "classification_ref": "content_corresponding_in_fixture"
+            },
+            "unknown_original_applicability": [],
+            "non_applicability_reason_results": {},
+            "retained_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "submitted_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "registration_receipt_candidate": "held",
+            "retained_unfinished_obligations": [
+              {
+                "owner": "CONTRACT-P",
+                "identity": "UNFINISHED-P",
+                "revision": "obligation-r1",
+                "state": "unfinished"
+              }
+            ],
+            "not_selected_security_references": [],
+            "transport_execution_state": "not_executed",
+            "transport_required_for_declaration_comparison": false,
+            "return_owners": {
+              "declaration": "CONNECTION-P-declaration-owner",
+              "security_permission_ref": "HELIX-SECURITY",
+              "data_use_ref": "SOURCE-P-owner",
+              "classification_ref": "SOURCE-P-owner",
+              "common_obligations": "HARNESS010/011-contract-owner"
+            },
+            "claim_results": {
+              "registration_send_permission": "none",
+              "registration_business_approval": "none",
+              "dependency_version_guessed": "none",
+              "communication_required_for_registration": "none"
+            },
+            "effects": {
+              "actual_registration": false,
+              "actual_send_permission": false,
+              "actual_transport": false,
+              "actual_business_approval": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "C001-F02-DATA_USE_REF-NON-APPLICABLE-REASON-MISSING",
+          "requirement_ref": "HELIXCONNECT-L3-001-F02",
+          "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+          "l4_ref": "HELIXCONNECT-L4-001-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-C001-F02-DATA_USE_REF-NON-APPLICABLE-REASON-MISSING",
+              "revision": "fixture-content-3fab6c0552d41f0bfef68f98e245fc4ca47289dfb7a4a59091376e5cf4832104",
+              "scope": "REGISTRATION-SCOPE",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"communication_required_for_registration\":false,\"dependency_version_guessed\":false,\"registration_business_approval\":false,\"registration_send_permission\":false},\"original_applicability\":{\"classification_ref\":true,\"data_use_ref\":false,\"security_permission_ref\":true},\"original_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"original_non_applicability_reasons\":{\"data_use_ref\":{\"owner\":\"synthetic-fixture-owner\",\"reason\":\"当該合成操作では非適用と独立原宣言\",\"reevaluate\":\"operation/scope変更時\",\"revision\":\"applicability-P-r1\"}},\"submitted_applicability\":{\"classification_ref\":true,\"data_use_ref\":false,\"security_permission_ref\":true},\"submitted_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"submitted_non_applicability_reasons\":{},\"transport_execution_state\":\"not_executed\"}",
+            "sha256": "3fab6c0552d41f0bfef68f98e245fc4ca47289dfb7a4a59091376e5cf4832104",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "field_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "registration_revision": "content_corresponding_in_fixture",
+              "capability": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "artifact_revision": "content_corresponding_in_fixture",
+              "dependency_revision": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "deadline": "content_corresponding_in_fixture",
+              "idempotency": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture",
+              "common_declaration_ref": "content_corresponding_in_fixture",
+              "common_compatibility_ref": "content_corresponding_in_fixture",
+              "common_validation_ref": "content_corresponding_in_fixture",
+              "common_update_ref": "content_corresponding_in_fixture",
+              "common_rollback_ref": "content_corresponding_in_fixture",
+              "common_unfinished_obligations": "content_corresponding_in_fixture"
+            },
+            "applicability_results": {
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture"
+            },
+            "unknown_original_applicability": [],
+            "non_applicability_reason_results": {
+              "data_use_ref": "missing"
+            },
+            "retained_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "submitted_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "registration_receipt_candidate": "held",
+            "retained_unfinished_obligations": [
+              {
+                "owner": "CONTRACT-P",
+                "identity": "UNFINISHED-P",
+                "revision": "obligation-r1",
+                "state": "unfinished"
+              }
+            ],
+            "not_selected_security_references": [
+              "data_use_ref"
+            ],
+            "transport_execution_state": "not_executed",
+            "transport_required_for_declaration_comparison": false,
+            "return_owners": {
+              "declaration": "CONNECTION-P-declaration-owner",
+              "security_permission_ref": "HELIX-SECURITY",
+              "data_use_ref": "SOURCE-P-owner",
+              "classification_ref": "SOURCE-P-owner",
+              "common_obligations": "HARNESS010/011-contract-owner"
+            },
+            "claim_results": {
+              "registration_send_permission": "none",
+              "registration_business_approval": "none",
+              "dependency_version_guessed": "none",
+              "communication_required_for_registration": "none"
+            },
+            "effects": {
+              "actual_registration": false,
+              "actual_send_permission": false,
+              "actual_transport": false,
+              "actual_business_approval": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "C001-F02-DATA_USE_REF-NON-APPLICABLE-REASON-FOREIGN",
+          "requirement_ref": "HELIXCONNECT-L3-001-F02",
+          "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+          "l4_ref": "HELIXCONNECT-L4-001-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-C001-F02-DATA_USE_REF-NON-APPLICABLE-REASON-FOREIGN",
+              "revision": "fixture-content-855d98681ad099ac8725004f58995fd8128499f22ad0eb3261f17cedc9690f3b",
+              "scope": "REGISTRATION-SCOPE",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"communication_required_for_registration\":false,\"dependency_version_guessed\":false,\"registration_business_approval\":false,\"registration_send_permission\":false},\"original_applicability\":{\"classification_ref\":true,\"data_use_ref\":false,\"security_permission_ref\":true},\"original_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"original_non_applicability_reasons\":{\"data_use_ref\":{\"owner\":\"synthetic-fixture-owner\",\"reason\":\"当該合成操作では非適用と独立原宣言\",\"reevaluate\":\"operation/scope変更時\",\"revision\":\"applicability-P-r1\"}},\"submitted_applicability\":{\"classification_ref\":true,\"data_use_ref\":false,\"security_permission_ref\":true},\"submitted_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"submitted_non_applicability_reasons\":{\"data_use_ref\":{\"owner\":\"synthetic-fixture-owner\",\"reason\":\"当該合成操作では非適用と独立原宣言\",\"reevaluate\":\"operation/scope変更時\",\"revision\":\"OTHER-applicability-r2\"}},\"transport_execution_state\":\"not_executed\"}",
+            "sha256": "855d98681ad099ac8725004f58995fd8128499f22ad0eb3261f17cedc9690f3b",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "field_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "registration_revision": "content_corresponding_in_fixture",
+              "capability": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "artifact_revision": "content_corresponding_in_fixture",
+              "dependency_revision": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "deadline": "content_corresponding_in_fixture",
+              "idempotency": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture",
+              "common_declaration_ref": "content_corresponding_in_fixture",
+              "common_compatibility_ref": "content_corresponding_in_fixture",
+              "common_validation_ref": "content_corresponding_in_fixture",
+              "common_update_ref": "content_corresponding_in_fixture",
+              "common_rollback_ref": "content_corresponding_in_fixture",
+              "common_unfinished_obligations": "content_corresponding_in_fixture"
+            },
+            "applicability_results": {
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture"
+            },
+            "unknown_original_applicability": [],
+            "non_applicability_reason_results": {
+              "data_use_ref": "content_conflict"
+            },
+            "retained_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "submitted_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "registration_receipt_candidate": "held",
+            "retained_unfinished_obligations": [
+              {
+                "owner": "CONTRACT-P",
+                "identity": "UNFINISHED-P",
+                "revision": "obligation-r1",
+                "state": "unfinished"
+              }
+            ],
+            "not_selected_security_references": [
+              "data_use_ref"
+            ],
+            "transport_execution_state": "not_executed",
+            "transport_required_for_declaration_comparison": false,
+            "return_owners": {
+              "declaration": "CONNECTION-P-declaration-owner",
+              "security_permission_ref": "HELIX-SECURITY",
+              "data_use_ref": "SOURCE-P-owner",
+              "classification_ref": "SOURCE-P-owner",
+              "common_obligations": "HARNESS010/011-contract-owner"
+            },
+            "claim_results": {
+              "registration_send_permission": "none",
+              "registration_business_approval": "none",
+              "dependency_version_guessed": "none",
+              "communication_required_for_registration": "none"
+            },
+            "effects": {
+              "actual_registration": false,
+              "actual_send_permission": false,
+              "actual_transport": false,
+              "actual_business_approval": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "C001-F02-CLASSIFICATION_REF-APPLICABLE-FLIPPED-NON-APPLICABLE",
+          "requirement_ref": "HELIXCONNECT-L3-001-F02",
+          "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+          "l4_ref": "HELIXCONNECT-L4-001-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-C001-F02-CLASSIFICATION_REF-APPLICABLE-FLIPPED-NON-APPLICABLE",
+              "revision": "fixture-content-8ce7a1bccca0c42e3b8232692631f4b245a275397667c7d59bf167198f456774",
+              "scope": "REGISTRATION-SCOPE",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"communication_required_for_registration\":false,\"dependency_version_guessed\":false,\"registration_business_approval\":false,\"registration_send_permission\":false},\"original_applicability\":{\"classification_ref\":true,\"data_use_ref\":true,\"security_permission_ref\":true},\"original_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"original_non_applicability_reasons\":{},\"submitted_applicability\":{\"classification_ref\":false,\"data_use_ref\":true,\"security_permission_ref\":true},\"submitted_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"submitted_non_applicability_reasons\":{\"classification_ref\":{\"owner\":\"synthetic-fixture-owner\",\"reason\":\"当該合成操作では非適用と独立原宣言\",\"reevaluate\":\"operation/scope変更時\",\"revision\":\"applicability-P-r1\"}},\"transport_execution_state\":\"not_executed\"}",
+            "sha256": "8ce7a1bccca0c42e3b8232692631f4b245a275397667c7d59bf167198f456774",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "field_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "registration_revision": "content_corresponding_in_fixture",
+              "capability": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "artifact_revision": "content_corresponding_in_fixture",
+              "dependency_revision": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "deadline": "content_corresponding_in_fixture",
+              "idempotency": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "common_declaration_ref": "content_corresponding_in_fixture",
+              "common_compatibility_ref": "content_corresponding_in_fixture",
+              "common_validation_ref": "content_corresponding_in_fixture",
+              "common_update_ref": "content_corresponding_in_fixture",
+              "common_rollback_ref": "content_corresponding_in_fixture",
+              "common_unfinished_obligations": "content_corresponding_in_fixture",
+              "classification_ref": "missing"
+            },
+            "applicability_results": {
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_conflict"
+            },
+            "unknown_original_applicability": [],
+            "non_applicability_reason_results": {},
+            "retained_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "submitted_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "registration_receipt_candidate": "held",
+            "retained_unfinished_obligations": [
+              {
+                "owner": "CONTRACT-P",
+                "identity": "UNFINISHED-P",
+                "revision": "obligation-r1",
+                "state": "unfinished"
+              }
+            ],
+            "not_selected_security_references": [],
+            "transport_execution_state": "not_executed",
+            "transport_required_for_declaration_comparison": false,
+            "return_owners": {
+              "declaration": "CONNECTION-P-declaration-owner",
+              "security_permission_ref": "HELIX-SECURITY",
+              "data_use_ref": "SOURCE-P-owner",
+              "classification_ref": "SOURCE-P-owner",
+              "common_obligations": "HARNESS010/011-contract-owner"
+            },
+            "claim_results": {
+              "registration_send_permission": "none",
+              "registration_business_approval": "none",
+              "dependency_version_guessed": "none",
+              "communication_required_for_registration": "none"
+            },
+            "effects": {
+              "actual_registration": false,
+              "actual_send_permission": false,
+              "actual_transport": false,
+              "actual_business_approval": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "C001-F02-CLASSIFICATION_REF-NON-APPLICABLE-REASON-MISSING",
+          "requirement_ref": "HELIXCONNECT-L3-001-F02",
+          "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+          "l4_ref": "HELIXCONNECT-L4-001-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-C001-F02-CLASSIFICATION_REF-NON-APPLICABLE-REASON-MISSING",
+              "revision": "fixture-content-afc904795287edd76835bd4ddeefd6d6c5040e5b8c7da1fddda1679f7b671e57",
+              "scope": "REGISTRATION-SCOPE",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"communication_required_for_registration\":false,\"dependency_version_guessed\":false,\"registration_business_approval\":false,\"registration_send_permission\":false},\"original_applicability\":{\"classification_ref\":false,\"data_use_ref\":true,\"security_permission_ref\":true},\"original_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"original_non_applicability_reasons\":{\"classification_ref\":{\"owner\":\"synthetic-fixture-owner\",\"reason\":\"当該合成操作では非適用と独立原宣言\",\"reevaluate\":\"operation/scope変更時\",\"revision\":\"applicability-P-r1\"}},\"submitted_applicability\":{\"classification_ref\":false,\"data_use_ref\":true,\"security_permission_ref\":true},\"submitted_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"submitted_non_applicability_reasons\":{},\"transport_execution_state\":\"not_executed\"}",
+            "sha256": "afc904795287edd76835bd4ddeefd6d6c5040e5b8c7da1fddda1679f7b671e57",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "field_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "registration_revision": "content_corresponding_in_fixture",
+              "capability": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "artifact_revision": "content_corresponding_in_fixture",
+              "dependency_revision": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "deadline": "content_corresponding_in_fixture",
+              "idempotency": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "common_declaration_ref": "content_corresponding_in_fixture",
+              "common_compatibility_ref": "content_corresponding_in_fixture",
+              "common_validation_ref": "content_corresponding_in_fixture",
+              "common_update_ref": "content_corresponding_in_fixture",
+              "common_rollback_ref": "content_corresponding_in_fixture",
+              "common_unfinished_obligations": "content_corresponding_in_fixture"
+            },
+            "applicability_results": {
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture"
+            },
+            "unknown_original_applicability": [],
+            "non_applicability_reason_results": {
+              "classification_ref": "missing"
+            },
+            "retained_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "submitted_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "registration_receipt_candidate": "held",
+            "retained_unfinished_obligations": [
+              {
+                "owner": "CONTRACT-P",
+                "identity": "UNFINISHED-P",
+                "revision": "obligation-r1",
+                "state": "unfinished"
+              }
+            ],
+            "not_selected_security_references": [
+              "classification_ref"
+            ],
+            "transport_execution_state": "not_executed",
+            "transport_required_for_declaration_comparison": false,
+            "return_owners": {
+              "declaration": "CONNECTION-P-declaration-owner",
+              "security_permission_ref": "HELIX-SECURITY",
+              "data_use_ref": "SOURCE-P-owner",
+              "classification_ref": "SOURCE-P-owner",
+              "common_obligations": "HARNESS010/011-contract-owner"
+            },
+            "claim_results": {
+              "registration_send_permission": "none",
+              "registration_business_approval": "none",
+              "dependency_version_guessed": "none",
+              "communication_required_for_registration": "none"
+            },
+            "effects": {
+              "actual_registration": false,
+              "actual_send_permission": false,
+              "actual_transport": false,
+              "actual_business_approval": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+          "execution_state": "not_executed",
+          "effect": "none"
+        },
+        {
+          "id": "C001-F02-CLASSIFICATION_REF-NON-APPLICABLE-REASON-FOREIGN",
+          "requirement_ref": "HELIXCONNECT-L3-001-F02",
+          "system_oracle_ref": "HELIXCONNECT-L10-001-F02",
+          "l4_ref": "HELIXCONNECT-L4-001-F02",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "SOURCE-C001-F02-CLASSIFICATION_REF-NON-APPLICABLE-REASON-FOREIGN",
+              "revision": "fixture-content-cffa9f0fab69cf68f3582e402139695c9a64e523c0226bef840d9cfbad68b06b",
+              "scope": "REGISTRATION-SCOPE",
+              "owner": "synthetic-fixture-owner"
+            },
+            "raw_utf8": "{\"claims\":{\"communication_required_for_registration\":false,\"dependency_version_guessed\":false,\"registration_business_approval\":false,\"registration_send_permission\":false},\"original_applicability\":{\"classification_ref\":false,\"data_use_ref\":true,\"security_permission_ref\":true},\"original_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"classification_ref\":\"SOURCE-P@classification-r1\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"original_non_applicability_reasons\":{\"classification_ref\":{\"owner\":\"synthetic-fixture-owner\",\"reason\":\"当該合成操作では非適用と独立原宣言\",\"reevaluate\":\"operation/scope変更時\",\"revision\":\"applicability-P-r1\"}},\"submitted_applicability\":{\"classification_ref\":false,\"data_use_ref\":true,\"security_permission_ref\":true},\"submitted_descriptor\":{\"artifact_revision\":\"descriptor-P-r2\",\"capability\":\"template-query\",\"common_compatibility_ref\":\"HARNESS010@compatibility-P-r1\",\"common_declaration_ref\":\"HARNESS010@declaration-P-r1\",\"common_rollback_ref\":\"HARNESS010@rollback-P-r1\",\"common_unfinished_obligations\":[{\"identity\":\"UNFINISHED-P\",\"owner\":\"CONTRACT-P\",\"revision\":\"obligation-r1\",\"state\":\"unfinished\"}],\"common_update_ref\":\"HARNESS011@update-P-r1\",\"common_validation_ref\":\"HARNESS010@validation-P-r1\",\"connection_identity\":\"CONNECTION-P\",\"contract_revision\":\"meaning-r2/r3\",\"correlation\":\"CORRELATION-P\",\"data_use_ref\":\"SOURCE-P@data-use-r1\",\"deadline\":\"bounded-deadline-P\",\"dependency_revision\":\"dependency-P-r1\",\"idempotency\":\"IDEMPOTENCY-P\",\"registration_revision\":\"registration-P-r1\",\"result_state\":\"declared_not_executed\",\"scope\":\"PRODUCT-P/template-query\",\"security_permission_ref\":\"SEC-P@permission-r1\"},\"submitted_non_applicability_reasons\":{\"classification_ref\":{\"owner\":\"synthetic-fixture-owner\",\"reason\":\"当該合成操作では非適用と独立原宣言\",\"reevaluate\":\"operation/scope変更時\",\"revision\":\"OTHER-applicability-r2\"}},\"transport_execution_state\":\"not_executed\"}",
+            "sha256": "cffa9f0fab69cf68f3582e402139695c9a64e523c0226bef840d9cfbad68b06b",
+            "qualification": "synthetic_fixture_only_no_actual_source_qualification"
+          },
+          "expected_material": {
+            "field_results": {
+              "connection_identity": "content_corresponding_in_fixture",
+              "registration_revision": "content_corresponding_in_fixture",
+              "capability": "content_corresponding_in_fixture",
+              "contract_revision": "content_corresponding_in_fixture",
+              "artifact_revision": "content_corresponding_in_fixture",
+              "dependency_revision": "content_corresponding_in_fixture",
+              "scope": "content_corresponding_in_fixture",
+              "correlation": "content_corresponding_in_fixture",
+              "deadline": "content_corresponding_in_fixture",
+              "idempotency": "content_corresponding_in_fixture",
+              "result_state": "content_corresponding_in_fixture",
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "common_declaration_ref": "content_corresponding_in_fixture",
+              "common_compatibility_ref": "content_corresponding_in_fixture",
+              "common_validation_ref": "content_corresponding_in_fixture",
+              "common_update_ref": "content_corresponding_in_fixture",
+              "common_rollback_ref": "content_corresponding_in_fixture",
+              "common_unfinished_obligations": "content_corresponding_in_fixture"
+            },
+            "applicability_results": {
+              "security_permission_ref": "content_corresponding_in_fixture",
+              "data_use_ref": "content_corresponding_in_fixture",
+              "classification_ref": "content_corresponding_in_fixture"
+            },
+            "unknown_original_applicability": [],
+            "non_applicability_reason_results": {
+              "classification_ref": "content_conflict"
+            },
+            "retained_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "classification_ref": "SOURCE-P@classification-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "submitted_descriptor": {
+              "connection_identity": "CONNECTION-P",
+              "registration_revision": "registration-P-r1",
+              "capability": "template-query",
+              "contract_revision": "meaning-r2/r3",
+              "artifact_revision": "descriptor-P-r2",
+              "dependency_revision": "dependency-P-r1",
+              "scope": "PRODUCT-P/template-query",
+              "correlation": "CORRELATION-P",
+              "deadline": "bounded-deadline-P",
+              "idempotency": "IDEMPOTENCY-P",
+              "result_state": "declared_not_executed",
+              "security_permission_ref": "SEC-P@permission-r1",
+              "data_use_ref": "SOURCE-P@data-use-r1",
+              "common_declaration_ref": "HARNESS010@declaration-P-r1",
+              "common_compatibility_ref": "HARNESS010@compatibility-P-r1",
+              "common_validation_ref": "HARNESS010@validation-P-r1",
+              "common_update_ref": "HARNESS011@update-P-r1",
+              "common_rollback_ref": "HARNESS010@rollback-P-r1",
+              "common_unfinished_obligations": [
+                {
+                  "owner": "CONTRACT-P",
+                  "identity": "UNFINISHED-P",
+                  "revision": "obligation-r1",
+                  "state": "unfinished"
+                }
+              ]
+            },
+            "registration_receipt_candidate": "held",
+            "retained_unfinished_obligations": [
+              {
+                "owner": "CONTRACT-P",
+                "identity": "UNFINISHED-P",
+                "revision": "obligation-r1",
+                "state": "unfinished"
+              }
+            ],
+            "not_selected_security_references": [
+              "classification_ref"
+            ],
+            "transport_execution_state": "not_executed",
+            "transport_required_for_declaration_comparison": false,
+            "return_owners": {
+              "declaration": "CONNECTION-P-declaration-owner",
+              "security_permission_ref": "HELIX-SECURITY",
+              "data_use_ref": "SOURCE-P-owner",
+              "classification_ref": "SOURCE-P-owner",
+              "common_obligations": "HARNESS010/011-contract-owner"
+            },
+            "claim_results": {
+              "registration_send_permission": "none",
+              "registration_business_approval": "none",
+              "dependency_version_guessed": "none",
+              "communication_required_for_registration": "none"
+            },
+            "effects": {
+              "actual_registration": false,
+              "actual_send_permission": false,
+              "actual_transport": false,
+              "actual_business_approval": false,
+              "actual_authority": false,
+              "actual_implementation_ready": false,
+              "actual_acceptance": false
+            }
+          },
+          "basis": "原適用宣言と非適用理由を内容で照合し、提出だけの非適用化・理由欠落・別版を保留する。",
+          "execution_state": "not_executed",
+          "effect": "none"
         }
       ],
       "execution_state": "not_executed",
@@ -12493,7 +13921,7 @@
   "fixture_progress": {
     "cases_by_function": {
       "F01": 33,
-      "F02": 39
+      "F02": 48
     },
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false
