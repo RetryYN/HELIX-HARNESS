@@ -311,7 +311,7 @@
     "target_migration_basis": "004-F05は採択済み現行L2の退役/完全一致再利用節と現行LAR/再利用統制を参照する。旧sourceとこの移管条件を区別し、archiveからの実copy/retireやcandidate全件採用を生成しない。"
   },
   "remaining": [
-    "B01/F01/F02/N01の具体的正常/負例・独立原資料bytes。F03/F04/F05は具体化済み・意味review未完。",
+    "F01/F02の具体的正常/負例・独立原資料bytes。B01/F03/F04/F05/N01は具体化済み・意味review未完。",
     "L9の10観点の不足caseとstate所有内容不一致をF03へ作成済み。実owner資格・正式oracle凍結は未成立。",
     "未統合015基本設計と後続022等のexact binding",
     "独立exact HEAD意味review・main admission",
@@ -351,7 +351,14 @@
         "人の発言とAI解釈を別原記録identityにする",
         "一方の成功で他方の不足を消さない"
       ],
-      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。"
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。",
+      "connection_detail": {
+        "original_reaction_owner": "OS",
+        "technical_evidence_owner": "技術検証owner",
+        "meaning_owner": "HARNESS",
+        "preservation": "受容済み軸と未解決findingを別に保持。技術品質と人の原反応は相殺しない。",
+        "management_return": "意味が変わる上流ownerへ候補と根拠を返し、製品要求を直接writeしない。"
+      }
     },
     {
       "id": "HARNESS-L4-003-F01",
@@ -602,7 +609,29 @@
         "別環境や旧provider/CIで証拠不足を相殺しない",
         "SLO/RTO/RPO/保持期間/認可を工程から生成しない"
       ],
-      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。"
+      "failure_return": "不足の条件・対象revision/scope・元証拠・理由・当該ownerを保持。該当しない有効scopeを全停止しない。",
+      "connection_detail": {
+        "product_applicability_owner": "対象製品の要求/品質owner",
+        "security_policy_authority_owner": "SECURITY",
+        "ticket_operation_owner": "OS",
+        "quality_stages": [
+          "designed",
+          "implemented",
+          "verified",
+          "observed",
+          "operated"
+        ],
+        "finding_stages": [
+          "inferred",
+          "reproduced",
+          "verified",
+          "repaired",
+          "reverified",
+          "operated"
+        ],
+        "unknown_numeric_return": "対象製品要求/Release owner",
+        "partial_preservation": "対象別・環境別の不足を保持し、無関係な有効scopeを消さない。"
+      }
     }
   ],
   "reverse_triggers": [
@@ -705,10 +734,8 @@
       "state": "draft_not_executed"
     },
     "remaining_contracts": [
-      "B01",
       "F01",
-      "F02",
-      "N01"
+      "F02"
     ],
     "F05": {
       "normal": 3,
@@ -720,6 +747,18 @@
       "normal": 4,
       "negative": 35,
       "source_packets": 39,
+      "state": "draft_not_executed"
+    },
+    "B01": {
+      "normal": 1,
+      "negative": 19,
+      "source_packets": 20,
+      "state": "draft_not_executed"
+    },
+    "N01": {
+      "normal": 1,
+      "negative": 26,
+      "source_packets": 27,
       "state": "draft_not_executed"
     }
   }
