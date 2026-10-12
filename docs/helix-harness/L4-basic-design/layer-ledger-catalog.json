@@ -1,6 +1,6 @@
 {
   "parent": "HARNESS-L2-040",
-  "status": "draft_basic_architecture_contracts_concrete_oracles_pending",
+  "status": "draft_basic_contracts_partial_concrete_oracles_pending",
   "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
   "scope": {
     "version_target": "1.0",
@@ -98,7 +98,7 @@
   "authority_effect": "none",
   "operation_effect": "none",
   "remaining": [
-    "具体的な正常/負例/未見例の独立source packet・期待内容・変異・局所保全のL9 oracle著述",
+    "F01の具体原packet/正常/負例を起草済み。F02/F03/F04/B01/N01の具体oracleと全関数の独立source資格/内容組合せ・未見例は未完",
     "実owner-qualified L1/L2/authority/template版・対象scope/revision/互換契約binding",
     "L5/L8内部比較・edge casesと正式schema/codec/resolver",
     "独立reviewと所見閉包。実oracle凍結/Red/Green/Refactor・実L9/L10は未成立",
@@ -155,7 +155,11 @@
       "output_meanings": [
         "layer_results",
         "pair_results",
-        "anchor_result"
+        "anchor_result",
+        "layer_membership",
+        "pair_membership",
+        "unexpected_layers",
+        "unexpected_pairs"
       ],
       "content_comparison": [
         "L1–L12のexact集合をcanonical pair sourceと別に比較する。六pairは左右二方向の対応を持ち、同対象revisionに結ぶ。",
@@ -166,7 +170,9 @@
         "authority/anchor owner"
       ],
       "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "concrete_comparison_rule": "必要集合は独立canonical sourceへ照合し、欠落layer/片方向pair/anchor不成立を局所結果に保持する。extra layer/pairはmembership conflictだが既知必須項目の読める原結果を消さない。target L1資格未知なら対象bindingをunknown/nullにし対象外へ逃がさない。",
+      "membership_semantics": "layer_membershipは観測catalogのlayer集合がcanonical必要集合へexactに対応する条件。欠落ならmissing/null、余剰ならconflict/null。個別layer_resultsは必要十二層を別に保持する。pair_membershipは六pair identity集合のexact対応であり、各pairの方向条件はpair_resultsで別判定する。"
     },
     {
       "id": "HARNESS-L4-040-F02",
@@ -352,5 +358,19 @@
       "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
       "operation_effect": "none"
     }
-  ]
+  ],
+  "fixture_progress": {
+    "F01": {
+      "normal_cases": 1,
+      "negative_cases": 25,
+      "state": "draft_concrete_catalog_cases_pending_qualification_detail_and_review"
+    },
+    "remaining_concrete_functions": [
+      "F02",
+      "F03",
+      "F04",
+      "B01",
+      "N01"
+    ]
+  }
 }
