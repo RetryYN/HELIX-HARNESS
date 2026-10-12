@@ -1,0 +1,258 @@
+{
+  "parent": "HELIXBRAIN-L2-028",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+    "boundary": "知識と共通descriptorの各版軸、互換と未観測限界の局所照合。実呼出し/lifecycle成立を生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-provenance-version-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c7ae689b082dcc6478bcc4ad29f98406b9fd2b1c66a391f65256e15006fd7f21"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    }
+  ],
+  "source_pin_limit": "固定bytesは全量精読・意味被覆・実source資格ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "read_lines": [
+        19,
+        60
+      ],
+      "quote": "集約する。文章をJSONへ詰め込むのではなく、機械判断に必要な契約だけをJSON正本とする。\n\n| surface | 責務 | authority |\n|---|---|---|\n| Design Template JSON | template ID/version、layer/pair、適用条件、必須input/section/field、owner、trace、negative oracle、measurement、completion、downstream kind | canonical candidate。pair freeze後にcanonical |\n| Design Instance JSON | 選択済みtemplateとrequirement/obligationを束縛した設計値 | 後続L5 episode |\n| graph JSON | component、state transition、data flow、sequence、V-pair edge | 図の構造的意味 |\n| generated Markdown/HTML/Mermaid | JSONを人間向けに投影 | derived、直接編集禁止 |\n| supplemental Markdown | rationale、alternatives、trade-off、背景 | JSON IDへ束縛する説明。構造的意味の正本ではない |\n| `docs/design/design-catalog.yaml` | 現行成果物の所在と分類 | inventory。template schemaではない |\n\n画像、Markdown、tool node ID、file pathだけをtemplate identityや設計意味の主キーにしない。\n\n## §2 component境界\n\n| component | 入力 | 出力 | 責務 | failure |\n|---|---|---|---|---|\n| `DesignTemplateRegistry` | versioned template JSON | exact template set、registry digest | ID/version/supersessionとschema束縛 | duplicate、unknown version、digest drift |\n| `ApplicabilityEvaluator` | requirement atom、obligation、risk、style/layer、typed predicate | applicable/non-applicable＋理由 | `all`/`any`/`not`のfail-close評価 | unknown operator/field/enum、自由文条件 |\n| `TemplateShadowCompiler` | 既存template/canonical design inventory | shadow template候補、parity finding | 既存意味を新正本候補へ一方向変換 | 未分類、意味欠落、二重authority |\n| `GeneratedViewProjector` | validated template/instance/graph JSON | Markdown/HTML/Mermaid＋source digest | 決定論表示 | source digest不一致、直接編集 |\n| `DesignPortfolioPlanner` | Requirement JSON、Design Obligation Graph、registry | reuse/delta/new/N/A proposal | 最小portfolio提案 | uncovered、duplicate、fabricated ID |\n| `PairGraphBinder` | selected template/instance、V-pair oracle | L4↔L9、L5↔L8 graph | pair exact setとcompletionを束縛 | missing pair、別revision、stale oracle |\n\n本sliceはcomponent契約だけを定義する。schema/runtime、planner algorithm、instance生成、pair graph\nfreezeは後続L5/L6 episodeで実装する。\n\n## §3 主要data flow\n\n```text\nRequirement JSON\n  -> Design Obligation Graph\n  -> DesignPortfolioPlanner\n  -> selected Design Template JSON exact set\n  -> Design Instance JSON\n  -> pair graph / Test Design JSON\n  -> generated Markdown / HTML / Mermaid\n```\n\nback-propagationはfindingまたはproposal eventとしてRequirement Engine／template revisionへ戻す。\ngenerated viewや既存Markdownを読んでJSONを無断更新するreverse flowは禁止する。\n",
+      "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "selected_lines_sha256": "5242e784fdab4ce2aa46b5fdac10f937ed1050496c58ea701f16d62b6212927e",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "disposition": "unresolved",
+        "source_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      },
+      "reuse": "reference_only; adopted BRAIN028 version-axis and compatibility semantics rederived",
+      "preserve": "ID/version/schema束縛、unknown version/digest driftと適用条件不明の区別、pair revision束縛。",
+      "change": "旧registry/runtime/typed-predicate実装を移植せず、knowledge各版と共通HARNESS descriptor各版を別に照合する。",
+      "reason": "採択028と承認L3/L10が知識版とpack版の混同・黙ったfallback・共通lifecycle再定義を拒否する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "宣言互換range/state適用意味の実source資格と必要集合、HARNESS010/011とBRAIN008のowner-qualified exact binding。",
+    "正式schema/range codec/参照resolver、各機構との実版/依存/検証scopeの結合。",
+    "L5/L8型・比較関数・単体oracle、実装前凍結→実Red→最小Green→Refactor→再検証、実L9/L10/PO L11。",
+    "全92親430対の基本/詳細設計閉包と実装準備。"
+  ],
+  "document_id": "HELIXBRAIN-L4-028",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "knowledge_descriptor_axis_reader",
+      "knowledge_compatibility_reply_reader",
+      "knowledge_compatibility_evidence_reader",
+      "knowledge_common_lifecycle_boundary_reader"
+    ],
+    "flow": [
+      "独立知識とdescriptor原内容 → 各版軸の個別照合",
+      "要求参照と宣言range/state意味 → P局所適用候補/不足とowner返却、Q保全",
+      "観測対象revision/scope → 対象証拠範囲/未評価限界",
+      "HARNESS010/011 common参照と元義務 → 共通lifecycle保持/実operation非成立"
+    ],
+    "python_boundary": "immutable inputのpure内容比較と返却候補。network/DB/OS保存/CORE更新/fs/env/clock/自動fallback/実呼出し/rollback/採用/authorityは行わない。",
+    "representation_limit": "版文字列は異なる軸を示す合成記号。互換rangeのmember例は独立宣言意味の有限fixtureで、SemVer/caret/全range codecや知識stateの世界全体enumを新設しない。正式binding/実互換保証は未成立。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXBRAIN-L4-028-F01",
+      "requirement_ref": "HELIXBRAIN-L3-028-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-F01",
+      "oracle_ref": "HELIXBRAIN-L9-028-F01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-028-F01",
+        "parent": "HELIXBRAIN-L2-028",
+        "title": "知識版とpack版の別照合",
+        "obligation": "HARNESS010/011のdescriptor identity/kind/contract version/artifact version/dependency identity-version/compatibility range/verification scopeへ、BRAIN固有のknowledge identity/revision/version/stateを別に結ぶ。version_targetは能力目標で実版ではない。",
+        "oracle_ref": "HELIXBRAIN-L10-028-F01"
+      },
+      "component": "knowledge_descriptor_axis_reader",
+      "input_meanings": [
+        "独立知識identity/revision/version/state",
+        "共通descriptor identity/kind/contract/artifact/dependency/compatibility/verification scope",
+        "version_targetと提出版軸"
+      ],
+      "output_meanings": [
+        "版軸別対応/未定情報と元内容保全",
+        "不足別BRAIN008/HARNESS返却候補"
+      ],
+      "content_comparison": [
+        "knowledge versionをartifact/contract/dependency版へ転写しない。",
+        "version_targetは能力目標で実版ではない。知識存在でdescriptor欠落を補わない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/互換保証/正式binding/知識採用/実operation/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-028-F02",
+      "requirement_ref": "HELIXBRAIN-L3-028-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-F02",
+      "oracle_ref": "HELIXBRAIN-L9-028-F02",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-028-F02",
+        "parent": "HELIXBRAIN-L2-028",
+        "title": "互換範囲とunknownの返却",
+        "obligation": "required versionが宣言compatibility range内である場合のみ当該参照を許し、identity/version/state/依存rangeのunknown/mismatch/range外は不適用またはunknown responseと戻し先を返す。旧版への無言fallbackをしない。",
+        "oracle_ref": "HELIXBRAIN-L10-028-F02"
+      },
+      "component": "knowledge_compatibility_reply_reader",
+      "input_meanings": [
+        "要求対象の知識とdescriptor各版軸",
+        "独立宣言range意味とstate適用条件",
+        "当該参照Pと無関係な有効参照Q"
+      ],
+      "output_meanings": [
+        "適用可能/不適用/unknownと版軸/戻し先",
+        "P未成立とQ元状態の保全"
+      ],
+      "content_comparison": [
+        "required versionは宣言range意味内でのみ参照候補。unknown/range外/mismatchを呼出し成立にしない。",
+        "宣言range/state適用の意味を補完せず、旧current/latestへ無言fallbackしない。",
+        "局所の不成立で無関係な有効参照を失効させない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/互換保証/正式binding/知識採用/実operation/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-028-N01",
+      "requirement_ref": "HELIXBRAIN-L3-028-N01",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-N01",
+      "oracle_ref": "HELIXBRAIN-L9-028-N01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-028-N01",
+        "parent": "HELIXBRAIN-L2-028",
+        "title": "未見版と照合証拠の限界",
+        "obligation": "同scopeの未見knowledge/descriptor候補にも同じ版軸/互換/state契約を適用し、別revisionの成功結果や未観測を利用可能へ補完しない。根拠のあるscopeと未評価/未完を保持し、限定照合から全知識/全案件の安全や成熟を保証しない。",
+        "oracle_ref": "HELIXBRAIN-L10-028-N01"
+      },
+      "component": "knowledge_compatibility_evidence_reader",
+      "input_meanings": [
+        "未見知識/descriptor候補の版軸",
+        "同対象revision/scopeへ結ぶ観測内容",
+        "旧成功/別scope/未評価と外挿claim"
+      ],
+      "output_meanings": [
+        "根拠が当該対象へ対応する範囲と未評価",
+        "未見候補の局所unknownと元状態保全"
+      ],
+      "content_comparison": [
+        "同scopeでも別revisionの成功は対象候補の成功ではない。",
+        "未見fixtureは実未見評価でない。current/accepted/全pack互換の外挿をしない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/互換保証/正式binding/知識採用/実operation/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-028-B01",
+      "requirement_ref": "HELIXBRAIN-L3-028-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-028-B01",
+      "oracle_ref": "HELIXBRAIN-L9-028-B01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-028-B01",
+        "parent": "HELIXBRAIN-L2-028",
+        "title": "共通pack lifecycleへの参照",
+        "obligation": "共通交換/更新/rollback/未完義務の引継ぎはHARNESS010/011を参照し、BRAINが別lifecycleを再定義しない。BRAINは知識revision/stateとdescriptorへの適用を提供し、実呼出し/登録/配布/rollbackの成功を生成しない。",
+        "oracle_ref": "HELIXBRAIN-L10-028-B01"
+      },
+      "component": "knowledge_common_lifecycle_boundary_reader",
+      "input_meanings": [
+        "独立HARNESS010/011 common参照とowner",
+        "知識変更対象と未完共通義務の対象",
+        "別実operation ownerと成功claim"
+      ],
+      "output_meanings": [
+        "common参照/未完義務の内容対応",
+        "知識変更/実操作/未完の別結果と戻し先"
+      ],
+      "content_comparison": [
+        "共通exchange/update/rollback/未完義務引継ぎをBRAINが再定義しない。",
+        "descriptor内容一致で実rollback/呼出し/登録/配布成功を生成しない。",
+        "knowledge currentで元の未完共通義務を消さない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/互換保証/正式binding/知識採用/実operation/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 29,
+      "F02": 33,
+      "N01": 13,
+      "B01": 19
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
