@@ -1,0 +1,203 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-009",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2a",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+    "boundary": "通常Work/Change-resource接続と選択stage収載。OS014全能力/全7製品/後続episode-to-LABOを完成必須にしない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        29,
+        30
+      ],
+      "quote": "Requirement、Definition、Contract、Release、Deploymentの意味authorityはHELIX-HARNESSに置く。runtime observation、log、metric、\ntrace、notification、provider control plane、DevOS、`harness.db`は証拠またはprojectionであり、意味authorityとして手編集しない。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "e277f6a891b50c2662b4f4fea61d172ea9757d108ad870e462cf51aaf5cfe4a3",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧意味authorityとruntime observation/projection分離を保持する。",
+      "change": "9/26のOS作業/INFRA actual別正本へ再導出し、旧DB/runtimeを移植しない。",
+      "reason": "10/12承認009の通常接続/選択stage条件を保持する。旧runtime/CI/testを実行せず、旧stage/版を継承しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        76,
+        79
+      ],
+      "quote": "`DeploymentManifest`はRelease artifact full SHA／digest、configuration digest、target environment、migration、health check、\ncompatibility、required capabilityを保持する。`DeploymentPlan`はpreflight、staging、apply order、approval、stop condition、rollback、\nobservation windowを保持する。`DeploymentReceipt`はactor、assignment、target identity、before／after state、artifact、差分、時刻、結果、\nevidence、provider receiptを束縛する。Plan、apply、receiptを同一状態へ畳み込まない。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "cf252d82778fb33bfb0d62028baa3309b0d444d3c1840d2a6f7c0e0c74075b54",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧Plan/apply/receiptを畳み込まない境界と対象/actor/assignment/evidence参照を保持する。",
+      "change": "採択009のOS Work/Change対INFRA runtime revisionへ再導出し、stage IDを実稼働版へ流用しない。",
+      "reason": "10/12承認009の通常接続/選択stage条件を保持する。旧runtime/CI/testを実行せず、旧stage/版を継承しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "read_lines": [
+        80,
+        88
+      ],
+      "quote": "| 要求・要件正本 | 満たすべき価値・制約・承認境界 | 現在の実行担当・スコア |\n| Design / PLAN | 正本に従う設計・原子的変更統制 | 別の要求正本、瞬間的な配車状態 |\n| ExecutionTicket | 導出された実行契約：目的・責務・scope・受入義務 | provider、assignee、branch、lease、進捗、score |\n| Assignment | 実行者・実行場所・予算・lease/fenceとTicketのbinding | Ticketの目的・scopeの独自変更 |\n| ExecutionAttempt | 一回の実行条件・観測・結果・retry lineage | 永続的な仕事の意味 |\n| TaskSnapshot / ExperimentDefinition | 比較対象・fixture・protocol・treatment・共通採点基準 | 本番Ticketの意味変更・本番権限 |\n| MeasurementEpisode / MetricReceipt | 観測事実・集計入力・欠測・採点version・証拠 | dispatch、merge、要求承認、Ticket close authority |\n| GitHub | collaboration inputと、移行済み対象の外部projection | 独自Ticket正本。既存Issue契約を一括廃止する理由にもならない |\n| journal / event writer | 正規runtime eventの耐久記録 | 人間意味承認の代用 |",
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "selected_lines_sha256": "171a847f680889ba7dd763a112179bc63bbe7882a93301ce6bb130f0f573710c",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "disposition": "unresolved",
+        "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧candidateのTicket/Assignment/Attempt/観測/外部projectionの所有意味を比較資料として参照する。",
+      "change": "candidate/runtimeを採用せず、現行OS/INFRA ownerを分けた接続へ再導出する。",
+      "reason": "10/12承認009の通常接続/選択stage条件を保持する。旧runtime/CI/testを実行せず、旧stage/版を継承しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "read_lines": [
+        143,
+        143
+      ],
+      "quote": "Attemptは`attempt_id / assignment_ref / ticket_ref / started_at / completed_at / outcome / retry_lineage / actual_execution_snapshot / receipt_refs`を持つ。起動前拒否は`InvocationDenied`等として記録し、実際にproviderが起動したというreceiptを作らない。実行後にmodelやprofileが判明した場合は出典付き追補を行い、当初のrequested値を上書きしない。",
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "selected_lines_sha256": "58ad3196d64f86bba744509ee4aa6fceab121aa2e2a7c20fce095fdf614e8adc",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "disposition": "unresolved",
+        "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b"
+      },
+      "reuse": "reference_only",
+      "preserve": "原requested値と後のactual/receiptを分けて原値を上書きしない。",
+      "change": "旧provider/Attempt schemaを移植せず、原OS/INFRA input保存と未完operationの接続へ再導出する。",
+      "reason": "10/12承認009の通常接続/選択stage条件を保持する。旧runtime/CI/testを実行せず、旧stage/版を継承しない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実OS Work/ChangeとINFRA resource/runtime/適格rollbackのowner-qualified binding、選択stageの実構成/更新/復旧/同版証拠は未成立。",
+    "正式schema/codec/versioned-view resolver/原子更新/並行revision/全組合せ/対L5L8/oracle凍結は未完。",
+    "実装前Red→Green→Refactor→再検証、実接続/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXINFRASTRUCTURE-L4-009",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "os_work_change_reader",
+      "infra_runtime_reader",
+      "versioned_relation_reader",
+      "selected_stage_binding_reader"
+    ],
+    "flow": [
+      "OS原作業＋INFRA原実状態→同対象view/未完保持",
+      "通常接続→stage非対象／stage収載→OS014証拠追加"
+    ],
+    "python_boundary": "予定するPython接続は別正本の原参照を読み、関係と未完を返す。作業承認/実資源変更/保存/段階releaseは本Draftで実行しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-009-F01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-009-F01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-009-F01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-009-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-009",
+        "title": "work/changeと資源状態の対応",
+        "obligation": "OS ticket/change/actor/evidence/stop-resumeとINFRA topology/actual/deployment/runtime revision/recovery stateをversioned viewで関連付け、別正本を維持する。target/runtime対応不明や部分更新は成立にせず未完を保持する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-009-F01"
+      },
+      "content_rules": [
+        "OS ticket/change/actor/evidence/stop-resumeとINFRA topology/actual/deployment/runtime/recoveryの参照を同target/revision/scopeへ結ぶ。双方の原記録を保全し、versioned viewは正本を二重化しない。",
+        "OSは作業/変更を、INFRAは実資源/runtimeを所有する。ticketをactual正本へ、INFRAを作業承認者へ読み替えない。",
+        "target/runtime対応不明、部分更新、停止中operationは成立へ丸めず、該当OS/INFRA ownerへ返し、稼働版・適格rollback先・未完操作を保持する。"
+      ],
+      "representation_limit": "合成ref/版/関係markerは正式schema/実資格/実stage成立を採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-009-F02",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-009-F02",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-009-F02",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-009-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-009",
+        "title": "stage packの条件付き接続",
+        "obligation": "通常resource-state接続はstage release構成体を必須化しない。stage pack収載時だけOS014の構成/更新/復旧/同版証拠を照合しstage IDとruntime revisionを区別する。後続episode-to-LABOを必須化しない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-009-F02"
+      },
+      "content_rules": [
+        "通常resource-state接続にstage releaseを必須化しない。stage未選択は追加条件非対象、選択不明はunknownとして保持する。",
+        "stage pack収載時だけOS014の構成/更新/復旧/同版構成証拠を参照する。stage IDとINFRA pack/contract/artifact/dependency版/runtime revisionを別identityのまま対応させる。",
+        "選択stageの対象違い/構成・更新・復旧・同版証拠不足はOS/INFRAへ返す。全HELIX/全7製品/後続episode-to-LABO完成待ちを追加しない。"
+      ],
+      "representation_limit": "合成ref/版/関係markerは正式schema/実資格/実stage成立を採用しない。"
+    }
+  ]
+}
