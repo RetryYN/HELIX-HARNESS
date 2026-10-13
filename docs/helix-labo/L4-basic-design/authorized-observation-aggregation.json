@@ -1,0 +1,381 @@
+{
+  "parent": "HELIXLABO-L2-001",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+    "boundary": "選択sourceの許可観測と原state/provenance。source接続021..030は選択ごとの別閉包、Web/WEB-OS任意接続や全source完成を前提にしない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+    },
+    {
+      "path": "docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3f95f09ee86920e0dd6172a9e28f32192c1ee16bd4bfbec72438464bfee9fa16"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        67,
+        67
+      ],
+      "quote": "| **HIL-BR-15** | 将来のproduct-data sourceをversioned connectorで取り込み、由来・鮮度・schema・authorityを保持した正規projectionとして設計判断、coverage、impact、Issue routing、docgen/detectorへ供給する。 |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "880385839788ea49f14544ee9dd0f1ed5037bc84b1707a9ba55f4fa6a267c2f5",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "旧connectorの由来/版/許可/分類/read境界と欠落・drift・秘密値非保存、episode参照を保持する。",
+      "change": "旧DB/schema/transaction/runtimeを移植せず、9/26 LABO原文と採択001のsource正本と観測の分離、全状態・未発生/欠落の保持へ再導出する。旧write-backの手続きは本read契約へ追加しない。",
+      "reason": "LABOは許可観測の集積を所有し、source authority・stateや評価・実行許可を生成しないため。旧sourceは参照だけで実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        113,
+        113
+      ],
+      "quote": "| **HIL-FR-23** | Product Data Connector Registryはsource種別、connector/schema version、credential reference、classification、read/write方針、sync方式、owner、enabled stateを保持する。credential値は保存しない。 | connector contract、digest、enable/disable receipt |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "85a92638e7c8e010055e880609ea9c634e205df5c61f0e80bdea3fbc9be68c92",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "旧connectorの由来/版/許可/分類/read境界と欠落・drift・秘密値非保存、episode参照を保持する。",
+      "change": "旧DB/schema/transaction/runtimeを移植せず、9/26 LABO原文と採択001のsource正本と観測の分離、全状態・未発生/欠落の保持へ再導出する。旧write-backの手続きは本read契約へ追加しない。",
+      "reason": "LABOは許可観測の集積を所有し、source authority・stateや評価・実行許可を生成しないため。旧sourceは参照だけで実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "read_lines": [
+        554,
+        586
+      ],
+      "quote": "connectorはproduct DBへ直接自由queryする機構ではない。登録時に次を固定する。\n\n- source identity、connector type/version、credential **reference**、data classificationの登録値\n- source schema/version、canonical mapping version、read-only/read-write policyの権限境界\n- snapshot/cursor/event identity、freshness SLA、retention/redactionの更新規則\n- lineage、schema drift policy、quarantine route、replay checkpointの復旧規則\n- detector/docgenへ渡せるfieldと禁止field\n\n既定はread-only snapshotであり、productへのwrite-backは別Issue、Reverse、security review、action-binding approvalを\n要求する。schema drift、credential不在、PII classification不明は取り込みを止め、古いprojectionをcurrentとして返さない。\n\n### §8.1 product-data実装schema\n\n| table | PK | 論理FK・一意制約 | 必須field | 許可status |\n|---|---|---|---|---|\n| `product_sources` | `product_source_id` | source kind＋external identity digestは一意 | owner、classification、read/write policy、freshness SLA、retention、created/updated | `registered`, `enabled`, `disabled`, `quarantined`, `retired` |\n| `product_connector_versions` | `product_connector_version_id` | source→`product_sources`、source＋connector versionは一意、activeはsourceごとに最大1件 | connector/schema/mapping version、credential reference、sync mode、config digest、effective_at | `draft`, `active`, `deprecated`, `revoked` |\n| `product_ingestion_runs` | `product_ingestion_run_id` | connector versionを参照、operation/idempotency keyは一意 | mode、intent digest、cursor start/end、fence token、failure、開始/終了 | `received`, `claimed`, `fetching`, `staged`, `validating`, `committing`, `completed`, `failed`, `quarantined`, `cancelled` |\n| `product_snapshots` | `product_snapshot_id` | source/runを参照、runは一意、source＋cursor＋schema/content digestは一意、supersedesは自己参照、sourceごとの`current`はpartial uniqueで最大1件 | classification、captured/fresh until、lineage/schema/content digest | `staged`, `current`, `stale`, `superseded`, `quarantined`, `purged` |\n| `product_entity_versions` | `product_entity_version_id` | snapshot→`product_snapshots`、snapshot＋canonical entity IDは一意 | entity type、source record key digest、schema version、redacted artifact path/payload digest、tombstone | `staged`, `current`, `superseded`, `tombstoned`, `quarantined` |\n| `product_mapping_edges` | `product_mapping_edge_id` | entity versionを参照、entity＋target kind/ID＋mapping versionは一意 | target kind、evidence digest、created_at | `active`, `stale`, `rejected` |\n| `product_watermarks` | `product_source_id` | source/snapshot/connector versionを参照 | cursor、fence token、updated_at | current projection |\n| `product_quarantine_items` | `product_quarantine_item_id` | source/run/snapshotを参照、source＋fingerprint＋scope digestは一意 | finding code、evidence digest、owner、expiry、release receipt | `open`, `released`, `expired`, `superseded` |\n| `product_ingestion_events` | `product_ingestion_event_id` | run→`product_ingestion_runs`、run＋event sequenceとoperation IDは一意 | from/to state、previous/event digest、failure、occurred_at | append-only |\n\ncredentialはreferenceだけを保存し、raw secret、未redact PII、自由形式raw payloadをprojectionへ保存しない。\nwatermarkはsourceごとの最後の`current` snapshotからcompare-and-swapし、逆行を`HIL_PRODUCT_WATERMARK_REGRESSION`、\nschema driftを`HIL_PRODUCT_SCHEMA_DRIFT`、freshness超過を`HIL_PRODUCT_SNAPSHOT_STALE`として旧entityをcurrentから外す。\n同一idempotency keyの再送は副作用0件とし、異なるdigestなら`HIL_PRODUCT_IDEMPOTENCY_CONFLICT`で停止する。\nentity/mapping insert、旧currentのsupersede、新snapshotのcurrent化、watermark CASは一transactionで行う。\ncrash時は`staged`を再検証し、watermarkだけを進めない。retention receiptなしのpurge、存在しないmapping target、\nclassification不明、未redact payloadをそれぞれfail-closeする。\nwrite-backは本schemaに含めず、別のaction-binding approval付き契約が作られるまでNode/Python双方から拒否する。",
+      "file_sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "selected_lines_sha256": "2e6ac9c0ba4c61644155e66f04a719bc6d911b559ff4af10772b11eef3598457",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "disposition": "unresolved",
+        "source_sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "旧connectorの由来/版/許可/分類/read境界と欠落・drift・秘密値非保存、episode参照を保持する。",
+      "change": "旧DB/schema/transaction/runtimeを移植せず、9/26 LABO原文と採択001のsource正本と観測の分離、全状態・未発生/欠落の保持へ再導出する。旧write-backの手続きは本read契約へ追加しない。",
+      "reason": "LABOは許可観測の集積を所有し、source authority・stateや評価・実行許可を生成しないため。旧sourceは参照だけで実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-evaluation.ts",
+      "read_lines": [
+        32,
+        32
+      ],
+      "quote": "      col(\"improvement_episode_id\"),",
+      "file_sha256": "d3f5f8b303cd9f568d7695d19c05d0e4b492f7df9caa60c929a749fa2990bbe2",
+      "selected_lines_sha256": "615a0153e256f32b2cd2ef051b520e3959057fe2fcb87c649d88346d565c62b8",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-D60AE87D9DFA0740F4A8",
+        "disposition": "unresolved",
+        "source_sha256": "d3f5f8b303cd9f568d7695d19c05d0e4b492f7df9caa60c929a749fa2990bbe2"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "旧connectorの由来/版/許可/分類/read境界と欠落・drift・秘密値非保存、episode参照を保持する。",
+      "change": "旧DB/schema/transaction/runtimeを移植せず、9/26 LABO原文と採択001のsource正本と観測の分離、全状態・未発生/欠落の保持へ再導出する。旧write-backの手続きは本read契約へ追加しない。",
+      "reason": "LABOは許可観測の集積を所有し、source authority・stateや評価・実行許可を生成しないため。旧sourceは参照だけで実行しない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "選択source/個別connector/data-use/authority/原状態・receiptとLABO observationのowner-qualified exact bindingは未成立。",
+    "正式schema/codec/分類・許可・選択source・状態・field/未発生resolver/原子取込/並行revision/全組合せ/L5L8/oracle凍結は未完。",
+    "実装前Red→Green→Refactor→再検証、実許可/取込/評価・実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXLABO-L4-001",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "selected_source_permission_reader",
+      "source_provenance_field_reader",
+      "raw_state_preservation_reader",
+      "observation_receipt_scope_reader"
+    ],
+    "flow": [
+      "source原記録＋許可/分類/版→source別観測参照",
+      "source field/原状態/未発生・欠落→LABO observation（元sourceは不変）",
+      "要求/選択source/操作/契約scope＋receipt→取込内容の対応・未観測/未評価"
+    ],
+    "python_boundary": "予定するPython接続は許可sourceの原記録を読みLABO観測と不足へ対応付ける。実connector/取込writer/source書戻し/評価/認可を本Draftで実装しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXLABO-L4-001-F01",
+      "requirement_ref": "HELIXLABO-L3-001-F01",
+      "system_oracle_ref": "HELIXLABO-L10-001-F01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-001-F01",
+        "parent": "HELIXLABO-L2-001",
+        "title": "許可観測とprovenance",
+        "obligation": "選択sourceから許可された情報だけを取り込みsource identity/revision/出典を保つ。episode_id/requirement_revision/ticket_id/responsibility_id/product/mechanism/worker/provider/model/configuration/artifact/CI-test/release/deployment/runtime/failure/rework/cost/time/resultを結べる。未発生と欠落を区別し値を推測しない。",
+        "oracle_ref": "HELIXLABO-L10-001-F01"
+      },
+      "content_rules": [
+        "選択sourceの許可済み範囲だけを読み、source identity/revision/出典、受領と各fieldのsource参照を保持する。revision/出典不明をcurrentへ補完しない。",
+        "episode/要求/ticket/責務/製品/機構/Worker/provider/model/configuration/artifact/CI-test/release/deployment/runtime/failure/rework/cost/time/resultを結べる表現を持つ。未発生と欠落を区別し、ない値を0/成功/推測へ変換しない。",
+        "権限外やsecret dataを取込対象にしない。source/SEC ownerへ不足を戻し該当観測を保留する。"
+      ],
+      "representation_limit": "合成参照/state/未発生/欠落の内容例。正式schema/実source/全接続を採用しない。"
+    },
+    {
+      "id": "HELIXLABO-L4-001-F02",
+      "requirement_ref": "HELIXLABO-L3-001-F02",
+      "system_oracle_ref": "HELIXLABO-L10-001-F02",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-001-F02",
+        "parent": "HELIXLABO-L2-001",
+        "title": "成功以外の状態保全",
+        "obligation": "開発/Worker/AI判断/CI-test-review/backflow/recovery/incident/refactor/release/deployment/runtime/利用/再作業/費用/token-API/model-provider/correction/rollback/product結果をscope付きで扱い、success/failure/rejected/cancelled/blocked/unknown/not_observedを区別する。",
+        "oracle_ref": "HELIXLABO-L10-001-F02"
+      },
+      "content_rules": [
+        "開発/Worker/AI判断/CI-test-review/backflow/recovery/incident/refactor/release/deployment/runtime/利用/再作業/費用/token-API/model-provider/correction/rollback/product結果をscope付きで扱う。",
+        "success/failure/rejected/cancelled/blocked/unknown/not_observedを原状態のまま保持する。未発生source、欠落、失敗事実を落とさず、成功だけを選別しない。"
+      ],
+      "representation_limit": "合成参照/state/未発生/欠落の内容例。正式schema/実source/全接続を採用しない。",
+      "domain_case_mapping": [
+        {
+          "domain": "development",
+          "case_ref": "LABO001-F02-DOMAIN-development",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "development"
+        },
+        {
+          "domain": "Worker",
+          "case_ref": "LABO001-F02-STATE-failure",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "Worker"
+        },
+        {
+          "domain": "AI_judgment",
+          "case_ref": "LABO001-F02-DOMAIN-AI_judgment",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "AI_judgment"
+        },
+        {
+          "domain": "CI",
+          "case_ref": "LABO001-F02-DOMAIN-CI",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "CI"
+        },
+        {
+          "domain": "test",
+          "case_ref": "LABO001-F02-DOMAIN-test",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "test"
+        },
+        {
+          "domain": "review",
+          "case_ref": "LABO001-F02-DOMAIN-review",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "review"
+        },
+        {
+          "domain": "backflow",
+          "case_ref": "LABO001-F02-DOMAIN-backflow",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "backflow"
+        },
+        {
+          "domain": "recovery",
+          "case_ref": "LABO001-F02-DOMAIN-recovery",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "recovery"
+        },
+        {
+          "domain": "incident",
+          "case_ref": "LABO001-F02-DOMAIN-incident",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "incident"
+        },
+        {
+          "domain": "refactor",
+          "case_ref": "LABO001-F02-DOMAIN-refactor",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "refactor"
+        },
+        {
+          "domain": "release",
+          "case_ref": "LABO001-F02-DOMAIN-release",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "release"
+        },
+        {
+          "domain": "deployment",
+          "case_ref": "LABO001-F02-DOMAIN-deployment",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "deployment"
+        },
+        {
+          "domain": "runtime",
+          "case_ref": "LABO001-F02-DOMAIN-runtime",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "runtime"
+        },
+        {
+          "domain": "usage",
+          "case_ref": "LABO001-F02-DOMAIN-usage",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "usage"
+        },
+        {
+          "domain": "rework",
+          "case_ref": "LABO001-F02-DOMAIN-rework",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "rework"
+        },
+        {
+          "domain": "cost",
+          "case_ref": "LABO001-F02-DOMAIN-cost",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "cost"
+        },
+        {
+          "domain": "token_API",
+          "case_ref": "LABO001-F02-DOMAIN-token_API",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "token_API"
+        },
+        {
+          "domain": "model_provider",
+          "case_ref": "LABO001-F02-DOMAIN-model_provider",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "model_provider"
+        },
+        {
+          "domain": "correction",
+          "case_ref": "LABO001-F02-DOMAIN-correction",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "correction"
+        },
+        {
+          "domain": "rollback",
+          "case_ref": "LABO001-F02-DOMAIN-rollback",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "rollback"
+        },
+        {
+          "domain": "product_result",
+          "case_ref": "LABO001-F02-DOMAIN-product_result",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "product_result"
+        }
+      ],
+      "shared_case_reason": "21領域を全件対応付ける。Worker領域はSTATE-failureの原入力 original_sources[0].domain=Worker（Worker実行結果）で検証する。同一入力のDOMAIN-Workerを別件へ増やさず、Worker領域とfailure原状態の二義務をこの同一例で確認する。field worker の存在だけを被覆根拠にしない。"
+    },
+    {
+      "id": "HELIXLABO-L4-001-N01",
+      "requirement_ref": "HELIXLABO-L3-001-N01",
+      "system_oracle_ref": "HELIXLABO-L10-001-N01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-001-N01",
+        "parent": "HELIXLABO-L2-001",
+        "title": "証拠の適用scope",
+        "obligation": "要求revision/選択source exact set/source-result-contract revision/操作/scope/状態と受領・評価証拠を結び、未見版/一境界欠落を検査する。field存在やfixture greenを全source/評価/別scopeへ外挿しない。",
+        "oracle_ref": "HELIXLABO-L10-001-N01"
+      },
+      "content_rules": [
+        "要求revision、選択source exact set、source-result-contract revision、操作/scope/状態と受領・評価証拠の参照を結ぶ。未見版/別scope/一境界の許可・receipt欠落を未観測のまま返す。",
+        "field存在/件数/fixture greenを全source完成、評価完了や別scopeの成功へ外挿しない。未実行/評価不能/適用限界を保持する。"
+      ],
+      "representation_limit": "合成参照/state/未発生/欠落の内容例。正式schema/実source/全接続を採用しない。"
+    },
+    {
+      "id": "HELIXLABO-L4-001-B01",
+      "requirement_ref": "HELIXLABO-L3-001-B01",
+      "system_oracle_ref": "HELIXLABO-L10-001-B01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-001-B01",
+        "parent": "HELIXLABO-L2-001",
+        "title": "観測とsource authority",
+        "obligation": "LABOは許可観測を保持しsource正本/state/authorityを書き換えない。取込成功から評価、実行許可、全source能力完成を生成しない。",
+        "oracle_ref": "HELIXLABO-L10-001-B01"
+      },
+      "content_rules": [
+        "原記録とLABO observationを別identity/ownerへ保持し、source正本/state/authorityを書き換えない。",
+        "観測取込の内容成立を評価、assignment/実行許可、全source能力完成にしない。不成立はsource/SEC/OSの該当ownerへ返す。"
+      ],
+      "representation_limit": "合成参照/state/未発生/欠落の内容例。正式schema/実source/全接続を採用しない。"
+    }
+  ]
+}
