@@ -1,0 +1,242 @@
+{
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "boundary": "006のF01/F02の一般egress内容比較。実送信/認可/計測/1.x asset guardを生成せず、019や1.x sinkを初回必須にしない。"
+  },
+  "source_pin_limit": "全文pinは全採択/精読/意味閉包を証明しない。selected F01/F02のwhole objectだけを委任承認revisionへ照合。",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "parent": "HELIXSECURITY-L2-006",
+  "source_main": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "3e2908fb8a0bd8a7cbe745453d5696df6c46d176",
+      "sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "file_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "selected_line_quotes": [
+        {
+          "line": 99,
+          "text": "送信元dataと送信先sinkを同じ`network_allowed` booleanへ畳み込まない。",
+          "utf8_sha256": "4b163b1e671aabf014d538aa168c661a4f4554934b7ade19a126ffeb9b33ceb7"
+        },
+        {
+          "line": 103,
+          "text": "| `public` | 登録済みsinkへ送信候補 |",
+          "utf8_sha256": "765dea54c72efe32d250b33b484714ad186b31c1a7d4ab1807ecd195dab025e0"
+        },
+        {
+          "line": 104,
+          "text": "| `repository_content` | exact artifact、目的、retentionを束縛 |",
+          "utf8_sha256": "84ecdda30e1d4d232f65e8967fa601a31ed79caebbe3fdb892d9fbce8e92f3ea"
+        },
+        {
+          "line": 105,
+          "text": "| `sensitive` / `pii` | broker外送信を拒否、action binding必須 |",
+          "utf8_sha256": "611c11d72b0207193f7a19453e1419ef381c4d4e5523a46c8fd60c570ca8d76b"
+        },
+        {
+          "line": 106,
+          "text": "| `credential` | 外部送信・ログ・command argvへの出力を拒否 |",
+          "utf8_sha256": "3d4686b6311a6f3697416b54d02e293ae2bdd3671cb5abfe5cf1adc04235b43e"
+        },
+        {
+          "line": 107,
+          "text": "| `unknown` | 分類不能として拒否 |",
+          "utf8_sha256": "0a98a221cd5e55f8967d74d6a9fb00c0169d69194a9ce0de19306c5c88a83aa5"
+        },
+        {
+          "line": 109,
+          "text": "`sink_authority`は`local_workspace`、`git_object`、`github_api`、`network_endpoint`、",
+          "utf8_sha256": "4e74c94d00630f34059cc7808da7201e7cb37a70a92b97e911945efc27a6825b"
+        },
+        {
+          "line": 110,
+          "text": "`cloud_control_plane`、`process_environment`、`unknown`を区別する。sinkがexact target、",
+          "utf8_sha256": "fcb5ba6277f61b865c357e2eab770d08e84a640fbd38d9f52fd89be6ff15cc49"
+        },
+        {
+          "line": 111,
+          "text": "目的、認可範囲、expiry、read-before、dry-run、postcondition、rollback可否を持たない場合は",
+          "utf8_sha256": "fe2bb3126f09fb2c744a05feca4e8303129195e0677ad724dc68c995fda15ae0"
+        },
+        {
+          "line": 112,
+          "text": "`approval_required`ではなく`unresolved`としてfail-closeする。",
+          "utf8_sha256": "833cddc9310ce16a0629dff52c10bc7260be0cdcde8b7738b14d6c068346d661"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "data classificationとsink authorityの分離、exact target/purpose/scope/expiry、不明な材料を推測で許可しない。",
+      "change": "旧broker/CLI/runtime・旧classification語彙・追加human gateを移植せず、採択006と016の1.0分類記録/005検査/CONNECT論理/INFRA実経路へ再導出。",
+      "reason": "1.0一般送信と019/1.x asset-specific guardを混同せず、vendor設定・単一boolean・許可tupleから実通信/計測の成立を生成しない。"
+    }
+  ],
+  "remaining": [
+    "正式allowlist/authority008/005 predicate/016分類・data-use/CONNECT/INFRAのowner-qualified exact revision-scope binding。",
+    "L5/L8の全shape/URL-protocol/path canonicalization/分類Ref/digest/time/byte量・多rule/未知enum/compound/実wire codecと全oracle閉包。",
+    "preconditionと送信後計測/実経路観測の正式phase/consumer、024実制約・量/最小化の実観測・実receiptは未成立。未来の送信後結果を事前一律gateにしない。",
+    "根拠なし数値上限/019や1.x完了待ちを追加せず、先行oracle凍結→実装前Red→最小Green→Refactor→再検証・実L9/L10/PO L11・全92親430対の完遂/独立二重確認を継続。"
+  ],
+  "document_id": "HELIXSECURITY-L4-006",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "egress_tuple_scope_comparer",
+      "egress_dependency_observation_comparer"
+    ],
+    "flow": [
+      "送信要求＋独立rule/payload量/expiry → precondition対応",
+      "005/016/CONNECT/INFRAとpath filter/minimization → 同revision-scopeの接続比較",
+      "別sent_bytes観測 → 観測対応/unknown、該当owner候補"
+    ],
+    "pure_boundary": "値なしmetadataだけ。network/clock/fs/credential/実send/設定変更/実meter起動なし。",
+    "phase_boundary": "precondition_material_correspondingは実許可でなく計画の内容候補。measurement unknownでもpreconditionと区別して保持し、実送信verifiedは常にfalse。",
+    "scope_locality": "返却scopeは原request revision/scopeのまま。不明はnullで補完しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L4-006-F01",
+      "requirement_ref": "HELIXSECURITY-L3-006-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-006-F01",
+      "oracle_ref": "HELIXSECURITY-L9-006-F01",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "34aa87a30ba0cd24951eda6fe56ce03d5f5ac36b0c73f623b0024f55a650ddb6"
+      },
+      "component": "egress_tuple_scope_comparer",
+      "operation_effect": "none",
+      "input_meanings": [
+        "send_requested、送信元/destination/protocol/endpoint/path/classification/purpose/authority/expiry/scope/revision、prepared payloadの量metadata。",
+        "独立明示allowlistの単一選択ruleとauthority素材、時間観測。vendor privacy設定は補助metadata。"
+      ],
+      "output_meanings": [
+        "precondition内容対応/違反/unknownの候補。default denyの不足を保持。",
+        "実許可・通信・送信成功を生成しない。"
+      ],
+      "content_comparison": [
+        "送信要求がある場合だけ全tupleと明示allowlistへ照合。unknown先/分類/目的/authorityをpublic/allowへ補完しない。",
+        "planned bytesはowner供給prepared payload bytesへ完全一致で照合する個別artifact対応で、固定数値上限ではない。",
+        "expiryとowner供給timepointを照合し、vendor_privacy_claimだけでは許可しない。",
+        "通信なしはno_send_requestedとして示す。未使用宛先/authority不足を無関係な全operationへ広げない。"
+      ],
+      "qualification_rule": "固定合成ruleの内容比較だけ。実authority/current source/許可は別bindingへ。"
+    },
+    {
+      "id": "HELIXSECURITY-L4-006-F02",
+      "requirement_ref": "HELIXSECURITY-L3-006-F02",
+      "system_oracle_ref": "HELIXSECURITY-L10-006-F02",
+      "oracle_ref": "HELIXSECURITY-L9-006-F02",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "6947a569a6fe4b9864c5d844d5d02fb468fd3fde2778cebc1a68a6861211d4bb"
+      },
+      "component": "egress_dependency_observation_comparer",
+      "operation_effect": "none",
+      "input_meanings": [
+        "005検査、016の1.0分類/data-use、CONNECT論理、INFRA経路の原metadataとindependent expected binding。",
+        "path filtering/data minimization/measurementの状態と各revision/scope、sent_bytes観測。"
+      ],
+      "output_meanings": [
+        "preconditionの接続対応と、送信後観測のcorresponding/conflict/unknownを分ける。",
+        "未観測を成功にせず、該当分類/接続/計測ownerへ不足候補。"
+      ],
+      "content_comparison": [
+        "各依存を同じ要求revision/scopeへ照合。分類recordのasset exposure classとdata-use purposeを別に扱い、未知分類をpublicへしない。",
+        "path filter/minimizationは準備結果、実sent_bytes計測は別観測。未来の送信後結果を事前判定の一律gateにせず、許可tupleだけで経路/計測成立も生成しない。",
+        "prepared payload bytesとreported sent_bytesの対応は個別材料への照合で、一般量上限を新設しない。",
+        "019/1.x guard presenceはこの1.0判定に使わず、必要な005/016/CONNECT/INFRA不足は保持。"
+      ],
+      "qualification_rule": "state=current/correspondingは合成metadataのみ。source/実path/実量/最小化/owner資格の独立実観測は正式consumerで閉じる。"
+    }
+  ],
+  "diagnostic_contract": {
+    "return_owner": "egress-boundary-owner",
+    "role_note": "006比較責務ラベル。SEC policy、024/INFRA実経路、各分類/検査ownerへの正式振分けはL5へ。",
+    "pointer_base": "given.input root、元tuple/report/contextのmetadata位置へ。source値をmessageへ複写しない。",
+    "sort": "code/pointer/return_owner scalar順・完全同値3fieldだけunique。"
+  }
+}
