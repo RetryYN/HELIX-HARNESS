@@ -1,0 +1,182 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-025",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 4",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+    "boundary": "選択Workerと実資源/移動/隔離の接続。自動配置最適化/高度増減や全環境を依存にしない。010実操作構成体とは別証拠。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        90,
+        92
+      ],
+      "quote": "Requirement、Design、dependency、Release Artifact、Environment current stateからDeployment Planを決定的に生成する。\nlocal、VPS、container、serverless、AWS、Azure、GCP等はtyped adapter portで接続し、provider固有schemaやcommandをCoreへ埋め込まない。\nunknown capability、ambiguous target、artifact／config digest欠落、migration互換不明、health check欠落、権限不足をfail-closeする。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "80393db809870dfae52a59ff4c4c221b3f62eb528908c26c999b9f5f0b666a68",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧provider中立/unknown capability・対象不明・互換不明・権限不足のfail-closeを参照する。",
+      "change": "旧provider操作/runtimeを移植せず、採択025のWorker実資源/場所と移動・隔離の実制約証拠へ再導出する。",
+      "reason": "10/12承認025のowner/対象/実状態とSEC/Worker条件を保持する。移動・隔離要求の受付を実成立にしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        83,
+        84
+      ],
+      "quote": "`RollbackPlan`と`RollbackReceipt`をDeploymentとは別contractとして保持する。irreversible migration、backup欠落、rollback target不明、\nconsumer-owned bytes破壊、rollback後health未確認を拒否する。rollback successをincident closureやforward fix completionとして扱わない。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "d09107d99273eaf5b2133c2bdde95742721a9a3886287dd6ec7f885f54d3e4e7",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧rollbackをincident closureへ変換せず未確認を成功としない。",
+      "change": "旧provider操作/runtimeを移植せず、採択025のWorker実資源/場所と移動・隔離の実制約証拠へ再導出する。",
+      "reason": "10/12承認025のowner/対象/実状態とSEC/Worker条件を保持する。移動・隔離要求の受付を実成立にしない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実Worker/OS ticket/要求/責務と001/003資源、SEC隔離/制約/移動前後観測のowner-qualified exact bindingは未成立。",
+    "正式schema/codec/資源能力と隔離方式resolver/観測範囲/移動handoffの原子性/並行作業/全組合せ/対L5L8/oracle凍結は未完。",
+    "実装前Red→Green→Refactor→再検証、実移動/実隔離/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXINFRASTRUCTURE-L4-025",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "worker_work_identity_reader",
+      "resource_capacity_state_reader",
+      "movement_work_preservation_reader",
+      "isolation_scope_evidence_reader"
+    ],
+    "flow": [
+      "OS作業/Worker＋INFRA資源→別identityの関係",
+      "元/移動先観測＋SEC条件/方式/適用証拠→作業参照/未完保全",
+      "要求revision/exact set/environment/Worker-operation/制約-source→適用範囲/未観測"
+    ],
+    "python_boundary": "予定するPython接続は原作業/資源/隔離証拠を読み、対応と未完を返す。実資源移動/隔離適用/作業正本変更/認可は本Draftで実装しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-025-F01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-025-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "Workerと計算資源の別identity",
+        "obligation": "Worker identity、ticket/要求/責務参照とCPU/memory/GPU/storage/network/process/containerの実資源/容量/状態を別identityで対応付ける。ticket/work正本をINFRAへ移さない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F01"
+      },
+      "content_rules": [
+        "Worker identityとOS ticket/要求/作業責務参照を、CPU/memory/GPU/storage/network/process/containerの実資源identity/容量/状態へ別に対応付ける。Workerを計算機identityへ置換しない。",
+        "ticket/workはOS、実資源はINFRAを正本ownerとして保持する。Worker同一性と資源同一性を混同せず、参照欠落は該当OS/資源ownerへ戻す。"
+      ],
+      "representation_limit": "合成identity/容量/隔離markerは実資源/実制約/正式schemaを採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-025-F02",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-F02",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-025-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "資源移動と隔離",
+        "obligation": "対象資源で利用可能な方式でSEC隔離条件を実適用する。必要な資源移動後もticket/要求/Worker責務/未完義務を保持し、元と移動先の観測状態を残す。資源不足/隔離不能/参照不明では接続成立にしない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-F02"
+      },
+      "content_rules": [
+        "SEC隔離条件を対象資源で利用可能な方式へ対応させ実適用する。宣言/要求受付/手順名だけで実隔離を成立にしない。容量不足/隔離不能/未観測は接続成立へしない。",
+        "移動前と移動後で同Worker/ticket/要求/責務/未完を保持する。元資源と移動先の観測状態は別記録とし、作業の正本をINFRAへ移さない。",
+        "不足は資源/OS/SECの該当ownerへ返す。自動配置最適化や高度増減は依存gateにせず、移動操作の認可/実行は010の別構成体へ保持する。"
+      ],
+      "representation_limit": "合成identity/容量/隔離markerは実資源/実制約/正式schemaを採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-025-N01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-025-N01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-025-N01",
+        "parent": "HELIXINFRASTRUCTURE-L2-025",
+        "title": "証拠の対象scope",
+        "obligation": "要求revision・資源exact set/environment・Worker/operation・制約・観測元と証拠を結び、未見版/別scope/一境界故障を比較する。fixtureや一資源greenを全環境へ外挿しない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-025-N01"
+      },
+      "content_rules": [
+        "要求revision・資源exact set/environment・Worker/operation・SEC制約・観測元と証拠を同対象へ結ぶ。未見版/別scope/一境界の故障では未確認を保持する。",
+        "fixture/一資源green/件数だけで全環境や完成へ外挿しない。適用範囲、未観測、not_executedと未完を該当ownerへ返す。"
+      ],
+      "representation_limit": "合成identity/容量/隔離markerは実資源/実制約/正式schemaを採用しない。"
+    }
+  ]
+}
