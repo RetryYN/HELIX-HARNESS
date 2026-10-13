@@ -1131,7 +1131,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。 14反復sequenceの原引数保全/禁止作用observer/whole結果同値oracleを追加。実host/guardと全endpoint bindingは未完。 F04の4独立Context不備について複数同時11例を追加。必須finding subset/優先outcomeを具体化、全副次findingと他組合せは未完。 shape adapter34+6の全ShapeProposalと追加8を固定、原構造negative28+新35をlane付き全拒否handoffへ結合。required/unknown propertyの個別pointerとbranch/binding原因を保持。全schema/host/consumer/binding/凍結は未完。 A1のinterface型/7組のinput-context-candidate供給口/result返却口と95binding matching全提案を追加。content一致は実登録/資格/呼出しでなく全actual false。実pack/physical/host/consumer/resources/codec/bindingと全freezeは未完。 A2の原frame/source/custody/Context独立basisを内容照合する119全提案を追加。input由来/候補由来と同owner独立資料を分け、raw UTF8不正をA2成功でdecodedへしない。実資格/read/codec/host/binding/全freeze未完。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。 14反復sequenceの原引数保全/禁止作用observer/whole結果同値oracleを追加。実host/guardと全endpoint bindingは未完。 F04の4独立Context不備について複数同時11例を追加。必須finding subset/優先outcomeを具体化、全副次findingと他組合せは未完。 shape adapter34+6の全ShapeProposalと追加8を固定、原構造negative28+新35をlane付き全拒否handoffへ結合。required/unknown propertyの個別pointerとbranch/binding原因を保持。全schema/host/consumer/binding/凍結は未完。 A1のinterface型/7組のinput-context-candidate供給口/result返却口と95binding matching全提案を追加。content一致は実登録/資格/呼出しでなく全actual false。実pack/physical/host/consumer/resources/codec/bindingと全freezeは未完。 A2の原frame/source/custody/Context独立basisを内容照合する119全提案を追加。input由来/候補由来と同owner独立資料を分け、raw UTF8不正をA2成功でdecodedへしない。実資格/read/codec/host/binding/全freeze未完。 SF-m1対応でpresence相反/frame不正/独立row空・重複のlocatorとlane条件を明記し6例を追加、全125固定対照。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。 45固定F04対照の全PartitionResult/basis refs/order/input retentionを追加で固定。未提示InputをContext原bodyから復元せず、caseごとの固定合成snapshotを別供給。全構造/他条件/実binding/凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。 B01の23原例/19Contextを全ChangeResultへ固定し、意味軸全7組/混合環境behavior/boolean型差/label/3複合を追加。全構造/実binding/全凍結は未完。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。 F02固定38対照を全ImpactResultへ、4graphのedge順反転を追加して全42結果を固定。直接原因のfindingと伝播・履歴・固有義務を分離。全形状/実binding/凍結は未完。",
@@ -11443,8 +11443,8 @@
           "condition": "source_material_corresponding | source_unresolved",
           "lane_conditions": "mapping[input|context|candidate,corresponding_source_material | unresolved | omitted_as_none]",
           "findings": "tuple[SourceFrameFinding]",
-          "retained_raw_sha256": "mapping[供給lane,Digest]（宣言でなく受領raw bytesから再計算）",
-          "retained_source_refs": "mapping[供給lane,Ref]（資格不成立の所在も保全）",
+          "retained_raw_sha256": "mapping[原bytesを読めたlane,Digest]（宣言でなく受領raw bytesから再計算、読めないlaneにhashを創作しない）",
+          "retained_source_refs": "mapping[完全なRefを読めたlane,Ref]（資格不成立の所在も保全、不完全Refをtyped Refへ補正しない）",
           "source_frames_retained": "literal true",
           "actual_qualification_established": "literal false",
           "actual_read_performed": "literal false",
@@ -11482,11 +11482,11 @@
       "algorithm": [
         {
           "id": "SF1",
-          "rule": "input/contextは必須frame。nullなら各/frames/{lane}のframe_missing。candidate_presence omittedならcandidate nullだけomitted_as_none、nonnullはcandidate_presence_conflict（rawを保持）。suppliedならcandidate必須。明示JSON nullはraw bytesのnullであってmissing frameでない。frames/catalogを候補やinputから補完しない。"
+          "rule": "input/contextは必須frame。nullなら各/frames/{lane}のframe_missing。candidate_presence omittedならcandidate nullだけomitted_as_none、nonnullはcandidate_presence_conflict（rawを保持）。suppliedならcandidate必須。明示JSON nullはraw bytesのnullであってmissing frameでない。frames/catalogを候補やinputから補完しない。 candidate_presence_conflictはlane candidate、pointer /frames/candidate_presence、candidate lane条件unresolved。宣言omittedでも供給された原bytes/Refを保全する。"
         },
         {
           "id": "SF2",
-          "rule": "各供給ReadOnlyRawFrameはinterface port型の閉field/Ref全4成分/byte列/carrier/参照集合を保持。構造不明frameはframe_invalid。fixtureのraw_bytes_hexは原byte列の無損失符号化だけで、新wire protocolやinstance材料のauthorityでない。"
+          "rule": "各供給ReadOnlyRawFrameはinterface port型の閉field/Ref全4成分/byte列/carrier/参照集合を保持。構造不明frameはframe_invalid。fixtureのraw_bytes_hexは原byte列の無損失符号化だけで、新wire protocolやinstance材料のauthorityでない。 frame_invalidは当該lane、pointer /frames/{lane}、lane条件unresolved。非object/閉field又はRef形状など不正を正常frameへ補完しない。raw bytesと完全なRefが独立に読める部分は保全し、読めないraw hash/Refを創作しない。"
         },
         {
           "id": "SF3",
@@ -11498,7 +11498,7 @@
         },
         {
           "id": "SF5",
-          "rule": "custody_material_refs/lineage_material_refsは全4tupleの集合として独立rowとexact比較。供給空又は独立必要集合空はcustody_missing/lineage_missing、重複tuple又は不足/余分/版・scope・owner差はcustody_conflict/lineage_conflict。順序だけは影響させない。Ref名/hash存在を実真正性にしない。"
+          "rule": "custody_material_refs/lineage_material_refsは全4tupleの集合として独立rowとexact比較。供給空又は独立必要集合空はcustody_missing/lineage_missing、重複tuple又は不足/余分/版・scope・owner差はcustody_conflict/lineage_conflict。順序だけは影響させない。Ref名/hash存在を実真正性にしない。 独立row側が空/重複ならpointer /snapshot/expected_frames/{lane}/{field}、供給frame側が空/重複なら/frames/{lane}/{field}へ別findingを保持。両方に直接原因があれば両所在を保持。集合の不足/余分/成分差だけはframe側pointer。各原因laneは当該lane、条件unresolved。"
         },
         {
           "id": "SF6",
