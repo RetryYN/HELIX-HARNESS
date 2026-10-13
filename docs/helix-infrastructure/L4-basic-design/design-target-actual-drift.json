@@ -1,0 +1,197 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-002",
+  "status": "draft_basic_content_contracts_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+    "boundary": "初回選択scopeのdesign/target/actualとdrift。001の実観測成立/全資源集合/全環境を推定しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        29,
+        30
+      ],
+      "quote": "Requirement、Definition、Contract、Release、Deploymentの意味authorityはHELIX-HARNESSに置く。runtime observation、log、metric、\ntrace、notification、provider control plane、DevOS、`harness.db`は証拠またはprojectionであり、意味authorityとして手編集しない。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "e277f6a891b50c2662b4f4fea61d172ea9757d108ad870e462cf51aaf5cfe4a3",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "意味authorityとruntime observation/projectionを分離する。",
+      "change": "旧OPSの製品配備/runtime/DB/認証と未承認NIO規律をそのまま移植せず、9/26のINFRA配置/Worker統一と9/28採択/10/12限定002の実資源参照へ再導出する。",
+      "reason": "CORE設計意味/INFRA target-actual/OS作業/SEC権限/INT配置/LABO評価の正本ownerを分け、未観測/非対象を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "read_lines": [
+        9,
+        9
+      ],
+      "quote": "| NIO-L3-03 | measurement evidenceはmetric定義、単位、scope、source、authority、timestamp、freshness、collector health、sample count、digestを持つ。 |",
+      "file_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "selected_lines_sha256": "be8e79cf3b6169071eae8e99d3199e4476335108aec215096b4bd3fd7d2f5a8c",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+        "disposition": "unresolved",
+        "source_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧未承認候補のscope/source/revision/freshness観測意味を比較資料として参照する。",
+      "change": "旧OPSの製品配備/runtime/DB/認証と未承認NIO規律をそのまま移植せず、9/26のINFRA配置/Worker統一と9/28採択/10/12限定002の実資源参照へ再導出する。",
+      "reason": "CORE設計意味/INFRA target-actual/OS作業/SEC権限/INT配置/LABO評価の正本ownerを分け、未観測/非対象を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "read_lines": [
+        15,
+        15
+      ],
+      "quote": "| NIO-L3-09 | designed/implemented/verified/observed/operatedの状態遷移は証拠付きで、collector停止・欠測・staleをhealthyへ変換しない。 |",
+      "file_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "selected_lines_sha256": "8ab66cd6f2752242c6548e1c96cb4db026f636cb0ecf4ba202b87ef445652ee0",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+        "disposition": "unresolved",
+        "source_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧未承認候補の欠測/staleをhealthyへ変換しない意味を比較資料として参照する。",
+      "change": "旧OPSの製品配備/runtime/DB/認証と未承認NIO規律をそのまま移植せず、9/26のINFRA配置/Worker統一と9/28採択/10/12限定002の実資源参照へ再導出する。",
+      "reason": "CORE設計意味/INFRA target-actual/OS作業/SEC権限/INT配置/LABO評価の正本ownerを分け、未観測/非対象を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        118,
+        120
+      ],
+      "quote": "保守対象としてdependency／runtime update、vulnerability、secret／certificate rotation、backup／restore／migration rehearsal、configuration drift、deprecated\nAPI／schema／workflow retirement、flaky test、CI／runner、retention、capacity／performance、Runbook、dead code／connectionを期限、周期、owner、\ntarget、required evidence、risk、overdue effectへ束縛する。schedulerのduplicate、clock drift、timezone boundary、missed cycleを検出する。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "dcb7574dd165bafde8d07b96bc2b463b331b155077608cef011a34729ae1c65f",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧OPS-R-08のconfiguration driftを観測し保守ownerへ結ぶ。",
+      "change": "旧製品運用から採択済みINFRA002の資源/版/network/許可/容量/依存の差異へ意味再導出する。実観測からCORE設計を上書きしない。",
+      "reason": "CORE意味/INFRA target-actual/OS作業/SEC権限/Worker実行を保持する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "CORE design/owner-derived target/001 topology/actual観測の実source資格、実必要集合/対象revision/scopeとowner-qualified exact bindingは未成立。",
+    "正式schema/codec/semantic comparator/clock/freshness/compatibility resolver/collectorとL5L8、全意味/組合せ反例の被覆と実不変性は未完。",
+    "test/oracle凍結→実装前Red実観測→最小Green→Refactor→再検証、OS/SEC/Workerの実修正経路、実L9L10/PO L11は未成立。",
+    "全92親430対の設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXINFRASTRUCTURE-L4-002",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "three_state_reference_reader",
+      "scope_drift_reader"
+    ],
+    "flow": [
+      "原CORE設計revision→owner-derived target参照→source-qualified actualの別state→同対象参照と入力保全",
+      "原必要資源集合と観測範囲→内容差異/未確認範囲→元ownerへ返す。実修正は既存OS/SEC/Workerへ保持。"
+    ],
+    "python_boundary": "不変な原三state/提出と合成差異の内容対照。設計承認/保存/観測/配備/認可/自動修正を行わない。",
+    "representation_limit": "合成値の完全一致は実意味の等価性を証明しない。field/版/容量/資源集合はfixtureのみで正式schema/閾値/実配置を採用しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-002-F01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-002-F01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-002-F01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-002-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-002",
+        "title": "設計・target・actualの分離",
+        "obligation": "approved CORE design revision、そこから導くdeployment target、source-qualified actual observationを別stateとして相互参照する。actualから設計/要求を上書きしない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-002-F01"
+      },
+      "content_rules": [
+        "CORE design/owner-derived target/actual観測をkind/identity/revision/owner/scopeとsourceで分離し、当該targetへ相互参照する。",
+        "原比較入力と他scopeを不変に保つ。actualから要求/設計承認を生成せず、欠落/stale/互換不明を一致へ丸めない。",
+        "原ownerの必要資源集合と観測範囲から差異を分類。known差異とunknown依存/未確認を分け、部分観測だけで資源不在を確定しない。",
+        "差異は実修正許可ではない。修正は既存OS ticket/SECURITY authority/Worker経路へ残す。",
+        "提出のdesign_ref/target_ref/source_refも原参照と対照し、原unknown dependencyは差異候補と未確認範囲を残して判定保留する。"
+      ],
+      "representation_limit": "合成field/比較値/資源集合はfixtureのみ。source資格やsemantics comparator/正式schema/実閉包は未成立。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-002-F02",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-002-F02",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-002-F02",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-002-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-002",
+        "title": "driftの種類と未観測",
+        "obligation": "missing/unexpected resource、version/config/network/permission/capacity drift、runtime replacement、unknown dependencyを個別比較し、自動で正しい変更としない。欠落/stale/互換不明では確定せず未確認範囲を保つ。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-002-F02"
+      },
+      "content_rules": [
+        "CORE design/owner-derived target/actual観測をkind/identity/revision/owner/scopeとsourceで分離し、当該targetへ相互参照する。",
+        "原比較入力と他scopeを不変に保つ。actualから要求/設計承認を生成せず、欠落/stale/互換不明を一致へ丸めない。",
+        "原ownerの必要資源集合と観測範囲から差異を分類。known差異とunknown依存/未確認を分け、部分観測だけで資源不在を確定しない。",
+        "差異は実修正許可ではない。修正は既存OS ticket/SECURITY authority/Worker経路へ残す。",
+        "提出のdesign_ref/target_ref/source_refも原参照と対照し、原unknown dependencyは差異候補と未確認範囲を残して判定保留する。"
+      ],
+      "representation_limit": "合成field/比較値/資源集合はfixtureのみ。source資格やsemantics comparator/正式schema/実閉包は未成立。"
+    }
+  ]
+}
