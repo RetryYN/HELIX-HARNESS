@@ -707,6 +707,70 @@
         "preserve": "pure function/coreとloader/writerの分離、入力順/runtime localeに依存しないstable finding、Redで必要な範囲に責務を限定。",
         "change": "旧TS/zod/cache/数値や容量をcopyせず、現行7coreの既case三引数とA-A/A-B-A/保全/guard観測へ再導出。",
         "reason": "actual falseの自己申告・反復時の履歴混入・observer欠落から副作用0/決定性を生成する失敗を防ぐ。新authority/人間承認を作らない。"
+      },
+      "compound_context_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          29,
+          30,
+          31,
+          34,
+          51,
+          52,
+          53,
+          54
+        ],
+        "line_quotes": [
+          {
+            "line": 18,
+            "text": "実装候補は`src/design/design-template-authority.ts`の単一moduleとする。まずpure functionだけで成立させ、"
+          },
+          {
+            "line": 19,
+            "text": "repository loader、CLI、DB projection、Markdown writerは本sliceへ追加しない。JSON Schema libraryは"
+          },
+          {
+            "line": 20,
+            "text": "既存dependencyを再利用できる場合だけadapter側で使い、core resultをlibrary固有errorへ束縛しない。"
+          },
+          {
+            "line": 29,
+            "text": "type ValidationResult<T> ="
+          },
+          {
+            "line": 30,
+            "text": "  | { ok: true; value: T; findings: [] }"
+          },
+          {
+            "line": 31,
+            "text": "  | { ok: false; findings: Finding[] };"
+          },
+          {
+            "line": 34,
+            "text": "findingは`code -> pointer -> message`の順でstable sortし、入力順やruntime localeでdigestを変えない。"
+          },
+          {
+            "line": 51,
+            "text": "- pre: inputはuntrustedであり、callerがparse済みと仮定しない。"
+          },
+          {
+            "line": 52,
+            "text": "- post: `ok=true`ならrequired field、identity、lifecycle、pair、predicate、trace、verification、"
+          },
+          {
+            "line": 53,
+            "text": "  measurement、completion、semantic digestが全て成立する。"
+          },
+          {
+            "line": 54,
+            "text": "- invariant: unknown property、unknown enum、unsafe integer、duplicate IDを保持したtyped valueを返さない。"
+          }
+        ],
+        "preserve": "pure内容比較とtyped finding/安定順、入力はuntrusted、全意味条件の成立を別照合。",
+        "change": "旧TS/schema/library/finding messageをcopyせず、既F04 P7優先と4locator単独例の原変異を11合成Contextへ結合。",
+        "reason": "最優先不備1件だけで他の欠落/未観測資料を消す又は原人口を縮めて成功させる失敗を拒否する。新authority/承認を作らない。"
       }
     },
     {
@@ -947,7 +1011,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。 14反復sequenceの原引数保全/禁止作用observer/whole結果同値oracleを追加。実host/guardと全endpoint bindingは未完。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。 14反復sequenceの原引数保全/禁止作用observer/whole結果同値oracleを追加。実host/guardと全endpoint bindingは未完。 F04の4独立Context不備について複数同時11例を追加。必須finding subset/優先outcomeを具体化、全副次findingと他組合せは未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
@@ -10084,5 +10148,28 @@
       "repeated_A_whole_result_equal": true
     },
     "unclosed": "host/実guard/全禁止endpoint/consumer binding、全finding固定oracleとL6L7/test-oracle凍結は未完。本設計のnot_executed例を実0件/Red/Green/Refactorへしない。"
+  },
+  "compound_context_contract": {
+    "status": "draft_design_compound_condition_not_execution",
+    "design_ref": "HARNESS-L5-004-F04",
+    "algorithm_refs": [
+      "P1",
+      "P2",
+      "P5",
+      "P7"
+    ],
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "independent_dimensions": [
+      "TARGET-SCOPE",
+      "TARGET-REVISION",
+      "SOURCE-UNKNOWN",
+      "DECISION-QUALIFICATION-MISSING"
+    ],
+    "combination_rule": "固定F04正常input/None candidateへ、別固定Contextのscope・revision・source state・決定資格record欠落を異なるlocatorで同時に適用。各単独例の原変更を保全し、原packet bytes/qualification内容を修復しない。",
+    "accumulation": "構造を読める本11例は検査可能な各原因と原locatorを保持する。総合outcomeの優先理由だけを返して別原因を捨てない。source資格不足で資格済み人口を創作せず、受領inputのsource_atom_ids/outside_selectionを保全する。独立決定basis refの未解決も個別診断する。",
+    "outcome_rule": "F04 P7の内容優先 conflict → stale → unknown → missing → supported。Result.outcomeでmissingはincomplete。構造invalid/candidate不一致はこの11例の対象外。資格/意味の実成立は生成しない。",
+    "preservation": "入力人口A1/A2/A3と選択外SOURCE-Bを保全。source全体の資格不足をA1/A2/A3の成功又は人口削減へしない。未解決判断を実retireへせず全5実作用false。保持資料の存在と資格済み成功は区別する。",
+    "oracle_limit": "4独立次元の複数不備11組の必須finding subsetと総合outcome。全副次finding exact集合・全不正構造・他locator/全関数/実owner/host/凍結は未完。"
   }
 }
