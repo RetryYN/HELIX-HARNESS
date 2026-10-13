@@ -1013,7 +1013,7 @@
   "remaining": [
     "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。 14反復sequenceの原引数保全/禁止作用observer/whole結果同値oracleを追加。実host/guardと全endpoint bindingは未完。 F04の4独立Context不備について複数同時11例を追加。必須finding subset/優先outcomeを具体化、全副次findingと他組合せは未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。 45固定F04対照の全PartitionResult/basis refs/order/input retentionを追加で固定。未提示InputをContext原bodyから復元せず、caseごとの固定合成snapshotを別供給。全構造/他条件/実binding/凍結は未完。",
-    "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
+    "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。 B01の23原例/19Contextを全ChangeResultへ固定し、意味軸全7組/混合環境behavior/boolean型差/label/3複合を追加。全構造/実binding/全凍結は未完。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。 Context21否定例で資格不足のcell局所化/母集団unionと同raw異identityの代用拒否を追加。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。 Context21例で独立資格不足とpair/意味/trigger/種類の局所不足を分離。",
@@ -76106,5 +76106,3317 @@
       "sha256": "586a5541755fd1fc1697d843a4c6d3846a09005c623e7892b88dd818b7d26569",
       "scope": "既存部分契約からF04固定45対照の全結果を起草。古いsource_main/source_pinsと採択意味は保持。"
     }
-  ]
+  ],
+  "change_whole_result_oracles": {
+    "design_ref": "HARNESS-L5-004-B01",
+    "source_main": "bf7e1630bf5982613caca21e5bf5063040dfc54e",
+    "existing_cases": [
+      {
+        "id": "H004-L8-B01-NORMAL-MEANING-WHOLE",
+        "case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "case_sha256": "67d2d00cd815571280089b1cab4551fa269a3eef1c5fbd1acd4c77e003c8f0b8",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-NORMAL-IMPLEMENTATION-WHOLE",
+        "case_ref": "H004-L8-B01-NORMAL-IMPLEMENTATION",
+        "case_sha256": "0c8aeb59c8ac7f657c1b137241056e91e9ddd31969b1e7f866b2b5194f99f21b",
+        "input_packet_sha256": "c0907bc7f7232044ceabc9a5fff89e3c85244f27060755a73f48263a3bc0811c",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "implementation_fault",
+            "route_candidate": "implementation_repair_and_reverification",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": "implementation-owner",
+            "evidence_basis": "same_contract_content_different_behavior"
+          },
+          "findings": [],
+          "retained_input_sha256": "f4272b67a5a17aca39d8c3d0c667b7d7d872b263da62ee1b259dec0a7d49f6fa",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-NORMAL-ENVIRONMENT-WHOLE",
+        "case_ref": "H004-L8-B01-NORMAL-ENVIRONMENT",
+        "case_sha256": "b0e196cd472218f06ff61e73ef66f0f26830b59271cdfe32ab269e4be465dede",
+        "input_packet_sha256": "99e234807ed269e50328bdb4e6d8dbddcf9f6925d98396962b5ffa1fc878ffa5",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "external_environment_change",
+            "route_candidate": "environment_reobservation_and_impact_evaluation",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": "environment-owner",
+            "evidence_basis": "before_after_environment_content"
+          },
+          "findings": [],
+          "retained_input_sha256": "a98f0e20b3eeb6ed10d92dc84d00124dec9618423ec7d3ae354d477c1f72f428",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-SOURCE-MISSING-WHOLE",
+        "case_ref": "H004-L8-B01-SOURCE-MISSING",
+        "case_sha256": "7df85ef3360038f9df2294e8cedc8ba72c0c1eea3c7d1963915f4003a6eb0354",
+        "input_packet_sha256": "db3baa21067e930e1da8efb51996fc7c8f0d48cd5ec115790d29212b8b6ed90e",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "source_condition": "missing",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "source_missing",
+              "pointer": "/input/source_binding",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "80e55190c699b3ee608021adec7cb290172187a285995922e7d4ab4d6fa852bd",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-SOURCE-STALE-WHOLE",
+        "case_ref": "H004-L8-B01-SOURCE-STALE",
+        "case_sha256": "e00e35ef0ab61e1d568eefbba2f1535882c7de00db33a0c5872b1f4ce23c97fa",
+        "input_packet_sha256": "370efba28657257fff344a7796bf6349cf4764674121da15b0bdc427d2753bc3",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "stale",
+          "value": {
+            "source_condition": "stale",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "source_stale",
+              "pointer": "/input/source_binding/binding",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "bf3c4af657fb38b311d19b56fc8c7c4ad8d6f87097be42f1002c91ac995f465c",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-SOURCE-FOREIGN-SCOPE-WHOLE",
+        "case_ref": "H004-L8-B01-SOURCE-FOREIGN-SCOPE",
+        "case_sha256": "e932dff6a76d6b259bfd693db741c398aabd59d6634d24f9a1cfdcc1f8cea528",
+        "input_packet_sha256": "073d2e0af00d95a22390c3b40a95c9181445200e21318a9c693554edd186bf50",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "conflict",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "source_conflict",
+              "pointer": "/input/source_binding/scope",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "a1477ed5880f0914179c1cf8fe5a9c59ca75d2f834e61d816ddf62fa330e4ec6",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-BEFORE-SIGNATURE-MISSING-WHOLE",
+        "case_ref": "H004-L8-B01-BEFORE-SIGNATURE-MISSING",
+        "case_sha256": "b691ef1ff2684679fbdf9307e877fa951916eba388829359930b044f2d95487c",
+        "input_packet_sha256": "0c7ac32cc7d4766c972517bb94066b3a45539cdf3e4302dfa9b16d2eb7bb2ad5",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "source_condition": "missing",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "source_missing",
+              "pointer": "/input/before_signature",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "62c47c26a9743cbb6ef6b9bcd1938b34ad416100c32b1cc70fc695c23ee63654",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-PROPOSED-SIGNATURE-MISSING-WHOLE",
+        "case_ref": "H004-L8-B01-PROPOSED-SIGNATURE-MISSING",
+        "case_sha256": "1a6505caef20dd446049bca5e3c43ff7ce3d3d175312e66695347257f6f9b34c",
+        "input_packet_sha256": "56c5fa4b150cbe199a815c1a22be09f2918e4e7b8fb14a27adcacf82b4a214fc",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "source_condition": "missing",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "source_missing",
+              "pointer": "/input/proposed_signature",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "f6861341b10bb5b7cc4283b9cb5b2b6ef16f8f1711f4d9ce94774ee5e61cf86c",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-OWNER-MISSING-MEANING-WHOLE",
+        "case_ref": "H004-L8-B01-OWNER-MISSING-MEANING",
+        "case_sha256": "4c2c299d20f6452e68d068378b80aabc4b7590b78f02f01d246eba28a247a564",
+        "input_packet_sha256": "3441b0f0e4c3d55037010c49b71f88939ba5bf2a25e4906352af3fe3083a803c",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "missing",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "unresolved_owner_return",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": null,
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "owner_missing",
+              "pointer": "/input/owner_bindings/meaning",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "upstream-meaning-owner"
+            }
+          ],
+          "retained_input_sha256": "ed66b2d75f873d41677fbd9814e63accf53deb2e5aaf35a0fb119b61ae167a62",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-OWNER-MISSING-IMPLEMENTATION-WHOLE",
+        "case_ref": "H004-L8-B01-OWNER-MISSING-IMPLEMENTATION",
+        "case_sha256": "393a50c6e493c55716f73bc8d45decd6e4478a79b1189e9b79fc5e87f5594487",
+        "input_packet_sha256": "432f2c02e51f10b6edfcb78159ba1fe35772d41d03f0d1ca67a1a8dfde2b9c66",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "missing",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "implementation_fault",
+            "route_candidate": "unresolved_owner_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "same_contract_content_different_behavior"
+          },
+          "findings": [
+            {
+              "code": "owner_missing",
+              "pointer": "/input/owner_bindings/implementation",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "implementation-owner"
+            }
+          ],
+          "retained_input_sha256": "ac3ff8dd0cf9b7e55dd3f0fd9f7cf98ce9deac44105503ce226f4085201e9941",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-OWNER-MISSING-ENVIRONMENT-WHOLE",
+        "case_ref": "H004-L8-B01-OWNER-MISSING-ENVIRONMENT",
+        "case_sha256": "ac4ccc74bb351b37c8ac7113b0bb39472a95139cb1ba47a4deab8c5a1ee8c93e",
+        "input_packet_sha256": "428fc85eb6c5a5d674650316be5bf52a82981b7b7ee90da90f67466c3201a331",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "missing",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "external_environment_change",
+            "route_candidate": "unresolved_owner_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "before_after_environment_content"
+          },
+          "findings": [
+            {
+              "code": "owner_missing",
+              "pointer": "/input/owner_bindings/environment",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "environment-owner"
+            }
+          ],
+          "retained_input_sha256": "0c25ed66b54986fdec70ccbd48ae7d9e7734d8a45dcb24caba35e63fffe5146b",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-ALL-REFACTOR-MEANING-WHOLE",
+        "case_ref": "H004-L8-B01-ALL-REFACTOR-MEANING",
+        "case_sha256": "5bb4732cd30106ad64580b75ec1d49f396d9b4b1530032d73e605eac8de7f255",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "f99d4c87d4dac20a330e0ff4c6f3ab65bf275e69578db3015844c3df1f4bfe33",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/route_candidate",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "route_candidate"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-ALL-REFACTOR-IMPLEMENTATION-WHOLE",
+        "case_ref": "H004-L8-B01-ALL-REFACTOR-IMPLEMENTATION",
+        "case_sha256": "48296516655919ed2e6712edaf50c184d8ab4391152187d7f8bfb533ca57cb1b",
+        "input_packet_sha256": "c0907bc7f7232044ceabc9a5fff89e3c85244f27060755a73f48263a3bc0811c",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "b52da32b0266b4f942443ca81317538842b1cdf313f7ffe3173d1398f0780648",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "implementation_fault",
+            "route_candidate": "implementation_repair_and_reverification",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": "implementation-owner",
+            "evidence_basis": "same_contract_content_different_behavior"
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/route_candidate",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "retained_input_sha256": "f4272b67a5a17aca39d8c3d0c667b7d7d872b263da62ee1b259dec0a7d49f6fa",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "route_candidate"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-ALL-REFACTOR-ENVIRONMENT-WHOLE",
+        "case_ref": "H004-L8-B01-ALL-REFACTOR-ENVIRONMENT",
+        "case_sha256": "d1c4c0e748400be21c6c8b570e2190f5bd51c864e765c73baff8b3541e0e0049",
+        "input_packet_sha256": "99e234807ed269e50328bdb4e6d8dbddcf9f6925d98396962b5ffa1fc878ffa5",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "409a99071be816ef51676c25881fd882822787b8bf115c002f2db1ddfef7ae64",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "external_environment_change",
+            "route_candidate": "environment_reobservation_and_impact_evaluation",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": "environment-owner",
+            "evidence_basis": "before_after_environment_content"
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/route_candidate",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "retained_input_sha256": "a98f0e20b3eeb6ed10d92dc84d00124dec9618423ec7d3ae354d477c1f72f428",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "route_candidate"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-HARNESS-TICKET-WHOLE",
+        "case_ref": "H004-L8-B01-HARNESS-TICKET",
+        "case_sha256": "5d3fc69ef8b4a5328381fc10536b80ba0f2429e85ded78ca69e9f643399c65db",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "a183da8ce9361fc533caa1e50f56bceac00c5c9e11b0e0ccf3ce800feeb9a364",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "projection_not_authority",
+              "pointer": "/candidate/actual_ticket_issued",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "actual_ticket_issued"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-HARNESS-SAVE-WHOLE",
+        "case_ref": "H004-L8-B01-HARNESS-SAVE",
+        "case_sha256": "f88ba871f0d8484df57777dcfafd5c096bfb1ed79236ca4ac067350439c1db24",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "189e956e1037e0e6b1c67b53d6ca4d231c45be43ac20c462d83ce7d903e54ede",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "projection_not_authority",
+              "pointer": "/candidate/actual_record_saved",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "actual_record_saved"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-HARNESS-STATE-WHOLE",
+        "case_ref": "H004-L8-B01-HARNESS-STATE",
+        "case_sha256": "33bef988c5f2843da58f6866f85116125eeef415536c88a2fff6905cfa8ce1ec",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "ec9901bc0ff3e5235c2cfb1366b2605d0e772bad8185b147cc593cb746d9b133",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "projection_not_authority",
+              "pointer": "/candidate/actual_state_updated",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "actual_state_updated"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-PROJECT-AS-MEANING-WHOLE",
+        "case_ref": "H004-L8-B01-PROJECT-AS-MEANING",
+        "case_sha256": "93f8810638608f94688d3acaf4226cfddd6f5a13104c58b07a12f83d22e31039",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "5a00b465605e580686faaf017205bd489b92d4b0f0e579377168635e7a818b66",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "projection_not_authority",
+              "pointer": "/candidate/actual_requirement_changed",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "actual_requirement_changed"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-ISSUE-AS-APPROVAL-WHOLE",
+        "case_ref": "H004-L8-B01-ISSUE-AS-APPROVAL",
+        "case_sha256": "f98cecf44a86ca463045124cc1075bb81c6da6d1b10616ef2f30ef55deda05e4",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "2209dbf5d342e6b9218ce5cd309a46fd2ca70238d295614af24b576572e52484",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "projection_not_authority",
+              "pointer": "/candidate/actual_approved",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "actual_approved"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CI-AS-COMPLETION-WHOLE",
+        "case_ref": "H004-L8-B01-CI-AS-COMPLETION",
+        "case_sha256": "73ee18ef46bd6878ed638d2e1ca3bd2cc1d8077a755152998a83b36ba9af8ae4",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "0a6bbd0e751000a1429ebebcfff7e5e3f24143b2592a0710fa57358108094e6c",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "projection_not_authority",
+              "pointer": "/candidate/actual_completed",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "actual_completed"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-OLD-TRIGGER-AS-CURRENT-WHOLE",
+        "case_ref": "H004-L8-B01-OLD-TRIGGER-AS-CURRENT",
+        "case_sha256": "38f53f2c3a6457bdaef4f9e10ef334659e95c4b593fc47a4e5c99d06f0621c3c",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "0aca0194be636d8460c7ce304a3f23d3c1336fd308701f3c552fcec639ebd425",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "projection_not_authority",
+              "pointer": "/candidate/legacy_trigger_adopted",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "legacy_trigger_adopted"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-OLD-RUNTIME-AS-CURRENT-WHOLE",
+        "case_ref": "H004-L8-B01-OLD-RUNTIME-AS-CURRENT",
+        "case_sha256": "57fe18882a811ff5a07a0363fce36b745107aa0aafef0dcc28eeef6a46a7e6c9",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "ac21dbffa61c26a36bfad56434bd22a4e52040651db5e69dd5bd68c33d0872c7",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "projection_not_authority",
+              "pointer": "/candidate/legacy_runtime_started",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "legacy_runtime_started"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-OS-AS-MEANING-OWNER-WHOLE",
+        "case_ref": "H004-L8-B01-OS-AS-MEANING-OWNER",
+        "case_sha256": "bb2c26a9cc883a62def3440fcf60351c584bbd7fcc4a714ea2dd159e46d9e671",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+        "candidate_argument_sha256": "fd1beb117b156b784f1c7f0edc497f4e5835785352744939d4720b7f896c572a",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/responsible_owner",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "responsible_owner"
+          ]
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-TARGET-SCOPE-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-TARGET-SCOPE",
+        "case_sha256": "2b14ffcb7952757ed3e028435a63e23ccc8e5c3ff24c611351fb0d2148420d54",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "5324e6e83fda4dcabbfe3b45127ee39c60bb209e693a8ca9e3aef84ce545adde",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "conflict",
+            "owner_condition": "conflict",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_conflict",
+              "pointer": "/context/target/scope",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "source_conflict",
+              "pointer": "/context/target/scope",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "5324e6e83fda4dcabbfe3b45127ee39c60bb209e693a8ca9e3aef84ce545adde",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-TARGET-BINDING-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-TARGET-BINDING",
+        "case_sha256": "6318e3381e725bbc42c5bb371c28e717b3d4d72747a2b182600262a9bd1311a3",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "ae4493350f656daf3fab552ab54656d02afa5201bc445c16c9ce5bf86ec0d0fa",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "stale",
+          "value": {
+            "source_condition": "stale",
+            "owner_condition": "stale",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_stale",
+              "pointer": "/context/target/binding",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "source_stale",
+              "pointer": "/context/target/binding",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "ae4493350f656daf3fab552ab54656d02afa5201bc445c16c9ce5bf86ec0d0fa",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-SOURCE-OWNER-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-SOURCE-OWNER",
+        "case_sha256": "dfb42daf019073f67f687a7504cce9930140241f612a9b8fc89aad7a63ff3b63",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "df68bf6599e8dc77d025a9a30b61a2ade174522e2d6be382eb7051d8dd893206",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "conflict",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "source_conflict",
+              "pointer": "/context/source_owner",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "df68bf6599e8dc77d025a9a30b61a2ade174522e2d6be382eb7051d8dd893206",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-STATE-MISSING-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-STATE-MISSING",
+        "case_sha256": "07fbc0434bb41e640b379da45008370f27c52b8746dcb7e68e14852362dcf353",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "5178c43ea3039254d0ec08f3e9d83a6bd00d05c86a2dba044a7940c88ccca739",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "source_condition": "missing",
+            "owner_condition": "missing",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_missing",
+              "pointer": "/context/state",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "source_missing",
+              "pointer": "/context/state",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "5178c43ea3039254d0ec08f3e9d83a6bd00d05c86a2dba044a7940c88ccca739",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-STATE-UNKNOWN-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-STATE-UNKNOWN",
+        "case_sha256": "b1614844020c0a3c06cefac83e94b57871306f983ef1f43d5494527c3c1a76e1",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "398b87d34bbbb5bf662a21b85ab10e9da6e8613db0abb41c55423af45399ae25",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "source_condition": "unknown",
+            "owner_condition": "unknown",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_unknown",
+              "pointer": "/context/state",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "source_unknown",
+              "pointer": "/context/state",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "398b87d34bbbb5bf662a21b85ab10e9da6e8613db0abb41c55423af45399ae25",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-STATE-CONFLICT-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-STATE-CONFLICT",
+        "case_sha256": "6b599366b8bc6020b3c96f864c075a6e3f5e6543b29eb5c86cb6c3864b820303",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "52e6e6481f48f0797e5c2cf65d28a19ccb67c5df163dd70fd5a7b8231ceb5e46",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "conflict",
+            "owner_condition": "conflict",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_conflict",
+              "pointer": "/context/state",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "source_conflict",
+              "pointer": "/context/state",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "52e6e6481f48f0797e5c2cf65d28a19ccb67c5df163dd70fd5a7b8231ceb5e46",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-STATE-STALE-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-STATE-STALE",
+        "case_sha256": "e31322b8a6317c1beb2a15c0b39843542ca08230d8251ce8b2b5382b10c041fc",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "24d45c5f5c723659e4661109f99df859daec8c604252fc5ec82c009397f6885e",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "stale",
+          "value": {
+            "source_condition": "stale",
+            "owner_condition": "stale",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_stale",
+              "pointer": "/context/state",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "source_stale",
+              "pointer": "/context/state",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "24d45c5f5c723659e4661109f99df859daec8c604252fc5ec82c009397f6885e",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-BASIS-MISSING-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-BASIS-MISSING",
+        "case_sha256": "201b45342bbb00d20059422dcf809dc43630ef7a962f476b676c579aa0f31625",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "e87d34e8ca9884dd7433354be348adee390151cd1850dbb777d0ff9148beff21",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "source_condition": "unknown",
+            "owner_condition": "unknown",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_unknown",
+              "pointer": "/context/basis_refs",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "source_unknown",
+              "pointer": "/context/basis_refs",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "e87d34e8ca9884dd7433354be348adee390151cd1850dbb777d0ff9148beff21",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-BASIS-SCOPE-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-BASIS-SCOPE",
+        "case_sha256": "5b57ebf69a30217149bf77ca527fc081c56f5d622cddbb37ba5502cb3b580669",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "f70f81c95d69a35cabf256bd64b1283573e0519ca2bd9bfdfb579684c24b6d91",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "source_condition": "unknown",
+            "owner_condition": "unknown",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_unknown",
+              "pointer": "/context/basis_refs/0/scope",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                },
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "other-scope"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "source_unknown",
+              "pointer": "/context/basis_refs/0/scope",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                },
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "other-scope"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "f70f81c95d69a35cabf256bd64b1283573e0519ca2bd9bfdfb579684c24b6d91",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-BASIS-OWNER-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-BASIS-OWNER",
+        "case_sha256": "66969bdb83c90a563ce851a81c4bfd09f8eee626f4fed41237e94fab76b3877a",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "72c4e2fa04aeba7281a734dd8934e3a7ced530bfdf7423421ddbe836de0b32b0",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "source_condition": "unknown",
+            "owner_condition": "unknown",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_unknown",
+              "pointer": "/context/basis_refs/0/owner",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "other-owner",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "source_unknown",
+              "pointer": "/context/basis_refs/0/owner",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "other-owner",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "72c4e2fa04aeba7281a734dd8934e3a7ced530bfdf7423421ddbe836de0b32b0",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-BASIS-REVISION-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-BASIS-REVISION",
+        "case_sha256": "2e1d78182f89bb48616bb2521bdf5226b4e36b591b615c6f92b2ac2617519ae4",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "d1a4cceadba57db8738f7b33aabe1f7a17c99e49953f53ab22d4aa6957f500ae",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "source_condition": "unknown",
+            "owner_condition": "unknown",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_unknown",
+              "pointer": "/context/basis_refs/0/revision",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                },
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "other-revision",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "source_unknown",
+              "pointer": "/context/basis_refs/0/revision",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                },
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "other-revision",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "d1a4cceadba57db8738f7b33aabe1f7a17c99e49953f53ab22d4aa6957f500ae",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-SYNTHETIC-AS-ACTUAL-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-SYNTHETIC-AS-ACTUAL",
+        "case_sha256": "e6192efca59130f227a119df9dfe9c0731b6699877a803cdf3a965fc152bd8d6",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "1d54b58c73cc07b9b5321b25d91234ea0d4d0e4cd677faa65ebfac6ee1e379e0",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "source_condition": "unknown",
+            "owner_condition": "unknown",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_unknown",
+              "pointer": "/context/evidence_kind",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "source_unknown",
+              "pointer": "/context/evidence_kind",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "1d54b58c73cc07b9b5321b25d91234ea0d4d0e4cd677faa65ebfac6ee1e379e0",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-SELECTED-MEANING-MISSING-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-SELECTED-MEANING-MISSING",
+        "case_sha256": "0fd332f930520573df3908790f6845bc5651f57f0f4254bf4a1ee7dc5c8d34a0",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "716c847e2c53cf696735ca291dfe9f81d295c43159937cae40a392e575e53310",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "missing",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "unresolved_owner_return",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": null,
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "owner_missing",
+              "pointer": "/context/role_owners/meaning",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "upstream-meaning-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "716c847e2c53cf696735ca291dfe9f81d295c43159937cae40a392e575e53310",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-SELECTED-MEANING-FOREIGN-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-SELECTED-MEANING-FOREIGN",
+        "case_sha256": "b569ecc7be39fa461a20f5983a09f8bf941458a6674300a705b36f8ef4088489",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "ec16c550316803015140a060cb5dedb6aa30aea80bb940e7b7f4b83d51376289",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "conflict",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "unresolved_owner_return",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": null,
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "owner_conflict",
+              "pointer": "/context/role_owners/meaning",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "upstream-meaning-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "ec16c550316803015140a060cb5dedb6aa30aea80bb940e7b7f4b83d51376289",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-SELECTED-IMPLEMENTATION-MISSING-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-SELECTED-IMPLEMENTATION-MISSING",
+        "case_sha256": "00f6f084b85b079cf44f4c9e4e2a005d3c2d4ffa2960f301515e34602275d36d",
+        "input_case_ref": "H004-L8-B01-NORMAL-IMPLEMENTATION",
+        "input_packet_sha256": "c0907bc7f7232044ceabc9a5fff89e3c85244f27060755a73f48263a3bc0811c",
+        "context_packet_sha256": "ad5ca9fd8d37ab73f174fec2fe96feefcb0081fdf3d213d28e6b52d8197fc77e",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "missing",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "implementation_fault",
+            "route_candidate": "unresolved_owner_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "same_contract_content_different_behavior"
+          },
+          "findings": [
+            {
+              "code": "owner_missing",
+              "pointer": "/context/role_owners/implementation",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "implementation-owner"
+            }
+          ],
+          "retained_input_sha256": "f4272b67a5a17aca39d8c3d0c667b7d7d872b263da62ee1b259dec0a7d49f6fa",
+          "retained_context_sha256": "ad5ca9fd8d37ab73f174fec2fe96feefcb0081fdf3d213d28e6b52d8197fc77e",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-SELECTED-IMPLEMENTATION-FOREIGN-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-SELECTED-IMPLEMENTATION-FOREIGN",
+        "case_sha256": "ead652ace08aa0b01cbe0c0ef588d3c27b3e62ba9ed4bb9d04f0443012b7206e",
+        "input_case_ref": "H004-L8-B01-NORMAL-IMPLEMENTATION",
+        "input_packet_sha256": "c0907bc7f7232044ceabc9a5fff89e3c85244f27060755a73f48263a3bc0811c",
+        "context_packet_sha256": "48638afa2c61c8e34dbbc620e750b61083bad1ff9060ac32d2efec8572375613",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "conflict",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "implementation_fault",
+            "route_candidate": "unresolved_owner_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "same_contract_content_different_behavior"
+          },
+          "findings": [
+            {
+              "code": "owner_conflict",
+              "pointer": "/context/role_owners/implementation",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "implementation-owner"
+            }
+          ],
+          "retained_input_sha256": "f4272b67a5a17aca39d8c3d0c667b7d7d872b263da62ee1b259dec0a7d49f6fa",
+          "retained_context_sha256": "48638afa2c61c8e34dbbc620e750b61083bad1ff9060ac32d2efec8572375613",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-SELECTED-ENVIRONMENT-MISSING-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-SELECTED-ENVIRONMENT-MISSING",
+        "case_sha256": "54074a86d7fde29c044620b576fe4c1a9a00c0fd1f7873622841fef65b8a38ee",
+        "input_case_ref": "H004-L8-B01-NORMAL-ENVIRONMENT",
+        "input_packet_sha256": "99e234807ed269e50328bdb4e6d8dbddcf9f6925d98396962b5ffa1fc878ffa5",
+        "context_packet_sha256": "84918c0839bed48abde582b4e3cbe9b0107c88645f721667145caa00f2feb349",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "missing",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "external_environment_change",
+            "route_candidate": "unresolved_owner_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "before_after_environment_content"
+          },
+          "findings": [
+            {
+              "code": "owner_missing",
+              "pointer": "/context/role_owners/environment",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "environment-owner"
+            }
+          ],
+          "retained_input_sha256": "a98f0e20b3eeb6ed10d92dc84d00124dec9618423ec7d3ae354d477c1f72f428",
+          "retained_context_sha256": "84918c0839bed48abde582b4e3cbe9b0107c88645f721667145caa00f2feb349",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-SELECTED-ENVIRONMENT-FOREIGN-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-SELECTED-ENVIRONMENT-FOREIGN",
+        "case_sha256": "97ee8beaa15d395691d8cffe3cbc2cd11b1687765fb168a772d92af0eb5943d2",
+        "input_case_ref": "H004-L8-B01-NORMAL-ENVIRONMENT",
+        "input_packet_sha256": "99e234807ed269e50328bdb4e6d8dbddcf9f6925d98396962b5ffa1fc878ffa5",
+        "context_packet_sha256": "4923b954d8c6b046902ece04a84b5cf0f1a41e7c93a4c90e75ae5e8f2ff46e07",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "conflict",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "external_environment_change",
+            "route_candidate": "unresolved_owner_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "before_after_environment_content"
+          },
+          "findings": [
+            {
+              "code": "owner_conflict",
+              "pointer": "/context/role_owners/environment",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "environment-owner"
+            }
+          ],
+          "retained_input_sha256": "a98f0e20b3eeb6ed10d92dc84d00124dec9618423ec7d3ae354d477c1f72f428",
+          "retained_context_sha256": "4923b954d8c6b046902ece04a84b5cf0f1a41e7c93a4c90e75ae5e8f2ff46e07",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-B01-CONTEXT-UNUSED-IMPLEMENTATION-MISSING-WHOLE",
+        "case_ref": "H004-L8-B01-CONTEXT-UNUSED-IMPLEMENTATION-MISSING",
+        "case_sha256": "bbf6b406ef6a8608925d4462483fa1b7f30a11b9e5cffaaf83cf50cd09c6ab92",
+        "input_case_ref": "H004-L8-B01-NORMAL-MEANING",
+        "input_packet_sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+        "context_packet_sha256": "ad5ca9fd8d37ab73f174fec2fe96feefcb0081fdf3d213d28e6b52d8197fc77e",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "incomplete",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [
+            {
+              "code": "owner_missing",
+              "pointer": "/context/role_owners/implementation",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "implementation-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "ad5ca9fd8d37ab73f174fec2fe96feefcb0081fdf3d213d28e6b52d8197fc77e",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      }
+    ],
+    "additional_cases": [
+      {
+        "id": "H004-B01-WHOLE-ADD-001",
+        "name": "semantic-axes-requirement_acceptance",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"independent_changed_content\":\"requirement_acceptance\"},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "817f078215f13137a2ccac6f9238feb9160a9c6b0feba11613414a69e2970f46"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [],
+          "retained_input_sha256": "817f078215f13137a2ccac6f9238feb9160a9c6b0feba11613414a69e2970f46",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-002",
+        "name": "semantic-axes-architecture",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":{\"independent_changed_content\":\"architecture\"},\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "075fddd0c1981e60bf2043619b93de28fd640ce05da65cf33a7e4ab131030bb3"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "architecture"
+            ],
+            "backflow_layer_candidate": "L4",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [],
+          "retained_input_sha256": "075fddd0c1981e60bf2043619b93de28fd640ce05da65cf33a7e4ab131030bb3",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-003",
+        "name": "semantic-axes-detail",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":{\"independent_changed_content\":\"detail\"},\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "44c73095aec3f9c8295eea57cc80335ac7c331adf5f941ad8a6e995e0a86acaa"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "detail"
+            ],
+            "backflow_layer_candidate": "L5",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [],
+          "retained_input_sha256": "44c73095aec3f9c8295eea57cc80335ac7c331adf5f941ad8a6e995e0a86acaa",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-004",
+        "name": "semantic-axes-requirement_acceptance,architecture",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":{\"independent_changed_content\":\"architecture\"},\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"independent_changed_content\":\"requirement_acceptance\"},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "88d3d3ad6195299c2a5fc8e20f6cc711cd2319ca0977fb445afa82ce85872fb6"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance",
+              "architecture"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [],
+          "retained_input_sha256": "88d3d3ad6195299c2a5fc8e20f6cc711cd2319ca0977fb445afa82ce85872fb6",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-005",
+        "name": "semantic-axes-requirement_acceptance,detail",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":{\"independent_changed_content\":\"detail\"},\"requirement_acceptance\":{\"independent_changed_content\":\"requirement_acceptance\"},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "9e9aa9310173a6c09b1912780166f8dd31fe16c13c1a01d79cba857f457dd53a"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance",
+              "detail"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [],
+          "retained_input_sha256": "9e9aa9310173a6c09b1912780166f8dd31fe16c13c1a01d79cba857f457dd53a",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-006",
+        "name": "semantic-axes-architecture,detail",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":{\"independent_changed_content\":\"architecture\"},\"detail\":{\"independent_changed_content\":\"detail\"},\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "96104e09e5bc64c70fd980c11018b689c91692f7b7a75efb26af1186ce7758bf"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "architecture",
+              "detail"
+            ],
+            "backflow_layer_candidate": "L4",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [],
+          "retained_input_sha256": "96104e09e5bc64c70fd980c11018b689c91692f7b7a75efb26af1186ce7758bf",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-007",
+        "name": "semantic-axes-requirement_acceptance,architecture,detail",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":{\"independent_changed_content\":\"architecture\"},\"detail\":{\"independent_changed_content\":\"detail\"},\"requirement_acceptance\":{\"independent_changed_content\":\"requirement_acceptance\"},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "71f6a49c8895569d9f1146cfd661f311fa9edba031813b040947d41d41df9c35"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance",
+              "architecture",
+              "detail"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [],
+          "retained_input_sha256": "71f6a49c8895569d9f1146cfd661f311fa9edba031813b040947d41d41df9c35",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-008",
+        "name": "environment-and-behavior-difference",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"independently_changed_behavior\":true},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"independent-environment-r2\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "8150c7a9012eb13519fa43e8043e9cca888c9b60e434aa27ce5321a9e12cf6d5"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "unresolved_or_combined_evidence"
+          },
+          "findings": [
+            {
+              "code": "comparison_unresolved",
+              "pointer": "/input/behavior_observation",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "8150c7a9012eb13519fa43e8043e9cca888c9b60e434aa27ce5321a9e12cf6d5",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-009",
+        "name": "environment-difference-behavior-unobserved",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":null,\"environment_after\":{\"dependency_revision\":\"independent-environment-r2\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "b787e0c463003f91cbf55e5b11a6d9a5b3b997f3a93c03bb2669296e04121bdf"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "external_environment_change",
+            "route_candidate": "environment_reobservation_and_impact_evaluation",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": "environment-owner",
+            "evidence_basis": "before_after_environment_content"
+          },
+          "findings": [],
+          "retained_input_sha256": "b787e0c463003f91cbf55e5b11a6d9a5b3b997f3a93c03bb2669296e04121bdf",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-010",
+        "name": "same-environment-behavior-same",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "06f50cf62dbeb948ccb0c86c6769945b42cd12949055cbedf0b327ff28c88681"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "unresolved_or_combined_evidence"
+          },
+          "findings": [
+            {
+              "code": "comparison_unresolved",
+              "pointer": "/input/behavior_observation",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "06f50cf62dbeb948ccb0c86c6769945b42cd12949055cbedf0b327ff28c88681",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-011",
+        "name": "label-only",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"different-display-label-only\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "8b6f598f9529716d6a3ff62e830a43d8ad4c6b3a40261d1fb11ec43d4a97b2f1"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "unresolved_or_combined_evidence"
+          },
+          "findings": [
+            {
+              "code": "comparison_unresolved",
+              "pointer": "/input/behavior_observation",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "8b6f598f9529716d6a3ff62e830a43d8ad4c6b3a40261d1fb11ec43d4a97b2f1",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-012",
+        "name": "boolean-is-not-number",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":true,\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":1,\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "615e4077bf1c991062a8589cd99e5925e0be69f98954d7a70fe2efc57cb697ca"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "findings": [],
+          "retained_input_sha256": "615e4077bf1c991062a8589cd99e5925e0be69f98954d7a70fe2efc57cb697ca",
+          "retained_context_sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-013",
+        "name": "compound-scope,state",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":2},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"unknown\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-Q\"}}",
+          "sha256": "793e2f8770bc79243599e3d68edb61486cf01450f0da0c058cd2239c387f3e6f"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "conflict",
+            "owner_condition": "conflict",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_conflict",
+              "pointer": "/context/target/scope",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "owner_unknown",
+              "pointer": "/context/state",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "source_conflict",
+              "pointer": "/context/target/scope",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            },
+            {
+              "code": "source_unknown",
+              "pointer": "/context/state",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "793e2f8770bc79243599e3d68edb61486cf01450f0da0c058cd2239c387f3e6f",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-014",
+        "name": "compound-scope,unused-role",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":2},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":null,\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-Q\"}}",
+          "sha256": "6fb26a5a737f282754ad20bd84f486a104830063de023d1b6074e89c257e8c80"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "conflict",
+            "owner_condition": "conflict",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "retained_without_validity_claim",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_conflict",
+              "pointer": "/context/target/scope",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-qualification-owner"
+            },
+            {
+              "code": "owner_missing",
+              "pointer": "/context/role_owners/implementation",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "implementation-owner"
+            },
+            {
+              "code": "source_conflict",
+              "pointer": "/context/target/scope",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "6fb26a5a737f282754ad20bd84f486a104830063de023d1b6074e89c257e8c80",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-B01-WHOLE-ADD-015",
+        "name": "compound-source-owner,selected-role",
+        "input_packet": {
+          "raw_utf8": "{\"before_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":1},\"value\":\"one debit per command\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"historical_trigger\":{\"current_adoption\":false,\"source\":\"legacy_archive_only\"},\"management_projection\":{\"ci_green\":true,\"issue_closed\":true,\"project_status\":\"Done\"},\"owner_bindings\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"proposed_signature\":{\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\",\"requirement_acceptance\":{\"debits_per_command\":2},\"value\":\"one debit per command\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\",\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\",\"scope\":\"PRODUCT-P\"},\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"},\"unrelated_work\":{\"binding\":\"REQ-Q@r1\",\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\"}}",
+          "sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98"
+        },
+        "context_packet": {
+          "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":null},\"source_owner\":\"FOREIGN-SOURCE-OWNER\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "d94ce868309cb2b720122a435866fc5fb7b7bfd88b90321c7e577fa9fd5f1858"
+        },
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "source_condition": "conflict",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "Unknown",
+            "route_candidate": "unresolved_evidence_return",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": null,
+            "evidence_basis": "missing_or_unqualified_source"
+          },
+          "findings": [
+            {
+              "code": "owner_missing",
+              "pointer": "/context/role_owners/meaning",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "upstream-meaning-owner"
+            },
+            {
+              "code": "source_conflict",
+              "pointer": "/context/source_owner",
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "change-source-owner"
+            }
+          ],
+          "retained_input_sha256": "109a8a5b46f2d4b3b10cb673f8f1be0fc8c7954cad7735d841cafd535b3ded98",
+          "retained_context_sha256": "d94ce868309cb2b720122a435866fc5fb7b7bfd88b90321c7e577fa9fd5f1858",
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": []
+        },
+        "execution_state": "not_executed"
+      }
+    ],
+    "verification": "全ChangeResultを比較。minimum finding/部分valueだけで全結果を認定しない。原23/19 partial oracleと資料はそのまま保持。",
+    "scope_limit": "B01固定57対照と診断候補。全構造/実qualification/consumer/codec/L6L7/全凍結/他5契約/全92親430対は未完。"
+  }
 }
