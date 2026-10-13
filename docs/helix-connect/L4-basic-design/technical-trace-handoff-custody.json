@@ -1,0 +1,252 @@
+{
+  "parent": "HELIXCONNECT-L2-005",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0473767cb338041ae83a9e3c95ca48a55eb4eae6",
+    "boundary": "選択operationの技術trace/未完handoff/値なしcustody参照を内容照合。実append/実通信/業務判断/実保存は生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "0fc000a1bd25a5a9c77cb845870b294bc246367051e49daa378cabb4fd6ffdd4"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "e9ef8fea59cfed03b96ff61e2f556fc22fa72279cf660fa47786c2b1f24fa877"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+    },
+    {
+      "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "94003c16183d96736994ee4d4d0483eb64a2db0eabca2ba20c5baebc8f86b7a1"
+    },
+    {
+      "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "aa213f2a9fa766d4d7e1e00fa333559fd83254c2f045a187a1f12df4236b54b9"
+    },
+    {
+      "path": "docs/governance/decisions/helix-connect-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "006d906c831147c582092f0f9f4905ac71d68365c991c6f0666bc809a70b4eca"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    }
+  ],
+  "source_pin_limit": "固定bytesは実source資格/全意味被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "read_lines": [
+        111,
+        117
+      ],
+      "quote": "## §4 snapshot、lineage、schemaの検証\n\nconnectorのraw inputはrun固有のbounded ephemeral領域だけで扱い、byte/record上限、TTL、owner、run/lease/fenceを付与する。\nclassificationとredactionが完了する前にartifact、content-addressed store、DB、logへpersistent sealしてはならない。\nsecret検出時は即時rejectし、当該inputをquarantine後に削除する。TTL到達時またはvalidation終端時に削除し、\n`ephemeral-input-delete-receipt`へdigest、count、expiry、delete result、`deleted_at`、Node clock receiptだけを保存する。\n削除失敗はpolicy failureとしてcurrent昇格を0にする。classification/redaction済みproposalとprojectionは最低限、",
+      "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "selected_lines_sha256": "9f8eab92b903524f8b40893509be5feb3326b876cd36be5a763f75515c42652f",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "disposition": "unresolved",
+        "source_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+      },
+      "reuse": "reference_only",
+      "preserve": "値非複製、digest/owner/policy/versionで追跡、途中pendingと元operationを保持、過去eventを上書きしない。",
+      "change": "旧Node DB/clock/seal/projection transactionを実装方式へ採用せず、CONNECT005技術trace/未完handoff/custody責務へ再導出。",
+      "reason": "採択005と承認F01/F02/N01はpayload保存を追跡の必要条件にせず、原traceと未完・owner参照を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "read_lines": [
+        147,
+        173
+      ],
+      "quote": "`stale`へ遷移し、current queryとagent contextから除外する。古いprojectionをwarning付きで返すfail-openを認めない。\n\n全source/entity fieldはclassificationを持ち、agent contextへ渡せるfieldはconnector contractの明示allowlistとredaction済み\nartifactだけに限定する。PII、secret、credential、自由形式raw payload、unknown classificationは通常projectionへ保存しない。\nredactionは値を不可逆変換またはdropし、evidenceにはpolicy/version、field path、input/output digest、finding countだけを残す。\n\nretention expiry時もNodeのpurge plan、対象digest、policy、owner、実行receiptが必要である。本sliceは実purgeを行わず、receiptなしの\n削除を`HIL_PRODUCT_RETENTION_REQUIRED`で拒否する。\n\n## §7 projection transaction、watermark、quarantineの境界\n\nNode transactionは次を不可分に行う。\n\n1. staged entity versionsとmapping edgesを検証済みdigestでinsertする。\n2. 旧current entity/snapshotをsupersedeまたはstaleにする。\n3. tombstoneとmapping staleを反映する。\n4. 新snapshotをsourceごと最大1件の`current`へ昇格する。\n5. watermarkを旧current snapshot/fenceに対するcompare-and-swapで前進させる。\n6. ingestion eventとcompletion receiptをappendする。\n\ncursor逆行、同値なのに異content、fence mismatch、transaction failureではwatermarkとcurrent増分を0件にする。artifact seal後のDB failureは\n`projection_pending` receiptを残し、operation ID、projection digest、expected snapshot/watermark/DB head、idempotency keyを固定した\nNode reconcile APIがstaged evidenceから収束させる。connector/Pythonへ再commitさせず、別digest再送、CAS競合、暗黙rewriteを拒否する。\n\nquarantine itemはsource/run/snapshot、failure code、redacted fingerprint、evidence digest、owner、expiry、release条件を持つ。\nschema/policy/credential/authority failureを個別recordにしつつ、run全体のcurrent昇格を0にする。releaseは原因修正、新connector/policy\nrevision、再validation receiptを要求し、過去itemの書換えではなくsuperseding eventで行う。",
+      "file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "selected_lines_sha256": "b1fd87a6157a0d8e9c4284ade71bad248cb282718e62b91a2c77887ec99bd896",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "disposition": "unresolved",
+        "source_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+      },
+      "reuse": "reference_only",
+      "preserve": "値非複製、digest/owner/policy/versionで追跡、途中pendingと元operationを保持、過去eventを上書きしない。",
+      "change": "旧Node DB/clock/seal/projection transactionを実装方式へ採用せず、CONNECT005技術trace/未完handoff/custody責務へ再導出。",
+      "reason": "採択005と承認F01/F02/N01はpayload保存を追跡の必要条件にせず、原traceと未完・owner参照を保持する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+      "read_lines": [
+        207,
+        209
+      ],
+      "quote": "raw product payload、credential値、未redact PII/secretをfieldとして持たない。cursorはopaque valueとして保存できるが、比較は\nconnector codecのversionとdigestへbindする。`source_observed_at_untrusted`は非権威的observationであり、Node trusted clock receiptの\n`node_received_at`から`captured_at`と`fresh_until`を再導出する。これらの時刻をentity identityやcontent determinism digestへ混入させない。",
+      "file_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+      "selected_lines_sha256": "7cb97f2eed6548677c7ec662b864ab749aaf5a774c9cc2f2cfebb49be1600ce9",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+        "disposition": "unresolved",
+        "source_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42"
+      },
+      "reuse": "reference_only",
+      "preserve": "値非複製、digest/owner/policy/versionで追跡、途中pendingと元operationを保持、過去eventを上書きしない。",
+      "change": "旧Node DB/clock/seal/projection transactionを実装方式へ採用せず、CONNECT005技術trace/未完handoff/custody責務へ再導出。",
+      "reason": "採択005と承認F01/F02/N01はpayload保存を追跡の必要条件にせず、原traceと未完・owner参照を保持する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実event/必要集合/原history/未完/owner-qualified exact binding、source/consumer/SECのdata-use/保存判断とsource資格。",
+    "正式schema/codec/順序モデル/値なし参照のresolver、実append-only store、L5/L8、凍結oracle→実装前Red→最小Green→Refactor→再検証。",
+    "実L9/L10/PO L11、全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXCONNECT-L4-005",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "technical_trace_reader",
+      "unfinished_handoff_reader",
+      "value_free_custody_reader"
+    ],
+    "flow": [
+      "選択operationと必要event集合/原prefix→各eventの内容/対象/順序/観測端点→元結果/欠落/unknown",
+      "原停止/途中成功/未完→handoffと受領/解決の独立原記録→保持とowner返却",
+      "値なしtrace/custody参照→原owner/SEC判断と提出参照→保存保留/不足返却"
+    ],
+    "python_boundary": "pure immutable内容対照。append/送受信/保存/消去/時計/DB/network/業務判断なし。",
+    "representation_limit": "event種別/ordinal/owner/data-use/保存policyの合成内容は正式schema/保持期間/分類方式/全event必須集合ではない。実値を持ち込まない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXCONNECT-L4-005-F01",
+      "requirement_ref": "HELIXCONNECT-L3-005-F01",
+      "system_oracle_ref": "HELIXCONNECT-L10-005-F01",
+      "oracle_ref": "HELIXCONNECT-L9-005-F01",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-005-F01",
+        "parent": "HELIXCONNECT-L2-005",
+        "title": "append-only技術trace",
+        "obligation": "登録/照合/送信/受信/再送/終端/stale/交換/切戻し/拒否をconnection・operation・contract revision・attempt identity/順序・correlation・scope・期限・許可結果へ結ぶ。成功/失敗/部分成功/重複/digest衝突/unknownと観測端点を区別する。",
+        "oracle_ref": "HELIXCONNECT-L10-005-F01"
+      },
+      "component": "technical_trace_reader",
+      "input_meanings": [
+        "独立原event/原prefix/当該必要集合/operation対象",
+        "提出event/結果と観測端"
+      ],
+      "output_meanings": [
+        "原event/順序/観測端/結果保持",
+        "欠落/内容差/対象差/unknownとoperation owner"
+      ],
+      "content_comparison": [
+        "原historyはappend前後で保持し、過去上書きはappendでない。",
+        "当該必要集合の欠落/順序不明/別版はunknown。未選択eventを全件固定必須にしない。",
+        "成功/失敗/部分/重複/衝突/unknownと観測端を保持し、業務完了を代筆しない。",
+        "提出identity欠落の例は原positionの項目内容を対照してidentityだけmissingを返すが、position一致からidentity資格を作らない。重複identityは各記録を原提出集合に保持し、内容が同じでもduplicate_event_identityを返す。"
+      ],
+      "qualification_rule": "原event/必要集合/元owner/SECの実資格は合成例で成立しない。実append/保存/伝送/解決/業務完了/Accepted/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXCONNECT-L4-005-F02",
+      "requirement_ref": "HELIXCONNECT-L3-005-F02",
+      "system_oracle_ref": "HELIXCONNECT-L10-005-F02",
+      "oracle_ref": "HELIXCONNECT-L9-005-F02",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-005-F02",
+        "parent": "HELIXCONNECT-L2-005",
+        "title": "未完とrecovery引継ぎ",
+        "obligation": "ACKなし/取消/expiry/失効/送信後結果未回収/部分成功をunknown/unfinishedとして保持し、停止位置・未完義務・owner/recovery参照へ結ぶ。先行成功を消さず終端/業務完了へ丸めない。",
+        "oracle_ref": "HELIXCONNECT-L10-005-F02"
+      },
+      "component": "unfinished_handoff_reader",
+      "input_meanings": [
+        "原停止位置/途中成功/未観測/未完",
+        "原handoff/受領/解決と提出"
+      ],
+      "output_meanings": [
+        "先行成功と未完owner/recovery保持",
+        "受領/解決の別内容と局所不足"
+      ],
+      "content_comparison": [
+        "ACKなし/取消/期限/失効/未回収/部分をunknown/unfinishedとして保持する。",
+        "handoff対象と元未完・停止位置、受領と解決の各targetを個別に結ぶ。",
+        "技術受領だけで未完を消さず、元業務ownerの判断を代筆しない。"
+      ],
+      "qualification_rule": "原event/必要集合/元owner/SECの実資格は合成例で成立しない。実append/保存/伝送/解決/業務完了/Accepted/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXCONNECT-L4-005-N01",
+      "requirement_ref": "HELIXCONNECT-L3-005-N01",
+      "system_oracle_ref": "HELIXCONNECT-L10-005-N01",
+      "oracle_ref": "HELIXCONNECT-L9-005-N01",
+      "approved_requirement": {
+        "id": "HELIXCONNECT-L3-005-N01",
+        "parent": "HELIXCONNECT-L2-005",
+        "title": "payload非複製とdata custody",
+        "obligation": "通常trace/receiptにraw payload/secret/credential値を保存しない。本文の保持/削除/data-useはsource/consumer ownerとSEC契約へ返し、payload保存を追跡成立の必須条件にしない。",
+        "oracle_ref": "HELIXCONNECT-L10-005-N01"
+      },
+      "component": "value_free_custody_reader",
+      "input_meanings": [
+        "値なし原trace参照/元owner-SEC custody参照",
+        "提出参照/保存要求項目名"
+      ],
+      "output_meanings": [
+        "値なし内容対照と本文保存の責務区別",
+        "不足/許可不明/分類保持の変更を元owner/SECへ返す"
+      ],
+      "content_comparison": [
+        "通常trace/receiptは非公開値を持たず本文dumpを成立条件にしない。",
+        "source/consumer ownerとSECの元参照を保持し、CONNECTがclassification/retention/deletionを新設しない。",
+        "禁止値の反例は項目名のみで表し実payload/secret/credentialをfixtureへ複製しない。"
+      ],
+      "qualification_rule": "原event/必要集合/元owner/SECの実資格は合成例で成立しない。実append/保存/伝送/解決/業務完了/Accepted/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 42,
+      "F02": 22,
+      "N01": 26
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
