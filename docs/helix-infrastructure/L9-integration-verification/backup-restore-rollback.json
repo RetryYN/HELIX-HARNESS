@@ -1328,12 +1328,12 @@
           "independent_source_packet": {
             "ref": {
               "identity": "SOURCE-I005-F01-SUBMITTED-FOREIGN",
-              "revision": "fixture-c66b4e5bd06ffc54c01fc793aadd3ccc0d5048820d3d7b0db03a1d03a6f52f54",
+              "revision": "fixture-a6ec3f4cb4e845db9dcc01418643f053c0b6643eae7ac8dea23a8914f80103ad",
               "owner": "synthetic-fixture-owner",
               "scope": "PRODUCT-P"
             },
-            "raw_utf8": "{\"backup_configured\":true,\"backup_exists\":true,\"claims\":[],\"original_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"succeeded_in_fixture_only\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"BACKUP-RECEIPT-P@r2\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"original_incident\":{\"owner\":\"OS-incident-owner\",\"ref\":\"INCIDENT-P@r2\",\"state\":\"open\"},\"original_previous_eligible_state\":{\"owner\":\"state-owner\",\"ref\":\"ELIGIBLE-STATE-P@r1\"},\"original_restore\":{\"backup_ref\":\"BACKUP-P@r2\",\"checks\":{\"dependency_reconnection\":{\"evidence_ref\":\"DEPENDENCY_RECONNECTION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"integrity\":{\"evidence_ref\":\"INTEGRITY-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"startup\":{\"evidence_ref\":\"STARTUP-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"verification\":{\"evidence_ref\":\"VERIFICATION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}},\"compatibility\":\"known_compatible_in_fixture_only\",\"environment\":{\"identity\":\"ENV-RESTORE-P\",\"independent\":\"qualified_in_fixture_only\",\"owner\":\"recovery-design-owner\"},\"execution_result\":\"restored_in_fixture_only\",\"receipt_ref\":\"RESTORE-RECEIPT-P@r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_rollback_result\":{\"execution_state\":\"not_executed\",\"receipt_ref\":null,\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"original_unfinished\":[\"recovery_verification_pending\",\"incident_not_closed\"],\"recovery_requirement_ref\":\"RECOVERY-P@r2\",\"retention_requirement_ref\":\"RETENTION-P@r2\",\"state_owner_ref\":\"STATE-OWNER-P@r2\",\"submitted_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"succeeded_in_fixture_only\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"FOREIGN\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"submitted_restore\":{\"backup_ref\":\"BACKUP-P@r2\",\"checks\":{\"dependency_reconnection\":{\"evidence_ref\":\"DEPENDENCY_RECONNECTION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"integrity\":{\"evidence_ref\":\"INTEGRITY-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"startup\":{\"evidence_ref\":\"STARTUP-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"verification\":{\"evidence_ref\":\"VERIFICATION-P@r2\",\"owner\":\"independent-verification-owner\",\"result\":\"passed_in_fixture_only\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}},\"compatibility\":\"known_compatible_in_fixture_only\",\"environment\":{\"identity\":\"ENV-RESTORE-P\",\"independent\":\"qualified_in_fixture_only\",\"owner\":\"recovery-design-owner\"},\"execution_result\":\"restored_in_fixture_only\",\"receipt_ref\":\"RESTORE-RECEIPT-P@r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"submitted_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}}",
-            "sha256": "c66b4e5bd06ffc54c01fc793aadd3ccc0d5048820d3d7b0db03a1d03a6f52f54"
+            "raw_utf8": "{\"backup_configured\":true,\"backup_exists\":true,\"claims\":[],\"original_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"succeeded_in_fixture_only\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"BACKUP-RECEIPT-P@r2\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"original_incident\":{\"owner\":\"OS-incident-owner\",\"ref\":\"INCIDENT-P@r2\",\"state\":\"open\"},\"original_previous_eligible_state\":{\"owner\":\"state-owner\",\"ref\":\"ELIGIBLE-STATE-P@r1\"},\"original_restore\":null,\"original_rollback_result\":{\"execution_state\":\"not_executed\",\"receipt_ref\":null,\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}},\"original_target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"original_unfinished\":[\"recovery_verification_pending\",\"incident_not_closed\"],\"recovery_requirement_ref\":\"RECOVERY-P@r2\",\"retention_requirement_ref\":\"RETENTION-P@r2\",\"state_owner_ref\":\"STATE-OWNER-P@r2\",\"submitted_backup\":{\"completeness\":\"complete_in_fixture_only\",\"execution_state\":\"succeeded_in_fixture_only\",\"expiry_state\":\"valid_in_fixture_only\",\"integrity_ref\":\"INTEGRITY-P@r2\",\"location_ref\":\"STORE-P@r2\",\"owner\":\"state-backup-owner\",\"receipt_ref\":\"FOREIGN\",\"source_revision\":\"STATE-P-r2\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"},\"time_ref\":\"OWNER-TIME-P@r2\"},\"submitted_restore\":null,\"submitted_rollback_target\":{\"artifact_ref\":\"ARTIFACT-P@r1\",\"backup_ref\":\"BACKUP-P@r2\",\"config_ref\":\"CONFIG-P@r1\",\"data_compatibility\":\"known_compatible_in_fixture_only\",\"dependency_ref\":\"DEPENDENCY-P@r1\",\"infrastructure_version_ref\":\"INFRA-P@r1\",\"owner\":\"recovery-design-owner\",\"procedure_ref\":\"PROCEDURE-P@r1\",\"target\":{\"environment\":\"ENV-STAGING\",\"resource\":\"STATE-P\",\"scope\":\"PRODUCT-P\",\"source_revision\":\"STATE-P-r2\"}}}",
+            "sha256": "a6ec3f4cb4e845db9dcc01418643f053c0b6643eae7ac8dea23a8914f80103ad"
           },
           "expected_material": {
             "information_state": "held_content_conflict",
@@ -1357,69 +1357,7 @@
               "owner": "state-backup-owner",
               "receipt_ref": "BACKUP-RECEIPT-P@r2"
             },
-            "retained_restore": {
-              "target": {
-                "resource": "STATE-P",
-                "environment": "ENV-STAGING",
-                "scope": "PRODUCT-P",
-                "source_revision": "STATE-P-r2"
-              },
-              "backup_ref": "BACKUP-P@r2",
-              "environment": {
-                "identity": "ENV-RESTORE-P",
-                "independent": "qualified_in_fixture_only",
-                "owner": "recovery-design-owner"
-              },
-              "compatibility": "known_compatible_in_fixture_only",
-              "execution_result": "restored_in_fixture_only",
-              "receipt_ref": "RESTORE-RECEIPT-P@r2",
-              "checks": {
-                "integrity": {
-                  "target": {
-                    "resource": "STATE-P",
-                    "environment": "ENV-STAGING",
-                    "scope": "PRODUCT-P",
-                    "source_revision": "STATE-P-r2"
-                  },
-                  "result": "passed_in_fixture_only",
-                  "evidence_ref": "INTEGRITY-P@r2",
-                  "owner": "independent-verification-owner"
-                },
-                "dependency_reconnection": {
-                  "target": {
-                    "resource": "STATE-P",
-                    "environment": "ENV-STAGING",
-                    "scope": "PRODUCT-P",
-                    "source_revision": "STATE-P-r2"
-                  },
-                  "result": "passed_in_fixture_only",
-                  "evidence_ref": "DEPENDENCY_RECONNECTION-P@r2",
-                  "owner": "independent-verification-owner"
-                },
-                "startup": {
-                  "target": {
-                    "resource": "STATE-P",
-                    "environment": "ENV-STAGING",
-                    "scope": "PRODUCT-P",
-                    "source_revision": "STATE-P-r2"
-                  },
-                  "result": "passed_in_fixture_only",
-                  "evidence_ref": "STARTUP-P@r2",
-                  "owner": "independent-verification-owner"
-                },
-                "verification": {
-                  "target": {
-                    "resource": "STATE-P",
-                    "environment": "ENV-STAGING",
-                    "scope": "PRODUCT-P",
-                    "source_revision": "STATE-P-r2"
-                  },
-                  "result": "passed_in_fixture_only",
-                  "evidence_ref": "VERIFICATION-P@r2",
-                  "owner": "independent-verification-owner"
-                }
-              }
-            },
+            "retained_restore": null,
             "retained_rollback_target": {
               "target": {
                 "resource": "STATE-P",
@@ -1463,11 +1401,11 @@
               {
                 "field": "backup.receipt_ref",
                 "result": "submitted_content_conflict",
-                "return_owner": "recovery-design-owner/OS"
+                "return_owner": "state-backup-owner/recovery-owner"
               }
             ],
             "return_owners": [
-              "recovery-design-owner/OS"
+              "state-backup-owner/recovery-owner"
             ],
             "rejected_claims": [],
             "actual_effects": {
