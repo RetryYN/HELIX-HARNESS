@@ -466,13 +466,15 @@
       "kind": "invalid | conflict | unknown"
     },
     "order": "code→pointer→owner_role→kindのUnicode code point sort、同一4tupleの重複だけを除く。異なる所在の同codeを失わない。",
-    "value_boundary": "findingへraw内容/secret/PII/credentialsを複写しない。owner_roleは戻し先の論理役割であり、実ownerや許可を新設しない。"
+    "value_boundary": "findingへraw内容/secret/PII/credentialsを複写しない。owner_roleは戻し先の論理役割であり、実ownerや許可を新設しない。",
+    "dependency_evaluation": "独立した評価可能な所在の不足/相反は全部保持する。依存前提が未供給の面はnot_evaluated/unknownを保持し、入力分類未決時の未来分類ownerやsource未決時のroute/resultを擬似不足にしない。"
   },
   "comparison_boundary": {
     "meaning": "matchedは供給された局所内容の対応だけ。実資格/許可/採否/昇格を成立させない。",
     "context": "inputから必要project/revision/source owner/分類/選択sink契約を作らない。独立snapshot構築・実資格/参照解決は既存owner/adapterで別に成立させる。qualificationという原注記やowner名の一致だけを資格にしない。",
     "opaque_content": "RawJSONはshape上のopaque contentで、OriginalAxes/claims/condition/original_result/unaffected_Qの内部へ形制約を足さない。供給済み同owner契約revisionの原内容への対応を照合し、異意味間の条件同値性を文字列/LLMで判定しない。任意精度数値/Unicode/duplicate-key等を保持する正式decode/codecの選定と実成立はHARNESS004/L6L7へ残す。",
-    "effects": "元read/六軸を保持し、実read/trust/instruction/authority/persist/learn/policy/requirement/connection/acceptanceの作用はすべてfalse。後続sink結果が未発生でも有効な依頼材料は比較できる。"
+    "effects": "元read/六軸を保持し、実read/trust/instruction/authority/persist/learn/policy/requirement/connection/acceptanceの作用はすべてfalse。後続sink結果が未発生でも有効な依頼材料は比較できる。",
+    "target_comparison_basis": "targetは独立source_owner_record.contentに束縛する。received input.sourceは別にそのowner内容へ照合し、ownerとtargetが合っているのにinput宣言だけが異なる場合はinput所在の相反だけを返す。ownerとinputを同時に別scopeへ変えても独立targetとの相反は保持する。"
   },
   "implementation_preparation": {
     "module_role": "SECURITY001 immutable boundary comparison Python domain。製品path/module/symbol bindingと正式wire exportはL6/L7でexact traceへ指定する。",
@@ -1041,9 +1043,9 @@
       "effect": "none",
       "algorithm": [
         "1. validate_boundary_inputでinput/contextの論理形を検査。invalidならmaterial=nullで全shape findingを返す。Stringの内容はtrim/coerce/defaultしない。shapeが正しくてもsource/target値の欠落/null/空文字はunknownで、public/別projectへ補わない。",
-        "2. 独立target_project/target_revisionを比較する。未供給/null/空文字ならproject_missing/revision_missingをContext位置へ、供給targetと原sourceが異なればproject_mismatch/revision_mismatchをContext位置へ返す。inputとsource ownerが一致してもこの照合を省かない。",
+        "2. 独立target_project/target_revisionを独立source_owner_record.contentのproject/revisionへ比較する。input.sourceは受領した原宣言であり、このtarget比較の基準にしない。target未供給/null/空文字はproject_missing/revision_missingをContext位置へ返す。ownerの対応内容が未供給なら比較を未評価に保ちstep3のsource_owner_unresolvedへ戻し、input値で補完しない。targetと供給owner内容が相反ならproject_mismatch/revision_mismatchをContext位置へ返す。inputとowner内容が一致していてもtarget比較を省かない。",
         "3. source_owner_record/content未供給はsource_owner_unresolved。source identity/project/revisionの未供給は各*_missing、供給値と独立owner内容の相反は各*_mismatch。独立した所在の不足/相反は全部保持。source_bindingはconflictがあればconflict、他に不足があればunknown、それ以外matched。 source owner名が未供給/null/空文字、または原owner.content tupleが未供給ならsource_owner_unresolvedを当該所在へ返す。元qualification注記を実資格にしない。",
-        "4. source_bindingがmatchedでなければclassification_binding=unknownとし、依存分類を原source不足で補わない。source ownerへの返却候補を保持。matchedなら原classification未供給/nullをclassification_unresolved、独立分類record未供給/tuple不足はclassification_owner_unresolved。同source identity/project/revision/classの相反を個別に比較し、conflict優先、未供給unknown、全対応matched。 分類owner名またはclass内容が未供給/null/空文字の場合もclassification_owner_unresolvedを当該所在へ返す。null分類をpublicへ変更しない。",
+        "4. source_bindingがmatchedでなければclassification_binding=unknownとし、依存分類を評価せずsource ownerへの返却候補を保持。source matchedで原input.classificationが未供給/nullならclassification_unresolvedだけを返し分類owner record/tupleを評価しない。分類の依頼材料が未決なのに同時に未来/未供給ownerを不足として前倒ししない。原classificationが供給された場合にだけ独立分類record/owner名/class内容/source tupleを比較し、未供給/null/空文字の必要内容はclassification_owner_unresolvedを当該所在へ返す。同source identity/project/revision/classの供給相反を個別に比較し、conflict優先、未供給unknown、全対応matched。null分類をpublicへ変更しない。",
         "5. 出力materialは元L9の全fieldを返す。source_kind/source metadata/原六軸/Qを改変せず保持。claimは原内容から分離してnot_supportedとする。claimの未支持だけで元binding診断や新authorityを生成しない。"
       ]
     },
@@ -1062,7 +1064,7 @@
         "2. source/分類matchedの場合、独立selected_sink_contractの未供給または必要内容不足はselected_sink_contract_unresolvedでroute/condition unknown。選択sink/source identity/project/revisionへの対応、ref owner/projectと原route_owner/projectへの対応を照合する。source tuple相反はselected_sink_contract_source_mismatch、sink相反はroute_sink_mismatchを契約sink位置へ、ref相反はselected_sink_contract_ref_mismatch。候補routeを使って契約を生成しない。",
         "3. 契約対応後、owner_route_record未供給ならroute_binding=unknown、route_condition_binding=not_available。必要tuple未供給/null/空文字はroute_missingを所在へ。供給identity/revision/owner/sink/project/source_revisionは独立契約と照合し各route_*_mismatch。tupleの不足/相反があればconditionはnot_evaluated。",
         "4. tuple対応後、original_condition未供給/nullはroute_condition_missingでroute/condition unknown。供給原conditionが同owner契約revisionのroute_condition原内容と相反ならroute_condition_mismatchでroute/condition conflict。対応する場合だけroute/condition matched。",
-        "5. 元owner_result_record未供給はresult_binding=not_available、owner_result_ref=null（正常な先行依頼材料でfindingなし）。元resultがありrouteがmatchedでなければnot_evaluated。route matchedならidentity/owner/route identity/revision/sink/source identity/revision/projectの必要内容不足をresult_binding_unresolved、相反を各result_*_mismatchで保持。全対応の場合だけmatched_original_owner_recordと元identity参照を返し、new_promotion_generatedはfalse。 元original_resultの未供給もresult_binding_unresolvedをその所在へ返す。explicit nullという原内容は参照で保持し、未供給とは別に扱う。",
+        "5. 元owner_result_record未供給はresult_binding=not_available、owner_result_ref=null（正常な先行依頼材料でfindingなし）。元resultがありrouteがmatchedでなければnot_evaluated。route matchedの場合の明示評価順はidentity→owner→route_identity→route_revision→source_identity→source_revision→project→sink→original_result。必要内容不足はresult_binding_unresolved、供給tuple相反は対応する各result_*_mismatchを、この順でissuesへ保持する。全対応の場合だけmatched_original_owner_recordと元identity参照を返し、new_promotion_generatedはfalse。元original_result未供給もresult_binding_unresolvedをその所在へ返す。explicit nullという原内容は参照で保持し未供給とは別に扱う。",
         "6. source/classの返却先とsink経路/条件/resultの返却先を分ける。owner_return_candidatesは当該評価面の不足/相反にだけ発生し、正常な未来result未発生やclaim/signalだけには発生しない。claimed_promotion未供給/nullはclaim_results={}、供給されたclaimはnot_supported。claims内任意主張も個別not_supportedとして原内容と分ける。"
       ]
     }

@@ -466,13 +466,15 @@
       "kind": "invalid | conflict | unknown"
     },
     "order": "code→pointer→owner_role→kindのUnicode code point sort、同一4tupleの重複だけを除く。異なる所在の同codeを失わない。",
-    "value_boundary": "findingへraw内容/secret/PII/credentialsを複写しない。owner_roleは戻し先の論理役割であり、実ownerや許可を新設しない。"
+    "value_boundary": "findingへraw内容/secret/PII/credentialsを複写しない。owner_roleは戻し先の論理役割であり、実ownerや許可を新設しない。",
+    "dependency_evaluation": "独立した評価可能な所在の不足/相反は全部保持する。依存前提が未供給の面はnot_evaluated/unknownを保持し、入力分類未決時の未来分類ownerやsource未決時のroute/resultを擬似不足にしない。"
   },
   "comparison_boundary": {
     "meaning": "matchedは供給された局所内容の対応だけ。実資格/許可/採否/昇格を成立させない。",
     "context": "inputから必要project/revision/source owner/分類/選択sink契約を作らない。独立snapshot構築・実資格/参照解決は既存owner/adapterで別に成立させる。qualificationという原注記やowner名の一致だけを資格にしない。",
     "opaque_content": "RawJSONはshape上のopaque contentで、OriginalAxes/claims/condition/original_result/unaffected_Qの内部へ形制約を足さない。供給済み同owner契約revisionの原内容への対応を照合し、異意味間の条件同値性を文字列/LLMで判定しない。任意精度数値/Unicode/duplicate-key等を保持する正式decode/codecの選定と実成立はHARNESS004/L6L7へ残す。",
-    "effects": "元read/六軸を保持し、実read/trust/instruction/authority/persist/learn/policy/requirement/connection/acceptanceの作用はすべてfalse。後続sink結果が未発生でも有効な依頼材料は比較できる。"
+    "effects": "元read/六軸を保持し、実read/trust/instruction/authority/persist/learn/policy/requirement/connection/acceptanceの作用はすべてfalse。後続sink結果が未発生でも有効な依頼材料は比較できる。",
+    "target_comparison_basis": "targetは独立source_owner_record.contentに束縛する。received input.sourceは別にそのowner内容へ照合し、ownerとtargetが合っているのにinput宣言だけが異なる場合はinput所在の相反だけを返す。ownerとinputを同時に別scopeへ変えても独立targetとの相反は保持する。"
   },
   "implementation_preparation": {
     "module_role": "SECURITY001 immutable boundary comparison Python domain。製品path/module/symbol bindingと正式wire exportはL6/L7でexact traceへ指定する。",
