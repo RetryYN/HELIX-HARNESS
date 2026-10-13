@@ -1,0 +1,250 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-010",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2a",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+    "boundary": "通常/更新/read-only/独立復旧のaction別前提と結果。INFRAは認可主体にならない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        96,
+        98
+      ],
+      "quote": "同一artifact digestを`staging／equivalent → canary → bounded exposure → production`へ昇格する。blue-green等のstrategyはrisk、\nblast radius、health model、rollback latencyから決定する。stage skip、OS別rebuild、review前artifact差替え、observation window省略を拒否する。\nproduction apply、cloud destructive operation、credential sinkは既存action-binding approvalとsecurity broker authorityへ従う。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "2858b833eb300aaf73a41220934c941e96c1f121238cbcd3d230a274c57edd87",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧provider adapterのbounded既存security authorityを保持する。",
+      "change": "旧provider/security broker/approvalを移植せず、採択010のSEC authority/Workerとaction別update admission/適用復旧義務へ再導出する。",
+      "reason": "10/12承認010の通常/read-only/独立復旧の境界へ再導出。新authorityや毎回の人間承認を追加しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "read_lines": [
+        99,
+        99
+      ],
+      "quote": "1. 切替済みの通常開発経路では、admitted Ticket・有効Assignment・必要なlease/fenceなしに変更実行しない。bootstrap、read-only診断、formal/shadowは別の明示的実行profileで扱い、抜け道にしない。",
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "selected_lines_sha256": "a485e05cbaa15a72e09e2b1f1f7aa82ac9710425054c138a1bf271a828d9d9ef",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "disposition": "unresolved",
+        "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧候補のbootstrap別profileを万能な抜け道にしない境界を参照する。",
+      "change": "旧Ticket/lease/fence/runtimeを移植せず、採択006の限定復旧と別SEC authority/Worker契約/復旧後OS同期へ再導出する。",
+      "reason": "旧candidateの自動採用や通常authority免除を作らない。10/12承認006を起点にする。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実SEC authority/update admission/credential-network-isolation-egress/Worker/OS/005/006/実資源のowner-qualified bindingは未成立。",
+    "正式schema/codec/expiry resolver/action適用集合/実write禁止/operation起因比較/停止回収/並行変化/全組合せ/L5L8/oracle凍結は未完。",
+    "実装前Red→Green→Refactor→再検証、実操作/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXINFRASTRUCTURE-L4-010",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "operation_authority_reader",
+      "action_admission_and_recovery_reader",
+      "worker_result_actual_reader",
+      "readonly_effect_scope_reader",
+      "independent_recovery_boundary_reader"
+    ],
+    "flow": [
+      "operation/resource＋SEC authority＋Worker/通常OS→前段照合",
+      "更新時admission＋action固有005義務／read-only空write-set＋実禁止／独立006＋別authority→該当条件",
+      "後段Worker result＋INFRA before/after→未完/復旧/OS同期保全"
+    ],
+    "python_boundary": "予定するPython接続は原参照と前後情報の読み出し/対照。認可発行、実操作、実write禁止、secret保存、復旧や同期はこのDraftで実装しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-010-F01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "操作前authorityとWorker",
+        "obligation": "全operationでresource/actual stateと有効SEC authorityのtarget/project/action/revision/environment/scope/expiryおよびcredential/network/isolation/egress条件を照合し、全実操作をSEC制約下のWorker契約へ結ぶ。通常経路ではOS assignment/ticketと009を用いる。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F01"
+      },
+      "content_rules": [
+        "開始前にresource actualとSEC authorityのtarget/project/action/revision/environment/scope/expiry、credential/network/isolation/egress参照を照合する。未確認/不一致/期限切れ/失効はSEC/OSへ返し実行前に停止する。",
+        "全操作をSEC制約下のWorker契約へ結ぶ。通常操作はOS assignment/ticket/009接続を用いる。結果receiptは後段で受け取り、開始前に成功receiptを要求しない。INFRAが自己許可を出さない。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-010-F02",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F02",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F02",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "更新時の追加admission",
+        "obligation": "更新/変更を適用するactionに限り同target/revision/scopeのSEC update-admission acceptedを追加条件にし、denied/unknown/mismatchでは変更前に止める。read-onlyではupdate admissionを要求せず通常authorityを保持する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F02"
+      },
+      "content_rules": [
+        "更新/変更actionだけ同target/revision/scopeのSEC update-admission acceptedを追加条件にし、denied/unknown/mismatch/期限外/失効は変更前に止める。acceptedでも通常authorityを省かない。",
+        "read-onlyにupdate gateを追加せず、通常authorityを保持する。F05のwrite禁止/対象前後は別義務でありread-only宣言だけで通過させない。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-010-F03",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F03",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F03",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F03",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "action固有の復旧義務",
+        "obligation": "state-changing actionには005の該当before/after・backup/restore/rollback/recovery義務を照合し未充足/unknownなら保留する。無関係な復旧義務を全操作へ一律要求しない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F03"
+      },
+      "content_rules": [
+        "state-changing actionは005の適用before/after・backup/restore/rollback/recovery義務集合と根拠を照合する。適用集合unknown/該当義務未充足は保留。",
+        "対象外の復旧義務や全backup完成を一律gateにしない。適用/非適用の理由とowner/sourceを保持してrecovery/SEC/OSへ返す。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-010-F04",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F04",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F04",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F04",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "実状態と部分操作",
+        "obligation": "Worker result receiptとINFRA before/after実状態を同operation/対象版/scopeへ結び、Worker成功だけで実変更を受入れない。停止/部分実行は実状態・未完操作・該当復旧義務を保持する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F04"
+      },
+      "content_rules": [
+        "Worker receiptとINFRA before/after実状態を別sourceで同operation/対象版/scopeへ結び付ける。receipt成功だけで実状態変更を受入れない。",
+        "部分/停止では実状態・停止地点・未完操作と該当復旧義務を保全し、実資源/復旧ownerへ戻す。実状態を推定補完しない。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-010-F05",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F05",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F05",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F05",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "read-onlyの実制約",
+        "obligation": "read-onlyはread target/scopeと空write-setを宣言しwrite禁止を実適用する。当該操作がそのscope/write-setで変更しないことと許可対象resource前後を確認する。無関係な並行状態変化まで全resource digest不変を要求しない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F05"
+      },
+      "content_rules": [
+        "read target/scopeと空write-setを宣言し、write禁止を実適用する。操作がscope/write-setへ変更を起こさないことと許可対象resourceの前後を確認する。",
+        "宣言のみ/write可能/対象前後未確認では通過させない。無関係な並行変化による全resource digest変化だけで失格にせず、操作起因変化と未確認を区別する。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-010-F06",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-F06",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F06",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-F06",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "OS停止中の操作経路",
+        "obligation": "独立bootstrap/recoveryでは006の独立resource/pathと別SEC authority、SEC制約下のWorkerを開始条件にし、停止中OS ticket/assignment/通常009応答を必須にしない。復旧後の同期義務を残す。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-F06"
+      },
+      "content_rules": [
+        "独立復旧は006の独立resource/pathと別SEC authority、SEC制約下Workerを開始条件にする。停止中OS ticket/assignment/009応答を要求しない。",
+        "復旧後operation/resultをOS Work/Changeへ同期する未完義務を保ち、通常操作へ一般免除を外挿しない。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-010-N01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-010-N01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-010-N01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-010-N01",
+        "parent": "HELIXINFRASTRUCTURE-L2-010",
+        "title": "secretと権限の責務",
+        "obligation": "INFRAはpolicyや自身のauthorityを発行せずcredential値を通常resource/backup/snapshotへ無条件保存しない。Workerを無制限Shell主体にせず停止/回収可能な契約を保持する。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-010-N01"
+      },
+      "content_rules": [
+        "INFRAはpolicy/自身のauthorityを発行しない。credentialは値を複製せずSEC管理参照と保存先制約へ結ぶ。",
+        "Workerは無制限Shell主体にならず、停止/回収可能な契約を保持する。secret複製要求/任意Shell/自己許可はSEC/Worker契約ownerへ返す。"
+      ],
+      "representation_limit": "合成参照/有効/制約markerは実authority/認可/禁止/実資格/schemaを採用しない。"
+    }
+  ]
+}
