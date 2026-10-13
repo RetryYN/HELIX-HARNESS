@@ -1,0 +1,274 @@
+{
+  "parent": "HELIXBRAIN-L2-002",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "f16579bb15636398489804681c4f6c8de80625dd",
+    "boundary": "構造階層の限定比較。全知識/成熟/製品選択/案件記録/実装の成立は生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    }
+  ],
+  "source_pin_limit": "bytes固定は全文精読/全意味被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/design-catalog.yaml",
+      "read_lines": [
+        10,
+        52
+      ],
+      "quote": "categories:\n  - id: plan\n    name: 企画・要求\n  - id: req\n    name: 要件定義\n  - id: basic\n    name: 基本設計\n  - id: detail\n    name: 詳細設計\n  - id: data\n    name: データ設計\n  - id: std\n    name: 標準・方式\n  - id: sec\n    name: セキュリティ\n  - id: ops\n    name: 運用・可観測性\n  - id: infra\n    name: インフラ・基盤\n  - id: saas\n    name: SaaS事業・課金\n  - id: web\n    name: Webクライアント\n  - id: mobile\n    name: モバイルアプリ\n  - id: desktop\n    name: デスクトップアプリ\n  - id: cli\n    name: CLI・管理ツール\n  - id: apisvc\n    name: API・ヘッドレスサービス\n  - id: domain\n    name: ドメイン(DDD)\n  - id: common\n    name: 共通・拡張・規約\n  - id: agent\n    name: AIエージェント\n  - id: test\n    name: テスト・検証\n  - id: mgmt\n    name: 管理\n  - id: sprint\n    name: スクラム運営(ハイブリッド層)",
+      "file_sha256": "4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864",
+      "selected_lines_sha256": "b1954dcf307723e2bf08b030dcc25fed251145710051ef811621ee34f2299333",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-EC07511FF3E241F15359",
+        "disposition": "unresolved",
+        "sha256": "4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864"
+      },
+      "reuse": "reference_only_classification_context; hierarchy meaning rederivation from adopted BRAIN002",
+      "preserve": "旧分類とidentity/所在の参照文脈を保持。",
+      "change": "文書分類/pathを汎用知識のDomain→Pattern→Design Unit→Part意味階層へ同一視しない。",
+      "reason": "9/25 POの記録済み接続差分、9/26四階層原文と9/28採択002、10/12委任承認に従う。旧catalogは四階層の直接根拠ではない。"
+    }
+  ],
+  "hierarchy_basis": {
+    "po_20260925": "設計templateからPattern/Unit/Partの意味構造を取り出す記録済み差分。",
+    "po_20260926_lines": [
+      65,
+      92
+    ],
+    "adopted_l2_section": "HELIXBRAIN-L2-002 構造階層",
+    "adopted_l11_row": "HELIXBRAIN-L2-002",
+    "limit": "catalog分類を直接四階層authorityにしない。fixtureの責務文/identity/版は合成であり実knowledge採用ではない。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実Domain001/階層内容source資格/必要参照集合/意味関係の網羅と組合せ。",
+    "003/005/019/022同knowledge版とCORE009/OSへのowner-qualified exact binding、正式schema/codec。",
+    "L5/L8比較型/関数/単体oracle、実装前oracle凍結→実Red→最小Green→Refactor→再検証、実L9/L10/PO L11。",
+    "全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXBRAIN-L4-002",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "knowledge_hierarchy_reader",
+      "knowledge_hierarchy_candidate_reader",
+      "held_out_hierarchy_content_reader",
+      "hierarchy_consumer_owner_router"
+    ],
+    "flow": [
+      "元Domain/構造内容 → 要素別責務/親/relation/版対応",
+      "不明/集合由来 → 局所候補保留とowner返却",
+      "同版consumer入力/製品案件原状態 → 別owner候補"
+    ],
+    "python_boundary": "immutable inputのpure比較。DB/OS保存/CORE書換/network/fs/env/clock/知識採用/実構成生成/authority/受入を行わない。",
+    "representation_limit": "以下fixture構造/責務文/ID/版/状態は合成入力。正式schema/codec/resolver/実knowledge内容の採用ではない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXBRAIN-L4-002-F01",
+      "requirement_ref": "HELIXBRAIN-L3-002-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-002-F01",
+      "oracle_ref": "HELIXBRAIN-L9-002-F01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-002-F01",
+        "parent": "HELIXBRAIN-L2-002",
+        "title": "構造階層と意味relation",
+        "obligation": "Domain→Pattern→Design Unit→Part以上の構造について各identity/責務/親と包含・構成relationを識別し、元知識版へ辿る。Visual DesignのDashboard Pattern→Navigation/KPI/Work Area Unit→Table/Filter/Status Partの例を表せる。",
+        "oracle_ref": "HELIXBRAIN-L10-002-F01",
+        "failure_return": "階層意味はBRAIN L1-002、領域定義は001へ返す。"
+      },
+      "component": "knowledge_hierarchy_reader",
+      "input_meanings": [
+        "元知識版/独立構造内容oracle",
+        "各identity/kind/責務/親/意味relation",
+        "Domain001の参照内容"
+      ],
+      "output_meanings": [
+        "要素別の原版/親/責務/包含構成対応",
+        "局所不足とBRAIN owner返却候補"
+      ],
+      "content_comparison": [
+        "Domain→Pattern→Design Unit→Part以上を識別する。root Domainは親なし、それ以外は親と意味関係を辿る。四種を上限enumとして固定しない。",
+        "Visual Dashboard→Navigation/KPI/Work Area→Table/Filter/Statusを元責務/包含・構成関係で比較。file pathで階層意味を代用しない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/必要集合と要素内容を独立比較。原資料と比較対象の自己一致だけを意味資格にしない。実source資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-002-F02",
+      "requirement_ref": "HELIXBRAIN-L3-002-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-002-F02",
+      "oracle_ref": "HELIXBRAIN-L9-002-F02",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-002-F02",
+        "parent": "HELIXBRAIN-L2-002",
+        "title": "孤立と誤種別の未確定保持",
+        "obligation": "001と各階層identity/relationを照合し、孤立/誤種別/階層意味不明をunknownまたは候補保留にする。file/code snippet/UI componentの集合だけをPattern知識へ昇格しない。",
+        "oracle_ref": "HELIXBRAIN-L10-002-F02",
+        "failure_return": "BRAIN L1-002へ要素意味の不足を返す。"
+      },
+      "component": "knowledge_hierarchy_candidate_reader",
+      "input_meanings": [
+        "独立001 Domain内容と階層原内容",
+        "比較対象と未確定/孤立/種別候補",
+        "file/code/UI集合の由来"
+      ],
+      "output_meanings": [
+        "局所unknown/candidate-heldと有効部分",
+        "BRAIN L1-002/001への意味不足返却候補"
+      ],
+      "content_comparison": [
+        "孤立、誤種別、意味不明をunknown/候補保留にし、親や責務を捏造補完しない。",
+        "file/code/UI component集合だけでPattern知識に昇格しない。Domain001の別対象/不明を階層validへ補完しない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/必要集合と要素内容を独立比較。原資料と比較対象の自己一致だけを意味資格にしない。実source資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-002-N01",
+      "requirement_ref": "HELIXBRAIN-L3-002-N01",
+      "system_oracle_ref": "HELIXBRAIN-L10-002-N01",
+      "oracle_ref": "HELIXBRAIN-L9-002-N01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-002-N01",
+        "parent": "HELIXBRAIN-L2-002",
+        "title": "未知構造の内容照合",
+        "obligation": "未見のDomain/Pattern/Unit/Part組合せでもidentity/責務/親/意味relation/版を内容oracleへ照合し、孤立/誤種別/意味不足を未知として返す。一例やfield存在で全領域の内容/全構成/全知識の成立を生成しない。",
+        "oracle_ref": "HELIXBRAIN-L10-002-N01",
+        "failure_return": "該当BRAIN階層/領域meaning ownerへ返す。"
+      },
+      "component": "held_out_hierarchy_content_reader",
+      "input_meanings": [
+        "伏せた別Domainの内容oracle/未充実範囲",
+        "未見identity/責務/親/relation/版",
+        "全知識成立/unknown成功claim"
+      ],
+      "output_meanings": [
+        "field存在と内容対応を分けた局所結果",
+        "未観測/未充実限界とowner返却候補"
+      ],
+      "content_comparison": [
+        "一例のPASSを全領域/全構成/全知識の成立へ広げない。未見の内容不一致とunknownを保持。",
+        "必要fieldが全て存在しても、親/意味/版の別対象は対応にしない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/必要集合と要素内容を独立比較。原資料と比較対象の自己一致だけを意味資格にしない。実source資格と正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-002-B01",
+      "requirement_ref": "HELIXBRAIN-L3-002-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-002-B01",
+      "oracle_ref": "HELIXBRAIN-L9-002-B01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-002-B01",
+        "parent": "HELIXBRAIN-L2-002",
+        "title": "構造知識と製品採用の分離",
+        "obligation": "BRAINは汎用構造とその意味を保持し、製品固有要素の設計/選択と案件記録はCORE/OSへ保持する。構造表現可能を知識mature/今回採用/実実装にせず、003/005/019/022へ同知識版の意味入力を渡す。",
+        "oracle_ref": "HELIXBRAIN-L10-002-B01",
+        "failure_return": "BRAIN/CORE/OSの当該ownerへ返す。"
+      },
+      "component": "hierarchy_consumer_owner_router",
+      "input_meanings": [
+        "汎用構造/同knowledge版のconsumer入力案",
+        "CORE製品意味/選択、OS案件記録の原状態",
+        "成熟/採用/実装claim"
+      ],
+      "output_meanings": [
+        "003/005/019/022向け候補版対応",
+        "BRAIN/CORE/OSの別ownerと状態"
+      ],
+      "content_comparison": [
+        "同knowledge版で意味入力を渡す。汎用構造表現と知識評価/成熟/今回採用/実実装を別に保持。",
+        "製品設計/選択はCORE、案件記録はOS。BRAIN構造の存在でそれらを更新しない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/必要集合と要素内容を独立比較。原資料と比較対象の自己一致だけを意味資格にしない。実source資格と正式表現は未binding。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 11,
+      "F02": 11,
+      "N01": 9,
+      "B01": 10
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
