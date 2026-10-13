@@ -11,16 +11,16 @@
     "approved_content_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
     "detail_requirements_in_this_revision": [
       "HARNESS-L3-004-F04",
-      "HARNESS-L3-004-B01"
+      "HARNESS-L3-004-B01",
+      "HARNESS-L3-004-F02"
     ],
     "remaining_requirement_refs": [
       "HARNESS-L3-004-F01",
-      "HARNESS-L3-004-F02",
       "HARNESS-L3-004-F03",
       "HARNESS-L3-004-F05",
       "HARNESS-L3-004-N01"
     ],
-    "boundary": "004-F04の無損失分割とB01の変更分類/運転境界を部分詳細化。残5契約/正式binding/全oracleを未完保持し、全004完了や実作用を生成しない。"
+    "boundary": "004のB01/F02/F04を部分詳細化。残4契約/正式binding/全oracleを未完保持し、全004完了や実作用を生成しない。"
   },
   "source_pins": [
     {
@@ -117,6 +117,56 @@
         "preserve": "旧要求正本/対象revision/出典とIssue・DB projectionの区別。",
         "change": "旧DB/層pathから意味を生成せず、純粋内容比較と役割別返却に具体化。",
         "reason": "B01承認条件へ接続し、原trace責務を失わないため。"
+      },
+      "f02_rederivation": {
+        "read_line_locators": [
+          350,
+          351,
+          352,
+          353,
+          354,
+          355,
+          356,
+          357,
+          358,
+          359,
+          360,
+          361,
+          362,
+          363,
+          364,
+          365,
+          366,
+          367,
+          368,
+          369,
+          370,
+          371,
+          372,
+          373,
+          374,
+          375,
+          376,
+          377,
+          378
+        ],
+        "line_quotes": [
+          {
+            "line": 354,
+            "text": "| `HIL-FR-51` | Admission Engineはsemantic diff、authority、revision、trace、pair、impact、security、rollbackを検査し、`auto_admit`／`auto_admit_with_stale_propagation`／`repair_then_retry`／`human_decision_required`／`reject`／`conflict`のexactly oneを返す |"
+          },
+          {
+            "line": 359,
+            "text": "| `HIL-NFR-32` | 意味変更はauthority、impact、pair、oracle、rollback、downstream stale propagationが揃うまでCanonical化しない |"
+          },
+          {
+            "line": 377,
+            "text": "baseline未取得のNFRは`unknown`として扱い、推測値でgreenにしない。前身source authority未確定の115 draftは一括freezeせず、authority receiptとPO gate成立後に段階昇格する。"
+          }
+        ],
+        "preserve": "意味変更のimpact/pair/oracle/下流staleと未観測unknownを推測greenへしない。",
+        "change": "旧transaction/DB/Admission gateを移植せず、現在の承認F02のAffected/Unaffected/Unknownと成立非継承へ再導出。分類名称が旧sourceにもあるとは主張しない。",
+        "reason": "採択済み現行の構造影響と成立の分離を具体化するため。旧全candidate採用やCI成立を生成しない。"
       }
     },
     {
@@ -220,9 +270,10 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004 F01/F02/F03/F05/N01の5契約を同じL5/L8文書へ追加する。",
+    "004 F01/F03/F05/N01の4契約を同じL5/L8文書へ追加する。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
+    "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
   ],
   "document_id": "HARNESS-L5-004",
@@ -493,6 +544,115 @@
       "retained_context_sha256": "Digest",
       "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
       "candidate_conflicting_fields": "tuple[Text]"
+    },
+    "ImpactTarget": {
+      "scope": "Text",
+      "graph_revision": "Text（固定binding）"
+    },
+    "ConditionChange": {
+      "node": "Text",
+      "from_revision": "Text",
+      "to_revision": "Text",
+      "condition_before": "Text",
+      "condition_after": "Text"
+    },
+    "DesignMembership": {
+      "node": "Text",
+      "ref": "Ref",
+      "binding": "Text",
+      "role": "unit | connection | composite | unrelated_unit",
+      "required_members": "tuple[Text]",
+      "coverage": "complete_for_declared_scope | unknown | missing | conflict | stale"
+    },
+    "RequiredMemberRelation": {
+      "ref": "Ref",
+      "from_node": "Text",
+      "to_node": "Text",
+      "binding": "Text",
+      "meaning": "Text（required_member以外をmemberへ補完しない）"
+    },
+    "PreviousEstablishment": {
+      "ref": "Ref",
+      "node_revision": "Text",
+      "result": "passed | failed | unknown",
+      "original_expected": "LogicalJson",
+      "original_observed": "LogicalJson"
+    },
+    "UpperObservation": {
+      "id": "Text",
+      "expected_total": "finite number（bool不可）",
+      "observed_total": "finite number（bool不可）"
+    },
+    "UpperReverification": {
+      "ref": "Ref",
+      "graph_revision": "Text",
+      "subject": "Text",
+      "changed_dependency_revision": "Text",
+      "required": "tuple[Text]",
+      "observations": "tuple[UpperObservation]",
+      "qualification": "Text（自己申告実観測にしない）"
+    },
+    "ImpactInput": {
+      "target": "ImpactTarget",
+      "change": "ConditionChange",
+      "design_membership": "tuple[DesignMembership]",
+      "relations": "tuple[RequiredMemberRelation]",
+      "original_establishment": "mapping[Text,PreviousEstablishment]",
+      "required_upper_obligations": "mapping[Text,tuple[Text]]",
+      "reverification": "mapping[Text,UpperReverification | null]",
+      "scenario_kind": "Text（診断のみ）"
+    },
+    "ImpactReferent": {
+      "ref": "Ref",
+      "kind": "membership | relation | previous_establishment | reverification",
+      "raw_utf8": "RawUtf8",
+      "content_sha256": "Digest",
+      "state": "current | missing | unknown | conflict | stale",
+      "qualification_basis_refs": "tuple[Ref]",
+      "evidence_kind": "synthetic | actual_owner_input"
+    },
+    "ImpactContext": {
+      "target": "ImpactTarget",
+      "node_population": "tuple[Text]",
+      "declared_members": "mapping[Text,tuple[Text]]",
+      "required_upper_obligations": "mapping[Text,tuple[Text]]",
+      "referents": "tuple[ImpactReferent]",
+      "qualifier_roots": "tuple[Ref]（独立資格根拠）",
+      "evidence_kind": "synthetic | actual_owner_input",
+      "state": "current | missing | unknown | conflict | stale"
+    },
+    "ImpactEstablishmentValue": {
+      "previous_result": "passed | failed | unknown | null（原記録欠落のみ）",
+      "previous_revision": "Text | null",
+      "current_result": "requires_reverification | preserved_unaffected | unknown_requires_relation_resolution | supported_synthetic_reverification_pass | supported_synthetic_reverification_fail | content_corresponding_requires_actual_qualification",
+      "upper_obligations_retained": "tuple[Text]"
+    },
+    "ImpactValue": {
+      "impact_by_node": "mapping[Text,Affected | Unaffected | Unknown]",
+      "establishment_by_node": "mapping[Text,ImpactEstablishmentValue]",
+      "unknown_relation_nodes": "tuple[Text]",
+      "actual_state_updated": "literal false",
+      "actual_reverification_executed": "literal false",
+      "actual_upper_passed": "literal false",
+      "actual_upper_failed": "literal false",
+      "actual_completion": "literal false"
+    },
+    "ImpactCandidate": "ImpactValueと同じ閉じたfield集合、提出主張はliteral制約の外の値も比較する。reason/retain_unaffected_materialのsource metadataは別に保持し候補valueへ混ぜない。",
+    "ImpactFinding": {
+      "code": "F02 finding_codes",
+      "pointer": "JSON Pointer（/input,/context,/candidateの引数を区別）",
+      "node_ids": "tuple[Text]",
+      "basis_refs": "tuple[Ref]",
+      "return_owner": "Text"
+    },
+    "ImpactResult": {
+      "outcome": "content_supported | unknown | conflict | invalid",
+      "value": "ImpactValue | null（構造解釈不能時のみ）",
+      "findings": "tuple[ImpactFinding]",
+      "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
+      "candidate_conflicting_fields": "tuple[Text]",
+      "retained_input_sha256": "Digest（canonical logical、原transport bytesと区別）",
+      "retained_context_sha256": "Digest（canonical logical）"
     }
   },
   "functions": [
@@ -646,6 +806,82 @@
         "projection_not_authority"
       ],
       "scope_limit": "004 B01の部分詳細。23既L9例の正確な内容写像と合成Contextのみ。追加比較/資格/混合/構造/実consumer凍結は未完。"
+    },
+    {
+      "id": "HARNESS-L5-004-F02",
+      "requirement_ref": "HARNESS-L3-004-F02",
+      "l4_ref": "HARNESS-L4-004-F02",
+      "l9_ref": "HARNESS-L9-004-F02",
+      "l8_ref": "HARNESS-L8-004-F02",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-F02",
+        "parent": "HARNESS-L2-004",
+        "title": "影響と成立の分離",
+        "obligation": "単体/接続/構成体のrequirement-design-verification relationから影響をAffected/Unaffected/Unknownへ区別する。証拠/影響はrelationを通じて上へ伝えるが、下位の成立状態を上位へ直接伝えない。UnknownをUnaffectedにせず、再検証結果によってだけ上位成立状態を改める。",
+        "oracle_ref": "HARNESS-L10-004-F02"
+      },
+      "symbol": "derive_impact_without_state_inheritance",
+      "signature": "derive_impact_without_state_inheritance(input: ImpactInput, context: ImpactContext, candidate: ImpactCandidate | None = None) -> ImpactResult",
+      "preconditions": [
+        "対象graph版/scope、母集団、宣言memberと上位固有義務は独立Contextへ束縛。input自身/候補/旧graph/件数から網羅性やowner資格を生成しない。",
+        "referentはkind/全4Ref成分で一意解決し原content/digestを比較。自己申告qualification/current・root名だけは実owner資格を証明しない。実consumer/qualification record bindingは未完でactual_owner_inputはunknownへ残す。",
+        "synthetic Contextの各記録は固定L9原資料の版候補であり、原graphへの適合は別に照合する。記録のresult labelは原記録として保全し実観測成立と同一視しない。"
+      ],
+      "algorithm": [
+        {
+          "id": "I1",
+          "rule": "閉じた型を検査し、母集団/node ID/record/ref/obligation/observationの重複・未知field・不正数をlocatorへ返す。同key重複をfirst/last winsせず、不正で内容を解釈不能な場合のみvalue null。"
+        },
+        {
+          "id": "I2",
+          "rule": "target scope/graph_revision/change.nodeと独立Contextを照合し、入力membership母集団の追加/欠落/宣言member差を個別に保持。各Ref/原内容/digest、binding、kind、資格根拠root、Context stateを照合する。不明な全体Contextでは影響をUnknownへ保ち、元成立記録/義務を捨てない。"
+        },
+        {
+          "id": "I3",
+          "rule": "Context.declared_membersから必要(from member,to parent)集合を作り、各入力edgeを同graph/scopeで意味required_memberとして照合。edge欠落/他版/coverage unknown、宣言member不明/別人口、同edge競合は当該parentのrelation Unknown。input edge不在からmember不要を推論しない。未知の接続は当該nodeをUnknownへ保持。"
+        },
+        {
+          "id": "I4",
+          "rule": "有限母集団上で到達集合A（変更nodeで初期化）と不明集合K（局所relation不明nodeで初期化）を単調fixed pointへ進める。正確なrequired edgeでAをparentへ、独立宣言memberおよび読めたedgeでKをparentへ伝える。K優先でUnknown、A内かつK外はAffected、両集合外でも当該scopeのmember網羅性が資格付けされたnodeのみUnaffected。他scopeを一律失効させない。cycleは有限集合で停止し原cycle locatorを返し、網羅性の推定に使わない。"
+        },
+        {
+          "id": "I5",
+          "rule": "nodeごとのprevious_result/revisionは原記録のまま保全する。Affected→requires_reverification、Unknown→unknown_requires_relation_resolution、資格付けされたUnaffected→preserved_unaffected。original_expected/observedとresult labelの整合性不足はfindingへ残しても下位のresultを上位へコピーしない。全nodeでContextの上位固有義務集合を保持しinput側の削減で消さない。 過去label/expected/observedの不整合はhistorical claimの診断であり、それだけで要求条件変更に対する現在の影響分類を未知にしない。過去成立の実資格を認定する出力ではない。"
+        },
+        {
+          "id": "I6",
+          "rule": "再検証は対象subject/graph_revision/changed_dependency_revision/ref scopeと独立原record/資格を照合。required/observationsのID集合はContext上位固有義務と完全一致し重複なしを要する。Affectedで完全なsynthetic対象結果だけexpected_total/observed_total全件比較によりsupported_synthetic_reverification_pass/failを返す。別版/不足/Unknown relation/actual資格未閉包では元の再検証必要状態を保持。下位再検証や既存成立から上位を推定せず、この比較でも5実作用false。"
+        },
+        {
+          "id": "I7",
+          "rule": "候補は第三引数のImpactValueと内容比較し差分field全件を返す。候補の実作用true、Unknown→Unaffected、上位義務削除、lower failed→upper failedを原valueと分離してconflictにする。原value/無関係nodeは不変。内容outcomeはunknown_relation_nodes有り又は資格/原資料未解決ならunknown、それ以外content_supported（再検証未実行や合成failはこの分類内容の不足と同一視しない）。候補conflictはoutcome conflict、構造不正invalid。"
+        }
+      ],
+      "finding_codes": [
+        "input_invalid",
+        "population_conflict",
+        "reference_missing",
+        "reference_unknown",
+        "reference_conflict",
+        "reference_stale",
+        "content_digest_conflict",
+        "membership_unknown",
+        "required_relation_missing",
+        "required_relation_conflict",
+        "required_relation_stale",
+        "relation_cycle",
+        "previous_evidence_inconsistent",
+        "upper_obligation_missing",
+        "reverification_unqualified",
+        "candidate_conflict"
+      ],
+      "postconditions": [
+        "元input/Context/候補/元成立recordと全上位義務を保持し、DB/network/clock/状態更新/旧graph runtimeを呼ばない。",
+        "同logical引数で同value/finding集合。集合はUnicode順、findingは(code,pointer,node_ids,return_owner)順。同原因の異locatorを消さない。",
+        "domain digestはUTF-8/sorted keys/compact/finite valuesのcanonical logical bytesであり実transport/ownerの原bytes証拠へ昇格しない。",
+        "影響を成立stateにせず、synthetic pass/failも実upper passed/failed/再実行/完了ではない。"
+      ],
+      "scope_limit": "F02部分詳細。17原例と固定合成Contextを定義し、全構造/複合/qualification/実codec/oracle凍結は未完。"
     }
   ]
 }
