@@ -10012,6 +10012,14 @@
       "schema_handoff": "literal false（正式consumer/codec/phase binding未閉包）"
     },
     "effect_boundary": "意味coreの返却とOS実operationは別契約。pure logical codec/materializationと旧executor/materializerのeffect実行を同役割へ混ぜない。constructor/role/cap/digestから操作許可を生成せず、既Scope/authority/隔離/資源条件を外側の正式consumerへ結ぶ。新しい人間approve手続きを作らない。",
-    "unclosed": "supplier/consumerの正式interface/物理module/host instance/codec/library/資源/運転binding、全composition finding/negativeとL6L7凍結は未完。7binding定義をruntime成立や004全完了へしない。"
+    "unclosed": "supplier/consumerの正式interface/物理module/host instance/codec/library/資源/運転binding、全composition finding/negativeとL6L7凍結は未完。7binding定義をruntime成立や004全完了へしない。",
+    "profile_document_pointers": {
+      "wire_decode_contract": "/wire_decode_contract",
+      "exact_number_contract": "/exact_number_contract",
+      "canonical_emit_contract": "/canonical_emit_contract",
+      "schema_adapter_contract": "/schema_adapter_contract",
+      "logical_structure_schema": "/logical_structure_schema/schema"
+    },
+    "profile_digest_scope": "各profile_document_pointersが指す固定JSON valueのcanonical SHA-256。logical_structure_schemaだけはschema objectであり、entrypoints/validation_boundaryを含むsection wholeのdigestではない。7entrypoint/型/signatureはbindingsとschema adapterの別照合を維持する。"
   }
 }
