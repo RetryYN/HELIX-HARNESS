@@ -1546,21 +1546,23 @@
         "https://github.com/microsoft/PyRIT",
         "https://www.zaproxy.org/docs/desktop/start/features/ascan/",
         "https://docs.projectdiscovery.io/opensource/nuclei/overview",
-        "https://schemathesis.readthedocs.io/en/stable/"
+        "https://schemathesis.readthedocs.io/en/stable/",
+        "https://www.zaproxy.org/docs/desktop/start/features/pscan/"
       ],
       "source_snapshot_refs": [
         "0f78986b2f22862b0912f9d23641b640ba758f3e29e30750bad8c4b10af100ed",
         "b3a0b4778f668302633add5637e852304d803ef87917b4ba6fa0f07f5b91cbae",
         "d1ea655c4f4c63283bb618677cdb7119faeef73cd6d0b4475621e728bb215ad3",
         "3a5b1efbfb9f9bf27766af23d86710f1e60eb3461fd79862ae59d4ff439abab8",
-        "1d4b2c847300d4b91bc37bfe472b3dc0b64e00bae7d9d6b3c4f3f1ea5eb44694"
+        "1d4b2c847300d4b91bc37bfe472b3dc0b64e00bae7d9d6b3c4f3f1ea5eb44694",
+        "5316c463b5ff18db88a64482a5f71f3768309e1290f5100d0d2f991916da113e"
       ],
       "verified_capability": "Promptfooはagentのprompt injection/権限逸脱等を評価する候補、PyRITは生成AIのリスク評価framework。ZAPはactive Web scan、Nucleiはtemplateベース検査、SchemathesisはAPI schemaからproperty-based testを生成する。",
       "recommended_profile": [
         "最初はHELIX固有の固定反例corpus（外部命令注入、偽receipt/別revision/scope、owner/Worker権限取り違え、replay/重複/CAS/切断）を独立oracleへ結ぶ。返答の表現と実tool invocation/書込/権限/証拠採用を分け、後者を既存SEC/OS/HARNESS/CONNECT契約の実観測へ照合する。",
         "Promptfoo/PyRITは実AI接続のadapter/providerが必要な対象で比較する。生成/評価モデルの非決定性、費用、外部送信/telemetry、秘密保持と結果のfalse positive/negativeを固定profileへ結び、LLM judgeをauthority/oracleの正本へしない。",
         "日常PRでまず固定局所反例を検討し、実攻撃は対象・操作authority・通信量/時間/資源・停止/復旧・隔離・合成data・許可済み送信先が成立した範囲へ限定する。外部監査や候補共有だけで現repository/他hostへ攻撃しない。新しい一律PO承認gateは追加せず既存作用の権限契約へ戻す。",
-        "ZAP passiveもHTTP request/ブラウザcrawlを伴う場合があり無作用とは限らない。active scanはWeb/APIの脆弱性を実試行するため対象経路と影響を分離。Nuclei template/署名/選択protocol・検査内容・伝播動作、Schemathesis対象OpenAPI/GraphQLとresolver/生成requestの範囲は個別に選ぶ。",
+        "ZAP passive検査自体は既存HTTP/WebSocketを変更せず解析するが、周辺のbrowser/crawlでrequestを生成するworkflowは無作用とは限らない。active scanはWeb/APIの脆弱性を実試行するため対象経路と影響を分離。Nuclei template/署名/選択protocol・検査内容・伝播動作、Schemathesis対象OpenAPI/GraphQLとresolver/生成request範囲は個別に選ぶ。",
         "Web/API/公開面未選択の初回非画面経路へZAP/Nuclei/Schemathesisを一律gateにしない。scanner正常終了/攻撃0/judge高scoreを全意味被覆・安全・受入へしない。LABO評価/SEC境界/改善Backflowの既存ownerを保ち攻撃側と観測/判定側を分離する。"
       ],
       "adoption_state": "recommended_candidate;target/provider/tool/profile/operation authority unselected",
@@ -1581,7 +1583,8 @@
             "https://github.com/microsoft/PyRIT",
             "https://www.zaproxy.org/docs/desktop/start/features/ascan/",
             "https://docs.projectdiscovery.io/opensource/nuclei/overview",
-            "https://schemathesis.readthedocs.io/en/stable/"
+            "https://schemathesis.readthedocs.io/en/stable/",
+            "https://www.zaproxy.org/docs/desktop/start/features/pscan/"
           ],
           "applicability": "取得公式記述の能力。全攻撃/全現行profileの被覆ではない。",
           "limits": "tool/攻撃未実行、具体版未選定。",
@@ -1969,6 +1972,16 @@
       "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
       "bytes_sha256": "1d4b2c847300d4b91bc37bfe472b3dc0b64e00bae7d9d6b3c4f3f1ea5eb44694",
       "bytes_count": 50842,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://www.zaproxy.org/docs/desktop/start/features/pscan/",
+      "resolved_url": "https://www.zaproxy.org/docs/desktop/start/features/pscan/",
+      "retrieved_at_utc": "2026-10-13T17:59:11.488073+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "5316c463b5ff18db88a64482a5f71f3768309e1290f5100d0d2f991916da113e",
+      "bytes_count": 90468,
       "content_type": "text/html; charset=utf-8",
       "tool_release_selected": null
     }
