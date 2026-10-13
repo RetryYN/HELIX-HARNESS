@@ -203,6 +203,17 @@
         "preserve": "impact/pair/oracle/下流staleと不明の保持。未観測を推測greenにしない。",
         "change": "旧Admission/DB transaction/状態writeを移植せず、独立Contextの局所relation資格/全体母集団/上位固有義務不足を純粋診断へ再導出。",
         "reason": "下位成立の上位コピーとContext欠落を空集合の充足へ丸める失敗を防ぐため。"
+      },
+      "b01_context_rederivation": {
+        "read_line_locators": [
+          31,
+          38,
+          39,
+          40
+        ],
+        "preserve": "要求正本/対象revision/出典/人間判断とIssue/DB projectionの分離。",
+        "change": "旧DB/triggerを移植せず、固定Contextのsourceと役割資格不足を内容分類/返却候補/実operation非成立へ分離する。",
+        "reason": "独立原資料不足を管理観測や自己申告で補わず、未使用role不足で無関係な有効範囲を失わないため。新承認手続きを追加しない。"
       }
     },
     {
@@ -508,7 +519,7 @@
   "remaining": [
     "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
-    "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
+    "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。 Context21否定例で資格不足のcell局所化/母集団unionと同raw異identityの代用拒否を追加。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。",
@@ -1588,7 +1599,109 @@
         "candidate_conflict",
         "projection_not_authority"
       ],
-      "scope_limit": "004 B01の部分詳細。23既L9例の正確な内容写像と合成Contextのみ。追加比較/資格/混合/構造/実consumer凍結は未完。"
+      "scope_limit": "004 B01の部分詳細。23既L9例の正確な内容写像と合成Contextのみ。追加比較/資格/混合/構造/実consumer凍結は未完。 Context19否定例の指定value/locator/原資料保全を追補。全oracleと実bindingは未完。",
+      "context_failure_contract": {
+        "scope": "独立Contextのsource資格と選択role資格を別比較し、意味/故障/環境の分類とOS運転を混ぜない。",
+        "synthetic_basis_snapshot": [
+          {
+            "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "synthetic-oracle-author"
+          }
+        ],
+        "basis_limit": "上の固定Ref集合は設計fixtureの既固定資格比較だけ。変更後Contextが自分のbasisを名乗っても適格にしない。実owner根拠/運用policy/新承認主体を定義するものではなく、正式bindingは未完。",
+        "locator_rules": [
+          {
+            "condition": "Context target scope/bindingが原inputと異なる",
+            "codes": [
+              "source_conflict",
+              "owner_conflict",
+              "source_stale",
+              "owner_stale"
+            ],
+            "pointer": "/context/target/{field}",
+            "limit": "scopeは両資格conflict、bindingは両資格stale。種類Unknown、route unresolved_evidence_return。"
+          },
+          {
+            "condition": "Context state missing/unknown/conflict/stale",
+            "codes": [
+              "source_missing",
+              "source_unknown",
+              "source_conflict",
+              "source_stale",
+              "owner_missing",
+              "owner_unknown",
+              "owner_conflict",
+              "owner_stale"
+            ],
+            "pointer": "/context/state",
+            "limit": "共通原資格不足のためsource/ownerへ同じstate。種類Unknownと原資料保持。"
+          },
+          {
+            "condition": "source_ownerが原source_binding ownerと異なる",
+            "codes": [
+              "source_conflict"
+            ],
+            "pointer": "/context/source_owner",
+            "limit": "source conflictだけ。独立role資格は保持、分類Unknown。"
+          },
+          {
+            "condition": "basis refs空又は固定独立synthetic snapshotとscope/owner/revision不一致",
+            "codes": [
+              "source_unknown",
+              "owner_unknown"
+            ],
+            "pointer": "/context/basis_refs又は/context/basis_refs/{index}/{field}",
+            "limit": "合成資格が未解決。両unknown、自己申告のtarget/currentで補完不可。"
+          },
+          {
+            "condition": "actual_owner_inputの実consumer/codec/根拠未閉包",
+            "codes": [
+              "source_unknown",
+              "owner_unknown"
+            ],
+            "pointer": "/context/evidence_kind",
+            "limit": "合成snapshotから実資格を生成しない。両unknown。"
+          },
+          {
+            "condition": "選択roleの独立ownerがnull又は入力ownerと異なる",
+            "codes": [
+              "owner_missing",
+              "owner_conflict"
+            ],
+            "pointer": "/context/role_owners/{role}",
+            "limit": "source/分類/意味軸/最上流層を保持しownerだけmissing/conflict、route unresolved_owner_return/responsible_owner null。"
+          },
+          {
+            "condition": "未使用roleの独立ownerがnull",
+            "codes": [
+              "owner_missing"
+            ],
+            "pointer": "/context/role_owners/{role}",
+            "limit": "選択roleのowner_condition/route/responsible_ownerと分類を保持。未使用資料不足は別findingとして返しoutcome incomplete。"
+          }
+        ],
+        "role_return_owners": {
+          "meaning": "upstream-meaning-owner",
+          "implementation": "implementation-owner",
+          "environment": "environment-owner"
+        },
+        "qualification_return_owner": "change-qualification-owner",
+        "source_return_owner": "change-source-owner",
+        "return_limit": "意味役割の返却名で実owner資格/dispatch/operationの許可を生成しない。",
+        "source_unresolved_projection": {
+          "change_kind": "Unknown",
+          "route_candidate": "unresolved_evidence_return",
+          "changed_meaning_axes": [],
+          "backflow_layer_candidate": null,
+          "responsible_owner": null,
+          "evidence_basis": "missing_or_unqualified_source"
+        },
+        "unrelated_work_preservation": "原WORK-Q参照と入力は不変。共通target/basis/state/実資格が未解決ならretained_without_validity_claim、局所source_owner/role不足だけなら別scopeの有効合成範囲は保持する。合成有効性を実有効性へ読み替えない。",
+        "aggregation": "B7のconflict→stale→unknown→missing(incomplete)→content_supported。全副次findingを別locatorへ保持。source不足とowner不足を一方だけで消さず、選択外role不足を意味route変更の理由にしない。",
+        "unclosed": "全複合/全不正構造/全意味軸/全副次finding/正式policy/実owner-consumer-codec/L6L7/oracle凍結は未完。以下19例は指定valueとminimum findingsの部分oracle。"
+      }
     },
     {
       "id": "HARNESS-L5-004-F02",

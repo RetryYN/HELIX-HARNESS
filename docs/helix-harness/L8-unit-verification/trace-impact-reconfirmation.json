@@ -203,6 +203,17 @@
         "preserve": "impact/pair/oracle/下流staleと不明の保持。未観測を推測greenにしない。",
         "change": "旧Admission/DB transaction/状態writeを移植せず、独立Contextの局所relation資格/全体母集団/上位固有義務不足を純粋診断へ再導出。",
         "reason": "下位成立の上位コピーとContext欠落を空集合の充足へ丸める失敗を防ぐため。"
+      },
+      "b01_context_rederivation": {
+        "read_line_locators": [
+          31,
+          38,
+          39,
+          40
+        ],
+        "preserve": "要求正本/対象revision/出典/人間判断とIssue/DB projectionの分離。",
+        "change": "旧DB/triggerを移植せず、固定Contextのsourceと役割資格不足を内容分類/返却候補/実operation非成立へ分離する。",
+        "reason": "独立原資料不足を管理観測や自己申告で補わず、未使用role不足で無関係な有効範囲を失わないため。新承認手続きを追加しない。"
       }
     },
     {
@@ -508,7 +519,7 @@
   "remaining": [
     "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
-    "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
+    "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。 Context21否定例で資格不足のcell局所化/母集団unionと同raw異identityの代用拒否を追加。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。",
@@ -7413,7 +7424,1270 @@
         "全不正型/未知field/null/副次finding優先/不変性/副作用observer0",
         "actual owner/codec binding、対L6L7、実test/oracle凍結"
       ],
-      "coverage_limit": "既L9 B01全23例をwhole不変で束縛、3正常・8原input変異・12候補変異。全追加familyや実資格閉包を主張しない。"
+      "coverage_limit": "既L9 B01全23例をwhole不変で束縛、3正常・8原input変異・12候補変異。全追加familyや実資格閉包を主張しない。 独立Context19否定例、source/選択role/未使用roleと共通資格の分離を追加。全finding/実bindingは未完。",
+      "context_cases": [
+        {
+          "id": "H004-L8-B01-CONTEXT-TARGET-SCOPE",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "target",
+              "scope"
+            ],
+            "before": "PRODUCT-P",
+            "after": "PRODUCT-OTHER"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-TARGET-SCOPE",
+              "revision": "fixture-content-5324e6e83fda4dcabbfe3b45127ee39c60bb209e693a8ca9e3aef84ce545adde",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-OTHER\"}}",
+            "sha256": "5324e6e83fda4dcabbfe3b45127ee39c60bb209e693a8ca9e3aef84ce545adde",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "conflict",
+            "value": {
+              "source_condition": "conflict",
+              "owner_condition": "conflict",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "retained_without_validity_claim",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "required_findings": [
+              {
+                "code": "source_conflict",
+                "pointer": "/context/target/scope",
+                "return_owner": "change-source-owner"
+              },
+              {
+                "code": "owner_conflict",
+                "pointer": "/context/target/scope",
+                "return_owner": "change-qualification-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-TARGET-BINDING",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "target",
+              "binding"
+            ],
+            "before": "REQ@r1",
+            "after": "REQ@r0"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-TARGET-BINDING",
+              "revision": "fixture-content-ae4493350f656daf3fab552ab54656d02afa5201bc445c16c9ce5bf86ec0d0fa",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r0\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "ae4493350f656daf3fab552ab54656d02afa5201bc445c16c9ce5bf86ec0d0fa",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "stale",
+            "value": {
+              "source_condition": "stale",
+              "owner_condition": "stale",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "retained_without_validity_claim",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "required_findings": [
+              {
+                "code": "source_stale",
+                "pointer": "/context/target/binding",
+                "return_owner": "change-source-owner"
+              },
+              {
+                "code": "owner_stale",
+                "pointer": "/context/target/binding",
+                "return_owner": "change-qualification-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-SOURCE-OWNER",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "source_owner"
+            ],
+            "before": "synthetic-independent-evidence-owner",
+            "after": "input-self-asserted-owner"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-SOURCE-OWNER",
+              "revision": "fixture-content-df68bf6599e8dc77d025a9a30b61a2ade174522e2d6be382eb7051d8dd893206",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"input-self-asserted-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "df68bf6599e8dc77d025a9a30b61a2ade174522e2d6be382eb7051d8dd893206",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "conflict",
+            "value": {
+              "source_condition": "conflict",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "required_findings": [
+              {
+                "code": "source_conflict",
+                "pointer": "/context/source_owner",
+                "return_owner": "change-source-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-STATE-MISSING",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "state"
+            ],
+            "before": "current",
+            "after": "missing"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-STATE-MISSING",
+              "revision": "fixture-content-5178c43ea3039254d0ec08f3e9d83a6bd00d05c86a2dba044a7940c88ccca739",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"missing\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "5178c43ea3039254d0ec08f3e9d83a6bd00d05c86a2dba044a7940c88ccca739",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "incomplete",
+            "value": {
+              "source_condition": "missing",
+              "owner_condition": "missing",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "retained_without_validity_claim",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "required_findings": [
+              {
+                "code": "source_missing",
+                "pointer": "/context/state",
+                "return_owner": "change-qualification-owner"
+              },
+              {
+                "code": "owner_missing",
+                "pointer": "/context/state",
+                "return_owner": "change-qualification-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-STATE-UNKNOWN",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "state"
+            ],
+            "before": "current",
+            "after": "unknown"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-STATE-UNKNOWN",
+              "revision": "fixture-content-398b87d34bbbb5bf662a21b85ab10e9da6e8613db0abb41c55423af45399ae25",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"unknown\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "398b87d34bbbb5bf662a21b85ab10e9da6e8613db0abb41c55423af45399ae25",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unknown",
+            "value": {
+              "source_condition": "unknown",
+              "owner_condition": "unknown",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "retained_without_validity_claim",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "required_findings": [
+              {
+                "code": "source_unknown",
+                "pointer": "/context/state",
+                "return_owner": "change-qualification-owner"
+              },
+              {
+                "code": "owner_unknown",
+                "pointer": "/context/state",
+                "return_owner": "change-qualification-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-STATE-CONFLICT",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "state"
+            ],
+            "before": "current",
+            "after": "conflict"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-STATE-CONFLICT",
+              "revision": "fixture-content-52e6e6481f48f0797e5c2cf65d28a19ccb67c5df163dd70fd5a7b8231ceb5e46",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"conflict\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "52e6e6481f48f0797e5c2cf65d28a19ccb67c5df163dd70fd5a7b8231ceb5e46",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "conflict",
+            "value": {
+              "source_condition": "conflict",
+              "owner_condition": "conflict",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "retained_without_validity_claim",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "required_findings": [
+              {
+                "code": "source_conflict",
+                "pointer": "/context/state",
+                "return_owner": "change-qualification-owner"
+              },
+              {
+                "code": "owner_conflict",
+                "pointer": "/context/state",
+                "return_owner": "change-qualification-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-STATE-STALE",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "state"
+            ],
+            "before": "current",
+            "after": "stale"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-STATE-STALE",
+              "revision": "fixture-content-24d45c5f5c723659e4661109f99df859daec8c604252fc5ec82c009397f6885e",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"stale\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "24d45c5f5c723659e4661109f99df859daec8c604252fc5ec82c009397f6885e",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "stale",
+            "value": {
+              "source_condition": "stale",
+              "owner_condition": "stale",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "retained_without_validity_claim",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "required_findings": [
+              {
+                "code": "source_stale",
+                "pointer": "/context/state",
+                "return_owner": "change-qualification-owner"
+              },
+              {
+                "code": "owner_stale",
+                "pointer": "/context/state",
+                "return_owner": "change-qualification-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-BASIS-MISSING",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "basis_refs"
+            ],
+            "before": [
+              {
+                "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-oracle-author"
+              }
+            ],
+            "after": []
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-BASIS-MISSING",
+              "revision": "fixture-content-e87d34e8ca9884dd7433354be348adee390151cd1850dbb777d0ff9148beff21",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "e87d34e8ca9884dd7433354be348adee390151cd1850dbb777d0ff9148beff21",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unknown",
+            "value": {
+              "source_condition": "unknown",
+              "owner_condition": "unknown",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "retained_without_validity_claim",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "required_findings": [
+              {
+                "code": "source_unknown",
+                "pointer": "/context/basis_refs",
+                "return_owner": "change-qualification-owner"
+              },
+              {
+                "code": "owner_unknown",
+                "pointer": "/context/basis_refs",
+                "return_owner": "change-qualification-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-BASIS-SCOPE",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "basis_refs",
+              0,
+              "scope"
+            ],
+            "before": "PRODUCT-P",
+            "after": "other-scope"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-BASIS-SCOPE",
+              "revision": "fixture-content-f70f81c95d69a35cabf256bd64b1283573e0519ca2bd9bfdfb579684c24b6d91",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"other-scope\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "f70f81c95d69a35cabf256bd64b1283573e0519ca2bd9bfdfb579684c24b6d91",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unknown",
+            "value": {
+              "source_condition": "unknown",
+              "owner_condition": "unknown",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "retained_without_validity_claim",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "required_findings": [
+              {
+                "code": "source_unknown",
+                "pointer": "/context/basis_refs/0/scope",
+                "return_owner": "change-qualification-owner"
+              },
+              {
+                "code": "owner_unknown",
+                "pointer": "/context/basis_refs/0/scope",
+                "return_owner": "change-qualification-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-BASIS-OWNER",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "basis_refs",
+              0,
+              "owner"
+            ],
+            "before": "synthetic-oracle-author",
+            "after": "other-owner"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-BASIS-OWNER",
+              "revision": "fixture-content-72c4e2fa04aeba7281a734dd8934e3a7ced530bfdf7423421ddbe836de0b32b0",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"other-owner\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "72c4e2fa04aeba7281a734dd8934e3a7ced530bfdf7423421ddbe836de0b32b0",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unknown",
+            "value": {
+              "source_condition": "unknown",
+              "owner_condition": "unknown",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "retained_without_validity_claim",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "required_findings": [
+              {
+                "code": "source_unknown",
+                "pointer": "/context/basis_refs/0/owner",
+                "return_owner": "change-qualification-owner"
+              },
+              {
+                "code": "owner_unknown",
+                "pointer": "/context/basis_refs/0/owner",
+                "return_owner": "change-qualification-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-BASIS-REVISION",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "basis_refs",
+              0,
+              "revision"
+            ],
+            "before": "fixture-r1",
+            "after": "other-revision"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-BASIS-REVISION",
+              "revision": "fixture-content-d1a4cceadba57db8738f7b33aabe1f7a17c99e49953f53ab22d4aa6957f500ae",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"other-revision\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "d1a4cceadba57db8738f7b33aabe1f7a17c99e49953f53ab22d4aa6957f500ae",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unknown",
+            "value": {
+              "source_condition": "unknown",
+              "owner_condition": "unknown",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "retained_without_validity_claim",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "required_findings": [
+              {
+                "code": "source_unknown",
+                "pointer": "/context/basis_refs/0/revision",
+                "return_owner": "change-qualification-owner"
+              },
+              {
+                "code": "owner_unknown",
+                "pointer": "/context/basis_refs/0/revision",
+                "return_owner": "change-qualification-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-SYNTHETIC-AS-ACTUAL",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "evidence_kind"
+            ],
+            "before": "synthetic",
+            "after": "actual_owner_input"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-SYNTHETIC-AS-ACTUAL",
+              "revision": "fixture-content-1d54b58c73cc07b9b5321b25d91234ea0d4d0e4cd677faa65ebfac6ee1e379e0",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"actual_owner_input\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "1d54b58c73cc07b9b5321b25d91234ea0d4d0e4cd677faa65ebfac6ee1e379e0",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unknown",
+            "value": {
+              "source_condition": "unknown",
+              "owner_condition": "unknown",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "retained_without_validity_claim",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "required_findings": [
+              {
+                "code": "source_unknown",
+                "pointer": "/context/evidence_kind",
+                "return_owner": "change-qualification-owner"
+              },
+              {
+                "code": "owner_unknown",
+                "pointer": "/context/evidence_kind",
+                "return_owner": "change-qualification-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-SELECTED-MEANING-MISSING",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "role_owners",
+              "meaning"
+            ],
+            "before": "upstream-meaning-owner",
+            "after": null
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-SELECTED-MEANING-MISSING",
+              "revision": "fixture-content-716c847e2c53cf696735ca291dfe9f81d295c43159937cae40a392e575e53310",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":null},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "716c847e2c53cf696735ca291dfe9f81d295c43159937cae40a392e575e53310",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "incomplete",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "missing",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "unresolved_owner_return",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": null,
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "required_findings": [
+              {
+                "code": "owner_missing",
+                "pointer": "/context/role_owners/meaning",
+                "return_owner": "upstream-meaning-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-SELECTED-MEANING-FOREIGN",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "role_owners",
+              "meaning"
+            ],
+            "before": "upstream-meaning-owner",
+            "after": "other-owner"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-SELECTED-MEANING-FOREIGN",
+              "revision": "fixture-content-ec16c550316803015140a060cb5dedb6aa30aea80bb940e7b7f4b83d51376289",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"other-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "ec16c550316803015140a060cb5dedb6aa30aea80bb940e7b7f4b83d51376289",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "conflict",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "conflict",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "unresolved_owner_return",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": null,
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "required_findings": [
+              {
+                "code": "owner_conflict",
+                "pointer": "/context/role_owners/meaning",
+                "return_owner": "upstream-meaning-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-SELECTED-IMPLEMENTATION-MISSING",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-IMPLEMENTATION",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "role_owners",
+              "implementation"
+            ],
+            "before": "implementation-owner",
+            "after": null
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-SELECTED-IMPLEMENTATION-MISSING",
+              "revision": "fixture-content-ad5ca9fd8d37ab73f174fec2fe96feefcb0081fdf3d213d28e6b52d8197fc77e",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":null,\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "ad5ca9fd8d37ab73f174fec2fe96feefcb0081fdf3d213d28e6b52d8197fc77e",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "incomplete",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "missing",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "implementation_fault",
+              "route_candidate": "unresolved_owner_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "same_contract_content_different_behavior"
+            },
+            "required_findings": [
+              {
+                "code": "owner_missing",
+                "pointer": "/context/role_owners/implementation",
+                "return_owner": "implementation-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-SELECTED-IMPLEMENTATION-FOREIGN",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-IMPLEMENTATION",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "role_owners",
+              "implementation"
+            ],
+            "before": "implementation-owner",
+            "after": "other-owner"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-SELECTED-IMPLEMENTATION-FOREIGN",
+              "revision": "fixture-content-48638afa2c61c8e34dbbc620e750b61083bad1ff9060ac32d2efec8572375613",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"other-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "48638afa2c61c8e34dbbc620e750b61083bad1ff9060ac32d2efec8572375613",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "conflict",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "conflict",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "implementation_fault",
+              "route_candidate": "unresolved_owner_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "same_contract_content_different_behavior"
+            },
+            "required_findings": [
+              {
+                "code": "owner_conflict",
+                "pointer": "/context/role_owners/implementation",
+                "return_owner": "implementation-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-SELECTED-ENVIRONMENT-MISSING",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-ENVIRONMENT",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "role_owners",
+              "environment"
+            ],
+            "before": "environment-owner",
+            "after": null
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-SELECTED-ENVIRONMENT-MISSING",
+              "revision": "fixture-content-84918c0839bed48abde582b4e3cbe9b0107c88645f721667145caa00f2feb349",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":null,\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "84918c0839bed48abde582b4e3cbe9b0107c88645f721667145caa00f2feb349",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "incomplete",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "missing",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "external_environment_change",
+              "route_candidate": "unresolved_owner_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "before_after_environment_content"
+            },
+            "required_findings": [
+              {
+                "code": "owner_missing",
+                "pointer": "/context/role_owners/environment",
+                "return_owner": "environment-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-SELECTED-ENVIRONMENT-FOREIGN",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-ENVIRONMENT",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "role_owners",
+              "environment"
+            ],
+            "before": "environment-owner",
+            "after": "other-owner"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-SELECTED-ENVIRONMENT-FOREIGN",
+              "revision": "fixture-content-4923b954d8c6b046902ece04a84b5cf0f1a41e7c93a4c90e75ae5e8f2ff46e07",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"other-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "4923b954d8c6b046902ece04a84b5cf0f1a41e7c93a4c90e75ae5e8f2ff46e07",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "conflict",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "conflict",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "external_environment_change",
+              "route_candidate": "unresolved_owner_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "before_after_environment_content"
+            },
+            "required_findings": [
+              {
+                "code": "owner_conflict",
+                "pointer": "/context/role_owners/environment",
+                "return_owner": "environment-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CONTEXT-UNUSED-IMPLEMENTATION-MISSING",
+          "design_ref": "HARNESS-L5-004-B01",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "input_case_ref": "H004-B01-NORMAL-MEANING",
+          "base_context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "context_mutation": {
+            "path": [
+              "role_owners",
+              "implementation"
+            ],
+            "before": "implementation-owner",
+            "after": null
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "B01-CONTEXT-UNUSED-IMPLEMENTATION-MISSING",
+              "revision": "fixture-content-ad5ca9fd8d37ab73f174fec2fe96feefcb0081fdf3d213d28e6b52d8197fc77e",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-oracle-author"
+            },
+            "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":null,\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "ad5ca9fd8d37ab73f174fec2fe96feefcb0081fdf3d213d28e6b52d8197fc77e",
+            "evidence_limit": "設計用合成資格否定条件。実owner/運転/authorityの証拠ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "incomplete",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "required_findings": [
+              {
+                "code": "owner_missing",
+                "pointer": "/context/role_owners/implementation",
+                "return_owner": "implementation-owner"
+              }
+            ],
+            "retained_input_unmodified": true,
+            "qualification_limit": "種類/route/ownerは意味診断だけ。8実作用false、HARNESS導出/OS運転は保持。"
+          },
+          "oracle_limit": "指定value/minimum findings。全副次finding/全複合/実bindingは未完。",
+          "execution_state": "not_executed"
+        }
+      ]
     },
     {
       "id": "HARNESS-L8-004-F02",
