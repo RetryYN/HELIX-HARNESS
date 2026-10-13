@@ -304,6 +304,16 @@
         "preserve": "semantic signature/全consumer/before-after oracle、stable revision/下流staleと関係保全。",
         "change": "旧Design Refactor/台帳/graph runtimeを実行せず、承認F02と既I3/I4の関係影響/成立非継承をdiamondとcycleの合成内容oracleへ具体化する。",
         "reason": "別経路の到達で必要member不足を隠さず、有限停止とUnknown優先を定義して実状態成立を推測しないため。"
+      },
+      "f01_context_rederivation": {
+        "read_line_locators": [
+          132,
+          138,
+          139
+        ],
+        "preserve": "原atomの双方向義務、stale/片側/別snapshot/未実行の保持とconsumer保全。",
+        "change": "旧graph/gate/runtimeを移植せず、独立Context資格不足を10cell依存へ局所化し同raw異identityを分離する。",
+        "reason": "要求条件の減数や資料存在のみで全条件充足にせず、無関係条件を保全するため。新しい上流採否/承認手続きを追加しない。"
       }
     },
     {
@@ -500,7 +510,7 @@
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
-    "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。",
+    "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。 Context20否定例で資格不足のcell局所化/母集団unionと同raw異identityの代用拒否を追加。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。",
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。",
     "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。",
@@ -1773,7 +1783,7 @@
       "algorithm": [
         {
           "id": "T1",
-          "rule": "閉じた型/未知field/重複ID/重複edge/多重record/未知条件IDをlocatorへ蓄積。必要なnull欠落と不正型を区別し、読めた材料を失わない。Context条件ID全件を結果母集団とし、提出側で条件を減らして充足へしない。"
+          "rule": "閉じた型/未知field/重複ID/重複edge/多重record/未知条件IDをlocatorへ蓄積。必要なnull欠落と不正型を区別し、読めた材料を失わない。Context条件ID全件を結果母集団とし、提出側で条件を減らして充足へしない。 Context条件IDとinput条件IDが異なるときはunion全件を保全し、独立母集団が未解決として全cell unknownを返す。片側の減数を充足へしない。"
         },
         {
           "id": "T2",
@@ -1837,7 +1847,103 @@
         "同logical引数で同value/finding集合。Text集合はUnicode順、findingは(code,pointer,condition_ids,return_owner)順。副次finding/別locatorを潰さない。",
         "domain digestはUTF-8/sorted keys/compact/有限値のcanonical logical bytes。原transport/owner bytesは別codec bindingに保持し実資格へ昇格しない。"
       ],
-      "scope_limit": "27原例と固定合成Contextの部分詳細。追加全型/複合/資格/実codec/全finding/oracle凍結は未完。"
+      "scope_limit": "27原例と固定合成Contextの部分詳細。追加全型/複合/資格/実codec/全finding/oracle凍結は未完。 Context20否定例/局所cell依存を追補。実bindingと全oracle凍結は未完。",
+      "context_failure_contract": {
+        "scope": "独立Context資格の不足を原inputのrecord欠落と分離し、必要条件集合と無関係条件を保全する。",
+        "catalog_selection": "kind + record_identity + 原recordのcanonical logical bytesの完全一致で候補を選択し、content digest/source_ref/独立root資格を別照合する。同じrawでもidentityが違えば代用不可。同identityの別内容variantはその存在だけで多重採用にせず、完全一致候補の重複・資格矛盾を返す。input/candidateからcatalogを増やさない。",
+        "condition_population": "inputとContextの条件ID集合が不一致ならunion全条件を結果に保持しcondition_population_conflict、全10cell unknown。Context側の欠落をinputの正当化にせず、逆方向の欠落も捨てない。",
+        "global_qualification": "Context target不一致、state missing/unknown/stale、共通rootの不一致、actual_owner_inputのbinding未成立は全条件の全10cell unknown。未解決のcodeはlocator規則で分ける。",
+        "affected_cells_by_kind": {
+          "requirements": [
+            "source",
+            "bidirectional_trace",
+            "semantic_oracle"
+          ],
+          "design_records": [
+            "design",
+            "revision",
+            "bidirectional_trace",
+            "semantic_oracle",
+            "implementation",
+            "connection"
+          ],
+          "verification_records": [
+            "verification",
+            "revision",
+            "bidirectional_trace",
+            "semantic_oracle"
+          ],
+          "relations": [
+            "bidirectional_trace"
+          ],
+          "owner_assignments": [
+            "owner",
+            "membership"
+          ],
+          "implementation_records": [
+            "implementation"
+          ],
+          "connection_records": [
+            "connection"
+          ]
+        },
+        "return_owner_by_kind": {
+          "requirements": "requirement-original-owner",
+          "design_records": "design-condition-owner",
+          "verification_records": "verification-original-owner",
+          "relations": "trace-relation-owner",
+          "owner_assignments": "design-condition-owner",
+          "implementation_records": "implementation-original-owner",
+          "connection_records": "connection-original-owner"
+        },
+        "local_qualification": "recordの資格不足はaffected_cells_by_kindの該当条件cellをunknownへ、当該条件をunresolved_conditionsへ保持。読めたcurrent-originのTEST IDは原T8の候補名として保持し実行資格を作らない。無関係条件の10cell/原recordを保持する。owner割当のContext欠落もowner/membership unknownであり入力ownersの存在だけで充足しない。",
+        "locator_rules": [
+          {
+            "condition": "target scope又はrequirement_revision不一致",
+            "code": "reference_conflict | reference_stale",
+            "pointer": "/context/target/{field}",
+            "return_owner": "requirement-original-owner"
+          },
+          {
+            "condition": "state missing/unknown/stale又はactual_owner_input資格未成立",
+            "code": "reference_missing | reference_unknown | reference_stale",
+            "pointer": "/context/state又は/context/evidence_kind",
+            "return_owner": "trace-qualification-owner"
+          },
+          {
+            "condition": "条件母集団不一致",
+            "code": "condition_population_conflict",
+            "pointer": "/context/requirements",
+            "return_owner": "requirement-original-owner"
+          },
+          {
+            "condition": "独立owner割当key欠落",
+            "code": "reference_missing",
+            "pointer": "/context/owner_assignments",
+            "return_owner": "design-condition-owner"
+          },
+          {
+            "condition": "kind/identity/原内容のcatalog完全一致候補無し",
+            "code": "reference_missing",
+            "pointer": "/context/record_catalog",
+            "return_owner": "当該kind owner"
+          },
+          {
+            "condition": "一致referent state stale/unknown又はraw digest不一致",
+            "code": "reference_stale | reference_unknown | source_content_conflict",
+            "pointer": "/context/record_catalog/{index}/state又はcontent_sha256",
+            "return_owner": "当該kind owner"
+          },
+          {
+            "condition": "qualification refs空又は共通root owner/scope/revision不一致",
+            "code": "reference_unknown",
+            "pointer": "/context/record_catalog/{index}/qualification_basis_refs又は/context/qualifier_roots/{index}/{field}",
+            "return_owner": "trace-qualification-owner"
+          }
+        ],
+        "aggregation": "既存T9の原未解決outcome unknown、候補矛盾conflict、構造解釈不能invalidを保持。Contextのconflict/stale/digestは別findingとして保持しoutcomeだけで消さない。return_ownerは意味役割であり実配送/owner資格を生成しない。",
+        "unclosed": "全複合/不正型/全副次finding/多重完全一致catalog/実owner-codec/正式schema/L6L7とoracle凍結は未完。指定valueとminimum findingsの部分oracle。"
+      }
     },
     {
       "id": "HARNESS-L5-004-F03",
