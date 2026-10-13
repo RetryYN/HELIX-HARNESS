@@ -1,0 +1,222 @@
+{
+  "parent": "HELIXBRAIN-L2-011",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+    "boundary": "CORE原意味/source contextと汎用構造候補/未分離部分を追う。分離結果から評価/採用/実操作を生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "764b3f42bd8004c69275a49f70248a31ee1e06aaf91f46a02201467dc6036d27"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3f12d5a53b05dc478cc7138e362730d38c6aa835079b41b6124cb569f0fc6b9d"
+    }
+  ],
+  "source_pin_limit": "固定bytesは全意味の精読/実source資格/全体被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "read_lines": [
+        37,
+        47
+      ],
+      "quote": "### RCLS-BR-004 知恵を段階的に仕組みへ昇格する\n\nproject-local knowledgeから独立検証、cross-project検証、shadow enforcementを経たものだけをMechanismへ昇格する。機械化後は同じ規則をSkill proseへ重複保持しない。\n\n### RCLS-BR-005 学習の失効と隔離を保証する\n\n反例、authority revision、provider/model/version変更、expiry、security／license条件によりqualificationをstale、contradicted、revoked、revalidation requiredへ戻せる。\n\n### RCLS-BR-006 既存authorityを奪わない\n\nLearning SystemはRequirement、Design、merge、releaseを直接変更せず、proposal、evidence、retrieval packetを提供する。Requirement Discovery、UIL、System Synthesis、Pattern Promotion、HELIX-Bench、Resident Laneを再実装しない。",
+      "file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "selected_lines_sha256": "dbff66608accafc3005b920a6b9f0fa3f779f03a42548ed0b77b1217dcd3b498",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+        "disposition": "unresolved",
+        "source_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
+      },
+      "reuse": "reference_only; adopted BRAIN011 product-meaning separation rederived",
+      "preserve": "project-local知識と独立/横断/shadowの段階的検証、proposal/evidenceの提供と既存authority非変更。",
+      "change": "旧runtimeや全ticket一律gateを移植せず、製品CORE原意味とBRAIN汎用構造候補を分け、LABO/OS/BRAIN採否の各責務へ対応する。",
+      "reason": "9/26PO原文L1-011、採択011と10/12委任承認が製品意味混入/過度一般化/未分離/実採用の誤昇格を拒否する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実CORE原意味と独立再利用条件/構造候補の意味source資格・必要集合・原子trace。",
+    "007/020/025と選択inputの018等owner-qualified exact binding、正式schema/codec/resolver。",
+    "L5/L8の型/比較/単体oracle、実装前凍結→実Red→最小Green→Refactor→再検証、実L9/L10/PO L11。",
+    "全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXBRAIN-L4-011",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "product_structural_separation_reader",
+      "reuse_scope_generalization_reader",
+      "product_source_candidate_authority_reader"
+    ],
+    "flow": [
+      "CORE原意味/source atomと独立分離意味 → 製品固有/構造候補/未分離の対応",
+      "原再利用条件/成功/反例と分離状態 → scoped候補/局所不足/上流meaning変更の既存戻し先",
+      "007/020/025の参照と原owner/state → 候補提供と原意味/評価/登録/採否の分離"
+    ],
+    "python_boundary": "immutable内容のpure比較と不足返却候補。CORE原意味更新、LABO実評価、OS保存/登録、BRAIN採用、network/fs/env/clock、authority変更を行わない。",
+    "representation_limit": "以下は合成atom/source/分離条件と観測例。汎用化の自動意味判定器や実検証結果ではない。実source資格/意味照合/正式bindingは未成立。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXBRAIN-L4-011-F01",
+      "requirement_ref": "HELIXBRAIN-L3-011-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-F01",
+      "oracle_ref": "HELIXBRAIN-L9-011-F01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-011-F01",
+        "parent": "HELIXBRAIN-L2-011",
+        "title": "製品意味と再利用候補の分離",
+        "obligation": "製品CORE由来の名称/要求/画面/業務規則/利用者判断のsource contextを保ち、製品横断に再利用可能な構造候補と汎用化できない未分離部分を区別する。製品固有文をそのまま汎用knowledgeへ昇格しない。",
+        "oracle_ref": "HELIXBRAIN-L10-011-F01"
+      },
+      "component": "product_structural_separation_reader",
+      "input_meanings": [
+        "CORE元source atomの名称/要求/画面/業務/利用者判断/構造",
+        "独立な各atom分離意味と構造候補trace",
+        "提出partition/structure候補"
+      ],
+      "output_meanings": [
+        "元内容/分離済み候補/製品固有/未分離部分のatom対応",
+        "混入/元source欠落/trace不足と戻し先"
+      ],
+      "content_comparison": [
+        "名称を消すだけで製品意味が分離したと扱わない。",
+        "構造候補の各意味と元source/独立再利用条件を辿る。製品原意味はCOREへ保持。",
+        "未知の分離意味は未分離として保ち、候補を採用済みへ上げない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/意味分離保証/正式binding/評価/登録/採用/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-011-F02",
+      "requirement_ref": "HELIXBRAIN-L3-011-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-F02",
+      "oracle_ref": "HELIXBRAIN-L9-011-F02",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-011-F02",
+        "parent": "HELIXBRAIN-L2-011",
+        "title": "過度一般化と未分離の拒否",
+        "obligation": "独立な再利用条件と元sourceを比較し過度一般化/未分離を両方検出する。一般化を事実扱いせず、分離できない候補は未採用に保つ。共有範囲の上流意味を決め直す必要がある場合だけ既存人判断へ戻す。",
+        "oracle_ref": "HELIXBRAIN-L10-011-F02"
+      },
+      "component": "reuse_scope_generalization_reader",
+      "input_meanings": [
+        "独立な再利用条件と原観測/反例/分離状態",
+        "提出条件と一般化claim",
+        "共有範囲の上流意味変更要否"
+      ],
+      "output_meanings": [
+        "根拠scope/限界/未分離と候補保留",
+        "CORE/LABOまたは既存上流meaning ownerへの返却"
+      ],
+      "content_comparison": [
+        "単一製品の成功を普遍性や観測事実へ一般化しない。",
+        "分離不能/条件欠落/反例未観測を採用可能へ補完しない。",
+        "人が持つ上流意味を変える場合だけ既存判断へ返す。毎回human approvalを新設しない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/意味分離保証/正式binding/評価/登録/採用/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-011-B01",
+      "requirement_ref": "HELIXBRAIN-L3-011-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-011-B01",
+      "oracle_ref": "HELIXBRAIN-L9-011-B01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-011-B01",
+        "parent": "HELIXBRAIN-L2-011",
+        "title": "原本と汎用化の責務",
+        "obligation": "製品要求/画面/業務意味/利用者判断はCOREに保持し、BRAINは分離した構造候補を提供する。007のprovenanceと025/020の該当契約を参照し、分離成功を評価/採否/操作許可にしない。",
+        "oracle_ref": "HELIXBRAIN-L10-011-B01"
+      },
+      "component": "product_source_candidate_authority_reader",
+      "input_meanings": [
+        "CORE原意味と候補の別owner/state",
+        "007/020/025の限定契約参照",
+        "未決評価/OS登録/採否と提出成功値"
+      ],
+      "output_meanings": [
+        "原意味保全/参照対応と責務別未完",
+        "分離結果と評価/登録/採否の別状態"
+      ],
+      "content_comparison": [
+        "製品要求/画面/業務意味/利用者判断はCORE、分離構造候補はBRAIN。",
+        "評価原本はLABO、登録はOS、BRAIN change内の独立検証と採否は別状態。",
+        "分離/候補受領で実評価/採用/操作許可を生成しない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/意味分離保証/正式binding/評価/登録/採用/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 26,
+      "F02": 17,
+      "B01": 18
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
