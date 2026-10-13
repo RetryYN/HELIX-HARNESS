@@ -1,0 +1,219 @@
+{
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "boundary": "003のF01/F02のidentity/content接続照合だけ。実tenant runtime/権限変更/実隔離/各owner state正本代替/毎回人approveを生成しない。"
+  },
+  "source_pin_limit": "全文pinは全内容の精読/意味閉包を証明しない。selected F01/F02だけを承認revisionへwhole-object照合。",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "parent": "HELIXSECURITY-L2-003",
+  "source_main": "747cbe94fc657d2bd6c4620ff1e7263ea4520fb0",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "747cbe94fc657d2bd6c4620ff1e7263ea4520fb0",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "747cbe94fc657d2bd6c4620ff1e7263ea4520fb0",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "747cbe94fc657d2bd6c4620ff1e7263ea4520fb0",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "747cbe94fc657d2bd6c4620ff1e7263ea4520fb0",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "747cbe94fc657d2bd6c4620ff1e7263ea4520fb0",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "747cbe94fc657d2bd6c4620ff1e7263ea4520fb0",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "747cbe94fc657d2bd6c4620ff1e7263ea4520fb0",
+      "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "747cbe94fc657d2bd6c4620ff1e7263ea4520fb0",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "747cbe94fc657d2bd6c4620ff1e7263ea4520fb0",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "747cbe94fc657d2bd6c4620ff1e7263ea4520fb0",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-D461943347D372ECF6DA",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+      "file_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+      "selected_line_quotes": [
+        {
+          "line": 24,
+          "text": "| `SEA-FR-001` | `SecurityAuthorization`はauthorization ID、asset owner、source、authorized target exact set、allowed／forbidden action、environment、network／data scope、issued／expiry、human authority、provider access class、digestを別fieldで保持する。 |",
+          "utf8_sha256": "010fef51a0fa8a24e13e035d6433813576a54d5dcf2e54f36551d103bdb98433"
+        },
+        {
+          "line": 25,
+          "text": "| `SEA-FR-002` | authorization不在、期限切れ、target／scope／environment／provider class／digest不一致ではmodel、tool、network invocationを0件にする。 |",
+          "utf8_sha256": "64f31a3d9465b3cebc8c4e0ed96d7c880a5426d1720816b2fe214dd7f2e532c6"
+        },
+        {
+          "line": 26,
+          "text": "| `SEA-FR-003` | `NORMAL`と`PRIVILEGED_INTERNAL_SECURITY`のcredential、queue、lease、evidence、fallbackを分離し、通常taskから特権classへ到達不能にする。 |",
+          "utf8_sha256": "b94dc4d70454b847726d828da3f3c0058d8efb8aa18013dfb519d2311b5fa320"
+        },
+        {
+          "line": 39,
+          "text": "- `SEA-NFR-001 Fail-close`: unknown、ambiguous、missing、stale、multi-target driftを推測しない。",
+          "utf8_sha256": "64be63896d719d909335ae8707337f8c306aacb3eadb4b9a08e68fb39f7165fd"
+        },
+        {
+          "line": 40,
+          "text": "- `SEA-NFR-002 Least privilege`: credentialとnetwork capabilityはengagement、target、operation、TTLの最小範囲に限定する。",
+          "utf8_sha256": "2a77e6390de448af82dbdd9ba198c859d32f1d6308e420c0e78f6148b5d8fbc1"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "target/scope/environmentの別field・不一致/unknown非推測・通常scopeから特権や他tenantへのfallback禁止・operationの最小範囲。",
+      "change": "旧special engagement固有のNORMAL/PRIVILEGED class・追加human gate・旧broker/runtime/DBを移植せず、採択003のproject/tenant/environment/assignment-worktreeと既OS/INFRA/CONNECT ownerへ再導出。",
+      "reason": "現在の003適用範囲へ内容比較を降ろし、tenant不存在を捏造せず各owner stateを代替しない。authority008と通常の既決権限再利用を保持し、実認可変更を生成しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-349061A71CEF2554B9A7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+      "file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc",
+      "selected_line_quotes": [
+        {
+          "line": 14,
+          "text": "| `SEA-AC-001` | `SEA-FR-001..002` | authorization不在、期限切れ、wrong target／scope／environment／provider class／digest、第三者targetでmodel・tool・network invocationが0件になる。 |",
+          "utf8_sha256": "cf580b0a6fbdc7db647f91c4b756facfe0334e4c09110d6f727dd52282c53010"
+        },
+        {
+          "line": 15,
+          "text": "| `SEA-AC-002` | `SEA-FR-003` | 通常customer／tenant taskから特権credential、queue、lease、evidenceを選択できず、fallbackでも境界を越えない。 |",
+          "utf8_sha256": "fb3a5d19fd4c2f71780fca5e83777614dce24312db282f5884f826e7f85b6c31"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "target/scope/environmentの別field・不一致/unknown非推測・通常scopeから特権や他tenantへのfallback禁止・operationの最小範囲。",
+      "change": "旧special engagement固有のNORMAL/PRIVILEGED class・追加human gate・旧broker/runtime/DBを移植せず、採択003のproject/tenant/environment/assignment-worktreeと既OS/INFRA/CONNECT ownerへ再導出。",
+      "reason": "現在の003適用範囲へ内容比較を降ろし、tenant不存在を捏造せず各owner stateを代替しない。authority008と通常の既決権限再利用を保持し、実認可変更を生成しない。"
+    }
+  ],
+  "remaining": [
+    "正式identity/schema/codecとOS assignment・INFRA実環境・CONNECT接続のowner資格/全tuple binding、tenant適用条件とconsumerの実接続。",
+    "局所L5/L8で全shape/missing/conflict/stale/多target/重複・不正primitive/全作用の詳細とoracle閉包。",
+    "各owner state正本と実authority008・Worker制約007の対接続、実隔離/実資源/実operationは未成立。",
+    "先行oracle凍結→実装前Red→最小Green→Refactor→再検証、実L9/L10/PO実物L11と全92親430対の完遂・独立二重確認を継続。",
+    "各callerのfallback/foreign state/read→networkの否定例を基本pairへ追加。全caller別の他operation・全不正shape/多target/組合せはL5/L8へ残す。tenant適用条件の実owner資格/実consumerは未成立。"
+  ],
+  "document_id": "HELIXSECURITY-L4-003",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "scope_identity_content_comparer",
+      "explicit_connection_boundary_comparer"
+    ],
+    "flow": [
+      "原origin/target/asset＋OS/INFRA expected identity → tenant適用と6軸の局所対応",
+      "作用種別＋CONNECT原接続/expected接続＋fallback → operation局所の境界候補",
+      "不足は当該ownerへ返却候補。identityはOS、実環境はINFRA、接続はCONNECT。実変更/通信/permission発行なし。"
+    ],
+    "pure_boundary": "immutable供給資料の比較だけ。network/fs/process/clock/env/credential/Tool起動・各owner DBやstateの書換なし。",
+    "scope_locality": "pending_operationsは今回requestの1操作だけ。他のscope/正常requestへ全停止を生成しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L4-003-F01",
+      "requirement_ref": "HELIXSECURITY-L3-003-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
+      "oracle_ref": "HELIXSECURITY-L9-003-F01",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "1369f93ccafb41c6ba10e144cba9197e2da1a38aacf2f635416c1c88a06adfa9"
+      },
+      "component": "scope_identity_content_comparer",
+      "operation_effect": "none",
+      "input_meanings": [
+        "原origin/target/asset identityのproject・tenant・environment・assignment・worktree・revisionと各ownerの独立expected identity。",
+        "tenant適用true/falseは独立ownerの対象条件から読む。非適用はnull、不明を非適用にせずunknownへ。OS/INFRA/CONNECTの原素材状態を別保持。"
+      ],
+      "output_meanings": [
+        "各identityの対応/不足/相反、tenant適用/非適用/unknownの別候補。",
+        "原request identityを保持し、操作/実環境/tenantを生成しない。"
+      ],
+      "content_comparison": [
+        "permission/state/data/Worker/credential/artifact/memory/execution_targetを原identityへ結ぶ。caller種別Agent/Hook/memory/credential/configuration/Workerでも境界を保持。",
+        "OSのassignment/project（適用tenantを含む）、INFRAの実環境、CONNECTの明示接続を各ownerの資料へ照合。metadata currentだけで実資格を生成しない。",
+        "tenant適用時の欠落はunknown、非適用時にtenantを投入している場合はtenant_invented。identity欠落・相反をprimary treeや別projectの値で補完しない。",
+        "tenant=trueは必要Textをexpectedと比較。falseはnull以外をtenant_inventedとしtenant値の同一性は比較しない。unknownはtenant_applicability_unresolvedとしtenant値をidentity/asset/接続の意味比較から除く。他5軸の不足/相反は独立に保持する。sideが接続照合可能なのは他5軸が全て既知非空Textで、trueならtenantも既知Text、falseならtenantがnullの場合だけ。unknown又はtenant_invented/必要identity不足のside全体のrequest→connection joinは未成立として比較を補完しない。"
+      ],
+      "qualification_rule": "この基本pairは固定合成expected snapshotと内容を比較するだけ。実owner/custody/state正本の成立は独立consumer bindingへ。"
+    },
+    {
+      "id": "HELIXSECURITY-L4-003-F02",
+      "requirement_ref": "HELIXSECURITY-L3-003-F02",
+      "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
+      "oracle_ref": "HELIXSECURITY-L9-003-F02",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "19b26caf00defe161d17757bf7a0eabc001062fa7b8e8cf8f910461297b7e351"
+      },
+      "component": "explicit_connection_boundary_comparer",
+      "operation_effect": "none",
+      "input_meanings": [
+        "requested operation（read/write/execute/network/state/credential/artifact）とorigin→targetの接続identity/revision・許容operation集合。",
+        "独立CONNECT expected connection、asset scope、fallback選択、OS/INFRA/CONNECTの素材状態。"
+      ],
+      "output_meanings": [
+        "対象operationだけのscope_corresponding/isolation_violation/scope_unresolved候補と該当操作停止候補。",
+        "実許可/変更/操作を行わず、他の有効scope/操作を保持する。"
+      ],
+      "content_comparison": [
+        "同projectも別projectも明示接続の対象origin/target/revision/operationへ照合する。明示接続がある越境は一律禁止しない。",
+        "あるread条件からwrite/network等へ拡張せず、actual connectionを独立expected connectionと完全一致で比較しrequested operationが列挙内か確認。",
+        "Agent/Hook/memory/credential/configuration/Workerにprimary_tree/other_projectの暗黙fallbackを許さない。",
+        "別projectや別environmentのasset/stateをlatest自己申告だけで現scopeへ採用しない。各機構の正本stateを比較候補で代替しない。"
+      ],
+      "qualification_rule": "対応は接続内容の比較候補だけ。実authority008/制約007と実resource/enforcement/owner bindingを別に成立させる。"
+    }
+  ],
+  "diagnostic_contract": {
+    "return_owner": "scope-binding-owner",
+    "role_note": "003内容比較の責務ラベル。新役職/権限の発行者ではない。",
+    "meaning": "基本pairはscope-binding-ownerへ集約し、OS/INFRA/CONNECT等の個別原ownerへの正式振分けはL5へ。",
+    "pointer_base": "given.input root。各request/context fieldの実在位置へJSON Pointerを返す。scope fieldはproject等のText key、pointer escapeは~0/~1。",
+    "sort": "code/pointer/return_ownerのscalar codepoint順、完全同値3fieldのみunique。"
+  }
+}
