@@ -1,0 +1,258 @@
+{
+  "parent": "HELIXBRAIN-L2-020",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 4",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "9abb39baeb41c567530bfa6423aa781f45cd5dbb",
+    "boundary": "LABO評価と候補source/version/revisionを照合し、受領とOS登録/独立検証/採否を分ける。実評価/実成熟を生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-adoption-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "764b3f42bd8004c69275a49f70248a31ee1e06aaf91f46a02201467dc6036d27"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/handoff-integration-po-decisions-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3f12d5a53b05dc478cc7138e362730d38c6aa835079b41b6124cb569f0fc6b9d"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    }
+  ],
+  "source_pin_limit": "固定bytesは全意味の精読/実source資格/全体被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+      "read_lines": [
+        37,
+        47
+      ],
+      "quote": "### RCLS-BR-004 知恵を段階的に仕組みへ昇格する\n\nproject-local knowledgeから独立検証、cross-project検証、shadow enforcementを経たものだけをMechanismへ昇格する。機械化後は同じ規則をSkill proseへ重複保持しない。\n\n### RCLS-BR-005 学習の失効と隔離を保証する\n\n反例、authority revision、provider/model/version変更、expiry、security／license条件によりqualificationをstale、contradicted、revoked、revalidation requiredへ戻せる。\n\n### RCLS-BR-006 既存authorityを奪わない\n\nLearning SystemはRequirement、Design、merge、releaseを直接変更せず、proposal、evidence、retrieval packetを提供する。Requirement Discovery、UIL、System Synthesis、Pattern Promotion、HELIX-Bench、Resident Laneを再実装しない。",
+      "file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+      "selected_lines_sha256": "dbff66608accafc3005b920a6b9f0fa3f779f03a42548ed0b77b1217dcd3b498",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+        "disposition": "unresolved",
+        "source_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c"
+      },
+      "reuse": "reference_only; adopted BRAIN020 evaluated-candidate receipt semantics rederived",
+      "preserve": "project-local知識と独立/横断/shadowの段階的検証、proposal/evidenceの提供と既存authority非変更。",
+      "change": "旧learning runtimeを移植せず、LABO評価正本/OS登録正本/BRAIN候補と採否stateを同revision接続へ再導出する。",
+      "reason": "採択020と10/12承認が対象一致/反例と未評価保持/単一実績の非昇格/条件付きmaturity/正本の別ownerを要求する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実LABO評価/候補sourceの資格・必要集合・反例/未評価範囲の意味対応。",
+    "007/008/025/LABO/OSと選択009/010/INFRA017のowner-qualified exact binding、正式schema/codec/resolver。",
+    "L5/L8の型/比較/単体oracle、実装前凍結→実Red→最小Green→Refactor→再検証、実L9/L10/PO L11。",
+    "全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXBRAIN-L4-020",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "evaluation_candidate_identity_reader",
+      "evaluation_receipt_adoption_reader",
+      "selected_infrastructure_maturity_reader",
+      "evaluation_registration_original_owner_reader"
+    ],
+    "flow": [
+      "LABO原評価+候補exactsource/version/revision → 内容照合/候補receipt",
+      "両端receiptと各owner原state → 受領/評価/登録/独立検証/採否の別状態",
+      "選択Infrastructure maturity → 対象revisionのINFRA017参照、非該当非要求",
+      "原評価/原登録と選択入力条件 → 元正本保全/該当owner返却"
+    ],
+    "python_boundary": "immutable inputのpure内容比較/返却候補。LABO評価実行、OS登録/保存、BRAIN採用/成熟更新、network/fs/env/clock/authorityを行わない。",
+    "representation_limit": "候補/評価/receipt/state/選択maturityは合成原内容。実source資格/対象評価/正式binding/成熟判定schemaは未成立。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXBRAIN-L4-020-F01",
+      "requirement_ref": "HELIXBRAIN-L3-020-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-020-F01",
+      "oracle_ref": "HELIXBRAIN-L9-020-F01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-020-F01",
+        "parent": "HELIXBRAIN-L2-020",
+        "title": "評価対象と候補の同revision照合",
+        "obligation": "LABO評価対象/評価scope/方法/evidence/結果/failure/反例/未評価範囲を候補source/version/evaluation identityへ照合し、007/008のprovenance/identity/stateを保持したBRAIN候補入力とreceiptを返す。",
+        "oracle_ref": "HELIXBRAIN-L10-020-F01"
+      },
+      "component": "evaluation_candidate_identity_reader",
+      "input_meanings": [
+        "独立候補source/version/revisionとLABO評価原内容",
+        "対象/scope/method/evidence/result/failure/反例/未評価範囲",
+        "提出評価と候補"
+      ],
+      "output_meanings": [
+        "項目別対応/不足と元評価保全",
+        "候補source/version/evaluation identity receipt"
+      ],
+      "content_comparison": [
+        "評価自身のrevisionと評価対象候補のrevisionを混同しない。",
+        "反例/未評価/failureを消去・成功補完しない。不一致/unknownは当該候補を止めLABOへ返す。",
+        "原候補の未定fieldをunknown_original_candidate_fieldsへ明示。null同士の内容対応をexact対象一致と呼ばない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/正式binding/実評価/登録/成熟/採用/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-020-F02",
+      "requirement_ref": "HELIXBRAIN-L3-020-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-020-F02",
+      "oracle_ref": "HELIXBRAIN-L9-020-F02",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-020-F02",
+        "parent": "HELIXBRAIN-L2-020",
+        "title": "接続受領と採否の分離",
+        "obligation": "同source/version/evaluation identityの受領を保持し、単一実績/AI生成/評価resultだけで確立Patternへ昇格しない。評価scope/限界を保ちOS登録/振分けとBRAIN独立検証後まで採否・成熟状態を先取りしない。",
+        "oracle_ref": "HELIXBRAIN-L10-020-F02"
+      },
+      "component": "evaluation_receipt_adoption_reader",
+      "input_meanings": [
+        "両端receiptのsource/version/evaluation identity",
+        "原評価/OS登録/BRAIN独立検証/採否状態",
+        "提出stateと実績/生成/result/受領claim"
+      ],
+      "output_meanings": [
+        "両端内容対応と未観測receipt",
+        "元各owner/stateと未採用の保持"
+      ],
+      "content_comparison": [
+        "受領/評価result/一実績/AI生成だけでadopted/matureにしない。",
+        "OS登録原本unknownはunknownのまま。BRAINが推測・生成しない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/正式binding/実評価/登録/成熟/採用/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-020-F03",
+      "requirement_ref": "HELIXBRAIN-L3-020-F03",
+      "system_oracle_ref": "HELIXBRAIN-L10-020-F03",
+      "oracle_ref": "HELIXBRAIN-L9-020-F03",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-020-F03",
+        "parent": "HELIXBRAIN-L2-020",
+        "title": "Infrastructure maturityの条件付き参照",
+        "obligation": "Infrastructure candidateのmaturityを扱う場合だけINFRA-017のstate/evidenceを同対象revisionへ結び、不明/欠落ではaccepted/matureへ進めない。非該当入力へ全Infrastructure知識/実資源稼働を要求しない。",
+        "oracle_ref": "HELIXBRAIN-L10-020-F03"
+      },
+      "component": "selected_infrastructure_maturity_reader",
+      "input_meanings": [
+        "Infrastructure maturityを扱う選択条件",
+        "選択時のINFRA017原state/evidenceと対象revision",
+        "提出maturityと未選択入力への要求claim"
+      ],
+      "output_meanings": [
+        "条件別参照結果と元state/evidence",
+        "unknown/不一致の局所保留"
+      ],
+      "content_comparison": [
+        "該当候補のmaturityだけINFRA017へ結ぶ。非該当へ全Infrastructure知識/資源実稼働を要求しない。",
+        "一成功/欠落補完でuniversal/accepted/matureへ昇格しない。",
+        "原maturity unknownと提出maturity欠落を別結果にし、submitted_maturity_resultも保持する。"
+      ],
+      "qualification_rule": "合成対応を実source資格/正式binding/実評価/登録/成熟/採用/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-020-B01",
+      "requirement_ref": "HELIXBRAIN-L3-020-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-020-B01",
+      "oracle_ref": "HELIXBRAIN-L9-020-B01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-020-B01",
+        "parent": "HELIXBRAIN-L2-020",
+        "title": "評価と登録正本の非移管",
+        "obligation": "LABOは評価、OSは登録/振分け状態正本、BRAINは候補知識/採否状態を保持する。接続成功からLABOの評価事実やOSの登録stateを生成/訂正せず、L2-007/008/009/010の該当入力条件を照合する。",
+        "oracle_ref": "HELIXBRAIN-L10-020-B01"
+      },
+      "component": "evaluation_registration_original_owner_reader",
+      "input_meanings": [
+        "LABO評価/OS登録原本とBRAIN候補state",
+        "007/008と選択009/010の限定契約",
+        "提出owner/原状態変更claim"
+      ],
+      "output_meanings": [
+        "各ownerの原内容/未完と候補receipt",
+        "選択された入力だけの必要参照と不足"
+      ],
+      "content_comparison": [
+        "評価正本はLABO、登録/振分け正本はOS。BRAINは候補と採否状態を持つ。",
+        "接続成功から自己評価/登録正本複製/構成候補の確立を生成しない。"
+      ],
+      "qualification_rule": "合成対応を実source資格/正式binding/実評価/登録/成熟/採用/authority/設計閉包へ昇格しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 25,
+      "F02": 15,
+      "F03": 15,
+      "B01": 15
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
