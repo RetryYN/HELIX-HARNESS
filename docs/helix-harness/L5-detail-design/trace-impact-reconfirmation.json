@@ -818,6 +818,31 @@
         "preserve": "pure内容比較とtyped finding/安定順、入力はuntrusted、全意味条件の成立を別照合。",
         "change": "旧TS/schema/library/finding messageをcopyせず、既F04 P7優先と4locator単独例の原変異を11合成Contextへ結合。",
         "reason": "最優先不備1件だけで他の欠落/未観測資料を消す又は原人口を縮めて成功させる失敗を拒否する。新authority/承認を作らない。"
+      },
+      "shape_handoff_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          29,
+          30,
+          31,
+          34,
+          51,
+          52,
+          53,
+          54,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65
+        ],
+        "preserve": "pure coreとschema adapter/libraryの分離、stable typed failure、不正parse/unknown fieldをtyped成功へしない。",
+        "change": "旧TS/loader/schema/library errorをcopyせず、現行ShapeProposal全findingとlane付き組立拒否へ再導出。",
+        "reason": "schema failureをNone補完/未知field除去/意味成立にせず、型拒否前にcoreを起動しないため。新要求/承認/実operationを生成しない。"
       }
     },
     {
@@ -1058,7 +1083,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。 14反復sequenceの原引数保全/禁止作用observer/whole結果同値oracleを追加。実host/guardと全endpoint bindingは未完。 F04の4独立Context不備について複数同時11例を追加。必須finding subset/優先outcomeを具体化、全副次findingと他組合せは未完。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。 14反復sequenceの原引数保全/禁止作用observer/whole結果同値oracleを追加。実host/guardと全endpoint bindingは未完。 F04の4独立Context不備について複数同時11例を追加。必須finding subset/優先outcomeを具体化、全副次findingと他組合せは未完。 shape adapter34+6の全ShapeProposalと追加8を固定、原構造negative28+新35をlane付き全拒否handoffへ結合。required/unknown propertyの個別pointerとbranch/binding原因を保持。全schema/host/consumer/binding/凍結は未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。 45固定F04対照の全PartitionResult/basis refs/order/input retentionを追加で固定。未提示InputをContext原bodyから復元せず、caseごとの固定合成snapshotを別供給。全構造/他条件/実binding/凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。 B01の23原例/19Contextを全ChangeResultへ固定し、意味軸全7組/混合環境behavior/boolean型差/label/3複合を追加。全構造/実binding/全凍結は未完。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。 F02固定38対照を全ImpactResultへ、4graphのedge順反転を追加して全42結果を固定。直接原因のfindingと伝播・履歴・固有義務を分離。全形状/実binding/凍結は未完。",
@@ -10473,7 +10498,23 @@
       }
     },
     "diagnostic_boundary": "library固有exception/message/typeをcore resultへ直接露出しない。keyword/instance pointerをrelative findingへ写し、consumerがinput/context/candidate laneを明示してprefixする。全assertion/branchの最小finding集合は追加oracleへ残す。shape対応は意味/資格/数値観測/承認/実operationの成立ではない。",
-    "unclosed": "正式Python view/number/JSON Schema adapter/regex matcher版、registry/consumer/owner/codec/resources、全binding/branch/finding oracleとL6L7凍結は未完。math原理と対応snapshotの設計であり、実adapter/core実装やRed/Greenではない。"
+    "unclosed": "正式Python view/number/JSON Schema adapter/regex matcher版、registry/consumer/owner/codec/resources、全binding/branch/finding oracleとL6L7凍結は未完。math原理と対応snapshotの設計であり、実adapter/core実装やRed/Greenではない。",
+    "whole_finding_contract": {
+      "scope": "34原shape対照と6binding対照をShapeProposal全fieldへ。7契約のinput/context/candidate不正shapeを組立拒否へ接続。全keyword/全type/全instance/正式adapter bindingは未閉包。",
+      "finding_rules": {
+        "assertion": "失敗assertionをshape_constraint_failed、keywordはそのkeyword、instance_pointerはrelative JSON Pointer。型差はtype、const/enumは型付き数学内容差、文字長はscalar数。boolean schema falseはkeyword null/そのinstance pointer、trueはfinding無し。library message/type/exceptionを正本findingへ移植しない。",
+        "required": "requiredの欠落propertyごとにparent pointerへescaped missing propertyをappendする。未存在の所在を示す診断pointerであり存在valueを捏造しない。",
+        "additionalProperties": "falseで拒否する未知propertyごとにescaped propertyをappend。schema-valued additionalPropertiesは子value assertionのpointerへ。",
+        "propertyNames": "property nameの失敗はparent pointerへそのkeyをappendし所在を指す。keyの文字列assertionであり、そのproperty valueへ同じassertionを適用したとはしない。空keyは/。",
+        "items_properties": "子instanceへpointerをappend。unknown propertyのvalueを捨てず、必要fieldをdefault補完しない。",
+        "branches": "anyOf成功1以上なら失敗branchのconstraint findingsを採用しない。all失敗はparent instanceのanyOf1件、oneOf成功数が1でない場合はparent oneOf1件。branch内部の原因をこの短いShapeFindingへ重複展開しない。branchと別の親assertionの失敗は別に保持。binding不足はbranch成功で消さない。",
+        "binding": "未対応keyword/type/dialect、未解決/remote/non-progress refはshape_binding_unresolved、keywordは各所在keyword、instance_pointer null（instanceの不正を認定していない）。固定snapshot/selector/host protocolの不成立はkeyword null/pointer null。unknown schemaのproperty/$defs内の名前はkeywordでない。",
+        "sort": "code、keyword（nullをstringより先）、instance_pointer（nullをstringより先）、return_ownerのcodepoint順。完全同値4fieldだけ重複除去。別の欠落/未知propertyの所在を一つへ丸めない。"
+      },
+      "aggregation": "binding findingが一つでもあればcondition binding_unresolved、その次にconstraint findingがあればshape_invalid、他はcorresponding_shape。対応が判明した独立の失敗assertionはbinding不足と同時に保持する。原AST/tokenを保持、schema_handoff false/actual_effects none。全schema参照closureの事前照合でbinding不足を検出し、remoteを取得しない。",
+      "snapshot_effect": "schema/数値profile snapshotの整合は実資格/正式bindingでない。数学number/bool分離、原token/readonly view、pattern ECMA対応の既条件を保持。",
+      "unclosed": "全keyword/全branch組合せ/全127defs/不正wire/資源/正式view・regex・backend・owner/consumer bindingとL6L7/test-oracle凍結は未完。"
+    }
   },
   "assembly_contract": {
     "status": "draft_design_typed_composition_binding_not_runtime_admission",
@@ -10483,7 +10524,7 @@
       "wire_decode_contract": "592647099edb86dcf62a4c192db625b85dd2c7148845c6fac2fa887d4ea75116",
       "exact_number_contract": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
       "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
-      "schema_adapter_contract": "4c671a3a7c52bb3fa898f2a97ff082958c85dda909634473d50bd2318a61cfec",
+      "schema_adapter_contract": "46f1522cbcdf585ee8113339ec44c5a5119761eb3d68270323b775803c56693b",
       "logical_structure_schema": "d4be59b9aa8611870fbe666dc78087da9960f710f5bc9d65acb108026897562a"
     },
     "bindings": [
@@ -10895,7 +10936,21 @@
       "schema_adapter_contract": "/schema_adapter_contract",
       "logical_structure_schema": "/logical_structure_schema/schema"
     },
-    "profile_digest_scope": "各profile_document_pointersが指す固定JSON valueのcanonical SHA-256。logical_structure_schemaだけはschema objectであり、entrypoints/validation_boundaryを含むsection wholeのdigestではない。7entrypoint/型/signatureはbindingsとschema adapterの別照合を維持する。"
+    "profile_digest_scope": "各profile_document_pointersが指す固定JSON valueのcanonical SHA-256。logical_structure_schemaだけはschema objectであり、entrypoints/validation_boundaryを含むsection wholeのdigestではない。7entrypoint/型/signatureはbindingsとschema adapterの別照合を維持する。",
+    "shape_rejection_handoff_contract": {
+      "scope": "対応済みbinding/carrier/decoded ASTの合成対照でshape lane診断を保全し、A3拒否を具体化する。domain Resultのinvalidを創作せずmeaning coreを呼ばない。",
+      "lane_mapping": "ShapeFindingのnon-null relative pointerへ/input、/context、/candidateをprefix（relative空ならlane root）。bindingのnull pointerはnullを保ち、laneは別fieldに残す。code/keyword/return_ownerはadapterの原値。",
+      "handoff_model": {
+        "assembly_proposal": "既proposal_modelの全8field",
+        "lane_findings": "tuple[{lane: input|context|candidate,code: shape_constraint_failed|shape_binding_unresolved,keyword: Text|null,pointer: JSON Pointer|null,return_owner: schema-adapter-owner}]",
+        "retained_lane_raw_sha256": "mapping[供給lane,Digest]（原packet bytes、未提出candidateを捏造しない）"
+      },
+      "priority": "本固定scopeではbinding/carrier/source前提は対応済み。各供給laneを別schemaへ照合し全findingを蓄積。lane binding_unresolvedがあれば組立binding_unresolved、他にshape_invalidがあればmaterial_rejected、全shape対応ならarguments_proposed。拒否はsymbol null/candidate_disposition unresolved、実core/operation/state writeはfalse。",
+      "candidate_presence": "omitted/明示nullだけNoneの既A4を保持。false/0/空文字/配列/空objectや未知fieldをNoneへ補完しない。不正candidateのraw bytesを別laneへ保全する。",
+      "sort": "lane codepoint順、次にShapeFindingと同じcode/keyword/null順pointer/ownerでsort。全同値だけ除去。",
+      "not_domain_completion": "shape failureをdomain成功へ補正せず、carrier/shape合格をowner/意味成立へしない。全core whole425対照と意味規則は変更しない。",
+      "unclosed": "全frame/binding/custody/decode/shapeの複合全Result、正式registry/host/consumer/library/codec/resources/物理interface、全freezeと実行証拠は未完。"
+    }
   },
   "purity_repeat_contract": {
     "status": "draft_design_observation_contract_not_execution",
