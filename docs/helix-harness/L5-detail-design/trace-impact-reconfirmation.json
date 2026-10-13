@@ -325,6 +325,16 @@
         "preserve": "原atomの双方向義務、stale/片側/別snapshot/未実行の保持とconsumer保全。",
         "change": "旧graph/gate/runtimeを移植せず、独立Context資格不足を10cell依存へ局所化し同raw異identityを分離する。",
         "reason": "要求条件の減数や資料存在のみで全条件充足にせず、無関係条件を保全するため。新しい上流採否/承認手続きを追加しない。"
+      },
+      "f01_whole_result_rederivation": {
+        "read_line_locators": [
+          132,
+          138,
+          139
+        ],
+        "preserve": "双方向trace、孤立・片側・別snapshotの保持と原atom/consumerの保全。",
+        "change": "旧graph/gateを実行せず、10cellと全typed finding/basis/locator/役割、固定合成rootの適格性と複合原因の保全へ再導出。",
+        "reason": "部分finding subset・件数・原資料自己申告から被覆/実製品完成を生成せず、診断全体を独立比較できるようにするため。"
       }
     },
     {
@@ -1015,7 +1025,7 @@
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。 45固定F04対照の全PartitionResult/basis refs/order/input retentionを追加で固定。未提示InputをContext原bodyから復元せず、caseごとの固定合成snapshotを別供給。全構造/他条件/実binding/凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。 B01の23原例/19Contextを全ChangeResultへ固定し、意味軸全7組/混合環境behavior/boolean型差/label/3複合を追加。全構造/実binding/全凍結は未完。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。 F02固定38対照を全ImpactResultへ、4graphのedge順反転を追加して全42結果を固定。直接原因のfindingと伝播・履歴・固有義務を分離。全形状/実binding/凍結は未完。",
-    "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。 Context21否定例で資格不足のcell局所化/母集団unionと同raw異identityの代用拒否を追加。",
+    "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。 Context21否定例で資格不足のcell局所化/母集団unionと同raw異identityの代用拒否を追加。 48固定対照を全TraceResultへ、9同時Context不備と3candidate作用主張の1例を追加。全finding/basis/役割/保持hashを固定。全形状/多重資料/実binding/全freezeは未完。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。 Context21例で独立資格不足とpair/意味/trigger/種類の局所不足を分離。",
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。",
     "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。 Context25例で資料資格/未観測union/局所9cell/盲検資格の不足を分離。",
@@ -2883,6 +2893,121 @@
         ],
         "aggregation": "既存T9の原未解決outcome unknown、候補矛盾conflict、構造解釈不能invalidを保持。Contextのconflict/stale/digestは別findingとして保持しoutcomeだけで消さない。return_ownerは意味役割であり実配送/owner資格を生成しない。",
         "unclosed": "全複合/不正型/全副次finding/多重完全一致catalog/実owner-codec/正式schema/L6L7とoracle凍結は未完。指定valueとminimum findingsの部分oracle。"
+      },
+      "whole_result_contract": {
+        "scope": "27原例+21Contextの全TraceResult。追加の同時Context不備/複数candidate差分を全結果へ。全型/多重資料/全複合/実owner資格/実codec/全freezeは未完。",
+        "fixed_synthetic_qualifier_roots": [
+          {
+            "identity": "SYNTHETIC-F01-ORACLE-BASIS",
+            "owner": "synthetic-oracle-author",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P"
+          }
+        ],
+        "root_eligibility": "供給qualifier_rootsのunique全4tuple集合が固定集合と完全一致する場合のみ合成root適格。同identityのowner/scope/revision成分差は/context/qualifier_roots/{i}/{field}のreference_unknown、未知identity/空/混合集合は/context/qualifier_rootsのreference_unknown。全条件全10cell unknownを保持。合成profileの診断基準であり実owner/trust/operationを許可しない。",
+        "basis_rule": "全findingは固定合成root∪供給Context rootを保持。condition_idsに対応する受領input requirement.sourceを加える（Contextだけの条件のsourceをinputへ創作しない）。input implementation/connectionの当該record診断はその受領refを加える。Context catalog index診断はそのsource_refがnon-nullなら加える。その他の欠落/候補/owner名/IDからRefを生成しない。全4tupleでunique化、identity/revision/scope/ownerのcodepoint順sort。資格不成立のRefも原証拠の所在として保持し資格へ昇格しない。",
+        "finding_order": "code,pointer,condition_ids tuple,return_ownerのcodepoint順。完全一致の全5fieldだけ重複除去。条件集合はUnicode順。",
+        "cell_diagnostics": "以下は原inputの各不足cellに対する診断。Context資格不足によるunknownへの上書きはcell不備診断を新設せず元Context causeだけ。複合時にはinput側の直接不備とContextの直接不備を両方保全する。下記の各cell診断は別code/locatorなら残し、件数を理由に消さない。",
+        "cell_rules": [
+          {
+            "cell": "design",
+            "state": "missing",
+            "code": "record_missing",
+            "pointer": "/input/design_records",
+            "owner": "design-condition-owner"
+          },
+          {
+            "cell": "verification",
+            "state": "missing",
+            "code": "record_missing",
+            "pointer": "/input/verification_records",
+            "owner": "verification-original-owner"
+          },
+          {
+            "cell": "verification",
+            "state": "conflict(external origin)",
+            "code": "external_verification_rejected",
+            "pointer": "/input/verification_records/{index}/evidence_origin",
+            "owner": "verification-original-owner"
+          },
+          {
+            "cell": "source",
+            "state": "conflict(design source digest mismatch)",
+            "code": "source_content_conflict",
+            "pointer": "/input/design_records/{index}/source_sha256",
+            "owner": "design-condition-owner"
+          },
+          {
+            "cell": "revision",
+            "state": "stale",
+            "code": "reference_stale",
+            "pointer": "/input/{design_records|verification_records}/{index}/binding（不一致recordごと）",
+            "owner": "当該kind owner"
+          },
+          {
+            "cell": "bidirectional_trace",
+            "state": "missing",
+            "code": "pair_direction_missing",
+            "pointer": "/input/relations",
+            "owner": "trace-relation-owner"
+          },
+          {
+            "cell": "semantic_oracle",
+            "state": "missing",
+            "code": "semantic_oracle_missing",
+            "pointer": "/input/design_records又は/input/verification_records（当該record欠落）。recordが存在してoracle nullなら/input/verification_records/{index}/oracle、behavior nullなら/input/design_records/{index}/behavior_contract",
+            "owner": "当該kind owner"
+          },
+          {
+            "cell": "semantic_oracle",
+            "state": "conflict",
+            "code": "semantic_oracle_conflict",
+            "pointer": "/input/design_records/{index}/behavior_contract又は/input/verification_records/{index}/oracle。外部origin由来も当該verification oracleへ保持",
+            "owner": "当該kind owner"
+          },
+          {
+            "cell": "owner",
+            "state": "missing|conflict",
+            "code": "owner_missing|owner_conflict",
+            "pointer": "/input/owner_assignments/{condition}/owners",
+            "owner": "design-condition-owner"
+          },
+          {
+            "cell": "membership",
+            "state": "missing|conflict",
+            "code": "membership_missing|membership_conflict",
+            "pointer": "/input/owner_assignments/{condition}/memberships",
+            "owner": "design-condition-owner"
+          },
+          {
+            "cell": "implementation|connection",
+            "state": "missing",
+            "code": "record_missing",
+            "pointer": "/input/{implementation_records|connection_records}/{condition}",
+            "owner": "当該kind owner"
+          },
+          {
+            "cell": "implementation|connection",
+            "state": "unknown_design_join",
+            "code": "implementation_join_unknown|connection_join_unknown",
+            "pointer": "/input/{implementation_records|connection_records}/{condition}/design_id",
+            "owner": "当該kind owner"
+          },
+          {
+            "cell": "implementation|connection",
+            "state": "conflict(ref scope)",
+            "code": "reference_conflict",
+            "pointer": "/input/{implementation_records|connection_records}/{condition}/ref/scope",
+            "owner": "当該kind owner"
+          }
+        ],
+        "edge_diagnostics": "選択条件IDとその条件へjoinする原design/verification IDだけをendpoint集合とする（legacy_CIは除外）。供給edgeのfrom又はtoがそこに無ければ各endpointごとorphan_endpointを/input/relations/{index}/{from|to}へ。当該edgeの残るendpointから条件をjoinし、両側不明ならcondition_ids=[]。単なるcatalog存在や未選択recordをendpoint補完に使わない。pair_direction_missingとorphan_endpointは別の診断として両方保全する。legacy_graphしかない方向はpair_direction_missing、旧資料を実行しない。",
+        "unmatched_diagnostics": "選択外conditionのdesign/verificationは/input/{kind}/{index}/condition_idへunmatched_record、condition_ids=[]、当該kind owner。元unmatched_record_idsを保全。",
+        "context_diagnostics": "既context_failure_contractの全locator/役割と各局所依存を使用。全体root/target/state/population不備のcondition_idsはinputとContextの条件ID union。missing catalog、独立owner割当欠落は当該条件だけ。全体不備があっても独立に読める局所causeを消さず診断し、同一原因を依存cellへ複製しない。catalog選択は原完全一致・kind・identityを必要とし、同raw異identityの代用はreference_missing。",
+        "context_composition": "原inputの10cellから、局所資格不足の依存cellをunknownへ上書きし、全体root/target/state/population不備ならunion条件全10cell unknown。unresolvedは非supported cellの条件集合、impactは未解決時Unknown。再検証target名はcurrent-origin原検証IDとchanged条件から保全（資格不足で消さず実行適格にしない）。",
+        "candidate_rule": "第三引数の全value field比較。差分fieldごとcandidate_conflict /candidate/{field}。condition_resultsは差分条件だけ、それ以外は条件population union。原value不変、outcome conflict、candidate_disposition conflict。解釈不能candidate/原構造は既T1/T9へ残し、この固定集合だけで全型を認定しない。",
+        "hash_retention": "input/contextはcanonical logical UTF8 SHA256。transport raw bytes SHAはpacket sidecarで別保全する。typed Finding全5field・結果全8fieldを比較し、minimum finding subsetを全結果合格にしない。",
+        "actual_boundary": "5 actual_* false。synthetic trace資料名の対応は実code/接続/検証/承認/完了ではない。新依存/実行/保存/authority writeなし。"
       }
     },
     {
@@ -10182,7 +10307,7 @@
         "l4_contract_sha256": "04d1f693c4cdf08fcb2172d2f8cc891b5132961a2fca6a9a2968ccf994ba1345",
         "core_symbol": "compare_condition_trace_coverage",
         "core_signature": "compare_condition_trace_coverage(input: TraceInput, context: TraceContext, candidate: TraceCandidate | None = None) -> TraceResult",
-        "core_contract_sha256": "cf6c62e0891ce8b7869be7a36543749a0eee3a556e2fa92b23f995ded68f40a3",
+        "core_contract_sha256": "1a881e55a5e516a3a2cacebb7d73dca0b258e80c147e1cdf28b29ec987a2fa0c",
         "argument_types": {
           "input": "TraceInput",
           "context": "TraceContext",
