@@ -477,8 +477,8 @@
     "H22F-m1対応：未変異REFACTOR Contextとperformed=falseの原NORMAL inputを結合した反例を追加。必要3proof欠落と未成立Integratedを保持、全oracle閉包は未完。",
     "F03の103原例/2Context/6否定例と全義務-下位表現-固有差分を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
     "N01の36原例/1Context/6否定例と今回未評価/原期限/過去receipt限定scopeを具体化。全構造/複合/正式期限schema/codec/実owner/実holdout/凍結は未完。",
-    "H22H-m1の自己整合弱化input反例と、作成側発見のU6 conflict_content時evaluated_scope=null訂正を対L8/L9へ結ぶ。",
-    "B01の42原例/2Context/7否定例と原stage caseの内容解決、意味差route/同段階再検証/owner分離を具体化。全設計/正式binding/実装準備は未完。"
+    "H22H-m1対応：独立Context期待1とinputの宣言oracle/body/result/evidenceが2で自己整合する反例で未評価/Q/原入力保全/実作用falseを固定。作成側発見のU6 conflict_content時evaluated_scope=null訂正を対L8/L9へ結ぶ。",
+    "B01の42原例/2Context/8否定例と原stage caseの内容解決、意味差route/同段階再検証/owner分離を具体化。全設計/正式binding/実装準備は未完。"
   ],
   "document_id": "HARNESS-L5-022-STAGE-ACCEPTANCE",
   "layer": "L5",
