@@ -459,7 +459,62 @@
         "preserve": "untrusted source宣言を検査しpure coreから資格生成せず、typed pointer findingと安定順で返す。",
         "change": "旧TS/schemaをcopyせず、別固定Context不一致とactual資格欠落の4部分oracle、candidate差分JSON Pointer表記へ具体化。",
         "reason": "自己一致宣言とfixture hashだけで原owner資格を作る失敗とnested候補pathの曖昧さを防ぐ。原L9期待・意味は保持。"
+      },
+      "stage_structure_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          51,
+          52,
+          53,
+          54
+        ],
+        "preserve": "pure core/schema adapter分離、untrusted/required/unknownを確かめるDbC、typedfindingと安定pointer。",
+        "change": "旧TS/schema/runtimeをcopyせず、6logical type/受領候補と導出valueの別形/primitive境界へ。",
+        "reason": "libraryエラーとCORE意味を混同せず、候補の実作用申告をschemaで消さない。"
       }
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7E819CFD5E0C89455B52",
+      "path": "archive/legacy-generation-2026-09-14/root/config/requirement-ir-schema.json",
+      "sha256": "35296b70a1dbecb3591ed6a61f39840daa14c5c3f4ccb4f334d74c17bcafa675",
+      "archive_disposition": "unresolved",
+      "reuse_class": "semantic_rederivation_only_no_copy_or_execution",
+      "read_line_locators": [
+        2,
+        5,
+        6,
+        7,
+        8
+      ],
+      "line_quotes": [
+        {
+          "line": 2,
+          "text": "  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\","
+        },
+        {
+          "line": 5,
+          "text": "  \"type\": \"object\","
+        },
+        {
+          "line": 6,
+          "text": "  \"additionalProperties\": false,"
+        },
+        {
+          "line": 7,
+          "text": "  \"required\": ["
+        },
+        {
+          "line": 8,
+          "text": "    \"schema_version\","
+        }
+      ],
+      "preserve": "required/閉じたrecord/型と意味authorityの分離。",
+      "change": "旧IR authority/shard/固定schemaをcopyせず022の6契約に対応するlogical schemaへ再導出。",
+      "reason": "未定義shapeを実装者の補完へ残さず、構造PASSから実資格/段階/承認を作らない。",
+      "failure_basis": "既存022のrequired/unknown/型条件が文字列のみで、一致する意味反例と構造不正を別に検証する入口が無かった。",
+      "limit": "旧configは非実行。旧candidate/schemaの採用や現行authorityを生成しない。"
     }
   ],
   "full_goal_scope_preserved": {
@@ -468,7 +523,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "全6契約の全構造/複合/全typedfinding/正式schema-codec/原資料と実owner/適用条件・同段階再検証binding/対L6L7凍結/実装準備の設計閉包。",
+    "全6契約の全構造/複合/全typedfinding/正式schema-codec/原資料と実owner/適用条件・同段階再検証binding/対L6L7凍結/実装準備の設計閉包。 6契約のlogical structureを具体化。LogicalJson内詳細shape/全typedfinding/正式codec/実owner/凍結は未完。",
     "F04全構造/複合/全finding/Context資格、正式schema/codec/実owner/原記録供給・利用者本人性binding。",
     "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。",
     "F04独立Contextとの不一致/actual資格欠落4例、candidate path JSON Pointer写像を追加。全副次finding/実owner bindingは未完。",
@@ -488,7 +543,7 @@
     "Text": "nonempty Unicode scalar string",
     "RawText": "Unicode scalar string（不正/unknown受領宣言を補正しない）",
     "Digest": "64 lowercase hex SHA-256",
-    "LogicalJson": "null/bool/Text/exact finite decimal/array/object、boolとnumberは別、重複key/UTF8はcodecへ",
+    "LogicalJson": "null/bool/RawText/exact finite decimal/array/object、boolとnumberは別、重複key/UTF8はcodecへ。JSON stringは空を含み、qualified Textの非空条件は各宣言fieldで別検査。",
     "Target": {
       "artifact_identity": "Text",
       "artifact_revision": "Text",
@@ -586,7 +641,7 @@
     },
     "Finding": {
       "code": "Text",
-      "pointer": "Text（JSON Pointer）",
+      "pointer": "JsonPointer",
       "material_role": "MaterialRole | null",
       "return_owner": "Text",
       "source_case_code": "Text | null（元caseのcodeを保全）"
@@ -1872,5 +1927,3618 @@
       ],
       "scope_limit": "B01部分詳細。全構造/複合/全typedfinding/正式schema-codec/各原資料と実owner・再検証binding/L6L7凍結は未完。"
     }
-  ]
+  ],
+  "logical_structure_schema": {
+    "status": "draft_design_structural_projection_not_wire_registry",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "source_revision": "df528e4ebce454acfbd2e9bd6c443f248e1764ef",
+    "meaning_source": "本書typesと6functions。型/required/unknown/enum/literal/nullable/map/tupleの構造具体化。descriptionの意味条件はdomain/codecへ保持。",
+    "dialect_sources": [
+      "https://json-schema.org/draft/2020-12/json-schema-core",
+      "https://json-schema.org/draft/2020-12/json-schema-validation"
+    ],
+    "entrypoints": [
+      {
+        "design_ref": "HARNESS-L5-022-F04",
+        "input": "AcceptanceInput",
+        "context": "AcceptanceContext",
+        "candidate": "AcceptanceCandidate",
+        "value": "AcceptanceValue",
+        "result": "AcceptanceResult",
+        "finding": "Finding"
+      },
+      {
+        "design_ref": "HARNESS-L5-022-F01",
+        "input": "StageInputsInput",
+        "context": "StageInputsContext",
+        "candidate": "StageInputsCandidate",
+        "value": "StageInputsValue",
+        "result": "StageInputsResult",
+        "finding": "StageInputFinding"
+      },
+      {
+        "design_ref": "HARNESS-L5-022-F02",
+        "input": "IntegratedProofInput",
+        "context": "IntegratedProofContext",
+        "candidate": "IntegratedProofCandidate",
+        "value": "IntegratedProofValue",
+        "result": "IntegratedProofResult",
+        "finding": "IntegratedProofFinding"
+      },
+      {
+        "design_ref": "HARNESS-L5-022-F03",
+        "input": "SystemDifferenceInput",
+        "context": "SystemDifferenceContext",
+        "candidate": "SystemDifferenceCandidate",
+        "value": "SystemDifferenceValue",
+        "result": "SystemDifferenceResult",
+        "finding": "SystemDifferenceFinding"
+      },
+      {
+        "design_ref": "HARNESS-L5-022-N01",
+        "input": "UnseenInput",
+        "context": "UnseenContext",
+        "candidate": "UnseenCandidate",
+        "value": "UnseenValue",
+        "result": "UnseenResult",
+        "finding": "UnseenFinding"
+      },
+      {
+        "design_ref": "HARNESS-L5-022-B01",
+        "input": "OwnerBackflowInput",
+        "context": "OwnerBackflowContext",
+        "candidate": "OwnerBackflowCandidate",
+        "value": "OwnerBackflowValue",
+        "result": "OwnerBackflowResult",
+        "finding": "OwnerBackflowFinding"
+      }
+    ],
+    "schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$comment": "022の6契約のlogical shape設計。引数型をconsumerが明示選択しlocal $defsで解決する。wire registry/codec/owner資格/意味成功は別。",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/AcceptanceInput"
+        },
+        {
+          "$ref": "#/$defs/StageInputsInput"
+        },
+        {
+          "$ref": "#/$defs/IntegratedProofInput"
+        },
+        {
+          "$ref": "#/$defs/SystemDifferenceInput"
+        },
+        {
+          "$ref": "#/$defs/UnseenInput"
+        },
+        {
+          "$ref": "#/$defs/OwnerBackflowInput"
+        }
+      ],
+      "$defs": {
+        "Text": {
+          "type": "string",
+          "minLength": 1,
+          "$comment": "非空原Unicode scalar文字列。trim/normalize/置換なし。scalar/strict UTF8はcodecへ。"
+        },
+        "RawText": {
+          "type": "string",
+          "$comment": "原Unicode scalar文字列。空/unknown宣言を補完しない。scalar/strict UTF8はcodecへ。"
+        },
+        "Digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+        },
+        "JsonPointer": {
+          "type": "string",
+          "pattern": "^(?:/(?:[^~/]|~[01])*)*(?![\\s\\S])"
+        },
+        "LogicalJson": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/LogicalJson"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/LogicalJson"
+              }
+            }
+          ],
+          "$comment": "受領JSON論理値。空string/不正domain宣言の原値を保持。有限値/bool-number/strict Unicode/重複keyはcodec、役割/資格/exact joinはdomainへ。"
+        },
+        "MaterialRole": {
+          "type": "string",
+          "enum": [
+            "Verified_basis",
+            "L2_meaning",
+            "L11_oracle",
+            "L11_content_result",
+            "user_decision",
+            "user_receipt"
+          ]
+        },
+        "Stage": {
+          "type": "string",
+          "enum": [
+            "Integrated",
+            "Verified",
+            "Accepted"
+          ]
+        },
+        "Target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "artifact_identity",
+            "artifact_revision",
+            "requirement_revision",
+            "scope"
+          ],
+          "properties": {
+            "artifact_identity": {
+              "$ref": "#/$defs/Text"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "scope": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "MaterialRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "artifact_identity",
+            "artifact_revision",
+            "contents",
+            "evidence_id",
+            "execution",
+            "identity",
+            "oracle_revision",
+            "owner",
+            "pair",
+            "requirement_revision",
+            "scope",
+            "source_id"
+          ],
+          "properties": {
+            "artifact_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "contents": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "evidence_id": {
+              "$ref": "#/$defs/RawText"
+            },
+            "execution": {
+              "$ref": "#/$defs/RawText"
+            },
+            "identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "oracle_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "owner": {
+              "$ref": "#/$defs/RawText"
+            },
+            "pair": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "scope": {
+              "$ref": "#/$defs/RawText"
+            },
+            "source_id": {
+              "$ref": "#/$defs/RawText"
+            }
+          }
+        },
+        "EvidenceRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "artifact_identity",
+            "artifact_revision",
+            "contents",
+            "identity",
+            "oracle_revision",
+            "owner",
+            "pair",
+            "requirement_revision",
+            "scope",
+            "source_id"
+          ],
+          "properties": {
+            "artifact_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "contents": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "oracle_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "owner": {
+              "$ref": "#/$defs/RawText"
+            },
+            "pair": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "scope": {
+              "$ref": "#/$defs/RawText"
+            },
+            "source_id": {
+              "$ref": "#/$defs/RawText"
+            }
+          }
+        },
+        "UserDecisionRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "artifact_identity",
+            "artifact_revision",
+            "authority",
+            "decision",
+            "identity",
+            "owner",
+            "requirement_revision",
+            "revision",
+            "scope",
+            "source_id"
+          ],
+          "properties": {
+            "artifact_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "authority": {
+              "$ref": "#/$defs/RawText"
+            },
+            "decision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "owner": {
+              "$ref": "#/$defs/RawText"
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "scope": {
+              "$ref": "#/$defs/RawText"
+            },
+            "source_id": {
+              "$ref": "#/$defs/RawText"
+            }
+          }
+        },
+        "AcceptanceInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "context",
+            "materials",
+            "evidence_materials",
+            "independent_profiles",
+            "independent_user_record",
+            "CI_green",
+            "L10_pass",
+            "producer",
+            "executor",
+            "unrelated_scope"
+          ],
+          "properties": {
+            "context": {
+              "$ref": "#/$defs/Target"
+            },
+            "materials": {
+              "type": "object",
+              "properties": {
+                "Verified_basis": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/MaterialRecord"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "L2_meaning": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/MaterialRecord"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "L11_oracle": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/MaterialRecord"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "L11_content_result": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/MaterialRecord"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "user_decision": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/MaterialRecord"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "user_receipt": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/MaterialRecord"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "$comment": "closed key vocabulary。必要roleの有無/人口exactは各domain契約へ。未提示roleを自動補完しない。"
+            },
+            "evidence_materials": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/EvidenceRecord"
+              }
+            },
+            "independent_profiles": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/LogicalJson"
+              }
+            },
+            "independent_user_record": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/UserDecisionRecord"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "CI_green": {
+              "type": "boolean"
+            },
+            "L10_pass": {
+              "type": "boolean"
+            },
+            "producer": {
+              "$ref": "#/$defs/RawText"
+            },
+            "executor": {
+              "$ref": "#/$defs/RawText"
+            },
+            "unrelated_scope": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "AcceptanceContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "expected_profiles",
+            "original_user_record",
+            "expected_material_owners",
+            "expected_user_owner",
+            "material_roles",
+            "expected_pairs",
+            "evidence_kind",
+            "snapshot_revision",
+            "qualification"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/Target"
+            },
+            "expected_profiles": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/LogicalJson"
+              }
+            },
+            "original_user_record": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/UserDecisionRecord"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "expected_material_owners": {
+              "type": "object",
+              "properties": {
+                "Verified_basis": {
+                  "$ref": "#/$defs/Text"
+                },
+                "L2_meaning": {
+                  "$ref": "#/$defs/Text"
+                },
+                "L11_oracle": {
+                  "$ref": "#/$defs/Text"
+                },
+                "L11_content_result": {
+                  "$ref": "#/$defs/Text"
+                },
+                "user_decision": {
+                  "$ref": "#/$defs/Text"
+                },
+                "user_receipt": {
+                  "$ref": "#/$defs/Text"
+                }
+              },
+              "additionalProperties": false,
+              "$comment": "closed key vocabulary。必要roleの有無/人口exactは各domain契約へ。未提示roleを自動補完しない。"
+            },
+            "expected_user_owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "material_roles": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/MaterialRole"
+              }
+            },
+            "expected_pairs": {
+              "type": "object",
+              "properties": {
+                "Verified_basis": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Text"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "L2_meaning": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Text"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "L11_oracle": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Text"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "L11_content_result": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Text"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "user_decision": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Text"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "user_receipt": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Text"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false,
+              "$comment": "closed key vocabulary。必要roleの有無/人口exactは各domain契約へ。未提示roleを自動補完しない。"
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "snapshot_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "qualification": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/LogicalJson"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "AcceptanceValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "material_results",
+            "material_findings",
+            "unresolved_materials",
+            "owner_return_candidates",
+            "user_record_findings",
+            "verified_candidate",
+            "content_oracle_candidate",
+            "user_acceptance_candidate",
+            "accepted_candidate",
+            "semantic_backflow_candidate",
+            "CI_or_L10_is_user_receipt",
+            "external_and_internal_same_contract",
+            "unrelated_Q",
+            "actual_stage_promoted",
+            "actual_accepted",
+            "actual_CI_executed"
+          ],
+          "properties": {
+            "material_results": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "material_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "unresolved_materials": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "owner_return_candidates": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "user_record_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "verified_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "content_oracle_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "user_acceptance_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "accepted_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "semantic_backflow_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "CI_or_L10_is_user_receipt": {
+              "const": false
+            },
+            "external_and_internal_same_contract": {
+              "const": true
+            },
+            "unrelated_Q": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "actual_stage_promoted": {
+              "const": false
+            },
+            "actual_accepted": {
+              "const": false
+            },
+            "actual_CI_executed": {
+              "const": false
+            }
+          }
+        },
+        "AcceptanceResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "candidate_disposition",
+            "candidate_conflicting_paths"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_compared",
+                "invalid",
+                "unresolved"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/AcceptanceValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Finding"
+              }
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_paths": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JsonPointer"
+              }
+            }
+          }
+        },
+        "Finding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "material_role",
+            "return_owner",
+            "source_case_code"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "context_unresolved",
+                "target_conflict",
+                "material_missing",
+                "material_stale",
+                "material_unknown",
+                "material_conflict",
+                "user_record_missing",
+                "user_record_conflict",
+                "candidate_conflict",
+                "projection_not_authority"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "material_role": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MaterialRole"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "source_case_code": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "StageInputId": {
+          "$ref": "#/$defs/Text"
+        },
+        "StageInputRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "identity",
+            "used_version",
+            "source_id",
+            "owner",
+            "artifact_identity",
+            "artifact_revision",
+            "requirement_revision",
+            "scope",
+            "pair_target",
+            "semantic_content",
+            "authority"
+          ],
+          "properties": {
+            "identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "used_version": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_id": {
+              "$ref": "#/$defs/RawText"
+            },
+            "owner": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "scope": {
+              "$ref": "#/$defs/RawText"
+            },
+            "pair_target": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "semantic_content": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "authority": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "IndependentStageInputContract": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "identity",
+            "used_version",
+            "source_id",
+            "owner",
+            "artifact_identity",
+            "artifact_revision",
+            "requirement_revision",
+            "scope",
+            "pair_target",
+            "semantic_content"
+          ],
+          "properties": {
+            "identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "used_version": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_id": {
+              "$ref": "#/$defs/RawText"
+            },
+            "owner": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "scope": {
+              "$ref": "#/$defs/RawText"
+            },
+            "pair_target": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "semantic_content": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "StageInputsInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "context",
+            "independent_input_contracts",
+            "stage_required_input_ids",
+            "inputs",
+            "artifact_origin",
+            "OS_present",
+            "executor",
+            "unrelated_scope",
+            "qualification"
+          ],
+          "properties": {
+            "context": {
+              "$ref": "#/$defs/Target"
+            },
+            "independent_input_contracts": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/StageInputId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/IndependentStageInputContract"
+              }
+            },
+            "stage_required_input_ids": {
+              "type": "object",
+              "properties": {
+                "Integrated": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/StageInputId"
+                  }
+                },
+                "Verified": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/StageInputId"
+                  }
+                },
+                "Accepted": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/StageInputId"
+                  }
+                }
+              },
+              "additionalProperties": false,
+              "$comment": "closed key vocabulary。必要roleの有無/人口exactは各domain契約へ。未提示roleを自動補完しない。"
+            },
+            "inputs": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/StageInputId"
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/StageInputRecord"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "artifact_origin": {
+              "$ref": "#/$defs/RawText"
+            },
+            "OS_present": {
+              "type": "boolean"
+            },
+            "executor": {
+              "$ref": "#/$defs/RawText"
+            },
+            "unrelated_scope": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "qualification": {
+              "$ref": "#/$defs/RawText"
+            }
+          }
+        },
+        "StageInputsContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "input_contracts",
+            "required_input_ids_by_stage",
+            "pair_targets",
+            "evidence_kind",
+            "snapshot_revision",
+            "original_owner_qualification"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/Target"
+            },
+            "input_contracts": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/StageInputId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/IndependentStageInputContract"
+              }
+            },
+            "required_input_ids_by_stage": {
+              "type": "object",
+              "properties": {
+                "Integrated": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/StageInputId"
+                  }
+                },
+                "Verified": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/StageInputId"
+                  }
+                },
+                "Accepted": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/StageInputId"
+                  }
+                }
+              },
+              "additionalProperties": false,
+              "$comment": "closed key vocabulary。必要roleの有無/人口exactは各domain契約へ。未提示roleを自動補完しない。"
+            },
+            "pair_targets": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/StageInputId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/StageInputId"
+              }
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "snapshot_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "original_owner_qualification": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/LogicalJson"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "StageInputsValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "input_results",
+            "input_findings",
+            "stage_input_results",
+            "stage_unresolved_input_ids",
+            "owner_return_candidates",
+            "external_and_internal_same_contract",
+            "actual_stage_promoted",
+            "actual_provisional_established",
+            "actual_CI_executed",
+            "actual_accepted",
+            "unrelated_Q"
+          ],
+          "properties": {
+            "input_results": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "input_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "stage_input_results": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "stage_unresolved_input_ids": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "owner_return_candidates": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "external_and_internal_same_contract": {
+              "const": true
+            },
+            "actual_stage_promoted": {
+              "const": false
+            },
+            "actual_provisional_established": {
+              "const": false
+            },
+            "actual_CI_executed": {
+              "const": false
+            },
+            "actual_accepted": {
+              "const": false
+            },
+            "unrelated_Q": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "StageInputFinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "input_id",
+            "stage",
+            "return_owner",
+            "source_case_code"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "context_unresolved",
+                "input_missing",
+                "input_unknown",
+                "input_stale",
+                "input_conflict",
+                "stage_input_unresolved",
+                "candidate_conflict",
+                "projection_not_authority"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "input_id": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/StageInputId"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "stage": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Stage"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "source_case_code": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "StageInputsResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "candidate_disposition",
+            "candidate_conflicting_paths"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_compared",
+                "unresolved",
+                "invalid"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/StageInputsValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/StageInputFinding"
+              }
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_paths": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JsonPointer"
+              }
+            }
+          }
+        },
+        "IntegratedProofId": {
+          "$ref": "#/$defs/Text"
+        },
+        "IntegratedProofMaterial": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "artifact_identity",
+            "artifact_revision",
+            "evidence",
+            "execution",
+            "observations",
+            "oracle_revision",
+            "owner",
+            "pair",
+            "requirement_revision",
+            "scope",
+            "source_id"
+          ],
+          "properties": {
+            "artifact_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "evidence": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "execution": {
+              "$ref": "#/$defs/RawText"
+            },
+            "observations": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "oracle_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "owner": {
+              "$ref": "#/$defs/RawText"
+            },
+            "pair": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "scope": {
+              "$ref": "#/$defs/RawText"
+            },
+            "source_id": {
+              "$ref": "#/$defs/RawText"
+            },
+            "before_artifact_revision": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "IntegratedProofEvidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "artifact_identity",
+            "artifact_revision",
+            "identity",
+            "observations",
+            "oracle_revision",
+            "owner",
+            "pair",
+            "requirement_revision",
+            "scope",
+            "source_id"
+          ],
+          "properties": {
+            "artifact_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "observations": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "oracle_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "owner": {
+              "$ref": "#/$defs/RawText"
+            },
+            "pair": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "scope": {
+              "$ref": "#/$defs/RawText"
+            },
+            "source_id": {
+              "$ref": "#/$defs/RawText"
+            }
+          }
+        },
+        "RefactorDeclaration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "after_artifact_revision",
+            "before_artifact_revision",
+            "performed",
+            "semantic_change",
+            "stage"
+          ],
+          "properties": {
+            "after_artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "before_artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "performed": {
+              "type": "boolean"
+            },
+            "semantic_change": {
+              "type": "boolean"
+            },
+            "stage": {
+              "$ref": "#/$defs/RawText"
+            }
+          }
+        },
+        "IntegratedProofInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "context",
+            "independent_oracles",
+            "materials",
+            "evidence_materials",
+            "refactor",
+            "atomic_ci",
+            "producer",
+            "executor",
+            "unrelated_scope"
+          ],
+          "properties": {
+            "context": {
+              "$ref": "#/$defs/Target"
+            },
+            "independent_oracles": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/IntegratedProofId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/LogicalJson"
+              }
+            },
+            "materials": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/IntegratedProofId"
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/IntegratedProofMaterial"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "evidence_materials": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/IntegratedProofEvidence"
+              }
+            },
+            "refactor": {
+              "$ref": "#/$defs/RefactorDeclaration"
+            },
+            "atomic_ci": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "producer": {
+              "$ref": "#/$defs/RawText"
+            },
+            "executor": {
+              "$ref": "#/$defs/RawText"
+            },
+            "unrelated_scope": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "IntegratedProofContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "expected_oracles",
+            "expected_material_owners",
+            "expected_source_ids",
+            "expected_oracle_revisions",
+            "required_without_refactor",
+            "additional_after_refactor",
+            "pairs",
+            "boundary_dimensions",
+            "refactor_required",
+            "before_artifact_revision",
+            "stage",
+            "evidence_kind",
+            "snapshot_revision",
+            "original_owner_qualification"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/Target"
+            },
+            "expected_oracles": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/IntegratedProofId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/LogicalJson"
+              }
+            },
+            "expected_material_owners": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/IntegratedProofId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "expected_source_ids": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/IntegratedProofId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "expected_oracle_revisions": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/IntegratedProofId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "required_without_refactor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/IntegratedProofId"
+              }
+            },
+            "additional_after_refactor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/IntegratedProofId"
+              }
+            },
+            "pairs": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/IntegratedProofId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "boundary_dimensions": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/LogicalJson"
+              }
+            },
+            "refactor_required": {
+              "type": "boolean"
+            },
+            "before_artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "stage": {
+              "$ref": "#/$defs/RawText"
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "snapshot_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "original_owner_qualification": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/LogicalJson"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "IntegratedProofValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "proof_results",
+            "proof_findings",
+            "unresolved_proofs",
+            "owner_return_candidates",
+            "refactor_findings",
+            "integrated_candidate",
+            "provisional_candidate",
+            "refactor_reverification_required",
+            "atomic_CI_is_integration_proof",
+            "external_and_internal_same_contract",
+            "unrelated_Q",
+            "actual_stage_promoted",
+            "actual_CI_executed",
+            "actual_refactor_executed",
+            "actual_accepted"
+          ],
+          "properties": {
+            "proof_results": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "proof_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "unresolved_proofs": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "owner_return_candidates": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "refactor_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "integrated_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "provisional_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "refactor_reverification_required": {
+              "type": "boolean"
+            },
+            "atomic_CI_is_integration_proof": {
+              "const": false
+            },
+            "external_and_internal_same_contract": {
+              "const": true
+            },
+            "unrelated_Q": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "actual_stage_promoted": {
+              "const": false
+            },
+            "actual_CI_executed": {
+              "const": false
+            },
+            "actual_refactor_executed": {
+              "const": false
+            },
+            "actual_accepted": {
+              "const": false
+            }
+          }
+        },
+        "IntegratedProofFinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "proof_id",
+            "return_owner",
+            "source_case_code"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "context_unresolved",
+                "proof_missing",
+                "proof_stale",
+                "proof_unknown",
+                "proof_conflict",
+                "refactor_reverification_missing",
+                "meaning_change_backflow",
+                "candidate_conflict",
+                "projection_not_authority"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "proof_id": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/IntegratedProofId"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "source_case_code": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "IntegratedProofResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "candidate_disposition",
+            "candidate_conflicting_paths"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_compared",
+                "unresolved",
+                "invalid"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/IntegratedProofValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/IntegratedProofFinding"
+              }
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_paths": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JsonPointer"
+              }
+            }
+          }
+        },
+        "SystemDifferenceRole": {
+          "$ref": "#/$defs/Text"
+        },
+        "SystemDifferenceInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "context",
+            "evidence_materials",
+            "executor",
+            "independent_profiles",
+            "materials",
+            "producer",
+            "trace_present",
+            "unrelated_scope"
+          ],
+          "properties": {
+            "context": {
+              "$ref": "#/$defs/Target"
+            },
+            "evidence_materials": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/EvidenceRecord"
+              }
+            },
+            "executor": {
+              "$ref": "#/$defs/RawText"
+            },
+            "independent_profiles": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/LogicalJson"
+              }
+            },
+            "materials": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/SystemDifferenceRole"
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/MaterialRecord"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "producer": {
+              "$ref": "#/$defs/RawText"
+            },
+            "trace_present": {
+              "type": "boolean"
+            },
+            "unrelated_scope": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "SystemDifferenceContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "expected_profiles",
+            "expected_material_owners",
+            "expected_source_ids",
+            "expected_oracle_revisions",
+            "pairs",
+            "common_roles",
+            "unique_role_mapping",
+            "selection",
+            "evidence_kind",
+            "snapshot_revision",
+            "original_owner_qualification"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/Target"
+            },
+            "expected_profiles": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/SystemDifferenceRole"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/LogicalJson"
+              }
+            },
+            "expected_material_owners": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/SystemDifferenceRole"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "expected_source_ids": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/SystemDifferenceRole"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "expected_oracle_revisions": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/SystemDifferenceRole"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "pairs": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/SystemDifferenceRole"
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/Text"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "common_roles": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SystemDifferenceRole"
+              }
+            },
+            "unique_role_mapping": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/SystemDifferenceRole"
+              }
+            },
+            "selection": {
+              "type": "string",
+              "enum": [
+                "difference_required",
+                "compositional_no_unique"
+              ]
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "snapshot_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "original_owner_qualification": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/LogicalJson"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "SystemDifferenceValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "whole_obligations",
+            "lower_expressible_obligations",
+            "system_unique_obligations",
+            "proof_results",
+            "proof_findings",
+            "unresolved_proofs",
+            "owner_return_candidates",
+            "verified_candidate",
+            "derivation_kind",
+            "integrated_candidate",
+            "trace_is_system_proof",
+            "external_and_internal_same_contract",
+            "unrelated_Q",
+            "actual_stage_promoted",
+            "actual_CI_executed",
+            "actual_accepted"
+          ],
+          "properties": {
+            "whole_obligations": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "lower_expressible_obligations": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "system_unique_obligations": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "proof_results": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "proof_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "unresolved_proofs": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "owner_return_candidates": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "verified_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "derivation_kind": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "integrated_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "trace_is_system_proof": {
+              "const": false
+            },
+            "external_and_internal_same_contract": {
+              "const": true
+            },
+            "unrelated_Q": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "actual_stage_promoted": {
+              "const": false
+            },
+            "actual_CI_executed": {
+              "const": false
+            },
+            "actual_accepted": {
+              "const": false
+            }
+          }
+        },
+        "SystemDifferenceFinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "proof_id",
+            "return_owner",
+            "source_case_code"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "context_unresolved",
+                "proof_missing",
+                "proof_stale",
+                "proof_unknown",
+                "proof_conflict",
+                "difference_unresolved",
+                "candidate_conflict",
+                "projection_not_authority"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "proof_id": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SystemDifferenceRole"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "source_case_code": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "SystemDifferenceResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "candidate_disposition",
+            "candidate_conflicting_paths"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_compared",
+                "unresolved",
+                "invalid"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SystemDifferenceValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SystemDifferenceFinding"
+              }
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_paths": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JsonPointer"
+              }
+            }
+          }
+        },
+        "UnseenOracleRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "artifact_identity",
+            "artifact_revision",
+            "body",
+            "identity",
+            "owner",
+            "requirement_revision",
+            "revision",
+            "scope",
+            "stage",
+            "valid_from_epoch",
+            "valid_until_epoch"
+          ],
+          "properties": {
+            "artifact_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "body": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "owner": {
+              "$ref": "#/$defs/RawText"
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "scope": {
+              "$ref": "#/$defs/RawText"
+            },
+            "stage": {
+              "$ref": "#/$defs/RawText"
+            },
+            "valid_from_epoch": {
+              "type": "number",
+              "$comment": "数学JSON number。boolをnumberにせず有限性/任意精度/host安全性はcodecで別照合。"
+            },
+            "valid_until_epoch": {
+              "type": "number",
+              "$comment": "数学JSON number。boolをnumberにせず有限性/任意精度/host安全性はcodecで別照合。"
+            }
+          }
+        },
+        "UnseenResultRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "artifact_identity",
+            "artifact_revision",
+            "evidence_ref",
+            "execution",
+            "identity",
+            "observations",
+            "oracle_identity",
+            "oracle_revision",
+            "owner",
+            "requirement_revision",
+            "scope",
+            "stage"
+          ],
+          "properties": {
+            "artifact_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "evidence_ref": {
+              "$ref": "#/$defs/RawText"
+            },
+            "execution": {
+              "$ref": "#/$defs/RawText"
+            },
+            "identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "observations": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "oracle_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "oracle_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "owner": {
+              "$ref": "#/$defs/RawText"
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "scope": {
+              "$ref": "#/$defs/RawText"
+            },
+            "stage": {
+              "$ref": "#/$defs/RawText"
+            }
+          }
+        },
+        "UnseenEvidenceRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "artifact_identity",
+            "artifact_revision",
+            "identity",
+            "observations",
+            "oracle_identity",
+            "oracle_revision",
+            "owner",
+            "requirement_revision",
+            "scope",
+            "stage",
+            "valid_until_epoch"
+          ],
+          "properties": {
+            "artifact_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "observations": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "oracle_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "oracle_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "owner": {
+              "$ref": "#/$defs/RawText"
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "scope": {
+              "$ref": "#/$defs/RawText"
+            },
+            "stage": {
+              "$ref": "#/$defs/RawText"
+            },
+            "valid_until_epoch": {
+              "type": "number",
+              "$comment": "数学JSON number。boolをnumberにせず有限性/任意精度/host安全性はcodecで別照合。"
+            }
+          }
+        },
+        "UnseenTarget": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "artifact_identity",
+            "artifact_revision",
+            "requirement_revision",
+            "scope",
+            "stage"
+          ],
+          "properties": {
+            "artifact_identity": {
+              "$ref": "#/$defs/Text"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "stage": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "UnseenInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "context",
+            "evidence",
+            "executor",
+            "improvement_score",
+            "independent_oracle_body",
+            "lower_stage_pass",
+            "observation_epoch",
+            "oracle",
+            "other_artifact_pass",
+            "prior_confirmed_receipts",
+            "producer",
+            "result",
+            "unrelated_scope"
+          ],
+          "properties": {
+            "context": {
+              "$ref": "#/$defs/UnseenTarget"
+            },
+            "evidence": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/UnseenEvidenceRecord"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "executor": {
+              "$ref": "#/$defs/RawText"
+            },
+            "improvement_score": {
+              "type": "number",
+              "$comment": "数学JSON number。boolをnumberにせず有限性/任意精度/host安全性はcodecで別照合。"
+            },
+            "independent_oracle_body": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "lower_stage_pass": {
+              "type": "boolean"
+            },
+            "observation_epoch": {
+              "type": "number",
+              "$comment": "数学JSON number。boolをnumberにせず有限性/任意精度/host安全性はcodecで別照合。"
+            },
+            "oracle": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/UnseenOracleRecord"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "other_artifact_pass": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "prior_confirmed_receipts": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "producer": {
+              "$ref": "#/$defs/RawText"
+            },
+            "result": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/UnseenResultRecord"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unrelated_scope": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "UnseenContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "expected_behavior",
+            "expected_owners",
+            "expected_oracle_identity",
+            "expected_oracle_revision",
+            "expected_evidence_identity",
+            "observation_epoch",
+            "prior_receipt_limit",
+            "evidence_kind",
+            "snapshot_revision",
+            "original_owner_qualification"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/UnseenTarget"
+            },
+            "expected_behavior": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "expected_owners": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "enum": [
+                  "oracle",
+                  "result",
+                  "evidence"
+                ]
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "expected_oracle_identity": {
+              "$ref": "#/$defs/Text"
+            },
+            "expected_oracle_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "expected_evidence_identity": {
+              "$ref": "#/$defs/Text"
+            },
+            "observation_epoch": {
+              "type": "number",
+              "$comment": "数学JSON number。boolをnumberにせず有限性/任意精度/host安全性はcodecで別照合。"
+            },
+            "prior_receipt_limit": {
+              "$ref": "#/$defs/Text"
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "snapshot_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "original_owner_qualification": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/LogicalJson"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "UnseenValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "current_evaluation",
+            "current_findings",
+            "evaluated_scope",
+            "prior_confirmed_receipts",
+            "prior_receipts_are_current_proof",
+            "other_artifact_pass_is_current_proof",
+            "lower_stage_pass_is_upper_proof",
+            "improvement_score_role",
+            "all_code_or_product_guarantee",
+            "actual_stage_promoted",
+            "actual_accepted",
+            "actual_requirements_approved",
+            "external_and_internal_same_contract",
+            "unrelated_Q"
+          ],
+          "properties": {
+            "current_evaluation": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "current_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "evaluated_scope": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "prior_confirmed_receipts": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "prior_receipts_are_current_proof": {
+              "const": false
+            },
+            "other_artifact_pass_is_current_proof": {
+              "const": false
+            },
+            "lower_stage_pass_is_upper_proof": {
+              "const": false
+            },
+            "improvement_score_role": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "all_code_or_product_guarantee": {
+              "const": false
+            },
+            "actual_stage_promoted": {
+              "const": false
+            },
+            "actual_accepted": {
+              "const": false
+            },
+            "actual_requirements_approved": {
+              "const": false
+            },
+            "external_and_internal_same_contract": {
+              "const": true
+            },
+            "unrelated_Q": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "UnseenFinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "record_role",
+            "return_owner",
+            "source_case_code"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "context_unresolved",
+                "record_missing",
+                "target_mismatch",
+                "oracle_conflict",
+                "validity_unresolved",
+                "expired",
+                "not_yet_valid",
+                "result_not_executed",
+                "reference_unresolved",
+                "content_conflict",
+                "candidate_conflict",
+                "projection_not_authority"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "record_role": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "const": "oracle"
+                },
+                {
+                  "type": "string",
+                  "const": "result"
+                },
+                {
+                  "type": "string",
+                  "const": "evidence"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "source_case_code": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "UnseenResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "candidate_disposition",
+            "candidate_conflicting_paths"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_compared",
+                "unresolved",
+                "invalid"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/UnseenValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/UnseenFinding"
+              }
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_paths": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JsonPointer"
+              }
+            }
+          }
+        },
+        "StageImportRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "artifact_identity",
+            "artifact_revision",
+            "original_source_revision",
+            "partial_expected_sha256",
+            "requirement_revision",
+            "scope",
+            "source_case_ref",
+            "source_packet_sha256",
+            "stage",
+            "stage_observation",
+            "stage_observation_key"
+          ],
+          "properties": {
+            "artifact_identity": {
+              "$ref": "#/$defs/RawText"
+            },
+            "artifact_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "original_source_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "partial_expected_sha256": {
+              "$ref": "#/$defs/RawText"
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/RawText"
+            },
+            "scope": {
+              "$ref": "#/$defs/RawText"
+            },
+            "source_case_ref": {
+              "$ref": "#/$defs/RawText"
+            },
+            "source_packet_sha256": {
+              "$ref": "#/$defs/RawText"
+            },
+            "stage": {
+              "$ref": "#/$defs/RawText"
+            },
+            "stage_observation": {
+              "$ref": "#/$defs/RawText"
+            },
+            "stage_observation_key": {
+              "$ref": "#/$defs/RawText"
+            }
+          }
+        },
+        "OwnerBackflowInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "OS_installed",
+            "context",
+            "executor",
+            "finding_layer",
+            "finding_present",
+            "independent_stage_profiles",
+            "meaning_contract_owner",
+            "observed_meaning",
+            "original_meaning",
+            "producer",
+            "record_owner",
+            "requested_import_stage",
+            "right_refactor_reverified",
+            "service_4_used",
+            "stage_materials",
+            "unrelated_scope"
+          ],
+          "properties": {
+            "OS_installed": {
+              "type": "boolean"
+            },
+            "context": {
+              "$ref": "#/$defs/Target"
+            },
+            "executor": {
+              "$ref": "#/$defs/RawText"
+            },
+            "finding_layer": {
+              "$ref": "#/$defs/RawText"
+            },
+            "finding_present": {
+              "type": "boolean"
+            },
+            "independent_stage_profiles": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/StageImportRecord"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "meaning_contract_owner": {
+              "$ref": "#/$defs/RawText"
+            },
+            "observed_meaning": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/RawText"
+              }
+            },
+            "original_meaning": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/RawText"
+              }
+            },
+            "producer": {
+              "$ref": "#/$defs/RawText"
+            },
+            "record_owner": {
+              "$ref": "#/$defs/RawText"
+            },
+            "requested_import_stage": {
+              "$ref": "#/$defs/RawText"
+            },
+            "right_refactor_reverified": {
+              "type": "boolean"
+            },
+            "service_4_used": {
+              "type": "boolean"
+            },
+            "stage_materials": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/StageImportRecord"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "unrelated_scope": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "OwnerBackflowContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "original_meaning",
+            "comparison_order",
+            "route_map",
+            "expected_stage_profiles",
+            "resolved_stage_sources",
+            "expected_meaning_owner",
+            "allowed_executors",
+            "allowed_record_owners",
+            "reverification_required",
+            "evidence_kind",
+            "snapshot_revision",
+            "original_owner_qualification"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/Target"
+            },
+            "original_meaning": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/RawText"
+              }
+            },
+            "comparison_order": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "route_map": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "expected_stage_profiles": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/StageImportRecord"
+              }
+            },
+            "resolved_stage_sources": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/LogicalJson"
+              }
+            },
+            "expected_meaning_owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "allowed_executors": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "allowed_record_owners": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "reverification_required": {
+              "type": "boolean"
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "snapshot_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "original_owner_qualification": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/LogicalJson"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "OwnerBackflowValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "meaning_differences",
+            "action_candidate",
+            "backflow_owner_candidate",
+            "same_stage_reverification_required",
+            "same_stage_reverification_status",
+            "stage_material_results",
+            "requested_import_stage",
+            "service_6_import_candidate",
+            "owner_findings",
+            "meaning_contract_owner",
+            "execution_record_owner",
+            "OS_or_service_4_mandatory",
+            "unrelated_Q",
+            "actual_import_executed",
+            "actual_stage_promoted",
+            "actual_accepted",
+            "left_authority_changed",
+            "actual_ticket_issued"
+          ],
+          "properties": {
+            "meaning_differences": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "action_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "backflow_owner_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "same_stage_reverification_required": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "same_stage_reverification_status": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "stage_material_results": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "requested_import_stage": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "service_6_import_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "owner_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "meaning_contract_owner": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "execution_record_owner": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "OS_or_service_4_mandatory": {
+              "const": false
+            },
+            "unrelated_Q": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "actual_import_executed": {
+              "const": false
+            },
+            "actual_stage_promoted": {
+              "const": false
+            },
+            "actual_accepted": {
+              "const": false
+            },
+            "left_authority_changed": {
+              "const": false
+            },
+            "actual_ticket_issued": {
+              "const": false
+            }
+          }
+        },
+        "OwnerBackflowFinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "subject",
+            "return_owner",
+            "source_case_code"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "context_unresolved",
+                "meaning_difference",
+                "reverification_missing",
+                "stage_missing",
+                "stage_conflict",
+                "owner_conflict",
+                "candidate_conflict",
+                "projection_not_authority"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "subject": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "source_case_code": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "OwnerBackflowResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "candidate_disposition",
+            "candidate_conflicting_paths"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_compared",
+                "unresolved",
+                "invalid"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/OwnerBackflowValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OwnerBackflowFinding"
+              }
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_paths": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JsonPointer"
+              }
+            }
+          }
+        },
+        "AcceptanceCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "material_results",
+            "material_findings",
+            "unresolved_materials",
+            "owner_return_candidates",
+            "user_record_findings",
+            "verified_candidate",
+            "content_oracle_candidate",
+            "user_acceptance_candidate",
+            "accepted_candidate",
+            "semantic_backflow_candidate",
+            "CI_or_L10_is_user_receipt",
+            "external_and_internal_same_contract",
+            "unrelated_Q",
+            "actual_stage_promoted",
+            "actual_accepted",
+            "actual_CI_executed"
+          ],
+          "properties": {
+            "material_results": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "material_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "unresolved_materials": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "owner_return_candidates": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "user_record_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "verified_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "content_oracle_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "user_acceptance_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "accepted_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "semantic_backflow_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "CI_or_L10_is_user_receipt": {
+              "type": "boolean"
+            },
+            "external_and_internal_same_contract": {
+              "type": "boolean"
+            },
+            "unrelated_Q": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "actual_stage_promoted": {
+              "type": "boolean"
+            },
+            "actual_accepted": {
+              "type": "boolean"
+            },
+            "actual_CI_executed": {
+              "type": "boolean"
+            }
+          },
+          "$comment": "候補は閉じた受領shape。同primitive型のliteral/enum外の原提出値を保全しdomain比較でconflict。未知field/異primitive型は構造finding、成功へ補正しない。"
+        },
+        "StageInputsCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "input_results",
+            "input_findings",
+            "stage_input_results",
+            "stage_unresolved_input_ids",
+            "owner_return_candidates",
+            "external_and_internal_same_contract",
+            "actual_stage_promoted",
+            "actual_provisional_established",
+            "actual_CI_executed",
+            "actual_accepted",
+            "unrelated_Q"
+          ],
+          "properties": {
+            "input_results": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "input_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "stage_input_results": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "stage_unresolved_input_ids": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "owner_return_candidates": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "external_and_internal_same_contract": {
+              "type": "boolean"
+            },
+            "actual_stage_promoted": {
+              "type": "boolean"
+            },
+            "actual_provisional_established": {
+              "type": "boolean"
+            },
+            "actual_CI_executed": {
+              "type": "boolean"
+            },
+            "actual_accepted": {
+              "type": "boolean"
+            },
+            "unrelated_Q": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          },
+          "$comment": "候補は閉じた受領shape。同primitive型のliteral/enum外の原提出値を保全しdomain比較でconflict。未知field/異primitive型は構造finding、成功へ補正しない。"
+        },
+        "IntegratedProofCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "proof_results",
+            "proof_findings",
+            "unresolved_proofs",
+            "owner_return_candidates",
+            "refactor_findings",
+            "integrated_candidate",
+            "provisional_candidate",
+            "refactor_reverification_required",
+            "atomic_CI_is_integration_proof",
+            "external_and_internal_same_contract",
+            "unrelated_Q",
+            "actual_stage_promoted",
+            "actual_CI_executed",
+            "actual_refactor_executed",
+            "actual_accepted"
+          ],
+          "properties": {
+            "proof_results": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "proof_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "unresolved_proofs": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "owner_return_candidates": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "refactor_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "integrated_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "provisional_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "refactor_reverification_required": {
+              "type": "boolean"
+            },
+            "atomic_CI_is_integration_proof": {
+              "type": "boolean"
+            },
+            "external_and_internal_same_contract": {
+              "type": "boolean"
+            },
+            "unrelated_Q": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "actual_stage_promoted": {
+              "type": "boolean"
+            },
+            "actual_CI_executed": {
+              "type": "boolean"
+            },
+            "actual_refactor_executed": {
+              "type": "boolean"
+            },
+            "actual_accepted": {
+              "type": "boolean"
+            }
+          },
+          "$comment": "候補は閉じた受領shape。同primitive型のliteral/enum外の原提出値を保全しdomain比較でconflict。未知field/異primitive型は構造finding、成功へ補正しない。"
+        },
+        "SystemDifferenceCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "whole_obligations",
+            "lower_expressible_obligations",
+            "system_unique_obligations",
+            "proof_results",
+            "proof_findings",
+            "unresolved_proofs",
+            "owner_return_candidates",
+            "verified_candidate",
+            "derivation_kind",
+            "integrated_candidate",
+            "trace_is_system_proof",
+            "external_and_internal_same_contract",
+            "unrelated_Q",
+            "actual_stage_promoted",
+            "actual_CI_executed",
+            "actual_accepted"
+          ],
+          "properties": {
+            "whole_obligations": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "lower_expressible_obligations": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "system_unique_obligations": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "proof_results": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "proof_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "unresolved_proofs": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "owner_return_candidates": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "verified_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "derivation_kind": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "integrated_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "trace_is_system_proof": {
+              "type": "boolean"
+            },
+            "external_and_internal_same_contract": {
+              "type": "boolean"
+            },
+            "unrelated_Q": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "actual_stage_promoted": {
+              "type": "boolean"
+            },
+            "actual_CI_executed": {
+              "type": "boolean"
+            },
+            "actual_accepted": {
+              "type": "boolean"
+            }
+          },
+          "$comment": "候補は閉じた受領shape。同primitive型のliteral/enum外の原提出値を保全しdomain比較でconflict。未知field/異primitive型は構造finding、成功へ補正しない。"
+        },
+        "UnseenCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "current_evaluation",
+            "current_findings",
+            "evaluated_scope",
+            "prior_confirmed_receipts",
+            "prior_receipts_are_current_proof",
+            "other_artifact_pass_is_current_proof",
+            "lower_stage_pass_is_upper_proof",
+            "improvement_score_role",
+            "all_code_or_product_guarantee",
+            "actual_stage_promoted",
+            "actual_accepted",
+            "actual_requirements_approved",
+            "external_and_internal_same_contract",
+            "unrelated_Q"
+          ],
+          "properties": {
+            "current_evaluation": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "current_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "evaluated_scope": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "prior_confirmed_receipts": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "prior_receipts_are_current_proof": {
+              "type": "boolean"
+            },
+            "other_artifact_pass_is_current_proof": {
+              "type": "boolean"
+            },
+            "lower_stage_pass_is_upper_proof": {
+              "type": "boolean"
+            },
+            "improvement_score_role": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "all_code_or_product_guarantee": {
+              "type": "boolean"
+            },
+            "actual_stage_promoted": {
+              "type": "boolean"
+            },
+            "actual_accepted": {
+              "type": "boolean"
+            },
+            "actual_requirements_approved": {
+              "type": "boolean"
+            },
+            "external_and_internal_same_contract": {
+              "type": "boolean"
+            },
+            "unrelated_Q": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          },
+          "$comment": "候補は閉じた受領shape。同primitive型のliteral/enum外の原提出値を保全しdomain比較でconflict。未知field/異primitive型は構造finding、成功へ補正しない。"
+        },
+        "OwnerBackflowCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "meaning_differences",
+            "action_candidate",
+            "backflow_owner_candidate",
+            "same_stage_reverification_required",
+            "same_stage_reverification_status",
+            "stage_material_results",
+            "requested_import_stage",
+            "service_6_import_candidate",
+            "owner_findings",
+            "meaning_contract_owner",
+            "execution_record_owner",
+            "OS_or_service_4_mandatory",
+            "unrelated_Q",
+            "actual_import_executed",
+            "actual_stage_promoted",
+            "actual_accepted",
+            "left_authority_changed",
+            "actual_ticket_issued"
+          ],
+          "properties": {
+            "meaning_differences": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "action_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "backflow_owner_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "same_stage_reverification_required": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "same_stage_reverification_status": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "stage_material_results": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "requested_import_stage": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "service_6_import_candidate": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "owner_findings": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "meaning_contract_owner": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "execution_record_owner": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "OS_or_service_4_mandatory": {
+              "type": "boolean"
+            },
+            "unrelated_Q": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "actual_import_executed": {
+              "type": "boolean"
+            },
+            "actual_stage_promoted": {
+              "type": "boolean"
+            },
+            "actual_accepted": {
+              "type": "boolean"
+            },
+            "left_authority_changed": {
+              "type": "boolean"
+            },
+            "actual_ticket_issued": {
+              "type": "boolean"
+            }
+          },
+          "$comment": "候補は閉じた受領shape。同primitive型のliteral/enum外の原提出値を保全しdomain比較でconflict。未知field/異primitive型は構造finding、成功へ補正しない。"
+        }
+      }
+    },
+    "type_projection_notes": [
+      {
+        "type": "LogicalJson",
+        "clarification": "旧Text表記を受領RawTextへ明示。JSONstringの空を保持し、qualified Textは非空fieldで別照合。既存004 schemaとRFC8259のJSONstringモデルに沿う。要求意味/承認を変更しない。"
+      },
+      {
+        "type": "Finding.pointer",
+        "clarification": "Text(JSON Pointer)注釈をJsonPointer型へ明示。RFC6901の空rootを非空Textで拒否せず、全finding pointerへ同じescape規則を適用。"
+      },
+      {
+        "type": "IntegratedProofMaterial.before_artifact_revision",
+        "clarification": "optional field記述どおりrequiredに含めない。performed時/meaning-preservation原before bindingはF02へ。"
+      },
+      {
+        "type": "closed map",
+        "clarification": "key語彙を閉じ、必須role人口/exact set/pair mappingはdomainで照合。未知roleをstrip/必要roleを補完しない。"
+      }
+    ],
+    "validation_boundary": [
+      "schemaは構造の検査。owner/revision/内容hash/原evidence/適用条件/exact集合/Refactor受入は6functionsへ。構造PASSだけで内容対応/実段階を生成しない。",
+      "candidateはliteral/enum外の同primitive型値も受領。実作用true申告をstructureで消さずvalueとの不一致へ返す。未知field/異primitive型の原提出も保全し別不正findingへ。",
+      "入力/Context/候補は別に型選択して検査、qualification/evidence_kind/hostをinstanceから決めない。6input oneOfは全体の設計表示でcallerのdispatch推論へ使わない。",
+      "JSON numberは数学値。有限性/任意精度/unsafe host数値/bool-number差/重複key/strict UTF8とUnicode scalar/原bytes保持は正式codecへ別に結ぶ。schema適合でcodec成立を宣言しない。",
+      "全構造findingは原pointerで蓄積。欠落/未知field/型不一致を補正せず、他scopeの読める原資料とQを保持。比較不能のみvalue=null。",
+      "LogicalJsonでまだ受領している観測/結果fieldの詳細shape、意味enum、Result全finding exact、全構造negativeと正式registry/consumerは未完。"
+    ],
+    "unclosed": "LogicalJson内のdomain細部shape/全negative/副次finding集合/正式wire registry/consumer codec/実owner/対L6L7凍結と実装準備は未完。",
+    "existing_design_comparison": {
+      "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+      "revision": "df528e4ebce454acfbd2e9bd6c443f248e1764ef",
+      "pointer": "/logical_structure_schema",
+      "object_sha256": "7c580aca946d7130e83f4fe12758804a026f1f6383fe037ac5aa806d50fd4904",
+      "hash_scope": "whole object canonical Unicode key順/compact/nonASCII無escape/strict UTF8 SHA-256",
+      "reuse_class": "semantic_rederivation",
+      "preserve": "閉じたroot/record、required/nullable/mapping、候補の同primitive literal外受領、schema/domain/codec分離。",
+      "change": "004の7trace契約/104型をcopyせず022の6段階/受入/未見/owner契約と60型へ著述。原domain/ownerの違いを型入口へ束縛する。",
+      "reason": "型/人口/適用sourceが別であり004の意味資格/schema合格を022へ継承しない。共有codec/正式registryの接続は別閉包へ。"
+    }
+  }
 }
