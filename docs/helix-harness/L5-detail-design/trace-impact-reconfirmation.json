@@ -554,6 +554,91 @@
         "change": "旧delta/UIL/assignment runtimeを移植せず、独立Contextの9cell資格/未観測集合/合成probe条件を純粋比較へ具体化する。",
         "reason": "旧graph/資料自己申告で未観測とmissingを合格・無影響へ丸めず、局所不足でOLD/Qを失効しないため。候補全体の採用/実copy/authority writeを生成しない。"
       }
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7E819CFD5E0C89455B52",
+      "path": "archive/legacy-generation-2026-09-14/root/config/requirement-ir-schema.json",
+      "sha256": "35296b70a1dbecb3591ed6a61f39840daa14c5c3f4ccb4f334d74c17bcafa675",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation_only_no_verbatim_copy_or_execution",
+      "read_line_locators": [
+        2,
+        6,
+        7,
+        8
+      ],
+      "line_quotes": [
+        {
+          "line": 2,
+          "text": "  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\","
+        },
+        {
+          "line": 6,
+          "text": "  \"additionalProperties\": false,"
+        },
+        {
+          "line": 7,
+          "text": "  \"required\": ["
+        },
+        {
+          "line": 8,
+          "text": "    \"schema_version\","
+        }
+      ],
+      "preserve": "closed record/requiredと型・原意味資格の分離",
+      "change": "旧IR envelope/shard/authority schemaをcopyせず004のlogical shapeへ再導出",
+      "reason": "旧config合格/authorityを現行へ移植せず、未定義shapeを実装者の補完へ残さないため",
+      "source_limit": "旧schema/config/library/runtimeは実行せず現行へcopyしない。候補全体採用/実権限を生成しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EF18357A994D043719D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+      "sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation_only_no_verbatim_copy_or_execution",
+      "read_line_locators": [
+        18,
+        19,
+        20,
+        51,
+        52,
+        53,
+        54
+      ],
+      "line_quotes": [
+        {
+          "line": 18,
+          "text": "実装候補は`src/design/design-template-authority.ts`の単一moduleとする。まずpure functionだけで成立させ、"
+        },
+        {
+          "line": 19,
+          "text": "repository loader、CLI、DB projection、Markdown writerは本sliceへ追加しない。JSON Schema libraryは"
+        },
+        {
+          "line": 20,
+          "text": "既存dependencyを再利用できる場合だけadapter側で使い、core resultをlibrary固有errorへ束縛しない。"
+        },
+        {
+          "line": 51,
+          "text": "- pre: inputはuntrustedであり、callerがparse済みと仮定しない。"
+        },
+        {
+          "line": 52,
+          "text": "- post: `ok=true`ならrequired field、identity、lifecycle、pair、predicate、trace、verification、"
+        },
+        {
+          "line": 53,
+          "text": "  measurement、completion、semantic digestが全て成立する。"
+        },
+        {
+          "line": 54,
+          "text": "- invariant: unknown property、unknown enum、unsafe integer、duplicate IDを保持したtyped valueを返さない。"
+        }
+      ],
+      "preserve": "pure function/coreとschema library adapterの分離、strict input/required/unknown拒否",
+      "change": "旧TS/固定depth/schema/loaderを移植せずlogical schemaと意味・codec boundaryへ再導出",
+      "reason": "構造合格をpair/資格/観測成立にせず、候補矛盾をschemaで消さないため",
+      "source_limit": "旧schema/config/library/runtimeは実行せず現行へcopyしない。候補全体採用/実権限を生成しない。"
     }
   ],
   "full_goal_scope_preserved": {
@@ -562,7 +647,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
@@ -2630,5 +2715,6360 @@
         "unclosed": "全複合/不正型/全副次finding/全内容版/実probe lineage・観測・owner-codec/正式schema/L6L7/oracle凍結は未完。以下25例は指定value/minimum findingの部分oracle。"
       }
     }
-  ]
+  ],
+  "logical_structure_schema": {
+    "status": "draft_design_structural_projection_not_wire_registry",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "meaning_source": "本書typesと7functions。descriptionの意味条件は削除せずdomain/codecへ別保持。",
+    "dialect_sources": [
+      "https://json-schema.org/draft/2020-12/json-schema-core",
+      "https://json-schema.org/draft/2020-12/json-schema-validation"
+    ],
+    "entrypoints": [
+      {
+        "design_ref": "HARNESS-L5-004-F04",
+        "input": "PartitionInput",
+        "context": "PartitionContext",
+        "candidate": "PartitionCandidate",
+        "value": "PartitionValue",
+        "result": "PartitionResult"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-B01",
+        "input": "ChangeInput",
+        "context": "ChangeContext",
+        "candidate": "ChangeCandidate",
+        "value": "ChangeValue",
+        "result": "ChangeResult"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-F02",
+        "input": "ImpactInput",
+        "context": "ImpactContext",
+        "candidate": "ImpactCandidate",
+        "value": "ImpactValue",
+        "result": "ImpactResult"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-F01",
+        "input": "TraceInput",
+        "context": "TraceContext",
+        "candidate": "TraceCandidate",
+        "value": "TraceValue",
+        "result": "TraceResult"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-F03",
+        "input": "ReconfirmationInput",
+        "context": "ReconfirmationContext",
+        "candidate": "ReconfirmationCandidate",
+        "value": "ReconfirmationValue",
+        "result": "ReconfirmationResult"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-F05",
+        "input": "AssetReuseInput",
+        "context": "AssetReuseContext",
+        "candidate": "AssetReuseCandidate",
+        "value": "AssetReuseValue",
+        "result": "AssetReuseResult"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-N01",
+        "input": "UnseenRelationInput",
+        "context": "UnseenRelationContext",
+        "candidate": "UnseenRelationCandidate",
+        "value": "UnseenRelationValue",
+        "result": "UnseenRelationResult"
+      }
+    ],
+    "schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$comment": "004のlogical shape設計のみ。wire registry/codec/consumer bindingと意味資格は別。rootは7 input型、引数別は$defsへ明示選択。全local参照、network解決を要求しない。",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/PartitionInput"
+        },
+        {
+          "$ref": "#/$defs/ChangeInput"
+        },
+        {
+          "$ref": "#/$defs/ImpactInput"
+        },
+        {
+          "$ref": "#/$defs/TraceInput"
+        },
+        {
+          "$ref": "#/$defs/ReconfirmationInput"
+        },
+        {
+          "$ref": "#/$defs/AssetReuseInput"
+        },
+        {
+          "$ref": "#/$defs/UnseenRelationInput"
+        }
+      ],
+      "$defs": {
+        "Text": {
+          "type": "string",
+          "minLength": 1,
+          "$comment": "原非空Unicode。trim/normalize/blank補正を行わない。strict Unicodeはcodecへ。"
+        },
+        "RawUtf8": {
+          "type": "string",
+          "$comment": "strict UTF-8/raw bytes/digestはcodec/source資格で別検査。"
+        },
+        "Digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}(?![\\s\\S])"
+        },
+        "JsonPointer": {
+          "type": "string",
+          "pattern": "^(?:/(?:[^~/]|~[01])*)*(?![\\s\\S])"
+        },
+        "LogicalJson": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/LogicalJson"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/LogicalJson"
+              }
+            }
+          ],
+          "$comment": "JSON論理値。finite/strict UTF-8/重複key拒否とowner宣言key集合はschema外のcodec/意味比較へ。"
+        },
+        "Ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "identity",
+            "revision",
+            "scope",
+            "owner"
+          ],
+          "properties": {
+            "identity": {
+              "$ref": "#/$defs/Text"
+            },
+            "revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "owner": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "Atom": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "raw_utf8",
+            "sha256"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/Text"
+            },
+            "raw_utf8": {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            "sha256": {
+              "$ref": "#/$defs/Digest"
+            }
+          }
+        },
+        "SourcePopulation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "selection_scope",
+            "atoms",
+            "outside_selection"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "selection_scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "atoms": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Atom"
+              }
+            },
+            "outside_selection": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            }
+          }
+        },
+        "DispositionItem": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "atom_id",
+            "source_ref",
+            "source_sha256",
+            "destination_ref",
+            "destination_raw_utf8",
+            "destination_sha256"
+          ],
+          "properties": {
+            "atom_id": {
+              "$ref": "#/$defs/Text"
+            },
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "source_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "destination_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "destination_raw_utf8": {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            "destination_sha256": {
+              "$ref": "#/$defs/Digest"
+            }
+          }
+        },
+        "HumanDispositionItem": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "atom_id",
+            "source_ref",
+            "source_sha256",
+            "destination_ref",
+            "destination_raw_utf8",
+            "destination_sha256",
+            "decision_ref",
+            "disposition"
+          ],
+          "properties": {
+            "atom_id": {
+              "$ref": "#/$defs/Text"
+            },
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "source_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "destination_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "destination_raw_utf8": {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            "destination_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "decision_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "disposition": {
+              "type": "string",
+              "enum": [
+                "change",
+                "retire"
+              ]
+            }
+          }
+        },
+        "Partition": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "retained",
+            "pending",
+            "human_changed_or_retired"
+          ],
+          "properties": {
+            "retained": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DispositionItem"
+              }
+            },
+            "pending": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DispositionItem"
+              }
+            },
+            "human_changed_or_retired": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/HumanDispositionItem"
+              }
+            }
+          }
+        },
+        "DestinationRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "state",
+            "raw_utf8",
+            "sha256"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "state": {
+              "$ref": "#/$defs/Text"
+            },
+            "raw_utf8": {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            "sha256": {
+              "$ref": "#/$defs/Digest"
+            }
+          }
+        },
+        "HumanDecision": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "kind",
+            "source_ref",
+            "source_atom",
+            "source_sha256",
+            "target_ref",
+            "target_sha256",
+            "outcome",
+            "reason",
+            "impact_scope",
+            "qualification"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "kind": {
+              "$ref": "#/$defs/Text"
+            },
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "source_atom": {
+              "$ref": "#/$defs/Text"
+            },
+            "source_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "target_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "target_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "change",
+                "retire"
+              ]
+            },
+            "reason": {
+              "$ref": "#/$defs/Text"
+            },
+            "impact_scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "qualification": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "CoverageReceipt": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "source_ref",
+            "covered_atom_ids",
+            "claim_scope"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "covered_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "claim_scope": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ContainerRegistration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "authority_effect"
+          ],
+          "properties": {
+            "kind": {
+              "$ref": "#/$defs/Text"
+            },
+            "authority_effect": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "PartitionInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_population",
+            "partition",
+            "destination_records",
+            "human_decisions",
+            "coverage_receipt",
+            "container_registration",
+            "scenario_kind"
+          ],
+          "properties": {
+            "source_population": {
+              "$ref": "#/$defs/SourcePopulation"
+            },
+            "partition": {
+              "$ref": "#/$defs/Partition"
+            },
+            "destination_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DestinationRecord"
+              }
+            },
+            "human_decisions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/HumanDecision"
+              }
+            },
+            "coverage_receipt": {
+              "$ref": "#/$defs/CoverageReceipt"
+            },
+            "container_registration": {
+              "$ref": "#/$defs/ContainerRegistration"
+            },
+            "scenario_kind": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "QualifiedReferent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "content_sha256",
+            "raw_utf8",
+            "state",
+            "kind",
+            "qualification_basis_refs",
+            "evidence_kind"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "content_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "raw_utf8": {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "source_population",
+                "live_requirement",
+                "live_candidate",
+                "changed_requirement",
+                "human_meaning_change",
+                "human_meaning_retire",
+                "coverage_receipt"
+              ]
+            },
+            "qualification_basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            }
+          }
+        },
+        "PartitionContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target_source_ref",
+            "selection_scope",
+            "referents",
+            "snapshot_revision",
+            "evidence_kind",
+            "qualification_records",
+            "qualifier_roots"
+          ],
+          "properties": {
+            "target_source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "selection_scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "referents": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/QualifiedReferent"
+              }
+            },
+            "snapshot_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "qualification_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/QualificationRecord"
+              }
+            },
+            "qualifier_roots": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          }
+        },
+        "Finding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "atom_ids",
+            "basis_refs",
+            "return_owner"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "source_population_missing",
+                "source_population_conflict",
+                "reference_missing",
+                "reference_unknown",
+                "reference_conflict",
+                "reference_stale",
+                "content_digest_conflict",
+                "atom_unaccounted",
+                "atom_duplicate",
+                "atom_outside_population",
+                "destination_unqualified",
+                "human_decision_unqualified",
+                "coverage_receipt_invalid",
+                "projection_not_authority"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "PartitionValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_atom_ids",
+            "retained_atom_ids",
+            "pending_atom_ids",
+            "human_changed_or_retired_atom_ids",
+            "unaccounted_atom_ids",
+            "duplicate_atom_ids",
+            "unknown_atom_ids",
+            "invalid_destination_atom_ids",
+            "invalid_decision_atom_ids",
+            "invalid_source_atom_ids",
+            "invalid_receipt",
+            "partition_condition",
+            "coverage_scope",
+            "outside_selection",
+            "actual_no_loss_certified",
+            "actual_source_migration_complete",
+            "actual_requirement_adopted",
+            "actual_implementation_authorized",
+            "actual_retirement"
+          ],
+          "properties": {
+            "source_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "retained_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "pending_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "human_changed_or_retired_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "unaccounted_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "duplicate_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "unknown_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "invalid_destination_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "invalid_decision_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "invalid_source_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "invalid_receipt": {
+              "type": "boolean"
+            },
+            "partition_condition": {
+              "type": "string",
+              "enum": [
+                "supported_synthetic_condition",
+                "content_supported_requires_actual_qualification",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "coverage_scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "outside_selection": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "actual_no_loss_certified": {
+              "const": false
+            },
+            "actual_source_migration_complete": {
+              "const": false
+            },
+            "actual_requirement_adopted": {
+              "const": false
+            },
+            "actual_implementation_authorized": {
+              "const": false
+            },
+            "actual_retirement": {
+              "const": false
+            }
+          }
+        },
+        "PartitionResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "retained_input_sha256",
+            "candidate_disposition",
+            "candidate_conflicting_fields"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_supported",
+                "incomplete",
+                "unknown",
+                "conflict",
+                "stale",
+                "invalid"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/PartitionValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Finding"
+              }
+            },
+            "retained_input_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_fields": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            }
+          }
+        },
+        "PartitionCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_atom_ids",
+            "retained_atom_ids",
+            "pending_atom_ids",
+            "human_changed_or_retired_atom_ids",
+            "unaccounted_atom_ids",
+            "duplicate_atom_ids",
+            "unknown_atom_ids",
+            "invalid_destination_atom_ids",
+            "invalid_decision_atom_ids",
+            "invalid_source_atom_ids",
+            "invalid_receipt",
+            "partition_condition",
+            "coverage_scope",
+            "outside_selection",
+            "actual_no_loss_certified",
+            "actual_source_migration_complete",
+            "actual_requirement_adopted",
+            "actual_implementation_authorized",
+            "actual_retirement"
+          ],
+          "properties": {
+            "source_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "retained_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "pending_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "human_changed_or_retired_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "unaccounted_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "duplicate_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "unknown_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "invalid_destination_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "invalid_decision_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "invalid_source_atom_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "invalid_receipt": {
+              "type": "boolean"
+            },
+            "partition_condition": {
+              "$ref": "#/$defs/Text"
+            },
+            "coverage_scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "outside_selection": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "actual_no_loss_certified": {
+              "type": "boolean"
+            },
+            "actual_source_migration_complete": {
+              "type": "boolean"
+            },
+            "actual_requirement_adopted": {
+              "type": "boolean"
+            },
+            "actual_implementation_authorized": {
+              "type": "boolean"
+            },
+            "actual_retirement": {
+              "type": "boolean"
+            }
+          }
+        },
+        "QualificationRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "target_ref",
+            "target_content_sha256",
+            "kind",
+            "state",
+            "qualifier_ref",
+            "evidence_kind"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "target_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "target_content_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "source_population",
+                "live_requirement",
+                "live_candidate",
+                "changed_requirement",
+                "human_meaning_change",
+                "human_meaning_retire",
+                "coverage_receipt"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "qualifier_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            }
+          }
+        },
+        "ChangeTarget": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scope",
+            "binding"
+          ],
+          "properties": {
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ChangeSourceBinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scope",
+            "binding",
+            "owner"
+          ],
+          "properties": {
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            },
+            "owner": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "SemanticSignature": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "requirement_acceptance",
+            "architecture",
+            "detail"
+          ],
+          "properties": {
+            "value": {
+              "$ref": "#/$defs/Text"
+            },
+            "requirement_acceptance": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "architecture": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "detail": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "BehaviorObservation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "expected",
+            "observed",
+            "qualification"
+          ],
+          "properties": {
+            "expected": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "observed": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "qualification": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "EnvironmentSignature": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dependency_revision"
+          ],
+          "properties": {
+            "dependency_revision": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ChangeOwnerBindings": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "meaning",
+            "implementation",
+            "environment"
+          ],
+          "properties": {
+            "meaning": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "implementation": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "environment": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "ChangeInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "reported_finding",
+            "source_binding",
+            "before_signature",
+            "proposed_signature",
+            "behavior_observation",
+            "environment_before",
+            "environment_after",
+            "owner_bindings",
+            "management_projection",
+            "historical_trigger",
+            "unrelated_work",
+            "qualification"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/ChangeTarget"
+            },
+            "reported_finding": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "text"
+              ],
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/Text"
+                },
+                "text": {
+                  "$ref": "#/$defs/Text"
+                }
+              }
+            },
+            "source_binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ChangeSourceBinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "before_signature": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SemanticSignature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "proposed_signature": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SemanticSignature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "behavior_observation": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/BehaviorObservation"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "environment_before": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/EnvironmentSignature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "environment_after": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/EnvironmentSignature"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "owner_bindings": {
+              "$ref": "#/$defs/ChangeOwnerBindings"
+            },
+            "management_projection": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "issue_closed",
+                "project_status",
+                "ci_green"
+              ],
+              "properties": {
+                "issue_closed": {
+                  "type": "boolean"
+                },
+                "project_status": {
+                  "$ref": "#/$defs/Text"
+                },
+                "ci_green": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "historical_trigger": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source",
+                "current_adoption"
+              ],
+              "properties": {
+                "source": {
+                  "$ref": "#/$defs/Text"
+                },
+                "current_adoption": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "unrelated_work": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "status",
+                "binding"
+              ],
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/Text"
+                },
+                "status": {
+                  "$ref": "#/$defs/Text"
+                },
+                "binding": {
+                  "$ref": "#/$defs/Text"
+                }
+              }
+            },
+            "qualification": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ChangeContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "source_owner",
+            "role_owners",
+            "state",
+            "evidence_kind",
+            "basis_refs"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/ChangeTarget"
+            },
+            "source_owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "role_owners": {
+              "$ref": "#/$defs/ChangeOwnerBindings"
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          }
+        },
+        "ChangeValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_condition",
+            "owner_condition",
+            "derivation_owner",
+            "operation_owner",
+            "management_projection_authority",
+            "unrelated_work",
+            "actual_ticket_issued",
+            "actual_record_saved",
+            "actual_state_updated",
+            "actual_requirement_changed",
+            "actual_approved",
+            "actual_completed",
+            "legacy_trigger_adopted",
+            "legacy_runtime_started",
+            "change_kind",
+            "route_candidate",
+            "changed_meaning_axes",
+            "backflow_layer_candidate",
+            "responsible_owner",
+            "evidence_basis"
+          ],
+          "properties": {
+            "source_condition": {
+              "type": "string",
+              "enum": [
+                "supported_synthetic_material",
+                "content_supported_requires_actual_qualification",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "owner_condition": {
+              "type": "string",
+              "enum": [
+                "supported_synthetic_material",
+                "content_supported_requires_actual_qualification",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "derivation_owner": {
+              "const": "HARNESS"
+            },
+            "operation_owner": {
+              "const": "OS"
+            },
+            "management_projection_authority": {
+              "const": "none"
+            },
+            "unrelated_work": {
+              "type": "string",
+              "enum": [
+                "preserved_valid_synthetic_material",
+                "retained_without_validity_claim"
+              ]
+            },
+            "actual_ticket_issued": {
+              "const": false
+            },
+            "actual_record_saved": {
+              "const": false
+            },
+            "actual_state_updated": {
+              "const": false
+            },
+            "actual_requirement_changed": {
+              "const": false
+            },
+            "actual_approved": {
+              "const": false
+            },
+            "actual_completed": {
+              "const": false
+            },
+            "legacy_trigger_adopted": {
+              "const": false
+            },
+            "legacy_runtime_started": {
+              "const": false
+            },
+            "change_kind": {
+              "type": "string",
+              "enum": [
+                "meaning_change",
+                "implementation_fault",
+                "external_environment_change",
+                "Unknown"
+              ]
+            },
+            "route_candidate": {
+              "type": "string",
+              "enum": [
+                "backflow_to_changed_upstream",
+                "implementation_repair_and_reverification",
+                "environment_reobservation_and_impact_evaluation",
+                "unresolved_evidence_return",
+                "unresolved_owner_return"
+              ]
+            },
+            "changed_meaning_axes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "requirement_acceptance",
+                  "architecture",
+                  "detail"
+                ]
+              }
+            },
+            "backflow_layer_candidate": {
+              "anyOf": [
+                {
+                  "const": "L3/L2"
+                },
+                {
+                  "const": "L4"
+                },
+                {
+                  "const": "L5"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "responsible_owner": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evidence_basis": {
+              "type": "string",
+              "enum": [
+                "before_after_semantic_content",
+                "same_contract_content_different_behavior",
+                "before_after_environment_content",
+                "missing_or_unqualified_source",
+                "unresolved_or_combined_evidence"
+              ]
+            }
+          }
+        },
+        "ChangeFinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "basis_refs",
+            "return_owner"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "source_missing",
+                "source_unknown",
+                "source_conflict",
+                "source_stale",
+                "owner_missing",
+                "owner_unknown",
+                "owner_conflict",
+                "owner_stale",
+                "comparison_unresolved",
+                "candidate_conflict",
+                "projection_not_authority"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ChangeResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "retained_input_sha256",
+            "retained_context_sha256",
+            "candidate_disposition",
+            "candidate_conflicting_fields"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_supported",
+                "incomplete",
+                "unknown",
+                "conflict",
+                "stale",
+                "invalid"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ChangeValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ChangeFinding"
+              }
+            },
+            "retained_input_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "retained_context_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_fields": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            }
+          }
+        },
+        "ImpactTarget": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scope",
+            "graph_revision"
+          ],
+          "properties": {
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "graph_revision": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ConditionChange": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node",
+            "from_revision",
+            "to_revision",
+            "condition_before",
+            "condition_after"
+          ],
+          "properties": {
+            "node": {
+              "$ref": "#/$defs/Text"
+            },
+            "from_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "to_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "condition_before": {
+              "$ref": "#/$defs/Text"
+            },
+            "condition_after": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "DesignMembership": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node",
+            "ref",
+            "binding",
+            "role",
+            "required_members",
+            "coverage"
+          ],
+          "properties": {
+            "node": {
+              "$ref": "#/$defs/Text"
+            },
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            },
+            "role": {
+              "type": "string",
+              "enum": [
+                "unit",
+                "connection",
+                "composite",
+                "unrelated_unit"
+              ]
+            },
+            "required_members": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "coverage": {
+              "type": "string",
+              "enum": [
+                "complete_for_declared_scope",
+                "unknown",
+                "missing",
+                "conflict",
+                "stale"
+              ]
+            }
+          }
+        },
+        "RequiredMemberRelation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "from_node",
+            "to_node",
+            "binding",
+            "meaning"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "from_node": {
+              "$ref": "#/$defs/Text"
+            },
+            "to_node": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            },
+            "meaning": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "PreviousEstablishment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "node_revision",
+            "result",
+            "original_expected",
+            "original_observed"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "node_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "result": {
+              "type": "string",
+              "enum": [
+                "passed",
+                "failed",
+                "unknown"
+              ]
+            },
+            "original_expected": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "original_observed": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "UpperObservation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "expected_total",
+            "observed_total"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/Text"
+            },
+            "expected_total": {
+              "type": "number",
+              "$comment": "JSON論理値の有限性とbool非同値はcodec/domainで別検査する。"
+            },
+            "observed_total": {
+              "type": "number",
+              "$comment": "JSON論理値の有限性とbool非同値はcodec/domainで別検査する。"
+            }
+          }
+        },
+        "UpperReverification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "graph_revision",
+            "subject",
+            "changed_dependency_revision",
+            "required",
+            "observations",
+            "qualification"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "graph_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "subject": {
+              "$ref": "#/$defs/Text"
+            },
+            "changed_dependency_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "required": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "observations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/UpperObservation"
+              }
+            },
+            "qualification": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ImpactInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "change",
+            "design_membership",
+            "relations",
+            "original_establishment",
+            "required_upper_obligations",
+            "reverification",
+            "scenario_kind"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/ImpactTarget"
+            },
+            "change": {
+              "$ref": "#/$defs/ConditionChange"
+            },
+            "design_membership": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/DesignMembership"
+              }
+            },
+            "relations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RequiredMemberRelation"
+              }
+            },
+            "original_establishment": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/PreviousEstablishment"
+              }
+            },
+            "required_upper_obligations": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Text"
+                }
+              }
+            },
+            "reverification": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/UpperReverification"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "scenario_kind": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ImpactReferent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "kind",
+            "raw_utf8",
+            "content_sha256",
+            "state",
+            "qualification_basis_refs",
+            "evidence_kind"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "membership",
+                "relation",
+                "previous_establishment",
+                "reverification"
+              ]
+            },
+            "raw_utf8": {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            "content_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "qualification_basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            }
+          }
+        },
+        "ImpactContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "node_population",
+            "declared_members",
+            "required_upper_obligations",
+            "referents",
+            "qualifier_roots",
+            "evidence_kind",
+            "state"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/ImpactTarget"
+            },
+            "node_population": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "declared_members": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Text"
+                }
+              }
+            },
+            "required_upper_obligations": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Text"
+                }
+              }
+            },
+            "referents": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ImpactReferent"
+              }
+            },
+            "qualifier_roots": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            }
+          }
+        },
+        "ImpactEstablishmentValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "previous_result",
+            "previous_revision",
+            "current_result",
+            "upper_obligations_retained"
+          ],
+          "properties": {
+            "previous_result": {
+              "anyOf": [
+                {
+                  "const": "passed"
+                },
+                {
+                  "const": "failed"
+                },
+                {
+                  "const": "unknown"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "previous_revision": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "current_result": {
+              "type": "string",
+              "enum": [
+                "requires_reverification",
+                "preserved_unaffected",
+                "unknown_requires_relation_resolution",
+                "supported_synthetic_reverification_pass",
+                "supported_synthetic_reverification_fail",
+                "content_corresponding_requires_actual_qualification"
+              ]
+            },
+            "upper_obligations_retained": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            }
+          }
+        },
+        "ImpactValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "impact_by_node",
+            "establishment_by_node",
+            "unknown_relation_nodes",
+            "actual_state_updated",
+            "actual_reverification_executed",
+            "actual_upper_passed",
+            "actual_upper_failed",
+            "actual_completion"
+          ],
+          "properties": {
+            "impact_by_node": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "enum": [
+                  "Affected",
+                  "Unaffected",
+                  "Unknown"
+                ]
+              }
+            },
+            "establishment_by_node": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/ImpactEstablishmentValue"
+              }
+            },
+            "unknown_relation_nodes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "actual_state_updated": {
+              "const": false
+            },
+            "actual_reverification_executed": {
+              "const": false
+            },
+            "actual_upper_passed": {
+              "const": false
+            },
+            "actual_upper_failed": {
+              "const": false
+            },
+            "actual_completion": {
+              "const": false
+            }
+          }
+        },
+        "ImpactFinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "node_ids",
+            "basis_refs",
+            "return_owner"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "population_conflict",
+                "reference_missing",
+                "reference_unknown",
+                "reference_conflict",
+                "reference_stale",
+                "content_digest_conflict",
+                "membership_unknown",
+                "required_relation_missing",
+                "required_relation_conflict",
+                "required_relation_stale",
+                "relation_cycle",
+                "previous_evidence_inconsistent",
+                "upper_obligation_missing",
+                "reverification_unqualified",
+                "candidate_conflict"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "node_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ImpactResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "candidate_disposition",
+            "candidate_conflicting_fields",
+            "retained_input_sha256",
+            "retained_context_sha256"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_supported",
+                "unknown",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ImpactValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ImpactFinding"
+              }
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_fields": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "retained_input_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "retained_context_sha256": {
+              "$ref": "#/$defs/Digest"
+            }
+          }
+        },
+        "TraceTarget": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scope",
+            "requirement_revision"
+          ],
+          "properties": {
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "requirement_revision": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "TraceOracle": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "input",
+            "expected",
+            "expected_failure"
+          ],
+          "properties": {
+            "input": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "expected": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "expected_failure": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "TraceRequirement": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "source",
+            "raw_utf8",
+            "oracle",
+            "source_sha256"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/Text"
+            },
+            "source": {
+              "$ref": "#/$defs/Ref"
+            },
+            "raw_utf8": {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            "oracle": {
+              "$ref": "#/$defs/TraceOracle"
+            },
+            "source_sha256": {
+              "$ref": "#/$defs/Digest"
+            }
+          }
+        },
+        "TraceDesign": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "condition_id",
+            "binding",
+            "source_sha256",
+            "behavior_contract"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/Text"
+            },
+            "condition_id": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            },
+            "source_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "behavior_contract": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/TraceOracle"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "TraceVerification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "condition_id",
+            "binding",
+            "oracle",
+            "evidence_origin"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/Text"
+            },
+            "condition_id": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            },
+            "oracle": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/TraceOracle"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evidence_origin": {
+              "$ref": "#/$defs/Text"
+            },
+            "legacy_success": {
+              "type": "boolean"
+            },
+            "legacy_source_ref": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "TraceEdge": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "from",
+            "to",
+            "binding",
+            "evidence_origin"
+          ],
+          "properties": {
+            "from": {
+              "$ref": "#/$defs/Text"
+            },
+            "to": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            },
+            "evidence_origin": {
+              "$ref": "#/$defs/Text"
+            },
+            "legacy_source_ref": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "TraceOwnerAssignment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "subject_kind",
+            "memberships",
+            "owners"
+          ],
+          "properties": {
+            "subject_kind": {
+              "$ref": "#/$defs/Text"
+            },
+            "memberships": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "owners": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            }
+          }
+        },
+        "TraceImplementation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "design_id",
+            "binding",
+            "kind"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "design_id": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            },
+            "kind": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "TraceConnection": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "design_id",
+            "binding",
+            "from",
+            "to",
+            "kind"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "design_id": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            },
+            "from": {
+              "$ref": "#/$defs/Text"
+            },
+            "to": {
+              "$ref": "#/$defs/Text"
+            },
+            "kind": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "TraceInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "requirements",
+            "design_records",
+            "verification_records",
+            "relations",
+            "owner_assignments",
+            "implementation_records",
+            "connection_records",
+            "changed_conditions",
+            "scenario_kind"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/TraceTarget"
+            },
+            "requirements": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TraceRequirement"
+              }
+            },
+            "design_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TraceDesign"
+              }
+            },
+            "verification_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TraceVerification"
+              }
+            },
+            "relations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TraceEdge"
+              }
+            },
+            "owner_assignments": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/TraceOwnerAssignment"
+              }
+            },
+            "implementation_records": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/TraceImplementation"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "connection_records": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/TraceConnection"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "changed_conditions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "scenario_kind": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "TraceReferent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "record_identity",
+            "raw_utf8",
+            "content_sha256",
+            "source_ref",
+            "state",
+            "qualification_basis_refs",
+            "evidence_kind"
+          ],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "requirements",
+                "design_records",
+                "verification_records",
+                "relations",
+                "owner_assignments",
+                "implementation_records",
+                "connection_records"
+              ]
+            },
+            "record_identity": {
+              "$ref": "#/$defs/Text"
+            },
+            "raw_utf8": {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            "content_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "qualification_basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            }
+          }
+        },
+        "TraceContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "requirements",
+            "owner_assignments",
+            "record_catalog",
+            "qualifier_roots",
+            "evidence_kind",
+            "state"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/TraceTarget"
+            },
+            "requirements": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TraceRequirement"
+              }
+            },
+            "owner_assignments": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/TraceOwnerAssignment"
+              }
+            },
+            "record_catalog": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TraceReferent"
+              }
+            },
+            "qualifier_roots": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            }
+          }
+        },
+        "TraceCell": {
+          "type": "string",
+          "enum": [
+            "supported_synthetic_material",
+            "content_supported_requires_actual_qualification",
+            "missing",
+            "unknown",
+            "conflict",
+            "stale",
+            "unknown_design_join"
+          ]
+        },
+        "TraceConditionValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "design",
+            "verification",
+            "source",
+            "revision",
+            "bidirectional_trace",
+            "owner",
+            "membership",
+            "implementation",
+            "connection",
+            "semantic_oracle"
+          ],
+          "properties": {
+            "design": {
+              "$ref": "#/$defs/TraceCell"
+            },
+            "verification": {
+              "$ref": "#/$defs/TraceCell"
+            },
+            "source": {
+              "$ref": "#/$defs/TraceCell"
+            },
+            "revision": {
+              "$ref": "#/$defs/TraceCell"
+            },
+            "bidirectional_trace": {
+              "$ref": "#/$defs/TraceCell"
+            },
+            "owner": {
+              "$ref": "#/$defs/TraceCell"
+            },
+            "membership": {
+              "$ref": "#/$defs/TraceCell"
+            },
+            "implementation": {
+              "$ref": "#/$defs/TraceCell"
+            },
+            "connection": {
+              "$ref": "#/$defs/TraceCell"
+            },
+            "semantic_oracle": {
+              "$ref": "#/$defs/TraceCell"
+            }
+          }
+        },
+        "TraceValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "condition_results",
+            "unresolved_conditions",
+            "reverification_targets",
+            "impact_condition",
+            "actual_all_conditions_verified",
+            "actual_implementation_complete",
+            "actual_connection_complete",
+            "actual_requirement_approved",
+            "actual_completion",
+            "unmatched_record_ids",
+            "unresolved_reverification_conditions",
+            "rejected_external_verification_record_ids"
+          ],
+          "properties": {
+            "condition_results": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/TraceConditionValue"
+              }
+            },
+            "unresolved_conditions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "reverification_targets": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "impact_condition": {
+              "type": "string",
+              "enum": [
+                "supported_synthetic_condition",
+                "content_supported_requires_actual_qualification",
+                "Unknown"
+              ]
+            },
+            "actual_all_conditions_verified": {
+              "const": false
+            },
+            "actual_implementation_complete": {
+              "const": false
+            },
+            "actual_connection_complete": {
+              "const": false
+            },
+            "actual_requirement_approved": {
+              "const": false
+            },
+            "actual_completion": {
+              "const": false
+            },
+            "unmatched_record_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "unresolved_reverification_conditions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "rejected_external_verification_record_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            }
+          }
+        },
+        "TraceFinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "condition_ids",
+            "basis_refs",
+            "return_owner"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "condition_population_conflict",
+                "record_missing",
+                "record_ambiguous",
+                "reference_missing",
+                "reference_unknown",
+                "reference_conflict",
+                "reference_stale",
+                "source_content_conflict",
+                "unmatched_record",
+                "orphan_endpoint",
+                "pair_direction_missing",
+                "semantic_oracle_missing",
+                "semantic_oracle_conflict",
+                "owner_missing",
+                "owner_conflict",
+                "membership_missing",
+                "membership_conflict",
+                "implementation_join_unknown",
+                "connection_join_unknown",
+                "external_verification_rejected",
+                "candidate_conflict"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "condition_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "TraceResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "candidate_disposition",
+            "candidate_conflicting_fields",
+            "retained_input_sha256",
+            "retained_context_sha256"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_supported",
+                "unknown",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/TraceValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TraceFinding"
+              }
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_fields": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "retained_input_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "retained_context_sha256": {
+              "$ref": "#/$defs/Digest"
+            }
+          }
+        },
+        "ReconfirmationTarget": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scope",
+            "source_binding"
+          ],
+          "properties": {
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "source_binding": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ProductMeaningSignature": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "requirement_acceptance",
+            "architecture",
+            "detail"
+          ],
+          "properties": {
+            "value": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "requirement_acceptance": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "architecture": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "detail": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "MeaningSignatureChange": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "before",
+            "proposed"
+          ],
+          "properties": {
+            "before": {
+              "$ref": "#/$defs/ProductMeaningSignature"
+            },
+            "proposed": {
+              "$ref": "#/$defs/ProductMeaningSignature"
+            }
+          }
+        },
+        "PublicContractChange": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "before",
+            "proposed"
+          ],
+          "properties": {
+            "before": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "proposed": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "TraceSourceBinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "identity",
+            "binding"
+          ],
+          "properties": {
+            "identity": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ScrumImplementationMerge": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source",
+            "qualification"
+          ],
+          "properties": {
+            "source": {
+              "$ref": "#/$defs/Text"
+            },
+            "qualification": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ImplementationChange": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "before",
+            "proposed"
+          ],
+          "properties": {
+            "before": {
+              "$ref": "#/$defs/Text"
+            },
+            "proposed": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ReconfirmationRelation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "from",
+            "to",
+            "binding",
+            "kind"
+          ],
+          "properties": {
+            "from": {
+              "$ref": "#/$defs/Text"
+            },
+            "to": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "requirement_design",
+                "design_verification"
+              ]
+            }
+          }
+        },
+        "PairMaterial": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "left",
+            "right",
+            "binding"
+          ],
+          "properties": {
+            "left": {
+              "$ref": "#/$defs/Text"
+            },
+            "right": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "PreviousFinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "signature",
+            "source"
+          ],
+          "properties": {
+            "signature": {
+              "$ref": "#/$defs/Text"
+            },
+            "source": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "PerformanceComparison": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "baseline",
+            "observed",
+            "unit",
+            "binding"
+          ],
+          "properties": {
+            "baseline": {
+              "type": "number",
+              "$comment": "JSON論理値の有限性とbool非同値はcodec/domainで別検査する。"
+            },
+            "observed": {
+              "type": "number",
+              "$comment": "JSON論理値の有限性とbool非同値はcodec/domainで別検査する。"
+            },
+            "unit": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ReverseTriggerEvidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "expected_behavior",
+            "observed_behavior",
+            "provenance",
+            "previous_findings",
+            "current_finding",
+            "performance",
+            "incident_permanent_remedy",
+            "scrum_reverse_checkpoint",
+            "design_dependencies"
+          ],
+          "properties": {
+            "expected_behavior": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "observed_behavior": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "provenance": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "identity"
+                  ],
+                  "properties": {
+                    "identity": {
+                      "$ref": "#/$defs/Text"
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "previous_findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/PreviousFinding"
+              }
+            },
+            "current_finding": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "signature"
+              ],
+              "properties": {
+                "signature": {
+                  "$ref": "#/$defs/Text"
+                }
+              }
+            },
+            "performance": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/PerformanceComparison"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "incident_permanent_remedy": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "incident",
+                    "permanent_remedy_outstanding"
+                  ],
+                  "properties": {
+                    "incident": {
+                      "$ref": "#/$defs/Text"
+                    },
+                    "permanent_remedy_outstanding": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "scrum_reverse_checkpoint": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "identity",
+                    "ready_for_reverse"
+                  ],
+                  "properties": {
+                    "identity": {
+                      "$ref": "#/$defs/Text"
+                    },
+                    "ready_for_reverse": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "design_dependencies": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "before",
+                "observed"
+              ],
+              "properties": {
+                "before": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Text"
+                  }
+                },
+                "observed": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Text"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ImprovementKind": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scope",
+            "kind"
+          ],
+          "properties": {
+            "scope": {
+              "type": "string",
+              "enum": [
+                "local",
+                "independent"
+              ]
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "structure",
+                "architecture",
+                "performance"
+              ]
+            }
+          }
+        },
+        "ReconfirmationInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "signatures",
+            "public_contract",
+            "trace_source",
+            "scrum_implementation_merge",
+            "implementation",
+            "affected_root",
+            "relations",
+            "work_population",
+            "pair_material",
+            "trigger_evidence",
+            "improvement",
+            "discovery_layer",
+            "qualification",
+            "subject_roles"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/ReconfirmationTarget"
+            },
+            "signatures": {
+              "$ref": "#/$defs/MeaningSignatureChange"
+            },
+            "public_contract": {
+              "$ref": "#/$defs/PublicContractChange"
+            },
+            "trace_source": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/TraceSourceBinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "scrum_implementation_merge": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ScrumImplementationMerge"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "implementation": {
+              "$ref": "#/$defs/ImplementationChange"
+            },
+            "affected_root": {
+              "$ref": "#/$defs/Text"
+            },
+            "relations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ReconfirmationRelation"
+              }
+            },
+            "work_population": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "pair_material": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/PairMaterial"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "trigger_evidence": {
+              "$ref": "#/$defs/ReverseTriggerEvidence"
+            },
+            "improvement": {
+              "$ref": "#/$defs/ImprovementKind"
+            },
+            "discovery_layer": {
+              "$ref": "#/$defs/Text"
+            },
+            "qualification": {
+              "$ref": "#/$defs/Text"
+            },
+            "subject_roles": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "enum": [
+                  "requirement_condition",
+                  "design",
+                  "verification",
+                  "unrelated_design"
+                ]
+              }
+            }
+          }
+        },
+        "ReconfirmationReferent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "field",
+            "raw_utf8",
+            "content_sha256",
+            "state",
+            "qualification_basis_refs",
+            "evidence_kind"
+          ],
+          "properties": {
+            "field": {
+              "type": "string",
+              "enum": [
+                "target",
+                "signatures",
+                "public_contract",
+                "trace_source",
+                "scrum_implementation_merge",
+                "implementation",
+                "affected_root",
+                "relations",
+                "work_population",
+                "pair_material",
+                "trigger_evidence",
+                "improvement",
+                "discovery_layer",
+                "qualification",
+                "subject_roles"
+              ]
+            },
+            "raw_utf8": {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            "content_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "qualification_basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            }
+          }
+        },
+        "ReconfirmationContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "affected_root",
+            "work_population",
+            "subject_roles",
+            "required_relations",
+            "required_pairs",
+            "record_catalog",
+            "qualifier_roots",
+            "evidence_kind",
+            "state",
+            "actual_trigger_policy_refs"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/ReconfirmationTarget"
+            },
+            "affected_root": {
+              "$ref": "#/$defs/Text"
+            },
+            "work_population": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "subject_roles": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "required_relations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ReconfirmationRelation"
+              }
+            },
+            "required_pairs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/PairMaterial"
+              }
+            },
+            "record_catalog": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ReconfirmationReferent"
+              }
+            },
+            "qualifier_roots": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "actual_trigger_policy_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          }
+        },
+        "ReconfirmationValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "changed_meaning_axes",
+            "reconfirmation_reasons",
+            "reconfirmation_targets",
+            "required_pair_refs",
+            "pair_reconfirmation_status",
+            "pair_material_condition",
+            "route_candidate",
+            "backflow_layer_candidate",
+            "reverse_triggers",
+            "reverse_scope_candidate",
+            "ticket_route_candidate",
+            "new_ticket_condition",
+            "ticket_operation_owner",
+            "unrelated_Q",
+            "actual_pair_frozen",
+            "actual_reconfirmed",
+            "actual_ticket_issued",
+            "actual_work_invalidated",
+            "actual_authority_changed",
+            "actual_completion"
+          ],
+          "properties": {
+            "changed_meaning_axes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "value",
+                  "requirement_acceptance",
+                  "architecture",
+                  "detail"
+                ]
+              }
+            },
+            "reconfirmation_reasons": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "public_contract_change",
+                  "requirement_change",
+                  "trace_missing",
+                  "scrum_implementation_merge",
+                  "meaning_signature_change"
+                ]
+              }
+            },
+            "reconfirmation_targets": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "required_pair_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "pair_reconfirmation_status": {
+              "type": "string",
+              "enum": [
+                "not_required",
+                "required_not_performed",
+                "unresolved"
+              ]
+            },
+            "pair_material_condition": {
+              "type": "string",
+              "enum": [
+                "supported_synthetic_material",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "route_candidate": {
+              "type": "string",
+              "enum": [
+                "routine_comparison",
+                "right_refactor_and_reverification",
+                "backflow_to_changed_meaning",
+                "unresolved_origin_recovery",
+                "design_grounding_recovery",
+                "unresolved_meaning_owner",
+                "unresolved_material_return"
+              ]
+            },
+            "backflow_layer_candidate": {
+              "anyOf": [
+                {
+                  "const": "L1"
+                },
+                {
+                  "const": "L3/L2"
+                },
+                {
+                  "const": "L4"
+                },
+                {
+                  "const": "L5"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reverse_triggers": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "clear_drift",
+                  "missing_provenance",
+                  "recurrence",
+                  "performance_regression",
+                  "post_incident_remedy",
+                  "scrum_reverse_checkpoint",
+                  "large_design_regression"
+                ]
+              }
+            },
+            "reverse_scope_candidate": {
+              "anyOf": [
+                {
+                  "const": "scoped_candidate"
+                },
+                {
+                  "const": "full_recovery_candidate"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ticket_route_candidate": {
+              "anyOf": [
+                {
+                  "const": "current_forward_ticket"
+                },
+                {
+                  "const": "Refactor"
+                },
+                {
+                  "const": "Design-refactor"
+                },
+                {
+                  "const": "Performance-refactor"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "new_ticket_condition": {
+              "type": "boolean"
+            },
+            "ticket_operation_owner": {
+              "const": "OS"
+            },
+            "unrelated_Q": {
+              "type": "string",
+              "enum": [
+                "preserved_valid_synthetic_material",
+                "retained_without_validity_claim"
+              ]
+            },
+            "actual_pair_frozen": {
+              "const": false
+            },
+            "actual_reconfirmed": {
+              "const": false
+            },
+            "actual_ticket_issued": {
+              "const": false
+            },
+            "actual_work_invalidated": {
+              "const": false
+            },
+            "actual_authority_changed": {
+              "const": false
+            },
+            "actual_completion": {
+              "const": false
+            }
+          }
+        },
+        "ReconfirmationFinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "subject_ids",
+            "basis_refs",
+            "return_owner"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "scope_conflict",
+                "population_conflict",
+                "reference_missing",
+                "reference_unknown",
+                "reference_conflict",
+                "reference_stale",
+                "content_digest_conflict",
+                "relation_missing",
+                "relation_cycle",
+                "pair_missing",
+                "pair_conflict",
+                "pair_stale",
+                "meaning_owner_unresolved",
+                "trigger_unqualified",
+                "trigger_policy_unresolved",
+                "candidate_conflict"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "subject_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ReconfirmationResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "candidate_disposition",
+            "candidate_conflicting_paths",
+            "retained_input_sha256",
+            "retained_context_sha256"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_supported",
+                "unknown",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ReconfirmationValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ReconfirmationFinding"
+              }
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_paths": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JsonPointer"
+              }
+            },
+            "retained_input_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "retained_context_sha256": {
+              "$ref": "#/$defs/Digest"
+            }
+          }
+        },
+        "AssetSelectionTarget": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requirement_revision",
+            "scope",
+            "initial_mode"
+          ],
+          "properties": {
+            "requirement_revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "initial_mode": {
+              "const": "reference_or_semantic_rederivation"
+            }
+          }
+        },
+        "AssetInvariants": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "product_responsibility",
+            "requirement_revision",
+            "meaning",
+            "interface",
+            "rights",
+            "security",
+            "consumers",
+            "execution_boundary"
+          ],
+          "properties": {
+            "product_responsibility": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "requirement_revision": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meaning": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "interface": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "rights": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "security": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "consumers": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Text"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "execution_boundary": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "AssetByteMaterial": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "raw_utf8",
+            "sha256",
+            "invariants"
+          ],
+          "properties": {
+            "raw_utf8": {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            "sha256": {
+              "$ref": "#/$defs/Text"
+            },
+            "invariants": {
+              "$ref": "#/$defs/AssetInvariants"
+            }
+          }
+        },
+        "AssetDesignPair": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "left",
+            "right",
+            "revision"
+          ],
+          "properties": {
+            "left": {
+              "$ref": "#/$defs/Text"
+            },
+            "right": {
+              "$ref": "#/$defs/Text"
+            },
+            "revision": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "AssetConsumer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "revision",
+            "required_pair"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/Text"
+            },
+            "revision": {
+              "$ref": "#/$defs/Text"
+            },
+            "required_pair": {
+              "$ref": "#/$defs/AssetDesignPair"
+            }
+          }
+        },
+        "AssetOracleMaterial": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "input",
+            "expected"
+          ],
+          "properties": {
+            "input": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "expected": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "AssetTraceMaterial": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requirement",
+            "behavior",
+            "design",
+            "verification",
+            "successor_upstream_ids",
+            "pair",
+            "oracle",
+            "expected_failure",
+            "acceptance",
+            "backflow",
+            "consumers"
+          ],
+          "properties": {
+            "requirement": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "behavior": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "design": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "verification": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "successor_upstream_ids": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Text"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "pair": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/AssetDesignPair"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "oracle": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/AssetOracleMaterial"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "expected_failure": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "acceptance": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "backflow": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "consumers": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/AssetConsumer"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "AssetClassification": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "content_audit",
+            "class"
+          ],
+          "properties": {
+            "content_audit": {
+              "type": "string",
+              "enum": [
+                "complete_synthetic",
+                "unreviewed",
+                "unknown"
+              ]
+            },
+            "class": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "SelectedAssetMaterial": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "source",
+            "target",
+            "trace",
+            "classification",
+            "requested_use",
+            "historical_observations"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/Text"
+            },
+            "source": {
+              "$ref": "#/$defs/AssetByteMaterial"
+            },
+            "target": {
+              "$ref": "#/$defs/AssetByteMaterial"
+            },
+            "trace": {
+              "$ref": "#/$defs/AssetTraceMaterial"
+            },
+            "classification": {
+              "$ref": "#/$defs/AssetClassification"
+            },
+            "requested_use": {
+              "type": "string",
+              "enum": [
+                "derive_for_initial_scope",
+                "historical_reference"
+              ]
+            },
+            "historical_observations": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "legacy_test_green",
+                "legacy_path_deleted"
+              ],
+              "properties": {
+                "legacy_test_green": {
+                  "type": "boolean"
+                },
+                "legacy_path_deleted": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "AssetReuseInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "assets",
+            "qualification"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/AssetSelectionTarget"
+            },
+            "assets": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SelectedAssetMaterial"
+              }
+            },
+            "qualification": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "AssetReuseReferent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "asset_id",
+            "field",
+            "raw_utf8",
+            "content_sha256",
+            "state",
+            "qualification_basis_refs",
+            "evidence_kind"
+          ],
+          "properties": {
+            "asset_id": {
+              "$ref": "#/$defs/Text"
+            },
+            "field": {
+              "type": "string",
+              "enum": [
+                "id",
+                "source",
+                "target",
+                "trace",
+                "classification",
+                "requested_use",
+                "historical_observations"
+              ]
+            },
+            "raw_utf8": {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            "content_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "qualification_basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            }
+          }
+        },
+        "AssetReuseContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "selected_asset_ids",
+            "required_consumers",
+            "record_catalog",
+            "qualifier_roots",
+            "state",
+            "evidence_kind",
+            "actual_clearance_refs"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/AssetSelectionTarget"
+            },
+            "selected_asset_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "required_consumers": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/AssetConsumer"
+                }
+              }
+            },
+            "record_catalog": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/AssetReuseReferent"
+              }
+            },
+            "qualifier_roots": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "actual_clearance_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          }
+        },
+        "AssetReuseItemValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "invariant_results",
+            "source_target_digest",
+            "missing_trace",
+            "conflicting_trace",
+            "classification_result",
+            "disposition_candidate",
+            "selected_initial_route",
+            "requires_unnecessary_reimplementation",
+            "actual_copy_completed",
+            "actual_transfer_completed",
+            "actual_retired",
+            "actual_current_test_passed",
+            "actual_reuse_approved"
+          ],
+          "properties": {
+            "invariant_results": {
+              "type": "object",
+              "properties": {
+                "product_responsibility": {
+                  "type": "string",
+                  "enum": [
+                    "equal_synthetic",
+                    "changed",
+                    "unknown"
+                  ]
+                },
+                "requirement_revision": {
+                  "type": "string",
+                  "enum": [
+                    "equal_synthetic",
+                    "changed",
+                    "unknown"
+                  ]
+                },
+                "meaning": {
+                  "type": "string",
+                  "enum": [
+                    "equal_synthetic",
+                    "changed",
+                    "unknown"
+                  ]
+                },
+                "interface": {
+                  "type": "string",
+                  "enum": [
+                    "equal_synthetic",
+                    "changed",
+                    "unknown"
+                  ]
+                },
+                "rights": {
+                  "type": "string",
+                  "enum": [
+                    "equal_synthetic",
+                    "changed",
+                    "unknown"
+                  ]
+                },
+                "security": {
+                  "type": "string",
+                  "enum": [
+                    "equal_synthetic",
+                    "changed",
+                    "unknown"
+                  ]
+                },
+                "consumers": {
+                  "type": "string",
+                  "enum": [
+                    "equal_synthetic",
+                    "changed",
+                    "unknown"
+                  ]
+                },
+                "execution_boundary": {
+                  "type": "string",
+                  "enum": [
+                    "equal_synthetic",
+                    "changed",
+                    "unknown"
+                  ]
+                }
+              },
+              "required": [
+                "product_responsibility",
+                "requirement_revision",
+                "meaning",
+                "interface",
+                "rights",
+                "security",
+                "consumers",
+                "execution_boundary"
+              ],
+              "additionalProperties": false
+            },
+            "source_target_digest": {
+              "type": "string",
+              "enum": [
+                "equal_synthetic",
+                "changed",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "missing_trace": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "requirement",
+                  "behavior",
+                  "design",
+                  "verification",
+                  "successor_upstream_ids",
+                  "pair",
+                  "oracle",
+                  "expected_failure",
+                  "acceptance",
+                  "backflow",
+                  "consumers"
+                ]
+              }
+            },
+            "conflicting_trace": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "consumer_pair",
+                  "pair_revision",
+                  "successor_revision",
+                  "consumer_population",
+                  "trace_scope"
+                ]
+              }
+            },
+            "classification_result": {
+              "type": "string",
+              "enum": [
+                "supported_synthetic",
+                "excluded_verbatim",
+                "unknown"
+              ]
+            },
+            "disposition_candidate": {
+              "type": "string",
+              "enum": [
+                "verbatim_reuse_candidate",
+                "semantic_rederive",
+                "reference_only",
+                "unresolved"
+              ]
+            },
+            "selected_initial_route": {
+              "type": "string",
+              "enum": [
+                "reference",
+                "semantic_rederivation",
+                "reference_with_unresolved_conditions"
+              ]
+            },
+            "requires_unnecessary_reimplementation": {
+              "const": false
+            },
+            "actual_copy_completed": {
+              "const": false
+            },
+            "actual_transfer_completed": {
+              "const": false
+            },
+            "actual_retired": {
+              "const": false
+            },
+            "actual_current_test_passed": {
+              "const": false
+            },
+            "actual_reuse_approved": {
+              "const": false
+            }
+          }
+        },
+        "AssetReuseValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "asset_results",
+            "evaluation_limit",
+            "actual_all_assets_migrated"
+          ],
+          "properties": {
+            "asset_results": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/AssetReuseItemValue"
+              }
+            },
+            "evaluation_limit": {
+              "const": "selected_synthetic_assets_only_not_all_4020"
+            },
+            "actual_all_assets_migrated": {
+              "const": false
+            }
+          }
+        },
+        "AssetReuseFinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "asset_ids",
+            "basis_refs",
+            "return_owner"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "scope_conflict",
+                "asset_population_conflict",
+                "asset_duplicate",
+                "reference_missing",
+                "reference_unknown",
+                "reference_conflict",
+                "reference_stale",
+                "content_digest_conflict",
+                "invariant_unknown",
+                "trace_missing",
+                "trace_conflict",
+                "classification_unknown",
+                "verbatim_excluded",
+                "clearance_unresolved",
+                "candidate_conflict"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "asset_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "AssetReuseResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "candidate_disposition",
+            "candidate_conflicting_paths",
+            "retained_input_sha256",
+            "retained_context_sha256"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_supported",
+                "unknown",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/AssetReuseValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/AssetReuseFinding"
+              }
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_paths": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JsonPointer"
+              }
+            },
+            "retained_input_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "retained_context_sha256": {
+              "$ref": "#/$defs/Digest"
+            }
+          }
+        },
+        "UnseenRelationTarget": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scope",
+            "binding"
+          ],
+          "properties": {
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "UnseenChange": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "condition_id",
+            "kind"
+          ],
+          "properties": {
+            "condition_id": {
+              "$ref": "#/$defs/Text"
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "new_consumer_relation",
+                "withheld_requirement_content_change"
+              ]
+            }
+          }
+        },
+        "UnseenRequirementContent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "input",
+            "expected"
+          ],
+          "properties": {
+            "input": {
+              "$ref": "#/$defs/LogicalJson"
+            },
+            "expected": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "ReleasedConsumerProbe": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "consumer_id",
+            "release_phase",
+            "material_owner",
+            "scope",
+            "binding",
+            "qualification"
+          ],
+          "properties": {
+            "consumer_id": {
+              "$ref": "#/$defs/Text"
+            },
+            "release_phase": {
+              "$ref": "#/$defs/Text"
+            },
+            "material_owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            },
+            "qualification": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ConsumerConditionRelation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "condition_ids",
+            "origin"
+          ],
+          "properties": {
+            "condition_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "origin": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ConsumerAuthorityMaterial": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "subject",
+            "scope",
+            "binding",
+            "state"
+          ],
+          "properties": {
+            "subject": {
+              "$ref": "#/$defs/Text"
+            },
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "valid_synthetic_not_actual_approval",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            }
+          }
+        },
+        "ConsumerDesignMaterial": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "condition_ids",
+            "expected"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/Text"
+            },
+            "condition_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "expected": {
+              "$ref": "#/$defs/LogicalJson"
+            }
+          }
+        },
+        "ConsumerVerificationMaterial": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "condition_ids",
+            "oracle"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/Text"
+            },
+            "condition_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "oracle": {
+              "$ref": "#/$defs/UnseenRequirementContent"
+            }
+          }
+        },
+        "ConsumerOperationTrace": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "from",
+            "to",
+            "owner",
+            "scope",
+            "binding"
+          ],
+          "properties": {
+            "from": {
+              "$ref": "#/$defs/Text"
+            },
+            "to": {
+              "$ref": "#/$defs/Text"
+            },
+            "owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "ConsumerRerequirementTrace": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "from",
+            "to",
+            "role",
+            "scope",
+            "binding"
+          ],
+          "properties": {
+            "from": {
+              "$ref": "#/$defs/Text"
+            },
+            "to": {
+              "$ref": "#/$defs/Text"
+            },
+            "role": {
+              "$ref": "#/$defs/Text"
+            },
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "UnseenConsumerMaterial": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "scope",
+            "binding",
+            "relation",
+            "authority",
+            "design",
+            "verification",
+            "operation_trace",
+            "rerequirement_trace"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/Text"
+            },
+            "scope": {
+              "$ref": "#/$defs/Text"
+            },
+            "binding": {
+              "$ref": "#/$defs/Text"
+            },
+            "relation": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ConsumerConditionRelation"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "authority": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ConsumerAuthorityMaterial"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "design": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ConsumerDesignMaterial"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "verification": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ConsumerVerificationMaterial"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "operation_trace": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ConsumerOperationTrace"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "rerequirement_trace": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ConsumerRerequirementTrace"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "UnseenRelationInput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "change",
+            "requirements",
+            "previous_known_consumers",
+            "released_probe",
+            "consumers",
+            "unobserved_population",
+            "qualification"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/UnseenRelationTarget"
+            },
+            "change": {
+              "$ref": "#/$defs/UnseenChange"
+            },
+            "requirements": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/UnseenRequirementContent"
+              }
+            },
+            "previous_known_consumers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "released_probe": {
+              "$ref": "#/$defs/ReleasedConsumerProbe"
+            },
+            "consumers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/UnseenConsumerMaterial"
+              }
+            },
+            "unobserved_population": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "qualification": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "UnseenRelationReferent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "subject_id",
+            "field",
+            "raw_utf8",
+            "content_sha256",
+            "state",
+            "qualification_basis_refs",
+            "evidence_kind"
+          ],
+          "properties": {
+            "subject_id": {
+              "$ref": "#/$defs/Text"
+            },
+            "field": {
+              "$ref": "#/$defs/Text"
+            },
+            "raw_utf8": {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            "content_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "qualification_basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            }
+          }
+        },
+        "UnseenRelationContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "selected_consumer_ids",
+            "previous_known_consumers",
+            "required_condition_ids",
+            "requirement_content_versions",
+            "required_consumer_relations",
+            "required_operation_joins",
+            "unobserved_population",
+            "probe_owner",
+            "reverification_owners",
+            "record_catalog",
+            "qualifier_roots",
+            "state",
+            "evidence_kind",
+            "actual_probe_or_observation_refs"
+          ],
+          "properties": {
+            "target": {
+              "$ref": "#/$defs/UnseenRelationTarget"
+            },
+            "selected_consumer_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "previous_known_consumers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "required_condition_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "requirement_content_versions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "raw_utf8",
+                  "sha256",
+                  "target"
+                ],
+                "properties": {
+                  "raw_utf8": {
+                    "$ref": "#/$defs/RawUtf8"
+                  },
+                  "sha256": {
+                    "$ref": "#/$defs/Digest"
+                  },
+                  "target": {
+                    "$ref": "#/$defs/UnseenRelationTarget"
+                  }
+                }
+              }
+            },
+            "required_consumer_relations": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/ConsumerConditionRelation"
+              }
+            },
+            "required_operation_joins": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "operation",
+                  "rerequirement"
+                ],
+                "properties": {
+                  "operation": {
+                    "$ref": "#/$defs/ConsumerOperationTrace"
+                  },
+                  "rerequirement": {
+                    "$ref": "#/$defs/ConsumerRerequirementTrace"
+                  }
+                }
+              }
+            },
+            "unobserved_population": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "probe_owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "reverification_owners": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "record_catalog": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/UnseenRelationReferent"
+              }
+            },
+            "qualifier_roots": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "current",
+                "missing",
+                "unknown",
+                "conflict",
+                "stale"
+              ]
+            },
+            "evidence_kind": {
+              "type": "string",
+              "enum": [
+                "synthetic",
+                "actual_owner_input"
+              ]
+            },
+            "actual_probe_or_observation_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          }
+        },
+        "UnseenComparisonCell": {
+          "type": "string",
+          "enum": [
+            "supported_synthetic_material",
+            "missing",
+            "unknown",
+            "conflict",
+            "stale",
+            "unknown_relation"
+          ]
+        },
+        "UnseenConsumerValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "relation",
+            "authority",
+            "revision",
+            "scope",
+            "design",
+            "verification",
+            "semantic_oracle",
+            "operation_trace",
+            "rerequirement_trace",
+            "impact",
+            "evaluation",
+            "reverification_owner",
+            "actual_test_passed",
+            "actual_operation_trace_established",
+            "actual_requirement_changed",
+            "actual_invalidated"
+          ],
+          "properties": {
+            "relation": {
+              "$ref": "#/$defs/UnseenComparisonCell"
+            },
+            "authority": {
+              "$ref": "#/$defs/UnseenComparisonCell"
+            },
+            "revision": {
+              "$ref": "#/$defs/UnseenComparisonCell"
+            },
+            "scope": {
+              "$ref": "#/$defs/UnseenComparisonCell"
+            },
+            "design": {
+              "$ref": "#/$defs/UnseenComparisonCell"
+            },
+            "verification": {
+              "$ref": "#/$defs/UnseenComparisonCell"
+            },
+            "semantic_oracle": {
+              "$ref": "#/$defs/UnseenComparisonCell"
+            },
+            "operation_trace": {
+              "$ref": "#/$defs/UnseenComparisonCell"
+            },
+            "rerequirement_trace": {
+              "$ref": "#/$defs/UnseenComparisonCell"
+            },
+            "impact": {
+              "type": "string",
+              "enum": [
+                "Affected",
+                "Unaffected",
+                "Unknown"
+              ]
+            },
+            "evaluation": {
+              "type": "string",
+              "enum": [
+                "supported_synthetic_condition",
+                "unevaluated"
+              ]
+            },
+            "reverification_owner": {
+              "$ref": "#/$defs/Text"
+            },
+            "actual_test_passed": {
+              "const": false
+            },
+            "actual_operation_trace_established": {
+              "const": false
+            },
+            "actual_requirement_changed": {
+              "const": false
+            },
+            "actual_invalidated": {
+              "const": false
+            }
+          }
+        },
+        "UnseenRelationValue": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "consumer_results",
+            "unresolved_consumers",
+            "reverification_targets",
+            "unobserved_population",
+            "general_coverage_guarantee",
+            "actual_completion"
+          ],
+          "properties": {
+            "consumer_results": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/UnseenConsumerValue"
+              }
+            },
+            "unresolved_consumers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "reverification_targets": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "unobserved_population": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "general_coverage_guarantee": {
+              "const": false
+            },
+            "actual_completion": {
+              "const": false
+            }
+          }
+        },
+        "UnseenRelationFinding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "pointer",
+            "consumer_ids",
+            "condition_ids",
+            "basis_refs",
+            "return_owner"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "enum": [
+                "input_invalid",
+                "scope_conflict",
+                "population_conflict",
+                "consumer_duplicate",
+                "reference_missing",
+                "reference_unknown",
+                "reference_conflict",
+                "reference_stale",
+                "content_digest_conflict",
+                "probe_unqualified",
+                "relation_missing",
+                "relation_conflict",
+                "semantic_oracle_conflict",
+                "operation_join_unresolved",
+                "rerequirement_join_unresolved",
+                "owner_conflict",
+                "candidate_conflict"
+              ]
+            },
+            "pointer": {
+              "$ref": "#/$defs/JsonPointer"
+            },
+            "consumer_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "condition_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "return_owner": {
+              "$ref": "#/$defs/Text"
+            }
+          }
+        },
+        "UnseenRelationResult": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "outcome",
+            "value",
+            "findings",
+            "candidate_disposition",
+            "candidate_conflicting_paths",
+            "retained_input_sha256",
+            "retained_context_sha256"
+          ],
+          "properties": {
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "content_supported",
+                "unknown",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/UnseenRelationValue"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/UnseenRelationFinding"
+              }
+            },
+            "candidate_disposition": {
+              "type": "string",
+              "enum": [
+                "not_submitted",
+                "corresponding_content_only",
+                "conflict",
+                "invalid"
+              ]
+            },
+            "candidate_conflicting_paths": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/JsonPointer"
+              }
+            },
+            "retained_input_sha256": {
+              "$ref": "#/$defs/Digest"
+            },
+            "retained_context_sha256": {
+              "$ref": "#/$defs/Digest"
+            }
+          }
+        },
+        "ImpactCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "impact_by_node",
+            "establishment_by_node",
+            "unknown_relation_nodes",
+            "actual_state_updated",
+            "actual_reverification_executed",
+            "actual_upper_passed",
+            "actual_upper_failed",
+            "actual_completion"
+          ],
+          "properties": {
+            "impact_by_node": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "establishment_by_node": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "previous_result",
+                  "previous_revision",
+                  "current_result",
+                  "upper_obligations_retained"
+                ],
+                "properties": {
+                  "previous_result": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "previous_revision": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/Text"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "current_result": {
+                    "type": "string"
+                  },
+                  "upper_obligations_retained": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/Text"
+                    }
+                  }
+                }
+              }
+            },
+            "unknown_relation_nodes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "actual_state_updated": {
+              "type": "boolean"
+            },
+            "actual_reverification_executed": {
+              "type": "boolean"
+            },
+            "actual_upper_passed": {
+              "type": "boolean"
+            },
+            "actual_upper_failed": {
+              "type": "boolean"
+            },
+            "actual_completion": {
+              "type": "boolean"
+            }
+          },
+          "$comment": "候補の閉じたshape。literal/enum外の型付き提出値も比較対象にし、domain conflictをschemaで消さない。schema適合は内容対応/実成立ではない。"
+        },
+        "UnseenRelationCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "consumer_results",
+            "unresolved_consumers",
+            "reverification_targets",
+            "unobserved_population",
+            "general_coverage_guarantee",
+            "actual_completion"
+          ],
+          "properties": {
+            "consumer_results": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "relation",
+                  "authority",
+                  "revision",
+                  "scope",
+                  "design",
+                  "verification",
+                  "semantic_oracle",
+                  "operation_trace",
+                  "rerequirement_trace",
+                  "impact",
+                  "evaluation",
+                  "reverification_owner",
+                  "actual_test_passed",
+                  "actual_operation_trace_established",
+                  "actual_requirement_changed",
+                  "actual_invalidated"
+                ],
+                "properties": {
+                  "relation": {
+                    "type": "string"
+                  },
+                  "authority": {
+                    "type": "string"
+                  },
+                  "revision": {
+                    "type": "string"
+                  },
+                  "scope": {
+                    "type": "string"
+                  },
+                  "design": {
+                    "type": "string"
+                  },
+                  "verification": {
+                    "type": "string"
+                  },
+                  "semantic_oracle": {
+                    "type": "string"
+                  },
+                  "operation_trace": {
+                    "type": "string"
+                  },
+                  "rerequirement_trace": {
+                    "type": "string"
+                  },
+                  "impact": {
+                    "type": "string"
+                  },
+                  "evaluation": {
+                    "type": "string"
+                  },
+                  "reverification_owner": {
+                    "$ref": "#/$defs/Text"
+                  },
+                  "actual_test_passed": {
+                    "type": "boolean"
+                  },
+                  "actual_operation_trace_established": {
+                    "type": "boolean"
+                  },
+                  "actual_requirement_changed": {
+                    "type": "boolean"
+                  },
+                  "actual_invalidated": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "unresolved_consumers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "reverification_targets": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "unobserved_population": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "general_coverage_guarantee": {
+              "type": "boolean"
+            },
+            "actual_completion": {
+              "type": "boolean"
+            }
+          },
+          "$comment": "候補の閉じたshape。literal/enum外の型付き提出値も比較対象にし、domain conflictをschemaで消さない。schema適合は内容対応/実成立ではない。"
+        },
+        "ReconfirmationCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "changed_meaning_axes",
+            "reconfirmation_reasons",
+            "reconfirmation_targets",
+            "required_pair_refs",
+            "pair_reconfirmation_status",
+            "pair_material_condition",
+            "route_candidate",
+            "backflow_layer_candidate",
+            "reverse_triggers",
+            "reverse_scope_candidate",
+            "ticket_route_candidate",
+            "new_ticket_condition",
+            "ticket_operation_owner",
+            "unrelated_Q",
+            "actual_pair_frozen",
+            "actual_reconfirmed",
+            "actual_ticket_issued",
+            "actual_work_invalidated",
+            "actual_authority_changed",
+            "actual_completion"
+          ],
+          "properties": {
+            "changed_meaning_axes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "reconfirmation_reasons": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "reconfirmation_targets": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "required_pair_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "pair_reconfirmation_status": {
+              "type": "string"
+            },
+            "pair_material_condition": {
+              "type": "string"
+            },
+            "route_candidate": {
+              "type": "string"
+            },
+            "backflow_layer_candidate": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reverse_triggers": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "reverse_scope_candidate": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ticket_route_candidate": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "new_ticket_condition": {
+              "type": "boolean"
+            },
+            "ticket_operation_owner": {
+              "type": "string"
+            },
+            "unrelated_Q": {
+              "type": "string"
+            },
+            "actual_pair_frozen": {
+              "type": "boolean"
+            },
+            "actual_reconfirmed": {
+              "type": "boolean"
+            },
+            "actual_ticket_issued": {
+              "type": "boolean"
+            },
+            "actual_work_invalidated": {
+              "type": "boolean"
+            },
+            "actual_authority_changed": {
+              "type": "boolean"
+            },
+            "actual_completion": {
+              "type": "boolean"
+            }
+          },
+          "$comment": "候補の閉じたshape。literal/enum外の型付き提出値も比較対象にし、domain conflictをschemaで消さない。schema適合は内容対応/実成立ではない。"
+        },
+        "TraceCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "condition_results",
+            "unresolved_conditions",
+            "reverification_targets",
+            "impact_condition",
+            "actual_all_conditions_verified",
+            "actual_implementation_complete",
+            "actual_connection_complete",
+            "actual_requirement_approved",
+            "actual_completion",
+            "unmatched_record_ids",
+            "unresolved_reverification_conditions",
+            "rejected_external_verification_record_ids"
+          ],
+          "properties": {
+            "condition_results": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "design",
+                  "verification",
+                  "source",
+                  "revision",
+                  "bidirectional_trace",
+                  "owner",
+                  "membership",
+                  "implementation",
+                  "connection",
+                  "semantic_oracle"
+                ],
+                "properties": {
+                  "design": {
+                    "type": "string"
+                  },
+                  "verification": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "revision": {
+                    "type": "string"
+                  },
+                  "bidirectional_trace": {
+                    "type": "string"
+                  },
+                  "owner": {
+                    "type": "string"
+                  },
+                  "membership": {
+                    "type": "string"
+                  },
+                  "implementation": {
+                    "type": "string"
+                  },
+                  "connection": {
+                    "type": "string"
+                  },
+                  "semantic_oracle": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "unresolved_conditions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "reverification_targets": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "impact_condition": {
+              "type": "string"
+            },
+            "actual_all_conditions_verified": {
+              "type": "boolean"
+            },
+            "actual_implementation_complete": {
+              "type": "boolean"
+            },
+            "actual_connection_complete": {
+              "type": "boolean"
+            },
+            "actual_requirement_approved": {
+              "type": "boolean"
+            },
+            "actual_completion": {
+              "type": "boolean"
+            },
+            "unmatched_record_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "unresolved_reverification_conditions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            },
+            "rejected_external_verification_record_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
+            }
+          },
+          "$comment": "候補の閉じたshape。literal/enum外の型付き提出値も比較対象にし、domain conflictをschemaで消さない。schema適合は内容対応/実成立ではない。"
+        },
+        "AssetReuseCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "asset_results",
+            "evaluation_limit",
+            "actual_all_assets_migrated"
+          ],
+          "properties": {
+            "asset_results": {
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "invariant_results",
+                  "source_target_digest",
+                  "missing_trace",
+                  "conflicting_trace",
+                  "classification_result",
+                  "disposition_candidate",
+                  "selected_initial_route",
+                  "requires_unnecessary_reimplementation",
+                  "actual_copy_completed",
+                  "actual_transfer_completed",
+                  "actual_retired",
+                  "actual_current_test_passed",
+                  "actual_reuse_approved"
+                ],
+                "properties": {
+                  "invariant_results": {
+                    "type": "object",
+                    "properties": {
+                      "product_responsibility": {
+                        "type": "string"
+                      },
+                      "requirement_revision": {
+                        "type": "string"
+                      },
+                      "meaning": {
+                        "type": "string"
+                      },
+                      "interface": {
+                        "type": "string"
+                      },
+                      "rights": {
+                        "type": "string"
+                      },
+                      "security": {
+                        "type": "string"
+                      },
+                      "consumers": {
+                        "type": "string"
+                      },
+                      "execution_boundary": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "product_responsibility",
+                      "requirement_revision",
+                      "meaning",
+                      "interface",
+                      "rights",
+                      "security",
+                      "consumers",
+                      "execution_boundary"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "source_target_digest": {
+                    "type": "string"
+                  },
+                  "missing_trace": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "conflicting_trace": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "classification_result": {
+                    "type": "string"
+                  },
+                  "disposition_candidate": {
+                    "type": "string"
+                  },
+                  "selected_initial_route": {
+                    "type": "string"
+                  },
+                  "requires_unnecessary_reimplementation": {
+                    "type": "boolean"
+                  },
+                  "actual_copy_completed": {
+                    "type": "boolean"
+                  },
+                  "actual_transfer_completed": {
+                    "type": "boolean"
+                  },
+                  "actual_retired": {
+                    "type": "boolean"
+                  },
+                  "actual_current_test_passed": {
+                    "type": "boolean"
+                  },
+                  "actual_reuse_approved": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "evaluation_limit": {
+              "type": "string"
+            },
+            "actual_all_assets_migrated": {
+              "type": "boolean"
+            }
+          },
+          "$comment": "候補の閉じたshape。literal/enum外の型付き提出値も比較対象にし、domain conflictをschemaで消さない。schema適合は内容対応/実成立ではない。"
+        },
+        "ChangeCandidate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_condition",
+            "owner_condition",
+            "derivation_owner",
+            "operation_owner",
+            "management_projection_authority",
+            "unrelated_work",
+            "actual_ticket_issued",
+            "actual_record_saved",
+            "actual_state_updated",
+            "actual_requirement_changed",
+            "actual_approved",
+            "actual_completed",
+            "legacy_trigger_adopted",
+            "legacy_runtime_started",
+            "change_kind",
+            "route_candidate",
+            "changed_meaning_axes",
+            "backflow_layer_candidate",
+            "responsible_owner",
+            "evidence_basis"
+          ],
+          "properties": {
+            "source_condition": {
+              "type": "string"
+            },
+            "owner_condition": {
+              "type": "string"
+            },
+            "derivation_owner": {
+              "type": "string"
+            },
+            "operation_owner": {
+              "type": "string"
+            },
+            "management_projection_authority": {
+              "type": "string"
+            },
+            "unrelated_work": {
+              "type": "string"
+            },
+            "actual_ticket_issued": {
+              "type": "boolean"
+            },
+            "actual_record_saved": {
+              "type": "boolean"
+            },
+            "actual_state_updated": {
+              "type": "boolean"
+            },
+            "actual_requirement_changed": {
+              "type": "boolean"
+            },
+            "actual_approved": {
+              "type": "boolean"
+            },
+            "actual_completed": {
+              "type": "boolean"
+            },
+            "legacy_trigger_adopted": {
+              "type": "boolean"
+            },
+            "legacy_runtime_started": {
+              "type": "boolean"
+            },
+            "change_kind": {
+              "type": "string"
+            },
+            "route_candidate": {
+              "type": "string"
+            },
+            "changed_meaning_axes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "backflow_layer_candidate": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "responsible_owner": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Text"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evidence_basis": {
+              "type": "string"
+            }
+          },
+          "$comment": "候補の閉じたshape。literal/enum外の型付き提出値も比較対象にし、domain conflictをschemaで消さない。schema適合は内容対応/実成立ではない。"
+        }
+      }
+    },
+    "validation_boundary": [
+      "schemaは型/必須field/未知field/enum/literal/nullable/mapping shapeだけ。kind/owner/revision/root資格/内容digest/集合exact joinは7functionsへ。",
+      "wire codecはstrict UTF-8/重複key/NaN/Infinityとunsafe値を拒否し原bytesを保持。論理schemaの合格でcodec完了を生成しない。",
+      "全schema findingをpointerで蓄積し、読めた原資料を保全。欠落fieldだけで読める他scopeを捨てず、構造解釈不能時だけresult.value null。schema failureをdomain successへ補正しない。",
+      "candidateのliteral/enum外の同primitive型値を許し原valueとの比較でconflictを検出する。未知field/異primitive型は別不正findingとして保全。schemaだけでcandidate対応を生成しない。",
+      "unique ID/重複集合/Ref latest-wildcard/有限number/bool-number内容差/owner宣言key集合は意味・codec検査。schema上のnumberはJSON数学値であり実host数値の安全性を保証しない。"
+    ],
+    "unclosed": "正式wire schema registry/実consumer codec選定/全構造negative oracle/副次finding集合/L6L7凍結は未完。型名/shapeの構造定義で全004閉包を主張しない。"
+  }
 }
