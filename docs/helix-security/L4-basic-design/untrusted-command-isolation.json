@@ -190,7 +190,8 @@
         "raw→quote/summary/translation/抽出のどこでも未信頼由来を保持。trustedラベル、source名、検出no_matchによるauthority化をしない。",
         "未信頼由来からsystem instruction、Toolのauthority-control args、privileged operation、policy更新、credential送信へ到達する直接data経路を拒否する。中間にquote/summaryを置いた連結もdirect経路のまま。",
         "独立に選択された既存操作のdata-only引数slotへ引用dataを渡すことと、dataから操作/権限を生成することを区別。data-only資格・元操作scopeの実成立は008/各consumerに残し、本graph labelだけで許可しない。",
-        "未確認graph/slot/source/scopeは該当操作のboundary_unresolved。無関係な操作/全projectへ全停止を広げない。"
+        "未確認graph/slot/source/scopeは該当操作のboundary_unresolved。無関係な操作/全projectへ全停止を広げない。",
+        "Worker scopeの変更/拡張はprivileged_operationのauthority-controlに含める。data由来の拡張を別役職/新scopeへ成立させず、既008/OS ownerへ不足を返す。"
       ],
       "qualification_rule": "source/graph/Worker scopeとconsumerの独立原資料を対象revision/scopeへ結ぶ。今回の固定合成graphは実binding/enforcementを証明しない。"
     },
@@ -224,8 +225,9 @@
   ],
   "diagnostic_contract": {
     "return_owner": "data-flow-owner",
-    "meaning": "原source/scope/graphの不足は各原owner、authority-control slot/consumerの不足は当該ownerへ返す。SECがauthorityを発行/実行しない。",
+    "meaning": "この基本pairの返却先はdata-flow-ownerへ集約する。source/scope/graphの各原ownerやauthority-control slot/consumer ownerへの個別振分け・正式bindingはL5へ残す。SECがauthorityを発行/実行しない。",
     "locality": "不足は対象source/revision/scopeと該当操作へ限定。",
-    "sort": "code/pointer/return_ownerのUnicode scalar順、完全同値3fieldのみunique。"
+    "sort": "code/pointer/return_ownerのUnicode scalar順、完全同値3fieldのみunique。",
+    "pointer_base": "各case given.input（実comparer input snapshot）をJSON Pointerのrootとする。authority pathは/node_roles/<escaped node id>、他causeは元field位置。出力配列にnode idをindexとして挿入しない。~は~0、/は~1へescape。"
   }
 }
