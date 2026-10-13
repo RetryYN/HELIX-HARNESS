@@ -132,7 +132,8 @@
     "正式identity/schema/codecとOS assignment・INFRA実環境・CONNECT接続のowner資格/全tuple binding、tenant適用条件とconsumerの実接続。",
     "局所L5/L8で全shape/missing/conflict/stale/多target/重複・不正primitive/全作用の詳細とoracle閉包。",
     "各owner state正本と実authority008・Worker制約007の対接続、実隔離/実資源/実operationは未成立。",
-    "先行oracle凍結→実装前Red→最小Green→Refactor→再検証、実L9/L10/PO実物L11と全92親430対の完遂・独立二重確認を継続。"
+    "先行oracle凍結→実装前Red→最小Green→Refactor→再検証、実L9/L10/PO実物L11と全92親430対の完遂・独立二重確認を継続。",
+    "各callerのfallback/foreign state/read→networkの否定例を基本pairへ追加。全caller別の他operation・全不正shape/多target/組合せはL5/L8へ残す。tenant適用条件の実owner資格/実consumerは未成立。"
   ],
   "document_id": "HELIXSECURITY-L9-003",
   "layer": "L9",
@@ -175,9 +176,9 @@
       "execution_target"
     ],
     "algorithm": [
-      "given.input request/contextを原保持。各origin/target 6軸を独立expectedへ照合。tenant適用trueは必要、falseはnullだけ、unknownは不足を保持する。",
-      "asset_scopeの全6軸もexpected_targetへ独立照合。asset_state_latest_claimは資格の代用にしない。owner_material_statesの非currentを個別unknown findingへ。",
-      "connection absentは明示接続なしの違反、非currentは未確認。current内容はexpected_connectionと完全一致、requested operationの列挙内、既知origin/targetと接続tupleの一致を別に比較。",
+      "given.input request/contextを原保持。origin/targetの各軸を独立expectedへ照合。tenant=trueは必要Textをexpectedと比較。falseはnull以外をtenant_inventedとしtenant値の同一性は比較しない。unknownはtenant_applicability_unresolvedとしtenant値をidentity/asset/接続の意味比較から除く。他5軸の不足/相反は独立に保持する。sideが接続照合可能なのは他5軸が全て既知非空Textで、trueならtenantも既知Text、falseならtenantがnullの場合だけ。unknown又はtenant_invented/必要identity不足のside全体のrequest→connection joinは未成立として比較を補完しない。",
+      "asset_scopeの他5軸をexpected_targetへ独立照合。target tenant=trueだけtenant Textを比較し、falseは投入だけtenant_invented、unknownはtenant値の不足/相反を追加推測しない。asset_state_latest_claimは資格の代用にしない。owner素材の非currentを個別unknown findingへ。",
+      "connection absentは明示接続なしの違反、非currentは未確認。current内容はexpected_connection全record（非適用null markerも含む）へ完全一致で比較し、requested operationの列挙内を確認。request→connectionのside joinはalgorithm1の照合可能sideだけに行い、他5軸とtenant=trueの場合のtenantを比較する。false/unknownのtenantはこの意味joinで比較しない。connection_content_correspondingは独立expected connectionの内容一致の値であり、request identityの成立や実authorityではない。",
       "fallback none以外は暗黙fallback違反。違反があればisolation_violation、欠落/未確認だけはscope_unresolved、それ以外はscope_correspondingという内容提案。",
       "findingはinput rootの実位置、code/pointer/owner scalar順unique。pending_operationsは該当requestの1operationだけ。全actual false、実許可/state正本/実作用を生成しない。"
     ],
@@ -26422,10 +26423,2441 @@
       },
       "execution_state": "not_executed",
       "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "Agent",
+            "asset_kind": "state",
+            "operation": "read",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "primary_tree",
+            "asset_state_latest_claim": false
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "read",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "implicit_fallback",
+            "pointer": "/request/fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "read"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-AGENT-OTHER-PROJECT-LATEST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "Agent",
+            "asset_kind": "state",
+            "operation": "read",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-B",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "none",
+            "asset_state_latest_claim": true
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "read",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "asset_scope_conflict",
+            "pointer": "/request/asset_scope/project",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "read"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-AGENT-READ-DOES-NOT-GRANT-NETWORK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "Agent",
+            "asset_kind": "state",
+            "operation": "network",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "none",
+            "asset_state_latest_claim": false
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "network",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "operation_scope_conflict",
+            "pointer": "/request/operation",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "network"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "Hook",
+            "asset_kind": "state",
+            "operation": "read",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "primary_tree",
+            "asset_state_latest_claim": false
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "read",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "implicit_fallback",
+            "pointer": "/request/fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "read"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-HOOK-OTHER-PROJECT-LATEST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "Hook",
+            "asset_kind": "state",
+            "operation": "read",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-B",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "none",
+            "asset_state_latest_claim": true
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "read",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "asset_scope_conflict",
+            "pointer": "/request/asset_scope/project",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "read"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-HOOK-READ-DOES-NOT-GRANT-NETWORK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "Hook",
+            "asset_kind": "state",
+            "operation": "network",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "none",
+            "asset_state_latest_claim": false
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "network",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "operation_scope_conflict",
+            "pointer": "/request/operation",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "network"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "memory",
+            "asset_kind": "state",
+            "operation": "read",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "primary_tree",
+            "asset_state_latest_claim": false
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "read",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "implicit_fallback",
+            "pointer": "/request/fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "read"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-MEMORY-OTHER-PROJECT-LATEST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "memory",
+            "asset_kind": "state",
+            "operation": "read",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-B",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "none",
+            "asset_state_latest_claim": true
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "read",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "asset_scope_conflict",
+            "pointer": "/request/asset_scope/project",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "read"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-MEMORY-READ-DOES-NOT-GRANT-NETWORK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "memory",
+            "asset_kind": "state",
+            "operation": "network",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "none",
+            "asset_state_latest_claim": false
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "network",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "operation_scope_conflict",
+            "pointer": "/request/operation",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "network"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "credential",
+            "asset_kind": "state",
+            "operation": "read",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "primary_tree",
+            "asset_state_latest_claim": false
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "read",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "implicit_fallback",
+            "pointer": "/request/fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "read"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-CREDENTIAL-OTHER-PROJECT-LATEST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "credential",
+            "asset_kind": "state",
+            "operation": "read",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-B",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "none",
+            "asset_state_latest_claim": true
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "read",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "asset_scope_conflict",
+            "pointer": "/request/asset_scope/project",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "read"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-CREDENTIAL-READ-DOES-NOT-GRANT-NETWORK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "credential",
+            "asset_kind": "state",
+            "operation": "network",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "none",
+            "asset_state_latest_claim": false
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "network",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "operation_scope_conflict",
+            "pointer": "/request/operation",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "network"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "configuration",
+            "asset_kind": "state",
+            "operation": "read",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "primary_tree",
+            "asset_state_latest_claim": false
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "read",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "implicit_fallback",
+            "pointer": "/request/fallback",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "read"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-CONFIGURATION-OTHER-PROJECT-LATEST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "configuration",
+            "asset_kind": "state",
+            "operation": "read",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-B",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "none",
+            "asset_state_latest_claim": true
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "read",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "asset_scope_conflict",
+            "pointer": "/request/asset_scope/project",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "read"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-CONFIGURATION-READ-DOES-NOT-GRANT-NETWORK",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "configuration",
+            "asset_kind": "state",
+            "operation": "network",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "none",
+            "asset_state_latest_claim": false
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "isolation_violation",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "applicable"
+        },
+        "requested_operation": "network",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "operation_scope_conflict",
+            "pointer": "/request/operation",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "network"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-ORIGIN-TENANT-UNKNOWN-VALUES",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "Worker",
+            "asset_kind": "state",
+            "operation": "read",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "UNCONFIRMED-TENANT",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "none",
+            "asset_state_latest_claim": false
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": null,
+            "target_tenant_applicable": true,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "scope_unresolved",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "unknown",
+          "target": "applicable"
+        },
+        "requested_operation": "read",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "tenant_applicability_unresolved",
+            "pointer": "/context/origin_tenant_applicable",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "read"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC003-TARGET-TENANT-UNKNOWN-VALUES",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "caller_kind": "Worker",
+            "asset_kind": "state",
+            "operation": "read",
+            "origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "target": {
+              "project": "PROJECT-A",
+              "tenant": "UNCONFIRMED-TENANT",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "asset_scope": {
+              "project": "PROJECT-A",
+              "tenant": null,
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "connection_state": "current",
+            "connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            },
+            "fallback": "none",
+            "asset_state_latest_claim": false
+          },
+          "context": {
+            "expected_origin": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "expected_target": {
+              "project": "PROJECT-A",
+              "tenant": "TENANT-A",
+              "environment": "ENV-A",
+              "assignment": "ASSIGN-A",
+              "worktree": "TREE-A",
+              "revision": "scope-r1"
+            },
+            "origin_tenant_applicable": true,
+            "target_tenant_applicable": null,
+            "owner_material_states": {
+              "OS": "current",
+              "INFRA": "current",
+              "CONNECT": "current"
+            },
+            "expected_connection": {
+              "identity": "CONNECT-C",
+              "revision": "connection-r1",
+              "origin": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "target": {
+                "project": "PROJECT-A",
+                "tenant": "TENANT-A",
+                "environment": "ENV-A",
+                "assignment": "ASSIGN-A",
+                "worktree": "TREE-A",
+                "revision": "scope-r1"
+              },
+              "allowed_operations": [
+                "read"
+              ]
+            }
+          }
+        },
+        "source_kind": "synthetic_owner_snapshots",
+        "evidence_limit": "固定独立expected内容とrequestの合成比較。current自己申告は実owner資格でない。"
+      },
+      "when": "2componentの局所内容照合を組み合わせる合成proposal。実permission/作用/環境を変更しない。",
+      "expected_proposal": {
+        "condition": "scope_unresolved",
+        "origin_identity_preserved": true,
+        "target_identity_preserved": true,
+        "tenant_disposition": {
+          "origin": "applicable",
+          "target": "unknown"
+        },
+        "requested_operation": "read",
+        "connection_content_corresponding": true,
+        "findings": [
+          {
+            "code": "tenant_applicability_unresolved",
+            "pointer": "/context/target_tenant_applicable",
+            "return_owner": "scope-binding-owner"
+          }
+        ],
+        "pending_operations": [
+          "read"
+        ],
+        "actual_scope_authorized": false,
+        "actual_state_changed": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
     }
   ],
   "completion": {
     "status": "unproven",
-    "evidence": "188固定合成対照の設計だけ。実隔離/owner資格/対接続/全coverage/実L9L10L11は未成立。"
+    "evidence": "205固定合成対照の設計だけ。実隔離/owner資格/対接続/全coverage/実L9L10L11は未成立。"
   }
 }

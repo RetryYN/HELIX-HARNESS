@@ -132,7 +132,8 @@
     "正式identity/schema/codecとOS assignment・INFRA実環境・CONNECT接続のowner資格/全tuple binding、tenant適用条件とconsumerの実接続。",
     "局所L5/L8で全shape/missing/conflict/stale/多target/重複・不正primitive/全作用の詳細とoracle閉包。",
     "各owner state正本と実authority008・Worker制約007の対接続、実隔離/実資源/実operationは未成立。",
-    "先行oracle凍結→実装前Red→最小Green→Refactor→再検証、実L9/L10/PO実物L11と全92親430対の完遂・独立二重確認を継続。"
+    "先行oracle凍結→実装前Red→最小Green→Refactor→再検証、実L9/L10/PO実物L11と全92親430対の完遂・独立二重確認を継続。",
+    "各callerのfallback/foreign state/read→networkの否定例を基本pairへ追加。全caller別の他operation・全不正shape/多target/組合せはL5/L8へ残す。tenant適用条件の実owner資格/実consumerは未成立。"
   ],
   "document_id": "HELIXSECURITY-L4-003",
   "layer": "L4",
@@ -174,7 +175,8 @@
       "content_comparison": [
         "permission/state/data/Worker/credential/artifact/memory/execution_targetを原identityへ結ぶ。caller種別Agent/Hook/memory/credential/configuration/Workerでも境界を保持。",
         "OSのassignment/project（適用tenantを含む）、INFRAの実環境、CONNECTの明示接続を各ownerの資料へ照合。metadata currentだけで実資格を生成しない。",
-        "tenant適用時の欠落はunknown、非適用時にtenantを投入している場合はtenant_invented。identity欠落・相反をprimary treeや別projectの値で補完しない。"
+        "tenant適用時の欠落はunknown、非適用時にtenantを投入している場合はtenant_invented。identity欠落・相反をprimary treeや別projectの値で補完しない。",
+        "tenant=trueは必要Textをexpectedと比較。falseはnull以外をtenant_inventedとしtenant値の同一性は比較しない。unknownはtenant_applicability_unresolvedとしtenant値をidentity/asset/接続の意味比較から除く。他5軸の不足/相反は独立に保持する。sideが接続照合可能なのは他5軸が全て既知非空Textで、trueならtenantも既知Text、falseならtenantがnullの場合だけ。unknown又はtenant_invented/必要identity不足のside全体のrequest→connection joinは未成立として比較を補完しない。"
       ],
       "qualification_rule": "この基本pairは固定合成expected snapshotと内容を比較するだけ。実owner/custody/state正本の成立は独立consumer bindingへ。"
     },
