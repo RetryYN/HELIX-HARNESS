@@ -1,0 +1,492 @@
+{
+  "parent": "HARNESS-L2-040",
+  "status": "draft_basic_contracts_initial_concrete_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 3",
+    "authoring_stage": "Stage 1",
+    "restart_decision": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+    "approved_content_revision": "0e195e7df0b11083c40c17faf0c58ef7b4af9b2d",
+    "boundary": "限定前提に必要な意味契約。Stage3全能力/実writer/保存/発行は再開しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d4d09cf0a2f30c41627d461d2e4aa85632e5c361d3d29aaf0525ffe7ea74d9ab"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-layer040-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d31367d0d3480dc8324bda6b3ca7facf6bd8dacfd13a29ee3ac0ddbddd5babe0"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "read_lines": [
+        136,
+        136
+      ],
+      "line_sha256": "a62b63ab18b23ac9564d6c7ffca7580ac9471a6d6e7374f8e4a26c93f0441b6c",
+      "quote": "| **HIL-FR-46** | Layer Ledger Registryはcanonical L1–L12ごとにledger type、粒度、必須node/edge、authority、input/output、entry/exit gate、template versionを登録する。L0 charterは層外authority anchorとして別登録する。各layer ledgerのrowはstable subject ID、revision、source span、semantic digest、status、owner、downstream/upstream edgeを持つ。 | layer ledger catalog、row revision、layer snapshot、coverage receipt |",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "preserve": "十二層のledger契約、六pair、L0層外anchor、stable row identity/revision/source/owner/双方向edge、snapshot/coverage内容条件。",
+      "change": "実登録writer/snapshot生成/coverage保存発行と旧DB/runtimeを移さずHARNESSの意味とOSの運転を分離。",
+      "reason": "9/29採択040-002、対象L3/L10委任承認とMPR-SH-HARNESS-LAYER-LEDGER-EXTRACTION-001のholdingを保持。旧runtime不在を置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "read_lines": [
+        209,
+        209
+      ],
+      "line_sha256": "f30d5a844de9d622f8754b5b9ace72e74dc44886635095de76183d544678c9a3",
+      "quote": "| **HIL-NFR-29** | Layer Ledger Chainはtemplate/file/章/aggregate親の存在をpair coverageに算入せず、原子的obligationとoracleを分母にする。上下・左右edgeは両方向、同一revision/snapshot、意味粒度一致を要求し、deferred、stale、未実行、片肺pairをgreenにしない。 |",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "reference_only_semantic_comparison",
+      "preserve": "NFR29の原子的義務と両方向/同revisionの内容照合を、既に承認された040-F04の全件/未完/stale条件の文脈として参照する。",
+      "change": "旧coverage算出/green gate/table/schema/runtimeを採用しない。HARNESSの意味比較とOSの保存発行の責務を分離する。",
+      "reason": "採択040-002とL3-040-F04の明示した内容条件を旧sourceへ照合するため。NFR29全体の上流要求採用を追加するものではなく、旧runtime不在を置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "read_lines": [
+        391,
+        435
+      ],
+      "quote": "### §4.8 Layer Ledger Chain（上下pair・左右V-pair）\n\n各layerは文書一覧ではなく、その粒度で確定・保留・検証する原子的subject/obligationのledgerを持つ。\n\n| layer | ledger subject | 下流出力 | 正規左右pair |\n|---|---|---|---|\n| L1 | 企画、価値仮説、planning intent | L2 requirement authority | L12 operations/value feedback |\n| L2 | business/technical/NFR要求定義 | L3/L4 carry | L11 acceptance |\n| L3 | system要求、FR、AC | L4 architecture/function/data obligation | L10 total/system verification |\n| L4 | architecture、service、domain、external/data契約 | L5 module/API/DB contract | L9 system verification |\n| L5 | module、internal processing、physical data、IF詳細 | L6 function/class/edge case | L8 integration verification |\n| L6 | implementation unit、function/class signature、invariant、edge caseの定義 | L7 TDD closure | L7 unit/TDD evidence |\n| L7 | TDD closure、code/test artifact、implementation判断 | L8 verification input | L6 implementation oracle |\n| L8 | integration run/assertion記録 | L9 verification input、L5 backprop | L5 detail design |\n| L9 | system run/assertion記録 | L10 input、L4 backprop | L4 basic design |\n| L10 | total/system acceptance finding記録 | L11 input、L3 backprop | L3 requirement/AC |\n| L11 | acceptance/review finding記録 | L12 input、L2 backprop | L2 requirement |\n| L12 | operational/time/value evidence記録 | L1 feedback | L1 planning/value oracle |\n\n正規V-pairは`L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7`である。L0 charterは層外authority anchorであり、L12からL1へのfeedbackを介して企画判断へ接続する。\n\n| table | 主key | 必須field・不変条件 |\n|---|---|---|\n| `layer_ledger_types` | layer＋ledger種別＋version | subject kind、grain、authority、input/output、template version、entry/exit gate、status |\n| `layer_ledger_snapshots` | layer＋scope＋snapshot | source/template/catalog digest、parent snapshot、status、created_at。current一意 |\n| `layer_ledger_rows` | 安定subject ID＋revision | layer/type、source spans、semantic digest、authority、owner、status、applicability |\n| `layer_ledger_obligations` | obligation識別子 | row、template atom/rule、required facet、cardinality、status、stale reason |\n| `layer_ledger_edges` | edge識別子 | from/to row revision、`vertical_down/vertical_backprop/vpair_design/vpair_verification/supersedes`、reverse edge、snapshot digest |\n| `layer_ledger_addition_receipts` | proposal＋target台帳 | extractor/actor、source/template digest、duplicate check、authority、review verdict |\n| `layer_ledger_pair_receipts` | pair種別＋scope＋snapshot | expected/actual edge、granularity、oracle、execution evidence、unresolved count、verdict |\n| `layer_ledger_refactor_receipts` | refactor計画 | before/after graph、all-consumer pair set、oracle、behavior digest、rollback、route |\n| `layer_ledger_findings` | finding識別子 | failure code、layer/row/edge、evidence、fingerprint、status |\n| `layer_ledger_events` | aggregate＋連番 | operation ID、previous/event digest、actor、from/to、occurred_at。append-only |\n\nTemplate Obligation Extractorはactive templateの章、field、table row/column、applicability、done-when、pair contractを1 obligationずつ抽出する。Python workerはAST/YAML/Markdown解析候補だけを返し、Nodeがschema・digest・authorityを検証してledger proposalへcommitする。抽出不能は`HIL_LAYER_TEMPLATE_EXTRACTION_EMPTY`、未対応要素は`HIL_LAYER_TEMPLATE_ATOM_ORPHAN`としてfreezeをblockする。\n\n上下pairは隣接layerの`vertical_down`と`vertical_backprop`を一組にし、上位obligationの未降下と下位findingの未逆伝播を別々に検出する。左右pairは上表のV-pairを`vpair_design`と`vpair_verification`で結び、同じoracle identityとsnapshot lineageを要求する。片側edge、aggregate親、未実行oracle、stale revisionはcovered weight 0とする。\n\n`LedgerDesignRefactorPlanner`はledger graphの重複、責務混在、semantic/name collision、fan-in/out、change impact、orphanを候補化する。各stepは1 transformだけを適用し、全vertical/V-pair edgeとoracle identityがbefore/afterで保存される場合だけ既存DesignRefactorへ送る。requirement semantics/public contract変更はRedesign、persisted schema/state変更はRetrofitへrerouteする。\n\n## §5 source capabilityのcoverage\n\n`SourceSnapshot`は次を同一bundleに固定する。\n\n- ZIP: archive digest、全entry path/size/digest、抽出器version。",
+      "line_sha256": "354d5ac7c9c1ef59a8261ddf15ece0a0302ffd42badf7ba40c8f85d12301e08a",
+      "archive_disposition": "unresolved",
+      "reuse": "reference_only_semantic_context",
+      "preserve": "十二層の原子subject、snapshotのsource/template/catalog、row revision、両方向edgeとpair内容の識別を参照する。",
+      "change": "旧table/schema/DB/runtimeと旧L8/L9名称を移植しない。canonical層の意味は現行001/040の承認revisionから導出し、実登録/保存/発行は旧holdingに残す。",
+      "reason": "040-F04が比較するsnapshot/coverageの内容を、旧consumerが持つ行・edge・版の文脈へ照合するため。unresolved資産の採否/再利用実行/authority昇格ではない。旧runtime不在を変更理由にしない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "全6関数の初回具体原packet/正常/負例を起草済み。全関数の独立資格/必要集合/内容組合せ・実未見例、意味reviewと対詳細設計は未完",
+    "実owner-qualified L1/L2/authority/template版・対象scope/revision/互換契約binding",
+    "L5/L8内部比較・edge casesと正式schema/codec/resolver",
+    "独立reviewと所見閉包。実oracle凍結/Red/Green/Refactor・実L9/L10は未成立",
+    "全限定92親430対の基本/詳細設計閉包、実装準備、PO L11受入は未成立"
+  ],
+  "document_id": "HARNESS-L4-040-LAYER-LEDGER-CATALOG",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "meaning_owner": "HARNESS-CORE",
+    "actual_registration_storage_projection_ticket_owner": "OS（別契約で認められたscopeのみ）",
+    "components": [
+      "canonical_catalog_reader",
+      "layer_contract_reader",
+      "row_trace_reader",
+      "snapshot_coverage_reader",
+      "dependency_owner_router",
+      "revision_delta_reader"
+    ],
+    "connection_flow": [
+      "owner-qualified original sources → canonical/contract/row comparisons",
+      "catalog/row results + original snapshot/coverage → coverage comparisons",
+      "independent changed revision → affected delta/retained unaffected results",
+      "qualified dependency conditions → original owner return candidates"
+    ],
+    "forbidden_inferences": [
+      "catalog存在からL1/L2/L3承認",
+      "OS receiptからHARNESS oracle充足",
+      "row/receipt hashだけから意味被覆",
+      "旧registryから現行writer/authority",
+      "025/026完了receiptを開始必須へ追加"
+    ]
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-040-F01",
+      "requirement_ref": "HARNESS-L3-040-F01",
+      "system_oracle_ref": "HARNESS-L10-040-F01",
+      "oracle_ref": "HARNESS-L9-040-F01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-040-F01",
+        "parent": "HARNESS-L2-040",
+        "title": "canonical層・pair・層外anchor",
+        "obligation": "対象L1 revisionを入力し、canonical L1–L12の12層ledgerと六pair（L1↔L12/L2↔L11/L3↔L10/L4↔L9/L5↔L8/L6↔L7）のversion付きcatalog契約を列挙する。L0 charterはidentity/対象revision/sourceを持つ独立した層外authority anchor recordとして別に参照し、第七pairやL0 ledgerを作らない。",
+        "oracle_ref": "HARNESS-L10-040-F01"
+      },
+      "component": "canonical_catalog_reader",
+      "input_meanings": [
+        "target_L1_ref",
+        "canonical_pair_source",
+        "layer_catalog_source",
+        "outside_layer_anchor_source"
+      ],
+      "output_meanings": [
+        "layer_results",
+        "pair_results",
+        "anchor_result",
+        "layer_membership",
+        "pair_membership",
+        "unexpected_layers",
+        "unexpected_pairs"
+      ],
+      "content_comparison": [
+        "L1–L12のexact集合をcanonical pair sourceと別に比較する。六pairは左右二方向の対応を持ち、同対象revisionに結ぶ。",
+        "L0はidentity/target_revision/sourceを持つ独立anchor recordとして読む。参照文字列だけ、L0 ledger、追加pairは不成立。"
+      ],
+      "failure_returns": [
+        "対象L1/層契約owner",
+        "authority/anchor owner"
+      ],
+      "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
+      "operation_effect": "none",
+      "concrete_comparison_rule": "必要集合は独立canonical sourceへ照合し、欠落layer/片方向pair/anchor不成立を局所結果に保持する。extra layer/pairはmembership conflictだが既知必須項目の読める原結果を消さない。target L1資格未知なら対象bindingをunknown/nullにし対象外へ逃がさない。",
+      "membership_semantics": "layer_membershipは観測catalogのlayer集合がcanonical必要集合へexactに対応する条件。欠落ならmissing/null、余剰ならconflict/null。個別layer_resultsは必要十二層を別に保持する。pair_membershipは六pair identity集合のexact対応であり、各pairの方向条件はpair_resultsで別判定する。"
+    },
+    {
+      "id": "HARNESS-L4-040-F02",
+      "requirement_ref": "HARNESS-L3-040-F02",
+      "system_oracle_ref": "HARNESS-L10-040-F02",
+      "oracle_ref": "HARNESS-L9-040-F02",
+      "approved_requirement": {
+        "id": "HARNESS-L3-040-F02",
+        "parent": "HARNESS-L2-040",
+        "title": "層別ledgerの必須意味契約",
+        "obligation": "各ledgerのtype、粒度、必須node/edge、authority参照、input/output、entry/exit gate、適用template版を特定する。層ごとのauthority/source revisionと有効ledger/template版を結び、旧層番号/runtime/背景例をcurrent根拠にしない。",
+        "oracle_ref": "HARNESS-L10-040-F02"
+      },
+      "component": "layer_contract_reader",
+      "input_meanings": [
+        "target_layer_set",
+        "per_layer_contract_sources",
+        "per_layer_authority_sources",
+        "selected_template_sources"
+      ],
+      "output_meanings": [
+        "per_layer_field_results",
+        "authority_template_binding_results"
+      ],
+      "content_comparison": [
+        "各層のtype/粒度/必須node/edge/authority参照/input/output/entry gate/exit gate/template版を独立した原契約へ照合する。存在・非空だけで義務充足にしない。",
+        "対象layerのauthority/source revision、有効ledger/template版と選択scopeを結び、旧番号/旧runtimeからcurrent資格を継承しない。"
+      ],
+      "failure_returns": [
+        "層契約owner",
+        "template/authority owner"
+      ],
+      "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
+      "operation_effect": "none",
+      "concrete_comparison_rule": "層ごとに原required_contentと観測contentを比較する。type/粒度/node/edge/入出力/gateのvalid typed内容差をconflict、別authority/source/template revisionをstale、原内容不在をmissing、明示TBDをunknownとして個別結果を保持。authority/template binding不足は他fieldを消さない。合成値を正式契約へ固定しない。"
+    },
+    {
+      "id": "HARNESS-L4-040-F03",
+      "requirement_ref": "HARNESS-L3-040-F03",
+      "system_oracle_ref": "HARNESS-L10-040-F03",
+      "oracle_ref": "HARNESS-L9-040-F03",
+      "approved_requirement": {
+        "id": "HARNESS-L3-040-F03",
+        "parent": "HARNESS-L2-040",
+        "title": "row identityと双方向trace",
+        "obligation": "ledger rowはstable subject ID、row revision、source span、semantic digest、status、owner、upstream/downstream edgeを識別できる。十二層の必須契約と六pair/L0 anchorを同じ対象revisionへ辿り、名前や欄の存在だけでtrace成立にしない。",
+        "oracle_ref": "HARNESS-L10-040-F03"
+      },
+      "component": "row_trace_reader",
+      "input_meanings": [
+        "target_revision",
+        "row_sources",
+        "stable_subject_sources",
+        "source_span_contents",
+        "required_edge_sources"
+      ],
+      "output_meanings": [
+        "per_row_field_results",
+        "bidirectional_edge_results",
+        "row_binding_results"
+      ],
+      "content_comparison": [
+        "stable subject ID、row revision、source span原文とsemantic digest、status、ownerを原sourceの意味へ比較する。path/nameの一致をstable identityにしない。",
+        "upstream/downstream edgeの両方向と相手端点revisionを比較する。別row成功で片方向/孤児/別revisionを相殺しない。"
+      ],
+      "failure_returns": [
+        "当該row/edgeの原owner",
+        "source/authority owner"
+      ],
+      "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
+      "operation_effect": "none",
+      "concrete_row_trace_rule": [
+        "各row fieldを独立expected_row_fieldsへ照合し、source spanの原rawをparseしてexpected_meaningへ比較する。semantic digestは原意味との一致と例示canonical JSON digestの双方を比較。",
+        "row bindingはstable subject/row revision/source span/原意味digest/対象revision/層を比較する。status/ownerの不足は個別fieldへ残し、独立に成立したidentity bindingを消さない。owner資格は未証明。",
+        "required_edge_sourceが指定する全edgeについてfrom側downstreamとto側upstreamの両記録と端点revision/対象revisionを比較。pairは両方向edgeを別々に比較し片方向traceと混同しない。",
+        "L0 anchorは独立source端点であり十二rowや第七pairへ数えない。正常例の意味/edge数は対照例で、実全要求のtrace網羅性は未証明。"
+      ]
+    },
+    {
+      "id": "HARNESS-L4-040-F04",
+      "requirement_ref": "HARNESS-L3-040-F04",
+      "system_oracle_ref": "HARNESS-L10-040-F04",
+      "oracle_ref": "HARNESS-L9-040-F04",
+      "approved_requirement": {
+        "id": "HARNESS-L3-040-F04",
+        "parent": "HARNESS-L2-040",
+        "title": "snapshot・coverageの内容条件",
+        "obligation": "対象revisionのlayer snapshotとcoverage receiptに含む全件・未完・stale情報の契約を定める。対象集合を列挙し、同revisionの十二層必須契約/六pair/anchor/rowと両方向edgeの内容を照合する。層/pair/authority/template不足・矛盾はmissing/unknown/staleとして該当coverage未完にする。契約は保存/発行成功ではない。",
+        "oracle_ref": "HARNESS-L10-040-F04"
+      },
+      "component": "snapshot_coverage_reader",
+      "input_meanings": [
+        "target_set_source",
+        "same_revision_snapshot_contents",
+        "catalog_results",
+        "row_and_edge_results",
+        "coverage_contents"
+      ],
+      "output_meanings": [
+        "evaluated_targets",
+        "incomplete_targets",
+        "stale_targets",
+        "unobserved_targets",
+        "supported_exclusions"
+      ],
+      "content_comparison": [
+        "必要対象集合のexact membershipと同revisionの十二層/六pair/anchor/row/両方向edgeを内容比較し、原全件/未完/staleとreceiptの記述を照合する。",
+        "unknown対象を対象外に除外せず未評価として保持する。保存/発行receiptの有無は意味条件の照合と別。"
+      ],
+      "failure_returns": [
+        "当該catalog/coverage契約owner",
+        "OS保存/発行owner（運転不足のみ）"
+      ],
+      "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
+      "operation_effect": "none",
+      "concrete_snapshot_coverage_rule": [
+        "必要集合sourceのexact対象を分母とし、正常caseの独立原内容を各snapshotへ比較する。map keyはstable identity、各axisは出典case/hashを保持する。",
+        "snapshot/receiptの対象revision/scopeを比較し、十二層/六pair/独立anchor、各層contractのauthority/template、row/原意味/両端edgeの各facetを別々に保持する。値・書式・digest方式は合成例で正式schemaではない。",
+        "未観測/unknownも未完へ保持しstaleを別集合に残す。局所欠落/矛盾は対象Aの未完にし対象Bの成立を消さない。snapshot資格unknownと個別field unknownを混同しない。",
+        "全件・評価済み・未完・stale・未観測・根拠付き除外をreceipt申告と内容比較する。件数/保存/発行flagを内容条件または実作用へ昇格しない。",
+        "対象集合資格unknownではexact分母と対象外をnullに保持する。独立に観測できる部分facetは保持し全件coverageは未成立。",
+        "snapshot mapのexact membershipとrow両方向記録も照合する。余分なL0 layer/第七pair/別rowを分母へ補充しない。pair片方向欠落をpair全体欠落と分ける。"
+      ],
+      "legacy_context": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "read_lines": [
+          136,
+          209
+        ],
+        "preserve": "FR46のsnapshot/coverageとNFR29の原子義務・両方向/同revision内容条件を保持。旧DB/旧ledger保存実行は移さない。"
+      },
+      "supporting_context_reads": [
+        {
+          "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+          "sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+          "read_lines": [
+            391,
+            435
+          ],
+          "disposition": "unresolved",
+          "preserve": "台帳の原子subject、snapshot/source/template/catalog、row revisionと両方向edgeの内容照合を参照。FR46/NFR29と現行承認済み040を起点とする。",
+          "not_adopted": "旧table/schema/runtimeと旧L8/L9名称は移さない。canonical層の意味は現行001/040の承認revisionへ照合する。",
+          "reuse": "reference_only_semantic_context",
+          "reason": "040-F04が比較するsnapshot/coverageの内容を、旧consumerが持つ行・edge・版の文脈へ照合するため。unresolved資産の採否/再利用実行/authority昇格ではない。旧runtime不在を変更理由にしない。",
+          "quote": "### §4.8 Layer Ledger Chain（上下pair・左右V-pair）\n\n各layerは文書一覧ではなく、その粒度で確定・保留・検証する原子的subject/obligationのledgerを持つ。\n\n| layer | ledger subject | 下流出力 | 正規左右pair |\n|---|---|---|---|\n| L1 | 企画、価値仮説、planning intent | L2 requirement authority | L12 operations/value feedback |\n| L2 | business/technical/NFR要求定義 | L3/L4 carry | L11 acceptance |\n| L3 | system要求、FR、AC | L4 architecture/function/data obligation | L10 total/system verification |\n| L4 | architecture、service、domain、external/data契約 | L5 module/API/DB contract | L9 system verification |\n| L5 | module、internal processing、physical data、IF詳細 | L6 function/class/edge case | L8 integration verification |\n| L6 | implementation unit、function/class signature、invariant、edge caseの定義 | L7 TDD closure | L7 unit/TDD evidence |\n| L7 | TDD closure、code/test artifact、implementation判断 | L8 verification input | L6 implementation oracle |\n| L8 | integration run/assertion記録 | L9 verification input、L5 backprop | L5 detail design |\n| L9 | system run/assertion記録 | L10 input、L4 backprop | L4 basic design |\n| L10 | total/system acceptance finding記録 | L11 input、L3 backprop | L3 requirement/AC |\n| L11 | acceptance/review finding記録 | L12 input、L2 backprop | L2 requirement |\n| L12 | operational/time/value evidence記録 | L1 feedback | L1 planning/value oracle |\n\n正規V-pairは`L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7`である。L0 charterは層外authority anchorであり、L12からL1へのfeedbackを介して企画判断へ接続する。\n\n| table | 主key | 必須field・不変条件 |\n|---|---|---|\n| `layer_ledger_types` | layer＋ledger種別＋version | subject kind、grain、authority、input/output、template version、entry/exit gate、status |\n| `layer_ledger_snapshots` | layer＋scope＋snapshot | source/template/catalog digest、parent snapshot、status、created_at。current一意 |\n| `layer_ledger_rows` | 安定subject ID＋revision | layer/type、source spans、semantic digest、authority、owner、status、applicability |\n| `layer_ledger_obligations` | obligation識別子 | row、template atom/rule、required facet、cardinality、status、stale reason |\n| `layer_ledger_edges` | edge識別子 | from/to row revision、`vertical_down/vertical_backprop/vpair_design/vpair_verification/supersedes`、reverse edge、snapshot digest |\n| `layer_ledger_addition_receipts` | proposal＋target台帳 | extractor/actor、source/template digest、duplicate check、authority、review verdict |\n| `layer_ledger_pair_receipts` | pair種別＋scope＋snapshot | expected/actual edge、granularity、oracle、execution evidence、unresolved count、verdict |\n| `layer_ledger_refactor_receipts` | refactor計画 | before/after graph、all-consumer pair set、oracle、behavior digest、rollback、route |\n| `layer_ledger_findings` | finding識別子 | failure code、layer/row/edge、evidence、fingerprint、status |\n| `layer_ledger_events` | aggregate＋連番 | operation ID、previous/event digest、actor、from/to、occurred_at。append-only |\n\nTemplate Obligation Extractorはactive templateの章、field、table row/column、applicability、done-when、pair contractを1 obligationずつ抽出する。Python workerはAST/YAML/Markdown解析候補だけを返し、Nodeがschema・digest・authorityを検証してledger proposalへcommitする。抽出不能は`HIL_LAYER_TEMPLATE_EXTRACTION_EMPTY`、未対応要素は`HIL_LAYER_TEMPLATE_ATOM_ORPHAN`としてfreezeをblockする。\n\n上下pairは隣接layerの`vertical_down`と`vertical_backprop`を一組にし、上位obligationの未降下と下位findingの未逆伝播を別々に検出する。左右pairは上表のV-pairを`vpair_design`と`vpair_verification`で結び、同じoracle identityとsnapshot lineageを要求する。片側edge、aggregate親、未実行oracle、stale revisionはcovered weight 0とする。\n\n`LedgerDesignRefactorPlanner`はledger graphの重複、責務混在、semantic/name collision、fan-in/out、change impact、orphanを候補化する。各stepは1 transformだけを適用し、全vertical/V-pair edgeとoracle identityがbefore/afterで保存される場合だけ既存DesignRefactorへ送る。requirement semantics/public contract変更はRedesign、persisted schema/state変更はRetrofitへrerouteする。\n\n## §5 source capabilityのcoverage\n\n`SourceSnapshot`は次を同一bundleに固定する。\n\n- ZIP: archive digest、全entry path/size/digest、抽出器version。",
+          "line_sha256": "354d5ac7c9c1ef59a8261ddf15ece0a0302ffd42badf7ba40c8f85d12301e08a"
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L4-040-B01",
+      "requirement_ref": "HARNESS-L3-040-B01",
+      "system_oracle_ref": "HARNESS-L10-040-B01",
+      "oracle_ref": "HARNESS-L9-040-B01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-040-B01",
+        "parent": "HARNESS-L2-040",
+        "title": "条件別依存とownerの分離",
+        "obligation": "常時必要な対象L1 revision/canonical pair map/authority-source identity、指定layerのcatalog/snapshot/coverage操作scope-revision-互換契約、選択したL0/templateのexact revision-適用範囲-authority、参照だけの旧runtime/背景を区別する。HARNESSは意味と成立条件を持ち、登録/保存/projection/ticket運転は認められたOS scopeへ戻す。040はwriter/実行authority/完了状態を与えず、025/026の設計生成や完了receiptを開始必須にしない。",
+        "oracle_ref": "HARNESS-L10-040-B01"
+      },
+      "component": "dependency_owner_router",
+      "input_meanings": [
+        "target_L1_revision",
+        "canonical_pair_map",
+        "authority_source_identity",
+        "requested_operation_scope",
+        "selected_L0_template_inputs",
+        "reference_only_legacy_sources"
+      ],
+      "output_meanings": [
+        "always_required_inputs",
+        "operation_required_inputs",
+        "selection_required_inputs",
+        "reference_only_inputs",
+        "owner_return_candidates"
+      ],
+      "content_comparison": [
+        "常時/操作時/選択時/参照だけを区別し、選択操作のscope/revision/互換契約不足を非選択へ逃がさない。",
+        "HARNESSは意味・成立条件、OSは認められたscopeで実登録/保存/projection/ticket。025/026完了receiptを040起草の必須にしない。"
+      ],
+      "failure_returns": [
+        "HARNESS契約owner",
+        "当該authority/選択template owner",
+        "OS運転owner"
+      ],
+      "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
+      "operation_effect": "none",
+      "concrete_comparison_rule": [
+        "必要入力を独立原内容へ照合。対象L1/canonical pair/authority-sourceは常時、operation scope/revision/互換は操作選択時、L0/template exact版/scope/authorityは選択時のみ必要。",
+        "選択宣言unknownを非選択へ補完しない。分類ごと/fieldごとに未成立を保持し意味契約owner・authority-source owner・選択owner・OS実運転ownerへ別々の候補を返す。",
+        "OS実保存の未観測と意味条件の未成立は別。receipt/旧runtime/025026完了有無から承認/authority/実運転を生成しない。"
+      ]
+    },
+    {
+      "id": "HARNESS-L4-040-N01",
+      "requirement_ref": "HARNESS-L3-040-N01",
+      "system_oracle_ref": "HARNESS-L10-040-N01",
+      "oracle_ref": "HARNESS-L9-040-N01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-040-N01",
+        "parent": "HARNESS-L2-040",
+        "title": "未見変更と意味再導出の限界",
+        "obligation": "同scopeの伏せた別layer/template revisionで必須node/edge/pair変更がcatalog/coverageに反映されなければ当該変更範囲をstale/uncoveredにする。root authority/scope/互換版unknownを対象外へ逃がさない。旧FR46の意味を採択040へ再導出し、旧台帳の実登録writer/snapshot生成/coverage保存発行はsource holdingに保留する。",
+        "oracle_ref": "HARNESS-L10-040-N01"
+      },
+      "component": "revision_delta_reader",
+      "input_meanings": [
+        "baseline_catalog_revision",
+        "held_out_layer_template_revision",
+        "changed_required_nodes_edges_pairs",
+        "target_scope_authority_compatibility"
+      ],
+      "output_meanings": [
+        "affected_stale_targets",
+        "uncovered_changes",
+        "retained_unaffected_results",
+        "source_holding"
+      ],
+      "content_comparison": [
+        "同scopeの別layer/template revisionで新必須node/edge/pairがcatalog/coverageへ反映されなければ当該変更範囲をstale/uncoveredにする。",
+        "unknown root authority/scope/互換版を対象外に除外しない。旧FR46の実writer/snapshot生成/coverage保存発行holdingは移管済みにしない。"
+      ],
+      "failure_returns": [
+        "当該layer/template契約owner",
+        "authority owner"
+      ],
+      "qualification_rule": "原sourceのidentity/revision/scope/owner/意味を個別に照合。missing/unknown/conflict/staleを当該fieldと必要集合へ保持し、空/false/成功へ補完しない。必要集合未確定と個別義務不足を分離し他の有効な部分結果を保持。",
+      "operation_effect": "none",
+      "concrete_comparison_rule": [
+        "同scope/root authority/互換の資格を原bindingへ比較。unknown/missingは差分集合nullと評価限界で保持し、対象外へ除外しない。",
+        "新node/edge/pair契約の内容をcatalog/coverage双方へ照合。revision更新だけ/claim completeだけでは消込まない。未対応は変更layerへ局所stale/uncoveredとし他層/Qを保持。",
+        "pair差分は既存canonical pairのoracle/revision内容差であり第七pairを追加しない。旧writer/snapshot生成/coverage保存発行holdingを現行の能力へ転用しない。"
+      ]
+    }
+  ],
+  "fixture_progress": {
+    "F01": {
+      "normal_cases": 1,
+      "negative_cases": 25,
+      "state": "draft_concrete_catalog_cases_pending_qualification_detail_and_review"
+    },
+    "remaining_concrete_functions": [],
+    "F02": {
+      "normal_cases": 12,
+      "negative_cases": 2,
+      "field_matrix_cases": 396,
+      "state": "draft_concrete_layer_contract_cases_pending_qualification_and_review"
+    },
+    "F03": {
+      "normal_cases": 2,
+      "negative_cases": 2,
+      "row_field_matrix_cases": 216,
+      "edge_matrix_cases": 96,
+      "state": "draft_concrete_row_trace_cases_pending_qualification_and_review"
+    },
+    "F04": {
+      "normal_cases": 1,
+      "content_mutation_cases": 33,
+      "comparison_axes": 332,
+      "state": "draft_concrete_snapshot_coverage_cases_pending_qualification_and_review"
+    },
+    "B01": {
+      "normal_cases": 3,
+      "negative_cases": 21,
+      "state": "draft_concrete_dependency_owner_cases_pending_qualification_and_review"
+    },
+    "N01": {
+      "normal_cases": 2,
+      "negative_cases": 10,
+      "state": "draft_concrete_revision_delta_cases_pending_qualification_and_review"
+    }
+  },
+  "review_corrections": {
+    "reviewed_head": "37ba22b8db4bf8a5a5ba2326e4a7912542603fc4",
+    "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2994#issuecomment-6131102830",
+    "F1": "NFR29と旧L4 §4.8の原文/行SHA・台帳と同じdisposition・保持/変更/理由を文書単位へ追加。参照用途と採否を分離。",
+    "F2": "全6関数の初回具体fixture起草済み、追加資格/必要集合/組合せ/独立review/詳細設計未完をstatus/completionへ明記。",
+    "Info_follow_up": "F3 packet表現統一とF4旧層番号意味差の直接caseは、原内容/hash/参照整合を保って後続具体化する。",
+    "independent_closure": "pending_rereview_of_corrected_HEAD",
+    "authority_effect": "none"
+  }
+}
