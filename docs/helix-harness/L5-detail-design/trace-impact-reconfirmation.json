@@ -1074,7 +1074,36 @@
       "preserve": "immutable analyzer/loader snapshot/contract向き依存/composition配線とeffect実行の分離、未指定default deny、negative oracle先行。",
       "change": "旧TS/physical owner path/DB/CLI/executorを移植せず、現行004の7componentとcodec/read-only argument proposal/OS別運転へ再導出。",
       "reason": "coreからI/O/暗黙operationを起動せず、input/candidateからContextを自作し、constructor/profile/件数から運転成立を作る失敗を防ぐため。新authority/人間approveは作らない。",
-      "source_limit": "旧confirmed metadataを現行承認/実bindingへ継承せず、旧runtime/test/CI/copyを実行しない。"
+      "source_limit": "旧confirmed metadataを現行承認/実bindingへ継承せず、旧runtime/test/CI/copyを実行しない。",
+      "interface_binding_rederivation": {
+        "read_line_locators": [
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          47,
+          49,
+          50,
+          51,
+          53,
+          54,
+          55,
+          56,
+          57,
+          61,
+          62,
+          63,
+          65,
+          67
+        ],
+        "preserve": "read snapshot/immutable analyzerと明示effect実行の分離、contract向き依存、未指定edgeをallowにしない、negative先行。",
+        "change": "旧TS/owner paths/DB/CLIを移植せず、固定7bindingと5profileの全内容matching、port signature/型/provenanceと実登録非生成へ再導出。",
+        "reason": "generic owner名とhashの一致だけで実supplier/consumerやregistered状態を作らず、型と戻し先を実装者の補完にしないため。新authority/承認/実operationを生成しない。",
+        "locator_semantics": "explicit nonempty content lines; blank separators omitted"
+      }
     }
   ],
   "full_goal_scope_preserved": {
@@ -1083,7 +1112,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。 14反復sequenceの原引数保全/禁止作用observer/whole結果同値oracleを追加。実host/guardと全endpoint bindingは未完。 F04の4独立Context不備について複数同時11例を追加。必須finding subset/優先outcomeを具体化、全副次findingと他組合せは未完。 shape adapter34+6の全ShapeProposalと追加8を固定、原構造negative28+新35をlane付き全拒否handoffへ結合。required/unknown propertyの個別pointerとbranch/binding原因を保持。全schema/host/consumer/binding/凍結は未完。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。 14反復sequenceの原引数保全/禁止作用observer/whole結果同値oracleを追加。実host/guardと全endpoint bindingは未完。 F04の4独立Context不備について複数同時11例を追加。必須finding subset/優先outcomeを具体化、全副次findingと他組合せは未完。 shape adapter34+6の全ShapeProposalと追加8を固定、原構造negative28+新35をlane付き全拒否handoffへ結合。required/unknown propertyの個別pointerとbranch/binding原因を保持。全schema/host/consumer/binding/凍結は未完。 A1のinterface型/7組のinput-context-candidate供給口/result返却口と95binding matching全提案を追加。content一致は実登録/資格/呼出しでなく全actual false。実pack/physical/host/consumer/resources/codec/bindingと全freezeは未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。 45固定F04対照の全PartitionResult/basis refs/order/input retentionを追加で固定。未提示InputをContext原bodyから復元せず、caseごとの固定合成snapshotを別供給。全構造/他条件/実binding/凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。 B01の23原例/19Contextを全ChangeResultへ固定し、意味軸全7組/混合環境behavior/boolean型差/label/3複合を追加。全構造/実binding/全凍結は未完。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。 F02固定38対照を全ImpactResultへ、4graphのedge順反転を追加して全42結果を固定。直接原因のfindingと伝播・履歴・固有義務を分離。全形状/実binding/凍結は未完。",
@@ -10950,6 +10979,417 @@
       "sort": "lane codepoint順、次にShapeFindingと同じcode/keyword/null順pointer/ownerでsort。全同値だけ除去。",
       "not_domain_completion": "shape failureをdomain成功へ補正せず、carrier/shape合格をowner/意味成立へしない。全core whole425対照と意味規則は変更しない。",
       "unclosed": "全frame/binding/custody/decode/shapeの複合全Result、正式registry/host/consumer/library/codec/resources/物理interface、全freezeと実行証拠は未完。"
+    },
+    "interface_binding_contract": {
+      "status": "detail_interface_specification_not_runtime_registration",
+      "source_main": "e6e10b1b675fc0b3acd0d379177039d008034f18",
+      "fixed_design_binding_rows_sha256": "772c95a2c8d93d770275060e9514146caf162ea41e618582ea72618b3a529af1",
+      "symbol": "resolve_trace_call_interface_proposal",
+      "signature": "resolve_trace_call_interface_proposal(request: LogicalJson, fixed_bindings: tuple[DesignBinding], fixed_profiles: mapping[Text,Digest]) -> CallInterfaceMatchProposal",
+      "fixed_inputs": "fixed_bindingsはassembly_contract.bindings全7rowの固定snapshot、fixed_profilesはprofiles_sha256全5値。caller requestから増減/補完しない。snapshot整合/資格はA1の外側で照合し、ここでは内容対応だけを提案する。",
+      "request_type": {
+        "binding_ref": "nonempty Text",
+        "declared_interface": "閉じたDesignBinding row（同じfield集合/primitive kind/全内容）",
+        "declared_profiles": "閉じた5 profile名→Digest mapping"
+      },
+      "ports": [
+        {
+          "binding_ref": "HARNESS-L5-004-F04-BINDING",
+          "component": "SourceAtomPartition",
+          "input_supplier": {
+            "method": "supply_original_frame",
+            "signature": "supply_original_frame(request: FrameReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "PartitionInput",
+            "meaning_owner": "各原資料の既存owner。HARNESS意味coreが収集/資格発行を代行しない。"
+          },
+          "context_supplier": {
+            "method": "supply_independent_context_frame",
+            "signature": "supply_independent_context_frame(request: ContextReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "PartitionContext",
+            "required_domain_fields": [
+              "target_source_ref",
+              "selection_scope",
+              "referents",
+              "snapshot_revision",
+              "evidence_kind",
+              "qualification_records",
+              "qualifier_roots"
+            ],
+            "meaning_owner": "独立原資料/rootを供給する既存owner/read port。input/candidateを期待Contextへcopyしない。"
+          },
+          "candidate_supplier": {
+            "method": "retain_submitted_candidate",
+            "signature": "retain_submitted_candidate(presence: omitted | supplied, raw_bytes: ByteSequence | null) -> CandidateFrameProposal",
+            "proposed_domain_type": "PartitionCandidate | null",
+            "normalization": "omitted/explicit nullだけNone、その他は原frameと不正shapeを保全する。"
+          },
+          "result_receiver": {
+            "method": "retain_result_projection",
+            "signature": "retain_result_projection(result: PartitionResult, provenance: CallProvenance) -> ResultProjectionProposal",
+            "result_type": "PartitionResult",
+            "value_type": "PartitionValue",
+            "effect": "原意味結果を返却先ownerへ候補として渡す。OS保存/ticket/authority/受入を実施しない。"
+          },
+          "physical_placement": "helix/helix-harness/units/<registered-pack-identity>/src・tests。pack identityの実値と登録を本specから生成しない。",
+          "runtime_binding_state": "not_implemented_not_registered"
+        },
+        {
+          "binding_ref": "HARNESS-L5-004-B01-BINDING",
+          "component": "TraceOperationBoundary",
+          "input_supplier": {
+            "method": "supply_original_frame",
+            "signature": "supply_original_frame(request: FrameReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "ChangeInput",
+            "meaning_owner": "各原資料の既存owner。HARNESS意味coreが収集/資格発行を代行しない。"
+          },
+          "context_supplier": {
+            "method": "supply_independent_context_frame",
+            "signature": "supply_independent_context_frame(request: ContextReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "ChangeContext",
+            "required_domain_fields": [
+              "target",
+              "source_owner",
+              "role_owners",
+              "state",
+              "evidence_kind",
+              "basis_refs"
+            ],
+            "meaning_owner": "独立原資料/rootを供給する既存owner/read port。input/candidateを期待Contextへcopyしない。"
+          },
+          "candidate_supplier": {
+            "method": "retain_submitted_candidate",
+            "signature": "retain_submitted_candidate(presence: omitted | supplied, raw_bytes: ByteSequence | null) -> CandidateFrameProposal",
+            "proposed_domain_type": "ChangeCandidate | null",
+            "normalization": "omitted/explicit nullだけNone、その他は原frameと不正shapeを保全する。"
+          },
+          "result_receiver": {
+            "method": "retain_result_projection",
+            "signature": "retain_result_projection(result: ChangeResult, provenance: CallProvenance) -> ResultProjectionProposal",
+            "result_type": "ChangeResult",
+            "value_type": "ChangeValue",
+            "effect": "原意味結果を返却先ownerへ候補として渡す。OS保存/ticket/authority/受入を実施しない。"
+          },
+          "physical_placement": "helix/helix-harness/units/<registered-pack-identity>/src・tests。pack identityの実値と登録を本specから生成しない。",
+          "runtime_binding_state": "not_implemented_not_registered"
+        },
+        {
+          "binding_ref": "HARNESS-L5-004-F02-BINDING",
+          "component": "ImpactAndEstablishment",
+          "input_supplier": {
+            "method": "supply_original_frame",
+            "signature": "supply_original_frame(request: FrameReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "ImpactInput",
+            "meaning_owner": "各原資料の既存owner。HARNESS意味coreが収集/資格発行を代行しない。"
+          },
+          "context_supplier": {
+            "method": "supply_independent_context_frame",
+            "signature": "supply_independent_context_frame(request: ContextReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "ImpactContext",
+            "required_domain_fields": [
+              "target",
+              "node_population",
+              "declared_members",
+              "required_upper_obligations",
+              "referents",
+              "qualifier_roots",
+              "evidence_kind",
+              "state"
+            ],
+            "meaning_owner": "独立原資料/rootを供給する既存owner/read port。input/candidateを期待Contextへcopyしない。"
+          },
+          "candidate_supplier": {
+            "method": "retain_submitted_candidate",
+            "signature": "retain_submitted_candidate(presence: omitted | supplied, raw_bytes: ByteSequence | null) -> CandidateFrameProposal",
+            "proposed_domain_type": "ImpactCandidate | null",
+            "normalization": "omitted/explicit nullだけNone、その他は原frameと不正shapeを保全する。"
+          },
+          "result_receiver": {
+            "method": "retain_result_projection",
+            "signature": "retain_result_projection(result: ImpactResult, provenance: CallProvenance) -> ResultProjectionProposal",
+            "result_type": "ImpactResult",
+            "value_type": "ImpactValue",
+            "effect": "原意味結果を返却先ownerへ候補として渡す。OS保存/ticket/authority/受入を実施しない。"
+          },
+          "physical_placement": "helix/helix-harness/units/<registered-pack-identity>/src・tests。pack identityの実値と登録を本specから生成しない。",
+          "runtime_binding_state": "not_implemented_not_registered"
+        },
+        {
+          "binding_ref": "HARNESS-L5-004-F01-BINDING",
+          "component": "ConditionTraceCoverage",
+          "input_supplier": {
+            "method": "supply_original_frame",
+            "signature": "supply_original_frame(request: FrameReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "TraceInput",
+            "meaning_owner": "各原資料の既存owner。HARNESS意味coreが収集/資格発行を代行しない。"
+          },
+          "context_supplier": {
+            "method": "supply_independent_context_frame",
+            "signature": "supply_independent_context_frame(request: ContextReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "TraceContext",
+            "required_domain_fields": [
+              "target",
+              "requirements",
+              "owner_assignments",
+              "record_catalog",
+              "qualifier_roots",
+              "evidence_kind",
+              "state"
+            ],
+            "meaning_owner": "独立原資料/rootを供給する既存owner/read port。input/candidateを期待Contextへcopyしない。"
+          },
+          "candidate_supplier": {
+            "method": "retain_submitted_candidate",
+            "signature": "retain_submitted_candidate(presence: omitted | supplied, raw_bytes: ByteSequence | null) -> CandidateFrameProposal",
+            "proposed_domain_type": "TraceCandidate | null",
+            "normalization": "omitted/explicit nullだけNone、その他は原frameと不正shapeを保全する。"
+          },
+          "result_receiver": {
+            "method": "retain_result_projection",
+            "signature": "retain_result_projection(result: TraceResult, provenance: CallProvenance) -> ResultProjectionProposal",
+            "result_type": "TraceResult",
+            "value_type": "TraceValue",
+            "effect": "原意味結果を返却先ownerへ候補として渡す。OS保存/ticket/authority/受入を実施しない。"
+          },
+          "physical_placement": "helix/helix-harness/units/<registered-pack-identity>/src・tests。pack identityの実値と登録を本specから生成しない。",
+          "runtime_binding_state": "not_implemented_not_registered"
+        },
+        {
+          "binding_ref": "HARNESS-L5-004-F03-BINDING",
+          "component": "ScopedReconfirmationAndBackflow",
+          "input_supplier": {
+            "method": "supply_original_frame",
+            "signature": "supply_original_frame(request: FrameReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "ReconfirmationInput",
+            "meaning_owner": "各原資料の既存owner。HARNESS意味coreが収集/資格発行を代行しない。"
+          },
+          "context_supplier": {
+            "method": "supply_independent_context_frame",
+            "signature": "supply_independent_context_frame(request: ContextReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "ReconfirmationContext",
+            "required_domain_fields": [
+              "target",
+              "affected_root",
+              "work_population",
+              "subject_roles",
+              "required_relations",
+              "required_pairs",
+              "record_catalog",
+              "qualifier_roots",
+              "evidence_kind",
+              "state",
+              "actual_trigger_policy_refs"
+            ],
+            "meaning_owner": "独立原資料/rootを供給する既存owner/read port。input/candidateを期待Contextへcopyしない。"
+          },
+          "candidate_supplier": {
+            "method": "retain_submitted_candidate",
+            "signature": "retain_submitted_candidate(presence: omitted | supplied, raw_bytes: ByteSequence | null) -> CandidateFrameProposal",
+            "proposed_domain_type": "ReconfirmationCandidate | null",
+            "normalization": "omitted/explicit nullだけNone、その他は原frameと不正shapeを保全する。"
+          },
+          "result_receiver": {
+            "method": "retain_result_projection",
+            "signature": "retain_result_projection(result: ReconfirmationResult, provenance: CallProvenance) -> ResultProjectionProposal",
+            "result_type": "ReconfirmationResult",
+            "value_type": "ReconfirmationValue",
+            "effect": "原意味結果を返却先ownerへ候補として渡す。OS保存/ticket/authority/受入を実施しない。"
+          },
+          "physical_placement": "helix/helix-harness/units/<registered-pack-identity>/src・tests。pack identityの実値と登録を本specから生成しない。",
+          "runtime_binding_state": "not_implemented_not_registered"
+        },
+        {
+          "binding_ref": "HARNESS-L5-004-F05-BINDING",
+          "component": "LegacyReuseAndRetirementConditions",
+          "input_supplier": {
+            "method": "supply_original_frame",
+            "signature": "supply_original_frame(request: FrameReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "AssetReuseInput",
+            "meaning_owner": "各原資料の既存owner。HARNESS意味coreが収集/資格発行を代行しない。"
+          },
+          "context_supplier": {
+            "method": "supply_independent_context_frame",
+            "signature": "supply_independent_context_frame(request: ContextReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "AssetReuseContext",
+            "required_domain_fields": [
+              "target",
+              "selected_asset_ids",
+              "required_consumers",
+              "record_catalog",
+              "qualifier_roots",
+              "state",
+              "evidence_kind",
+              "actual_clearance_refs"
+            ],
+            "meaning_owner": "独立原資料/rootを供給する既存owner/read port。input/candidateを期待Contextへcopyしない。"
+          },
+          "candidate_supplier": {
+            "method": "retain_submitted_candidate",
+            "signature": "retain_submitted_candidate(presence: omitted | supplied, raw_bytes: ByteSequence | null) -> CandidateFrameProposal",
+            "proposed_domain_type": "AssetReuseCandidate | null",
+            "normalization": "omitted/explicit nullだけNone、その他は原frameと不正shapeを保全する。"
+          },
+          "result_receiver": {
+            "method": "retain_result_projection",
+            "signature": "retain_result_projection(result: AssetReuseResult, provenance: CallProvenance) -> ResultProjectionProposal",
+            "result_type": "AssetReuseResult",
+            "value_type": "AssetReuseValue",
+            "effect": "原意味結果を返却先ownerへ候補として渡す。OS保存/ticket/authority/受入を実施しない。"
+          },
+          "physical_placement": "helix/helix-harness/units/<registered-pack-identity>/src・tests。pack identityの実値と登録を本specから生成しない。",
+          "runtime_binding_state": "not_implemented_not_registered"
+        },
+        {
+          "binding_ref": "HARNESS-L5-004-N01-BINDING",
+          "component": "UnseenRelationAndObservationLimits",
+          "input_supplier": {
+            "method": "supply_original_frame",
+            "signature": "supply_original_frame(request: FrameReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "UnseenRelationInput",
+            "meaning_owner": "各原資料の既存owner。HARNESS意味coreが収集/資格発行を代行しない。"
+          },
+          "context_supplier": {
+            "method": "supply_independent_context_frame",
+            "signature": "supply_independent_context_frame(request: ContextReadRequest) -> ReadOnlyRawFrame | SourceGap",
+            "proposed_domain_type": "UnseenRelationContext",
+            "required_domain_fields": [
+              "target",
+              "selected_consumer_ids",
+              "previous_known_consumers",
+              "required_condition_ids",
+              "requirement_content_versions",
+              "required_consumer_relations",
+              "required_operation_joins",
+              "unobserved_population",
+              "probe_owner",
+              "reverification_owners",
+              "record_catalog",
+              "qualifier_roots",
+              "state",
+              "evidence_kind",
+              "actual_probe_or_observation_refs"
+            ],
+            "meaning_owner": "独立原資料/rootを供給する既存owner/read port。input/candidateを期待Contextへcopyしない。"
+          },
+          "candidate_supplier": {
+            "method": "retain_submitted_candidate",
+            "signature": "retain_submitted_candidate(presence: omitted | supplied, raw_bytes: ByteSequence | null) -> CandidateFrameProposal",
+            "proposed_domain_type": "UnseenRelationCandidate | null",
+            "normalization": "omitted/explicit nullだけNone、その他は原frameと不正shapeを保全する。"
+          },
+          "result_receiver": {
+            "method": "retain_result_projection",
+            "signature": "retain_result_projection(result: UnseenRelationResult, provenance: CallProvenance) -> ResultProjectionProposal",
+            "result_type": "UnseenRelationResult",
+            "value_type": "UnseenRelationValue",
+            "effect": "原意味結果を返却先ownerへ候補として渡す。OS保存/ticket/authority/受入を実施しない。"
+          },
+          "physical_placement": "helix/helix-harness/units/<registered-pack-identity>/src・tests。pack identityの実値と登録を本specから生成しない。",
+          "runtime_binding_state": "not_implemented_not_registered"
+        }
+      ],
+      "port_types": {
+        "FrameReadRequest": {
+          "material_ref": "Ref（対象identity/revision/scope/ownerを原ownerの契約へ指定）",
+          "carrier_scope": "Text",
+          "input_owner_contract_ref": "Ref",
+          "qualification_material_refs": "tuple[Ref]（既owner資格の参照、名前/digestだけでは資格を発行しない）"
+        },
+        "ContextReadRequest": {
+          "snapshot_ref": "Ref",
+          "carrier_scope": "Text",
+          "context_owner_contract_ref": "Ref",
+          "required_domain_type": "Text（選択bindingのcontext型）",
+          "independence_material_refs": "tuple[Ref]（別固定source/custody/lineageの原記録。caller inputで作らない）"
+        },
+        "ReadOnlyRawFrame": {
+          "source_ref": "Ref",
+          "raw_bytes": "immutable ByteSequence（strict decode前の原bytes）",
+          "declared_raw_sha256": "Digest",
+          "carrier_scope": "Text",
+          "custody_material_refs": "tuple[Ref]",
+          "lineage_material_refs": "tuple[Ref]",
+          "evidence_limit": "原資料の供給記録。state=current/owner名/digestの自己申告だけでqualifiedへしない。"
+        },
+        "SourceGap": {
+          "condition": "missing | unknown | conflict | stale",
+          "source_ref": "Ref | null（所在不明なら創作しない）",
+          "findings": "tuple[SupplierFinding]"
+        },
+        "CandidateFrameProposal": "presence/raw bytes/原hash/shape不足を保全する。型とNone処置はA4とshape_rejection_handoffへ。",
+        "CallProvenance": {
+          "binding_ref": "Text",
+          "core_contract_sha256": "Digest",
+          "profiles_sha256": "mapping[固定5名,Digest]",
+          "input_raw_sha256": "Digest",
+          "context_raw_sha256": "Digest",
+          "candidate_raw_sha256": "Digest | null",
+          "target_revision_scope_refs": "tuple[Ref]（原targetとscopeを保存、別回の成功を流用しない）"
+        },
+        "ResultProjectionProposal": "core ResultとCallProvenanceの未改変投影、戻し先の全finding、未完を保持。実保存/OS receipt/Accepted/Releaseではない。",
+        "SupplierFinding": {
+          "condition": "missing | unknown | conflict | stale",
+          "material_ref": "Ref | null",
+          "pointer": "JSON Pointer | null（原所在不明なら創作しない）",
+          "return_owner": "Text（元資料の意味owner、実配送/資格発行でない）",
+          "unresolved_domain_fields": "tuple[Text]（型付き原欠落の対象field）"
+        }
+      },
+      "algorithm": [
+        {
+          "id": "IB1",
+          "rule": "requestはobjectで既3fieldだけ。未知root field/不正selector primitiveはinvalid。binding_ref欠落/null/空はbinding_unresolved、未知IDはbinding_unresolved。型/shapeからIDを推測しない。"
+        },
+        {
+          "id": "IB2",
+          "rule": "IDを固定7rowへ完全一致で解決する。declared_interface欠落/nullはbinding_unresolved、不正primitiveはinvalid。未知row fieldはinvalid。固定row必須field欠落は当該pointerのinterface_field_missing、同じtop-level JSON kindで全内容差はinterface_field_conflict、top-level JSON kind不一致はinterface_invalid。boolとnumberを同じkindにしない。nested field集合/値/primitive kind/配列順の差は親fieldのinterface_field_conflictとして全内容比較し、型名/role/operation境界をcallerで書換えない。"
+        },
+        {
+          "id": "IB3",
+          "rule": "declared_profiles欠落/nullはbinding_unresolved、不正primitive又は未知profile名はinvalid。各固定5名の欠落はprofile_missing、non-string/非bare lower hex64はprofile_invalidでinvalid、形が正しくても固定digestと異なればprofile_conflictでbinding_unresolved。"
+        },
+        {
+          "id": "IB4",
+          "rule": "独立に読める不足/不正/相反を蓄積。invalidが優先、その次にbinding_unresolved、全内容対応だけspecification_corresponding。失敗時には選択metadata全fieldをnullにしてactual dispatchの引数を提案しない。成功はdesign metadataだけを返し、runtime registration/qualification/core callを行わない。原request logical hashを必ず保持。"
+        },
+        {
+          "id": "IB5",
+          "rule": "findingはcode/pointer/return_ownerのUnicode順。完全同値3fieldだけunique。interface/profileの各所在を分離し、最初の原因で他原因を消さない。"
+        }
+      ],
+      "finding_codes": [
+        "request_invalid",
+        "binding_missing",
+        "binding_unknown",
+        "interface_missing",
+        "interface_invalid",
+        "interface_unknown_field",
+        "interface_field_missing",
+        "interface_field_conflict",
+        "profiles_missing",
+        "profile_missing",
+        "profile_invalid",
+        "profile_unknown",
+        "profile_conflict"
+      ],
+      "return_owner": "trace-binding-owner",
+      "result_type": {
+        "condition": "specification_corresponding | binding_unresolved | invalid",
+        "selected_binding_ref": "Text | null",
+        "selected_core_symbol": "Text | null",
+        "argument_types": "mapping[Text,Text] | null",
+        "result_type": "Text | null",
+        "profile_digests": "mapping[Text,Digest] | null",
+        "findings": "tuple[{code: finding_codes,pointer: JSON Pointer,return_owner: trace-binding-owner}]",
+        "retained_request_sha256": "Digest（canonical logical UTF8）",
+        "actual_registration_established": "literal false",
+        "actual_qualification_established": "literal false",
+        "actual_core_invoked": "literal false",
+        "actual_operation_invoked": "literal false"
+      },
+      "dependency_boundary": "意味coreは本binding resolver/read port/codec/OSをimportしない。composition root→read port/codec/value contract/meaning coreの既allowed edgeだけ。source/providerのI/Oはread portの既scope/authorityへ結び、pure coreへ持込まない。result receiverも操作を実行しない。",
+      "ownership_and_canonical": "docsは意味、跨pack declarationsは宣言、pack内宣言は局所contract、型番台帳はOSの登録事実。port型/型番候補/一致提案を台帳へ複製せず、identityの実登録をこの紙で生成しない。実行instance/案件記録はrepo外の既境界へ。",
+      "unclosed": "supplier/receiverの全field protocol/資格resolver/実pack登録/physical interface/host/runtime/library/regex/view/resources/codec・全composition oracle・全freeze/L6L7未成立。このspecとmatching提案は実admission/実装Readyでない。",
+      "return_owner_note": "A1の宣言内容の照合責務。実資格/操作の発行者でない。"
     }
   },
   "purity_repeat_contract": {
