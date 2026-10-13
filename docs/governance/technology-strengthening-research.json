@@ -63,6 +63,36 @@
       "path": "docs/governance/github-upstream-operating-model.md",
       "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
       "sha256": "a56e0d2f9484234f0b5de01692b19663fea9549acdfb45362c656bcc07243880"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-connect/L1-planning/connect-intent.md",
+      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
     }
   ],
   "legacy_comparison": [
@@ -278,14 +308,131 @@
   ],
   "legacy_search": {
     "root": "archive/legacy-generation-2026-09-14/root",
-    "query": "hypothesis|fast-check|python-jsonschema|\\bajv\\b|\\bruff\\b|\\bpyright\\b|opentelemetry|uv.lock",
+    "query": "hypothesis|fast-check|python-jsonschema|\\bajv\\b|\\bruff\\b|\\bpyright\\b|opentelemetry|uv\\.lock",
     "excluded_globs": [
       "*.lock",
       "*.jsonl",
       "MANIFEST*"
     ],
-    "matched_paths": 82,
-    "limit": "語一致は実装/採用/不在の証明ではない。旧packageにVitest/Biome/Zodの直接宣言を確認。Python/PBT候補の既存採用は本researchで証明していない。旧資産を実行していない。"
+    "matched_paths": 90,
+    "limit": "語一致は実装/採用/不在の証明ではない。旧packageにVitest/Biome/Zodの直接宣言を確認。Python/PBT候補の既存採用は本researchで証明していない。旧資産を実行していない。",
+    "command": [
+      "rg",
+      "--no-config",
+      "-l",
+      "-i",
+      "--hidden",
+      "--no-ignore",
+      "--glob",
+      "!.git/**",
+      "hypothesis|fast-check|python-jsonschema|\\bajv\\b|\\bruff\\b|\\bpyright\\b|opentelemetry|uv\\.lock",
+      "archive/legacy-generation-2026-09-14/root",
+      "--glob",
+      "!*.lock",
+      "--glob",
+      "!*.jsonl",
+      "--glob",
+      "!MANIFEST*"
+    ],
+    "tool_version": "ripgrep 15.0.0 (rev 3a612f88b8)",
+    "case": "insensitive",
+    "hidden": "included",
+    "ignore": "disabled",
+    "binary": "rg default skips binary",
+    "matched_path_list": [
+      "archive/legacy-generation-2026-09-14/root/.claude/agents/pdm-innovation-manager.md",
+      "archive/legacy-generation-2026-09-14/root/.claude/agents/pdm-marketing-innovation.md",
+      "archive/legacy-generation-2026-09-14/root/.claude/agents/pdm-tech-innovation.md",
+      "archive/legacy-generation-2026-09-14/root/.helix/audit/A-105-harness-db-feedback-l5.md",
+      "archive/legacy-generation-2026-09-14/root/.helix/audit/A-133-upstream-vmodel-coverage-audit.md",
+      "archive/legacy-generation-2026-09-14/root/.helix/evidence/review-1600/doctor.log",
+      "archive/legacy-generation-2026-09-14/root/.helix/evidence/review-1602/doctor.log",
+      "archive/legacy-generation-2026-09-14/root/.helix/evidence/review-1605/doctor.log",
+      "archive/legacy-generation-2026-09-14/root/config/drive-route-catalog.json",
+      "archive/legacy-generation-2026-09-14/root/config/requirement-discovery-event-schema.json",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/handover/SESSION-2026-05-22-handover.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/helix-agent-harness-concept_v2.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/helix-agent-harness-concept_v3.0.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/helix-agent-harness-requirements_v1.0.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/helix-agent-harness-requirements_v1.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/evidence/HELIX_EXISTING_HIERARCHY_AND_TRANSITIONS_v0.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/plans/PLAN-003-sprint-1-analysis.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/plans/PLAN-003-w3a-task-classification-port.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/plans/PLAN-004-sprint-1-analysis.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/function.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/physical-data.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/fr-unit-coverage.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/measurement-evidence-evaluator.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/python-worker-runtime.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/universal-reverse-redesign.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/requirement-discovery-event-projection.md",
+      "archive/legacy-generation-2026-09-14/root/docs/generated/requirements/requirement-definition.generated.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-intake-source.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-acceptance.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-intake.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/generated/outstanding-snapshot.json",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.2.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "archive/legacy-generation-2026-09-14/root/docs/migration/helix-porting-map.md",
+      "archive/legacy-generation-2026-09-14/root/docs/migration/helix-source-inventory.md",
+      "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-DISCOVERY-01-workflow-metamodel.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-DISCOVERY-04-process-workflows.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-DISCOVERY-05-roadmap-registration.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-04-upstream-schedule-reconciliation.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-06-helix-pillar-descent.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-44-authoring-style-case-authority.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L5-08-harness-db-feedback.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L5-104-python-runtime-toolchain-freeze.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-683-lite-canary-fast-check-oracle.md",
+      "archive/legacy-generation-2026-09-14/root/docs/process/modes/discovery.md",
+      "archive/legacy-generation-2026-09-14/root/docs/skills/agent-cost-design.md",
+      "archive/legacy-generation-2026-09-14/root/docs/skills/agent-teams.md",
+      "archive/legacy-generation-2026-09-14/root/docs/skills/debugging-and-error-recovery.md",
+      "archive/legacy-generation-2026-09-14/root/docs/skills/poc.md",
+      "archive/legacy-generation-2026-09-14/root/docs/skills/reverse-r2.md",
+      "archive/legacy-generation-2026-09-14/root/docs/skills/reverse-r3.md",
+      "archive/legacy-generation-2026-09-14/root/docs/skills/reverse-r4.md",
+      "archive/legacy-generation-2026-09-14/root/docs/templates/plan/poc/template.md",
+      "archive/legacy-generation-2026-09-14/root/docs/templates/prompts/effort-classify.md",
+      "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/proposal-document-coverage-routing.md",
+      "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md",
+      "archive/legacy-generation-2026-09-14/root/package-lock.json",
+      "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "archive/legacy-generation-2026-09-14/root/src/lint/proposal-document-coverage-policy.ts",
+      "archive/legacy-generation-2026-09-14/root/src/requirements/requirement-discovery.ts",
+      "archive/legacy-generation-2026-09-14/root/src/schema/index.ts",
+      "archive/legacy-generation-2026-09-14/root/src/state-db/projection-writer.ts",
+      "archive/legacy-generation-2026-09-14/root/src/task/classify-policy.ts",
+      "archive/legacy-generation-2026-09-14/root/src/task/proposal-document-packs-operations.ts",
+      "archive/legacy-generation-2026-09-14/root/src/task/proposal-research-data.ts",
+      "archive/legacy-generation-2026-09-14/root/src/workflow/contracts-policy.ts",
+      "archive/legacy-generation-2026-09-14/root/src/workflow/contracts.ts",
+      "archive/legacy-generation-2026-09-14/root/src/workflow/design-elicitation.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/authoring-style-case-authority.test.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/development-model-design-projection.test.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/distribution-dependency-closure.test.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/harness-memory-reconciliation-binding.test.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/requirement-discovery.test.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/task-classify.test.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/vmodel-pair.test.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/workflow-contracts.test.ts"
+    ],
+    "matched_path_list_sha256": "89aea9c0735294e0eac14e4d365cf2591242b9c8bab76f5c8b084ad30c14944b",
+    "reproduce_cwd": "repository root at source_main; sort emitted relative paths lexicographically and join with LF including final LF"
   },
   "recommendation": "強化は有効。環境profileとvalidator profileの再現性を先に定義し、共有schema/corpusの非改変照合、独立oracle付きPBT、接続adapterの観測へ進める。候補のtechnical adoptionは既存の対象設計/検証とtool契約へ結ぶ。",
   "candidates": [
@@ -314,7 +461,64 @@
         "固定schema/codec/validator version+options+registry digestと、両側のcorpus verdict/違反箇所・原入力非改変。",
         "欠落/null/空配列、bool/number、未知key、owner/revision違い、duplicate key、0.1と0.10000000000000001、大整数/大指数、Unicodeを分類してcodecとschemaの責務別に照合。"
       ],
-      "adoption_state": "recommended_candidate;formal binding/version unselected"
+      "adoption_state": "recommended_candidate;formal binding/version unselected",
+      "source_snapshot_refs": [
+        "1ed4fa7ae2eeb98d4cd7c2c61a3487707cfec9a803b5aeb1ed1afaa0e7b73c9e",
+        "2724197b36c208bdc32a444f49a94e05ce0d466ecb64eebe45fb350cc27261a0",
+        "612de80744090afb72fd7cd4c40c68c27a1b80b745b9365f6b81ec8773013ddf",
+        "71e8e43dcb6fd3c8162f47b6e44649a15d544f09a67ceaca29b09a2c98d92785"
+      ],
+      "premises": [
+        {
+          "id": "SCHEMA-CAPABILITY",
+          "state": "known",
+          "claim": "両者に2020-12のvalidatorがある。Ajvにはdataを変更するoptionがあり、python-jsonschemaのformat検査は明示設定が必要。",
+          "source_refs": [
+            "https://ajv.js.org/json-schema.html",
+            "https://ajv.js.org/guide/modifying-data.html",
+            "https://ajv.js.org/options",
+            "https://python-jsonschema.readthedocs.io/en/stable/validate/"
+          ],
+          "applicability": "取得文書が記述する機能。選択した具体版/設定/実環境の成立へは拡張しない。",
+          "limits": "公式仕様の確認であり対象製品の実験ではない。tool releaseは未選定。",
+          "re_research_conditions": [
+            "参照文書bytes/主要版/support matrixの変更",
+            "具体版と設定profileの選択時"
+          ]
+        },
+        {
+          "id": "SCHEMA-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで既存契約を維持し品質/再現性を強化できる候補。",
+          "impact_scope": "BRAIN032/CORE009/OS002とHARNESS004/022の入出力構造を一つの対象schema revisionから両言語で照合する候補。schema適合と意味/owner資格/authority/採用を分離。",
+          "decider": "Codex作成候補・独立reviewで検討。要求authority/採用decisionを代行しない。",
+          "applicability": "承認済み対象scopeと既存設計/検証条件に必要な局所適用だけを検討する。",
+          "limits": "HARNESS004は数値token/decoded duplicate key/Unicode scalarとExactFiniteDecimalを保持する候補契約。JSの通常Number/JSON.parseとPython標準decodeへそのまま渡して丸めたり重複を消したりすると同じschemaでも意味は一致しない。Ajv単体を全数値意味の保証にはできない。formal codec/数値adapterを先に照合し、元の任意精度/意味範囲をsafe integer等へ縮めない。",
+          "re_research_conditions": [
+            "対象契約/schema/codec/oracleの変更",
+            "固定profileによる評価で入力改変/意味不一致/予算超過を観測した場合"
+          ]
+        },
+        {
+          "id": "SCHEMA-BINDING",
+          "state": "unknown",
+          "claim": "recommended_candidate;formal binding/version unselected",
+          "impact_scope": "具体版・formal binding・対象環境での評価と導入順序。",
+          "decider": "既存対象設計の作成側と独立review側。上流意味変更がある場合だけ既存authority判断先へ返す。",
+          "applicability": "researchはこのunknownを残して比較できるが、unknownに依存する実行の成立証拠には使わない。",
+          "limits": "具体版/実導入/製品CIを未成立のまま保持。",
+          "re_research_conditions": [
+            "具体版/環境/profileを選定して対象実検証を行えるとき"
+          ]
+        }
+      ],
+      "counterexamples": [
+        {
+          "scenario": "0.1と0.10000000000000001を通常JS Numberへdecodeすると、元の異なる数値意味を失い同じvalidator入力になる可能性。",
+          "consequence_for_recommendation": "formal exact-number codec/adapterなしでは両言語schema一致を意味一致へ拡張できない。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ]
     },
     {
       "id": "PBT",
@@ -342,7 +546,70 @@
         "seedだけで両言語の入力列一致を仮定しない。縮小後の共通JSON/raw token corpus、oracle revision、tool/generator/profile versionを保存して相互実行する。",
         "shrinkerがsource qualificationやtarget/scopeと反例条件を失って別の失敗へ変えないよう、生成/縮小条件を対象契約へ結ぶ。試行数/PASSを全意味被覆の代わりにしない。"
       ],
-      "adoption_state": "recommended_candidate;runner/version and frozen oracle pending"
+      "adoption_state": "recommended_candidate;runner/version and frozen oracle pending",
+      "source_snapshot_refs": [
+        "1688325f23c32273bcefab0b70d6dd26660beeae3988595614b5446890da0cfc",
+        "81fa1153bd04b184cbde97c6cdb2962877102d9a06ef14f17949a08ca0537f44",
+        "707e80714060823d22d696c1d7d455d8fcb67d823465093d1e3ae39a8c2a3e81",
+        "5c610bd5f7db974181de4b973eefc25a3d9567eff845882be1f3e143c4bdff42",
+        "467bfecc1ba2ebbf9af293addf5ebe100a630cb47dc5d24a2284a6ca8d284461"
+      ],
+      "premises": [
+        {
+          "id": "PBT-CAPABILITY",
+          "state": "known",
+          "claim": "Hypothesisは値/状態機械を生成して反例を再現できる。fast-checkはrunnerに依存せず、model-based replayではseed/pathに加えreplayPathを使う。Hypothesisのreproduce_failure blobは版を跨ぐ互換を保証しない。",
+          "source_refs": [
+            "https://hypothesis.readthedocs.io/en/latest/stateful.html",
+            "https://hypothesis.readthedocs.io/en/latest/reference/api.html",
+            "https://fast-check.dev/docs/advanced/model-based-testing/",
+            "https://fast-check.dev/docs/tutorials/setting-up-your-test-environment/property-based-testing-with-vitest/",
+            "https://nodejs.org/download/release/v26.7.0/docs/api/test.html"
+          ],
+          "applicability": "取得文書が記述する機能。選択した具体版/設定/実環境の成立へは拡張しない。",
+          "limits": "公式仕様の確認であり対象製品の実験ではない。tool releaseは未選定。",
+          "re_research_conditions": [
+            "参照文書bytes/主要版/support matrixの変更",
+            "具体版と設定profileの選択時"
+          ]
+        },
+        {
+          "id": "PBT-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで既存契約を維持し品質/再現性を強化できる候補。",
+          "impact_scope": [
+            "HARNESS004/022のinput/context/candidate非改変、A-A/A-B-Aのwhole Result、未知/不足の保持、無関係Qの局所性。",
+            "SECURITY001のsource/分類ownerとroute条件/result各軸の交差、ACK/読取から新authorityを作らない。",
+            "OS053のCAS競合/rollback/replayと部分失敗、CORE009/OS002の版/scope/義務集合の不一致。正式hostとoracleが成立した範囲で後続に実行。"
+          ],
+          "decider": "Codex作成候補・独立reviewで検討。要求authority/採用decisionを代行しない。",
+          "applicability": "承認済み対象scopeと既存設計/検証条件に必要な局所適用だけを検討する。",
+          "limits": "recommended_candidate;runner/version and frozen oracle pending",
+          "re_research_conditions": [
+            "対象契約/schema/codec/oracleの変更",
+            "固定profileによる評価で入力改変/意味不一致/予算超過を観測した場合"
+          ]
+        },
+        {
+          "id": "PBT-BINDING",
+          "state": "unknown",
+          "claim": "recommended_candidate;runner/version and frozen oracle pending",
+          "impact_scope": "具体版・formal binding・対象環境での評価と導入順序。",
+          "decider": "既存対象設計の作成側と独立review側。上流意味変更がある場合だけ既存authority判断先へ返す。",
+          "applicability": "researchはこのunknownを残して比較できるが、unknownに依存する実行の成立証拠には使わない。",
+          "limits": "具体版/実導入/製品CIを未成立のまま保持。",
+          "re_research_conditions": [
+            "具体版/環境/profileを選定して対象実検証を行えるとき"
+          ]
+        }
+      ],
+      "counterexamples": [
+        {
+          "scenario": "Hypothesis reproduce_failure blobを異なるHypothesis版で再生する。",
+          "consequence_for_recommendation": "seed/blobだけの永続再現を前提にせず縮小済み中立corpusとtool/oracle版を保存する。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ]
     },
     {
       "id": "ENVIRONMENT",
@@ -367,7 +634,68 @@
         "選択対象でuv lock freshness確認とlocked運転、Node側npm ci相当を候補にする。uv syncのexact同期は隔離した対象venvを前提に評価する。ここではコマンドを実行/導入しない。",
         "Python coreはRuff/format/Pyrightの対象/診断modeを固定。TSはtscと旧Biomeの再利用案を比較し、formatとsemantic JSON canonical bytes/digestを分ける。archive/原source/固定証拠へ一括formatを適用しない。"
       ],
-      "adoption_state": "recommended_candidate;target profile/versions/consumer application pending"
+      "adoption_state": "recommended_candidate;target profile/versions/consumer application pending",
+      "source_snapshot_refs": [
+        "4bd4a89338543bf671bd036a52bc666a295986c7c72ea175d95d1c2ac228e0cf",
+        "a61d919d4609dc49ad3a99418ea849b25ba37aab09853ea9352f5a33af740415",
+        "d418006142005bf36748262fa41d19a566d2ea838d92d02b210424d14ce1c9b9",
+        "a93dce61f8da46085458d4fb7db9f841b9c934453793905245b0b8d29508158f"
+      ],
+      "premises": [
+        {
+          "id": "ENVIRONMENT-CAPABILITY",
+          "state": "known",
+          "claim": "uvのlockedはmetadataとlockが不一致なら更新せずエラー。frozenはlock鮮度を検査しない。npm ciはpackage/lock不一致を拒否しlockを書き換えない。RuffはPython formatter/linter、Pyrightは型検査のmode/対象設定を持つ。",
+          "source_refs": [
+            "https://docs.astral.sh/uv/concepts/projects/sync/",
+            "https://docs.astral.sh/ruff/formatter/",
+            "https://raw.githubusercontent.com/microsoft/pyright/main/docs/configuration.md",
+            "https://docs.npmjs.com/cli/v11/commands/npm-ci/"
+          ],
+          "applicability": "取得文書が記述する機能。選択した具体版/設定/実環境の成立へは拡張しない。",
+          "limits": "公式仕様の確認であり対象製品の実験ではない。tool releaseは未選定。",
+          "re_research_conditions": [
+            "参照文書bytes/主要版/support matrixの変更",
+            "具体版と設定profileの選択時"
+          ]
+        },
+        {
+          "id": "ENVIRONMENT-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで既存契約を維持し品質/再現性を強化できる候補。",
+          "impact_scope": [
+            "Python interpreter/Node/runtime/OS/architecture、toolと直接・伝播依存/extra/group、lockとconfigをexact profileへ結ぶ。uv.lock/package-lockだけで実環境同一を断定しない。",
+            "選択対象でuv lock freshness確認とlocked運転、Node側npm ci相当を候補にする。uv syncのexact同期は隔離した対象venvを前提に評価する。ここではコマンドを実行/導入しない。",
+            "Python coreはRuff/format/Pyrightの対象/診断modeを固定。TSはtscと旧Biomeの再利用案を比較し、formatとsemantic JSON canonical bytes/digestを分ける。archive/原source/固定証拠へ一括formatを適用しない。"
+          ],
+          "decider": "Codex作成候補・独立reviewで検討。要求authority/採用decisionを代行しない。",
+          "applicability": "承認済み対象scopeと既存設計/検証条件に必要な局所適用だけを検討する。",
+          "limits": "recommended_candidate;target profile/versions/consumer application pending",
+          "re_research_conditions": [
+            "対象契約/schema/codec/oracleの変更",
+            "固定profileによる評価で入力改変/意味不一致/予算超過を観測した場合"
+          ]
+        },
+        {
+          "id": "ENVIRONMENT-BINDING",
+          "state": "unknown",
+          "claim": "recommended_candidate;target profile/versions/consumer application pending",
+          "impact_scope": "具体版・formal binding・対象環境での評価と導入順序。",
+          "decider": "既存対象設計の作成側と独立review側。上流意味変更がある場合だけ既存authority判断先へ返す。",
+          "applicability": "researchはこのunknownを残して比較できるが、unknownに依存する実行の成立証拠には使わない。",
+          "limits": "具体版/実導入/製品CIを未成立のまま保持。",
+          "re_research_conditions": [
+            "具体版/環境/profileを選定して対象実検証を行えるとき"
+          ]
+        }
+      ],
+      "counterexamples": [
+        {
+          "scenario": "metadataが変更された状態でuv --frozenを用いる。",
+          "consequence_for_recommendation": "lock鮮度確認は実施されない。lockedとの同等視を拒否しprofileへ結ぶ。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ]
     },
     {
       "id": "CI",
@@ -399,8 +727,84 @@
         "同じ固定profileのローカル/Actions結果と環境差、意図した欠陥に対する事前Red、正常Green、Refactor後の再検証。",
         "schema/codecの共通corpus、各job未実行/失敗/timeout時の診断と集約、原入力/receipt/権限境界を保持した独立照合。"
       ],
-      "current_observation": "main9548cafのActions APIにはdynamic実行successがある一方、現行.github/workflowsには未構築を示すREADMEだけがある。外部監査のCodeQL成功報告と整合するが、正式製品CIの成立を示さない。",
-      "adoption_state": "recommended_candidate;new-generation workflow/profile and execution pending"
+      "current_observation": "GitHub APIでmain9548cafのdynamic/github-code-scanning/codeql successを確認。対象revisionの.github/workflowsには未構築READMEだけがある。正式製品CIの成立証拠ではない。",
+      "adoption_state": "recommended_candidate;new-generation workflow/profile and execution pending",
+      "source_snapshot_refs": [
+        "56c547d1cd6d92f87dd0e26177fde00d0dcef70f90eeb5948b70ee4f7c7daff1",
+        "db8305ac49d2ef4a8a7bf0f32fc92bc87d88f692dd5799b6e3d2d49224ee5bfe",
+        "ca14fdbac7fd78c475e9b60511d229e0bd81e98a11ff3b3addf74094a4822465",
+        "55ad474201b1859db55244b73a8a0f540c36003f83b1415873287cceb2345313",
+        "cfff0303f9db764b04b17afed00b8d5eeec9be5dca52b0472413674ebb2e2c23"
+      ],
+      "premises": [
+        {
+          "id": "CI-CAPABILITY",
+          "state": "known",
+          "claim": "actionlintはActionsの構文/式/needs等を静的検査する。zizmorはActions等の安全性監査を行う。CodeQLはコードの脆弱性候補を解析する。PlaywrightはブラウザテストをCIで実行できる。各道具の検出範囲はHELIX契約の被覆そのものではない。",
+          "source_refs": [
+            "https://github.com/rhysd/actionlint/blob/main/README.md",
+            "https://docs.zizmor.sh/audits/",
+            "https://docs.github.com/en/actions/reference/security/secure-use",
+            "https://docs.github.com/en/code-security/concepts/code-scanning/codeql/codeql-code-scanning",
+            "https://playwright.dev/docs/ci"
+          ],
+          "applicability": "取得文書が記述する機能。選択した具体版/設定/実環境の成立へは拡張しない。",
+          "limits": "公式仕様の確認であり対象製品の実験ではない。tool releaseは未選定。",
+          "re_research_conditions": [
+            "参照文書bytes/主要版/support matrixの変更",
+            "具体版と設定profileの選択時"
+          ]
+        },
+        {
+          "id": "CI-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで既存契約を維持し品質/再現性を強化できる候補。",
+          "impact_scope": [
+            "まず対象のローカル共通検査入口/profileを設計し、Actionsから同じschema/型/lint/unit/PBT等を再実行する。実行command・設定・tool/runtime・corpus/oracle・対象HEADとbaseを記録し、profile差を隠さない。",
+            "fast/default/fullと影響範囲・資源・timeoutを既存契約から導出する。初回経路に必要な検査を選択し、fullの毎回強制や固定時間値の移植をしない。未実行/skip/cancel/timeout/失敗と各job診断を保持し、aggregateのgreenで隠さない。",
+            "CI設計時にactionlintとzizmorで新workflowを監査する。未信頼PRの検査と書込/secretsを使う処理の分離、最小job権限、依存の由来とexact revision/伝播依存固定をSECURITY010〜013等の既存契約へ結ぶ。具体設定変更や認証変更は本researchで実施しない。",
+            "CodeQLを静的解析の補助として継続比較する。既存dynamic実行成功を製品CI・実動作・L11受入へしない。PlaywrightはWeb/browserを選択した範囲で追加し、非画面の初回経路へ一律要求しない。",
+            "JSON Schema適合に加えID/参照/親revision・scope/対文書/未完・stale追跡と、意味不備の独立reviewを区別してドキュメント監査を設計する。formatter/ファイル存在/schema PASSだけで文書意味の閉包を判定しない。"
+          ],
+          "decider": "Codex作成候補・独立reviewで検討。要求authority/採用decisionを代行しない。",
+          "applicability": "承認済み対象scopeと既存設計/検証条件に必要な局所適用だけを検討する。",
+          "limits": "recommended_candidate;new-generation workflow/profile and execution pending",
+          "re_research_conditions": [
+            "対象契約/schema/codec/oracleの変更",
+            "固定profileによる評価で入力改変/意味不一致/予算超過を観測した場合"
+          ]
+        },
+        {
+          "id": "CI-BINDING",
+          "state": "unknown",
+          "claim": "recommended_candidate;new-generation workflow/profile and execution pending",
+          "impact_scope": "具体版・formal binding・対象環境での評価と導入順序。",
+          "decider": "既存対象設計の作成側と独立review側。上流意味変更がある場合だけ既存authority判断先へ返す。",
+          "applicability": "researchはこのunknownを残して比較できるが、unknownに依存する実行の成立証拠には使わない。",
+          "limits": "具体版/実導入/製品CIを未成立のまま保持。",
+          "re_research_conditions": [
+            "具体版/環境/profileを選定して対象実検証を行えるとき"
+          ]
+        }
+      ],
+      "counterexamples": [
+        {
+          "scenario": "必要jobがskip/cancel/timeoutでも他jobのsuccessだけで集約する。",
+          "consequence_for_recommendation": "部分未実行を製品検証成功へしない。各job状態/対象revision/未観測範囲を残す。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ],
+      "current_observation_ref": {
+        "api": "repos/RetryYN/HELIX-HARNESS/actions/runs",
+        "target_sha": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "evidence_kind": "read_only_projection_observation_not_authority",
+        "run_id": 38438263403,
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/actions/runs/38438263403",
+        "path": "dynamic/github-code-scanning/codeql",
+        "conclusion": "success",
+        "event": "dynamic",
+        "retrieved_at_utc": "2026-10-13T17:50:52.847997+00:00"
+      }
     },
     {
       "id": "OBSERVABILITY",
@@ -418,7 +822,64 @@
         "trace/spanとHARNESS/OSの原receipt/判断recordを関連付ける。sampling/欠落/再送/計測不能を保持し、trace存在や下位greenをAccepted/完了authorityにしない。",
         "exporter/送信先/data class/含めるattributesと量は既存SEC/INFRA/CONNECT条件へ結ぶ。raw payload/credential/PIIをspan/baggageへ載せない。候補比較で外部送信しない。"
       ],
-      "adoption_state": "recommended_later_candidate;real connection and exporter profile pending"
+      "adoption_state": "recommended_later_candidate;real connection and exporter profile pending",
+      "source_snapshot_refs": [
+        "f581345c574c24f073770300a96ab3e536fc8c6e78c75a5e3ee9909dd725084a",
+        "88104fc7c5d5b21c6a95f9393e7e051441a7b095adde6d386683120a8b419427"
+      ],
+      "premises": [
+        {
+          "id": "OBSERVABILITY-CAPABILITY",
+          "state": "known",
+          "claim": "確認時点の両公式表ではtraces/metricsはStable、logsはDevelopment。JSはactive/maintenance LTS Node、Pythonは3.10以上を対応範囲としている。package具体版/追加instrumentationは別に確認する。",
+          "source_refs": [
+            "https://opentelemetry.io/docs/languages/js/",
+            "https://opentelemetry.io/docs/languages/python/"
+          ],
+          "applicability": "取得文書が記述する機能。選択した具体版/設定/実環境の成立へは拡張しない。",
+          "limits": "公式仕様の確認であり対象製品の実験ではない。tool releaseは未選定。",
+          "re_research_conditions": [
+            "参照文書bytes/主要版/support matrixの変更",
+            "具体版と設定profileの選択時"
+          ]
+        },
+        {
+          "id": "OBSERVABILITY-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで既存契約を維持し品質/再現性を強化できる候補。",
+          "impact_scope": [
+            "OS/CONNECT/INFRAの実adapterとLABOへの観測でepisode/操作/source revisionとの相関を付ける候補。Python意味coreにSDKのI/O・clock・可変stateを入れず外側で観測する。",
+            "trace/spanとHARNESS/OSの原receipt/判断recordを関連付ける。sampling/欠落/再送/計測不能を保持し、trace存在や下位greenをAccepted/完了authorityにしない。",
+            "exporter/送信先/data class/含めるattributesと量は既存SEC/INFRA/CONNECT条件へ結ぶ。raw payload/credential/PIIをspan/baggageへ載せない。候補比較で外部送信しない。"
+          ],
+          "decider": "Codex作成候補・独立reviewで検討。要求authority/採用decisionを代行しない。",
+          "applicability": "承認済み対象scopeと既存設計/検証条件に必要な局所適用だけを検討する。",
+          "limits": "recommended_later_candidate;real connection and exporter profile pending",
+          "re_research_conditions": [
+            "対象契約/schema/codec/oracleの変更",
+            "固定profileによる評価で入力改変/意味不一致/予算超過を観測した場合"
+          ]
+        },
+        {
+          "id": "OBSERVABILITY-BINDING",
+          "state": "unknown",
+          "claim": "recommended_later_candidate;real connection and exporter profile pending",
+          "impact_scope": "具体版・formal binding・対象環境での評価と導入順序。",
+          "decider": "既存対象設計の作成側と独立review側。上流意味変更がある場合だけ既存authority判断先へ返す。",
+          "applicability": "researchはこのunknownを残して比較できるが、unknownに依存する実行の成立証拠には使わない。",
+          "limits": "具体版/実導入/製品CIを未成立のまま保持。",
+          "re_research_conditions": [
+            "具体版/環境/profileを選定して対象実検証を行えるとき"
+          ]
+        }
+      ],
+      "counterexamples": [
+        {
+          "scenario": "samplingでspanを落とした操作をtrace不存在だけで未実行と扱う。",
+          "consequence_for_recommendation": "観測と原receiptを分け、欠測を実状態/受入の代わりにしない。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ]
     }
   ],
   "proposed_sequence": [
@@ -435,5 +896,276 @@
     "本researchは正式schema採択/初回実装Ready/全設計完了を生成しない。SECURITY001の詳細設計は元のgoal内で継続する。",
     "新workflowの対象profile/job権限/依存・artifact・cache境界、actionlint/zizmorの具体版と監査rule、文書意味の不足/stale検出、Web適用範囲は未固定。"
   ],
-  "verification_state": "source/旧inventory/現行契約との静的照合のみ。旧実行物・product tests/CI・SDK・installは未実行。"
+  "verification_state": "source/旧inventory/現行契約との静的照合のみ。旧実行物・product tests/CI・SDK・installは未実行。",
+  "official_source_snapshots": [
+    {
+      "url": "https://ajv.js.org/guide/modifying-data.html",
+      "resolved_url": "https://ajv.js.org/guide/modifying-data.html",
+      "retrieved_at_utc": "2026-10-13T17:50:17.912430+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "2724197b36c208bdc32a444f49a94e05ce0d466ecb64eebe45fb350cc27261a0",
+      "bytes_count": 60678,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://ajv.js.org/json-schema.html",
+      "resolved_url": "https://ajv.js.org/json-schema.html",
+      "retrieved_at_utc": "2026-10-13T17:50:18.096764+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "1ed4fa7ae2eeb98d4cd7c2c61a3487707cfec9a803b5aeb1ed1afaa0e7b73c9e",
+      "bytes_count": 120714,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://ajv.js.org/options",
+      "resolved_url": "https://ajv.js.org/options",
+      "retrieved_at_utc": "2026-10-13T17:50:17.941805+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "612de80744090afb72fd7cd4c40c68c27a1b80b745b9365f6b81ec8773013ddf",
+      "bytes_count": 67095,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://docs.astral.sh/ruff/formatter/",
+      "resolved_url": "https://docs.astral.sh/ruff/formatter/",
+      "retrieved_at_utc": "2026-10-13T17:50:17.731333+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "a61d919d4609dc49ad3a99418ea849b25ba37aab09853ea9352f5a33af740415",
+      "bytes_count": 95305,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://docs.astral.sh/uv/concepts/projects/sync/",
+      "resolved_url": "https://docs.astral.sh/uv/concepts/projects/sync/",
+      "retrieved_at_utc": "2026-10-13T17:50:17.729744+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "4bd4a89338543bf671bd036a52bc666a295986c7c72ea175d95d1c2ac228e0cf",
+      "bytes_count": 81839,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://docs.github.com/en/actions/reference/security/secure-use",
+      "resolved_url": "https://docs.github.com/en/actions/reference/security/secure-use",
+      "retrieved_at_utc": "2026-10-13T17:50:17.923556+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "ca14fdbac7fd78c475e9b60511d229e0bd81e98a11ff3b3addf74094a4822465",
+      "bytes_count": 466326,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://docs.github.com/en/code-security/concepts/code-scanning/codeql/codeql-code-scanning",
+      "resolved_url": "https://docs.github.com/en/code-security/concepts/code-scanning/codeql/codeql-code-scanning",
+      "retrieved_at_utc": "2026-10-13T17:50:18.361347+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "55ad474201b1859db55244b73a8a0f540c36003f83b1415873287cceb2345313",
+      "bytes_count": 573826,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://docs.npmjs.com/cli/v11/commands/npm-ci/",
+      "resolved_url": "https://docs.npmjs.com/cli/v11/commands/npm-ci/",
+      "retrieved_at_utc": "2026-10-13T17:50:18.085481+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "a93dce61f8da46085458d4fb7db9f841b9c934453793905245b0b8d29508158f",
+      "bytes_count": 593887,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://docs.zizmor.sh/audits/",
+      "resolved_url": "https://docs.zizmor.sh/audits/",
+      "retrieved_at_utc": "2026-10-13T17:50:18.361220+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "db8305ac49d2ef4a8a7bf0f32fc92bc87d88f692dd5799b6e3d2d49224ee5bfe",
+      "bytes_count": 380546,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://fast-check.dev/docs/advanced/model-based-testing/",
+      "resolved_url": "https://fast-check.dev/docs/advanced/model-based-testing/",
+      "retrieved_at_utc": "2026-10-13T17:50:19.091974+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "707e80714060823d22d696c1d7d455d8fcb67d823465093d1e3ae39a8c2a3e81",
+      "bytes_count": 77676,
+      "content_type": "text/html; charset=UTF-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://fast-check.dev/docs/tutorials/setting-up-your-test-environment/property-based-testing-with-vitest/",
+      "resolved_url": "https://fast-check.dev/docs/tutorials/setting-up-your-test-environment/property-based-testing-with-vitest/",
+      "retrieved_at_utc": "2026-10-13T17:50:19.275782+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "5c610bd5f7db974181de4b973eefc25a3d9567eff845882be1f3e143c4bdff42",
+      "bytes_count": 63723,
+      "content_type": "text/html; charset=UTF-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://github.com/rhysd/actionlint/blob/main/README.md",
+      "resolved_url": "https://github.com/rhysd/actionlint/blob/main/README.md",
+      "retrieved_at_utc": "2026-10-13T17:50:18.701473+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "56c547d1cd6d92f87dd0e26177fde00d0dcef70f90eeb5948b70ee4f7c7daff1",
+      "bytes_count": 274451,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://hypothesis.readthedocs.io/en/latest/reference/api.html",
+      "resolved_url": "https://hypothesis.readthedocs.io/en/latest/reference/api.html",
+      "retrieved_at_utc": "2026-10-13T17:50:18.299384+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "81fa1153bd04b184cbde97c6cdb2962877102d9a06ef14f17949a08ca0537f44",
+      "bytes_count": 318319,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://hypothesis.readthedocs.io/en/latest/stateful.html",
+      "resolved_url": "https://hypothesis.readthedocs.io/en/latest/stateful.html",
+      "retrieved_at_utc": "2026-10-13T17:50:18.583934+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "1688325f23c32273bcefab0b70d6dd26660beeae3988595614b5446890da0cfc",
+      "bytes_count": 64249,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://nodejs.org/download/release/v26.7.0/docs/api/test.html",
+      "resolved_url": "https://nodejs.org/download/release/v26.7.0/docs/api/test.html",
+      "retrieved_at_utc": "2026-10-13T17:50:18.535693+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "467bfecc1ba2ebbf9af293addf5ebe100a630cb47dc5d24a2284a6ca8d284461",
+      "bytes_count": 944416,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://opentelemetry.io/docs/languages/js/",
+      "resolved_url": "https://opentelemetry.io/docs/languages/js/",
+      "retrieved_at_utc": "2026-10-13T17:50:19.647335+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "f581345c574c24f073770300a96ab3e536fc8c6e78c75a5e3ee9909dd725084a",
+      "bytes_count": 409742,
+      "content_type": "text/html; charset=UTF-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://opentelemetry.io/docs/languages/python/",
+      "resolved_url": "https://opentelemetry.io/docs/languages/python/",
+      "retrieved_at_utc": "2026-10-13T17:50:19.928622+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "88104fc7c5d5b21c6a95f9393e7e051441a7b095adde6d386683120a8b419427",
+      "bytes_count": 410218,
+      "content_type": "text/html; charset=UTF-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://playwright.dev/docs/ci",
+      "resolved_url": "https://playwright.dev/docs/ci",
+      "retrieved_at_utc": "2026-10-13T17:50:19.112045+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "cfff0303f9db764b04b17afed00b8d5eeec9be5dca52b0472413674ebb2e2c23",
+      "bytes_count": 163280,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://python-jsonschema.readthedocs.io/en/stable/validate/",
+      "resolved_url": "https://python-jsonschema.readthedocs.io/en/stable/validate/",
+      "retrieved_at_utc": "2026-10-13T17:50:18.793683+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "71e8e43dcb6fd3c8162f47b6e44649a15d544f09a67ceaca29b09a2c98d92785",
+      "bytes_count": 113244,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://raw.githubusercontent.com/microsoft/pyright/main/docs/configuration.md",
+      "resolved_url": "https://raw.githubusercontent.com/microsoft/pyright/main/docs/configuration.md",
+      "retrieved_at_utc": "2026-10-13T17:50:19.077579+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "d418006142005bf36748262fa41d19a566d2ea838d92d02b210424d14ce1c9b9",
+      "bytes_count": 53705,
+      "content_type": "text/plain; charset=utf-8",
+      "tool_release_selected": null
+    }
+  ],
+  "judgment_point": {
+    "id": "TECH-STRENGTHEN-EXISTING-LANGUAGES",
+    "origin_kind": "human_instruction_received_in_existing_session",
+    "instruction_record": {
+      "request_summary": "既存Node.js/TypeScript/Pythonの技術強化を検討し、追加で届いたCI推奨も選定へ含める。",
+      "request_excerpt": "この辺のを技術選定関係を検討して技術強化できそうか？",
+      "followup_excerpt": "CI関連の推奨も届いた。",
+      "excerpt_sha256": "16b7d609777acc825ffb26d9ac207c0774acfc8006681ac8e09f4349aa85b8dd",
+      "scope": "検討依頼。要求意味/技術採用/実行許可へ昇格しない。"
+    },
+    "parent_refs": [
+      {
+        "path": "docs/concept/helix-concept.md",
+        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+      },
+      {
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+      },
+      {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+      },
+      {
+        "path": "docs/helix-brain/L1-planning/brain-intent.md",
+        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+      },
+      {
+        "path": "docs/helix-connect/L1-planning/connect-intent.md",
+        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
+      },
+      {
+        "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+      },
+      {
+        "path": "docs/helix-labo/L1-planning/labo-intent.md",
+        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+      },
+      {
+        "path": "docs/helix-security/L1-planning/security-intent.md",
+        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+      }
+    ],
+    "choices": [
+      "既存runner/formatterを起点に契約を維持して候補を追加",
+      "必要証拠を比較し別runner/profileへ置換を検討"
+    ],
+    "preservation_conditions": [
+      "現行meaning/authority/独立oracle/非改変/未決保持",
+      "旧実行物を起動しない"
+    ],
+    "return_to": "既存対象設計・技術選定と独立review。上流意味変更のみ既存authority経路へ返す。"
+  },
+  "premise_summary": {
+    "known": "公式記述と固定現行/旧sourceの静的確認",
+    "assumption": "対象profileで強化できるfitは候補で実評価前",
+    "unknown": "具体tool版/formal binding/実環境の成立",
+    "conflict": "現行契約を変更する案は採用していない。通常Numberによる丸め等の不適合は反例/限界に保持。",
+    "stale": "取得snapshot/親revision/適用条件が変われば影響premiseを再調査し、現在のknownを新revisionへ自動継承しない。"
+  }
 }
