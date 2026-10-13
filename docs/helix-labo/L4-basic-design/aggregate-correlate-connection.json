@@ -1,0 +1,145 @@
+{
+  "parent": "HELIXLABO-L2-011",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+    "boundary": "Aggregate→Correlate固有接続のsource/field/revision/欠測保持と両端receipt・episode往復参照。001/002の実source閉包を本Draftの存在で代替しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3f95f09ee86920e0dd6172a9e28f32192c1ee16bd4bfbec72438464bfee9fa16"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        67,
+        67
+      ],
+      "quote": "| **HIL-BR-15** | 将来のproduct-data sourceをversioned connectorで取り込み、由来・鮮度・schema・authorityを保持した正規projectionとして設計判断、coverage、impact、Issue routing、docgen/detectorへ供給する。 |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "880385839788ea49f14544ee9dd0f1ed5037bc84b1707a9ba55f4fa6a267c2f5",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "source由来・schema/connector版・元recordとmappingの参照、join切れを未完として保持する。",
+      "change": "旧product DB/取り込みschemaを移植せず、採択LABO011のAggregate→Correlate固有接続と両端receipt/episode往復参照へ意味を再導出する。",
+      "reason": "L1の2026-09-26 PO差分と採択011/10-12 exact承認による。旧単一DB/製品connectorから内側接続の実成立や自動因果を生成しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "read_lines": [
+        554,
+        586
+      ],
+      "quote": "connectorはproduct DBへ直接自由queryする機構ではない。登録時に次を固定する。\n\n- source identity、connector type/version、credential **reference**、data classificationの登録値\n- source schema/version、canonical mapping version、read-only/read-write policyの権限境界\n- snapshot/cursor/event identity、freshness SLA、retention/redactionの更新規則\n- lineage、schema drift policy、quarantine route、replay checkpointの復旧規則\n- detector/docgenへ渡せるfieldと禁止field\n\n既定はread-only snapshotであり、productへのwrite-backは別Issue、Reverse、security review、action-binding approvalを\n要求する。schema drift、credential不在、PII classification不明は取り込みを止め、古いprojectionをcurrentとして返さない。\n\n### §8.1 product-data実装schema\n\n| table | PK | 論理FK・一意制約 | 必須field | 許可status |\n|---|---|---|---|---|\n| `product_sources` | `product_source_id` | source kind＋external identity digestは一意 | owner、classification、read/write policy、freshness SLA、retention、created/updated | `registered`, `enabled`, `disabled`, `quarantined`, `retired` |\n| `product_connector_versions` | `product_connector_version_id` | source→`product_sources`、source＋connector versionは一意、activeはsourceごとに最大1件 | connector/schema/mapping version、credential reference、sync mode、config digest、effective_at | `draft`, `active`, `deprecated`, `revoked` |\n| `product_ingestion_runs` | `product_ingestion_run_id` | connector versionを参照、operation/idempotency keyは一意 | mode、intent digest、cursor start/end、fence token、failure、開始/終了 | `received`, `claimed`, `fetching`, `staged`, `validating`, `committing`, `completed`, `failed`, `quarantined`, `cancelled` |\n| `product_snapshots` | `product_snapshot_id` | source/runを参照、runは一意、source＋cursor＋schema/content digestは一意、supersedesは自己参照、sourceごとの`current`はpartial uniqueで最大1件 | classification、captured/fresh until、lineage/schema/content digest | `staged`, `current`, `stale`, `superseded`, `quarantined`, `purged` |\n| `product_entity_versions` | `product_entity_version_id` | snapshot→`product_snapshots`、snapshot＋canonical entity IDは一意 | entity type、source record key digest、schema version、redacted artifact path/payload digest、tombstone | `staged`, `current`, `superseded`, `tombstoned`, `quarantined` |\n| `product_mapping_edges` | `product_mapping_edge_id` | entity versionを参照、entity＋target kind/ID＋mapping versionは一意 | target kind、evidence digest、created_at | `active`, `stale`, `rejected` |\n| `product_watermarks` | `product_source_id` | source/snapshot/connector versionを参照 | cursor、fence token、updated_at | current projection |\n| `product_quarantine_items` | `product_quarantine_item_id` | source/run/snapshotを参照、source＋fingerprint＋scope digestは一意 | finding code、evidence digest、owner、expiry、release receipt | `open`, `released`, `expired`, `superseded` |\n| `product_ingestion_events` | `product_ingestion_event_id` | run→`product_ingestion_runs`、run＋event sequenceとoperation IDは一意 | from/to state、previous/event digest、failure、occurred_at | append-only |\n\ncredentialはreferenceだけを保存し、raw secret、未redact PII、自由形式raw payloadをprojectionへ保存しない。\nwatermarkはsourceごとの最後の`current` snapshotからcompare-and-swapし、逆行を`HIL_PRODUCT_WATERMARK_REGRESSION`、\nschema driftを`HIL_PRODUCT_SCHEMA_DRIFT`、freshness超過を`HIL_PRODUCT_SNAPSHOT_STALE`として旧entityをcurrentから外す。\n同一idempotency keyの再送は副作用0件とし、異なるdigestなら`HIL_PRODUCT_IDEMPOTENCY_CONFLICT`で停止する。\nentity/mapping insert、旧currentのsupersede、新snapshotのcurrent化、watermark CASは一transactionで行う。\ncrash時は`staged`を再検証し、watermarkだけを進めない。retention receiptなしのpurge、存在しないmapping target、\nclassification不明、未redact payloadをそれぞれfail-closeする。\nwrite-backは本schemaに含めず、別のaction-binding approval付き契約が作られるまでNode/Python双方から拒否する。",
+      "file_sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "selected_lines_sha256": "2e6ac9c0ba4c61644155e66f04a719bc6d911b559ff4af10772b11eef3598457",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "disposition": "unresolved",
+        "source_sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "source由来・schema/connector版・元recordとmappingの参照、join切れを未完として保持する。",
+      "change": "旧product DB/取り込みschemaを移植せず、採択LABO011のAggregate→Correlate固有接続と両端receipt/episode往復参照へ意味を再導出する。",
+      "reason": "L1の2026-09-26 PO差分と採択011/10-12 exact承認による。旧単一DB/製品connectorから内側接続の実成立や自動因果を生成しない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "001/002・共通HARNESS010/011と固有connectorのowner-qualified exact source/interface/schema/契約版/互換範囲/実receipt bindingは未成立。",
+    "正式schema/codec・field/欠測/receipt/relation resolver・原子記録/競合/replay・対L5L8・全組合せ・凍結oracleは未完。",
+    "実装前Red→最小Green→Refactor→再検証、実L9L10/PO L11、全92親430対の設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXLABO-L4-011",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "aggregate_observation_reader",
+      "aggregate_correlate_connector",
+      "endpoint_receipt_join",
+      "episode_observation_backlink_reader"
+    ],
+    "flow": [
+      "Aggregateの元observation identity/revision/source/field/欠測と固有接続宣言を読む",
+      "同じ接続/connector/契約版/要求revision/scope/送信内容を両端receiptへ束縛する",
+      "Correlateのepisode候補から元observationへ、元observationから同episode候補への参照を比較する",
+      "欠落/不一致/片側のみの成功は元記録を保持して接続/correlation ownerへ戻す"
+    ],
+    "python_boundary": "Pythonは予定する内部受渡しを担当する。wire format、永続化方式、同期/非同期、実codec/adapterは対L5L8で定義する。LABOがsource eventや権限/因果の正本を書き換える実装を本Draftで作らない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXLABO-L4-011-F01",
+      "requirement_ref": "HELIXLABO-L3-011-F01",
+      "system_oracle_ref": "HELIXLABO-L10-011-F01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-011-F01",
+        "parent": "HELIXLABO-L2-011",
+        "title": "AggregateからCorrelateへの受渡し",
+        "obligation": "接続固有identity/connectorと契約版でsource付きobservation fields/revision/欠測を渡しepisode候補と元観測を往復参照する。片側成功を接続成功にしない。",
+        "oracle_ref": "HELIXLABO-L10-011-F01"
+      },
+      "content_rules": [
+        "各接続は固有identity、Aggregate/Correlate endpoint、connector identity/版、適用契約identity/版、要求revision/scopeを持つ。共通pack契約をここで再定義せず実bindingは未完に保持する。",
+        "送信内容と受領内容にobservation identity/revision、原source identity/revision、field値/欠測と元source参照を保持する。欠測は成功値/0で補わない。",
+        "両端receiptは同接続/同内容/同scopeの送信と受領をそれぞれ参照する。engine単体成功、片側receipt、版違い/未知互換では接続成功を宣言しない。",
+        "episode候補のrelationと元observation側backlinkは同じidentity/revision/scopeを往復参照する。不一致は元記録を保ってcorrelation ownerへ返す。相関を因果確定へ昇格しない。"
+      ],
+      "representation_limit": "参照と不成立理由の合成例。payload digest一致だけで実受領/実接続/評価成立を主張しない。"
+    }
+  ]
+}
