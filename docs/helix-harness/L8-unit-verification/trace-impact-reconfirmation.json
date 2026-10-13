@@ -94,8 +94,7 @@
           37,
           38,
           39,
-          40,
-          41
+          40
         ],
         "line_quotes": [
           {
@@ -113,10 +112,6 @@
           {
             "line": 40,
             "text": "DBのtrace／状態projectionも、repo-owned要求文書と指定JSONの意味を上書きしない。"
-          },
-          {
-            "line": 41,
-            "text": ""
           }
         ],
         "preserve": "旧要求正本/対象revision/出典とIssue・DB projectionの区別。",
