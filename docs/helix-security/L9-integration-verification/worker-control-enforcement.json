@@ -257,7 +257,7 @@
       "diff: 独立before、write観測afterとの対応、実post treeからのdiffとreported_diff、独立allowed setとの包含を別照合。raw_secret_copied=false。値を証跡へ複写せずdigest素材だけ。 独立allowed setが未観測ならdiff_allow_set_unresolvedを同context位置へ返し、他軸unknownの有無にかかわらずdiff自身をunknownにする。",
       "rollback: afterをdiff観測afterへ、target_scopeをrequest scopeへ照合。before/after未観測ならunknown。state=not_applicableは観測before=afterだけ、変更ありN/Aは違反。restoredは復旧treeを独立beforeへ比較。partial/unavailableは未完違反、planned/その他はunknown。必要な実復旧条件と実状態は正式bindingで閉じる。",
       "result: case_refを独立caseへ、reported_terminal_statusを原terminal_statusへ比較。known terminalはsuccess/failed/interrupted/terminated。constraint_states全九を各原observed状態、diff_stateを原diff observed、rollback_stateを原rollback stateへ比較、片側null unknown。raw_value_exposed/stdout_only=false。receipt数/自己申告から全適用を作らない。 resultのruntime_terminal_statusは原timeout/resourceのprocess terminal素材へ両方照合する。実行後postcondition失敗のcase terminal=failedはruntime successと別でよいが、runtime failed/interrupted/terminatedをcase successにしない。runtime未知は未確認を残す。 terminal比較ではsuccess/failed/interrupted/terminatedだけを既知とする。null/unknown/その他enumを推測でknown相反へ変えず、原位置のunknownを保持する。",
-      "各軸はviolation→unknown→corresponding、全体も全軸の同優先順。case binding/scoped controlの不足は当該実行だけへ戻す候補。findingsはgiven.inputの原位置、裸owner・exact三fieldunique昇順。全結果14field比較、actual_worker/enforcement=false、host fallback許可/共通limit追加/未来結果の事前要求=false。対応は選択phaseのsynthetic内容だけ。postのwhole_nine_control_observation_compared=trueも実全適用ではない。"
+      "各軸はviolation→unknown→corresponding、全体も全軸の同優先順。case binding/scoped controlの不足は当該実行だけへ戻す候補。findingsはgiven.inputの原位置、裸owner・exact三fieldunique昇順。全結果14field比較、actual_worker/enforcement=false、host fallback許可/共通limit追加/未来結果の事前要求=false。対応は選択phaseのsynthetic内容だけ。postのwhole_nine_control_observation_compared=trueも実全適用ではない。 他制御から参照するsource fieldがnull/unknownなら、その原field（after_tree/observed/data.state/data.terminal_status）のpointerを返す。制御記録自体がnullの場合だけ /controls/<name> を返す。依存型ごとの例外は設けない。"
     ],
     "result_fields": [
       "condition",
@@ -133532,7 +133532,7 @@
         "findings": [
           {
             "code": "control_content_unresolved",
-            "pointer": "/controls/write_path",
+            "pointer": "/controls/write_path/data/after_tree",
             "return_owner": "worker-control-owner"
           },
           {
@@ -139790,11 +139790,6 @@
           "scope": "PROJECT-A"
         },
         "findings": [
-          {
-            "code": "control_content_unresolved",
-            "pointer": "/controls/diff_inspection",
-            "return_owner": "worker-control-owner"
-          },
           {
             "code": "control_content_unresolved",
             "pointer": "/controls/diff_inspection/data/after_tree",
@@ -154765,10 +154760,1129 @@
       },
       "execution_state": "not_executed",
       "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC007-CROSS-DEPENDENCY-NETWORK-OBSERVED-NONE",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-007-F01",
+        "HELIXSECURITY-L3-007-F02",
+        "HELIXSECURITY-L3-007-F03",
+        "HELIXSECURITY-L3-007-F04",
+        "HELIXSECURITY-L3-007-F05",
+        "HELIXSECURITY-L3-007-F06",
+        "HELIXSECURITY-L3-007-F07",
+        "HELIXSECURITY-L3-007-F08",
+        "HELIXSECURITY-L3-007-F09",
+        "HELIXSECURITY-L3-007-F10",
+        "HELIXSECURITY-L3-007-N01"
+      ],
+      "given": {
+        "input": {
+          "phase": "post",
+          "request_binding": {
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "assignment": "ASSIGNMENT-A",
+            "policy": "POLICY-r1",
+            "environment": "ENV-A",
+            "backend": "BACKEND-A",
+            "authority": "SCOPED-AUTHORITY-REF"
+          },
+          "policy_binding": {
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "assignment": "ASSIGNMENT-A",
+            "policy": "POLICY-r1",
+            "environment": "ENV-A",
+            "backend": "BACKEND-A",
+            "authority": "SCOPED-AUTHORITY-REF"
+          },
+          "assignment_binding": {
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "assignment": "ASSIGNMENT-A",
+            "policy": "POLICY-r1",
+            "environment": "ENV-A",
+            "backend": "BACKEND-A",
+            "authority": "SCOPED-AUTHORITY-REF"
+          },
+          "environment_binding": {
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "assignment": "ASSIGNMENT-A",
+            "policy": "POLICY-r1",
+            "environment": "ENV-A",
+            "backend": "BACKEND-A",
+            "authority": "SCOPED-AUTHORITY-REF"
+          },
+          "context": {
+            "expected_binding": {
+              "scope": "PROJECT-A",
+              "revision": "request-r1",
+              "assignment": "ASSIGNMENT-A",
+              "policy": "POLICY-r1",
+              "environment": "ENV-A",
+              "backend": "BACKEND-A",
+              "authority": "SCOPED-AUTHORITY-REF"
+            },
+            "control_source_refs": {
+              "write_path": "SYNTHETIC-write_path",
+              "network": "SYNTHETIC-network",
+              "credential": "SYNTHETIC-credential",
+              "environment": "SYNTHETIC-environment",
+              "timeout": "SYNTHETIC-timeout",
+              "resource": "SYNTHETIC-resource",
+              "diff_inspection": "SYNTHETIC-diff_inspection",
+              "rollback": "SYNTHETIC-rollback",
+              "result_collection": "SYNTHETIC-result_collection"
+            },
+            "allowed_paths": [],
+            "allowed_environment_names": [
+              "TASK_MODE",
+              "LANG"
+            ],
+            "before_tree": {
+              "RESULT": "DIGEST-A"
+            },
+            "case_ref": "CASE-A",
+            "timeout_seconds": 90,
+            "cpu": 1,
+            "memory_mib": 256
+          },
+          "worker_self_expansion": false,
+          "host_backend_fallback": false,
+          "controls": {
+            "write_path": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-write_path",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "mode": "read_only",
+                "allowed_paths": [],
+                "reported_diff": [],
+                "write_attempt": "blocked",
+                "before_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "after_tree": {
+                  "RESULT": "DIGEST-A"
+                }
+              }
+            },
+            "network": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-network",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": null,
+              "collected": "corresponding",
+              "data": {
+                "restriction": "deny_all",
+                "connection_established": false,
+                "host_fallback": false
+              }
+            },
+            "credential": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-credential",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "provider_store_reached": false,
+                "raw_value_exposed": false,
+                "host_credential_fallback": false
+              }
+            },
+            "environment": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-environment",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "allowed_names": [
+                  "TASK_MODE",
+                  "LANG"
+                ],
+                "passed_names": [
+                  "TASK_MODE",
+                  "LANG"
+                ],
+                "host_all_inherited": false,
+                "credential_bearing_inherited": false
+              }
+            },
+            "timeout": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-timeout",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "configured_seconds": 90,
+                "ended_at_seconds": 89,
+                "deadline_reached": false,
+                "terminal_status": "success",
+                "late_side_effect": false
+              }
+            },
+            "resource": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-resource",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "configured_cpu": 1,
+                "configured_memory_mib": 256,
+                "limit_reached": false,
+                "terminal_status": "success",
+                "self_expanded": false
+              }
+            },
+            "diff_inspection": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-diff_inspection",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "before_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "after_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "reported_diff": [],
+                "raw_secret_copied": false
+              }
+            },
+            "rollback": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-rollback",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "state": "not_applicable",
+                "after_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "restored_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "target_scope": "PROJECT-A"
+              }
+            },
+            "result_collection": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-result_collection",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "case_ref": "CASE-A",
+                "terminal_status": "success",
+                "reported_terminal_status": "success",
+                "constraint_states": {
+                  "write_path": "corresponding",
+                  "network": "corresponding",
+                  "credential": "corresponding",
+                  "environment": "corresponding",
+                  "timeout": "corresponding",
+                  "resource": "corresponding",
+                  "diff_inspection": "corresponding",
+                  "rollback": "corresponding",
+                  "result_collection": "corresponding"
+                },
+                "diff_state": "corresponding",
+                "rollback_state": "not_applicable",
+                "raw_value_exposed": false,
+                "stdout_only": false,
+                "runtime_terminal_status": "success"
+              }
+            }
+          },
+          "unseen_environment": false
+        },
+        "evidence_limit": "fixed synthetic metadata/trees、raw secretなし。source_ref/対応labelは実観測や資格を証明しない。90s/cpu1/256MiBは例だけ。"
+      },
+      "when": "選択phaseの束縛・九制御の内容照合。実行環境/clock/network/fs/storeを操作しない。",
+      "expected_proposal": {
+        "condition": "worker_control_unknown",
+        "selected_phase": "post",
+        "binding_correspondence": "corresponding",
+        "control_correspondence": {
+          "write_path": "corresponding",
+          "network": "unknown",
+          "credential": "corresponding",
+          "environment": "corresponding",
+          "timeout": "corresponding",
+          "resource": "corresponding",
+          "diff_inspection": "corresponding",
+          "rollback": "corresponding",
+          "result_collection": "unknown"
+        },
+        "content_for_selected_phase_corresponding": false,
+        "whole_nine_control_observation_compared": true,
+        "future_results_required_before_execution": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "control_content_unresolved",
+            "pointer": "/controls/network/observed",
+            "return_owner": "worker-control-owner"
+          },
+          {
+            "code": "control_stage_unresolved",
+            "pointer": "/controls/network/observed",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "fixed_resource_or_timeout_limit_added": false,
+        "host_fallback_allowed": false,
+        "actual_worker_invoked": false,
+        "actual_enforcement_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC007-CROSS-DEPENDENCY-DIFF_INSPECTION-OBSERVED-NONE",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-007-F01",
+        "HELIXSECURITY-L3-007-F02",
+        "HELIXSECURITY-L3-007-F03",
+        "HELIXSECURITY-L3-007-F04",
+        "HELIXSECURITY-L3-007-F05",
+        "HELIXSECURITY-L3-007-F06",
+        "HELIXSECURITY-L3-007-F07",
+        "HELIXSECURITY-L3-007-F08",
+        "HELIXSECURITY-L3-007-F09",
+        "HELIXSECURITY-L3-007-F10",
+        "HELIXSECURITY-L3-007-N01"
+      ],
+      "given": {
+        "input": {
+          "phase": "post",
+          "request_binding": {
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "assignment": "ASSIGNMENT-A",
+            "policy": "POLICY-r1",
+            "environment": "ENV-A",
+            "backend": "BACKEND-A",
+            "authority": "SCOPED-AUTHORITY-REF"
+          },
+          "policy_binding": {
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "assignment": "ASSIGNMENT-A",
+            "policy": "POLICY-r1",
+            "environment": "ENV-A",
+            "backend": "BACKEND-A",
+            "authority": "SCOPED-AUTHORITY-REF"
+          },
+          "assignment_binding": {
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "assignment": "ASSIGNMENT-A",
+            "policy": "POLICY-r1",
+            "environment": "ENV-A",
+            "backend": "BACKEND-A",
+            "authority": "SCOPED-AUTHORITY-REF"
+          },
+          "environment_binding": {
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "assignment": "ASSIGNMENT-A",
+            "policy": "POLICY-r1",
+            "environment": "ENV-A",
+            "backend": "BACKEND-A",
+            "authority": "SCOPED-AUTHORITY-REF"
+          },
+          "context": {
+            "expected_binding": {
+              "scope": "PROJECT-A",
+              "revision": "request-r1",
+              "assignment": "ASSIGNMENT-A",
+              "policy": "POLICY-r1",
+              "environment": "ENV-A",
+              "backend": "BACKEND-A",
+              "authority": "SCOPED-AUTHORITY-REF"
+            },
+            "control_source_refs": {
+              "write_path": "SYNTHETIC-write_path",
+              "network": "SYNTHETIC-network",
+              "credential": "SYNTHETIC-credential",
+              "environment": "SYNTHETIC-environment",
+              "timeout": "SYNTHETIC-timeout",
+              "resource": "SYNTHETIC-resource",
+              "diff_inspection": "SYNTHETIC-diff_inspection",
+              "rollback": "SYNTHETIC-rollback",
+              "result_collection": "SYNTHETIC-result_collection"
+            },
+            "allowed_paths": [],
+            "allowed_environment_names": [
+              "TASK_MODE",
+              "LANG"
+            ],
+            "before_tree": {
+              "RESULT": "DIGEST-A"
+            },
+            "case_ref": "CASE-A",
+            "timeout_seconds": 90,
+            "cpu": 1,
+            "memory_mib": 256
+          },
+          "worker_self_expansion": false,
+          "host_backend_fallback": false,
+          "controls": {
+            "write_path": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-write_path",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "mode": "read_only",
+                "allowed_paths": [],
+                "reported_diff": [],
+                "write_attempt": "blocked",
+                "before_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "after_tree": {
+                  "RESULT": "DIGEST-A"
+                }
+              }
+            },
+            "network": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-network",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "restriction": "deny_all",
+                "connection_established": false,
+                "host_fallback": false
+              }
+            },
+            "credential": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-credential",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "provider_store_reached": false,
+                "raw_value_exposed": false,
+                "host_credential_fallback": false
+              }
+            },
+            "environment": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-environment",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "allowed_names": [
+                  "TASK_MODE",
+                  "LANG"
+                ],
+                "passed_names": [
+                  "TASK_MODE",
+                  "LANG"
+                ],
+                "host_all_inherited": false,
+                "credential_bearing_inherited": false
+              }
+            },
+            "timeout": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-timeout",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "configured_seconds": 90,
+                "ended_at_seconds": 89,
+                "deadline_reached": false,
+                "terminal_status": "success",
+                "late_side_effect": false
+              }
+            },
+            "resource": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-resource",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "configured_cpu": 1,
+                "configured_memory_mib": 256,
+                "limit_reached": false,
+                "terminal_status": "success",
+                "self_expanded": false
+              }
+            },
+            "diff_inspection": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-diff_inspection",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": null,
+              "collected": "corresponding",
+              "data": {
+                "before_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "after_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "reported_diff": [],
+                "raw_secret_copied": false
+              }
+            },
+            "rollback": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-rollback",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "state": "not_applicable",
+                "after_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "restored_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "target_scope": "PROJECT-A"
+              }
+            },
+            "result_collection": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-result_collection",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "case_ref": "CASE-A",
+                "terminal_status": "success",
+                "reported_terminal_status": "success",
+                "constraint_states": {
+                  "write_path": "corresponding",
+                  "network": "corresponding",
+                  "credential": "corresponding",
+                  "environment": "corresponding",
+                  "timeout": "corresponding",
+                  "resource": "corresponding",
+                  "diff_inspection": "corresponding",
+                  "rollback": "corresponding",
+                  "result_collection": "corresponding"
+                },
+                "diff_state": "corresponding",
+                "rollback_state": "not_applicable",
+                "raw_value_exposed": false,
+                "stdout_only": false,
+                "runtime_terminal_status": "success"
+              }
+            }
+          },
+          "unseen_environment": false
+        },
+        "evidence_limit": "fixed synthetic metadata/trees、raw secretなし。source_ref/対応labelは実観測や資格を証明しない。90s/cpu1/256MiBは例だけ。"
+      },
+      "when": "選択phaseの束縛・九制御の内容照合。実行環境/clock/network/fs/storeを操作しない。",
+      "expected_proposal": {
+        "condition": "worker_control_unknown",
+        "selected_phase": "post",
+        "binding_correspondence": "corresponding",
+        "control_correspondence": {
+          "write_path": "corresponding",
+          "network": "corresponding",
+          "credential": "corresponding",
+          "environment": "corresponding",
+          "timeout": "corresponding",
+          "resource": "corresponding",
+          "diff_inspection": "unknown",
+          "rollback": "corresponding",
+          "result_collection": "unknown"
+        },
+        "content_for_selected_phase_corresponding": false,
+        "whole_nine_control_observation_compared": true,
+        "future_results_required_before_execution": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "control_content_unresolved",
+            "pointer": "/controls/diff_inspection/observed",
+            "return_owner": "worker-control-owner"
+          },
+          {
+            "code": "control_stage_unresolved",
+            "pointer": "/controls/diff_inspection/observed",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "fixed_resource_or_timeout_limit_added": false,
+        "host_fallback_allowed": false,
+        "actual_worker_invoked": false,
+        "actual_enforcement_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC007-CROSS-DEPENDENCY-ROLLBACK-DATA-STATE-NONE",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-007-F01",
+        "HELIXSECURITY-L3-007-F02",
+        "HELIXSECURITY-L3-007-F03",
+        "HELIXSECURITY-L3-007-F04",
+        "HELIXSECURITY-L3-007-F05",
+        "HELIXSECURITY-L3-007-F06",
+        "HELIXSECURITY-L3-007-F07",
+        "HELIXSECURITY-L3-007-F08",
+        "HELIXSECURITY-L3-007-F09",
+        "HELIXSECURITY-L3-007-F10",
+        "HELIXSECURITY-L3-007-N01"
+      ],
+      "given": {
+        "input": {
+          "phase": "post",
+          "request_binding": {
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "assignment": "ASSIGNMENT-A",
+            "policy": "POLICY-r1",
+            "environment": "ENV-A",
+            "backend": "BACKEND-A",
+            "authority": "SCOPED-AUTHORITY-REF"
+          },
+          "policy_binding": {
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "assignment": "ASSIGNMENT-A",
+            "policy": "POLICY-r1",
+            "environment": "ENV-A",
+            "backend": "BACKEND-A",
+            "authority": "SCOPED-AUTHORITY-REF"
+          },
+          "assignment_binding": {
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "assignment": "ASSIGNMENT-A",
+            "policy": "POLICY-r1",
+            "environment": "ENV-A",
+            "backend": "BACKEND-A",
+            "authority": "SCOPED-AUTHORITY-REF"
+          },
+          "environment_binding": {
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "assignment": "ASSIGNMENT-A",
+            "policy": "POLICY-r1",
+            "environment": "ENV-A",
+            "backend": "BACKEND-A",
+            "authority": "SCOPED-AUTHORITY-REF"
+          },
+          "context": {
+            "expected_binding": {
+              "scope": "PROJECT-A",
+              "revision": "request-r1",
+              "assignment": "ASSIGNMENT-A",
+              "policy": "POLICY-r1",
+              "environment": "ENV-A",
+              "backend": "BACKEND-A",
+              "authority": "SCOPED-AUTHORITY-REF"
+            },
+            "control_source_refs": {
+              "write_path": "SYNTHETIC-write_path",
+              "network": "SYNTHETIC-network",
+              "credential": "SYNTHETIC-credential",
+              "environment": "SYNTHETIC-environment",
+              "timeout": "SYNTHETIC-timeout",
+              "resource": "SYNTHETIC-resource",
+              "diff_inspection": "SYNTHETIC-diff_inspection",
+              "rollback": "SYNTHETIC-rollback",
+              "result_collection": "SYNTHETIC-result_collection"
+            },
+            "allowed_paths": [],
+            "allowed_environment_names": [
+              "TASK_MODE",
+              "LANG"
+            ],
+            "before_tree": {
+              "RESULT": "DIGEST-A"
+            },
+            "case_ref": "CASE-A",
+            "timeout_seconds": 90,
+            "cpu": 1,
+            "memory_mib": 256
+          },
+          "worker_self_expansion": false,
+          "host_backend_fallback": false,
+          "controls": {
+            "write_path": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-write_path",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "mode": "read_only",
+                "allowed_paths": [],
+                "reported_diff": [],
+                "write_attempt": "blocked",
+                "before_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "after_tree": {
+                  "RESULT": "DIGEST-A"
+                }
+              }
+            },
+            "network": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-network",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "restriction": "deny_all",
+                "connection_established": false,
+                "host_fallback": false
+              }
+            },
+            "credential": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-credential",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "provider_store_reached": false,
+                "raw_value_exposed": false,
+                "host_credential_fallback": false
+              }
+            },
+            "environment": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-environment",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "allowed_names": [
+                  "TASK_MODE",
+                  "LANG"
+                ],
+                "passed_names": [
+                  "TASK_MODE",
+                  "LANG"
+                ],
+                "host_all_inherited": false,
+                "credential_bearing_inherited": false
+              }
+            },
+            "timeout": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-timeout",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "configured_seconds": 90,
+                "ended_at_seconds": 89,
+                "deadline_reached": false,
+                "terminal_status": "success",
+                "late_side_effect": false
+              }
+            },
+            "resource": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-resource",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "configured_cpu": 1,
+                "configured_memory_mib": 256,
+                "limit_reached": false,
+                "terminal_status": "success",
+                "self_expanded": false
+              }
+            },
+            "diff_inspection": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-diff_inspection",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "before_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "after_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "reported_diff": [],
+                "raw_secret_copied": false
+              }
+            },
+            "rollback": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-rollback",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "state": null,
+                "after_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "restored_tree": {
+                  "RESULT": "DIGEST-A"
+                },
+                "target_scope": "PROJECT-A"
+              }
+            },
+            "result_collection": {
+              "binding": {
+                "scope": "PROJECT-A",
+                "revision": "request-r1",
+                "assignment": "ASSIGNMENT-A",
+                "policy": "POLICY-r1",
+                "environment": "ENV-A",
+                "backend": "BACKEND-A",
+                "authority": "SCOPED-AUTHORITY-REF"
+              },
+              "source_ref": "SYNTHETIC-result_collection",
+              "handoff": "corresponding",
+              "applied": "corresponding",
+              "observed": "corresponding",
+              "collected": "corresponding",
+              "data": {
+                "case_ref": "CASE-A",
+                "terminal_status": "success",
+                "reported_terminal_status": "success",
+                "constraint_states": {
+                  "write_path": "corresponding",
+                  "network": "corresponding",
+                  "credential": "corresponding",
+                  "environment": "corresponding",
+                  "timeout": "corresponding",
+                  "resource": "corresponding",
+                  "diff_inspection": "corresponding",
+                  "rollback": "corresponding",
+                  "result_collection": "corresponding"
+                },
+                "diff_state": "corresponding",
+                "rollback_state": "not_applicable",
+                "raw_value_exposed": false,
+                "stdout_only": false,
+                "runtime_terminal_status": "success"
+              }
+            }
+          },
+          "unseen_environment": false
+        },
+        "evidence_limit": "fixed synthetic metadata/trees、raw secretなし。source_ref/対応labelは実観測や資格を証明しない。90s/cpu1/256MiBは例だけ。"
+      },
+      "when": "選択phaseの束縛・九制御の内容照合。実行環境/clock/network/fs/storeを操作しない。",
+      "expected_proposal": {
+        "condition": "worker_control_unknown",
+        "selected_phase": "post",
+        "binding_correspondence": "corresponding",
+        "control_correspondence": {
+          "write_path": "corresponding",
+          "network": "corresponding",
+          "credential": "corresponding",
+          "environment": "corresponding",
+          "timeout": "corresponding",
+          "resource": "corresponding",
+          "diff_inspection": "corresponding",
+          "rollback": "unknown",
+          "result_collection": "unknown"
+        },
+        "content_for_selected_phase_corresponding": false,
+        "whole_nine_control_observation_compared": true,
+        "future_results_required_before_execution": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "control_content_unresolved",
+            "pointer": "/controls/rollback/data/state",
+            "return_owner": "worker-control-owner"
+          },
+          {
+            "code": "rollback_unresolved",
+            "pointer": "/controls/rollback/data/state",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "fixed_resource_or_timeout_limit_added": false,
+        "host_fallback_allowed": false,
+        "actual_worker_invoked": false,
+        "actual_enforcement_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
     }
   ],
   "completion": {
     "status": "unproven",
-    "evidence": "418固定素材対照。九制御の実適用/未見環境の実再評価/実安全/全閉包は未成立。"
+    "evidence": "421固定素材対照。九制御の実適用/未見環境の実再評価/実安全/全閉包は未成立。"
   }
 }

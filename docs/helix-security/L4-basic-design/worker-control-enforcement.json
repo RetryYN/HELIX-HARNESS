@@ -401,7 +401,7 @@
   "diagnostic_contract": {
     "return_owner": "worker-control-owner",
     "role_note": "007の比較責務ラベル。policy不足はSEC、実enforcementはINFRA/Worker、assignment/回収はOSの正式ownerへL5で振り分ける。",
-    "pointer_base": "given.input root、原metadata実在位置。複合原因は別findingを保持。",
+    "pointer_base": "given.input root、原metadata実在位置。複合原因は別findingを保持。 他制御から参照するsource fieldがnull/unknownなら、その原field（after_tree/observed/data.state/data.terminal_status）のpointerを返す。制御記録自体がnullの場合だけ /controls/<name> を返す。依存型ごとの例外は設けない。",
     "sort": "code/pointer/return_owner scalar順のexact三field重複だけ除去。"
   }
 }
