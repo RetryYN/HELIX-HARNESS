@@ -663,6 +663,50 @@
         "preserve": "pure coreとschema library adapterの分離、stable typed finding/strict shapeとpair/trace意味を別検査。",
         "change": "旧TS/既schema/loader/固定depthを移植せず、lossless decimal view/数学type-const-enum/declared profile/local参照とcore findingへの境界を具体化。",
         "reason": "host float丸め/Trueと1の混同/library errorの露出/未対応schemaの黙認から内容対応やauthorityを作らないため。新依存install/新承認を生成しない。"
+      },
+      "purity_repeat_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          34,
+          158,
+          159,
+          160
+        ],
+        "line_quotes": [
+          {
+            "line": 18,
+            "text": "実装候補は`src/design/design-template-authority.ts`の単一moduleとする。まずpure functionだけで成立させ、"
+          },
+          {
+            "line": 19,
+            "text": "repository loader、CLI、DB projection、Markdown writerは本sliceへ追加しない。JSON Schema libraryは"
+          },
+          {
+            "line": 20,
+            "text": "既存dependencyを再利用できる場合だけadapter側で使い、core resultをlibrary固有errorへ束縛しない。"
+          },
+          {
+            "line": 34,
+            "text": "findingは`code -> pointer -> message`の順でstable sortし、入力順やruntime localeでdigestを変えない。"
+          },
+          {
+            "line": 158,
+            "text": "- finding typeとstable sortは既存共通ownerがあれば再利用し、無ければ本module内のprivate valueとして始める。"
+          },
+          {
+            "line": 159,
+            "text": "- class、DI container、repository、cache、worker、new detectorを追加しない。"
+          },
+          {
+            "line": 160,
+            "text": "- Red testが要求しない永続化、CLI、generated view writerは後続responsibilityへ送る。"
+          }
+        ],
+        "preserve": "pure function/coreとloader/writerの分離、入力順/runtime localeに依存しないstable finding、Redで必要な範囲に責務を限定。",
+        "change": "旧TS/zod/cache/数値や容量をcopyせず、現行7coreの既case三引数とA-A/A-B-A/保全/guard観測へ再導出。",
+        "reason": "actual falseの自己申告・反復時の履歴混入・observer欠落から副作用0/決定性を生成する失敗を防ぐ。新authority/人間承認を作らない。"
       }
     },
     {
@@ -903,7 +947,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。 14反復sequenceの原引数保全/禁止作用observer/whole結果同値oracleを追加。実host/guardと全endpoint bindingは未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
@@ -64710,5 +64754,670 @@
       }
     ],
     "scope_limit": "7normal/21single-condition/bodied-scope例と15edgeの部分設計oracle。全交差条件/source custody/実producer/consumer/全findingは未完。coreやOSを実行しない。"
+  },
+  "purity_repeat_oracles": {
+    "design_pointer": "/purity_repeat_contract",
+    "sequence_cases": [
+      {
+        "id": "HARNESS-L8-004-F04-PURITY-AA",
+        "design_ref": "HARNESS-L5-004-F04",
+        "requirement_ref": "HARNESS-L3-004-F04",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-F04-NORMAL",
+            "case_sha256": "3758147f49a379673ba7e8d1b8a20559bb716a8f1b24640fa9dcbf037a045ab6",
+            "input_case_ref": "H004-F04-NORMAL",
+            "context_fixture_ref": "H004-F04-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "8ae3cb862f027dd8e7a0a17301bf3d77c6bd77e60c121add7855bd180f131e3c"
+          },
+          {
+            "case_ref": "H004-L8-F04-NORMAL",
+            "case_sha256": "3758147f49a379673ba7e8d1b8a20559bb716a8f1b24640fa9dcbf037a045ab6",
+            "input_case_ref": "H004-F04-NORMAL",
+            "context_fixture_ref": "H004-F04-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "8ae3cb862f027dd8e7a0a17301bf3d77c6bd77e60c121add7855bd180f131e3c"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            1
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-F04-PURITY-ABA",
+        "design_ref": "HARNESS-L5-004-F04",
+        "requirement_ref": "HARNESS-L3-004-F04",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-F04-NORMAL",
+            "case_sha256": "3758147f49a379673ba7e8d1b8a20559bb716a8f1b24640fa9dcbf037a045ab6",
+            "input_case_ref": "H004-F04-NORMAL",
+            "context_fixture_ref": "H004-F04-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "8ae3cb862f027dd8e7a0a17301bf3d77c6bd77e60c121add7855bd180f131e3c"
+          },
+          {
+            "case_ref": "H004-L8-F04-LIMITED-AS-ALL-MIGRATION",
+            "case_sha256": "0bcf7c76b949852b002933f19cf00277b0ca2ec151a3000ad171a34cc3fc43da",
+            "input_case_ref": "H004-F04-LIMITED-AS-ALL-MIGRATION",
+            "context_fixture_ref": "H004-F04-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "6d83d52ac8a6d23b9f89a932a49c491d441f9ad9ad64707181caaf14d85efd91",
+            "expected_projection_sha256": "f4968be38ccabda1d0dfba1a68cfc8a912006134864ce196a7e80861bba19221"
+          },
+          {
+            "case_ref": "H004-L8-F04-NORMAL",
+            "case_sha256": "3758147f49a379673ba7e8d1b8a20559bb716a8f1b24640fa9dcbf037a045ab6",
+            "input_case_ref": "H004-F04-NORMAL",
+            "context_fixture_ref": "H004-F04-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "8ae3cb862f027dd8e7a0a17301bf3d77c6bd77e60c121add7855bd180f131e3c"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            2
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-B01-PURITY-AA",
+        "design_ref": "HARNESS-L5-004-B01",
+        "requirement_ref": "HARNESS-L3-004-B01",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-B01-NORMAL-MEANING",
+            "case_sha256": "67d2d00cd815571280089b1cab4551fa269a3eef1c5fbd1acd4c77e003c8f0b8",
+            "input_case_ref": "H004-B01-NORMAL-MEANING",
+            "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "c46041f949a72b1812cb6536dea4e3b0d2950d5c9fda801af27351f201ce7908"
+          },
+          {
+            "case_ref": "H004-L8-B01-NORMAL-MEANING",
+            "case_sha256": "67d2d00cd815571280089b1cab4551fa269a3eef1c5fbd1acd4c77e003c8f0b8",
+            "input_case_ref": "H004-B01-NORMAL-MEANING",
+            "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "c46041f949a72b1812cb6536dea4e3b0d2950d5c9fda801af27351f201ce7908"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            1
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-B01-PURITY-ABA",
+        "design_ref": "HARNESS-L5-004-B01",
+        "requirement_ref": "HARNESS-L3-004-B01",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-B01-NORMAL-MEANING",
+            "case_sha256": "67d2d00cd815571280089b1cab4551fa269a3eef1c5fbd1acd4c77e003c8f0b8",
+            "input_case_ref": "H004-B01-NORMAL-MEANING",
+            "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "c46041f949a72b1812cb6536dea4e3b0d2950d5c9fda801af27351f201ce7908"
+          },
+          {
+            "case_ref": "H004-L8-B01-ALL-REFACTOR-MEANING",
+            "case_sha256": "5bb4732cd30106ad64580b75ec1d49f396d9b4b1530032d73e605eac8de7f255",
+            "input_case_ref": "H004-B01-ALL-REFACTOR-MEANING",
+            "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "f99d4c87d4dac20a330e0ff4c6f3ab65bf275e69578db3015844c3df1f4bfe33",
+            "expected_projection_sha256": "e21adb366c3d5235a79cb12ea2abc57891d0a262195e921d1961ee65583946de"
+          },
+          {
+            "case_ref": "H004-L8-B01-NORMAL-MEANING",
+            "case_sha256": "67d2d00cd815571280089b1cab4551fa269a3eef1c5fbd1acd4c77e003c8f0b8",
+            "input_case_ref": "H004-B01-NORMAL-MEANING",
+            "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "c46041f949a72b1812cb6536dea4e3b0d2950d5c9fda801af27351f201ce7908"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            2
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-F02-PURITY-AA",
+        "design_ref": "HARNESS-L5-004-F02",
+        "requirement_ref": "HARNESS-L3-004-F02",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-F02-NORMAL",
+            "case_sha256": "619125d5384bc182589979af5e95ec4f470df707d94f036996615a792b4b2308",
+            "input_case_ref": "H004-F02-NORMAL",
+            "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "1170cd3b21bcab6e6a1ac4cf11a71703989844103a32c266b514976364e92e3e"
+          },
+          {
+            "case_ref": "H004-L8-F02-NORMAL",
+            "case_sha256": "619125d5384bc182589979af5e95ec4f470df707d94f036996615a792b4b2308",
+            "input_case_ref": "H004-F02-NORMAL",
+            "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "1170cd3b21bcab6e6a1ac4cf11a71703989844103a32c266b514976364e92e3e"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            1
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-F02-PURITY-ABA",
+        "design_ref": "HARNESS-L5-004-F02",
+        "requirement_ref": "HARNESS-L3-004-F02",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-F02-NORMAL",
+            "case_sha256": "619125d5384bc182589979af5e95ec4f470df707d94f036996615a792b4b2308",
+            "input_case_ref": "H004-F02-NORMAL",
+            "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "1170cd3b21bcab6e6a1ac4cf11a71703989844103a32c266b514976364e92e3e"
+          },
+          {
+            "case_ref": "H004-L8-F02-AFFECTED-AS-UPPER-PASS",
+            "case_sha256": "410708ac7b34b6f5ccc79f6c560af4e2fa167f12ebdd12e90651ea51d6164712",
+            "input_case_ref": "H004-F02-AFFECTED-AS-UPPER-PASS",
+            "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "7e8eda56b83bedee352efcb68743d4ee85e3ae100bd7259ec92a9b19d7775348",
+            "expected_projection_sha256": "fb4e64acf80d6f7ea41968ffec0f1bdf00cbc62faf40e7f2ea75bd414d3f19bd"
+          },
+          {
+            "case_ref": "H004-L8-F02-NORMAL",
+            "case_sha256": "619125d5384bc182589979af5e95ec4f470df707d94f036996615a792b4b2308",
+            "input_case_ref": "H004-F02-NORMAL",
+            "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "1170cd3b21bcab6e6a1ac4cf11a71703989844103a32c266b514976364e92e3e"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            2
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-F01-PURITY-AA",
+        "design_ref": "HARNESS-L5-004-F01",
+        "requirement_ref": "HARNESS-L3-004-F01",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-F01-NORMAL",
+            "case_sha256": "b111cd3b3247df35455a60333ccfef463b1d0537803b184dc5674b63b56f7d1a",
+            "input_case_ref": "H004-F01-NORMAL",
+            "context_fixture_ref": "H004-F01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "9c2b62134cc2041fbeae5be8df32714f017d0362fdba3c1dfe7ea343637428d1"
+          },
+          {
+            "case_ref": "H004-L8-F01-NORMAL",
+            "case_sha256": "b111cd3b3247df35455a60333ccfef463b1d0537803b184dc5674b63b56f7d1a",
+            "input_case_ref": "H004-F01-NORMAL",
+            "context_fixture_ref": "H004-F01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "9c2b62134cc2041fbeae5be8df32714f017d0362fdba3c1dfe7ea343637428d1"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            1
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-F01-PURITY-ABA",
+        "design_ref": "HARNESS-L5-004-F01",
+        "requirement_ref": "HARNESS-L3-004-F01",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-F01-NORMAL",
+            "case_sha256": "b111cd3b3247df35455a60333ccfef463b1d0537803b184dc5674b63b56f7d1a",
+            "input_case_ref": "H004-F01-NORMAL",
+            "context_fixture_ref": "H004-F01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "9c2b62134cc2041fbeae5be8df32714f017d0362fdba3c1dfe7ea343637428d1"
+          },
+          {
+            "case_ref": "H004-L8-F01-COUNT-AS-ALL-VERIFIED",
+            "case_sha256": "1ec953acf187c4e012138cd0a0d6d62238b2bbd87666b4314b858250fa6fafbe",
+            "input_case_ref": "H004-F01-COUNT-AS-ALL-VERIFIED",
+            "context_fixture_ref": "H004-F01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "8e1c77a717903240689fda8e0b68190e91378f683855c4f62cd6ebe8b30a7ee7",
+            "expected_projection_sha256": "9f3badf4c8d6bbe85d4bc31884d535495c0c403c1e27c7d704ea5ef38533c55f"
+          },
+          {
+            "case_ref": "H004-L8-F01-NORMAL",
+            "case_sha256": "b111cd3b3247df35455a60333ccfef463b1d0537803b184dc5674b63b56f7d1a",
+            "input_case_ref": "H004-F01-NORMAL",
+            "context_fixture_ref": "H004-F01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "9c2b62134cc2041fbeae5be8df32714f017d0362fdba3c1dfe7ea343637428d1"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            2
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-F03-PURITY-AA",
+        "design_ref": "HARNESS-L5-004-F03",
+        "requirement_ref": "HARNESS-L3-004-F03",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-F03-NORMAL-ROUTINE",
+            "case_sha256": "724e1a218260c0bebb1a9d6103398df11cc05a713325cb615ed66c230b71ab2e",
+            "input_case_ref": "H004-F03-NORMAL-ROUTINE",
+            "context_fixture_ref": "H004-F03-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "6d160fa5fdb0cde8c1dd46551bc65c175dc67d4caa565da60b6668774cc1c6d9"
+          },
+          {
+            "case_ref": "H004-L8-F03-NORMAL-ROUTINE",
+            "case_sha256": "724e1a218260c0bebb1a9d6103398df11cc05a713325cb615ed66c230b71ab2e",
+            "input_case_ref": "H004-F03-NORMAL-ROUTINE",
+            "context_fixture_ref": "H004-F03-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "6d160fa5fdb0cde8c1dd46551bc65c175dc67d4caa565da60b6668774cc1c6d9"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            1
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-F03-PURITY-ABA",
+        "design_ref": "HARNESS-L5-004-F03",
+        "requirement_ref": "HARNESS-L3-004-F03",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-F03-NORMAL-ROUTINE",
+            "case_sha256": "724e1a218260c0bebb1a9d6103398df11cc05a713325cb615ed66c230b71ab2e",
+            "input_case_ref": "H004-F03-NORMAL-ROUTINE",
+            "context_fixture_ref": "H004-F03-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "6d160fa5fdb0cde8c1dd46551bc65c175dc67d4caa565da60b6668774cc1c6d9"
+          },
+          {
+            "case_ref": "H004-L8-F03-ALL-WORK-INVALIDATED",
+            "case_sha256": "ea2aa12eb83a9f60717c5bae3e598bb23b38a7533d105c590bafd24f52b6819f",
+            "input_case_ref": "H004-F03-ALL-WORK-INVALIDATED",
+            "context_fixture_ref": "H004-F03-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "25bb53686d9119ef32320566ae1e0eb7ed0f249617e286929e8314559a034056",
+            "expected_projection_sha256": "59561f1af3bf7b8fd7af4f7655cce454810dbf4c2b8f4ddb23838e8568f65e45"
+          },
+          {
+            "case_ref": "H004-L8-F03-NORMAL-ROUTINE",
+            "case_sha256": "724e1a218260c0bebb1a9d6103398df11cc05a713325cb615ed66c230b71ab2e",
+            "input_case_ref": "H004-F03-NORMAL-ROUTINE",
+            "context_fixture_ref": "H004-F03-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "6d160fa5fdb0cde8c1dd46551bc65c175dc67d4caa565da60b6668774cc1c6d9"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            2
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-F05-PURITY-AA",
+        "design_ref": "HARNESS-L5-004-F05",
+        "requirement_ref": "HARNESS-L3-004-F05",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-F05-NORMAL",
+            "case_sha256": "3a42767e7048601081f4cbee23609627b7990bc86107c73611f39c4ddf08a6a1",
+            "input_case_ref": "H004-F05-NORMAL",
+            "context_fixture_ref": "H004-F05-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "cf9e1f57637bee350d32dbad6d74161f93b21bc9b409c3b0c4320df3fb005537"
+          },
+          {
+            "case_ref": "H004-L8-F05-NORMAL",
+            "case_sha256": "3a42767e7048601081f4cbee23609627b7990bc86107c73611f39c4ddf08a6a1",
+            "input_case_ref": "H004-F05-NORMAL",
+            "context_fixture_ref": "H004-F05-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "cf9e1f57637bee350d32dbad6d74161f93b21bc9b409c3b0c4320df3fb005537"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            1
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-F05-PURITY-ABA",
+        "design_ref": "HARNESS-L5-004-F05",
+        "requirement_ref": "HARNESS-L3-004-F05",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-F05-NORMAL",
+            "case_sha256": "3a42767e7048601081f4cbee23609627b7990bc86107c73611f39c4ddf08a6a1",
+            "input_case_ref": "H004-F05-NORMAL",
+            "context_fixture_ref": "H004-F05-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "cf9e1f57637bee350d32dbad6d74161f93b21bc9b409c3b0c4320df3fb005537"
+          },
+          {
+            "case_ref": "H004-L8-F05-UNKNOWN-AS-TRANSFER",
+            "case_sha256": "3e9824964e3ae0f3bb065b4c2f80aedeb7e795320536c638503597daf11b236b",
+            "input_case_ref": "H004-F05-UNKNOWN-AS-TRANSFER",
+            "context_fixture_ref": "H004-F05-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "a4d63bebc28c38faf50a712ca7d444667faafc648ca545ca2133064a3e5e1682",
+            "expected_projection_sha256": "96be49ae9205ff1011430e69c15bb5fc343ef0fe6ac1e1075acd3cfe130eaee6"
+          },
+          {
+            "case_ref": "H004-L8-F05-NORMAL",
+            "case_sha256": "3a42767e7048601081f4cbee23609627b7990bc86107c73611f39c4ddf08a6a1",
+            "input_case_ref": "H004-F05-NORMAL",
+            "context_fixture_ref": "H004-F05-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "cf9e1f57637bee350d32dbad6d74161f93b21bc9b409c3b0c4320df3fb005537"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            2
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-N01-PURITY-AA",
+        "design_ref": "HARNESS-L5-004-N01",
+        "requirement_ref": "HARNESS-L3-004-N01",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-N01-NORMAL",
+            "case_sha256": "d35c58e58f960785347640ba014bc08b23f686991493b0a96368b38fae5b100a",
+            "input_case_ref": "H004-N01-NORMAL",
+            "context_fixture_ref": "H004-N01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "1584c363035de1d123bf8b7f5cfe3500ce2188e191dcf8a71721930de42a3d70"
+          },
+          {
+            "case_ref": "H004-L8-N01-NORMAL",
+            "case_sha256": "d35c58e58f960785347640ba014bc08b23f686991493b0a96368b38fae5b100a",
+            "input_case_ref": "H004-N01-NORMAL",
+            "context_fixture_ref": "H004-N01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "1584c363035de1d123bf8b7f5cfe3500ce2188e191dcf8a71721930de42a3d70"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            1
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      },
+      {
+        "id": "HARNESS-L8-004-N01-PURITY-ABA",
+        "design_ref": "HARNESS-L5-004-N01",
+        "requirement_ref": "HARNESS-L3-004-N01",
+        "call_materials": [
+          {
+            "case_ref": "H004-L8-N01-NORMAL",
+            "case_sha256": "d35c58e58f960785347640ba014bc08b23f686991493b0a96368b38fae5b100a",
+            "input_case_ref": "H004-N01-NORMAL",
+            "context_fixture_ref": "H004-N01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "1584c363035de1d123bf8b7f5cfe3500ce2188e191dcf8a71721930de42a3d70"
+          },
+          {
+            "case_ref": "H004-L8-N01-UNSEEN-AS-UNAFFECTED",
+            "case_sha256": "fc03d668da5f02222ef9677f995589c2afaf6c91d3542ddf24e8fea9007de603",
+            "input_case_ref": "H004-N01-UNSEEN-AS-UNAFFECTED",
+            "context_fixture_ref": "H004-N01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "51826bfe0dfff8a1e19eb34789c6dffe2c7eca0dcfd420cde070840764cd90af",
+            "expected_projection_sha256": "2d4d358309ffe8b50aca8980108ba5491ac1340a51b8043b3b6b34ad857458fa"
+          },
+          {
+            "case_ref": "H004-L8-N01-NORMAL",
+            "case_sha256": "d35c58e58f960785347640ba014bc08b23f686991493b0a96368b38fae5b100a",
+            "input_case_ref": "H004-N01-NORMAL",
+            "context_fixture_ref": "H004-N01-INDEPENDENT-CONTEXT",
+            "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "expected_projection_sha256": "1584c363035de1d123bf8b7f5cfe3500ce2188e191dcf8a71721930de42a3d70"
+          }
+        ],
+        "expected_relation": {
+          "compare_call_indices": [
+            0,
+            2
+          ],
+          "relation": "whole_logical_result_equal",
+          "each_call_projection": "当該caseのexpected_result_projectionの内容fieldへ照合。precondition/oracle_limit/説明metadataはrunner説明でありResult fieldへ挿入しない。全finding固定値の未完は残す。",
+          "argument_mutation_attempts": 0,
+          "argument_content_changes": 0,
+          "forbidden_effect_attempts": 0,
+          "actual_external_effects": 0
+        },
+        "failure_examples": [
+          "結果wholeの不一致（候補拒否履歴の混入を含む）",
+          "原引数nested値又はsource bytesを変更",
+          "戻り値actual falseでも禁止endpoint呼出を試行",
+          "observer未bindingを0件と報告"
+        ],
+        "execution_state": "not_executed",
+        "evidence_limit": "固定材料と関係oracleの設計。実call/guard/観測済み0件の証拠ではない。"
+      }
+    ],
+    "result_qualification": "guard未binding/未観測はnot_evaluated。実行していない例をpassとしない。失敗は元case結果と原資料を保全して別の検証findingとして記録しdomain意味を上書きしない。",
+    "scope_limit": "14反復sequenceの部分oracle。全組合せ/全finding固定値/全endpoint/実qualification/host/凍結は未完。"
   }
 }

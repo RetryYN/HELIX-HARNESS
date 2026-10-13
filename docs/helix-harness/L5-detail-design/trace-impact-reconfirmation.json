@@ -663,6 +663,50 @@
         "preserve": "pure coreとschema library adapterの分離、stable typed finding/strict shapeとpair/trace意味を別検査。",
         "change": "旧TS/既schema/loader/固定depthを移植せず、lossless decimal view/数学type-const-enum/declared profile/local参照とcore findingへの境界を具体化。",
         "reason": "host float丸め/Trueと1の混同/library errorの露出/未対応schemaの黙認から内容対応やauthorityを作らないため。新依存install/新承認を生成しない。"
+      },
+      "purity_repeat_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          34,
+          158,
+          159,
+          160
+        ],
+        "line_quotes": [
+          {
+            "line": 18,
+            "text": "実装候補は`src/design/design-template-authority.ts`の単一moduleとする。まずpure functionだけで成立させ、"
+          },
+          {
+            "line": 19,
+            "text": "repository loader、CLI、DB projection、Markdown writerは本sliceへ追加しない。JSON Schema libraryは"
+          },
+          {
+            "line": 20,
+            "text": "既存dependencyを再利用できる場合だけadapter側で使い、core resultをlibrary固有errorへ束縛しない。"
+          },
+          {
+            "line": 34,
+            "text": "findingは`code -> pointer -> message`の順でstable sortし、入力順やruntime localeでdigestを変えない。"
+          },
+          {
+            "line": 158,
+            "text": "- finding typeとstable sortは既存共通ownerがあれば再利用し、無ければ本module内のprivate valueとして始める。"
+          },
+          {
+            "line": 159,
+            "text": "- class、DI container、repository、cache、worker、new detectorを追加しない。"
+          },
+          {
+            "line": 160,
+            "text": "- Red testが要求しない永続化、CLI、generated view writerは後続responsibilityへ送る。"
+          }
+        ],
+        "preserve": "pure function/coreとloader/writerの分離、入力順/runtime localeに依存しないstable finding、Redで必要な範囲に責務を限定。",
+        "change": "旧TS/zod/cache/数値や容量をcopyせず、現行7coreの既case三引数とA-A/A-B-A/保全/guard観測へ再導出。",
+        "reason": "actual falseの自己申告・反復時の履歴混入・observer欠落から副作用0/決定性を生成する失敗を防ぐ。新authority/人間承認を作らない。"
       }
     },
     {
@@ -903,7 +947,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。 14反復sequenceの原引数保全/禁止作用observer/whole結果同値oracleを追加。実host/guardと全endpoint bindingは未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
@@ -10021,5 +10065,24 @@
       "logical_structure_schema": "/logical_structure_schema/schema"
     },
     "profile_digest_scope": "各profile_document_pointersが指す固定JSON valueのcanonical SHA-256。logical_structure_schemaだけはschema objectであり、entrypoints/validation_boundaryを含むsection wholeのdigestではない。7entrypoint/型/signatureはbindingsとschema adapterの別照合を維持する。"
+  },
+  "purity_repeat_contract": {
+    "status": "draft_design_observation_contract_not_execution",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "scope": "7純粋coreの同logical引数反復・別case挟み込み・原引数保全と禁止作用の観測。codec/composition/正式consumerの全契約は別。",
+    "material_binding": "各呼出は既caseのsource packet logical input・context_fixture_refの独立Context・candidate_argumentの三つを別に固定。説明sidecarを引数に混ぜない。Bが別inputを持つ場合も元caseのinput/context/candidate全部を使い、candidateだけAへ移植しない。",
+    "argument_guard": "input/context/candidateおよび原source packet bytesを呼出前後で内容比較する。各引数の全nested object/array/value・key集合/配列順/数値exact値を保全し、Noneを別扱いにする。raw byte/digestとlogical内容fingerprintは別保持。readonly viewだけで保全合格にせず、書込試行もguardで記録する。",
+    "result_relation": "A-AとA-B-AのA結果wholeが同値。value/outcome/candidate比較/全finding/全metadataを含み、時刻・乱数・原入力digestを例外として除かない。Aの入力は同じなのでdigestも同じ。別B結果はB固有oracleに照合し、Aへの状態汚染を許さない。logical object key順は内容同値、array順は保全する。各関数のfinding安定順postconditionも別照合する。",
+    "observer_boundary": "実装時はdomain coreのdependencyから呼び出せるI/O/filesystem/network/DB/clock/process/保存/ticket/state/authority/test-probe/旧runtime等、当該関数のpostconditionsが禁止するendpointをguardへ束縛して呼出試行を記録する。戻り値actual_* falseだけでobserver0を推定しない。guardが拒否して実外部作用なしでも試行1件は違反。未登録endpoint/guardなし/observer欠落はnot_evaluatedで、0件へ補完しない。codecの純粋hash/論理変換を外部作用と誤分類しない。",
+    "isolation": "同じpure core bindingでA-A/A-B-Aを順次呼び、各callのargument/observer snapshotを別保持する。Bとの間でcore cache/stateをリセットして汚染を隠さない。実外部operationを起動せず、guardを迂回するhost capabilityは正式host境界で未完として扱う。",
+    "expected_observations": {
+      "argument_mutation_attempts": 0,
+      "argument_content_changes": 0,
+      "forbidden_effect_attempts": 0,
+      "actual_external_effects": 0,
+      "repeated_A_whole_result_equal": true
+    },
+    "unclosed": "host/実guard/全禁止endpoint/consumer binding、全finding固定oracleとL6L7/test-oracle凍結は未完。本設計のnot_executed例を実0件/Red/Green/Refactorへしない。"
   }
 }
