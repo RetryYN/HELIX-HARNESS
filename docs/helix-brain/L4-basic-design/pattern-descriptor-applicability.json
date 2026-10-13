@@ -1,0 +1,173 @@
+{
+  "parent": "HELIXBRAIN-L2-003",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+    "boundary": "Pattern descriptorと適用条件の限定比較。存在/知識受領を製品採用や義務完了へ変えない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-pattern-connection-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1f3475dd13bac30f47a8921ff44fdcb90bbb024ab0a1fff7ba3e436971aefb33"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    }
+  ],
+  "source_pin_limit": "bytes固定は全文精読/全意味被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "read_lines": [
+        61,
+        82
+      ],
+      "quote": "## §4 applicabilityとcompletionの型境界\n\n適用条件は自由文booleanでなく、次の閉じた式木を使う。\n\n```json\n{\n  \"all\": [\n    { \"field\": \"layer\", \"op\": \"eq\", \"value\": \"L4\" },\n    {\n      \"any\": [\n        { \"field\": \"risk.security\", \"op\": \"eq\", \"value\": true },\n        { \"field\": \"artifact_kind\", \"op\": \"contains\", \"value\": \"interface\" }\n      ]\n    },\n    { \"not\": { \"field\": \"disposition\", \"op\": \"eq\", \"value\": \"rejected\" } }\n  ]\n}\n```\n\nfield、operator、value type、enumはschema registryのallowlistで閉じる。unknownは`false`へ丸めず\nevaluation errorとしてfail-closeする。N/Aはreason、authority、re-evaluation triggerを必須にする。\n",
+      "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "selected_lines_sha256": "b061ecca1f244d11811bbb38e6b2c2f38cd98bdd33df08e9b043fc4e3e1673c7",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "disposition": "unresolved",
+        "source_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      },
+      "reuse": "reference_only; selected applicability meaning rederivation per adopted BRAIN003",
+      "preserve": "定義/適用と義務completionの分離、unknownをPASSにしないこと、内容の正本とschema/runtime未完の区別。",
+      "change": "旧predicate wire/operator/registry runtimeを移植せずPattern descriptor/条件意味/案件値へ分ける。",
+      "reason": "9/26 PO原文L1-003/9/28採択003/10/12委任承認が定義不足/値不足/充足/不充足/未知を別に要求する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実Pattern内容/source資格/条件意味/案件input/未見組合せと必要集合。",
+    "032/CORE009/030のowner-qualified exact binding、正式schema・codec/条件演算子と値型。",
+    "L5/L8型/比較関数/単体oracle、実装前oracle凍結→実Red→最小Green→Refactor→再検証、実L9/L10/PO L11。",
+    "全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXBRAIN-L4-003",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "pattern_descriptor_content_reader",
+      "pattern_applicability_content_reader"
+    ],
+    "flow": [
+      "Pattern原意味/版/source → 項目別内容対応",
+      "必須条件原意味/定義/案件input → 充足と未成立の別結果",
+      "不足/claim → BRAIN定義/CORE値/義務の別owner返却"
+    ],
+    "python_boundary": "immutable inputのpure比較。DB/OS保存/CORE write/network/fs/env/clock/知識採用/製品適用決定/義務消込/authority/受入を行わない。",
+    "representation_limit": "fixtureの条件/値/意味/ID/版は合成。正式条件wire/operator/schema/codec、実知識内容の採用や実適用資格を固定しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXBRAIN-L4-003-F01",
+      "requirement_ref": "HELIXBRAIN-L3-003-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-003-F01",
+      "oracle_ref": "HELIXBRAIN-L9-003-F01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-003-F01",
+        "parent": "HELIXBRAIN-L2-003",
+        "title": "Patternの意味descriptor",
+        "obligation": "Pattern候補のidentity/source/revisionへ、problem、前提、applicability、required input、constraint、trade-off、negative case、failure mode、compatible/incompatible pattern、evidence、maturityを結ぶ。形や名前だけでPatternの成立条件を表したとしない。",
+        "oracle_ref": "HELIXBRAIN-L10-003-F01"
+      },
+      "component": "pattern_descriptor_content_reader",
+      "input_meanings": [
+        "Pattern identity/source/revision原参照",
+        "12意味項目の元内容と提出descriptor",
+        "評価/成熟の原state"
+      ],
+      "output_meanings": [
+        "項目別内容/根拠対応と欠落",
+        "定義不足とBRAIN meaning owner返却候補"
+      ],
+      "content_comparison": [
+        "problem/前提/applicability/required input/constraint/trade-off/negative/failure/compatible/incompatible/evidence/maturityを各source/版へ結ぶ。",
+        "名称/形だけをPattern成立条件にせず、negative/failure/evidenceの欠落、成熟度不明を成熟済みに補完しない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/必要定義とinputを独立比較。実source資格/正式条件表現/接続は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-003-F02",
+      "requirement_ref": "HELIXBRAIN-L3-003-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-003-F02",
+      "oracle_ref": "HELIXBRAIN-L9-003-F02",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-003-F02",
+        "parent": "HELIXBRAIN-L2-003",
+        "title": "適用条件の充足・不充足・未知",
+        "obligation": "条件充足、不充足、unknownとrequired input欠落を別々に判定し、Patternの存在を今回の適用可能/採用すべきと同一視しない。必須条件の意味が未定なら適用提案を止め、案件値未決は032/009/030の未充足義務へ結ぶ。",
+        "oracle_ref": "HELIXBRAIN-L10-003-F02"
+      },
+      "component": "pattern_applicability_content_reader",
+      "input_meanings": [
+        "独立必須条件の意味とinput定義",
+        "案件値/必要inputとそのstate",
+        "適用提案/採用/032009030義務claim"
+      ],
+      "output_meanings": [
+        "定義不足/値不足/充足/不充足/unknownの別結果",
+        "知識定義とCORE案件値の不足返却候補"
+      ],
+      "content_comparison": [
+        "必須条件の意味欠落を値未決として補完しない。定義済み値未決は032/009/030の未充足へ結ぶ。",
+        "Pattern存在を今回の適用/採用へ、知識受領を義務完了へ変換しない。unknownは適用提案を止める。"
+      ],
+      "qualification_rule": "原identity/revision/scope/owner/必要定義とinputを独立比較。実source資格/正式条件表現/接続は未binding。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 18,
+      "F02": 12
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
