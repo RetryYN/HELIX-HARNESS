@@ -201,7 +201,33 @@
         29,
         66
       ],
-      "quote_rule": "source_line_spanは原範囲、line_quotesはその範囲内の非空の内容行のみ。"
+      "quote_rule": "source_line_spanは原範囲、line_quotesはその範囲内の非空の内容行のみ。",
+      "stage_input_rederivation": {
+        "source_line_span": [
+          29,
+          61
+        ],
+        "read_line_locators": [
+          31,
+          34,
+          38,
+          39,
+          40,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          61
+        ],
+        "preserve": "原revisionの要求/対設計/受入/投影の責務分離、正規pair、入力成立と右側実検証を別証拠にする。",
+        "change": "旧層番号/runtime/CIをcopyせず現行022-F01のstage別必要集合/input owner/authority/semantic原内容と局所不足へ再導出。",
+        "reason": "下位対応・件数・旧成功で上位段階入力や実Acceptedを補完せず、外部成果/利用者手段に不要な④/OS依存を作らない。新承認は追加しない。"
+      }
     },
     {
       "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
@@ -330,10 +356,11 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "F01/F02/F03/N01/B01の詳細契約と全6契約の設計閉包。",
+    "F02/F03/N01/B01の詳細契約と全6契約の設計閉包。",
     "F04全構造/複合/全finding/Context資格、正式schema/codec/実owner/原記録供給・利用者本人性binding。",
     "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。",
-    "F04独立Contextとの不一致/actual資格欠落4例、candidate path JSON Pointer写像を追加。全副次finding/実owner bindingは未完。"
+    "F04独立Contextとの不一致/actual資格欠落4例、candidate path JSON Pointer写像を追加。全副次finding/実owner bindingは未完。",
+    "F01の143原例/4Context例と必要集合/pairを具体化。全構造/複合/実資格/codecと凍結は未完。"
   ],
   "document_id": "HARNESS-L5-022-STAGE-ACCEPTANCE",
   "layer": "L5",
@@ -446,7 +473,83 @@
       "return_owner": "Text",
       "source_case_code": "Text | null（元caseのcodeを保全）"
     },
-    "JsonPointer": "RFC6901 pointer。rootは空文字、各token内~を~0、/を~1にescape。array indexは元index。"
+    "JsonPointer": "RFC6901 pointer。rootは空文字、各token内~を~0、/を~1にescape。array indexは元index。",
+    "Stage": "Integrated | Verified | Accepted",
+    "StageInputId": "Text（selected contractの必要集合から解決し、未登録IDを捨てない）",
+    "StageInputRecord": {
+      "identity": "RawText",
+      "used_version": "RawText | null",
+      "source_id": "RawText",
+      "owner": "RawText",
+      "artifact_identity": "RawText",
+      "artifact_revision": "RawText",
+      "requirement_revision": "RawText",
+      "scope": "RawText",
+      "pair_target": "RawText | null",
+      "semantic_content": "LogicalJson",
+      "authority": "RawText | null"
+    },
+    "IndependentStageInputContract": {
+      "identity": "RawText",
+      "used_version": "RawText | null",
+      "source_id": "RawText",
+      "owner": "RawText",
+      "artifact_identity": "RawText",
+      "artifact_revision": "RawText",
+      "requirement_revision": "RawText",
+      "scope": "RawText",
+      "pair_target": "RawText | null",
+      "semantic_content": "LogicalJson"
+    },
+    "StageInputsInput": {
+      "context": "Target",
+      "independent_input_contracts": "map[StageInputId, IndependentStageInputContract]（原宣言。資格を生成しない）",
+      "stage_required_input_ids": "closed map[Stage,tuple[StageInputId]]（宣言人口、規範正本ではない）",
+      "inputs": "map[StageInputId,StageInputRecord | null]",
+      "artifact_origin": "RawText",
+      "OS_present": "bool",
+      "executor": "RawText",
+      "unrelated_scope": "LogicalJson",
+      "qualification": "RawText（原自己申告、実資格ではない）"
+    },
+    "StageInputsContext": {
+      "target": "Target",
+      "input_contracts": "map[StageInputId,IndependentStageInputContract]",
+      "required_input_ids_by_stage": "closed map[Stage,tuple[StageInputId]]",
+      "pair_targets": "map[StageInputId,StageInputId]",
+      "evidence_kind": "synthetic | actual_owner_input",
+      "snapshot_revision": "Text",
+      "original_owner_qualification": "LogicalJson | null（nullは実資格未確認）"
+    },
+    "StageInputsValue": {
+      "input_results": "LogicalJson",
+      "input_findings": "LogicalJson",
+      "stage_input_results": "LogicalJson",
+      "stage_unresolved_input_ids": "LogicalJson",
+      "owner_return_candidates": "LogicalJson",
+      "external_and_internal_same_contract": "literal true",
+      "actual_stage_promoted": "literal false",
+      "actual_provisional_established": "literal false",
+      "actual_CI_executed": "literal false",
+      "actual_accepted": "literal false",
+      "unrelated_Q": "LogicalJson"
+    },
+    "StageInputsCandidate": "StageInputsValueの閉じた受領field集合。候補の意味不一致/trueを保全して比較、未知fieldをstripしない。",
+    "StageInputFinding": {
+      "code": "Text",
+      "pointer": "JsonPointer",
+      "input_id": "StageInputId | null",
+      "stage": "Stage | null",
+      "return_owner": "Text",
+      "source_case_code": "Text | null"
+    },
+    "StageInputsResult": {
+      "outcome": "content_compared | unresolved | invalid",
+      "value": "StageInputsValue | null（構造で比較不能時のみnull）",
+      "findings": "tuple[StageInputFinding]",
+      "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
+      "candidate_conflicting_paths": "tuple[JsonPointer]"
+    }
   },
   "functions": [
     {
@@ -523,6 +626,135 @@
         "projection_not_authority"
       ],
       "scope_limit": "022-F04一関数の部分詳細。F01/F02/F03/N01/B01、正式schema/qualifier/codec/全findingと設計凍結は未完。"
+    },
+    {
+      "id": "HARNESS-L5-022-F01",
+      "requirement_ref": "HARNESS-L3-022-F01",
+      "l4_ref": "HARNESS-L4-022-F01",
+      "l9_ref": "HARNESS-L9-022-F01",
+      "l8_ref": "HARNESS-L8-022-F01",
+      "symbol": "compare_revision_qualified_stage_inputs",
+      "signature": "compare_revision_qualified_stage_inputs(input: StageInputsInput, context: StageInputsContext, candidate: StageInputsCandidate | None = None) -> StageInputsResult",
+      "approved_requirement": {
+        "id": "HARNESS-L3-022-F01",
+        "parent": "HARNESS-L2-022",
+        "title": "同revisionの段階入力",
+        "obligation": "対象artifact identity/revision/scopeとProvisional状態の根拠を、L5/L4対設計、L3要件、L2要求とL11成功条件/反例、L8/L9/L10検証設計の対象/oracleへ結ぶ。各入力の実使用版/適用範囲とauthorityを照合し、quality/security/acceptance oracleを各stageへ結ぶ。対の設計/コア追跡を用い、004/005/003の義務/戻し先を保ち、④開発の出力に限らない。",
+        "oracle_ref": "HARNESS-L10-022-F01"
+      },
+      "selected_stage_contract": {
+        "required_input_ids_by_stage": {
+          "Integrated": [
+            "artifact",
+            "provisional_basis",
+            "L5_design",
+            "L8_verification_design",
+            "L4_design",
+            "L9_verification_design",
+            "core_trace",
+            "Integrated_quality_oracle",
+            "Integrated_security_oracle",
+            "Integrated_acceptance_oracle"
+          ],
+          "Verified": [
+            "artifact",
+            "provisional_basis",
+            "L5_design",
+            "L8_verification_design",
+            "L4_design",
+            "L9_verification_design",
+            "core_trace",
+            "L3_requirements",
+            "L10_verification_design",
+            "Verified_quality_oracle",
+            "Verified_security_oracle",
+            "Verified_acceptance_oracle"
+          ],
+          "Accepted": [
+            "artifact",
+            "provisional_basis",
+            "L5_design",
+            "L8_verification_design",
+            "L4_design",
+            "L9_verification_design",
+            "core_trace",
+            "L3_requirements",
+            "L10_verification_design",
+            "L2_requirements",
+            "L11_content_oracle",
+            "Accepted_quality_oracle",
+            "Accepted_security_oracle",
+            "Accepted_acceptance_oracle"
+          ]
+        },
+        "pair_targets": {
+          "L8_verification_design": "L5_design",
+          "L9_verification_design": "L4_design",
+          "L10_verification_design": "L3_requirements",
+          "L11_content_oracle": "L2_requirements"
+        },
+        "l4_ref": "HARNESS-L4-022-F01",
+        "source_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "contract_object_sha256": "d47a2e68a9ac89b59851caf0d18be79969e5372cd4dc10f54f7965cc22d6cc0b",
+        "hash_scope": "main L4 /contracts/0 object wholeのUnicode key順/compact/nonASCII無escape/strict UTF8 canonical SHA-256。raw document hashはsource_pinsへ別保持。"
+      },
+      "preconditions": [
+        "input/Context/candidateを別immutableに供給。runtimeがinput.independent_input_contracts/stage_required_input_idsから期待Contextを作らない。",
+        "別固定合成Contextは原L9正常例のinput契約とmain L4必要集合/pairを設計時に固定した仮説。別packet/hash存在は実独立owner/authority/source資格ではない。実bindingは別準備義務。",
+        "規範必要集合はselected_stage_contractへ束縛した対象L4契約。未確認Contextの集合削減、提出件数/空集合、inputsの既存keyを必要母集団へ替えない。"
+      ],
+      "algorithm": [
+        {
+          "id": "S1",
+          "rule": "閉じたroot/record型とnull/未知field/不正型を走査し、比較不能と未提示を分ける。semantic_contentはexact logical比較、boolをnumberへ同値化せずraw宣言/配列順/原locatorを保全。"
+        },
+        {
+          "id": "S2",
+          "rule": "Contextのtarget・input_contracts・required_input_ids_by_stage/pair_targetsを別固定原資料と対象revisionへ照合。inputのcontext/independent宣言/必要集合がContextと食い違う、Contextがselected_stage_contractの必要集合/pairと不一致、actual_owner_inputで原資格欠落ならoutcome unresolved/context_unresolvedを保持。合成自己一致を実owner資格へしない。必要集合を修正/補完して成功を作らない。"
+        },
+        {
+          "id": "S3",
+          "rule": "20固定fixture input契約はこの選択scopeの合成例で、全製品へ20件を強制しない。各必要idのinputを個別照合し、null/欠落はmissing:input、used_version null/未知はunknown:used_version、期待使用版違いはstale:used_version。identity/source_id/owner/artifact identity-revision/requirement revision/scope/pair_target/semantic_contentは同idの独立contractと比較してconflictを保持。元F01のartifact_revision差分はconflict:artifact_revision、used_version差分のstaleと分ける。"
+        },
+        {
+          "id": "S4",
+          "rule": "authority null/未確認はunknown:authority。supported_synthetic_onlyはこの固定資料の対応のみで実authorityではない。原recordのないProvisional、別artifact/owner/source/semantic無内容を有効入力へしない。独立契約自体が欠落/unknownなら別context不足を保持して自己宣言で埋めない。"
+        },
+        {
+          "id": "S5",
+          "rule": "L8-L5/L9-L4/L10-L3/L11-L2 pair_targetはselected contractの該当対へ照合。quality/security/acceptance oracleをIntegrated/Verified/Acceptedごとに別必要idとして追跡し、共通名oracleや他stageの成功で代用しない。003/004/005の上流source/trace/oracle義務は参照したscopeへ保持し、件数/link/対名だけで内容成立にしない。"
+        },
+        {
+          "id": "S6",
+          "rule": "input_resultsと全input_findingsを個別保持し、当該stageの必要idをContext/selected contractから解決してunresolvedを導く。集約はconflict→stale→unknown→missing→supported_synthetic_input。対応集合が揃ったstageはsupported_synthetic_input_only、不足するstageはnot_evaluated_missing_or_conflicting_input。これは入力条件だけで実stage proofではない。Verified用L3不足でもIntegrated用有効入力を保全し、各stageの固有不足を下位成功で埋めない。"
+        },
+        {
+          "id": "S7",
+          "rule": "owner_return_candidatesは当該独立input契約のownerへ戻す候補で実ticket/保存ではない。原artifact/Qと有効入力/未評価範囲を保全。外部019候補/user_CI/OSなしも同資料比較とし、artifact_origin/executor名から④/OS必須を作らない。actual_stage_promoted/actual_provisional_established/actual_CI_executed/actual_acceptedは常にfalse。"
+        },
+        {
+          "id": "S8",
+          "rule": "candidateは別提出valueとして全fieldを導出valueへ比較し、差分JSON Pointerとdispositionを返す。原L9 candidate_conflicting_pathは1差分のtoken列であり、list自体を複数field名と解釈せず/と~0/~1 escapeで一つのpointerへ写像する。候補から欠落input/母集団/資格を生成せず元valueと全原sourceを保全。false/空objectをNoneへ補完せず未知fieldを捨てない。"
+        }
+      ],
+      "postconditions": [
+        "全input/Context/candidate/source/無関係Qは変更しない。局所stage不足で他stageの有効入力を一律失効させない。",
+        "同logical引数で同value/finding集合。必要集合のid順と原locatorを保全し、findingは(code,pointer,input_id,stage,return_owner)Unicode順。同原因別locatorを消さない。",
+        "I/O/network/DB/clock/CI/Provisional証拠生成/state/authority/ticket/Accepted/release/deploy/旧runtimeを呼ばない。",
+        "入力対応と実Integrated/Verified/Acceptedのproof、L11利用者受入の成立を分ける。"
+      ],
+      "finding_codes": [
+        "input_invalid",
+        "context_unresolved",
+        "input_missing",
+        "input_unknown",
+        "input_stale",
+        "input_conflict",
+        "stage_input_unresolved",
+        "candidate_conflict",
+        "projection_not_authority"
+      ],
+      "scope_limit": "F01部分内部契約。全構造/複合/全finding/実owner/正式schema-codecと対L6L7凍結は未完。"
     }
   ]
 }
