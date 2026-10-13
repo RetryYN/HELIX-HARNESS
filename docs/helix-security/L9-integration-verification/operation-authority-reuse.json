@@ -223,11 +223,11 @@
     ],
     "algorithm": [
       "固定shape、全11操作、actor/target/operation/revision/environment/scope/expiryの七fieldを保持。expiryは非負integer、他fieldは非空文字列、operationは11操作のclosed setだけknown。各request/authority tuple/independent expected tupleの未知は原位置unknown、両側known時だけrequest→authority、authority→expectedの相反を別findingにする。",
-      "authorityと独立expectedのstate=current以外は通過させない。revoked/stale/absentは既知拒否、他/nullはunknown。record_refは両側非空で同値、decisionはallow/deny/constrainのknown set、constraintsは重複なし非空文字列listをexact set照合する。constrainなのに空constraintsはunknown。 allowに未説明の非空constraintsがある材料は、無制約許可へ読み替えずauthority_decision_constraints_unresolvedとする。具体解釈はsource ownerへ返す。",
+      "authorityと独立expectedのstate=current以外は通過させない。revoked/stale/absentは既知拒否、他/nullはunknown。record_refは両側非空で同値、decisionはallow/deny/constrainのknown set、constraintsは重複なし非空文字列listをexact set照合する。constrainなのに空constraintsはauthority_decision_constraints_unresolvedを当該constraints位置へ返しunknown。不正list形式/重複/非文字列のauthority_constraints_unresolvedと区別する。 allowに未説明の非空constraintsがある材料は、無制約許可へ読み替えずauthority_decision_constraints_unresolvedとする。具体解釈はsource ownerへ返す。",
       "owner timeは非負integer。request/authority/expectedの各expiryが既知でobserved_time>=expiryなら当該位置expired拒否。時刻unknownはunknownを保持し、既知のrevoked/conflictを相殺しない。",
       "既知拒否/相反があればauthority_conflict・proposed deny、次unknownはauthority_unresolved・deny、それ以外はexplicit denyかallow_material/constrain_material。明示denyは素材自体correspondingでも操作denyのまま。retained_constraint_refsはconstrain素材時だけ原constraints、実制約適用ではない。",
       "prior_useは任意で不在ならnot_recorded。現在proposed denyならineligible_current_authority。現在allow/constrainでprior state/tuple/record_ref/decisionがauthorityと同値、constraintsが有効exact setで同値ならunchanged_material、それ以外changed_or_unknown_material。priorから現在source/tuple不足を補わない。現在新authorityが対応しても旧priorのscope/版相反なら再利用素材にならない。",
-      "agent_use_right/approval_booleanは判定に使わずoperation authorityへ昇格しない。通常反復にnew_approval_required_by_repetition=false。実issuer/操作/authority verifiedは全false。全14fieldを比較し、findingsは原位置・裸owner・scalar順exact三fieldunique。実利用/実人判断/新一律gate/新permissionは生成しない。"
+      "agent_use_right/approval_booleanは判定に使わずoperation authorityへ昇格しない。通常反復にnew_approval_required_by_repetition=false。実issuer/操作/authority verifiedは全false。全14fieldを比較し、findingsは原位置・裸owner・scalar順exact三fieldunique。実利用/実人判断/新一律gate/新permissionは生成しない。 selected_operationはrequest.operationが全11操作のclosed setに入るときだけその値、それ以外はnull。原入力の未知値は/request/operation の不足findingで指し、選択済みoperationへ昇格しない。"
     ],
     "result_fields": [
       "condition",
@@ -62717,7 +62717,7 @@
       "expected_proposal": {
         "condition": "authority_unresolved",
         "proposed_decision": "deny",
-        "selected_operation": "unknown",
+        "selected_operation": null,
         "authority_material_corresponding": false,
         "reuse_material": "ineligible_current_authority",
         "new_approval_required_by_repetition": false,
@@ -63241,12 +63241,12 @@
         },
         "findings": [
           {
-            "code": "authority_constraints_unresolved",
+            "code": "authority_decision_constraints_unresolved",
             "pointer": "/authority/constraints",
             "return_owner": "operation-authority-owner"
           },
           {
-            "code": "authority_constraints_unresolved",
+            "code": "authority_decision_constraints_unresolved",
             "pointer": "/context/expected_authority/constraints",
             "return_owner": "operation-authority-owner"
           }
@@ -63457,10 +63457,519 @@
       },
       "execution_state": "not_executed",
       "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC008-UNKNOWN-OPERATION-EMPTY",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-008-B01",
+        "HELIXSECURITY-L3-008-F01"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "actor": "ACTOR-A",
+            "target": "TARGET-A",
+            "operation": "",
+            "revision": "request-r1",
+            "environment": "ENV-A",
+            "scope": "PROJECT-A",
+            "expiry": 100
+          },
+          "authority": {
+            "state": "current",
+            "tuple": {
+              "actor": "ACTOR-A",
+              "target": "TARGET-A",
+              "operation": "read",
+              "revision": "request-r1",
+              "environment": "ENV-A",
+              "scope": "PROJECT-A",
+              "expiry": 100
+            },
+            "record_ref": "AUTHORITY-A-r1",
+            "decision": "allow",
+            "constraints": []
+          },
+          "context": {
+            "expected_authority": {
+              "state": "current",
+              "tuple": {
+                "actor": "ACTOR-A",
+                "target": "TARGET-A",
+                "operation": "read",
+                "revision": "request-r1",
+                "environment": "ENV-A",
+                "scope": "PROJECT-A",
+                "expiry": 100
+              },
+              "record_ref": "AUTHORITY-A-r1",
+              "decision": "allow",
+              "constraints": []
+            },
+            "observed_time": 90
+          },
+          "prior_use": {
+            "state": "current",
+            "tuple": {
+              "actor": "ACTOR-A",
+              "target": "TARGET-A",
+              "operation": "read",
+              "revision": "request-r1",
+              "environment": "ENV-A",
+              "scope": "PROJECT-A",
+              "expiry": 100
+            },
+            "record_ref": "AUTHORITY-A-r1",
+            "decision": "allow",
+            "constraints": []
+          },
+          "agent_use_right": false,
+          "approval_boolean": false
+        },
+        "evidence_limit": "全てfixed synthetic metadata。current/ref/decisionは実source資格/人判断/権限を証明しない。scope対象のみ、実操作なし。"
+      },
+      "when": "操作別authority素材/独立source期待/expiryと同条件再利用の内容比較。",
+      "expected_proposal": {
+        "condition": "authority_unresolved",
+        "proposed_decision": "deny",
+        "selected_operation": null,
+        "authority_material_corresponding": false,
+        "reuse_material": "ineligible_current_authority",
+        "new_approval_required_by_repetition": false,
+        "retained_constraint_refs": [],
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "authority_tuple_unresolved",
+            "pointer": "/request/operation",
+            "return_owner": "operation-authority-owner"
+          }
+        ],
+        "agent_use_right_promoted_to_operation_authority": false,
+        "actual_authority_issued": false,
+        "actual_operation_invoked": false,
+        "actual_authorization_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC008-UNKNOWN-OPERATION-UNREGISTERED",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-008-B01",
+        "HELIXSECURITY-L3-008-F01"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "actor": "ACTOR-A",
+            "target": "TARGET-A",
+            "operation": "unregistered_operation",
+            "revision": "request-r1",
+            "environment": "ENV-A",
+            "scope": "PROJECT-A",
+            "expiry": 100
+          },
+          "authority": {
+            "state": "current",
+            "tuple": {
+              "actor": "ACTOR-A",
+              "target": "TARGET-A",
+              "operation": "read",
+              "revision": "request-r1",
+              "environment": "ENV-A",
+              "scope": "PROJECT-A",
+              "expiry": 100
+            },
+            "record_ref": "AUTHORITY-A-r1",
+            "decision": "allow",
+            "constraints": []
+          },
+          "context": {
+            "expected_authority": {
+              "state": "current",
+              "tuple": {
+                "actor": "ACTOR-A",
+                "target": "TARGET-A",
+                "operation": "read",
+                "revision": "request-r1",
+                "environment": "ENV-A",
+                "scope": "PROJECT-A",
+                "expiry": 100
+              },
+              "record_ref": "AUTHORITY-A-r1",
+              "decision": "allow",
+              "constraints": []
+            },
+            "observed_time": 90
+          },
+          "prior_use": {
+            "state": "current",
+            "tuple": {
+              "actor": "ACTOR-A",
+              "target": "TARGET-A",
+              "operation": "read",
+              "revision": "request-r1",
+              "environment": "ENV-A",
+              "scope": "PROJECT-A",
+              "expiry": 100
+            },
+            "record_ref": "AUTHORITY-A-r1",
+            "decision": "allow",
+            "constraints": []
+          },
+          "agent_use_right": false,
+          "approval_boolean": false
+        },
+        "evidence_limit": "全てfixed synthetic metadata。current/ref/decisionは実source資格/人判断/権限を証明しない。scope対象のみ、実操作なし。"
+      },
+      "when": "操作別authority素材/独立source期待/expiryと同条件再利用の内容比較。",
+      "expected_proposal": {
+        "condition": "authority_unresolved",
+        "proposed_decision": "deny",
+        "selected_operation": null,
+        "authority_material_corresponding": false,
+        "reuse_material": "ineligible_current_authority",
+        "new_approval_required_by_repetition": false,
+        "retained_constraint_refs": [],
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "authority_tuple_unresolved",
+            "pointer": "/request/operation",
+            "return_owner": "operation-authority-owner"
+          }
+        ],
+        "agent_use_right_promoted_to_operation_authority": false,
+        "actual_authority_issued": false,
+        "actual_operation_invoked": false,
+        "actual_authorization_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC008-UNKNOWN-OPERATION-BOOLEAN",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-008-B01",
+        "HELIXSECURITY-L3-008-F01"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "actor": "ACTOR-A",
+            "target": "TARGET-A",
+            "operation": false,
+            "revision": "request-r1",
+            "environment": "ENV-A",
+            "scope": "PROJECT-A",
+            "expiry": 100
+          },
+          "authority": {
+            "state": "current",
+            "tuple": {
+              "actor": "ACTOR-A",
+              "target": "TARGET-A",
+              "operation": "read",
+              "revision": "request-r1",
+              "environment": "ENV-A",
+              "scope": "PROJECT-A",
+              "expiry": 100
+            },
+            "record_ref": "AUTHORITY-A-r1",
+            "decision": "allow",
+            "constraints": []
+          },
+          "context": {
+            "expected_authority": {
+              "state": "current",
+              "tuple": {
+                "actor": "ACTOR-A",
+                "target": "TARGET-A",
+                "operation": "read",
+                "revision": "request-r1",
+                "environment": "ENV-A",
+                "scope": "PROJECT-A",
+                "expiry": 100
+              },
+              "record_ref": "AUTHORITY-A-r1",
+              "decision": "allow",
+              "constraints": []
+            },
+            "observed_time": 90
+          },
+          "prior_use": {
+            "state": "current",
+            "tuple": {
+              "actor": "ACTOR-A",
+              "target": "TARGET-A",
+              "operation": "read",
+              "revision": "request-r1",
+              "environment": "ENV-A",
+              "scope": "PROJECT-A",
+              "expiry": 100
+            },
+            "record_ref": "AUTHORITY-A-r1",
+            "decision": "allow",
+            "constraints": []
+          },
+          "agent_use_right": false,
+          "approval_boolean": false
+        },
+        "evidence_limit": "全てfixed synthetic metadata。current/ref/decisionは実source資格/人判断/権限を証明しない。scope対象のみ、実操作なし。"
+      },
+      "when": "操作別authority素材/独立source期待/expiryと同条件再利用の内容比較。",
+      "expected_proposal": {
+        "condition": "authority_unresolved",
+        "proposed_decision": "deny",
+        "selected_operation": null,
+        "authority_material_corresponding": false,
+        "reuse_material": "ineligible_current_authority",
+        "new_approval_required_by_repetition": false,
+        "retained_constraint_refs": [],
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "authority_tuple_unresolved",
+            "pointer": "/request/operation",
+            "return_owner": "operation-authority-owner"
+          }
+        ],
+        "agent_use_right_promoted_to_operation_authority": false,
+        "actual_authority_issued": false,
+        "actual_operation_invoked": false,
+        "actual_authorization_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC008-CONSTRAIN-EMPTY-AUTHORITY",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-008-B01",
+        "HELIXSECURITY-L3-008-F01"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "actor": "ACTOR-A",
+            "target": "TARGET-A",
+            "operation": "read",
+            "revision": "request-r1",
+            "environment": "ENV-A",
+            "scope": "PROJECT-A",
+            "expiry": 100
+          },
+          "authority": {
+            "state": "current",
+            "tuple": {
+              "actor": "ACTOR-A",
+              "target": "TARGET-A",
+              "operation": "read",
+              "revision": "request-r1",
+              "environment": "ENV-A",
+              "scope": "PROJECT-A",
+              "expiry": 100
+            },
+            "record_ref": "AUTHORITY-A-r1",
+            "decision": "constrain",
+            "constraints": []
+          },
+          "context": {
+            "expected_authority": {
+              "state": "current",
+              "tuple": {
+                "actor": "ACTOR-A",
+                "target": "TARGET-A",
+                "operation": "read",
+                "revision": "request-r1",
+                "environment": "ENV-A",
+                "scope": "PROJECT-A",
+                "expiry": 100
+              },
+              "record_ref": "AUTHORITY-A-r1",
+              "decision": "constrain",
+              "constraints": [
+                "BOUNDARY-A"
+              ]
+            },
+            "observed_time": 90
+          },
+          "prior_use": {
+            "state": "current",
+            "tuple": {
+              "actor": "ACTOR-A",
+              "target": "TARGET-A",
+              "operation": "read",
+              "revision": "request-r1",
+              "environment": "ENV-A",
+              "scope": "PROJECT-A",
+              "expiry": 100
+            },
+            "record_ref": "AUTHORITY-A-r1",
+            "decision": "allow",
+            "constraints": []
+          },
+          "agent_use_right": false,
+          "approval_boolean": false
+        },
+        "evidence_limit": "全てfixed synthetic metadata。current/ref/decisionは実source資格/人判断/権限を証明しない。scope対象のみ、実操作なし。"
+      },
+      "when": "操作別authority素材/独立source期待/expiryと同条件再利用の内容比較。",
+      "expected_proposal": {
+        "condition": "authority_conflict",
+        "proposed_decision": "deny",
+        "selected_operation": "read",
+        "authority_material_corresponding": false,
+        "reuse_material": "ineligible_current_authority",
+        "new_approval_required_by_repetition": false,
+        "retained_constraint_refs": [],
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "authority_constraints_conflict",
+            "pointer": "/authority/constraints",
+            "return_owner": "operation-authority-owner"
+          },
+          {
+            "code": "authority_decision_constraints_unresolved",
+            "pointer": "/authority/constraints",
+            "return_owner": "operation-authority-owner"
+          }
+        ],
+        "agent_use_right_promoted_to_operation_authority": false,
+        "actual_authority_issued": false,
+        "actual_operation_invoked": false,
+        "actual_authorization_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC008-CONSTRAIN-EMPTY-CONTEXT-EXPECTED_AUTHORITY",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-008-B01",
+        "HELIXSECURITY-L3-008-F01"
+      ],
+      "given": {
+        "input": {
+          "request": {
+            "actor": "ACTOR-A",
+            "target": "TARGET-A",
+            "operation": "read",
+            "revision": "request-r1",
+            "environment": "ENV-A",
+            "scope": "PROJECT-A",
+            "expiry": 100
+          },
+          "authority": {
+            "state": "current",
+            "tuple": {
+              "actor": "ACTOR-A",
+              "target": "TARGET-A",
+              "operation": "read",
+              "revision": "request-r1",
+              "environment": "ENV-A",
+              "scope": "PROJECT-A",
+              "expiry": 100
+            },
+            "record_ref": "AUTHORITY-A-r1",
+            "decision": "constrain",
+            "constraints": [
+              "BOUNDARY-A"
+            ]
+          },
+          "context": {
+            "expected_authority": {
+              "state": "current",
+              "tuple": {
+                "actor": "ACTOR-A",
+                "target": "TARGET-A",
+                "operation": "read",
+                "revision": "request-r1",
+                "environment": "ENV-A",
+                "scope": "PROJECT-A",
+                "expiry": 100
+              },
+              "record_ref": "AUTHORITY-A-r1",
+              "decision": "constrain",
+              "constraints": []
+            },
+            "observed_time": 90
+          },
+          "prior_use": {
+            "state": "current",
+            "tuple": {
+              "actor": "ACTOR-A",
+              "target": "TARGET-A",
+              "operation": "read",
+              "revision": "request-r1",
+              "environment": "ENV-A",
+              "scope": "PROJECT-A",
+              "expiry": 100
+            },
+            "record_ref": "AUTHORITY-A-r1",
+            "decision": "allow",
+            "constraints": []
+          },
+          "agent_use_right": false,
+          "approval_boolean": false
+        },
+        "evidence_limit": "全てfixed synthetic metadata。current/ref/decisionは実source資格/人判断/権限を証明しない。scope対象のみ、実操作なし。"
+      },
+      "when": "操作別authority素材/独立source期待/expiryと同条件再利用の内容比較。",
+      "expected_proposal": {
+        "condition": "authority_conflict",
+        "proposed_decision": "deny",
+        "selected_operation": "read",
+        "authority_material_corresponding": false,
+        "reuse_material": "ineligible_current_authority",
+        "new_approval_required_by_repetition": false,
+        "retained_constraint_refs": [],
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "authority_constraints_conflict",
+            "pointer": "/authority/constraints",
+            "return_owner": "operation-authority-owner"
+          },
+          {
+            "code": "authority_decision_constraints_unresolved",
+            "pointer": "/context/expected_authority/constraints",
+            "return_owner": "operation-authority-owner"
+          }
+        ],
+        "agent_use_right_promoted_to_operation_authority": false,
+        "actual_authority_issued": false,
+        "actual_operation_invoked": false,
+        "actual_authorization_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
     }
   ],
   "completion": {
     "status": "unproven",
-    "evidence": "636合成素材対照。実権限/実再照合/全閉包/実装準備は未成立。"
+    "evidence": "641合成素材対照。実権限/実再照合/全閉包/実装準備は未成立。"
   }
 }

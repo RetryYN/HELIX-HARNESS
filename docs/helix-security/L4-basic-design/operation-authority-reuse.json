@@ -209,7 +209,8 @@
     ],
     "pure_boundary": "実issuer/操作/approval/clock/credential/network/install/merge/release/deploy/設定を操作しない。",
     "scope_locality": "原requestのrevision/scope/operationを返す。unknownを補完せず、当該操作へ理由を返す候補。",
-    "reuse_boundary": "通常反復から新承認を要求しない。任意prior_useは必須gateでなく、sameauthorityの素材比較であり実approvalの代理ではない。"
+    "reuse_boundary": "通常反復から新承認を要求しない。任意prior_useは必須gateでなく、sameauthorityの素材比較であり実approvalの代理ではない。",
+    "selected_operation": "request.operationが既知の全11操作なら同値、閉集合外/空/null/type不明はnull。"
   },
   "contracts": [
     {
@@ -249,6 +250,7 @@
     "return_owner": "operation-authority-owner",
     "role_note": "008比較ownerラベル。意味の変更/既存人判断、現在authority不足、停止伝播は既存SEC/人/009/OSの正式責務へL5で振り分ける。",
     "pointer_base": "given.input rootの原metadata、複合原因を保持しraw値をmessageへ複写しない。",
-    "sort": "code/pointer/return_owner scalar順・exact三fieldだけunique。"
+    "sort": "code/pointer/return_owner scalar順・exact三fieldだけunique。",
+    "decision_constraints_code": "decision=constrain＋空constraints、decision=allow＋未説明非空constraintsはauthority_decision_constraints_unresolved。"
   }
 }
