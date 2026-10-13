@@ -840,6 +840,61 @@
       ],
       "classification_discrepancy": "canonicalization sorted-object-keys-array-order-preservedとあるが実source114-116はJSON.stringifyのみ。",
       "raw_read_limit": "inventory JSONを読み、該当rowを抽出。inventory/configは実行しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-809B35B3C91567A97AF5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/source-boundary-architecture.md",
+      "sha256": "6bee024905701ca99ccd09e2a357e3b91fbf5370e4118630cfb1da5119d07610",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation_only_no_old_execution_or_copy",
+      "read_line_locators": [
+        28,
+        29,
+        30,
+        49,
+        50,
+        53,
+        61,
+        67
+      ],
+      "line_quotes": [
+        {
+          "line": 28,
+          "text": "| lint analyzer | immutable input→finding | write、child process、環境probe |"
+        },
+        {
+          "line": 29,
+          "text": "| executor/materializer | typed intent→receipt | finding判定、silent retry |"
+        },
+        {
+          "line": 30,
+          "text": "| composition root | owner間の配線とlifecycle | domain contractの再定義 |"
+        },
+        {
+          "line": 49,
+          "text": "依存はcontractへ向かう一方向とし、presentation→application→contract、persistence→contractを許可する。"
+        },
+        {
+          "line": 50,
+          "text": "persistence→presentation、analyzer→executor、adapter→persistence実装への直接edgeは禁止する。type-only importも"
+        },
+        {
+          "line": 53,
+          "text": "boundary policyは各source ownerにdefault `deny`を必須とし、許可方向だけをexplicit allowとして列挙する。これにより"
+        },
+        {
+          "line": 61,
+          "text": "read snapshotはloader/portが一度構築しanalyzerへ渡す。write/process/git probeは明示commandだけがexecutorを呼び、"
+        },
+        {
+          "line": 67,
+          "text": "1. contractとnegative oracleを先にfreezeする。"
+        }
+      ],
+      "preserve": "immutable analyzer/loader snapshot/contract向き依存/composition配線とeffect実行の分離、未指定default deny、negative oracle先行。",
+      "change": "旧TS/physical owner path/DB/CLI/executorを移植せず、現行004の7componentとcodec/read-only argument proposal/OS別運転へ再導出。",
+      "reason": "coreからI/O/暗黙operationを起動せず、input/candidateからContextを自作し、constructor/profile/件数から運転成立を作る失敗を防ぐため。新authority/人間approveは作らない。",
+      "source_limit": "旧confirmed metadataを現行承認/実bindingへ継承せず、旧runtime/test/CI/copyを実行しない。"
     }
   ],
   "full_goal_scope_preserved": {
@@ -848,7 +903,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
@@ -9544,5 +9599,419 @@
     },
     "diagnostic_boundary": "library固有exception/message/typeをcore resultへ直接露出しない。keyword/instance pointerをrelative findingへ写し、consumerがinput/context/candidate laneを明示してprefixする。全assertion/branchの最小finding集合は追加oracleへ残す。shape対応は意味/資格/数値観測/承認/実operationの成立ではない。",
     "unclosed": "正式Python view/number/JSON Schema adapter/regex matcher版、registry/consumer/owner/codec/resources、全binding/branch/finding oracleとL6L7凍結は未完。math原理と対応snapshotの設計であり、実adapter/core実装やRed/Greenではない。"
+  },
+  "assembly_contract": {
+    "status": "draft_design_typed_composition_binding_not_runtime_admission",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "profiles_sha256": {
+      "wire_decode_contract": "592647099edb86dcf62a4c192db625b85dd2c7148845c6fac2fa887d4ea75116",
+      "exact_number_contract": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
+      "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
+      "schema_adapter_contract": "4c671a3a7c52bb3fa898f2a97ff082958c85dda909634473d50bd2318a61cfec",
+      "logical_structure_schema": "d4be59b9aa8611870fbe666dc78087da9960f710f5bc9d65acb108026897562a"
+    },
+    "bindings": [
+      {
+        "id": "HARNESS-L5-004-F04-BINDING",
+        "component": "SourceAtomPartition",
+        "design_ref": "HARNESS-L5-004-F04",
+        "requirement_ref": "HARNESS-L3-004-F04",
+        "approved_requirement_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+        "l4_ref": "HARNESS-L4-004-F04",
+        "l4_snapshot_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "l4_contract_sha256": "525b22206fe70677c77c1887cf4b0f60540488b43e5306d94b98b0ed98556683",
+        "core_symbol": "check_source_atom_partition",
+        "core_signature": "check_source_atom_partition(input: PartitionInput, context: PartitionContext, candidate: PartitionCandidate | None = None) -> PartitionResult",
+        "core_contract_sha256": "c556535f7d2a5f6cdb49a30d93bf5f7a16447a30b57938ec6701c11208e018fc",
+        "argument_types": {
+          "input": "PartitionInput",
+          "context": "PartitionContext",
+          "candidate": "PartitionCandidate | null"
+        },
+        "result_type": "PartitionResult",
+        "value_type": "PartitionValue",
+        "context_fields": [
+          "target_source_ref",
+          "selection_scope",
+          "referents",
+          "snapshot_revision",
+          "evidence_kind",
+          "qualification_records",
+          "qualifier_roots"
+        ],
+        "input_owner_connection": {
+          "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+          "meaning": "HARNESSのtrace/影響/戻し先条件",
+          "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+          "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+        },
+        "context_supplier_obligation": "独立原資料/原owner資格/rootをloader/portが一つの対象revision/scopeのsnapshotへ束縛して供給。現在input/candidateから期待Contextを生成しない。owner名が同じだけで独立性を否定/肯定しない。",
+        "candidate_supplier_obligation": "未提出/明示nullはNone。presentのfalse/0/空文字/配列/空objectをNoneへ補完しない。説明metadataは外側の別sidecarに保持しcandidate valueから未知fieldを捨てない。",
+        "result_consumer_obligation": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "runtime_instance_state": "not_implemented_not_registered",
+        "authority_effect": "none",
+        "operation_effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-004-B01-BINDING",
+        "component": "TraceOperationBoundary",
+        "design_ref": "HARNESS-L5-004-B01",
+        "requirement_ref": "HARNESS-L3-004-B01",
+        "approved_requirement_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+        "l4_ref": "HARNESS-L4-004-B01",
+        "l4_snapshot_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "l4_contract_sha256": "a8deeedc9af5adf35da9a8026b49a21c00c7404234a69e0daf8c3437fc82f57f",
+        "core_symbol": "classify_change_and_operation_boundary",
+        "core_signature": "classify_change_and_operation_boundary(input: ChangeInput, context: ChangeContext, candidate: ChangeCandidate | None = None) -> ChangeResult",
+        "core_contract_sha256": "fc9ec275ae6e2abca47247a8f373694c8ef1e3826c2220d94ccb6f20e841a47e",
+        "argument_types": {
+          "input": "ChangeInput",
+          "context": "ChangeContext",
+          "candidate": "ChangeCandidate | null"
+        },
+        "result_type": "ChangeResult",
+        "value_type": "ChangeValue",
+        "context_fields": [
+          "target",
+          "source_owner",
+          "role_owners",
+          "state",
+          "evidence_kind",
+          "basis_refs"
+        ],
+        "input_owner_connection": {
+          "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+          "meaning": "HARNESSのtrace/影響/戻し先条件",
+          "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+          "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+        },
+        "context_supplier_obligation": "独立原資料/原owner資格/rootをloader/portが一つの対象revision/scopeのsnapshotへ束縛して供給。現在input/candidateから期待Contextを生成しない。owner名が同じだけで独立性を否定/肯定しない。",
+        "candidate_supplier_obligation": "未提出/明示nullはNone。presentのfalse/0/空文字/配列/空objectをNoneへ補完しない。説明metadataは外側の別sidecarに保持しcandidate valueから未知fieldを捨てない。",
+        "result_consumer_obligation": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "runtime_instance_state": "not_implemented_not_registered",
+        "authority_effect": "none",
+        "operation_effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-004-F02-BINDING",
+        "component": "ImpactAndEstablishment",
+        "design_ref": "HARNESS-L5-004-F02",
+        "requirement_ref": "HARNESS-L3-004-F02",
+        "approved_requirement_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+        "l4_ref": "HARNESS-L4-004-F02",
+        "l4_snapshot_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "l4_contract_sha256": "d42eba412f8bfa17c3d7c664994b625f0da4a66115dd9d5a1936ac4de48ef1ea",
+        "core_symbol": "derive_impact_without_state_inheritance",
+        "core_signature": "derive_impact_without_state_inheritance(input: ImpactInput, context: ImpactContext, candidate: ImpactCandidate | None = None) -> ImpactResult",
+        "core_contract_sha256": "bf130b6174487db52a79463715f2b11ff6445991b1a62f7f49ae84dfb9ad7fd7",
+        "argument_types": {
+          "input": "ImpactInput",
+          "context": "ImpactContext",
+          "candidate": "ImpactCandidate | null"
+        },
+        "result_type": "ImpactResult",
+        "value_type": "ImpactValue",
+        "context_fields": [
+          "target",
+          "node_population",
+          "declared_members",
+          "required_upper_obligations",
+          "referents",
+          "qualifier_roots",
+          "evidence_kind",
+          "state"
+        ],
+        "input_owner_connection": {
+          "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+          "meaning": "HARNESSのtrace/影響/戻し先条件",
+          "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+          "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+        },
+        "context_supplier_obligation": "独立原資料/原owner資格/rootをloader/portが一つの対象revision/scopeのsnapshotへ束縛して供給。現在input/candidateから期待Contextを生成しない。owner名が同じだけで独立性を否定/肯定しない。",
+        "candidate_supplier_obligation": "未提出/明示nullはNone。presentのfalse/0/空文字/配列/空objectをNoneへ補完しない。説明metadataは外側の別sidecarに保持しcandidate valueから未知fieldを捨てない。",
+        "result_consumer_obligation": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "runtime_instance_state": "not_implemented_not_registered",
+        "authority_effect": "none",
+        "operation_effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-004-F01-BINDING",
+        "component": "ConditionTraceCoverage",
+        "design_ref": "HARNESS-L5-004-F01",
+        "requirement_ref": "HARNESS-L3-004-F01",
+        "approved_requirement_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+        "l4_ref": "HARNESS-L4-004-F01",
+        "l4_snapshot_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "l4_contract_sha256": "04d1f693c4cdf08fcb2172d2f8cc891b5132961a2fca6a9a2968ccf994ba1345",
+        "core_symbol": "compare_condition_trace_coverage",
+        "core_signature": "compare_condition_trace_coverage(input: TraceInput, context: TraceContext, candidate: TraceCandidate | None = None) -> TraceResult",
+        "core_contract_sha256": "cf6c62e0891ce8b7869be7a36543749a0eee3a556e2fa92b23f995ded68f40a3",
+        "argument_types": {
+          "input": "TraceInput",
+          "context": "TraceContext",
+          "candidate": "TraceCandidate | null"
+        },
+        "result_type": "TraceResult",
+        "value_type": "TraceValue",
+        "context_fields": [
+          "target",
+          "requirements",
+          "owner_assignments",
+          "record_catalog",
+          "qualifier_roots",
+          "evidence_kind",
+          "state"
+        ],
+        "input_owner_connection": {
+          "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+          "meaning": "HARNESSのtrace/影響/戻し先条件",
+          "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+          "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+        },
+        "context_supplier_obligation": "独立原資料/原owner資格/rootをloader/portが一つの対象revision/scopeのsnapshotへ束縛して供給。現在input/candidateから期待Contextを生成しない。owner名が同じだけで独立性を否定/肯定しない。",
+        "candidate_supplier_obligation": "未提出/明示nullはNone。presentのfalse/0/空文字/配列/空objectをNoneへ補完しない。説明metadataは外側の別sidecarに保持しcandidate valueから未知fieldを捨てない。",
+        "result_consumer_obligation": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "runtime_instance_state": "not_implemented_not_registered",
+        "authority_effect": "none",
+        "operation_effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-004-F03-BINDING",
+        "component": "ScopedReconfirmationAndBackflow",
+        "design_ref": "HARNESS-L5-004-F03",
+        "requirement_ref": "HARNESS-L3-004-F03",
+        "approved_requirement_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+        "l4_ref": "HARNESS-L4-004-F03",
+        "l4_snapshot_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "l4_contract_sha256": "650979f0105d9f130186ba88d6e9e26fe290ff0559d53034637dd2f5bf8439b3",
+        "core_symbol": "derive_scoped_reconfirmation_and_backflow",
+        "core_signature": "derive_scoped_reconfirmation_and_backflow(input: ReconfirmationInput, context: ReconfirmationContext, candidate: ReconfirmationCandidate | None = None) -> ReconfirmationResult",
+        "core_contract_sha256": "270b24abf2086846e6fa3df10003a5f7daa5170ae1b496d14d64de55f3e90a38",
+        "argument_types": {
+          "input": "ReconfirmationInput",
+          "context": "ReconfirmationContext",
+          "candidate": "ReconfirmationCandidate | null"
+        },
+        "result_type": "ReconfirmationResult",
+        "value_type": "ReconfirmationValue",
+        "context_fields": [
+          "target",
+          "affected_root",
+          "work_population",
+          "subject_roles",
+          "required_relations",
+          "required_pairs",
+          "record_catalog",
+          "qualifier_roots",
+          "evidence_kind",
+          "state",
+          "actual_trigger_policy_refs"
+        ],
+        "input_owner_connection": {
+          "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+          "meaning": "HARNESSのtrace/影響/戻し先条件",
+          "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+          "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+        },
+        "context_supplier_obligation": "独立原資料/原owner資格/rootをloader/portが一つの対象revision/scopeのsnapshotへ束縛して供給。現在input/candidateから期待Contextを生成しない。owner名が同じだけで独立性を否定/肯定しない。",
+        "candidate_supplier_obligation": "未提出/明示nullはNone。presentのfalse/0/空文字/配列/空objectをNoneへ補完しない。説明metadataは外側の別sidecarに保持しcandidate valueから未知fieldを捨てない。",
+        "result_consumer_obligation": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "runtime_instance_state": "not_implemented_not_registered",
+        "authority_effect": "none",
+        "operation_effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-004-F05-BINDING",
+        "component": "LegacyReuseAndRetirementConditions",
+        "design_ref": "HARNESS-L5-004-F05",
+        "requirement_ref": "HARNESS-L3-004-F05",
+        "approved_requirement_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+        "l4_ref": "HARNESS-L4-004-F05",
+        "l4_snapshot_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "l4_contract_sha256": "e9919af4a5e55f06fee8d0fa0a6ee90989dc703f5b7a4813c7d0c041fbc0336e",
+        "core_symbol": "compare_selected_asset_reuse_conditions",
+        "core_signature": "compare_selected_asset_reuse_conditions(input: AssetReuseInput, context: AssetReuseContext, candidate: AssetReuseCandidate | None = None) -> AssetReuseResult",
+        "core_contract_sha256": "18419e63553f04b499ff277aa5e5ba62cd4a1d36c5fbe692cb1e298d20506060",
+        "argument_types": {
+          "input": "AssetReuseInput",
+          "context": "AssetReuseContext",
+          "candidate": "AssetReuseCandidate | null"
+        },
+        "result_type": "AssetReuseResult",
+        "value_type": "AssetReuseValue",
+        "context_fields": [
+          "target",
+          "selected_asset_ids",
+          "required_consumers",
+          "record_catalog",
+          "qualifier_roots",
+          "state",
+          "evidence_kind",
+          "actual_clearance_refs"
+        ],
+        "input_owner_connection": {
+          "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+          "meaning": "HARNESSのtrace/影響/戻し先条件",
+          "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+          "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+        },
+        "context_supplier_obligation": "独立原資料/原owner資格/rootをloader/portが一つの対象revision/scopeのsnapshotへ束縛して供給。現在input/candidateから期待Contextを生成しない。owner名が同じだけで独立性を否定/肯定しない。",
+        "candidate_supplier_obligation": "未提出/明示nullはNone。presentのfalse/0/空文字/配列/空objectをNoneへ補完しない。説明metadataは外側の別sidecarに保持しcandidate valueから未知fieldを捨てない。",
+        "result_consumer_obligation": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "runtime_instance_state": "not_implemented_not_registered",
+        "authority_effect": "none",
+        "operation_effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-004-N01-BINDING",
+        "component": "UnseenRelationAndObservationLimits",
+        "design_ref": "HARNESS-L5-004-N01",
+        "requirement_ref": "HARNESS-L3-004-N01",
+        "approved_requirement_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+        "l4_ref": "HARNESS-L4-004-N01",
+        "l4_snapshot_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+        "l4_contract_sha256": "9af3481756ffe8d6f0a6bd6072faef7358620c77c5331a3712a270c6578b69c9",
+        "core_symbol": "compare_unseen_relations_and_observation_limits",
+        "core_signature": "compare_unseen_relations_and_observation_limits(input: UnseenRelationInput, context: UnseenRelationContext, candidate: UnseenRelationCandidate | None = None) -> UnseenRelationResult",
+        "core_contract_sha256": "db7ab1fd2c6cf1966bd87cedb38b03dd092ad970ceaa02b8d924c473b28dd1bf",
+        "argument_types": {
+          "input": "UnseenRelationInput",
+          "context": "UnseenRelationContext",
+          "candidate": "UnseenRelationCandidate | null"
+        },
+        "result_type": "UnseenRelationResult",
+        "value_type": "UnseenRelationValue",
+        "context_fields": [
+          "target",
+          "selected_consumer_ids",
+          "previous_known_consumers",
+          "required_condition_ids",
+          "requirement_content_versions",
+          "required_consumer_relations",
+          "required_operation_joins",
+          "unobserved_population",
+          "probe_owner",
+          "reverification_owners",
+          "record_catalog",
+          "qualifier_roots",
+          "state",
+          "evidence_kind",
+          "actual_probe_or_observation_refs"
+        ],
+        "input_owner_connection": {
+          "input": "各要求/設計/検証/原観測/authorityのowner-qualified原資料",
+          "meaning": "HARNESSのtrace/影響/戻し先条件",
+          "output": "当該ownerへの不足/再検証候補、OSへの運転入力",
+          "effect": "実操作/保存/ticket/承認/状態更新は別のowner契約から運転する。"
+        },
+        "context_supplier_obligation": "独立原資料/原owner資格/rootをloader/portが一つの対象revision/scopeのsnapshotへ束縛して供給。現在input/candidateから期待Contextを生成しない。owner名が同じだけで独立性を否定/肯定しない。",
+        "candidate_supplier_obligation": "未提出/明示nullはNone。presentのfalse/0/空文字/配列/空objectをNoneへ補完しない。説明metadataは外側の別sidecarに保持しcandidate valueから未知fieldを捨てない。",
+        "result_consumer_obligation": "当該ownerへの不足/再検証候補、OSへの運転入力",
+        "runtime_instance_state": "not_implemented_not_registered",
+        "authority_effect": "none",
+        "operation_effect": "none"
+      }
+    ],
+    "module_roles": "以下は004内の責務ラベルであり新しい機構/製品/authorityではない。物理module/instanceは対象L6と正式bindingで固定する。",
+    "allowed_edges": [
+      [
+        "composition_root",
+        "read_port"
+      ],
+      [
+        "read_port",
+        "snapshot_contract"
+      ],
+      [
+        "composition_root",
+        "codec_adapter"
+      ],
+      [
+        "codec_adapter",
+        "value_contract"
+      ],
+      [
+        "composition_root",
+        "meaning_core"
+      ],
+      [
+        "meaning_core",
+        "value_contract"
+      ],
+      [
+        "result_consumer",
+        "result_contract"
+      ],
+      [
+        "OS_operation_executor",
+        "OS_operation_contract"
+      ]
+    ],
+    "forbidden_edges": [
+      [
+        "meaning_core",
+        "read_port"
+      ],
+      [
+        "meaning_core",
+        "codec_adapter"
+      ],
+      [
+        "meaning_core",
+        "OS_operation_executor"
+      ],
+      [
+        "value_contract",
+        "read_port"
+      ],
+      [
+        "codec_adapter",
+        "OS_operation_executor"
+      ],
+      [
+        "read_port",
+        "meaning_core"
+      ]
+    ],
+    "dependency_default": "未指定edgeはunspecified、暗黙allowにしない。pure coreにloader/codec library/executorをimportさせず、composition rootがimmutable引数の提案を組む。",
+    "pipeline": [
+      {
+        "id": "A1",
+        "rule": "binding IDから7component/symbol/signature/型/L4-L3revisionとprofilesを完全一致で解決。未知/別版/別bytesはbinding_unresolved、shape推測/旧runtime/remote探索で代用しない。"
+      },
+      {
+        "id": "A2",
+        "rule": "input/contextの原frameとcustody snapshotを別保持。read portが一度構築した資料を受け取り、coreがI/Oを呼ばない。frame欠落・raw digest不整合・carrier scope不一致・Context独立lineage未成立はsource_unresolved。fieldのcurrent自己申告やowner名だけで資格を生成しない。"
+      },
+      {
+        "id": "A3",
+        "rule": "wire decode/readonly schema proposalを各laneへ別適用。decode拒否/shape invalidはmaterial_rejected、codec/schema binding未知はbinding_unresolved。原frame/部分finding/説明sidecarを保全し再parse補正で消さない。"
+      },
+      {
+        "id": "A4",
+        "rule": "candidateのpresenceと値を区別。omitted/nullだけNone、その他はCandidate型へ別検査。metadataは登録済み外側契約のsidecarで、未知fieldをcandidateからsilent stripしない。"
+      },
+      {
+        "id": "A5",
+        "rule": "corresponding shapeは意味の対応でない。carrierのscopeはcustodyとして照合し、同scope frame中のtarget/graph/owner意味の矛盾は原Contextのままcoreの診断へ渡す引数提案とする。Contextをinputで上書きしない。unknown/missingの意味資料をschema合格でcurrent/充足へしない。"
+      },
+      {
+        "id": "A6",
+        "rule": "(input,context,candidate)の順と固定signatureでargument_proposalを返すだけ。実core/validator/output consumerの呼出・保存・ticket・authority writeはこの設計oracleでは実行しない。結果value/resultの型とreturn ownerを保持し、OSへの候補を実運転receipt/承認へ昇格しない。"
+      }
+    ],
+    "proposal_model": {
+      "condition": "arguments_proposed | binding_unresolved | source_unresolved | material_rejected",
+      "proposed_core_symbol": "Text | null",
+      "candidate_disposition": "omitted_as_none | explicit_null_as_none | supplied_candidate | unresolved",
+      "input_context_preserved": "literal true",
+      "actual_core_invoked": "literal false",
+      "actual_operation_invoked": "literal false",
+      "actual_state_written": "literal false",
+      "schema_handoff": "literal false（正式consumer/codec/phase binding未閉包）"
+    },
+    "effect_boundary": "意味coreの返却とOS実operationは別契約。pure logical codec/materializationと旧executor/materializerのeffect実行を同役割へ混ぜない。constructor/role/cap/digestから操作許可を生成せず、既Scope/authority/隔離/資源条件を外側の正式consumerへ結ぶ。新しい人間approve手続きを作らない。",
+    "unclosed": "supplier/consumerの正式interface/物理module/host instance/codec/library/資源/運転binding、全composition finding/negativeとL6L7凍結は未完。7binding定義をruntime成立や004全完了へしない。"
   }
 }
