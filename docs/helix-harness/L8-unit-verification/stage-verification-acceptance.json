@@ -65241,7 +65241,8 @@
               "stage_promoted": false,
               "CI_executed": false,
               "accepted": false
-            }
+            },
+            "unrelated_Q": "preserved_valid_synthetic"
           },
           "oracle_limit": "自己申告coverage全成功でも独立差分義務の削減を拒否する部分oracle。全value/副次finding未完。",
           "execution_state": "not_executed"
