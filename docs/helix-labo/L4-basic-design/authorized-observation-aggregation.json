@@ -212,7 +212,136 @@
         "開発/Worker/AI判断/CI-test-review/backflow/recovery/incident/refactor/release/deployment/runtime/利用/再作業/費用/token-API/model-provider/correction/rollback/product結果をscope付きで扱う。",
         "success/failure/rejected/cancelled/blocked/unknown/not_observedを原状態のまま保持する。未発生source、欠落、失敗事実を落とさず、成功だけを選別しない。"
       ],
-      "representation_limit": "合成参照/state/未発生/欠落の内容例。正式schema/実source/全接続を採用しない。"
+      "representation_limit": "合成参照/state/未発生/欠落の内容例。正式schema/実source/全接続を採用しない。",
+      "domain_case_mapping": [
+        {
+          "domain": "development",
+          "case_ref": "LABO001-F02-DOMAIN-development",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "development"
+        },
+        {
+          "domain": "Worker",
+          "case_ref": "LABO001-F02-STATE-failure",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "Worker"
+        },
+        {
+          "domain": "AI_judgment",
+          "case_ref": "LABO001-F02-DOMAIN-AI_judgment",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "AI_judgment"
+        },
+        {
+          "domain": "CI",
+          "case_ref": "LABO001-F02-DOMAIN-CI",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "CI"
+        },
+        {
+          "domain": "test",
+          "case_ref": "LABO001-F02-DOMAIN-test",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "test"
+        },
+        {
+          "domain": "review",
+          "case_ref": "LABO001-F02-DOMAIN-review",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "review"
+        },
+        {
+          "domain": "backflow",
+          "case_ref": "LABO001-F02-DOMAIN-backflow",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "backflow"
+        },
+        {
+          "domain": "recovery",
+          "case_ref": "LABO001-F02-DOMAIN-recovery",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "recovery"
+        },
+        {
+          "domain": "incident",
+          "case_ref": "LABO001-F02-DOMAIN-incident",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "incident"
+        },
+        {
+          "domain": "refactor",
+          "case_ref": "LABO001-F02-DOMAIN-refactor",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "refactor"
+        },
+        {
+          "domain": "release",
+          "case_ref": "LABO001-F02-DOMAIN-release",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "release"
+        },
+        {
+          "domain": "deployment",
+          "case_ref": "LABO001-F02-DOMAIN-deployment",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "deployment"
+        },
+        {
+          "domain": "runtime",
+          "case_ref": "LABO001-F02-DOMAIN-runtime",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "runtime"
+        },
+        {
+          "domain": "usage",
+          "case_ref": "LABO001-F02-DOMAIN-usage",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "usage"
+        },
+        {
+          "domain": "rework",
+          "case_ref": "LABO001-F02-DOMAIN-rework",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "rework"
+        },
+        {
+          "domain": "cost",
+          "case_ref": "LABO001-F02-DOMAIN-cost",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "cost"
+        },
+        {
+          "domain": "token_API",
+          "case_ref": "LABO001-F02-DOMAIN-token_API",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "token_API"
+        },
+        {
+          "domain": "model_provider",
+          "case_ref": "LABO001-F02-DOMAIN-model_provider",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "model_provider"
+        },
+        {
+          "domain": "correction",
+          "case_ref": "LABO001-F02-DOMAIN-correction",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "correction"
+        },
+        {
+          "domain": "rollback",
+          "case_ref": "LABO001-F02-DOMAIN-rollback",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "rollback"
+        },
+        {
+          "domain": "product_result",
+          "case_ref": "LABO001-F02-DOMAIN-product_result",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "product_result"
+        }
+      ],
+      "shared_case_reason": "21領域を全件対応付ける。Worker領域はSTATE-failureの原入力 original_sources[0].domain=Worker（Worker実行結果）で検証する。同一入力のDOMAIN-Workerを別件へ増やさず、Worker領域とfailure原状態の二義務をこの同一例で確認する。field worker の存在だけを被覆根拠にしない。"
     },
     {
       "id": "HELIXLABO-L4-001-N01",

@@ -44500,7 +44500,135 @@
           "effect": "none"
         }
       ],
-      "coverage_limit": "初期例。選択source追加閉包/全組合せ/実SEC/実取込/実L9/TDDは未成立。"
+      "coverage_limit": "初期例。選択source追加閉包/全組合せ/実SEC/実取込/実L9/TDDは未成立。",
+      "domain_case_mapping": [
+        {
+          "domain": "development",
+          "case_ref": "LABO001-F02-DOMAIN-development",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "development"
+        },
+        {
+          "domain": "Worker",
+          "case_ref": "LABO001-F02-STATE-failure",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "Worker"
+        },
+        {
+          "domain": "AI_judgment",
+          "case_ref": "LABO001-F02-DOMAIN-AI_judgment",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "AI_judgment"
+        },
+        {
+          "domain": "CI",
+          "case_ref": "LABO001-F02-DOMAIN-CI",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "CI"
+        },
+        {
+          "domain": "test",
+          "case_ref": "LABO001-F02-DOMAIN-test",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "test"
+        },
+        {
+          "domain": "review",
+          "case_ref": "LABO001-F02-DOMAIN-review",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "review"
+        },
+        {
+          "domain": "backflow",
+          "case_ref": "LABO001-F02-DOMAIN-backflow",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "backflow"
+        },
+        {
+          "domain": "recovery",
+          "case_ref": "LABO001-F02-DOMAIN-recovery",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "recovery"
+        },
+        {
+          "domain": "incident",
+          "case_ref": "LABO001-F02-DOMAIN-incident",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "incident"
+        },
+        {
+          "domain": "refactor",
+          "case_ref": "LABO001-F02-DOMAIN-refactor",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "refactor"
+        },
+        {
+          "domain": "release",
+          "case_ref": "LABO001-F02-DOMAIN-release",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "release"
+        },
+        {
+          "domain": "deployment",
+          "case_ref": "LABO001-F02-DOMAIN-deployment",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "deployment"
+        },
+        {
+          "domain": "runtime",
+          "case_ref": "LABO001-F02-DOMAIN-runtime",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "runtime"
+        },
+        {
+          "domain": "usage",
+          "case_ref": "LABO001-F02-DOMAIN-usage",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "usage"
+        },
+        {
+          "domain": "rework",
+          "case_ref": "LABO001-F02-DOMAIN-rework",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "rework"
+        },
+        {
+          "domain": "cost",
+          "case_ref": "LABO001-F02-DOMAIN-cost",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "cost"
+        },
+        {
+          "domain": "token_API",
+          "case_ref": "LABO001-F02-DOMAIN-token_API",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "token_API"
+        },
+        {
+          "domain": "model_provider",
+          "case_ref": "LABO001-F02-DOMAIN-model_provider",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "model_provider"
+        },
+        {
+          "domain": "correction",
+          "case_ref": "LABO001-F02-DOMAIN-correction",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "correction"
+        },
+        {
+          "domain": "rollback",
+          "case_ref": "LABO001-F02-DOMAIN-rollback",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "rollback"
+        },
+        {
+          "domain": "product_result",
+          "case_ref": "LABO001-F02-DOMAIN-product_result",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "product_result"
+        }
+      ]
     },
     {
       "id": "HELIXLABO-L9-001-N01",
