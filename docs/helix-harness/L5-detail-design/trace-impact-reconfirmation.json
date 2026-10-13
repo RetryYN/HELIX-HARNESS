@@ -2032,7 +2032,8 @@
           "key": "kind + identity/revision/scope/owner のexact tuple。複数同keyはreference_conflictでfirst/last winsしない。",
           "input_presence": "destination_records/human_decisions内の原recordが未供給なら、その依頼材料の不足を返す。Contextに参照用bodyがあっても受領入力を補完しない。",
           "content": "独立snapshotのraw/body/digestと受領recordを比較。snapshotの存在/文字列qualification/currentだけを実資格にしない。",
-          "fixtures": "原L9の各fixed synthetic source snapshotから、CaseContextを事前に固定。source_caseのinput packetと同じ合成データ系統であり、実owner独立性/実custodyの証明ではない。contextのcase選択は試験fixtureの外側で固定し、関数がinput/candidateからContextを生成することは禁止。"
+          "fixtures": "原L9の各fixed synthetic source snapshotから、CaseContextを事前に固定。source_caseのinput packetと同じ合成データ系統であり、実owner独立性/実custodyの証明ではない。contextのcase選択は試験fixtureの外側で固定し、関数がinput/candidateからContextを生成することは禁止。 current/qualificationは固定合成snapshotの受領bytes/ref/digestの仮説に限る。人間由来、live適格、正しいsource/target意味や実custodyは証明しない。故障/相反する原資料も原bytesで保持し、正しいowner/targetへ修復せずP4/P5の独立条件で診断する。",
+          "diagnosis_without_resolution": "decisionのexact全4成分の原recordが無く、同identityの提出recordがある場合、revision/scope/ownerの各相反を診断する。近似一致は診断材料に限り、資格/内容解決として採用しない。原record自体が無く同identity材料も無い場合だけW07の未提示。複数材料は全locatorを保持して任意の一件を採用しない。"
         },
         "finding_fields": {
           "code": "既存F04 closed vocabulary",
@@ -2113,7 +2114,7 @@
           },
           {
             "id": "W07",
-            "predicate": "human bucket decision原record未供給",
+            "predicate": "human bucket decisionの原record未供給かつ同identityの提出材料も無い",
             "code": "human_decision_unqualified",
             "pointer": "/input/human_decisions",
             "atoms": "当該提出ID",
@@ -2123,13 +2124,14 @@
           },
           {
             "id": "W08",
-            "predicate": "human原recordのkind/qualification/対象source/target/disposition/impact/理由が相反又は不足",
+            "predicate": "human原recordのref成分、kind/qualification/対象source/target/disposition/impact/理由が要求された原参照/内容条件と相反又は不足。ref/target_ref/source_refの差は実際に異なる成分位置を指す。",
             "code": "human_decision_unqualified",
             "pointer": "/input/human_decisions/{index}/{field}",
             "atoms": "当該提出ID",
-            "basis": "item.decision_ref",
+            "basis": "record.ref成分相反: item.decision_ref + 提出record.ref。source_ref相反: item.decision_ref + record.source_ref + source_population.ref。target_ref相反: item.decision_ref + record.target_ref + item.destination_ref。その他fieldはitem.decision_ref。",
             "owner": "human-decision-original-owner",
-            "content_state": "conflict（版差だけならstale）"
+            "content_state": "conflict（版差だけならstale）",
+            "note": "近似identity一致で相反を診断してもexact ref解決/owner資格へ採用しない。owner文字列がAIかどうかで人間資格を判定しない。"
           },
           {
             "id": "W09",
@@ -9950,7 +9952,7 @@
         "l4_contract_sha256": "525b22206fe70677c77c1887cf4b0f60540488b43e5306d94b98b0ed98556683",
         "core_symbol": "check_source_atom_partition",
         "core_signature": "check_source_atom_partition(input: PartitionInput, context: PartitionContext, candidate: PartitionCandidate | None = None) -> PartitionResult",
-        "core_contract_sha256": "069629b5319dd1396c95c1db6837d23632d114e3bfbdf483770a18afb7dfa653",
+        "core_contract_sha256": "e35c2c38a23443a76afc3e2e90b6e4ca54d826075edc088c10c06888685677f6",
         "argument_types": {
           "input": "PartitionInput",
           "context": "PartitionContext",

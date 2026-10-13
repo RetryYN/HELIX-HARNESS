@@ -72992,11 +72992,17 @@
           "findings": [
             {
               "code": "human_decision_unqualified",
-              "pointer": "/input/human_decisions/0/qualification",
+              "pointer": "/input/human_decisions/0/ref/owner",
               "atom_ids": [
                 "A3"
               ],
               "basis_refs": [
+                {
+                  "identity": "HUMAN-CHANGE",
+                  "revision": "fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116",
+                  "scope": "PRODUCT-P",
+                  "owner": "AI"
+                },
                 {
                   "identity": "HUMAN-CHANGE",
                   "revision": "fixture-r1-content-206c4bb895a7ca911ec8f8ad9834870f4e779a30406632556240e353ca8e9116",
@@ -73064,11 +73070,23 @@
           "findings": [
             {
               "code": "human_decision_unqualified",
-              "pointer": "/input/human_decisions/0/ref/revision",
+              "pointer": "/input/human_decisions/0/target_ref/revision",
               "atom_ids": [
                 "A3"
               ],
               "basis_refs": [
+                {
+                  "identity": "CHANGED-REQ",
+                  "revision": "fixture-r0",
+                  "scope": "PRODUCT-P",
+                  "owner": "requirement-owner"
+                },
+                {
+                  "identity": "CHANGED-REQ",
+                  "revision": "fixture-r1-content-d5a9c16ef9bc0f133b7efc9489ad105d882c341ab1f6f564de2cbdcf6453dc52",
+                  "scope": "PRODUCT-P",
+                  "owner": "requirement-owner"
+                },
                 {
                   "identity": "HUMAN-CHANGE",
                   "revision": "fixture-r1-content-a7ce293ff0779001c9b74d4944fd5f4f8182e982830f2c3a8b01b572aaa0c654",
@@ -73136,7 +73154,7 @@
           "findings": [
             {
               "code": "content_digest_conflict",
-              "pointer": "/input/source_population/atoms/0/sha256",
+              "pointer": "/input/partition/retained/0/source_sha256",
               "atom_ids": [
                 "A1"
               ],
