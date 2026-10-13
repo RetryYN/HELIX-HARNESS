@@ -383,7 +383,8 @@
     "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。",
     "F04独立Contextとの不一致/actual資格欠落4例、candidate path JSON Pointer写像を追加。全副次finding/実owner bindingは未完。",
     "F01の143原例/4Context例と必要集合/pairを具体化。全構造/複合/実資格/codecと凍結は未完。",
-    "F02の113原例/2Context/5Context否定例と境界/意味保存Refactor後再検証を具体化。全構造/複合/実資格/正式codec/凍結は未完。"
+    "F02の113原例/2Context/5Context否定例と境界/意味保存Refactor後再検証を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
+    "H22F-m1対応：未変異REFACTOR Contextとperformed=falseの原NORMAL inputを結合した反例を追加。必要3proof欠落と未成立Integratedを保持、全oracle閉包は未完。"
   ],
   "document_id": "HARNESS-L5-022-STAGE-ACCEPTANCE",
   "layer": "L5",
@@ -940,7 +941,7 @@
         },
         {
           "id": "I3",
-          "rule": "refactor_required falseでは5原proof、trueでは追加3proofを含む8を個別に比較。material欠落/未実行/evidence null又は一意解決不能はmissing、artifact_revisionが変更後targetと異なる場合stale。artifact_identity/requirement_revision/scope/source_id/owner/oracle_revision/pairは独立原契約へ照合してconflictを保持。evidenceの対象/owner/pair/oracle/原観測を別に比較し、名だけのpass/URL/同じstageで不足を埋めない。未要求proofの原資料を消さず成功件数へ加えない。"
+          "rule": "refactor_required falseでは5原proof、trueでは追加3proofを含む8を個別に比較。material欠落/未実行/evidence null又は一意解決不能はmissing、artifact_revisionが変更後targetと異なる場合stale。artifact_identity/requirement_revision/scope/source_id/owner/oracle_revision/pairは独立原契約へ照合してconflictを保持。evidenceの対象/owner/pair/oracle/原観測を別に比較し、名だけのpass/URL/同じstageで不足を埋めない。未要求proofの原資料を消さず成功件数へ加えない。 独立Contextがrefactor_required=trueならinput.performed=falseでも追加3proofを必要集合から落とさず、検査可能な欠落をproof_missingとして保持する。input/Context不一致のunresolved findingを返してもこの必要集合を短絡で削除しない。"
         },
         {
           "id": "I4",

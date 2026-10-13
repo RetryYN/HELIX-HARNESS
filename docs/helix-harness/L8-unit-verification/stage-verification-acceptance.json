@@ -383,7 +383,8 @@
     "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。",
     "F04独立Contextとの不一致/actual資格欠落4例、candidate path JSON Pointer写像を追加。全副次finding/実owner bindingは未完。",
     "F01の143原例/4Context例と必要集合/pairを具体化。全構造/複合/実資格/codecと凍結は未完。",
-    "F02の113原例/2Context/5Context否定例と境界/意味保存Refactor後再検証を具体化。全構造/複合/実資格/正式codec/凍結は未完。"
+    "F02の113原例/2Context/5Context否定例と境界/意味保存Refactor後再検証を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
+    "H22F-m1対応：未変異REFACTOR Contextとperformed=falseの原NORMAL inputを結合した反例を追加。必要3proof欠落と未成立Integratedを保持、全oracle閉包は未完。"
   ],
   "document_id": "HARNESS-L8-022-STAGE-ACCEPTANCE",
   "layer": "L8",
@@ -47958,6 +47959,89 @@
           },
           "oracle_limit": "必須finding subset/未成立outcome/原資料保全。全value/副次findingは未完。合成carrier内actual宣言を実owner根拠へしない。",
           "execution_state": "not_executed"
+        },
+        {
+          "id": "H022-L8-F02-INDEPENDENT-REFACTOR-INPUT-FALSE",
+          "design_ref": "HARNESS-L5-022-F02",
+          "requirement_ref": "HARNESS-L3-022-F02",
+          "input_case_ref": "H022-F02-NORMAL",
+          "input_case_object_sha256": "f2db2985121e718636e5297824c7a0e803faa98bbeac92c40946b882a8033d04",
+          "input_hash_scope": "L8 F02 /cases/0/source_case object wholeをUnicode key順/compact/nonASCII無escape/strict UTF8でcanonical SHA-256。原input bytesはsource_case.independent_source_packetへ無改変で保持。",
+          "context_base_fixture_ref": "H022-F02-CONTEXT-REFACTOR",
+          "context_base_fixture_object_sha256": "d5ed7404db35b32059d6932eef43b0b568e26abfe3c5ecb14a7e43e9019de9ba",
+          "context_mutation": null,
+          "context_packet": {
+            "ref": {
+              "identity": "H022-F02-CONTEXT-REFACTOR",
+              "revision": "fixture-f47edd2b8ece54857544b175fd3f2943b5366d5c2a5006e6e7223556c24d5509",
+              "owner": "independent-synthetic-context-fixture-owner",
+              "scope": "PRODUCT-P"
+            },
+            "raw_utf8": "{\"additional_after_refactor\":[\"meaning_preservation\",\"post_refactor_L8\",\"post_refactor_L9\"],\"before_artifact_revision\":\"ART@r0\",\"boundary_dimensions\":{\"coupling_and_responsibility\":\"adapter_translates_core_decides\",\"data_owner\":\"core\",\"dependency_direction\":\"adapter_to_core\",\"failure_propagation\":\"cancel_does_not_commit\",\"idempotency\":\"one_result\",\"interface\":\"same_command_identity\",\"retry\":\"same_identity\",\"state_owner\":\"core\",\"timeout\":\"pending_not_committed\",\"transaction\":\"commit_once\"},\"evidence_kind\":\"synthetic\",\"expected_material_owners\":{\"L8_reverse\":\"synthetic-L8_reverse-owner\",\"L9_reverse\":\"synthetic-L9_reverse-owner\",\"boundary_result\":\"synthetic-boundary_result-owner\",\"integration_result\":\"synthetic-integration_result-owner\",\"meaning_preservation\":\"synthetic-meaning_preservation-owner\",\"post_refactor_L8\":\"synthetic-post_refactor_L8-owner\",\"post_refactor_L9\":\"synthetic-post_refactor_L9-owner\",\"provisional_basis\":\"synthetic-provisional_basis-owner\"},\"expected_oracle_revisions\":{\"L8_reverse\":\"ORACLE-L8_reverse@r1\",\"L9_reverse\":\"ORACLE-L9_reverse@r1\",\"boundary_result\":\"ORACLE-boundary_result@r1\",\"integration_result\":\"ORACLE-integration_result@r1\",\"meaning_preservation\":\"ORACLE-meaning_preservation@r1\",\"post_refactor_L8\":\"ORACLE-post_refactor_L8@r1\",\"post_refactor_L9\":\"ORACLE-post_refactor_L9@r1\",\"provisional_basis\":\"ORACLE-provisional_basis@r1\"},\"expected_oracles\":{\"L8_reverse\":{\"condition\":\"command_commit_once\",\"design\":\"L5@r1\",\"observed\":\"command_commit_once\"},\"L9_reverse\":{\"design\":\"L4@r1\",\"dimensions\":{\"coupling_and_responsibility\":\"adapter_translates_core_decides\",\"data_owner\":\"core\",\"dependency_direction\":\"adapter_to_core\",\"failure_propagation\":\"cancel_does_not_commit\",\"idempotency\":\"one_result\",\"interface\":\"same_command_identity\",\"retry\":\"same_identity\",\"state_owner\":\"core\",\"timeout\":\"pending_not_committed\",\"transaction\":\"commit_once\"}},\"boundary_result\":{\"cancel_commit_count\":0,\"command\":\"CMD1\",\"commit_count\":1,\"retry_command\":\"CMD1\"},\"integration_result\":{\"given\":\"pending_CMD1\",\"then\":\"one_result_without_duplicate_commit\",\"when\":\"cancel_then_retry_same_CMD1\"},\"meaning_preservation\":{\"after\":\"command_identity_commit_once\",\"before\":\"command_identity_commit_once\"},\"post_refactor_L8\":{\"condition\":\"command_commit_once\",\"design\":\"L5@r1\",\"observed\":\"command_commit_once\"},\"post_refactor_L9\":{\"design\":\"L4@r1\",\"dimensions\":{\"coupling_and_responsibility\":\"adapter_translates_core_decides\",\"data_owner\":\"core\",\"dependency_direction\":\"adapter_to_core\",\"failure_propagation\":\"cancel_does_not_commit\",\"idempotency\":\"one_result\",\"interface\":\"same_command_identity\",\"retry\":\"same_identity\",\"state_owner\":\"core\",\"timeout\":\"pending_not_committed\",\"transaction\":\"commit_once\"},\"integration\":\"one_result_without_duplicate_commit\"},\"provisional_basis\":{\"basis\":\"frozen_pair_prebody_red_minimal_green_refactor_atomic_ci_and_trace_synthetic\",\"stage\":\"Provisional\"}},\"expected_source_ids\":{\"L8_reverse\":\"SOURCE-L8_reverse\",\"L9_reverse\":\"SOURCE-L9_reverse\",\"boundary_result\":\"SOURCE-boundary_result\",\"integration_result\":\"SOURCE-integration_result\",\"meaning_preservation\":\"SOURCE-meaning_preservation\",\"post_refactor_L8\":\"SOURCE-post_refactor_L8\",\"post_refactor_L9\":\"SOURCE-post_refactor_L9\",\"provisional_basis\":\"SOURCE-provisional_basis\"},\"original_owner_qualification\":null,\"pairs\":{\"L8_reverse\":\"L8:L5\",\"L9_reverse\":\"L9:L4\",\"post_refactor_L8\":\"L8:L5\",\"post_refactor_L9\":\"L9:L4\"},\"refactor_required\":true,\"required_without_refactor\":[\"provisional_basis\",\"L8_reverse\",\"L9_reverse\",\"boundary_result\",\"integration_result\"],\"snapshot_revision\":\"FIXTURE-H022-F02-r1\",\"stage\":\"Integrated\",\"target\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "f47edd2b8ece54857544b175fd3f2943b5366d5c2a5006e6e7223556c24d5509",
+            "evidence_kind": "synthetic"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unresolved",
+            "required_findings": [
+              {
+                "code": "context_unresolved",
+                "pointer": "/input/refactor/performed",
+                "proof_id": null,
+                "return_owner": "independent-context-source-owner"
+              },
+              {
+                "code": "proof_missing",
+                "pointer": "/input/materials/meaning_preservation",
+                "proof_id": "meaning_preservation",
+                "return_owner": "synthetic-meaning_preservation-owner"
+              },
+              {
+                "code": "proof_missing",
+                "pointer": "/input/materials/post_refactor_L8",
+                "proof_id": "post_refactor_L8",
+                "return_owner": "synthetic-post_refactor_L8-owner"
+              },
+              {
+                "code": "proof_missing",
+                "pointer": "/input/materials/post_refactor_L9",
+                "proof_id": "post_refactor_L9",
+                "return_owner": "synthetic-post_refactor_L9-owner"
+              }
+            ],
+            "required_proof_ids_include": [
+              "meaning_preservation",
+              "post_refactor_L8",
+              "post_refactor_L9"
+            ],
+            "required_value_fields": {
+              "proof_results": {
+                "meaning_preservation": "missing",
+                "post_refactor_L8": "missing",
+                "post_refactor_L9": "missing"
+              },
+              "unresolved_proofs_include": [
+                "meaning_preservation",
+                "post_refactor_L8",
+                "post_refactor_L9"
+              ],
+              "refactor_reverification_required": true,
+              "integrated_candidate": "not_established",
+              "provisional_candidate": "supported_synthetic"
+            },
+            "candidate_disposition": "not_submitted",
+            "retained_input_unmodified": true,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "actual_effects": {
+              "stage_promoted": false,
+              "CI_executed": false,
+              "refactor_executed": false,
+              "accepted": false
+            }
+          },
+          "oracle_limit": "未変異の独立REFACTOR ContextとNORMAL inputを直接結合。required_value_fieldsは部分制約であり、unresolved_proofs_includeは集合包含oracle、Resultの実fieldを新設しない。全副次finding/全valueは未完。原inputのfalse/before=afterを追加3義務免除へしない。",
+          "execution_state": "not_executed"
         }
       ],
       "context_hash_scope": "context_base_fixture_object_sha256は参照fixture object wholeをUnicode key順/compact/nonASCII無escape/strict UTF8でcanonical SHA-256。context_packet.sha256はraw_utf8原bytesで別。",
@@ -47965,7 +48049,7 @@
         "proof全構造/複合/全finding/同条件別原scope/自己整合する適用条件偽装と必要集合削減/不変性/順序/副作用observer",
         "正式proof schema/codec/実owner/独立適用条件/実原観測と対L6L7/test-oracle凍結"
       ],
-      "coverage_limit": "113原例+5Context否定例。実Refactor/実再検証/実Integrated/実CI/全022閉包は未成立。"
+      "coverage_limit": "113原例+6Context否定例。実Refactor/実再検証/実Integrated/実CI/全022閉包は未成立。"
     }
   ],
   "completion": "部分詳細と先行test設計。実Red/Green/Refactor/受入は未実行。"
