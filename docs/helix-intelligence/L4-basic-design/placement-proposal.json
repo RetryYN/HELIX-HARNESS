@@ -1,0 +1,282 @@
+{
+  "parent": "HELIXINTELLIGENCE-L2-010",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2a",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+    "boundary": "ticket別placement proposalの意味契約。実assignment/dispatch/authority/全INT能力/固定provider/順位式は生成しない。比較入力の選択閉包と066代行受領は別契約へ保持する。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-intelligence-placement-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9d46472148d437c25b84c08a10cf53aae17817f233222bbcf2a69c4de0f16a9f"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "a3123757f7f057f787ce8d1e08437512278f892f974652d5e5dace245e777231"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d7ce3514fd0dd3ba3bd5545fb97075425d2a8abb3156a107bfaf6e7d56db2dbf"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9d27bf4b9ebb6783e3da2fb5c20667d957d26a49f1861b5d1ae3af578e811dba"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "07468dcc9d059396fdf7ca060910bda77cc8e67cb1a44861f5483274f20c13ff"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "622072ec5eae8b73395091638034e7d76b35c916f4b0799c2ff37a4ec57e649e"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "161426bd23eba08f84a17072b046fe567e8acdd4145db4d795998718201f4132"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md",
+      "read_lines": [
+        15,
+        21
+      ],
+      "quote": "## 3L-BR-010 作成・検収・統合能力を別々に拡張する\n\nCodex worker、Cursor worker、Claude reviewer、CI、Merge Trainを別々のcapacityとして管理し、下流の実処理能力に応じて安全に並列度を拡張する。登録可能なpool上限を常時active WIPと解釈せず、速さを未検収PR数ではなくaccepted throughputとtime-to-acceptedで評価する。\n\n初期運用ではCursorを1件から開始して2件、3件へ段階拡張する。成立後の定常目標はCodex worker 3件、Cursor worker 3件、Claude reviewer 2件とする。Codex／Cursorは実測capacity admission成立時だけ最大5件までburstでき、Claude reviewerの追加burstは独立review待ちが実ボトルネックである場合だけ認める。\n\n詳細要件と受入条件は同一candidate familyへ束縛する。本候補単独で現行WIP、8-slot能力上限、provider課金、runtime dispatch権限を変更しない。",
+      "file_sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba",
+      "selected_lines_sha256": "5bf82315cae97653c34aec62cd177f8ff64127e78514b8a616b3a0ae69232b6e",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-11E8FE0479751F02A4A3",
+        "disposition": "unresolved",
+        "source_sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
+      "change": "旧固定provider/pool/WIP数/配車表/runtimeを移植せず、採択010のLABO水準→INT提案→OS指定へ再導出する。",
+      "reason": "9/26責務分離と9/28採択、10/12限定承認のtask/source/owner境界を保持する。旧candidateの採択は生成しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "read_lines": [
+        615,
+        616
+      ],
+      "quote": "**RLO-FR-031**\nAI routerは候補提案のみとし、control planeのdispatch authorityを直接持ってはならない。",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_lines_sha256": "c5b6772738eed1b61f46a7037e0f2f53a40b8ab410ad4fd2ad0ecfde487c159b",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "disposition": "unresolved",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
+      "change": "旧固定provider/pool/WIP数/配車表/runtimeを移植せず、採択010のLABO水準→INT提案→OS指定へ再導出する。",
+      "reason": "9/26責務分離と9/28採択、10/12限定承認のtask/source/owner境界を保持する。旧candidateの採択は生成しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "read_lines": [
+        627,
+        630
+      ],
+      "quote": "**RLO-FR-034**\nbench適性はFE実装／BE実装／設計の軸で分離して記録し、片方の適性を他方へ\n流用してはならない。適性記録はprovider名ではなくモデル世代単位で保持し、\nモデル変更検知時は再benchまで旧適性を新モデルへ引き継いではならない。",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_lines_sha256": "6f281fdf93e8a097c8dbf0f014e266136bd3a3302d0aae8f924c832ff4f3f0ac",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "disposition": "unresolved",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
+      "change": "旧固定provider/pool/WIP数/配車表/runtimeを移植せず、採択010のLABO水準→INT提案→OS指定へ再導出する。",
+      "reason": "9/26責務分離と9/28採択、10/12限定承認のtask/source/owner境界を保持する。旧candidateの採択は生成しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "read_lines": [
+        663,
+        666
+      ],
+      "quote": "#### RLO-FR-040 HELIX-Bench由来のeffort policy\n\nreasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は\n`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_lines_sha256": "f4fb8e0c16c2c151bdb5a3bae7931d563537f9311d6a8044a9cab07f317f9395",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "disposition": "unresolved",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
+      "change": "旧固定provider/pool/WIP数/配車表/runtimeを移植せず、採択010のLABO水準→INT提案→OS指定へ再導出する。",
+      "reason": "9/26責務分離と9/28採択、10/12限定承認のtask/source/owner境界を保持する。旧candidateの採択は生成しない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "task/Worker実績/Bench/quality-priority原判断と入力契約のowner-qualified exact bindingは未成立。",
+    "正式schema/codec/適合条件・Evidence・decision resolver/比較選択閉包/並行revision/全組合せ/L5L8/oracle凍結は未完。",
+    "実装前Red→Green→Refactor→再検証、実配置/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXINTELLIGENCE-L4-010",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "task_performance_scope_reader",
+      "candidate_fit_reason_reader",
+      "bench_applicability_reader",
+      "quality_priority_comparison_reader",
+      "proposal_assignment_boundary_reader"
+    ],
+    "flow": [
+      "OS task必要条件＋Worker実績/版＋LABO Bench→範囲付き適合/除外/未評価",
+      "有効既決quality-priority＋選択比較入力→理由/除外/不確実性",
+      "INT proposal→OS受領/assignmentとSEC permissionの別状態"
+    ],
+    "python_boundary": "予定するPython接続はsource-bound材料から配置候補の根拠・不足を返す。実Bench/順位式/dispatch/assignment/認可を本Draftで実装しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXINTELLIGENCE-L4-010-F01",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-010-F01",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-010-F01",
+      "approved_requirement": {
+        "id": "HELIXINTELLIGENCE-L3-010-F01",
+        "parent": "HELIXINTELLIGENCE-L2-010",
+        "title": "taskと実績の入力一致",
+        "obligation": "ticket/task identity・revision/scopeとtask type/domain/complexity/context/tool requirement、Worker capability/version、success/failure/rework/latency/cost/reliabilityの実績または不足を同対象へ照合する。ない値を推測しない。",
+        "oracle_ref": "HELIXINTELLIGENCE-L10-010-F01"
+      },
+      "content_rules": [
+        "OS ticket/task identity・revision/scopeとtype/domain/complexity/context/tool requirements、Worker capability/version、success/failure/rework/latency/cost/reliabilityの原実績を同対象で照合する。",
+        "欠測を0や推測へ置換しない。task不足はOS、実績/Bench不足はLABOへ戻しproposal未確定を保持する。"
+      ],
+      "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
+    },
+    {
+      "id": "HELIXINTELLIGENCE-L4-010-F02",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-010-F02",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-010-F02",
+      "approved_requirement": {
+        "id": "HELIXINTELLIGENCE-L3-010-F02",
+        "parent": "HELIXINTELLIGENCE-L2-010",
+        "title": "条件適合と配置案の根拠",
+        "obligation": "task×Worker capability×observed performanceとLABOの作業種別/model class水準・根拠の適用範囲からticket別proposalを作る。理由と候補適合が同scopeの実績/水準に合うことを照合し、価格/model名/benchmark単独で決めない。",
+        "oracle_ref": "HELIXINTELLIGENCE-L10-010-F02"
+      },
+      "content_rules": [
+        "task条件と候補Worker capability、同task-class/model-classの観測実績/Bench scopeを根拠に適合と除外を説明する。",
+        "安価でもdomain/tool不適合なら除外する。価格/model名/benchmarkだけの順位やfield存在だけの成立を拒否し、理由と根拠の内容不一致はINT proposal ownerへ返す。"
+      ],
+      "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
+    },
+    {
+      "id": "HELIXINTELLIGENCE-L4-010-F03",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-010-F03",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-010-F03",
+      "approved_requirement": {
+        "id": "HELIXINTELLIGENCE-L3-010-F03",
+        "parent": "HELIXINTELLIGENCE-L2-010",
+        "title": "未評価と未見scope",
+        "obligation": "Bench水準/Worker-modelが未評価なら候補も未評価を保つ。未公開task/profile組合せでも適用scope内の材料だけを使い、範囲外/新契約版/互換不明/証拠不足をqualifiedへ補完しない。",
+        "oracle_ref": "HELIXINTELLIGENCE-L10-010-F03"
+      },
+      "content_rules": [
+        "Bench/Worker-model未評価は候補も未評価。未公開task/profileでもscope内の材料だけを使い、未見契約版/互換不明/別scopeの実績をqualifiedへ補完しない。",
+        "モデル世代更新に旧適性を自動継承しない。未知task成功保証を出さず、LABO/evidence/contract ownerへ不足を返す。"
+      ],
+      "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
+    },
+    {
+      "id": "HELIXINTELLIGENCE-L4-010-F04",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-010-F04",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-010-F04",
+      "approved_requirement": {
+        "id": "HELIXINTELLIGENCE-L3-010-F04",
+        "parent": "HELIXINTELLIGENCE-L2-010",
+        "title": "品質・優先判断と比較材料",
+        "obligation": "配置に適用するscope/revision有効なquality gate・priority/toleranceを既決なら再利用し、理由/除外/不確実性/未評価へ結ぶ。比較材料を選択したときは067入力契約と034/LABO送受領の必要閉包を別に照合する。必要品質未達やunknownを隠さず、総費用を主張するときはhuman interventionの欠測/負担を除外しない。値や順位式を新設しない。",
+        "oracle_ref": "HELIXINTELLIGENCE-L10-010-F04"
+      },
+      "content_rules": [
+        "scope/revision有効な既決quality gate・priority/toleranceを再利用する。優先値/順位式を発明せず、未達/unknown品質を隠さない。",
+        "比較入力を選んだ場合だけ067入力条件・034/LABO送受領の契約/receipt/scope/互換参照を別に照合する。未選択を不足扱いせず、選択不明は保留する。",
+        "総費用を主張するならhuman intervention欠測/負担を除外しない。既決が有効な範囲で毎run人確認を追加せず、未決/失効/範囲外のみ判断ownerへ戻す。"
+      ],
+      "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
+    },
+    {
+      "id": "HELIXINTELLIGENCE-L4-010-N01",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-010-N01",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-010-N01",
+      "approved_requirement": {
+        "id": "HELIXINTELLIGENCE-L3-010-N01",
+        "parent": "HELIXINTELLIGENCE-L2-010",
+        "title": "内容oracleと適用限界",
+        "obligation": "正常/誤り/未公開task-profile組合せに対し、適合条件・実績/Bench適用範囲・理由・除外・未評価を内容oracleへ照合する。fixture green/field一覧から実環境一般の適格性、最適な唯一順位、全INT能力/PO Acceptedを生成しない。",
+        "oracle_ref": "HELIXINTELLIGENCE-L10-010-N01"
+      },
+      "content_rules": [
+        "正常/誤り/未公開task-profileの内容を適合条件・実績/Bench scope・理由・除外・未評価へ照合する。",
+        "fixture green/field一覧を実環境全般の資格、唯一最適順位、全能力、PO Acceptedへ外挿しない。oracle不在を成立扱いしない。"
+      ],
+      "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
+    },
+    {
+      "id": "HELIXINTELLIGENCE-L4-010-B01",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-010-B01",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-010-B01",
+      "approved_requirement": {
+        "id": "HELIXINTELLIGENCE-L3-010-B01",
+        "parent": "HELIXINTELLIGENCE-L2-010",
+        "title": "配置候補と実割当の分離",
+        "obligation": "INTELLIGENCEはproposalを出し実割当/進行/実行許可はOS/SECに保持する。Bench評価はLABO、Workerは許可実行主体とし、案やscoreからscope/branch/merge authorityを変更しない。",
+        "oracle_ref": "HELIXINTELLIGENCE-L10-010-B01"
+      },
+      "content_rules": [
+        "LABO水準/INT提案/OS受領/OS assignment/SEC permissionを別ownerと状態へ保持する。Workerは許可された実行主体であり、候補から自己dispatchしない。",
+        "Bench scoreやproposalからscope/branch/merge authorityを変更しない。受領・案の内容成立を割当成功や実行許可へ変換しない。"
+      ],
+      "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
+    }
+  ]
+}
