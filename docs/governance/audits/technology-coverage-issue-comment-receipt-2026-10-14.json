@@ -1,0 +1,15 @@
+{
+  "evidence_kind": "issue_comment_projection_read_after",
+  "authority_effect": "none",
+  "ticket_id": "FT-TECH-RESEARCH-COVERAGE-001",
+  "source_commit": "291b8ff614119b2320cb25b2f7edb08c42eb938c",
+  "source_path": "docs/governance/feature-tickets/FT-TECH-RESEARCH-COVERAGE-001.md",
+  "source_sha256": "e6c4afa5b0690093210e5a7e87477627c7789ee558229a234f1c3d18e0268228",
+  "comment_body_sha256": "2b3a81ac7e998dc1cd7107430ed8e3292bd307edfc18a584a65f306ab301b7e3",
+  "issue_number": 3051,
+  "comment_id": 6152358223,
+  "comment_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3051#issuecomment-6152358223",
+  "observed_body_sha256": "2b3a81ac7e998dc1cd7107430ed8e3292bd307edfc18a584a65f306ab301b7e3",
+  "read_after_at_utc": "2026-10-13T18:26:53.037328+00:00",
+  "completion_effect": "none"
+}
