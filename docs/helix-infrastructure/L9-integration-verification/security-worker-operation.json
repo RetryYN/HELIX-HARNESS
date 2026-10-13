@@ -5337,13 +5337,13 @@
             "retained_sync_state": "not_applicable",
             "failure_reasons": [
               {
-                "field": "AFTER-UNKNOWN",
-                "result": "not_closed",
-                "return_owner": "resource/recovery-owner"
+                "field": "after",
+                "result": "unobserved",
+                "return_owner": "INFRA-resource-source"
               }
             ],
             "return_owners": [
-              "resource/recovery-owner"
+              "INFRA-resource-source"
             ],
             "rejected_claims": [],
             "actual_effects": {
@@ -5476,13 +5476,13 @@
             "retained_sync_state": "not_applicable",
             "failure_reasons": [
               {
-                "field": "PARTIAL",
-                "result": "not_closed",
-                "return_owner": "resource/recovery-owner"
+                "field": "result.state",
+                "result": "partial",
+                "return_owner": "recovery-owner"
               }
             ],
             "return_owners": [
-              "resource/recovery-owner"
+              "recovery-owner"
             ],
             "rejected_claims": [],
             "actual_effects": {
@@ -5615,13 +5615,13 @@
             "retained_sync_state": "not_applicable",
             "failure_reasons": [
               {
-                "field": "STOPPED",
-                "result": "not_closed",
-                "return_owner": "resource/recovery-owner"
+                "field": "result.state",
+                "result": "stopped",
+                "return_owner": "recovery-owner"
               }
             ],
             "return_owners": [
-              "resource/recovery-owner"
+              "recovery-owner"
             ],
             "rejected_claims": [],
             "actual_effects": {
@@ -5754,13 +5754,13 @@
             "retained_sync_state": "not_applicable",
             "failure_reasons": [
               {
-                "field": "RESULT-TARGET-FOREIGN",
-                "result": "not_closed",
-                "return_owner": "resource/recovery-owner"
+                "field": "result.tuple.target",
+                "result": "foreign",
+                "return_owner": "INFRA-resource-source"
               }
             ],
             "return_owners": [
-              "resource/recovery-owner"
+              "INFRA-resource-source"
             ],
             "rejected_claims": [],
             "actual_effects": {
@@ -7667,13 +7667,13 @@
             "retained_sync_state": "pending_after_recovery",
             "failure_reasons": [
               {
-                "field": "AUTHORITY-UNKNOWN",
-                "result": "unqualified",
-                "return_owner": "independent-path/SEC/OS-owner"
+                "field": "authority",
+                "result": "missing",
+                "return_owner": "HELIX-SECURITY"
               }
             ],
             "return_owners": [
-              "independent-path/SEC/OS-owner"
+              "HELIX-SECURITY"
             ],
             "rejected_claims": [],
             "actual_effects": {
@@ -7785,13 +7785,13 @@
             "retained_sync_state": "pending_after_recovery",
             "failure_reasons": [
               {
-                "field": "OS-DEPENDENCY",
-                "result": "unqualified",
-                "return_owner": "independent-path/SEC/OS-owner"
+                "field": "independent.requires_stopped_os",
+                "result": "requires_stopped_os",
+                "return_owner": "independent-path-owner"
               }
             ],
             "return_owners": [
-              "independent-path/SEC/OS-owner"
+              "independent-path-owner"
             ],
             "rejected_claims": [],
             "actual_effects": {
@@ -7898,13 +7898,13 @@
             "retained_sync_state": "pending_after_recovery",
             "failure_reasons": [
               {
-                "field": "WORKER-BYPASS",
-                "result": "unqualified",
-                "return_owner": "independent-path/SEC/OS-owner"
+                "field": "worker",
+                "result": "missing",
+                "return_owner": "OS-Worker-contract-owner"
               }
             ],
             "return_owners": [
-              "independent-path/SEC/OS-owner"
+              "OS-Worker-contract-owner"
             ],
             "rejected_claims": [],
             "actual_effects": {
