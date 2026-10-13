@@ -1,0 +1,407 @@
+{
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "boundary": "007のF01–F10/N01、実行前の束縛と九制御の受渡し/実適用/観測/回収の内容比較。実enforcer/Worker/host/認可の起動・変更なし。"
+  },
+  "source_pin_limit": "全11要求のwhole objectを委任承認revisionへ照合。全文pinだけで全意味閉包/全実適用を主張しない。",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "parent": "HELIXSECURITY-L2-007",
+  "source_main": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "902fc3429aaaa01523774be4bad30a1e6c133a47",
+      "sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "file_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "selected_line_quotes": [
+        {
+          "line": 27,
+          "text": "接続する。current guardのgreenは、未実装のphysical identity、provenance、sink、sandbox、",
+          "utf8_sha256": "d3b05dcbb07ebb54610f0db9b82bb2d147ccf9a7963c40e8ed768572ee02a000"
+        },
+        {
+          "line": 28,
+          "text": "runtime coverageの失敗を相殺しない。",
+          "utf8_sha256": "3ea0eda97d53b0b763144defcd1a2dc88a639bcb2598da3c287488ab1609f8ea"
+        },
+        {
+          "line": 95,
+          "text": "credentialなし・network deny・repo外filesystemなしのsandboxへ送るか、実行を拒否する。",
+          "utf8_sha256": "3300ca609894aa3de3714390b11a2ddad912df86e1efe986ac721fbaca221ce2"
+        },
+        {
+          "line": 135,
+          "text": "Claude Code hook、Codex CLI/IDE hook、Cursor、hosted tool、worker sandboxは別surfaceとして",
+          "utf8_sha256": "46b8b35381cc7efd923f1043939afa1c084c15919c0f9dd714c3f630002a353d"
+        },
+        {
+          "line": 136,
+          "text": "coverage matrixへ登録する。hook非強制surfaceは「hookがある」と扱わず、capability brokerまたは",
+          "utf8_sha256": "e1f71222e5e13ba2ee230ffcad2a8e9c0ce5f7cf752b63c9b0ba27ee94bb02c2"
+        },
+        {
+          "line": 137,
+          "text": "sandboxを唯一の実行境界とする。matcher drift、hook trust drift、coverage unknown、sandbox",
+          "utf8_sha256": "b5065277c2bd71b3c58b9ef8970db691db030aa9bc4299968e0ea6dc73de7294"
+        },
+        {
+          "line": 138,
+          "text": "unavailableはfail-closeする。",
+          "utf8_sha256": "9e3b748346b00c35f69d902f852c9dd2c21b92ff11de04caf9193301f59fd092"
+        },
+        {
+          "line": 140,
+          "text": "canonical authorityの失敗をlegacy guardや別scannerのgreenで相殺しない。admissionは次のAND条件を",
+          "utf8_sha256": "1c9510918593ca9bc0a6ff8057c822aa7d35c6a54516a49337c1068446e1312d"
+        },
+        {
+          "line": 141,
+          "text": "満たす場合だけ後続実行へ進む。",
+          "utf8_sha256": "7a7f70ea84b8f114c5101dbb3514a62d33a2ea72a6602b6b207b650db83d8c64"
+        },
+        {
+          "line": 149,
+          "text": "AND runtime surface covered",
+          "utf8_sha256": "bdeb6f0fc7e303cfb6de98706102e00f304b279c849f4aa9d866703960a6717e"
+        },
+        {
+          "line": 150,
+          "text": "AND postcondition / rollback / expiry valid",
+          "utf8_sha256": "9590fcd58c02479a0c62d39975484e722c3a0f48544828846477d7ebd72adcf2"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "未対応/unknownをhostへfallbackせず、別guard成功で不足を相殺しない。postcondition/部分rollbackの状態と値なし回収を保持。",
+      "change": "旧runtime/hook/CLI/テスト実行・旧Runner/Sandbox主体・包括risk enum・追加承認手順を移植しない。採択九制御とOS assignment/SEC policy/INFRA実環境へ再導出。",
+      "reason": "declared設定・自己申告・synthetic比較を実enforcementへ昇格せず、各制御と実行phase/同scopeを個別に追う。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "file_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "selected_line_quotes": [
+        {
+          "line": 25,
+          "text": "| `SEC-AC-CAP-006` | `SEC-FR-CAP-006` | Claude、Codex CLI/IDE、Cursor、hosted tool、workerのcovered/unsupported/trust drift/sandbox unavailable | unsupported、drift、sandbox unavailableはhost実行へfallbackせずfail-closeする |",
+          "utf8_sha256": "36887d174c549dd43ae942efc29d2989e605bcf6dc011864758a2df35c4fc6c6"
+        },
+        {
+          "line": 26,
+          "text": "| `SEC-AC-CAP-007` | `SEC-FR-CAP-007` | canonical failure、legacy guard green、別scanner green、値を含むraw error | AND admissionを維持し、legacy/別scannerのgreenで相殺せずredacted receiptだけを残す |",
+          "utf8_sha256": "b604af99e90692849098b2ddeb65364a0f2fc687944fd9e478338411f4141105"
+        },
+        {
+          "line": 28,
+          "text": "| `SEC-AC-CAP-009` | `SEC-FR-CAP-005` | postcondition成功、失敗、部分成功、rollback unavailable | 成功主張はpostcondition receiptがある場合だけ。部分成功はRecoveryへ送る |",
+          "utf8_sha256": "a8c18f5a03b37e7be74f390f6ef08fd085c44604376a5acdc397e5a219c61b23"
+        },
+        {
+          "line": 29,
+          "text": "| `SEC-AC-CAP-010` | `SEC-FR-CAP-007` | command、token、PII、absolute pathを含む失敗入力 | output、DB、PR、memory、CI logにsecret等が残らない |",
+          "utf8_sha256": "cfedf4904e919bec058d8497bbf85d189d662823b535cfa52b91159661ed4e2e"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "未対応/unknownをhostへfallbackせず、別guard成功で不足を相殺しない。postcondition/部分rollbackの状態と値なし回収を保持。",
+      "change": "旧runtime/hook/CLI/テスト実行・旧Runner/Sandbox主体・包括risk enum・追加承認手順を移植しない。採択九制御とOS assignment/SEC policy/INFRA実環境へ再導出。",
+      "reason": "declared設定・自己申告・synthetic比較を実enforcementへ昇格せず、各制御と実行phase/同scopeを個別に追う。"
+    }
+  ],
+  "remaining": [
+    "OS assignment/SEC008 authority/policy/003005006/INFRA024のowner-qualified sourceと実enforcerの正式binding、九制御のtyped descriptor/receipt/観測者/回収consumerは未成立。",
+    "L5/L8の全shape・pathの物理identity/symlink/TOCTOU・tree codec/元raw evidence・CPU/メモリ/時刻単位・数量比較・途中phase/継続/未知enum・正式diagnostic owner routing・全閉包を継続。",
+    "本対照は固定metadataの内容比較。readonlyの実write拒否/前後不変、実network/store遮断、環境/timeout/resource適用、実diff/復旧/回収・未見環境での実再評価は未成立。",
+    "oracle凍結→実装前Red→最小Green→Refactor再検証、実L9/L10/PO L11、全92親430対と最終独立二重監査は未成立。90s/cpu1/256MiBはfixture由来で共通上限を追加しない。"
+  ],
+  "document_id": "HELIXSECURITY-L4-007",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "execution_binding_comparer",
+      "write_path_comparer",
+      "network_comparer",
+      "credential_comparer",
+      "environment_comparer",
+      "timeout_comparer",
+      "resource_comparer",
+      "diff_inspection_comparer",
+      "rollback_comparer",
+      "result_collection_comparer",
+      "all_control_phase_composer"
+    ],
+    "flow": [
+      "SEC policy/authority + OS assignment + INFRA/Worker実環境 → 同revision/scope内容比較",
+      "九制御のhandoff/applied/observed/collectedは別記録。実enforcerはWorker実環境、比較ownerはSEC接続。",
+      "selected phase → 各制御対応/違反/未観測を保持、postだけ全九制御観測の比較。"
+    ],
+    "phase_boundary": "preはbindingとhandoff/appliedの設定適用素材だけ、runは先行六制御の観測、postは全九制御の観測と回収。rollback/result等の将来結果をpreへ要求せず、未評価の将来観測から全適用も生成しない。",
+    "pure_boundary": "metadata比較。実起動/制約適用/許可/環境変数値/network/store/復旧/回収なし。",
+    "authority_boundary": "既決authorityの内容素材を照合するだけ。Worker自己拡張/host fallback拒否、毎回human gate/共通数値limit/旧actor復活なし。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L4-007-F01",
+      "requirement_ref": "HELIXSECURITY-L3-007-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F01",
+      "oracle_ref": "HELIXSECURITY-L9-007-F01",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "6853e9b0a04e0220ebd9e72840197042aa427a598c081cc1f544ea869cd40279"
+      },
+      "component": "execution_binding_comparer",
+      "input_meaning": "SECURITYのscope/authority/policy、OS assignment、Worker実環境capabilityを同revision/scopeへ結び、制約ごとの受渡し/実適用/観測/回収を照合する。enforcerは実環境で、SECURITYやWorkerの自己判断で制約を広げない。",
+      "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+      "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L4-007-F02",
+      "requirement_ref": "HELIXSECURITY-L3-007-F02",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F02",
+      "oracle_ref": "HELIXSECURITY-L9-007-F02",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "1f8bf2861dab406265140589ec50e164bd860c57df63671f656faed359778150"
+      },
+      "component": "write_path_comparer",
+      "input_meaning": "許可write pathのexact setに実diffを照合する。read-onlyでもwrite禁止の強制と対象scopeの前後状態不変を観測する。",
+      "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+      "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L4-007-F03",
+      "requirement_ref": "HELIXSECURITY-L3-007-F03",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F03",
+      "oracle_ref": "HELIXSECURITY-L9-007-F03",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "6c2b6494d5eb1cf93b94939a3353ec430c1de74878200e01d630bbad313103d1"
+      },
+      "component": "network_comparer",
+      "input_meaning": "network制限を実環境へ適用し、同assignmentの許可/拒否と実接続状態を照合する。",
+      "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+      "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L4-007-F04",
+      "requirement_ref": "HELIXSECURITY-L3-007-F04",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F04",
+      "oracle_ref": "HELIXSECURITY-L9-007-F04",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "3e5ca2ae75bd9a9bbe3ab38ee824a86a435625cf07e81f8df027c8392319c788"
+      },
+      "component": "credential_comparer",
+      "input_meaning": "credential遮断を適用し、provider/storeへのアクセスを拒否する。",
+      "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+      "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L4-007-F05",
+      "requirement_ref": "HELIXSECURITY-L3-007-F05",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F05",
+      "oracle_ref": "HELIXSECURITY-L9-007-F05",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "2df61b64fa60ec1c47775e18545f5e7f2822ac7118633a542c14ee23f3245324"
+      },
+      "component": "environment_comparer",
+      "input_meaning": "許可されたenvironment variableだけを渡し、host全体やcredential-bearing変数を継承しない。",
+      "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+      "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L4-007-F06",
+      "requirement_ref": "HELIXSECURITY-L3-007-F06",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F06",
+      "oracle_ref": "HELIXSECURITY-L9-007-F06",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "942d27f4c2a13063b7b4f49799c7ec459a39a873d8c49b4d2ccf770114a4ddd5"
+      },
+      "component": "timeout_comparer",
+      "input_meaning": "入力descriptorの期限を実適用し、期限内terminal resultと期限到達/中断を分ける。",
+      "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+      "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L4-007-F07",
+      "requirement_ref": "HELIXSECURITY-L3-007-F07",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F07",
+      "oracle_ref": "HELIXSECURITY-L9-007-F07",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "80592c5d10f04f01a2b55a9874adc75ed87e669b153622433cdab49bb3a7ed57"
+      },
+      "component": "resource_comparer",
+      "input_meaning": "入力resource descriptorの制約を実環境へ渡して適用/到達状態を観測する。",
+      "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+      "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L4-007-F08",
+      "requirement_ref": "HELIXSECURITY-L3-007-F08",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F08",
+      "oracle_ref": "HELIXSECURITY-L9-007-F08",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "1e00eb4403685f89f0a1dc3a80a3d717806141ac35ef7cb7d2c987df597082d4"
+      },
+      "component": "diff_inspection_comparer",
+      "input_meaning": "before tree digestとexact allowed diffを固定し、実post-stateから差分を検査する。",
+      "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+      "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L4-007-F09",
+      "requirement_ref": "HELIXSECURITY-L3-007-F09",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F09",
+      "oracle_ref": "HELIXSECURITY-L9-007-F09",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "5ce58be9c16c762f43498f5ee5360cd2edccff2fe1b4141091962d5e93f65e8e"
+      },
+      "component": "rollback_comparer",
+      "input_meaning": "適用対象の復旧後状態をbefore digestへ照合し、部分復元/復旧不能/未完を分ける。",
+      "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+      "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L4-007-F10",
+      "requirement_ref": "HELIXSECURITY-L3-007-F10",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F10",
+      "oracle_ref": "HELIXSECURITY-L9-007-F10",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "b9127fd7ed78b780f8876b0fa7e1f03e9b418c17d59ac042aa7f88a8c2ca0dc8"
+      },
+      "component": "result_collection_comparer",
+      "input_meaning": "各caseのassignment/policy/source revision/status・制約適用/diff/rollback状態を元caseへ結んで回収する。",
+      "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。 原runtime terminalとcase terminalを分け、timeout/resource停止・失敗からcase successを作らない。",
+      "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L4-007-N01",
+      "requirement_ref": "HELIXSECURITY-L3-007-N01",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-N01",
+      "oracle_ref": "HELIXSECURITY-L9-007-N01",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/nfr-grade.json",
+        "object_canonical_sha256": "61a2fb980cdc9564433cf8df0f17d30f2675931b18f6c1cb5b3a5485d71256a9"
+      },
+      "component": "all_control_phase_composer",
+      "input_meaning": "同scopeで実行前binding・実行時九制御・実行後diff/結果/復旧を照合し、各制御を一つずつ欠落させる。未見assignment/環境で再評価し、未観測を実適用や安全とみなさない。",
+      "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+      "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "diagnostic_contract": {
+    "return_owner": "worker-control-owner",
+    "role_note": "007の比較責務ラベル。policy不足はSEC、実enforcementはINFRA/Worker、assignment/回収はOSの正式ownerへL5で振り分ける。",
+    "pointer_base": "given.input root、原metadata実在位置。複合原因は別findingを保持。 他制御から参照するsource fieldがnull/unknownなら、その原field（after_tree/observed/data.state/data.terminal_status）のpointerを返す。制御記録自体がnullの場合だけ /controls/<name> を返す。依存型ごとの例外は設けない。",
+    "sort": "code/pointer/return_owner scalar順のexact三field重複だけ除去。"
+  }
+}
