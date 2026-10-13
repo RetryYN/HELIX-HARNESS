@@ -2185,7 +2185,7 @@
             "source_binding": "matched",
             "classification_binding": "unknown",
             "issues": [
-              "classification_declaration_missing"
+              "classification_unresolved"
             ],
             "claim_results": {},
             "owner_return_candidates": [
@@ -2700,7 +2700,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_available",
-            "issues": []
+            "issues": [
+              "route_missing"
+            ]
           },
           "basis": "明示owner経路不在をACK/存在で補完せず当該sink ownerへ返す。",
           "execution_state": "not_executed",
@@ -2768,7 +2770,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_evaluated",
-            "issues": []
+            "issues": [
+              "route_project_mismatch"
+            ]
           },
           "basis": "別project owner経路をPへ暗黙適用しない。",
           "execution_state": "not_executed",
@@ -2902,7 +2906,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "matched",
-            "issues": []
+            "issues": [
+              "result_route_revision_mismatch"
+            ]
           },
           "basis": "異経路revisionの元結果で選択経路の昇格を成立させない。",
           "execution_state": "not_executed",
@@ -3240,7 +3246,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_available",
-            "issues": []
+            "issues": [
+              "route_missing"
+            ]
           },
           "basis": "明示owner経路不在をACK/存在で補完せず当該sink ownerへ返す。",
           "execution_state": "not_executed",
@@ -3308,7 +3316,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_evaluated",
-            "issues": []
+            "issues": [
+              "route_project_mismatch"
+            ]
           },
           "basis": "別project owner経路をPへ暗黙適用しない。",
           "execution_state": "not_executed",
@@ -3442,7 +3452,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "matched",
-            "issues": []
+            "issues": [
+              "result_route_revision_mismatch"
+            ]
           },
           "basis": "異経路revisionの元結果で選択経路の昇格を成立させない。",
           "execution_state": "not_executed",
@@ -3780,7 +3792,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_available",
-            "issues": []
+            "issues": [
+              "route_missing"
+            ]
           },
           "basis": "明示owner経路不在をACK/存在で補完せず当該sink ownerへ返す。",
           "execution_state": "not_executed",
@@ -3848,7 +3862,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_evaluated",
-            "issues": []
+            "issues": [
+              "route_project_mismatch"
+            ]
           },
           "basis": "別project owner経路をPへ暗黙適用しない。",
           "execution_state": "not_executed",
@@ -3982,7 +3998,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "matched",
-            "issues": []
+            "issues": [
+              "result_route_revision_mismatch"
+            ]
           },
           "basis": "異経路revisionの元結果で選択経路の昇格を成立させない。",
           "execution_state": "not_executed",
@@ -4320,7 +4338,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_available",
-            "issues": []
+            "issues": [
+              "route_missing"
+            ]
           },
           "basis": "明示owner経路不在をACK/存在で補完せず当該sink ownerへ返す。",
           "execution_state": "not_executed",
@@ -4388,7 +4408,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_evaluated",
-            "issues": []
+            "issues": [
+              "route_project_mismatch"
+            ]
           },
           "basis": "別project owner経路をPへ暗黙適用しない。",
           "execution_state": "not_executed",
@@ -4522,7 +4544,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "matched",
-            "issues": []
+            "issues": [
+              "result_route_revision_mismatch"
+            ]
           },
           "basis": "異経路revisionの元結果で選択経路の昇格を成立させない。",
           "execution_state": "not_executed",
@@ -4860,7 +4884,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_available",
-            "issues": []
+            "issues": [
+              "route_missing"
+            ]
           },
           "basis": "明示owner経路不在をACK/存在で補完せず当該sink ownerへ返す。",
           "execution_state": "not_executed",
@@ -4928,7 +4954,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_evaluated",
-            "issues": []
+            "issues": [
+              "route_project_mismatch"
+            ]
           },
           "basis": "別project owner経路をPへ暗黙適用しない。",
           "execution_state": "not_executed",
@@ -5062,7 +5090,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "matched",
-            "issues": []
+            "issues": [
+              "result_route_revision_mismatch"
+            ]
           },
           "basis": "異経路revisionの元結果で選択経路の昇格を成立させない。",
           "execution_state": "not_executed",
@@ -5400,7 +5430,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_available",
-            "issues": []
+            "issues": [
+              "route_missing"
+            ]
           },
           "basis": "明示owner経路不在をACK/存在で補完せず当該sink ownerへ返す。",
           "execution_state": "not_executed",
@@ -5468,7 +5500,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_evaluated",
-            "issues": []
+            "issues": [
+              "route_project_mismatch"
+            ]
           },
           "basis": "別project owner経路をPへ暗黙適用しない。",
           "execution_state": "not_executed",
@@ -5602,7 +5636,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "matched",
-            "issues": []
+            "issues": [
+              "result_route_revision_mismatch"
+            ]
           },
           "basis": "異経路revisionの元結果で選択経路の昇格を成立させない。",
           "execution_state": "not_executed",
@@ -5940,7 +5976,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_available",
-            "issues": []
+            "issues": [
+              "route_missing"
+            ]
           },
           "basis": "明示owner経路不在をACK/存在で補完せず当該sink ownerへ返す。",
           "execution_state": "not_executed",
@@ -6008,7 +6046,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "not_evaluated",
-            "issues": []
+            "issues": [
+              "route_project_mismatch"
+            ]
           },
           "basis": "別project owner経路をPへ暗黙適用しない。",
           "execution_state": "not_executed",
@@ -6142,7 +6182,9 @@
             "source_binding": "matched",
             "classification_binding": "matched",
             "route_condition_binding": "matched",
-            "issues": []
+            "issues": [
+              "result_route_revision_mismatch"
+            ]
           },
           "basis": "異経路revisionの元結果で選択経路の昇格を成立させない。",
           "execution_state": "not_executed",
@@ -6414,7 +6456,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_absent"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -6484,7 +6526,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_null"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -6554,7 +6596,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_owner_unresolved"
+              "classification_owner_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -6624,7 +6666,7 @@
             "classification_binding": "conflict",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_conflict"
+              "classification_class_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -6693,7 +6735,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_absent"
+              "identity_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -6762,7 +6804,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_absent"
+              "project_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -6831,7 +6873,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_absent"
+              "revision_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -6901,7 +6943,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_mismatch"
+              "identity_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -6971,7 +7013,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_mismatch"
+              "project_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -7041,7 +7083,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_mismatch"
+              "revision_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -7111,7 +7153,7 @@
             "classification_binding": "matched",
             "route_condition_binding": "unknown",
             "issues": [
-              "route_condition_absent"
+              "route_condition_missing"
             ]
           },
           "basis": "S001-M1/m2:独立selected sink契約を固定し、受領routeの条件/対象/owner/版を一軸変異。元契約を候補から作り直さない。",
@@ -8022,7 +8064,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_absent"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -8092,7 +8134,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_null"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -8162,7 +8204,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_owner_unresolved"
+              "classification_owner_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -8232,7 +8274,7 @@
             "classification_binding": "conflict",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_conflict"
+              "classification_class_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -8301,7 +8343,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_absent"
+              "identity_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -8370,7 +8412,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_absent"
+              "project_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -8439,7 +8481,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_absent"
+              "revision_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -8509,7 +8551,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_mismatch"
+              "identity_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -8579,7 +8621,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_mismatch"
+              "project_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -8649,7 +8691,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_mismatch"
+              "revision_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -8719,7 +8761,7 @@
             "classification_binding": "matched",
             "route_condition_binding": "unknown",
             "issues": [
-              "route_condition_absent"
+              "route_condition_missing"
             ]
           },
           "basis": "S001-M1/m2:独立selected sink契約を固定し、受領routeの条件/対象/owner/版を一軸変異。元契約を候補から作り直さない。",
@@ -9630,7 +9672,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_absent"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -9700,7 +9742,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_null"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -9770,7 +9812,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_owner_unresolved"
+              "classification_owner_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -9840,7 +9882,7 @@
             "classification_binding": "conflict",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_conflict"
+              "classification_class_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -9909,7 +9951,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_absent"
+              "identity_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -9978,7 +10020,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_absent"
+              "project_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -10047,7 +10089,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_absent"
+              "revision_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -10117,7 +10159,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_mismatch"
+              "identity_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -10187,7 +10229,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_mismatch"
+              "project_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -10257,7 +10299,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_mismatch"
+              "revision_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -10327,7 +10369,7 @@
             "classification_binding": "matched",
             "route_condition_binding": "unknown",
             "issues": [
-              "route_condition_absent"
+              "route_condition_missing"
             ]
           },
           "basis": "S001-M1/m2:独立selected sink契約を固定し、受領routeの条件/対象/owner/版を一軸変異。元契約を候補から作り直さない。",
@@ -11238,7 +11280,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_absent"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -11308,7 +11350,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_null"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -11378,7 +11420,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_owner_unresolved"
+              "classification_owner_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -11448,7 +11490,7 @@
             "classification_binding": "conflict",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_conflict"
+              "classification_class_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -11517,7 +11559,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_absent"
+              "identity_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -11586,7 +11628,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_absent"
+              "project_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -11655,7 +11697,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_absent"
+              "revision_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -11725,7 +11767,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_mismatch"
+              "identity_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -11795,7 +11837,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_mismatch"
+              "project_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -11865,7 +11907,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_mismatch"
+              "revision_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -11935,7 +11977,7 @@
             "classification_binding": "matched",
             "route_condition_binding": "unknown",
             "issues": [
-              "route_condition_absent"
+              "route_condition_missing"
             ]
           },
           "basis": "S001-M1/m2:独立selected sink契約を固定し、受領routeの条件/対象/owner/版を一軸変異。元契約を候補から作り直さない。",
@@ -12846,7 +12888,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_absent"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -12916,7 +12958,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_null"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -12986,7 +13028,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_owner_unresolved"
+              "classification_owner_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -13056,7 +13098,7 @@
             "classification_binding": "conflict",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_conflict"
+              "classification_class_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -13125,7 +13167,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_absent"
+              "identity_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -13194,7 +13236,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_absent"
+              "project_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -13263,7 +13305,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_absent"
+              "revision_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -13333,7 +13375,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_mismatch"
+              "identity_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -13403,7 +13445,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_mismatch"
+              "project_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -13473,7 +13515,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_mismatch"
+              "revision_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -13543,7 +13585,7 @@
             "classification_binding": "matched",
             "route_condition_binding": "unknown",
             "issues": [
-              "route_condition_absent"
+              "route_condition_missing"
             ]
           },
           "basis": "S001-M1/m2:独立selected sink契約を固定し、受領routeの条件/対象/owner/版を一軸変異。元契約を候補から作り直さない。",
@@ -14454,7 +14496,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_absent"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -14524,7 +14566,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_null"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -14594,7 +14636,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_owner_unresolved"
+              "classification_owner_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -14664,7 +14706,7 @@
             "classification_binding": "conflict",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_conflict"
+              "classification_class_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -14733,7 +14775,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_absent"
+              "identity_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -14802,7 +14844,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_absent"
+              "project_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -14871,7 +14913,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_absent"
+              "revision_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -14941,7 +14983,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_mismatch"
+              "identity_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -15011,7 +15053,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_mismatch"
+              "project_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -15081,7 +15123,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_mismatch"
+              "revision_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -15151,7 +15193,7 @@
             "classification_binding": "matched",
             "route_condition_binding": "unknown",
             "issues": [
-              "route_condition_absent"
+              "route_condition_missing"
             ]
           },
           "basis": "S001-M1/m2:独立selected sink契約を固定し、受領routeの条件/対象/owner/版を一軸変異。元契約を候補から作り直さない。",
@@ -16062,7 +16104,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_absent"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -16132,7 +16174,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_null"
+              "classification_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -16202,7 +16244,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_owner_unresolved"
+              "classification_owner_unresolved"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -16272,7 +16314,7 @@
             "classification_binding": "conflict",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_conflict"
+              "classification_class_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -16341,7 +16383,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_absent"
+              "identity_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -16410,7 +16452,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_absent"
+              "project_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -16479,7 +16521,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_absent"
+              "revision_missing"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -16549,7 +16591,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_identity_mismatch"
+              "identity_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -16619,7 +16661,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_project_mismatch"
+              "project_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -16689,7 +16731,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_revision_mismatch"
+              "revision_mismatch"
             ]
           },
           "basis": "S001-M1:入力意味/出所/分類が不足または相反。原source/classification ownerへ返し、経路存在を入力不足の補完にしない。",
@@ -16759,7 +16801,7 @@
             "classification_binding": "matched",
             "route_condition_binding": "unknown",
             "issues": [
-              "route_condition_absent"
+              "route_condition_missing"
             ]
           },
           "basis": "S001-M1/m2:独立selected sink契約を固定し、受領routeの条件/対象/owner/版を一軸変異。元契約を候補から作り直さない。",
@@ -17741,7 +17783,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_unresolved"
+              "classification_unresolved"
             ]
           },
           "basis": "結果が供給されても当該入力意味不足を補償しない。元result参照を保存し資格対応は未評価、無関係Q保持。",
@@ -17881,7 +17923,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_unresolved"
+              "classification_unresolved"
             ]
           },
           "basis": "結果が供給されても当該入力意味不足を補償しない。元result参照を保存し資格対応は未評価、無関係Q保持。",
@@ -18021,7 +18063,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_unresolved"
+              "classification_unresolved"
             ]
           },
           "basis": "結果が供給されても当該入力意味不足を補償しない。元result参照を保存し資格対応は未評価、無関係Q保持。",
@@ -18161,7 +18203,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_unresolved"
+              "classification_unresolved"
             ]
           },
           "basis": "結果が供給されても当該入力意味不足を補償しない。元result参照を保存し資格対応は未評価、無関係Q保持。",
@@ -18301,7 +18343,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_unresolved"
+              "classification_unresolved"
             ]
           },
           "basis": "結果が供給されても当該入力意味不足を補償しない。元result参照を保存し資格対応は未評価、無関係Q保持。",
@@ -18441,7 +18483,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_unresolved"
+              "classification_unresolved"
             ]
           },
           "basis": "結果が供給されても当該入力意味不足を補償しない。元result参照を保存し資格対応は未評価、無関係Q保持。",
@@ -18581,7 +18623,7 @@
             "classification_binding": "unknown",
             "route_condition_binding": "not_evaluated",
             "issues": [
-              "source_classification_unresolved"
+              "classification_unresolved"
             ]
           },
           "basis": "結果が供給されても当該入力意味不足を補償しない。元result参照を保存し資格対応は未評価、無関係Q保持。",
@@ -18600,5 +18642,45 @@
     },
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false
+  },
+  "diagnostic_contract": {
+    "scope": "001のinput/source/classification/owner route/result照合の内部診断候補。正式typed finding/wire schemaは後続L5/L8で確定する。",
+    "shared_source_vocabulary": "同一source/分類比較はF01/F02で同じissues codeを返す。欠落とnullのclassificationはclassification_unresolvedに揃える。原値/欠落keyの違いはoriginal_sourceから辿れ、診断codeで原入力を変更しない。",
+    "diagnostic_order": "source owner原内容、identity/project/revision、classification宣言/owner内容を先に比較する。不足で依存route/resultがnot_evaluatedなら根拠となるsource/classification診断を保存。routeの選択対象→受領tuple→原condition→元resultを照合する。無関係Qを巻き込まない。",
+    "issues_requirement": "不足/相反によりowner_return_candidatesを返すcaseはissuesが非空。将来result未発生だけの正常依頼材料と、claim_resultsだけの未支持claimはissuesへ擬似errorを生成しない。",
+    "claim_separation": "issuesは元内容のbinding診断、claim_resultsは任意主張の判定。元owner結果の対応と原参照は別に保持。診断でauthority/昇格/保存の新状態を発行しない。",
+    "codes": [
+      "classification_class_mismatch",
+      "classification_owner_unresolved",
+      "classification_project_mismatch",
+      "classification_revision_mismatch",
+      "classification_source_identity_mismatch",
+      "classification_unresolved",
+      "identity_mismatch",
+      "identity_missing",
+      "project_mismatch",
+      "project_missing",
+      "result_owner_mismatch",
+      "result_project_mismatch",
+      "result_route_identity_mismatch",
+      "result_route_revision_mismatch",
+      "result_sink_mismatch",
+      "result_source_identity_mismatch",
+      "result_source_revision_mismatch",
+      "revision_mismatch",
+      "revision_missing",
+      "route_condition_mismatch",
+      "route_condition_missing",
+      "route_identity_mismatch",
+      "route_missing",
+      "route_owner_mismatch",
+      "route_project_mismatch",
+      "route_revision_mismatch",
+      "route_sink_mismatch",
+      "route_source_revision_mismatch",
+      "selected_sink_contract_source_mismatch",
+      "source_owner_unresolved"
+    ],
+    "code_meaning": "*_missingは必要原内容の未供給、*_unresolvedは意味/原owner分類等の未決、*_mismatchは同じbindingの原内容との相反。route/resultのprefixは対象面の所在でありsourceの関数別codeは設けない。"
   }
 }
