@@ -217,7 +217,47 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "supported_synthetic_condition",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "content_supported",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-NORMAL-RETIRE-REFERENCE",
@@ -288,7 +328,47 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "supported_synthetic_condition",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "content_supported",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-UNACCOUNTED",
@@ -391,7 +471,47 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [
+                "A2"
+              ],
+              "duplicate_atom_ids": [],
+              "partition_condition": "missing",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "incomplete",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-DUPLICATE",
@@ -533,7 +653,49 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [
+                "A1"
+              ],
+              "partition_condition": "conflict",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-DEAD-CANDIDATE",
@@ -642,7 +804,49 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "conflict",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [
+                "A2"
+              ],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-DECISION-MISSING",
@@ -756,7 +960,49 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "missing",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [
+                "A3"
+              ],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "incomplete",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-AI-AS-DECISION",
@@ -844,7 +1090,49 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "conflict",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [
+                "A3"
+              ],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-DECISION-FOREIGN-REVISION",
@@ -954,7 +1242,49 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "stale",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [
+                "A3"
+              ],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "stale",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-SOURCE-DIGEST-MISMATCH",
@@ -1042,7 +1372,49 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "conflict",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [
+                "A1"
+              ],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-DESTINATION-CONTENT-MISMATCH",
@@ -1151,7 +1523,49 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "conflict",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [
+                "A2"
+              ],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-RECEIPT-OMITS-ATOM",
@@ -1252,7 +1666,47 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "conflict",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": true,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-RECEIPT-FOREIGN-SOURCE",
@@ -1347,7 +1801,47 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "stale",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": true,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "stale",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-UNKNOWN-ATOM",
@@ -1490,7 +1984,50 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [
+                "A4"
+              ],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "conflict",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2",
+                "A4"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-SOURCE-POPULATION-TRUNCATED",
@@ -1694,7 +2231,48 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [
+                "A3"
+              ],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "conflict",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": true,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-PENDING-AS-ADOPTED",
@@ -1803,7 +2381,49 @@
           },
           "domain_projection": "L9 raw packetをPartitionInput、独立資格原資料をPartitionContextへ別に渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。source_caseの期待はvalueとcandidate_disposition等へ写像し、原内容の成立と候補の拒否を混同しない。Context実供給と追加metadata oracleは未完。",
           "execution_state": "not_executed",
-          "candidate_argument": null
+          "candidate_argument": null,
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "conflict",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [
+                "A2"
+              ],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
+          }
         },
         {
           "id": "H004-L8-F04-LIMITED-AS-ALL-MIGRATION",
@@ -1951,6 +2571,48 @@
             "actual_requirement_adopted": false,
             "actual_implementation_authorized": false,
             "actual_retirement": false
+          },
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "supported_synthetic_condition",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "actual_source_migration_complete"
+            ],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
           }
         },
         {
@@ -2099,6 +2761,48 @@
             "actual_requirement_adopted": true,
             "actual_implementation_authorized": false,
             "actual_retirement": false
+          },
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "supported_synthetic_condition",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "actual_requirement_adopted"
+            ],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
           }
         },
         {
@@ -2247,6 +2951,48 @@
             "actual_requirement_adopted": false,
             "actual_implementation_authorized": true,
             "actual_retirement": false
+          },
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "supported_synthetic_condition",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "actual_implementation_authorized"
+            ],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
           }
         },
         {
@@ -2395,6 +3141,48 @@
             "actual_requirement_adopted": false,
             "actual_implementation_authorized": false,
             "actual_retirement": false
+          },
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "supported_synthetic_condition",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "actual_no_loss_certified"
+            ],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
           }
         },
         {
@@ -2543,6 +3331,48 @@
             "actual_requirement_adopted": false,
             "actual_implementation_authorized": false,
             "actual_retirement": true
+          },
+          "expected_result_projection": {
+            "precondition": "別途供給する独立matching synthetic Contextの内容/owner資格照合に不足がない場合の内容oracle。Context実fixtureは未完。",
+            "value": {
+              "unknown_atom_ids": [],
+              "unaccounted_atom_ids": [],
+              "duplicate_atom_ids": [],
+              "partition_condition": "supported_synthetic_condition",
+              "actual_requirement_adopted": false,
+              "invalid_decision_atom_ids": [],
+              "human_changed_or_retired_atom_ids": [
+                "A3"
+              ],
+              "outside_selection": [
+                "SOURCE-B@r1_not_observed"
+              ],
+              "actual_source_migration_complete": false,
+              "retained_atom_ids": [
+                "A1"
+              ],
+              "coverage_scope": "SOURCE-A@r1:all_three_fixture_atoms",
+              "invalid_receipt": false,
+              "actual_retirement": false,
+              "invalid_destination_atom_ids": [],
+              "invalid_source_atom_ids": [],
+              "actual_implementation_authorized": false,
+              "source_atom_ids": [
+                "A1",
+                "A2",
+                "A3"
+              ],
+              "pending_atom_ids": [
+                "A2"
+              ],
+              "actual_no_loss_certified": false
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "actual_retirement"
+            ],
+            "diagnostic_source_metadata_preserved": "reason/retain_unaffected_material等はsource_caseに保持。source_caseのwhole bytesと期待は変更しない。"
           }
         }
       ],
