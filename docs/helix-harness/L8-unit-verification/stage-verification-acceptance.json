@@ -61,6 +61,18 @@
       "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
       "sha256": "bb31b5abe547b5caaea80a62992fa3e967f94a2273430ffd64b17e50c7fd36b2",
       "use": "固定意味/設計/対検証。実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "72b980c693cdb769a00b57a6da3e3cdc7e3cc522",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486",
+      "use": "現mainのN01非機能要件/対L10原本文。N01 objectはff5f0667承認対象と一致。後続追加を含む文書wholeから承認を継承しない。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "72b980c693cdb769a00b57a6da3e3cdc7e3cc522",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0",
+      "use": "現mainのN01非機能要件/対L10原本文。N01 objectはff5f0667承認対象と一致。後続追加を含む文書wholeから承認を継承しない。"
     }
   ],
   "legacy_comparison": [
