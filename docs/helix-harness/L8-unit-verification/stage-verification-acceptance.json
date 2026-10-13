@@ -282,7 +282,46 @@
       "preserve": "pure core/schema adapterの分離、typed findingと安定順。",
       "change": "旧TS/schema/loader/CLIをcopyせず現行022-F04の同scope利用者判断/記録と内容oracleの別比較へ再導出。",
       "reason": "CI/agent oracle/候補の自己申告からAcceptedと利用者意思を生成する失敗を防ぐ。新承認は追加しない。",
-      "source_limit": "旧runtime/test/CIは実行せず、旧confirmedは現行authorityへ継承しない。"
+      "source_limit": "旧runtime/test/CIは実行せず、旧confirmedは現行authorityへ継承しない。",
+      "context_pointer_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          34,
+          51,
+          54
+        ],
+        "line_quotes": [
+          {
+            "line": 18,
+            "text": "実装候補は`src/design/design-template-authority.ts`の単一moduleとする。まずpure functionだけで成立させ、"
+          },
+          {
+            "line": 19,
+            "text": "repository loader、CLI、DB projection、Markdown writerは本sliceへ追加しない。JSON Schema libraryは"
+          },
+          {
+            "line": 20,
+            "text": "既存dependencyを再利用できる場合だけadapter側で使い、core resultをlibrary固有errorへ束縛しない。"
+          },
+          {
+            "line": 34,
+            "text": "findingは`code -> pointer -> message`の順でstable sortし、入力順やruntime localeでdigestを変えない。"
+          },
+          {
+            "line": 51,
+            "text": "- pre: inputはuntrustedであり、callerがparse済みと仮定しない。"
+          },
+          {
+            "line": 54,
+            "text": "- invariant: unknown property、unknown enum、unsafe integer、duplicate IDを保持したtyped valueを返さない。"
+          }
+        ],
+        "preserve": "untrusted source宣言を検査しpure coreから資格生成せず、typed pointer findingと安定順で返す。",
+        "change": "旧TS/schemaをcopyせず、別固定Context不一致とactual資格欠落の4部分oracle、candidate差分JSON Pointer表記へ具体化。",
+        "reason": "自己一致宣言とfixture hashだけで原owner資格を作る失敗とnested候補pathの曖昧さを防ぐ。原L9期待・意味は保持。"
+      }
     }
   ],
   "full_goal_scope_preserved": {
@@ -293,7 +332,8 @@
   "remaining": [
     "F01/F02/F03/N01/B01の詳細契約と全6契約の設計閉包。",
     "F04全構造/複合/全finding/Context資格、正式schema/codec/実owner/原記録供給・利用者本人性binding。",
-    "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。"
+    "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。",
+    "F04独立Contextとの不一致/actual資格欠落4例、candidate path JSON Pointer写像を追加。全副次finding/実owner bindingは未完。"
   ],
   "document_id": "HARNESS-L8-022-STAGE-ACCEPTANCE",
   "layer": "L8",
@@ -8721,11 +8761,21 @@
             },
             "candidate_disposition": "conflict",
             "candidate_conflicting_paths": [
-              "CI_or_L10_is_user_receipt"
+              "/CI_or_L10_is_user_receipt"
             ],
             "oracle_limit": "原L9期待の全指定fieldをvalueへ無改変写像。outcome/全Finding新typeとの写像/原資格は追加oracleで未完。"
           },
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "candidate_path_mapping": {
+            "source_form": "原L9 top-level field名",
+            "target_form": "candidate value root相対JSON Pointer",
+            "pairs": [
+              {
+                "source": "CI_or_L10_is_user_receipt",
+                "json_pointer": "/CI_or_L10_is_user_receipt"
+              }
+            ]
+          }
         },
         {
           "id": "H022-L8-F04-ORACLE-PASS-IS-ACCEPTED",
@@ -8936,11 +8986,21 @@
             },
             "candidate_disposition": "conflict",
             "candidate_conflicting_paths": [
-              "accepted_candidate"
+              "/accepted_candidate"
             ],
             "oracle_limit": "原L9期待の全指定fieldをvalueへ無改変写像。outcome/全Finding新typeとの写像/原資格は追加oracleで未完。"
           },
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "candidate_path_mapping": {
+            "source_form": "原L9 top-level field名",
+            "target_form": "candidate value root相対JSON Pointer",
+            "pairs": [
+              {
+                "source": "accepted_candidate",
+                "json_pointer": "/accepted_candidate"
+              }
+            ]
+          }
         },
         {
           "id": "H022-L8-F04-AUTO-ACCEPT",
@@ -9151,11 +9211,21 @@
             },
             "candidate_disposition": "conflict",
             "candidate_conflicting_paths": [
-              "actual_accepted"
+              "/actual_accepted"
             ],
             "oracle_limit": "原L9期待の全指定fieldをvalueへ無改変写像。outcome/全Finding新typeとの写像/原資格は追加oracleで未完。"
           },
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "candidate_path_mapping": {
+            "source_form": "原L9 top-level field名",
+            "target_form": "candidate value root相対JSON Pointer",
+            "pairs": [
+              {
+                "source": "actual_accepted",
+                "json_pointer": "/actual_accepted"
+              }
+            ]
+          }
         },
         {
           "id": "H022-L8-F04-AUTO-PROMOTE",
@@ -9366,11 +9436,21 @@
             },
             "candidate_disposition": "conflict",
             "candidate_conflicting_paths": [
-              "actual_stage_promoted"
+              "/actual_stage_promoted"
             ],
             "oracle_limit": "原L9期待の全指定fieldをvalueへ無改変写像。outcome/全Finding新typeとの写像/原資格は追加oracleで未完。"
           },
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "candidate_path_mapping": {
+            "source_form": "原L9 top-level field名",
+            "target_form": "candidate value root相対JSON Pointer",
+            "pairs": [
+              {
+                "source": "actual_stage_promoted",
+                "json_pointer": "/actual_stage_promoted"
+              }
+            ]
+          }
         },
         {
           "id": "H022-L8-F04-GENERATE-USER-ACCEPTANCE",
@@ -9581,11 +9661,21 @@
             },
             "candidate_disposition": "conflict",
             "candidate_conflicting_paths": [
-              "user_acceptance_candidate"
+              "/user_acceptance_candidate"
             ],
             "oracle_limit": "原L9期待の全指定fieldをvalueへ無改変写像。outcome/全Finding新typeとの写像/原資格は追加oracleで未完。"
           },
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "candidate_path_mapping": {
+            "source_form": "原L9 top-level field名",
+            "target_form": "candidate value root相対JSON Pointer",
+            "pairs": [
+              {
+                "source": "user_acceptance_candidate",
+                "json_pointer": "/user_acceptance_candidate"
+              }
+            ]
+          }
         }
       ],
       "additional_required_families": [
@@ -9593,7 +9683,194 @@
         "全構造/混合/副次finding/状態優先/順序/不変性/副作用observer",
         "実schema/codec/owner/本人性/原記録供給bindingと対L6L7凍結"
       ],
-      "coverage_limit": "66原例を部分内容oracleへ対応。実L8/Red/Green/受入完了や全022閉包は未成立。"
+      "coverage_limit": "66原例を部分内容oracleへ対応。実L8/Red/Green/受入完了や全022閉包は未成立。",
+      "context_cases": [
+        {
+          "id": "H022-L8-F04-CONTEXT-PROFILE",
+          "design_ref": "HARNESS-L5-022-F04",
+          "requirement_ref": "HARNESS-L3-022-F04",
+          "input_case_ref": "H022-F04-NORMAL",
+          "context_base_fixture_ref": "H022-F04-CONTEXT-9effbe610649",
+          "context_base_fixture_object_sha256": "86d986e182d7fde038d0aed522e792e97e72697c93ed2d6122459cb84c86a657",
+          "context_mutation": {
+            "pointer": "/expected_profiles/L11_oracle/target",
+            "before": "L2@r1",
+            "after": "L3@r1"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "H022-L8-F04-CONTEXT-PROFILE",
+              "revision": "fixture-9064a77f21bb688f8763450391aa492e7fb036fda4ad54cc1e787e43acadd3a4",
+              "owner": "independent-synthetic-context-fixture-owner",
+              "scope": "PRODUCT-P"
+            },
+            "raw_utf8": "{\"evidence_kind\":\"synthetic\",\"expected_material_owners\":{\"L11_content_result\":\"synthetic-L11_content_result-owner\",\"L11_oracle\":\"synthetic-L11_oracle-owner\",\"L2_meaning\":\"synthetic-L2_meaning-owner\",\"Verified_basis\":\"synthetic-Verified_basis-owner\",\"user_decision\":\"synthetic-user_decision-owner\",\"user_receipt\":\"synthetic-user_receipt-owner\"},\"expected_pairs\":{\"L11_content_result\":\"L11:L2\",\"L11_oracle\":\"L11:L2\",\"L2_meaning\":null,\"Verified_basis\":null,\"user_decision\":null,\"user_receipt\":null},\"expected_profiles\":{\"L11_content_result\":{\"counterexample_observation\":{\"duplicate_commit_count\":0,\"scenario\":\"cancel_then_retry\"},\"success_observation\":{\"command\":\"CMD1\",\"result_count\":1}},\"L11_oracle\":{\"counterexample_expected\":{\"duplicate_commit_count\":0,\"scenario\":\"cancel_then_retry\"},\"success_expected\":{\"command\":\"CMD1\",\"result_count\":1},\"target\":\"L3@r1\"},\"L2_meaning\":{\"counterexample\":\"duplicate_after_cancel\",\"success\":\"one_result_per_command\"},\"Verified_basis\":{\"basis\":\"same_revision_L10_system_difference_proof_synthetic\",\"stage\":\"Verified\"}},\"expected_user_owner\":\"synthetic-user-acceptor\",\"material_roles\":[\"L11_content_result\",\"L11_oracle\",\"L2_meaning\",\"Verified_basis\",\"user_decision\",\"user_receipt\"],\"original_user_record\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"authority\":\"supported_synthetic_only\",\"decision\":\"accept\",\"identity\":\"USER-DECISION-1\",\"owner\":\"synthetic-user-acceptor\",\"requirement_revision\":\"REQ@r1\",\"revision\":\"DECISION@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"USER-SOURCE-1\"},\"qualification\":null,\"snapshot_revision\":\"FIXTURE-H022-F04-r1\",\"target\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "9064a77f21bb688f8763450391aa492e7fb036fda4ad54cc1e787e43acadd3a4",
+            "evidence_kind": "synthetic"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unresolved",
+            "required_findings": [
+              {
+                "code": "context_unresolved",
+                "pointer": "/context/expected_profiles/L11_oracle/target",
+                "material_role": null,
+                "return_owner": "independent-context-source-owner"
+              }
+            ],
+            "candidate_disposition": "not_submitted",
+            "retained_input_unmodified": true,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "actual_effects": {
+              "stage_promoted": false,
+              "accepted": false,
+              "CI_executed": false
+            }
+          },
+          "oracle_limit": "必須finding subset/不足outcome/原input保全。全副次finding/全valueは未完。transport packetは合成のまま、本文actual_owner_input宣言を実owner資格へしない。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H022-L8-F04-CONTEXT-USER-RECORD",
+          "design_ref": "HARNESS-L5-022-F04",
+          "requirement_ref": "HARNESS-L3-022-F04",
+          "input_case_ref": "H022-F04-NORMAL",
+          "context_base_fixture_ref": "H022-F04-CONTEXT-9effbe610649",
+          "context_base_fixture_object_sha256": "86d986e182d7fde038d0aed522e792e97e72697c93ed2d6122459cb84c86a657",
+          "context_mutation": {
+            "pointer": "/original_user_record/owner",
+            "before": "synthetic-user-acceptor",
+            "after": "foreign-original-owner"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "H022-L8-F04-CONTEXT-USER-RECORD",
+              "revision": "fixture-cf8b5ad71c31709a5d0b4487db568ae78f24df5de192ae78e8b064bf2a277ef4",
+              "owner": "independent-synthetic-context-fixture-owner",
+              "scope": "PRODUCT-P"
+            },
+            "raw_utf8": "{\"evidence_kind\":\"synthetic\",\"expected_material_owners\":{\"L11_content_result\":\"synthetic-L11_content_result-owner\",\"L11_oracle\":\"synthetic-L11_oracle-owner\",\"L2_meaning\":\"synthetic-L2_meaning-owner\",\"Verified_basis\":\"synthetic-Verified_basis-owner\",\"user_decision\":\"synthetic-user_decision-owner\",\"user_receipt\":\"synthetic-user_receipt-owner\"},\"expected_pairs\":{\"L11_content_result\":\"L11:L2\",\"L11_oracle\":\"L11:L2\",\"L2_meaning\":null,\"Verified_basis\":null,\"user_decision\":null,\"user_receipt\":null},\"expected_profiles\":{\"L11_content_result\":{\"counterexample_observation\":{\"duplicate_commit_count\":0,\"scenario\":\"cancel_then_retry\"},\"success_observation\":{\"command\":\"CMD1\",\"result_count\":1}},\"L11_oracle\":{\"counterexample_expected\":{\"duplicate_commit_count\":0,\"scenario\":\"cancel_then_retry\"},\"success_expected\":{\"command\":\"CMD1\",\"result_count\":1},\"target\":\"L2@r1\"},\"L2_meaning\":{\"counterexample\":\"duplicate_after_cancel\",\"success\":\"one_result_per_command\"},\"Verified_basis\":{\"basis\":\"same_revision_L10_system_difference_proof_synthetic\",\"stage\":\"Verified\"}},\"expected_user_owner\":\"synthetic-user-acceptor\",\"material_roles\":[\"L11_content_result\",\"L11_oracle\",\"L2_meaning\",\"Verified_basis\",\"user_decision\",\"user_receipt\"],\"original_user_record\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"authority\":\"supported_synthetic_only\",\"decision\":\"accept\",\"identity\":\"USER-DECISION-1\",\"owner\":\"foreign-original-owner\",\"requirement_revision\":\"REQ@r1\",\"revision\":\"DECISION@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"USER-SOURCE-1\"},\"qualification\":null,\"snapshot_revision\":\"FIXTURE-H022-F04-r1\",\"target\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "cf8b5ad71c31709a5d0b4487db568ae78f24df5de192ae78e8b064bf2a277ef4",
+            "evidence_kind": "synthetic"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unresolved",
+            "required_findings": [
+              {
+                "code": "context_unresolved",
+                "pointer": "/context/original_user_record/owner",
+                "material_role": null,
+                "return_owner": "independent-context-source-owner"
+              }
+            ],
+            "candidate_disposition": "not_submitted",
+            "retained_input_unmodified": true,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "actual_effects": {
+              "stage_promoted": false,
+              "accepted": false,
+              "CI_executed": false
+            }
+          },
+          "oracle_limit": "必須finding subset/不足outcome/原input保全。全副次finding/全valueは未完。transport packetは合成のまま、本文actual_owner_input宣言を実owner資格へしない。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H022-L8-F04-CONTEXT-TARGET-SCOPE",
+          "design_ref": "HARNESS-L5-022-F04",
+          "requirement_ref": "HARNESS-L3-022-F04",
+          "input_case_ref": "H022-F04-NORMAL",
+          "context_base_fixture_ref": "H022-F04-CONTEXT-9effbe610649",
+          "context_base_fixture_object_sha256": "86d986e182d7fde038d0aed522e792e97e72697c93ed2d6122459cb84c86a657",
+          "context_mutation": {
+            "pointer": "/target/scope",
+            "before": "PRODUCT-P",
+            "after": "PRODUCT-Q"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "H022-L8-F04-CONTEXT-TARGET-SCOPE",
+              "revision": "fixture-da040f5ec14fc7b7aa4b671371660d054f8ca63b63075fa99583c86dfe419516",
+              "owner": "independent-synthetic-context-fixture-owner",
+              "scope": "PRODUCT-P"
+            },
+            "raw_utf8": "{\"evidence_kind\":\"synthetic\",\"expected_material_owners\":{\"L11_content_result\":\"synthetic-L11_content_result-owner\",\"L11_oracle\":\"synthetic-L11_oracle-owner\",\"L2_meaning\":\"synthetic-L2_meaning-owner\",\"Verified_basis\":\"synthetic-Verified_basis-owner\",\"user_decision\":\"synthetic-user_decision-owner\",\"user_receipt\":\"synthetic-user_receipt-owner\"},\"expected_pairs\":{\"L11_content_result\":\"L11:L2\",\"L11_oracle\":\"L11:L2\",\"L2_meaning\":null,\"Verified_basis\":null,\"user_decision\":null,\"user_receipt\":null},\"expected_profiles\":{\"L11_content_result\":{\"counterexample_observation\":{\"duplicate_commit_count\":0,\"scenario\":\"cancel_then_retry\"},\"success_observation\":{\"command\":\"CMD1\",\"result_count\":1}},\"L11_oracle\":{\"counterexample_expected\":{\"duplicate_commit_count\":0,\"scenario\":\"cancel_then_retry\"},\"success_expected\":{\"command\":\"CMD1\",\"result_count\":1},\"target\":\"L2@r1\"},\"L2_meaning\":{\"counterexample\":\"duplicate_after_cancel\",\"success\":\"one_result_per_command\"},\"Verified_basis\":{\"basis\":\"same_revision_L10_system_difference_proof_synthetic\",\"stage\":\"Verified\"}},\"expected_user_owner\":\"synthetic-user-acceptor\",\"material_roles\":[\"L11_content_result\",\"L11_oracle\",\"L2_meaning\",\"Verified_basis\",\"user_decision\",\"user_receipt\"],\"original_user_record\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"authority\":\"supported_synthetic_only\",\"decision\":\"accept\",\"identity\":\"USER-DECISION-1\",\"owner\":\"synthetic-user-acceptor\",\"requirement_revision\":\"REQ@r1\",\"revision\":\"DECISION@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"USER-SOURCE-1\"},\"qualification\":null,\"snapshot_revision\":\"FIXTURE-H022-F04-r1\",\"target\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-Q\"}}",
+            "sha256": "da040f5ec14fc7b7aa4b671371660d054f8ca63b63075fa99583c86dfe419516",
+            "evidence_kind": "synthetic"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unresolved",
+            "required_findings": [
+              {
+                "code": "context_unresolved",
+                "pointer": "/context/target/scope",
+                "material_role": null,
+                "return_owner": "independent-context-source-owner"
+              }
+            ],
+            "candidate_disposition": "not_submitted",
+            "retained_input_unmodified": true,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "actual_effects": {
+              "stage_promoted": false,
+              "accepted": false,
+              "CI_executed": false
+            }
+          },
+          "oracle_limit": "必須finding subset/不足outcome/原input保全。全副次finding/全valueは未完。transport packetは合成のまま、本文actual_owner_input宣言を実owner資格へしない。",
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H022-L8-F04-CONTEXT-ACTUAL-QUALIFICATION-MISSING",
+          "design_ref": "HARNESS-L5-022-F04",
+          "requirement_ref": "HARNESS-L3-022-F04",
+          "input_case_ref": "H022-F04-NORMAL",
+          "context_base_fixture_ref": "H022-F04-CONTEXT-9effbe610649",
+          "context_base_fixture_object_sha256": "86d986e182d7fde038d0aed522e792e97e72697c93ed2d6122459cb84c86a657",
+          "context_mutation": {
+            "pointer": "/evidence_kind",
+            "before": "synthetic",
+            "after": "actual_owner_input"
+          },
+          "context_packet": {
+            "ref": {
+              "identity": "H022-L8-F04-CONTEXT-ACTUAL-QUALIFICATION-MISSING",
+              "revision": "fixture-bb4be52f96758ec1cc7b58b881af8a21364ea4131327d1d0c5768cf578446bb0",
+              "owner": "independent-synthetic-context-fixture-owner",
+              "scope": "PRODUCT-P"
+            },
+            "raw_utf8": "{\"evidence_kind\":\"actual_owner_input\",\"expected_material_owners\":{\"L11_content_result\":\"synthetic-L11_content_result-owner\",\"L11_oracle\":\"synthetic-L11_oracle-owner\",\"L2_meaning\":\"synthetic-L2_meaning-owner\",\"Verified_basis\":\"synthetic-Verified_basis-owner\",\"user_decision\":\"synthetic-user_decision-owner\",\"user_receipt\":\"synthetic-user_receipt-owner\"},\"expected_pairs\":{\"L11_content_result\":\"L11:L2\",\"L11_oracle\":\"L11:L2\",\"L2_meaning\":null,\"Verified_basis\":null,\"user_decision\":null,\"user_receipt\":null},\"expected_profiles\":{\"L11_content_result\":{\"counterexample_observation\":{\"duplicate_commit_count\":0,\"scenario\":\"cancel_then_retry\"},\"success_observation\":{\"command\":\"CMD1\",\"result_count\":1}},\"L11_oracle\":{\"counterexample_expected\":{\"duplicate_commit_count\":0,\"scenario\":\"cancel_then_retry\"},\"success_expected\":{\"command\":\"CMD1\",\"result_count\":1},\"target\":\"L2@r1\"},\"L2_meaning\":{\"counterexample\":\"duplicate_after_cancel\",\"success\":\"one_result_per_command\"},\"Verified_basis\":{\"basis\":\"same_revision_L10_system_difference_proof_synthetic\",\"stage\":\"Verified\"}},\"expected_user_owner\":\"synthetic-user-acceptor\",\"material_roles\":[\"L11_content_result\",\"L11_oracle\",\"L2_meaning\",\"Verified_basis\",\"user_decision\",\"user_receipt\"],\"original_user_record\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"authority\":\"supported_synthetic_only\",\"decision\":\"accept\",\"identity\":\"USER-DECISION-1\",\"owner\":\"synthetic-user-acceptor\",\"requirement_revision\":\"REQ@r1\",\"revision\":\"DECISION@r1\",\"scope\":\"PRODUCT-P\",\"source_id\":\"USER-SOURCE-1\"},\"qualification\":null,\"snapshot_revision\":\"FIXTURE-H022-F04-r1\",\"target\":{\"artifact_identity\":\"ARTIFACT-1\",\"artifact_revision\":\"ART@r1\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "bb4be52f96758ec1cc7b58b881af8a21364ea4131327d1d0c5768cf578446bb0",
+            "evidence_kind": "synthetic"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unresolved",
+            "required_findings": [
+              {
+                "code": "context_unresolved",
+                "pointer": "/context/qualification",
+                "material_role": null,
+                "return_owner": "independent-context-source-owner"
+              }
+            ],
+            "candidate_disposition": "not_submitted",
+            "retained_input_unmodified": true,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "actual_effects": {
+              "stage_promoted": false,
+              "accepted": false,
+              "CI_executed": false
+            }
+          },
+          "oracle_limit": "必須finding subset/不足outcome/原input保全。全副次finding/全valueは未完。transport packetは合成のまま、本文actual_owner_input宣言を実owner資格へしない。",
+          "execution_state": "not_executed"
+        }
+      ],
+      "context_hash_scope": "context_base_fixture_object_sha256はcontext_base_fixture_refで参照する/context_fixturesのfixture object wholeをUnicode key順/compact/nonASCII無escape/strict UTF8でcanonical SHA-256。context_packet.sha256はraw_utf8原bytesのSHA-256でありobject hashと別。"
     }
   ],
   "completion": "部分詳細と先行test設計。実Red/Green/Refactor/受入は未実行。"

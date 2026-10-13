@@ -282,7 +282,46 @@
       "preserve": "pure core/schema adapterの分離、typed findingと安定順。",
       "change": "旧TS/schema/loader/CLIをcopyせず現行022-F04の同scope利用者判断/記録と内容oracleの別比較へ再導出。",
       "reason": "CI/agent oracle/候補の自己申告からAcceptedと利用者意思を生成する失敗を防ぐ。新承認は追加しない。",
-      "source_limit": "旧runtime/test/CIは実行せず、旧confirmedは現行authorityへ継承しない。"
+      "source_limit": "旧runtime/test/CIは実行せず、旧confirmedは現行authorityへ継承しない。",
+      "context_pointer_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          34,
+          51,
+          54
+        ],
+        "line_quotes": [
+          {
+            "line": 18,
+            "text": "実装候補は`src/design/design-template-authority.ts`の単一moduleとする。まずpure functionだけで成立させ、"
+          },
+          {
+            "line": 19,
+            "text": "repository loader、CLI、DB projection、Markdown writerは本sliceへ追加しない。JSON Schema libraryは"
+          },
+          {
+            "line": 20,
+            "text": "既存dependencyを再利用できる場合だけadapter側で使い、core resultをlibrary固有errorへ束縛しない。"
+          },
+          {
+            "line": 34,
+            "text": "findingは`code -> pointer -> message`の順でstable sortし、入力順やruntime localeでdigestを変えない。"
+          },
+          {
+            "line": 51,
+            "text": "- pre: inputはuntrustedであり、callerがparse済みと仮定しない。"
+          },
+          {
+            "line": 54,
+            "text": "- invariant: unknown property、unknown enum、unsafe integer、duplicate IDを保持したtyped valueを返さない。"
+          }
+        ],
+        "preserve": "untrusted source宣言を検査しpure coreから資格生成せず、typed pointer findingと安定順で返す。",
+        "change": "旧TS/schemaをcopyせず、別固定Context不一致とactual資格欠落の4部分oracle、candidate差分JSON Pointer表記へ具体化。",
+        "reason": "自己一致宣言とfixture hashだけで原owner資格を作る失敗とnested候補pathの曖昧さを防ぐ。原L9期待・意味は保持。"
+      }
     }
   ],
   "full_goal_scope_preserved": {
@@ -293,7 +332,8 @@
   "remaining": [
     "F01/F02/F03/N01/B01の詳細契約と全6契約の設計閉包。",
     "F04全構造/複合/全finding/Context資格、正式schema/codec/実owner/原記録供給・利用者本人性binding。",
-    "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。"
+    "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。",
+    "F04独立Contextとの不一致/actual資格欠落4例、candidate path JSON Pointer写像を追加。全副次finding/実owner bindingは未完。"
   ],
   "document_id": "HARNESS-L5-022-STAGE-ACCEPTANCE",
   "layer": "L5",
@@ -397,7 +437,7 @@
       "value": "AcceptanceValue | null（構造で比較不能のときのみnull）",
       "findings": "tuple[Finding]",
       "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
-      "candidate_conflicting_paths": "tuple[Text]"
+      "candidate_conflicting_paths": "tuple[JsonPointer]"
     },
     "Finding": {
       "code": "Text",
@@ -405,7 +445,8 @@
       "material_role": "MaterialRole | null",
       "return_owner": "Text",
       "source_case_code": "Text | null（元caseのcodeを保全）"
-    }
+    },
+    "JsonPointer": "RFC6901 pointer。rootは空文字、各token内~を~0、/を~1にescape。array indexは元index。"
   },
   "functions": [
     {
@@ -435,7 +476,7 @@
         },
         {
           "id": "A2",
-          "rule": "input.independent_profiles/independent_user_recordは原宣言としてContextの別固定材料へ照合し、不一致/独立lineage未確認はcontext/source不足を保持。宣言の一致だけで本人性や資格を生成しない。 input.contextの4対象成分とContext.targetを照合。各6roleのmaterial/evidenceを別走査し、artifact_identity/revision、requirement_revision/scope、role owner/pair、oracle_revision/source_id、executionとevidence_idから一意解決した証拠原内容を照合。同名stage/pass/linkだけでproof内容を埋めない。全検査可能な不足locatorを蓄積し、missing material/execution/evidence、stale artifact_revision、conflict scope/owner/内容を分ける。"
+          "rule": "input.independent_profiles/independent_user_recordは原宣言としてContextの別固定材料へ照合し、不一致/独立lineage未確認はcontext/source不足を保持。宣言の一致だけで本人性や資格を生成しない。 input.contextの4対象成分とContext.targetを照合。各6roleのmaterial/evidenceを別走査し、artifact_identity/revision、requirement_revision/scope、role owner/pair、oracle_revision/source_id、executionとevidence_idから一意解決した証拠原内容を照合。同名stage/pass/linkだけでproof内容を埋めない。全検査可能な不足locatorを蓄積し、missing material/execution/evidence、stale artifact_revision、conflict scope/owner/内容を分ける。 本Context変異例では対象/profile/原user recordの別資料不一致またはactual_owner_input資格欠落をResult.outcome=unresolved、context_unresolved findingへ保持し、候補成功/実Acceptedを生成しない。読めた原input/Qは保全する。"
         },
         {
           "id": "A3",
@@ -459,7 +500,7 @@
         },
         {
           "id": "A8",
-          "rule": "candidateがあれば導出valueの全fieldを元提出値と比較し差分pathをcandidate_conflicting_pathsへ。actual true/CI_or_L10_is_user_receipt trueも拒否し原valueの独立結果を維持。候補の説明metadataは別sidecar、未知value fieldをstripしない。Noneだけ未提出でfalse/空objectは代用しない。"
+          "rule": "candidateがあれば導出valueの全fieldを元提出値と比較し差分pathをcandidate_conflicting_pathsへ。actual true/CI_or_L10_is_user_receipt trueも拒否し原valueの独立結果を維持。候補の説明metadataは別sidecar、未知value fieldをstripしない。Noneだけ未提出でfalse/空objectは代用しない。 差分pathはcandidate value root相対のJSON Pointer。元L9のtop-level field名は/とescaped tokenで一意写像し、原source_caseの表記は変えない。"
         }
       ],
       "postconditions": [
