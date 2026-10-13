@@ -473,6 +473,25 @@
         "preserve": "pure core/schema adapter分離、untrusted/required/unknownを確かめるDbC、typedfindingと安定pointer。",
         "change": "旧TS/schema/runtimeをcopyせず、6logical type/受領候補と導出valueの別形/primitive境界へ。",
         "reason": "libraryエラーとCORE意味を混同せず、候補の実作用申告をschemaで消さない。"
+      },
+      "stage_result_type_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          23,
+          24,
+          25,
+          26,
+          27,
+          29,
+          30,
+          31,
+          34
+        ],
+        "preserve": "pure core/adapter分離、typed ValidationResultとsource locator、安定finding、実作用を返さない。",
+        "change": "旧TS型/実装をcopyせず、022の6Valueの導出状態/不足人口/戻し先とopaque受領を分ける。",
+        "reason": "結果shapeを実装者の自由補完へ残さず、RawText/LogicalJsonの受領を資格済み意味へ変えない。"
       }
     },
     {
@@ -523,7 +542,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "全6契約の全構造/複合/全typedfinding/正式schema-codec/原資料と実owner/適用条件・同段階再検証binding/対L6L7凍結/実装準備の設計閉包。 6契約のlogical structureを具体化。LogicalJson内詳細shape/全typedfinding/正式codec/実owner/凍結は未完。",
+    "全6契約の全構造/複合/全typedfinding/正式schema-codec/原資料と実owner/適用条件・同段階再検証binding/対L6L7凍結/実装準備の設計閉包。 6契約のlogical structureを具体化。LogicalJson内詳細shape/全typedfinding/正式codec/実owner/凍結は未完。 6Valueの47fieldを手順由来の状態/人口/戻し先へ型具体化。opaque原資料/全finding/全Result oracle/codec/資格/凍結は未完。",
     "F04全構造/複合/全finding/Context資格、正式schema/codec/実owner/原記録供給・利用者本人性binding。",
     "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。",
     "F04独立Contextとの不一致/actual資格欠落4例、candidate path JSON Pointer写像を追加。全副次finding/実owner bindingは未完。",
@@ -77842,5 +77861,545 @@
     ],
     "execution_state": "not_executed",
     "verification_limit": "schemaと固定JSON設計例の静的検証。実Red/Green/実L8/実codec/資格/全閉包ではない。"
+  },
+  "result_type_oracles": {
+    "design_pointer": "/result_type_contract",
+    "schema_pointer": "/logical_structure_schema/schema",
+    "value_positive_scope": "既503原例のvalue全体/36candidateと既schema carrierを無改変で全件再照合する。新たな実呼出/全Result oracleではない。",
+    "state_boundaries": [
+      {
+        "id": "HARNESS-L5-022-F04-RESULT-UNKNOWN-STATE",
+        "source_value_ref": "H022-L8-F04-NORMAL",
+        "value_type": "AcceptanceValue",
+        "candidate_type": "AcceptanceCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "verified_candidate"
+          ],
+          "value": "unregistered_result_state"
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "valid",
+        "expected_domain_comparison": "conflict_required_not_executed",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F04-RESULT-STATE-AS-NUMBER",
+        "source_value_ref": "H022-L8-F04-NORMAL",
+        "value_type": "AcceptanceValue",
+        "candidate_type": "AcceptanceCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "verified_candidate"
+          ],
+          "value": 1
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F01-RESULT-UNKNOWN-STATE",
+        "source_value_ref": "H022-L8-F01-NORMAL",
+        "value_type": "StageInputsValue",
+        "candidate_type": "StageInputsCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "input_results",
+            "artifact"
+          ],
+          "value": "unregistered_result_state"
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "valid",
+        "expected_domain_comparison": "conflict_required_not_executed",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F01-RESULT-STATE-AS-NUMBER",
+        "source_value_ref": "H022-L8-F01-NORMAL",
+        "value_type": "StageInputsValue",
+        "candidate_type": "StageInputsCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "input_results",
+            "artifact"
+          ],
+          "value": 1
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F02-RESULT-UNKNOWN-STATE",
+        "source_value_ref": "H022-L8-F02-NORMAL",
+        "value_type": "IntegratedProofValue",
+        "candidate_type": "IntegratedProofCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "integrated_candidate"
+          ],
+          "value": "unregistered_result_state"
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "valid",
+        "expected_domain_comparison": "conflict_required_not_executed",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F02-RESULT-STATE-AS-NUMBER",
+        "source_value_ref": "H022-L8-F02-NORMAL",
+        "value_type": "IntegratedProofValue",
+        "candidate_type": "IntegratedProofCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "integrated_candidate"
+          ],
+          "value": 1
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F03-RESULT-UNKNOWN-STATE",
+        "source_value_ref": "H022-L8-F03-NORMAL",
+        "value_type": "SystemDifferenceValue",
+        "candidate_type": "SystemDifferenceCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "verified_candidate"
+          ],
+          "value": "unregistered_result_state"
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "valid",
+        "expected_domain_comparison": "conflict_required_not_executed",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F03-RESULT-STATE-AS-NUMBER",
+        "source_value_ref": "H022-L8-F03-NORMAL",
+        "value_type": "SystemDifferenceValue",
+        "candidate_type": "SystemDifferenceCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "verified_candidate"
+          ],
+          "value": 1
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-N01-RESULT-UNKNOWN-STATE",
+        "source_value_ref": "H022-L8-N01-NORMAL",
+        "value_type": "UnseenValue",
+        "candidate_type": "UnseenCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "current_evaluation"
+          ],
+          "value": "unregistered_result_state"
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "valid",
+        "expected_domain_comparison": "conflict_required_not_executed",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-N01-RESULT-STATE-AS-NUMBER",
+        "source_value_ref": "H022-L8-N01-NORMAL",
+        "value_type": "UnseenValue",
+        "candidate_type": "UnseenCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "current_evaluation"
+          ],
+          "value": 1
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-B01-RESULT-UNKNOWN-STATE",
+        "source_value_ref": "H022-L8-B01-NORMAL",
+        "value_type": "OwnerBackflowValue",
+        "candidate_type": "OwnerBackflowCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "action_candidate"
+          ],
+          "value": "unregistered_result_state"
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "valid",
+        "expected_domain_comparison": "conflict_required_not_executed",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-B01-RESULT-STATE-AS-NUMBER",
+        "source_value_ref": "H022-L8-B01-NORMAL",
+        "value_type": "OwnerBackflowValue",
+        "candidate_type": "OwnerBackflowCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "action_candidate"
+          ],
+          "value": 1
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      }
+    ],
+    "container_boundaries": [
+      {
+        "id": "HARNESS-L5-022-F04-RESULT-WRONG-CONTAINER-material_results",
+        "source_value_ref": "H022-L8-F04-NORMAL",
+        "value_type": "AcceptanceValue",
+        "candidate_type": "AcceptanceCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "material_results"
+          ],
+          "value": true
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F04-RESULT-WRONG-CONTAINER-unresolved_materials",
+        "source_value_ref": "H022-L8-F04-NORMAL",
+        "value_type": "AcceptanceValue",
+        "candidate_type": "AcceptanceCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "unresolved_materials"
+          ],
+          "value": true
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F01-RESULT-WRONG-CONTAINER-input_results",
+        "source_value_ref": "H022-L8-F01-NORMAL",
+        "value_type": "StageInputsValue",
+        "candidate_type": "StageInputsCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "input_results"
+          ],
+          "value": true
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F02-RESULT-WRONG-CONTAINER-proof_results",
+        "source_value_ref": "H022-L8-F02-NORMAL",
+        "value_type": "IntegratedProofValue",
+        "candidate_type": "IntegratedProofCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "proof_results"
+          ],
+          "value": true
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F02-RESULT-WRONG-CONTAINER-unresolved_proofs",
+        "source_value_ref": "H022-L8-F02-NORMAL",
+        "value_type": "IntegratedProofValue",
+        "candidate_type": "IntegratedProofCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "unresolved_proofs"
+          ],
+          "value": true
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F03-RESULT-WRONG-CONTAINER-proof_results",
+        "source_value_ref": "H022-L8-F03-NORMAL",
+        "value_type": "SystemDifferenceValue",
+        "candidate_type": "SystemDifferenceCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "proof_results"
+          ],
+          "value": true
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F03-RESULT-WRONG-CONTAINER-whole_obligations",
+        "source_value_ref": "H022-L8-F03-NORMAL",
+        "value_type": "SystemDifferenceValue",
+        "candidate_type": "SystemDifferenceCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "whole_obligations"
+          ],
+          "value": true
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-N01-RESULT-WRONG-CONTAINER-evaluated_scope",
+        "source_value_ref": "H022-L8-N01-NORMAL",
+        "value_type": "UnseenValue",
+        "candidate_type": "UnseenCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "evaluated_scope"
+          ],
+          "value": true
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-N01-RESULT-WRONG-CONTAINER-current_findings",
+        "source_value_ref": "H022-L8-N01-NORMAL",
+        "value_type": "UnseenValue",
+        "candidate_type": "UnseenCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "current_findings"
+          ],
+          "value": true
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-B01-RESULT-WRONG-CONTAINER-stage_material_results",
+        "source_value_ref": "H022-L8-B01-NORMAL",
+        "value_type": "OwnerBackflowValue",
+        "candidate_type": "OwnerBackflowCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "stage_material_results"
+          ],
+          "value": true
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-B01-RESULT-WRONG-CONTAINER-meaning_differences",
+        "source_value_ref": "H022-L8-B01-NORMAL",
+        "value_type": "OwnerBackflowValue",
+        "candidate_type": "OwnerBackflowCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "meaning_differences"
+          ],
+          "value": true
+        },
+        "expected_value_shape": "invalid",
+        "expected_candidate_shape": "invalid",
+        "effect": "none"
+      }
+    ],
+    "carrier_boundaries": [
+      {
+        "id": "HARNESS-L5-022-F04-RESULT-OPAQUE-Q",
+        "source_value_ref": "H022-L8-F04-NORMAL",
+        "value_type": "AcceptanceValue",
+        "candidate_type": "AcceptanceCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "unrelated_Q"
+          ],
+          "value": {
+            "raw_scope": "Q",
+            "unknown_payload": [
+              null,
+              false,
+              "",
+              3
+            ]
+          }
+        },
+        "expected_value_shape": "valid",
+        "expected_candidate_shape": "valid",
+        "domain_limit": "opaque carrierのshapeのみ。原inputとの保全一致/内容成功はこの変異から生成しない。",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F01-RESULT-OPAQUE-Q",
+        "source_value_ref": "H022-L8-F01-NORMAL",
+        "value_type": "StageInputsValue",
+        "candidate_type": "StageInputsCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "unrelated_Q"
+          ],
+          "value": {
+            "raw_scope": "Q",
+            "unknown_payload": [
+              null,
+              false,
+              "",
+              3
+            ]
+          }
+        },
+        "expected_value_shape": "valid",
+        "expected_candidate_shape": "valid",
+        "domain_limit": "opaque carrierのshapeのみ。原inputとの保全一致/内容成功はこの変異から生成しない。",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F02-RESULT-OPAQUE-Q",
+        "source_value_ref": "H022-L8-F02-NORMAL",
+        "value_type": "IntegratedProofValue",
+        "candidate_type": "IntegratedProofCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "unrelated_Q"
+          ],
+          "value": {
+            "raw_scope": "Q",
+            "unknown_payload": [
+              null,
+              false,
+              "",
+              3
+            ]
+          }
+        },
+        "expected_value_shape": "valid",
+        "expected_candidate_shape": "valid",
+        "domain_limit": "opaque carrierのshapeのみ。原inputとの保全一致/内容成功はこの変異から生成しない。",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-F03-RESULT-OPAQUE-Q",
+        "source_value_ref": "H022-L8-F03-NORMAL",
+        "value_type": "SystemDifferenceValue",
+        "candidate_type": "SystemDifferenceCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "unrelated_Q"
+          ],
+          "value": {
+            "raw_scope": "Q",
+            "unknown_payload": [
+              null,
+              false,
+              "",
+              3
+            ]
+          }
+        },
+        "expected_value_shape": "valid",
+        "expected_candidate_shape": "valid",
+        "domain_limit": "opaque carrierのshapeのみ。原inputとの保全一致/内容成功はこの変異から生成しない。",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-N01-RESULT-OPAQUE-Q",
+        "source_value_ref": "H022-L8-N01-NORMAL",
+        "value_type": "UnseenValue",
+        "candidate_type": "UnseenCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "unrelated_Q"
+          ],
+          "value": {
+            "raw_scope": "Q",
+            "unknown_payload": [
+              null,
+              false,
+              "",
+              3
+            ]
+          }
+        },
+        "expected_value_shape": "valid",
+        "expected_candidate_shape": "valid",
+        "domain_limit": "opaque carrierのshapeのみ。原inputとの保全一致/内容成功はこの変異から生成しない。",
+        "effect": "none"
+      },
+      {
+        "id": "HARNESS-L5-022-B01-RESULT-OPAQUE-Q",
+        "source_value_ref": "H022-L8-B01-NORMAL",
+        "value_type": "OwnerBackflowValue",
+        "candidate_type": "OwnerBackflowCandidate",
+        "mutation": {
+          "operation": "set",
+          "path": [
+            "unrelated_Q"
+          ],
+          "value": {
+            "raw_scope": "Q",
+            "unknown_payload": [
+              null,
+              false,
+              "",
+              3
+            ]
+          }
+        },
+        "expected_value_shape": "valid",
+        "expected_candidate_shape": "valid",
+        "domain_limit": "opaque carrierのshapeのみ。原inputとの保全一致/内容成功はこの変異から生成しない。",
+        "effect": "none"
+      }
+    ],
+    "execution_state": "not_executed",
+    "effect": "none",
+    "verification_limit": "構造具体化と原手順/期待の静的照合。実domain Red/Green/実L8/実state/受入ではない。"
   }
 }

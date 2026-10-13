@@ -473,6 +473,25 @@
         "preserve": "pure core/schema adapter分離、untrusted/required/unknownを確かめるDbC、typedfindingと安定pointer。",
         "change": "旧TS/schema/runtimeをcopyせず、6logical type/受領候補と導出valueの別形/primitive境界へ。",
         "reason": "libraryエラーとCORE意味を混同せず、候補の実作用申告をschemaで消さない。"
+      },
+      "stage_result_type_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          23,
+          24,
+          25,
+          26,
+          27,
+          29,
+          30,
+          31,
+          34
+        ],
+        "preserve": "pure core/adapter分離、typed ValidationResultとsource locator、安定finding、実作用を返さない。",
+        "change": "旧TS型/実装をcopyせず、022の6Valueの導出状態/不足人口/戻し先とopaque受領を分ける。",
+        "reason": "結果shapeを実装者の自由補完へ残さず、RawText/LogicalJsonの受領を資格済み意味へ変えない。"
       }
     },
     {
@@ -523,7 +542,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "全6契約の全構造/複合/全typedfinding/正式schema-codec/原資料と実owner/適用条件・同段階再検証binding/対L6L7凍結/実装準備の設計閉包。 6契約のlogical structureを具体化。LogicalJson内詳細shape/全typedfinding/正式codec/実owner/凍結は未完。",
+    "全6契約の全構造/複合/全typedfinding/正式schema-codec/原資料と実owner/適用条件・同段階再検証binding/対L6L7凍結/実装準備の設計閉包。 6契約のlogical structureを具体化。LogicalJson内詳細shape/全typedfinding/正式codec/実owner/凍結は未完。 6Valueの47fieldを手順由来の状態/人口/戻し先へ型具体化。opaque原資料/全finding/全Result oracle/codec/資格/凍結は未完。",
     "F04全構造/複合/全finding/Context資格、正式schema/codec/実owner/原記録供給・利用者本人性binding。",
     "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。",
     "F04独立Contextとの不一致/actual資格欠落4例、candidate path JSON Pointer写像を追加。全副次finding/実owner bindingは未完。",
@@ -614,16 +633,16 @@
       "qualification": "LogicalJson | null（nullは実資格未確認）"
     },
     "AcceptanceValue": {
-      "material_results": "LogicalJson",
-      "material_findings": "LogicalJson",
-      "unresolved_materials": "LogicalJson",
-      "owner_return_candidates": "LogicalJson",
-      "user_record_findings": "LogicalJson",
-      "verified_candidate": "LogicalJson",
-      "content_oracle_candidate": "LogicalJson",
-      "user_acceptance_candidate": "LogicalJson",
-      "accepted_candidate": "LogicalJson",
-      "semantic_backflow_candidate": "LogicalJson",
+      "material_results": "map[MaterialRole,MaterialComparisonState]",
+      "material_findings": "map[MaterialRole,tuple[RawText]]",
+      "unresolved_materials": "tuple[MaterialRole]",
+      "owner_return_candidates": "map[MaterialRole,Text]",
+      "user_record_findings": "tuple[RawText]",
+      "verified_candidate": "MaterialComparisonState",
+      "content_oracle_candidate": "ContentEstablishmentCandidate",
+      "user_acceptance_candidate": "UserAcceptanceRecordCandidate",
+      "accepted_candidate": "ContentEstablishmentCandidate",
+      "semantic_backflow_candidate": "RawText | null",
       "CI_or_L10_is_user_receipt": "literal false",
       "external_and_internal_same_contract": "literal true",
       "unrelated_Q": "LogicalJson",
@@ -695,11 +714,11 @@
       "original_owner_qualification": "LogicalJson | null（nullは実資格未確認）"
     },
     "StageInputsValue": {
-      "input_results": "LogicalJson",
-      "input_findings": "LogicalJson",
-      "stage_input_results": "LogicalJson",
-      "stage_unresolved_input_ids": "LogicalJson",
-      "owner_return_candidates": "LogicalJson",
+      "input_results": "map[StageInputId,StageInputComparisonState]",
+      "input_findings": "map[StageInputId,tuple[RawText]]",
+      "stage_input_results": "closed map[Stage,StageInputPopulationState]",
+      "stage_unresolved_input_ids": "closed map[Stage,tuple[StageInputId]]",
+      "owner_return_candidates": "map[StageInputId,Text]",
       "external_and_internal_same_contract": "literal true",
       "actual_stage_promoted": "literal false",
       "actual_provisional_established": "literal false",
@@ -786,13 +805,13 @@
       "original_owner_qualification": "LogicalJson | null（nullは実資格未確認）"
     },
     "IntegratedProofValue": {
-      "proof_results": "LogicalJson",
-      "proof_findings": "LogicalJson",
-      "unresolved_proofs": "LogicalJson",
-      "owner_return_candidates": "LogicalJson",
-      "refactor_findings": "LogicalJson",
-      "integrated_candidate": "LogicalJson",
-      "provisional_candidate": "LogicalJson",
+      "proof_results": "map[IntegratedProofId,MaterialComparisonState]",
+      "proof_findings": "map[IntegratedProofId,tuple[RawText]]",
+      "unresolved_proofs": "tuple[IntegratedProofId]",
+      "owner_return_candidates": "map[IntegratedProofId,Text]",
+      "refactor_findings": "tuple[RawText]",
+      "integrated_candidate": "ContentEstablishmentCandidate",
+      "provisional_candidate": "MaterialComparisonState",
       "refactor_reverification_required": "bool",
       "atomic_CI_is_integration_proof": "literal false",
       "external_and_internal_same_contract": "literal true",
@@ -843,16 +862,16 @@
       "original_owner_qualification": "LogicalJson | null"
     },
     "SystemDifferenceValue": {
-      "whole_obligations": "LogicalJson",
-      "lower_expressible_obligations": "LogicalJson",
-      "system_unique_obligations": "LogicalJson",
-      "proof_results": "LogicalJson",
-      "proof_findings": "LogicalJson",
-      "unresolved_proofs": "LogicalJson",
-      "owner_return_candidates": "LogicalJson",
-      "verified_candidate": "LogicalJson",
-      "derivation_kind": "LogicalJson",
-      "integrated_candidate": "LogicalJson",
+      "whole_obligations": "tuple[Text]",
+      "lower_expressible_obligations": "tuple[Text]",
+      "system_unique_obligations": "tuple[Text]",
+      "proof_results": "map[SystemDifferenceRole,MaterialComparisonState]",
+      "proof_findings": "map[SystemDifferenceRole,tuple[RawText]]",
+      "unresolved_proofs": "tuple[SystemDifferenceRole]",
+      "owner_return_candidates": "map[SystemDifferenceRole,Text]",
+      "verified_candidate": "ContentEstablishmentCandidate",
+      "derivation_kind": "SystemDifferenceDerivationKind",
+      "integrated_candidate": "MaterialComparisonState",
       "trace_is_system_proof": "literal false",
       "external_and_internal_same_contract": "literal true",
       "unrelated_Q": "LogicalJson",
@@ -951,14 +970,14 @@
       "original_owner_qualification": "LogicalJson | null"
     },
     "UnseenValue": {
-      "current_evaluation": "LogicalJson",
-      "current_findings": "LogicalJson",
-      "evaluated_scope": "LogicalJson",
+      "current_evaluation": "UnseenEvaluationState",
+      "current_findings": "tuple[RawText]",
+      "evaluated_scope": "UnseenTarget | null",
       "prior_confirmed_receipts": "LogicalJson",
       "prior_receipts_are_current_proof": "literal false",
       "other_artifact_pass_is_current_proof": "literal false",
       "lower_stage_pass_is_upper_proof": "literal false",
-      "improvement_score_role": "LogicalJson",
+      "improvement_score_role": "literal diagnostic_only",
       "all_code_or_product_guarantee": "literal false",
       "actual_stage_promoted": "literal false",
       "actual_accepted": "literal false",
@@ -1028,17 +1047,17 @@
       "original_owner_qualification": "LogicalJson | null"
     },
     "OwnerBackflowValue": {
-      "meaning_differences": "LogicalJson",
-      "action_candidate": "LogicalJson",
-      "backflow_owner_candidate": "LogicalJson",
-      "same_stage_reverification_required": "LogicalJson",
-      "same_stage_reverification_status": "LogicalJson",
-      "stage_material_results": "LogicalJson",
-      "requested_import_stage": "LogicalJson",
-      "service_6_import_candidate": "LogicalJson",
-      "owner_findings": "LogicalJson",
-      "meaning_contract_owner": "LogicalJson",
-      "execution_record_owner": "LogicalJson",
+      "meaning_differences": "tuple[MeaningDifferenceAxis]",
+      "action_candidate": "BackflowActionCandidate",
+      "backflow_owner_candidate": "BackflowOwnerCandidate | null",
+      "same_stage_reverification_required": "bool",
+      "same_stage_reverification_status": "ContentEstablishmentCandidate",
+      "stage_material_results": "closed map[Stage,StageImportMaterialState]",
+      "requested_import_stage": "RawText",
+      "service_6_import_candidate": "ContentEstablishmentCandidate",
+      "owner_findings": "tuple[RawText]",
+      "meaning_contract_owner": "literal HARNESS-CORE",
+      "execution_record_owner": "literal OS_or_user_means",
       "OS_or_service_4_mandatory": "literal false",
       "unrelated_Q": "LogicalJson",
       "actual_import_executed": "literal false",
@@ -1061,7 +1080,18 @@
       "findings": "tuple[OwnerBackflowFinding]",
       "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
       "candidate_conflicting_paths": "tuple[JsonPointer]"
-    }
+    },
+    "MaterialComparisonState": "conflict | stale | unknown | missing | supported_synthetic",
+    "StageInputComparisonState": "conflict | stale | unknown | missing | supported_synthetic_input",
+    "StageInputPopulationState": "supported_synthetic_input_only | not_evaluated_missing_or_conflicting_input",
+    "ContentEstablishmentCandidate": "supported_synthetic_only | not_established",
+    "UserAcceptanceRecordCandidate": "accept_recorded_synthetic | reject_recorded_synthetic | defer_recorded_synthetic | not_established",
+    "SystemDifferenceDerivationKind": "difference_proof_required | compositional_no_unique_obligation",
+    "UnseenEvaluationState": "supported_synthetic_content_only | not_evaluated | conflict_content",
+    "StageImportMaterialState": "supported_synthetic_stage_material | missing | conflict",
+    "BackflowActionCandidate": "no_change | same_stage_refactor_and_reverify | backflow_meaning_owner",
+    "BackflowOwnerCandidate": "L1_owner | L3_L2_owner | L4_owner | L5_owner | L2_requirements_owner",
+    "MeaningDifferenceAxis": "value | requirements | architecture | detail"
   },
   "functions": [
     {
@@ -1933,7 +1963,7 @@
     "authority_effect": "none",
     "operation_effect": "none",
     "source_revision": "df528e4ebce454acfbd2e9bd6c443f248e1764ef",
-    "meaning_source": "本書typesと6functions。型/required/unknown/enum/literal/nullable/map/tupleの構造具体化。descriptionの意味条件はdomain/codecへ保持。",
+    "meaning_source": "本書typesと6functions。構造projectionに、手順由来の導出Value47fieldの状態/人口/戻し先とbool/literalを具体化。原入力/独立資料のLogicalJsonはdomainへ保持。",
     "dialect_sources": [
       "https://json-schema.org/draft/2020-12/json-schema-core",
       "https://json-schema.org/draft/2020-12/json-schema-validation"
@@ -2588,34 +2618,68 @@
           ],
           "properties": {
             "material_results": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/MaterialRole"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/MaterialComparisonState"
+              }
             },
             "material_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/MaterialRole"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/RawText"
+                }
+              }
             },
             "unresolved_materials": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/MaterialRole"
+              }
             },
             "owner_return_candidates": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/MaterialRole"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "user_record_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawText"
+              }
             },
             "verified_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/MaterialComparisonState"
             },
             "content_oracle_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/ContentEstablishmentCandidate"
             },
             "user_acceptance_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/UserAcceptanceRecordCandidate"
             },
             "accepted_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/ContentEstablishmentCandidate"
             },
             "semantic_backflow_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "CI_or_L10_is_user_receipt": {
               "const": false
@@ -3066,19 +3130,75 @@
           ],
           "properties": {
             "input_results": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/StageInputId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/StageInputComparisonState"
+              }
             },
             "input_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/StageInputId"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/RawText"
+                }
+              }
             },
             "stage_input_results": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "properties": {
+                "Integrated": {
+                  "$ref": "#/$defs/StageInputPopulationState"
+                },
+                "Verified": {
+                  "$ref": "#/$defs/StageInputPopulationState"
+                },
+                "Accepted": {
+                  "$ref": "#/$defs/StageInputPopulationState"
+                }
+              },
+              "additionalProperties": false,
+              "$comment": "closed key vocabulary。必要roleの有無/人口exactは各domain契約へ。未提示roleを自動補完しない。"
             },
             "stage_unresolved_input_ids": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "properties": {
+                "Integrated": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/StageInputId"
+                  }
+                },
+                "Verified": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/StageInputId"
+                  }
+                },
+                "Accepted": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/StageInputId"
+                  }
+                }
+              },
+              "additionalProperties": false,
+              "$comment": "closed key vocabulary。必要roleの有無/人口exactは各domain契約へ。未提示roleを自動補完しない。"
             },
             "owner_return_candidates": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/StageInputId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "external_and_internal_same_contract": {
               "const": true
@@ -3590,25 +3710,52 @@
           ],
           "properties": {
             "proof_results": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/IntegratedProofId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/MaterialComparisonState"
+              }
             },
             "proof_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/IntegratedProofId"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/RawText"
+                }
+              }
             },
             "unresolved_proofs": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/IntegratedProofId"
+              }
             },
             "owner_return_candidates": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/IntegratedProofId"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "refactor_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawText"
+              }
             },
             "integrated_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/ContentEstablishmentCandidate"
             },
             "provisional_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/MaterialComparisonState"
             },
             "refactor_reverification_required": {
               "type": "boolean"
@@ -3950,34 +4097,67 @@
           ],
           "properties": {
             "whole_obligations": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "lower_expressible_obligations": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "system_unique_obligations": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "proof_results": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/SystemDifferenceRole"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/MaterialComparisonState"
+              }
             },
             "proof_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/SystemDifferenceRole"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/RawText"
+                }
+              }
             },
             "unresolved_proofs": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SystemDifferenceRole"
+              }
             },
             "owner_return_candidates": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/SystemDifferenceRole"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "verified_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/ContentEstablishmentCandidate"
             },
             "derivation_kind": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/SystemDifferenceDerivationKind"
             },
             "integrated_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/MaterialComparisonState"
             },
             "trace_is_system_proof": {
               "const": false
@@ -4474,13 +4654,23 @@
           ],
           "properties": {
             "current_evaluation": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/UnseenEvaluationState"
             },
             "current_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawText"
+              }
             },
             "evaluated_scope": {
-              "$ref": "#/$defs/LogicalJson"
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/UnseenTarget"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "prior_confirmed_receipts": {
               "$ref": "#/$defs/LogicalJson"
@@ -4495,7 +4685,7 @@
               "const": false
             },
             "improvement_score_role": {
-              "$ref": "#/$defs/LogicalJson"
+              "const": "diagnostic_only"
             },
             "all_code_or_product_guarantee": {
               "const": false
@@ -4926,37 +5116,63 @@
           ],
           "properties": {
             "meaning_differences": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/MeaningDifferenceAxis"
+              }
             },
             "action_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/BackflowActionCandidate"
             },
             "backflow_owner_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/BackflowOwnerCandidate"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "same_stage_reverification_required": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "boolean"
             },
             "same_stage_reverification_status": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/ContentEstablishmentCandidate"
             },
             "stage_material_results": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "properties": {
+                "Integrated": {
+                  "$ref": "#/$defs/StageImportMaterialState"
+                },
+                "Verified": {
+                  "$ref": "#/$defs/StageImportMaterialState"
+                },
+                "Accepted": {
+                  "$ref": "#/$defs/StageImportMaterialState"
+                }
+              },
+              "additionalProperties": false,
+              "$comment": "closed key vocabulary。必要roleの有無/人口exactは各domain契約へ。未提示roleを自動補完しない。"
             },
             "requested_import_stage": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/RawText"
             },
             "service_6_import_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/ContentEstablishmentCandidate"
             },
             "owner_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawText"
+              }
             },
             "meaning_contract_owner": {
-              "$ref": "#/$defs/LogicalJson"
+              "const": "HARNESS-CORE"
             },
             "execution_record_owner": {
-              "$ref": "#/$defs/LogicalJson"
+              "const": "OS_or_user_means"
             },
             "OS_or_service_4_mandatory": {
               "const": false
@@ -5086,6 +5302,99 @@
             }
           }
         },
+        "MaterialComparisonState": {
+          "type": "string",
+          "enum": [
+            "conflict",
+            "stale",
+            "unknown",
+            "missing",
+            "supported_synthetic"
+          ]
+        },
+        "StageInputComparisonState": {
+          "type": "string",
+          "enum": [
+            "conflict",
+            "stale",
+            "unknown",
+            "missing",
+            "supported_synthetic_input"
+          ]
+        },
+        "StageInputPopulationState": {
+          "type": "string",
+          "enum": [
+            "supported_synthetic_input_only",
+            "not_evaluated_missing_or_conflicting_input"
+          ]
+        },
+        "ContentEstablishmentCandidate": {
+          "type": "string",
+          "enum": [
+            "supported_synthetic_only",
+            "not_established"
+          ]
+        },
+        "UserAcceptanceRecordCandidate": {
+          "type": "string",
+          "enum": [
+            "accept_recorded_synthetic",
+            "reject_recorded_synthetic",
+            "defer_recorded_synthetic",
+            "not_established"
+          ]
+        },
+        "SystemDifferenceDerivationKind": {
+          "type": "string",
+          "enum": [
+            "difference_proof_required",
+            "compositional_no_unique_obligation"
+          ]
+        },
+        "UnseenEvaluationState": {
+          "type": "string",
+          "enum": [
+            "supported_synthetic_content_only",
+            "not_evaluated",
+            "conflict_content"
+          ]
+        },
+        "StageImportMaterialState": {
+          "type": "string",
+          "enum": [
+            "supported_synthetic_stage_material",
+            "missing",
+            "conflict"
+          ]
+        },
+        "BackflowActionCandidate": {
+          "type": "string",
+          "enum": [
+            "no_change",
+            "same_stage_refactor_and_reverify",
+            "backflow_meaning_owner"
+          ]
+        },
+        "BackflowOwnerCandidate": {
+          "type": "string",
+          "enum": [
+            "L1_owner",
+            "L3_L2_owner",
+            "L4_owner",
+            "L5_owner",
+            "L2_requirements_owner"
+          ]
+        },
+        "MeaningDifferenceAxis": {
+          "type": "string",
+          "enum": [
+            "value",
+            "requirements",
+            "architecture",
+            "detail"
+          ]
+        },
         "AcceptanceCandidate": {
           "type": "object",
           "additionalProperties": false,
@@ -5109,34 +5418,68 @@
           ],
           "properties": {
             "material_results": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "type": "string"
+              }
             },
             "material_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/RawText"
+                }
+              }
             },
             "unresolved_materials": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "owner_return_candidates": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "user_record_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawText"
+              }
             },
             "verified_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "content_oracle_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "user_acceptance_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "accepted_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "semantic_backflow_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/RawText"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "CI_or_L10_is_user_receipt": {
               "type": "boolean"
@@ -5177,19 +5520,75 @@
           ],
           "properties": {
             "input_results": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "string"
+              }
             },
             "input_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/RawText"
+                }
+              }
             },
             "stage_input_results": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "properties": {
+                "Integrated": {
+                  "type": "string"
+                },
+                "Verified": {
+                  "type": "string"
+                },
+                "Accepted": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "$comment": "closed key vocabulary。必要roleの有無/人口exactは各domain契約へ。未提示roleを自動補完しない。"
             },
             "stage_unresolved_input_ids": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "properties": {
+                "Integrated": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Text"
+                  }
+                },
+                "Verified": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Text"
+                  }
+                },
+                "Accepted": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Text"
+                  }
+                }
+              },
+              "additionalProperties": false,
+              "$comment": "closed key vocabulary。必要roleの有無/人口exactは各domain契約へ。未提示roleを自動補完しない。"
             },
             "owner_return_candidates": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "external_and_internal_same_contract": {
               "type": "boolean"
@@ -5234,25 +5633,52 @@
           ],
           "properties": {
             "proof_results": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "string"
+              }
             },
             "proof_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/RawText"
+                }
+              }
             },
             "unresolved_proofs": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "owner_return_candidates": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "refactor_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawText"
+              }
             },
             "integrated_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "provisional_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "refactor_reverification_required": {
               "type": "boolean"
@@ -5304,34 +5730,67 @@
           ],
           "properties": {
             "whole_obligations": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "lower_expressible_obligations": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "system_unique_obligations": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "proof_results": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "string"
+              }
             },
             "proof_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/RawText"
+                }
+              }
             },
             "unresolved_proofs": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "owner_return_candidates": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "propertyNames": {
+                "$ref": "#/$defs/Text"
+              },
+              "additionalProperties": {
+                "$ref": "#/$defs/Text"
+              }
             },
             "verified_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "derivation_kind": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "integrated_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "trace_is_system_proof": {
               "type": "boolean"
@@ -5375,13 +5834,48 @@
           ],
           "properties": {
             "current_evaluation": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "current_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawText"
+              }
             },
             "evaluated_scope": {
-              "$ref": "#/$defs/LogicalJson"
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "artifact_identity",
+                    "artifact_revision",
+                    "requirement_revision",
+                    "scope",
+                    "stage"
+                  ],
+                  "properties": {
+                    "artifact_identity": {
+                      "$ref": "#/$defs/Text"
+                    },
+                    "artifact_revision": {
+                      "$ref": "#/$defs/Text"
+                    },
+                    "requirement_revision": {
+                      "$ref": "#/$defs/Text"
+                    },
+                    "scope": {
+                      "$ref": "#/$defs/Text"
+                    },
+                    "stage": {
+                      "$ref": "#/$defs/Text"
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "prior_confirmed_receipts": {
               "$ref": "#/$defs/LogicalJson"
@@ -5396,7 +5890,7 @@
               "type": "boolean"
             },
             "improvement_score_role": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "all_code_or_product_guarantee": {
               "type": "boolean"
@@ -5444,37 +5938,63 @@
           ],
           "properties": {
             "meaning_differences": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "action_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "backflow_owner_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "same_stage_reverification_required": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "boolean"
             },
             "same_stage_reverification_status": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "stage_material_results": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "object",
+              "properties": {
+                "Integrated": {
+                  "type": "string"
+                },
+                "Verified": {
+                  "type": "string"
+                },
+                "Accepted": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "$comment": "closed key vocabulary。必要roleの有無/人口exactは各domain契約へ。未提示roleを自動補完しない。"
             },
             "requested_import_stage": {
-              "$ref": "#/$defs/LogicalJson"
+              "$ref": "#/$defs/RawText"
             },
             "service_6_import_candidate": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "owner_findings": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawText"
+              }
             },
             "meaning_contract_owner": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "execution_record_owner": {
-              "$ref": "#/$defs/LogicalJson"
+              "type": "string"
             },
             "OS_or_service_4_mandatory": {
               "type": "boolean"
@@ -5518,6 +6038,10 @@
       {
         "type": "closed map",
         "clarification": "key語彙を閉じ、必須role人口/exact set/pair mappingはdomainで照合。未知roleをstrip/必要roleを補完しない。"
+      },
+      {
+        "type": "6 Value outputs",
+        "clarification": "derived状態/不足集合/戻し先47fieldを手順と原L9の意味から具体化。Qと原過去receiptはopaque carrierで保持し、fixture人口/製品数値をenumへしない。candidateの同primitive型の意味不一致は受領してdomain比較へ。"
       }
     ],
     "validation_boundary": [
@@ -5526,7 +6050,7 @@
       "入力/Context/候補は別に型選択して検査、qualification/evidence_kind/hostをinstanceから決めない。6input oneOfは全体の設計表示でcallerのdispatch推論へ使わない。",
       "JSON numberは数学値。有限性/任意精度/unsafe host数値/bool-number差/重複key/strict UTF8とUnicode scalar/原bytes保持は正式codecへ別に結ぶ。schema適合でcodec成立を宣言しない。",
       "全構造findingは原pointerで蓄積。欠落/未知field/型不一致を補正せず、他scopeの読める原資料とQを保持。比較不能のみvalue=null。",
-      "LogicalJsonでまだ受領している観測/結果fieldの詳細shape、意味enum、Result全finding exact、全構造negativeと正式registry/consumerは未完。"
+      "原受領LogicalJson、opaque原観測/過去記録/無関係scopeと一部診断sourcecodeは保持。導出Valueの状態/人口/戻し先は型を具体化したが、人口exact/順序/全finding/全Result内容/資格/正式registry/consumerは未完。"
     ],
     "unclosed": "LogicalJson内のdomain細部shape/全negative/副次finding集合/正式wire registry/consumer codec/実owner/対L6L7凍結と実装準備は未完。",
     "existing_design_comparison": {
@@ -5540,5 +6064,734 @@
       "change": "004の7trace契約/104型をcopyせず022の6段階/受入/未見/owner契約と60型へ著述。原domain/ownerの違いを型入口へ束縛する。",
       "reason": "型/人口/適用sourceが別であり004の意味資格/schema合格を022へ継承しない。共有codec/正式registryの接続は別閉包へ。"
     }
+  },
+  "result_type_contract": {
+    "status": "draft_design_derived_value_shape_not_full_result_oracle",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "source_revision": "c816d7d0f5c603f43fa1595cb90cfd53eb9f385d",
+    "field_refinements": [
+      {
+        "type": "AcceptanceValue",
+        "field": "material_results",
+        "before": "LogicalJson",
+        "after": "map[MaterialRole,MaterialComparisonState]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F04",
+          "A4",
+          "A5",
+          "A6",
+          "A7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "AcceptanceValue",
+        "field": "material_findings",
+        "before": "LogicalJson",
+        "after": "map[MaterialRole,tuple[RawText]]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F04",
+          "A4",
+          "A5",
+          "A6",
+          "A7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "AcceptanceValue",
+        "field": "unresolved_materials",
+        "before": "LogicalJson",
+        "after": "tuple[MaterialRole]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F04",
+          "A4",
+          "A5",
+          "A6",
+          "A7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "AcceptanceValue",
+        "field": "owner_return_candidates",
+        "before": "LogicalJson",
+        "after": "map[MaterialRole,Text]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F04",
+          "A4",
+          "A5",
+          "A6",
+          "A7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "AcceptanceValue",
+        "field": "user_record_findings",
+        "before": "LogicalJson",
+        "after": "tuple[RawText]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F04",
+          "A4",
+          "A5",
+          "A6",
+          "A7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "AcceptanceValue",
+        "field": "verified_candidate",
+        "before": "LogicalJson",
+        "after": "MaterialComparisonState",
+        "meaning_sources": [
+          "HARNESS-L5-022-F04",
+          "A4",
+          "A5",
+          "A6",
+          "A7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "AcceptanceValue",
+        "field": "content_oracle_candidate",
+        "before": "LogicalJson",
+        "after": "ContentEstablishmentCandidate",
+        "meaning_sources": [
+          "HARNESS-L5-022-F04",
+          "A4",
+          "A5",
+          "A6",
+          "A7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "AcceptanceValue",
+        "field": "user_acceptance_candidate",
+        "before": "LogicalJson",
+        "after": "UserAcceptanceRecordCandidate",
+        "meaning_sources": [
+          "HARNESS-L5-022-F04",
+          "A4",
+          "A5",
+          "A6",
+          "A7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "AcceptanceValue",
+        "field": "accepted_candidate",
+        "before": "LogicalJson",
+        "after": "ContentEstablishmentCandidate",
+        "meaning_sources": [
+          "HARNESS-L5-022-F04",
+          "A4",
+          "A5",
+          "A6",
+          "A7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "AcceptanceValue",
+        "field": "semantic_backflow_candidate",
+        "before": "LogicalJson",
+        "after": "RawText | null",
+        "meaning_sources": [
+          "HARNESS-L5-022-F04",
+          "A4",
+          "A5",
+          "A6",
+          "A7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "StageInputsValue",
+        "field": "input_results",
+        "before": "LogicalJson",
+        "after": "map[StageInputId,StageInputComparisonState]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F01",
+          "S3",
+          "S4",
+          "S6",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "StageInputsValue",
+        "field": "input_findings",
+        "before": "LogicalJson",
+        "after": "map[StageInputId,tuple[RawText]]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F01",
+          "S3",
+          "S4",
+          "S6",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "StageInputsValue",
+        "field": "stage_input_results",
+        "before": "LogicalJson",
+        "after": "closed map[Stage,StageInputPopulationState]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F01",
+          "S3",
+          "S4",
+          "S6",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "StageInputsValue",
+        "field": "stage_unresolved_input_ids",
+        "before": "LogicalJson",
+        "after": "closed map[Stage,tuple[StageInputId]]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F01",
+          "S3",
+          "S4",
+          "S6",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "StageInputsValue",
+        "field": "owner_return_candidates",
+        "before": "LogicalJson",
+        "after": "map[StageInputId,Text]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F01",
+          "S3",
+          "S4",
+          "S6",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "IntegratedProofValue",
+        "field": "proof_results",
+        "before": "LogicalJson",
+        "after": "map[IntegratedProofId,MaterialComparisonState]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F02",
+          "I3",
+          "I6",
+          "I7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "IntegratedProofValue",
+        "field": "proof_findings",
+        "before": "LogicalJson",
+        "after": "map[IntegratedProofId,tuple[RawText]]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F02",
+          "I3",
+          "I6",
+          "I7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "IntegratedProofValue",
+        "field": "unresolved_proofs",
+        "before": "LogicalJson",
+        "after": "tuple[IntegratedProofId]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F02",
+          "I3",
+          "I6",
+          "I7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "IntegratedProofValue",
+        "field": "owner_return_candidates",
+        "before": "LogicalJson",
+        "after": "map[IntegratedProofId,Text]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F02",
+          "I3",
+          "I6",
+          "I7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "IntegratedProofValue",
+        "field": "refactor_findings",
+        "before": "LogicalJson",
+        "after": "tuple[RawText]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F02",
+          "I3",
+          "I6",
+          "I7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "IntegratedProofValue",
+        "field": "integrated_candidate",
+        "before": "LogicalJson",
+        "after": "ContentEstablishmentCandidate",
+        "meaning_sources": [
+          "HARNESS-L5-022-F02",
+          "I3",
+          "I6",
+          "I7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "IntegratedProofValue",
+        "field": "provisional_candidate",
+        "before": "LogicalJson",
+        "after": "MaterialComparisonState",
+        "meaning_sources": [
+          "HARNESS-L5-022-F02",
+          "I3",
+          "I6",
+          "I7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "SystemDifferenceValue",
+        "field": "whole_obligations",
+        "before": "LogicalJson",
+        "after": "tuple[Text]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F03",
+          "S3",
+          "S4",
+          "S5",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "SystemDifferenceValue",
+        "field": "lower_expressible_obligations",
+        "before": "LogicalJson",
+        "after": "tuple[Text]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F03",
+          "S3",
+          "S4",
+          "S5",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "SystemDifferenceValue",
+        "field": "system_unique_obligations",
+        "before": "LogicalJson",
+        "after": "tuple[Text]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F03",
+          "S3",
+          "S4",
+          "S5",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "SystemDifferenceValue",
+        "field": "proof_results",
+        "before": "LogicalJson",
+        "after": "map[SystemDifferenceRole,MaterialComparisonState]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F03",
+          "S3",
+          "S4",
+          "S5",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "SystemDifferenceValue",
+        "field": "proof_findings",
+        "before": "LogicalJson",
+        "after": "map[SystemDifferenceRole,tuple[RawText]]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F03",
+          "S3",
+          "S4",
+          "S5",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "SystemDifferenceValue",
+        "field": "unresolved_proofs",
+        "before": "LogicalJson",
+        "after": "tuple[SystemDifferenceRole]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F03",
+          "S3",
+          "S4",
+          "S5",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "SystemDifferenceValue",
+        "field": "owner_return_candidates",
+        "before": "LogicalJson",
+        "after": "map[SystemDifferenceRole,Text]",
+        "meaning_sources": [
+          "HARNESS-L5-022-F03",
+          "S3",
+          "S4",
+          "S5",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "SystemDifferenceValue",
+        "field": "verified_candidate",
+        "before": "LogicalJson",
+        "after": "ContentEstablishmentCandidate",
+        "meaning_sources": [
+          "HARNESS-L5-022-F03",
+          "S3",
+          "S4",
+          "S5",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "SystemDifferenceValue",
+        "field": "derivation_kind",
+        "before": "LogicalJson",
+        "after": "SystemDifferenceDerivationKind",
+        "meaning_sources": [
+          "HARNESS-L5-022-F03",
+          "S3",
+          "S4",
+          "S5",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "SystemDifferenceValue",
+        "field": "integrated_candidate",
+        "before": "LogicalJson",
+        "after": "MaterialComparisonState",
+        "meaning_sources": [
+          "HARNESS-L5-022-F03",
+          "S3",
+          "S4",
+          "S5",
+          "S7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "UnseenValue",
+        "field": "current_evaluation",
+        "before": "LogicalJson",
+        "after": "UnseenEvaluationState",
+        "meaning_sources": [
+          "HARNESS-L5-022-N01",
+          "U6",
+          "U7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "UnseenValue",
+        "field": "current_findings",
+        "before": "LogicalJson",
+        "after": "tuple[RawText]",
+        "meaning_sources": [
+          "HARNESS-L5-022-N01",
+          "U6",
+          "U7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "UnseenValue",
+        "field": "evaluated_scope",
+        "before": "LogicalJson",
+        "after": "UnseenTarget | null",
+        "meaning_sources": [
+          "HARNESS-L5-022-N01",
+          "U6",
+          "U7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "UnseenValue",
+        "field": "improvement_score_role",
+        "before": "LogicalJson",
+        "after": "literal diagnostic_only",
+        "meaning_sources": [
+          "HARNESS-L5-022-N01",
+          "U6",
+          "U7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "OwnerBackflowValue",
+        "field": "meaning_differences",
+        "before": "LogicalJson",
+        "after": "tuple[MeaningDifferenceAxis]",
+        "meaning_sources": [
+          "HARNESS-L5-022-B01",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "OwnerBackflowValue",
+        "field": "action_candidate",
+        "before": "LogicalJson",
+        "after": "BackflowActionCandidate",
+        "meaning_sources": [
+          "HARNESS-L5-022-B01",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "OwnerBackflowValue",
+        "field": "backflow_owner_candidate",
+        "before": "LogicalJson",
+        "after": "BackflowOwnerCandidate | null",
+        "meaning_sources": [
+          "HARNESS-L5-022-B01",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "OwnerBackflowValue",
+        "field": "same_stage_reverification_required",
+        "before": "LogicalJson",
+        "after": "bool",
+        "meaning_sources": [
+          "HARNESS-L5-022-B01",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "OwnerBackflowValue",
+        "field": "same_stage_reverification_status",
+        "before": "LogicalJson",
+        "after": "ContentEstablishmentCandidate",
+        "meaning_sources": [
+          "HARNESS-L5-022-B01",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "OwnerBackflowValue",
+        "field": "stage_material_results",
+        "before": "LogicalJson",
+        "after": "closed map[Stage,StageImportMaterialState]",
+        "meaning_sources": [
+          "HARNESS-L5-022-B01",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "OwnerBackflowValue",
+        "field": "requested_import_stage",
+        "before": "LogicalJson",
+        "after": "RawText",
+        "meaning_sources": [
+          "HARNESS-L5-022-B01",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "OwnerBackflowValue",
+        "field": "service_6_import_candidate",
+        "before": "LogicalJson",
+        "after": "ContentEstablishmentCandidate",
+        "meaning_sources": [
+          "HARNESS-L5-022-B01",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "OwnerBackflowValue",
+        "field": "owner_findings",
+        "before": "LogicalJson",
+        "after": "tuple[RawText]",
+        "meaning_sources": [
+          "HARNESS-L5-022-B01",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "OwnerBackflowValue",
+        "field": "meaning_contract_owner",
+        "before": "LogicalJson",
+        "after": "literal HARNESS-CORE",
+        "meaning_sources": [
+          "HARNESS-L5-022-B01",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      },
+      {
+        "type": "OwnerBackflowValue",
+        "field": "execution_record_owner",
+        "before": "LogicalJson",
+        "after": "literal OS_or_user_means",
+        "meaning_sources": [
+          "HARNESS-L5-022-B01",
+          "B3",
+          "B4",
+          "B5",
+          "B6",
+          "B7"
+        ],
+        "l9_field_projection": "既存同名fieldの原期待値を保持。literal名は原L9/手順の対応表示であり実作用ではない。"
+      }
+    ],
+    "derived_state_basis": [
+      {
+        "type": "MaterialComparisonState",
+        "source": "F04 A6/F02 I7/F03 S7のconflict→stale→unknown→missing→supported_synthetic。既例に出ないunknownも手順どおり保持。"
+      },
+      {
+        "type": "StageInputComparisonState/StageInputPopulationState",
+        "source": "F01 S3/S4/S6の版・資格・入力人口とstage単位未評価。20IDはfixtureで固定schema人口へしない。"
+      },
+      {
+        "type": "ContentEstablishmentCandidate/UserAcceptanceRecordCandidate",
+        "source": "F04 A4/A5/A6のaccept/reject/deferと未成立、F02 I7/F03 S7/B01 B7の合成対応のみ。実stage/受入ではない。"
+      },
+      {
+        "type": "SystemDifferenceDerivationKind",
+        "source": "F03 S3/S4/S7と原normal/compositional例。下位表現と固有差分の2つの導出契約。"
+      },
+      {
+        "type": "UnseenEvaluationState",
+        "source": "N01 U6の未評価/観測内容不一致/合成内容対応を別に保持。evaluated_scopeは未評価/conflictでnull、全対応のみ限定target。"
+      },
+      {
+        "type": "StageImportMaterialState/BackflowActionCandidate/BackflowOwnerCandidate/MeaningDifferenceAxis",
+        "source": "B01 B3/B4/B5/B6/B7の段階資料missing/conflict、意味差4軸/最上流owner、同段階再検証とno-change。要求されたstage宣言自体はRawTextとして保持。"
+      }
+    ],
+    "opaque_value_fields": [
+      {
+        "type": "AcceptanceValue",
+        "field": "unrelated_Q",
+        "role": "無関係scopeの原内容/限定保全表示を保持するopaque carrier。fixtureの1種類の文字列へ狭めず、保全の成否と意味は各手順/原入力へ結ぶ。"
+      },
+      {
+        "type": "StageInputsValue",
+        "field": "unrelated_Q",
+        "role": "無関係scopeの原内容/限定保全表示を保持するopaque carrier。fixtureの1種類の文字列へ狭めず、保全の成否と意味は各手順/原入力へ結ぶ。"
+      },
+      {
+        "type": "IntegratedProofValue",
+        "field": "unrelated_Q",
+        "role": "無関係scopeの原内容/限定保全表示を保持するopaque carrier。fixtureの1種類の文字列へ狭めず、保全の成否と意味は各手順/原入力へ結ぶ。"
+      },
+      {
+        "type": "SystemDifferenceValue",
+        "field": "unrelated_Q",
+        "role": "無関係scopeの原内容/限定保全表示を保持するopaque carrier。fixtureの1種類の文字列へ狭めず、保全の成否と意味は各手順/原入力へ結ぶ。"
+      },
+      {
+        "type": "UnseenValue",
+        "field": "unrelated_Q",
+        "role": "無関係scopeの原内容/限定保全表示を保持するopaque carrier。fixtureの1種類の文字列へ狭めず、保全の成否と意味は各手順/原入力へ結ぶ。"
+      },
+      {
+        "type": "OwnerBackflowValue",
+        "field": "unrelated_Q",
+        "role": "無関係scopeの原内容/限定保全表示を保持するopaque carrier。fixtureの1種類の文字列へ狭めず、保全の成否と意味は各手順/原入力へ結ぶ。"
+      },
+      {
+        "type": "UnseenValue",
+        "field": "prior_confirmed_receipts",
+        "role": "U7の原歴史記録を順序と内容のまま保持。実資格や現在proofへ型付けし直さない。"
+      }
+    ],
+    "diagnostic_sourcecode_boundary": "material/input/proof/current/user/refactor/ownerの診断配列は原source codeをRawTextで保持する。Result.findingsは既closed code集合＋pointerの別typed診断。両者の完全な写像と全副次finding oracleは未完。",
+    "population_boundary": "map/tupleのshapeと値enumだけをschemaへ。Context/selected contractに対するexact key集合、未解決集合との対応、owner資格、順序/重複は各手順に保持。closed Stage mapは語彙だけで未提示stageを補完しない。",
+    "candidate_boundary": "Valueのliteral/enum外でも同primitive型の提出値をCandidateで受領して内容比較。間違ったcontainer/primitiveやunknown propertyは原値を保全した構造不正。原候補値をValueへ正規化しない。",
+    "unclosed": "全Resultのoutcome/全typedfinding/副次finding oracle、全不正container/複合/codec/実owner/原資料/凍結/実装準備は未完。"
   }
 }
