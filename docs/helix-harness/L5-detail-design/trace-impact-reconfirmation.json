@@ -489,7 +489,7 @@
     "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
-    "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context15否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。",
+    "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。",
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。",
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。",
@@ -1644,7 +1644,7 @@
         "domain digestはUTF-8/sorted keys/compact/finite valuesのcanonical logical bytesであり実transport/ownerの原bytes証拠へ昇格しない。",
         "影響を成立stateにせず、synthetic pass/failも実upper passed/failed/再実行/完了ではない。"
       ],
-      "scope_limit": "F02部分詳細。17原例と固定合成Contextを定義し、全構造/複合/qualification/実codec/oracle凍結は未完。 Context15否定例を追補、全finding/複合/正式bindingを閉じたとはしない。",
+      "scope_limit": "F02部分詳細。17原例と固定合成Contextを定義し、全構造/複合/qualification/実codec/oracle凍結は未完。 Context17否定例を追補、全finding/複合/正式bindingを閉じたとはしない。",
       "context_failure_contract": {
         "scope": "F02の独立Context否定条件。input原内容/過去成立記録/義務を保全し、影響の資格と過去の成功主張を分ける。",
         "locator_rules": [
@@ -1657,8 +1657,8 @@
             "impact_limit": "対象graphの全membership資格が未解決、各node Unknown。元成立記録と読めた義務は保持。"
           },
           {
-            "condition": "Context state不明/実owner-inputの資格binding未閉包",
-            "code": "reference_unknown",
+            "condition": "Context stateがmissing/unknown/stale又は実owner-inputの資格binding未閉包",
+            "code": "reference_missing | reference_unknown | reference_stale",
             "pointer": "/context/state又は/context/evidence_kind",
             "node_ids": "人口union",
             "return_owner": "graph-qualification-owner",
@@ -1715,7 +1715,14 @@
         ],
         "aggregation": "既存I7どおり原関係/資格/資料の未解決はoutcome unknown、candidate矛盾はconflict、構造解釈不能はinvalid。原reference_conflict/stale/digest findingも別locatorとして全保持しoutcomeだけで消さない。",
         "establishment_preservation": "影響Unknown nodeのcurrent_resultはunknown_requires_relation_resolution。局所relation不足で無関係Qを失効しない。previous_result/previous_revisionは原入力の履歴主張として保持し実成立に認定しない。固有義務だけの不足はrequires_reverificationと読めた義務unionを保全し、成功へ昇格しない。",
-        "unclosed": "全不正型/多重member/cycle/diamond/複合資格/全副次finding/実owner-codec/正式schema/対L6L7凍結は未完。以下15例は指定valueとminimum findingsの部分oracle。"
+        "unclosed": "全不正型/多重member/cycle/diamond/複合資格/全副次finding/実owner-codec/正式schema/対L6L7凍結は未完。以下17例は指定valueとminimum findingsの部分oracle。",
+        "return_owner_by_kind": {
+          "membership": "design-membership-owner",
+          "relation": "relation-owner",
+          "previous_establishment": "previous-verification-owner",
+          "reverification": "upper-verification-owner"
+        },
+        "return_owner_limit": "上記は当該原資料の不足返却役割の意味名。実owner資格/dispatch/新承認手続きは生成せず正式bindingは未完。"
       }
     },
     {
