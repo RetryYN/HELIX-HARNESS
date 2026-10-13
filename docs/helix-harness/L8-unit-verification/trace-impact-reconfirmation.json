@@ -30849,7 +30849,7 @@
             },
             "required_findings": [
               {
-                "code": "trigger_policy_unresolved",
+                "code": "reference_unknown",
                 "pointer": "/context/evidence_kind",
                 "subject_ids": [
                   "D1",

@@ -2269,7 +2269,13 @@
           }
         ],
         "aggregation": "既R9どおりContext資格/母集団/比較根拠の未解決はoutcome unknown。原版/digest/conflict findingを別保持し、candidate矛盾conflict/構造不正invalidを区別。返却名は意味役割で実owner資格/dispatchを生成しない。",
-        "unclosed": "全複合/全不正構造/全副次finding/cycle/正式trigger policy/実owner-codec/正式schema/L6L7/oracle凍結は未完。以下21例は指定value/minimum findingsの部分oracle。"
+        "unclosed": "全複合/全不正構造/全副次finding/cycle/正式trigger policy/実owner-codec/正式schema/L6L7/oracle凍結は未完。以下21例は指定value/minimum findingsの部分oracle。",
+        "qualification_code_by_locator": {
+          "/context/state": "unknown→reference_unknown、stale→reference_stale。missing/conflictの追加oracleは未完。",
+          "/context/qualifier_roots": "空又はowner/scope/revision未一致→reference_unknown。資格snapshotを入力で補わない。",
+          "/context/evidence_kind": "actual_owner_inputの実owner/consumer/codec資格未閉包→reference_unknown。triggerがない資料をtrigger policy不足の診断へ置換しない。",
+          "/context/actual_trigger_policy_refs": "実triggerを適格に比較するpolicy/window/baseline根拠が必要で未閉包の場合だけtrigger_policy_unresolvedを別findingとして保持。一般資料資格不足とは別原因であり本部分oracleの実policy比較は未完。"
+        }
       }
     },
     {
