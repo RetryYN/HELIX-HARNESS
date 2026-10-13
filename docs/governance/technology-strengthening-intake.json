@@ -1,0 +1,292 @@
+{
+  "document_id": "TECH-STRENGTHENING-CHAT-INTAKE",
+  "kind": "user_input_inventory_not_requirement_adoption",
+  "status": "captured_pending_review",
+  "source_main": "1eb869a74f2e3a826928140b59268f455211ee8e",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "request": "大量に送ったからチャットで送信したのはいったんイシューにまとめて抜け落ちないように対策してくれ。",
+  "scope": "今回共有された技術/CI/Skill/安全/観測/記憶媒体/技術受入/インフラの候補と見送り候補。過去の採択済み要求や全92親430対のscope/採否を置換しない。",
+  "research_document": "docs/governance/technology-strengthening-research.json",
+  "groups": [
+    {
+      "id": "T01",
+      "title": "既存言語・JSON契約・PBT・再現環境",
+      "items": [
+        "Node.js",
+        "TypeScript",
+        "Python",
+        "Ajv",
+        "python-jsonschema",
+        "JSON Schema 2020-12",
+        "pytest",
+        "Hypothesis",
+        "node:test",
+        "fast-check",
+        "uv",
+        "Ruff",
+        "Pyright",
+        "npm lockfile",
+        "TypeScript型検査"
+      ],
+      "input_status": "captured",
+      "research_status": "research_recorded_on_main",
+      "adoption_state": "not_decided",
+      "implementation_state": "not_started_by_this_input",
+      "considerations": "原入力非改変、両言語codec/任意精度数値、独立oracle・事前Red→Green→Refactor、縮小反例/corpus、lockとtool/profile再現。node:testとVitestは比較案として両方保持。",
+      "evidence": {
+        "research_main": "1eb869a74f2e3a826928140b59268f455211ee8e",
+        "research_prs": [
+          3049,
+          3050
+        ]
+      },
+      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。"
+    },
+    {
+      "id": "T02",
+      "title": "CI・コード品質・文書監査",
+      "items": [
+        "GitHub Actions",
+        "Vitest",
+        "pytest",
+        "Biome",
+        "Ruff",
+        "actionlint",
+        "zizmor",
+        "CodeQL",
+        "Playwright"
+      ],
+      "input_status": "captured",
+      "research_status": "research_recorded_on_main",
+      "adoption_state": "not_decided",
+      "implementation_state": "not_started_by_this_input",
+      "considerations": "同じローカル検査入口をCIで再実行。schema/ID/参照/親revision/対文書/staleと文書の意味監査を分ける。CodeQLの成功を製品CI/受入にしない。PlaywrightはWeb対象。",
+      "evidence": {
+        "research_main": "1eb869a74f2e3a826928140b59268f455211ee8e",
+        "research_prs": [
+          3049,
+          3050
+        ]
+      },
+      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。"
+    },
+    {
+      "id": "T03",
+      "title": "Agent Skillsと5つの手順",
+      "items": [
+        "Agent Skills",
+        "SKILL.md",
+        "要求トレーサビリティ",
+        "V字モデル設計",
+        "独立レビュー",
+        "TDD・反例設計",
+        "障害分析・Backflow"
+      ],
+      "input_status": "captured",
+      "research_status": "research_recorded_on_main",
+      "adoption_state": "not_decided",
+      "implementation_state": "not_started_by_this_input",
+      "considerations": "旧5手順を再導出し正本参照型の候補へ。hostの読込/適用、規則の重複/drift、形式と操作権限を区別。新承認規則を追加しない。",
+      "evidence": {
+        "research_main": "1eb869a74f2e3a826928140b59268f455211ee8e",
+        "research_prs": [
+          3049,
+          3050
+        ]
+      },
+      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。"
+    },
+    {
+      "id": "T04",
+      "title": "依存方向・秘密/依存・Mutation・外部接続・部品表",
+      "items": [
+        "dependency-cruiser",
+        "Import Linter",
+        "Gitleaks",
+        "Dependabot",
+        "StrykerJS",
+        "MCP SDK",
+        "Syft"
+      ],
+      "input_status": "captured",
+      "research_status": "research_recorded_on_main",
+      "adoption_state": "not_decided",
+      "implementation_state": "not_started_by_this_input",
+      "considerations": "import graphとruntime作用、検査coverage/欠測、更新PRと採用、実装後mutationと事前Red、MCP adapterとCONNECT責務、SBOMとライセンス判断を分離。",
+      "evidence": {
+        "research_main": "1eb869a74f2e3a826928140b59268f455211ee8e",
+        "research_prs": [
+          3049,
+          3050
+        ]
+      },
+      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。"
+    },
+    {
+      "id": "T05",
+      "title": "レッドチーム・API攻撃検証",
+      "items": [
+        "Promptfoo Red Team",
+        "Microsoft PyRIT",
+        "OWASP ZAP",
+        "Nuclei",
+        "Schemathesis"
+      ],
+      "input_status": "captured",
+      "research_status": "research_recorded_on_main",
+      "adoption_state": "not_decided",
+      "implementation_state": "not_started_by_this_input",
+      "considerations": "命令注入、権限取り違え、偽receipt/別scope/改変revision、再送/重複/競合/切断。返答だけでなく実tool call/書込み/原証拠を観測。対象/権限/通信量/停止/復旧/隔離を評価条件へ。",
+      "evidence": {
+        "research_main": "1eb869a74f2e3a826928140b59268f455211ee8e",
+        "research_prs": [
+          3049,
+          3050
+        ]
+      },
+      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。"
+    },
+    {
+      "id": "T06",
+      "title": "ログ・メトリクス・トレース・故障注入",
+      "items": [
+        "Pino",
+        "structlog",
+        "OpenTelemetry",
+        "Prometheus",
+        "@prometheus-io/client",
+        "prom-client",
+        "prometheus_client",
+        "Grafana",
+        "Loki",
+        "Tempo",
+        "Sentry",
+        "Toxiproxy",
+        "Testcontainers"
+      ],
+      "input_status": "captured",
+      "research_status": "research_recorded_on_main",
+      "adoption_state": "not_decided",
+      "implementation_state": "not_started_by_this_input",
+      "considerations": "観測と正式receipt、欠測とエラー0、高cardinalityと相関、純粋coreとI/Oを分離。ToxiproxyはTCP/chunk範囲と方向・管理面を照合。保存/可視化backendは必要規模で比較。",
+      "evidence": {
+        "research_main": "1eb869a74f2e3a826928140b59268f455211ee8e",
+        "research_prs": [
+          3049,
+          3050
+        ]
+      },
+      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。"
+    },
+    {
+      "id": "T07",
+      "title": "記憶媒体・検索・閲覧・OSS情報入力",
+      "items": [
+        "JSON正本",
+        "Git",
+        "SQLite",
+        "FTS5",
+        "Qdrant",
+        "PostgreSQL",
+        "pgvector",
+        "Obsidian",
+        "Bases",
+        "deps.dev",
+        "OSV.dev",
+        "SPDX License List",
+        "OpenSSF Scorecard"
+      ],
+      "input_status": "captured",
+      "research_status": "research_draft_not_reviewed",
+      "adoption_state": "not_decided",
+      "implementation_state": "not_started_by_this_input",
+      "considerations": "BRAIN003/004/007/008/010/025/030との対応。意味正本、OS原記録、再構築索引/embedding、閲覧view、外部metadataを分離。検索順位と知識採用/製品適用は別。JSON+Gitを全runtime保存の一律方式にしない。",
+      "evidence": {
+        "unreviewed_or_unresearched": true
+      },
+      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。"
+    },
+    {
+      "id": "T08",
+      "title": "既存SECURITY010〜013・023へ結ぶ安全性評価案",
+      "items": [
+        "HELIX Trusted Technology Admission（仮称）",
+        "試験実行と実利用の操作scope分離",
+        "リスク別検証選択の比較",
+        "Capability Drift再評価",
+        "検証版/digest/用途/権限/環境/残留リスクの履歴"
+      ],
+      "input_status": "captured",
+      "research_status": "input_captured_contract_comparison_pending",
+      "adoption_state": "not_decided",
+      "implementation_state": "not_started_by_this_input",
+      "considerations": "提示された5段階flow/高中低分類は比較入力。試験用の操作authorityを最終accept/未来receiptへ依存させない。SEC008/007/010〜013/023、HARNESS検証、OS進行・昇格、BRAIN知識採用を別に照合。新機構/一律gateを生成しない。",
+      "evidence": {
+        "unreviewed_or_unresearched": true
+      },
+      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。"
+    },
+    {
+      "id": "T09",
+      "title": "インフラの用途別選定",
+      "items": [
+        "OpenTofu",
+        "Terraform",
+        "Ansible",
+        "Podman",
+        "Docker",
+        "Trivy",
+        "Checkov",
+        "SOPS",
+        "Restic",
+        "Infracost",
+        "Kubernetes",
+        "Argo CD",
+        "Terraform Provider",
+        "Toxiproxy",
+        "Testcontainers"
+      ],
+      "input_status": "captured",
+      "research_status": "input_captured_research_pending",
+      "adoption_state": "not_decided",
+      "implementation_state": "not_started_by_this_input",
+      "considerations": "HELIX自身の実資源管理と開発製品のインフラ候補知識を分離。資源構成/target/actual/権限/コスト、Credential、Backup/Restore/実復旧を評価。共通固定技術や配備許可をこの入力から生成しない。",
+      "evidence": {
+        "unreviewed_or_unresearched": true
+      },
+      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。"
+    },
+    {
+      "id": "T10",
+      "title": "直ちに共通標準へ固定しない比較候補",
+      "items": [
+        "Rust",
+        "Go",
+        "PostgreSQL",
+        "Kafka",
+        "Kubernetes",
+        "LangChain",
+        "LangGraph",
+        "n8n",
+        "Jenkins",
+        "CircleCI"
+      ],
+      "input_status": "captured",
+      "research_status": "input_captured_disposition_pending",
+      "adoption_state": "not_decided",
+      "implementation_state": "not_started_by_this_input",
+      "considerations": "後回し/不要/条件付きという提案を捨てず比較理由と再評価条件へ残す。使用禁止/恒久rejectとして採用しない。",
+      "evidence": {
+        "unreviewed_or_unresearched": true
+      },
+      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。"
+    }
+  ],
+  "completeness_rule_for_this_work": "各T-IDの全項目が調査/比較/既存設計への対応/採否未決または理由付き処置のどこに残ったか追えること。候補削除やPR merge/checkboxだけで完了にしない。意味/実装/受入の条件は既存正本から読む。",
+  "related_work": [
+    "1815:旧技術代替review（別scope、関連参照のみ）",
+    "1798:入力原登録（別scope、関連参照のみ）"
+  ],
+  "source_limits": "外部推奨を利用者が共有した比較材料。名称/順序/分類/推奨度をそのまま要求や利用認可へ昇格しない。source raw conversation/秘密/PIIを保存しない。"
+}
