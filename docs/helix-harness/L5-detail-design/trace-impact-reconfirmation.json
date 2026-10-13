@@ -193,6 +193,16 @@
         "change": "旧台帳/gate/runtime/copyを移植せず、承認F05と現行reuse統制へ8不変条件/11trace/byte自己整合/consumer pair/初回参照・意味再導出を具体化。",
         "reason": "旧責務混在をbyte一致で現行化せず、適格資産の不要な再実装とunknownの移管完了化を防ぐため。",
         "reuse": "semantic_rederivation_only_not_actual_copy"
+      },
+      "f02_context_rederivation": {
+        "read_line_locators": [
+          354,
+          359,
+          377
+        ],
+        "preserve": "impact/pair/oracle/下流staleと不明の保持。未観測を推測greenにしない。",
+        "change": "旧Admission/DB transaction/状態writeを移植せず、独立Contextの局所relation資格/全体母集団/上位固有義務不足を純粋診断へ再導出。",
+        "reason": "下位成立の上位コピーとContext欠落を空集合の充足へ丸める失敗を防ぐため。"
       }
     },
     {
@@ -479,7 +489,7 @@
     "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
-    "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。",
+    "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context15否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。",
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。",
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。",
@@ -1599,7 +1609,7 @@
         },
         {
           "id": "I5",
-          "rule": "nodeごとのprevious_result/revisionは原記録のまま保全する。Affected→requires_reverification、Unknown→unknown_requires_relation_resolution、資格付けされたUnaffected→preserved_unaffected。original_expected/observedとresult labelの整合性不足はfindingへ残しても下位のresultを上位へコピーしない。全nodeでContextの上位固有義務集合を保持しinput側の削減で消さない。 過去label/expected/observedの不整合はhistorical claimの診断であり、それだけで要求条件変更に対する現在の影響分類を未知にしない。過去成立の実資格を認定する出力ではない。"
+          "rule": "nodeごとのprevious_result/revisionは原記録のまま保全する。Affected→requires_reverification、Unknown→unknown_requires_relation_resolution、資格付けされたUnaffected→preserved_unaffected。original_expected/observedとresult labelの整合性不足はfindingへ残しても下位のresultを上位へコピーしない。全nodeでContextの上位固有義務集合を保持しinput側の削減で消さない。 過去label/expected/observedの不整合はhistorical claimの診断であり、それだけで要求条件変更に対する現在の影響分類を未知にしない。過去成立の実資格を認定する出力ではない。 Context固有義務集合が欠落/競合なら、inputとContext双方の読めた義務unionを暫定保全しupper_obligation_missingを返す。unionを正式な必要集合とは認定せず、Context不足を空で充足したと扱わない。"
         },
         {
           "id": "I6",
@@ -1634,7 +1644,79 @@
         "domain digestはUTF-8/sorted keys/compact/finite valuesのcanonical logical bytesであり実transport/ownerの原bytes証拠へ昇格しない。",
         "影響を成立stateにせず、synthetic pass/failも実upper passed/failed/再実行/完了ではない。"
       ],
-      "scope_limit": "F02部分詳細。17原例と固定合成Contextを定義し、全構造/複合/qualification/実codec/oracle凍結は未完。"
+      "scope_limit": "F02部分詳細。17原例と固定合成Contextを定義し、全構造/複合/qualification/実codec/oracle凍結は未完。 Context15否定例を追補、全finding/複合/正式bindingを閉じたとはしない。",
+      "context_failure_contract": {
+        "scope": "F02の独立Context否定条件。input原内容/過去成立記録/義務を保全し、影響の資格と過去の成功主張を分ける。",
+        "locator_rules": [
+          {
+            "condition": "Context targetとinput targetがscope/graph_revisionで不一致",
+            "code": "reference_conflict | reference_stale",
+            "pointer": "/context/target/{field}",
+            "node_ids": "保全したinput/Context人口union",
+            "return_owner": "graph-owner",
+            "impact_limit": "対象graphの全membership資格が未解決、各node Unknown。元成立記録と読めた義務は保持。"
+          },
+          {
+            "condition": "Context state不明/実owner-inputの資格binding未閉包",
+            "code": "reference_unknown",
+            "pointer": "/context/state又は/context/evidence_kind",
+            "node_ids": "人口union",
+            "return_owner": "graph-qualification-owner",
+            "impact_limit": "全node Unknown、実owner資格をinput自己申告から生成しない。"
+          },
+          {
+            "condition": "Context node_populationと入力membership人口が不一致",
+            "code": "population_conflict",
+            "pointer": "/context/node_population",
+            "node_ids": "人口union",
+            "return_owner": "graph-owner",
+            "impact_limit": "全体人口の資格が未解決のためunion全node Unknown。欠落nodeと元資料を消さない。"
+          },
+          {
+            "condition": "declared_membersの当該parent key/集合が原membershipと不一致",
+            "code": "required_relation_conflict",
+            "pointer": "/context/declared_members/{parent}",
+            "node_ids": "当該parent",
+            "return_owner": "relation-owner",
+            "impact_limit": "当該parent Unknownを独立原relation/宣言memberのunionに沿って親へ伝える。余分/欠落を無関係へ丸めない。"
+          },
+          {
+            "condition": "Context.required_upper_obligationsのnode key/義務が入力原義務と食い違う又は欠落",
+            "code": "upper_obligation_missing",
+            "pointer": "/context/required_upper_obligations/{node}",
+            "node_ids": "当該node",
+            "return_owner": "upper-verification-owner",
+            "impact_limit": "これは固有検証義務の不足であり構造relation不明と同一視しない。既知impactを保持し上位成立を確定しない。input/Context双方の読めた義務unionをupper_obligations_retainedへ保全し、空で消さない。"
+          },
+          {
+            "condition": "入力Ref/kind/内容に対応するreferent不在",
+            "code": "reference_missing",
+            "pointer": "/context/referents",
+            "node_ids": "当該recordが担うnode",
+            "return_owner": "当該kind owner",
+            "impact_limit": "membership/required relation不足は当該nodeと親のUnknown。previous establishment/reverification不足は影響の到達を変えず、原記録保全/資格不足を別findingへ。"
+          },
+          {
+            "condition": "referent stateがstale/unknown又は原rawとdigest不一致",
+            "code": "reference_stale | reference_unknown | content_digest_conflict",
+            "pointer": "/context/referents/{index}/state又はcontent_sha256",
+            "node_ids": "当該recordが担うnode",
+            "return_owner": "当該kind owner",
+            "impact_limit": "同kindの欠落と同じ局所化。digestの自己整合だけで正本資格を作らない。"
+          },
+          {
+            "condition": "record qualification refs空又はroot owner/scope/revision不一致",
+            "code": "reference_unknown",
+            "pointer": "/context/referents/{index}/qualification_basis_refs又は/context/qualifier_roots/{index}/{field}",
+            "node_ids": "当該rootに依存するnode",
+            "return_owner": "graph-qualification-owner",
+            "impact_limit": "資格不足をinput/candidateで補完しない。全graph共通root不足なら全node Unknown。"
+          }
+        ],
+        "aggregation": "既存I7どおり原関係/資格/資料の未解決はoutcome unknown、candidate矛盾はconflict、構造解釈不能はinvalid。原reference_conflict/stale/digest findingも別locatorとして全保持しoutcomeだけで消さない。",
+        "establishment_preservation": "影響Unknown nodeのcurrent_resultはunknown_requires_relation_resolution。局所relation不足で無関係Qを失効しない。previous_result/previous_revisionは原入力の履歴主張として保持し実成立に認定しない。固有義務だけの不足はrequires_reverificationと読めた義務unionを保全し、成功へ昇格しない。",
+        "unclosed": "全不正型/多重member/cycle/diamond/複合資格/全副次finding/実owner-codec/正式schema/対L6L7凍結は未完。以下15例は指定valueとminimum findingsの部分oracle。"
+      }
     },
     {
       "id": "HARNESS-L5-004-F01",
