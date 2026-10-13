@@ -1,0 +1,585 @@
+{
+  "parent": "HARNESS-L2-015",
+  "status": "draft_pending_semantic_and_fixture_review",
+  "authority_effect": "none",
+  "source_main": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "1df0aa1bdb1b5fcbe2beba5e202601fa0d27fdeb5419e58d8db5cc3691d927fb"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/verification-discipline.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "f5aaccff49e5e6d0584169af009e15aaf59d963018f8f8cceb230d45de321ebb"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/verification-discipline.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "19498cf4c9cc07d7335592cda45bfdfbaea51cba08ec39c5118ac83b4e8e0221"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 33,
+          "text": "| **FR-L1-02** | TDD 強制フロー (テストファースト順序厳守・実装先行禁止) | L7-implementation | L6 機能設計 (関数仕様 / クラス設計 / エッジケース) | テストコード (red) → 本体実装 (green) | P0 | PM-02 (L7 工程) / HM-07 |"
+        },
+        {
+          "line": 81,
+          "text": "| **FR-L1-50** | DDD/TDD 厳格化 automation (domain boundary / invariant trace / Red-first evidence / oracle strength / integration GWT) | PO directed 2026-06-09 / IMP-097..101 | DDD/TDD rule SSoT、PLAN evidence、source/test docs、L7/L8 test-design | doctor lint findings、workflow anchor、L7 oracle、L8 GWT compliance | P1 | HM-07 / PM-04 |"
+        }
+      ],
+      "preserve": "FR02のtest Red→本体Green、FR50のoracle強度/traceを保持。",
+      "change": "旧層番号とruntime/test入口を転写せず、現行L6契約/L5設計と対の検証へ対応。",
+      "reason": "採用済み015のREDFIRSTとV12の対定義へ導出する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 23,
+          "text": "4. **TDDは検証契約**: Redは「testを書いた時刻」ではなく、意図した欠陥を実際に検出する証拠である。"
+        },
+        {
+          "line": 24,
+          "text": "   Greenは最小実装、Refactorは同じoracleがgreenのまま構造を単純化した証拠で閉じる。"
+        },
+        {
+          "line": 117,
+          "text": "- CIはPRでtargeted oracleとcritical gateを実行し、省略分をpost-merge fullとnightlyで回収する。"
+        },
+        {
+          "line": 118,
+          "text": "  targeted greenをfull greenと偽らず、unknown impactはfullへfail-closeする。"
+        },
+        {
+          "line": 119,
+          "text": "- refactorは公開behaviorを変えない。新behavior、schema、migration、failure semanticsの変更を検出したら"
+        },
+        {
+          "line": 135,
+          "text": "- id: DDD-INV-001 oracle: U-DDDTDD-001 - Governance/domain module は acyclic を保ち、下位 contract は上位 runtime orchestration に依存しない。"
+        },
+        {
+          "line": 145,
+          "text": "  許容するcomplexity budgetをdiscipline baselineとしてfreezeする。"
+        },
+        {
+          "line": 146,
+          "text": "- L4/L9: bounded context、Aggregate/Port/Adapter境界とsystem/integration oracleを対で固定する。"
+        },
+        {
+          "line": 147,
+          "text": "  object modelが不要なら`none`または`pure_function`と理由を残す。"
+        },
+        {
+          "line": 148,
+          "text": "- L5/L8: precondition、postcondition、invariant、failure/rollback、edge caseと単体・結合oracleを対で固定する。"
+        },
+        {
+          "line": 149,
+          "text": "- Forward L6: L7 implementation が始まる前に、domain boundary、invariant、rule ID を定義または更新する。"
+        },
+        {
+          "line": 150,
+          "text": "- L6/L7: Red → 最小Green → behavior-preserving Refactorの順で閉じ、契約外コードを追加しない。"
+        }
+      ],
+      "preserve": "実欠陥を検出したRed、最小Green、意味保存Refactor、設計と対検証の固定を保持。",
+      "change": "旧red_at<=green_atだけの保証、lint rule/旧CLI、full/nightly既定は採用しない。",
+      "reason": "015実装前Redと005ticket関係回収を正にする。新たな全製品gateや承認主体は作らない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+      "sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 124,
+          "text": "4 artifact は**別物として別ディレクトリ**に置き、双方向 trace で結ぶ（混在禁止）。"
+        },
+        {
+          "line": 128,
+          "text": "| ① 設計 (文書) | `docs/design/` |"
+        },
+        {
+          "line": 129,
+          "text": "| ② 実装コード | `src/` |"
+        },
+        {
+          "line": 130,
+          "text": "| ③ テスト設計 (文書) | `docs/test-design/` |"
+        },
+        {
+          "line": 131,
+          "text": "| ④ テストコード | `tests/` |"
+        }
+      ],
+      "preserve": "設計/実装/検証設計/検証コードの区別と双方向traceを保持。",
+      "change": "旧src/tests/docs物理配置、旧schema正本/旧runtimeを復元しない。",
+      "reason": "現行機構×層・packへの配置入力と論理traceを分ける。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 71,
+          "text": "| UTW-005 | Critical | PR trace/review evidenceが最新HEAD・merge-baseへ常時再束縛されない | 既存UT-GH-06/07/12 | UTH-FR-015 |"
+        },
+        {
+          "line": 75,
+          "text": "| UTW-009 | High | full regression/doctorが重く、timeoutと長いself-heal loopを生む | 220.54秒、doctor test 214.17秒 | UTH-NFR-002、UTH-FR-011 |"
+        },
+        {
+          "line": 80,
+          "text": "| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |"
+        },
+        {
+          "line": 86,
+          "text": "| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |"
+        },
+        {
+          "line": 87,
+          "text": "| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |"
+        },
+        {
+          "line": 95,
+          "text": "| UTW-029 | Medium | consumer setup、source repo、clean distributionで検証集合が分岐しやすい | source/Pack workflow分離 | UTH-FR-027 |"
+        }
+      ],
+      "preserve": "最新HEAD再束縛、source欠落→空の拒否、自己報告/長いfull loopの失敗史を検証論点へ保持。",
+      "change": "旧auditの全弱点/UTH要求/gateを015の要求へ追加しない。",
+      "reason": "承認015の凍結/実観測/品質境界/不足保全の具体負例に限り使用。"
+    }
+  ],
+  "authority_boundary": {
+    "approved_l3_l10": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+    "delegated_decision": "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "reopen_scope": "2026-10-12 limited prerequisite authoring",
+    "version": "1.0",
+    "historical_stage": "Stage 2b",
+    "authoring_stage": "Stage 1限定前提",
+    "implementation": "not_authorized_by_this_design",
+    "release_deploy": "not_authorized"
+  },
+  "scope": "採用015の5組全体の基本設計と対結合検証設計。対象L6/L5入力、実装前Red、最小Green、局所Refactor/原子CI、双方向trace、単独Provisional、利用者CI/quality-firstを保全。実装/CI運転はまだ成立しない。",
+  "document_id": "HARNESS-L4-015-TDD-DEVELOPMENT",
+  "layer": "L4",
+  "paired_document": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+  "purpose": "④開発の対契約からコード/traceのProvisional出力までの責務と証拠の接続を定義。",
+  "architecture": {
+    "owner": "HELIX-HARNESS",
+    "components": [
+      {
+        "id": "FrozenContractIntake",
+        "responsibility": "L6/L5と対test/oracleの対象・凍結・実装前順序を照合。書き換えや実Red生成をしない。"
+      },
+      {
+        "id": "PreBodyRedEvidence",
+        "responsibility": "未実装/未修正HEADで意図した欠陥を検出した実結果と原oracleを照合。環境障害/時刻/後付けmutationを代用しない。"
+      },
+      {
+        "id": "MinimalGreenLocalRefactor",
+        "responsibility": "Red後の最小実装と同oracle Green、局所意味保存、原子CI/省略検査の証拠を束ねる。"
+      },
+      {
+        "id": "DevelopmentTraceAndFrontier",
+        "responsibility": "4artifact双方向traceを同revisionへ結び、単独Provisional上限と022組合せ・受入責務を分ける。"
+      },
+      {
+        "id": "QualityAndCiHandoff",
+        "responsibility": "OS検収/利用者CIへ同契約を渡し、品質未達と省略検査、計測改善を別に返す。"
+      }
+    ],
+    "data_flow": [
+      "OS/利用者が供給した同対象の凍結契約をintake",
+      "実Worker/利用者開発環境の本体前Red→最小実装→Green→Refactor/原子CIの結果を同oracleへ結ぶ",
+      "code/design/testの4artifact traceと必要検査/省略記録を構成",
+      "単独出力をProvisionalへ制限し、上位の検証/利用者受入/Release条件を各ownerへ残す"
+    ],
+    "code_production_boundary": "015の提供物は設計に従うcodeとtraceである。実作成/修正はOS Workerまたは利用者開発環境が供給する実operationへbindする。本文の比較契約だけでcode生成済みにせず、実作成物と同HEADの対検証を必要材料として保持。",
+    "ci_handoff": "CI組立/運転はOS検収または利用者CI。HARNESSの工程/検証契約と005のticket/省略回収を同対象で参照。",
+    "state_write_boundary": "状態write/実ticket発行はOS。015契約出力と実運転/保存を分離。",
+    "dependencies": [
+      "001のV12 pair",
+      "003の谷/成果状態",
+      "005の検証義務/CI範囲/省略回収",
+      "022の検証/受入組合せ"
+    ],
+    "dependency_limit": "005 L4/L9は統合済み参照。未統合005 L5/L8を承認済み入力にせず、003/022等の未充足対設計・実bindingは実装前の不足として保持。",
+    "component_connections": [
+      {
+        "producer": "FrozenContractIntake",
+        "consumer": "PreBodyRedEvidence",
+        "material": "同対象L6/L5とtest/oracleのexact Ref・原内容・凍結順序。凍結成立とRed実観測は別。",
+        "failure": "欠落/別revision/本体後の凍結は当該対象へ不足を保持。"
+      },
+      {
+        "producer": "PreBodyRedEvidence",
+        "consumer": "MinimalGreenLocalRefactor",
+        "material": "新規未実装/既存未修正HEADの意図欠陥を検出した実観測。実装前対象・凍結oracle・本体変更との因果順序。",
+        "failure": "実装後mutation/環境障害/未実行を実装前Redへ変換しない。"
+      },
+      {
+        "producer": "MinimalGreenLocalRefactor",
+        "consumer": "DevelopmentTraceAndFrontier",
+        "material": "対象codeと同oracle Green/局所意味保存/原子CI・省略記録・4artifact trace。",
+        "failure": "不足proofを件数/labelで相殺せず、public/要求/architecture/state変更は上流へ戻す。"
+      },
+      {
+        "producer": "QualityAndCiHandoff",
+        "consumer": "DevelopmentTraceAndFrontier",
+        "material": "OS検収または利用者CIへ渡す同一検証契約、quality観測、未回収義務、取得できた計測区分。",
+        "failure": "単独利用をOS必須にせず、費用/時間改善でquality未達を改善成功にしない。"
+      }
+    ],
+    "proof_resolution": "工程名やsequenceだけを成功にしない。freeze/Red/Green/code/refactor/CI/traceの原producerを別役割として同対象に結び、提出labelと具体原内容を比較する。実binding/source欠落は該当部分結果へ保持する。"
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-015-B01",
+      "requirement_ref": "HARNESS-L3-015-B01",
+      "system_oracle_ref": "HARNESS-L10-015-B01",
+      "oracle_ref": "HARNESS-L9-015-B01",
+      "title": "単独利用とquality-first境界",
+      "original_l3": {
+        "id": "HARNESS-L3-015-B01",
+        "parent": "HARNESS-L2-015",
+        "title": "単独利用とquality-first境界",
+        "obligation": "④はコア工程/検証契約を使い、OSのCI運転または利用者CIへ契約を渡して利用できる。PR前CIは005のticket関係/省略回収を参照する。quality-firstのoracle結果と省略検査を明示し、費用/時間改善だけで必要quality未達runを改善成功にしない。",
+        "oracle_ref": "HARNESS-L10-015-B01"
+      },
+      "behavior": "④はコア工程/検証契約を使い、OSのCI運転または利用者CIへ契約を渡して利用できる。PR前CIは005のticket関係/省略回収を参照する。quality-firstのoracle結果と省略検査を明示し、費用/時間改善だけで必要quality未達runを改善成功にしない。",
+      "component_refs": [
+        "QualityAndCiHandoff"
+      ],
+      "input_contract": "L9の元owner fixtureは最低限の意味例。実operation/実authority/正式codecは別にbindし、unknownを補完しない。",
+      "output_contract": {
+        "operator_contract": "same_contract_user_ci_supported",
+        "quality": "synthetic_met",
+        "unrecovered_refs": [
+          "C1"
+        ],
+        "cost_time_material": "synthetic_improvement_only",
+        "improvement_success": "not_generated",
+        "state_ceiling": "Provisional"
+      },
+      "failure_conditions": [
+        {
+          "code": "os_only",
+          "meaning": "利用者CIへ同契約を渡す単独利用を保持。"
+        },
+        {
+          "code": "cheap_quality_failure",
+          "meaning": "品質未達を費用/時間改善で相殺しない。"
+        },
+        {
+          "code": "omission_erased",
+          "meaning": "C1未回収を保持。"
+        },
+        {
+          "code": "metric_as_accepted",
+          "meaning": "計測改善から受入を生成しない。"
+        }
+      ],
+      "effect": "normative_contract_only_no_execution"
+    },
+    {
+      "id": "HARNESS-L4-015-F01",
+      "requirement_ref": "HARNESS-L3-015-F01",
+      "system_oracle_ref": "HARNESS-L10-015-F01",
+      "oracle_ref": "HARNESS-L9-015-F01",
+      "title": "凍結済み対契約を入力",
+      "original_l3": {
+        "id": "HARNESS-L3-015-F01",
+        "parent": "HARNESS-L2-015",
+        "title": "凍結済み対契約を入力",
+        "obligation": "L6契約/L5詳細設計と対test/oracleを実装前に定義・凍結し、対象identity/revision/scopeへ結ぶ。test後付け/定義凍結だけを実Redにせず、コアの工程/検証契約を参照する。",
+        "oracle_ref": "HARNESS-L10-015-F01"
+      },
+      "behavior": "L6契約/L5詳細設計と対test/oracleを実装前に定義・凍結し、対象identity/revision/scopeへ結ぶ。test後付け/定義凍結だけを実Redにせず、コアの工程/検証契約を参照する。",
+      "component_refs": [
+        "FrozenContractIntake"
+      ],
+      "input_contract": "L9の元owner fixtureは最低限の意味例。実operation/実authority/正式codecは別にbindし、unknownを補完しない。",
+      "output_contract": {
+        "pair_binding": "synthetic_match",
+        "freeze_before_body": "synthetic_order_supported",
+        "pre_body_red": "missing",
+        "implementation_success": "not_generated"
+      },
+      "failure_conditions": [
+        {
+          "code": "freeze_missing",
+          "meaning": "凍結不足を保持。"
+        },
+        {
+          "code": "test_after_body",
+          "meaning": "本体sequence3の後付け凍結を拒否。"
+        },
+        {
+          "code": "foreign_oracle_revision",
+          "meaning": "対oracle版不一致を保持。"
+        },
+        {
+          "code": "freeze_as_red",
+          "meaning": "定義凍結は実Redではない。"
+        },
+        {
+          "code": "freeze_timestamp_only",
+          "meaning": "作成時刻だけが本体変更より前でも対象revision/設計/test/oracle/期待結果/凍結順序の原記録なし。凍結不成立を当該条件に保持。"
+        }
+      ],
+      "effect": "normative_contract_only_no_execution"
+    },
+    {
+      "id": "HARNESS-L4-015-F02",
+      "requirement_ref": "HARNESS-L3-015-F02",
+      "system_oracle_ref": "HARNESS-L10-015-F02",
+      "oracle_ref": "HARNESS-L9-015-F02",
+      "title": "本体変更前のRed実観測",
+      "original_l3": {
+        "id": "HARNESS-L3-015-F02",
+        "parent": "HARNESS-L2-015",
+        "title": "本体変更前のRed実観測",
+        "obligation": "新規実装では対象behaviorが未実装、既存改修では本体変更前の未修正revisionに対し、凍結testが意図した不足/欠陥を検出する実装前Redを実観測する。環境/構文障害など無関係な失敗をRedにしない。実装後のmutation検出は005のoracle強度の別証拠として保持する。",
+        "oracle_ref": "HARNESS-L10-015-F02"
+      },
+      "behavior": "新規実装では対象behaviorが未実装、既存改修では本体変更前の未修正revisionに対し、凍結testが意図した不足/欠陥を検出する実装前Redを実観測する。環境/構文障害など無関係な失敗をRedにしない。実装後のmutation検出は005のoracle強度の別証拠として保持する。",
+      "component_refs": [
+        "PreBodyRedEvidence"
+      ],
+      "input_contract": "L9の元owner fixtureは最低限の意味例。実operation/実authority/正式codecは別にbindし、unknownを補完しない。",
+      "output_contract": {
+        "pre_body_head": "H0",
+        "red_meaning": "intended_duplicate_debit_detected",
+        "red_before_body": "synthetic_order_supported",
+        "post_mutation_role": "oracle_strength_only",
+        "actual_tdd_success": "not_generated"
+      },
+      "failure_conditions": [
+        {
+          "code": "after_body_red",
+          "meaning": "本体前Redの順序不足を保持。"
+        },
+        {
+          "code": "foreign_pre_body_head",
+          "meaning": "本体前H0を要求。"
+        },
+        {
+          "code": "environment_error",
+          "meaning": "環境障害でbehavior未観測。oracleが意図したduplicate_debitを検出した実装前Redへ数えない。"
+        },
+        {
+          "code": "unexecuted_red",
+          "meaning": "観測無しはRedではない。"
+        },
+        {
+          "code": "mutation_substitute",
+          "meaning": "本体前Red欠落を保持。実装後H1の具体mutation検出はoracle強度の別証拠であり、実装前H0の観測を生成しない。"
+        }
+      ],
+      "effect": "normative_contract_only_no_execution"
+    },
+    {
+      "id": "HARNESS-L4-015-F03",
+      "requirement_ref": "HARNESS-L3-015-F03",
+      "system_oracle_ref": "HARNESS-L10-015-F03",
+      "oracle_ref": "HARNESS-L9-015-F03",
+      "title": "最小Greenと局所Refactor",
+      "original_l3": {
+        "id": "HARNESS-L3-015-F03",
+        "parent": "HARNESS-L2-015",
+        "title": "最小Greenと局所Refactor",
+        "obligation": "実装前Redの後に最小本体実装で同じ凍結oracleを満たすGreen証拠を得て、局所Refactorと原子CIまでを閉じる。局所Refactorはpublic contract/要求/architecture意味/state意味を変えず、変更が必要ならBackflowする。",
+        "oracle_ref": "HARNESS-L10-015-F03"
+      },
+      "behavior": "実装前Redの後に最小本体実装で同じ凍結oracleを満たすGreen証拠を得て、局所Refactorと原子CIまでを閉じる。局所Refactorはpublic contract/要求/architecture意味/state意味を変えず、変更が必要ならBackflowする。",
+      "component_refs": [
+        "MinimalGreenLocalRefactor"
+      ],
+      "input_contract": "L9の元owner fixtureは最低限の意味例。実operation/実authority/正式codecは別にbindし、unknownを補完しない。",
+      "output_contract": {
+        "order": "synthetic_same_oracle_red_body_green_refactor_atomic_ci",
+        "local_meaning": "preserved",
+        "unrecovered_refs": [
+          "C1"
+        ],
+        "state_ceiling": "Provisional",
+        "actual_tdd_success": "not_generated",
+        "minimal_body_scope": "one_command_duplicate_debit",
+        "green_behavior": "synthetic_expected_receiver_debits1",
+        "oracle_binding": "synthetic_same_frozen_oracle"
+      },
+      "failure_conditions": [
+        {
+          "code": "oracle_relaxed",
+          "meaning": "Greenのoracle入替を拒否。"
+        },
+        {
+          "code": "body_before_red",
+          "meaning": "freeze/Red/本体の因果順序を保持。"
+        },
+        {
+          "code": "public_change",
+          "meaning": "public意味はBackflow。"
+        },
+        {
+          "code": "architecture_change",
+          "meaning": "architecture意味はL4へBackflow。"
+        },
+        {
+          "code": "state_change",
+          "meaning": "state意味は対設計へBackflow。"
+        },
+        {
+          "code": "ci_as_quality",
+          "meaning": "原子CIで品質/受入を生成しない。"
+        },
+        {
+          "code": "requirement_change",
+          "meaning": "要求意味の変更は局所Refactorにせず該当上流へBackflow。"
+        },
+        {
+          "code": "minimal_body_scope_expansion",
+          "meaning": "最小本体の契約外behavior追加を保持し、成功Greenで相殺しない。"
+        },
+        {
+          "code": "green_wrong_behavior",
+          "meaning": "同oracle期待1に対してGreenの観測2を成功として数えない。"
+        }
+      ],
+      "effect": "normative_contract_only_no_execution"
+    },
+    {
+      "id": "HARNESS-L4-015-F04",
+      "requirement_ref": "HARNESS-L3-015-F04",
+      "system_oracle_ref": "HARNESS-L10-015-F04",
+      "oracle_ref": "HARNESS-L9-015-F04",
+      "title": "双方向traceとProvisional上限",
+      "original_l3": {
+        "id": "HARNESS-L3-015-F04",
+        "parent": "HARNESS-L2-015",
+        "title": "双方向traceとProvisional上限",
+        "obligation": "コードと設計/testの双方向traceを同じ対象revisionへ結び、④開発単独の出力をProvisionalとする。Integrated以降はコア検証/受入022との組合せを必要とし、原子CI greenを品質/システム/利用者受入/Releaseの成立にしない。",
+        "oracle_ref": "HARNESS-L10-015-F04"
+      },
+      "behavior": "コードと設計/testの双方向traceを同じ対象revisionへ結び、④開発単独の出力をProvisionalとする。Integrated以降はコア検証/受入022との組合せを必要とし、原子CI greenを品質/システム/利用者受入/Releaseの成立にしない。",
+      "component_refs": [
+        "DevelopmentTraceAndFrontier"
+      ],
+      "input_contract": "L9の元owner fixtureは最低限の意味例。実operation/実authority/正式codecは別にbindし、unknownを補完しない。",
+      "output_contract": {
+        "trace": "synthetic_bidirectional_same_revision",
+        "state_ceiling": "Provisional",
+        "integrated": "not_generated",
+        "accepted": "not_generated",
+        "release": "not_generated"
+      },
+      "failure_conditions": [
+        {
+          "code": "reverse_trace_missing",
+          "meaning": "code→design欠落を保持。"
+        },
+        {
+          "code": "foreign_trace_revision",
+          "meaning": "同revision trace不成立。"
+        },
+        {
+          "code": "development_as_integrated",
+          "meaning": "015単独でIntegrated以上を生成しない。"
+        },
+        {
+          "code": "ci_as_accepted",
+          "meaning": "原子greenを利用者受入にしない。"
+        },
+        {
+          "code": "ci_as_release",
+          "meaning": "原子greenをRelease成立にしない。"
+        }
+      ],
+      "effect": "normative_contract_only_no_execution"
+    }
+  ],
+  "remaining": [
+    "基本5契約/27負例のsource役割・具体意味対照と全変異再現を照合。exact HEAD独立意味reviewは未成立。",
+    "L5/L8の関数/型/アルゴリズム/具体負例を起草",
+    "正式schema/codec、実Worker/利用者CI binding、安全/隔離/資源/接続と実凍結",
+    "本体前実Red/最小Green/意味保存Refactor/原子CI/独立実証・PO受入",
+    "限定全92親430対の基本/詳細設計充足"
+  ],
+  "source_resolution_boundary": "各root合成snapshotのbytes/source_refを固定。参照先canonical意味/資格はL5/L8で独立owner資料へ具体化し、負例の提出変異を同Refのowner更新として供給しない。"
+}
