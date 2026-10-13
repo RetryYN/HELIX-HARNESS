@@ -1014,7 +1014,7 @@
     "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。 7componentの型付き接続/codec profiles/供給資料と純粋core・OS運転分離を具体化。正式interface/instance/全composition oracleは未完。 14反復sequenceの原引数保全/禁止作用observer/whole結果同値oracleを追加。実host/guardと全endpoint bindingは未完。 F04の4独立Context不備について複数同時11例を追加。必須finding subset/優先outcomeを具体化、全副次findingと他組合せは未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。 45固定F04対照の全PartitionResult/basis refs/order/input retentionを追加で固定。未提示InputをContext原bodyから復元せず、caseごとの固定合成snapshotを別供給。全構造/他条件/実binding/凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。 B01の23原例/19Contextを全ChangeResultへ固定し、意味軸全7組/混合環境behavior/boolean型差/label/3複合を追加。全構造/実binding/全凍結は未完。",
-    "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
+    "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。 F02固定38対照を全ImpactResultへ、4graphのedge順反転を追加して全42結果を固定。直接原因のfindingと伝播・履歴・固有義務を分離。全形状/実binding/凍結は未完。",
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。 Context21否定例で資格不足のcell局所化/母集団unionと同raw異identityの代用拒否を追加。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。 Context21例で独立資格不足とpair/意味/trigger/種類の局所不足を分離。",
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。",
@@ -79418,5 +79418,3821 @@
     ],
     "verification": "全ChangeResultを比較。minimum finding/部分valueだけで全結果を認定しない。原23/19 partial oracleと資料はそのまま保持。",
     "scope_limit": "B01固定57対照と診断候補。全構造/実qualification/consumer/codec/L6L7/全凍結/他5契約/全92親430対は未完。"
+  },
+  "impact_whole_result_oracles": {
+    "design_ref": "HARNESS-L5-004-F02",
+    "source_main": "5c6b4331dbff3ff28370b5354f1def51282aafd6",
+    "existing_cases": [
+      {
+        "id": "H004-L8-F02-NORMAL-WHOLE",
+        "case_ref": "H004-L8-F02-NORMAL",
+        "case_sha256": "619125d5384bc182589979af5e95ec4f470df707d94f036996615a792b4b2308",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-NORMAL-SYSTEM-pass-WHOLE",
+        "case_ref": "H004-L8-F02-NORMAL-SYSTEM-pass",
+        "case_sha256": "884703d3360524f8ce40003de6bce0a6c6a4fdbb2e0934672753829a9b0036cc",
+        "input_packet_sha256": "aceb29858aaa60ccc840610b683e47d7d16bd83a108edd597b7e8ffba125681c",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "supported_synthetic_reverification_pass",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "a96d67300b1078ccf312d428ab32dc03a9a64b61d7bfdefd7552febd9aa269dc",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-NORMAL-SYSTEM-fail-WHOLE",
+        "case_ref": "H004-L8-F02-NORMAL-SYSTEM-fail",
+        "case_sha256": "6672e192e93990a00881d2f4bd361ec5205de639e7c32a4f2d3b2136e87893af",
+        "input_packet_sha256": "523a96716ed55e68fb37b109f11ab00c508c9aea46f8762ee546a48bcaf385c9",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "supported_synthetic_reverification_fail",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "cc5b8689adb9c1fcc49ad32afa50b2272c1288994f9da4129ea5ff928a671af2",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-MEMBERSHIP-UNKNOWN-WHOLE",
+        "case_ref": "H004-L8-F02-MEMBERSHIP-UNKNOWN",
+        "case_sha256": "f1ede1f2154d86d30428608fcfa5455a37bfd2b4f30073f0f85905f496b41f43",
+        "input_packet_sha256": "bca89e0dabdfb48dd56591d10e3022e5f4ef8b361a4d30c63175495384693cac",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "membership_unknown",
+              "pointer": "/input/design_membership/1/coverage",
+              "node_ids": [
+                "C"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "DESIGN-C",
+                  "revision": "fixture-r1-content-e400afc348389d98755bff24bc9c45b87ac69175ab2868c0b6d2c21adc027262",
+                  "scope": "PRODUCT-P",
+                  "owner": "design-original-owner"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "design-membership-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "dd3bbc0de20012c2af8badb0541e4606656a2e8aa1357b2ec0ebfcb8f1ad6861",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-RELATION-MISSING-WHOLE",
+        "case_ref": "H004-L8-F02-RELATION-MISSING",
+        "case_sha256": "4c24e351ae24650d80cdef40f5658c7a0febf80fb58ba2f9ad864b56518ffbf9",
+        "input_packet_sha256": "3786a66a1c6ab237f5ef74cb30732f2b3c393d16d336583c35b094c00b0ad2dc",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "required_relation_missing",
+              "pointer": "/input/relations",
+              "node_ids": [
+                "C"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "DESIGN-C",
+                  "revision": "fixture-r1-content-ee1f840f1351afc0d19f094db33fdbc2b1ec409486b046d1d2c0b9fa9c8430c9",
+                  "scope": "PRODUCT-P",
+                  "owner": "design-original-owner"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "relation-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "b7ebc62f1647ef9b7d0334999e77d09e2a23e3b8f199b0bcebecef1b47af5167",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-RELATION-FOREIGN-REVISION-WHOLE",
+        "case_ref": "H004-L8-F02-RELATION-FOREIGN-REVISION",
+        "case_sha256": "06fd6bc9b24cbf4a30f45744e4925c1666ed70496a54ad957c4beec9416bf47f",
+        "input_packet_sha256": "8bc3eedc2642180bda22a7989cd2e5002dc9f51770ae0f379934f4e34291089c",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "required_relation_stale",
+              "pointer": "/input/relations/0/binding",
+              "node_ids": [
+                "C"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "EDGE-C-U",
+                  "revision": "fixture-r1-content-38e3ac6c41a68778e3d6bd565e3648548596c4322df293d973df1740d12b75d9",
+                  "scope": "PRODUCT-P",
+                  "owner": "relation-original-owner"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "relation-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "1a9c59cec86e8b7f87ca39ae4d1d8d8cee4b9730ef2b5bc10d159dc6a2bd99c0",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-UNIT-FAILED-WHOLE",
+        "case_ref": "H004-L8-F02-UNIT-FAILED",
+        "case_sha256": "a04c0ba28ac83aa928738ca6dd423b11d1bfb9d8575bff0703c8d30996c46597",
+        "input_packet_sha256": "d75d5ae334b3dcc83185a703ed8de6d37fb081db0ebce3061498ec149042db8e",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "failed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "previous_evidence_inconsistent",
+              "pointer": "/input/original_establishment/U/result",
+              "node_ids": [
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "ESTABLISHMENT-U",
+                  "revision": "fixture-r1-content-bd9d7b7ea7ea3ccce416326b40c2e2463298b19848c14dc7c4ce7557b97fbb4b",
+                  "scope": "PRODUCT-P",
+                  "owner": "verification-original-owner"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "previous-verification-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "7e0d4b21607d4c380f998b0405999bf8cf203af315d53bda05c25bd00c42d882",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-UNIT-UNKNOWN-WHOLE",
+        "case_ref": "H004-L8-F02-UNIT-UNKNOWN",
+        "case_sha256": "491deb0b300141f82b7de9453a959ce0db99cb3054f1a69855e711c88b146b2c",
+        "input_packet_sha256": "2c4ca17f891461d6b9c7e8e2fcb7e07c78cac08afeb02dd8fed41c16a779ff7f",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "unknown",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "a73bbdbe026e8e31e260630ab2f5069826f3a54b4295b723ad591e96baadf1c9",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-AFFECTED-AS-UPPER-PASS-WHOLE",
+        "case_ref": "H004-L8-F02-AFFECTED-AS-UPPER-PASS",
+        "case_sha256": "410708ac7b34b6f5ccc79f6c560af4e2fa167f12ebdd12e90651ea51d6164712",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "7e8eda56b83bedee352efcb68743d4ee85e3ae100bd7259ec92a9b19d7775348",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/actual_upper_passed",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "actual_upper_passed"
+          ],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-AFFECTED-AS-UPPER-FAIL-WHOLE",
+        "case_ref": "H004-L8-F02-AFFECTED-AS-UPPER-FAIL",
+        "case_sha256": "d90750271f0674e71ea58604d21abb1d565ba893a3844711af18d219a5f44695",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "45ff30b1883ed75901311cbfbf58ef3f024802391c7e2739693f4425aa7ce1b4",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/actual_upper_failed",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "actual_upper_failed"
+          ],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-IMPACT-AS-STATE-UPDATE-WHOLE",
+        "case_ref": "H004-L8-F02-IMPACT-AS-STATE-UPDATE",
+        "case_sha256": "afdb0505765645f9c41678cd61fb28d9c59d7113fdc00795d96736647f592eff",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "abc1949283a2f67759483f78f6e340c99bd5ab2fbb95ef60ee73a62cd7446b0f",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/actual_state_updated",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "actual_state_updated"
+          ],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-OLD-PROOF-AS-REEXECUTION-WHOLE",
+        "case_ref": "H004-L8-F02-OLD-PROOF-AS-REEXECUTION",
+        "case_sha256": "044e259803e9b08b4799b35e8c4b177ccfc4b2d91234242e676b34f7e0024b6c",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "8b47e2ed9af83787fbe65243ba0a38f53597233f5c84aa40a5e1f821d3d76fdc",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/actual_reverification_executed",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "actual_reverification_executed"
+          ],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-LOWER-PASS-AS-COMPLETION-WHOLE",
+        "case_ref": "H004-L8-F02-LOWER-PASS-AS-COMPLETION",
+        "case_sha256": "6d215fa35ce71da334819649cb93b853f848e0c71ccdc940e0bd7e49f0ea9056",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "e488284c99659fefdef793c1564a68c14066bb6460f7d1bd657a25e8ce15a8cf",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/actual_completion",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "actual_completion"
+          ],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-ERASE-UPPER-OBLIGATIONS-WHOLE",
+        "case_ref": "H004-L8-F02-ERASE-UPPER-OBLIGATIONS",
+        "case_sha256": "38927a270106d798da291b6bd2b78c54e1255206416bcc4cf0bc2f4df9210274",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "1c8cbcf94c1e49267681907acbe361a52b97a52e60b4736160f5f79e27e0e665",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/establishment_by_node",
+              "node_ids": [
+                "S"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "establishment_by_node"
+          ],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-UNAFFECTED-AS-AFFECTED-WHOLE",
+        "case_ref": "H004-L8-F02-UNAFFECTED-AS-AFFECTED",
+        "case_sha256": "cbb4105b7594b4e78a3370913bca54e9d1205aadf1c2636430ac341012d0496e",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "245c76f997a3a1b93b9c7cfa299b1b51cb816b88d9353d6d5dfbc30b1edca836",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/impact_by_node",
+              "node_ids": [
+                "Q"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            }
+          ],
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "impact_by_node"
+          ],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-UNKNOWN-AS-UNAFFECTED-WHOLE",
+        "case_ref": "H004-L8-F02-UNKNOWN-AS-UNAFFECTED",
+        "case_sha256": "7b14eddc4debed5f5db5ab29779761a918523e893e483eaf275b218571c44766",
+        "input_packet_sha256": "bca89e0dabdfb48dd56591d10e3022e5f4ef8b361a4d30c63175495384693cac",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "5b073cb5de154ea0b25292db81f6c148789efb6a9b6a2aad5c3addd7a8ec253d",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/impact_by_node",
+              "node_ids": [
+                "C",
+                "S"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            },
+            {
+              "code": "membership_unknown",
+              "pointer": "/input/design_membership/1/coverage",
+              "node_ids": [
+                "C"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "DESIGN-C",
+                  "revision": "fixture-r1-content-e400afc348389d98755bff24bc9c45b87ac69175ab2868c0b6d2c21adc027262",
+                  "scope": "PRODUCT-P",
+                  "owner": "design-original-owner"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "design-membership-owner"
+            }
+          ],
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "impact_by_node"
+          ],
+          "retained_input_sha256": "dd3bbc0de20012c2af8badb0541e4606656a2e8aa1357b2ec0ebfcb8f1ad6861",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-LOWER-FAIL-AS-UPPER-FAIL-WHOLE",
+        "case_ref": "H004-L8-F02-LOWER-FAIL-AS-UPPER-FAIL",
+        "case_sha256": "d989d267ecd70a99f8b3e0430cdd77f99d19dbf2cbd6bd2bd121e0a4cbf89331",
+        "input_packet_sha256": "d75d5ae334b3dcc83185a703ed8de6d37fb081db0ebce3061498ec149042db8e",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "context_packet_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2",
+        "candidate_argument_sha256": "cff3cce31d585f8a446831c9dc57237681ba4b753863560a47cb9e0925d4a457",
+        "expected_result": {
+          "outcome": "conflict",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "failed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "candidate_conflict",
+              "pointer": "/candidate/establishment_by_node",
+              "node_ids": [
+                "S"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "submitted-candidate-owner"
+            },
+            {
+              "code": "previous_evidence_inconsistent",
+              "pointer": "/input/original_establishment/U/result",
+              "node_ids": [
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "ESTABLISHMENT-U",
+                  "revision": "fixture-r1-content-bd9d7b7ea7ea3ccce416326b40c2e2463298b19848c14dc7c4ce7557b97fbb4b",
+                  "scope": "PRODUCT-P",
+                  "owner": "verification-original-owner"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "previous-verification-owner"
+            }
+          ],
+          "candidate_disposition": "conflict",
+          "candidate_conflicting_fields": [
+            "establishment_by_node"
+          ],
+          "retained_input_sha256": "7e0d4b21607d4c380f998b0405999bf8cf203af315d53bda05c25bd00c42d882",
+          "retained_context_sha256": "f9454492a4103c7b0a98428fbabdb3ddd565e4d3868e3f3b86b5a63dbc0df0b2"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-TARGET-SCOPE-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-TARGET-SCOPE",
+        "case_sha256": "39bc0c474ef31ec6483835a88dd8b323667372788ceab7ae525de63fe6a1149e",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "bc33722c167b92c8abc2125e874593a6b8b95a39e03f4b9ba5e2878ab5be9623",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Unknown",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unknown"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "Q",
+              "S",
+              "U"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_conflict",
+              "pointer": "/context/target/scope",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "graph-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "bc33722c167b92c8abc2125e874593a6b8b95a39e03f4b9ba5e2878ab5be9623"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-TARGET-REVISION-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-TARGET-REVISION",
+        "case_sha256": "076f0dafc51ca71439555437a154e71d78f8798ce58874ea8c53a47331fe692a",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "15cf5e7d00afd9568572f85f10038aa902ab5cf2f7b4ded24577d521e48070af",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Unknown",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unknown"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "Q",
+              "S",
+              "U"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_stale",
+              "pointer": "/context/target/graph_revision",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "graph-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "15cf5e7d00afd9568572f85f10038aa902ab5cf2f7b4ded24577d521e48070af"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-GLOBAL-STATE-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-GLOBAL-STATE",
+        "case_sha256": "24c7b89e6d5413733d99882807aaddcda1464c21db6bb0285715ac1a5cff0a51",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "0db0bf80f54076e21a1c5fcf6ed409de1c0c6816af951417a505e3453fe18d70",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Unknown",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unknown"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "Q",
+              "S",
+              "U"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_unknown",
+              "pointer": "/context/state",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "graph-qualification-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "0db0bf80f54076e21a1c5fcf6ed409de1c0c6816af951417a505e3453fe18d70"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-POPULATION-DROP-Q-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-POPULATION-DROP-Q",
+        "case_sha256": "7a4c79765fc0ff3c4fc06c140ad73c2cade8373cfef33a9ef4d920c8b82c4ebf",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "83a7d1564d436eec6fff07c200d4e090bb4b0b99595c4228c2b38f2212af54d0",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Unknown",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unknown"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "Q",
+              "S",
+              "U"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "population_conflict",
+              "pointer": "/context/node_population",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "graph-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "83a7d1564d436eec6fff07c200d4e090bb4b0b99595c4228c2b38f2212af54d0"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-DECLARED-MEMBER-C-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-DECLARED-MEMBER-C",
+        "case_sha256": "d56746665bab6b3fa754324e72c55ecdcdb7b19697076e88172fdd14b64b36df",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "3177a898ec888da86c6dc69a4462061aab792f7c6298628471b9a1b41acc2ded",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "required_relation_conflict",
+              "pointer": "/context/declared_members/C",
+              "node_ids": [
+                "C"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "relation-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "3177a898ec888da86c6dc69a4462061aab792f7c6298628471b9a1b41acc2ded"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-UPPER-OBLIGATION-S-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-UPPER-OBLIGATION-S",
+        "case_sha256": "ea6a8749e07c08b8f53acabc5afe3085ab2da6009288dc23a9fa741c6b7464bd",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "eb4814b3c1a16cbd587d06172c672f2712a5d95d40f006a27efd09aec60e1ff8",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "upper_obligation_missing",
+              "pointer": "/context/required_upper_obligations/S",
+              "node_ids": [
+                "S"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "upper-verification-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "eb4814b3c1a16cbd587d06172c672f2712a5d95d40f006a27efd09aec60e1ff8"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-RELATION-RECORD-MISSING-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-RELATION-RECORD-MISSING",
+        "case_sha256": "d596613445b89ec27a1bb9df2b6b523f82cf2f1352d5a14e658531ab4dfcd07e",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "926fbed328dfa7cdb87514ebde35ae4453a0911d77981be25f17a1053d696fd9",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_missing",
+              "pointer": "/context/referents",
+              "node_ids": [
+                "C"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "EDGE-C-U",
+                  "revision": "fixture-r1-content-0ada2914dd0b33e8c6a4428cfea717218a217cb3979bdbf9d756aaa014ebee70",
+                  "scope": "PRODUCT-P",
+                  "owner": "relation-original-owner"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "relation-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "926fbed328dfa7cdb87514ebde35ae4453a0911d77981be25f17a1053d696fd9"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-RELATION-RECORD-STALE-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-RELATION-RECORD-STALE",
+        "case_sha256": "4196ce3a938c15dbf75400097a47104bc34c2a5d4df806b50f4fb896904c1bf8",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "9b1db4f155c167a763744e6766c6614f64d3fcb4dbc76c3fca63bb869453074c",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_stale",
+              "pointer": "/context/referents/4/state",
+              "node_ids": [
+                "C"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "EDGE-C-U",
+                  "owner": "relation-original-owner",
+                  "revision": "fixture-r1-content-0ada2914dd0b33e8c6a4428cfea717218a217cb3979bdbf9d756aaa014ebee70",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "relation-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "9b1db4f155c167a763744e6766c6614f64d3fcb4dbc76c3fca63bb869453074c"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-MEMBERSHIP-C-UNKNOWN-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-MEMBERSHIP-C-UNKNOWN",
+        "case_sha256": "0ffa406c6ebf9928ab0d6fcddd40650eeede62690fd3e9e573232662763b118d",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "793a4b9278192e8bad4cdef7162cd3789e686eef218f4b48479c68bc3132992d",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_unknown",
+              "pointer": "/context/referents/1/state",
+              "node_ids": [
+                "C"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "DESIGN-C",
+                  "owner": "design-original-owner",
+                  "revision": "fixture-r1-content-ee1f840f1351afc0d19f094db33fdbc2b1ec409486b046d1d2c0b9fa9c8430c9",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "design-membership-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "793a4b9278192e8bad4cdef7162cd3789e686eef218f4b48479c68bc3132992d"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-RELATION-DIGEST-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-RELATION-DIGEST",
+        "case_sha256": "7d3f70227ceb8039a3ee3d481377b0e5a81177057f837061db8a8de71c43a058",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "6d99ef938696564218522e2d88467e63ae065696b1b86a1a0bbcb639e2f6b2e6",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "content_digest_conflict",
+              "pointer": "/context/referents/4/content_sha256",
+              "node_ids": [
+                "C"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "EDGE-C-U",
+                  "owner": "relation-original-owner",
+                  "revision": "fixture-r1-content-0ada2914dd0b33e8c6a4428cfea717218a217cb3979bdbf9d756aaa014ebee70",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "relation-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "6d99ef938696564218522e2d88467e63ae065696b1b86a1a0bbcb639e2f6b2e6"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-RELATION-QUALIFICATION-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-RELATION-QUALIFICATION",
+        "case_sha256": "0a988c3f4acd3faebe590e71f24a5d9c7c23a96cf580b773ab90b10b971957c6",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "b81aff0b74a4ab2c30d1edd076d7dcb4d41caf0b6f5fc31fc6234223365749f8",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_unknown",
+              "pointer": "/context/referents/4/qualification_basis_refs",
+              "node_ids": [
+                "C"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "EDGE-C-U",
+                  "owner": "relation-original-owner",
+                  "revision": "fixture-r1-content-0ada2914dd0b33e8c6a4428cfea717218a217cb3979bdbf9d756aaa014ebee70",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "graph-qualification-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "b81aff0b74a4ab2c30d1edd076d7dcb4d41caf0b6f5fc31fc6234223365749f8"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-ROOT-OWNER-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-ROOT-OWNER",
+        "case_sha256": "10946cb3e80d12970c8ec707d8206e6890863b505aefbcd3be9a160a99cef7ec",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "d5eb986829f189448c55ca3c37f8fa4dab7161939c412a5409cd03a4372a977c",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Unknown",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unknown"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "Q",
+              "S",
+              "U"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_unknown",
+              "pointer": "/context/qualifier_roots/0/owner",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "input-self-asserted-owner",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "graph-qualification-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "d5eb986829f189448c55ca3c37f8fa4dab7161939c412a5409cd03a4372a977c"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-ROOT-SCOPE-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-ROOT-SCOPE",
+        "case_sha256": "866ede7d8b6368f87a612a3a9620f2a00ca7562c275b7a2d4b8d953fd79892b4",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "077ba5ee42ba2791df6feb2d6a026b0ee51768b81a84621f51a5d2ed187f8597",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Unknown",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unknown"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "Q",
+              "S",
+              "U"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_unknown",
+              "pointer": "/context/qualifier_roots/0/scope",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-OTHER"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "graph-qualification-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "077ba5ee42ba2791df6feb2d6a026b0ee51768b81a84621f51a5d2ed187f8597"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-PREVIOUS-U-UNKNOWN-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-PREVIOUS-U-UNKNOWN",
+        "case_sha256": "e9f9b15795ca5214b07c89e9cf963a4d1f8713c7f026b3bd36456e607b971960",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "5c4d3a370fac2cec12641a3e65b923e818ef94743f86b7e3081292d17f89278c",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Affected",
+              "C": "Affected",
+              "S": "Affected",
+              "Q": "Unaffected"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_unknown",
+              "pointer": "/context/referents/6/state",
+              "node_ids": [
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "ESTABLISHMENT-U",
+                  "owner": "verification-original-owner",
+                  "revision": "fixture-r1-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "previous-verification-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "5c4d3a370fac2cec12641a3e65b923e818ef94743f86b7e3081292d17f89278c"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-SYNTHETIC-AS-ACTUAL-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-SYNTHETIC-AS-ACTUAL",
+        "case_sha256": "67ae09527b87a97b889167832a875377b40318a7a9a5b00722672dbd0c704bb0",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "4caa087540a99572906b37271173b45deb2ca7bdc70fe0ba5a7f90b2329c220a",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Unknown",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unknown"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "Q",
+              "S",
+              "U"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_unknown",
+              "pointer": "/context/evidence_kind",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "graph-qualification-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "4caa087540a99572906b37271173b45deb2ca7bdc70fe0ba5a7f90b2329c220a"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-ROOT-REVISION-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-ROOT-REVISION",
+        "case_sha256": "a230a68a94034eef97ddaf2eed5a8a4ccd3589d8475c463af4a002a4a40ca268",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "f6a3d3e95add098f11094e70a599886469391cf26d7c8309b0704963a746c5fa",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Unknown",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unknown"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "Q",
+              "S",
+              "U"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_unknown",
+              "pointer": "/context/qualifier_roots/0/revision",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r0",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "graph-qualification-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "f6a3d3e95add098f11094e70a599886469391cf26d7c8309b0704963a746c5fa"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-CONTEXT-GLOBAL-STATE-STALE-WHOLE",
+        "case_ref": "H004-L8-F02-CONTEXT-GLOBAL-STATE-STALE",
+        "case_sha256": "b79f5b1ca71ee81d99ab7208ef9107bd3c12d5004a699f54dd6c8d33a0cdf911",
+        "input_packet_sha256": "392af19eac156bf89808a2ccabd76d606396936bcba45e54c83b6af89bdd1b2b",
+        "context_packet_sha256": "025dc626cc5b9552f02ee1d8ccd10b3ce46ae711e59f4c92311388c6511a12d7",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "U": "Unknown",
+              "C": "Unknown",
+              "S": "Unknown",
+              "Q": "Unknown"
+            },
+            "establishment_by_node": {
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              },
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "delivery_idempotency"
+                ]
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "system_balance_conservation"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "Q",
+              "S",
+              "U"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "reference_stale",
+              "pointer": "/context/state",
+              "node_ids": [
+                "C",
+                "Q",
+                "S",
+                "U"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "owner": "synthetic-oracle-author",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P"
+                }
+              ],
+              "return_owner": "graph-qualification-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "9fe91fb25430450158ec712d7b9fc513cc870bae83d6ffbe940c098e6cc5e168",
+          "retained_context_sha256": "025dc626cc5b9552f02ee1d8ccd10b3ce46ae711e59f4c92311388c6511a12d7"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-GRAPH-DIAMOND-WHOLE",
+        "case_ref": "H004-L8-F02-GRAPH-DIAMOND",
+        "case_sha256": "e8fa277117a8274e2408510027fb1a49974bbb40e713f3019fb4d9d661092e3a",
+        "input_packet_sha256": "3e481afd61b6cd92b4ee15a716f2b2a99b4f76c53d9058186bfdb09a558c600a",
+        "context_packet_sha256": "22038701bc142653c4864167ed67978274a7317fa358878df019a85c339b5559",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "impact_by_node": {
+              "A": "Affected",
+              "B": "Affected",
+              "Q": "Unaffected",
+              "S": "Affected",
+              "U": "Affected"
+            },
+            "establishment_by_node": {
+              "A": {
+                "previous_result": "passed",
+                "previous_revision": "A@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "obligation-A"
+                ]
+              },
+              "B": {
+                "previous_result": "passed",
+                "previous_revision": "B@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "obligation-B"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "obligation-S"
+                ]
+              },
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "3e481afd61b6cd92b4ee15a716f2b2a99b4f76c53d9058186bfdb09a558c600a",
+          "retained_context_sha256": "22038701bc142653c4864167ed67978274a7317fa358878df019a85c339b5559"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-GRAPH-DIAMOND-MISSING-U-B-WHOLE",
+        "case_ref": "H004-L8-F02-GRAPH-DIAMOND-MISSING-U-B",
+        "case_sha256": "cf2e4e28ccb8d16e639f82b47cf5f13019beec75f8dfa059bb0f05243cd817eb",
+        "input_packet_sha256": "596b28f0b1786091b14ffd05d6d96132b697b80868cbea39a4c044aae9016873",
+        "context_packet_sha256": "22038701bc142653c4864167ed67978274a7317fa358878df019a85c339b5559",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "A": "Affected",
+              "B": "Unknown",
+              "Q": "Unaffected",
+              "S": "Unknown",
+              "U": "Affected"
+            },
+            "establishment_by_node": {
+              "A": {
+                "previous_result": "passed",
+                "previous_revision": "A@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "obligation-A"
+                ]
+              },
+              "B": {
+                "previous_result": "passed",
+                "previous_revision": "B@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "obligation-B"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "obligation-S"
+                ]
+              },
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "B",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "required_relation_missing",
+              "pointer": "/input/relations",
+              "node_ids": [
+                "B"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "DIAMOND-DESIGN-B",
+                  "owner": "design-original-owner",
+                  "revision": "fixture-content-dd93a2c2a6606dc65ac98f8ff3bcd9f7c9795c2c62eb8c846011f112c720946d",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-graph-oracle-author"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "relation-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "596b28f0b1786091b14ffd05d6d96132b697b80868cbea39a4c044aae9016873",
+          "retained_context_sha256": "22038701bc142653c4864167ed67978274a7317fa358878df019a85c339b5559"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-GRAPH-CYCLE-WHOLE",
+        "case_ref": "H004-L8-F02-GRAPH-CYCLE",
+        "case_sha256": "9bd8e79d1ea49866ea058957b787bc12c451283ba0244995dc68a0a9cdcdb01c",
+        "input_packet_sha256": "db90f95cf863d7a4b64bdcbdc67297e18e6a53aab3057994997c42a5b7dcd768",
+        "context_packet_sha256": "c9939f9ffd1381c74e8a37337c92a3982e8855221271ccda72fcb9084d9d26ec",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "impact_by_node": {
+              "C": "Affected",
+              "Q": "Unaffected",
+              "S": "Affected",
+              "U": "Affected"
+            },
+            "establishment_by_node": {
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "obligation-C"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "obligation-S"
+                ]
+              },
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "relation_cycle",
+              "pointer": "/input/relations",
+              "node_ids": [
+                "C",
+                "S"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "CYCLE-EDGE-C-S",
+                  "owner": "relation-original-owner",
+                  "revision": "fixture-content-6476f63cc0f7ff2b32e80eba0ae35a5d7e6a81a826e0f181ea31e6155c202c30",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "CYCLE-EDGE-S-C",
+                  "owner": "relation-original-owner",
+                  "revision": "fixture-content-a8682bef892ec8402c74b16e9ee8b4cd45c302cd9c1393d2dd47f801bc72df43",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-graph-oracle-author"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "relation-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "db90f95cf863d7a4b64bdcbdc67297e18e6a53aab3057994997c42a5b7dcd768",
+          "retained_context_sha256": "c9939f9ffd1381c74e8a37337c92a3982e8855221271ccda72fcb9084d9d26ec"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-GRAPH-CYCLE-MEMBERSHIP-UNKNOWN-WHOLE",
+        "case_ref": "H004-L8-F02-GRAPH-CYCLE-MEMBERSHIP-UNKNOWN",
+        "case_sha256": "ccbe116d5df9d3b0539662de34375c086eb9f56e767f7dcfc1b72d18e74a3f02",
+        "input_packet_sha256": "5917f3d3d0a166921480aa5cfd59a3713b3fff7c53e4046a4abcc9a3c5c5deff",
+        "context_packet_sha256": "c9939f9ffd1381c74e8a37337c92a3982e8855221271ccda72fcb9084d9d26ec",
+        "candidate_argument_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "C": "Unknown",
+              "Q": "Unaffected",
+              "S": "Unknown",
+              "U": "Affected"
+            },
+            "establishment_by_node": {
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "obligation-C"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "obligation-S"
+                ]
+              },
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "membership_unknown",
+              "pointer": "/input/design_membership/0/coverage",
+              "node_ids": [
+                "C"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "CYCLE-DESIGN-C-UNKNOWN",
+                  "owner": "design-original-owner",
+                  "revision": "fixture-content-eda5a4a0f48162c5fbcc6590db72b2a622888c3a05966a18edc16aca35c8f97f",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-graph-oracle-author"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "design-membership-owner"
+            },
+            {
+              "code": "relation_cycle",
+              "pointer": "/input/relations",
+              "node_ids": [
+                "C",
+                "S"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "CYCLE-EDGE-C-S",
+                  "owner": "relation-original-owner",
+                  "revision": "fixture-content-6476f63cc0f7ff2b32e80eba0ae35a5d7e6a81a826e0f181ea31e6155c202c30",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "CYCLE-EDGE-S-C",
+                  "owner": "relation-original-owner",
+                  "revision": "fixture-content-a8682bef892ec8402c74b16e9ee8b4cd45c302cd9c1393d2dd47f801bc72df43",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-graph-oracle-author"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "relation-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "5917f3d3d0a166921480aa5cfd59a3713b3fff7c53e4046a4abcc9a3c5c5deff",
+          "retained_context_sha256": "c9939f9ffd1381c74e8a37337c92a3982e8855221271ccda72fcb9084d9d26ec"
+        },
+        "execution_state": "not_executed"
+      }
+    ],
+    "additional_cases": [
+      {
+        "id": "H004-L8-F02-GRAPH-DIAMOND-REVERSED-EDGES",
+        "input_packet": {
+          "raw_utf8": "{\"change\":{\"condition_after\":\"duplicate_delivery_single_debit\",\"condition_before\":\"duplicate_delivery_unspecified\",\"from_revision\":\"U@r1\",\"node\":\"U\",\"to_revision\":\"U@r2\"},\"design_membership\":[{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"A\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-A\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-1ee619d7809fb321772c6d184359346bc011fded95d72058874ebfed2ef529c7\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"U\"],\"role\":\"connection\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"B\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-B\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-dd93a2c2a6606dc65ac98f8ff3bcd9f7c9795c2c62eb8c846011f112c720946d\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"U\"],\"role\":\"connection\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"Q\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-Q\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-090c10e8b921505104b9d77abb9263711d31fd6f20bc2aabb931035a418b2a80\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unrelated_unit\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"S\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-S\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-fc75bffb71836160c7e1fa66850ce4fb5b652a13da7c0f19e6921369eb892ff3\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"A\",\"B\"],\"role\":\"composite\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"U\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-U\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-e2e5422af242877312573f20b9db7e6a223ffe3a27b54fe56d58f5a89fa6f57e\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unit\"}],\"original_establishment\":{\"A\":{\"node_revision\":\"A@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-A\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-b5c5054bb9540db055dc057d18fff8dff33fa3b3bb63b3b8c66bb22558fcef94\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"B\":{\"node_revision\":\"B@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-B\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-ebba6c9b4755b7aa37c281491bb410c47a6a1dfacc8324e63e22bbaa7dc9d8e9\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"Q\":{\"node_revision\":\"Q@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-Q\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"S\":{\"node_revision\":\"S@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-S\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"U\":{\"node_revision\":\"U@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-U\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}},\"relations\":[{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"B\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-S-B\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-dc47519055ea9270f22ea8c50d69693871602aebe8c88060a4e3f14c470d7b52\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"A\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-S-A\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-b0b846764db681f222400f70a66e1627398ab11132a363753aa1164c35055ab6\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-B-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-9c7dacf5008547209da8380493705a01c6b9ab57b93f06138da1ed875a0ad127\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"B\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-A-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-552e9c7f38cde4ada77df3917408c734de83d29eea45b160751fe5df42de2c64\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"A\"}],\"required_upper_obligations\":{\"A\":[\"obligation-A\"],\"B\":[\"obligation-B\"],\"S\":[\"obligation-S\"]},\"reverification\":{\"A\":null,\"B\":null,\"S\":null},\"scenario_kind\":\"synthetic_diamond_not_actual_graph_execution\",\"target\":{\"graph_revision\":\"SYNTHETIC-DIAMOND@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "cb4c9ce9bbd75d1fa8ff48e838e825a8f7bc849d3e7836c85e4711f20f6182eb"
+        },
+        "context_fixture_ref": "H004-F02-DIAMOND-INDEPENDENT-CONTEXT",
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "impact_by_node": {
+              "A": "Affected",
+              "B": "Affected",
+              "Q": "Unaffected",
+              "S": "Affected",
+              "U": "Affected"
+            },
+            "establishment_by_node": {
+              "A": {
+                "previous_result": "passed",
+                "previous_revision": "A@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "obligation-A"
+                ]
+              },
+              "B": {
+                "previous_result": "passed",
+                "previous_revision": "B@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "obligation-B"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "obligation-S"
+                ]
+              },
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "cb4c9ce9bbd75d1fa8ff48e838e825a8f7bc849d3e7836c85e4711f20f6182eb",
+          "retained_context_sha256": "22038701bc142653c4864167ed67978274a7317fa358878df019a85c339b5559"
+        },
+        "fixed_point_rounds": [
+          {
+            "A": [
+              "U"
+            ],
+            "K": []
+          },
+          {
+            "A": [
+              "A",
+              "B",
+              "U"
+            ],
+            "K": []
+          },
+          {
+            "A": [
+              "A",
+              "B",
+              "S",
+              "U"
+            ],
+            "K": []
+          },
+          {
+            "A": [
+              "A",
+              "B",
+              "S",
+              "U"
+            ],
+            "K": []
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-GRAPH-DIAMOND-MISSING-U-B-REVERSED-EDGES",
+        "input_packet": {
+          "raw_utf8": "{\"change\":{\"condition_after\":\"duplicate_delivery_single_debit\",\"condition_before\":\"duplicate_delivery_unspecified\",\"from_revision\":\"U@r1\",\"node\":\"U\",\"to_revision\":\"U@r2\"},\"design_membership\":[{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"A\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-A\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-1ee619d7809fb321772c6d184359346bc011fded95d72058874ebfed2ef529c7\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"U\"],\"role\":\"connection\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"B\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-B\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-dd93a2c2a6606dc65ac98f8ff3bcd9f7c9795c2c62eb8c846011f112c720946d\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"U\"],\"role\":\"connection\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"Q\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-Q\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-090c10e8b921505104b9d77abb9263711d31fd6f20bc2aabb931035a418b2a80\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unrelated_unit\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"S\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-S\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-fc75bffb71836160c7e1fa66850ce4fb5b652a13da7c0f19e6921369eb892ff3\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"A\",\"B\"],\"role\":\"composite\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"U\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-U\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-e2e5422af242877312573f20b9db7e6a223ffe3a27b54fe56d58f5a89fa6f57e\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unit\"}],\"original_establishment\":{\"A\":{\"node_revision\":\"A@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-A\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-b5c5054bb9540db055dc057d18fff8dff33fa3b3bb63b3b8c66bb22558fcef94\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"B\":{\"node_revision\":\"B@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-B\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-ebba6c9b4755b7aa37c281491bb410c47a6a1dfacc8324e63e22bbaa7dc9d8e9\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"Q\":{\"node_revision\":\"Q@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-Q\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"S\":{\"node_revision\":\"S@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-S\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"U\":{\"node_revision\":\"U@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-U\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}},\"relations\":[{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"B\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-S-B\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-dc47519055ea9270f22ea8c50d69693871602aebe8c88060a4e3f14c470d7b52\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"A\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-S-A\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-b0b846764db681f222400f70a66e1627398ab11132a363753aa1164c35055ab6\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-A-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-552e9c7f38cde4ada77df3917408c734de83d29eea45b160751fe5df42de2c64\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"A\"}],\"required_upper_obligations\":{\"A\":[\"obligation-A\"],\"B\":[\"obligation-B\"],\"S\":[\"obligation-S\"]},\"reverification\":{\"A\":null,\"B\":null,\"S\":null},\"scenario_kind\":\"synthetic_diamond_not_actual_graph_execution\",\"target\":{\"graph_revision\":\"SYNTHETIC-DIAMOND@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "4db449ddd04c8eb05a8c78c372ccf5c779fc13b6a26882fb21cbc3f9c3dd68eb"
+        },
+        "context_fixture_ref": "H004-F02-DIAMOND-INDEPENDENT-CONTEXT",
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "A": "Affected",
+              "B": "Unknown",
+              "Q": "Unaffected",
+              "S": "Unknown",
+              "U": "Affected"
+            },
+            "establishment_by_node": {
+              "A": {
+                "previous_result": "passed",
+                "previous_revision": "A@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "obligation-A"
+                ]
+              },
+              "B": {
+                "previous_result": "passed",
+                "previous_revision": "B@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "obligation-B"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "obligation-S"
+                ]
+              },
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "B",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "required_relation_missing",
+              "pointer": "/input/relations",
+              "node_ids": [
+                "B"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "DIAMOND-DESIGN-B",
+                  "owner": "design-original-owner",
+                  "revision": "fixture-content-dd93a2c2a6606dc65ac98f8ff3bcd9f7c9795c2c62eb8c846011f112c720946d",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-graph-oracle-author"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "relation-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "4db449ddd04c8eb05a8c78c372ccf5c779fc13b6a26882fb21cbc3f9c3dd68eb",
+          "retained_context_sha256": "22038701bc142653c4864167ed67978274a7317fa358878df019a85c339b5559"
+        },
+        "fixed_point_rounds": [
+          {
+            "A": [
+              "U"
+            ],
+            "K": [
+              "B"
+            ]
+          },
+          {
+            "A": [
+              "A",
+              "U"
+            ],
+            "K": [
+              "B",
+              "S"
+            ]
+          },
+          {
+            "A": [
+              "A",
+              "S",
+              "U"
+            ],
+            "K": [
+              "B",
+              "S"
+            ]
+          },
+          {
+            "A": [
+              "A",
+              "S",
+              "U"
+            ],
+            "K": [
+              "B",
+              "S"
+            ]
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-GRAPH-CYCLE-REVERSED-EDGES",
+        "input_packet": {
+          "raw_utf8": "{\"change\":{\"condition_after\":\"duplicate_delivery_single_debit\",\"condition_before\":\"duplicate_delivery_unspecified\",\"from_revision\":\"U@r1\",\"node\":\"U\",\"to_revision\":\"U@r2\"},\"design_membership\":[{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"C\",\"ref\":{\"identity\":\"CYCLE-DESIGN-C\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-05596329b82ed45b10048a9afe3f3573ba2a6b1ef49826e41bf8cf52058c49a9\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"S\",\"U\"],\"role\":\"connection\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"Q\",\"ref\":{\"identity\":\"CYCLE-DESIGN-Q\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-b6e630095a8418317e22f67d4e3875b5e7752d6d052a1010b26ffb28ae4ad25d\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unrelated_unit\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"S\",\"ref\":{\"identity\":\"CYCLE-DESIGN-S\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-559eeba4e61c71a7efbe6a4bc7ea6b786056ca23547457e6abc010c0f2601fa3\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"C\"],\"role\":\"composite\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"U\",\"ref\":{\"identity\":\"CYCLE-DESIGN-U\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-0baf946118c10ad862ac8ec42d70e4ab0e092d8febb599501f5290b2cda29751\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unit\"}],\"original_establishment\":{\"C\":{\"node_revision\":\"C@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-C\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-64a81372f36778c94a4f8a96f577b60ea2beec7478e1766bb878b6a5d1e3cb26\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"Q\":{\"node_revision\":\"Q@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-Q\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"S\":{\"node_revision\":\"S@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-S\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"U\":{\"node_revision\":\"U@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-U\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}},\"relations\":[{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"C\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-S-C\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-a8682bef892ec8402c74b16e9ee8b4cd45c302cd9c1393d2dd47f801bc72df43\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-C-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-d2d279273b38580a2b2445e14202edae49e4e8990aef17d6f5910d5808348d42\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"C\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"S\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-C-S\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-6476f63cc0f7ff2b32e80eba0ae35a5d7e6a81a826e0f181ea31e6155c202c30\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"C\"}],\"required_upper_obligations\":{\"C\":[\"obligation-C\"],\"S\":[\"obligation-S\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_cycle_not_actual_graph_execution\",\"target\":{\"graph_revision\":\"SYNTHETIC-CYCLE@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "ada01db2655a0da3c03306be11da60814454f0bc26fe0568bef9af348ce469c4"
+        },
+        "context_fixture_ref": "H004-F02-CYCLE-INDEPENDENT-CONTEXT",
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "content_supported",
+          "value": {
+            "impact_by_node": {
+              "C": "Affected",
+              "Q": "Unaffected",
+              "S": "Affected",
+              "U": "Affected"
+            },
+            "establishment_by_node": {
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "obligation-C"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": [
+                  "obligation-S"
+                ]
+              },
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "relation_cycle",
+              "pointer": "/input/relations",
+              "node_ids": [
+                "C",
+                "S"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "CYCLE-EDGE-C-S",
+                  "owner": "relation-original-owner",
+                  "revision": "fixture-content-6476f63cc0f7ff2b32e80eba0ae35a5d7e6a81a826e0f181ea31e6155c202c30",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "CYCLE-EDGE-S-C",
+                  "owner": "relation-original-owner",
+                  "revision": "fixture-content-a8682bef892ec8402c74b16e9ee8b4cd45c302cd9c1393d2dd47f801bc72df43",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-graph-oracle-author"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "relation-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "ada01db2655a0da3c03306be11da60814454f0bc26fe0568bef9af348ce469c4",
+          "retained_context_sha256": "c9939f9ffd1381c74e8a37337c92a3982e8855221271ccda72fcb9084d9d26ec"
+        },
+        "fixed_point_rounds": [
+          {
+            "A": [
+              "U"
+            ],
+            "K": []
+          },
+          {
+            "A": [
+              "C",
+              "U"
+            ],
+            "K": []
+          },
+          {
+            "A": [
+              "C",
+              "S",
+              "U"
+            ],
+            "K": []
+          },
+          {
+            "A": [
+              "C",
+              "S",
+              "U"
+            ],
+            "K": []
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-F02-GRAPH-CYCLE-MEMBERSHIP-UNKNOWN-REVERSED-EDGES",
+        "input_packet": {
+          "raw_utf8": "{\"change\":{\"condition_after\":\"duplicate_delivery_single_debit\",\"condition_before\":\"duplicate_delivery_unspecified\",\"from_revision\":\"U@r1\",\"node\":\"U\",\"to_revision\":\"U@r2\"},\"design_membership\":[{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"unknown\",\"node\":\"C\",\"ref\":{\"identity\":\"CYCLE-DESIGN-C-UNKNOWN\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-eda5a4a0f48162c5fbcc6590db72b2a622888c3a05966a18edc16aca35c8f97f\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"S\",\"U\"],\"role\":\"connection\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"Q\",\"ref\":{\"identity\":\"CYCLE-DESIGN-Q\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-b6e630095a8418317e22f67d4e3875b5e7752d6d052a1010b26ffb28ae4ad25d\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unrelated_unit\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"S\",\"ref\":{\"identity\":\"CYCLE-DESIGN-S\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-559eeba4e61c71a7efbe6a4bc7ea6b786056ca23547457e6abc010c0f2601fa3\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"C\"],\"role\":\"composite\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"U\",\"ref\":{\"identity\":\"CYCLE-DESIGN-U\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-0baf946118c10ad862ac8ec42d70e4ab0e092d8febb599501f5290b2cda29751\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unit\"}],\"original_establishment\":{\"C\":{\"node_revision\":\"C@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-C\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-64a81372f36778c94a4f8a96f577b60ea2beec7478e1766bb878b6a5d1e3cb26\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"Q\":{\"node_revision\":\"Q@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-Q\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"S\":{\"node_revision\":\"S@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-S\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"U\":{\"node_revision\":\"U@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-U\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}},\"relations\":[{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"C\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-S-C\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-a8682bef892ec8402c74b16e9ee8b4cd45c302cd9c1393d2dd47f801bc72df43\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-C-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-d2d279273b38580a2b2445e14202edae49e4e8990aef17d6f5910d5808348d42\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"C\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"S\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-C-S\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-6476f63cc0f7ff2b32e80eba0ae35a5d7e6a81a826e0f181ea31e6155c202c30\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"C\"}],\"required_upper_obligations\":{\"C\":[\"obligation-C\"],\"S\":[\"obligation-S\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_cycle_not_actual_graph_execution\",\"target\":{\"graph_revision\":\"SYNTHETIC-CYCLE@r1\",\"scope\":\"PRODUCT-P\"}}",
+          "sha256": "5726f22f9786e4264808ab991a50d43d532bba0e0fb3cd1eebdc5f5e2b3a8bed"
+        },
+        "context_fixture_ref": "H004-F02-CYCLE-INDEPENDENT-CONTEXT",
+        "candidate_argument": null,
+        "expected_result": {
+          "outcome": "unknown",
+          "value": {
+            "impact_by_node": {
+              "C": "Unknown",
+              "Q": "Unaffected",
+              "S": "Unknown",
+              "U": "Affected"
+            },
+            "establishment_by_node": {
+              "C": {
+                "previous_result": "passed",
+                "previous_revision": "C@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "obligation-C"
+                ]
+              },
+              "Q": {
+                "previous_result": "passed",
+                "previous_revision": "Q@r1",
+                "current_result": "preserved_unaffected",
+                "upper_obligations_retained": []
+              },
+              "S": {
+                "previous_result": "passed",
+                "previous_revision": "S@r1",
+                "current_result": "unknown_requires_relation_resolution",
+                "upper_obligations_retained": [
+                  "obligation-S"
+                ]
+              },
+              "U": {
+                "previous_result": "passed",
+                "previous_revision": "U@r1",
+                "current_result": "requires_reverification",
+                "upper_obligations_retained": []
+              }
+            },
+            "unknown_relation_nodes": [
+              "C",
+              "S"
+            ],
+            "actual_state_updated": false,
+            "actual_reverification_executed": false,
+            "actual_upper_passed": false,
+            "actual_upper_failed": false,
+            "actual_completion": false
+          },
+          "findings": [
+            {
+              "code": "membership_unknown",
+              "pointer": "/input/design_membership/0/coverage",
+              "node_ids": [
+                "C"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "CYCLE-DESIGN-C-UNKNOWN",
+                  "owner": "design-original-owner",
+                  "revision": "fixture-content-eda5a4a0f48162c5fbcc6590db72b2a622888c3a05966a18edc16aca35c8f97f",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-graph-oracle-author"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "design-membership-owner"
+            },
+            {
+              "code": "relation_cycle",
+              "pointer": "/input/relations",
+              "node_ids": [
+                "C",
+                "S"
+              ],
+              "basis_refs": [
+                {
+                  "identity": "CYCLE-EDGE-C-S",
+                  "owner": "relation-original-owner",
+                  "revision": "fixture-content-6476f63cc0f7ff2b32e80eba0ae35a5d7e6a81a826e0f181ea31e6155c202c30",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "CYCLE-EDGE-S-C",
+                  "owner": "relation-original-owner",
+                  "revision": "fixture-content-a8682bef892ec8402c74b16e9ee8b4cd45c302cd9c1393d2dd47f801bc72df43",
+                  "scope": "PRODUCT-P"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-independent-graph-oracle-author"
+                },
+                {
+                  "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                  "revision": "fixture-r1",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-oracle-author"
+                }
+              ],
+              "return_owner": "relation-owner"
+            }
+          ],
+          "candidate_disposition": "not_submitted",
+          "candidate_conflicting_fields": [],
+          "retained_input_sha256": "5726f22f9786e4264808ab991a50d43d532bba0e0fb3cd1eebdc5f5e2b3a8bed",
+          "retained_context_sha256": "c9939f9ffd1381c74e8a37337c92a3982e8855221271ccda72fcb9084d9d26ec"
+        },
+        "fixed_point_rounds": [
+          {
+            "A": [
+              "U"
+            ],
+            "K": [
+              "C"
+            ]
+          },
+          {
+            "A": [
+              "C",
+              "U"
+            ],
+            "K": [
+              "C",
+              "S"
+            ]
+          },
+          {
+            "A": [
+              "C",
+              "S",
+              "U"
+            ],
+            "K": [
+              "C",
+              "S"
+            ]
+          },
+          {
+            "A": [
+              "C",
+              "S",
+              "U"
+            ],
+            "K": [
+              "C",
+              "S"
+            ]
+          }
+        ],
+        "execution_state": "not_executed"
+      }
+    ],
+    "comparison": "全ImpactResultと別fixed point checkpointを比較。直接原因の全typed finding/basis/owner/保持hashまで固定し、minimum subsetで全結果を認定しない。",
+    "scope_limit": "固定42対照。F02他形状・複合・全資格/host/consumer/codec/L6L7/全freezeと他4契約/F04B01残件/全92親430対は未完。"
   }
 }
