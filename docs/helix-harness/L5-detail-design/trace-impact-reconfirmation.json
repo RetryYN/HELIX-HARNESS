@@ -2643,7 +2643,7 @@
       "whole_result_contract": {
         "scope": "17原例+17Context+4graphを全ImpactResultへ、4graphのedge順反転を追加。F02全形状/実資格/全binding/凍結は未完。",
         "fields": "outcome,value全node/履歴/義務/Unknown集合/全5作用,全typed Finding(code/pointer/node_ids/basis_refs/return_owner),candidate判定/差分field,input/context logical hash。",
-        "basis_rule": "finding basis_refsは固定normal qualifier_rootsと供給Context.qualifier_rootsのunionに、その原因の当該record refを加える。全4tupleでunique化しidentity/revision/scope/owner順sort。対象record未供給の欠落は関係を要求するmembership refを使い、不存在edge refを創作しない。candidateはroot unionだけ。参照の表示は資格成立ではない。",
+        "basis_rule": "finding basis_refsは固定normal qualifier_rootsと供給Context.qualifier_rootsのunionに、その原因の当該record refを加える。全4tupleでunique化しidentity/revision/scope/owner順sort。対象record未供給の欠落は関係を要求するmembership refを使い、不存在edge refを創作しない。candidateはroot unionだけ。参照の表示は資格成立ではない。 /context/declared_members/{parent}の宣言集合相反と/context/required_upper_obligations/{node}の固有義務不備はroot unionだけをbasisにする（record referent欠落ではない）。normal rootはfixed_normal_qualifier_rootsの値を使用。",
         "owner_rule": "membership→design-membership-owner、relation/required_relation/cycle→relation-owner、履歴→previous-verification-owner、固有義務/再検証→upper-verification-owner。全体target/population→graph-owner、state/root/実資格/qualification_basis_refs→graph-qualification-owner。candidate差分→submitted-candidate-owner（論理返却役割だけ）。",
         "finding_order": "code,pointer,node_ids codepoint tuple,return_owner順。basis_refs/ID集合もcodepoint順、完全同値だけ重複除去。元locatorを保持する。",
         "dependency_diagnostic": "直接の不足を一回、元所在に診断。影響Unknownが親へ伝播しても擬似的な同原因findingを親に生成しない。入力edgeが存在し資格が未解決ならreference系診断を保持し、同原因のrequired_relation_missingを二重発行しない。入力edge自体が無い場合だけrequired_relation_missing。全体Context/root未解決は各recordへ同じ資格findingを複製せず全人口Unknownを保全。",
@@ -2653,7 +2653,51 @@
         "candidate_rule": "全field差をcandidate_conflictとして/candidate/{field}へ。impact_by_node/establishment_by_nodeは内容が異なるnodeだけをnode_idsへ、その他fieldは人口union。元value不変でoutcome conflict。",
         "digest": "input/contextは既存F02のcanonical logical UTF8 hash。原transport資格とは区別。",
         "qualification_preservation": "合成ref/current/根拠名から実owner/成立/運転を生成しない。実owner-inputは未閉包ならUnknown。元履歴/義務/無関係Qを保持。",
-        "fixed_point": "同期A/K unionとUnknown優先は既存契約どおり。新要素なしまで停止確認し、特定round数打切りでUnaffectedを作らない。graph roundsは別の固定診断sidecarとして維持。"
+        "fixed_point": "同期A/K unionとUnknown優先は既存契約どおり。新要素なしまで停止確認し、特定round数打切りでUnaffectedを作らない。graph roundsは別の固定診断sidecarとして維持。",
+        "synthetic_root_profiles": [
+          {
+            "fixture_origin": "H004-F02-INDEPENDENT-CONTEXT",
+            "fixed_qualifier_roots": [
+              {
+                "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-oracle-author"
+              }
+            ]
+          },
+          {
+            "fixture_origin": "H004-F02-DIAMOND-INDEPENDENT-CONTEXT",
+            "fixed_qualifier_roots": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ]
+          },
+          {
+            "fixture_origin": "H004-F02-CYCLE-INDEPENDENT-CONTEXT",
+            "fixed_qualifier_roots": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ]
+          }
+        ],
+        "fixed_normal_qualifier_roots": [
+          {
+            "identity": "SYNTHETIC-F02-ORACLE-BASIS",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "synthetic-oracle-author"
+          }
+        ],
+        "root_eligibility": "供給Context.qualifier_rootsを全4成分のunique集合で比較し、上の固定root集合のいずれかに完全一致する場合だけ、この合成fixtureのroot対応を認める。同identityでowner/scope/revision差があればreference_unknownを当該成分へ保持し全node Unknown。未知identity/空/混合集合も未解決で、Contextやinput/candidateの自称からroot集合を増やさない。target/populationの別矛盾は既存規則で診断。これらは固定設計仮説で実consumer/owner資格・実trust policyの定義ではない。"
       }
     },
     {
@@ -10096,7 +10140,7 @@
         "l4_contract_sha256": "d42eba412f8bfa17c3d7c664994b625f0da4a66115dd9d5a1936ac4de48ef1ea",
         "core_symbol": "derive_impact_without_state_inheritance",
         "core_signature": "derive_impact_without_state_inheritance(input: ImpactInput, context: ImpactContext, candidate: ImpactCandidate | None = None) -> ImpactResult",
-        "core_contract_sha256": "8f9b43b210bdeb512860ffbad5459aa80bc99fda66f00990c9fe3074c6f26124",
+        "core_contract_sha256": "26955113259947733dbfaf9ac5117e3d99dd20016f56608fa0b14079be629a9d",
         "argument_types": {
           "input": "ImpactInput",
           "context": "ImpactContext",
