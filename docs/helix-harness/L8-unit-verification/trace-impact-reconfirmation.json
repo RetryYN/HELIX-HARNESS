@@ -638,7 +638,35 @@
       "preserve": "pure function/coreとschema library adapterの分離、strict input/required/unknown拒否",
       "change": "旧TS/固定depth/schema/loaderを移植せずlogical schemaと意味・codec boundaryへ再導出",
       "reason": "構造合格をpair/資格/観測成立にせず、候補矛盾をschemaで消さないため",
-      "source_limit": "旧schema/config/library/runtimeは実行せず現行へcopyしない。候補全体採用/実権限を生成しない。"
+      "source_limit": "旧schema/config/library/runtimeは実行せず現行へcopyしない。候補全体採用/実権限を生成しない。",
+      "schema_adapter_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          28,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          51,
+          52,
+          53,
+          54,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65
+        ],
+        "preserve": "pure coreとschema library adapterの分離、stable typed finding/strict shapeとpair/trace意味を別検査。",
+        "change": "旧TS/既schema/loader/固定depthを移植せず、lossless decimal view/数学type-const-enum/declared profile/local参照とcore findingへの境界を具体化。",
+        "reason": "host float丸め/Trueと1の混同/library errorの露出/未対応schemaの黙認から内容対応やauthorityを作らないため。新依存install/新承認を生成しない。"
+      }
     },
     {
       "asset_id": "LEGACY-ASSET-4A9AB5B2EF182BC30431",
@@ -823,7 +851,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
@@ -62745,5 +62773,765 @@
         "binding_limit": "この設計revisionで新規固定するlogical oracle。raw bytesはtransportのまま保持し、owner資格/実承認/実作用ではない。"
       }
     ]
+  },
+  "schema_adapter_oracles": {
+    "design_pointer": "/schema_adapter_contract",
+    "cases": [
+      {
+        "id": "H004-L8-ADAPTER-NUMBER-NOT-BOOL",
+        "schema_raw_utf8": "{\"type\":\"number\"}",
+        "schema_raw_sha256": "cddf8275afa15408533079581ad27f95be579f4eeafbb1fba9fb6f32a4a64387",
+        "instance_raw_utf8": "true",
+        "instance_raw_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "type"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-BOOL-NOT-NUMBER",
+        "schema_raw_utf8": "{\"type\":\"boolean\"}",
+        "schema_raw_sha256": "7cb541e84f226754a46c21c79f131fa2898354e1242456e6fd1c162bce319553",
+        "instance_raw_utf8": "1",
+        "instance_raw_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "type"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-INTEGER-DECIMAL",
+        "schema_raw_utf8": "{\"type\":\"integer\"}",
+        "schema_raw_sha256": "f0765dbf409c74f001806c446f2cf171d8c46b5b15779d54423dde921a4b0670",
+        "instance_raw_utf8": "1.0",
+        "instance_raw_sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-INTEGER-FRACTION",
+        "schema_raw_utf8": "{\"type\":\"integer\"}",
+        "schema_raw_sha256": "f0765dbf409c74f001806c446f2cf171d8c46b5b15779d54423dde921a4b0670",
+        "instance_raw_utf8": "1.5",
+        "instance_raw_sha256": "9f29a130438b81170b92a42650f9a94291ecad60bd47af2a3886e75f7f728725",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "type"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-INTEGER-LARGE-EXPONENT",
+        "schema_raw_utf8": "{\"type\":\"integer\"}",
+        "schema_raw_sha256": "f0765dbf409c74f001806c446f2cf171d8c46b5b15779d54423dde921a4b0670",
+        "instance_raw_utf8": "1e400",
+        "instance_raw_sha256": "f2bba4568fecd4b9729970732e571ac9373a33fb2d6a960794a41f0f2ecdbc25",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-CONST-PRECISION",
+        "schema_raw_utf8": "{\"const\":0.1}",
+        "schema_raw_sha256": "ef162e3fe00325a968a2d5dc022faa3e9ed7384534f266dc537bbaf71951a439",
+        "instance_raw_utf8": "0.10000000000000001",
+        "instance_raw_sha256": "01bcb760af885969aa9d8bda4a5c9925a37eecb45aeac57c5068cef9805fa835",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "const"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-CONST-NUMBER-EQUIVALENCE",
+        "schema_raw_utf8": "{\"const\":1}",
+        "schema_raw_sha256": "2b1ca15c563683f2de5ae5d2b8e1c8a1f89764ed476465f01edf20fd55454a12",
+        "instance_raw_utf8": "1.0",
+        "instance_raw_sha256": "d0ff5974b6aa52cf562bea5921840c032a860a91a3512f7fe8f768f6bbe005f6",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-CONST-FALSE-NOT-ZERO",
+        "schema_raw_utf8": "{\"const\":false}",
+        "schema_raw_sha256": "41927c8e6cfb1da264d4a76efb477bb6137868a0a994ad5236bc714db40cdf5d",
+        "instance_raw_utf8": "0",
+        "instance_raw_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "const"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-CONST-FALSE",
+        "schema_raw_utf8": "{\"const\":false}",
+        "schema_raw_sha256": "41927c8e6cfb1da264d4a76efb477bb6137868a0a994ad5236bc714db40cdf5d",
+        "instance_raw_utf8": "false",
+        "instance_raw_sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-ENUM-PRECISION",
+        "schema_raw_utf8": "{\"enum\":[0.1,2]}",
+        "schema_raw_sha256": "3907e10b714cb3c22a7bcea6dc54541702788824eeeda8255621d2920808c799",
+        "instance_raw_utf8": "0.10000000000000001",
+        "instance_raw_sha256": "01bcb760af885969aa9d8bda4a5c9925a37eecb45aeac57c5068cef9805fa835",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "enum"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-ENUM-NUMBER-EQUIVALENCE",
+        "schema_raw_utf8": "{\"enum\":[0.1,2]}",
+        "schema_raw_sha256": "3907e10b714cb3c22a7bcea6dc54541702788824eeeda8255621d2920808c799",
+        "instance_raw_utf8": "2.0",
+        "instance_raw_sha256": "d84bdb34d4eeef4034d77e5403f850e35bc4a51b1143e3a83510e1aaad839748",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-OBJECT-ORDER-EQUALITY",
+        "schema_raw_utf8": "{\"const\":{\"a\":1,\"b\":2}}",
+        "schema_raw_sha256": "ed88a3688cfe190038a536c7b407320a1fb338efb708103a0ebce4958807ef46",
+        "instance_raw_utf8": "{\"b\":2,\"a\":1}",
+        "instance_raw_sha256": "3fb75453225c732a76b7899ea2096dda1455189c89817239732182f73fe5a09f",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-ARRAY-ORDER",
+        "schema_raw_utf8": "{\"const\":[1,2]}",
+        "schema_raw_sha256": "9fafb095a881d9b7185379bb9fd6d9c49daf499d02dd80ce46b91c0a4faeb083",
+        "instance_raw_utf8": "[2,1]",
+        "instance_raw_sha256": "af1a1fc110b6094c48582b0ef83553cb7908d7a4365424eef28e76ef6c88d630",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "const"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-REQUIRED",
+        "schema_raw_utf8": "{\"type\":\"object\",\"required\":[\"x\"]}",
+        "schema_raw_sha256": "19106b80d9cedd7c754811e0071bdd9556fec9997aa705300c9e0e73e8bce1a4",
+        "instance_raw_utf8": "{}",
+        "instance_raw_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "required"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-ADDITIONAL",
+        "schema_raw_utf8": "{\"properties\":{\"x\":{\"type\":\"number\"}},\"additionalProperties\":false}",
+        "schema_raw_sha256": "4dc95bc1f6a8ac1954a394737876600dde73eeef5f4ac70498e5067c0849d03a",
+        "instance_raw_utf8": "{\"x\":1,\"y\":true}",
+        "instance_raw_sha256": "7b67b71ce67b7913d292e315fe4dcd460091543d5f618c0c66eeab9453bf2cf2",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "additionalProperties"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-MAPPING-VALUE",
+        "schema_raw_utf8": "{\"additionalProperties\":{\"type\":\"number\"}}",
+        "schema_raw_sha256": "fd697404e135ef3aa9df9b7e465f0dc919f18e59dd81b60cd2435e9f396afbb4",
+        "instance_raw_utf8": "{\"x\":true}",
+        "instance_raw_sha256": "9e4f189bf4079d1b6eb6446879866cd5f39c26880d4fb518f4e01cd1bbfe513e",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "type"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-PROPERTY-NAMES",
+        "schema_raw_utf8": "{\"propertyNames\":{\"minLength\":1}}",
+        "schema_raw_sha256": "e4ea5550aec236a5a94899fc7e4c71a22478895075b3c60e7263b7a389c36979",
+        "instance_raw_utf8": "{\"\":1}",
+        "instance_raw_sha256": "f3d86de1bf4b354382f91a12a4487daaeb56692b2c46f2df52f6f83a84610074",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "minLength"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-ITEMS",
+        "schema_raw_utf8": "{\"items\":{\"type\":\"number\"}}",
+        "schema_raw_sha256": "79afb6a2dd5d6fdc7c377644897e77143282dd4fa72d8546665a2780ec36dd1d",
+        "instance_raw_utf8": "[1,true]",
+        "instance_raw_sha256": "6de7d67a8d95bdbb5b4cd8498a8f41f7307c5d4a3a9a25b6b2e0f76347e8abfa",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "type"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-ANYOF-SUCCESS",
+        "schema_raw_utf8": "{\"anyOf\":[{\"type\":\"number\"},{\"type\":\"string\"}]}",
+        "schema_raw_sha256": "0f65693df6033a7e1dbae6098ff89cd34ca0ddcb320b3294e5e121a68504d4df",
+        "instance_raw_utf8": "\"文字\"",
+        "instance_raw_sha256": "4ed5bc1eada8481e574351902401cd361a6b4e6aeeba5d787ebcc708cd6bb4d7",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-ONEOF-AMBIGUOUS",
+        "schema_raw_utf8": "{\"oneOf\":[{\"type\":\"number\"},{\"type\":\"integer\"}]}",
+        "schema_raw_sha256": "619fdc266d42added1d49f9d56f62a0dd41438d1332115a329ccc356c159c694",
+        "instance_raw_utf8": "1",
+        "instance_raw_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "oneOf"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-UNICODE-LENGTH-ONE",
+        "schema_raw_utf8": "{\"minLength\":1}",
+        "schema_raw_sha256": "502815f69d986c630fd43197854dad92cb1e71938a6e4b8e60414c2f79f1f84e",
+        "instance_raw_utf8": "\"😀\"",
+        "instance_raw_sha256": "7a0c50b92434b015545fe93ab723db2d4b2cdd14a441405624a9ce8be29f1d5a",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-UNICODE-LENGTH-TWO",
+        "schema_raw_utf8": "{\"minLength\":2}",
+        "schema_raw_sha256": "2e9dd62228a14b0edcce21779ba10bd4cdeaf108b66d570f0bbf8c08900bacb5",
+        "instance_raw_utf8": "\"😀\"",
+        "instance_raw_sha256": "7a0c50b92434b015545fe93ab723db2d4b2cdd14a441405624a9ce8be29f1d5a",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [
+            "minLength"
+          ],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-PATTERN-NOT-ANCHORED",
+        "schema_raw_utf8": "{\"pattern\":\"b\"}",
+        "schema_raw_sha256": "06f4008a43889d53b130b149591f2dcf75725e51ea929f023c2aed2698e0088e",
+        "instance_raw_utf8": "\"abc\"",
+        "instance_raw_sha256": "6cc43f858fbb763301637b5af970e2a46b46f461f27e5a0f41e009c59b827b25",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-LOCAL-REF",
+        "schema_raw_utf8": "{\"$defs\":{\"n\":{\"type\":\"number\"}},\"$ref\":\"#/$defs/n\"}",
+        "schema_raw_sha256": "f621294f427c6e5899ca8603a9024bb00919835f8d1abee238018a8ea29e33c9",
+        "instance_raw_utf8": "1e400",
+        "instance_raw_sha256": "f2bba4568fecd4b9729970732e571ac9373a33fb2d6a960794a41f0f2ecdbc25",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-UNSUPPORTED-ASSERTION",
+        "schema_raw_utf8": "{\"type\":\"number\",\"minimum\":0}",
+        "schema_raw_sha256": "d562458dea27002658660e8d336307831eccff55aeeb4aaba1d4dcf8e8c5e7a2",
+        "instance_raw_utf8": "-1",
+        "instance_raw_sha256": "1bad6b8cf97131fceab8543e81f7757195fbb1d36b376ee994ad1cf17699c464",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "binding_unresolved",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-EXTERNAL-REF",
+        "schema_raw_utf8": "{\"$ref\":\"https://invalid.example/shape\"}",
+        "schema_raw_sha256": "70caaa1f1574aa5ed1eea14ec5276e7d117bdcc89a88d8feb20ad9b76c8be257",
+        "instance_raw_utf8": "null",
+        "instance_raw_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "binding_unresolved",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-DATA-NAME-NOT-KEYWORD",
+        "schema_raw_utf8": "{\"properties\":{\"futureKeyword\":{\"type\":\"number\"}},\"additionalProperties\":false}",
+        "schema_raw_sha256": "5c6404841edf633224cdc76432f68e686ec8f887263717bd962f2b073dc6395e",
+        "instance_raw_utf8": "{\"futureKeyword\":1}",
+        "instance_raw_sha256": "65d97438a9621dd286af5b2ca6b73043ff92bcb908b6e0358f004be30bbea55c",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-BOOLEAN-SCHEMA-FALSE",
+        "schema_raw_utf8": "false",
+        "schema_raw_sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+        "instance_raw_utf8": "null",
+        "instance_raw_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "shape_invalid",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-BOOLEAN-SCHEMA-TRUE",
+        "schema_raw_utf8": "true",
+        "schema_raw_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+        "instance_raw_utf8": "1",
+        "instance_raw_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-REF-NO-PROGRESS",
+        "schema_raw_utf8": "{\"$defs\":{\"loop\":{\"$ref\":\"#/$defs/loop\"}},\"$ref\":\"#/$defs/loop\"}",
+        "schema_raw_sha256": "096ad5bdf27a3b29b59a73e007ae003ca6d0b6fe1a1ca1b149bcee533e4d7ccc",
+        "instance_raw_utf8": "null",
+        "instance_raw_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "schema_fixture_limit": "fixed synthetic test schema。このraw byte対応は実owner/registry authorityではない。",
+        "expected_partial_result": {
+          "condition": "binding_unresolved",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/library bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-UNSUPPORTED-TYPE",
+        "schema_raw_utf8": "{\"type\":\"future_type\"}",
+        "schema_raw_sha256": "a937340835893f9a5398c45c98cb7f02490756ff5d37094e2e524659100816fe",
+        "instance_raw_utf8": "1",
+        "instance_raw_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "schema_fixture_limit": "fixed synthetic schema。byte一致はauthorityではない。",
+        "expected_partial_result": {
+          "condition": "binding_unresolved",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/実bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-UNSUPPORTED-DIALECT",
+        "schema_raw_utf8": "{\"$schema\":\"https://invalid.example/dialect\",\"type\":\"number\"}",
+        "schema_raw_sha256": "b5cbb01295bf4265537953335f83e11fd287bdcff79fae86ccfaca02eabddd8a",
+        "instance_raw_utf8": "1",
+        "instance_raw_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+        "schema_fixture_limit": "fixed synthetic schema。byte一致はauthorityではない。",
+        "expected_partial_result": {
+          "condition": "binding_unresolved",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/実bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-MISSING-LOCAL-REF",
+        "schema_raw_utf8": "{\"$ref\":\"#/$defs/missing\"}",
+        "schema_raw_sha256": "defac306b82a8a9a00e0c7055ae58c720b84a4970d19cb17f650de197e85c44e",
+        "instance_raw_utf8": "null",
+        "instance_raw_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "schema_fixture_limit": "fixed synthetic schema。byte一致はauthorityではない。",
+        "expected_partial_result": {
+          "condition": "binding_unresolved",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/実bindingは未完。"
+      },
+      {
+        "id": "H004-L8-ADAPTER-RECURSIVE-CHILD",
+        "schema_raw_utf8": "{\"$defs\":{\"n\":{\"anyOf\":[{\"type\":\"null\"},{\"type\":\"array\",\"items\":{\"$ref\":\"#/$defs/n\"}}]}},\"$ref\":\"#/$defs/n\"}",
+        "schema_raw_sha256": "bed4693ecb81c4e5de5899314e9074e18e0eab78ecdfa15de359d5e63fc82588",
+        "instance_raw_utf8": "[null,[null]]",
+        "instance_raw_sha256": "ef27c30d04f216d56141705635c4d6628f43d546f008fcbf7471af3a1870d9bb",
+        "schema_fixture_limit": "fixed synthetic schema。byte一致はauthorityではない。",
+        "expected_partial_result": {
+          "condition": "corresponding_shape",
+          "required_keywords": [],
+          "source_ast_retained": true,
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定condition/minimum keyword。全finding/pointer/実bindingは未完。"
+      }
+    ],
+    "binding_cases": [
+      {
+        "id": "H004-L8-ADAPTER-BIND-SCHEMA-HASH",
+        "mutation": {
+          "schema_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "expected_condition": "binding_unresolved",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-ADAPTER-BIND-NUMBER-HASH",
+        "mutation": {
+          "numeric_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "expected_condition": "binding_unresolved",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-ADAPTER-BIND-CONTRACT",
+        "mutation": {
+          "contract_ref": "UNKNOWN-CONTRACT"
+        },
+        "expected_condition": "binding_unresolved",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-ADAPTER-BIND-LANE",
+        "mutation": {
+          "lane": "unknown"
+        },
+        "expected_condition": "binding_unresolved",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-ADAPTER-BIND-MISSING-SNAPSHOT",
+        "mutation": {
+          "schema_snapshot": null
+        },
+        "expected_condition": "binding_unresolved",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-ADAPTER-BIND-FLOAT-ONLY-HOST",
+        "mutation": {
+          "exact_number_protocol": false
+        },
+        "expected_condition": "binding_unresolved",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none",
+        "execution_state": "not_executed"
+      }
+    ],
+    "entrypoint_cases": [
+      {
+        "design_ref": "HARNESS-L5-004-F04",
+        "input_case_ref": "H004-F04-NORMAL",
+        "context_fixture_ref": "H004-F04-INDEPENDENT-CONTEXT",
+        "input_type": "PartitionInput",
+        "context_type": "PartitionContext",
+        "expected_condition": "corresponding_shape",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-B01",
+        "input_case_ref": "H004-B01-NORMAL-MEANING",
+        "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+        "input_type": "ChangeInput",
+        "context_type": "ChangeContext",
+        "expected_condition": "corresponding_shape",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-F02",
+        "input_case_ref": "H004-F02-NORMAL",
+        "context_fixture_ref": "H004-F02-INDEPENDENT-CONTEXT",
+        "input_type": "ImpactInput",
+        "context_type": "ImpactContext",
+        "expected_condition": "corresponding_shape",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-F01",
+        "input_case_ref": "H004-F01-NORMAL",
+        "context_fixture_ref": "H004-F01-INDEPENDENT-CONTEXT",
+        "input_type": "TraceInput",
+        "context_type": "TraceContext",
+        "expected_condition": "corresponding_shape",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-F03",
+        "input_case_ref": "H004-F03-NORMAL-ROUTINE",
+        "context_fixture_ref": "H004-F03-INDEPENDENT-CONTEXT",
+        "input_type": "ReconfirmationInput",
+        "context_type": "ReconfirmationContext",
+        "expected_condition": "corresponding_shape",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-F05",
+        "input_case_ref": "H004-F05-NORMAL",
+        "context_fixture_ref": "H004-F05-INDEPENDENT-CONTEXT",
+        "input_type": "AssetReuseInput",
+        "context_type": "AssetReuseContext",
+        "expected_condition": "corresponding_shape",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-N01",
+        "input_case_ref": "H004-N01-NORMAL",
+        "context_fixture_ref": "H004-N01-INDEPENDENT-CONTEXT",
+        "input_type": "UnseenRelationInput",
+        "context_type": "UnseenRelationContext",
+        "expected_condition": "corresponding_shape",
+        "source_ast_retained": true,
+        "schema_handoff": false,
+        "actual_effects": "none"
+      }
+    ],
+    "all_existing_materials": "127schemaのdeclared16keywords/local refsとfixed snapshotを照合し、697既materialのshape対応を保持する。新adapterの対応証拠をdomainの意味pass/owner資格や実operationへ読み替えない。",
+    "scope_limit": "34keyword/data-model例・6binding不足・7entrypoint対応の部分oracle。正式host/regex/library/consumer bindingと全findingは未完。"
   }
 }

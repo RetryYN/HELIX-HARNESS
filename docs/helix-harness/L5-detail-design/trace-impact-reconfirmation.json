@@ -638,7 +638,35 @@
       "preserve": "pure function/coreとschema library adapterの分離、strict input/required/unknown拒否",
       "change": "旧TS/固定depth/schema/loaderを移植せずlogical schemaと意味・codec boundaryへ再導出",
       "reason": "構造合格をpair/資格/観測成立にせず、候補矛盾をschemaで消さないため",
-      "source_limit": "旧schema/config/library/runtimeは実行せず現行へcopyしない。候補全体採用/実権限を生成しない。"
+      "source_limit": "旧schema/config/library/runtimeは実行せず現行へcopyしない。候補全体採用/実権限を生成しない。",
+      "schema_adapter_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          28,
+          29,
+          30,
+          31,
+          33,
+          34,
+          35,
+          51,
+          52,
+          53,
+          54,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65
+        ],
+        "preserve": "pure coreとschema library adapterの分離、stable typed finding/strict shapeとpair/trace意味を別検査。",
+        "change": "旧TS/既schema/loader/固定depthを移植せず、lossless decimal view/数学type-const-enum/declared profile/local参照とcore findingへの境界を具体化。",
+        "reason": "host float丸め/Trueと1の混同/library errorの露出/未対応schemaの黙認から内容対応やauthorityを作らないため。新依存install/新承認を生成しない。"
+      }
     },
     {
       "asset_id": "LEGACY-ASSET-4A9AB5B2EF182BC30431",
@@ -823,7 +851,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。 exact data-model/schema adapterの34部分例/6binding不足/7entrypoint提案を追加。正式host/regex/consumer bindingと全findingは未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
@@ -9398,5 +9426,126 @@
     "return_owner": "wire-codec-owner",
     "digest_boundary": "完全canonical bytesだけをbare SHA-256へ。raw transport/owner bytesのdigestとroleを分け、bytes一致やlogical digest一致を原owner資格/実観測/承認にしない。旧prefixed/truncated digest形式を移植しない。",
     "unclosed": "正式wire registry/consumer/host数値・schema adapter/資源policy/全host不正・副次finding/codec版/L6L7凍結は未完。emitted例は設計oracleで実I/O/保存/運転の成立ではない。"
+  },
+  "schema_adapter_contract": {
+    "status": "draft_design_exact_data_model_adapter_not_runtime_binding",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "symbol": "validate_trace_shape_proposal",
+    "signature": "validate_trace_shape_proposal(ast: WireNode, selector: ContractLane, snapshots: FixedShapeSnapshots) -> ShapeProposal",
+    "standard_sources": [
+      "https://json-schema.org/draft/2020-12/json-schema-core#section-4.2.1",
+      "https://json-schema.org/draft/2020-12/json-schema-core#section-4.2.2",
+      "https://json-schema.org/draft/2020-12/json-schema-validation#section-6.1.1"
+    ],
+    "fixed_schema_sha256": "d4be59b9aa8611870fbe666dc78087da9960f710f5bc9d65acb108026897562a",
+    "fixed_numeric_contract_sha256": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
+    "contract_lane_bindings": [
+      {
+        "design_ref": "HARNESS-L5-004-F04",
+        "input": "PartitionInput",
+        "context": "PartitionContext",
+        "candidate": "PartitionCandidate",
+        "value": "PartitionValue",
+        "result": "PartitionResult"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-B01",
+        "input": "ChangeInput",
+        "context": "ChangeContext",
+        "candidate": "ChangeCandidate",
+        "value": "ChangeValue",
+        "result": "ChangeResult"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-F02",
+        "input": "ImpactInput",
+        "context": "ImpactContext",
+        "candidate": "ImpactCandidate",
+        "value": "ImpactValue",
+        "result": "ImpactResult"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-F01",
+        "input": "TraceInput",
+        "context": "TraceContext",
+        "candidate": "TraceCandidate",
+        "value": "TraceValue",
+        "result": "TraceResult"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-F03",
+        "input": "ReconfirmationInput",
+        "context": "ReconfirmationContext",
+        "candidate": "ReconfirmationCandidate",
+        "value": "ReconfirmationValue",
+        "result": "ReconfirmationResult"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-F05",
+        "input": "AssetReuseInput",
+        "context": "AssetReuseContext",
+        "candidate": "AssetReuseCandidate",
+        "value": "AssetReuseValue",
+        "result": "AssetReuseResult"
+      },
+      {
+        "design_ref": "HARNESS-L5-004-N01",
+        "input": "UnseenRelationInput",
+        "context": "UnseenRelationContext",
+        "candidate": "UnseenRelationCandidate",
+        "value": "UnseenRelationValue",
+        "result": "UnseenRelationResult"
+      }
+    ],
+    "supported_keywords": [
+      "$comment",
+      "$defs",
+      "$ref",
+      "$schema",
+      "additionalProperties",
+      "anyOf",
+      "const",
+      "enum",
+      "items",
+      "minLength",
+      "oneOf",
+      "pattern",
+      "properties",
+      "propertyNames",
+      "required",
+      "type"
+    ],
+    "binding_boundary": [
+      "selectorのcontract/laneを固定7entrypoint表へ完全一致で解決。shapeを見て種類を推測せず、未知contract/laneはbinding_unresolvedへ。",
+      "schema snapshotとnumeric contractのbytes digestを固定値へ照合。missing/stale/他bytes/hostがexact decimal protocol非対応ならbinding_unresolved。digestは整合性だけで実owner/承認を生成しない。",
+      "current127defsのlocal参照だけを解決。network/filesystem/DBのloaderを暗黙呼出しせず、remote/未解決Ref、未対応keyword/type/dialect、同instanceで進捗しないRef cycleはbinding_unresolvedへ。再帰schemaが子instanceへ進む場合と区別する。",
+      "unknown schema keywordは一般JSON Schemaでannotationになり得るが、本profileの閉じた対応証拠がない。instanceをinvalidと決めずbinding_unresolvedへ。properties/$defsの名前はschema keywordと混同しない。未知schemaをvalidと黙認しない。"
+    ],
+    "logical_view": "decode済みASTから、array tuple/read-only object viewとExactFiniteDecimal leafの内容提案を作る。raw token/member順は元ASTに保持し、floatへ丸めたりnormalized numeric recordをJSON objectとして挿入しない。入力ASTを変更せずmutable viewをconsumerへ渡さない。実Python class/JSON Schema library version/adapter registrationは後続binding。",
+    "data_model_rules": {
+      "number": "JSON Schemaの任意精度base10数学numberへ接続。number/integer/const/enumはexact_number_contractで評価しbool/stringを別kindにする。整数predicateはfraction=0であり1.0/1e400を整数、1.5を非整数として扱う。host isinstance(int)/float変換では決めない。",
+      "equality": "同primitive kindと内容。numberは数学同値、stringはscalar/codepoint列、arrayは順と各要素、objectはkey集合と各値（member順は無関係）。schema中のnumeric const/enum原tokenもexactで読む。",
+      "string": "minLengthはUnicode scalar数。UTF8 byte数/UTF16 unit数を使わずNFC/trimしない。patternはECMA-262相当の対応済みmatcherで、schemaのpatternを勝手にanchorしない。matcher equivalence未証明ならbinding_unresolved。",
+      "object_array": "required/unknown field/追加property schema/propertyNames/itemsをそれぞれ保持。optional/null受領はDeclaredSourceDigest/UnseenOperationJoinの形を尊重し、必要内容の判定はdomainへ。",
+      "branches": "anyOfは1以上成功、oneOfはちょうど1成功。成功branchがあるanyOfの失敗子findingを全体失敗へ昇格しない。未対応bindingはbranch成功で消さずbinding_unresolvedへ。"
+    },
+    "result_model": {
+      "ShapeProposal": {
+        "condition": "corresponding_shape | shape_invalid | binding_unresolved",
+        "source_ast_retained": "literal true",
+        "findings": "tuple[ShapeFinding]",
+        "schema_handoff": "literal false（正式consumer/codec版の実binding未閉包）",
+        "actual_effects": "literal none"
+      },
+      "ShapeFinding": {
+        "code": "shape_constraint_failed | shape_binding_unresolved",
+        "keyword": "Text | null",
+        "instance_pointer": "relative JSON Pointer | null",
+        "return_owner": "schema-adapter-owner"
+      }
+    },
+    "diagnostic_boundary": "library固有exception/message/typeをcore resultへ直接露出しない。keyword/instance pointerをrelative findingへ写し、consumerがinput/context/candidate laneを明示してprefixする。全assertion/branchの最小finding集合は追加oracleへ残す。shape対応は意味/資格/数値観測/承認/実operationの成立ではない。",
+    "unclosed": "正式Python view/number/JSON Schema adapter/regex matcher版、registry/consumer/owner/codec/resources、全binding/branch/finding oracleとL6L7凍結は未完。math原理と対応snapshotの設計であり、実adapter/core実装やRed/Greenではない。"
   }
 }
