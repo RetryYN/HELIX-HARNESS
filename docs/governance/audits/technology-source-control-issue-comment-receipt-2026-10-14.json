@@ -1,0 +1,15 @@
+{
+  "evidence_kind": "issue_comment_projection_read_after",
+  "authority_effect": "none",
+  "ticket_id": "FT-TECH-RESEARCH-SOURCE-CONTROL-001",
+  "source_commit": "fb822c321b95b6f1a8ce1205db5b66a85983747b",
+  "source_path": "docs/governance/feature-tickets/FT-TECH-RESEARCH-SOURCE-CONTROL-001.md",
+  "source_sha256": "cbb5514151ecbfdc92324fe072980528ce23591e83589630e9c7123ff847a85b",
+  "comment_body_sha256": "701ff7cfceed780c553609932df5aaa7cec11c40bba5804e1e1db699101087e5",
+  "issue_number": 3051,
+  "comment_id": 6152615234,
+  "comment_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3051#issuecomment-6152615234",
+  "observed_body_sha256": "701ff7cfceed780c553609932df5aaa7cec11c40bba5804e1e1db699101087e5",
+  "read_after_at_utc": "2026-10-13T18:41:24.861271+00:00",
+  "completion_effect": "none"
+}
