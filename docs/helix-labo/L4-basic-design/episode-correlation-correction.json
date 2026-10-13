@@ -1,0 +1,159 @@
+{
+  "parent": "HELIXLABO-L2-002",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+    "boundary": "source付きobservationのepisode相関とrelation訂正。001 observation/011受渡しを別閉包へ保持し、時刻/pathだけの因果断定・全段階発生の捏造を拒否する。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3f95f09ee86920e0dd6172a9e28f32192c1ee16bd4bfbec72438464bfee9fa16"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        67,
+        67
+      ],
+      "quote": "| **HIL-BR-15** | 将来のproduct-data sourceをversioned connectorで取り込み、由来・鮮度・schema・authorityを保持した正規projectionとして設計判断、coverage、impact、Issue routing、docgen/detectorへ供給する。 |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "880385839788ea49f14544ee9dd0f1ed5037bc84b1707a9ba55f4fa6a267c2f5",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "旧episode参照とsource由来/版/authorityを保持する。",
+      "change": "旧DB/単一causality chain/runtimeを移植せず、採択LABO002の元observation参照と相関・因果未確定・relation訂正へ再導出する。",
+      "reason": "9/26 LABO原文/採択002/10/12承認は時刻/pathからの因果断定や元event上書きを許さない。旧sourceから全改善完了を生成しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-evaluation.ts",
+      "read_lines": [
+        32,
+        32
+      ],
+      "quote": "      col(\"improvement_episode_id\"),",
+      "file_sha256": "d3f5f8b303cd9f568d7695d19c05d0e4b492f7df9caa60c929a749fa2990bbe2",
+      "selected_lines_sha256": "615a0153e256f32b2cd2ef051b520e3959057fe2fcb87c649d88346d565c62b8",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-D60AE87D9DFA0740F4A8",
+        "disposition": "unresolved",
+        "source_sha256": "d3f5f8b303cd9f568d7695d19c05d0e4b492f7df9caa60c929a749fa2990bbe2"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "旧episode参照とsource由来/版/authorityを保持する。",
+      "change": "旧DB/単一causality chain/runtimeを移植せず、採択LABO002の元observation参照と相関・因果未確定・relation訂正へ再導出する。",
+      "reason": "9/26 LABO原文/採択002/10/12承認は時刻/pathからの因果断定や元event上書きを許さない。旧sourceから全改善完了を生成しない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "001 observation/011受渡し、要求/ticket/Workerから復旧までのsourceとrelation訂正根拠のowner-qualified exact bindingは未成立。",
+    "正式schema/codec/相関identity・適用scope・未発生/欠落・relation訂正resolver/原子記録/並行revision/全組合せ/L5L8/oracle凍結は未完。",
+    "実装前Red→Green→Refactor→再検証、実相関・実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXLABO-L4-002",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "source_observation_identity_reader",
+      "episode_stage_relation_reader",
+      "isolated_uncertain_event_reader",
+      "relation_correction_reader"
+    ],
+    "flow": [
+      "元observation/同要求revision・ticket→episode段階別参照",
+      "未発生/欠落/別対象event→部分episodeの未完/孤立",
+      "旧relation＋訂正根拠/新relation→元event不変の訂正内容"
+    ],
+    "python_boundary": "予定するPython接続は原observationとepisode relationを読み、相関の根拠・不足・訂正内容を返す。元event/作業state/authorityのwriterや因果推論を本Draftで実装しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXLABO-L4-002-F01",
+      "requirement_ref": "HELIXLABO-L3-002-F01",
+      "system_oracle_ref": "HELIXLABO-L10-002-F01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-002-F01",
+        "parent": "HELIXLABO-L2-002",
+        "title": "episodeの横断参照",
+        "obligation": "source付きobservationを要求→ticket→Worker→実装→atomic CI→boundary integration→proof CI→release→deployment→runtime→incident→recoveryへ関連付け、要求revision/責務/product/mechanism/worker/provider-model-config/artifact/環境/結果を保持する。未発生段を捏造しない。",
+        "oracle_ref": "HELIXLABO-L10-002-F01"
+      },
+      "content_rules": [
+        "source付きobservationを要求→ticket→Worker→実装→atomic CI→boundary integration→proof CI→release→deployment→runtime→incident→recoveryのepisode参照へ結ぶ。",
+        "要求revision/責務/product/mechanism/Worker/provider-model-configuration/artifact/環境/結果を元eventへ保持する。別ticket/要求revisionのeventを混載せず、未発生/欠落段階は部分episodeの不足と未完として残す。"
+      ],
+      "representation_limit": "合成episodeの相関/未完/訂正例。元eventを変更せず、正式schemaや因果モデルを採用しない。"
+    },
+    {
+      "id": "HELIXLABO-L4-002-F02",
+      "requirement_ref": "HELIXLABO-L3-002-F02",
+      "system_oracle_ref": "HELIXLABO-L10-002-F02",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-002-F02",
+        "parent": "HELIXLABO-L2-002",
+        "title": "相関・因果・訂正",
+        "obligation": "時刻/pathの近さだけで因果を確定せず、相関不能eventを孤立/不明として残す。誤相関は元eventを改変せずrelation訂正として記録する。",
+        "oracle_ref": "HELIXLABO-L10-002-F02"
+      },
+      "content_rules": [
+        "時刻/pathの近さだけで因果を確定しない。相関不能eventを孤立/不明として原内容とともに保持する。",
+        "誤相関は訂正前/訂正後のrelationと根拠・対象revisionを結び、元eventを改変しない。訂正根拠や対象が不明ならcorrelation/source ownerへ戻す。"
+      ],
+      "representation_limit": "合成episodeの相関/未完/訂正例。元eventを変更せず、正式schemaや因果モデルを採用しない。"
+    }
+  ]
+}
