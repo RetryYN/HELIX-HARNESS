@@ -294,6 +294,16 @@
         "preserve": "stable revision/上下trace/全consumer before-after oracle、欠落/staleの保持、意味保存と意味変更の分離。",
         "change": "旧台帳/gateを移植せず、F05 Contextの選択/必要consumer/原field資格と実copy成立を分けるlocator oracleへ具体化。",
         "reason": "入力原材料の存在/hashだけでowner資格や移管成立を作る欠落を防ぐため。新しい承認手続きを追加しない。"
+      },
+      "f02_graph_rederivation": {
+        "read_line_locators": [
+          129,
+          135,
+          140
+        ],
+        "preserve": "semantic signature/全consumer/before-after oracle、stable revision/下流staleと関係保全。",
+        "change": "旧Design Refactor/台帳/graph runtimeを実行せず、承認F02と既I3/I4の関係影響/成立非継承をdiamondとcycleの合成内容oracleへ具体化する。",
+        "reason": "別経路の到達で必要member不足を隠さず、有限停止とUnknown優先を定義して実状態成立を推測しないため。"
       }
     },
     {
@@ -489,7 +499,7 @@
     "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
-    "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。",
+    "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。",
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。",
@@ -10974,7 +10984,7 @@
         "閉じた不正型/全副次findingと独立Context変異、入力不変/0副作用",
         "実consumer/資格record/codec bindingと対L6L7/test-oracle凍結"
       ],
-      "coverage_limit": "既L9全17原例をwhole不変で束縛（3正常/5原input変異/9候補変異）。全closureは未完。 17 Context否定例で局所/全体Unknown・履歴と固有義務保全を追補。全副次finding/実bindingは未完。",
+      "coverage_limit": "既L9全17原例をwhole不変で束縛（3正常/5原input変異/9候補変異）。全closureは未完。 17 Context否定例で局所/全体Unknown・履歴と固有義務保全を追補。全副次finding/実bindingは未完。 diamond/cycle合成graph4例と固定Context2件を追加。全構造/副次finding/実bindingは未完。",
       "context_cases": [
         {
           "id": "H004-L8-F02-CONTEXT-TARGET-SCOPE",
@@ -13239,6 +13249,498 @@
           },
           "oracle_limit": "指定value/原記録・義務保全とminimum findings。全副次finding/全組合せ/実bindingは未完。",
           "execution_state": "not_executed"
+        }
+      ],
+      "graph_cases": [
+        {
+          "id": "H004-L8-F02-GRAPH-DIAMOND",
+          "design_ref": "HARNESS-L5-004-F02",
+          "requirement_ref": "HARNESS-L3-004-F02",
+          "context_fixture_ref": "H004-F02-DIAMOND-INDEPENDENT-CONTEXT",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "F02-GRAPH-DIAMOND",
+              "revision": "fixture-content-3e481afd61b6cd92b4ee15a716f2b2a99b4f76c53d9058186bfdb09a558c600a",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-graph-material-owner"
+            },
+            "raw_utf8": "{\"change\":{\"condition_after\":\"duplicate_delivery_single_debit\",\"condition_before\":\"duplicate_delivery_unspecified\",\"from_revision\":\"U@r1\",\"node\":\"U\",\"to_revision\":\"U@r2\"},\"design_membership\":[{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"A\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-A\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-1ee619d7809fb321772c6d184359346bc011fded95d72058874ebfed2ef529c7\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"U\"],\"role\":\"connection\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"B\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-B\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-dd93a2c2a6606dc65ac98f8ff3bcd9f7c9795c2c62eb8c846011f112c720946d\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"U\"],\"role\":\"connection\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"Q\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-Q\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-090c10e8b921505104b9d77abb9263711d31fd6f20bc2aabb931035a418b2a80\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unrelated_unit\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"S\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-S\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-fc75bffb71836160c7e1fa66850ce4fb5b652a13da7c0f19e6921369eb892ff3\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"A\",\"B\"],\"role\":\"composite\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"U\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-U\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-e2e5422af242877312573f20b9db7e6a223ffe3a27b54fe56d58f5a89fa6f57e\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unit\"}],\"original_establishment\":{\"A\":{\"node_revision\":\"A@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-A\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-b5c5054bb9540db055dc057d18fff8dff33fa3b3bb63b3b8c66bb22558fcef94\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"B\":{\"node_revision\":\"B@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-B\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-ebba6c9b4755b7aa37c281491bb410c47a6a1dfacc8324e63e22bbaa7dc9d8e9\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"Q\":{\"node_revision\":\"Q@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-Q\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"S\":{\"node_revision\":\"S@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-S\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"U\":{\"node_revision\":\"U@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-U\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}},\"relations\":[{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-A-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-552e9c7f38cde4ada77df3917408c734de83d29eea45b160751fe5df42de2c64\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"A\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-B-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-9c7dacf5008547209da8380493705a01c6b9ab57b93f06138da1ed875a0ad127\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"B\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"A\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-S-A\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-b0b846764db681f222400f70a66e1627398ab11132a363753aa1164c35055ab6\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"B\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-S-B\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-dc47519055ea9270f22ea8c50d69693871602aebe8c88060a4e3f14c470d7b52\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"}],\"required_upper_obligations\":{\"A\":[\"obligation-A\"],\"B\":[\"obligation-B\"],\"S\":[\"obligation-S\"]},\"reverification\":{\"A\":null,\"B\":null,\"S\":null},\"scenario_kind\":\"synthetic_diamond_not_actual_graph_execution\",\"target\":{\"graph_revision\":\"SYNTHETIC-DIAMOND@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "3e481afd61b6cd92b4ee15a716f2b2a99b4f76c53d9058186bfdb09a558c600a",
+            "evidence_limit": "非実行の合成条件、実graph/状態write/観測ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "content_supported",
+            "value": {
+              "impact_by_node": {
+                "A": "Affected",
+                "B": "Affected",
+                "Q": "Unaffected",
+                "S": "Affected",
+                "U": "Affected"
+              },
+              "establishment_by_node": {
+                "A": {
+                  "previous_result": "passed",
+                  "previous_revision": "A@r1",
+                  "current_result": "requires_reverification",
+                  "upper_obligations_retained": [
+                    "obligation-A"
+                  ]
+                },
+                "B": {
+                  "previous_result": "passed",
+                  "previous_revision": "B@r1",
+                  "current_result": "requires_reverification",
+                  "upper_obligations_retained": [
+                    "obligation-B"
+                  ]
+                },
+                "Q": {
+                  "previous_result": "passed",
+                  "previous_revision": "Q@r1",
+                  "current_result": "preserved_unaffected",
+                  "upper_obligations_retained": []
+                },
+                "S": {
+                  "previous_result": "passed",
+                  "previous_revision": "S@r1",
+                  "current_result": "requires_reverification",
+                  "upper_obligations_retained": [
+                    "obligation-S"
+                  ]
+                },
+                "U": {
+                  "previous_result": "passed",
+                  "previous_revision": "U@r1",
+                  "current_result": "requires_reverification",
+                  "upper_obligations_retained": []
+                }
+              },
+              "unknown_relation_nodes": [],
+              "actual_state_updated": false,
+              "actual_reverification_executed": false,
+              "actual_upper_passed": false,
+              "actual_upper_failed": false,
+              "actual_completion": false
+            },
+            "required_findings": [],
+            "fixed_point_rounds": [
+              {
+                "A": [
+                  "U"
+                ],
+                "K": []
+              },
+              {
+                "A": [
+                  "A",
+                  "B",
+                  "U"
+                ],
+                "K": []
+              },
+              {
+                "A": [
+                  "A",
+                  "B",
+                  "S",
+                  "U"
+                ],
+                "K": []
+              },
+              {
+                "A": [
+                  "A",
+                  "B",
+                  "S",
+                  "U"
+                ],
+                "K": []
+              }
+            ],
+            "retained_input_unmodified": true,
+            "round_limit": "同期A/K集合の内容checkpoint。内部実装の呼出回数/実観測ではなく、同じleast fixed pointと有限停止条件を満たす実装の比較根拠。"
+          },
+          "execution_state": "not_executed",
+          "oracle_limit": "全value/固定点とrequired finding。副次finding全量/実qualification/transportは未完。"
+        },
+        {
+          "id": "H004-L8-F02-GRAPH-DIAMOND-MISSING-U-B",
+          "design_ref": "HARNESS-L5-004-F02",
+          "requirement_ref": "HARNESS-L3-004-F02",
+          "context_fixture_ref": "H004-F02-DIAMOND-INDEPENDENT-CONTEXT",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "F02-GRAPH-DIAMOND-MISSING-U-B",
+              "revision": "fixture-content-596b28f0b1786091b14ffd05d6d96132b697b80868cbea39a4c044aae9016873",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-graph-material-owner"
+            },
+            "raw_utf8": "{\"change\":{\"condition_after\":\"duplicate_delivery_single_debit\",\"condition_before\":\"duplicate_delivery_unspecified\",\"from_revision\":\"U@r1\",\"node\":\"U\",\"to_revision\":\"U@r2\"},\"design_membership\":[{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"A\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-A\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-1ee619d7809fb321772c6d184359346bc011fded95d72058874ebfed2ef529c7\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"U\"],\"role\":\"connection\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"B\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-B\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-dd93a2c2a6606dc65ac98f8ff3bcd9f7c9795c2c62eb8c846011f112c720946d\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"U\"],\"role\":\"connection\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"Q\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-Q\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-090c10e8b921505104b9d77abb9263711d31fd6f20bc2aabb931035a418b2a80\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unrelated_unit\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"S\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-S\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-fc75bffb71836160c7e1fa66850ce4fb5b652a13da7c0f19e6921369eb892ff3\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"A\",\"B\"],\"role\":\"composite\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"U\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-U\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-e2e5422af242877312573f20b9db7e6a223ffe3a27b54fe56d58f5a89fa6f57e\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unit\"}],\"original_establishment\":{\"A\":{\"node_revision\":\"A@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-A\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-b5c5054bb9540db055dc057d18fff8dff33fa3b3bb63b3b8c66bb22558fcef94\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"B\":{\"node_revision\":\"B@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-B\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-ebba6c9b4755b7aa37c281491bb410c47a6a1dfacc8324e63e22bbaa7dc9d8e9\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"Q\":{\"node_revision\":\"Q@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-Q\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"S\":{\"node_revision\":\"S@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-S\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"U\":{\"node_revision\":\"U@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-U\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}},\"relations\":[{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-A-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-552e9c7f38cde4ada77df3917408c734de83d29eea45b160751fe5df42de2c64\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"A\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"A\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-S-A\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-b0b846764db681f222400f70a66e1627398ab11132a363753aa1164c35055ab6\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"},{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"B\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-S-B\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-dc47519055ea9270f22ea8c50d69693871602aebe8c88060a4e3f14c470d7b52\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"}],\"required_upper_obligations\":{\"A\":[\"obligation-A\"],\"B\":[\"obligation-B\"],\"S\":[\"obligation-S\"]},\"reverification\":{\"A\":null,\"B\":null,\"S\":null},\"scenario_kind\":\"synthetic_diamond_not_actual_graph_execution\",\"target\":{\"graph_revision\":\"SYNTHETIC-DIAMOND@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "596b28f0b1786091b14ffd05d6d96132b697b80868cbea39a4c044aae9016873",
+            "evidence_limit": "非実行の合成条件、実graph/状態write/観測ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unknown",
+            "value": {
+              "impact_by_node": {
+                "A": "Affected",
+                "B": "Unknown",
+                "Q": "Unaffected",
+                "S": "Unknown",
+                "U": "Affected"
+              },
+              "establishment_by_node": {
+                "A": {
+                  "previous_result": "passed",
+                  "previous_revision": "A@r1",
+                  "current_result": "requires_reverification",
+                  "upper_obligations_retained": [
+                    "obligation-A"
+                  ]
+                },
+                "B": {
+                  "previous_result": "passed",
+                  "previous_revision": "B@r1",
+                  "current_result": "unknown_requires_relation_resolution",
+                  "upper_obligations_retained": [
+                    "obligation-B"
+                  ]
+                },
+                "Q": {
+                  "previous_result": "passed",
+                  "previous_revision": "Q@r1",
+                  "current_result": "preserved_unaffected",
+                  "upper_obligations_retained": []
+                },
+                "S": {
+                  "previous_result": "passed",
+                  "previous_revision": "S@r1",
+                  "current_result": "unknown_requires_relation_resolution",
+                  "upper_obligations_retained": [
+                    "obligation-S"
+                  ]
+                },
+                "U": {
+                  "previous_result": "passed",
+                  "previous_revision": "U@r1",
+                  "current_result": "requires_reverification",
+                  "upper_obligations_retained": []
+                }
+              },
+              "unknown_relation_nodes": [
+                "B",
+                "S"
+              ],
+              "actual_state_updated": false,
+              "actual_reverification_executed": false,
+              "actual_upper_passed": false,
+              "actual_upper_failed": false,
+              "actual_completion": false
+            },
+            "required_findings": [
+              {
+                "code": "required_relation_missing",
+                "pointer": "/input/relations",
+                "node_ids": [
+                  "B"
+                ],
+                "return_owner": "relation-owner"
+              }
+            ],
+            "fixed_point_rounds": [
+              {
+                "A": [
+                  "U"
+                ],
+                "K": [
+                  "B"
+                ]
+              },
+              {
+                "A": [
+                  "A",
+                  "U"
+                ],
+                "K": [
+                  "B",
+                  "S"
+                ]
+              },
+              {
+                "A": [
+                  "A",
+                  "S",
+                  "U"
+                ],
+                "K": [
+                  "B",
+                  "S"
+                ]
+              },
+              {
+                "A": [
+                  "A",
+                  "S",
+                  "U"
+                ],
+                "K": [
+                  "B",
+                  "S"
+                ]
+              }
+            ],
+            "retained_input_unmodified": true,
+            "round_limit": "同期A/K集合の内容checkpoint。内部実装の呼出回数/実観測ではなく、同じleast fixed pointと有限停止条件を満たす実装の比較根拠。"
+          },
+          "execution_state": "not_executed",
+          "oracle_limit": "全value/固定点とrequired finding。副次finding全量/実qualification/transportは未完。"
+        },
+        {
+          "id": "H004-L8-F02-GRAPH-CYCLE",
+          "design_ref": "HARNESS-L5-004-F02",
+          "requirement_ref": "HARNESS-L3-004-F02",
+          "context_fixture_ref": "H004-F02-CYCLE-INDEPENDENT-CONTEXT",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "F02-GRAPH-CYCLE",
+              "revision": "fixture-content-db90f95cf863d7a4b64bdcbdc67297e18e6a53aab3057994997c42a5b7dcd768",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-graph-material-owner"
+            },
+            "raw_utf8": "{\"change\":{\"condition_after\":\"duplicate_delivery_single_debit\",\"condition_before\":\"duplicate_delivery_unspecified\",\"from_revision\":\"U@r1\",\"node\":\"U\",\"to_revision\":\"U@r2\"},\"design_membership\":[{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"C\",\"ref\":{\"identity\":\"CYCLE-DESIGN-C\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-05596329b82ed45b10048a9afe3f3573ba2a6b1ef49826e41bf8cf52058c49a9\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"S\",\"U\"],\"role\":\"connection\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"Q\",\"ref\":{\"identity\":\"CYCLE-DESIGN-Q\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-b6e630095a8418317e22f67d4e3875b5e7752d6d052a1010b26ffb28ae4ad25d\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unrelated_unit\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"S\",\"ref\":{\"identity\":\"CYCLE-DESIGN-S\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-559eeba4e61c71a7efbe6a4bc7ea6b786056ca23547457e6abc010c0f2601fa3\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"C\"],\"role\":\"composite\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"U\",\"ref\":{\"identity\":\"CYCLE-DESIGN-U\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-0baf946118c10ad862ac8ec42d70e4ab0e092d8febb599501f5290b2cda29751\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unit\"}],\"original_establishment\":{\"C\":{\"node_revision\":\"C@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-C\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-64a81372f36778c94a4f8a96f577b60ea2beec7478e1766bb878b6a5d1e3cb26\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"Q\":{\"node_revision\":\"Q@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-Q\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"S\":{\"node_revision\":\"S@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-S\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"U\":{\"node_revision\":\"U@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-U\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}},\"relations\":[{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"S\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-C-S\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-6476f63cc0f7ff2b32e80eba0ae35a5d7e6a81a826e0f181ea31e6155c202c30\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"C\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-C-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-d2d279273b38580a2b2445e14202edae49e4e8990aef17d6f5910d5808348d42\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"C\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"C\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-S-C\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-a8682bef892ec8402c74b16e9ee8b4cd45c302cd9c1393d2dd47f801bc72df43\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"}],\"required_upper_obligations\":{\"C\":[\"obligation-C\"],\"S\":[\"obligation-S\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_cycle_not_actual_graph_execution\",\"target\":{\"graph_revision\":\"SYNTHETIC-CYCLE@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "db90f95cf863d7a4b64bdcbdc67297e18e6a53aab3057994997c42a5b7dcd768",
+            "evidence_limit": "非実行の合成条件、実graph/状態write/観測ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "content_supported",
+            "value": {
+              "impact_by_node": {
+                "C": "Affected",
+                "Q": "Unaffected",
+                "S": "Affected",
+                "U": "Affected"
+              },
+              "establishment_by_node": {
+                "C": {
+                  "previous_result": "passed",
+                  "previous_revision": "C@r1",
+                  "current_result": "requires_reverification",
+                  "upper_obligations_retained": [
+                    "obligation-C"
+                  ]
+                },
+                "Q": {
+                  "previous_result": "passed",
+                  "previous_revision": "Q@r1",
+                  "current_result": "preserved_unaffected",
+                  "upper_obligations_retained": []
+                },
+                "S": {
+                  "previous_result": "passed",
+                  "previous_revision": "S@r1",
+                  "current_result": "requires_reverification",
+                  "upper_obligations_retained": [
+                    "obligation-S"
+                  ]
+                },
+                "U": {
+                  "previous_result": "passed",
+                  "previous_revision": "U@r1",
+                  "current_result": "requires_reverification",
+                  "upper_obligations_retained": []
+                }
+              },
+              "unknown_relation_nodes": [],
+              "actual_state_updated": false,
+              "actual_reverification_executed": false,
+              "actual_upper_passed": false,
+              "actual_upper_failed": false,
+              "actual_completion": false
+            },
+            "required_findings": [
+              {
+                "code": "relation_cycle",
+                "pointer": "/input/relations",
+                "node_ids": [
+                  "C",
+                  "S"
+                ],
+                "return_owner": "relation-owner"
+              }
+            ],
+            "fixed_point_rounds": [
+              {
+                "A": [
+                  "U"
+                ],
+                "K": []
+              },
+              {
+                "A": [
+                  "C",
+                  "U"
+                ],
+                "K": []
+              },
+              {
+                "A": [
+                  "C",
+                  "S",
+                  "U"
+                ],
+                "K": []
+              },
+              {
+                "A": [
+                  "C",
+                  "S",
+                  "U"
+                ],
+                "K": []
+              }
+            ],
+            "retained_input_unmodified": true,
+            "round_limit": "同期A/K集合の内容checkpoint。内部実装の呼出回数/実観測ではなく、同じleast fixed pointと有限停止条件を満たす実装の比較根拠。"
+          },
+          "execution_state": "not_executed",
+          "oracle_limit": "全value/固定点とrequired finding。副次finding全量/実qualification/transportは未完。"
+        },
+        {
+          "id": "H004-L8-F02-GRAPH-CYCLE-MEMBERSHIP-UNKNOWN",
+          "design_ref": "HARNESS-L5-004-F02",
+          "requirement_ref": "HARNESS-L3-004-F02",
+          "context_fixture_ref": "H004-F02-CYCLE-INDEPENDENT-CONTEXT",
+          "independent_source_packet": {
+            "ref": {
+              "identity": "F02-GRAPH-CYCLE-MEMBERSHIP-UNKNOWN",
+              "revision": "fixture-content-5917f3d3d0a166921480aa5cfd59a3713b3fff7c53e4046a4abcc9a3c5c5deff",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-graph-material-owner"
+            },
+            "raw_utf8": "{\"change\":{\"condition_after\":\"duplicate_delivery_single_debit\",\"condition_before\":\"duplicate_delivery_unspecified\",\"from_revision\":\"U@r1\",\"node\":\"U\",\"to_revision\":\"U@r2\"},\"design_membership\":[{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"unknown\",\"node\":\"C\",\"ref\":{\"identity\":\"CYCLE-DESIGN-C-UNKNOWN\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-eda5a4a0f48162c5fbcc6590db72b2a622888c3a05966a18edc16aca35c8f97f\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"S\",\"U\"],\"role\":\"connection\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"Q\",\"ref\":{\"identity\":\"CYCLE-DESIGN-Q\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-b6e630095a8418317e22f67d4e3875b5e7752d6d052a1010b26ffb28ae4ad25d\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unrelated_unit\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"S\",\"ref\":{\"identity\":\"CYCLE-DESIGN-S\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-559eeba4e61c71a7efbe6a4bc7ea6b786056ca23547457e6abc010c0f2601fa3\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"C\"],\"role\":\"composite\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"U\",\"ref\":{\"identity\":\"CYCLE-DESIGN-U\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-0baf946118c10ad862ac8ec42d70e4ab0e092d8febb599501f5290b2cda29751\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unit\"}],\"original_establishment\":{\"C\":{\"node_revision\":\"C@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-C\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-64a81372f36778c94a4f8a96f577b60ea2beec7478e1766bb878b6a5d1e3cb26\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"Q\":{\"node_revision\":\"Q@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-Q\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"S\":{\"node_revision\":\"S@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-S\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"},\"U\":{\"node_revision\":\"U@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-U\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}},\"relations\":[{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"S\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-C-S\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-6476f63cc0f7ff2b32e80eba0ae35a5d7e6a81a826e0f181ea31e6155c202c30\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"C\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-C-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-d2d279273b38580a2b2445e14202edae49e4e8990aef17d6f5910d5808348d42\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"C\"},{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"C\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-S-C\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-a8682bef892ec8402c74b16e9ee8b4cd45c302cd9c1393d2dd47f801bc72df43\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"}],\"required_upper_obligations\":{\"C\":[\"obligation-C\"],\"S\":[\"obligation-S\"]},\"reverification\":{\"C\":null,\"S\":null},\"scenario_kind\":\"synthetic_cycle_not_actual_graph_execution\",\"target\":{\"graph_revision\":\"SYNTHETIC-CYCLE@r1\",\"scope\":\"PRODUCT-P\"}}",
+            "sha256": "5917f3d3d0a166921480aa5cfd59a3713b3fff7c53e4046a4abcc9a3c5c5deff",
+            "evidence_limit": "非実行の合成条件、実graph/状態write/観測ではない。"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unknown",
+            "value": {
+              "impact_by_node": {
+                "C": "Unknown",
+                "Q": "Unaffected",
+                "S": "Unknown",
+                "U": "Affected"
+              },
+              "establishment_by_node": {
+                "C": {
+                  "previous_result": "passed",
+                  "previous_revision": "C@r1",
+                  "current_result": "unknown_requires_relation_resolution",
+                  "upper_obligations_retained": [
+                    "obligation-C"
+                  ]
+                },
+                "Q": {
+                  "previous_result": "passed",
+                  "previous_revision": "Q@r1",
+                  "current_result": "preserved_unaffected",
+                  "upper_obligations_retained": []
+                },
+                "S": {
+                  "previous_result": "passed",
+                  "previous_revision": "S@r1",
+                  "current_result": "unknown_requires_relation_resolution",
+                  "upper_obligations_retained": [
+                    "obligation-S"
+                  ]
+                },
+                "U": {
+                  "previous_result": "passed",
+                  "previous_revision": "U@r1",
+                  "current_result": "requires_reverification",
+                  "upper_obligations_retained": []
+                }
+              },
+              "unknown_relation_nodes": [
+                "C",
+                "S"
+              ],
+              "actual_state_updated": false,
+              "actual_reverification_executed": false,
+              "actual_upper_passed": false,
+              "actual_upper_failed": false,
+              "actual_completion": false
+            },
+            "required_findings": [
+              {
+                "code": "relation_cycle",
+                "pointer": "/input/relations",
+                "node_ids": [
+                  "C",
+                  "S"
+                ],
+                "return_owner": "relation-owner"
+              },
+              {
+                "code": "membership_unknown",
+                "pointer": "/input/design_membership/0/coverage",
+                "node_ids": [
+                  "C"
+                ],
+                "return_owner": "design-membership-owner"
+              }
+            ],
+            "fixed_point_rounds": [
+              {
+                "A": [
+                  "U"
+                ],
+                "K": [
+                  "C"
+                ]
+              },
+              {
+                "A": [
+                  "C",
+                  "U"
+                ],
+                "K": [
+                  "C",
+                  "S"
+                ]
+              },
+              {
+                "A": [
+                  "C",
+                  "S",
+                  "U"
+                ],
+                "K": [
+                  "C",
+                  "S"
+                ]
+              },
+              {
+                "A": [
+                  "C",
+                  "S",
+                  "U"
+                ],
+                "K": [
+                  "C",
+                  "S"
+                ]
+              }
+            ],
+            "retained_input_unmodified": true,
+            "round_limit": "同期A/K集合の内容checkpoint。内部実装の呼出回数/実観測ではなく、同じleast fixed pointと有限停止条件を満たす実装の比較根拠。"
+          },
+          "execution_state": "not_executed",
+          "oracle_limit": "全value/固定点とrequired finding。副次finding全量/実qualification/transportは未完。"
         }
       ]
     },
@@ -43409,6 +43911,679 @@
         },
         "raw_utf8": "{\"actual_probe_or_observation_refs\":[],\"evidence_kind\":\"synthetic\",\"previous_known_consumers\":[\"OLD\",\"Q\"],\"probe_owner\":\"synthetic-independent-probe-owner\",\"qualifier_roots\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"record_catalog\":[{\"content_sha256\":\"0c37231cd6ef2f62211dd239ea23e29dd9c5ac9975a1fea4d34950fa9e21df25\",\"evidence_kind\":\"synthetic\",\"field\":\"target\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"}\",\"state\":\"current\",\"subject_id\":\"packet\"},{\"content_sha256\":\"60a7aa06961494bb202a8e0b1e58fc7c42951cccb287e12772ff41ab26332430\",\"evidence_kind\":\"synthetic\",\"field\":\"change\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_id\\\":\\\"REQ-1\\\",\\\"kind\\\":\\\"new_consumer_relation\\\"}\",\"state\":\"current\",\"subject_id\":\"packet\"},{\"content_sha256\":\"d125259efc06839b5489368cd5c3c9867c938cb285a5a694b89a0f284ed6a4fc\",\"evidence_kind\":\"synthetic\",\"field\":\"requirements\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"REQ-1\\\":{\\\"expected\\\":{\\\"records\\\":1},\\\"input\\\":{\\\"commands\\\":1}},\\\"REQ-Q\\\":{\\\"expected\\\":{\\\"records\\\":1},\\\"input\\\":{\\\"commands\\\":1}}}\",\"state\":\"current\",\"subject_id\":\"packet\"},{\"content_sha256\":\"26fb7e9a815e03d050879cff7f787b58e310841f0c4a700a232d21cc456fbe6b\",\"evidence_kind\":\"synthetic\",\"field\":\"previous_known_consumers\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"[\\\"OLD\\\",\\\"Q\\\"]\",\"state\":\"current\",\"subject_id\":\"packet\"},{\"content_sha256\":\"1fea19eacb91db328fd755350d6bbbc53d5260a8634da1e8053112c3aeeaf2d2\",\"evidence_kind\":\"synthetic\",\"field\":\"released_probe\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"consumer_id\\\":\\\"NEW\\\",\\\"material_owner\\\":\\\"synthetic-independent-probe-owner\\\",\\\"qualification\\\":\\\"synthetic_blind_design_counter_not_real_holdout_experiment\\\",\\\"release_phase\\\":\\\"after_candidate_basis_was_fixed\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"}\",\"state\":\"current\",\"subject_id\":\"packet\"},{\"content_sha256\":\"2c10bfe1f34a18ee30d35b4dba896c344ad3f804fa173d7614b8563ecdf03bd4\",\"evidence_kind\":\"synthetic\",\"field\":\"unobserved_population\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"[\\\"OUTSIDE-PROBE-U\\\"]\",\"state\":\"current\",\"subject_id\":\"packet\"},{\"content_sha256\":\"7ac2664022e84ef9149cd12e883ccb14419a8483669fdaa5bab986187f15622f\",\"evidence_kind\":\"synthetic\",\"field\":\"qualification\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"\\\"synthetic_design_fixture_not_real_consumer_discovery_or_runtime_observation\\\"\",\"state\":\"current\",\"subject_id\":\"packet\"},{\"content_sha256\":\"fb06fb6cef4a2abf95e8954f6253e09c5ad52d9e9bea9c02236d6bb4944a2975\",\"evidence_kind\":\"synthetic\",\"field\":\"id\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"\\\"OLD\\\"\",\"state\":\"current\",\"subject_id\":\"OLD\"},{\"content_sha256\":\"76cb5e5e36456f1acdb680ddaa8956554896b8d50f253d4cfc667e0c5285343d\",\"evidence_kind\":\"synthetic\",\"field\":\"scope\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"\\\"PRODUCT-P\\\"\",\"state\":\"current\",\"subject_id\":\"OLD\"},{\"content_sha256\":\"c43d79d24deb3bf8cb6469db2f9ae9b1e3ae1621e1d5e7e72d92a03e694fcf28\",\"evidence_kind\":\"synthetic\",\"field\":\"binding\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"\\\"REQ@r2\\\"\",\"state\":\"current\",\"subject_id\":\"OLD\"},{\"content_sha256\":\"3af5d6dd0c3773d92b950caf626b786cbf1631cf88049d1bd76a2adf55f9297a\",\"evidence_kind\":\"synthetic\",\"field\":\"relation\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-1\\\"],\\\"origin\\\":\\\"independent_selected_consumer_material\\\"}\",\"state\":\"current\",\"subject_id\":\"OLD\"},{\"content_sha256\":\"6ef4af3e1aabca554f955fb44016121f20ce59c98f7b8beb12eb58b1d10b6668\",\"evidence_kind\":\"synthetic\",\"field\":\"authority\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"state\\\":\\\"valid_synthetic_not_actual_approval\\\",\\\"subject\\\":\\\"OLD\\\"}\",\"state\":\"current\",\"subject_id\":\"OLD\"},{\"content_sha256\":\"cb6893348ccb7902bccaa77eb22640ae7fc46ab1e62fa4c9181d87b64d3e4408\",\"evidence_kind\":\"synthetic\",\"field\":\"design\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-1\\\"],\\\"expected\\\":{\\\"records\\\":1},\\\"id\\\":\\\"DESIGN-OLD\\\"}\",\"state\":\"current\",\"subject_id\":\"OLD\"},{\"content_sha256\":\"a65690420055484199eab7dc19c574b874c01fdc4d896097c45c0e4a44ec1dff\",\"evidence_kind\":\"synthetic\",\"field\":\"verification\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-1\\\"],\\\"id\\\":\\\"TEST-OLD\\\",\\\"oracle\\\":{\\\"expected\\\":{\\\"records\\\":1},\\\"input\\\":{\\\"commands\\\":1}}}\",\"state\":\"current\",\"subject_id\":\"OLD\"},{\"content_sha256\":\"528498b534a0dc50fd4e16a87cbaadb9a61a7a7b338e9e93f379963556d55929\",\"evidence_kind\":\"synthetic\",\"field\":\"operation_trace\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"from\\\":\\\"OBS-OLD\\\",\\\"owner\\\":\\\"OS\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"to\\\":\\\"REQ-1\\\"}\",\"state\":\"current\",\"subject_id\":\"OLD\"},{\"content_sha256\":\"342badc0fb772eff581ce73468f5eb473bdf907aed7f3087b98039a97f6a844a\",\"evidence_kind\":\"synthetic\",\"field\":\"rerequirement_trace\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"from\\\":\\\"OBS-OLD\\\",\\\"role\\\":\\\"candidate_not_requirement_approval\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"to\\\":\\\"REQ-1\\\"}\",\"state\":\"current\",\"subject_id\":\"OLD\"},{\"content_sha256\":\"00a2b031191a84a58215f28c3249298b96eefdbe09d9838d6e32cf6c6879e15a\",\"evidence_kind\":\"synthetic\",\"field\":\"id\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"\\\"NEW\\\"\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"76cb5e5e36456f1acdb680ddaa8956554896b8d50f253d4cfc667e0c5285343d\",\"evidence_kind\":\"synthetic\",\"field\":\"scope\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"\\\"PRODUCT-P\\\"\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"c43d79d24deb3bf8cb6469db2f9ae9b1e3ae1621e1d5e7e72d92a03e694fcf28\",\"evidence_kind\":\"synthetic\",\"field\":\"binding\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"\\\"REQ@r2\\\"\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"3af5d6dd0c3773d92b950caf626b786cbf1631cf88049d1bd76a2adf55f9297a\",\"evidence_kind\":\"synthetic\",\"field\":\"relation\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-1\\\"],\\\"origin\\\":\\\"independent_selected_consumer_material\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"ec3b643170244cf4ba2d5e5d1efa42192b63b6abdb65b34019a77954c760868b\",\"evidence_kind\":\"synthetic\",\"field\":\"authority\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"state\\\":\\\"valid_synthetic_not_actual_approval\\\",\\\"subject\\\":\\\"NEW\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"bc7fc6b9bcc44b3e11050cf6a6da02ad4e4f5ca30785bae9cf7285bbda8ee267\",\"evidence_kind\":\"synthetic\",\"field\":\"design\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-1\\\"],\\\"expected\\\":{\\\"records\\\":1},\\\"id\\\":\\\"DESIGN-NEW\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"2561b6e372577e07b03d367cc845a66d3882a26dc67298241bff040cb16d7e06\",\"evidence_kind\":\"synthetic\",\"field\":\"verification\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-1\\\"],\\\"id\\\":\\\"TEST-NEW\\\",\\\"oracle\\\":{\\\"expected\\\":{\\\"records\\\":1},\\\"input\\\":{\\\"commands\\\":1}}}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"1a3ef613d00f789e3e0958c50bef082bbb18437163cf5393df189a3faf50e77c\",\"evidence_kind\":\"synthetic\",\"field\":\"operation_trace\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"from\\\":\\\"OBS-NEW\\\",\\\"owner\\\":\\\"OS\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"to\\\":\\\"REQ-1\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"0fa21067ea60e0beb946cbb3101eb3161a885c3c14603091a4826a60eac7c9f8\",\"evidence_kind\":\"synthetic\",\"field\":\"rerequirement_trace\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"from\\\":\\\"OBS-NEW\\\",\\\"role\\\":\\\"candidate_not_requirement_approval\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"to\\\":\\\"REQ-1\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"da53dc5001ef1e872bd575bd38d9fafe75b9a13e995acdefe8bbd13f40e12829\",\"evidence_kind\":\"synthetic\",\"field\":\"id\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"\\\"Q\\\"\",\"state\":\"current\",\"subject_id\":\"Q\"},{\"content_sha256\":\"76cb5e5e36456f1acdb680ddaa8956554896b8d50f253d4cfc667e0c5285343d\",\"evidence_kind\":\"synthetic\",\"field\":\"scope\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"\\\"PRODUCT-P\\\"\",\"state\":\"current\",\"subject_id\":\"Q\"},{\"content_sha256\":\"c43d79d24deb3bf8cb6469db2f9ae9b1e3ae1621e1d5e7e72d92a03e694fcf28\",\"evidence_kind\":\"synthetic\",\"field\":\"binding\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"\\\"REQ@r2\\\"\",\"state\":\"current\",\"subject_id\":\"Q\"},{\"content_sha256\":\"558b432258d4b9d6f4a3e5d0a00ae182541cc9c1d34b12fc19ae74f371cc99f2\",\"evidence_kind\":\"synthetic\",\"field\":\"relation\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-Q\\\"],\\\"origin\\\":\\\"independent_selected_consumer_material\\\"}\",\"state\":\"current\",\"subject_id\":\"Q\"},{\"content_sha256\":\"ce4e96238abde5b06ed30982e65644e6f16a0cb4282146fe1251ccb01e66fc3c\",\"evidence_kind\":\"synthetic\",\"field\":\"authority\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"state\\\":\\\"valid_synthetic_not_actual_approval\\\",\\\"subject\\\":\\\"Q\\\"}\",\"state\":\"current\",\"subject_id\":\"Q\"},{\"content_sha256\":\"aa8f4554b467b8d72806b0cae33cfdb158422ac39d7a06d9454b9dd60e5973b7\",\"evidence_kind\":\"synthetic\",\"field\":\"design\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-Q\\\"],\\\"expected\\\":{\\\"records\\\":1},\\\"id\\\":\\\"DESIGN-Q\\\"}\",\"state\":\"current\",\"subject_id\":\"Q\"},{\"content_sha256\":\"053c4ca15671870a5806f0c5aa906931480c3311fb808b06525c6e85f0ff3383\",\"evidence_kind\":\"synthetic\",\"field\":\"verification\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-Q\\\"],\\\"id\\\":\\\"TEST-Q\\\",\\\"oracle\\\":{\\\"expected\\\":{\\\"records\\\":1},\\\"input\\\":{\\\"commands\\\":1}}}\",\"state\":\"current\",\"subject_id\":\"Q\"},{\"content_sha256\":\"df23e391ffc1b0fccab7cb1af214334b22b1bfcb1f13b4afde3c4db428656a3e\",\"evidence_kind\":\"synthetic\",\"field\":\"operation_trace\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"from\\\":\\\"OBS-Q\\\",\\\"owner\\\":\\\"OS\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"to\\\":\\\"REQ-Q\\\"}\",\"state\":\"current\",\"subject_id\":\"Q\"},{\"content_sha256\":\"94dcdbbbd0721ed4a00197935499099806f44c240c75c36756b046ed3803f261\",\"evidence_kind\":\"synthetic\",\"field\":\"rerequirement_trace\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"from\\\":\\\"OBS-Q\\\",\\\"role\\\":\\\"candidate_not_requirement_approval\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"to\\\":\\\"REQ-Q\\\"}\",\"state\":\"current\",\"subject_id\":\"Q\"},{\"content_sha256\":\"bc7f6e0a21c2b13cb96ffb39e5d8af2507e68dddfddb01724e4358c77278bf4a\",\"evidence_kind\":\"synthetic\",\"field\":\"change\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_id\\\":\\\"REQ-1\\\",\\\"kind\\\":\\\"withheld_requirement_content_change\\\"}\",\"state\":\"current\",\"subject_id\":\"packet\"},{\"content_sha256\":\"275b9cb3f4b34b8d7aa9a285cba3d9185c1261b03f3bf5214692b874469b0e44\",\"evidence_kind\":\"synthetic\",\"field\":\"requirements\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"REQ-1\\\":{\\\"expected\\\":{\\\"records\\\":2},\\\"input\\\":{\\\"commands\\\":1}},\\\"REQ-Q\\\":{\\\"expected\\\":{\\\"records\\\":1},\\\"input\\\":{\\\"commands\\\":1}}}\",\"state\":\"current\",\"subject_id\":\"packet\"},{\"content_sha256\":\"6a44f5109426d2862702e47d3fc3a608b2bba8beb0ce51cb2a26921b62283314\",\"evidence_kind\":\"synthetic\",\"field\":\"design\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-1\\\"],\\\"expected\\\":{\\\"records\\\":2},\\\"id\\\":\\\"DESIGN-OLD\\\"}\",\"state\":\"current\",\"subject_id\":\"OLD\"},{\"content_sha256\":\"a0ac7cbc49bf37cc188585edb1cadd1f607b69b5f98115dbb410f740e7d67b39\",\"evidence_kind\":\"synthetic\",\"field\":\"verification\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-1\\\"],\\\"id\\\":\\\"TEST-OLD\\\",\\\"oracle\\\":{\\\"expected\\\":{\\\"records\\\":2},\\\"input\\\":{\\\"commands\\\":1}}}\",\"state\":\"current\",\"subject_id\":\"OLD\"},{\"content_sha256\":\"56985a7a91482ef3064a1b95cc225deeb32c53f16527a62706e2d14a7f428d90\",\"evidence_kind\":\"synthetic\",\"field\":\"design\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-1\\\"],\\\"expected\\\":{\\\"records\\\":2},\\\"id\\\":\\\"DESIGN-NEW\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"380b48bbb315fb1b2d85dcd602ec95ebc58cc537301919222faac5d023d114cf\",\"evidence_kind\":\"synthetic\",\"field\":\"verification\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"condition_ids\\\":[\\\"REQ-1\\\"],\\\"id\\\":\\\"TEST-NEW\\\",\\\"oracle\\\":{\\\"expected\\\":{\\\"records\\\":2},\\\"input\\\":{\\\"commands\\\":1}}}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"670d7bae0664862346a19a6e1ee6c1ac2126ab49feffb3f49e1799373ec276ed\",\"evidence_kind\":\"synthetic\",\"field\":\"authority\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"state\\\":\\\"stale\\\",\\\"subject\\\":\\\"NEW\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"82cb1a2e394700f5bd286ad778947a3a162b7d663456d4bf430cf425de00339e\",\"evidence_kind\":\"synthetic\",\"field\":\"authority\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"state\\\":\\\"valid_synthetic_not_actual_approval\\\",\\\"subject\\\":\\\"OTHER\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"46ed33a5d45bdc02362790f3ee8802ab4dcf7040ad7dbfce02d589c15980829c\",\"evidence_kind\":\"synthetic\",\"field\":\"binding\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"\\\"REQ@r1\\\"\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"a68b8ad41e700c1c6d468a750c9932794e77304641b94d48bd31a4e2a970cfe9\",\"evidence_kind\":\"synthetic\",\"field\":\"scope\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"\\\"PRODUCT-OTHER\\\"\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"91255af10949227f4b91bb961055a31b819ffc2467de888de7a2712c5075ae65\",\"evidence_kind\":\"synthetic\",\"field\":\"operation_trace\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"from\\\":\\\"OBS-NEW\\\",\\\"owner\\\":\\\"OS\\\",\\\"scope\\\":\\\"PRODUCT-OTHER\\\",\\\"to\\\":\\\"REQ-1\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"b0723a49c3ecfdef3351edc1a0024385a610bc60620f0d0fceb7f3762dd96095\",\"evidence_kind\":\"synthetic\",\"field\":\"operation_trace\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r1\\\",\\\"from\\\":\\\"OBS-NEW\\\",\\\"owner\\\":\\\"OS\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"to\\\":\\\"REQ-1\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"797f79df3bbebe71409eca8ad0730a911142b637f01ab0296e59d85e07605ef1\",\"evidence_kind\":\"synthetic\",\"field\":\"rerequirement_trace\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r1\\\",\\\"from\\\":\\\"OBS-NEW\\\",\\\"role\\\":\\\"candidate_not_requirement_approval\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"to\\\":\\\"REQ-1\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"df66454838fc2c6723249d73736c958af19be03fff4d145c99b9e09f3c4bd744\",\"evidence_kind\":\"synthetic\",\"field\":\"operation_trace\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"from\\\":\\\"OBS-NEW\\\",\\\"owner\\\":\\\"HARNESS\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"to\\\":\\\"REQ-1\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"},{\"content_sha256\":\"b2deec623458d21d2ed517d91170fb56f5fc20c814a79ad550bf619e257de02f\",\"evidence_kind\":\"synthetic\",\"field\":\"rerequirement_trace\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-N01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"REQ@r2\\\",\\\"from\\\":\\\"OBS-NEW\\\",\\\"role\\\":\\\"approved_requirement\\\",\\\"scope\\\":\\\"PRODUCT-P\\\",\\\"to\\\":\\\"REQ-1\\\"}\",\"state\":\"current\",\"subject_id\":\"NEW\"}],\"required_condition_ids\":[\"REQ-1\",\"REQ-Q\"],\"required_consumer_relations\":{\"NEW\":{\"condition_ids\":[\"REQ-1\"],\"origin\":\"independent_selected_consumer_material\"},\"OLD\":{\"condition_ids\":[\"REQ-1\"],\"origin\":\"independent_selected_consumer_material\"},\"Q\":{\"condition_ids\":[\"REQ-Q\"],\"origin\":\"independent_selected_consumer_material\"}},\"required_operation_joins\":{\"NEW\":{\"operation\":{\"binding\":\"REQ@r2\",\"from\":\"OBS-NEW\",\"owner\":\"OS\",\"scope\":\"PRODUCT-P\",\"to\":\"REQ-1\"},\"rerequirement\":{\"binding\":\"REQ@r2\",\"from\":\"OBS-NEW\",\"role\":\"candidate_not_requirement_approval\",\"scope\":\"PRODUCT-P\",\"to\":\"REQ-1\"}},\"OLD\":{\"operation\":{\"binding\":\"REQ@r2\",\"from\":\"OBS-OLD\",\"owner\":\"OS\",\"scope\":\"PRODUCT-P\",\"to\":\"REQ-1\"},\"rerequirement\":{\"binding\":\"REQ@r2\",\"from\":\"OBS-OLD\",\"role\":\"candidate_not_requirement_approval\",\"scope\":\"PRODUCT-P\",\"to\":\"REQ-1\"}},\"Q\":{\"operation\":{\"binding\":\"REQ@r2\",\"from\":\"OBS-Q\",\"owner\":\"OS\",\"scope\":\"PRODUCT-P\",\"to\":\"REQ-Q\"},\"rerequirement\":{\"binding\":\"REQ@r2\",\"from\":\"OBS-Q\",\"role\":\"candidate_not_requirement_approval\",\"scope\":\"PRODUCT-P\",\"to\":\"REQ-Q\"}}},\"requirement_content_versions\":[{\"raw_utf8\":\"{\\\"REQ-1\\\":{\\\"expected\\\":{\\\"records\\\":1},\\\"input\\\":{\\\"commands\\\":1}},\\\"REQ-Q\\\":{\\\"expected\\\":{\\\"records\\\":1},\\\"input\\\":{\\\"commands\\\":1}}}\",\"sha256\":\"d125259efc06839b5489368cd5c3c9867c938cb285a5a694b89a0f284ed6a4fc\",\"target\":{\"binding\":\"REQ@r2\",\"scope\":\"PRODUCT-P\"}},{\"raw_utf8\":\"{\\\"REQ-1\\\":{\\\"expected\\\":{\\\"records\\\":2},\\\"input\\\":{\\\"commands\\\":1}},\\\"REQ-Q\\\":{\\\"expected\\\":{\\\"records\\\":1},\\\"input\\\":{\\\"commands\\\":1}}}\",\"sha256\":\"275b9cb3f4b34b8d7aa9a285cba3d9185c1261b03f3bf5214692b874469b0e44\",\"target\":{\"binding\":\"REQ@r2\",\"scope\":\"PRODUCT-P\"}}],\"reverification_owners\":{\"NEW\":\"verification-owner\",\"OLD\":\"verification-owner\",\"Q\":\"verification-owner\"},\"selected_consumer_ids\":[\"OLD\",\"NEW\",\"Q\"],\"state\":\"current\",\"target\":{\"binding\":\"REQ@r2\",\"scope\":\"PRODUCT-P\"},\"unobserved_population\":[\"OUTSIDE-PROBE-U\"]}",
         "sha256": "14a4b8154f23fc7d1c3b0bfb07a067be207931e733d98a8bfe30c503debacfae"
+      }
+    },
+    {
+      "id": "H004-F02-DIAMOND-INDEPENDENT-CONTEXT",
+      "kind": "synthetic_independent_context_fixture",
+      "authority_effect": "none",
+      "basis": "固定の必要member/人口/固有義務と原record内容を別Contextへ束縛。各呼出input/candidateから必要集合を減らさない。",
+      "evidence_limit": "設計oracleとして作成した合成graph。実owner独立実験/consumer資格/構造採用/運用完了ではない。",
+      "context": {
+        "target": {
+          "scope": "PRODUCT-P",
+          "graph_revision": "SYNTHETIC-DIAMOND@r1"
+        },
+        "node_population": [
+          "A",
+          "B",
+          "Q",
+          "S",
+          "U"
+        ],
+        "declared_members": {
+          "U": [],
+          "A": [
+            "U"
+          ],
+          "B": [
+            "U"
+          ],
+          "S": [
+            "A",
+            "B"
+          ],
+          "Q": []
+        },
+        "required_upper_obligations": {
+          "A": [
+            "obligation-A"
+          ],
+          "B": [
+            "obligation-B"
+          ],
+          "S": [
+            "obligation-S"
+          ]
+        },
+        "referents": [
+          {
+            "ref": {
+              "identity": "DIAMOND-DESIGN-A",
+              "revision": "fixture-content-1ee619d7809fb321772c6d184359346bc011fded95d72058874ebfed2ef529c7",
+              "scope": "PRODUCT-P",
+              "owner": "design-original-owner"
+            },
+            "kind": "membership",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"A\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-A\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-1ee619d7809fb321772c6d184359346bc011fded95d72058874ebfed2ef529c7\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"U\"],\"role\":\"connection\"}",
+            "content_sha256": "5a4ae521f81c9f5eb9544b78a766224e8cd031961f6300b20ab03f71a9911e3f",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-ESTABLISHMENT-A",
+              "revision": "fixture-content-b5c5054bb9540db055dc057d18fff8dff33fa3b3bb63b3b8c66bb22558fcef94",
+              "scope": "PRODUCT-P",
+              "owner": "verification-original-owner"
+            },
+            "kind": "previous_establishment",
+            "raw_utf8": "{\"node_revision\":\"A@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-A\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-b5c5054bb9540db055dc057d18fff8dff33fa3b3bb63b3b8c66bb22558fcef94\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}",
+            "content_sha256": "87379c0e409dceea75dabcca17996fbccbaafc83cd1ec277c920799955064152",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-DESIGN-B",
+              "revision": "fixture-content-dd93a2c2a6606dc65ac98f8ff3bcd9f7c9795c2c62eb8c846011f112c720946d",
+              "scope": "PRODUCT-P",
+              "owner": "design-original-owner"
+            },
+            "kind": "membership",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"B\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-B\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-dd93a2c2a6606dc65ac98f8ff3bcd9f7c9795c2c62eb8c846011f112c720946d\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"U\"],\"role\":\"connection\"}",
+            "content_sha256": "c636d6de759fddb7da1d67c3cde689dc7ee6cb8a94bb931da344aad7b8cf2bd9",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-ESTABLISHMENT-B",
+              "revision": "fixture-content-ebba6c9b4755b7aa37c281491bb410c47a6a1dfacc8324e63e22bbaa7dc9d8e9",
+              "scope": "PRODUCT-P",
+              "owner": "verification-original-owner"
+            },
+            "kind": "previous_establishment",
+            "raw_utf8": "{\"node_revision\":\"B@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-B\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-ebba6c9b4755b7aa37c281491bb410c47a6a1dfacc8324e63e22bbaa7dc9d8e9\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}",
+            "content_sha256": "31d8029e1fc6caabedbb3ac42f4268468f59eaf3c9aacd672cd50ff01938c864",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-DESIGN-Q",
+              "revision": "fixture-content-090c10e8b921505104b9d77abb9263711d31fd6f20bc2aabb931035a418b2a80",
+              "scope": "PRODUCT-P",
+              "owner": "design-original-owner"
+            },
+            "kind": "membership",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"Q\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-Q\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-090c10e8b921505104b9d77abb9263711d31fd6f20bc2aabb931035a418b2a80\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unrelated_unit\"}",
+            "content_sha256": "4f7b32cda05d28daed5ca119c52ae092f4161cb3e0b6f8d256d2e6ad39e65b3b",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-ESTABLISHMENT-Q",
+              "revision": "fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4",
+              "scope": "PRODUCT-P",
+              "owner": "verification-original-owner"
+            },
+            "kind": "previous_establishment",
+            "raw_utf8": "{\"node_revision\":\"Q@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-Q\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}",
+            "content_sha256": "92673947652ec7c87b3b3d1eb48b4f12d279460d41141c6ced9f5ce888da484f",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-DESIGN-S",
+              "revision": "fixture-content-fc75bffb71836160c7e1fa66850ce4fb5b652a13da7c0f19e6921369eb892ff3",
+              "scope": "PRODUCT-P",
+              "owner": "design-original-owner"
+            },
+            "kind": "membership",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"S\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-S\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-fc75bffb71836160c7e1fa66850ce4fb5b652a13da7c0f19e6921369eb892ff3\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"A\",\"B\"],\"role\":\"composite\"}",
+            "content_sha256": "5d744230453fc40b94b453ecd480ec763d4fda361e9ca975b4bf80808b78c301",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-ESTABLISHMENT-S",
+              "revision": "fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596",
+              "scope": "PRODUCT-P",
+              "owner": "verification-original-owner"
+            },
+            "kind": "previous_establishment",
+            "raw_utf8": "{\"node_revision\":\"S@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-S\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}",
+            "content_sha256": "646b83d46c207b27a3118270242940aaf2e9976509600d9141092b6249c831f2",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-DESIGN-U",
+              "revision": "fixture-content-e2e5422af242877312573f20b9db7e6a223ffe3a27b54fe56d58f5a89fa6f57e",
+              "scope": "PRODUCT-P",
+              "owner": "design-original-owner"
+            },
+            "kind": "membership",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"U\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-U\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-e2e5422af242877312573f20b9db7e6a223ffe3a27b54fe56d58f5a89fa6f57e\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unit\"}",
+            "content_sha256": "93dadee864ffcb90d17a3719a534eb8e812c342dc24b985880386ab4269308ca",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-ESTABLISHMENT-U",
+              "revision": "fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5",
+              "scope": "PRODUCT-P",
+              "owner": "verification-original-owner"
+            },
+            "kind": "previous_establishment",
+            "raw_utf8": "{\"node_revision\":\"U@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-U\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}",
+            "content_sha256": "c12867df88fe5947bb4359c2edf6e4431fe754c5996f751e69cbebf5c3c9fb04",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-EDGE-A-U",
+              "revision": "fixture-content-552e9c7f38cde4ada77df3917408c734de83d29eea45b160751fe5df42de2c64",
+              "scope": "PRODUCT-P",
+              "owner": "relation-original-owner"
+            },
+            "kind": "relation",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-A-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-552e9c7f38cde4ada77df3917408c734de83d29eea45b160751fe5df42de2c64\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"A\"}",
+            "content_sha256": "e6d0470602dec85e446c49bda0fd17d837e42d6c24b4c059a871e7524bddc85c",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-EDGE-B-U",
+              "revision": "fixture-content-9c7dacf5008547209da8380493705a01c6b9ab57b93f06138da1ed875a0ad127",
+              "scope": "PRODUCT-P",
+              "owner": "relation-original-owner"
+            },
+            "kind": "relation",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-B-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-9c7dacf5008547209da8380493705a01c6b9ab57b93f06138da1ed875a0ad127\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"B\"}",
+            "content_sha256": "dfa292965a2d7b4ee2a3874c5d50124c4d5d2df859bd06ad098992dbcf8d216c",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-EDGE-S-A",
+              "revision": "fixture-content-b0b846764db681f222400f70a66e1627398ab11132a363753aa1164c35055ab6",
+              "scope": "PRODUCT-P",
+              "owner": "relation-original-owner"
+            },
+            "kind": "relation",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"A\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-S-A\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-b0b846764db681f222400f70a66e1627398ab11132a363753aa1164c35055ab6\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"}",
+            "content_sha256": "bd2da5bde2121e37d2325d0c13863237cbf3767429f5b5f33f650b9a40764bf9",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "DIAMOND-EDGE-S-B",
+              "revision": "fixture-content-dc47519055ea9270f22ea8c50d69693871602aebe8c88060a4e3f14c470d7b52",
+              "scope": "PRODUCT-P",
+              "owner": "relation-original-owner"
+            },
+            "kind": "relation",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-DIAMOND@r1\",\"from_node\":\"B\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"DIAMOND-EDGE-S-B\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-dc47519055ea9270f22ea8c50d69693871602aebe8c88060a4e3f14c470d7b52\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"}",
+            "content_sha256": "63c4785d669edf5ea80c9ac755151cc374cfc3373ec45d2e932143cdbe7b96ec",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          }
+        ],
+        "qualifier_roots": [
+          {
+            "identity": "SYNTHETIC-F02-DIAMOND-BASIS",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "synthetic-independent-graph-oracle-author"
+          }
+        ],
+        "evidence_kind": "synthetic",
+        "state": "current"
+      },
+      "source_packet": {
+        "ref": {
+          "identity": "H004-F02-DIAMOND-INDEPENDENT-CONTEXT",
+          "revision": "fixture-content-22038701bc142653c4864167ed67978274a7317fa358878df019a85c339b5559",
+          "scope": "PRODUCT-P",
+          "owner": "synthetic-independent-graph-oracle-author"
+        },
+        "raw_utf8": "{\"declared_members\":{\"A\":[\"U\"],\"B\":[\"U\"],\"Q\":[],\"S\":[\"A\",\"B\"],\"U\":[]},\"evidence_kind\":\"synthetic\",\"node_population\":[\"A\",\"B\",\"Q\",\"S\",\"U\"],\"qualifier_roots\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"referents\":[{\"content_sha256\":\"5a4ae521f81c9f5eb9544b78a766224e8cd031961f6300b20ab03f71a9911e3f\",\"evidence_kind\":\"synthetic\",\"kind\":\"membership\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-DIAMOND@r1\\\",\\\"coverage\\\":\\\"complete_for_declared_scope\\\",\\\"node\\\":\\\"A\\\",\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-DESIGN-A\\\",\\\"owner\\\":\\\"design-original-owner\\\",\\\"revision\\\":\\\"fixture-content-1ee619d7809fb321772c6d184359346bc011fded95d72058874ebfed2ef529c7\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"required_members\\\":[\\\"U\\\"],\\\"role\\\":\\\"connection\\\"}\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-A\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-1ee619d7809fb321772c6d184359346bc011fded95d72058874ebfed2ef529c7\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"87379c0e409dceea75dabcca17996fbccbaafc83cd1ec277c920799955064152\",\"evidence_kind\":\"synthetic\",\"kind\":\"previous_establishment\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"node_revision\\\":\\\"A@r1\\\",\\\"original_expected\\\":1,\\\"original_observed\\\":1,\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-ESTABLISHMENT-A\\\",\\\"owner\\\":\\\"verification-original-owner\\\",\\\"revision\\\":\\\"fixture-content-b5c5054bb9540db055dc057d18fff8dff33fa3b3bb63b3b8c66bb22558fcef94\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"result\\\":\\\"passed\\\"}\",\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-A\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-b5c5054bb9540db055dc057d18fff8dff33fa3b3bb63b3b8c66bb22558fcef94\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"c636d6de759fddb7da1d67c3cde689dc7ee6cb8a94bb931da344aad7b8cf2bd9\",\"evidence_kind\":\"synthetic\",\"kind\":\"membership\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-DIAMOND@r1\\\",\\\"coverage\\\":\\\"complete_for_declared_scope\\\",\\\"node\\\":\\\"B\\\",\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-DESIGN-B\\\",\\\"owner\\\":\\\"design-original-owner\\\",\\\"revision\\\":\\\"fixture-content-dd93a2c2a6606dc65ac98f8ff3bcd9f7c9795c2c62eb8c846011f112c720946d\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"required_members\\\":[\\\"U\\\"],\\\"role\\\":\\\"connection\\\"}\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-B\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-dd93a2c2a6606dc65ac98f8ff3bcd9f7c9795c2c62eb8c846011f112c720946d\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"31d8029e1fc6caabedbb3ac42f4268468f59eaf3c9aacd672cd50ff01938c864\",\"evidence_kind\":\"synthetic\",\"kind\":\"previous_establishment\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"node_revision\\\":\\\"B@r1\\\",\\\"original_expected\\\":1,\\\"original_observed\\\":1,\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-ESTABLISHMENT-B\\\",\\\"owner\\\":\\\"verification-original-owner\\\",\\\"revision\\\":\\\"fixture-content-ebba6c9b4755b7aa37c281491bb410c47a6a1dfacc8324e63e22bbaa7dc9d8e9\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"result\\\":\\\"passed\\\"}\",\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-B\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-ebba6c9b4755b7aa37c281491bb410c47a6a1dfacc8324e63e22bbaa7dc9d8e9\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"4f7b32cda05d28daed5ca119c52ae092f4161cb3e0b6f8d256d2e6ad39e65b3b\",\"evidence_kind\":\"synthetic\",\"kind\":\"membership\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-DIAMOND@r1\\\",\\\"coverage\\\":\\\"complete_for_declared_scope\\\",\\\"node\\\":\\\"Q\\\",\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-DESIGN-Q\\\",\\\"owner\\\":\\\"design-original-owner\\\",\\\"revision\\\":\\\"fixture-content-090c10e8b921505104b9d77abb9263711d31fd6f20bc2aabb931035a418b2a80\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"required_members\\\":[],\\\"role\\\":\\\"unrelated_unit\\\"}\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-Q\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-090c10e8b921505104b9d77abb9263711d31fd6f20bc2aabb931035a418b2a80\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"92673947652ec7c87b3b3d1eb48b4f12d279460d41141c6ced9f5ce888da484f\",\"evidence_kind\":\"synthetic\",\"kind\":\"previous_establishment\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"node_revision\\\":\\\"Q@r1\\\",\\\"original_expected\\\":1,\\\"original_observed\\\":1,\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-ESTABLISHMENT-Q\\\",\\\"owner\\\":\\\"verification-original-owner\\\",\\\"revision\\\":\\\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"result\\\":\\\"passed\\\"}\",\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-Q\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"5d744230453fc40b94b453ecd480ec763d4fda361e9ca975b4bf80808b78c301\",\"evidence_kind\":\"synthetic\",\"kind\":\"membership\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-DIAMOND@r1\\\",\\\"coverage\\\":\\\"complete_for_declared_scope\\\",\\\"node\\\":\\\"S\\\",\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-DESIGN-S\\\",\\\"owner\\\":\\\"design-original-owner\\\",\\\"revision\\\":\\\"fixture-content-fc75bffb71836160c7e1fa66850ce4fb5b652a13da7c0f19e6921369eb892ff3\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"required_members\\\":[\\\"A\\\",\\\"B\\\"],\\\"role\\\":\\\"composite\\\"}\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-S\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-fc75bffb71836160c7e1fa66850ce4fb5b652a13da7c0f19e6921369eb892ff3\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"646b83d46c207b27a3118270242940aaf2e9976509600d9141092b6249c831f2\",\"evidence_kind\":\"synthetic\",\"kind\":\"previous_establishment\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"node_revision\\\":\\\"S@r1\\\",\\\"original_expected\\\":1,\\\"original_observed\\\":1,\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-ESTABLISHMENT-S\\\",\\\"owner\\\":\\\"verification-original-owner\\\",\\\"revision\\\":\\\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"result\\\":\\\"passed\\\"}\",\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-S\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"93dadee864ffcb90d17a3719a534eb8e812c342dc24b985880386ab4269308ca\",\"evidence_kind\":\"synthetic\",\"kind\":\"membership\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-DIAMOND@r1\\\",\\\"coverage\\\":\\\"complete_for_declared_scope\\\",\\\"node\\\":\\\"U\\\",\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-DESIGN-U\\\",\\\"owner\\\":\\\"design-original-owner\\\",\\\"revision\\\":\\\"fixture-content-e2e5422af242877312573f20b9db7e6a223ffe3a27b54fe56d58f5a89fa6f57e\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"required_members\\\":[],\\\"role\\\":\\\"unit\\\"}\",\"ref\":{\"identity\":\"DIAMOND-DESIGN-U\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-e2e5422af242877312573f20b9db7e6a223ffe3a27b54fe56d58f5a89fa6f57e\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"c12867df88fe5947bb4359c2edf6e4431fe754c5996f751e69cbebf5c3c9fb04\",\"evidence_kind\":\"synthetic\",\"kind\":\"previous_establishment\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"node_revision\\\":\\\"U@r1\\\",\\\"original_expected\\\":1,\\\"original_observed\\\":1,\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-ESTABLISHMENT-U\\\",\\\"owner\\\":\\\"verification-original-owner\\\",\\\"revision\\\":\\\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"result\\\":\\\"passed\\\"}\",\"ref\":{\"identity\":\"DIAMOND-ESTABLISHMENT-U\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"e6d0470602dec85e446c49bda0fd17d837e42d6c24b4c059a871e7524bddc85c\",\"evidence_kind\":\"synthetic\",\"kind\":\"relation\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-DIAMOND@r1\\\",\\\"from_node\\\":\\\"U\\\",\\\"meaning\\\":\\\"required_member\\\",\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-EDGE-A-U\\\",\\\"owner\\\":\\\"relation-original-owner\\\",\\\"revision\\\":\\\"fixture-content-552e9c7f38cde4ada77df3917408c734de83d29eea45b160751fe5df42de2c64\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"to_node\\\":\\\"A\\\"}\",\"ref\":{\"identity\":\"DIAMOND-EDGE-A-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-552e9c7f38cde4ada77df3917408c734de83d29eea45b160751fe5df42de2c64\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"dfa292965a2d7b4ee2a3874c5d50124c4d5d2df859bd06ad098992dbcf8d216c\",\"evidence_kind\":\"synthetic\",\"kind\":\"relation\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-DIAMOND@r1\\\",\\\"from_node\\\":\\\"U\\\",\\\"meaning\\\":\\\"required_member\\\",\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-EDGE-B-U\\\",\\\"owner\\\":\\\"relation-original-owner\\\",\\\"revision\\\":\\\"fixture-content-9c7dacf5008547209da8380493705a01c6b9ab57b93f06138da1ed875a0ad127\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"to_node\\\":\\\"B\\\"}\",\"ref\":{\"identity\":\"DIAMOND-EDGE-B-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-9c7dacf5008547209da8380493705a01c6b9ab57b93f06138da1ed875a0ad127\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"bd2da5bde2121e37d2325d0c13863237cbf3767429f5b5f33f650b9a40764bf9\",\"evidence_kind\":\"synthetic\",\"kind\":\"relation\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-DIAMOND@r1\\\",\\\"from_node\\\":\\\"A\\\",\\\"meaning\\\":\\\"required_member\\\",\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-EDGE-S-A\\\",\\\"owner\\\":\\\"relation-original-owner\\\",\\\"revision\\\":\\\"fixture-content-b0b846764db681f222400f70a66e1627398ab11132a363753aa1164c35055ab6\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"to_node\\\":\\\"S\\\"}\",\"ref\":{\"identity\":\"DIAMOND-EDGE-S-A\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-b0b846764db681f222400f70a66e1627398ab11132a363753aa1164c35055ab6\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"63c4785d669edf5ea80c9ac755151cc374cfc3373ec45d2e932143cdbe7b96ec\",\"evidence_kind\":\"synthetic\",\"kind\":\"relation\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-DIAMOND-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-DIAMOND@r1\\\",\\\"from_node\\\":\\\"B\\\",\\\"meaning\\\":\\\"required_member\\\",\\\"ref\\\":{\\\"identity\\\":\\\"DIAMOND-EDGE-S-B\\\",\\\"owner\\\":\\\"relation-original-owner\\\",\\\"revision\\\":\\\"fixture-content-dc47519055ea9270f22ea8c50d69693871602aebe8c88060a4e3f14c470d7b52\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"to_node\\\":\\\"S\\\"}\",\"ref\":{\"identity\":\"DIAMOND-EDGE-S-B\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-dc47519055ea9270f22ea8c50d69693871602aebe8c88060a4e3f14c470d7b52\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"}],\"required_upper_obligations\":{\"A\":[\"obligation-A\"],\"B\":[\"obligation-B\"],\"S\":[\"obligation-S\"]},\"state\":\"current\",\"target\":{\"graph_revision\":\"SYNTHETIC-DIAMOND@r1\",\"scope\":\"PRODUCT-P\"}}",
+        "sha256": "22038701bc142653c4864167ed67978274a7317fa358878df019a85c339b5559"
+      }
+    },
+    {
+      "id": "H004-F02-CYCLE-INDEPENDENT-CONTEXT",
+      "kind": "synthetic_independent_context_fixture",
+      "authority_effect": "none",
+      "basis": "固定の必要member/人口/固有義務と原record内容を別Contextへ束縛。各呼出input/candidateから必要集合を減らさない。",
+      "evidence_limit": "設計oracleとして作成した合成graph。実owner独立実験/consumer資格/構造採用/運用完了ではない。",
+      "context": {
+        "target": {
+          "scope": "PRODUCT-P",
+          "graph_revision": "SYNTHETIC-CYCLE@r1"
+        },
+        "node_population": [
+          "C",
+          "Q",
+          "S",
+          "U"
+        ],
+        "declared_members": {
+          "U": [],
+          "C": [
+            "S",
+            "U"
+          ],
+          "S": [
+            "C"
+          ],
+          "Q": []
+        },
+        "required_upper_obligations": {
+          "C": [
+            "obligation-C"
+          ],
+          "S": [
+            "obligation-S"
+          ]
+        },
+        "referents": [
+          {
+            "ref": {
+              "identity": "CYCLE-DESIGN-C",
+              "revision": "fixture-content-05596329b82ed45b10048a9afe3f3573ba2a6b1ef49826e41bf8cf52058c49a9",
+              "scope": "PRODUCT-P",
+              "owner": "design-original-owner"
+            },
+            "kind": "membership",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"C\",\"ref\":{\"identity\":\"CYCLE-DESIGN-C\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-05596329b82ed45b10048a9afe3f3573ba2a6b1ef49826e41bf8cf52058c49a9\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"S\",\"U\"],\"role\":\"connection\"}",
+            "content_sha256": "793e9da589b1acfd4a9b5cf81e01cde5ac87f11ccb96a7653e296613a46bbc63",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "CYCLE-ESTABLISHMENT-C",
+              "revision": "fixture-content-64a81372f36778c94a4f8a96f577b60ea2beec7478e1766bb878b6a5d1e3cb26",
+              "scope": "PRODUCT-P",
+              "owner": "verification-original-owner"
+            },
+            "kind": "previous_establishment",
+            "raw_utf8": "{\"node_revision\":\"C@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-C\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-64a81372f36778c94a4f8a96f577b60ea2beec7478e1766bb878b6a5d1e3cb26\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}",
+            "content_sha256": "4beceb066870357014d5052097f9e96de8ab0b18177eb61bec14e59e4e9caca5",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "CYCLE-DESIGN-Q",
+              "revision": "fixture-content-b6e630095a8418317e22f67d4e3875b5e7752d6d052a1010b26ffb28ae4ad25d",
+              "scope": "PRODUCT-P",
+              "owner": "design-original-owner"
+            },
+            "kind": "membership",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"Q\",\"ref\":{\"identity\":\"CYCLE-DESIGN-Q\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-b6e630095a8418317e22f67d4e3875b5e7752d6d052a1010b26ffb28ae4ad25d\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unrelated_unit\"}",
+            "content_sha256": "685acaa3ed8c2fb865d0d2fba3632179b5ff0c5c10877728cbc71d61822e2627",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "CYCLE-ESTABLISHMENT-Q",
+              "revision": "fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4",
+              "scope": "PRODUCT-P",
+              "owner": "verification-original-owner"
+            },
+            "kind": "previous_establishment",
+            "raw_utf8": "{\"node_revision\":\"Q@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-Q\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}",
+            "content_sha256": "c3aed046c5682f4d959bf5be3b8327e66c2ac8b2588eb4821adaf2a9a7d6e4ab",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "CYCLE-DESIGN-S",
+              "revision": "fixture-content-559eeba4e61c71a7efbe6a4bc7ea6b786056ca23547457e6abc010c0f2601fa3",
+              "scope": "PRODUCT-P",
+              "owner": "design-original-owner"
+            },
+            "kind": "membership",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"S\",\"ref\":{\"identity\":\"CYCLE-DESIGN-S\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-559eeba4e61c71a7efbe6a4bc7ea6b786056ca23547457e6abc010c0f2601fa3\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"C\"],\"role\":\"composite\"}",
+            "content_sha256": "d2f94e777855aba97bb8bec840065a6e8954e5a3b5594fa9562dce5b6cbb6889",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "CYCLE-ESTABLISHMENT-S",
+              "revision": "fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596",
+              "scope": "PRODUCT-P",
+              "owner": "verification-original-owner"
+            },
+            "kind": "previous_establishment",
+            "raw_utf8": "{\"node_revision\":\"S@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-S\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}",
+            "content_sha256": "b4c2a9b2b4bf99d5bde3c1180bd5f2acdac62e39121616db7300a1cee3800893",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "CYCLE-DESIGN-U",
+              "revision": "fixture-content-0baf946118c10ad862ac8ec42d70e4ab0e092d8febb599501f5290b2cda29751",
+              "scope": "PRODUCT-P",
+              "owner": "design-original-owner"
+            },
+            "kind": "membership",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"complete_for_declared_scope\",\"node\":\"U\",\"ref\":{\"identity\":\"CYCLE-DESIGN-U\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-0baf946118c10ad862ac8ec42d70e4ab0e092d8febb599501f5290b2cda29751\",\"scope\":\"PRODUCT-P\"},\"required_members\":[],\"role\":\"unit\"}",
+            "content_sha256": "e2acbb27690a4be884a9fd649c129ed59a2318741eddf836a07280719931d447",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "CYCLE-ESTABLISHMENT-U",
+              "revision": "fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5",
+              "scope": "PRODUCT-P",
+              "owner": "verification-original-owner"
+            },
+            "kind": "previous_establishment",
+            "raw_utf8": "{\"node_revision\":\"U@r1\",\"original_expected\":1,\"original_observed\":1,\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-U\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\",\"scope\":\"PRODUCT-P\"},\"result\":\"passed\"}",
+            "content_sha256": "95eb06fae7c79b06da03cdf1712e38d5fbcd02d60b46cbef4a431866bd6345e4",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "CYCLE-EDGE-C-S",
+              "revision": "fixture-content-6476f63cc0f7ff2b32e80eba0ae35a5d7e6a81a826e0f181ea31e6155c202c30",
+              "scope": "PRODUCT-P",
+              "owner": "relation-original-owner"
+            },
+            "kind": "relation",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"S\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-C-S\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-6476f63cc0f7ff2b32e80eba0ae35a5d7e6a81a826e0f181ea31e6155c202c30\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"C\"}",
+            "content_sha256": "953a6d84bb8ee09d552ff8a3eab1d403dc82052bec8e35607ee7af203b72d031",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "CYCLE-EDGE-C-U",
+              "revision": "fixture-content-d2d279273b38580a2b2445e14202edae49e4e8990aef17d6f5910d5808348d42",
+              "scope": "PRODUCT-P",
+              "owner": "relation-original-owner"
+            },
+            "kind": "relation",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"U\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-C-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-d2d279273b38580a2b2445e14202edae49e4e8990aef17d6f5910d5808348d42\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"C\"}",
+            "content_sha256": "8d76c56bd89c93cf4559ceba3df59db4e219460ea9df832fc9feceb84da6335d",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "CYCLE-EDGE-S-C",
+              "revision": "fixture-content-a8682bef892ec8402c74b16e9ee8b4cd45c302cd9c1393d2dd47f801bc72df43",
+              "scope": "PRODUCT-P",
+              "owner": "relation-original-owner"
+            },
+            "kind": "relation",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"from_node\":\"C\",\"meaning\":\"required_member\",\"ref\":{\"identity\":\"CYCLE-EDGE-S-C\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-a8682bef892ec8402c74b16e9ee8b4cd45c302cd9c1393d2dd47f801bc72df43\",\"scope\":\"PRODUCT-P\"},\"to_node\":\"S\"}",
+            "content_sha256": "550fe1146a4890477d0940d389f37c7df7cf4d15d696b42570372a61e14d24a7",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          },
+          {
+            "ref": {
+              "identity": "CYCLE-DESIGN-C-UNKNOWN",
+              "revision": "fixture-content-eda5a4a0f48162c5fbcc6590db72b2a622888c3a05966a18edc16aca35c8f97f",
+              "scope": "PRODUCT-P",
+              "owner": "design-original-owner"
+            },
+            "kind": "membership",
+            "raw_utf8": "{\"binding\":\"SYNTHETIC-CYCLE@r1\",\"coverage\":\"unknown\",\"node\":\"C\",\"ref\":{\"identity\":\"CYCLE-DESIGN-C-UNKNOWN\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-eda5a4a0f48162c5fbcc6590db72b2a622888c3a05966a18edc16aca35c8f97f\",\"scope\":\"PRODUCT-P\"},\"required_members\":[\"S\",\"U\"],\"role\":\"connection\"}",
+            "content_sha256": "45fb1e47f55185f1d2bcd81f47ce1ef222168daee40648edcf850bc75557565c",
+            "state": "current",
+            "qualification_basis_refs": [
+              {
+                "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-graph-oracle-author"
+              }
+            ],
+            "evidence_kind": "synthetic"
+          }
+        ],
+        "qualifier_roots": [
+          {
+            "identity": "SYNTHETIC-F02-CYCLE-BASIS",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "synthetic-independent-graph-oracle-author"
+          }
+        ],
+        "evidence_kind": "synthetic",
+        "state": "current"
+      },
+      "source_packet": {
+        "ref": {
+          "identity": "H004-F02-CYCLE-INDEPENDENT-CONTEXT",
+          "revision": "fixture-content-c9939f9ffd1381c74e8a37337c92a3982e8855221271ccda72fcb9084d9d26ec",
+          "scope": "PRODUCT-P",
+          "owner": "synthetic-independent-graph-oracle-author"
+        },
+        "raw_utf8": "{\"declared_members\":{\"C\":[\"S\",\"U\"],\"Q\":[],\"S\":[\"C\"],\"U\":[]},\"evidence_kind\":\"synthetic\",\"node_population\":[\"C\",\"Q\",\"S\",\"U\"],\"qualifier_roots\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"referents\":[{\"content_sha256\":\"793e9da589b1acfd4a9b5cf81e01cde5ac87f11ccb96a7653e296613a46bbc63\",\"evidence_kind\":\"synthetic\",\"kind\":\"membership\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-CYCLE@r1\\\",\\\"coverage\\\":\\\"complete_for_declared_scope\\\",\\\"node\\\":\\\"C\\\",\\\"ref\\\":{\\\"identity\\\":\\\"CYCLE-DESIGN-C\\\",\\\"owner\\\":\\\"design-original-owner\\\",\\\"revision\\\":\\\"fixture-content-05596329b82ed45b10048a9afe3f3573ba2a6b1ef49826e41bf8cf52058c49a9\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"required_members\\\":[\\\"S\\\",\\\"U\\\"],\\\"role\\\":\\\"connection\\\"}\",\"ref\":{\"identity\":\"CYCLE-DESIGN-C\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-05596329b82ed45b10048a9afe3f3573ba2a6b1ef49826e41bf8cf52058c49a9\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"4beceb066870357014d5052097f9e96de8ab0b18177eb61bec14e59e4e9caca5\",\"evidence_kind\":\"synthetic\",\"kind\":\"previous_establishment\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"node_revision\\\":\\\"C@r1\\\",\\\"original_expected\\\":1,\\\"original_observed\\\":1,\\\"ref\\\":{\\\"identity\\\":\\\"CYCLE-ESTABLISHMENT-C\\\",\\\"owner\\\":\\\"verification-original-owner\\\",\\\"revision\\\":\\\"fixture-content-64a81372f36778c94a4f8a96f577b60ea2beec7478e1766bb878b6a5d1e3cb26\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"result\\\":\\\"passed\\\"}\",\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-C\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-64a81372f36778c94a4f8a96f577b60ea2beec7478e1766bb878b6a5d1e3cb26\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"685acaa3ed8c2fb865d0d2fba3632179b5ff0c5c10877728cbc71d61822e2627\",\"evidence_kind\":\"synthetic\",\"kind\":\"membership\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-CYCLE@r1\\\",\\\"coverage\\\":\\\"complete_for_declared_scope\\\",\\\"node\\\":\\\"Q\\\",\\\"ref\\\":{\\\"identity\\\":\\\"CYCLE-DESIGN-Q\\\",\\\"owner\\\":\\\"design-original-owner\\\",\\\"revision\\\":\\\"fixture-content-b6e630095a8418317e22f67d4e3875b5e7752d6d052a1010b26ffb28ae4ad25d\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"required_members\\\":[],\\\"role\\\":\\\"unrelated_unit\\\"}\",\"ref\":{\"identity\":\"CYCLE-DESIGN-Q\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-b6e630095a8418317e22f67d4e3875b5e7752d6d052a1010b26ffb28ae4ad25d\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"c3aed046c5682f4d959bf5be3b8327e66c2ac8b2588eb4821adaf2a9a7d6e4ab\",\"evidence_kind\":\"synthetic\",\"kind\":\"previous_establishment\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"node_revision\\\":\\\"Q@r1\\\",\\\"original_expected\\\":1,\\\"original_observed\\\":1,\\\"ref\\\":{\\\"identity\\\":\\\"CYCLE-ESTABLISHMENT-Q\\\",\\\"owner\\\":\\\"verification-original-owner\\\",\\\"revision\\\":\\\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"result\\\":\\\"passed\\\"}\",\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-Q\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-6f979a13b714b0a094bf9786443e61ec047e5e8bfac931b48e5845bb1b0e42d4\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"d2f94e777855aba97bb8bec840065a6e8954e5a3b5594fa9562dce5b6cbb6889\",\"evidence_kind\":\"synthetic\",\"kind\":\"membership\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-CYCLE@r1\\\",\\\"coverage\\\":\\\"complete_for_declared_scope\\\",\\\"node\\\":\\\"S\\\",\\\"ref\\\":{\\\"identity\\\":\\\"CYCLE-DESIGN-S\\\",\\\"owner\\\":\\\"design-original-owner\\\",\\\"revision\\\":\\\"fixture-content-559eeba4e61c71a7efbe6a4bc7ea6b786056ca23547457e6abc010c0f2601fa3\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"required_members\\\":[\\\"C\\\"],\\\"role\\\":\\\"composite\\\"}\",\"ref\":{\"identity\":\"CYCLE-DESIGN-S\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-559eeba4e61c71a7efbe6a4bc7ea6b786056ca23547457e6abc010c0f2601fa3\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"b4c2a9b2b4bf99d5bde3c1180bd5f2acdac62e39121616db7300a1cee3800893\",\"evidence_kind\":\"synthetic\",\"kind\":\"previous_establishment\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"node_revision\\\":\\\"S@r1\\\",\\\"original_expected\\\":1,\\\"original_observed\\\":1,\\\"ref\\\":{\\\"identity\\\":\\\"CYCLE-ESTABLISHMENT-S\\\",\\\"owner\\\":\\\"verification-original-owner\\\",\\\"revision\\\":\\\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"result\\\":\\\"passed\\\"}\",\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-S\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-f397cf57a91d235f2bd07e8070f83fcf0e230377153ec4b5a603472b24fac596\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"e2acbb27690a4be884a9fd649c129ed59a2318741eddf836a07280719931d447\",\"evidence_kind\":\"synthetic\",\"kind\":\"membership\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-CYCLE@r1\\\",\\\"coverage\\\":\\\"complete_for_declared_scope\\\",\\\"node\\\":\\\"U\\\",\\\"ref\\\":{\\\"identity\\\":\\\"CYCLE-DESIGN-U\\\",\\\"owner\\\":\\\"design-original-owner\\\",\\\"revision\\\":\\\"fixture-content-0baf946118c10ad862ac8ec42d70e4ab0e092d8febb599501f5290b2cda29751\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"required_members\\\":[],\\\"role\\\":\\\"unit\\\"}\",\"ref\":{\"identity\":\"CYCLE-DESIGN-U\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-0baf946118c10ad862ac8ec42d70e4ab0e092d8febb599501f5290b2cda29751\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"95eb06fae7c79b06da03cdf1712e38d5fbcd02d60b46cbef4a431866bd6345e4\",\"evidence_kind\":\"synthetic\",\"kind\":\"previous_establishment\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"node_revision\\\":\\\"U@r1\\\",\\\"original_expected\\\":1,\\\"original_observed\\\":1,\\\"ref\\\":{\\\"identity\\\":\\\"CYCLE-ESTABLISHMENT-U\\\",\\\"owner\\\":\\\"verification-original-owner\\\",\\\"revision\\\":\\\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"result\\\":\\\"passed\\\"}\",\"ref\":{\"identity\":\"CYCLE-ESTABLISHMENT-U\",\"owner\":\"verification-original-owner\",\"revision\":\"fixture-content-fd107571f35a902f0543c16474e77643d54d6ae8946de8bc14ee9a64b22b7ce5\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"953a6d84bb8ee09d552ff8a3eab1d403dc82052bec8e35607ee7af203b72d031\",\"evidence_kind\":\"synthetic\",\"kind\":\"relation\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-CYCLE@r1\\\",\\\"from_node\\\":\\\"S\\\",\\\"meaning\\\":\\\"required_member\\\",\\\"ref\\\":{\\\"identity\\\":\\\"CYCLE-EDGE-C-S\\\",\\\"owner\\\":\\\"relation-original-owner\\\",\\\"revision\\\":\\\"fixture-content-6476f63cc0f7ff2b32e80eba0ae35a5d7e6a81a826e0f181ea31e6155c202c30\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"to_node\\\":\\\"C\\\"}\",\"ref\":{\"identity\":\"CYCLE-EDGE-C-S\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-6476f63cc0f7ff2b32e80eba0ae35a5d7e6a81a826e0f181ea31e6155c202c30\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"8d76c56bd89c93cf4559ceba3df59db4e219460ea9df832fc9feceb84da6335d\",\"evidence_kind\":\"synthetic\",\"kind\":\"relation\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-CYCLE@r1\\\",\\\"from_node\\\":\\\"U\\\",\\\"meaning\\\":\\\"required_member\\\",\\\"ref\\\":{\\\"identity\\\":\\\"CYCLE-EDGE-C-U\\\",\\\"owner\\\":\\\"relation-original-owner\\\",\\\"revision\\\":\\\"fixture-content-d2d279273b38580a2b2445e14202edae49e4e8990aef17d6f5910d5808348d42\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"to_node\\\":\\\"C\\\"}\",\"ref\":{\"identity\":\"CYCLE-EDGE-C-U\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-d2d279273b38580a2b2445e14202edae49e4e8990aef17d6f5910d5808348d42\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"550fe1146a4890477d0940d389f37c7df7cf4d15d696b42570372a61e14d24a7\",\"evidence_kind\":\"synthetic\",\"kind\":\"relation\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-CYCLE@r1\\\",\\\"from_node\\\":\\\"C\\\",\\\"meaning\\\":\\\"required_member\\\",\\\"ref\\\":{\\\"identity\\\":\\\"CYCLE-EDGE-S-C\\\",\\\"owner\\\":\\\"relation-original-owner\\\",\\\"revision\\\":\\\"fixture-content-a8682bef892ec8402c74b16e9ee8b4cd45c302cd9c1393d2dd47f801bc72df43\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"to_node\\\":\\\"S\\\"}\",\"ref\":{\"identity\":\"CYCLE-EDGE-S-C\",\"owner\":\"relation-original-owner\",\"revision\":\"fixture-content-a8682bef892ec8402c74b16e9ee8b4cd45c302cd9c1393d2dd47f801bc72df43\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"},{\"content_sha256\":\"45fb1e47f55185f1d2bcd81f47ce1ef222168daee40648edcf850bc75557565c\",\"evidence_kind\":\"synthetic\",\"kind\":\"membership\",\"qualification_basis_refs\":[{\"identity\":\"SYNTHETIC-F02-CYCLE-BASIS\",\"owner\":\"synthetic-independent-graph-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"raw_utf8\":\"{\\\"binding\\\":\\\"SYNTHETIC-CYCLE@r1\\\",\\\"coverage\\\":\\\"unknown\\\",\\\"node\\\":\\\"C\\\",\\\"ref\\\":{\\\"identity\\\":\\\"CYCLE-DESIGN-C-UNKNOWN\\\",\\\"owner\\\":\\\"design-original-owner\\\",\\\"revision\\\":\\\"fixture-content-eda5a4a0f48162c5fbcc6590db72b2a622888c3a05966a18edc16aca35c8f97f\\\",\\\"scope\\\":\\\"PRODUCT-P\\\"},\\\"required_members\\\":[\\\"S\\\",\\\"U\\\"],\\\"role\\\":\\\"connection\\\"}\",\"ref\":{\"identity\":\"CYCLE-DESIGN-C-UNKNOWN\",\"owner\":\"design-original-owner\",\"revision\":\"fixture-content-eda5a4a0f48162c5fbcc6590db72b2a622888c3a05966a18edc16aca35c8f97f\",\"scope\":\"PRODUCT-P\"},\"state\":\"current\"}],\"required_upper_obligations\":{\"C\":[\"obligation-C\"],\"S\":[\"obligation-S\"]},\"state\":\"current\",\"target\":{\"graph_revision\":\"SYNTHETIC-CYCLE@r1\",\"scope\":\"PRODUCT-P\"}}",
+        "sha256": "c9939f9ffd1381c74e8a37337c92a3982e8855221271ccda72fcb9084d9d26ec"
       }
     }
   ]
