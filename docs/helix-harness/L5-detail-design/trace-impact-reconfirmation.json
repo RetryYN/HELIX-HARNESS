@@ -2436,7 +2436,39 @@
         "source_locations": "input source_binding=None/前後signature=Noneはsource_missingを当該fieldへ。input source scope/owner相反はsource_conflict、opaque binding相反はsource_staleを/input/source_binding/{field}へ。Context変異の所在は既存context_failure_contractへ結ぶ。",
         "owner_locations": "入力owner nullは/input/owner_bindings/{role}、独立owner null/入力との相反は/context/role_owners/{role}。原role owner返却名を使用し実assignmentを発行しない。",
         "priority": "conflict→stale→unknown→missing(incomplete)→content_supported。source condition/選択owner conditionと総合finding outcomeを別に保持。",
-        "limits": "合成内容比較だけ。実owner/custody/host/codec/L6L7/全oracle freeze/実RedGreen/実運転/全92親430対完了を生成しない。"
+        "limits": "合成内容比較だけ。実owner/custody/host/codec/L6L7/全oracle freeze/実RedGreen/実運転/全92親430対完了を生成しない。",
+        "return_owner_assignment": [
+          {
+            "codes": "source_*",
+            "location": "/input/source_binding, /input/before_signature, /input/proposed_signature, /input/target, /context/target, /context/source_owner",
+            "return_owner": "change-source-owner"
+          },
+          {
+            "codes": "owner_*",
+            "location": "/context/target",
+            "return_owner": "change-qualification-owner"
+          },
+          {
+            "codes": "source_* | owner_*",
+            "location": "/context/state, /context/basis_refs（子field含む）, /context/evidence_kind",
+            "return_owner": "change-qualification-owner"
+          },
+          {
+            "codes": "owner_*",
+            "location": "/input/owner_bindings/{role}, /context/role_owners/{role}",
+            "return_owner": "meaning→upstream-meaning-owner、implementation→implementation-owner、environment→environment-owner（既存role_return_owners）"
+          },
+          {
+            "codes": "comparison_unresolved",
+            "location": "/input/behavior_observation",
+            "return_owner": "change-source-owner"
+          },
+          {
+            "codes": "candidate_conflict | projection_not_authority",
+            "location": "/candidate/{field}",
+            "return_owner": "submitted-candidate-owner（提出候補の差分返却という論理役割。実owner/assignment/authorityは生成しない。）"
+          }
+        ]
       }
     },
     {
@@ -10009,7 +10041,7 @@
         "l4_contract_sha256": "a8deeedc9af5adf35da9a8026b49a21c00c7404234a69e0daf8c3437fc82f57f",
         "core_symbol": "classify_change_and_operation_boundary",
         "core_signature": "classify_change_and_operation_boundary(input: ChangeInput, context: ChangeContext, candidate: ChangeCandidate | None = None) -> ChangeResult",
-        "core_contract_sha256": "d4ed587bb24b32ba27175998d719d4aa1968970e97458161976eef9e2f5335f3",
+        "core_contract_sha256": "84f7891510ffd16c9f8b1310145d92a603bf1832d75496d73ec5b86bd9fa57fe",
         "argument_types": {
           "input": "ChangeInput",
           "context": "ChangeContext",
