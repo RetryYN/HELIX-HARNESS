@@ -123,7 +123,7 @@
   "implementation_readiness": "not_ready",
   "remaining": [
     "004 B01/F01/F02/F03/F05/N01の6契約を同じL5/L8文書へ追加する。",
-    "F04全組合せ/不正構造/Context owner資格とraw referent/正式codecの実binding・対L6L7とtest/oracle凍結は未完。",
+    "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
   ],
   "document_id": "HARNESS-L5-004",
@@ -221,7 +221,9 @@
       "selection_scope": "Text",
       "referents": "tuple[QualifiedReferent]",
       "snapshot_revision": "Text",
-      "evidence_kind": "synthetic | actual_owner_input"
+      "evidence_kind": "synthetic | actual_owner_input",
+      "qualification_records": "tuple[QualificationRecord]",
+      "qualifier_roots": "tuple[Ref]（独立供給、input/candidateから増やさない）"
     },
     "Finding": {
       "code": "closed codes below",
@@ -279,6 +281,15 @@
       "actual_requirement_adopted": "bool（提出候補の主張、trueを照合成立へしない）",
       "actual_implementation_authorized": "bool（提出候補の主張、trueを照合成立へしない）",
       "actual_retirement": "bool（提出候補の主張、trueを照合成立へしない）"
+    },
+    "QualificationRecord": {
+      "ref": "Ref",
+      "target_ref": "Ref",
+      "target_content_sha256": "Digest",
+      "kind": "QualifiedReferent.kind",
+      "state": "current | missing | unknown | conflict | stale",
+      "qualifier_ref": "Ref（独立Contextのqualifier_rootsに全4成分一致）",
+      "evidence_kind": "synthetic | actual_owner_input"
     }
   },
   "functions": [
@@ -300,7 +311,8 @@
       "preconditions": [
         "input/contextは別immutable snapshot。Contextはconsumerが供給する対象revision/owner資格/原referent bytesを持つ。input自身やfixture refs存在からContextを作らない。",
         "referent同keyの完全重複/異内容は個別findingで保持し、first/last winsしない。各Refの現在版解決と資格の実供給元bindingは別の準備義務。",
-        "candidateは原source人口/原input/独立Contextとは別の提出結果。candidateのfield存在/主張で原内容を埋めない。"
+        "candidateは原source人口/原input/独立Contextとは別の提出結果。candidateのfield存在/主張で原内容を埋めない。",
+        "qualification_records/qualifier_rootsはinputや候補から生成しない。合成fixtureのrootは仮説の固定参照であり実owner根拠ではない。実owner資格/consumer snapshot検証の供給bindingは別に閉じる。"
       ],
       "algorithm": [
         {
@@ -309,7 +321,7 @@
         },
         {
           "id": "P2",
-          "rule": "source人口の原atom raw UTF-8と宣言digestを比較しID母集団を確定。Context.target_source_ref/selection_scopeと全4 Ref成分を照合。原sourceの資格/版/内容が欠ければ部分結果にunknown/missing/staleを保ち、提出側で人口を削って完全分割へしない。"
+          "rule": "source人口の原atom raw UTF-8と宣言digestを比較しID母集団を確定。Context.target_source_ref/selection_scopeと全4 Ref成分を照合。原sourceの資格/版/内容が欠ければ部分結果にunknown/missing/staleを保ち、提出側で人口を削って完全分割へしない。 source人口の同ID重複はsource_population_conflict。Ref同keyに内容が複数あるContextもreference_conflictとし任意の一件を選ばない。"
         },
         {
           "id": "P3",
@@ -321,7 +333,7 @@
         },
         {
           "id": "P5",
-          "rule": "change/retire bucketはdecision_refを独立Contextで解決する。決定kindがhuman_meaning_change/retireでoutcome/disposition一致、source_ref/atom/digest、target_ref/digest、impact_scope、理由、対象revisionの資格根拠を照合。AI名や文字列human/qualification自称で人間判断を作らない。未提示はmissing、不明資格unknown、別revisionはstale、矛盾はconflict。target原内容/digestも別照合。retire参照があっても実retirementはfalse。"
+          "rule": "change/retire bucketはdecision_refを独立Contextで解決する。決定kindがhuman_meaning_change/retireでoutcome/disposition一致、source_ref/atom/digest、target_ref/digest、impact_scope、理由、対象revisionの資格根拠を照合。AI名や文字列human/qualification自称で人間判断を作らない。未提示はmissing、不明資格unknown、別revisionはstale、矛盾はconflict。target原内容/digestも別照合。retire参照があっても実retirementはfalse。 各qualification_basis_refsはContext内QualificationRecordへ一意に解決し、target_ref/target_content_sha256/kind/evidence_kind/stateとqualifier_refの独立roots membershipを照合する。根拠refだけの存在や空集合をcurrent資格にしない。synthetic Contextとactual_owner_inputを混在させない。"
         },
         {
           "id": "P6",
