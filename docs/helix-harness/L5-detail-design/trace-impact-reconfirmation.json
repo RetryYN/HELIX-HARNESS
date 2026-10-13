@@ -951,6 +951,28 @@
         "preserve": "bool/string/numberの型境界と内容比較。",
         "change": "旧Number.isFinite/JSON.stringifyを移植せず原number tokenから任意精度decimalと比較提案を導出。",
         "reason": "精度/範囲をhost floatで失わず原受信内容と不正位置を保全し、実codec/資格/操作を生成しないため。"
+      },
+      "emit_whole_rederivation": {
+        "read_line_locators": [
+          24,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "preserve": "array順保持・祖先cycle検出・同じnodeの別枝共有を循環にしない。",
+        "change": "旧UTF16 sort/Number/JSON.stringifyを移植せずscalar key順/exact ordinary decimal/全typed finding/容量の先行計算へ再導出。",
+        "reason": "raw入力と数学値を保全し、AST不備とresource不足を混同せず部分bytes/hashから成功を作らないため。"
       }
     },
     {
@@ -1173,7 +1195,8 @@
     "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。 Context25例で資料資格/未観測union/局所9cell/盲検資格の不足を分離。 52固定対照を全UnseenRelationResultへ、原複合6/Context複合8/相反と資格不足1/consumer順1/複数candidate1の17対照を追加。全finding/basis/role/hash/原欠落と派生join不明を分離。全構造/実probe/全binding/全freezeは未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。",
     "wire受信WD1〜WD7と60全WireDecodeResultを具体化。原bytes/全finding/無効key位置/構文優先を保持。正式host/materializer/consumer/codec/資源/全入力coverage/実RedGreen/全92親430対の設計閉包は未完。",
-    "exact number EN1〜EN6でnormalization38/比較31の全提案を固定。巨大指数を展開/float化せず数学値・整数predicate・全拒否pointerを保持。numeric/adapter profileと原requestを同時更新。正式host/consumer/resources/codec/全coverage/全freeze/全92親430対の閉包は未完。"
+    "exact number EN1〜EN6でnormalization38/比較31の全提案を固定。巨大指数を展開/float化せず数学値・整数predicate・全拒否pointerを保持。numeric/adapter profileと原requestを同時更新。正式host/consumer/resources/codec/全coverage/全freeze/全92親430対の閉包は未完。",
+    "canonical emit CE1〜CE8と56全結果でAST不正/予算不足/容量境界/Unicode/巨大指数/循環と共有aliasを分離。原15例/190source logical bindingsを保持。formal host/consumer/codec/resources/全coverage/全freeze/全92親430対閉包は未完。"
   ],
   "document_id": "HARNESS-L5-004",
   "layer": "L5",
@@ -10566,7 +10589,46 @@
     ],
     "return_owner": "wire-codec-owner",
     "digest_boundary": "完全canonical bytesだけをbare SHA-256へ。raw transport/owner bytesのdigestとroleを分け、bytes一致やlogical digest一致を原owner資格/実観測/承認にしない。旧prefixed/truncated digest形式を移植しない。",
-    "unclosed": "正式wire registry/consumer/host数値・schema adapter/資源policy/全host不正・副次finding/codec版/L6L7凍結は未完。emitted例は設計oracleで実I/O/保存/運転の成立ではない。"
+    "unclosed": "正式wire registry/consumer/host数値・schema adapter/資源policy/全host不正・副次finding/codec版/L6L7凍結は未完。emitted例は設計oracleで実I/O/保存/運転の成立ではない。",
+    "whole_result_contract": {
+      "status": "draft_design_whole_emission_result_not_formal_host_binding",
+      "rules": [
+        {
+          "id": "CE1",
+          "rule": "WireNodeはclosed record。nullはkindのみ、bool/stringはkind,value、numberはkind,token、arrayはkind,items、objectはkind,membersだけ。非recordはそのnode位置wire_ast_invalid。kind欠落/非string/未知kindは/kind位置のwire_ast_invalidだけで当該nodeの未知shapeを補完しない。既知kindの不足/未知fieldは各field位置wire_ast_invalidへ。他の既知fieldが読めればその検査を続ける。bool valueはliteral bool、string valueはText、number tokenはEN1全文文法、items/membersはreadonly sequence、各memberはkeyとchildのexact2項pair。field不正/長さ不正は当該field/pair位置へ。"
+        },
+        {
+          "id": "CE2",
+          "rule": "string/keyは全Unicode scalar。lone surrogate value/keyはunicode_scalar_invalid、非Text key/valueはwire_ast_invalid。numberの不正token/非Text tokenはnumber_token_invalid。member pairがexact2項ならkey不正でもchildを検査する。object有効scalar keyは原列で全一致比較し、2回目以降の各出現のkey位置へduplicate_keyを返す。異常keyを有効名へ置換せずそのkeyを重複比較へ含めない。"
+        },
+        {
+          "id": "CE3",
+          "rule": "finding pointerはAST recordの物理位置。root /ast、child fieldは/ast/value又は/token等、array childは/items/index、object keyは/members/index/0、childは/members/index/1。field名はJSON Pointer escape ~→~0、/→~1。無効scalar field名を含む未知fieldは包含node位置へwire_ast_invalid。instanceの論理keyをpointerへ挿入しない。"
+        },
+        {
+          "id": "CE4",
+          "rule": "child WireNodeの参照が現在の祖先node identityと同じならそのchild位置へcyclic_ast、当該edgeの再帰だけ停止。別枝で同じnodeを共有しても祖先でなければ循環にしない。未読他枝の診断を止めず入力node/sequenceを変更しない。JSON treeは循環を表せないため、node identityの独立fixtureを別に使う。実host classの登録・全host値対応は別。"
+        },
+        {
+          "id": "CE5",
+          "rule": "budget診断はASTと独立に蓄積。Noneはemission_budget_unresolved、非integer/bool/負値はemission_budget_invalid、pointerはいずれも/max_output_bytes。ASTに不正がある又はbudget不正ならstatus rejected。AST不正でもmissing budgetの診断は保持する。ASTが全対応しbudgetが未指定だけならunresolved。AST不正/未指定/不正budgetで必要長や超過を捏造しない。"
+        },
+        {
+          "id": "CE6",
+          "rule": "全AST対応＋非負integer budgetの場合だけ必要canonical UTF8 byte長を任意精度で先に求める。numberはnormal formの係数長/指数/符号、stringは2 quoteと各scalarのUTF8又はescape長、array/objectは全子長とcomma/colon/括弧/引用key長を加える。巨大指数のzero列と出力bufferをbudget確認前に展開しない。必要長>budgetはemission_budget_exceeded/max_output_bytesでunresolved、境界同値は出力可。数値/入力をinvalidや0へしない。"
+        },
+        {
+          "id": "CE7",
+          "rule": "全対応かつ予算内だけ既number/string/object/array formatで完全bytesを出し、その全bytesのbare SHA-256を返してemitted。その他statusのcanonical_utf8_hex/logical_sha256はnull、部分出力/途中hashを返さない。formatはscalar codepoint key順、array原順、zero形式0、普通十進、compact UTF8、NFC/trimなし。入力ASTの原member順/tokenは変更しない。"
+        },
+        {
+          "id": "CE8",
+          "rule": "findingはcode→pointer→return_ownerのscalar codepoint順、完全同値3fieldだけunique。return_ownerは裸wire-codec-owner。全7result fieldを返しast_retained true/schema_handoff false/actual_effects none。emittedを正式codec/資源lease/owner資格/実保存/運転へ昇格しない。"
+        }
+      ],
+      "fixture_encoding": "L8のast_fixtureは試験専用。json_tree/raw_json_utf8はescaped lone surrogateを含む不正ASTもそのまま診断する文書表現であり、製品wire decoderの合格資料ではない。node_graphのnodes/root_node_idとfixture_node_refは固定identityを再生するためだけの文書表現で、WireNodeのfieldへ投入しない。正式host/wire型へ昇格しない。",
+      "scope_limit": "全finding/結果はこの論理protocolへ固定。実hostの全値/実資源/consumer/codec版/全入力coverage/凍結/実RedGreenは未成立。"
+    }
   },
   "schema_adapter_contract": {
     "status": "draft_design_exact_data_model_adapter_not_runtime_binding",
@@ -10712,7 +10774,7 @@
     "profiles_sha256": {
       "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
       "exact_number_contract": "51aae5c03d2cf6e0f198158a1fe8cf2b0871f344c10942dd279703fac939fe32",
-      "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
+      "canonical_emit_contract": "563f9701a5e4155da373d356169e3c0ef5332fa7c28dd42826d7e00b6619bce2",
       "schema_adapter_contract": "4e62e4da7b3b745dc0fb4e5f12ab16d3d30e488dce420c91290862ba6d84db7b",
       "logical_structure_schema": "d4be59b9aa8611870fbe666dc78087da9960f710f5bc9d65acb108026897562a"
     },
