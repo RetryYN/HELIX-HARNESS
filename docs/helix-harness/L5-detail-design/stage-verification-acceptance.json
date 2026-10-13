@@ -227,6 +227,28 @@
         "preserve": "原revisionの要求/対設計/受入/投影の責務分離、正規pair、入力成立と右側実検証を別証拠にする。",
         "change": "旧層番号/runtime/CIをcopyせず現行022-F01のstage別必要集合/input owner/authority/semantic原内容と局所不足へ再導出。",
         "reason": "下位対応・件数・旧成功で上位段階入力や実Acceptedを補完せず、外部成果/利用者手段に不要な④/OS依存を作らない。新承認は追加しない。"
+      },
+      "integrated_proof_rederivation": {
+        "source_line_span": [
+          48,
+          61
+        ],
+        "read_line_locators": [
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          59,
+          61
+        ],
+        "preserve": "対設計と実物の照合、Red/Green/Refactor/再検証の別証拠、unitと境界結合/system/受入を分ける正規V-pair。",
+        "change": "旧runtime/CI/層番号をcopyせず、022-F02の5原proof+適用Refactor3追加proof、同scope/前後版/原evidenceと境界10軸へ再導出。",
+        "reason": "atomic CI又はbefore成功だけでIntegrated/実受入を生成せず、Meaning変更を意味保存Refactorへ換算しない。新承認は加えない。"
       }
     },
     {
@@ -356,11 +378,12 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "F02/F03/N01/B01の詳細契約と全6契約の設計閉包。",
+    "F03/N01/B01の詳細契約と全6契約の設計閉包。",
     "F04全構造/複合/全finding/Context資格、正式schema/codec/実owner/原記録供給・利用者本人性binding。",
     "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。",
     "F04独立Contextとの不一致/actual資格欠落4例、candidate path JSON Pointer写像を追加。全副次finding/実owner bindingは未完。",
-    "F01の143原例/4Context例と必要集合/pairを具体化。全構造/複合/実資格/codecと凍結は未完。"
+    "F01の143原例/4Context例と必要集合/pairを具体化。全構造/複合/実資格/codecと凍結は未完。",
+    "F02の113原例/2Context/5Context否定例と境界/意味保存Refactor後再検証を具体化。全構造/複合/実資格/正式codec/凍結は未完。"
   ],
   "document_id": "HARNESS-L5-022-STAGE-ACCEPTANCE",
   "layer": "L5",
@@ -547,6 +570,100 @@
       "outcome": "content_compared | unresolved | invalid",
       "value": "StageInputsValue | null（構造で比較不能時のみnull）",
       "findings": "tuple[StageInputFinding]",
+      "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
+      "candidate_conflicting_paths": "tuple[JsonPointer]"
+    },
+    "IntegratedProofId": "Text（selected scopeの必要proof IDを独立解決し、未登録IDを捨てない）",
+    "IntegratedProofMaterial": {
+      "artifact_identity": "RawText",
+      "artifact_revision": "RawText",
+      "evidence": "RawText | null",
+      "execution": "RawText",
+      "observations": "LogicalJson",
+      "oracle_revision": "RawText",
+      "owner": "RawText",
+      "pair": "RawText | null",
+      "requirement_revision": "RawText",
+      "scope": "RawText",
+      "source_id": "RawText",
+      "before_artifact_revision": "RawText | null（optional field。performed時のmeaning_preservationで原beforeへのbindingを検査）"
+    },
+    "IntegratedProofEvidence": {
+      "artifact_identity": "RawText",
+      "artifact_revision": "RawText",
+      "identity": "RawText",
+      "observations": "LogicalJson",
+      "oracle_revision": "RawText",
+      "owner": "RawText",
+      "pair": "RawText | null",
+      "requirement_revision": "RawText",
+      "scope": "RawText",
+      "source_id": "RawText"
+    },
+    "RefactorDeclaration": {
+      "after_artifact_revision": "RawText",
+      "before_artifact_revision": "RawText",
+      "performed": "bool",
+      "semantic_change": "bool",
+      "stage": "RawText"
+    },
+    "IntegratedProofInput": {
+      "context": "Target",
+      "independent_oracles": "map[IntegratedProofId,LogicalJson]（原宣言。実Context/owner資格ではない）",
+      "materials": "map[IntegratedProofId,IntegratedProofMaterial | null]",
+      "evidence_materials": "map[Text,IntegratedProofEvidence]",
+      "refactor": "RefactorDeclaration",
+      "atomic_ci": "LogicalJson（下位局所proofを保全、結合proofではない）",
+      "producer": "RawText",
+      "executor": "RawText",
+      "unrelated_scope": "LogicalJson"
+    },
+    "IntegratedProofContext": {
+      "target": "Target",
+      "expected_oracles": "map[IntegratedProofId,LogicalJson]",
+      "expected_material_owners": "map[IntegratedProofId,Text]",
+      "expected_source_ids": "map[IntegratedProofId,Text]",
+      "expected_oracle_revisions": "map[IntegratedProofId,Text]",
+      "required_without_refactor": "tuple[IntegratedProofId]",
+      "additional_after_refactor": "tuple[IntegratedProofId]",
+      "pairs": "map[IntegratedProofId,Text]",
+      "boundary_dimensions": "map[Text,LogicalJson]",
+      "refactor_required": "bool（別原資料に由来する選択条件。未知/未供給は実binding未成立）",
+      "before_artifact_revision": "RawText",
+      "stage": "RawText",
+      "evidence_kind": "synthetic | actual_owner_input",
+      "snapshot_revision": "Text",
+      "original_owner_qualification": "LogicalJson | null（nullは実資格未確認）"
+    },
+    "IntegratedProofValue": {
+      "proof_results": "LogicalJson",
+      "proof_findings": "LogicalJson",
+      "unresolved_proofs": "LogicalJson",
+      "owner_return_candidates": "LogicalJson",
+      "refactor_findings": "LogicalJson",
+      "integrated_candidate": "LogicalJson",
+      "provisional_candidate": "LogicalJson",
+      "refactor_reverification_required": "bool",
+      "atomic_CI_is_integration_proof": "literal false",
+      "external_and_internal_same_contract": "literal true",
+      "unrelated_Q": "LogicalJson",
+      "actual_stage_promoted": "literal false",
+      "actual_CI_executed": "literal false",
+      "actual_refactor_executed": "literal false",
+      "actual_accepted": "literal false"
+    },
+    "IntegratedProofCandidate": "IntegratedProofValueの閉じた受領field集合。状態/true/元enum不一致を保全して比較し、unknown fieldをstripしない。",
+    "IntegratedProofFinding": {
+      "code": "Text",
+      "pointer": "JsonPointer",
+      "proof_id": "IntegratedProofId | null",
+      "return_owner": "Text",
+      "source_case_code": "Text | null"
+    },
+    "IntegratedProofResult": {
+      "outcome": "content_compared | unresolved | invalid",
+      "value": "IntegratedProofValue | null（構造で比較不能時のみnull）",
+      "findings": "tuple[IntegratedProofFinding]",
       "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
       "candidate_conflicting_paths": "tuple[JsonPointer]"
     }
@@ -755,6 +872,120 @@
         "projection_not_authority"
       ],
       "scope_limit": "F01部分内部契約。全構造/複合/全finding/実owner/正式schema-codecと対L6L7凍結は未完。"
+    },
+    {
+      "id": "HARNESS-L5-022-F02",
+      "requirement_ref": "HARNESS-L3-022-F02",
+      "l4_ref": "HARNESS-L4-022-F02",
+      "l9_ref": "HARNESS-L9-022-F02",
+      "l8_ref": "HARNESS-L8-022-F02",
+      "symbol": "compare_integrated_boundary_and_reverification_proofs",
+      "signature": "compare_integrated_boundary_and_reverification_proofs(input: IntegratedProofInput, context: IntegratedProofContext, candidate: IntegratedProofCandidate | None = None) -> IntegratedProofResult",
+      "approved_requirement": {
+        "id": "HARNESS-L3-022-F02",
+        "parent": "HARNESS-L2-022",
+        "title": "Integratedの境界証明",
+        "obligation": "ProvisionalからIntegratedへは、L8でL5、L9でL4と実物を照合するScoped Reverse、境界照合/意味保存Refactor/結合証明を同対象へ結ぶ。Refactor後は同じ段階で再検証する。下位stage/原子CIだけでIntegratedを生成せず、HARNESSは実CI運転を所有しない。",
+        "oracle_ref": "HARNESS-L10-022-F02"
+      },
+      "selected_proof_contract": {
+        "required_without_refactor": [
+          "provisional_basis",
+          "L8_reverse",
+          "L9_reverse",
+          "boundary_result",
+          "integration_result"
+        ],
+        "additional_after_refactor": [
+          "meaning_preservation",
+          "post_refactor_L8",
+          "post_refactor_L9"
+        ],
+        "pairs": {
+          "L8_reverse": "L8:L5",
+          "L9_reverse": "L9:L4",
+          "post_refactor_L8": "L8:L5",
+          "post_refactor_L9": "L9:L4"
+        },
+        "boundary_dimensions": {
+          "interface": "same_command_identity",
+          "dependency_direction": "adapter_to_core",
+          "state_owner": "core",
+          "data_owner": "core",
+          "transaction": "commit_once",
+          "failure_propagation": "cancel_does_not_commit",
+          "retry": "same_identity",
+          "timeout": "pending_not_committed",
+          "idempotency": "one_result",
+          "coupling_and_responsibility": "adapter_translates_core_decides"
+        },
+        "l4_ref": "HARNESS-L4-022-F02",
+        "source_revision": "ab447296f3504ae9298a1738f1c2a747a2e9f984",
+        "contract_object_sha256": "8fb11fe759c57521b979fc7143eb63b6573210d813ca9ed2cc804f318edf6dcb",
+        "hash_scope": "L4 /contracts/1 object wholeのUnicode key順/compact/nonASCII無escape/strict UTF8 canonical SHA-256。文書raw hashはsource_pinsで別保持。"
+      },
+      "preconditions": [
+        "input/Context/candidateは別immutable。runtimeでinput.independent_oracles/refactor.performed/実結果から期待Contextや必要proof集合を生成しない。",
+        "固定Contextの2modeは既L9正常/意味保存Refactor再検証例から設計時に固定した合成仮説。同sourceの別packet/hashを実独立lineage/owner資格/Refactor実行根拠へしない。実適用条件/target/owner/前後原資料の供給は正式consumerへ残す。",
+        "必要proof集合はselected_proof_contractのscopeへ束縛。未確認refactor宣言falseで追加3義務を落とさず、未知条件はContext不足へ返す。"
+      ],
+      "algorithm": [
+        {
+          "id": "I1",
+          "rule": "閉じたroot/record型とnull/unknown fieldを走査し、比較不能と資料未提示/未実行を区別。observationsはexact logical値として保全しboolをnumberへ同値化しない。JSON/UTF8/重複keyはcodec境界へ別保持。"
+        },
+        {
+          "id": "I2",
+          "rule": "input.context/independent_oracles/refactor.performedはContextの別target/固定oracle/適用条件へ照合。Contextの必要集合/pairs/boundary_dimensionsはselected_proof_contractへ比較し、集合削減/別内容/target不一致、actual_owner_inputで資格欠落ならoutcome unresolved/context_unresolvedを保持。原input/Qを保全し合成自己一致を実root資格にしない。"
+        },
+        {
+          "id": "I3",
+          "rule": "refactor_required falseでは5原proof、trueでは追加3proofを含む8を個別に比較。material欠落/未実行/evidence null又は一意解決不能はmissing、artifact_revisionが変更後targetと異なる場合stale。artifact_identity/requirement_revision/scope/source_id/owner/oracle_revision/pairは独立原契約へ照合してconflictを保持。evidenceの対象/owner/pair/oracle/原観測を別に比較し、名だけのpass/URL/同じstageで不足を埋めない。未要求proofの原資料を消さず成功件数へ加えない。"
+        },
+        {
+          "id": "I4",
+          "rule": "L8_reverse/post_refactor_L8はL8:L5、L9_reverse/post_refactor_L9はL9:L4の実物と対設計のScoped Reverse内容を照合。L9のinterface/依存方向/state-data owner/transaction/失敗伝播/retry/timeout/冪等性/結合度と責務の10軸を別に照合。固定内容はこのfixtureの選択契約で全製品へ同一command/ownerを強制しない。"
+        },
+        {
+          "id": "I5",
+          "rule": "boundary_resultのcommand同一性/一回commit/取消commit無しと、integration_resultのGiven/When/Thenを固定原oracleへ別比較。given/when/then nullや別観測、証拠自己申告passは対応へしない。atomic_ci局所成功は保全してもboundary/integration proofにはしない。"
+        },
+        {
+          "id": "I6",
+          "rule": "意味保存Refactorはbefore/after意味の一致、meaning_preservation.before_artifact_revisionと独立before原版、afterはtarget版、refactor.stageは同Integratedへ照合。before成功をafterへ流用しない。post_refactor_L8/L9を両方要求し、未実行/欠落/別版を残す。input.refactor.semantic_change又は原意味比較の差を成功Refactorへ換算せず003/004の上流意味ownerへの戻しとして保持。実Refactorを呼び出す処理ではない。"
+        },
+        {
+          "id": "I7",
+          "rule": "proof_results/findings/unresolved/owner戻し候補とrefactor_findingsを個別保持。集約はconflict→stale→unknown→missing→supported_synthetic、全原因を消さない。原Provisional対応が有効なら他の結合不足でもprovisional_candidateを保持。必要境界/結合/適用Refactor再検証と同段階/意味保存が対応した場合だけintegrated_candidate=supported_synthetic_only、その他not_established。入力/下位成功を実Integrated/Acceptedへ伝えずactual4作用はfalse。"
+        },
+        {
+          "id": "I8",
+          "rule": "producer/executorが外部/利用者CIでも同資料契約。HARNESSは導出、OS又は利用者手段が実運転/記録ownerで、④/OSを一律必須にしない。未観測scopeと有効なQ/読めた原証拠を保全し、実CI/権限/state/ticket/受入を生成しない。"
+        },
+        {
+          "id": "I9",
+          "rule": "candidateは別提出valueとして全fieldを比較し、差分はcandidate value root相対JSON Pointerへ返す。原L9のcandidate_conflicting_pathは1差分のtoken列で/と~0/~1で1pointerへ写像。候補から未提示proof/Refactor履歴/実Acceptedを作らず、原valueと元case/説明metadataを保全。Noneだけ未提出、false/空object/未知fieldを補完又はstripしない。"
+        }
+      ],
+      "postconditions": [
+        "全input/context/candidate/原proof/Refactor原履歴/atomic_ci/Qを変更しない。局所不足で有効な下位原証拠を消さない。",
+        "同logical三引数で同value/全finding。必要proof順と原locatorを保持し、findingは(code,pointer,proof_id,return_owner)Unicode順。同原因別locatorを潰さない。",
+        "I/O/network/DB/clock/CI/Refactor/実物操作/state/authority/ticket/Accepted/release/deploy/旧runtimeを呼ばない。",
+        "合成内容対応は実Integrated/実再検証/利用者受入/実装許可ではない。正式qualification/codec/hostが不足する範囲を成功へしない。"
+      ],
+      "finding_codes": [
+        "input_invalid",
+        "context_unresolved",
+        "proof_missing",
+        "proof_stale",
+        "proof_unknown",
+        "proof_conflict",
+        "refactor_reverification_missing",
+        "meaning_change_backflow",
+        "candidate_conflict",
+        "projection_not_authority"
+      ],
+      "scope_limit": "F02部分内部契約。全構造/複合/全typed finding/正式schema-codec/実owner/適用条件と対L6L7凍結は未完。"
     }
   ]
 }
