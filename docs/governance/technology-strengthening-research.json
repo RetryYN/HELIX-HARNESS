@@ -4,94 +4,94 @@
   "status": "candidate_recommendations_pending_independent_review",
   "authority_effect": "none",
   "operation_effect": "none",
-  "source_main": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+  "source_main": "8500e8b8614f23c423097cc725aa58f91c3b5022",
   "observed_at_utc": "2026-10-13T17:38:20Z",
-  "question": "Node.js/TypeScript/Pythonの現行役割と意味契約を維持し、schema検証・PBT・再現環境・CI・観測をどの候補/条件/順序で強化するか。",
+  "question": "既存Node.js/TypeScript/Pythonと意味/authority契約を維持し、検証・開発環境・CI・Skill・依存境界・安全性の技術強化候補を必要scope/条件/順序で比較する。",
   "scope_limit": "技術選定の前提research。要求/版/正式schema/実runtime/依存versionの採用、インストール、CI起動、外部telemetry送信、release/deploy許可ではない。各設計の未完を道具で消さない。",
   "source_pins": [
     {
       "path": "docs/concept/helix-concept.md",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
     },
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
     },
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
     },
     {
       "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
     },
     {
       "path": "docs/governance/decisions/helix-security-tool-prerequisites-l3-l10-delegated-decision-2026-10-12.md",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "d7c1f27d477b8323cae77cfb4dce8086c6d268826f09a1edcea46e186111878b"
     },
     {
       "path": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "586a5541755fd1fc1697d843a4c6d3846a09005c623e7892b88dd818b7d26569"
     },
     {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "5c42c983506b2d182fb5d548c16ac264b63325b07b2010e6a46641528077ba3b"
     },
     {
       "path": "docs/helix-security/L4-basic-design/external-input-trust-boundary.json",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "9e1a4fd0f331cee16f120ba5ac99272deaa915f2bb20f456bae2077cd3ac91b3"
     },
     {
       "path": ".github/workflows/README.md",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "f9aacf18ab16d324cb921302222fbc01bc6cf9296d6dc94d7068680db37e850c"
     },
     {
       "path": "docs/governance/github-upstream-operating-model.md",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "a56e0d2f9484234f0b5de01692b19663fea9549acdfb45362c656bcc07243880"
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
     },
     {
       "path": "docs/helix-brain/L1-planning/brain-intent.md",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
     },
     {
       "path": "docs/helix-connect/L1-planning/connect-intent.md",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
     },
     {
       "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
     },
     {
       "path": "docs/helix-labo/L1-planning/labo-intent.md",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
     },
     {
       "path": "docs/helix-security/L1-planning/security-intent.md",
-      "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+      "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
       "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
     }
   ],
@@ -176,6 +176,31 @@
           "line": 340,
           "text": "| harness engineering は test isolation、parallel worker/resource budget、trace/metric/log observability を持つ。HELIX では UI 固有 runner の採用ではなく、fast/default/full profile、worker 数、timeout、p95 duration budget、duration、flake、metric trend、span を harness DB に収束する要求へ変換する | `HR-NFR-P5-03` / `HR-FR-P4-03` / `HR-FR-P9-03` / `HAC-N5-03a/b` / `HAC-P4-03a/b` / `HAC-P9-03a/b` | https://playwright.dev/docs/best-practices / https://playwright.dev/docs/test-parallel / https://opentelemetry.io/docs/what-is-opentelemetry/ |",
           "utf8_sha256": "f0dc2685361ab28a0c8d92300b86f3a27766e52c3a0d26a910fb5519857c7a57"
+        },
+        {
+          "line": 169,
+          "text": "| HR-FR-P8-02 | HBR-P8 | 有益な外部知見は skillify candidate として抽出され、ライセンス/安全/適用範囲 review 後に skill registry へ入る | HAC-P8-02a / HAC-P8-02b |",
+          "utf8_sha256": "51e0f83ab36c3edc7b9764e35b37d72a2e8c057776702210ba1df89275e94749"
+        },
+        {
+          "line": 188,
+          "text": "| HR-NFR-AC-01 | HNFR-AC | rule-drift は Claude/Codex だけでなく agent/template/skill/runtime adapter へ一般化し、単一 core から逸脱する規則差分を検出する | HAC-NAC-01a / HAC-NAC-01b |",
+          "utf8_sha256": "c3597b30787c93234d362aef8146a04fb5afd2df69b9a548eaf3ac32e20ffca0"
+        },
+        {
+          "line": 263,
+          "text": "| HAC-P8-02a | 外部知見が再利用可能 | skillify を実行 | skill candidate に目的、適用条件、制約、ライセンス確認欄が入る |",
+          "utf8_sha256": "2779cdc12d529321aac47a873b0b7784a0a28991bb3adfe40d5cd96ad72b1f4e"
+        },
+        {
+          "line": 264,
+          "text": "| HAC-P8-02b | ライセンス/安全性が未確認 | skill registry 登録を試行 | 登録を拒否し、人間確認または別 PLAN にする |",
+          "utf8_sha256": "e824ce50fb0c8724504588cac22b8f7efa0f4debd6830cc71eb9b20e4d0c5c1e"
+        },
+        {
+          "line": 301,
+          "text": "| HAC-NAC-01a | adapter/template/skill が core と異なる規則を書く | rule-drift を実行 | divergence として fail/warn |",
+          "utf8_sha256": "a9f26aa671d1c7829de3f67d810f54b2c9e842e04e7e87e447f453cc02494276"
         }
       ],
       "reuse_class": "semantic_rederivation_for_research",
@@ -304,6 +329,199 @@
       "preserve": "GitHub Actionsによる再検証、lane別診断、依存固定、exact HEAD、read権限、credential非保持の既存意図を比較する。",
       "change": "旧workflow/CLI/test/集約gate/Required設定は移植・実行しない。ローカルとCIで同じ対象profileを起動する候補を、現行の独立oracleと帰属条件から導出する。",
       "reason": "旧入口差/重いfull/粗いaggregate診断を繰り返さず、未実行・skip・失敗を成功へ変換しないCI設計を検討する。新しい承認手続きは作らない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DD4FBDA47E51F1E35DEF",
+      "path": "archive/legacy-generation-2026-09-14/root/.github/dependabot.yml",
+      "sha256": "2ccdb1d265770e632a75b40d0b47ed80fbd6c5dcbcf53f7b80545bbfc1583b98",
+      "quotes": [
+        {
+          "line": 3,
+          "text": "  - package-ecosystem: npm",
+          "utf8_sha256": "54bf4f55d04955eaccc9b6411b7ea67a22118ef2332f07a4d0a462036b5aff89"
+        },
+        {
+          "line": 6,
+          "text": "      interval: weekly",
+          "utf8_sha256": "42007a61beccedf7bc1b7dfc9e310f16a602df96d6728a8ddbab30e481f0553b"
+        },
+        {
+          "line": 7,
+          "text": "  - package-ecosystem: github-actions",
+          "utf8_sha256": "70c2cdcd8bf3441d005977b385d0c5bd51e0a1d5c1339f75542397a26b27b3ce"
+        }
+      ],
+      "reuse_class": "semantic_rederivation_for_research",
+      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
+      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
+      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A14098621739A6673563",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/skills/requirements-handover.md",
+      "sha256": "e3f506436a9f171214cb12ac6773c3b141c55c26115ed8edee62a4b7a5ab4c60",
+      "quotes": [
+        {
+          "line": 18,
+          "text": "# requirements continuity（要件継続）",
+          "utf8_sha256": "853df446bb92d832989cfae3ce7556897cbfb7bea0f934c0b2b8ae6890750b64"
+        },
+        {
+          "line": 21,
+          "text": "（FR-L1-42 provider evidence、FR-L1-31 context continuity）。正本は authored requirement/PLAN と",
+          "utf8_sha256": "c53a1269abc96a3435d6d3e4d5717b4c2a20cb8c8ba4b4a574fd9a87822998f8"
+        }
+      ],
+      "reuse_class": "semantic_rederivation_for_research",
+      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
+      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
+      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DDEE27A6A7686A490CA5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/skills/design-doc.md",
+      "sha256": "3a5950cce34b22f14df9deb738e8d3f0a51369dd9ae090be99bfaaeb4a43c9c1",
+      "quotes": [
+        {
+          "line": 18,
+          "text": "# design doc（設計ドキュメント）",
+          "utf8_sha256": "eb909851bfa8560beb583b896855b5a1a6854da8e1c89615a6c88109a1a1f234"
+        }
+      ],
+      "reuse_class": "semantic_rederivation_for_research",
+      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
+      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
+      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DB95608EBA738216D0BA",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/skills/code-review-and-quality.md",
+      "sha256": "e31fa73e5b1fc692ba261209b87c57ea4d2b1407bb9e4eb4db0243e8cbece032",
+      "quotes": [
+        {
+          "line": 22,
+          "text": "# code review and quality（コードレビューと品質）",
+          "utf8_sha256": "53e101b9bdf50c86fd10ea2503077c1598f1de07c2e55af3ccc58241ae749a7c"
+        },
+        {
+          "line": 48,
+          "text": "W-gate は coverage count（被覆数）だけでは close しない。test-design doc 本文を読み、",
+          "utf8_sha256": "755a7028eaba19db6c056677b2c9ff4c7cd3c50aec434dce783c59891a6fb976"
+        },
+        {
+          "line": 49,
+          "text": "指定された scenario（シナリオ）が実際に存在することを確認する。",
+          "utf8_sha256": "a7890835e254342fea9e73eef9db77caab467cabc1dda1eb396db53f2bdb70c6"
+        }
+      ],
+      "reuse_class": "semantic_rederivation_for_research",
+      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
+      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
+      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-29CB6E703D67926200C7",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/skills/test-driven-development.md",
+      "sha256": "7537d151f2fcf0817bc9086971d6926919bd86c701ceb8cfc700869eeb2697fd",
+      "quotes": [
+        {
+          "line": 17,
+          "text": "# TDD（test-driven development）の規律",
+          "utf8_sha256": "cd58ec384bc38b3dbbf6e34e2f9cafcf1ceb4d66e89140af625b80ca41fc245a"
+        },
+        {
+          "line": 19,
+          "text": "HELIX の Red-first TDD discipline（Red 先行 TDD 規律）",
+          "utf8_sha256": "306c21d174111edfe713e8abb224bed9f897bf262b2ceb08c37eab728ff55836"
+        },
+        {
+          "line": 27,
+          "text": "- Refactor PLAN が source に触れる前に regression coverage（回帰被覆）を再確認する必要がある。",
+          "utf8_sha256": "96c12281669b556ae40b1cfdbab240686a7bfab3095d09aac2609e333d17adf5"
+        }
+      ],
+      "reuse_class": "semantic_rederivation_for_research",
+      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
+      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
+      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9B8B50149C4D646FBAC0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/skills/error-fix.md",
+      "sha256": "fd55ce90ce600e1fddf6459195e1c773bd70537128c5f0a25133e62edb70ef01",
+      "quotes": [
+        {
+          "line": 19,
+          "text": "# error fix（エラー修正）",
+          "utf8_sha256": "465e246d1e1a1a3a1eeaf0d79df0c4683a7911351effe5146f4329c6e9b89490"
+        },
+        {
+          "line": 22,
+          "text": "original error を捕捉できたはずの regression test が Green になり commit されるまで、fix は complete ではない。",
+          "utf8_sha256": "9111c45618de04418d4aa282407e6848f8d42ae3038d138b4545b6936c8d6839"
+        },
+        {
+          "line": 38,
+          "text": "これは fix の Red step であり、defect が real であることを確認し、regression fence を与える。",
+          "utf8_sha256": "357d76b429390b4cf11afe13e9b72efa9330962ddc26cb9919fb95a61eb7bf13"
+        }
+      ],
+      "reuse_class": "semantic_rederivation_for_research",
+      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
+      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
+      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-ADE4AF41DD06DA4F100F",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "sha256": "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72",
+      "quotes": [
+        {
+          "line": 12,
+          "text": "# GitHub security evidence admission 要件定義",
+          "utf8_sha256": "9fe6baac9287c1f985bc73429da140cd0a5f60fbdda0d87801adc1997dab950f"
+        },
+        {
+          "line": 17,
+          "text": "個別の正本にせず、同一source HEAD／artifact digestへ束縛したsecurity evidenceから、開発slice、merge、",
+          "utf8_sha256": "23b944c1b0630123b178e3687c160044923788ba64bf8be565f95e3eea964d6b"
+        },
+        {
+          "line": 20,
+          "text": "scannerの追加そのものではなく、coverage、severity、finding disposition、waiver期限、実行境界を統合する",
+          "utf8_sha256": "a37da5f1407221fa9f5ea5f504c534739fe23a692bbe01979c475c5949f000f0"
+        }
+      ],
+      "reuse_class": "semantic_rederivation_for_research",
+      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
+      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
+      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D6816E22DAF2E990410B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/github-cross-review-admission.md",
+      "sha256": "c0a5cf042f66d378bb20aa50c7b3fdd0aa633e6ef4cb2f8742952075f72b0b35",
+      "quotes": [
+        {
+          "line": 14,
+          "text": "# GitHub cross-review admission 詳細設計",
+          "utf8_sha256": "92c875af5e49569e32b314c02aa3bcef7bdb11f00aaa4543c1b2a6ae18a5676c"
+        },
+        {
+          "line": 125,
+          "text": "v3は読み取り専用デコードだけを許可し、現行Ready受理・merge受理・終端memory投影の正本へ",
+          "utf8_sha256": "4605c5fd3c32e1c45f99a72c148e1bb93501e12c61cac7ab2e0a51a080d4f3cf"
+        },
+        {
+          "line": 214,
+          "text": "    {\"reason_code\":\"outstanding_request_changes\",\"reachability_mode\":\"executable_oracle\",\"source_path\":\"src/runtime/github-cross-review-admission.ts\",\"source_symbol\":\"evaluateGitHubCrossReviewAdmission\",\"test_path\":\"tests/github-cross-review-admission.test.ts\",\"oracle_id\":\"U-GCRA-014\",\"identity_fields\":[],\"post_resolution_checks\":[],\"fixture\":{\"registry\":[],\"request\":{}},\"expected_reason\":\"outstanding_request_changes\",\"mutation\":{\"remove_post_resolution_check\":\"    }).length > 0\",\"expected_reason_after_mutation\":\"RED_BY_ORACLE\",\"execution_test_path\":\"tests/design-reality-binding.test.ts\",\"execution_oracle_id\":\"U-DRB-024\",\"execution_helper\":\"executeGitHubCrossReviewMutationOracle\"}},",
+          "utf8_sha256": "8d46144d7d3161872063466eed82aebd33f951a7d818cfcda57a53c390c4a665"
+        }
+      ],
+      "reuse_class": "semantic_rederivation_for_research",
+      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
+      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
+      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
     }
   ],
   "legacy_search": {
@@ -880,13 +1098,538 @@
           "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
         }
       ]
+    },
+    {
+      "id": "AGENT_SKILLS",
+      "priority": "A",
+      "tools": [
+        "Agent Skills SKILL.md"
+      ],
+      "sources": [
+        "https://agentskills.io/specification"
+      ],
+      "source_snapshot_refs": [
+        "784098b8797e0086707c4dbf5128dd138511b7189104cd4ee813a9fc988d7e1b"
+      ],
+      "verified_capability": "SKILL.mdにはname/descriptionを含むYAML frontmatterとMarkdown手順を置き、参照資料等を必要時に読む形式。allowed-toolsはexperimentalでhostごとの対応差がある。",
+      "recommended_profile": [
+        "要求trace・V-pair設計・独立review・TDD/反例・障害分析/Backflowの5用途を旧資産起点で比較する。既存正本の対象revisionへの入口/参照を主とし、規則本文や承認手続きを複製しない。",
+        "BRAINの知識内容とHARNESSの適用義務、OSの記録、host固有のskill loaderを区別する。SKILL.md形式への適合だけで知識採用/適用/権限/実効性は成立しない。",
+        "host別の読込/起動条件と適用scope/参照staleを検証し、外部skillのinstruction/scriptは未信頼として既存SEC契約へ戻す。旧CLI/旧層/旧gateの命令は実行経路にしない。"
+      ],
+      "adoption_state": "recommended_candidate;formal tool version/profile/application pending",
+      "counterexamples": [
+        {
+          "scenario": "同じSKILL.mdを読み込んでもhostがallowed-toolsを扱わず、参照revisionが古い。",
+          "consequence_for_recommendation": "形式の可搬性と行動/操作権限の保証は別。現行source参照とhost適用結果を検証する。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ],
+      "premises": [
+        {
+          "id": "AGENT_SKILLS-CAPABILITY",
+          "state": "known",
+          "claim": "SKILL.mdにはname/descriptionを含むYAML frontmatterとMarkdown手順を置き、参照資料等を必要時に読む形式。allowed-toolsはexperimentalでhostごとの対応差がある。",
+          "source_refs": [
+            "https://agentskills.io/specification"
+          ],
+          "applicability": "取得公式文書が記載した能力の確認。実環境と具体tool版へ自動継承しない。",
+          "limits": "実評価/導入なし。",
+          "re_research_conditions": [
+            "取得文書/tool/protocol主要版/対応matrix変更",
+            "具体版選定時"
+          ]
+        },
+        {
+          "id": "AGENT_SKILLS-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで現行契約の技術強化に寄与できる候補。",
+          "impact_scope": [
+            "要求trace・V-pair設計・独立review・TDD/反例・障害分析/Backflowの5用途を旧資産起点で比較する。既存正本の対象revisionへの入口/参照を主とし、規則本文や承認手続きを複製しない。",
+            "BRAINの知識内容とHARNESSの適用義務、OSの記録、host固有のskill loaderを区別する。SKILL.md形式への適合だけで知識採用/適用/権限/実効性は成立しない。",
+            "host別の読込/起動条件と適用scope/参照staleを検証し、外部skillのinstruction/scriptは未信頼として既存SEC契約へ戻す。旧CLI/旧層/旧gateの命令は実行経路にしない。"
+          ],
+          "decider": "Codex作成候補と独立review。上流meaning採用を代行しない。",
+          "applicability": "既存対象scope/owner/authority条件の下で局所適用を比較。",
+          "limits": "形式の可搬性と行動/操作権限の保証は別。現行source参照とhost適用結果を検証する。",
+          "re_research_conditions": [
+            "対象契約/host/resolver/検証範囲の変更",
+            "実評価で非互換/不足/予算超過を観測"
+          ]
+        },
+        {
+          "id": "AGENT_SKILLS-BINDING",
+          "state": "unknown",
+          "claim": "具体版/profile/consumer/実効性未確定。",
+          "impact_scope": "選択対象の設計・検証・実装準備。",
+          "decider": "既存対象設計作成側と独立review、上流meaning変更のみ既存authorityへ返す。",
+          "applicability": "unknownに依存する実操作へ進む証拠には使わない。",
+          "limits": "tool形式や検査成功だけでは採用/受入を生成しない。",
+          "re_research_conditions": [
+            "必要bindingと固定profileによる対象評価ができる時"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DEPENDENCY_BOUNDARY",
+      "priority": "A",
+      "tools": [
+        "dependency-cruiser",
+        "Import Linter"
+      ],
+      "sources": [
+        "https://github.com/sverweij/dependency-cruiser",
+        "https://import-linter.readthedocs.io/en/stable/"
+      ],
+      "source_snapshot_refs": [
+        "102435ba589758f2d2e9019460fab2a65544eb464f4fdb7879043f0435423977",
+        "a04a818dac7c53c2297de24d7ac86cc0edd8e04c27244396c2e375d17f4aff3c"
+      ],
+      "verified_capability": "dependency-cruiserはJS/TS等の依存を設定ruleへ照合し、Import LinterはPython import間の禁止/階層/独立などを検査する。",
+      "recommended_profile": [
+        "L4/L5で定義した意味core→port→adapterと責務境界を対象path/moduleに対応させて検査する候補。機構が別folderであるだけでは合法依存を決めない。",
+        "alias/型のみimport/動的import/生成code/除外とresolverの範囲を固定し、TS/Pythonと両言語のIPC/JSON接続を区別する。import graphだけでruntime作用や意味依存を全て証明しない。"
+      ],
+      "adoption_state": "recommended_candidate;formal tool version/profile/application pending",
+      "counterexamples": [
+        {
+          "scenario": "import検査が成功してもPython subprocessがOS保存操作を呼ぶ。",
+          "consequence_for_recommendation": "静的import外の作用・接続・権限は別の契約/実検証で確認する。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ],
+      "premises": [
+        {
+          "id": "DEPENDENCY_BOUNDARY-CAPABILITY",
+          "state": "known",
+          "claim": "dependency-cruiserはJS/TS等の依存を設定ruleへ照合し、Import LinterはPython import間の禁止/階層/独立などを検査する。",
+          "source_refs": [
+            "https://github.com/sverweij/dependency-cruiser",
+            "https://import-linter.readthedocs.io/en/stable/"
+          ],
+          "applicability": "取得公式文書が記載した能力の確認。実環境と具体tool版へ自動継承しない。",
+          "limits": "実評価/導入なし。",
+          "re_research_conditions": [
+            "取得文書/tool/protocol主要版/対応matrix変更",
+            "具体版選定時"
+          ]
+        },
+        {
+          "id": "DEPENDENCY_BOUNDARY-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで現行契約の技術強化に寄与できる候補。",
+          "impact_scope": [
+            "L4/L5で定義した意味core→port→adapterと責務境界を対象path/moduleに対応させて検査する候補。機構が別folderであるだけでは合法依存を決めない。",
+            "alias/型のみimport/動的import/生成code/除外とresolverの範囲を固定し、TS/Pythonと両言語のIPC/JSON接続を区別する。import graphだけでruntime作用や意味依存を全て証明しない。"
+          ],
+          "decider": "Codex作成候補と独立review。上流meaning採用を代行しない。",
+          "applicability": "既存対象scope/owner/authority条件の下で局所適用を比較。",
+          "limits": "静的import外の作用・接続・権限は別の契約/実検証で確認する。",
+          "re_research_conditions": [
+            "対象契約/host/resolver/検証範囲の変更",
+            "実評価で非互換/不足/予算超過を観測"
+          ]
+        },
+        {
+          "id": "DEPENDENCY_BOUNDARY-BINDING",
+          "state": "unknown",
+          "claim": "具体版/profile/consumer/実効性未確定。",
+          "impact_scope": "選択対象の設計・検証・実装準備。",
+          "decider": "既存対象設計作成側と独立review、上流meaning変更のみ既存authorityへ返す。",
+          "applicability": "unknownに依存する実操作へ進む証拠には使わない。",
+          "limits": "tool形式や検査成功だけでは採用/受入を生成しない。",
+          "re_research_conditions": [
+            "必要bindingと固定profileによる対象評価ができる時"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SECRET_DEPENDENCY_MAINTENANCE",
+      "priority": "A",
+      "tools": [
+        "Gitleaks",
+        "Dependabot"
+      ],
+      "sources": [
+        "https://github.com/gitleaks/gitleaks",
+        "https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-version-updates"
+      ],
+      "source_snapshot_refs": [
+        "e21e0172f898d093e669fc59450a60e5aed6785b9bed1a6b59a97e691c587321",
+        "b3234e684cff8557dcdda124fd0f7ff60a0df2dda0f4c8af212a8c274341dd68"
+      ],
+      "verified_capability": "Gitleaksはgit/dir/stdinの秘密検出modeを持つ。Dependabotのversion updatesとsecurity updatesは別で、manifest/workflow等の更新PRを提案する。",
+      "recommended_profile": [
+        "Gitleaksの範囲/履歴/除外/allowlist/baselineをSEC005/010〜013等の選択契約へ結ぶ。検出0・未実行・部分coverageを分け、秘密原文を証拠ログへ複写しない。",
+        "Dependabotの旧npm/Actions週次設定をinventory比較に使う。対象ecosystem/manifest/lockと更新頻度・PR診断/独立reviewを設計し、自動mergeやrepository設定変更はこのresearchで行わない。",
+        "既存CodeQLと検出対象を分ける。脆弱性・ライセンス・公開可否・secret回収の判断を道具名や更新PRの存在へ代入しない。"
+      ],
+      "adoption_state": "recommended_candidate;formal tool version/profile/application pending",
+      "counterexamples": [
+        {
+          "scenario": "Gitleaksのbaselineが古い秘密findingを除外し新finding0を返す。",
+          "consequence_for_recommendation": "新finding0を全履歴cleanと扱わず、coverage/除外/旧findingの処置を保持する。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ],
+      "premises": [
+        {
+          "id": "SECRET_DEPENDENCY_MAINTENANCE-CAPABILITY",
+          "state": "known",
+          "claim": "Gitleaksはgit/dir/stdinの秘密検出modeを持つ。Dependabotのversion updatesとsecurity updatesは別で、manifest/workflow等の更新PRを提案する。",
+          "source_refs": [
+            "https://github.com/gitleaks/gitleaks",
+            "https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-version-updates"
+          ],
+          "applicability": "取得公式文書が記載した能力の確認。実環境と具体tool版へ自動継承しない。",
+          "limits": "実評価/導入なし。",
+          "re_research_conditions": [
+            "取得文書/tool/protocol主要版/対応matrix変更",
+            "具体版選定時"
+          ]
+        },
+        {
+          "id": "SECRET_DEPENDENCY_MAINTENANCE-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで現行契約の技術強化に寄与できる候補。",
+          "impact_scope": [
+            "Gitleaksの範囲/履歴/除外/allowlist/baselineをSEC005/010〜013等の選択契約へ結ぶ。検出0・未実行・部分coverageを分け、秘密原文を証拠ログへ複写しない。",
+            "Dependabotの旧npm/Actions週次設定をinventory比較に使う。対象ecosystem/manifest/lockと更新頻度・PR診断/独立reviewを設計し、自動mergeやrepository設定変更はこのresearchで行わない。",
+            "既存CodeQLと検出対象を分ける。脆弱性・ライセンス・公開可否・secret回収の判断を道具名や更新PRの存在へ代入しない。"
+          ],
+          "decider": "Codex作成候補と独立review。上流meaning採用を代行しない。",
+          "applicability": "既存対象scope/owner/authority条件の下で局所適用を比較。",
+          "limits": "新finding0を全履歴cleanと扱わず、coverage/除外/旧findingの処置を保持する。",
+          "re_research_conditions": [
+            "対象契約/host/resolver/検証範囲の変更",
+            "実評価で非互換/不足/予算超過を観測"
+          ]
+        },
+        {
+          "id": "SECRET_DEPENDENCY_MAINTENANCE-BINDING",
+          "state": "unknown",
+          "claim": "具体版/profile/consumer/実効性未確定。",
+          "impact_scope": "選択対象の設計・検証・実装準備。",
+          "decider": "既存対象設計作成側と独立review、上流meaning変更のみ既存authorityへ返す。",
+          "applicability": "unknownに依存する実操作へ進む証拠には使わない。",
+          "limits": "tool形式や検査成功だけでは採用/受入を生成しない。",
+          "re_research_conditions": [
+            "必要bindingと固定profileによる対象評価ができる時"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MUTATION_TESTING",
+      "priority": "B after unit implementation",
+      "tools": [
+        "StrykerJS Vitest runner"
+      ],
+      "sources": [
+        "https://stryker-mutator.io/docs/stryker-js/vitest-runner/"
+      ],
+      "source_snapshot_refs": [
+        "92be7e8857c3ba1fa13d160cff9e5cbee657aa46b3c669e20df7ac406ebf9525"
+      ],
+      "verified_capability": "StrykerJSにはVitest runnerがあり、Vitest版は別に用意する。公式取得文書にはBrowser Mode非対応とrelated test選択の限界がある。",
+      "recommended_profile": [
+        "凍結oracleと実装前Red→Green→Refactorを保持し、実装後mutationは別のoracle強度証拠にする。対象TSのsource/依存/runner版/除外/予算を固定して小範囲から評価する。",
+        "高scoreだけで要求被覆や独立oracleの正しさを認定しない。survived/equivalent/no-coverage/timeout/invalid mutantを区別して実fixtureと反例へ戻す。Python意味coreの検証をTS mutationだけで代行しない。"
+      ],
+      "adoption_state": "recommended_candidate;formal tool version/profile/application pending",
+      "counterexamples": [
+        {
+          "scenario": "テストがmutation対象sourceを直接importしないAPI結合でrelatedだけを実行する。",
+          "consequence_for_recommendation": "対象test選択が欠ける可能性がありscoreを全接続の検証力へ拡張しない。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ],
+      "premises": [
+        {
+          "id": "MUTATION_TESTING-CAPABILITY",
+          "state": "known",
+          "claim": "StrykerJSにはVitest runnerがあり、Vitest版は別に用意する。公式取得文書にはBrowser Mode非対応とrelated test選択の限界がある。",
+          "source_refs": [
+            "https://stryker-mutator.io/docs/stryker-js/vitest-runner/"
+          ],
+          "applicability": "取得公式文書が記載した能力の確認。実環境と具体tool版へ自動継承しない。",
+          "limits": "実評価/導入なし。",
+          "re_research_conditions": [
+            "取得文書/tool/protocol主要版/対応matrix変更",
+            "具体版選定時"
+          ]
+        },
+        {
+          "id": "MUTATION_TESTING-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで現行契約の技術強化に寄与できる候補。",
+          "impact_scope": [
+            "凍結oracleと実装前Red→Green→Refactorを保持し、実装後mutationは別のoracle強度証拠にする。対象TSのsource/依存/runner版/除外/予算を固定して小範囲から評価する。",
+            "高scoreだけで要求被覆や独立oracleの正しさを認定しない。survived/equivalent/no-coverage/timeout/invalid mutantを区別して実fixtureと反例へ戻す。Python意味coreの検証をTS mutationだけで代行しない。"
+          ],
+          "decider": "Codex作成候補と独立review。上流meaning採用を代行しない。",
+          "applicability": "既存対象scope/owner/authority条件の下で局所適用を比較。",
+          "limits": "対象test選択が欠ける可能性がありscoreを全接続の検証力へ拡張しない。",
+          "re_research_conditions": [
+            "対象契約/host/resolver/検証範囲の変更",
+            "実評価で非互換/不足/予算超過を観測"
+          ]
+        },
+        {
+          "id": "MUTATION_TESTING-BINDING",
+          "state": "unknown",
+          "claim": "具体版/profile/consumer/実効性未確定。",
+          "impact_scope": "選択対象の設計・検証・実装準備。",
+          "decider": "既存対象設計作成側と独立review、上流meaning変更のみ既存authorityへ返す。",
+          "applicability": "unknownに依存する実操作へ進む証拠には使わない。",
+          "limits": "tool形式や検査成功だけでは採用/受入を生成しない。",
+          "re_research_conditions": [
+            "必要bindingと固定profileによる対象評価ができる時"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MCP_ADAPTER",
+      "priority": "B selected external connection",
+      "tools": [
+        "MCP TypeScript/Python SDK"
+      ],
+      "sources": [
+        "https://modelcontextprotocol.io/docs/sdk"
+      ],
+      "source_snapshot_refs": [
+        "621807d3fd366c81be765fd79ebbb1d1d5a199dc574fab396cf812eeb24526ef"
+      ],
+      "verified_capability": "公式SDK一覧にTypeScript/Pythonがある。具体protocol/SDK版とtransport/featureの対応は個別選定が必要。",
+      "recommended_profile": [
+        "CONNECTの外部adapter候補として、既存portの要求/結果/error/cancel/timeout/replayと対応するprotocol機能を比較する。MCPをCONNECT/OS/SECの意味・owner責務へ置換しない。",
+        "tool schema/説明/応答/URLは未信頼dataとして保持し、接続成立やtool公開だけで操作権限・認証・記録・BRAIN採用を成立させない。選択接続と既存SEC/INFRA条件へ戻す。"
+      ],
+      "adoption_state": "recommended_candidate;formal tool version/profile/application pending",
+      "counterexamples": [
+        {
+          "scenario": "MCP toolの存在と入力schema適合だけを根拠に保存/学習/外部操作を実施する。",
+          "consequence_for_recommendation": "protocol互換は操作authorityではなく、既存owner/経路/作用scopeの成立が別に必要。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ],
+      "premises": [
+        {
+          "id": "MCP_ADAPTER-CAPABILITY",
+          "state": "known",
+          "claim": "公式SDK一覧にTypeScript/Pythonがある。具体protocol/SDK版とtransport/featureの対応は個別選定が必要。",
+          "source_refs": [
+            "https://modelcontextprotocol.io/docs/sdk"
+          ],
+          "applicability": "取得公式文書が記載した能力の確認。実環境と具体tool版へ自動継承しない。",
+          "limits": "実評価/導入なし。",
+          "re_research_conditions": [
+            "取得文書/tool/protocol主要版/対応matrix変更",
+            "具体版選定時"
+          ]
+        },
+        {
+          "id": "MCP_ADAPTER-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで現行契約の技術強化に寄与できる候補。",
+          "impact_scope": [
+            "CONNECTの外部adapter候補として、既存portの要求/結果/error/cancel/timeout/replayと対応するprotocol機能を比較する。MCPをCONNECT/OS/SECの意味・owner責務へ置換しない。",
+            "tool schema/説明/応答/URLは未信頼dataとして保持し、接続成立やtool公開だけで操作権限・認証・記録・BRAIN採用を成立させない。選択接続と既存SEC/INFRA条件へ戻す。"
+          ],
+          "decider": "Codex作成候補と独立review。上流meaning採用を代行しない。",
+          "applicability": "既存対象scope/owner/authority条件の下で局所適用を比較。",
+          "limits": "protocol互換は操作authorityではなく、既存owner/経路/作用scopeの成立が別に必要。",
+          "re_research_conditions": [
+            "対象契約/host/resolver/検証範囲の変更",
+            "実評価で非互換/不足/予算超過を観測"
+          ]
+        },
+        {
+          "id": "MCP_ADAPTER-BINDING",
+          "state": "unknown",
+          "claim": "具体版/profile/consumer/実効性未確定。",
+          "impact_scope": "選択対象の設計・検証・実装準備。",
+          "decider": "既存対象設計作成側と独立review、上流meaning変更のみ既存authorityへ返す。",
+          "applicability": "unknownに依存する実操作へ進む証拠には使わない。",
+          "limits": "tool形式や検査成功だけでは採用/受入を生成しない。",
+          "re_research_conditions": [
+            "必要bindingと固定profileによる対象評価ができる時"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SBOM",
+      "priority": "B at artifact preparation",
+      "tools": [
+        "Syft"
+      ],
+      "sources": [
+        "https://github.com/anchore/syft"
+      ],
+      "source_snapshot_refs": [
+        "ad3c923a7ca3c7294cad63b538d3764df79d0f0e4d5cf2b1ced1d967b8b09604"
+      ],
+      "verified_capability": "Syftはimage/filesystem等からSBOMを生成しCycloneDX/SPDX/Syft JSON等を出力できる。",
+      "recommended_profile": [
+        "配布artifactとsource/digestへSBOMの対象範囲/生成版を結ぶ候補。実配布前提がある対象で評価し、researchでartifact配布やライセンス採否を行わない。",
+        "source treeとbuild済みartifact/OS package/同梱物の差を保持し、SBOM生成を脆弱性なし・ライセンス適合・全資産完全性の判断へしない。"
+      ],
+      "adoption_state": "recommended_candidate;formal tool version/profile/application pending",
+      "counterexamples": [
+        {
+          "scenario": "source treeだけから生成したSBOMにbuild後の同梱依存が含まれない。",
+          "consequence_for_recommendation": "artifact対象とcoverageを明示し、部品表の存在だけで配布適合を認定しない。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ],
+      "premises": [
+        {
+          "id": "SBOM-CAPABILITY",
+          "state": "known",
+          "claim": "Syftはimage/filesystem等からSBOMを生成しCycloneDX/SPDX/Syft JSON等を出力できる。",
+          "source_refs": [
+            "https://github.com/anchore/syft"
+          ],
+          "applicability": "取得公式文書が記載した能力の確認。実環境と具体tool版へ自動継承しない。",
+          "limits": "実評価/導入なし。",
+          "re_research_conditions": [
+            "取得文書/tool/protocol主要版/対応matrix変更",
+            "具体版選定時"
+          ]
+        },
+        {
+          "id": "SBOM-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで現行契約の技術強化に寄与できる候補。",
+          "impact_scope": [
+            "配布artifactとsource/digestへSBOMの対象範囲/生成版を結ぶ候補。実配布前提がある対象で評価し、researchでartifact配布やライセンス採否を行わない。",
+            "source treeとbuild済みartifact/OS package/同梱物の差を保持し、SBOM生成を脆弱性なし・ライセンス適合・全資産完全性の判断へしない。"
+          ],
+          "decider": "Codex作成候補と独立review。上流meaning採用を代行しない。",
+          "applicability": "既存対象scope/owner/authority条件の下で局所適用を比較。",
+          "limits": "artifact対象とcoverageを明示し、部品表の存在だけで配布適合を認定しない。",
+          "re_research_conditions": [
+            "対象契約/host/resolver/検証範囲の変更",
+            "実評価で非互換/不足/予算超過を観測"
+          ]
+        },
+        {
+          "id": "SBOM-BINDING",
+          "state": "unknown",
+          "claim": "具体版/profile/consumer/実効性未確定。",
+          "impact_scope": "選択対象の設計・検証・実装準備。",
+          "decider": "既存対象設計作成側と独立review、上流meaning変更のみ既存authorityへ返す。",
+          "applicability": "unknownに依存する実操作へ進む証拠には使わない。",
+          "limits": "tool形式や検査成功だけでは採用/受入を生成しない。",
+          "re_research_conditions": [
+            "必要bindingと固定profileによる対象評価ができる時"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ADVERSARIAL_VERIFICATION",
+      "priority": "A for fixed local HELIX counterexamples; B for selected real AI/Web/API attack environment",
+      "tools": [
+        "Promptfoo Red Team",
+        "Microsoft PyRIT",
+        "OWASP ZAP",
+        "Nuclei",
+        "Schemathesis"
+      ],
+      "sources": [
+        "https://www.promptfoo.dev/docs/red-team/agents/",
+        "https://github.com/microsoft/PyRIT",
+        "https://www.zaproxy.org/docs/desktop/start/features/ascan/",
+        "https://docs.projectdiscovery.io/opensource/nuclei/overview",
+        "https://schemathesis.readthedocs.io/en/stable/"
+      ],
+      "source_snapshot_refs": [
+        "0f78986b2f22862b0912f9d23641b640ba758f3e29e30750bad8c4b10af100ed",
+        "b3a0b4778f668302633add5637e852304d803ef87917b4ba6fa0f07f5b91cbae",
+        "d1ea655c4f4c63283bb618677cdb7119faeef73cd6d0b4475621e728bb215ad3",
+        "3a5b1efbfb9f9bf27766af23d86710f1e60eb3461fd79862ae59d4ff439abab8",
+        "1d4b2c847300d4b91bc37bfe472b3dc0b64e00bae7d9d6b3c4f3f1ea5eb44694"
+      ],
+      "verified_capability": "Promptfooはagentのprompt injection/権限逸脱等を評価する候補、PyRITは生成AIのリスク評価framework。ZAPはactive Web scan、Nucleiはtemplateベース検査、SchemathesisはAPI schemaからproperty-based testを生成する。",
+      "recommended_profile": [
+        "最初はHELIX固有の固定反例corpus（外部命令注入、偽receipt/別revision/scope、owner/Worker権限取り違え、replay/重複/CAS/切断）を独立oracleへ結ぶ。返答の表現と実tool invocation/書込/権限/証拠採用を分け、後者を既存SEC/OS/HARNESS/CONNECT契約の実観測へ照合する。",
+        "Promptfoo/PyRITは実AI接続のadapter/providerが必要な対象で比較する。生成/評価モデルの非決定性、費用、外部送信/telemetry、秘密保持と結果のfalse positive/negativeを固定profileへ結び、LLM judgeをauthority/oracleの正本へしない。",
+        "日常PRでまず固定局所反例を検討し、実攻撃は対象・操作authority・通信量/時間/資源・停止/復旧・隔離・合成data・許可済み送信先が成立した範囲へ限定する。外部監査や候補共有だけで現repository/他hostへ攻撃しない。新しい一律PO承認gateは追加せず既存作用の権限契約へ戻す。",
+        "ZAP passiveもHTTP request/ブラウザcrawlを伴う場合があり無作用とは限らない。active scanはWeb/APIの脆弱性を実試行するため対象経路と影響を分離。Nuclei template/署名/選択protocol・検査内容・伝播動作、Schemathesis対象OpenAPI/GraphQLとresolver/生成requestの範囲は個別に選ぶ。",
+        "Web/API/公開面未選択の初回非画面経路へZAP/Nuclei/Schemathesisを一律gateにしない。scanner正常終了/攻撃0/judge高scoreを全意味被覆・安全・受入へしない。LABO評価/SEC境界/改善Backflowの既存ownerを保ち攻撃側と観測/判定側を分離する。"
+      ],
+      "adoption_state": "recommended_candidate;target/provider/tool/profile/operation authority unselected",
+      "counterexamples": [
+        {
+          "scenario": "agentの返答は拒否だが既に不正なtool call/書込が発生した、または返答は攻撃成功に見えるが実作用は拒否された。",
+          "consequence_for_recommendation": "返答judgeと実作用receiptを区別し、前者だけで防御成否を認定しない。",
+          "evidence_kind": "contract_derived_counterexample_not_executed"
+        }
+      ],
+      "premises": [
+        {
+          "id": "ADVERSARIAL-CAPABILITY",
+          "state": "known",
+          "claim": "Promptfooはagentのprompt injection/権限逸脱等を評価する候補、PyRITは生成AIのリスク評価framework。ZAPはactive Web scan、Nucleiはtemplateベース検査、SchemathesisはAPI schemaからproperty-based testを生成する。",
+          "source_refs": [
+            "https://www.promptfoo.dev/docs/red-team/agents/",
+            "https://github.com/microsoft/PyRIT",
+            "https://www.zaproxy.org/docs/desktop/start/features/ascan/",
+            "https://docs.projectdiscovery.io/opensource/nuclei/overview",
+            "https://schemathesis.readthedocs.io/en/stable/"
+          ],
+          "applicability": "取得公式記述の能力。全攻撃/全現行profileの被覆ではない。",
+          "limits": "tool/攻撃未実行、具体版未選定。",
+          "re_research_conditions": [
+            "tool主要版/攻撃template/provider仕様/取得文書変更"
+          ]
+        },
+        {
+          "id": "ADVERSARIAL-FIT",
+          "state": "assumption",
+          "claim": "現行契約の独立反例/実作用観測を強化する候補。",
+          "impact_scope": [
+            "最初はHELIX固有の固定反例corpus（外部命令注入、偽receipt/別revision/scope、owner/Worker権限取り違え、replay/重複/CAS/切断）を独立oracleへ結ぶ。返答の表現と実tool invocation/書込/権限/証拠採用を分け、後者を既存SEC/OS/HARNESS/CONNECT契約の実観測へ照合する。",
+            "Promptfoo/PyRITは実AI接続のadapter/providerが必要な対象で比較する。生成/評価モデルの非決定性、費用、外部送信/telemetry、秘密保持と結果のfalse positive/negativeを固定profileへ結び、LLM judgeをauthority/oracleの正本へしない。",
+            "日常PRでまず固定局所反例を検討し、実攻撃は対象・操作authority・通信量/時間/資源・停止/復旧・隔離・合成data・許可済み送信先が成立した範囲へ限定する。外部監査や候補共有だけで現repository/他hostへ攻撃しない。新しい一律PO承認gateは追加せず既存作用の権限契約へ戻す。",
+            "ZAP passiveもHTTP request/ブラウザcrawlを伴う場合があり無作用とは限らない。active scanはWeb/APIの脆弱性を実試行するため対象経路と影響を分離。Nuclei template/署名/選択protocol・検査内容・伝播動作、Schemathesis対象OpenAPI/GraphQLとresolver/生成requestの範囲は個別に選ぶ。",
+            "Web/API/公開面未選択の初回非画面経路へZAP/Nuclei/Schemathesisを一律gateにしない。scanner正常終了/攻撃0/judge高scoreを全意味被覆・安全・受入へしない。LABO評価/SEC境界/改善Backflowの既存ownerを保ち攻撃側と観測/判定側を分離する。"
+          ],
+          "decider": "既存SEC/HARNESS/LABO等の対象設計作成側と独立review。",
+          "applicability": "対象と実作用scope/authority/資源/復旧条件が成立した範囲のみ評価する。",
+          "limits": "外部モデル評価だけでは正式oracleや安全を証明しない。",
+          "re_research_conditions": [
+            "対象/接続/記録/owner/脅威modelの変更",
+            "反例と実作用receiptの対応を実評価できる時"
+          ]
+        },
+        {
+          "id": "ADVERSARIAL-BINDING",
+          "state": "unknown",
+          "claim": "tool版/provider/telemetry/target/隔離/実観測binding未確定。",
+          "impact_scope": "実攻撃検証と対象の実装準備。",
+          "decider": "既存対象ownerと独立review、認証・権限/不可逆作用は既存人間確認条件へ返す。",
+          "applicability": "researchから実攻撃/送信/接続/権限変更許可を生成しない。",
+          "limits": "未確認に依存する操作を実行しない。",
+          "re_research_conditions": [
+            "固定profile/対象authority/観測・復旧条件を選定した時"
+          ]
+        }
+      ]
     }
   ],
   "proposed_sequence": [
     "初回対象を選び、現行HARNESS010/011とSEC010〜013のtool/runtime/config/provenance入力へ候補・具体版・構成差を記録する。採用/更新の既存条件を適用する。",
+    "既存手順を正本参照型Skill候補へ整理し、依存方向検査/秘密・依存管理を共通入口へ適用する設計を比較。hostの読込成立や操作権限は形式適合とは別に確認。",
     "同じschema/codecとvalidator/generator/test-runner/configの固定profileを設計。環境再現と両言語の構造/数値境界corpusを凍結対象へ結ぶ。",
     "対象の凍結oracle/preimplementation Red/最小Green/RefactorへPBTと共通corpusを結び、同じローカル入口を新世代Actionsで再検証する設計を進める。workflow監査を併用し、実行は既存成立条件を満たす対象に限る。",
-    "実adapterの接続と資源/authority条件が成立した範囲でtrace/metricを加え、LABO観測へ結ぶ。製品動作/受入/全92親430対の閉包は別の証拠で検査する。"
+    "実adapterの接続と資源/authority条件が成立した範囲でtrace/metricを加え、LABO観測へ結ぶ。製品動作/受入/全92親430対の閉包は別の証拠で検査する。",
+    "実装後のmutation、選択AI接続/Web/APIの隔離攻撃検証、配布artifactのSBOMを必要scopeで評価する。これらを初回非画面経路の一律gateや攻撃/配布許可にしない。"
   ],
   "known_gaps": [
     "正規validator/runtime/tool具体版と伝播依存を選定していない。公式最新版というだけでは採用しない。",
@@ -894,7 +1637,8 @@
     "runner/fixture/縮小後corpusと独立oracleの凍結、実Red/Green/CI/再現環境は未成立。",
     "OTel exporter/属性/sampling/相関と実接続の受入・資源条件は未成立。",
     "本researchは正式schema採択/初回実装Ready/全設計完了を生成しない。SECURITY001の詳細設計は元のgoal内で継続する。",
-    "新workflowの対象profile/job権限/依存・artifact・cache境界、actionlint/zizmorの具体版と監査rule、文書意味の不足/stale検出、Web適用範囲は未固定。"
+    "新workflowの対象profile/job権限/依存・artifact・cache境界、actionlint/zizmorの具体版と監査rule、文書意味の不足/stale検出、Web適用範囲は未固定。",
+    "追加Skillの正本/host適用、依存resolver、secret coverage/allowlist、dependency updates、mutation/provider/実作用観測、攻撃隔離/authority、SBOM coverageのformal bindingと実評価は未成立。"
   ],
   "verification_state": "source/旧inventory/現行契約との静的照合のみ。旧実行物・product tests/CI・SDK・installは未実行。",
   "official_source_snapshots": [
@@ -1097,6 +1841,136 @@
       "bytes_count": 53705,
       "content_type": "text/plain; charset=utf-8",
       "tool_release_selected": null
+    },
+    {
+      "url": "https://agentskills.io/specification",
+      "resolved_url": "https://agentskills.io/specification",
+      "retrieved_at_utc": "2026-10-13T17:56:16.634531+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "784098b8797e0086707c4dbf5128dd138511b7189104cd4ee813a9fc988d7e1b",
+      "bytes_count": 446855,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-version-updates",
+      "resolved_url": "https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-version-updates",
+      "retrieved_at_utc": "2026-10-13T17:56:17.453713+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "b3234e684cff8557dcdda124fd0f7ff60a0df2dda0f4c8af212a8c274341dd68",
+      "bytes_count": 569685,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://github.com/anchore/syft",
+      "resolved_url": "https://github.com/anchore/syft",
+      "retrieved_at_utc": "2026-10-13T17:56:17.220344+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "ad3c923a7ca3c7294cad63b538d3764df79d0f0e4d5cf2b1ced1d967b8b09604",
+      "bytes_count": 370900,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://github.com/gitleaks/gitleaks",
+      "resolved_url": "https://github.com/gitleaks/gitleaks",
+      "retrieved_at_utc": "2026-10-13T17:56:17.244702+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "e21e0172f898d093e669fc59450a60e5aed6785b9bed1a6b59a97e691c587321",
+      "bytes_count": 500522,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://github.com/sverweij/dependency-cruiser",
+      "resolved_url": "https://github.com/sverweij/dependency-cruiser",
+      "retrieved_at_utc": "2026-10-13T17:56:17.219701+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "102435ba589758f2d2e9019460fab2a65544eb464f4fdb7879043f0435423977",
+      "bytes_count": 385854,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://import-linter.readthedocs.io/en/stable/",
+      "resolved_url": "https://import-linter.readthedocs.io/en/stable/",
+      "retrieved_at_utc": "2026-10-13T17:56:16.749346+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "a04a818dac7c53c2297de24d7ac86cc0edd8e04c27244396c2e375d17f4aff3c",
+      "bytes_count": 36270,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/sdk",
+      "resolved_url": "https://modelcontextprotocol.io/docs/2026-07-28/sdk",
+      "retrieved_at_utc": "2026-10-13T17:56:17.362179+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "621807d3fd366c81be765fd79ebbb1d1d5a199dc574fab396cf812eeb24526ef",
+      "bytes_count": 319282,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://stryker-mutator.io/docs/stryker-js/vitest-runner/",
+      "resolved_url": "https://stryker-mutator.io/docs/stryker-js/vitest-runner/",
+      "retrieved_at_utc": "2026-10-13T17:56:18.046881+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "92be7e8857c3ba1fa13d160cff9e5cbee657aa46b3c669e20df7ac406ebf9525",
+      "bytes_count": 43094,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://www.promptfoo.dev/docs/red-team/agents/",
+      "resolved_url": "https://www.promptfoo.dev/docs/red-team/agents/",
+      "retrieved_at_utc": "2026-10-13T17:58:13.652335+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "0f78986b2f22862b0912f9d23641b640ba758f3e29e30750bad8c4b10af100ed",
+      "bytes_count": 146756,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://github.com/microsoft/PyRIT",
+      "resolved_url": "https://github.com/microsoft/PyRIT",
+      "retrieved_at_utc": "2026-10-13T17:58:13.970569+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "b3a0b4778f668302633add5637e852304d803ef87917b4ba6fa0f07f5b91cbae",
+      "bytes_count": 337849,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://www.zaproxy.org/docs/desktop/start/features/ascan/",
+      "resolved_url": "https://www.zaproxy.org/docs/desktop/start/features/ascan/",
+      "retrieved_at_utc": "2026-10-13T17:58:13.406047+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "d1ea655c4f4c63283bb618677cdb7119faeef73cd6d0b4475621e728bb215ad3",
+      "bytes_count": 94114,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://docs.projectdiscovery.io/opensource/nuclei/overview",
+      "resolved_url": "https://docs.projectdiscovery.io/opensource/nuclei/overview",
+      "retrieved_at_utc": "2026-10-13T17:58:14.136252+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "3a5b1efbfb9f9bf27766af23d86710f1e60eb3461fd79862ae59d4ff439abab8",
+      "bytes_count": 320097,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://schemathesis.readthedocs.io/en/stable/",
+      "resolved_url": "https://schemathesis.readthedocs.io/en/stable/",
+      "retrieved_at_utc": "2026-10-13T17:58:13.446388+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "1d4b2c847300d4b91bc37bfe472b3dc0b64e00bae7d9d6b3c4f3f1ea5eb44694",
+      "bytes_count": 50842,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
     }
   ],
   "judgment_point": {
@@ -1107,47 +1981,49 @@
       "request_excerpt": "この辺のを技術選定関係を検討して技術強化できそうか？",
       "followup_excerpt": "CI関連の推奨も届いた。",
       "excerpt_sha256": "16b7d609777acc825ffb26d9ac207c0774acfc8006681ac8e09f4349aa85b8dd",
-      "scope": "検討依頼。要求意味/技術採用/実行許可へ昇格しない。"
+      "scope": "検討依頼。要求意味/技術採用/実行許可へ昇格しない。",
+      "additional_instruction_summary": "利用者が追加共有したAgent Skills・依存方向検査・秘密/依存管理・mutation・MCP・SBOMと、レッドチームの推奨を同じ技術強化比較へ含める。検討依頼を攻撃実行/採用許可へ拡張しない。",
+      "excerpt_digest_rule": "request_excerpt + LF + followup_excerptをUTF-8へencodeしSHA-256。additional_instruction_summaryは要約でexcerpt digestには含めない。"
     },
     "parent_refs": [
       {
         "path": "docs/concept/helix-concept.md",
-        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
         "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
       },
       {
         "path": "docs/helix-harness/L1-planning/product-intent.md",
-        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
         "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
       },
       {
         "path": "docs/helix-os/L1-planning/system-intent.md",
-        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
         "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
       },
       {
         "path": "docs/helix-brain/L1-planning/brain-intent.md",
-        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
         "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
       },
       {
         "path": "docs/helix-connect/L1-planning/connect-intent.md",
-        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
         "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70"
       },
       {
         "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
-        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
         "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
       },
       {
         "path": "docs/helix-labo/L1-planning/labo-intent.md",
-        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
         "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
       },
       {
         "path": "docs/helix-security/L1-planning/security-intent.md",
-        "revision": "9548cafbaa0b59eab6a6fcb0ea14f040c0612b1a",
+        "revision": "8500e8b8614f23c423097cc725aa58f91c3b5022",
         "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
       }
     ],
@@ -1167,5 +2043,76 @@
     "unknown": "具体tool版/formal binding/実環境の成立",
     "conflict": "現行契約を変更する案は採用していない。通常Numberによる丸め等の不適合は反例/限界に保持。",
     "stale": "取得snapshot/親revision/適用条件が変われば影響premiseを再調査し、現在のknownを新revisionへ自動継承しない。"
+  },
+  "additional_legacy_search": {
+    "command": [
+      "rg",
+      "--no-config",
+      "-l",
+      "-i",
+      "--hidden",
+      "--no-ignore",
+      "dependency-cruiser|import.linter|gitleaks|stryker|syft|dependabot|promptfoo|pyrit|schemathesis|nuclei|zaproxy",
+      "archive/legacy-generation-2026-09-14/root",
+      "--glob",
+      "!*.lock",
+      "--glob",
+      "!*.jsonl",
+      "--glob",
+      "!MANIFEST*"
+    ],
+    "tool_version": "ripgrep 15.0.0 (rev 3a612f88b8)",
+    "case": "insensitive",
+    "hidden": "included",
+    "ignore": "disabled",
+    "binary": "rg default skips binary",
+    "matched_paths": 43,
+    "matched_path_list": [
+      "archive/legacy-generation-2026-09-14/root/.claude/agents/qa-test.md",
+      "archive/legacy-generation-2026-09-14/root/.claude/agents/security-audit.md",
+      "archive/legacy-generation-2026-09-14/root/.helix/audit/A-124-cross-artifact-graph-tooling.md",
+      "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-002-dependency-direction-and-auto-map.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/helix-agent-harness-concept_v2.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/helix-agent-harness-concept_v3.0.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/helix-agent-harness-requirements_v1.0.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/helix-agent-harness-requirements_v1.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/external-if.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/if-detail.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/physical-data.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/module-drift.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/github-cross-review-admission.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/ai-dev-team-concept_v1.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/ai-dev-team-operations_v1.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/github-operation-rules.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.2.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "archive/legacy-generation-2026-09-14/root/docs/improvement-backlog.md",
+      "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L4-00-master.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L4-04-external-if.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L6-33-tool-adapter-probes.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-32-cross-artifact-relation-graph.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-34-tool-adapter-probes.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-432-sweep3-state-lane-hygiene.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-RECOVERY-46-review-dispatch-authorship.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-RECOVERY-51-external-author-attestation.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-RECOVERY-57-setup-node-v7-dual-admission.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-REVERSE-42-regression-dependency-drift.md",
+      "archive/legacy-generation-2026-09-14/root/docs/process/forward/overview.md",
+      "archive/legacy-generation-2026-09-14/root/docs/research/cross-artifact-graph-tooling-research-2026-06-09.md",
+      "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L7-unit-test-design.md",
+      "archive/legacy-generation-2026-09-14/root/src/lint/branch-kind.ts",
+      "archive/legacy-generation-2026-09-14/root/src/lint/tool-adapter.ts",
+      "archive/legacy-generation-2026-09-14/root/src/runtime/author-runtime-evidence.ts",
+      "archive/legacy-generation-2026-09-14/root/src/runtime/claude-pr-convergence.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/claude-pr-convergence.test.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/github-cross-review-admission.test.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/tool-adapter.test.ts"
+    ],
+    "matched_path_list_sha256": "1ea031fa23003bc467b581dce62f2f9636f5d65044657f015fa60f484f302fae",
+    "limit": "語一致は採用/実装/不在の証明ではない。.claude/skillsは対象archiveに存在せず、旧skill内容はdocs/skillsで確認。旧内容は実行していない。"
   }
 }
