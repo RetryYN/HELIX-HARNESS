@@ -14,13 +14,13 @@
       "HARNESS-L3-004-B01",
       "HARNESS-L3-004-F02",
       "HARNESS-L3-004-F01",
-      "HARNESS-L3-004-F03"
+      "HARNESS-L3-004-F03",
+      "HARNESS-L3-004-F05"
     ],
     "remaining_requirement_refs": [
-      "HARNESS-L3-004-F05",
       "HARNESS-L3-004-N01"
     ],
-    "boundary": "004のB01/F01/F02/F03/F04を部分詳細化。残2契約/正式binding/全oracleを未完保持し、全004完了や実作用を生成しない。"
+    "boundary": "004のB01/F01/F02/F03/F04/F05を部分詳細化。残N01/正式binding/全oracleを未完保持し全004完了や実作用を生成しない。"
   },
   "source_pins": [
     {
@@ -62,6 +62,11 @@
       "path": "docs/helix-harness/L10-verification/business-verification.json",
       "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
       "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
     }
   ],
   "legacy_comparison": [
@@ -167,6 +172,18 @@
         "preserve": "意味変更のimpact/pair/oracle/下流staleと未観測unknownを推測greenへしない。",
         "change": "旧transaction/DB/Admission gateを移植せず、現在の承認F02のAffected/Unaffected/Unknownと成立非継承へ再導出。分類名称が旧sourceにもあるとは主張しない。",
         "reason": "採択済み現行の構造影響と成立の分離を具体化するため。旧全candidate採用やCI成立を生成しない。"
+      },
+      "f05_rederivation": {
+        "read_line_locators": [
+          31,
+          38,
+          39,
+          40
+        ],
+        "preserve": "source/対象revision/consumer/before-after oracleと意味保存/意味変更を分ける。Issue/DB/旧成功をauthorityにしない。",
+        "change": "旧台帳/gate/runtime/copyを移植せず、承認F05と現行reuse統制へ8不変条件/11trace/byte自己整合/consumer pair/初回参照・意味再導出を具体化。",
+        "reason": "旧責務混在をbyte一致で現行化せず、適格資産の不要な再実装とunknownの移管完了化を防ぐため。",
+        "reuse": "semantic_rederivation_only_not_actual_copy"
       }
     },
     {
@@ -237,6 +254,17 @@
         "preserve": "原atomの双方向義務trace、片側/孤児/別snapshot/未実行の拒否とconsumer保全。",
         "change": "旧Graph/台帳gate/runtimeと旧L6L7番号を移植せず、現行承認F01の個別条件10軸/対象版/候補返却へ再導出。",
         "reason": "件数/link/hashのみの充足と旧graph/CIによる欠落補完を防ぐため。全旧候補採用/実pair成立は生成しない。"
+      },
+      "f05_rederivation": {
+        "read_line_locators": [
+          129,
+          135,
+          140
+        ],
+        "preserve": "source/対象revision/consumer/before-after oracleと意味保存/意味変更を分ける。Issue/DB/旧成功をauthorityにしない。",
+        "change": "旧台帳/gate/runtime/copyを移植せず、承認F05と現行reuse統制へ8不変条件/11trace/byte自己整合/consumer pair/初回参照・意味再導出を具体化。",
+        "reason": "旧責務混在をbyte一致で現行化せず、適格資産の不要な再実装とunknownの移管完了化を防ぐため。",
+        "reuse": "semantic_rederivation_only_not_actual_copy"
       }
     },
     {
@@ -372,12 +400,13 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004 F05/N01の2契約を同じL5/L8文書へ追加する。",
+    "004 N01契約を同じL5/L8文書へ追加する。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。",
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。",
+    "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
   ],
   "document_id": "HARNESS-L5-004",
@@ -1033,6 +1062,127 @@
       "candidate_conflicting_paths": "tuple[JSON Pointer]",
       "retained_input_sha256": "Digest（canonical logical bytes）",
       "retained_context_sha256": "Digest（canonical logical bytes）"
+    },
+    "AssetSelectionTarget": {
+      "requirement_revision": "Text",
+      "scope": "Text",
+      "initial_mode": "literal reference_or_semantic_rederivation"
+    },
+    "AssetInvariants": {
+      "product_responsibility": "Text | null",
+      "requirement_revision": "Text | null",
+      "meaning": "LogicalJson（nullはunknown）",
+      "interface": "LogicalJson（nullはunknown）",
+      "rights": "LogicalJson（nullはunknown、実権利判断ではない）",
+      "security": "LogicalJson（nullはunknown）",
+      "consumers": "tuple[Text] | null",
+      "execution_boundary": "Text | null"
+    },
+    "AssetByteMaterial": {
+      "raw_utf8": "RawUtf8",
+      "sha256": "Text（Digest構文も検査。不正宣言は原値を保持してconflictへ）",
+      "invariants": "AssetInvariants"
+    },
+    "AssetDesignPair": {
+      "left": "Text",
+      "right": "Text",
+      "revision": "Text"
+    },
+    "AssetConsumer": {
+      "id": "Text",
+      "revision": "Text",
+      "required_pair": "AssetDesignPair"
+    },
+    "AssetOracleMaterial": {
+      "input": "LogicalJson",
+      "expected": "LogicalJson"
+    },
+    "AssetTraceMaterial": {
+      "requirement": "Ref | null",
+      "behavior": "Ref | null",
+      "design": "Ref | null",
+      "verification": "Ref | null",
+      "successor_upstream_ids": "tuple[Text] | null",
+      "pair": "AssetDesignPair | null",
+      "oracle": "AssetOracleMaterial | null",
+      "expected_failure": "Text | null",
+      "acceptance": "Ref | null",
+      "backflow": "Ref | null",
+      "consumers": "tuple[AssetConsumer] | null"
+    },
+    "AssetClassification": {
+      "content_audit": "complete_synthetic | unreviewed | unknown",
+      "class": "Text（non_executable_document/legacy_test等。実分類policy bindingは別途必要）"
+    },
+    "SelectedAssetMaterial": {
+      "id": "Text",
+      "source": "AssetByteMaterial",
+      "target": "AssetByteMaterial",
+      "trace": "AssetTraceMaterial",
+      "classification": "AssetClassification",
+      "requested_use": "derive_for_initial_scope | historical_reference",
+      "historical_observations": "{legacy_test_green: bool, legacy_path_deleted: bool}"
+    },
+    "AssetReuseInput": {
+      "target": "AssetSelectionTarget",
+      "assets": "tuple[SelectedAssetMaterial]",
+      "qualification": "Text（実資格を生成しない自己申告）"
+    },
+    "AssetReuseReferent": {
+      "asset_id": "Text",
+      "field": "SelectedAssetMaterialのfield名",
+      "raw_utf8": "RawUtf8",
+      "content_sha256": "Digest",
+      "state": "current | missing | unknown | conflict | stale",
+      "qualification_basis_refs": "tuple[Ref]",
+      "evidence_kind": "synthetic | actual_owner_input"
+    },
+    "AssetReuseContext": {
+      "target": "AssetSelectionTarget",
+      "selected_asset_ids": "tuple[Text]",
+      "required_consumers": "mapping[Text,tuple[AssetConsumer]]",
+      "record_catalog": "tuple[AssetReuseReferent]",
+      "qualifier_roots": "tuple[Ref]",
+      "state": "current | missing | unknown | conflict | stale",
+      "evidence_kind": "synthetic | actual_owner_input",
+      "actual_clearance_refs": "tuple[Ref]（内容監査/権利/security/authorityの実owner資格。初回合成では空）"
+    },
+    "AssetReuseItemValue": {
+      "invariant_results": "mapping[8 invariant axes,equal_synthetic | changed | unknown]",
+      "source_target_digest": "equal_synthetic | changed | unknown | conflict",
+      "missing_trace": "tuple[AssetTraceMaterial field名]",
+      "conflicting_trace": "tuple[consumer_pair | pair_revision | successor_revision | consumer_population | trace_scope]",
+      "classification_result": "supported_synthetic | excluded_verbatim | unknown",
+      "disposition_candidate": "verbatim_reuse_candidate | semantic_rederive | reference_only | unresolved",
+      "selected_initial_route": "reference | semantic_rederivation | reference_with_unresolved_conditions",
+      "requires_unnecessary_reimplementation": "literal false",
+      "actual_copy_completed": "literal false",
+      "actual_transfer_completed": "literal false",
+      "actual_retired": "literal false",
+      "actual_current_test_passed": "literal false",
+      "actual_reuse_approved": "literal false"
+    },
+    "AssetReuseValue": {
+      "asset_results": "mapping[Text,AssetReuseItemValue]（選択集合を保持）",
+      "evaluation_limit": "literal selected_synthetic_assets_only_not_all_4020",
+      "actual_all_assets_migrated": "literal false"
+    },
+    "AssetReuseCandidate": "AssetReuseValueと同じ閉じたfield。提出主張をliteral違反も含め比較し、未知fieldを捨てない。",
+    "AssetReuseFinding": {
+      "code": "F05 finding_codes",
+      "pointer": "JSON Pointer（/input,/context,/candidate）",
+      "asset_ids": "tuple[Text]",
+      "basis_refs": "tuple[Ref]",
+      "return_owner": "Text"
+    },
+    "AssetReuseResult": {
+      "outcome": "content_supported | unknown | conflict | invalid",
+      "value": "AssetReuseValue | null（構造解釈不能のみ）",
+      "findings": "tuple[AssetReuseFinding]",
+      "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
+      "candidate_conflicting_paths": "tuple[JSON Pointer]",
+      "retained_input_sha256": "Digest（canonical logical bytes）",
+      "retained_context_sha256": "Digest（canonical logical bytes）"
     }
   },
   "functions": [
@@ -1458,6 +1608,85 @@
         "domain digestはUTF-8/sorted keys/compact/finiteのcanonical logical bytes。実owner原bytes/authorityには別codec bindingが必要。"
       ],
       "scope_limit": "40既L9原例と固定合成Contextの部分詳細。複合原因/意味保存の実証/全副次finding/正式policy/schema/owner/codec/test凍結は未完。"
+    },
+    {
+      "id": "HARNESS-L5-004-F05",
+      "requirement_ref": "HARNESS-L3-004-F05",
+      "l4_ref": "HARNESS-L4-004-F05",
+      "l9_ref": "HARNESS-L9-004-F05",
+      "l8_ref": "HARNESS-L8-004-F05",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-F05",
+        "parent": "HARNESS-L2-004",
+        "title": "旧資産参照と再利用・退役の条件",
+        "obligation": "選択する旧資産の要求/behavior/設計/検証/consumer/後継上流IDとpair/oracle/expected failure/受入/差戻しを照合する。完全一致再利用と意味再導出を分け、同製品責務/要求revision/意味/interface/権利/security/consumer/実行境界とsource-target digestの不変条件が不明ならコピー済み/移管済みにしない。適格な資産を不要に再実装せず、再導出対象をbyte copyで代替しない。初回は参照/意味再導出であり実copy/退役を選択しない。",
+        "oracle_ref": "HARNESS-L10-004-F05"
+      },
+      "symbol": "compare_selected_asset_reuse_conditions",
+      "signature": "compare_selected_asset_reuse_conditions(input: AssetReuseInput, context: AssetReuseContext, candidate: AssetReuseCandidate | None = None) -> AssetReuseResult",
+      "preconditions": [
+        "承認済みF05と対L10、main L4/L9、現行reuse統制をexact bytesで固定。初回は参照/意味再導出に限定し実copy/retireを選択しない。",
+        "Contextの選択資産/必要consumer/原field版/資格rootを独立入力として保持する。input/candidate/台帳登録/旧path削除/旧test Greenから資格や完了を作らない。",
+        "合成権利/security文言は実clearanceではない。実owner-inputの資格/内容監査/rights/security/authority bindingは未完でunknownを保持。"
+      ],
+      "algorithm": [
+        {
+          "id": "U1",
+          "rule": "閉じた型とfield人口/資産ID重複を検査。Context target/選択資産集合を照合し、欠落や余分/別scope/別revisionをlocatorへ保持。catalogをasset_id+field+原内容+digest+rootで一意解決し、登録の存在と意味対応/現行資格を区別する。必要consumer集合を呼出入力から縮めない。"
+        },
+        {
+          "id": "U2",
+          "rule": "各source/target raw_utf8をstrict UTF-8へencodeし、宣言sha256と個別に比較する。構文不正又はraw/宣言不一致はsource_target_digest conflict。両側の自己整合後にraw bytes/digestを比較してequal_synthetic又はchanged。原材料不明ならunknown。rawをtrim/Unicode/改行正規化して一致させない。"
+        },
+        {
+          "id": "U3",
+          "rule": "8不変条件をsource/targetの型付き全内容で個別比較する。いずれかnull/由来不明はunknown、内容対応同一はequal_synthetic、異なるならchanged。boolと数値を同一にしない。責務差分はbyte一致でも保存し意味再導出へ。unknownを一致へ補完しない。"
+        },
+        {
+          "id": "U4",
+          "rule": "trace11 field（要求/behavior/design/verification/後継上流ID/pair/oracle/expected failure/受入/差戻し/consumer）を個別検査。nullはmissing_traceへ、必要非空集合の空は不足へ。Refは対象scope/原内容対応を照合し、後継上流にtarget要求revisionが必要。pair revisionとtargetを比較、consumer required_pairのleft/right/revisionと後継pairを内容比較。不一致はconsumer_pair/pair_revision等を全件保持。pairがnullのときはmissing pairを保持し、未読を消さない。"
+        },
+        {
+          "id": "U5",
+          "rule": "content_audit未確認はclassification_result unknown。旧test/fixture/oracle/runtime/evidence/CI/workflow/CLI/hook/adapter/AI instruction/prompt/実行設定は完全一致対象外（excluded_verbatim）。非実行文書の合成内容監査だけsupported_synthetic。他のclassやcredential/実行性/外部作用の安全境界未解決はunknownへ。実監査の代わりにpath分類/nullや合成labelを使わない。"
+        },
+        {
+          "id": "U6",
+          "rule": "不足trace/競合trace/不変条件unknown/digest conflict又はunknown/分類unknownはunresolved、初回route reference_with_unresolved_conditions。不足なしでhistorical_referenceならreference_only/reference。残りは不変条件changed又はdigest changed又はexcluded_verbatimならsemantic_rederive/semantic_rederivation、全条件同一ならverbatim_reuse_candidate/reference。完全一致候補は実copy許可でなく、意味再導出をbyte copyで代替しない。適格候補に理由なく再実装を強制せずrequires_unnecessary_reimplementation false。"
+        },
+        {
+          "id": "U7",
+          "rule": "資産別結果を保持して他資産の原資料/結果を変更しない。historical_observationsは履歴主張として保持するだけで現行test/retireへ伝播しない。5資産別実作用と全資産移管はfalse、評価範囲は選択した合成資産に限る。実copy/read-after/consumer切替/退役/承認/実testは別owner契約の実証拠が必要。"
+        },
+        {
+          "id": "U8",
+          "rule": "candidate全value fieldを型付き比較し全差分JSON Pointerを保持。unknownを移管済み/候補をcopy済み/旧Greenを現Green/削除を退役/登録を承認/不要再実装/再導出をbyte copyへする主張をconflictへ。値は原内容から導出し候補へ合わせない。構造解釈不能invalid、candidate conflict優先でconflict、原不変条件unknown/分類unknown/必要trace未解決/Context資格不足はunknown、原digest/consumer/pair競合はconflict、他はcontent_supported。content_supportedは合成内容条件の対応のみ。"
+        }
+      ],
+      "finding_codes": [
+        "input_invalid",
+        "scope_conflict",
+        "asset_population_conflict",
+        "asset_duplicate",
+        "reference_missing",
+        "reference_unknown",
+        "reference_conflict",
+        "reference_stale",
+        "content_digest_conflict",
+        "invariant_unknown",
+        "trace_missing",
+        "trace_conflict",
+        "classification_unknown",
+        "verbatim_excluded",
+        "clearance_unresolved",
+        "candidate_conflict"
+      ],
+      "postconditions": [
+        "同じlogical引数で同値/全finding、資産ID/trace/findingを定義順又はUnicode順で安定化。missing_traceはAssetTraceMaterialの定義順、conflicting_traceはUnicode順、findingは(code,pointer,asset_ids,return_owner)順。全未解決locatorを保持。",
+        "input/context/candidate/無関係資産を変更せず、filesystem/DB/clock/network/copy/retire/台帳write/旧test/runtime/権利判断を行わない。",
+        "digestは既存logical canonical規則を使用。実owner原bytes/transport資格と論理入力digestは別codec bindingが必要。"
+      ],
+      "scope_limit": "36 main L9原例と別固定合成Contextに対応する部分詳細。実内容監査/全consumer/正式policy/全finding/構造変異/実owner-codec/L6L7/test凍結は未完。"
     }
   ]
 }
