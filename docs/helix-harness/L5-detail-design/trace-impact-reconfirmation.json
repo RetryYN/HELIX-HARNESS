@@ -940,6 +940,17 @@
         "preserve": "原資料内容のdigest照合と純粋な値比較。",
         "change": "旧host Number有限性/JSON.stringifyとkey sortを受信parserへ移植せず、原number token/原bytesを保持し重複key/Unicode拒否の全診断を定義。",
         "reason": "host変換で重複/精度/原文字を失う前に受信不足を戻し、意味資格や実作用を生成しないため。"
+      },
+      "exact_number_whole_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          21
+        ],
+        "preserve": "bool/string/numberの型境界と内容比較。",
+        "change": "旧Number.isFinite/JSON.stringifyを移植せず原number tokenから任意精度decimalと比較提案を導出。",
+        "reason": "精度/範囲をhost floatで失わず原受信内容と不正位置を保全し、実codec/資格/操作を生成しないため。"
       }
     },
     {
@@ -1161,7 +1172,8 @@
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。 50固定対照を全AssetReuseResultへ、8各不変条件changed/全8unknown/全11trace欠落/原UTF8・改行非正規化/bool数値型差/相反とunknown共存/Context複合5/原digestと資格共存/複数candidateの21例を追加。全finding/basis/role/hashを固定。全構造/実clearance/consumer閉包/全freeze未完。",
     "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。 Context25例で資料資格/未観測union/局所9cell/盲検資格の不足を分離。 52固定対照を全UnseenRelationResultへ、原複合6/Context複合8/相反と資格不足1/consumer順1/複数candidate1の17対照を追加。全finding/basis/role/hash/原欠落と派生join不明を分離。全構造/実probe/全binding/全freezeは未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。",
-    "wire受信WD1〜WD7と60全WireDecodeResultを具体化。原bytes/全finding/無効key位置/構文優先を保持。正式host/materializer/consumer/codec/資源/全入力coverage/実RedGreen/全92親430対の設計閉包は未完。"
+    "wire受信WD1〜WD7と60全WireDecodeResultを具体化。原bytes/全finding/無効key位置/構文優先を保持。正式host/materializer/consumer/codec/資源/全入力coverage/実RedGreen/全92親430対の設計閉包は未完。",
+    "exact number EN1〜EN6でnormalization38/比較31の全提案を固定。巨大指数を展開/float化せず数学値・整数predicate・全拒否pointerを保持。numeric/adapter profileと原requestを同時更新。正式host/consumer/resources/codec/全coverage/全freeze/全92親430対の閉包は未完。"
   ],
   "document_id": "HARNESS-L5-004",
   "layer": "L5",
@@ -10455,7 +10467,71 @@
       "schemaのtype number/integer/const/enumの数学比較へ接続するhost adapterはこのExactFiniteDecimalの意味を満たす。型やpredicateを通すため近似floatへ変換しない。正式adapter/consumer bindingは別に閉じる。"
     ],
     "ordering": "符号を比較し、非zeroはcoefficient桁数+decimal_exponentの数学整数から大きさを比較。同じ桁位置では必要な桁だけを比較し、末尾zero補完で内容を失わない。配列/比較値そのものへ補完zeroを保存しない。",
-    "unclosed": "正式Python number/JSON Schema adapter/資源bindingと全算術oracleは未完。表現の内容契約であり実materializer/実数値計算成功を生成しない。"
+    "unclosed": "正式Python number/JSON Schema adapter/資源bindingと全算術oracleは未完。表現の内容契約であり実materializer/実数値計算成功を生成しない。",
+    "whole_result_contract": {
+      "status": "draft_design_number_proposals_not_host_binding",
+      "normalization_symbol": "normalize_trace_number_proposal",
+      "normalization_signature": "normalize_trace_number_proposal(token: LogicalJson) -> ExactNumberProposal",
+      "comparison_symbol": "compare_trace_number_proposal",
+      "comparison_signature": "compare_trace_number_proposal(left_token: LogicalJson, right_token: LogicalJson) -> ExactNumberComparisonProposal",
+      "result_types": {
+        "ExactNumberProposal": {
+          "condition": "normalized | number_invalid",
+          "retained_token": "元LogicalJson（string以外も置換せず保持）",
+          "normal_form": "ExactFiniteDecimal | null",
+          "is_integer": "bool | null",
+          "findings": "tuple[NumberFinding]",
+          "source_token_retained": "literal true",
+          "schema_handoff": "literal false",
+          "actual_effects": "literal none"
+        },
+        "ExactNumberComparisonProposal": {
+          "condition": "corresponding_exact_numbers | number_invalid",
+          "retained_left_token": "元LogicalJson",
+          "retained_right_token": "元LogicalJson",
+          "left_normal_form": "ExactFiniteDecimal | null",
+          "right_normal_form": "ExactFiniteDecimal | null",
+          "relation": "-1 | 0 | 1 | null（leftをrightと比較）",
+          "equal": "bool | null",
+          "findings": "tuple[NumberFinding]",
+          "source_tokens_retained": "literal true",
+          "schema_handoff": "literal false",
+          "actual_effects": "literal none"
+        },
+        "NumberFinding": {
+          "code": "number_token_invalid",
+          "pointer": "root空文字、比較時は/left_token又は/right_token",
+          "return_owner": "wire-codec-owner"
+        }
+      },
+      "rules": [
+        {
+          "id": "EN1",
+          "rule": "number tokenはASCII RFC8259文法 -?(0|[1-9][0-9]*)([.][0-9]+)?([eE][+-]?[0-9]+)? に全文一致するstringだけ。前後空白/BOM/文字列quote/plus先頭/leading zero/NaN/Infinity/Unicode digit/non-stringはnumber_token_invalid。false/null/0を未提出や有効tokenへ補完せず原引数を保持。decode全JSON文法と単体number token検証を混同しない。"
+        },
+        {
+          "id": "EN2",
+          "rule": "EN1成功なら既normalizationで原tokenから符号/coefficient/任意精度exponentを導出。zeroの唯一normal formはsign0/coefficient_digits0/decimal_exponent0。nonzeroはsign±1、coefficientは先頭・末尾zeroなしの非空ASCII digits、exponentは正規integer string。-0原tokenは保持し数学zeroへ。1e400や巨大指数をhost float Infinityへ変換せず、normalizationで10**exponent又は指数に比例するzero列を生成しない。"
+        },
+        {
+          "id": "EN3",
+          "rule": "normal formのinteger predicateはsign0又はdecimal_exponent>=0。nonzero係数の末尾zeroを除去済みなのでnegative exponentは非整数。1.0/1e400は整数、1.5/1e-400は非整数。is_integerは数値token成立時だけbool、不正はnull。"
+        },
+        {
+          "id": "EN4",
+          "rule": "comparisonは左右を独立にEN1/2で評価。片側失敗でも有効側のnormal formを保持し、全不正側のnumber_token_invalidを対応pointerへ返す。失敗時relation/equalはnull、condition number_invalid。左右とも成功の場合だけ既orderingでrelation -1/0/1を返しequalはrelation==0。bool/string kindのdomain同値性は既kind境界を保持し、本token関数で別kindをnumberへcastしない。"
+        },
+        {
+          "id": "EN5",
+          "rule": "大小はまずsignを比較し、両zeroは同値。同符号nonzeroの絶対値はlen(coefficient)+exponentで比較、同じ桁位置ならmax係数長だけを走査して足りない側のdigitを概念上0とし比較。負数同士は絶対値の順を逆転。zero展開/canonical emissionを比較の前提にしない。"
+        },
+        {
+          "id": "EN6",
+          "rule": "findingはcode/pointer/return_ownerのscalar codepoint順、完全同値3fieldだけunique。全結果で原引数保持true/schema_handoff false/actual_effects none。数学内容の提案を正式host class/adapter/codec登録・owner資格・resource lease・canonical出力成功・実作用へ昇格しない。"
+        }
+      ],
+      "scope_limit": "入力はLogicalJson、exact arbitrary integer/stringの数学設計。実host資源超過時の実operation/正式consumer/codec/凍結/実RedGreenは未成立。これら部分未完を理由に数学tokenを丸めたり固定範囲へ削減しない。"
+    }
   },
   "canonical_emit_contract": {
     "status": "draft_design_logical_canonical_emission_not_registered_wire_codec",
@@ -10504,7 +10580,7 @@
       "https://json-schema.org/draft/2020-12/json-schema-validation#section-6.1.1"
     ],
     "fixed_schema_sha256": "d4be59b9aa8611870fbe666dc78087da9960f710f5bc9d65acb108026897562a",
-    "fixed_numeric_contract_sha256": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
+    "fixed_numeric_contract_sha256": "51aae5c03d2cf6e0f198158a1fe8cf2b0871f344c10942dd279703fac939fe32",
     "contract_lane_bindings": [
       {
         "design_ref": "HARNESS-L5-004-F04",
@@ -10635,9 +10711,9 @@
     "operation_effect": "none",
     "profiles_sha256": {
       "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
-      "exact_number_contract": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
+      "exact_number_contract": "51aae5c03d2cf6e0f198158a1fe8cf2b0871f344c10942dd279703fac939fe32",
       "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
-      "schema_adapter_contract": "46f1522cbcdf585ee8113339ec44c5a5119761eb3d68270323b775803c56693b",
+      "schema_adapter_contract": "4e62e4da7b3b745dc0fb4e5f12ab16d3d30e488dce420c91290862ba6d84db7b",
       "logical_structure_schema": "d4be59b9aa8611870fbe666dc78087da9960f710f5bc9d65acb108026897562a"
     },
     "bindings": [
