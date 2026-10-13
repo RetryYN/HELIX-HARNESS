@@ -352,9 +352,9 @@
         }
       ],
       "reuse_class": "semantic_rederivation_for_research",
-      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
-      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
-      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+      "preserve": "npm/Actionsの週次更新候補がある。",
+      "change": "旧ecosystem/頻度を比較入力とし現行設定をcopyしない。",
+      "reason": "現manifest/lockと検証profileへ結び実更新PRの意味を判定するため。"
     },
     {
       "asset_id": "LEGACY-ASSET-A14098621739A6673563",
@@ -370,12 +370,32 @@
           "line": 21,
           "text": "（FR-L1-42 provider evidence、FR-L1-31 context continuity）。正本は authored requirement/PLAN と",
           "utf8_sha256": "c53a1269abc96a3435d6d3e4d5717b4c2a20cb8c8ba4b4a574fd9a87822998f8"
+        },
+        {
+          "line": 35,
+          "text": "event frontierを冪等投影する。各open itemはPLAN IDまたはrequirement IDへtraceできなければならない。",
+          "utf8_sha256": "791869ee44a1b3d8ad30c2c45e896b6c961dd0a1036baa54e048c9318118dd21"
+        },
+        {
+          "line": 48,
+          "text": "- [ ] ambiguous FRs は `clarification_pending` marker と、PLAN `review_evidence` field 内の linked open question を持つ。",
+          "utf8_sha256": "bd9f501cdf5981a4b7ba89d4f3ba420770b47462ecdd694c2df0dda0aff3d47b"
+        },
+        {
+          "line": 56,
+          "text": "successor agent/session は、prior agentのchat historyに頼らず、authored sources、DB projection、bounded memoryからcontextをreconstructできなければならない。",
+          "utf8_sha256": "bf6757269a61b282bf72ee95e13baa2f5d6e1d292707b8f175341396226e6504"
+        },
+        {
+          "line": 91,
+          "text": "- `clarification_pending` FRs を解決せずに L3 PLAN を successor に渡す。",
+          "utf8_sha256": "96824f62b390a94cb6097f22d41b7560df95060930e98bb78d0e0d68e6ded0e4"
         }
       ],
       "reuse_class": "semantic_rederivation_for_research",
-      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
-      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
-      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+      "preserve": "要求ID/未決/次actionを正本へtraceしてsession継続する意図。",
+      "change": "旧harness.db/PLAN/CLIを現行OS/trace契約への参照に再導出する。",
+      "reason": "skillや会話をcontinuation/authority正本にしないため。"
     },
     {
       "asset_id": "LEGACY-ASSET-DDEE27A6A7686A490CA5",
@@ -386,12 +406,32 @@
           "line": 18,
           "text": "# design doc（設計ドキュメント）",
           "utf8_sha256": "eb909851bfa8560beb583b896855b5a1a6854da8e1c89615a6c88109a1a1f234"
+        },
+        {
+          "line": 21,
+          "text": "diagram は illustration（説明用の飾り）ではなく、版管理される設計成果物である。prose（本文）と同じ freeze readability check を通す。",
+          "utf8_sha256": "96d7ed6f60ad0efce046a813b62ca87e4d67134cddd25a457ef0dec31d616604"
+        },
+        {
+          "line": 81,
+          "text": "- [ ] すべての diagram に、何を示すかを述べる 1 文 caption（説明文）がある。",
+          "utf8_sha256": "e3be8d0ac5de9e7828c9a8a6d983d6852b6f249c6dd1ba7860259dbbdf08c3e8"
+        },
+        {
+          "line": 85,
+          "text": "- [ ] diagram だけに decision を置いていない。decision は prose で述べ、diagram はそれを illustrate（補助説明）する。",
+          "utf8_sha256": "83b79b6f5e5ecae8d0f7e379e75f2e69c98c90e8f165d75c5220e45e260af362"
+        },
+        {
+          "line": 86,
+          "text": "- [ ] Reverse R2 diagram は \"as-is\" と label され、date が付いている。",
+          "utf8_sha256": "f6b4df5f6d6536d07cf30b6b4870ae694f1b2c385111efacddbd5fac67db86e5"
         }
       ],
       "reuse_class": "semantic_rederivation_for_research",
-      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
-      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
-      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+      "preserve": "図も版管理し、本文と一致/説明caption/読みやすさを検証する意図。",
+      "change": "旧L2〜L5図の割当/層番号/旧CLIはそのまま移植せず現行V-pairとJSON正本へ対応させる。",
+      "reason": "図だけで判断を生成せず現在の同じ設計正本へ追随するため。"
     },
     {
       "asset_id": "LEGACY-ASSET-DB95608EBA738216D0BA",
@@ -415,9 +455,9 @@
         }
       ],
       "reuse_class": "semantic_rederivation_for_research",
-      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
-      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
-      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+      "preserve": "coverage数だけで閉じずpaired scenarioの本文/失敗pathを読む。",
+      "change": "旧W-gate番号/旧test配置/CLIの合格手順を現行L4L9/L5L8とexact HEAD reviewへ対応させる。",
+      "reason": "ファイル存在や道具greenから意味閉包を生成した失敗を避けるため。"
     },
     {
       "asset_id": "LEGACY-ASSET-29CB6E703D67926200C7",
@@ -441,9 +481,9 @@
         }
       ],
       "reuse_class": "semantic_rederivation_for_research",
-      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
-      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
-      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+      "preserve": "実装前Red/最小Green/Refactor再検証と強いassertionの意図。",
+      "change": "旧L6/L7割当/CLI/full suiteの毎回強制を移植せず現行015の凍結oracle・対象profileへ結ぶ。",
+      "reason": "mutationやPBTで事前Redを置換せず検出力/負荷を分けるため。"
     },
     {
       "asset_id": "LEGACY-ASSET-9B8B50149C4D646FBAC0",
@@ -467,9 +507,9 @@
         }
       ],
       "reuse_class": "semantic_rederivation_for_research",
-      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
-      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
-      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+      "preserve": "修正前に同じ欠陥のRedを観測し、設計違反を分類し回帰例を残す。",
+      "change": "旧Recovery PLAN/doctor/DBを現行Backflow/対象設計と原receiptへ対応させる。",
+      "reason": "症状だけを修正して意味不足/再発条件を放置しないため。"
     },
     {
       "asset_id": "LEGACY-ASSET-ADE4AF41DD06DA4F100F",
@@ -493,9 +533,9 @@
         }
       ],
       "reuse_class": "semantic_rederivation_for_research",
-      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
-      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
-      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+      "preserve": "scanner名よりexact HEAD/artifact/coverage/未設定/部分失敗を区別する。",
+      "change": "旧単一admission enum/設定要求/旧approval手続きは新設せず現行SEC010〜013等へ戻す。",
+      "reason": "検査器追加だけで安全/採用authorityを生成しないため。"
     },
     {
       "asset_id": "LEGACY-ASSET-D6816E22DAF2E990410B",
@@ -519,9 +559,9 @@
         }
       ],
       "reuse_class": "semantic_rederivation_for_research",
-      "preserve": "旧手順/consumer/trace/独立review/TDD/不足保持または依存更新/security証拠の対応意図をinventory起点にする。",
-      "change": "旧CLI/層番号/DB/hook/設定/CI/skillの実行命令を継承しない。現行契約への参照入口/選択tool/profile候補に再導出する。",
-      "reason": "新形式/検査器の導入そのものを採用authorityや受入へせず、旧失敗の再発と規則複製のdriftを避ける。"
+      "preserve": "post-resolution枝を削除するmutationがoracleでRedになる対照。",
+      "change": "旧src/test/decoder/merge実装を実行せず、Stryker候補と凍結独立oracleの対照に再導出する。",
+      "reason": "mutation scoreの高低だけでは漏れたrequirement/owner枝を発見できないため。"
     }
   ],
   "legacy_search": {
@@ -1562,7 +1602,7 @@
         "最初はHELIX固有の固定反例corpus（外部命令注入、偽receipt/別revision/scope、owner/Worker権限取り違え、replay/重複/CAS/切断）を独立oracleへ結ぶ。返答の表現と実tool invocation/書込/権限/証拠採用を分け、後者を既存SEC/OS/HARNESS/CONNECT契約の実観測へ照合する。",
         "Promptfoo/PyRITは実AI接続のadapter/providerが必要な対象で比較する。生成/評価モデルの非決定性、費用、外部送信/telemetry、秘密保持と結果のfalse positive/negativeを固定profileへ結び、LLM judgeをauthority/oracleの正本へしない。",
         "日常PRでまず固定局所反例を検討し、実攻撃は対象・操作authority・通信量/時間/資源・停止/復旧・隔離・合成data・許可済み送信先が成立した範囲へ限定する。外部監査や候補共有だけで現repository/他hostへ攻撃しない。新しい一律PO承認gateは追加せず既存作用の権限契約へ戻す。",
-        "ZAP passive検査自体は既存HTTP/WebSocketを変更せず解析するが、周辺のbrowser/crawlでrequestを生成するworkflowは無作用とは限らない。active scanはWeb/APIの脆弱性を実試行するため対象経路と影響を分離。Nuclei template/署名/選択protocol・検査内容・伝播動作、Schemathesis対象OpenAPI/GraphQLとresolver/生成request範囲は個別に選ぶ。",
+        "ZAP passiveはZAPを通る/送受信するHTTP/WebSocket等を受動解析する。周辺のbrowser/crawlでrequestを生成するworkflowは無作用とは限らない。active scanはWeb/APIの脆弱性を実試行するため対象経路と影響を分離。Nuclei template/署名/選択protocol・検査内容・伝播動作、Schemathesis対象OpenAPI/GraphQLとresolver/生成request範囲は個別に選ぶ。",
         "Web/API/公開面未選択の初回非画面経路へZAP/Nuclei/Schemathesisを一律gateにしない。scanner正常終了/攻撃0/judge高scoreを全意味被覆・安全・受入へしない。LABO評価/SEC境界/改善Backflowの既存ownerを保ち攻撃側と観測/判定側を分離する。"
       ],
       "adoption_state": "recommended_candidate;target/provider/tool/profile/operation authority unselected",
@@ -1600,7 +1640,7 @@
             "最初はHELIX固有の固定反例corpus（外部命令注入、偽receipt/別revision/scope、owner/Worker権限取り違え、replay/重複/CAS/切断）を独立oracleへ結ぶ。返答の表現と実tool invocation/書込/権限/証拠採用を分け、後者を既存SEC/OS/HARNESS/CONNECT契約の実観測へ照合する。",
             "Promptfoo/PyRITは実AI接続のadapter/providerが必要な対象で比較する。生成/評価モデルの非決定性、費用、外部送信/telemetry、秘密保持と結果のfalse positive/negativeを固定profileへ結び、LLM judgeをauthority/oracleの正本へしない。",
             "日常PRでまず固定局所反例を検討し、実攻撃は対象・操作authority・通信量/時間/資源・停止/復旧・隔離・合成data・許可済み送信先が成立した範囲へ限定する。外部監査や候補共有だけで現repository/他hostへ攻撃しない。新しい一律PO承認gateは追加せず既存作用の権限契約へ戻す。",
-            "ZAP passiveもHTTP request/ブラウザcrawlを伴う場合があり無作用とは限らない。active scanはWeb/APIの脆弱性を実試行するため対象経路と影響を分離。Nuclei template/署名/選択protocol・検査内容・伝播動作、Schemathesis対象OpenAPI/GraphQLとresolver/生成requestの範囲は個別に選ぶ。",
+            "ZAP passiveはZAPを通る/送受信するHTTP/WebSocket等を受動解析する。周辺のbrowser/crawlでrequestを生成するworkflowは無作用とは限らない。active scanはWeb/APIの脆弱性を実試行するため対象経路と影響を分離。Nuclei template/署名/選択protocol・検査内容・伝播動作、Schemathesis対象OpenAPI/GraphQLとresolver/生成request範囲は個別に選ぶ。",
             "Web/API/公開面未選択の初回非画面経路へZAP/Nuclei/Schemathesisを一律gateにしない。scanner正常終了/攻撃0/judge高scoreを全意味被覆・安全・受入へしない。LABO評価/SEC境界/改善Backflowの既存ownerを保ち攻撃側と観測/判定側を分離する。"
           ],
           "decider": "既存SEC/HARNESS/LABO等の対象設計作成側と独立review。",
@@ -1624,6 +1664,327 @@
           ]
         }
       ]
+    },
+    {
+      "id": "STRUCTURED_LOGS",
+      "priority": "A",
+      "tools": [
+        "Pino",
+        "structlog"
+      ],
+      "sources": [
+        "https://github.com/pinojs/pino",
+        "https://www.structlog.org/en/stable/"
+      ],
+      "source_snapshot_refs": [
+        "c9fcc32c5d931bf92e092542f55c53e09e854040e611b96c485847f300d0773c",
+        "23f08d8d594407b8441326fdfadf49caa103bad9f16a5f22ea3073c24cc79142"
+      ],
+      "verified_capability": "PinoはJSON logger、structlogはPython構造化loggingの機能を持つ。",
+      "recommended_profile": [
+        "Node/Python adapterで同じevent名/診断/source revision/scope/相関idの意味を決める。log出力のI/O・clock・可変contextはpure意味coreの外に置く。",
+        "未信頼raw payload/secret/PIIを丸ごとlogへ写さず、既存分類/秘匿契約へ結ぶ。原receiptをlogから復元・採用したことにせず、安全な参照で結ぶ。",
+        "ログdrop/出力不能/遅延/順序/clock差/重複を観測し、log不存在を成功や未実行へ変換しない。"
+      ],
+      "adoption_state": "recommended_candidate;concrete profile/formal binding/operation pending",
+      "counterexamples": [
+        {
+          "scenario": "バッファに残ったlogがprocess停止で失われる。",
+          "consequence_for_recommendation": "ログ不存在だけで原操作の未発生や成功を判定できない。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ],
+      "premises": [
+        {
+          "id": "STRUCTURED_LOGS-CAPABILITY",
+          "state": "known",
+          "claim": "PinoはJSON logger、structlogはPython構造化loggingの機能を持つ。",
+          "source_refs": [
+            "https://github.com/pinojs/pino",
+            "https://www.structlog.org/en/stable/"
+          ],
+          "applicability": "取得公式記述の能力だけ。固定具体版/実環境へ自動継承しない。",
+          "limits": "製品実評価/導入なし。",
+          "re_research_conditions": [
+            "source/tool/support matrixの変更",
+            "具体版選定時"
+          ]
+        },
+        {
+          "id": "STRUCTURED_LOGS-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで既存観測/障害検証契約を強化できる候補。",
+          "impact_scope": [
+            "Node/Python adapterで同じevent名/診断/source revision/scope/相関idの意味を決める。log出力のI/O・clock・可変contextはpure意味coreの外に置く。",
+            "未信頼raw payload/secret/PIIを丸ごとlogへ写さず、既存分類/秘匿契約へ結ぶ。原receiptをlogから復元・採用したことにせず、安全な参照で結ぶ。",
+            "ログdrop/出力不能/遅延/順序/clock差/重複を観測し、log不存在を成功や未実行へ変換しない。"
+          ],
+          "decider": "既存INFRA/CONNECT/OS/LABO等の対象設計作成側と独立review。",
+          "applicability": "選択scope/既存owner・authority/資源・復旧条件の下で比較する。",
+          "limits": "ログ不存在だけで原操作の未発生や成功を判定できない。",
+          "re_research_conditions": [
+            "接続/観測/原receipt契約や保持・運用要件の変更",
+            "実評価で欠測/非互換/予算超過を観測"
+          ]
+        },
+        {
+          "id": "STRUCTURED_LOGS-BINDING",
+          "state": "unknown",
+          "claim": "tool/backend/host/注入対象/観測相関のformal binding未成立。",
+          "impact_scope": "実接続/実注入/観測の実装準備。",
+          "decider": "既存対象ownerと独立review。認証/不可逆作用などは既存確認先へ返す。",
+          "applicability": "unknown依存の実行許可/成立証拠へしない。",
+          "limits": "計測や設定成功を正式authority/回復/Acceptedへ代入しない。",
+          "re_research_conditions": [
+            "対象profile/binding/実作用条件を選定した時"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "METRIC_STORAGE_VISUALIZATION",
+      "priority": "B as measured operational need",
+      "tools": [
+        "Prometheus",
+        "@prometheus-io/client (previously prom-client)",
+        "prometheus_client",
+        "Grafana",
+        "Loki",
+        "Tempo"
+      ],
+      "sources": [
+        "https://prometheus.io/docs/instrumenting/clientlibs/",
+        "https://github.com/prometheus/client_js",
+        "https://github.com/prometheus/client_python",
+        "https://grafana.com/docs/grafana/latest/",
+        "https://grafana.com/docs/loki/latest/",
+        "https://grafana.com/docs/tempo/latest/"
+      ],
+      "source_snapshot_refs": [
+        "89b04cab8afd84bc414e9fb18580f0c47d3e27cd514794d6a2304774c541c038",
+        "6b6aedeb7c60b9a9264da43af720ab8d34b448cebc102a6425bf458ddfaf524d",
+        "2582cf7c1b6d5b95c6fb8b3079b601f77dce9dbf48a60e78c4933b6158a87a15",
+        "b8e8a3c4ecb42074ea2358954a0e1a7b1fd5b45d588e9b0a7da2173ae42bbd5b",
+        "8729d0e4950b835f3deba459ef5ecd87e8c0818bb3e08ae8c7beae2425109191",
+        "734de954c73a37476ea21788bf8c6446dd69994e433af3876752a96e6f496697"
+      ],
+      "verified_capability": "Prometheus公式一覧はNode/Python clientsを掲載。client_jsは@prometheus-io/client（旧prom-client）を記載。Grafanaは可視化、Lokiはlog、Tempoはtraceの集約/検索候補。",
+      "recommended_profile": [
+        "OTel計測profileとPrometheus直接client案を比較し、同一事象の二重計数/別metric名/別単位/別時間windowを避ける。collector/exporter/backend版の対応とOTel logs Developmentを保持する。",
+        "まず必要なmetric（遅延/失敗/待機/資源）と観測母数/欠測/環境差を決め、保持量/retention/予算/停止復旧に応じ保存先を選ぶ。全backendの初回導入を一律要求しない。",
+        "metric labelにepisode/request/scopeごとの無制限高cardinalityを持ち込まない。必要相関はlog/trace/安全なreceipt参照で結び、単位/分布/集計期間/欠測・counter resetを区別する。",
+        "Grafana等のalertは観測からの通知で、OSの操作authority/復旧/Acceptedを代行しない。外部通知/送信先/認証/設定作用は既存作用条件へ戻す。"
+      ],
+      "adoption_state": "recommended_candidate;concrete profile/formal binding/operation pending",
+      "counterexamples": [
+        {
+          "scenario": "scrapeできない時間帯をエラー0としてerror rateを表示する。",
+          "consequence_for_recommendation": "欠測/観測母数の不足を保持しhealthy/安全/受入の証拠へしない。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ],
+      "premises": [
+        {
+          "id": "METRIC_STORAGE_VISUALIZATION-CAPABILITY",
+          "state": "known",
+          "claim": "Prometheus公式一覧はNode/Python clientsを掲載。client_jsは@prometheus-io/client（旧prom-client）を記載。Grafanaは可視化、Lokiはlog、Tempoはtraceの集約/検索候補。",
+          "source_refs": [
+            "https://prometheus.io/docs/instrumenting/clientlibs/",
+            "https://github.com/prometheus/client_js",
+            "https://github.com/prometheus/client_python",
+            "https://grafana.com/docs/grafana/latest/",
+            "https://grafana.com/docs/loki/latest/",
+            "https://grafana.com/docs/tempo/latest/"
+          ],
+          "applicability": "取得公式記述の能力だけ。固定具体版/実環境へ自動継承しない。",
+          "limits": "製品実評価/導入なし。",
+          "re_research_conditions": [
+            "source/tool/support matrixの変更",
+            "具体版選定時"
+          ]
+        },
+        {
+          "id": "METRIC_STORAGE_VISUALIZATION-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで既存観測/障害検証契約を強化できる候補。",
+          "impact_scope": [
+            "OTel計測profileとPrometheus直接client案を比較し、同一事象の二重計数/別metric名/別単位/別時間windowを避ける。collector/exporter/backend版の対応とOTel logs Developmentを保持する。",
+            "まず必要なmetric（遅延/失敗/待機/資源）と観測母数/欠測/環境差を決め、保持量/retention/予算/停止復旧に応じ保存先を選ぶ。全backendの初回導入を一律要求しない。",
+            "metric labelにepisode/request/scopeごとの無制限高cardinalityを持ち込まない。必要相関はlog/trace/安全なreceipt参照で結び、単位/分布/集計期間/欠測・counter resetを区別する。",
+            "Grafana等のalertは観測からの通知で、OSの操作authority/復旧/Acceptedを代行しない。外部通知/送信先/認証/設定作用は既存作用条件へ戻す。"
+          ],
+          "decider": "既存INFRA/CONNECT/OS/LABO等の対象設計作成側と独立review。",
+          "applicability": "選択scope/既存owner・authority/資源・復旧条件の下で比較する。",
+          "limits": "欠測/観測母数の不足を保持しhealthy/安全/受入の証拠へしない。",
+          "re_research_conditions": [
+            "接続/観測/原receipt契約や保持・運用要件の変更",
+            "実評価で欠測/非互換/予算超過を観測"
+          ]
+        },
+        {
+          "id": "METRIC_STORAGE_VISUALIZATION-BINDING",
+          "state": "unknown",
+          "claim": "tool/backend/host/注入対象/観測相関のformal binding未成立。",
+          "impact_scope": "実接続/実注入/観測の実装準備。",
+          "decider": "既存対象ownerと独立review。認証/不可逆作用などは既存確認先へ返す。",
+          "applicability": "unknown依存の実行許可/成立証拠へしない。",
+          "limits": "計測や設定成功を正式authority/回復/Acceptedへ代入しない。",
+          "re_research_conditions": [
+            "対象profile/binding/実作用条件を選定した時"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FAULT_INJECTION_ENVIRONMENT",
+      "priority": "A for selected real connections",
+      "tools": [
+        "Toxiproxy",
+        "Testcontainers Node/Python"
+      ],
+      "sources": [
+        "https://github.com/Shopify/toxiproxy",
+        "https://testcontainers.com/"
+      ],
+      "source_snapshot_refs": [
+        "4a50c5f956a384df6ac10dbcdea325954ab97da8a4a50d0b173611aa7193ca19",
+        "901f92b434424a5a35b8359520a6f96304c299fbecfa240392a305c03fb50ffe"
+      ],
+      "verified_capability": "ToxiproxyはTCP proxyでlatency/timeout/reset_peer/limit_data/packet_loss等を持つ。packet_lossはproxy内chunkを落とす方式。Testcontainersはcontainer依存を検証時に起動/破棄する候補でNode/Python対応がある。",
+      "recommended_profile": [
+        "選択CONNECTのTCP実経路に対して遅延方向/timeout/reset/切断時点/再送/重複/CAS競合を凍結oracleへ結ぶ。TCP proxy外のUDP/Unix socket/process/SQLite file故障を同じ被覆にしない。",
+        "障害前/障害中/回復後の操作と原receipt、OS未完/CONNECT再送/INFRA状態を別に観測し、proxyの設定成功を回復成功へしない。jitter/toxicity等のrandom性は実注入記録/対象version/縮小反例に結ぶ。",
+        "Testcontainersのimage digest/runtime/host差/ポート・volume・資源・start-ready条件/停止時残留を選定する。container化だけでsandbox/全platform同一/必ず後片付け成功を保証しない。外部image pullやdaemon/privilegeは今回実施しない。",
+        "Toxiproxy管理面はdefault非認証で任意upstreamを指定できる公式仕様。管理面の到達範囲と既存SEC/INFRA権限/隔離条件を選ぶ。新token設定や故障注入の実行許可は本researchから生成しない。"
+      ],
+      "adoption_state": "recommended_candidate;concrete profile/formal binding/operation pending",
+      "counterexamples": [
+        {
+          "scenario": "本体がproxyを迂回して直接接続し、proxyのtimeout設定だけは成功する。",
+          "consequence_for_recommendation": "対象実経路と実注入を観測してから回復/再送oracleへ照合する。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ],
+      "premises": [
+        {
+          "id": "FAULT_INJECTION_ENVIRONMENT-CAPABILITY",
+          "state": "known",
+          "claim": "ToxiproxyはTCP proxyでlatency/timeout/reset_peer/limit_data/packet_loss等を持つ。packet_lossはproxy内chunkを落とす方式。Testcontainersはcontainer依存を検証時に起動/破棄する候補でNode/Python対応がある。",
+          "source_refs": [
+            "https://github.com/Shopify/toxiproxy",
+            "https://testcontainers.com/"
+          ],
+          "applicability": "取得公式記述の能力だけ。固定具体版/実環境へ自動継承しない。",
+          "limits": "製品実評価/導入なし。",
+          "re_research_conditions": [
+            "source/tool/support matrixの変更",
+            "具体版選定時"
+          ]
+        },
+        {
+          "id": "FAULT_INJECTION_ENVIRONMENT-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで既存観測/障害検証契約を強化できる候補。",
+          "impact_scope": [
+            "選択CONNECTのTCP実経路に対して遅延方向/timeout/reset/切断時点/再送/重複/CAS競合を凍結oracleへ結ぶ。TCP proxy外のUDP/Unix socket/process/SQLite file故障を同じ被覆にしない。",
+            "障害前/障害中/回復後の操作と原receipt、OS未完/CONNECT再送/INFRA状態を別に観測し、proxyの設定成功を回復成功へしない。jitter/toxicity等のrandom性は実注入記録/対象version/縮小反例に結ぶ。",
+            "Testcontainersのimage digest/runtime/host差/ポート・volume・資源・start-ready条件/停止時残留を選定する。container化だけでsandbox/全platform同一/必ず後片付け成功を保証しない。外部image pullやdaemon/privilegeは今回実施しない。",
+            "Toxiproxy管理面はdefault非認証で任意upstreamを指定できる公式仕様。管理面の到達範囲と既存SEC/INFRA権限/隔離条件を選ぶ。新token設定や故障注入の実行許可は本researchから生成しない。"
+          ],
+          "decider": "既存INFRA/CONNECT/OS/LABO等の対象設計作成側と独立review。",
+          "applicability": "選択scope/既存owner・authority/資源・復旧条件の下で比較する。",
+          "limits": "対象実経路と実注入を観測してから回復/再送oracleへ照合する。",
+          "re_research_conditions": [
+            "接続/観測/原receipt契約や保持・運用要件の変更",
+            "実評価で欠測/非互換/予算超過を観測"
+          ]
+        },
+        {
+          "id": "FAULT_INJECTION_ENVIRONMENT-BINDING",
+          "state": "unknown",
+          "claim": "tool/backend/host/注入対象/観測相関のformal binding未成立。",
+          "impact_scope": "実接続/実注入/観測の実装準備。",
+          "decider": "既存対象ownerと独立review。認証/不可逆作用などは既存確認先へ返す。",
+          "applicability": "unknown依存の実行許可/成立証拠へしない。",
+          "limits": "計測や設定成功を正式authority/回復/Acceptedへ代入しない。",
+          "re_research_conditions": [
+            "対象profile/binding/実作用条件を選定した時"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EXCEPTION_COLLECTION",
+      "priority": "B when operational need selected",
+      "tools": [
+        "Sentry JavaScript/Python SDK"
+      ],
+      "sources": [
+        "https://github.com/getsentry/sentry-javascript",
+        "https://github.com/getsentry/sentry-python"
+      ],
+      "source_snapshot_refs": [
+        "199d30cc5e819b80e3ce7f0ff4e343239ac96753c59b6b1953238ba302c215e1",
+        "29b39d30615d45f18fb7ca03f48a0b57673e77e10cc3efaea976f75826e35adc"
+      ],
+      "verified_capability": "SentryにはJavaScript/Python向け公式SDKがある。",
+      "recommended_profile": [
+        "例外収集・分類の候補としてlogging/traceとの重複/欠測を評価。SDK I/Oは外側adapterへ置き、callback/configによるraw payload/secret/PII露出と送信先を既存SEC契約へ結ぶ。",
+        "hosted/self-hosted/送信/保持/費用とselected platform/SDK版を比較。外部送信や通知・user紐付けを今回実施しない。"
+      ],
+      "adoption_state": "recommended_candidate;concrete profile/formal binding/operation pending",
+      "counterexamples": [
+        {
+          "scenario": "samplingや送信失敗でeventが0になる。",
+          "consequence_for_recommendation": "例外収集0を無障害/全観測/受入と認定しない。",
+          "evidence_kind": "source_specification_or_contract_derived_counterexample_not_executed"
+        }
+      ],
+      "premises": [
+        {
+          "id": "EXCEPTION_COLLECTION-CAPABILITY",
+          "state": "known",
+          "claim": "SentryにはJavaScript/Python向け公式SDKがある。",
+          "source_refs": [
+            "https://github.com/getsentry/sentry-javascript",
+            "https://github.com/getsentry/sentry-python"
+          ],
+          "applicability": "取得公式記述の能力だけ。固定具体版/実環境へ自動継承しない。",
+          "limits": "製品実評価/導入なし。",
+          "re_research_conditions": [
+            "source/tool/support matrixの変更",
+            "具体版選定時"
+          ]
+        },
+        {
+          "id": "EXCEPTION_COLLECTION-FIT",
+          "state": "assumption",
+          "claim": "推奨profileで既存観測/障害検証契約を強化できる候補。",
+          "impact_scope": [
+            "例外収集・分類の候補としてlogging/traceとの重複/欠測を評価。SDK I/Oは外側adapterへ置き、callback/configによるraw payload/secret/PII露出と送信先を既存SEC契約へ結ぶ。",
+            "hosted/self-hosted/送信/保持/費用とselected platform/SDK版を比較。外部送信や通知・user紐付けを今回実施しない。"
+          ],
+          "decider": "既存INFRA/CONNECT/OS/LABO等の対象設計作成側と独立review。",
+          "applicability": "選択scope/既存owner・authority/資源・復旧条件の下で比較する。",
+          "limits": "例外収集0を無障害/全観測/受入と認定しない。",
+          "re_research_conditions": [
+            "接続/観測/原receipt契約や保持・運用要件の変更",
+            "実評価で欠測/非互換/予算超過を観測"
+          ]
+        },
+        {
+          "id": "EXCEPTION_COLLECTION-BINDING",
+          "state": "unknown",
+          "claim": "tool/backend/host/注入対象/観測相関のformal binding未成立。",
+          "impact_scope": "実接続/実注入/観測の実装準備。",
+          "decider": "既存対象ownerと独立review。認証/不可逆作用などは既存確認先へ返す。",
+          "applicability": "unknown依存の実行許可/成立証拠へしない。",
+          "limits": "計測や設定成功を正式authority/回復/Acceptedへ代入しない。",
+          "re_research_conditions": [
+            "対象profile/binding/実作用条件を選定した時"
+          ]
+        }
+      ]
     }
   ],
   "proposed_sequence": [
@@ -1632,7 +1993,8 @@
     "同じschema/codecとvalidator/generator/test-runner/configの固定profileを設計。環境再現と両言語の構造/数値境界corpusを凍結対象へ結ぶ。",
     "対象の凍結oracle/preimplementation Red/最小Green/RefactorへPBTと共通corpusを結び、同じローカル入口を新世代Actionsで再検証する設計を進める。workflow監査を併用し、実行は既存成立条件を満たす対象に限る。",
     "実adapterの接続と資源/authority条件が成立した範囲でtrace/metricを加え、LABO観測へ結ぶ。製品動作/受入/全92親430対の閉包は別の証拠で検査する。",
-    "実装後のmutation、選択AI接続/Web/APIの隔離攻撃検証、配布artifactのSBOMを必要scopeで評価する。これらを初回非画面経路の一律gateや攻撃/配布許可にしない。"
+    "実装後のmutation、選択AI接続/Web/APIの隔離攻撃検証、配布artifactのSBOMを必要scopeで評価する。これらを初回非画面経路の一律gateや攻撃/配布許可にしない。",
+    "初回実接続は構造化log/OTelの相関と原receiptを分け、選択TCP経路の故障注入/復旧反例を先に設計。保持量/欠測/資源予算からPrometheus/Grafana/Loki/Tempo/Sentry等を段階選定。"
   ],
   "known_gaps": [
     "正規validator/runtime/tool具体版と伝播依存を選定していない。公式最新版というだけでは採用しない。",
@@ -1641,7 +2003,8 @@
     "OTel exporter/属性/sampling/相関と実接続の受入・資源条件は未成立。",
     "本researchは正式schema採択/初回実装Ready/全設計完了を生成しない。SECURITY001の詳細設計は元のgoal内で継続する。",
     "新workflowの対象profile/job権限/依存・artifact・cache境界、actionlint/zizmorの具体版と監査rule、文書意味の不足/stale検出、Web適用範囲は未固定。",
-    "追加Skillの正本/host適用、依存resolver、secret coverage/allowlist、dependency updates、mutation/provider/実作用観測、攻撃隔離/authority、SBOM coverageのformal bindingと実評価は未成立。"
+    "追加Skillの正本/host適用、依存resolver、secret coverage/allowlist、dependency updates、mutation/provider/実作用観測、攻撃隔離/authority、SBOM coverageのformal bindingと実評価は未成立。",
+    "構造化logのevent/schema/redaction、metric単位/label予算・欠測/clock、collector/backendと相関、TCP実経路/実注入・回復oracle、container host/後片付けの実成立は未確認。"
   ],
   "verification_state": "source/旧inventory/現行契約との静的照合のみ。旧実行物・product tests/CI・SDK・installは未実行。",
   "official_source_snapshots": [
@@ -1984,6 +2347,126 @@
       "bytes_count": 90468,
       "content_type": "text/html; charset=utf-8",
       "tool_release_selected": null
+    },
+    {
+      "url": "https://github.com/Shopify/toxiproxy",
+      "resolved_url": "https://github.com/Shopify/toxiproxy",
+      "retrieved_at_utc": "2026-10-13T18:02:14.969067+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "4a50c5f956a384df6ac10dbcdea325954ab97da8a4a50d0b173611aa7193ca19",
+      "bytes_count": 508743,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://github.com/getsentry/sentry-javascript",
+      "resolved_url": "https://github.com/getsentry/sentry-javascript",
+      "retrieved_at_utc": "2026-10-13T18:02:15.000721+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "199d30cc5e819b80e3ce7f0ff4e343239ac96753c59b6b1953238ba302c215e1",
+      "bytes_count": 387231,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://github.com/getsentry/sentry-python",
+      "resolved_url": "https://github.com/getsentry/sentry-python",
+      "retrieved_at_utc": "2026-10-13T18:02:14.945843+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "29b39d30615d45f18fb7ca03f48a0b57673e77e10cc3efaea976f75826e35adc",
+      "bytes_count": 381202,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://github.com/pinojs/pino",
+      "resolved_url": "https://github.com/pinojs/pino",
+      "retrieved_at_utc": "2026-10-13T18:02:15.020904+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "c9fcc32c5d931bf92e092542f55c53e09e854040e611b96c485847f300d0773c",
+      "bytes_count": 388871,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://github.com/prometheus/client_js",
+      "resolved_url": "https://github.com/prometheus/client_js",
+      "retrieved_at_utc": "2026-10-13T18:02:14.855833+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "6b6aedeb7c60b9a9264da43af720ab8d34b448cebc102a6425bf458ddfaf524d",
+      "bytes_count": 569248,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://github.com/prometheus/client_python",
+      "resolved_url": "https://github.com/prometheus/client_python",
+      "retrieved_at_utc": "2026-10-13T18:02:15.511771+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "2582cf7c1b6d5b95c6fb8b3079b601f77dce9dbf48a60e78c4933b6158a87a15",
+      "bytes_count": 299600,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://grafana.com/docs/grafana/latest/",
+      "resolved_url": "https://grafana.com/docs/grafana/latest/",
+      "retrieved_at_utc": "2026-10-13T18:02:15.711911+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "b8e8a3c4ecb42074ea2358954a0e1a7b1fd5b45d588e9b0a7da2173ae42bbd5b",
+      "bytes_count": 346745,
+      "content_type": "text/html",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://grafana.com/docs/loki/latest/",
+      "resolved_url": "https://grafana.com/docs/loki/latest/",
+      "retrieved_at_utc": "2026-10-13T18:02:15.677056+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "8729d0e4950b835f3deba459ef5ecd87e8c0818bb3e08ae8c7beae2425109191",
+      "bytes_count": 194270,
+      "content_type": "text/html",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://grafana.com/docs/tempo/latest/",
+      "resolved_url": "https://grafana.com/docs/tempo/latest/",
+      "retrieved_at_utc": "2026-10-13T18:02:15.676146+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "734de954c73a37476ea21788bf8c6446dd69994e433af3876752a96e6f496697",
+      "bytes_count": 174339,
+      "content_type": "text/html",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://prometheus.io/docs/instrumenting/clientlibs/",
+      "resolved_url": "https://prometheus.io/docs/instrumenting/clientlibs/",
+      "retrieved_at_utc": "2026-10-13T18:02:15.723317+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "89b04cab8afd84bc414e9fb18580f0c47d3e27cd514794d6a2304774c541c038",
+      "bytes_count": 184723,
+      "content_type": "text/html; charset=UTF-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://testcontainers.com/",
+      "resolved_url": "https://testcontainers.com/",
+      "retrieved_at_utc": "2026-10-13T18:02:16.708045+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "901f92b434424a5a35b8359520a6f96304c299fbecfa240392a305c03fb50ffe",
+      "bytes_count": 50380,
+      "content_type": "text/html; charset=UTF-8",
+      "tool_release_selected": null
+    },
+    {
+      "url": "https://www.structlog.org/en/stable/",
+      "resolved_url": "https://www.structlog.org/en/stable/",
+      "retrieved_at_utc": "2026-10-13T18:02:16.130308+00:00",
+      "source_version_kind": "retrieved_document_bytes_snapshot_not_selected_tool_release",
+      "bytes_sha256": "23f08d8d594407b8441326fdfadf49caa103bad9f16a5f22ea3073c24cc79142",
+      "bytes_count": 37024,
+      "content_type": "text/html; charset=utf-8",
+      "tool_release_selected": null
     }
   ],
   "judgment_point": {
@@ -1995,8 +2478,34 @@
       "followup_excerpt": "CI関連の推奨も届いた。",
       "excerpt_sha256": "16b7d609777acc825ffb26d9ac207c0774acfc8006681ac8e09f4349aa85b8dd",
       "scope": "検討依頼。要求意味/技術採用/実行許可へ昇格しない。",
-      "additional_instruction_summary": "利用者が追加共有したAgent Skills・依存方向検査・秘密/依存管理・mutation・MCP・SBOMと、レッドチームの推奨を同じ技術強化比較へ含める。検討依頼を攻撃実行/採用許可へ拡張しない。",
-      "excerpt_digest_rule": "request_excerpt + LF + followup_excerptをUTF-8へencodeしSHA-256。additional_instruction_summaryは要約でexcerpt digestには含めない。"
+      "additional_instruction_summary": "利用者が追加共有したAgent Skills・依存方向検査・秘密/依存管理・mutation・MCP・SBOMと、レッドチームの推奨を同じ技術強化比較へ含める。検討依頼を攻撃実行/採用許可へ拡張しない。 続いて共有された構造化log/metrics backend/可視化/例外収集/障害注入候補も比較する。",
+      "excerpt_digest_rule": "request_excerpt + LF + followup_excerptをUTF-8へencodeしSHA-256。additional_instruction_summaryは要約でexcerpt digestには含めない。",
+      "additional_shared_sources": [
+        {
+          "id": "skills_and_tools",
+          "source_kind": "external_recommendation_shared_by_user_in_existing_session",
+          "excerpt": "HELIXなら、ライブラリだけでなく「AIエージェント用スキル」も重要な選定対象になる。",
+          "excerpt_sha256": "df8bfefd44732b7b25e643d383d999f460010b2de38383c87831bff2f86be858",
+          "digest_rule": "excerptだけをUTF-8 encodeしてSHA-256。要約/囲み/末尾LFを含めない。",
+          "use": "既存の技術強化検討の比較入力。推薦や外部本文を要求採用/実操作/攻撃許可にしない。"
+        },
+        {
+          "id": "red_team",
+          "source_kind": "external_recommendation_shared_by_user_in_existing_session",
+          "excerpt": "Promptfoo / PyRITによる攻撃、ZAPのアクティブスキャン、Nucleiの選択した検査",
+          "excerpt_sha256": "d0821fcefba6ac9e9821eabfa5835d468c7240421ea3fb84b7ea486cef83522b",
+          "digest_rule": "excerptだけをUTF-8 encodeしてSHA-256。要約/囲み/末尾LFを含めない。",
+          "use": "既存の技術強化検討の比較入力。推薦や外部本文を要求採用/実操作/攻撃許可にしない。"
+        },
+        {
+          "id": "observation_faults",
+          "source_kind": "external_recommendation_shared_by_user_in_existing_session",
+          "excerpt": "特におすすめなのは、ログ・メトリクス・トレース・障害注入テストの4分野。",
+          "excerpt_sha256": "1d1d7c787bbbdfde328f5f84fa311e36238141fdf307ca1e833ca48fdce77b40",
+          "digest_rule": "excerptだけをUTF-8 encodeしてSHA-256。要約/囲み/末尾LFを含めない。",
+          "use": "既存の技術強化検討の比較入力。推薦や外部本文を要求採用/実操作/攻撃許可にしない。"
+        }
+      ]
     },
     "parent_refs": [
       {
@@ -2127,5 +2636,71 @@
     ],
     "matched_path_list_sha256": "1ea031fa23003bc467b581dce62f2f9636f5d65044657f015fa60f484f302fae",
     "limit": "語一致は採用/実装/不在の証明ではない。.claude/skillsは対象archiveに存在せず、旧skill内容はdocs/skillsで確認。旧内容は実行していない。"
+  },
+  "observation_legacy_search": {
+    "command": [
+      "rg",
+      "--no-config",
+      "-l",
+      "-i",
+      "--hidden",
+      "--no-ignore",
+      "toxiproxy|testcontainers|structlog|\\bpino\\b|prometheus|grafana|sentry|\\bloki\\b|\\btempo\\b",
+      "archive/legacy-generation-2026-09-14/root",
+      "--glob",
+      "!*.lock",
+      "--glob",
+      "!*.jsonl",
+      "--glob",
+      "!MANIFEST*"
+    ],
+    "tool_version": "ripgrep 15.0.0 (rev 3a612f88b8)",
+    "case": "insensitive",
+    "hidden": "included",
+    "ignore": "disabled",
+    "binary": "rg default skips binary",
+    "matched_paths": 38,
+    "matched_path_list": [
+      "archive/legacy-generation-2026-09-14/root/.helix/audit/A-124-cross-artifact-graph-tooling.md",
+      "archive/legacy-generation-2026-09-14/root/.helix/audit/A-125-mcp-external-verification-profile-scope.md",
+      "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-002-dependency-direction-and-auto-map.md",
+      "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/helix-agent-harness-concept_v2.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/archive/helix-agent-harness-concept_v3.0.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/external-if.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/if-detail.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/module-decomposition.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/physical-data.md",
+      "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/ai-dev-team-concept_v1.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/ai-dev-team-operations_v1.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/helix-awesome-agent-catalog-inventory-2026-07-07.tsv",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+      "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.2.md",
+      "archive/legacy-generation-2026-09-14/root/docs/improvement-backlog.md",
+      "archive/legacy-generation-2026-09-14/root/docs/migration/v2-import-ledger.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L4-00-master.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L4-04-external-if.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L5-00-master.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L6-33-tool-adapter-probes.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-226-verification-profile-right-arm-gate-metadata.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-367-parallel-candidate-verifier-council.md",
+      "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-79-mcp-launcher-argv-tokenization.md",
+      "archive/legacy-generation-2026-09-14/root/docs/process/forward/overview.md",
+      "archive/legacy-generation-2026-09-14/root/docs/research/mcp-external-verification-profile-research-2026-06-09.md",
+      "archive/legacy-generation-2026-09-14/root/docs/test-design/harness/L7-unit-test-design.md",
+      "archive/legacy-generation-2026-09-14/root/src/lint/verification-profile-catalog.ts",
+      "archive/legacy-generation-2026-09-14/root/src/lint/verification-profile-safety.ts",
+      "archive/legacy-generation-2026-09-14/root/src/lint/verification-profile-types.ts",
+      "archive/legacy-generation-2026-09-14/root/src/requirements/nfr-registry.ts",
+      "archive/legacy-generation-2026-09-14/root/src/schema/frontmatter.ts",
+      "archive/legacy-generation-2026-09-14/root/src/schema/green-command.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/typescript-lazy.test.ts",
+      "archive/legacy-generation-2026-09-14/root/tests/verification-profile.test.ts"
+    ],
+    "matched_path_list_sha256": "96a458ab561abf38b4daaaa488ff51f2459a321b662a0cd693ea067004bcc5c5",
+    "limit": "語一致は実採用/不在の証明ではない。既存pillarの観測/profileと弱点監査の資源・absence/aggregateを起点に比較。"
   }
 }
