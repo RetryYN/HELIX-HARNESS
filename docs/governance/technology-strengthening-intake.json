@@ -371,7 +371,28 @@
       "return_to": "HARNESS対象pack/呼出し/trace owner",
       "state": "proposed_pending_independent_review",
       "verification_state": "static_source_and_scope_verified;product_runtime_not_executed",
-      "adoption_effect": "none"
+      "adoption_effect": "none",
+      "premise_state": "assumption",
+      "source_state": "known_fixed_source_static_read",
+      "runtime_state": "unknown_not_executed",
+      "impact_scope": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ],
+      "decider": "Codex作成候補、独立reviewと既存対象owner。要求採否/上流meaningを代行しない。",
+      "re_research_conditions": [
+        "参照する要求/設計/source revisionまたは対象scopeの変更",
+        "追加共有で入力/比較条件が変わる時",
+        "具体版/profileと実評価条件が揃った時"
+      ]
     },
     {
       "id": "P02",
@@ -430,7 +451,23 @@
       "return_to": "HARNESS034と対象NFR/製品owner",
       "state": "proposed_pending_independent_review",
       "verification_state": "static_source_and_scope_verified;product_runtime_not_executed",
-      "adoption_effect": "none"
+      "adoption_effect": "none",
+      "premise_state": "assumption",
+      "source_state": "known_fixed_source_static_read",
+      "runtime_state": "unknown_not_executed",
+      "impact_scope": [
+        "T01",
+        "T02",
+        "T06",
+        "T07",
+        "T09"
+      ],
+      "decider": "Codex作成候補、独立reviewと既存対象owner。要求採否/上流meaningを代行しない。",
+      "re_research_conditions": [
+        "参照する要求/設計/source revisionまたは対象scopeの変更",
+        "追加共有で入力/比較条件が変わる時",
+        "具体版/profileと実評価条件が揃った時"
+      ]
     },
     {
       "id": "P03",
@@ -511,7 +548,21 @@
       "return_to": "OS053/INFRA backup・復旧/知識版owner",
       "state": "proposed_pending_independent_review",
       "verification_state": "static_source_and_scope_verified;product_runtime_not_executed",
-      "adoption_effect": "none"
+      "adoption_effect": "none",
+      "premise_state": "assumption",
+      "source_state": "known_fixed_source_static_read",
+      "runtime_state": "unknown_not_executed",
+      "impact_scope": [
+        "T06",
+        "T07",
+        "T09"
+      ],
+      "decider": "Codex作成候補、独立reviewと既存対象owner。要求採否/上流meaningを代行しない。",
+      "re_research_conditions": [
+        "参照する要求/設計/source revisionまたは対象scopeの変更",
+        "追加共有で入力/比較条件が変わる時",
+        "具体版/profileと実評価条件が揃った時"
+      ]
     },
     {
       "id": "P04",
@@ -564,7 +615,25 @@
       "return_to": "SEC010〜013/007/008/023・対象作用owner",
       "state": "proposed_pending_independent_review",
       "verification_state": "static_source_and_scope_verified;product_runtime_not_executed",
-      "adoption_effect": "none"
+      "adoption_effect": "none",
+      "premise_state": "assumption",
+      "source_state": "known_fixed_source_static_read",
+      "runtime_state": "unknown_not_executed",
+      "impact_scope": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T08",
+        "T09"
+      ],
+      "decider": "Codex作成候補、独立reviewと既存対象owner。要求採否/上流meaningを代行しない。",
+      "re_research_conditions": [
+        "参照する要求/設計/source revisionまたは対象scopeの変更",
+        "追加共有で入力/比較条件が変わる時",
+        "具体版/profileと実評価条件が揃った時"
+      ]
     },
     {
       "id": "P05",
@@ -639,7 +708,23 @@
       "return_to": "LABO評価・OS attempt/予算・HARNESS oracle owner",
       "state": "proposed_pending_independent_review",
       "verification_state": "static_source_and_scope_verified;product_runtime_not_executed",
-      "adoption_effect": "none"
+      "adoption_effect": "none",
+      "premise_state": "assumption",
+      "source_state": "known_fixed_source_static_read",
+      "runtime_state": "unknown_not_executed",
+      "impact_scope": [
+        "T03",
+        "T05",
+        "T06",
+        "T08",
+        "T09"
+      ],
+      "decider": "Codex作成候補、独立reviewと既存対象owner。要求採否/上流meaningを代行しない。",
+      "re_research_conditions": [
+        "参照する要求/設計/source revisionまたは対象scopeの変更",
+        "追加共有で入力/比較条件が変わる時",
+        "具体版/profileと実評価条件が揃った時"
+      ]
     },
     {
       "id": "P06",
@@ -707,7 +792,24 @@
       "return_to": "BRAIN版/採否・SEC更新・INFRA運用・HARNESS影響owner",
       "state": "proposed_pending_independent_review",
       "verification_state": "static_source_and_scope_verified;product_runtime_not_executed",
-      "adoption_effect": "none"
+      "adoption_effect": "none",
+      "premise_state": "assumption",
+      "source_state": "known_fixed_source_static_read",
+      "runtime_state": "unknown_not_executed",
+      "impact_scope": [
+        "T04",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ],
+      "decider": "Codex作成候補、独立reviewと既存対象owner。要求採否/上流meaningを代行しない。",
+      "re_research_conditions": [
+        "参照する要求/設計/source revisionまたは対象scopeの変更",
+        "追加共有で入力/比較条件が変わる時",
+        "具体版/profileと実評価条件が揃った時"
+      ]
     }
   ],
   "proposal_audit_basis": {
@@ -800,6 +902,19 @@
     "scope": "T01〜T10の技術選定入力に対する具体化の監査。元の92親430対・下流設計の全体完了監査を代替しない。",
     "user_instruction": "その他抜けている観点がないかもチェックして自己提案して検証すること。",
     "effects": "提案/静的検証だけ。要求/採否/実操作のauthorityなし。",
-    "remaining": "独立review、対象の具体条件/fixture/oracleと実評価、全設計/実装準備は未完。"
+    "remaining": "独立review、対象の具体条件/fixture/oracleと実評価、全設計/実装準備は未完。",
+    "observed_at_utc": "2026-10-13T18:25:37.770551+00:00",
+    "parent_pins": [
+      {
+        "path": "docs/concept/helix-concept.md",
+        "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+        "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+      },
+      {
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+        "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+      }
+    ]
   }
 }
