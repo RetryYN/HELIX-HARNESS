@@ -587,6 +587,19 @@
         "preserve": "unknownをobserved/unchanged/0へ変えず、別snapshot joinを拒否し影響exact setと無関係範囲を保全。",
         "change": "旧delta/UIL/assignment runtimeを移植せず、独立Contextの9cell資格/未観測集合/合成probe条件を純粋比較へ具体化する。",
         "reason": "旧graph/資料自己申告で未観測とmissingを合格・無影響へ丸めず、局所不足でOLD/Qを失効しないため。候補全体の採用/実copy/authority writeを生成しない。"
+      },
+      "n01_whole_rederivation": {
+        "read_line_locators": [
+          20,
+          22,
+          23,
+          24,
+          25,
+          42
+        ],
+        "preserve": "unknownを0/unchanged/observedにしない、別snapshot join拒否、影響exact setと無関係範囲保全、未成立の運転禁止。",
+        "change": "旧delta/UIL/assignment runtimeを実行せず、9cell/既知impact/未観測union/全typed診断と複合原因の独立比較へ再導出。",
+        "reason": "親資格不足・新consumer不足を全合格/全失効にせず、原不足と派生join不明の所在を保持するため。実要求write/実probe/一般保証を生成しない。"
       }
     },
     {
@@ -1052,7 +1065,7 @@
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。 Context21否定例で資格不足のcell局所化/母集団unionと同raw異identityの代用拒否を追加。 48固定対照を全TraceResultへ、9同時Context不備と3candidate作用主張の1例を追加。全finding/basis/役割/保持hashを固定。全形状/多重資料/実binding/全freezeは未完。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。 Context21例で独立資格不足とpair/意味/trigger/種類の局所不足を分離。 61固定対照を全ReconfirmationResultへ、複数意味軸11組/公開contract単独/7trigger共存2/同時Context7/複数candidate1の22例を追加。basis/全finding/role/hash/最上流と原因共存を固定。全構造/実policy/実binding/全freezeは未完。",
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。 50固定対照を全AssetReuseResultへ、8各不変条件changed/全8unknown/全11trace欠落/原UTF8・改行非正規化/bool数値型差/相反とunknown共存/Context複合5/原digestと資格共存/複数candidateの21例を追加。全finding/basis/role/hashを固定。全構造/実clearance/consumer閉包/全freeze未完。",
-    "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。 Context25例で資料資格/未観測union/局所9cell/盲検資格の不足を分離。",
+    "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。 Context25例で資料資格/未観測union/局所9cell/盲検資格の不足を分離。 52固定対照を全UnseenRelationResultへ、原複合6/Context複合8/相反と資格不足1/consumer順1/複数candidate1の17対照を追加。全finding/basis/role/hash/原欠落と派生join不明を分離。全構造/実probe/全binding/全freezeは未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
   ],
   "document_id": "HARNESS-L5-004",
@@ -3726,6 +3739,116 @@
         ],
         "aggregation": "N8どおり原cell conflict/candidate矛盾はconflict、missing/unknown/stale/unknown_relation又はContext資格不足はunknown。probe/未観測だけの不足も別findingで保持し一般保証を生成しない。返却名は意味役割で実owner資格や操作許可を生成しない。",
         "unclosed": "全複合/不正型/全副次finding/全内容版/実probe lineage・観測・owner-codec/正式schema/L6L7/oracle凍結は未完。以下25例は指定value/minimum findingの部分oracle。"
+      },
+      "whole_result_contract": {
+        "scope": "27原例+25Contextを全UnseenRelationResultへ。原複数原因、Context複合、相反と資格不足、consumer順・複数candidateを追加。全構造/多重原資料/全probe/実binding/全freezeは未完。",
+        "fixed_synthetic_qualifier_roots": [
+          {
+            "identity": "SYNTHETIC-N01-ORACLE-BASIS",
+            "owner": "synthetic-oracle-author",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P"
+          }
+        ],
+        "root_eligibility": "供給rootのunique全4tuple集合が固定root集合と完全一致する場合だけ合成適格。同identityのowner/scope/revision成分差は/context/qualifier_roots/{i}/{field} reference_unknown、未知identity/空/混合は/context/qualifier_roots reference_unknown。全体9cell unknown。実owner/probe/観測資格の発行ではない。",
+        "basis_rule": "全findingのbasis_refsは固定合成root∪供給Context.qualifier_rootsのみ。consumer/condition/probe/TEST/OBSのIDとowner名は全4成分RefでないためRefを創作しない。全4tupleでunique化しidentity/revision/scope/ownerのcodepoint順sort。rootを表示しても実qualificationにならない。",
+        "finding_ids": "原consumer field診断は当該consumer1件と、input relation.condition_ids∪Context required_consumer_relations当該condition_ids。relationがnullでも必要条件を空へしない。全体causeはinput/Context consumer unionとinput requirements key∪Context required_condition_ids。probeは対象consumerとその条件、未観測差はconsumer_ids=[]と全条件。candidateのconsumer_results pathはそのconsumer/条件、root pathは全union。",
+        "finding_order": "code,pointer,consumer_ids tuple,condition_ids tuple,return_ownerのcodepoint順。両ID集合も同順。完全同値全6fieldだけ重複除去。",
+        "input_diagnostics": [
+          {
+            "condition": "relation null",
+            "code": "relation_missing",
+            "pointer": "/input/consumers/{i}/relation",
+            "return_owner": "consumer-relation-owner"
+          },
+          {
+            "condition": "authority null",
+            "code": "reference_missing",
+            "pointer": "/input/consumers/{i}/authority",
+            "return_owner": "consumer-authority-owner"
+          },
+          {
+            "condition": "authority.state stale",
+            "code": "reference_stale",
+            "pointer": "/input/consumers/{i}/authority/state",
+            "return_owner": "consumer-authority-owner"
+          },
+          {
+            "condition": "authority.subject/scope/binding不一致",
+            "code": "reference_conflict",
+            "pointer": "/input/consumers/{i}/authority/{field}（相反fieldごと）",
+            "return_owner": "consumer-authority-owner"
+          },
+          {
+            "condition": "consumer.bindingがtargetと不一致",
+            "code": "reference_stale",
+            "pointer": "/input/consumers/{i}/binding",
+            "return_owner": "consumer-relation-owner"
+          },
+          {
+            "condition": "consumer.scopeがtargetと不一致",
+            "code": "scope_conflict",
+            "pointer": "/input/consumers/{i}/scope",
+            "return_owner": "consumer-scope-owner"
+          },
+          {
+            "condition": "design/verification null",
+            "code": "reference_missing",
+            "pointer": "/input/consumers/{i}/{design|verification}",
+            "return_owner": "consumer-design-owner | verification-owner"
+          },
+          {
+            "condition": "relationと必要条件が既知でdesign.expectedが要求原expectedと異なる",
+            "code": "semantic_oracle_conflict",
+            "pointer": "/input/consumers/{i}/design/expected",
+            "return_owner": "consumer-design-owner"
+          },
+          {
+            "condition": "relationと必要条件が既知でverification.oracle input/expectedが要求原内容と異なる",
+            "code": "semantic_oracle_conflict",
+            "pointer": "/input/consumers/{i}/verification/oracle/{input|expected}（差のfieldごと）",
+            "return_owner": "verification-owner"
+          },
+          {
+            "condition": "operation_trace/rerequirement_trace null",
+            "code": "operation_join_unresolved | rerequirement_join_unresolved",
+            "pointer": "/input/consumers/{i}/{field}",
+            "return_owner": "OS | requirement-candidate-owner"
+          },
+          {
+            "condition": "供給operation/rerequirementのscope不一致",
+            "code": "scope_conflict",
+            "pointer": "/input/consumers/{i}/{field}/scope",
+            "return_owner": "OS | requirement-candidate-owner"
+          },
+          {
+            "condition": "供給operation/rerequirementのbinding不一致",
+            "code": "reference_stale",
+            "pointer": "/input/consumers/{i}/{field}/binding",
+            "return_owner": "OS | requirement-candidate-owner"
+          },
+          {
+            "condition": "operation.ownerがOSでない又はrerequirement.roleがcandidate_not_requirement_approvalでない",
+            "code": "owner_conflict",
+            "pointer": "/input/consumers/{i}/operation_trace/owner又はrerequirement_trace/role",
+            "return_owner": "OS | requirement-candidate-owner"
+          }
+        ],
+        "dependency_diagnostics": "relationが無くpresent edgeのendpoint joinがunknown_relationになっても、edge欠落findingを複製しない。design/verification nullは当該原欠落だけを診断しsemantic cellへ同じfindingを複製しない。複合で本当に各fieldがnullなら各所在を別診断する。原owner/scope/版差は読める独立fieldの直接相反/旧版として保全する。",
+        "combined_input_cells": "relation不足でもdesign/verification/authority/revision/scopeを一括unknownにしない。semanticはdesign又はverificationがnullならmissing、それ以外でrelation未解決ならunknown_relation、既知relationなら要求原内容との比較。運用2cellは原field null→missing、読めるowner/role/scope相反→conflict、版差→stale、その後relation不明のpresent正常edgeだけunknown_relation。core7cellの不足でimpact Unknown、運用2cellだけ不足は既知impactを保持。",
+        "context_diagnostics": "既locator_rulesと各局所依存を使用。catalogはsubject_id+field+canonical原内容で完全一致選択。inputの許容null原fieldはinput欠落として診断し、catalog record不在を二重発行しない。共通root不足だけで全catalogへ同原因を複製しない。全体causeがあっても独立に読める局所state/digest/空qualification等のcauseを別保持。",
+        "context_composition": {
+          "local": "cells_by_fieldの資格不足を当該consumerへ局所化。relation資格不明はrelation unknown、semantic/運用2join unknown_relation。ただし別原fieldのmissing/conflict/stale原因を直接診断として保全。資格不足によるセルはContext契約のunknownへ、原contentsだけでcurrentにしない。",
+          "requirement": "必要原内容版欠落は該当条件にjoinするconsumerだけsemantic unknown。既知独立Qの他条件を巻き添えにしない。",
+          "probe_and_unobserved": "probe不足はNEW evaluation unevaluatedへ、別qualified9cell/impactは保持。unobservedはinput/Context集合union、人口相反でも既知consumer各cellと影響は保全。原graphで未観測を0へしない。",
+          "priority": "局所causeを独立評価し、target/state/root/actual又は選択consumer集合不一致ならunion全体9cell unknownを最後に適用。未観測union/原current TEST候補/owner名/4actual falseを保全。原材料の独立直接conflict又はcandidate矛盾ならoutcome conflict、その次に資格/未観測/probe/missing/unknown/staleでunknown。Contextのtarget scope findingだけは資格不足でoutcome unknown（原consumer scope conflictとは別）。",
+          "reverification": "変更条件にjoinするconsumerとcore joinが不明なconsumerの読めたcurrent-origin verification IDだけを集合へ。global unknownはQを含む全読めたTESTを未解決候補に保全。missing verification IDを創作せず、語の保全を実行資格にしない。",
+          "evaluation": "9cell未解決又は当該probe条件不足ならunevaluated、全9cell内容対応だけsupported_synthetic_condition。unresolved_consumersはunevaluated集合、旧OLD/Qの有効内容を新consumer不足で失効させない。"
+        },
+        "candidate_rule": "型付き全value比較。consumer_results配下は/consumer_results/{consumer}/{field}、集合はfield単位、root fieldはroot path。candidate_conflicting_pathsをcodepoint順、candidate findingは/candidate+path。返却submitted-candidate-owner、原valueは不変。原未観測/generic guarantee/4actual/actual_completionを候補から成立させない。",
+        "hash_retention": "Result8field、consumer全9cell/impact/evaluation/owner/4actual、集合/全finding6field/candidate paths/input-context canonical logical UTF8 hashを固定。原packet raw SHAは別保全。minimum finding subsetをwhole成立にしない。",
+        "additional_snapshot_origin": "追加Contextは著述時の固定合成subject/field variant、同著述者lineageで実blind experiment/custodyでない。実callerがinputから期待Contextを補完する許可でない。consumer順はinput所在/保持hashだけが変わり、意味value/各原因のconsumer/条件/返却役割は同じ。",
+        "actual_boundary": "consumer4actualとgeneral_coverage_guarantee/actual_completion false。要求/観測/authority write、probe実行、旧runtime/graph/testを呼ばない。全92親430対/実binding/全freeze/実装準備は未成立。"
       }
     }
   ],
@@ -10626,7 +10749,7 @@
         "l4_contract_sha256": "9af3481756ffe8d6f0a6bd6072faef7358620c77c5331a3712a270c6578b69c9",
         "core_symbol": "compare_unseen_relations_and_observation_limits",
         "core_signature": "compare_unseen_relations_and_observation_limits(input: UnseenRelationInput, context: UnseenRelationContext, candidate: UnseenRelationCandidate | None = None) -> UnseenRelationResult",
-        "core_contract_sha256": "db7ab1fd2c6cf1966bd87cedb38b03dd092ad970ceaa02b8d924c473b28dd1bf",
+        "core_contract_sha256": "b8c55b768c43bdabe6e08a9ae8d81c92e73f6e1b1394cb7418dbe49719fe7922",
         "argument_types": {
           "input": "UnseenRelationInput",
           "context": "UnseenRelationContext",
