@@ -1,0 +1,223 @@
+{
+  "parent": "HELIXINTELLIGENCE-L2-066",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2a",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "f64932c7740b0e4dd64e01ca1b0cf1dfbe43a6bc",
+    "boundary": "010の同じ意味契約を使う人代行入力とOS受領。INT runtimeの存在は人経路の条件にしない。実assignment/許可と通常接続の選択閉包は別に保持する。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-intelligence-placement-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "9d46472148d437c25b84c08a10cf53aae17817f233222bbcf2a69c4de0f16a9f"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "a3123757f7f057f787ce8d1e08437512278f892f974652d5e5dace245e777231"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d7ce3514fd0dd3ba3bd5545fb97075425d2a8abb3156a107bfaf6e7d56db2dbf"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "07468dcc9d059396fdf7ca060910bda77cc8e67cb1a44861f5483274f20c13ff"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "622072ec5eae8b73395091638034e7d76b35c916f4b0799c2ff37a4ec57e649e"
+    },
+    {
+      "path": "docs/helix-os/sources/body-reinforcement-po-original-2026-09-27.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "cf45adb7212a35c496e420973be0933ec38d4c00175051811f6a9c0b2c06ac78"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "read_lines": [
+        615,
+        616
+      ],
+      "quote": "**RLO-FR-031**\nAI routerは候補提案のみとし、control planeのdispatch authorityを直接持ってはならない。",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_lines_sha256": "c5b6772738eed1b61f46a7037e0f2f53a40b8ab410ad4fd2ad0ecfde487c159b",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "disposition": "unresolved",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
+      "change": "旧router/runtime/固定providerを移植せず、9/27補強原文と採択066の人案provenance/同010契約/OS受領へ再導出する。",
+      "reason": "履歴なしでも未評価を保ち、候補・受領・assignment・実行許可を分離する。旧RLOだけで初回実行許可が成立するとはしない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "read_lines": [
+        663,
+        666
+      ],
+      "quote": "#### RLO-FR-040 HELIX-Bench由来のeffort policy\n\nreasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は\n`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_lines_sha256": "f4fb8e0c16c2c151bdb5a3bae7931d563537f9311d6a8044a9cab07f317f9395",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "disposition": "unresolved",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "候補routerはdispatch authorityを持たず、task-class/model世代のscope外適性流用とscoreによる権限変更を拒否する。未評価は未評価で保持する。",
+      "change": "旧router/runtime/固定providerを移植せず、9/27補強原文と採択066の人案provenance/同010契約/OS受領へ再導出する。",
+      "reason": "履歴なしでも未評価を保ち、候補・受領・assignment・実行許可を分離する。旧RLOだけで初回実行許可が成立するとはしない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "010正式proposal契約/人案actor-time/source/OS receipt-attemptとLABO/通常connectorのowner-qualified exact bindingは未成立。",
+    "正式schema/codec/receipt比較・重複・遅着・互換resolver/原子受領/並行revision/全組合せ/L5L8/oracle凍結は未完。",
+    "実装前Red→Green→Refactor→再検証、実受領・配置・認可/実L9L10/PO L11/全92親430対設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXINTELLIGENCE-L4-066",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "shared_proposal_contract_reader",
+      "human_provenance_reader",
+      "os_receipt_comparator",
+      "duplicate_late_revision_reader",
+      "selected_route_boundary_reader"
+    ],
+    "flow": [
+      "同010契約＋人案source/actor-time→provenance付きproposal",
+      "proposal＋OS receipt actor-time/入力参照→受領内容の一致/未受領",
+      "重複/遅着/契約互換＋現行target→再照合/保留",
+      "選択人経路/通常経路→段階別未完/OS assignment・SEC permissionへ別handoff"
+    ],
+    "python_boundary": "予定するPython接続は同契約の人案/機械案とOS receiptを比較し、原案と不足を返す。人の入力UI、実受領writer、INT runtime、assignment/認可を本Draftで実装しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXINTELLIGENCE-L4-066-F01",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-066-F01",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-066-F01",
+      "approved_requirement": {
+        "id": "HELIXINTELLIGENCE-L3-066-F01",
+        "parent": "HELIXINTELLIGENCE-L2-066",
+        "title": "同じ意味契約の人代行案",
+        "obligation": "INT runtimeを呼べない初回経路でも人が010と同じproposal schema/契約versionを参照し、task必要属性、Worker capability/version、LABO evidenceまたは明示未評価とsource revision/scopeを供給する。runtime実装の存在は依存にしない。",
+        "oracle_ref": "HELIXINTELLIGENCE-L10-066-F01"
+      },
+      "content_rules": [
+        "人代行案は010と同じproposal schema/contract versionとpack契約参照を使う。INT runtime不在は案作成/内容記録を妨げず、契約意味の免除にもならない。",
+        "task必要属性、Worker capability/version、LABO evidenceまたは明示未評価とsource revision/scopeを保持する。人案をINT生成や評価済み性能と偽装しない。"
+      ],
+      "representation_limit": "同010意味契約/人案origin/原案とOS receiptの合成対応例。正式schema/実受領/実評価を採用しない。"
+    },
+    {
+      "id": "HELIXINTELLIGENCE-L4-066-F02",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-066-F02",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-066-F02",
+      "approved_requirement": {
+        "id": "HELIXINTELLIGENCE-L3-066-F02",
+        "parent": "HELIXINTELLIGENCE-L2-066",
+        "title": "人案のprovenanceとreceipt",
+        "obligation": "推奨Worker/根拠/未評価-unknown/除外理由、source revision、task/scope、契約版、作成actor/時点をproposalに結ぶ。OS受領actor/時点と同入力のreceiptを保持し、入力/版/scope不一致または欠落ならassignment材料として受領しない。",
+        "oracle_ref": "HELIXINTELLIGENCE-L10-066-F02"
+      },
+      "content_rules": [
+        "推奨Worker/根拠/未評価-unknown/除外理由とsource revision/task-scope/契約版/作成actor-timeをproposalへ結ぶ。",
+        "OS受領actor-timeと同入力のreceiptを照合し、入力/版/scope欠落や不一致ではassignment材料として受領しない。案内容は保全し欠落sourceのOS/INT/LABO ownerへ戻す。"
+      ],
+      "representation_limit": "同010意味契約/人案origin/原案とOS receiptの合成対応例。正式schema/実受領/実評価を採用しない。"
+    },
+    {
+      "id": "HELIXINTELLIGENCE-L4-066-F03",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-066-F03",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-066-F03",
+      "approved_requirement": {
+        "id": "HELIXINTELLIGENCE-L3-066-F03",
+        "parent": "HELIXINTELLIGENCE-L2-066",
+        "title": "遅着・重複・未見版",
+        "obligation": "同一proposal重複を新規根拠にしない。遅着receiptや未見contract版はsource revision/version/scopeと互換性を照合し、不明なら未受領/保留を保持してOSへ返す。receipt未成立でも案内容の記録は可能だがassignment成立にしない。",
+        "oracle_ref": "HELIXINTELLIGENCE-L10-066-F03"
+      },
+      "content_rules": [
+        "同proposal identity/revision/contract/task-scopeの重複を新規根拠や実績にしない。原案・原receipt・現行対象を保持する。",
+        "遅着と未見版はsource revision/version/scopeと互換を再照合し、不明は未受領/保留へ。単なる遅延だけで同対象の内容を別内容にせず、遅着で現行を上書きしない。",
+        "receipt未成立でも案内容を記録できるがassignment成立にしない。重複/遅着/未見版の再照合はOS/接続/契約ownerへ返す。"
+      ],
+      "representation_limit": "同010意味契約/人案origin/原案とOS receiptの合成対応例。正式schema/実受領/実評価を採用しない。"
+    },
+    {
+      "id": "HELIXINTELLIGENCE-L4-066-F04",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-066-F04",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-066-F04",
+      "approved_requirement": {
+        "id": "HELIXINTELLIGENCE-L3-066-F04",
+        "parent": "HELIXINTELLIGENCE-L2-066",
+        "title": "通常経路への接続境界",
+        "obligation": "通常INT出力を使う場合は同scopeのLABO055/054評価材料→010案→OS受領/assignmentを別段階で確認する。人代行時も010意味契約は保持し、実装実行だけを依存にしない。通常接続を選ぶ場合は固有connector/送受契約の必要閉包を別に閉じる。",
+        "oracle_ref": "HELIXINTELLIGENCE-L10-066-F04"
+      },
+      "content_rules": [
+        "人経路は010の契約と明示未評価を保持し、INT実装実行だけを依存にしない。通常INT経路を選んだときは同task/revision/scopeでLABO055/054→010案→OS受領/assignmentを別段階で確認する。",
+        "通常経路の固有connector/送受契約は選択時に別閉包へ。人経路へ通常全機構完成待ちを課さず、単体案を構成成功にしない。"
+      ],
+      "representation_limit": "同010意味契約/人案origin/原案とOS receiptの合成対応例。正式schema/実受領/実評価を採用しない。"
+    },
+    {
+      "id": "HELIXINTELLIGENCE-L4-066-B01",
+      "requirement_ref": "HELIXINTELLIGENCE-L3-066-B01",
+      "system_oracle_ref": "HELIXINTELLIGENCE-L10-066-B01",
+      "approved_requirement": {
+        "id": "HELIXINTELLIGENCE-L3-066-B01",
+        "parent": "HELIXINTELLIGENCE-L2-066",
+        "title": "人代行の権限非生成",
+        "obligation": "人案はproposal状態で評価済み性能やINT出力を捏造しない。配置決定・実行許可・権限を与えず、OS受領後もassignmentを別記録へ分け、人確認はOSのattempt記録に残す。人案作成を通常操作の毎回人承認にしない。",
+        "oracle_ref": "HELIXINTELLIGENCE-L10-066-B01"
+      },
+      "content_rules": [
+        "人案作成/OS受領/OS指定/SEC permission/OS attemptの人確認を別状態とする。人案はproposal状態で、INT出力や評価済み性能を捏造しない。",
+        "人案と受領からscope/branch/authority/assignment成功を生成しない。人案作成を通常操作ごとの人承認にしない。"
+      ],
+      "representation_limit": "同010意味契約/人案origin/原案とOS receiptの合成対応例。正式schema/実受領/実評価を採用しない。"
+    }
+  ]
+}
