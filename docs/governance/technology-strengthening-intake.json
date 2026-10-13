@@ -225,7 +225,26 @@
       "evidence": {
         "unreviewed_or_unresearched": true
       },
-      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。"
+      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。",
+      "shared_risk_classification_proposal": {
+        "status": "user_shared_proposal_not_adopted_rule",
+        "high": [
+          "MCPサーバー",
+          "Skill",
+          "Agent",
+          "Hook",
+          "CIプラグイン"
+        ],
+        "medium": [
+          "JSONパーサー",
+          "外部API SDK",
+          "DBドライバー"
+        ],
+        "low": [
+          "副作用のない小規模ユーティリティ"
+        ],
+        "limit": "型名だけで安全性/危険性を確定せず、実能力/権限/影響範囲と既存SEC契約で比較する。新しい必須gateや試験許可にはしない。"
+      }
     },
     {
       "id": "T09",
