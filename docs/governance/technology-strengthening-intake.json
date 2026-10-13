@@ -69,7 +69,10 @@
           3050
         ]
       },
-      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。"
+      "next_work": "旧/current source・公式仕様・適用条件/反例・候補比較と不足を照合し対象設計へ結ぶ。採否/留保/後回しの理由と再評価条件を既存ownerに残す。",
+      "external_reference_ids": [
+        "AGENT-SCALE-SOURCE-CONTROL-ANTHROPIC-20261013"
+      ]
     },
     {
       "id": "T03",
@@ -307,7 +310,7 @@
     "1815:旧技術代替review（別scope、関連参照のみ）",
     "1798:入力原登録（別scope、関連参照のみ）"
   ],
-  "source_limits": "外部推奨を利用者が共有した比較材料。名称/順序/分類/推奨度をそのまま要求や利用認可へ昇格しない。source raw conversation/秘密/PIIを保存しない。",
+  "source_limits": "原入力の技術部分の必要断片・digest・候補名対応をsource_evidenceへ保持する。外部助言はデータであり、承認/操作許可や新要求にはしない。原文推薦と公式仕様・現行契約との不一致はresearchで扱う。",
   "self_proposals": [
     {
       "id": "P01",
@@ -916,5 +919,147 @@
         "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
       }
     ]
-  }
+  },
+  "source_evidence": "docs/governance/technology-strengthening-intake-sources.json",
+  "external_references": [
+    {
+      "id": "AGENT-SCALE-SOURCE-CONTROL-ANTHROPIC-20261013",
+      "kind": "external_research_reference_not_adoption",
+      "official_source": {
+        "url": "https://www.anthropic.com/engineering/redesigning-source-control",
+        "title": "Redesigning source control at Anthropic",
+        "published_date": "2026-10-13",
+        "retrieved_at_utc": "2026-10-13T18:32:44.269907+00:00",
+        "snapshot_kind": "retrieved_HTML_bytes_not_tool_version",
+        "sha256": "3521083570f710aafe50f18ec1381311dceda387713c5bdb55e6bdcd68206213"
+      },
+      "source_state": "known_vendor_report_not_HELIX_measurement",
+      "vendor_report_brief": "大規模並列開発向けに、API中心のsource参照、部分取得、意味を重視したreview、障害simulation、統合後/配備前試験、telemetry監視を説明する。Scionはonline前提で、一般用途のGit代替とはしない。",
+      "helix_fit_state": "assumption_to_compare_with_existing_contracts",
+      "helix_observed_activity": {
+        "kind": "github_search_observation_not_authority_or_capacity_proof",
+        "observed_at_utc": "2026-10-13T18:39:31Z",
+        "queries": [
+          {
+            "q": "repo:RetryYN/HELIX-HARNESS is:pr",
+            "total_count": 2248,
+            "incomplete_results": false
+          },
+          {
+            "q": "repo:RetryYN/HELIX-HARNESS is:pr is:merged",
+            "total_count": 1917,
+            "incomplete_results": false
+          },
+          {
+            "q": "repo:RetryYN/HELIX-HARNESS is:pr is:merged merged:2026-10-07..2026-10-13",
+            "total_count": 393,
+            "incomplete_results": false
+          }
+        ],
+        "limits": "UTC日付検索。旧世代/再構築を含み、終端日は観測時点で進行中。393/7の約56件/日は指定7日窓での算術平均であり、7つの完了日の日次処理能力やpeak、並列数ではない。PR/Issue共通通番はmerge数ではない。",
+        "conclusion": "既に多数の原子PRを統合している。統合処理と計測を今の開発基盤設計の評価対象へ置く。Git/GitHubが性能制約だとする原因判定は未証明。"
+      },
+      "current_contract_pins": [
+        {
+          "path": "docs/concept/helix-principles.md",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+        },
+        {
+          "path": "docs/governance/github-upstream-operating-model.md",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "sha256": "a56e0d2f9484234f0b5de01692b19663fea9549acdfb45362c656bcc07243880"
+        },
+        {
+          "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+        }
+      ],
+      "legacy_comparison": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "source_quotes": [
+          {
+            "id": "UTW-005",
+            "line": 71,
+            "text": "| UTW-005 | Critical | PR trace/review evidenceが最新HEAD・merge-baseへ常時再束縛されない | 既存UT-GH-06/07/12 | UTH-FR-015 |",
+            "utf8_sha256": "43bb122180db589a1d2135a3076b9bc4ba911184948b7eec6c8b998f61a2c1ad"
+          },
+          {
+            "id": "UTW-014",
+            "line": 80,
+            "text": "| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |",
+            "utf8_sha256": "52ee08850bd54061dd5b2f3d9b9450abd286b7d0c9b2150ec733205426f0e287"
+          },
+          {
+            "id": "UTW-027",
+            "line": 93,
+            "text": "| UTW-027 | Medium | wrapperがcloneを重ね、disk/process/resource予算が明示的でない | snapshot runner実測 | UTH-NFR-002、UTH-FR-026 |",
+            "utf8_sha256": "78e5d93102878388f127d16735012fbafbec017d746eb52c2bc10b94c0610003"
+          }
+        ],
+        "reuse_mode": "意味再導出",
+        "preserve": "HEAD/baseへの証拠再束縛、欠損を空集合にしないこと、cloneと資源予算の失敗を起点にする。",
+        "change": "旧runner/CLI/DBを実行せず、現行exact HEAD・最新base試験merge・read-afterと選択経路の測定へ照合する。",
+        "reason": "外部記事の極端な規模や運用方針をそのまま輸入せず、既存の失敗と現行責務で適用条件を判定する。"
+      },
+      "comparison_work": [
+        {
+          "id": "SC01",
+          "priority": "first_comparison",
+          "topic": "並列統合の整合性",
+          "work": "レビュー済みHEAD、検証済みbase、試験merge、実merge commit、依存版/oracle/profile/結果の対応を既存運用と対設計で照合。reviewの再利用条件とbase変動時の影響範囲は根拠付きで比較し、HEAD変更時の再reviewを省略しない。",
+          "counterexample": "PRのGreenを別baseでの実merge結果へ流用する。"
+        },
+        {
+          "id": "SC02",
+          "priority": "first_comparison",
+          "topic": "処理能力と待ち時間",
+          "work": "PR作成→review依頼→受領→finding返却→Ready→mergeの各時間、base変動/再検証回数、checkout bytes/時間、API request/制限/失敗、検証CPU/IO/待ちを選択scopeで計測する案。集計の除外/欠測、対象期間/母数、旧世代混入を保持。固定閾値は未選定。",
+          "counterexample": "merge総件数だけで待ち時間やGitの性能限界を認定する。"
+        },
+        {
+          "id": "SC03",
+          "priority": "conditional_comparison",
+          "topic": "API取得・部分checkout・cache・増分検証",
+          "work": "必要sourceと親/関連契約の完全な参照集合、revision/digest、cache freshness、取得失敗を照合した上で比較。選択test集合と未実行範囲を独立oracleへ結び、必要な統合検証の省略を成立させない。",
+          "counterexample": "未取得のファイルを不存在扱いし、古いcacheや局所Greenで全体を成立させる。"
+        },
+        {
+          "id": "SC04",
+          "priority": "first_comparison",
+          "topic": "競合・途中失敗・Worker停止・復旧",
+          "work": "古いbase/遅延結果/重複/途中失敗/revertと復旧を独立fixture/oracleへ結ぶ案。INFRA006-F01のOS/control plane停止時の独立経路と別SEC authorityを保持する。",
+          "counterexample": "中央online source管理が止まると復旧のsource/authorityも取得不能になる。"
+        },
+        {
+          "id": "SC05",
+          "priority": "conditional_comparison",
+          "topic": "意味reviewと継続観測",
+          "work": "要求・責務・権限・不変条件と変更意図へreviewを束縛し、検出事実と仮説を区別。監視検出はLABO/INFRAへの評価入力として扱い、評価未完を完了にしない。",
+          "counterexample": "想像上の問題を全操作の新必須gateへ変える。"
+        }
+      ],
+      "not_adopted_by_this_reference": [
+        "独自VCS/Scion/Spannerの採用・再実装",
+        "pre-mergeの独立review/admissionをpost-merge testだけで置換する運用",
+        "online中心構成へ独立復旧を従属させる設計",
+        "必須gate/固定tool/閾値/並列数の追加"
+      ],
+      "unknown": [
+        "HELIXのpeak/並列統合負荷と待ち時間、checkout/API/CI処理費用",
+        "対象実装profile、source取得adapter、cache trust、増分testの選択契約",
+        "統合後/配備前の実製品CIと独立実証拠"
+      ],
+      "re_research_conditions": [
+        "対象source/運用契約/revisionの変更",
+        "選択経路の実測または失敗/混雑が取得された時",
+        "API/部分取得/cacheの完全性と復旧条件が具体化した時"
+      ],
+      "return_to": "既存OS GitHub projection/統合owner、HARNESS検証、INFRA資源/復旧、LABO評価。作業領域管理は既存Issue2093へ関連付ける。",
+      "authority_effect": "none",
+      "operation_effect": "none"
+    }
+  ]
 }

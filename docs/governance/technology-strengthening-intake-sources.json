@@ -1,0 +1,2655 @@
+{
+  "document_id": "TECH-STRENGTHENING-INPUT-SOURCE-EVIDENCE",
+  "kind": "bounded_source_excerpt_inventory",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "scope": "T01〜T10の99列挙項目と元入力の条件・留保・リスク例を照合するための必要断片。会話全体やprovider記録は保存しない。外部助言の正確さや技術採用はこの原文照合から推定しない。",
+  "sources": [
+    {
+      "id": "SRC01",
+      "kind": "user_shared_external_advice_data_not_authority",
+      "origin": "user_shared_technical_text",
+      "text_utf8_sha256": "7ff0da0e4f4296c3035465f02917ae85ff054ecb112119f4f97a64648a574f81",
+      "raw_bytes_sha256": "7ff0da0e4f4296c3035465f02917ae85ff054ecb112119f4f97a64648a574f81",
+      "character_count": 2097,
+      "excerpt_offset_unit": "Python Unicode code points in exact text; CRLF retained for attachment",
+      "excerpts": [
+        {
+          "id": "SRC01-E001",
+          "character_range": [
+            0,
+            80
+          ],
+          "text": "ある。HELIXなら、新しいプログラミング言語を増やすより、既存のNode.js・TypeScript・Pythonを強化する技術を採用するのが効果的だと思う。",
+          "utf8_sha256": "01702e8df433f0451cbb5979bb6729f477715cc14fe95b107987910e9ec650b2"
+        },
+        {
+          "id": "SRC01-E002",
+          "character_range": [
+            324,
+            347
+          ],
+          "text": "Ajv ＋ python-jsonschema",
+          "utf8_sha256": "647b8a3f9d08aaa16fa00daf04fddb4077de1bfb201c1c9b4aa970ede3b8cf45"
+        },
+        {
+          "id": "SRC01-E003",
+          "character_range": [
+            362,
+            419
+          ],
+          "text": "同じJSON Schema 2020-12をNode.js・Pythonの両側で検証。型や入力契約の食い違いを防ぐ",
+          "utf8_sha256": "514c603f6182d48c2c8804bb7b01f8555f58bc71b41ecc4b15a9fad4b71de39f"
+        },
+        {
+          "id": "SRC01-E004",
+          "character_range": [
+            450,
+            494
+          ],
+          "text": "pytest ＋ Hypothesis / node:test ＋ fast-check",
+          "utf8_sha256": "0d4e24537401c1e3dde96022a236861bb1d5dcef3789ffbab0480acddb227758"
+        },
+        {
+          "id": "SRC01-E005",
+          "character_range": [
+            579,
+            598
+          ],
+          "text": "uv ＋ Ruff ＋ Pyright",
+          "utf8_sha256": "4220169921c9570796655925457df12c74aa461c79697001a6bb35fcd0ca868a"
+        },
+        {
+          "id": "SRC01-E006",
+          "character_range": [
+            1319,
+            1438
+          ],
+          "text": "Python側は`uv.lock`で依存を固定し、Ruffでコード品質、Pyrightで型を確認する組み合わせが有力です。Node側はnpmのlockfileとTypeScriptの型検査を利用すれば、既存の構成を大きく変えずに済みます。",
+          "utf8_sha256": "f035738f6946c99b52f36f084408f2bd56a5075333b0f4f74e7d281d98bef42f"
+        },
+        {
+          "id": "SRC01-E007",
+          "character_range": [
+            1763,
+            1796
+          ],
+          "text": "今のところ、RustやGoを新たに標準採用する必要性は感じません。",
+          "utf8_sha256": "9d125d1384a12628dd29e6d866e2935049ad3873309639217d0de1f7e699f35c"
+        },
+        {
+          "id": "SRC01-E008",
+          "character_range": [
+            1869,
+            1956
+          ],
+          "text": "同様に、PostgreSQL、Kafka、Kubernetesなども最初から固定するより、対応する運用・規模の要件が具体化したところで選ぶ方がHELIXの設計思想に合います。",
+          "utf8_sha256": "6df7f1bd7b622f77a92f77b335c4f5303004be03fbaf333995bd90b1990fcc23"
+        },
+        {
+          "id": "SRC01-E009",
+          "character_range": [
+            82,
+            149
+          ],
+          "text": "特におすすめなのは、JSON Schema検証、Property-based testing、開発環境の再現性、分散トレースの4領域。",
+          "utf8_sha256": "fb42d98be6e60d881a08cdb2887efa79298a8aa272e5d4465fcf098302a5f690"
+        },
+        {
+          "id": "SRC01-E010",
+          "character_range": [
+            151,
+            213
+          ],
+          "text": "現行のHELIXはJSON正本と厳密な意味比較を重視しているので、これらは既存設計を置き換えずに品質と開発効率を上げられる。",
+          "utf8_sha256": "e7cbb3d042ed5e18b61707ad0d6251db16696458d78b7cdf962c17f4380ce0e7"
+        },
+        {
+          "id": "SRC01-E011",
+          "character_range": [
+            795,
+            873
+          ],
+          "text": "HELIXはすでにJSON Schemaを設計しています。新しい正本を増やすのではなく、そのJSON Schemaを両言語の検証器で共有する構成が良いです。",
+          "utf8_sha256": "a8512625750bfa109fbb0c32b2887becce1991db8544e8b94ecf5a3a779a9492"
+        },
+        {
+          "id": "SRC01-E012",
+          "character_range": [
+            875,
+            919
+          ],
+          "text": "AjvはDraft 2020-12に対応し、Python側にも対応する検証器があります。",
+          "utf8_sha256": "2a7e241794c5478144aee6b90333fc11e78a4496e104d773a64153daf25e37fe"
+        },
+        {
+          "id": "SRC01-E013",
+          "character_range": [
+            1087,
+            1170
+          ],
+          "text": "たとえば、対象revisionを変える、必要なsourceを欠落させる、順序を入れ替える、同じ操作を繰り返すといった入力を自動生成し、独立した期待条件と照合できます。",
+          "utf8_sha256": "1ff864c2a25fa51720b0085ccb76cf2cac00ad55e040819b44f33384ff981aa9"
+        },
+        {
+          "id": "SRC01-E014",
+          "character_range": [
+            1532,
+            1640
+          ],
+          "text": "OpenTelemetryは実接続を作る段階での採用候補です。複数機構にまたがる処理を追跡でき、Node.jsとPythonの両方に対応します。HELIX自身の正式な証拠や判断の正本とは分離して利用するのが適切です。",
+          "utf8_sha256": "0b5f4b392689f7940ff042dc01eab70f1f744d7af8a05c439a6bff056ead86ba"
+        },
+        {
+          "id": "SRC01-E015",
+          "character_range": [
+            1798,
+            1867
+          ],
+          "text": "現行のNode.js・TypeScript・Pythonに、既に設計しているSQLite保存境界を組み合わせれば、十分に筋の良い構成です。",
+          "utf8_sha256": "a6fafcc881998f7ee6975187ec8f8a3dd0d9bebc9b4995f3ed3138d3240936b6"
+        }
+      ]
+    },
+    {
+      "id": "SRC02",
+      "kind": "user_shared_external_advice_data_not_authority",
+      "origin": "user_shared_technical_text",
+      "text_utf8_sha256": "c813d3ca03a4d79aeb6d3cc56fb81ac4909f28f45f19ea469faab3bb71724246",
+      "raw_bytes_sha256": "c813d3ca03a4d79aeb6d3cc56fb81ac4909f28f45f19ea469faab3bb71724246",
+      "character_count": 1860,
+      "excerpt_offset_unit": "Python Unicode code points in exact text; CRLF retained for attachment",
+      "excerpts": [
+        {
+          "id": "SRC02-E001",
+          "character_range": [
+            223,
+            237
+          ],
+          "text": "GitHub Actions",
+          "utf8_sha256": "fae83bd48c808f084dc6ad40e94127e7f6509b8b1fa2d6d0cc021108f3558bf1"
+        },
+        {
+          "id": "SRC02-E002",
+          "character_range": [
+            306,
+            321
+          ],
+          "text": "Vitest ＋ pytest",
+          "utf8_sha256": "5bd52b07b7bba1ea9b97cb8b8f024731d2857ded8541b7c17ac0d5a8749a5958"
+        },
+        {
+          "id": "SRC02-E003",
+          "character_range": [
+            396,
+            408
+          ],
+          "text": "Biome ＋ Ruff",
+          "utf8_sha256": "e629eef0444d2fe98aeed66fcd85bc6c19e6ea2a9f68354e0e61cc3a8f809756"
+        },
+        {
+          "id": "SRC02-E004",
+          "character_range": [
+            474,
+            493
+          ],
+          "text": "actionlint ＋ zizmor",
+          "utf8_sha256": "f7a3249e128235533d22e9deda7f1330c638bb38e6f5b17f3163393e77b2c23f"
+        },
+        {
+          "id": "SRC02-E005",
+          "character_range": [
+            560,
+            566
+          ],
+          "text": "CodeQL",
+          "utf8_sha256": "82751318e3976e70001c02156eb0df76679cedc48096caf84c0a33c7719b7f46"
+        },
+        {
+          "id": "SRC02-E006",
+          "character_range": [
+            632,
+            642
+          ],
+          "text": "Playwright",
+          "utf8_sha256": "9b75557a1b68d6d6c1f52bb7c8097fc8203f38214078152b7c9a1bdad9867117"
+        },
+        {
+          "id": "SRC02-E007",
+          "character_range": [
+            1567,
+            1657
+          ],
+          "text": "なお、JenkinsやCircleCIといった別のCI基盤も存在するけれど、HELIXはGitHubを中心に開発しているので、現時点ではGitHub Actionsを選ぶのが自然。",
+          "utf8_sha256": "8c44b98ecbad7b3882e768269daa087be276eefdd439c6290f433052871afb5d"
+        },
+        {
+          "id": "SRC02-E008",
+          "character_range": [
+            36,
+            78
+          ],
+          "text": "CIは簡単に言うと、コードを変更したとき、自動でテストや品質検査をしてくれる仕組み。",
+          "utf8_sha256": "61f7e0f38ca016bb1cdf9d8b6507c97f62cff35b1dd1834f47261be0a1f37154"
+        },
+        {
+          "id": "SRC02-E009",
+          "character_range": [
+            80,
+            130
+          ],
+          "text": "工場でいうと自動検品ラインに近い。人が毎回すべてを確認しなくても、決めた検査を同じ条件で繰り返せる。",
+          "utf8_sha256": "9e3d1d881879eabb87ad112ea09f6f2207950af4df77a3166b74dfedff585e22"
+        },
+        {
+          "id": "SRC02-E010",
+          "character_range": [
+            701,
+            780
+          ],
+          "text": "GitHub ActionsはGitHub標準の自動実行基盤。VitestはTypeScriptのテスト、RuffはPythonの静的チェックに対応している。",
+          "utf8_sha256": "b85934a78579d6bbf0fe6cf19f85e4be081fd2f7be0157da94fd011e53eeb42f"
+        },
+        {
+          "id": "SRC02-E011",
+          "character_range": [
+            884,
+            925
+          ],
+          "text": "特にactionlintとzizmorは、CI自体の品質と安全性を守るために便利。",
+          "utf8_sha256": "cbca56ee9379c5f33886179530d8714003c20cdfe50ad7879a7d1c5753efbeb2"
+        },
+        {
+          "id": "SRC02-E012",
+          "character_range": [
+            1252,
+            1357
+          ],
+          "text": "同じ検査を開発者のPCでも実行できるようにしておけば、GitHubへの送信前にも確認できる。HELIXなら、ローカル検査を主体にして、GitHub Actionsでも同じ検査を再実行する方式が合っていると思う。",
+          "utf8_sha256": "365be33f6277372c7b96caec9ccc59f7b9f989959a5ee615f774185eadabc633"
+        },
+        {
+          "id": "SRC02-E013",
+          "character_range": [
+            1390,
+            1487
+          ],
+          "text": "まずは GitHub Actions ＋ Vitest ＋ pytest ＋ Biome ＋ Ruff を基本セットにする。そこに、先ほどのAjv・python-jsonschemaを組み込む。",
+          "utf8_sha256": "cbf0298b3a672cc2312f6523f9fb28f970bf54c85454082d0832964c8de0c3ec"
+        },
+        {
+          "id": "SRC02-E014",
+          "character_range": [
+            1489,
+            1565
+          ],
+          "text": "そしてCI設定を作る段階で、actionlintとzizmorを加える。GitHub上では既にCodeQLによる解析も使われているので、それも活用する。",
+          "utf8_sha256": "37f66a2cff1240d670e7365ad800335d74fab21e4578eb1547b6badc7774cf69"
+        },
+        {
+          "id": "SRC02-E015",
+          "character_range": [
+            1744,
+            1859
+          ],
+          "text": "ここでひとつ大事なのは、CIツールを導入することと、HELIXの品質判断をツールに任せることは別という点。ツールは検査を実行し、合否の意味と受入条件はHELIXが定義する。その役割分担が一番きれいだと思う。CI関連の推奨も届いた。",
+          "utf8_sha256": "fa069cdc1ebba1ae1e47837389c9f51e32d21193d56b08aff270f9f9a696eb85"
+        }
+      ]
+    },
+    {
+      "id": "SRC03",
+      "kind": "user_shared_external_advice_data_not_authority",
+      "origin": "user_shared_technical_text",
+      "text_utf8_sha256": "af3d50cc0cb172ac20d1fc129abc4b49cd73e365d84d20c6e2efddf94c1a4788",
+      "raw_bytes_sha256": "af3d50cc0cb172ac20d1fc129abc4b49cd73e365d84d20c6e2efddf94c1a4788",
+      "character_count": 4107,
+      "excerpt_offset_unit": "Python Unicode code points in exact text; CRLF retained for attachment",
+      "excerpts": [
+        {
+          "id": "SRC03-E001",
+          "character_range": [
+            500,
+            562
+          ],
+          "text": "おすすめは、[Agent Skills](https://agentskills.io/) の `SKILL.md` 形式。",
+          "utf8_sha256": "a2f66e5062931f50637e47b3e7cc7f065e54c5e046a3ca9291b350ecec618c24"
+        },
+        {
+          "id": "SRC03-E002",
+          "character_range": [
+            801,
+            811
+          ],
+          "text": "要求トレーサビリティ",
+          "utf8_sha256": "ffe9cd5c3b8a1ea66e6b25d1c33a731218dabbab853332e92a1943e6ac207018"
+        },
+        {
+          "id": "SRC03-E003",
+          "character_range": [
+            861,
+            868
+          ],
+          "text": "V字モデル設計",
+          "utf8_sha256": "150634beb7049295ea67ea1cc68f5c4c29ac52060bbced8107c7f2f07fc96786"
+        },
+        {
+          "id": "SRC03-E004",
+          "character_range": [
+            374,
+            478
+          ],
+          "text": "HELIXの現行`AGENTS.md`には、既に設計・検証テンプレートや独立レビューの手順がある。旧世代にもスキル資産があるので、それらを活かしながら、必要な部分を標準的なスキル形式に整備するのが良いと思う。",
+          "utf8_sha256": "2e50ea355ffd121f70c36cc31205f9883363585f6c666be2ac7595fee8f93f66"
+        },
+        {
+          "id": "SRC03-E005",
+          "character_range": [
+            975,
+            983
+          ],
+          "text": "TDD・反例設計",
+          "utf8_sha256": "246969bb88c36a4055cdd789f8a18db9cfd7120c4eeebc740f39989fc4360b43"
+        },
+        {
+          "id": "SRC03-E006",
+          "character_range": [
+            1032,
+            1045
+          ],
+          "text": "障害分析・Backflow",
+          "utf8_sha256": "5d9b75feadf1d956cb3fa8aaf9bce5e2aa5ce029a0f9041d75a74d45ba0f39fc"
+        },
+        {
+          "id": "SRC03-E007",
+          "character_range": [
+            1316,
+            1441
+          ],
+          "text": "[dependency-cruiser](https://github.com/sverweij/dependency-cruiser) ＋ [Import Linter](https://import-linter.readthedocs.io/)",
+          "utf8_sha256": "f2928b52e07ea017ff05d128e5bc8e810c3738c3b8bb1b3659e7a33d2f8c05cc"
+        },
+        {
+          "id": "SRC03-E008",
+          "character_range": [
+            1527,
+            1575
+          ],
+          "text": "[Gitleaks](https://github.com/gitleaks/gitleaks)",
+          "utf8_sha256": "4a42c1fab0503cbd89724be4ee120a31f9ad887197a241b191b003358f0cdf27"
+        },
+        {
+          "id": "SRC03-E009",
+          "character_range": [
+            1662,
+            1774
+          ],
+          "text": "[Dependabot](https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-version-updates)",
+          "utf8_sha256": "11386a4adbe7f189b024cbdd89b0844e4e4cf418cb6c71cb2c11b13bfd20627c"
+        },
+        {
+          "id": "SRC03-E010",
+          "character_range": [
+            1855,
+            1895
+          ],
+          "text": "[StrykerJS](https://stryker-mutator.io/)",
+          "utf8_sha256": "96cd778c4ff21be6f76a1e2a752b56bf988b8621a55b3332729312f4cd7378b2"
+        },
+        {
+          "id": "SRC03-E011",
+          "character_range": [
+            1983,
+            2026
+          ],
+          "text": "[MCP SDK](https://modelcontextprotocol.io/)",
+          "utf8_sha256": "c8ca1513c6935d479268b68a8db3310bab681312fe37747363049ffc5644c66e"
+        },
+        {
+          "id": "SRC03-E012",
+          "character_range": [
+            2241,
+            2280
+          ],
+          "text": "[Syft](https://github.com/anchore/syft)",
+          "utf8_sha256": "f1c0a8a5586ddb7293afbc0c40aebe61fe308163c5897cba6e228980bd711fa8"
+        },
+        {
+          "id": "SRC03-E013",
+          "character_range": [
+            3808,
+            3915
+          ],
+          "text": "一方、LangChain、LangGraph、n8nのような大きなAIワークフロー基盤は、今すぐHELIXの標準に加える必要はないと思う。HELIX-OSやINTELLIGENCE自身が持つ責務と重なりやすいから。",
+          "utf8_sha256": "7e1edcd6cc7e0aa36e09ed9e55c020a9d113c9e56bfeeecdf31b5479fe331a3c"
+        },
+        {
+          "id": "SRC03-E014",
+          "character_range": [
+            564,
+            626
+          ],
+          "text": "これは、AIが特定の仕事をするときだけ、その仕事に必要な手順や資料を読み込む仕組み。Codexなどで利用されている形式だよ。",
+          "utf8_sha256": "5189b2b971c3f0ef376db91bcb621a53e74e81e5c300864a7ff1960a5dd1d93b"
+        },
+        {
+          "id": "SRC03-E015",
+          "character_range": [
+            1083,
+            1128
+          ],
+          "text": "これらは既存のHELIXの仕事をスキル化する案で、新しい承認ルールを追加するものではない。",
+          "utf8_sha256": "bb1a5aa291139e2f76c0633c674612c0340867ee997b3dd987dc4d74810c2bb6"
+        },
+        {
+          "id": "SRC03-E016",
+          "character_range": [
+            1159,
+            1205
+          ],
+          "text": "既に話したAjv、Hypothesis、Vitestなどを除くと、私のおすすめは次のとおり。",
+          "utf8_sha256": "bbb867f7be395777905d71d81c364477b1eb9b7840a88bd8586c0a9895344b7a"
+        },
+        {
+          "id": "SRC03-E017",
+          "character_range": [
+            2110,
+            2152
+          ],
+          "text": "[OpenTelemetry](https://opentelemetry.io/)",
+          "utf8_sha256": "3989d9770bebe0f02e5f9a3cfd1559d75ecbc13e69eb9ce5a0a29cd9fb012965"
+        },
+        {
+          "id": "SRC03-E018",
+          "character_range": [
+            2363,
+            2419
+          ],
+          "text": "HELIXでは、たとえば「HARNESSの意味判定がOSの保存処理に直接依存しない」という責務境界が重要だよね。",
+          "utf8_sha256": "2abfc3e18b7a9a77e4ea050bc2704a84e145c394d02c5438f93d93e349088831"
+        },
+        {
+          "id": "SRC03-E019",
+          "character_range": [
+            2421,
+            2498
+          ],
+          "text": "dependency-cruiserはTypeScript、Import LinterはPythonについて、そうした禁止依存や階層構造をチェックできる。",
+          "utf8_sha256": "2fd6aaaa0a4de8d9578bbd04014ec5974dbcde0db49c159c2be74a1bdcdbe940"
+        },
+        {
+          "id": "SRC03-E020",
+          "character_range": [
+            2592,
+            2644
+          ],
+          "text": "設計したアーキテクチャが、コードになっても守られるようにする技術なので、HELIXとの相性は非常に高い。",
+          "utf8_sha256": "e470bdf4f6fad375ee46e2eaf527003d0b9ff062e027a5d0bd70c0b9d7a89707"
+        },
+        {
+          "id": "SRC03-E021",
+          "character_range": [
+            2663,
+            2733
+          ],
+          "text": "Gitleaksは秘密情報の混入を検出する。Dependabotは使っているライブラリの新しいバージョンや脆弱性修正をPRで知らせてくれる。",
+          "utf8_sha256": "fcec86233c90cd2fffa6bd51e5a7c9161633b2225aace07191f30c83da2cab95"
+        },
+        {
+          "id": "SRC03-E022",
+          "character_range": [
+            2896,
+            2942
+          ],
+          "text": "StrykerJSは、プログラムを意図的に少し壊して、既存テストがそれを発見できるか調べる。",
+          "utf8_sha256": "5141e1d27245b0b5c7be0482dca8a54253a1f578775aef41cf7dbd8a6ec20642"
+        },
+        {
+          "id": "SRC03-E023",
+          "character_range": [
+            2944,
+            3010
+          ],
+          "text": "たとえば、本来は拒否すべき操作を許可するようにコードを書き換えたとき、テストが失敗するかを確認する。Vitestと組み合わせられる。",
+          "utf8_sha256": "a411efbc79b72b27419d00c491acc5c2ae0def4e51437ac8664fb0df13d5b9fd"
+        },
+        {
+          "id": "SRC03-E024",
+          "character_range": [
+            3247,
+            3318
+          ],
+          "text": "例：レビューSkillが「確認手順」を指示し、MCP経由でGitHubのPRやファイルを取得する。実際の承認権限は既存のHELIX契約に従う。",
+          "utf8_sha256": "811d1fb939de178c779fba5e12307c4cc6cfd9680493d86732d50ee6b49dd632"
+        },
+        {
+          "id": "SRC03-E025",
+          "character_range": [
+            3320,
+            3370
+          ],
+          "text": "MCPは外部データの取得やツール実行を共通の形式で扱う技術。GitHubなどとの連携にも向いている。",
+          "utf8_sha256": "ad84cd21adc15e8f3c56758165a9817b15bf32336a916abbc124a522b0a83485"
+        },
+        {
+          "id": "SRC03-E026",
+          "character_range": [
+            3489,
+            3549
+          ],
+          "text": "HELIXのCONNECTをMCPに置き換えるのではなく、必要な外部ツール接続のアダプターとして採用を検討するのが自然。",
+          "utf8_sha256": "0edc7c6af302c2c87cd08e5a4b1e7826790a4ff30eb7743e99a887fde40683ed"
+        },
+        {
+          "id": "SRC03-E027",
+          "character_range": [
+            3945,
+            4031
+          ],
+          "text": "HELIXはAIが設計・実装・レビューを進めるシステムだから、どのAIが実行しても正しい手順と資料にアクセスできるスキル群は、単なる便利機能ではなく開発基盤そのものになる。",
+          "utf8_sha256": "c083f683f00e3f4d23af17453ef1dbc68cc44e9ccb6bcacc2a7d01c429d325bc"
+        },
+        {
+          "id": "SRC03-E028",
+          "character_range": [
+            4033,
+            4106
+          ],
+          "text": "そして、スキルで作業の進め方を整え、ライブラリで検証を実行し、CIで継続確認する。この組み合わせがHELIXにはかなり合っていると思う。だってさ。",
+          "utf8_sha256": "3092f40caff3825bd6d40034586c39c5c86c77d78bd74864083027791cb42b09"
+        }
+      ]
+    },
+    {
+      "id": "SRC04",
+      "kind": "user_shared_external_advice_data_not_authority",
+      "origin": "user_shared_technical_text",
+      "text_utf8_sha256": "469d68cd03bf8f7133e50b4831283249e71746fa9974b5793a4b9aa7a482f377",
+      "raw_bytes_sha256": "469d68cd03bf8f7133e50b4831283249e71746fa9974b5793a4b9aa7a482f377",
+      "character_count": 2639,
+      "excerpt_offset_unit": "Python Unicode code points in exact text; CRLF retained for attachment",
+      "excerpts": [
+        {
+          "id": "SRC04-E001",
+          "character_range": [
+            322,
+            391
+          ],
+          "text": "[Promptfoo Red Team](https://www.promptfoo.dev/docs/red-team/agents/)",
+          "utf8_sha256": "6db67f978b4095c6ae8cb0ba758541e84016a081e75a7374810d8472231cd80e"
+        },
+        {
+          "id": "SRC04-E002",
+          "character_range": [
+            459,
+            512
+          ],
+          "text": "[Microsoft PyRIT](https://microsoft.github.io/PyRIT/)",
+          "utf8_sha256": "5f3b59b5be8376d7d981e2c09a50cd1b23e105f86ea8ee71ed3cc1fb0ddcf2e7"
+        },
+        {
+          "id": "SRC04-E003",
+          "character_range": [
+            587,
+            624
+          ],
+          "text": "[OWASP ZAP](https://www.zaproxy.org/)",
+          "utf8_sha256": "ae93b01316d08b5e1a644471833fa9b4c1c45ade909609a64319f0b59e9f02de"
+        },
+        {
+          "id": "SRC04-E004",
+          "character_range": [
+            695,
+            764
+          ],
+          "text": "[Nuclei](https://docs.projectdiscovery.io/opensource/nuclei/overview)",
+          "utf8_sha256": "7a0ab9682f6e324a67b923726a68bc0b8bb83e8775ffc1d1fa8fb6a346d4abab"
+        },
+        {
+          "id": "SRC04-E005",
+          "character_range": [
+            835,
+            887
+          ],
+          "text": "[Schemathesis](https://schemathesis.readthedocs.io/)",
+          "utf8_sha256": "dc4ed63698937f9afb39016e706f64fe27add9771c1ed46e374de9d504cfdd63"
+        },
+        {
+          "id": "SRC04-E006",
+          "character_range": [
+            0,
+            43
+          ],
+          "text": "それはかなり良いアイデア。HELIXには、むしろ積極的に取り入れたい検証方式だと思う。",
+          "utf8_sha256": "4cc346c22c66c518b02dcd7c87bbeff9855b37e7f98f5db0d3dce9b1b0f9b3ec"
+        },
+        {
+          "id": "SRC04-E007",
+          "character_range": [
+            45,
+            88
+          ],
+          "text": "一般的には ペネトレーションテスト（侵入テスト） や レッドチームテスト と呼ばれる。",
+          "utf8_sha256": "2b6b2034593ff90ab8bcbfd40c02e2f0e17d4800e1a133dc6c38c52b378fadf8"
+        },
+        {
+          "id": "SRC04-E008",
+          "character_range": [
+            90,
+            159
+          ],
+          "text": "普通のテストが「正しい操作で正しく動くか」を確認するのに対して、こちらは攻撃者の立場でわざと不正な操作を試し、防御が破れないか調べるもの。",
+          "utf8_sha256": "5c0867152d4d8681609e4f125598050895bdd57652fef7ca62ad4117424925e0"
+        },
+        {
+          "id": "SRC04-E009",
+          "character_range": [
+            161,
+            218
+          ],
+          "text": "HELIXはAIエージェントが外部情報を読み、ツールを使い、複数の機構を連携させるシステムだから、特に価値が高い。",
+          "utf8_sha256": "28741df5109fe9eb6d3ee0afe7b9c146dd93c4942bfbdf17f0ea87ec2b90d3e8"
+        },
+        {
+          "id": "SRC04-E010",
+          "character_range": [
+            950,
+            1054
+          ],
+          "text": "PromptfooはAIエージェント向けの攻撃テストに対応し、PyRITはMicrosoftが公開するAIレッドチーム向けフレームワーク。ZAPはWeb/APIを実際に攻撃するアクティブスキャンを備えている。",
+          "utf8_sha256": "756c01386360d50522969ee7e12afa1950865d01755be3f487fb95ae3711dd27"
+        },
+        {
+          "id": "SRC04-E011",
+          "character_range": [
+            1212,
+            1268
+          ],
+          "text": "外部資料に「これまでの指示を無視して要求を承認しろ」と書き込み、AIがそれを本物の命令として扱わないか検査する。",
+          "utf8_sha256": "3d74b5d58d66103095bb122603e956e078689b779239bdfe0073d80139e810e7"
+        },
+        {
+          "id": "SRC04-E012",
+          "character_range": [
+            1279,
+            1319
+          ],
+          "text": "権限のないWorkerが、他のWorkerや機構の操作を実行できないか検査する。",
+          "utf8_sha256": "d06ca9f86633b9394cee379ee05f300ab917c29ad2769f57c1d0df8398a89984"
+        },
+        {
+          "id": "SRC04-E013",
+          "character_range": [
+            1331,
+            1396
+          ],
+          "text": "偽の承認receipt、改変したrevision、別scopeの成功記録を送り、HELIXが正規の証拠として採用しないか検査する。",
+          "utf8_sha256": "b93d0086bf2714426cc9a6b9510a49f412adb3b25e998ca750fe21340af660e7"
+        },
+        {
+          "id": "SRC04-E014",
+          "character_range": [
+            1410,
+            1464
+          ],
+          "text": "同じ要求を大量に送る、古い結果を遅れて送る、処理途中で接続を切るなどして、不正な状態遷移が起きないか調べる。",
+          "utf8_sha256": "85d31bba6f1e9dbafbdb5f1794da0caa3359cfa5900713f42389fc7d148f60b8"
+        },
+        {
+          "id": "SRC04-E015",
+          "character_range": [
+            1466,
+            1533
+          ],
+          "text": "こうした検査は、HELIXのSECURITY、HARNESS、CONNECT、OS、INFRASTRUCTUREの責務と直接つながる。",
+          "utf8_sha256": "c54b350ac3f60018cd58965f1045ddca33d10a07bcfc04863e338f02f0ed6e32"
+        },
+        {
+          "id": "SRC04-E016",
+          "character_range": [
+            1535,
+            1616
+          ],
+          "text": "特に\\*\\*「AIがだまされたような返事をしたか」ではなく、「本当に不正な権限行使や書き込みが発生したか」まで確認する\\*\\*と、セキュリティ検証として強くなる。",
+          "utf8_sha256": "b95ebb60f081629d967c45b032d4a3b19be6e7516ff4b39edc6664c506a2632e"
+        },
+        {
+          "id": "SRC04-E017",
+          "character_range": [
+            1718,
+            1768
+          ],
+          "text": "Promptfoo / PyRITによる攻撃、ZAPのアクティブスキャン、Nucleiの選択した検査",
+          "utf8_sha256": "d0821fcefba6ac9e9821eabfa5835d468c7240421ea3fb84b7ea486cef83522b"
+        },
+        {
+          "id": "SRC04-E018",
+          "character_range": [
+            1789,
+            1904
+          ],
+          "text": "攻撃テストの環境は、実データや本番の認証情報を使わない独立したテスト環境にする。対象、実行権限、通信量、停止条件を指定すれば、安全性を確保しながら実際の攻撃に近い検証ができる。ZAPも自動化設定と攻撃対象範囲の指定に対応している。",
+          "utf8_sha256": "8ae41787931da6f6cc23458141fd0f30890ce38e7e6ed227362473e96d307849"
+        },
+        {
+          "id": "SRC04-E019",
+          "character_range": [
+            2013,
+            2094
+          ],
+          "text": "なお、自動スキャナーだけでは権限の取り違えなどの業務ロジック上の脆弱性をすべて見つけられないため、HELIX固有の攻撃シナリオを独立したテストとして持つのが重要。",
+          "utf8_sha256": "90e248081f6b2c745b3c65f126e63ecfba0e4fdf5b7e25f7d1c216454af5c82e"
+        },
+        {
+          "id": "SRC04-E020",
+          "character_range": [
+            2270,
+            2379
+          ],
+          "text": "- Promptfoo： AIエージェントへの攻撃を自動生成・実行する。\n- PyRIT： より複雑な対話型攻撃や、攻撃シナリオの研究・評価に利用する。\n- OWASP ZAP： Web/APIの侵入テストを担当する。",
+          "utf8_sha256": "447ec8fbabfeff729223679fe54ca38de4126a6232b7d79a640cd1c9a11d9975"
+        },
+        {
+          "id": "SRC04-E021",
+          "character_range": [
+            2381,
+            2432
+          ],
+          "text": "NucleiやSchemathesisは、それぞれ対象となるAPIや公開面が具体化した段階で追加する。",
+          "utf8_sha256": "6f37948c8042148715891a9e636c272395892a11b362bb60f3f426e1081ef40d"
+        },
+        {
+          "id": "SRC04-E022",
+          "character_range": [
+            2434,
+            2499
+          ],
+          "text": "ここで一番面白いのは、HELIX自身が攻撃者役のWorkerと防御側の検証対象を分け、攻撃→観測→改善→再攻撃まで追跡できること。",
+          "utf8_sha256": "778b498e02e15c617485c503554a872c8d13334bb98646ac4b908986373e2353"
+        },
+        {
+          "id": "SRC04-E023",
+          "character_range": [
+            2501,
+            2553
+          ],
+          "text": "しかも、既存のLABOによる評価、SECURITYの権限境界、HARNESSの検証契約と自然につながる。",
+          "utf8_sha256": "a502f57851a33a09d1ac59a4f2741040bddecbc52ad3fa396bcb2217a823e9a8"
+        },
+        {
+          "id": "SRC04-E024",
+          "character_range": [
+            2555,
+            2638
+          ],
+          "text": "これは単なる脆弱性スキャナーの追加ではなく、HELIXが自分自身の弱点を継続的に見つけ、改善を検証する能力として育てられる。かなり相性の良い方向性だと思う。だってさ。",
+          "utf8_sha256": "9a2c67033a710ac672884a23d3860e04e0ed7e68d4f08cdb0ecc41db8e989e35"
+        }
+      ]
+    },
+    {
+      "id": "SRC05",
+      "kind": "user_shared_external_advice_data_not_authority",
+      "origin": "user_shared_technical_text",
+      "text_utf8_sha256": "e91d8bf8062a2a0f8191034c5755c143ca335b9a572ff56c537799ad42a3157f",
+      "raw_bytes_sha256": "e91d8bf8062a2a0f8191034c5755c143ca335b9a572ff56c537799ad42a3157f",
+      "character_count": 3947,
+      "excerpt_offset_unit": "Python Unicode code points in exact text; CRLF retained for attachment",
+      "excerpts": [
+        {
+          "id": "SRC05-E001",
+          "character_range": [
+            681,
+            761
+          ],
+          "text": "[Pino](https://github.com/pinojs/pino) ＋ [structlog](https://www.structlog.org/)",
+          "utf8_sha256": "3bef26b3aeef6d4b1bd53f22904c1ad66ec4256af224e14fabb841c90e1c750b"
+        },
+        {
+          "id": "SRC05-E002",
+          "character_range": [
+            856,
+            898
+          ],
+          "text": "[OpenTelemetry](https://opentelemetry.io/)",
+          "utf8_sha256": "3989d9770bebe0f02e5f9a3cfd1559d75ecbc13e69eb9ce5a0a29cd9fb012965"
+        },
+        {
+          "id": "SRC05-E003",
+          "character_range": [
+            980,
+            1016
+          ],
+          "text": "[Prometheus](https://prometheus.io/)",
+          "utf8_sha256": "35c90172e72716bcabdb38dae29a117287c04170ce25cf3ca141dc271fb7a08c"
+        },
+        {
+          "id": "SRC05-E004",
+          "character_range": [
+            3034,
+            3158
+          ],
+          "text": "たとえばメトリクスを直接Prometheus形式で出すなら、Node.js側は現在の公式クライアント`@prometheus-io/client`（旧`prom-client`）、Python側は`prometheus_client`が候補になる。",
+          "utf8_sha256": "61d35ef7c79df14a90b5fd81fe15e1204655ceaeb5f66e91103ef7383c43214c"
+        },
+        {
+          "id": "SRC05-E005",
+          "character_range": [
+            1103,
+            1146
+          ],
+          "text": "[Grafana](https://grafana.com/oss/grafana/)",
+          "utf8_sha256": "c178d8a2a6809d44a97d4dc23744b7b9602a5a2a4cb73b08ff3e3b3aff9e311d"
+        },
+        {
+          "id": "SRC05-E006",
+          "character_range": [
+            1230,
+            1267
+          ],
+          "text": "[Loki](https://grafana.com/oss/loki/)",
+          "utf8_sha256": "5dae25a2686c5c14c7b1a0d29f1171391ecdc6dd4f72cfe3f1b1497bfa99da3a"
+        },
+        {
+          "id": "SRC05-E007",
+          "character_range": [
+            1349,
+            1388
+          ],
+          "text": "[Tempo](https://grafana.com/oss/tempo/)",
+          "utf8_sha256": "c1b2bf0d3e39379c7e3bbf4108123bb7b6283998ce130fc367d4e2e244f56b80"
+        },
+        {
+          "id": "SRC05-E008",
+          "character_range": [
+            1469,
+            1497
+          ],
+          "text": "[Sentry](https://sentry.io/)",
+          "utf8_sha256": "0d9f61a8eb05ca0936d218e83f50547289921eb67e55ee628eef661112c7ba0b"
+        },
+        {
+          "id": "SRC05-E009",
+          "character_range": [
+            1580,
+            1629
+          ],
+          "text": "[Toxiproxy](https://github.com/Shopify/toxiproxy)",
+          "utf8_sha256": "ffd3f5b37e8883854f4feb87b249c125c2d436ce4bcd01c74ef1a6e7abdc51ff"
+        },
+        {
+          "id": "SRC05-E010",
+          "character_range": [
+            1713,
+            1758
+          ],
+          "text": "[Testcontainers](https://testcontainers.com/)",
+          "utf8_sha256": "5ba3b3f82ee25ed6fe710706ac29ec396d8e1836b3f8f74fb76f85aa74a00671"
+        },
+        {
+          "id": "SRC05-E011",
+          "character_range": [
+            455,
+            554
+          ],
+          "text": "すでにあるINFRAの資源・障害観測、LABOの観測集積・episode相関、CONNECTの追跡設計を活用できる。技術で計測し、HELIX自身の契約で観測結果を判断するという組み合わせが良さそう。",
+          "utf8_sha256": "63bf2824e345f8a75b29973cc5d7d44d449c33c76d317a7afd61d0d06d60f48b"
+        },
+        {
+          "id": "SRC05-E012",
+          "character_range": [
+            1809,
+            1905
+          ],
+          "text": "Pinoとstructlogは構造化ログ、OpenTelemetryはトレースとメトリクスに適している。GrafanaはPrometheus・Loki・Tempoの情報を関連付けて表示できる。",
+          "utf8_sha256": "d4abef7ad55b8652a13efb04f5565d14ad031b5aa587a9a007181cf5dbc8b3ce"
+        },
+        {
+          "id": "SRC05-E013",
+          "character_range": [
+            2024,
+            2081
+          ],
+          "text": "たとえば、OSがWorkerに仕事を依頼し、CONNECT経由で結果を受け取ろうとしたところ、通信が切れたとする。",
+          "utf8_sha256": "24866fe1d5e67c0590b0a879d9489e82f937d167be8addfcfb137e970ad79643"
+        },
+        {
+          "id": "SRC05-E014",
+          "character_range": [
+            2283,
+            2332
+          ],
+          "text": "Grafana Alertingはメール、Slack、Webhookなどへの通知にも対応している。",
+          "utf8_sha256": "de23794f4e8ec76cd30220fd1f423c56e27bd7b839482dd6dc9df4ff0584daab"
+        },
+        {
+          "id": "SRC05-E015",
+          "character_range": [
+            2438,
+            2493
+          ],
+          "text": "こうすると、単に「失敗しました」というログを残すより、発生箇所、影響範囲、経過時間、復旧状況を調べやすくなる。",
+          "utf8_sha256": "12906954ef9ea443e4562b40980af11cf864ca4958c830fec412d4044cf6ac31"
+        },
+        {
+          "id": "SRC05-E016",
+          "character_range": [
+            2516,
+            2559
+          ],
+          "text": "これは前に話していた、HELIX自身をわざと攻撃・故障させて検証する仕組みにも使える。",
+          "utf8_sha256": "79b522df71bad530f78bbdae2e67445033663569cd95823303511faae3c9ce32"
+        },
+        {
+          "id": "SRC05-E017",
+          "character_range": [
+            2561,
+            2622
+          ],
+          "text": "たとえば、通信を3秒遅らせる、接続を途中で切る、パケットを落とす、一定の通信量で接続を終了する、といった障害を再現できる。",
+          "utf8_sha256": "5204439fc1faf879f9555e9bb8cc8d32f837939df2255f3a8115fed3cc7305d9"
+        },
+        {
+          "id": "SRC05-E018",
+          "character_range": [
+            2712,
+            2781
+          ],
+          "text": "それを使えば、HELIX-CONNECTの再送・重複排除や、OSの未完状態保持、INFRAの復旧処理を実際の障害条件に近い形で検証できる。",
+          "utf8_sha256": "2a19e8d1aac9c1d4a44f5174a00de7ade68d14151257395773998fdfe2127b28"
+        },
+        {
+          "id": "SRC05-E019",
+          "character_range": [
+            2783,
+            2833
+          ],
+          "text": "Testcontainersと組み合わせれば、一時的な検証環境を作って、テスト終了後に片付けられる。",
+          "utf8_sha256": "f0d983701bc9b1b0441b84854ef9b1353768cdafb4836d7f782daaba5db07c57"
+        },
+        {
+          "id": "SRC05-E020",
+          "character_range": [
+            2964,
+            3032
+          ],
+          "text": "ライブラリはプログラムに組み込む小さな部品。PrometheusやGrafanaなどは、集めた情報を保存・検索・表示するシステムに近い。",
+          "utf8_sha256": "675f15237038862c18acc9c07d8a31adb96b49a5ec10b7f0e47d47f506de8d94"
+        },
+        {
+          "id": "SRC05-E021",
+          "character_range": [
+            3252,
+            3325
+          ],
+          "text": "ただし、最初からすべての保存システムを立ち上げる必要はない。OpenTelemetryで計測方法を統一し、必要な保存先を段階的に選ぶこともできる。",
+          "utf8_sha256": "7c84c72a4923e5de1d84d35c61b8225049f54b5307c35ffd899654f387a90a4b"
+        },
+        {
+          "id": "SRC05-E022",
+          "character_range": [
+            3327,
+            3400
+          ],
+          "text": "HELIXでは特に、監視用ログと、承認・状態変更などの正式な証拠記録を別に保つ設計が適している。計測ツールがHELIX自身の責務を奪う必要はない。",
+          "utf8_sha256": "34080b73292fb4699dec0ad11ebdc4df64d9358229c7c3198d9c545a61ed1a02"
+        },
+        {
+          "id": "SRC05-E023",
+          "character_range": [
+            3418,
+            3618
+          ],
+          "text": "1. Pino ＋ structlog — Node.jsとPythonのログ形式を整理。\n2. OpenTelemetry — 機構間のトレースと計測を共通化。\n3. Toxiproxy — 故障・タイムアウト・再接続の反例検証。\n4. Prometheus ＋ Grafana — 数値の蓄積、可視化、アラート。\n5. Loki ＋ Tempo — 必要に応じてログとトレースの保存・検索を拡張。",
+          "utf8_sha256": "268e3f95c130c73cff597a7a36f7a44006a16c7f3347a5d483db8b87795bcd4f"
+        },
+        {
+          "id": "SRC05-E024",
+          "character_range": [
+            3620,
+            3675
+          ],
+          "text": "Sentryは、例外を素早く発見・分類したい場合の追加候補。Node.jsとPythonの両方にSDKがある。",
+          "utf8_sha256": "a96e42c455a544fb773d13471834d161c29470f2402ce8cc68aec0bab7d4e4b5"
+        },
+        {
+          "id": "SRC05-E025",
+          "character_range": [
+            3829,
+            3946
+          ],
+          "text": "観測できることと、障害を意図的に再現できることを両立できるから。既存のINFRA・LABO・CONNECT・OSの設計と組み合わせれば、HELIX自身の障害を調べ、復旧を検証し、改善につなげるための良い技術基盤になると思う。とのこと。",
+          "utf8_sha256": "be8cb6e46a5f15a2407001958fcf7f963c12c836a8f942e81b2f7ccb24e73326"
+        }
+      ]
+    },
+    {
+      "id": "SRC06",
+      "kind": "user_shared_external_advice_data_not_authority",
+      "origin": "user_shared_attachment",
+      "text_utf8_sha256": "2fa8e21d64b6dd5736a79742c96faeef60f453054ddf32d0262a6e31bcde649c",
+      "raw_bytes_sha256": "2fa8e21d64b6dd5736a79742c96faeef60f453054ddf32d0262a6e31bcde649c",
+      "character_count": 5067,
+      "excerpt_offset_unit": "Python Unicode code points in exact text; CRLF retained for attachment",
+      "excerpts": [
+        {
+          "id": "SRC06-E001",
+          "character_range": [
+            2497,
+            2558
+          ],
+          "text": "技術ごとの詳細資料、設計理由、関連Patternを読むのに便利。正本のJSONから閲覧用ノートを生成する方式が考えられる。",
+          "utf8_sha256": "75380eb6036c7173f42145899a34c8a2f003b310b1c5c942a5b0543415cc5d79"
+        },
+        {
+          "id": "SRC06-E002",
+          "character_range": [
+            148,
+            231
+          ],
+          "text": "GitHubの現行BRAIN要求・設計を確認したところ、知識の階層、適用条件、比較、出典、評価、採否、版管理、失敗知識、他機構への提供まで、かなり広く定義されている。",
+          "utf8_sha256": "9c24db768c26824ef910b169e82924c4ad103967cb49b47f5aaf96b0ff9f9b2a"
+        },
+        {
+          "id": "SRC06-E003",
+          "character_range": [
+            1868,
+            1881
+          ],
+          "text": "SQLite ＋ FTS5",
+          "utf8_sha256": "6e1851ee9cb4065efc9dd548da969db134f346b76e31893f616517c612fc5cd9"
+        },
+        {
+          "id": "SRC06-E004",
+          "character_range": [
+            2072,
+            2078
+          ],
+          "text": "Qdrant",
+          "utf8_sha256": "a7891bb71cc252ac2cbd53ed99c090d4d32daf96f8c897872eacc988fb603e32"
+        },
+        {
+          "id": "SRC06-E005",
+          "character_range": [
+            2256,
+            2277
+          ],
+          "text": "PostgreSQL ＋ pgvector",
+          "utf8_sha256": "3ed7b83b4c8c6f26fbb7a920bb64081367b57fd579505dd6dfa86f53b748fef1"
+        },
+        {
+          "id": "SRC06-E006",
+          "character_range": [
+            316,
+            336
+          ],
+          "text": "## 1. Obsidianは使うべき？",
+          "utf8_sha256": "6ac3bd50c4273fd64e961f749fd9729e8fe0cef69fa73dae2398d15cb3bdcba5"
+        },
+        {
+          "id": "SRC06-E007",
+          "character_range": [
+            416,
+            456
+          ],
+          "text": "現在は「Bases」という、ノートを表やカードとして分類・検索できる機能もある。",
+          "utf8_sha256": "eb74de9412dca0cfa8ba5ae60d75ddbe785b19cc1517fd00037327c84401950e"
+        },
+        {
+          "id": "SRC06-E008",
+          "character_range": [
+            3274,
+            3800
+          ],
+          "text": "| 情報源                                                    | 取得したい情報                   |\r\n| ------------------------------------------------------ | ------------------------- |\r\n| [deps.dev](https://deps.dev/)                          | OSSのバージョン、依存関係、関連する脆弱性情報  |\r\n| [OSV.dev](https://osv.dev/)                            | 特定のライブラリ・バージョンに関連する脆弱性    |\r\n| [SPDX License List](https://spdx.org/licenses/)        | ソフトウェアライセンスの標準的な識別情報      |\r\n| [OpenSSF Scorecard](https://github.com/ossf/scorecard) | OSSプロジェクトのセキュリティ保守状況の評価材料 |",
+          "utf8_sha256": "d412fb6388bfd616dacd429fba79e3a81498e00ace0584dba54a046ec9d80d77"
+        },
+        {
+          "id": "SRC06-E009",
+          "character_range": [
+            0,
+            115
+          ],
+          "text": "これはHELIXにとって、かなり重要な領域だと思う。 システム開発を行うシステムなら、「どう作るか」だけでなく、どの技術を使うべきか、なぜ採用したか、どんな条件では使ってはいけないかを知識として蓄積し、次の開発に活用できると強い。",
+          "utf8_sha256": "6cf5c7f39276f4f30affa80ad2e072b18f1182ca3f230435759155e0e2aa41a7"
+        },
+        {
+          "id": "SRC06-E010",
+          "character_range": [
+            235,
+            312
+          ],
+          "text": "つまり、新しいKnowledge管理システムを別に発明する必要はない。HELIX-BRAINを中心に、技術・OSS選定の知識を具体化していくのが自然だよ。",
+          "utf8_sha256": "830337b842a16d6e667e243c53fb9572e941a62a88bb717219ab1cb85654e251"
+        },
+        {
+          "id": "SRC06-E011",
+          "character_range": [
+            361,
+            412
+          ],
+          "text": "Markdown形式のメモを保存し、ノート同士のリンク、バックリンク、関係図で知識を整理できるアプリ。",
+          "utf8_sha256": "0647b348ec9b3850f5b22be77acc5ce324b8c413dbf23c080f3a34b886acd0ec"
+        },
+        {
+          "id": "SRC06-E012",
+          "character_range": [
+            568,
+            659
+          ],
+          "text": "私のおすすめは、Obsidianを参考にし、必要なら知識を閲覧・編集する道具として使う。ただし、HELIXのKnowledge正本そのものはObsidianに依存させないという構成。",
+          "utf8_sha256": "813894ac4b47d8a3a649eedae15a1aa4ba745425c9e4fc16584315692ba126a0"
+        },
+        {
+          "id": "SRC06-E013",
+          "character_range": [
+            663,
+            747
+          ],
+          "text": "Obsidianの良い部分は活かせる。でも、技術の採用状態、対象バージョン、評価結果、証拠の整合性などは、HELIX自身が扱う構造化データとして保持する方が適している。",
+          "utf8_sha256": "47ab52290aa175447969515ee90564358614db1c0f44e5acab8c603383de2ac6"
+        },
+        {
+          "id": "SRC06-E014",
+          "character_range": [
+            751,
+            826
+          ],
+          "text": "これはObsidianが劣っているからではなく、個人・チーム向けの知識整理と、システムが判断材料を扱うKnowledge管理とでは、役割が異なるため。",
+          "utf8_sha256": "2a1d26105e36266838e309002ec078b59087029f7362ee4ee18103add7469276"
+        },
+        {
+          "id": "SRC06-E015",
+          "character_range": [
+            860,
+            902
+          ],
+          "text": "私は、技術スタックとOSSについて、少なくとも次の情報を一緒に管理するのがおすすめ。",
+          "utf8_sha256": "06bd1d9a366cbcf050800be57baac0211c813cdc67d417a4cfe23546b76e8381"
+        },
+        {
+          "id": "SRC06-E016",
+          "character_range": [
+            906,
+            1456
+          ],
+          "text": "| 情報      | 具体例                            |\r\n| ------- | ------------------------------ |\r\n| 技術の特徴   | AjvはJSON Schema検証に使える          |\r\n| 推奨する条件  | Node.jsでDraft 2020-12の構造を検査したい |\r\n| 推奨しない条件 | 原入力を変換してはいけないのに、自動変換を有効にする構成   |\r\n| 比較候補    | 他のJSON Schema検証器               |\r\n| 評価根拠    | LABOの比較結果、テスト、公式仕様             |\r\n| セキュリティ  | 脆弱性、依存関係、対応バージョン               |\r\n| ライセンス   | MIT、Apache-2.0などの条件            |\r\n| 採用状態    | 候補、評価済み、推奨、対象範囲で採用、非推奨         |\r\n| 利用実績    | どの製品・revisionで実際に使ったか          |\r\n| 変更履歴    | なぜ採用・変更・廃止したか                  |",
+          "utf8_sha256": "73e826a7236e064d30f8caad571a61c146cd6105a4f161e1dcdbae3210d324dc"
+        },
+        {
+          "id": "SRC06-E017",
+          "character_range": [
+            1460,
+            1505
+          ],
+          "text": "ここで大切なのは、「HELIXが推奨している」と「特定の製品で採用された」を別にすること。",
+          "utf8_sha256": "9d92b04b511cbe41c916ce94eb275bc0829e65660b06d398b67828373af96b66"
+        },
+        {
+          "id": "SRC06-E018",
+          "character_range": [
+            1509,
+            1574
+          ],
+          "text": "たとえばAjvは、Node.jsのJSON検証用途として推奨できても、すべての製品・すべての入力で無条件に採用できるわけではない。",
+          "utf8_sha256": "7066dad178042251780ece29efb9c7acaaa4dee350e7d17372a8829b0c2deacc"
+        },
+        {
+          "id": "SRC06-E019",
+          "character_range": [
+            1604,
+            1755
+          ],
+          "text": "- BRAIN003：適用条件\r\n- BRAIN004：候補の比較\r\n- BRAIN007：出典と評価・昇格状態\r\n- BRAIN008：版と旧参照の保全\r\n- BRAIN010：失敗知識・Anti-Pattern\r\n- BRAIN025：独立検証と採否\r\n- BRAIN030：知識の問い合わせ・受領",
+          "utf8_sha256": "94cf7f746bfd014480e921a2a2e437ba0f1cc55bb5c333fa86da79125e66b651"
+        },
+        {
+          "id": "SRC06-E020",
+          "character_range": [
+            1759,
+            1805
+          ],
+          "text": "技術・OSS選定をこの既存のKnowledge体系に載せれば、別の承認制度を新設せずに済む。",
+          "utf8_sha256": "9fa19db0022560b8aae9690f4d441e9a40f301b79e17b26ef80d26902d969217"
+        },
+        {
+          "id": "SRC06-E021",
+          "character_range": [
+            1899,
+            1966
+          ],
+          "text": "技術名、用途、状態、採用理由、関係する要求を検索するためのデータベース。FTS5は全文検索機能で、通常のキーワード検索を高速化できる。",
+          "utf8_sha256": "95c3946ec8e849d30aa27e63d22fd356983e8639c139916af844dabe93f62ca7"
+        },
+        {
+          "id": "SRC06-E022",
+          "character_range": [
+            2096,
+            2157
+          ],
+          "text": "表現が異なっていても、意味の近い知識を探すためのベクトル検索エンジン。キーワード検索と意味検索を組み合わせることもできる。",
+          "utf8_sha256": "fa3e7b9d6a03ed2603fa09a6f75074213d58f2575c9d5076fa48b9e494893abe"
+        },
+        {
+          "id": "SRC06-E023",
+          "character_range": [
+            2305,
+            2368
+          ],
+          "text": "通常のデータとベクトルを同じPostgreSQL内に保存して検索できる。Qdrantとは基本的に代替候補として比較すればよい。",
+          "utf8_sha256": "64fddd71d3e9a4570732421eb1df5a6230f2995d8fa05bcbf65bd10d2080732b"
+        },
+        {
+          "id": "SRC06-E024",
+          "character_range": [
+            2586,
+            2673
+          ],
+          "text": "正本のJSONをGitで版管理すれば、「いつ・どの技術情報が・どう変わったか」を追跡できる。SQLiteやベクトル検索は、その正本を探しやすくするための索引として利用できる。",
+          "utf8_sha256": "ed8b99277fbd91d5db8c218cb62f49fb632017dfab28a8d9c0fea04cd77df502"
+        },
+        {
+          "id": "SRC06-E025",
+          "character_range": [
+            2739,
+            2800
+          ],
+          "text": "ObsidianはMarkdownとリンクによる知識整理が得意だけれど、正式な技術採否や版管理のエンジンそのものではない。",
+          "utf8_sha256": "e3376e9dbaef1f544bb159c66018a347cdb7566e4297b3fdda3934d70e2508e4"
+        },
+        {
+          "id": "SRC06-E026",
+          "character_range": [
+            2804,
+            2866
+          ],
+          "text": "また、Obsidian本体はOSSではない。無料で商用利用もできるが、アプリのソースコードは独自ライセンスで保護されている。",
+          "utf8_sha256": "20662f3b44ad61e29f1dc5a72e11f8d35f24d3d9c0ee4cb4b1b888f357eeded9"
+        },
+        {
+          "id": "SRC06-E027",
+          "character_range": [
+            2990,
+            3081
+          ],
+          "text": "- ノート間の双方向リンクと知識グラフ\r\n- 技術・カテゴリ・評価状態による絞り込み\r\n- 関連知識の探索\r\n- 人が書いた調査メモから、正式なKnowledge候補へ進める編集体験",
+          "utf8_sha256": "f3254d76fe8848e5780da980591d11598e68d0f0bdfdbd02eed963ea611d3f81"
+        },
+        {
+          "id": "SRC06-E028",
+          "character_range": [
+            3085,
+            3160
+          ],
+          "text": "ただし、Obsidianの画面や内部実装をそのまま複製する必要はない。HELIXが必要とする機能だけを、既存のBRAIN設計に沿って実現するのがよい。",
+          "utf8_sha256": "391c14521fda39950f0d273742482ab935e18ac5bf6e5a0494c95ec0a7064478"
+        },
+        {
+          "id": "SRC06-E029",
+          "character_range": [
+            3210,
+            3270
+          ],
+          "text": "HELIXが技術を推薦するなら、公式サイトを毎回人手で調べるだけでなく、外部の信頼できる情報源から候補情報を収集できる。",
+          "utf8_sha256": "6b3fa5fa21b19d0a015078a251dd6128f71b2627f03223ac8e26cf0022c96005"
+        },
+        {
+          "id": "SRC06-E030",
+          "character_range": [
+            3804,
+            3881
+          ],
+          "text": "deps.devはパッケージと依存関係などの情報を提供し、OSVは指定したバージョンの脆弱性を問い合わせられる。SPDXはライセンスを標準識別子で扱える。",
+          "utf8_sha256": "423f033faad4092651bd65bf518da0ecbaa196cd8f21bd09dbf2e28f6b7840b6"
+        },
+        {
+          "id": "SRC06-E031",
+          "character_range": [
+            3985,
+            4046
+          ],
+          "text": "この情報を使えば、たとえば「以前推奨したライブラリに新しい脆弱性が報告された」という変化を検知して、知識の再評価へ送れる。",
+          "utf8_sha256": "b53cd6426b72865f6c9c5497b5a91317a0592769f7d13b2a177ddd4dac3e3af7"
+        },
+        {
+          "id": "SRC06-E032",
+          "character_range": [
+            4050,
+            4125
+          ],
+          "text": "外部情報を受け取っただけで、自動的に「採用済み」「使用禁止」へ変更する必要はない。現在のBRAIN・LABO・SECURITYの責務分担を維持できる。",
+          "utf8_sha256": "6fd818432cff373d2018009cb4298586eeb87cda889505b809769100c1d68e9a"
+        },
+        {
+          "id": "SRC06-E033",
+          "character_range": [
+            4399,
+            4471
+          ],
+          "text": "GitでJSON正本の履歴を管理し、SQLiteを検索用の保存・索引に使う。知識が増えて意味検索に価値が出てきたら、Qdrantなどを追加する。",
+          "utf8_sha256": "60177da36eadbb939cba6003c3bac34fa40ce1a562adbc29074a21daeeee2f05"
+        },
+        {
+          "id": "SRC06-E034",
+          "character_range": [
+            4475,
+            4544
+          ],
+          "text": "ベクトル検索の類似度は、技術の採用可否そのものではないという点も大切。検索で見つけた候補を、BRAINの適用条件や元の証拠に照合して使う。",
+          "utf8_sha256": "18cbdb7429a8dfba24aad60f41f4b542b30d4b3f9b79430bfcc44060fe20ce19"
+        },
+        {
+          "id": "SRC06-E035",
+          "character_range": [
+            4548,
+            4694
+          ],
+          "text": "なお、技術選定については既に[PR #3049の技術強化候補調査](https://github.com/RetryYN/HELIX-HARNESS/pull/3049)がmainへ統合されている。このような採用前調査は、そのままBRAINのKnowledge候補へつなぐ材料として活かせる。",
+          "utf8_sha256": "f0b4a84088a39e54d28112451e6e553812c5eb4b08e65553e45a3c163bf9e347"
+        },
+        {
+          "id": "SRC06-E036",
+          "character_range": [
+            4713,
+            4792
+          ],
+          "text": "私なら、ObsidianをKnowledgeの中心には置かない。Obsidianの使いやすい知識整理体験を参考にして、HELIX-BRAINを中心に構築する。",
+          "utf8_sha256": "d703979833f130affdff4dcd38c26e2c0d9506872d78da6d2468d1091facf0b3"
+        },
+        {
+          "id": "SRC06-E037",
+          "character_range": [
+            4796,
+            4886
+          ],
+          "text": "最初の技術構成は JSON正本＋Git＋SQLite/FTS5。人間が知識を読んだり整理したりする用途ではObsidianを併用し、意味検索や大規模な検索基盤は必要性に応じて選ぶ。",
+          "utf8_sha256": "d3f5131730caa74e370e18091edd90faf0a2f454b36d7f4a35a137c723abb7dd"
+        },
+        {
+          "id": "SRC06-E038",
+          "character_range": [
+            4926,
+            4983
+          ],
+          "text": "「どの条件で、どの技術が適していて、何を根拠にそう判断し、実際に採用してどうだったか」まで再利用できるHELIX。",
+          "utf8_sha256": "f71fd510b2bfac2c23b7c55f50c6a3cf4d22b9c10d240f9bef72fe0ce59364b1"
+        }
+      ]
+    },
+    {
+      "id": "SRC07",
+      "kind": "user_shared_external_advice_data_not_authority",
+      "origin": "user_shared_technical_text",
+      "text_utf8_sha256": "63565b03e8b33ee47adfa5c6bc2a7b17e74c83bc02e7e277be1de2b3d956b7e5",
+      "raw_bytes_sha256": "63565b03e8b33ee47adfa5c6bc2a7b17e74c83bc02e7e277be1de2b3d956b7e5",
+      "character_count": 2113,
+      "excerpt_offset_unit": "Python Unicode code points in exact text; CRLF retained for attachment",
+      "excerpts": [
+        {
+          "id": "SRC07-E001",
+          "character_range": [
+            140,
+            242
+          ],
+          "text": "これを HELIX Trusted Technology Admission（技術採用時の安全性審査） のような仕組みとして考えると面白い。ただし、これは仮称であって、新しい機構や要求を増やす必要はない。",
+          "utf8_sha256": "48f22a8ad3343840569b8fac5e2b61adc2dea0ce580dcc128034476966ba7d56"
+        },
+        {
+          "id": "SRC07-E002",
+          "character_range": [
+            879,
+            942
+          ],
+          "text": "ここでは、審査前に隔離環境で動かすための試験専用の限定許可と、HELIXの実際の開発・運用に組み込む正式な利用許可を区別する。",
+          "utf8_sha256": "6809e64c4a853ff2021162c353c384080ecc24efc915412244f19d5cde173084"
+        },
+        {
+          "id": "SRC07-E003",
+          "character_range": [
+            1314,
+            1369
+          ],
+          "text": "これなら、すべての小さなライブラリに大規模攻撃を仕掛けるのではなく、実際の権限や影響範囲に応じて検査を選べる。",
+          "utf8_sha256": "b20ccd2c890d2207aa6e888fdb91ebd78512e7d1eef735cf11c26e2496b9f0b0"
+        },
+        {
+          "id": "SRC07-E004",
+          "character_range": [
+            1738,
+            1794
+          ],
+          "text": "これはSECURITY011のCapability Driftや、BRAIN008の知識版管理と自然につながる。",
+          "utf8_sha256": "a61aa2508386a67d9891b3a8b28f85269dcb99688a6425f0405a027bfeea8db1"
+        },
+        {
+          "id": "SRC07-E005",
+          "character_range": [
+            848,
+            877
+          ],
+          "text": "検証済みの正確なバージョン・digest・権限・用途に限定",
+          "utf8_sha256": "aa139ac1817ab2f93687e5c68f8952d1b9593c5d0389d9178c037216a419df8e"
+        },
+        {
+          "id": "SRC07-E006",
+          "character_range": [
+            35,
+            138
+          ],
+          "text": "外部OSSやライブラリを、単に「有名だから」「脆弱性が報告されていないから」という理由で採用するのではなく、実際にHELIXの隔離環境で攻撃テストを行い、安全性を評価してから利用を認可するという考え方だね。",
+          "utf8_sha256": "9fbf93dc44cd0df468120df63e8baff1a52981880997c6f8f953d8b3f270aded"
+        },
+        {
+          "id": "SRC07-E007",
+          "character_range": [
+            272,
+            391
+          ],
+          "text": "- SECURITY010〜013： 外部パッケージの更新受入、権限変化、供給元、成果物の同一性を検査。\n- SECURITY023： SECURITY審査 → Worker隔離実行 → HARNESS検証 → OS昇格という流れを規定。",
+          "utf8_sha256": "4edee15e81b179a90427807ba0dd35f83b8c7c7f1acdd160b5c769afe64d36b1"
+        },
+        {
+          "id": "SRC07-E008",
+          "character_range": [
+            425,
+            568
+          ],
+          "text": "根拠：[現行SECURITY要求（010〜013・023）](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/helix-security/L2-requirements/security-requirements.md)",
+          "utf8_sha256": "a4ce44145ba12aeb0ee7ea0b0bf130ffbc8e49a3a4d58081538fcf12b9048aaf"
+        },
+        {
+          "id": "SRC07-E009",
+          "character_range": [
+            1371,
+            1475
+          ],
+          "text": "既知の脆弱性はOSV、開発元のセキュリティ管理状況はOpenSSF Scorecardなどを利用して調べられる。ただし、Scorecard自体も安全性を確定する証明ではなく、判断材料として位置づけられている。",
+          "utf8_sha256": "4eb94ba2e9a2d9c07435f3b39e7601c4bc7640c2e88bc0996ac7556845c67821"
+        },
+        {
+          "id": "SRC07-E010",
+          "character_range": [
+            1648,
+            1736
+          ],
+          "text": "HELIXが変更差分を検知し、前回認可との違いを調べ、必要な攻撃ケースを再実行する。問題が見つかったらそのバージョンの利用を保留し、安全だった旧バージョンの判断記録も保持する。",
+          "utf8_sha256": "7212af1775cf12498be851cdf08bd7f04ae2254ce830c1aba6ddf3a957763480"
+        },
+        {
+          "id": "SRC07-E011",
+          "character_range": [
+            1796,
+            1841
+          ],
+          "text": "そしてBRAINに蓄積するKnowledgeは、単なる「おすすめOSS一覧」ではなくなる。",
+          "utf8_sha256": "c636006d0714c6c4a305ae138b809d2320110fbdf4adec8ed6fdeb0089edc07e"
+        },
+        {
+          "id": "SRC07-E012",
+          "character_range": [
+            1843,
+            1916
+          ],
+          "text": "\\*\\*「このOSSのこのバージョンは、この用途・権限・環境で、これらの攻撃試験と評価を通過している」\\*\\*という、再利用できる検証履歴になる。",
+          "utf8_sha256": "e60e9401b193171f29b97fcc1c9802f6e54aa929162f3f94010ad007d700a690"
+        },
+        {
+          "id": "SRC07-E013",
+          "character_range": [
+            1918,
+            1983
+          ],
+          "text": "もちろんレッドチームが全攻撃を網羅できるわけではないので、認可は絶対安全の宣言ではなく、評価範囲と残留リスクを明示した判断にする。",
+          "utf8_sha256": "07394657e766ef5ee8119b136bcd18854de9a529b0e3a3841b029d21bc87e0f8"
+        },
+        {
+          "id": "SRC07-E014",
+          "character_range": [
+            1985,
+            2048
+          ],
+          "text": "これはかなりHELIXらしい仕組みだと思う。 開発に必要な技術を自分で探し、比較し、攻撃し、検証し、利用判断と経験を蓄積する。",
+          "utf8_sha256": "d41bfdcaeb67e7b7bf5900837161f5194fe12977a205260d285f5281823bffd8"
+        },
+        {
+          "id": "SRC07-E015",
+          "character_range": [
+            2050,
+            2112
+          ],
+          "text": "しかも既存のSECURITY023の構成体契約を具体化する方向だから、別の大きな仕組みを増やさずに実現を考えられる。だって。",
+          "utf8_sha256": "11cc932006a39b5565a9b5f7c79c4bab7c889cb35944de5e10455a9b23d8e7ae"
+        },
+        {
+          "id": "SRC07-R1",
+          "character_range": [
+            1087,
+            1119
+          ],
+          "text": "MCPサーバー、Skill、Agent、Hook、CIプラグイン",
+          "utf8_sha256": "d0bfd6f210a957eca8adaa5997512681ee09bd17474bc87a9a6b398d65068199"
+        },
+        {
+          "id": "SRC07-R6",
+          "character_range": [
+            1175,
+            1201
+          ],
+          "text": "JSONパーサー、外部API SDK、DBドライバー",
+          "utf8_sha256": "33354f98f452a2271d8173d6ebe0168287b0de7ea3802b9c1339c93cfa027699"
+        },
+        {
+          "id": "SRC07-R9",
+          "character_range": [
+            1264,
+            1280
+          ],
+          "text": "副作用のない小規模ユーティリティ",
+          "utf8_sha256": "bb1269d918536cb8d35032ad31fce156bfc2a41409292a63c548435b193da8ff"
+        }
+      ]
+    },
+    {
+      "id": "SRC08",
+      "kind": "user_shared_external_advice_data_not_authority",
+      "origin": "user_shared_technical_text",
+      "text_utf8_sha256": "1b0bf3d56992eafcde76c4fa3d44c46975c706fc6e484df57d806eeed7cf94fe",
+      "raw_bytes_sha256": "1b0bf3d56992eafcde76c4fa3d44c46975c706fc6e484df57d806eeed7cf94fe",
+      "character_count": 3935,
+      "excerpt_offset_unit": "Python Unicode code points in exact text; CRLF retained for attachment",
+      "excerpts": [
+        {
+          "id": "SRC08-E001",
+          "character_range": [
+            205,
+            293
+          ],
+          "text": "ただし、現行のPO原案ではTerraform、OpenTofu、Ansible、Docker、KubernetesなどをHELIX共通の固定技術にはしない方針も明記されている。",
+          "utf8_sha256": "4d9f2cb669c6f6a1dd30174bdb4b5d7cded42f7b9d626ef059b5b5be1a79a795"
+        },
+        {
+          "id": "SRC08-E002",
+          "character_range": [
+            741,
+            805
+          ],
+          "text": "[Podman](https://podman.io/) / [Docker](https://www.docker.com/)",
+          "utf8_sha256": "c5393606302d57d9d8c2a63d11353c78b5fa8258770920d09cf13e0bcb163d32"
+        },
+        {
+          "id": "SRC08-E003",
+          "character_range": [
+            898,
+            962
+          ],
+          "text": "[Trivy](https://trivy.dev/) / [Checkov](https://www.checkov.io/)",
+          "utf8_sha256": "822930d03132dd61a2596c522bb2c35e2b2e854eb26432716e1037f94f52f43e"
+        },
+        {
+          "id": "SRC08-E004",
+          "character_range": [
+            1055,
+            1082
+          ],
+          "text": "[SOPS](https://getsops.io/)",
+          "utf8_sha256": "d3fd3d222b8681428f67ab678fa9f6e3b6094618c45a0fcc00d47156ed580d18"
+        },
+        {
+          "id": "SRC08-E005",
+          "character_range": [
+            1181,
+            1210
+          ],
+          "text": "[Restic](https://restic.net/)",
+          "utf8_sha256": "cdfcb902c1e146e30b61432027279c05721280c69329d0abb3f8f70c31079504"
+        },
+        {
+          "id": "SRC08-E006",
+          "character_range": [
+            1595,
+            1633
+          ],
+          "text": "[Infracost](https://www.infracost.io/)",
+          "utf8_sha256": "2f1f49814cc814004b4fd0680de10c4d3a238f757f7249a0a45bf1c8e1f7535e"
+        },
+        {
+          "id": "SRC08-E007",
+          "character_range": [
+            1726,
+            1807
+          ],
+          "text": "[Kubernetes](https://kubernetes.io/) ＋ [Argo CD](https://argo-cd.readthedocs.io/)",
+          "utf8_sha256": "5363651a32e6790ad489716c224e29284b37b63767907c2027c60ec3d076c5d5"
+        },
+        {
+          "id": "SRC08-E008",
+          "character_range": [
+            3473,
+            3572
+          ],
+          "text": "例えばOpenTofu、Ansible、Kubernetes、あるいはサードパーティー製のTerraform Providerを選定するとき、BRAINには用途・対応環境・費用・適用条件を保持する。",
+          "utf8_sha256": "164f2e5962300b33f6c295a08a8de2ae436569c1e9ada8628f1a0e80ae6e741b"
+        },
+        {
+          "id": "SRC08-E009",
+          "character_range": [
+            1312,
+            1361
+          ],
+          "text": "[Toxiproxy](https://github.com/Shopify/toxiproxy)",
+          "utf8_sha256": "ffd3f5b37e8883854f4feb87b249c125c2d436ce4bcd01c74ef1a6e7abdc51ff"
+        },
+        {
+          "id": "SRC08-E010",
+          "character_range": [
+            1458,
+            1503
+          ],
+          "text": "[Testcontainers](https://testcontainers.com/)",
+          "utf8_sha256": "5ba3b3f82ee25ed6fe710706ac29ec396d8e1836b3f8f74fb76f85aa74a00671"
+        },
+        {
+          "id": "SRC08-E011",
+          "character_range": [
+            48,
+            116
+          ],
+          "text": "特に面白いのは、HELIX自身の実行環境を管理するだけでなく、HELIXが開発する製品に適したインフラ技術を自動で比較・選定できること。",
+          "utf8_sha256": "c22ecfa7bf5fd173c7fca58fc2ebd9f1924b8b96dbd22552444b70642f49406a"
+        },
+        {
+          "id": "SRC08-E012",
+          "character_range": [
+            118,
+            203
+          ],
+          "text": "現行のINFRASTRUCTURE設計には、資源管理、設計と実環境の差分検出、監視、バックアップ、復旧、Workerの隔離まで含まれている。これらを実現する道具を選べる。",
+          "utf8_sha256": "457aeb9ce344758ce3fcecf5ecb01943973414d2b1c31a4e7f6d87bc740fd40d"
+        },
+        {
+          "id": "SRC08-E013",
+          "character_range": [
+            295,
+            344
+          ],
+          "text": "だから、用途別に有力な技術をKnowledge化し、実際の環境や要求に合わせて選ぶ構成が良さそう。",
+          "utf8_sha256": "ab4aecb903af20257e276b70d0b0a09a792889e8e55012b9bc5fe9979def1824"
+        },
+        {
+          "id": "SRC08-E014",
+          "character_range": [
+            1873,
+            1978
+          ],
+          "text": "OpenTofuはクラウド・オンプレミスの資源をコードで管理でき、Ansibleは実際のサーバー設定を自動化する。Trivy・Checkovは構成ファイルの検査、Resticはバックアップと復元に対応している。",
+          "utf8_sha256": "c2793b8850a86436a670c720d90aab58fe61bc343f8a9ac55c266905380d98a5"
+        },
+        {
+          "id": "SRC08-E015",
+          "character_range": [
+            2096,
+            2139
+          ],
+          "text": "例えば、HELIXが新しいWorkerの実行環境を用意するなら、次のように分担できる。",
+          "utf8_sha256": "91bf3ba25436bd9837a066bd158adf692bd394e25efe739b7ed2df8adb38ef52"
+        },
+        {
+          "id": "SRC08-E016",
+          "character_range": [
+            2360,
+            2427
+          ],
+          "text": "Toxiproxyは開発・CI環境でネットワーク障害を再現でき、Testcontainersは一時的な検証用コンテナを立ち上げられる。",
+          "utf8_sha256": "e94c86b9047048d1d522e2a9b4ff8a148c944fcc26faaad5168e2c393490a4c8"
+        },
+        {
+          "id": "SRC08-E017",
+          "character_range": [
+            2560,
+            2624
+          ],
+          "text": "環境の設計図を保持し、変更計画と実際の資源状態を比較できる。INFRA002の設計・target・actualの分離に活かせる。",
+          "utf8_sha256": "344ce596efbea7591d1c5b67034c1acb48b6b956ef29fcf5fba81856b5e0f7b5"
+        },
+        {
+          "id": "SRC08-E018",
+          "character_range": [
+            2672,
+            2736
+          ],
+          "text": "コンテナイメージの脆弱性、DockerfileやIaCの設定不備などを調べられる。前に話した外部技術の安全性審査にも利用できる。",
+          "utf8_sha256": "e93c513514cf6a55e0b8edb32ad36779a7e34e786bac73dde153f6eabd75ec60"
+        },
+        {
+          "id": "SRC08-E019",
+          "character_range": [
+            2844,
+            2885
+          ],
+          "text": "暗号化バックアップだけでなく、実際に別環境へ復元できるかを試す用途にも適している。",
+          "utf8_sha256": "a5f353d7e8c4e880935103b47ec9fde7f5b22698aff6cf88d1d2524674eb42c6"
+        },
+        {
+          "id": "SRC08-E020",
+          "character_range": [
+            2955,
+            3023
+          ],
+          "text": "Kubernetesは複数のコンテナを配置し、故障時の再起動やスケーリングを管理する強力な技術。ただし、その分だけ管理する対象も増える。",
+          "utf8_sha256": "1ae417ea46bbe0a72b53d49c9df5c7cd79c210da2bcfa76fcb9c79f1dac3563b"
+        },
+        {
+          "id": "SRC08-E021",
+          "character_range": [
+            3120,
+            3171
+          ],
+          "text": "HELIXがローカルPCや少数のサーバーで動く構成なら、PodmanやDockerで十分な場合がある。",
+          "utf8_sha256": "136dbdbcd5fd0e7c0309263bb20bc31b9abd88cf80f0aee7d028d5789614a3a3"
+        },
+        {
+          "id": "SRC08-E022",
+          "character_range": [
+            3173,
+            3259
+          ],
+          "text": "一方、多数のWorkerを複数ノードで運用する製品なら、KubernetesとArgo CDを候補にできる。Argo CDはGit上の構成と実環境を比較して配備を管理する。",
+          "utf8_sha256": "34524a43e1ae5021f1ac560eaf0e7dd7c985db9043c6df29b4722437abcd96ef"
+        },
+        {
+          "id": "SRC08-E023",
+          "character_range": [
+            3349,
+            3415
+          ],
+          "text": "だから、KubernetesをHELIX自身の必須基盤にするより、BRAINが必要条件に応じて推奨できる技術として保持する方が良い。",
+          "utf8_sha256": "c7e2fe31ca9aa2fd70ed4b6efa221dae4c96370e6844c479edc14119ea556790"
+        },
+        {
+          "id": "SRC08-E024",
+          "character_range": [
+            3574,
+            3652
+          ],
+          "text": "SECURITYは供給元・権限・依存・脆弱性を検査し、必要なら隔離Workerで攻撃テストを行う。LABOは構成・性能・障害・復旧などの評価結果を保持する。",
+          "utf8_sha256": "a921f595c9aa67226b1e2555b0eefe3f922228cfcdb74a572cf4f350e16dc23d"
+        },
+        {
+          "id": "SRC08-E025",
+          "character_range": [
+            3654,
+            3742
+          ],
+          "text": "その結果をもとに、\\*\\*「この条件ではOpenTofuが適している」「このProviderのこの版は、この権限と環境で検証済み」\\*\\*というKnowledgeを蓄積できる。",
+          "utf8_sha256": "f7073d9c7b70d1665a8cadd970ce7816ee802b99908a9101184455527420a532"
+        },
+        {
+          "id": "SRC08-E026",
+          "character_range": [
+            3855,
+            3934
+          ],
+          "text": "HELIX自身がインフラを構築・検証する能力と、開発する製品に最適なインフラを選定する能力。 この2つを分けて育てるのが、かなり良い方向だと思う。あとこれね。",
+          "utf8_sha256": "0b7dfdb3f3165ba2dfa25a663896b3e24ebd6a0437a0e362f65314a4d9f16c58"
+        }
+      ]
+    }
+  ],
+  "item_mapping": [
+    {
+      "group": "T01",
+      "item": "Node.js",
+      "source": "SRC01",
+      "excerpt": "SRC01-E001",
+      "source_expression": "Node.js",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "TypeScript",
+      "source": "SRC01",
+      "excerpt": "SRC01-E001",
+      "source_expression": "TypeScript",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "Python",
+      "source": "SRC01",
+      "excerpt": "SRC01-E001",
+      "source_expression": "Python",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "Ajv",
+      "source": "SRC01",
+      "excerpt": "SRC01-E002",
+      "source_expression": "Ajv",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "python-jsonschema",
+      "source": "SRC01",
+      "excerpt": "SRC01-E002",
+      "source_expression": "python-jsonschema",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "JSON Schema 2020-12",
+      "source": "SRC01",
+      "excerpt": "SRC01-E003",
+      "source_expression": "JSON Schema 2020-12",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "pytest",
+      "source": "SRC01",
+      "excerpt": "SRC01-E004",
+      "source_expression": "pytest",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "Hypothesis",
+      "source": "SRC01",
+      "excerpt": "SRC01-E004",
+      "source_expression": "Hypothesis",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "node:test",
+      "source": "SRC01",
+      "excerpt": "SRC01-E004",
+      "source_expression": "node:test",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "fast-check",
+      "source": "SRC01",
+      "excerpt": "SRC01-E004",
+      "source_expression": "fast-check",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "uv",
+      "source": "SRC01",
+      "excerpt": "SRC01-E005",
+      "source_expression": "uv",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "Ruff",
+      "source": "SRC01",
+      "excerpt": "SRC01-E005",
+      "source_expression": "Ruff",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "Pyright",
+      "source": "SRC01",
+      "excerpt": "SRC01-E005",
+      "source_expression": "Pyright",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T01",
+      "item": "npm lockfile",
+      "source": "SRC01",
+      "excerpt": "SRC01-E006",
+      "source_expression": "npmのlockfile",
+      "mapping": "display_label_normalization_not_new_requirement"
+    },
+    {
+      "group": "T01",
+      "item": "TypeScript型検査",
+      "source": "SRC01",
+      "excerpt": "SRC01-E006",
+      "source_expression": "TypeScriptの型検査",
+      "mapping": "display_label_normalization_not_new_requirement"
+    },
+    {
+      "group": "T10",
+      "item": "Rust",
+      "source": "SRC01",
+      "excerpt": "SRC01-E007",
+      "source_expression": "Rust",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T10",
+      "item": "Go",
+      "source": "SRC01",
+      "excerpt": "SRC01-E007",
+      "source_expression": "Go",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T10",
+      "item": "PostgreSQL",
+      "source": "SRC01",
+      "excerpt": "SRC01-E008",
+      "source_expression": "PostgreSQL",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T10",
+      "item": "Kafka",
+      "source": "SRC01",
+      "excerpt": "SRC01-E008",
+      "source_expression": "Kafka",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T10",
+      "item": "Kubernetes",
+      "source": "SRC01",
+      "excerpt": "SRC01-E008",
+      "source_expression": "Kubernetes",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T02",
+      "item": "GitHub Actions",
+      "source": "SRC02",
+      "excerpt": "SRC02-E001",
+      "source_expression": "GitHub Actions",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T02",
+      "item": "Vitest",
+      "source": "SRC02",
+      "excerpt": "SRC02-E002",
+      "source_expression": "Vitest",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T02",
+      "item": "pytest",
+      "source": "SRC02",
+      "excerpt": "SRC02-E002",
+      "source_expression": "pytest",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T02",
+      "item": "Biome",
+      "source": "SRC02",
+      "excerpt": "SRC02-E003",
+      "source_expression": "Biome",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T02",
+      "item": "Ruff",
+      "source": "SRC02",
+      "excerpt": "SRC02-E003",
+      "source_expression": "Ruff",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T02",
+      "item": "actionlint",
+      "source": "SRC02",
+      "excerpt": "SRC02-E004",
+      "source_expression": "actionlint",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T02",
+      "item": "zizmor",
+      "source": "SRC02",
+      "excerpt": "SRC02-E004",
+      "source_expression": "zizmor",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T02",
+      "item": "CodeQL",
+      "source": "SRC02",
+      "excerpt": "SRC02-E005",
+      "source_expression": "CodeQL",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T02",
+      "item": "Playwright",
+      "source": "SRC02",
+      "excerpt": "SRC02-E006",
+      "source_expression": "Playwright",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T10",
+      "item": "Jenkins",
+      "source": "SRC02",
+      "excerpt": "SRC02-E007",
+      "source_expression": "Jenkins",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T10",
+      "item": "CircleCI",
+      "source": "SRC02",
+      "excerpt": "SRC02-E007",
+      "source_expression": "CircleCI",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T03",
+      "item": "Agent Skills",
+      "source": "SRC03",
+      "excerpt": "SRC03-E001",
+      "source_expression": "Agent Skills",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T03",
+      "item": "SKILL.md",
+      "source": "SRC03",
+      "excerpt": "SRC03-E001",
+      "source_expression": "SKILL.md",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T03",
+      "item": "要求トレーサビリティ",
+      "source": "SRC03",
+      "excerpt": "SRC03-E002",
+      "source_expression": "要求トレーサビリティ",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T03",
+      "item": "V字モデル設計",
+      "source": "SRC03",
+      "excerpt": "SRC03-E003",
+      "source_expression": "V字モデル設計",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T03",
+      "item": "独立レビュー",
+      "source": "SRC03",
+      "excerpt": "SRC03-E004",
+      "source_expression": "独立レビュー",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T03",
+      "item": "TDD・反例設計",
+      "source": "SRC03",
+      "excerpt": "SRC03-E005",
+      "source_expression": "TDD・反例設計",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T03",
+      "item": "障害分析・Backflow",
+      "source": "SRC03",
+      "excerpt": "SRC03-E006",
+      "source_expression": "障害分析・Backflow",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T04",
+      "item": "dependency-cruiser",
+      "source": "SRC03",
+      "excerpt": "SRC03-E007",
+      "source_expression": "dependency-cruiser",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T04",
+      "item": "Import Linter",
+      "source": "SRC03",
+      "excerpt": "SRC03-E007",
+      "source_expression": "Import Linter",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T04",
+      "item": "Gitleaks",
+      "source": "SRC03",
+      "excerpt": "SRC03-E008",
+      "source_expression": "Gitleaks",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T04",
+      "item": "Dependabot",
+      "source": "SRC03",
+      "excerpt": "SRC03-E009",
+      "source_expression": "Dependabot",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T04",
+      "item": "StrykerJS",
+      "source": "SRC03",
+      "excerpt": "SRC03-E010",
+      "source_expression": "StrykerJS",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T04",
+      "item": "MCP SDK",
+      "source": "SRC03",
+      "excerpt": "SRC03-E011",
+      "source_expression": "MCP SDK",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T04",
+      "item": "Syft",
+      "source": "SRC03",
+      "excerpt": "SRC03-E012",
+      "source_expression": "Syft",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T10",
+      "item": "LangChain",
+      "source": "SRC03",
+      "excerpt": "SRC03-E013",
+      "source_expression": "LangChain",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T10",
+      "item": "LangGraph",
+      "source": "SRC03",
+      "excerpt": "SRC03-E013",
+      "source_expression": "LangGraph",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T10",
+      "item": "n8n",
+      "source": "SRC03",
+      "excerpt": "SRC03-E013",
+      "source_expression": "n8n",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T05",
+      "item": "Promptfoo Red Team",
+      "source": "SRC04",
+      "excerpt": "SRC04-E001",
+      "source_expression": "Promptfoo Red Team",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T05",
+      "item": "Microsoft PyRIT",
+      "source": "SRC04",
+      "excerpt": "SRC04-E002",
+      "source_expression": "Microsoft PyRIT",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T05",
+      "item": "OWASP ZAP",
+      "source": "SRC04",
+      "excerpt": "SRC04-E003",
+      "source_expression": "OWASP ZAP",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T05",
+      "item": "Nuclei",
+      "source": "SRC04",
+      "excerpt": "SRC04-E004",
+      "source_expression": "Nuclei",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T05",
+      "item": "Schemathesis",
+      "source": "SRC04",
+      "excerpt": "SRC04-E005",
+      "source_expression": "Schemathesis",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "Pino",
+      "source": "SRC05",
+      "excerpt": "SRC05-E001",
+      "source_expression": "Pino",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "structlog",
+      "source": "SRC05",
+      "excerpt": "SRC05-E001",
+      "source_expression": "structlog",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "OpenTelemetry",
+      "source": "SRC05",
+      "excerpt": "SRC05-E002",
+      "source_expression": "OpenTelemetry",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "Prometheus",
+      "source": "SRC05",
+      "excerpt": "SRC05-E003",
+      "source_expression": "Prometheus",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "@prometheus-io/client",
+      "source": "SRC05",
+      "excerpt": "SRC05-E004",
+      "source_expression": "@prometheus-io/client",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "prom-client",
+      "source": "SRC05",
+      "excerpt": "SRC05-E004",
+      "source_expression": "prom-client",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "prometheus_client",
+      "source": "SRC05",
+      "excerpt": "SRC05-E004",
+      "source_expression": "prometheus_client",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "Grafana",
+      "source": "SRC05",
+      "excerpt": "SRC05-E005",
+      "source_expression": "Grafana",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "Loki",
+      "source": "SRC05",
+      "excerpt": "SRC05-E006",
+      "source_expression": "Loki",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "Tempo",
+      "source": "SRC05",
+      "excerpt": "SRC05-E007",
+      "source_expression": "Tempo",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "Sentry",
+      "source": "SRC05",
+      "excerpt": "SRC05-E008",
+      "source_expression": "Sentry",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "Toxiproxy",
+      "source": "SRC05",
+      "excerpt": "SRC05-E009",
+      "source_expression": "Toxiproxy",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T06",
+      "item": "Testcontainers",
+      "source": "SRC05",
+      "excerpt": "SRC05-E010",
+      "source_expression": "Testcontainers",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T07",
+      "item": "JSON正本",
+      "source": "SRC06",
+      "excerpt": "SRC06-E001",
+      "source_expression": "正本のJSON",
+      "mapping": "display_label_normalization_not_new_requirement"
+    },
+    {
+      "group": "T07",
+      "item": "Git",
+      "source": "SRC06",
+      "excerpt": "SRC06-E002",
+      "source_expression": "Git",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T07",
+      "item": "SQLite",
+      "source": "SRC06",
+      "excerpt": "SRC06-E003",
+      "source_expression": "SQLite",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T07",
+      "item": "FTS5",
+      "source": "SRC06",
+      "excerpt": "SRC06-E003",
+      "source_expression": "FTS5",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T07",
+      "item": "Qdrant",
+      "source": "SRC06",
+      "excerpt": "SRC06-E004",
+      "source_expression": "Qdrant",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T07",
+      "item": "PostgreSQL",
+      "source": "SRC06",
+      "excerpt": "SRC06-E005",
+      "source_expression": "PostgreSQL",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T07",
+      "item": "pgvector",
+      "source": "SRC06",
+      "excerpt": "SRC06-E005",
+      "source_expression": "pgvector",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T07",
+      "item": "Obsidian",
+      "source": "SRC06",
+      "excerpt": "SRC06-E006",
+      "source_expression": "Obsidian",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T07",
+      "item": "Bases",
+      "source": "SRC06",
+      "excerpt": "SRC06-E007",
+      "source_expression": "Bases",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T07",
+      "item": "deps.dev",
+      "source": "SRC06",
+      "excerpt": "SRC06-E008",
+      "source_expression": "deps.dev",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T07",
+      "item": "OSV.dev",
+      "source": "SRC06",
+      "excerpt": "SRC06-E008",
+      "source_expression": "OSV.dev",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T07",
+      "item": "SPDX License List",
+      "source": "SRC06",
+      "excerpt": "SRC06-E008",
+      "source_expression": "SPDX License List",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T07",
+      "item": "OpenSSF Scorecard",
+      "source": "SRC06",
+      "excerpt": "SRC06-E008",
+      "source_expression": "OpenSSF Scorecard",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T08",
+      "item": "HELIX Trusted Technology Admission（仮称）",
+      "source": "SRC07",
+      "excerpt": "SRC07-E001",
+      "source_expression": "HELIX Trusted Technology Admission",
+      "mapping": "display_label_normalization_not_new_requirement"
+    },
+    {
+      "group": "T08",
+      "item": "試験実行と実利用の操作scope分離",
+      "source": "SRC07",
+      "excerpt": "SRC07-E002",
+      "source_expression": "試験専用の限定許可",
+      "mapping": "display_label_normalization_not_new_requirement"
+    },
+    {
+      "group": "T08",
+      "item": "リスク別検証選択の比較",
+      "source": "SRC07",
+      "excerpt": "SRC07-E003",
+      "source_expression": "実際の権限や影響範囲に応じて検査を選べる",
+      "mapping": "display_label_normalization_not_new_requirement"
+    },
+    {
+      "group": "T08",
+      "item": "Capability Drift再評価",
+      "source": "SRC07",
+      "excerpt": "SRC07-E004",
+      "source_expression": "Capability Drift",
+      "mapping": "display_label_normalization_not_new_requirement"
+    },
+    {
+      "group": "T08",
+      "item": "検証版/digest/用途/権限/環境/残留リスクの履歴",
+      "source": "SRC07",
+      "excerpt": "SRC07-E005",
+      "source_expression": "検証済みの正確なバージョン・digest・権限・用途に限定",
+      "mapping": "display_label_normalization_not_new_requirement"
+    },
+    {
+      "group": "T09",
+      "item": "OpenTofu",
+      "source": "SRC08",
+      "excerpt": "SRC08-E001",
+      "source_expression": "OpenTofu",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Terraform",
+      "source": "SRC08",
+      "excerpt": "SRC08-E001",
+      "source_expression": "Terraform",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Ansible",
+      "source": "SRC08",
+      "excerpt": "SRC08-E001",
+      "source_expression": "Ansible",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Podman",
+      "source": "SRC08",
+      "excerpt": "SRC08-E002",
+      "source_expression": "Podman",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Docker",
+      "source": "SRC08",
+      "excerpt": "SRC08-E001",
+      "source_expression": "Docker",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Trivy",
+      "source": "SRC08",
+      "excerpt": "SRC08-E003",
+      "source_expression": "Trivy",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Checkov",
+      "source": "SRC08",
+      "excerpt": "SRC08-E003",
+      "source_expression": "Checkov",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "SOPS",
+      "source": "SRC08",
+      "excerpt": "SRC08-E004",
+      "source_expression": "SOPS",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Restic",
+      "source": "SRC08",
+      "excerpt": "SRC08-E005",
+      "source_expression": "Restic",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Infracost",
+      "source": "SRC08",
+      "excerpt": "SRC08-E006",
+      "source_expression": "Infracost",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Kubernetes",
+      "source": "SRC08",
+      "excerpt": "SRC08-E001",
+      "source_expression": "Kubernetes",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Argo CD",
+      "source": "SRC08",
+      "excerpt": "SRC08-E007",
+      "source_expression": "Argo CD",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Terraform Provider",
+      "source": "SRC08",
+      "excerpt": "SRC08-E008",
+      "source_expression": "Terraform Provider",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Toxiproxy",
+      "source": "SRC08",
+      "excerpt": "SRC08-E009",
+      "source_expression": "Toxiproxy",
+      "mapping": "exact_label"
+    },
+    {
+      "group": "T09",
+      "item": "Testcontainers",
+      "source": "SRC08",
+      "excerpt": "SRC08-E010",
+      "source_expression": "Testcontainers",
+      "mapping": "exact_label"
+    }
+  ],
+  "risk_example_mapping": [
+    {
+      "severity": "high",
+      "label": "MCPサーバー",
+      "source": "SRC07",
+      "excerpt": "SRC07-R1"
+    },
+    {
+      "severity": "high",
+      "label": "Skill",
+      "source": "SRC07",
+      "excerpt": "SRC07-R1"
+    },
+    {
+      "severity": "high",
+      "label": "Agent",
+      "source": "SRC07",
+      "excerpt": "SRC07-R1"
+    },
+    {
+      "severity": "high",
+      "label": "Hook",
+      "source": "SRC07",
+      "excerpt": "SRC07-R1"
+    },
+    {
+      "severity": "high",
+      "label": "CIプラグイン",
+      "source": "SRC07",
+      "excerpt": "SRC07-R1"
+    },
+    {
+      "severity": "medium",
+      "label": "JSONパーサー",
+      "source": "SRC07",
+      "excerpt": "SRC07-R6"
+    },
+    {
+      "severity": "medium",
+      "label": "外部API SDK",
+      "source": "SRC07",
+      "excerpt": "SRC07-R6"
+    },
+    {
+      "severity": "medium",
+      "label": "DBドライバー",
+      "source": "SRC07",
+      "excerpt": "SRC07-R6"
+    },
+    {
+      "severity": "low",
+      "label": "副作用のない小規模ユーティリティ",
+      "source": "SRC07",
+      "excerpt": "SRC07-R9"
+    }
+  ],
+  "verification": {
+    "item_occurrences": 99,
+    "distinct_labels": 93,
+    "source_count": 8,
+    "all_excerpt_bytes_and_offsets_checked_against_original": true,
+    "remaining": "独立reviewと各技術の具体条件・実評価。原文の推薦順は助言であり採択済み義務ではない。"
+  }
+}
