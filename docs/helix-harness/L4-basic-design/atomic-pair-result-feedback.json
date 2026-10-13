@@ -1,0 +1,561 @@
+{
+  "parent": "HARNESS-L2-056",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 5",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "71c22542e119f5a3c2f0f07e0d4141c3ca05475f",
+    "boundary": "限定pair結果意味の起草。実gate/feedback運転/Stage5全能力を成立させない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "323c9f4a37c033a7570c391721c4977d74b315ab4b82d0bb70092e2d137441d4"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/hil-fr48-49-gate-source-lines-2026-09-29.jsonl",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "5cc3d417beefbd224391c73da09527f0e73ba6f8f43ef31b7512fd75de17910f"
+    }
+  ],
+  "source_pin_limit": "bytesの固定であり全資料の全文精読/意味被覆ではない。",
+  "legacy_comparison": {
+    "selected_source_atoms": [
+      {
+        "atom_id": "FR49-CANONICAL-ATOMIC-VPAIRS-L0139",
+        "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_line": 139,
+        "source_line_sha256": "sha256:58417554e28eff13d562e183533c1f76fbca3c27a29de9385d09e70b615ccf37",
+        "source_line_text": "| **HIL-FR-49** | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 | V-pair receipt、design/verification edge、snapshot/oracle finding |",
+        "source_span_text": "canonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする",
+        "source_span_start_char": 41,
+        "source_span_end_char": 198,
+        "source_requirement_id": "HIL-FR-49",
+        "candidate_identity": "HARNESS-L2-056",
+        "disposition": "semantic_rederivation_candidate",
+        "relation": "The six canonical V-pairs join in both directions at atomic-oracle scope; each pair can be assessed independently.",
+        "assertion_case_refs": [
+          {
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+            "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+            "source_line": 309,
+            "source_line_sha256": "sha256:20fe4a41448b086f79e35064db10dcfee64f4162ee64e1d04e766538e9cce8bd",
+            "case_id": "HST-CASE-032-01"
+          },
+          {
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+            "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+            "source_line": 310,
+            "source_line_sha256": "sha256:e03d1d692e152bf047da1c36a5f31e0874922881e61a121f20b0749c70e85a2f",
+            "case_id": "HST-CASE-032-02",
+            "quote": "| HST-CASE-032-02 | HST-HIL-032 | HIL-FR-49 | canonical L1↔L12企画/運用テストedgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_VPAIR_L1_L12_MISSING | FX-HST-032-02 | design-defined | not-implemented |"
+          },
+          {
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+            "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+            "source_line": 311,
+            "source_line_sha256": "sha256:7fe319d9e47761fd58cab8b775f93b8b55b2b5a39460740f2aa397122293035f",
+            "case_id": "HST-CASE-032-03",
+            "quote": "| HST-CASE-032-03 | HST-HIL-032 | HIL-FR-49 | canonical L2↔L11要求/受入テストedgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_VPAIR_L2_L11_MISSING | FX-HST-032-03 | design-defined | not-implemented |"
+          },
+          {
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+            "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+            "source_line": 312,
+            "source_line_sha256": "sha256:52647bbc0acc28e28f8fa7964f6f30adc02605bd51f18c8030e9023dec682adc",
+            "case_id": "HST-CASE-032-04",
+            "quote": "| HST-CASE-032-04 | HST-HIL-032 | HIL-FR-49 | canonical L3↔L10要件/総合テストedgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_VPAIR_L3_L10_MISSING | FX-HST-032-04 | design-defined | not-implemented |"
+          },
+          {
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+            "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+            "source_line": 313,
+            "source_line_sha256": "sha256:46e34cf34ff8be18008a46f8341bd73392e7a217b08618d94d9fcefa088a6eb3",
+            "case_id": "HST-CASE-032-05",
+            "quote": "| HST-CASE-032-05 | HST-HIL-032 | HIL-FR-49 | canonical L4↔L9基本設計/結合テストedgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_VPAIR_L4_L9_MISSING | FX-HST-032-05 | design-defined | not-implemented |"
+          },
+          {
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+            "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+            "source_line": 314,
+            "source_line_sha256": "sha256:c3558d2d06d33f33be5d11e3df2d38069e7e5602c532138b1bf7c23f264ac435",
+            "case_id": "HST-CASE-032-06",
+            "quote": "| HST-CASE-032-06 | HST-HIL-032 | HIL-FR-49 | canonical L5↔L8詳細設計/単体テストedgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_VPAIR_L5_L8_MISSING | FX-HST-032-06 | design-defined | not-implemented |"
+          },
+          {
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+            "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+            "source_line": 315,
+            "source_line_sha256": "sha256:3434b317c06b0bec8e589991a337ed6a7f1ef3b37014eb5834479ea3d73fb090",
+            "case_id": "HST-CASE-032-07",
+            "quote": "| HST-CASE-032-07 | HST-HIL-032 | HIL-FR-49 | canonical L6実装↔L7 TDD closure edgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_VPAIR_L6_L7_MISSING | FX-HST-032-07 | design-defined | not-implemented |"
+          },
+          {
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+            "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+            "source_line": 318,
+            "source_line_sha256": "sha256:194644ad58ef955dda05901d89152c46ae36dc24a82c25a01842447bd80297a7",
+            "case_id": "HST-CASE-032-10",
+            "quote": "| HST-CASE-032-10 | HST-HIL-032 | HIL-FR-49 | pairのoracle IDが不一致 | horizontal pairを評価する | ledger_ready | failed | mismatch一件 | HIL_LAYER_VPAIR_ORACLE_MISMATCH | FX-HST-032-10 | design-defined | not-implemented |"
+          }
+        ],
+        "human_decision_disposition_refs": [],
+        "source_statement_semantic_digest": "sha256:3a7cb511eea1c36e2c2453e2416c1e80de7926d7a6bafbeea6a7da577e47516b"
+      },
+      {
+        "atom_id": "FR49-L12-FEEDBACK-DESTINATIONS-L0139",
+        "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_line": 139,
+        "source_line_sha256": "sha256:58417554e28eff13d562e183533c1f76fbca3c27a29de9385d09e70b615ccf37",
+        "source_line_text": "| **HIL-FR-49** | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 | V-pair receipt、design/verification edge、snapshot/oracle finding |",
+        "source_span_text": "L12運用feedbackはL1企画と層外L0 charterへ還流し",
+        "source_span_start_char": 199,
+        "source_span_end_char": 234,
+        "source_requirement_id": "HIL-FR-49",
+        "candidate_identity": "HARNESS-L2-056",
+        "disposition": "semantic_rederivation_candidate",
+        "relation": "L12 feedback has two distinct destinations: L1 planning and the external L0 charter anchor.",
+        "assertion_case_refs": [
+          {
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+            "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+            "source_line": 309,
+            "source_line_sha256": "sha256:20fe4a41448b086f79e35064db10dcfee64f4162ee64e1d04e766538e9cce8bd",
+            "case_id": "HST-CASE-032-01",
+            "quote": "| HST-CASE-032-01 | HST-HIL-032 | HIL-BR-25, HIL-FR-49, HIL-NFR-29 | canonical 5 V-pair、L6↔L7 TDD closure、L12→L0 anchor feedbackが双方向current | horizontal pairを評価する | ledger_ready | verified | V-pair gap 0 receipt | なし（正常系） | FX-HST-032-01 | design-defined | not-implemented |"
+          },
+          {
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+            "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+            "source_line": 316,
+            "source_line_sha256": "sha256:3e24551a5ceb064c8a6978fcadb8cae6cb997299d9793c0fa389d78248cdf1c0",
+            "case_id": "HST-CASE-032-08",
+            "quote": "| HST-CASE-032-08 | HST-HIL-032 | HIL-FR-49 | L12運用feedbackから層外L0 charter anchorへの還流edgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_FEEDBACK_L12_L0_ANCHOR_MISSING | FX-HST-032-08 | design-defined | not-implemented |"
+          }
+        ],
+        "human_decision_disposition_refs": [],
+        "source_statement_semantic_digest": "sha256:3a7cb511eea1c36e2c2453e2416c1e80de7926d7a6bafbeea6a7da577e47516b"
+      },
+      {
+        "atom_id": "FR49-ONE-SIDED-EVIDENCE-MISSING-L0139",
+        "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_line": 139,
+        "source_line_sha256": "sha256:58417554e28eff13d562e183533c1f76fbca3c27a29de9385d09e70b615ccf37",
+        "source_line_text": "| **HIL-FR-49** | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 | V-pair receipt、design/verification edge、snapshot/oracle finding |",
+        "source_span_text": "設計義務と検証証拠の片側欠落",
+        "source_span_start_char": 235,
+        "source_span_end_char": 249,
+        "source_requirement_id": "HIL-FR-49",
+        "candidate_identity": "HARNESS-L2-056",
+        "disposition": "semantic_rederivation_candidate",
+        "relation": "A missing side of design obligation / verification evidence is not a complete pair.",
+        "assertion_case_refs": [
+          {
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+            "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+            "source_line": 321,
+            "source_line_sha256": "sha256:8d5daf722c4d7decae19c410b2deed7373d6c198b4f1fb153fff070e459a6ac8",
+            "case_id": "HST-CASE-032-13",
+            "quote": "| HST-CASE-032-13 | HST-HIL-032 | HIL-FR-49 | verification→design edgeだけ存在 | horizontal pairを評価する | ledger_ready | failed | asymmetric一件 | HIL_LAYER_VPAIR_FORWARD_MISSING | FX-HST-032-13 | design-defined | not-implemented |"
+          }
+        ],
+        "human_decision_disposition_refs": [],
+        "source_statement_semantic_digest": "sha256:3a7cb511eea1c36e2c2453e2416c1e80de7926d7a6bafbeea6a7da577e47516b"
+      },
+      {
+        "atom_id": "FR49-UNEXECUTED-ORACLE-L0139",
+        "source_holding_registration_id": "MPR-SH-SEMANTIC-LINE-003",
+        "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "source_line": 139,
+        "source_line_sha256": "sha256:58417554e28eff13d562e183533c1f76fbca3c27a29de9385d09e70b615ccf37",
+        "source_line_text": "| **HIL-FR-49** | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 | V-pair receipt、design/verification edge、snapshot/oracle finding |",
+        "source_span_text": "未実行oracleを拒否する",
+        "source_span_start_char": 262,
+        "source_span_end_char": 276,
+        "source_requirement_id": "HIL-FR-49",
+        "candidate_identity": "HARNESS-L2-056",
+        "disposition": "semantic_rederivation_candidate",
+        "relation": "Designed oracle without execution evidence does not yield a green pair result.",
+        "assertion_case_refs": [
+          {
+            "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+            "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+            "source_line": 319,
+            "source_line_sha256": "sha256:39a3471273cdcda0795f3346dbc551532c57bcbddd036491a739169b5e244847",
+            "case_id": "HST-CASE-032-11",
+            "quote": "| HST-CASE-032-11 | HST-HIL-032 | HIL-FR-49 | verification execution receiptが無い | horizontal pairをgreen化する | paired | paired | green receipt 0件 | HIL_LAYER_VPAIR_EXECUTION_MISSING | FX-HST-032-11 | design-defined | not-implemented |"
+          }
+        ],
+        "human_decision_disposition_refs": [],
+        "source_statement_semantic_digest": "sha256:3a7cb511eea1c36e2c2453e2416c1e80de7926d7a6bafbeea6a7da577e47516b"
+      }
+    ],
+    "selected_assertion_references": [
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line": 309,
+        "source_line_sha256": "sha256:20fe4a41448b086f79e35064db10dcfee64f4162ee64e1d04e766538e9cce8bd",
+        "case_id": "HST-CASE-032-01",
+        "quote": "| HST-CASE-032-01 | HST-HIL-032 | HIL-BR-25, HIL-FR-49, HIL-NFR-29 | canonical 5 V-pair、L6↔L7 TDD closure、L12→L0 anchor feedbackが双方向current | horizontal pairを評価する | ledger_ready | verified | V-pair gap 0 receipt | なし（正常系） | FX-HST-032-01 | design-defined | not-implemented |"
+      },
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line": 310,
+        "source_line_sha256": "sha256:e03d1d692e152bf047da1c36a5f31e0874922881e61a121f20b0749c70e85a2f",
+        "case_id": "HST-CASE-032-02",
+        "quote": "| HST-CASE-032-02 | HST-HIL-032 | HIL-FR-49 | canonical L1↔L12企画/運用テストedgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_VPAIR_L1_L12_MISSING | FX-HST-032-02 | design-defined | not-implemented |"
+      },
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line": 311,
+        "source_line_sha256": "sha256:7fe319d9e47761fd58cab8b775f93b8b55b2b5a39460740f2aa397122293035f",
+        "case_id": "HST-CASE-032-03",
+        "quote": "| HST-CASE-032-03 | HST-HIL-032 | HIL-FR-49 | canonical L2↔L11要求/受入テストedgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_VPAIR_L2_L11_MISSING | FX-HST-032-03 | design-defined | not-implemented |"
+      },
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line": 312,
+        "source_line_sha256": "sha256:52647bbc0acc28e28f8fa7964f6f30adc02605bd51f18c8030e9023dec682adc",
+        "case_id": "HST-CASE-032-04",
+        "quote": "| HST-CASE-032-04 | HST-HIL-032 | HIL-FR-49 | canonical L3↔L10要件/総合テストedgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_VPAIR_L3_L10_MISSING | FX-HST-032-04 | design-defined | not-implemented |"
+      },
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line": 313,
+        "source_line_sha256": "sha256:46e34cf34ff8be18008a46f8341bd73392e7a217b08618d94d9fcefa088a6eb3",
+        "case_id": "HST-CASE-032-05",
+        "quote": "| HST-CASE-032-05 | HST-HIL-032 | HIL-FR-49 | canonical L4↔L9基本設計/結合テストedgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_VPAIR_L4_L9_MISSING | FX-HST-032-05 | design-defined | not-implemented |"
+      },
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line": 314,
+        "source_line_sha256": "sha256:c3558d2d06d33f33be5d11e3df2d38069e7e5602c532138b1bf7c23f264ac435",
+        "case_id": "HST-CASE-032-06",
+        "quote": "| HST-CASE-032-06 | HST-HIL-032 | HIL-FR-49 | canonical L5↔L8詳細設計/単体テストedgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_VPAIR_L5_L8_MISSING | FX-HST-032-06 | design-defined | not-implemented |"
+      },
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line": 315,
+        "source_line_sha256": "sha256:3434b317c06b0bec8e589991a337ed6a7f1ef3b37014eb5834479ea3d73fb090",
+        "case_id": "HST-CASE-032-07",
+        "quote": "| HST-CASE-032-07 | HST-HIL-032 | HIL-FR-49 | canonical L6実装↔L7 TDD closure edgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_VPAIR_L6_L7_MISSING | FX-HST-032-07 | design-defined | not-implemented |"
+      },
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line": 318,
+        "source_line_sha256": "sha256:194644ad58ef955dda05901d89152c46ae36dc24a82c25a01842447bd80297a7",
+        "case_id": "HST-CASE-032-10",
+        "quote": "| HST-CASE-032-10 | HST-HIL-032 | HIL-FR-49 | pairのoracle IDが不一致 | horizontal pairを評価する | ledger_ready | failed | mismatch一件 | HIL_LAYER_VPAIR_ORACLE_MISMATCH | FX-HST-032-10 | design-defined | not-implemented |"
+      },
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line": 316,
+        "source_line_sha256": "sha256:3e24551a5ceb064c8a6978fcadb8cae6cb997299d9793c0fa389d78248cdf1c0",
+        "case_id": "HST-CASE-032-08",
+        "quote": "| HST-CASE-032-08 | HST-HIL-032 | HIL-FR-49 | L12運用feedbackから層外L0 charter anchorへの還流edgeが無い | horizontal pairを評価する | ledger_ready | failed | gap一件 | HIL_LAYER_FEEDBACK_L12_L0_ANCHOR_MISSING | FX-HST-032-08 | design-defined | not-implemented |"
+      },
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line": 321,
+        "source_line_sha256": "sha256:8d5daf722c4d7decae19c410b2deed7373d6c198b4f1fb153fff070e459a6ac8",
+        "case_id": "HST-CASE-032-13",
+        "quote": "| HST-CASE-032-13 | HST-HIL-032 | HIL-FR-49 | verification→design edgeだけ存在 | horizontal pairを評価する | ledger_ready | failed | asymmetric一件 | HIL_LAYER_VPAIR_FORWARD_MISSING | FX-HST-032-13 | design-defined | not-implemented |"
+      },
+      {
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/infinity-loop-system-assertion-cases.md",
+        "source_file_sha256": "sha256:98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8",
+        "source_line": 319,
+        "source_line_sha256": "sha256:39a3471273cdcda0795f3346dbc551532c57bcbddd036491a739169b5e244847",
+        "case_id": "HST-CASE-032-11",
+        "quote": "| HST-CASE-032-11 | HST-HIL-032 | HIL-FR-49 | verification execution receiptが無い | horizontal pairをgreen化する | paired | paired | green receipt 0件 | HIL_LAYER_VPAIR_EXECUTION_MISSING | FX-HST-032-11 | design-defined | not-implemented |"
+      }
+    ],
+    "asset_disposition_context": [
+      {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-7B1C7AED3AA401868455",
+        "disposition": "unresolved",
+        "source_path": "docs/governance/infinity-loop-system-assertion-cases.md",
+        "source_sha256": "98d2f9c9721481e6b4363c0683c00b187ce789fd6a39723323eca72395102ea8"
+      }
+    ],
+    "reuse": "semantic_rederivation_of_approved_selected_result_meaning; unresolved assertion asset is reference only",
+    "preserve": "六pairのatomic双方向対応、片側欠落/未実行/不一致を完了にしないこと、L12からL1/L0両出口。",
+    "change": "旧層ラベル/DB表/schema/エラーcode/runtimeを移さず現行001/040定義とHARNESS意味/OS実運転を分離。",
+    "reason": "056の採択範囲と承認5対へ再導出。旧assertion design-defined/not-implementedを実行証拠にしない。",
+    "holding": "NFR29 cross-conditionと非選択source全体はholdingに保持し056採用/被覆へ数えない。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実source資格/必要oracle集合/組合せ・未見内容と独立意味review。",
+    "040相当catalog/001現行層/022受入/OS実運転へのowner-qualified exact bindingと正式schema/codec。",
+    "L5/L8内部処理・実oracle凍結→実装前Red→最小Green→Refactorと再検証・実L9/L10/PO L11。",
+    "全92親430対の基本/詳細設計閉包と実装準備。"
+  ],
+  "document_id": "HARNESS-L4-056",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "atomic_pair_correspondence_reader",
+      "local_pair_result_reader",
+      "feedback_destination_reader",
+      "current_evidence_reader",
+      "pair_result_owner_router"
+    ],
+    "flow": [
+      "独立必要集合/pair定義 → atomic双方向対応",
+      "義務/証拠/実結果 → 局所結果",
+      "L12/L1/L0 → 宛先別feedback",
+      "current証拠/provenance → 局所不足",
+      "意味と実運転 → owner別返却"
+    ],
+    "python_boundary": "immutable供給snapshotのpure内容比較と候補のみ。OS実行/保存/GitHub/DB/Worker/network/fs/clock/env/権限/採択/受入を行わない。",
+    "representation_limit": "以下のpair/oracle/edge/result/field/digestは合成対照。正式schema/codecや実catalog/受入結果を定義しない。"
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L4-056-F01",
+      "requirement_ref": "HARNESS-L3-056-F01",
+      "system_oracle_ref": "HARNESS-L10-056-F01",
+      "oracle_ref": "HARNESS-L9-056-F01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-056-F01",
+        "parent": "HARNESS-L2-056",
+        "title": "六pairのatomic oracle対応",
+        "obligation": "対象revision/scopeでcanonical六pair L1↔L12/L2↔L11/L3↔L10/L4↔L9/L5↔L8/L6↔L7を、pairごとの設計義務と検証証拠/実結果のatomic oracle identityで双方向に対応づける。040のcatalogを参照し、旧L6実装/L7closureのラベルを現行層へそのまま転記せず現行pair定義を使う。",
+        "oracle_ref": "HARNESS-L10-056-F01"
+      },
+      "component": "atomic_pair_correspondence_reader",
+      "input_meanings": [
+        "現行001/040相当pair定義",
+        "独立必要oracle集合",
+        "設計義務と検証証拠/実結果の双方向edge"
+      ],
+      "output_meanings": [
+        "oracle別方向結果",
+        "pair別対応結果",
+        "欠落/不一致の対象"
+      ],
+      "content_comparison": [
+        "六pairを固定しL0は層外。旧L6実装/L7closureの意味を現行L6設計/L7検証へ転写しない。",
+        "各oracleの設計義務/検証/実結果と両方向edgeを同じrevision/scopeで比較。複数oracleを一つの包括完了へ畳まない。"
+      ],
+      "qualification_rule": "原source identity/revision/scope/owner・必要集合・適用契約を独立比較。missing/unknown/conflict/staleを局所保持。実資格/正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-056-F02",
+      "requirement_ref": "HARNESS-L3-056-F02",
+      "system_oracle_ref": "HARNESS-L10-056-F02",
+      "oracle_ref": "HARNESS-L9-056-F02",
+      "approved_requirement": {
+        "id": "HARNESS-L3-056-F02",
+        "parent": "HARNESS-L2-056",
+        "title": "欠落・不一致・未実行の局所化",
+        "obligation": "片側の設計義務/検証証拠欠落、oracle identity不一致、必要な実行結果無しでは該当pairをcomplete/greenにしない。残る五pairの成立をその不足の証拠へ転用しない。pair定義/scope/適用oracle/結果不明は当該範囲をunknown/未完にし、全六組完了へ昇格しない。",
+        "oracle_ref": "HARNESS-L10-056-F02"
+      },
+      "component": "local_pair_result_reader",
+      "input_meanings": [
+        "必要設計義務/検証証拠/結果",
+        "独立oracle identityと適用scope/pair定義"
+      ],
+      "output_meanings": [
+        "oracle別条件結果",
+        "pair別成立範囲/未成立理由",
+        "全体結果の未完"
+      ],
+      "content_comparison": [
+        "片側欠落/identity不一致/必要実行未観測/適用性不明を当該oracle/pairだけに保持。別五pairや別oracleの成功で相殺しない。",
+        "unknownをN/A/greenへ変換しない。内容上の合成充足は実gate completeではない。"
+      ],
+      "qualification_rule": "原source identity/revision/scope/owner・必要集合・適用契約を独立比較。missing/unknown/conflict/staleを局所保持。実資格/正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-056-F03",
+      "requirement_ref": "HARNESS-L3-056-F03",
+      "system_oracle_ref": "HARNESS-L10-056-F03",
+      "oracle_ref": "HARNESS-L9-056-F03",
+      "approved_requirement": {
+        "id": "HARNESS-L3-056-F03",
+        "parent": "HARNESS-L2-056",
+        "title": "L12からL1と層外L0へのfeedback",
+        "obligation": "L12運用feedbackがL1企画と層外L0 charter anchorの両方へ戻る関係を識別する。片方だけなら欠ける出口をfeedback未完として示す。L0を第七pairへ加えず、feedbackからL1/L0の意味/authority変更を生成しない。",
+        "oracle_ref": "HARNESS-L10-056-F03"
+      },
+      "component": "feedback_destination_reader",
+      "input_meanings": [
+        "L12 source revision/scope",
+        "L1企画と層外L0 anchorの独立宛先",
+        "宛先別feedback edge"
+      ],
+      "output_meanings": [
+        "宛先別対応/欠落",
+        "未完出口とHARNESS owner返却候補"
+      ],
+      "content_comparison": [
+        "L12から両出口を独立に比較し一方欠落を両方完了としない。",
+        "L0を第七pairにせずfeedbackから上流意味/authority変更を生成しない。"
+      ],
+      "qualification_rule": "原source identity/revision/scope/owner・必要集合・適用契約を独立比較。missing/unknown/conflict/staleを局所保持。実資格/正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-056-N01",
+      "requirement_ref": "HARNESS-L3-056-N01",
+      "system_oracle_ref": "HARNESS-L10-056-N01",
+      "oracle_ref": "HARNESS-L9-056-N01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-056-N01",
+        "parent": "HARNESS-L2-056",
+        "title": "sourceの限定とcurrent証拠",
+        "obligation": "FR49/assertion032の限定結果意味を使い、旧design-defined/not-implementedを実行実績にしない。異snapshot/stale revisionは適用されたcurrent証拠条件の不足として扱う一方、NFR29 source holdingを056で再導出/採用したと数えない。未見の欠落pairは同じatomic oracleへ照合する。",
+        "oracle_ref": "HARNESS-L10-056-N01"
+      },
+      "component": "current_evidence_reader",
+      "input_meanings": [
+        "適用current snapshot/revision/scope",
+        "結果source provenance/対象oracle",
+        "旧assertion reference/未見の片側欠落"
+      ],
+      "output_meanings": [
+        "current証拠条件の局所不足",
+        "未実行/不一致/未観測",
+        "source holding保持"
+      ],
+      "content_comparison": [
+        "実観測と旧design-defined/not-implementedを分け、異snapshot/stale revisionを適用current証拠条件へ返す。",
+        "FR49/assertion032限定意味のみ。NFR29全件を056採用とせず、伏せた欠落pairを同atomic oracleへ照合する。"
+      ],
+      "qualification_rule": "原source identity/revision/scope/owner・必要集合・適用契約を独立比較。missing/unknown/conflict/staleを局所保持。実資格/正式表現は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HARNESS-L4-056-B01",
+      "requirement_ref": "HARNESS-L3-056-B01",
+      "system_oracle_ref": "HARNESS-L10-056-B01",
+      "oracle_ref": "HARNESS-L9-056-B01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-056-B01",
+        "parent": "HARNESS-L2-056",
+        "title": "gate意味と実行・受入の分離",
+        "obligation": "HARNESSはpair/feedback対応と結果意味を持ち、OSは実行/保存/登録/運転を別契約で担う。要求意味不足はHARNESS owner、実行/保存/登録証拠不足はOS ownerへ戻す。040catalog/022段階別受入/025026設計構成と責務を混同せず、gate結果から人手承認/実行許可/要求Stage終了を生成しない。",
+        "oracle_ref": "HARNESS-L10-056-B01"
+      },
+      "component": "pair_result_owner_router",
+      "input_meanings": [
+        "HARNESS pair/feedback意味条件",
+        "OS実行/保存/登録証拠",
+        "040catalog/022受入/025026設計構成の別入力"
+      ],
+      "output_meanings": [
+        "owner別未成立条件/返却候補",
+        "候補結果と承認/操作/受入の区別"
+      ],
+      "content_comparison": [
+        "catalog存在は結果成功、OS保存はoracle実行成功ではない。意味不足をHARNESS、運転証拠不足をOSへ別々に返す。",
+        "候補gate結果から人手承認/L3承認/実行許可/受入/要求Stage終了を生成しない。025026の設計構成を056の完了と混同しない。"
+      ],
+      "qualification_rule": "原source identity/revision/scope/owner・必要集合・適用契約を独立比較。missing/unknown/conflict/staleを局所保持。実資格/正式表現は未binding。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 39,
+      "F02": 43,
+      "F03": 7,
+      "N01": 12,
+      "B01": 6
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
