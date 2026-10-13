@@ -137,7 +137,20 @@
       "reuse_mode": "semantic_rederivation",
       "keep": "項目の意味/必要入力/不成立と版/supersession、unknownをN/Aにしない",
       "change": "TPL文法/整数版/lifecycle enum/式木/key/wireを継承せず、論理項目の境界を再導出する。",
-      "reason": "承認済みBRAIN032の意味と10/12限定範囲から降ろす。旧runtime/schema/CIを復元しない。"
+      "reason": "承認済みBRAIN032の意味と10/12限定範囲から降ろす。旧runtime/schema/CIを復元しない。",
+      "input_structure_rederivation": {
+        "read_lines": [
+          17,
+          29,
+          33,
+          54,
+          86,
+          91
+        ],
+        "preserve": "構造carrierの閉じたmemberと原意味の型検査、unknownをN/Aにしない。",
+        "change": "旧template必須key/整数版/TPL grammar/lifecycle/式木を移植せず、既存032 logical SupplyInputの供給memberへ具体化する。未供給の意味は既存ADD03とexecution_contractに従い原absenceとして意味照合へ保持する。",
+        "reason": "欠落配列を空集合へdefaultする旧UTW014を再発させず、構造誤りと意味不足を区別する。新しい承認/採用gateは追加しない。"
+      }
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
@@ -9876,7 +9889,7 @@
     "semantic_review": "not_requested",
     "meaning_coverage": "not_proven",
     "remaining_typed_case_refs": [],
-    "remaining": "合成source/ref資格と関数入出力対応の意味照合・追加fixtureの完全具体化・独立review、formal wire/parser/実root resolver/実資源、L6/L7凍結/RedGreen未成立。",
+    "remaining": "合成source/ref資格と関数入出力対応の意味照合・追加fixtureの完全具体化・独立review、formal wire/parser/実root resolver/実資源、L6/L7凍結/RedGreen未成立。 19型のprovided-member shape/presence候補を追加。構造受理は意味oracle充足ではなく、欠落とnullと空配列を別に原状態保存する。",
     "additional_unit_case_count": 24,
     "normal_function_oracle_count": 9
   },
@@ -10426,5 +10439,5222 @@
       ],
       "execution_state": "not_executed"
     }
-  ]
+  ],
+  "input_structure_verification": {
+    "id": "HELIXBRAIN-L8-032-INPUT-STRUCTURE",
+    "design_ref": "HELIXBRAIN-L5-032-INPUT-STRUCTURE",
+    "schema_ref": {
+      "paired_document": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
+      "pointer": "/logical_input_structure/schema",
+      "canonical_sha256": "465953b0e46c6edfad4ef5303dc17ed65df2f171a139ab316affda4e96b2d9dc"
+    },
+    "construction_boundary": "各baseは構造対照の合成入力。operationはL8 case構築の記法で、production patch/operatorの採用ではない。expectedは入力へ混ぜない。 baseのinput_sourceは同文書の既存normal_controlからの読取り参照で、原fixtureの複製や実source資格ではない。",
+    "base_fixtures": [
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "type_ref": "Ref",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/binding/template_ref"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "type_ref": "Binding",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/binding"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-QualifiedSource",
+        "type_ref": "QualifiedSource",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/sources/0"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "type_ref": "Qualification",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/qualifications/0"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "type_ref": "MeaningFact",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/descriptors/0/facts/0"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "type_ref": "MeaningComparison",
+        "input": {
+          "left_fact_ref": {
+            "identity": "SYNTHETIC-TEMPLATE-A",
+            "revision": "synthetic-rev-A",
+            "scope": {
+              "project": "synthetic-P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-E"
+            },
+            "owner": "synthetic-knowledge-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "right_fact_ref": {
+            "identity": "SYNTHETIC-TEMPLATE-A",
+            "revision": "synthetic-rev-A",
+            "scope": {
+              "project": "synthetic-P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-E"
+            },
+            "owner": "synthetic-knowledge-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "comparison_source_ref": {
+            "identity": "SYNTHETIC-TEMPLATE-A",
+            "revision": "synthetic-rev-A",
+            "scope": {
+              "project": "synthetic-P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-E"
+            },
+            "owner": "synthetic-knowledge-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "equivalent": null,
+          "reason": null
+        },
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "type_ref": "DescriptorSlot",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/descriptors/0"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "type_ref": "SectionField",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/section_fields/0"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "type_ref": "ValueFact",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/values/0"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "type_ref": "ApplicabilityRecord",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/applicability_records/0"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "type_ref": "RelationRecord",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/relations/0"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "type_ref": "OracleBinding",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/oracle_bindings/0"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "type_ref": "CompatibilityRecord",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/compatibility_records/0"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "type_ref": "KnowledgeRecord",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/knowledge_records/0"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "type_ref": "DependencySelection",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/dependencies"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "type_ref": "HandoffRecord",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input/handoff_records/0"
+        }
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "type_ref": "Claim",
+        "input": {
+          "subject_ref": {
+            "identity": "SYNTHETIC-TEMPLATE-A",
+            "revision": "synthetic-rev-A",
+            "scope": {
+              "project": "synthetic-P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-E"
+            },
+            "owner": "synthetic-knowledge-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "binding": {
+            "template_ref": {
+              "identity": "SYNTHETIC-TEMPLATE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "knowledge_ref": {
+              "identity": "SYNTHETIC-KNOWLEDGE-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-knowledge-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "requirement_ref": {
+              "identity": "synthetic-obligation-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-requirement-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "oracle_ref": {
+              "identity": "synthetic-oracle-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-oracle-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "pack_ref": {
+              "identity": "synthetic-pack-A",
+              "revision": "synthetic-rev-A",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-pack-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "pack_contract_version": "contract-A",
+            "pack_artifact_version": "artifact-A",
+            "pack_dependency_versions": [],
+            "version_target": "1.0"
+          },
+          "actor": null,
+          "kind": "synthetic-claim-for-shape-only",
+          "proposed_value": null,
+          "basis_refs": []
+        },
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "type_ref": "SupplyInput",
+        "expected_shape_accepted": true,
+        "meaning_completion_effect": "none",
+        "input_source": {
+          "fixture_ref": "SYNTHETIC-TEMPLATE-SUPPLY-COMPLETE-01",
+          "document_pointer": "/fixture_contract/normal_control/input"
+        }
+      }
+    ],
+    "cases": [
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-001",
+        "name": "wrong-record-container",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-002",
+        "name": "undeclared-carrier-member",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-003",
+        "name": "missing-member-preserved",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "identity"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/identity",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-004",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "identity",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-005",
+        "name": "missing-member-preserved",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "revision"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/revision",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-006",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "revision",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-007",
+        "name": "missing-member-preserved",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "scope"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/scope",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-008",
+        "name": "missing-member-preserved",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "owner"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/owner",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-009",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "owner",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-010",
+        "name": "missing-member-preserved",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "source_locator"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/source_locator",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-011",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "source_locator",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-012",
+        "name": "missing-member-preserved",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "sha256"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/sha256",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-013",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Ref",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Ref",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "sha256",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-014",
+        "name": "wrong-record-container",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-015",
+        "name": "undeclared-carrier-member",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-016",
+        "name": "missing-member-preserved",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "template_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/template_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-017",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "template_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-018",
+        "name": "missing-member-preserved",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "knowledge_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/knowledge_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-019",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "knowledge_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-020",
+        "name": "missing-member-preserved",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "requirement_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/requirement_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-021",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "requirement_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-022",
+        "name": "missing-member-preserved",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "oracle_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/oracle_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-023",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "oracle_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-024",
+        "name": "missing-member-preserved",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "pack_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/pack_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-025",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "pack_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-026",
+        "name": "missing-member-preserved",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "pack_contract_version"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/pack_contract_version",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-027",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "pack_contract_version",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-028",
+        "name": "missing-member-preserved",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "pack_artifact_version"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/pack_artifact_version",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-029",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "pack_artifact_version",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-030",
+        "name": "missing-member-preserved",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "pack_dependency_versions"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/pack_dependency_versions",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-031",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "pack_dependency_versions",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-032",
+        "name": "missing-member-preserved",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "version_target"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/version_target",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-033",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Binding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Binding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "version_target",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-034",
+        "name": "wrong-record-container",
+        "type_ref": "QualifiedSource",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-QualifiedSource",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-035",
+        "name": "undeclared-carrier-member",
+        "type_ref": "QualifiedSource",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-QualifiedSource",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-036",
+        "name": "missing-member-preserved",
+        "type_ref": "QualifiedSource",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-QualifiedSource",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-037",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "QualifiedSource",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-QualifiedSource",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-038",
+        "name": "missing-member-preserved",
+        "type_ref": "QualifiedSource",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-QualifiedSource",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "content"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/content",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-039",
+        "name": "missing-member-preserved",
+        "type_ref": "QualifiedSource",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-QualifiedSource",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "content_bytes"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/content_bytes",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-040",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "QualifiedSource",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-QualifiedSource",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "content_bytes",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-041",
+        "name": "missing-member-preserved",
+        "type_ref": "QualifiedSource",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-QualifiedSource",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "qualification_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/qualification_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-042",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "QualifiedSource",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-QualifiedSource",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "qualification_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-043",
+        "name": "missing-member-preserved",
+        "type_ref": "QualifiedSource",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-QualifiedSource",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "role"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/role",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-044",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "QualifiedSource",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-QualifiedSource",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "role",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-045",
+        "name": "wrong-record-container",
+        "type_ref": "Qualification",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-046",
+        "name": "undeclared-carrier-member",
+        "type_ref": "Qualification",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-047",
+        "name": "missing-member-preserved",
+        "type_ref": "Qualification",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-048",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Qualification",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-049",
+        "name": "missing-member-preserved",
+        "type_ref": "Qualification",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "subject_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/subject_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-050",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Qualification",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "subject_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-051",
+        "name": "missing-member-preserved",
+        "type_ref": "Qualification",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "subject_sha256"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/subject_sha256",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-052",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Qualification",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "subject_sha256",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-053",
+        "name": "missing-member-preserved",
+        "type_ref": "Qualification",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "applicable_scope"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/applicable_scope",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-054",
+        "name": "missing-member-preserved",
+        "type_ref": "Qualification",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "qualification_body"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/qualification_body",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-055",
+        "name": "missing-member-preserved",
+        "type_ref": "Qualification",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "root_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/root_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-056",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Qualification",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Qualification",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "root_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-057",
+        "name": "wrong-record-container",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-058",
+        "name": "undeclared-carrier-member",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-059",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "source_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/source_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-060",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "source_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-061",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "owner"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/owner",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-062",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "owner",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-063",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "binding"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/binding",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-064",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "binding",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-065",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "meaning"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/meaning",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-066",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "condition"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/condition",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-067",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "reason"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/reason",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-068",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "reason",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-069",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "oracle_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/oracle_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-070",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "oracle_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-071",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-072",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "MeaningFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-073",
+        "name": "wrong-record-container",
+        "type_ref": "MeaningComparison",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-074",
+        "name": "undeclared-carrier-member",
+        "type_ref": "MeaningComparison",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-075",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningComparison",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "left_fact_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/left_fact_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-076",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "MeaningComparison",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "left_fact_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-077",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningComparison",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "right_fact_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/right_fact_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-078",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "MeaningComparison",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "right_fact_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-079",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningComparison",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "comparison_source_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/comparison_source_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-080",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "MeaningComparison",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "comparison_source_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-081",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningComparison",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "equivalent"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/equivalent",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-082",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "MeaningComparison",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "equivalent",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-083",
+        "name": "missing-member-preserved",
+        "type_ref": "MeaningComparison",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "reason"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/reason",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-084",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "MeaningComparison",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-MeaningComparison",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "reason",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-085",
+        "name": "wrong-record-container",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-086",
+        "name": "undeclared-carrier-member",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-087",
+        "name": "missing-member-preserved",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "slot_identity"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/slot_identity",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-088",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "slot_identity",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-089",
+        "name": "missing-member-preserved",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "descriptor_kind"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/descriptor_kind",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-090",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "descriptor_kind",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-091",
+        "name": "missing-member-preserved",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "binding"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/binding",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-092",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "binding",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-093",
+        "name": "missing-member-preserved",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "facts"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/facts",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-094",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "facts",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-095",
+        "name": "missing-member-preserved",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "comparison_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/comparison_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-096",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "comparison_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-097",
+        "name": "missing-member-preserved",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "definition_applicability_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/definition_applicability_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-098",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DescriptorSlot",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DescriptorSlot",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "definition_applicability_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-099",
+        "name": "wrong-record-container",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-100",
+        "name": "undeclared-carrier-member",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-101",
+        "name": "missing-member-preserved",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-102",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-103",
+        "name": "missing-member-preserved",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "descriptor_slot_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/descriptor_slot_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-104",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "descriptor_slot_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-105",
+        "name": "missing-member-preserved",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "parent_section_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/parent_section_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-106",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "parent_section_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-107",
+        "name": "missing-member-preserved",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "meaning_fact_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/meaning_fact_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-108",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "meaning_fact_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-109",
+        "name": "missing-member-preserved",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "requiredness_fact_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/requiredness_fact_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-110",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "requiredness_fact_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-111",
+        "name": "missing-member-preserved",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "normative_rule_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/normative_rule_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-112",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "normative_rule_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-113",
+        "name": "missing-member-preserved",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "oracle_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/oracle_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-114",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "oracle_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-115",
+        "name": "missing-member-preserved",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "value_fact_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/value_fact_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-116",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "value_fact_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-117",
+        "name": "missing-member-preserved",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "applicability_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/applicability_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-118",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SectionField",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SectionField",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "applicability_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-119",
+        "name": "wrong-record-container",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-120",
+        "name": "undeclared-carrier-member",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-121",
+        "name": "missing-member-preserved",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "subject_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/subject_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-122",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "subject_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-123",
+        "name": "missing-member-preserved",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "binding"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/binding",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-124",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "binding",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-125",
+        "name": "missing-member-preserved",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "value"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/value",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-126",
+        "name": "missing-member-preserved",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "source_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/source_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-127",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "source_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-128",
+        "name": "missing-member-preserved",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "reason"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/reason",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-129",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "reason",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-130",
+        "name": "missing-member-preserved",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "origin"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/origin",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-131",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "origin",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-132",
+        "name": "missing-member-preserved",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "applicability_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/applicability_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-133",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "applicability_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-134",
+        "name": "missing-member-preserved",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-135",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ValueFact",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ValueFact",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-136",
+        "name": "wrong-record-container",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-137",
+        "name": "undeclared-carrier-member",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-138",
+        "name": "missing-member-preserved",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-139",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-140",
+        "name": "missing-member-preserved",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "subject_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/subject_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-141",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "subject_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-142",
+        "name": "missing-member-preserved",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "binding"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/binding",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-143",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "binding",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-144",
+        "name": "missing-member-preserved",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "owner"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/owner",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-145",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "owner",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-146",
+        "name": "missing-member-preserved",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "decision"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/decision",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-147",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "decision",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-148",
+        "name": "missing-member-preserved",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "reason"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/reason",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-149",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "reason",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-150",
+        "name": "missing-member-preserved",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "reentry_condition"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/reentry_condition",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-151",
+        "name": "missing-member-preserved",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "source_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/source_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-152",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "ApplicabilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-ApplicabilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "source_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-153",
+        "name": "wrong-record-container",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-154",
+        "name": "undeclared-carrier-member",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-155",
+        "name": "missing-member-preserved",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-156",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-157",
+        "name": "missing-member-preserved",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "binding"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/binding",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-158",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "binding",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-159",
+        "name": "missing-member-preserved",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "kind"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/kind",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-160",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "kind",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-161",
+        "name": "missing-member-preserved",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "from_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/from_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-162",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "from_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-163",
+        "name": "missing-member-preserved",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "to_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/to_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-164",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "to_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-165",
+        "name": "missing-member-preserved",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "direction"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/direction",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-166",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "direction",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-167",
+        "name": "missing-member-preserved",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "source_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/source_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-168",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "RelationRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-RelationRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "source_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-169",
+        "name": "wrong-record-container",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-170",
+        "name": "undeclared-carrier-member",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-171",
+        "name": "missing-member-preserved",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-172",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-173",
+        "name": "missing-member-preserved",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "subject_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/subject_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-174",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "subject_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-175",
+        "name": "missing-member-preserved",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "obligation_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/obligation_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-176",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "obligation_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-177",
+        "name": "missing-member-preserved",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "oracle_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/oracle_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-178",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "oracle_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-179",
+        "name": "missing-member-preserved",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "viewpoint"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/viewpoint",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-180",
+        "name": "missing-member-preserved",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "evidence_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/evidence_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-181",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "evidence_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-182",
+        "name": "missing-member-preserved",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "source_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/source_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-183",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "OracleBinding",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-OracleBinding",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "source_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-184",
+        "name": "wrong-record-container",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-185",
+        "name": "undeclared-carrier-member",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-186",
+        "name": "missing-member-preserved",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-187",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-188",
+        "name": "missing-member-preserved",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "left_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/left_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-189",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "left_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-190",
+        "name": "missing-member-preserved",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "right_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/right_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-191",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "right_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-192",
+        "name": "missing-member-preserved",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "source_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/source_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-193",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "source_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-194",
+        "name": "missing-member-preserved",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "compatible"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/compatible",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-195",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "compatible",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-196",
+        "name": "missing-member-preserved",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "reason"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/reason",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-197",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "CompatibilityRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-CompatibilityRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "reason",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-198",
+        "name": "wrong-record-container",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-199",
+        "name": "undeclared-carrier-member",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-200",
+        "name": "missing-member-preserved",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-201",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-202",
+        "name": "missing-member-preserved",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "operational_state"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/operational_state",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-203",
+        "name": "missing-member-preserved",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "provenance_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/provenance_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-204",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "provenance_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-205",
+        "name": "missing-member-preserved",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "limited_adoption_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/limited_adoption_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-206",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "limited_adoption_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-207",
+        "name": "missing-member-preserved",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "evaluation_scope"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/evaluation_scope",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-208",
+        "name": "missing-member-preserved",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "evaluation_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/evaluation_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-209",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "evaluation_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-210",
+        "name": "missing-member-preserved",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "os_registration_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/os_registration_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-211",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "os_registration_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-212",
+        "name": "missing-member-preserved",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "independent_verification_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/independent_verification_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-213",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "independent_verification_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-214",
+        "name": "missing-member-preserved",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "adoption_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/adoption_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-215",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "adoption_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-216",
+        "name": "missing-member-preserved",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "limits"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/limits",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-217",
+        "name": "missing-member-preserved",
+        "type_ref": "KnowledgeRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-KnowledgeRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "counterexamples"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/counterexamples",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-218",
+        "name": "wrong-record-container",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-219",
+        "name": "undeclared-carrier-member",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-220",
+        "name": "missing-member-preserved",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "core_return_requested"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/core_return_requested",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-221",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "core_return_requested",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-222",
+        "name": "missing-member-preserved",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "core_source_selected"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/core_source_selected",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-223",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "core_source_selected",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-224",
+        "name": "missing-member-preserved",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "labo_evaluation_selected"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/labo_evaluation_selected",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-225",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "labo_evaluation_selected",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-226",
+        "name": "missing-member-preserved",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "always_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/always_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-227",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "always_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-228",
+        "name": "missing-member-preserved",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "core_return_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/core_return_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-229",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "core_return_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-230",
+        "name": "missing-member-preserved",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "selected_source_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/selected_source_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-231",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "selected_source_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-232",
+        "name": "missing-member-preserved",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "selected_evaluation_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/selected_evaluation_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-233",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "selected_evaluation_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-234",
+        "name": "missing-member-preserved",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "unselected_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/unselected_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-235",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "DependencySelection",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-DependencySelection",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "unselected_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-236",
+        "name": "wrong-record-container",
+        "type_ref": "HandoffRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-237",
+        "name": "undeclared-carrier-member",
+        "type_ref": "HandoffRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-238",
+        "name": "missing-member-preserved",
+        "type_ref": "HandoffRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "subject_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/subject_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-239",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "HandoffRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "subject_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-240",
+        "name": "missing-member-preserved",
+        "type_ref": "HandoffRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "binding"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/binding",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-241",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "HandoffRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "binding",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-242",
+        "name": "missing-member-preserved",
+        "type_ref": "HandoffRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "state"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/state",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-243",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "HandoffRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "state",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-244",
+        "name": "missing-member-preserved",
+        "type_ref": "HandoffRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "source_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/source_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-245",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "HandoffRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "source_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-246",
+        "name": "missing-member-preserved",
+        "type_ref": "HandoffRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "reason"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/reason",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-247",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "HandoffRecord",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-HandoffRecord",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "reason",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-248",
+        "name": "wrong-record-container",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-249",
+        "name": "undeclared-carrier-member",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-250",
+        "name": "missing-member-preserved",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "subject_ref"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/subject_ref",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-251",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "subject_ref",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-252",
+        "name": "missing-member-preserved",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "binding"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/binding",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-253",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "binding",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-254",
+        "name": "missing-member-preserved",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "actor"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/actor",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-255",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "actor",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-256",
+        "name": "missing-member-preserved",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "kind"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/kind",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-257",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "kind",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-258",
+        "name": "missing-member-preserved",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "proposed_value"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/proposed_value",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-259",
+        "name": "missing-member-preserved",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "basis_refs"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/basis_refs",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-260",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "Claim",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-Claim",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "basis_refs",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-261",
+        "name": "wrong-record-container",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_root",
+          "member": null,
+          "value": []
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-262",
+        "name": "undeclared-carrier-member",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "append_member",
+          "member": "unexpected_member",
+          "value": true
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-263",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "binding"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/binding",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-264",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "binding",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-265",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "required_descriptor_kinds"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/required_descriptor_kinds",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-266",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "required_descriptor_kinds",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-267",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "sources"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/sources",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-268",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "sources",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-269",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "qualification_roots"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/qualification_roots",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-270",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "qualification_roots",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-271",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "qualifications"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/qualifications",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-272",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "qualifications",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-273",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "descriptors"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/descriptors",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-274",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "descriptors",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-275",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "meaning_comparisons"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/meaning_comparisons",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-276",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "meaning_comparisons",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-277",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "section_fields"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/section_fields",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-278",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "section_fields",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-279",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "values"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/values",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-280",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "values",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-281",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "applicability_records"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/applicability_records",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-282",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "applicability_records",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-283",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "relations"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/relations",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-284",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "relations",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-285",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "oracle_bindings"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/oracle_bindings",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-286",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "oracle_bindings",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-287",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "compatibility_records"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/compatibility_records",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-288",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "compatibility_records",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-289",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "knowledge_records"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/knowledge_records",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-290",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "knowledge_records",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-291",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "dependencies"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/dependencies",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-292",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "dependencies",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-293",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "handoff_records"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/handoff_records",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-294",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "handoff_records",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-295",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "claims"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/claims",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-296",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "claims",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-297",
+        "name": "missing-member-preserved",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "remove_member",
+          "member": "candidates"
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/candidates",
+          "state": "absent"
+        },
+        "meaning_boundary": "shape受理でも不足原所在を保持。意味成功/[]/null/N/Aへの補完なし。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-298",
+        "name": "wrong-provided-member-shape",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "candidates",
+          "value": 17
+        },
+        "expected_shape_accepted": false,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-299",
+        "name": "population-or-source-not-completion",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "descriptors",
+          "value": null
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/descriptors",
+          "state": "explicit_null"
+        },
+        "meaning_boundary": "独立15意味/既存資格根拠との不足照合が残る。shape受理を供給完了にしない。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-300",
+        "name": "population-or-source-not-completion",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "descriptors",
+          "value": []
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/descriptors",
+          "state": "empty_array"
+        },
+        "meaning_boundary": "独立15意味/既存資格根拠との不足照合が残る。shape受理を供給完了にしない。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-301",
+        "name": "population-or-source-not-completion",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "required_descriptor_kinds",
+          "value": []
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/required_descriptor_kinds",
+          "state": "empty_array"
+        },
+        "meaning_boundary": "独立15意味/既存資格根拠との不足照合が残る。shape受理を供給完了にしない。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-302",
+        "name": "population-or-source-not-completion",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "sources",
+          "value": []
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/sources",
+          "state": "empty_array"
+        },
+        "meaning_boundary": "独立15意味/既存資格根拠との不足照合が残る。shape受理を供給完了にしない。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-SHAPE-303",
+        "name": "population-or-source-not-completion",
+        "type_ref": "SupplyInput",
+        "base_fixture_ref": "HELIXBRAIN-L8-032-SHAPE-BASE-SupplyInput",
+        "mutation": {
+          "operation": "replace_member",
+          "member": "qualification_roots",
+          "value": []
+        },
+        "expected_shape_accepted": true,
+        "expected_side_effect_count": 0,
+        "execution_state": "not_executed",
+        "expected_presence": {
+          "pointer": "/qualification_roots",
+          "state": "empty_array"
+        },
+        "meaning_boundary": "独立15意味/既存資格根拠との不足照合が残る。shape受理を供給完了にしない。"
+      }
+    ],
+    "raw_value_cases": [
+      {
+        "id": "HELIXBRAIN-L8-032-RAW-01",
+        "input": null,
+        "expected_shape_accepted": true,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-RAW-02",
+        "input": false,
+        "expected_shape_accepted": true,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-RAW-03",
+        "input": 0,
+        "expected_shape_accepted": true,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-RAW-04",
+        "input": "",
+        "expected_shape_accepted": true,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-RAW-05",
+        "input": [],
+        "expected_shape_accepted": true,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-RAW-06",
+        "input": {},
+        "expected_shape_accepted": true,
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-RAW-07",
+        "input": {
+          "future_raw_key": [
+            null,
+            false,
+            {
+              "~/": "opaque"
+            }
+          ]
+        },
+        "expected_shape_accepted": true,
+        "execution_state": "not_executed"
+      }
+    ],
+    "preservation_observer": "case構築前後のbase/inputを比較し、removeは当該keyだけ欠落、replaceは当該値だけ変化、他member/順序/原opaque内容はbyte相当で不変として照合。schema検査は入力を変更しない。実pure観測と全意味oracleは後続。",
+    "semantic_boundary_cases": [
+      {
+        "case_ref": "HELIXBRAIN-L8-032-ADD-03",
+        "input_mutation": {
+          "operation": "remove_member",
+          "member": "descriptors"
+        },
+        "expected_decode": "原inputを保持、descriptors absent。独立15 required kindsから15slot不足を既存意味関数へ渡す。",
+        "forbidden": "input=nullへの意味欠落の縮退、descriptors=[]の追加、供給complete",
+        "runtime_evidence": "none"
+      },
+      {
+        "case_ref": "HELIXBRAIN-L8-032-ADD-02",
+        "input_mutation": {
+          "operation": "replace_member",
+          "pointer": "/descriptors/0/facts/0/meaning",
+          "value": null
+        },
+        "expected_decode": "explicit_nullのmeaningを保持。既存descriptor definition unknownのoracleへ渡す。",
+        "forbidden": "構造エラーで捨てる、任意fallback/N/A/known",
+        "runtime_evidence": "none"
+      },
+      {
+        "case_ref": "HELIXBRAIN-L8-032-ADD-04",
+        "input_mutation": {
+          "operation": "replace_member",
+          "pointer": "/sources/0/ref/sha256",
+          "value": "synthetic-mismatching-digest"
+        },
+        "expected_decode": "構造文字列は受理。元bytes/digest資格照合で不一致を検出し関連source unusableを保持。",
+        "forbidden": "shape成功だけのqualified/known",
+        "runtime_evidence": "none"
+      }
+    ],
+    "coverage_limit": "declared input member構造の単体反例のみ。意味oracle/資格/trace/全input組合せ/Context/Result/正式wire/実fixture凍結の閉包は証明しない。"
+  }
 }

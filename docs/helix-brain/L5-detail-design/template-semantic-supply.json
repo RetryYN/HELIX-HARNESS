@@ -137,7 +137,20 @@
       "reuse_mode": "semantic_rederivation",
       "keep": "項目の意味/必要入力/不成立と版/supersession、unknownをN/Aにしない",
       "change": "TPL文法/整数版/lifecycle enum/式木/key/wireを継承せず、論理項目の境界を再導出する。",
-      "reason": "承認済みBRAIN032の意味と10/12限定範囲から降ろす。旧runtime/schema/CIを復元しない。"
+      "reason": "承認済みBRAIN032の意味と10/12限定範囲から降ろす。旧runtime/schema/CIを復元しない。",
+      "input_structure_rederivation": {
+        "read_lines": [
+          17,
+          29,
+          33,
+          54,
+          86,
+          91
+        ],
+        "preserve": "構造carrierの閉じたmemberと原意味の型検査、unknownをN/Aにしない。",
+        "change": "旧template必須key/整数版/TPL grammar/lifecycle/式木を移植せず、既存032 logical SupplyInputの供給memberへ具体化する。未供給の意味は既存ADD03とexecution_contractに従い原absenceとして意味照合へ保持する。",
+        "reason": "欠落配列を空集合へdefaultする旧UTW014を再発させず、構造誤りと意味不足を区別する。新しい承認/採用gateは追加しない。"
+      }
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
@@ -2888,7 +2901,7 @@
   "determinism": "供給immutable snapshotだけを読みtemplate/knowledge identity/revision、descriptor identity、source Ref、axisで決定的に並べる。異scope/版を併合しない。時計/env/fs/network/DB参照なし。",
   "implementation_preparation": {
     "state": "not_ready",
-    "next": "関数context/source資格/具体fixtureと追加分岐の静的照合・独立意味reviewを実施する。設計候補の著述だけではformal fixture凍結や実装着手の成立にしない。",
+    "next": "19型のprovided-member shapeと欠落/null/空配列のpresenceを対L8で静的照合・独立reviewする。正式wire/parser/実資格/全Resultと実fixture凍結は未成立のまま。",
     "runtime_evidence": "none"
   },
   "remaining": [
@@ -2896,7 +2909,8 @@
     "正式schema/key/型/式木/wire/registry/resolver、各field意味/要否/oracle最終照合、BRAIN運用promotionと全seed採用は未成立。",
     "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。",
     "105負例と24追加unit分岐・9正常function oracleをlogical候補として著述。source/ref/資格とbranch十分性の意味review未完。",
-    "formal wire/parser/実source資格resolver/資源条件/言語・依存・配置と実fixture/oracle凍結/実装前Red/Greenは未成立。独立意味review未実施。"
+    "formal wire/parser/実source資格resolver/資源条件/言語・依存・配置と実fixture/oracle凍結/実装前Red/Greenは未成立。独立意味review未実施。",
+    "032 inputの19型の供給member構造とpresenceを具体化した。欠落slot/required集合は入力を捨てず意味不足へ保持。全Context/Result/finding/codec/実owner/凍結と意味閉包は未完。"
   ],
   "evaluation_order": [
     {
@@ -2966,5 +2980,1025 @@
     "comparison_composition": "各関数のproducer_symbol/input_bindingを検査。依存Comparisonの未供給/異bindingは関連axis未評価として返し、clock/filesystemへ補充しない。",
     "claim_locality": "同じClaimは根拠を読む担当関数の特定ruleへ対応。別group ruleで同一claimを二重裁定せず、原axis resultは担当意味関数に残す。",
     "duplicate_policy": "同source/bodyの入力重複はoriginal refsへ保持。異sourceの相反は独立意味比較へ渡す。重複を勝手にauthorityにしない。"
+  },
+  "logical_input_structure": {
+    "id": "HELIXBRAIN-L5-032-INPUT-STRUCTURE",
+    "kind": "logical_provided_member_shape_not_formal_wire_schema",
+    "entry_function_ref": "HELIXBRAIN-L5-032-validate_supply_input",
+    "basis": {
+      "revision": "4ce0007b9cc106721512380fa8f54bae0b29056c",
+      "type_contract_pointer": "/type_contract/types",
+      "type_contract_canonical_sha256": "79449c2748880c1994f289e2548ca997cbeee5c01b52eabecaa442ab771ab6c3",
+      "source_files": [
+        {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "sha256": "5ab3becb657ccd32a34159153fb1eb5d7a8e3b5cd8440d44d2a70845c2f53ee8"
+        },
+        {
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "sha256": "3e89af6030a27b999abf38bfb997e7991010de36020eb8638acb9fec0fc74c36"
+        }
+      ]
+    },
+    "schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "BRAIN032 supplied member structure candidate",
+      "$ref": "#/$defs/SupplyInput",
+      "$defs": {
+        "RawValue": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawValue"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/RawValue"
+              }
+            }
+          ]
+        },
+        "Ref": {
+          "type": "object",
+          "properties": {
+            "identity": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "revision": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "scope": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_locator": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "Binding": {
+          "type": "object",
+          "properties": {
+            "template_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "knowledge_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "requirement_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "oracle_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "pack_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "pack_contract_version": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "pack_artifact_version": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "pack_dependency_versions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "version_target": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "QualifiedSource": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "content": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "content_bytes": {
+              "type": "string"
+            },
+            "qualification_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "role": {
+              "type": "string",
+              "enum": [
+                "semantic_json",
+                "derived_view",
+                "explanation",
+                "reference_only"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "Qualification": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "applicable_scope": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "qualification_body": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "root_ref": {
+              "$ref": "#/$defs/Ref"
+            }
+          },
+          "additionalProperties": false
+        },
+        "MeaningFact": {
+          "type": "object",
+          "properties": {
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "meaning": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "condition": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "oracle_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            }
+          },
+          "additionalProperties": false
+        },
+        "MeaningComparison": {
+          "type": "object",
+          "properties": {
+            "left_fact_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "right_fact_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "comparison_source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "equivalent": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "DescriptorSlot": {
+          "type": "object",
+          "properties": {
+            "slot_identity": {
+              "type": "string"
+            },
+            "descriptor_kind": {
+              "type": "string"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "facts": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/MeaningFact"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "comparison_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "definition_applicability_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "SectionField": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "descriptor_slot_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "parent_section_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meaning_fact_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "requiredness_fact_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "normative_rule_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "oracle_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "value_fact_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "applicability_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "ValueFact": {
+          "type": "object",
+          "properties": {
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "value": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "origin": {
+              "type": "string",
+              "enum": [
+                "project_owner",
+                "reference_fixture",
+                "absent"
+              ]
+            },
+            "applicability_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            }
+          },
+          "additionalProperties": false
+        },
+        "ApplicabilityRecord": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "decision": {
+              "type": "string",
+              "enum": [
+                "applicable",
+                "not_applicable",
+                "unknown"
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reentry_condition": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "RelationRecord": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "kind": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "from_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "to_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "direction": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "OracleBinding": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "obligation_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "oracle_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "viewpoint": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "evidence_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "CompatibilityRecord": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "left_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "right_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "compatible": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "KnowledgeRecord": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "operational_state": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "provenance_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "limited_adoption_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evaluation_scope": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "evaluation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "os_registration_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "independent_verification_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "adoption_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "limits": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "counterexamples": {
+              "$ref": "#/$defs/RawValue"
+            }
+          },
+          "additionalProperties": false
+        },
+        "DependencySelection": {
+          "type": "object",
+          "properties": {
+            "core_return_requested": {
+              "type": "boolean"
+            },
+            "core_source_selected": {
+              "type": "boolean"
+            },
+            "labo_evaluation_selected": {
+              "type": "boolean"
+            },
+            "always_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "core_return_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "selected_source_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "selected_evaluation_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "unselected_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "HandoffRecord": {
+          "type": "object",
+          "properties": {
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "not_requested",
+                "not_received",
+                "received",
+                "unknown",
+                "conflict"
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "Claim": {
+          "type": "object",
+          "properties": {
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "actor": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kind": {
+              "type": "string"
+            },
+            "proposed_value": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "SupplyInput": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "$ref": "#/$defs/Binding"
+            },
+            "required_descriptor_kinds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/QualifiedSource"
+              }
+            },
+            "qualification_roots": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "qualifications": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Qualification"
+              }
+            },
+            "descriptors": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/DescriptorSlot"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meaning_comparisons": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/MeaningComparison"
+              }
+            },
+            "section_fields": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SectionField"
+              }
+            },
+            "values": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ValueFact"
+              }
+            },
+            "applicability_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ApplicabilityRecord"
+              }
+            },
+            "relations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RelationRecord"
+              }
+            },
+            "oracle_bindings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OracleBinding"
+              }
+            },
+            "compatibility_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/CompatibilityRecord"
+              }
+            },
+            "knowledge_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KnowledgeRecord"
+              }
+            },
+            "dependencies": {
+              "$ref": "#/$defs/DependencySelection"
+            },
+            "handoff_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/HandoffRecord"
+              }
+            },
+            "claims": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Claim"
+              }
+            },
+            "candidates": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "member_presence": {
+      "absence": "構造objectの未供給memberはそのobjectに追加しない。nullable値にも空配列にも変換せず、所在とabsentを別に保持する。shape受理は意味充足ではない。",
+      "explicit_null": "型がnullを許すmemberのみ構造受理。explicit_nullはabsentと別。meaning/value/scope等のRawValueのnullは原意味unknown等の担当関数へ渡す。",
+      "empty_array": "配列型に対し空配列は構造受理。empty_arrayはabsent/nullと別。必要母集合・不足は既存担当意味関数が独立契約から検査し、shapeだけでcompleteにしない。",
+      "supplied": "上記以外の型に合う原値を変更せず保持。suppliedはknown/resolved/qualified/received/Acceptedを意味しない。",
+      "wrong_provided_shape": "供給memberの型不正・定義外構造keyはInputIssueへ所在を残す。input=null側へ返し、原raw snapshotを診断原資料として保持する。意味欠落とは分ける。",
+      "locator": "object memberのJSON Pointer。配列indexは原供給順の所在のみでidentityではない。~は~0、/は~1でescapeする。未供給memberも親objectとdeclared keyから所在を表す。",
+      "presence_material": "入力を改変しない別の診断材料。各宣言memberについてpointerとabsent/explicit_null/empty_array/suppliedを保持。空objectと空stringはsuppliedとして構造を区別し、意味既知にはしない。",
+      "semantic_read_guard": "担当関数は既存必要集合/選択条件から必要なmemberを検査してから読む。未供給に依存する比較を成功/false/N/Aへdefaultしない。無関係な有資格内容は保持する。binding/source/root/条件が欠落したときは依存scope/資格を確定できず、不足原所在を保持する。",
+      "missing_required_population": "required_descriptor_kinds未供給でも入力を捨てず、candidateのdescriptorから必要集合を創作しない。承認15意味の独立根拠を参照できない比較は未評価のまま。供給済みなら15意味へのexact joinを既存compare_descriptor_definitionsで行う。",
+      "no_schema_default": "schemaにdefault/coercion/追加の補完を定義しない。member未供給の許容は操作許可や適用N/Aではない。"
+    },
+    "opaque_fields": "RawValueは既存type_contractが原意味/条件/scope/値/operational state等を未解釈で保持する境界。未知のkeyを含むJSON内容も削らない。構造carrierのadditionalProperties:falseと原内容mapを混同しない。",
+    "descriptor_kind_boundary": "descriptor_kindは提供された文字列を保持。承認15種類のexact集合は意味担当が照合し、schemaのenumや候補の供給集合へ置換しない。",
+    "qualification_boundary": "shapeの一致はsourceのbytes/body/digest/owner資格を証明しない。既存validate_supply_inputの独立qualificationと原source照合を省略しない。",
+    "completion_limit": "19型の供給member構造とpresence境界のみ。正式wire/codec/式木/registry/実root resolver/全Resultとfinding/oracle凍結/実装準備・実検証は未成立。"
   }
 }
