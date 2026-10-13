@@ -66372,6 +66372,21 @@
         "execution_state": "not_executed"
       }
     ],
-    "scope_limit": "F04の4独立次元に対する6pair/4triple/1quadの11部分oracle。従来14単独Context例や190L9例は不変。全副次finding/全組合せ/正式binding/test凍結と実実行は未完。"
+    "scope_limit": "F04の4独立次元に対する6pair/4triple/1quadの11部分oracle。従来14単独Context例や190L9例は不変。全副次finding/全組合せ/正式binding/test凍結と実実行は未完。",
+    "digest_material_scopes": {
+      "canonical_object_profile": "JSON valueをkey Unicode code point順・compact separators・strict UTF8・非ASCII無escapeでlogical emitしてSHA-256。本hash対象内の数値は有限整数のみ。raw_utf8は再parse/整列/改行変更せずstring内容をそのまま含む。object hashはtransport raw hashと別。",
+      "input_packet_sha256": {
+        "document_pointer": "/verification_obligations/0/cases/0/source_case/independent_source_packet",
+        "target": "ref/raw_utf8/sha256等を含むpacket object wholeのcanonical SHA-256。raw bytesではない。"
+      },
+      "context_base_fixture_sha256": {
+        "document_pointer": "/context_fixtures/0",
+        "target": "id/source_packet/basis_revision/basis_l9_case_refs/binding_ruleを含むfixture object wholeのcanonical SHA-256。raw bytesではない。"
+      },
+      "single_case_sha256": "context_mutations.single_case_refで参照する既context_casesのcase object wholeをcanonical hash。",
+      "before_sha256": "context_base_fixtureのsource_packet.raw_utf8をdecodeしたlogical Contextで、mutation.pointerが指す元JSON valueのcanonical hash。",
+      "after_sha256": "single_case_refのcontext_packet.raw_utf8をdecodeしたlogical Contextで、mutation.pointerが指す変更後JSON valueのcanonical hash。",
+      "context_packet.sha256": "当該case.context_packet.raw_utf8をstrict UTF8 encodeした原bytesのSHA-256。object wholeのhashではない。"
+    }
   }
 }
