@@ -1,0 +1,210 @@
+{
+  "parent": "HELIXBRAIN-L2-005",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "136771ca3ec1a4c23421fb3fb0a229585925a48c",
+    "boundary": "知識relationの意味/向き/端点/根拠と横断chainを照合する。製品architecture選択・知識昇格・因果の実証を生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-pattern-connection-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1f3475dd13bac30f47a8921ff44fdcb90bbb024ab0a1fff7ba3e436971aefb33"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    }
+  ],
+  "source_pin_limit": "bytes固定は全文精読/全意味被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-catalog-relation-projection.md",
+      "read_lines": [
+        17,
+        36
+      ],
+      "quote": "\n`docs/design/design-catalog.yaml`を別graphへ複製せず、既存relation graphのcatalog rootとして読み込む。\nloaderはcatalog item、登録artifact、review済みdigest authority、design-coverage source/test、governing PLANを\n同じ`RelationGraphSourceSet`へ供給し、projectorは既存node・edge・finding vocabularyへ投影する。\n\n## 2. 型付き関係\n\n- catalog rootからitemへ`catalogs`を張り、itemから登録artifactへ`catalog-artifact`を張る。\n- rootからreview済みdigest authorityへ`reviewed-by`、coverage source/testへ`validated-by`を張る。\n- governing PLANは履歴上の所有元として`governed-by` edgeにだけ保持し、current PLANの依存正本にはしない。\n- artifact変更からitemとrootへ逆引きでき、catalog変更から全authority consumerへimpactを辿れるようにする。\n\n## 3. fail-close境界\n\n`done` itemのartifact欠落、catalog外のcurrent design文書、review済みdigestのmissing/staleを、それぞれ\n`catalog-artifact-missing`、`catalog-unregistered-artifact`、`reviewed-digest-missing`／\n`reviewed-digest-stale`として分離する。semantic digestは自動更新せず、再検収要求だけを返す。\noptional sourceが存在しないconsumer checkoutでは既存loader方針どおりfail-openとするが、catalogを読めた後の\nnode／必須edge欠落やintegrity違反をsilent fallbackしてはならない。\n",
+      "file_sha256": "165b2bd3b1871034423f2542c5612a04ec2e2d6a714638bb7df281180646b1fd",
+      "selected_lines_sha256": "af52824eb52f2215c9538a48cca25d5227558e8ed39e96caa7bc052cb6a69c8f",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-1D471065A4A8B6927ED7",
+        "disposition": "unresolved",
+        "source_sha256": "165b2bd3b1871034423f2542c5612a04ec2e2d6a714638bb7df281180646b1fd"
+      },
+      "reuse": "reference_only; semantic relation rederivation per adopted BRAIN005",
+      "preserve": "typed relation、根拠と両端の参照、欠落/staleの区別、意味digestを自動更新しない。",
+      "change": "catalog artifact/PLANの運用edgeをBRAINの意味relationへ読み替えず、旧loader/DB/runtimeを移植しない。",
+      "reason": "9/26 PO原文L1-005/9/28採択005/10/12委任承認が知識構造間の意味relationと横断chainを要求する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/design-catalog.yaml",
+      "read_lines": [
+        10,
+        52
+      ],
+      "quote": "categories:\n  - id: plan\n    name: 企画・要求\n  - id: req\n    name: 要件定義\n  - id: basic\n    name: 基本設計\n  - id: detail\n    name: 詳細設計\n  - id: data\n    name: データ設計\n  - id: std\n    name: 標準・方式\n  - id: sec\n    name: セキュリティ\n  - id: ops\n    name: 運用・可観測性\n  - id: infra\n    name: インフラ・基盤\n  - id: saas\n    name: SaaS事業・課金\n  - id: web\n    name: Webクライアント\n  - id: mobile\n    name: モバイルアプリ\n  - id: desktop\n    name: デスクトップアプリ\n  - id: cli\n    name: CLI・管理ツール\n  - id: apisvc\n    name: API・ヘッドレスサービス\n  - id: domain\n    name: ドメイン(DDD)\n  - id: common\n    name: 共通・拡張・規約\n  - id: agent\n    name: AIエージェント\n  - id: test\n    name: テスト・検証\n  - id: mgmt\n    name: 管理\n  - id: sprint\n    name: スクラム運営(ハイブリッド層)",
+      "file_sha256": "4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864",
+      "selected_lines_sha256": "b1954dcf307723e2bf08b030dcc25fed251145710051ef811621ee34f2299333",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-EC07511FF3E241F15359",
+        "disposition": "unresolved",
+        "source_sha256": "4cf182ed5e983bb36cf0f61d69f2749c19b6612e5311aafbe2cb73dee6321864"
+      },
+      "reuse": "reference_only; semantic relation rederivation per adopted BRAIN005",
+      "preserve": "既存分類を知識領域検討のinventoryとして参照。",
+      "change": "旧catalog分類は七relationや領域chainの直接根拠ではない。",
+      "reason": "9/26 PO原文L1-005/9/28採択005/10/12委任承認が知識構造間の意味relationと横断chainを要求する。"
+    }
+  ],
+  "legacy_search": {
+    "paths": [
+      "archive/legacy-generation-2026-09-14/root/docs/design/helix",
+      "archive/legacy-generation-2026-09-14/root/docs/design/design-catalog.yaml"
+    ],
+    "terms": [
+      "relation",
+      "requires",
+      "depends_on",
+      "compatible_with",
+      "conflicts_with",
+      "alternative_to",
+      "composed_of"
+    ],
+    "result": "旧catalog/typed artifact projectionはinventory・型/参照の対応。七知識relationとchain例の直接定義とは主張しない。PO原文147–190行を直接根拠とする。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実relation意味/根拠/端点のsource資格、知識revision/提供scopeの必要集合、未見Domain/graphの意味被覆。",
+    "001/002/008/030/CORE009のowner-qualified exact binding、正式graph schema/codec、relation種別/方向の契約と実resolver。",
+    "L5/L8の型/比較関数/単体oracle、実装前oracle凍結→実Red→最小Green→Refactor→再検証、実L9/L10/PO L11。",
+    "全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXBRAIN-L4-005",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "relation_content_reader",
+      "cross_domain_relation_trace_reader"
+    ],
+    "flow": [
+      "独立node/edge/意味根拠 → relation項目と端点の局所比較",
+      "提供scope内chain request → 段階ごとの関係/途切れ",
+      "未決relation → BRAIN knowledge owner候補、製品適用 → CORE判断入力"
+    ],
+    "python_boundary": "immutable inputを扱うpure比較/trace。DB/OS保存/CORE write/network/fs/env/clock/因果実証/知識採用/製品適用/authority/受入を行わない。",
+    "representation_limit": "fixtureのidentity/kind/domain/edge意味/根拠/方向は合成。正式graph wire/codec/演算子と種別全量、実知識内容採用やresolverは固定しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXBRAIN-L4-005-F01",
+      "requirement_ref": "HELIXBRAIN-L3-005-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-005-F01",
+      "oracle_ref": "HELIXBRAIN-L9-005-F01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-005-F01",
+        "parent": "HELIXBRAIN-L2-005",
+        "title": "意味relationの種類・向き・端点",
+        "obligation": "Pattern/Unit/Partの領域内外relationをrequires/depends_on/compatible_with/conflicts_with/affects/alternative_to/composed_of等の種類、向き、両端identityと知識revisionへ結ぶ。名称類似だけでedgeを確定せず、端点不明/向きや意味未定/未確認の因果はunknownとして返す。",
+        "oracle_ref": "HELIXBRAIN-L10-005-F01"
+      },
+      "component": "relation_content_reader",
+      "input_meanings": [
+        "独立知識node集合と型/Domain/identity/revision",
+        "原relation種類/意味/向き/両端/根拠と提出edge",
+        "名称類似/未確認因果/unknownのclaim"
+      ],
+      "output_meanings": [
+        "項目別内容対応、端点解決/未決と未確認因果",
+        "BRAIN意味ownerへの返却候補"
+      ],
+      "content_comparison": [
+        "七relationはPO原文の例。閉じた全世界enumやedgeの対称性を新設しない。",
+        "提出edgeのtype/meaning/direction/source/target/knowledge revision/evidenceを独立原内容と比較する。",
+        "両端はidentityだけでなく知識revisionとDomain/構造kindで照合する。未決/名称類似/相関を確定意味relationや因果へ昇格しない。"
+      ],
+      "qualification_rule": "fixture内容の独立比較は実source資格/全必要集合/未見Domain/正式schema/実resolverを代替しない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-005-F02",
+      "requirement_ref": "HELIXBRAIN-L3-005-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-005-F02",
+      "oracle_ref": "HELIXBRAIN-L9-005-F02",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-005-F02",
+        "parent": "HELIXBRAIN-L2-005",
+        "title": "領域横断の関係保持",
+        "obligation": "Authentication→Session→Frontend State→UX、およびDatabase→Performance→Infrastructureのような領域横断の意味relationを知識の提供範囲で辿れるようにする。各関係の根拠を保持し、例の領域名やgraphを製品固有設計の固定形にしない。",
+        "oracle_ref": "HELIXBRAIN-L10-005-F02"
+      },
+      "component": "cross_domain_relation_trace_reader",
+      "input_meanings": [
+        "同一knowledge revision/scopeの独立node/edgeとchain request",
+        "横断chainの提出node/edgeと根拠",
+        "製品適用/未知補完のclaim"
+      ],
+      "output_meanings": [
+        "chainごとの段階/両端/根拠/途切れと未決",
+        "未知関係はBRAIN、製品判断はCOREへの返却候補"
+      ],
+      "content_comparison": [
+        "Authentication→Session→Frontend State→UXとDatabase→Performance→Infrastructureの例を別々に辿る。",
+        "途中端点/edge/根拠が欠ければその箇所を保持し、別chainと元Qを保つ。Domain境界でedgeを捨てない。",
+        "PO例を全製品の固定architectureへ変えない。到達できた合成chainは採用/義務完了/実接続の証拠ではない。"
+      ],
+      "qualification_rule": "fixture内容の独立比較は実source資格/全必要集合/未見Domain/正式schema/実resolverを代替しない。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 32,
+      "F02": 23
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
