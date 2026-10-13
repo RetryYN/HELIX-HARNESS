@@ -61,6 +61,18 @@
       "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
       "sha256": "bb31b5abe547b5caaea80a62992fa3e967f94a2273430ffd64b17e50c7fd36b2",
       "use": "固定意味/設計/対検証。実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "72b980c693cdb769a00b57a6da3e3cdc7e3cc522",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486",
+      "use": "現mainのN01非機能要件/対L10原本文。N01 objectはff5f0667承認対象と一致。後続追加を含む文書wholeから承認を継承しない。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "72b980c693cdb769a00b57a6da3e3cdc7e3cc522",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0",
+      "use": "現mainのN01非機能要件/対L10原本文。N01 objectはff5f0667承認対象と一致。後続追加を含む文書wholeから承認を継承しない。"
     }
   ],
   "legacy_comparison": [
@@ -271,6 +283,28 @@
         "preserve": "L3/L10 system総合証明、L5/L8とL4/L9の証拠、内部設計/edgecase/test設計を対にする正規V-pair。",
         "change": "旧runtime/CIをcopyせず022-F03と005の全義務/下位で表す部分/固有差分を内容で比較するpure契約へ再導出。",
         "reason": "trace/下位成功からVerifiedを生成せず、組合せが全義務を表せる場合にsystem全再実行を一律追加しない。新承認は加えない。"
+      },
+      "unseen_evidence_rederivation": {
+        "source_line_span": [
+          48,
+          61
+        ],
+        "read_line_locators": [
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          59,
+          61
+        ],
+        "preserve": "凍結oracle/出所と対設計、単体/結合/system/実利用受入を分けるV-pair、運用時間軸と対象scopeの限界。",
+        "change": "旧runtime/旧CIをcopyせず、採択N01の未見artifact/失効条件/原観測/過去限定記録をpure比較へ再導出。",
+        "reason": "旧又は別scope証拠と診断scoreで実受入/要求承認/全製品保証を生成しない。合成epochを新TTLpolicyへせず、新承認を加えない。"
       }
     },
     {
@@ -400,14 +434,16 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "N01/B01の詳細契約と全6契約の設計閉包。",
+    "B01の詳細契約と全6契約の設計閉包。",
     "F04全構造/複合/全finding/Context資格、正式schema/codec/実owner/原記録供給・利用者本人性binding。",
     "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。",
     "F04独立Contextとの不一致/actual資格欠落4例、candidate path JSON Pointer写像を追加。全副次finding/実owner bindingは未完。",
     "F01の143原例/4Context例と必要集合/pairを具体化。全構造/複合/実資格/codecと凍結は未完。",
     "F02の113原例/2Context/5Context否定例と境界/意味保存Refactor後再検証を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
     "H22F-m1対応：未変異REFACTOR Contextとperformed=falseの原NORMAL inputを結合した反例を追加。必要3proof欠落と未成立Integratedを保持、全oracle閉包は未完。",
-    "F03の103原例/2Context/6否定例と全義務-下位表現-固有差分を具体化。全構造/複合/実資格/正式codec/凍結は未完。"
+    "F03の103原例/2Context/6否定例と全義務-下位表現-固有差分を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
+    "N01の36原例/1Context/6否定例と今回未評価/原期限/過去receipt限定scopeを具体化。全構造/複合/正式期限schema/codec/実owner/実holdout/凍結は未完。",
+    "H22H-m1の自己整合弱化input反例と、作成側発見のU6 conflict_content時evaluated_scope=null訂正を対L8/L9へ結ぶ。"
   ],
   "document_id": "HARNESS-L5-022-STAGE-ACCEPTANCE",
   "layer": "L5",
@@ -746,6 +782,112 @@
       "outcome": "content_compared | unresolved | invalid",
       "value": "SystemDifferenceValue | null（構造比較不能時のみ）",
       "findings": "tuple[SystemDifferenceFinding]",
+      "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
+      "candidate_conflicting_paths": "tuple[JsonPointer]"
+    },
+    "UnseenOracleRecord": {
+      "artifact_identity": "RawText",
+      "artifact_revision": "RawText",
+      "body": "LogicalJson",
+      "identity": "RawText",
+      "owner": "RawText",
+      "requirement_revision": "RawText",
+      "revision": "RawText",
+      "scope": "RawText",
+      "stage": "RawText",
+      "valid_from_epoch": "exact finite decimal（bool不可、合成資料の時点条件）",
+      "valid_until_epoch": "exact finite decimal（bool不可、合成資料の時点条件）"
+    },
+    "UnseenResultRecord": {
+      "artifact_identity": "RawText",
+      "artifact_revision": "RawText",
+      "evidence_ref": "RawText",
+      "execution": "RawText",
+      "identity": "RawText",
+      "observations": "LogicalJson",
+      "oracle_identity": "RawText",
+      "oracle_revision": "RawText",
+      "owner": "RawText",
+      "requirement_revision": "RawText",
+      "scope": "RawText",
+      "stage": "RawText"
+    },
+    "UnseenEvidenceRecord": {
+      "artifact_identity": "RawText",
+      "artifact_revision": "RawText",
+      "identity": "RawText",
+      "observations": "LogicalJson",
+      "oracle_identity": "RawText",
+      "oracle_revision": "RawText",
+      "owner": "RawText",
+      "requirement_revision": "RawText",
+      "scope": "RawText",
+      "stage": "RawText",
+      "valid_until_epoch": "exact finite decimal（bool不可、合成資料の時点条件）"
+    },
+    "UnseenTarget": {
+      "artifact_identity": "Text",
+      "artifact_revision": "Text",
+      "requirement_revision": "Text",
+      "scope": "Text",
+      "stage": "Text"
+    },
+    "UnseenInput": {
+      "context": "UnseenTarget",
+      "evidence": "UnseenEvidenceRecord | null",
+      "executor": "RawText",
+      "improvement_score": "exact finite decimal（bool不可）",
+      "independent_oracle_body": "LogicalJson",
+      "lower_stage_pass": "bool",
+      "observation_epoch": "exact finite decimal（bool不可）",
+      "oracle": "UnseenOracleRecord | null",
+      "other_artifact_pass": "LogicalJson",
+      "prior_confirmed_receipts": "LogicalJson",
+      "producer": "RawText",
+      "result": "UnseenResultRecord | null",
+      "unrelated_scope": "LogicalJson"
+    },
+    "UnseenContext": {
+      "target": "UnseenTarget",
+      "expected_behavior": "LogicalJson",
+      "expected_owners": "map[oracle | result | evidence,Text]",
+      "expected_oracle_identity": "Text",
+      "expected_oracle_revision": "Text",
+      "expected_evidence_identity": "Text",
+      "observation_epoch": "exact finite decimal（原観測sourceから供給、clockを読まない）",
+      "prior_receipt_limit": "Text",
+      "evidence_kind": "synthetic | actual_owner_input",
+      "snapshot_revision": "Text",
+      "original_owner_qualification": "LogicalJson | null"
+    },
+    "UnseenValue": {
+      "current_evaluation": "LogicalJson",
+      "current_findings": "LogicalJson",
+      "evaluated_scope": "LogicalJson",
+      "prior_confirmed_receipts": "LogicalJson",
+      "prior_receipts_are_current_proof": "literal false",
+      "other_artifact_pass_is_current_proof": "literal false",
+      "lower_stage_pass_is_upper_proof": "literal false",
+      "improvement_score_role": "LogicalJson",
+      "all_code_or_product_guarantee": "literal false",
+      "actual_stage_promoted": "literal false",
+      "actual_accepted": "literal false",
+      "actual_requirements_approved": "literal false",
+      "external_and_internal_same_contract": "literal true",
+      "unrelated_Q": "LogicalJson"
+    },
+    "UnseenCandidate": "UnseenValueの閉じた提出field集合。unknownをstrip/空objectを補完しない。",
+    "UnseenFinding": {
+      "code": "Text",
+      "pointer": "JsonPointer",
+      "record_role": "oracle | result | evidence | null",
+      "return_owner": "Text",
+      "source_case_code": "Text | null"
+    },
+    "UnseenResult": {
+      "outcome": "content_compared | unresolved | invalid",
+      "value": "UnseenValue | null（構造比較不能のみ）",
+      "findings": "tuple[UnseenFinding]",
       "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
       "candidate_conflicting_paths": "tuple[JsonPointer]"
     }
@@ -1197,6 +1339,130 @@
         "projection_not_authority"
       ],
       "scope_limit": "F03部分詳細/先行test設計。全構造/複合/全typedfinding、正式schema/codec、実owner/適用source、L6L7凍結は未完。"
+    },
+    {
+      "id": "HARNESS-L5-022-N01",
+      "requirement_ref": "HARNESS-L3-022-N01",
+      "l4_ref": "HARNESS-L4-022-N01",
+      "l9_ref": "HARNESS-L9-022-N01",
+      "l8_ref": "HARNESS-L8-022-N01",
+      "symbol": "compare_unseen_artifact_evidence_limits",
+      "signature": "compare_unseen_artifact_evidence_limits(input: UnseenInput, context: UnseenContext, candidate: UnseenCandidate | None = None) -> UnseenResult",
+      "approved_requirement": {
+        "id": "HARNESS-L3-022-N01",
+        "parent": "HARNESS-L2-022",
+        "title": "未見成果と証拠の有効範囲",
+        "obligation": "未公開の同scope artifact/外部成果に同じstage契約/oracleを適用し、結果内容/証拠/対象revisionの対応を照合する。oracle不在/失効/適用scope不一致は上位stateを生成せず未評価とし、下位成功や他成果の成功で埋めない。設計/実装/Refactorの各受入結果で確認したscopeと限界を引き継ぎ、全コード/全製品の品質保証へ外挿しない。改善scoreを意思決定/要求承認の根拠成立へ変換しない。",
+        "oracle_ref": "HARNESS-L10-022-N01"
+      },
+      "selected_unseen_contract": {
+        "l4_ref": "HARNESS-L4-022-N01",
+        "source_revision": "72b980c693cdb769a00b57a6da3e3cdc7e3cc522",
+        "contract_object_sha256": "6ec1a5ead301e9f9d8a7cefc0374e20e0571ae9c21ff41f6a23973deea99a983",
+        "hash_scope": "L4 /contracts/4 whole objectのUnicode key順/compact/nonASCII無escape/strict UTF8 canonical SHA-256。raw文書hashはsource_pinsで別。",
+        "independent_behavior_fixture": {
+          "condition": "one_result_per_command",
+          "success": {
+            "result_count": 1
+          },
+          "counterexample": {
+            "duplicate_result_count": 0
+          }
+        },
+        "prior_receipts": [
+          {
+            "phase": "design",
+            "artifact_identity": "UNSEEN-ARTIFACT-U",
+            "artifact_revision": "ART-U@r0",
+            "scope": "PRODUCT-P/design",
+            "confirmed": "limited_synthetic_only",
+            "limit": "prior_revision_not_current_proof"
+          },
+          {
+            "phase": "implementation",
+            "artifact_identity": "UNSEEN-ARTIFACT-U",
+            "artifact_revision": "ART-U@r0",
+            "scope": "PRODUCT-P/implementation",
+            "confirmed": "limited_synthetic_only",
+            "limit": "prior_revision_not_current_proof"
+          },
+          {
+            "phase": "refactor",
+            "artifact_identity": "UNSEEN-ARTIFACT-U",
+            "artifact_revision": "ART-U@r0",
+            "scope": "PRODUCT-P/refactor",
+            "confirmed": "limited_synthetic_only",
+            "limit": "prior_revision_not_current_proof"
+          }
+        ],
+        "validity_rule": "各owner原oracle/evidenceが宣言する有効範囲・失効条件と対象scopeを照合。epoch3〜5は合成例の原条件で、正式TTLや期限policyは採用しない。",
+        "fixture_limit": "stage Verified/1と0/epoch3〜5/3過去receiptは限定合成例。実holdout/全製品保証/正式TTL/全stage証明ではない。"
+      },
+      "preconditions": [
+        "input/Context/candidateは別immutable。Context target/body/owner/oracle/evidence identity/原観測時点を、input実結果/改善scoreから生成しない。",
+        "固定Contextは既L9 NORMALとL4 behaviorの設計時合成仮説。同sourceの別hashを実独立lineage/owner資格にしない。未見の実holdout構成/時点原資料/適用scope/ownerの正式bindingは未完。",
+        "F01〜F04の必要段階証明と実受入を、このbehavior内容の成功で代替しない。"
+      ],
+      "algorithm": [
+        {
+          "id": "U1",
+          "rule": "閉じたroot/record型とnull/unknownを検査。finite decimalとboolを区別し、観測数値/epochを丸めない。無効構造と原資料不在を区別。codec重複key/UTF8は正式adapter責務へ残す。"
+        },
+        {
+          "id": "U2",
+          "rule": "input.context/independent_oracle_body/observation_epochを別Context target/behavior/原観測時点へ照合。Contextのbehaviorはselected contractに内容対応し、owner/oracle/evidence原identityを資格付きsourceへ結ぶ。別target/弱いbehavior/owner不一致/actual資格欠落はcontext_unresolved。自己整合するinputの弱いoracleと結果で期待を変更しない。"
+        },
+        {
+          "id": "U3",
+          "rule": "oracle/result/evidenceを個別に必要とし、nullならmissingを保持。各artifact identity/revision、requirement revision、scope、stageをContext targetへ照合し、別artifact/別版/別scope/別stageの成功を今回へ移さない。ownerとoracle identity/revision、evidence identity/参照も独立Contextへ比較し、解決不能と内容不一致を区別する。"
+        },
+        {
+          "id": "U4",
+          "rule": "oracle.valid_from_epoch<=Context.observation_epoch<=oracle.valid_until_epoch、Context.observation_epoch<=evidence.valid_until_epochを原有限値で照合。from>until等の矛盾/未知を補正しない。未開始/失効をnot_evaluatedへ保ち、期限不在を無期限成功にしない。epochは原条件付き合成資料の値で正式TTL/clock/全製品policyを導入しない。"
+        },
+        {
+          "id": "U5",
+          "rule": "oracle.bodyのcondition/success/counterexampleを独立behaviorの全内容へ比較。result.executionは観測状態を個別確認し、原成功観測と反例観測の両方を期待内容へ照合。result.evidence_refとevidence.identity、oracle identity/revisionが同原対象へ結び、result/evidence観測内容が一致することを別に必要とする。pass/name/linkのみで成立させない。"
+        },
+        {
+          "id": "U6",
+          "rule": "missing/対象不一致/未開始/失効/未実行/oracle又は参照不足ならcurrent_evaluation=not_evaluated、evaluated_scope=null。前提が有効でもresult/evidence観測がoracleへ不一致ならconflict_content、evaluated_scope=nullを保持。対応したscopeが成立したという出力は全内容対応時だけ返し、読めた原targetはinput/Contextとfinding locatorに保全する。全対応のみsupported_synthetic_content_only。同時findingは全件保持し、未評価前提は観測conflictより先に未評価集約する。"
+        },
+        {
+          "id": "U7",
+          "rule": "prior_confirmed_receiptsの各phase/対象版/scope/confirmed/limitを入力原内容のまま順序保持して返す。現在版証拠に書換えずprior_receipts_are_current_proof=false。他成果成功と下位成功は今回proofにせず、improvement_scoreはdiagnostic_onlyで要求承認/意思決定根拠へしない。全コード/全製品への外挿を拒否し、actual3作用はfalse。"
+        },
+        {
+          "id": "U8",
+          "rule": "外部/利用者CIと内部に同じscope/oracle資料契約。HARNESSが条件を提供し、運転/原記録はOS又は利用者手段owner。OS/④を一律依存にせず、Qと原入力/読めた限定scope/未評価を保全する。"
+        },
+        {
+          "id": "U9",
+          "rule": "candidate全fieldは導出valueへ比較し、差分はvalue root相対JSON Pointerへ返す。原L9の1差分token列を~0/~1escapingで1pointerへ写像。Noneだけ未提出。unknown/false/空objectを成功候補へ補完せず、候補から実state/受入/要求承認/期限/保証範囲を生成しない。"
+        }
+      ],
+      "postconditions": [
+        "input/Context/candidate/原oracle/result/evidence/過去receipt/Qは不変。未評価・失効・限定scopeを消さない。",
+        "同logical三引数で同value/全finding。findingは(code,pointer,record_role,return_owner)Unicode順で別locatorを保持。",
+        "I/O/network/DB/clock/CI/state/authority/受入/Issue/release/deploy/旧runtimeを呼ばない。",
+        "内容対応は実holdout/実Verified/実受入/全品質保証/実装準備ではない。"
+      ],
+      "finding_codes": [
+        "input_invalid",
+        "context_unresolved",
+        "record_missing",
+        "target_mismatch",
+        "oracle_conflict",
+        "validity_unresolved",
+        "expired",
+        "not_yet_valid",
+        "result_not_executed",
+        "reference_unresolved",
+        "content_conflict",
+        "candidate_conflict",
+        "projection_not_authority"
+      ],
+      "scope_limit": "N01部分詳細/先行test設計。全構造/複合/全finding、正式期限schema/codec/実owner/実holdout/時点原資料とL6L7凍結は未完。"
     }
   ]
 }
