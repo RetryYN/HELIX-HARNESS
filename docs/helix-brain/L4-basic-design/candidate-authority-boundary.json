@@ -1,0 +1,217 @@
+{
+  "parent": "HELIXBRAIN-L2-012",
+  "status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "f16579bb15636398489804681c4f6c8de80625dd",
+    "boundary": "候補返却と採用authorityの分離。実接続/製品選択/案件結論/権限を生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
+    },
+    {
+      "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    }
+  ],
+  "source_pin_limit": "bytes固定は全文精読/全意味被覆ではない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "read_lines": [
+        82,
+        85
+      ],
+      "quote": "### 自律境界（charter §3）\n\n- **人**: L0 企画 / L1 要求 / L2 デザインモック（モックが最後の直接関与）／ L3 要件は**承認のみ**。\n- **AI**: L3 起草 ＋ L4 以降〜GitHub PR/CI/merge/tag を**完全自動**（不可逆操作のみ escalate）。",
+      "file_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+      "selected_lines_sha256": "88f4ef2d611e29defaae5f56728a0dbd52856302147832ad0b0cfb689a4913fb",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+        "disposition": "unresolved",
+        "source_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb"
+      },
+      "reuse": "reference_only; selected autonomy boundary meaning rederivation",
+      "preserve": "人の上流意味/要件承認とAI下流起草の境界。通常の返却で人の毎回新承認を作らない。",
+      "change": "旧L0/L1/L2層番号/CI/自動tagを現行権限へ移植しない。BRAIN候補/製品CORE採用/OS記録を現行責務で分ける。",
+      "reason": "9/25記録済みBRAIN汎用/CORE固有差分、9/26原文L1-012/9/28採択012/10/12委任承認と限定再開に従う。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "実003/012の適用内容/候補source資格/要求値/重みと必要集合/未見組合せ。",
+    "CORE/選択したINT021のowner-qualified exact binding/正式schema・codec/知識内容採否。",
+    "L5/L8型/比較関数/単体oracle、実装前oracle凍結→実Red→最小Green→Refactor→再検証、実L9/L10/PO L11。",
+    "全92親430対の設計閉包/実装準備。"
+  ],
+  "document_id": "HELIXBRAIN-L4-012",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "knowledge_candidate_reply_reader",
+      "selected_reply_contract_reader",
+      "candidate_authority_owner_router"
+    ],
+    "flow": [
+      "context/知識原内容 → 六返却内容の局所比較",
+      "選択経路/独立必要契約 → knowledge版/scopeと不足",
+      "未決/権限原状態 → 提案保留と責務別返却"
+    ],
+    "python_boundary": "immutable inputのpure比較。DB/OS保存/CORE write/network/fs/env/clock/採用/INT実query/runtime判断/authority/受入を行わない。",
+    "representation_limit": "fixture ID/版/比較内容/契約/状態は合成対照。正式schema/codec/resolverや実source資格/knowledge内容採用ではない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXBRAIN-L4-012-F01",
+      "requirement_ref": "HELIXBRAIN-L3-012-F01",
+      "system_oracle_ref": "HELIXBRAIN-L10-012-F01",
+      "oracle_ref": "HELIXBRAIN-L9-012-F01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-012-F01",
+        "parent": "HELIXBRAIN-L2-012",
+        "title": "候補返却の意味集合",
+        "obligation": "利用要求/design contextと必要知識領域に対し、Pattern候補/required input/relation/alternative/constraint/evidenceと各版を返し、欠落/複数候補/判断不能を区別する。回答の存在や成熟度から今回案件の採用を生成しない。",
+        "oracle_ref": "HELIXBRAIN-L10-012-F01",
+        "failure_return": "context不足はCORE等の問い合わせ元、知識不足はBRAINへ返す。"
+      },
+      "component": "knowledge_candidate_reply_reader",
+      "input_meanings": [
+        "利用要求/design contextと必要知識領域の原内容",
+        "Pattern候補/required input/relation/alternative/constraint/evidenceの元内容と版",
+        "比較回答/不足/複数候補/判断不能"
+      ],
+      "output_meanings": [
+        "返却内容ごとの版対応と局所不足",
+        "問い合わせ元context不足/BRAIN知識不足の別候補"
+      ],
+      "content_comparison": [
+        "返却の六意味を元内容と照合。回答存在/成熟度を採用へ変えない。",
+        "context不足、知識内容欠落、複数成立候補、判断不能を区別しunknownを成功補完しない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/ownerと必要内容/選択必要契約集合を独立比較。実source資格/正式表現/接続は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-012-F02",
+      "requirement_ref": "HELIXBRAIN-L3-012-F02",
+      "system_oracle_ref": "HELIXBRAIN-L10-012-F02",
+      "oracle_ref": "HELIXBRAIN-L9-012-F02",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-012-F02",
+        "parent": "HELIXBRAIN-L2-012",
+        "title": "選択接続ごとの契約",
+        "obligation": "CORE返却は019、HARNESS設計義務への入力は022と受領側009、INT queryは選択した場合だけ021へ対象knowledge revision/scopeを結ぶ。必要契約missing/unknownはその接続の未成立に保ち、未選択経路を初回一律gateにしない。",
+        "oracle_ref": "HELIXBRAIN-L10-012-F02",
+        "failure_return": "各接続端の契約ownerへ当該不足を返す。"
+      },
+      "component": "selected_reply_contract_reader",
+      "input_meanings": [
+        "選択CORE/設計義務/INT query経路",
+        "019/022/受領009/選択021の独立契約参照",
+        "返却対象knowledge revision/scope"
+      ],
+      "output_meanings": [
+        "必要契約ごとのcandidate対応/不足/不明",
+        "未選択経路と接続端owner返却候補"
+      ],
+      "content_comparison": [
+        "CORE返却019、設計義務入力022と受領009、選択INT021を同knowledge版/scopeへ結ぶ。必要契約を参考に下げない。",
+        "missing/unknownを当該接続に保持し未選択INT完成を一律gateにしない。実binding成立は未主張。"
+      ],
+      "qualification_rule": "原identity/revision/scope/ownerと必要内容/選択必要契約集合を独立比較。実source資格/正式表現/接続は未binding。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXBRAIN-L4-012-B01",
+      "requirement_ref": "HELIXBRAIN-L3-012-B01",
+      "system_oracle_ref": "HELIXBRAIN-L10-012-B01",
+      "oracle_ref": "HELIXBRAIN-L9-012-B01",
+      "approved_requirement": {
+        "id": "HELIXBRAIN-L3-012-B01",
+        "parent": "HELIXBRAIN-L2-012",
+        "title": "採用authorityの非拡張",
+        "obligation": "BRAINは製品固有の採用判断/runtime案件結論/要求値/実行許可を生成しない。要求意味または重みが不明なら採用提案を停止し、CORE/INTELLIGENCE/人の責任ある判断先へ戻す。知識不足を権限拡張で補わない。",
+        "oracle_ref": "HELIXBRAIN-L10-012-B01",
+        "failure_return": "該当要求意味/製品判断/知識ownerへ返す。"
+      },
+      "component": "candidate_authority_owner_router",
+      "input_meanings": [
+        "要求意味/重み/知識不足の原状態",
+        "BRAIN候補/接続先製品判断の原状態",
+        "採用/runtime/要求値/許可/権限拡張/毎返却承認claim"
+      ],
+      "output_meanings": [
+        "候補/提案保留/製品採用/実行許可の区別",
+        "CORE/INT/人/BRAINの責務別返却候補"
+      ],
+      "content_comparison": [
+        "要求意味/重み不明は採用提案を止め責任ある判断先へ。不足知識を権限拡張で補わない。",
+        "既存authorityを維持し毎返却の新たな人承認を作らない。製品決定/案件結論/要求値/実行許可をBRAINから生成しない。"
+      ],
+      "qualification_rule": "原identity/revision/scope/ownerと必要内容/選択必要契約集合を独立比較。実source資格/正式表現/接続は未binding。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 14,
+      "F02": 20,
+      "B01": 8
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  }
+}
