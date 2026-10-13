@@ -919,6 +919,27 @@
         "preserve": "array順/record key整列、非JSON/cycle拒否とraw byte digest分離。",
         "change": "旧Number/binary64 formatter/UTF16 key sortをcopyせず、数学decimal内容/Unicode scalar順/strict UTF8/出力capの純粋候補へ再導出。",
         "reason": "大integerや精密小数の丸めを内容一致にせず、旧部分serializerのbytesを現行authorityへ移植しないため。capの固定値/新しい承認手続きは作らない。"
+      },
+      "wire_whole_rederivation": {
+        "read_line_locators": [
+          9,
+          10,
+          17,
+          18,
+          19,
+          20,
+          21,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40
+        ],
+        "preserve": "原資料内容のdigest照合と純粋な値比較。",
+        "change": "旧host Number有限性/JSON.stringifyとkey sortを受信parserへ移植せず、原number token/原bytesを保持し重複key/Unicode拒否の全診断を定義。",
+        "reason": "host変換で重複/精度/原文字を失う前に受信不足を戻し、意味資格や実作用を生成しないため。"
       }
     },
     {
@@ -1139,7 +1160,8 @@
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。 Context21例で独立資格不足とpair/意味/trigger/種類の局所不足を分離。 61固定対照を全ReconfirmationResultへ、複数意味軸11組/公開contract単独/7trigger共存2/同時Context7/複数candidate1の22例を追加。basis/全finding/role/hash/最上流と原因共存を固定。全構造/実policy/実binding/全freezeは未完。",
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。 50固定対照を全AssetReuseResultへ、8各不変条件changed/全8unknown/全11trace欠落/原UTF8・改行非正規化/bool数値型差/相反とunknown共存/Context複合5/原digestと資格共存/複数candidateの21例を追加。全finding/basis/role/hashを固定。全構造/実clearance/consumer閉包/全freeze未完。",
     "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。 Context25例で資料資格/未観測union/局所9cell/盲検資格の不足を分離。 52固定対照を全UnseenRelationResultへ、原複合6/Context複合8/相反と資格不足1/consumer順1/複数candidate1の17対照を追加。全finding/basis/role/hash/原欠落と派生join不明を分離。全構造/実probe/全binding/全freezeは未完。",
-    "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
+    "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。",
+    "wire受信WD1〜WD7と60全WireDecodeResultを具体化。原bytes/全finding/無効key位置/構文優先を保持。正式host/materializer/consumer/codec/資源/全入力coverage/実RedGreen/全92親430対の設計閉包は未完。"
   ],
   "document_id": "HARNESS-L5-004",
   "layer": "L5",
@@ -10366,10 +10388,53 @@
       "duplicate_key",
       "unicode_scalar_invalid"
     ],
-    "diagnostic_limit": "lexicalに解釈不能なdocumentから完全ASTやdomain valueを捏造しない。拒否でもraw bytes/digestを保全。全副次finding/byte span/全複合は未完、下のminimum code/AST指定例は部分oracle。",
+    "diagnostic_limit": "whole_finding_contract WD1〜WD7で本7fieldの全findingと位置/順序/拒否precedenceを規定。旧28例のrequired_findingsは部分証拠として保全し、新whole corpusで同じ原bytesの全結果へ対応させる。byte span/実host資源/正式codec/consumer/全wire入力の実試験は未完。",
     "number_and_digest_boundary": "原bytes digestとdomain logical canonical digestを別にする。既L9由来190原例のsource packetを照合した範囲ではJSON数値はintegerだけ（型境界/新wire小数例や実入力全体の範囲制限ではない）であり旧binary64 formatterの採用根拠にしない。数値tokenはASTでlosslessに保持し、数学内容比較/厳密logical materializer/小数・exponent canonical emissionと実consumer版は後続で固定する。既定host conversionや旧JSON.stringifyで丸めてhashを作らない。 exact_number_contractとcanonical_emit_contractに数学内容とlogical出力規則を具体化した。正式host/schema materializerとconsumer/codec版のbindingは未完。",
     "legacy_discrepancy": "旧digest inventoryのsrc/workflow/workflow-guide.ts::stableJsonはsorted-object-keys-array-order-preservedとあるが、実source114-116はJSON.stringifyのみ。この分類不一致を現行のkey sort成立根拠にしない。旧shared canonicalJsonはUTF-16 .sortとNumber有限性を使い、旧compareBytewiseはsurrogateのU+FFFD衝突をtie-breakする。現行は既定Unicode順/strict UTF-8からlone surrogate拒否へ再導出し旧sourceをcopy/実行しない。",
-    "unclosed": "formal wire registry/consumer/materializer/数値比較・emitter版/資源policy/全lexical finding/全codec oracle/L6L7凍結は未完。decoder例の静的整合を実I/O/probe/運転/実装完了にしない。"
+    "unclosed": "formal wire registry/consumer/materializer/数値比較・emitter版/資源policy/全lexical finding/全codec oracle/L6L7凍結は未完。decoder例の静的整合を実I/O/probe/運転/実装完了にしない。",
+    "whole_finding_contract": {
+      "status": "draft_design_whole_lexical_result_not_formal_codec_binding",
+      "result_fields": [
+        "status",
+        "raw_sha256",
+        "raw_retained",
+        "ast",
+        "findings",
+        "schema_handoff",
+        "actual_effects"
+      ],
+      "rules": [
+        {
+          "id": "WD1",
+          "rule": "入力domainは受信bytes。W1で原bytesのbare SHA-256を保持。strict UTF-8失敗はutf8_invalid/pointer nullの1findingだけでrejected。置換/AST/構文診断を作らない。"
+        },
+        {
+          "id": "WD2",
+          "rule": "UTF-8成功後は全文を単一JSON文書として構文確認。BOM、余剰文書、comment、trailing comma、不正number/escape等の文法失敗はjson_syntax_invalid/pointer nullの1findingでrejected。部分parseの重複/Unicode診断は返さない。NaN/Infinity/-Infinityだけは非JSONtokenの識別目的で仮保持できるが、その他の全文文法が不成立なら構文失敗を優先する。"
+        },
+        {
+          "id": "WD3",
+          "rule": "WD2の全文形が成立しNaN/Infinity/-Infinity tokenを1つ以上含む場合はjson_non_finite_literal/pointer nullの1findingだけでrejected。これはJSON ASTを認定する処理ではない。文字列内の同じ文字列はtokenとみなさない。"
+        },
+        {
+          "id": "WD4",
+          "rule": "WD2/3を通った文書は全object/array/stringを走査し、全duplicate_keyとunicode_scalar_invalidを集める。各object内の有効なscalar decoded keyを完全一致比較し、2回目以降同名をduplicate_keyへ。lone surrogate keyは比較可能なscalar名へ補完せずunicode_scalar_invalidへ。1つの異常で別の有効key/子valueの診断を止めない。"
+        },
+        {
+          "id": "WD5",
+          "rule": "pointerはroot空文字、arrayは10進index、object有効keyは~を~0・/を~1として親へ連結する。重複は当該key位置、lone surrogate valueはそのvalue位置。lone surrogate keyはそのobjectの位置。無効key以下のvalue/子孫は無効scalar名をpointerに挿入せず、直近の有効にaddressableな包含object位置へ返す。このfallbackは当該member全subtreeへ伝播する。byte span/member出現番号は本WireFindingに含めない。"
+        },
+        {
+          "id": "WD6",
+          "rule": "findingは(code,pointer,return_owner)完全同値をdedupしcode→pointer(null先、その他Unicode scalar codepoint順)→return_ownerで昇順。異なるcode/位置を落とさず、同名3回や同じfallback位置の同一causeは1つ。return_ownerは裸のwire-codec-owner識別子。"
+        },
+        {
+          "id": "WD7",
+          "rule": "finding非空はstatus rejected、ast null。空はdecodedで全WireNodeを返す。object原順/array順/number原tokenを保持し、空object/配列/文字列、false/zero/nullを欠如へしない。両statusでraw_sha256/raw_retained true/schema_handoff false/actual_effects noneを返す。decodedやA2原frame対応から意味資格・materializer成立・domain core呼出し・canonical digest・OS操作を作らない。"
+        }
+      ],
+      "scope_limit": "受信bytesの論理的な全結果を固定する。正式codec登録/資源超過時の実host処理/byte span/consumer binding/実I/O/凍結oracle/実RedGreenは未成立。Pythonの一時文書照合を正式host選定にしない。"
+    }
   },
   "exact_number_contract": {
     "status": "draft_design_exact_decimal_semantics_not_host_binding",
@@ -10569,7 +10634,7 @@
     "authority_effect": "none",
     "operation_effect": "none",
     "profiles_sha256": {
-      "wire_decode_contract": "592647099edb86dcf62a4c192db625b85dd2c7148845c6fac2fa887d4ea75116",
+      "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
       "exact_number_contract": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
       "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
       "schema_adapter_contract": "46f1522cbcdf585ee8113339ec44c5a5119761eb3d68270323b775803c56693b",
