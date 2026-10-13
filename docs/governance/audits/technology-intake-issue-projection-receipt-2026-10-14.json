@@ -1,0 +1,20 @@
+{
+  "evidence_kind": "issue_projection_read_after",
+  "authority_effect": "none",
+  "ticket_id": "FT-TECH-RESEARCH-INTAKE-001",
+  "source_commit": "217d65704f13ba2663b2044083d1b0aefb724691",
+  "source_path": "docs/governance/feature-tickets/FT-TECH-RESEARCH-INTAKE-001.md",
+  "source_sha256": "cff1adc3cae82e435387518b4f4f32d1bd276c10a8d7d0db7104eed20f72e3aa",
+  "issue_body_sha256": "a9bb6eeba8c55483814cecaa643367690f2fa5af4c0b78a52a2fcaac832ec252",
+  "issue_number": 3051,
+  "issue_url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3051",
+  "observed_state": "open",
+  "observed_body_sha256": "a9bb6eeba8c55483814cecaa643367690f2fa5af4c0b78a52a2fcaac832ec252",
+  "read_after_at_utc": "2026-10-13T18:19:31.941048+00:00",
+  "exact_ticket_body_in_projection": true,
+  "group_count": 10,
+  "group_item_occurrences": 99,
+  "distinct_label_count": 93,
+  "missing_from_projection": [],
+  "completion_effect": "none"
+}

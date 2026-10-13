@@ -288,5 +288,499 @@
     "1815:旧技術代替review（別scope、関連参照のみ）",
     "1798:入力原登録（別scope、関連参照のみ）"
   ],
-  "source_limits": "外部推奨を利用者が共有した比較材料。名称/順序/分類/推奨度をそのまま要求や利用認可へ昇格しない。source raw conversation/秘密/PIIを保存しない。"
+  "source_limits": "外部推奨を利用者が共有した比較材料。名称/順序/分類/推奨度をそのまま要求や利用認可へ昇格しない。source raw conversation/秘密/PIIを保存しない。",
+  "self_proposals": [
+    {
+      "id": "P01",
+      "title": "要求・対象版・選択経路への対応",
+      "finding_kind": "input_detail_gap_not_new_requirement",
+      "input_locator": {
+        "path": "docs/governance/technology-strengthening-intake.json",
+        "pointer": "/groups",
+        "captured_revision": "217d65704f13ba2663b2044083d1b0aefb724691",
+        "limit": "指摘は入力一覧の未具体化。既存製品設計全体の欠落判定ではない。"
+      },
+      "related_input_groups": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ],
+      "observed_gap": "一覧には候補名と考慮点があるが、候補ごとのtarget requirement/revision/scope・適用操作・依存区分・検証先の具体mapはまだない。",
+      "existing_requirement_sources": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "item_id": "HARNESS-L3-004-F01",
+          "item_sha256": "94dfb8ad8c3ec5cc47877b9fb9cd5b5dca4b23499ce4d943b7f1c9aaa91c60cd",
+          "obligation": "要求identity/revision/scope/sourceから設計と対検証へ上下方向のrelationを辿り、変更した要求条件に対応する設計/検証/oracle/再検証範囲を導出する。pair片側/孤立/出典/revision不足を識別し、件数/link存在だけで全条件の検証対応にしない。所有/実装/接続/検証の欠落、未所属と二重所有をそれぞれ識別し、unknown影響を影響なしへ補完しない。"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "item_id": "HARNESS-L3-023-F01",
+          "item_sha256": "633a8d7796a0fecb6969cfc5f95960a03e0f91d70eeab124dd670cd40f91e78b",
+          "obligation": "依存ごとに常時必須/特定操作時のみ必須/選択した入力元に応じて必須/参照資料のみのいずれかと、その条件・owner・identity・契約版/rangeをpack revisionへ束縛する。依存区分はtarget packの機能・owner・上位要求・版成熟度を変更しない。後続版依存を1.0へ強制せず、1.0で必要な安全依存を後続版扱いにして削らない。未選択能力の1.0完成義務を削除・延期しない。"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "item_id": "HARNESS-L3-023-F03",
+          "item_sha256": "5ab7026d344afbfc58bad3079a18843a3b32f6665d2b3ad2d93b2e929a229c7c",
+          "obligation": "選択sourceの依存は全て閉じる。未選択sourceは未観測と記録し、成功/不在/適格性を推測しない。認可/authority/隔離/排他/data-use/監査/停止復旧等の該当安全条件をoptional化しない。credentialも該当安全条件として必須とする。実行条件、source authority、検証oracle、安全制約として効く文書を参照資料へ分類して義務を消さない。"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "item_id": "HARNESS-L3-005-F01",
+          "item_sha256": "6d14a1e59c9b76086d3df99ec46f30ddf178f938fee213f94415dc48b5810877",
+          "obligation": "ticketとの関係（Forward小/中/大、V-pair、触るconnector、変更種別）と変更内容/layer/riskから、対象要求revision・artifact・入力・oracle・expected failure・実結果・証拠の有効期限・差戻し先を含む検証義務を導く。required/conditional/informational/N/Aを理由付きで区別し、unknownをskipへ変えない。"
+        }
+      ],
+      "self_proposal": "既存のtrace/依存分類で候補→対象要求/操作→対設計/oracle→未完ownerを対応付ける案。未選択sourceの未観測と選択scopeで必要な安全条件を分ける。全候補を初回必須にしない。",
+      "verification_plan": "対象revision違い、片側pair欠落、unknownを参照のみ/未選択へ丸める入力を独立に対照。名称の存在だけではscope/必要依存充足にしない。",
+      "return_to": "HARNESS対象pack/呼出し/trace owner",
+      "state": "proposed_pending_independent_review",
+      "verification_state": "static_source_and_scope_verified;product_runtime_not_executed",
+      "adoption_effect": "none"
+    },
+    {
+      "id": "P02",
+      "title": "非機能の測定と環境互換性・人間向け利用",
+      "finding_kind": "input_detail_gap_not_new_requirement",
+      "input_locator": {
+        "path": "docs/governance/technology-strengthening-intake.json",
+        "pointer": "/groups/0/considerations",
+        "captured_revision": "217d65704f13ba2663b2044083d1b0aefb724691",
+        "limit": "指摘は入力一覧の未具体化。既存製品設計全体の欠落判定ではない。"
+      },
+      "related_input_groups": [
+        "T01",
+        "T02",
+        "T06",
+        "T07",
+        "T09"
+      ],
+      "observed_gap": "再現環境と監視toolは記録されたが、品質13領域の適用表とmetric/workload/environment/baseline/target/許容差/oracleの具体入力はない。",
+      "existing_requirement_sources": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "item_id": "HARNESS-L3-034-F01",
+          "item_sha256": "2edea56d0ee5c6e8b662f7d6361fad16a4c98e088b56e33ee8970161e821818b",
+          "obligation": "対象requirement/NFR revision/scopeと対設計/受入、既決目標/判断出所から、metric ID・対象requirement/NFR・測定対象・workload/environment/data・baseline・target/SLO・許容差・sampling/window・tool/probe・evidence schema・判定oracle・owner・実行layer・再測定triggerを区別した版付き契約を提供する。欠落を別fieldや自由文で相殺せず未知値/schema/probeを既決にしない。"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "item_id": "HARNESS-L3-034-F02",
+          "item_sha256": "c3acf8698ff44af5e0f4d6ac862f0f9842c26e523d298978ad9c9ca3027caafb",
+          "obligation": "性能/信頼性/可用性/回復性/security/privacy/accessibility/互換性/運用性/保守性/cost-resource/data quality/observabilityの適用または理由付き非適用をscopeへ結ぶ。材料不足はunknownで保持し全製品へ同数値/環境を強制しない。"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "item_id": "HARNESS-L3-034-F03",
+          "item_sha256": "eb857f3308aca7d35595bed671d29e48bd3a38a9d018b9c4a947d97ac8881b1c",
+          "obligation": "対象要求の必須metricの未測定/stale/非代表環境/閾値未達が一件でもあれば対象system completionを成立させない。code/doc/test green、他metric好成績、別revision/環境のpassで相殺せず022へ計測義務と実結果/未完を渡す。"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "item_id": "HARNESS-L3-034-F06",
+          "item_sha256": "42da8ed7d19566c7a9aa284d8015350374aadf00c1d2cd810c556a7265439bf3",
+          "obligation": "stable NFR identity・quality characteristic・source authority・対象surfaceを契約へ結び、通常targetとerror budgetと超過不可hard limitを区別する。能力/観測可能挙動/ADR技術選択/policy閾値運用/runtime環境値を分離し旧技術選定を意味へ混在させない。"
+        }
+      ],
+      "self_proposal": "対象ごとに性能/信頼性/可用性/回復性/security/privacy/accessibility/互換性/運用性/保守性/cost-resource/data quality/observabilityの適用・理由付きN/A・unknownを整理する。選択OS/arch/runtime/toolchain matrix、UI選択時のkeyboard/可読性等を具体検証候補にし、全OS/UIや固定数値を一律要求しない。",
+      "verification_plan": "未測定、別環境、stale、代表性不足、理由のないN/A、別metric好成績による相殺を拒否する対照。閾値は既決値/owner根拠からのみ読む。",
+      "return_to": "HARNESS034と対象NFR/製品owner",
+      "state": "proposed_pending_independent_review",
+      "verification_state": "static_source_and_scope_verified;product_runtime_not_executed",
+      "adoption_effect": "none"
+    },
+    {
+      "id": "P03",
+      "title": "保存・索引・backupの実復旧と移行",
+      "finding_kind": "input_detail_gap_not_new_requirement",
+      "input_locator": {
+        "path": "docs/governance/technology-strengthening-intake.json",
+        "pointer": "/groups/6/considerations",
+        "captured_revision": "217d65704f13ba2663b2044083d1b0aefb724691",
+        "limit": "指摘は入力一覧の未具体化。既存製品設計全体の欠落判定ではない。"
+      },
+      "related_input_groups": [
+        "T06",
+        "T07",
+        "T09"
+      ],
+      "observed_gap": "検索/保存候補はあるが、TCP断以外のprocess crash/部分commit/索引再構築/backup restore/旧新schema・embedding切替の実検証対象が未指定。",
+      "existing_requirement_sources": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "item_id": "HARNESS-L3-034-F08",
+          "item_sha256": "7c9969247db5b1a9afb707cc3cf44940a04d489ec79f58866267416a839d5454",
+          "obligation": "DB/投影/継続stateを選ぶ対象ではdata量/query-projection p95-p99/lock待ち/busy timeout縮退/再構築/archive保守/並行実行/長時間soakを選択保存方式の対応条件へ導出する。旧harness.db/SQLite/vacuumを採用せず、未再現単一障害の原因を確定しない。"
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+          "item_id": "HELIXOS-L3-053-F03",
+          "item_sha256": "15823f57b784694c32c35bb8c7266e15162bfe4bc0a5fdb038b263ed00dd089d",
+          "obligation": "JSON正本/canonical revision、event/trace/impact/stale、projection/receiptの保存・照合失敗は、失敗位置、成功/未完write、rollbackまたは隔離先、復旧義務を記録する。rollback完了を証明できない場合はunknown/incompleteのまま残す。"
+        },
+        {
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+          "item_id": "HELIXBRAIN-L3-008-F02",
+          "item_sha256": "f042a164e64fbc743be4b011cd25a70fc345c8293351993de4d78baab5647878",
+          "obligation": "知識変更のsupersessionを明示し、旧版を参照した製品COREのexact利用参照と履歴を保持する。新currentの存在だけで過去/現在の参照を置換せず、旧参照の意味と新知識の適用条件を別に照合する。"
+        },
+        {
+          "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+          "item_id": "HELIXINFRASTRUCTURE-L3-005-F01",
+          "item_sha256": "9a96af1b7488138c7796cdf87a1b881d33b7fe4eacda40c16a575c5343acfc87",
+          "obligation": "backup target/source revision/time/completeness/location/integrity/expiryと実行stateを記録し、設定/成功/存在/restore可能を別判定にする。"
+        },
+        {
+          "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+          "item_id": "HELIXINFRASTRUCTURE-L3-005-F02",
+          "item_sha256": "0d3a914d777b080915bbe04b8cbe79893e8631a7fe325a5be13b152fd9793f65",
+          "obligation": "独立restore environmentで実restoreのintegrity/dependency reconnection/startup/verification evidenceを同対象へ結び、全必要条件成立まで成功としない。"
+        },
+        {
+          "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+          "item_id": "HELIXINFRASTRUCTURE-L3-005-F03",
+          "item_sha256": "6c1bbe68c1826b27a7595f3861b6688a01803d3c1bee673b7dde6c54de68e54e",
+          "obligation": "rollback targetのInfrastructure版/config/artifact/dependency/data compatibility/procedureを照合し未知target/互換不明では適格にしない。rollbackとincident closureを分ける。"
+        },
+        {
+          "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+          "item_id": "HELIXINFRASTRUCTURE-L3-006-F01",
+          "item_sha256": "78d97e7696122642448febf5a77617dd365e633c204b8a69cb389af8cc228e9a",
+          "obligation": "OS/通常control plane停止中でも独立して使える資源/経路と別SEC authorityにより限定bootstrap/点検/health/service停止/rollback/recoveryを選択する。停止中OSへ修復を依頼する循環を作らない。"
+        }
+      ],
+      "self_proposal": "選択store/indexのgeneration・元knowledge revision・旧利用参照を保ち、故障前/途中/復旧後を独立readで照合する案。別indexのrebuildと正本restoreを区別し、元義務のmigration/rollback/可逆性を対設計へ結ぶ。Toxiproxyをfile/process/電源断の全検証にしない。 OS/control plane停止時はINFRA006の独立資源/経路/別SEC authorityを選択し、停止中OSの応答を復旧開始の前提にする循環を作らない。",
+      "verification_plan": "backup存在だけ、rollbackの未観測、古いindexの0hit、別generationの正常結果、旧参照を新版へ暗黙置換した例を対照。実crash/復元の実行は対象authority/環境が成立した後。 独立restoreの接続/起動/検証を未観測なのに復元可能とする例、停止中OS ticketを必須にして復旧不能になる例を別に対照する。",
+      "return_to": "OS053/INFRA backup・復旧/知識版owner",
+      "state": "proposed_pending_independent_review",
+      "verification_state": "static_source_and_scope_verified;product_runtime_not_executed",
+      "adoption_effect": "none"
+    },
+    {
+      "id": "P04",
+      "title": "検査・開発ツール自身の供給網と権限",
+      "finding_kind": "input_detail_gap_not_new_requirement",
+      "input_locator": {
+        "path": "docs/governance/technology-strengthening-intake.json",
+        "pointer": "/groups/7/considerations",
+        "captured_revision": "217d65704f13ba2663b2044083d1b0aefb724691",
+        "limit": "指摘は入力一覧の未具体化。既存製品設計全体の欠落判定ではない。"
+      },
+      "related_input_groups": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T08",
+        "T09"
+      ],
+      "observed_gap": "技術審査の提案はあるが、選択tool本体/伝播依存/実行設定/インストール処理/SDK/providerの実artifact chainと権限scopeへの具体割当は未作成。",
+      "existing_requirement_sources": [
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+          "item_id": "HELIXSECURITY-L3-010-F02",
+          "item_sha256": "59f634c075ca5d327229fabcb83e4b5850fffe6f60f7a96108fc29b6fd1f2ca7",
+          "obligation": "各候補へdependency/permission/network/credential/hook-config差分、新規実行物、known finding、rollback可否と根拠を結ぶ。比較できない軸や欠落をunknownに保持し、変更なし/安全へ補完しない。011のcapability、012のprovenance、013のartifact chainを別の材料として参照する。"
+        },
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+          "item_id": "HELIXSECURITY-L3-012-F03",
+          "item_sha256": "39af8a260157072a6672736f8506119780d5746627e8045bee58ed09183972a6",
+          "obligation": "初回に選ぶformatter/lint/型検査/schema/文書監査/test/runtime/依存の外部実行資産について、該当する9種と010/013の材料を対象revision/scopeへ結ぶ。tool名・固定registry/scanner・特定providerを新規必須にせず、比較研究のURL/説明を実資産provenanceの代用にしない。"
+        },
+        {
+          "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+          "item_id": "HELIXSECURITY-L3-023-F01",
+          "item_sha256": "0d5c2f6095747c4c833ee5cb3c85919d6fa80ea5c3457bf58360f937f70cd9e2",
+          "obligation": "010/011/012/013の候補・provenance/capability delta/審査、007の実隔離適用、Worker結果、HARNESS検証証拠、OS昇格要求を該当段階で同identity/revision/scopeへ結ぶ。初期審査には審査前candidateと材料、実行後には結果、検証後には証拠を照合し、未来結果を初回実行開始の前提にしない。"
+        }
+      ],
+      "self_proposal": "検査器を含む外部実行物の対象版/digest/由来/権限/通信/credential/設定差とrollback根拠を既存SEC010〜013/007/008/023へ結ぶ案。試験前candidate/必要操作authorityと、後続result/正式利用を段階ごとに分離。license/再配布は原条件と既存確認先へ戻し、新規scanner/リスク分類/一律承認gateを作らない。",
+      "verification_plan": "公式URLだけのprovenance、lockだけの資産同一性、未来receiptを初回試験開始へ前倒し、権限変更なしへのunknown補完を対照。攻撃/導入/認証変更は本監査では行わない。",
+      "return_to": "SEC010〜013/007/008/023・対象作用owner",
+      "state": "proposed_pending_independent_review",
+      "verification_state": "static_source_and_scope_verified;product_runtime_not_executed",
+      "adoption_effect": "none"
+    },
+    {
+      "id": "P05",
+      "title": "独立評価の母数・oracleとAI停止/費用",
+      "finding_kind": "input_detail_gap_not_new_requirement",
+      "input_locator": {
+        "path": "docs/governance/technology-strengthening-intake.json",
+        "pointer": "/groups/4/considerations",
+        "captured_revision": "217d65704f13ba2663b2044083d1b0aefb724691",
+        "limit": "指摘は入力一覧の未具体化。既存製品設計全体の欠落判定ではない。"
+      },
+      "related_input_groups": [
+        "T03",
+        "T05",
+        "T06",
+        "T08",
+        "T09"
+      ],
+      "observed_gap": "PBT/攻撃/観測の候補はあるが、選択task/model/scopeの評価母数、欠測の処置、judge独立性、provider縮退とretry後の累積budgetを結ぶ評価計画は未確定。",
+      "existing_requirement_sources": [
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+          "item_id": "HELIXLABO-L3-055-F02",
+          "item_sha256": "fbd1de908b565f2b44ffae7109a2232634a10313d8875f24064ad751f4dd1c30",
+          "obligation": "数値metric/集約水準を出すscopeごとにeligible denominator・算入集合・欠測/失敗/拒否/停止/unknownのdisposition/算入除外理由・metric規則/scorer-oracle revisionを保持し同source receiptから根拠を再構成できるようにする。定性水準も適用条件/判定根拠/未評価部分を示す。"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+          "item_id": "HELIXLABO-L3-055-F03",
+          "item_sha256": "9a5507a07ec64586a2d496a3ede552812d6d89638a36407af2ede92b47db3f50",
+          "obligation": "既知失敗は失敗、欠測/unknownはその状態のまま保持し、重大quality/scope/security/data-loss failureを平均点で相殺しない。metricが主張する範囲だけ根拠を要求し、旧Bench portfolio/反復数/confidence interval/accepted-change正規化を全作業へ一律要求しない。新threshold/sample数を作らない。"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+          "item_id": "HELIXLABO-L3-056-F02",
+          "item_sha256": "9a953643bffc620137fbccf00d2bcfe474a6789ff7b391f5c772ab8edac52736",
+          "obligation": "評価済みへ移すときは対象task/model class/scope、oracle/基準revision・比較条件・結果/失敗/反例/unknownを含む根拠を特定し、実績への実適用結果・評価者・時点・判定receiptを照合する。判定可能なscopeだけ評価済みにし存在だけで移さない。"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "item_id": "HARNESS-L3-034-F07",
+          "item_sha256": "0665c6bff5a0e1185f100284686973fdf3ed4e422a69b0820e345c8b3796e826",
+          "obligation": "AI対象には判断再現性/Worker-verifier独立性/根拠対応/反復停止性/費用/provider縮退/memory汚染耐性を適用scopeで照合する。非AI対象へ一律に課さず非適用理由を残す。"
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+          "item_id": "HELIXOS-L3-018-F02",
+          "item_sha256": "f431b34c98b419d10389d1728cf337ba8c444dc8bc91e5da4149d2048eb3d029",
+          "obligation": "権限/lease/capability/期限/予算/head/scope不一致を停止理由とともに管理/推進へ返す。交代・失効・retry後も累積費用/予算・期限・失敗回数・未完義務を保持し、旧担当と新担当の二重claim/実行を防ぐ。"
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+          "item_id": "HELIXOS-L3-027-F01",
+          "item_sha256": "2e8f4bb4db06e5ffeca584067d98fd8c05672ddbbc7811d6dd5bfe6a4ace65a6",
+          "obligation": "開始前に要求/authority exact revision、ticket/task/scope、分類/data-use、操作許可、限定Worker/capability、proposal、LABO水準または明示未評価、予算/期限/停止条件、固定HARNESS oracle/義務、人確認を同attemptへ結ぶ。性能未評価だけで独立に許可された限定runを拒否せず、開始必須条件unknownは実行しない。"
+        }
+      ],
+      "self_proposal": "固定独立oracleと元結果/実作用を照合し、eligible母数・算入/除外・欠測/拒否/停止/unknownを残す案。LLM judge単独で安全を認定せず、選択AIに再現性/停止/費用/provider縮退/memory汚染を適用。必要budget/期限/再開条件は既存入力を保持し、初回未評価と実行必須条件unknownを分ける。",
+      "verification_plan": "平均scoreで重大失敗を相殺、観測0をエラー0、provider交代/retryでbudgetを初期化、評価未実施なのに評価済み、未評価というだけで別に許可された限定runを拒否する例を対照。",
+      "return_to": "LABO評価・OS attempt/予算・HARNESS oracle owner",
+      "state": "proposed_pending_independent_review",
+      "verification_state": "static_source_and_scope_verified;product_runtime_not_executed",
+      "adoption_effect": "none"
+    },
+    {
+      "id": "P06",
+      "title": "更新後の再評価・旧版/利用履歴・運用",
+      "finding_kind": "input_detail_gap_not_new_requirement",
+      "input_locator": {
+        "path": "docs/governance/technology-strengthening-intake.json",
+        "pointer": "/groups/8/considerations",
+        "captured_revision": "217d65704f13ba2663b2044083d1b0aefb724691",
+        "limit": "指摘は入力一覧の未具体化。既存製品設計全体の欠落判定ではない。"
+      },
+      "related_input_groups": [
+        "T04",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10"
+      ],
+      "observed_gap": "Capability Drift案とインフラ候補はあるが、選択技術の更新/廃止・送信/保持条件変化に対する対象影響/再測定/旧利用保全/復旧先の具体対応はない。",
+      "existing_requirement_sources": [
+        {
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+          "item_id": "HELIXBRAIN-L3-008-F01",
+          "item_sha256": "60819e67691cc524cf2d5e3663bd5965e759911ae62f017c3f6c7d4a550bf344",
+          "obligation": "再利用構造の機能identity、exact knowledge revision/version/stateとsupersession relation、製品COREの参照を結ぶ。current/superseded/deprecated/experimental/retired等の意味状態を区別し、版や利用identityが不明なら当該候補利用を止める。"
+        },
+        {
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+          "item_id": "HELIXBRAIN-L3-008-F02",
+          "item_sha256": "f042a164e64fbc743be4b011cd25a70fc345c8293351993de4d78baab5647878",
+          "obligation": "知識変更のsupersessionを明示し、旧版を参照した製品COREのexact利用参照と履歴を保持する。新currentの存在だけで過去/現在の参照を置換せず、旧参照の意味と新知識の適用条件を別に照合する。"
+        },
+        {
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+          "item_id": "HELIXBRAIN-L3-025-F03",
+          "item_sha256": "545a2ef67a486ec78410156a564bc5685222afc3c35d6659b716e437ca41b729",
+          "obligation": "AI生成/単一実績/LABO評価/OS ticket/文書存在のどれだけでもaccepted/matureへ昇格しない。rejection/hold/unknownとfinding/反例を元ownerへ返し、候補と採用済みを識別する。製品固有意味を汎用化しない。"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "item_id": "HARNESS-L3-034-F05",
+          "item_sha256": "4799043903d2ac4e5d7882c1f69c9d58618a30224830b98a7b7f5287c436bacc",
+          "obligation": "不足field・目標unknown・古い結果・代表性不明・未達を個別に記録し、owner/停止理由/未完metric/再測定triggerを保持する。意味を保った技術具体化は通常L3へ根拠付きに導出し、要求意味変更が必要な差分だけ003/004 Backflowへ戻す。session交代で未完を消さない。"
+        },
+        {
+          "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+          "revision": "1eb869a74f2e3a826928140b59268f455211ee8e",
+          "file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+          "item_id": "HELIXINFRASTRUCTURE-L3-010-F03",
+          "item_sha256": "8787f3a3fb2022df660fb171b7292cef1f026d44ee67f77de589878fe2295847",
+          "obligation": "state-changing actionには005の該当before/after・backup/restore/rollback/recovery義務を照合し未充足/unknownなら保留する。無関係な復旧義務を全操作へ一律要求しない。"
+        }
+      ],
+      "self_proposal": "対象tool/profile/source/knowledge revisionと実利用参照を固定し、版・能力・環境・source更新時に影響するscopeを既存traceで再評価する案。旧判断/旧利用を保持し、後回し/非推奨も理由・再評価条件へ。運用のretention/送信先/backup/key/廃止等は該当ownerの意味とauthorityから具体化し、一律期間/自動認可を作らない。",
+      "verification_plan": "新currentが存在するだけの参照置換、研究PR/単一実績からknowledge accepted、期限/再測定triggerなしの放置、別scopeの旧審査流用を対照。",
+      "return_to": "BRAIN版/採否・SEC更新・INFRA運用・HARNESS影響owner",
+      "state": "proposed_pending_independent_review",
+      "verification_state": "static_source_and_scope_verified;product_runtime_not_executed",
+      "adoption_effect": "none"
+    }
+  ],
+  "proposal_audit_basis": {
+    "source_main": "1eb869a74f2e3a826928140b59268f455211ee8e",
+    "legacy_comparison": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+        "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "quotes": [
+          {
+            "line": 178,
+            "text": "| HR-NFR-P3-01 | HNFR-P3 | 合格主張は green command evidence、review tier、external-truth grounding の有無を区別し、self-verification 単独を禁止する | HAC-N3-01a / HAC-N3-01b |",
+            "utf8_sha256": "6797ff183fb719c76e0000d1afd6b2d06708ecb92743be7fb8874daae94028d8"
+          },
+          {
+            "line": 179,
+            "text": "| HR-NFR-P3-02 | HNFR-P3 / HBR-P3 | 実装精度は design requirement ID、acceptance ID、code/test evidence、review finding の対応で計測し、未対応 claim を完了根拠にしない | HAC-N3-02a / HAC-N3-02b |",
+            "utf8_sha256": "0c0fe9abdd9d564beceb30a6d7969b4a2159775107ed72562b1fc6beeb562f9e"
+          },
+          {
+            "line": 181,
+            "text": "| HR-NFR-P3-04 | HNFR-P3 / HBR-P3 | AI による実装作業は test-first を既定にし、Red evidence、expected failure、acceptance oracle、Green evidence、refactor safety を記録する。test-first 不適用は理由と代替 oracle を持たなければならない | HAC-N3-04a / HAC-N3-04b |",
+            "utf8_sha256": "328eac9e9a437f8a22c8a5c39296680d2db0cf71c5254fddba14fe064572d971"
+          },
+          {
+            "line": 184,
+            "text": "| HR-NFR-P5-03 | HNFR-P5 / HBR-P3 | verification workload は fast/default/full の test/verification profile、並列度、CPU/IO/resource budget、timeout、p95 duration budget、実行時間記録を持ち、通常 loop で必要以上の full suite を強制しない。初期 budget は fast<=120s / default<=600s / full<=1800s を上限目安とし、超過時は continuation/blocker/improvement task に変換する | HAC-N5-03a / HAC-N5-03b |",
+            "utf8_sha256": "972a8d55085beafb6687a910049a37889855557f9601e9ab7dc18987b203a7c9"
+          },
+          {
+            "line": 187,
+            "text": "| HR-NFR-P8-03 | HNFR-P8 / HBR-P8 | agentic AI 機能は段階導入を既定にし、task-scoped permission、least privilege、監査ログ、rollback/reversibility、risk owner、継続監視、threat model 更新を持たない限り自動適用範囲へ昇格しない | HAC-N8-03a / HAC-N8-03b |",
+            "utf8_sha256": "0c9cc40080245f8f08c5f7e3089260f2e6c4166d5dc6245f22f1cd60ef941040"
+          }
+        ],
+        "preserve": "旧HR-NFR-P3-01/02/04の独立review・ID対応・Red/oracle、P5-03の検証負荷profile、P8-03の段階的scope/least privilege/rollback/監視を保持する。",
+        "change": "旧層番号・固定時間値・実gate/旧CIを移植せず、現行034/005/traceとSEC/OS/LABOの対象scopeに技術具体化する。",
+        "reason": "今回の候補名一覧だけでは見えない検証・運用条件を既存要求から導き、全体成功や新規必須gateを生成しないため。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "quotes": [
+          {
+            "line": 74,
+            "text": "| UTW-008 | High | 素のtest入口と正規snapshot runnerの意味が異なり、37 fail/4 errorsになる | 実測 | UTH-NFR-001、UTH-FR-010 |",
+            "utf8_sha256": "00a912b9edb3966a9a0f61f11bdac0b55d1638ce23ae2f60a536b26096134faf"
+          },
+          {
+            "line": 75,
+            "text": "| UTW-009 | High | full regression/doctorが重く、timeoutと長いself-heal loopを生む | 220.54秒、doctor test 214.17秒 | UTH-NFR-002、UTH-FR-011 |",
+            "utf8_sha256": "8e49bb52c72e6963a89ecd5111323a13c39a45e9eefa535627dffbdd1f6ae0a5"
+          },
+          {
+            "line": 77,
+            "text": "| UTW-011 | High | macOS legがなく、Windowsはfast/toolchain scopeのみ | workflow 2 legs | UTH-FR-012 |",
+            "utf8_sha256": "11fbffd6e44dee70f5bc128f24b22fc721d5a5469fbec907e5b5be31226ba234"
+          },
+          {
+            "line": 80,
+            "text": "| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |",
+            "utf8_sha256": "52ee08850bd54061dd5b2f3d9b9450abd286b7d0c9b2150ec733205426f0e287"
+          },
+          {
+            "line": 86,
+            "text": "| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |",
+            "utf8_sha256": "80621c5787b8a011886da2ecb57f349b8eb4041e212f2da66813db883caa440b"
+          },
+          {
+            "line": 87,
+            "text": "| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |",
+            "utf8_sha256": "3a6bddbe4c73e4a6d0f4e0d0c9db39c06d47691f3d2fd1ff0a11675bc7df5f44"
+          },
+          {
+            "line": 88,
+            "text": "| UTW-022 | High | external MCP/tool/pluginの実行、権限、supply-chain検証がprofile設計より後追い | backlog IMP-120〜124 | UTH-FR-024 |",
+            "utf8_sha256": "4ad26871e55b598dca09b351be9ebd74e4246be9d848c51ab215e52abb673627"
+          },
+          {
+            "line": 93,
+            "text": "| UTW-027 | Medium | wrapperがcloneを重ね、disk/process/resource予算が明示的でない | snapshot runner実測 | UTH-NFR-002、UTH-FR-026 |",
+            "utf8_sha256": "78e5d93102878388f127d16735012fbafbec017d746eb52c2bc10b94c0610003"
+          }
+        ],
+        "preserve": "旧UTW-008/009/011/014/020/021/022/027の入口差・重いfull・platform差・欠損空集合・粗いaggregate・自己申告・後追い供給網・資源予算不足を監査起点にする。",
+        "change": "旧wrapper/DB/CLIを復活させず、現行の局所検証/欠測・未完/互換matrix/対象資産・費用・復旧計画の具体化案で再発要因を照合する。",
+        "reason": "今回の候補名一覧だけでは見えない検証・運用条件を既存要求から導き、全体成功や新規必須gateを生成しないため。"
+      }
+    ],
+    "scope": "T01〜T10の技術選定入力に対する具体化の監査。元の92親430対・下流設計の全体完了監査を代替しない。",
+    "user_instruction": "その他抜けている観点がないかもチェックして自己提案して検証すること。",
+    "effects": "提案/静的検証だけ。要求/採否/実操作のauthorityなし。",
+    "remaining": "独立review、対象の具体条件/fixture/oracleと実評価、全設計/実装準備は未完。"
+  }
 }
