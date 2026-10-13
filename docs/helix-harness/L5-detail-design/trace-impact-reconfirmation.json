@@ -12,15 +12,15 @@
     "detail_requirements_in_this_revision": [
       "HARNESS-L3-004-F04",
       "HARNESS-L3-004-B01",
-      "HARNESS-L3-004-F02"
+      "HARNESS-L3-004-F02",
+      "HARNESS-L3-004-F01"
     ],
     "remaining_requirement_refs": [
-      "HARNESS-L3-004-F01",
       "HARNESS-L3-004-F03",
       "HARNESS-L3-004-F05",
       "HARNESS-L3-004-N01"
     ],
-    "boundary": "004のB01/F02/F04を部分詳細化。残4契約/正式binding/全oracleを未完保持し、全004完了や実作用を生成しない。"
+    "boundary": "004のB01/F01/F02/F04を部分詳細化。残3契約/正式binding/全oracleを未完保持し、全004完了や実作用を生成しない。"
   },
   "source_pins": [
     {
@@ -208,7 +208,36 @@
         ],
         "adoption": "selected_semantic_comparison_not_whole_legacy_requirement_or_runtime"
       },
-      "detail_rederivation": "stable atom/要求revision・source原文と生存先/人間判断の分離・全atomの処置を、純粋Pythonのpartition比較へ導出する。旧Ledger/DB/consumer書込を実行・移植しない。"
+      "detail_rederivation": "stable atom/要求revision・source原文と生存先/人間判断の分離・全atomの処置を、純粋Pythonのpartition比較へ導出する。旧Ledger/DB/consumer書込を実行・移植しない。",
+      "f01_rederivation": {
+        "read_line_locators": [
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139
+        ],
+        "line_quotes": [
+          {
+            "line": 132,
+            "text": "| **HIL-FR-42** | Design Obligation Graphは`source/directive→requirement atom→capability/service→domain object→API/data/state/event/failure/security/observability/lifecycle/operation/test oracle/gate`を双方向に結び、必須義務を生成する。未消込、孤児、placeholder、根拠のないN/A、aggregate一括消込が1件でもあればpair-freezeを拒否する。 | obligation graph、discharge receipt、coverage receipt、未消込finding |"
+          },
+          {
+            "line": 138,
+            "text": "| **HIL-FR-48** | Vertical Ledger Pair Gateは隣接layer間の`derived_from/downstream_to`と`backpropagates_to/supersedes`を双方向検査し、上位義務の未降下、下位発見の未逆伝播、粒度不整合、stale revision、aggregate一括pairを拒否する。 | vertical edge receipt、unresolved descent/backprop finding |"
+          },
+          {
+            "line": 139,
+            "text": "| **HIL-FR-49** | Horizontal V-Pair Gateはcanonical正規pair `L1↔L12(企画/運用テスト)`、`L2↔L11(要求/受入テスト)`、`L3↔L10(要件/総合テスト)`、`L4↔L9(基本設計/結合テスト)`、`L5↔L8(詳細設計/単体テスト)`と、`L6実装↔L7 TDD closure`を原子的oracle単位で双方向joinする。L12運用feedbackはL1企画と層外L0 charterへ還流し、設計義務と検証証拠の片側欠落、異なるsnapshot、未実行oracleを拒否する。 | V-pair receipt、design/verification edge、snapshot/oracle finding |"
+          }
+        ],
+        "preserve": "原atomの双方向義務trace、片側/孤児/別snapshot/未実行の拒否とconsumer保全。",
+        "change": "旧Graph/台帳gate/runtimeと旧L6L7番号を移植せず、現行承認F01の個別条件10軸/対象版/候補返却へ再導出。",
+        "reason": "件数/link/hashのみの充足と旧graph/CIによる欠落補完を防ぐため。全旧候補採用/実pair成立は生成しない。"
+      }
     },
     {
       "asset_id": "LEGACY-ASSET-5DAB2F0E1C13F846CABB",
@@ -270,10 +299,11 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004 F01/F03/F05/N01の4契約を同じL5/L8文書へ追加する。",
+    "004 F03/F05/N01の3契約を同じL5/L8文書へ追加する。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。",
+    "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
   ],
   "document_id": "HARNESS-L5-004",
@@ -653,6 +683,139 @@
       "candidate_conflicting_fields": "tuple[Text]",
       "retained_input_sha256": "Digest（canonical logical、原transport bytesと区別）",
       "retained_context_sha256": "Digest（canonical logical）"
+    },
+    "TraceTarget": {
+      "scope": "Text",
+      "requirement_revision": "Text（opaque exact binding）"
+    },
+    "TraceOracle": {
+      "input": "LogicalJson",
+      "expected": "LogicalJson",
+      "expected_failure": "Text"
+    },
+    "TraceRequirement": {
+      "id": "Text",
+      "source": "Ref",
+      "raw_utf8": "RawUtf8",
+      "oracle": "TraceOracle",
+      "source_sha256": "Digest"
+    },
+    "TraceDesign": {
+      "id": "Text",
+      "condition_id": "Text",
+      "binding": "Text",
+      "source_sha256": "Digest",
+      "behavior_contract": "TraceOracle | null"
+    },
+    "TraceVerification": {
+      "id": "Text",
+      "condition_id": "Text",
+      "binding": "Text",
+      "oracle": "TraceOracle | null",
+      "evidence_origin": "Text（current/legacyを判別し未知をcurrentにしない）",
+      "legacy_success": "optional bool（資格根拠ではない）",
+      "legacy_source_ref": "optional Text（非実行参照）"
+    },
+    "TraceEdge": {
+      "from": "Text",
+      "to": "Text",
+      "binding": "Text",
+      "evidence_origin": "Text",
+      "legacy_source_ref": "optional Text（非実行参照）"
+    },
+    "TraceOwnerAssignment": {
+      "subject_kind": "Text",
+      "memberships": "tuple[Text]",
+      "owners": "tuple[Text]"
+    },
+    "TraceImplementation": {
+      "ref": "Ref",
+      "design_id": "Text",
+      "binding": "Text",
+      "kind": "Text（合成は実codeでない）"
+    },
+    "TraceConnection": {
+      "ref": "Ref",
+      "design_id": "Text",
+      "binding": "Text",
+      "from": "Text",
+      "to": "Text",
+      "kind": "Text（合成は実接続でない）"
+    },
+    "TraceInput": {
+      "target": "TraceTarget",
+      "requirements": "tuple[TraceRequirement]",
+      "design_records": "tuple[TraceDesign]",
+      "verification_records": "tuple[TraceVerification]",
+      "relations": "tuple[TraceEdge]",
+      "owner_assignments": "mapping[Text,TraceOwnerAssignment]",
+      "implementation_records": "mapping[Text,TraceImplementation | null]",
+      "connection_records": "mapping[Text,TraceConnection | null]",
+      "changed_conditions": "tuple[Text]",
+      "scenario_kind": "Text（診断のみ）"
+    },
+    "TraceReferent": {
+      "kind": "requirements | design_records | verification_records | relations | owner_assignments | implementation_records | connection_records",
+      "record_identity": "Text",
+      "raw_utf8": "RawUtf8",
+      "content_sha256": "Digest",
+      "source_ref": "Ref | null（原recordがRefを持たないときのみ）",
+      "state": "current | missing | unknown | conflict | stale",
+      "qualification_basis_refs": "tuple[Ref]",
+      "evidence_kind": "synthetic | actual_owner_input"
+    },
+    "TraceContext": {
+      "target": "TraceTarget",
+      "requirements": "tuple[TraceRequirement]（独立要求条件母集団/原文/oracle）",
+      "owner_assignments": "mapping[Text,TraceOwnerAssignment]（独立割当）",
+      "record_catalog": "tuple[TraceReferent]",
+      "qualifier_roots": "tuple[Ref]（独立供給）",
+      "evidence_kind": "synthetic | actual_owner_input",
+      "state": "current | missing | unknown | conflict | stale"
+    },
+    "TraceCell": "supported_synthetic_material | content_supported_requires_actual_qualification | missing | unknown | conflict | stale | unknown_design_join",
+    "TraceConditionValue": {
+      "design": "TraceCell",
+      "verification": "TraceCell",
+      "source": "TraceCell",
+      "revision": "TraceCell",
+      "bidirectional_trace": "TraceCell",
+      "owner": "TraceCell",
+      "membership": "TraceCell",
+      "implementation": "TraceCell",
+      "connection": "TraceCell",
+      "semantic_oracle": "TraceCell"
+    },
+    "TraceValue": {
+      "condition_results": "mapping[Text,TraceConditionValue]",
+      "unresolved_conditions": "tuple[Text]",
+      "reverification_targets": "tuple[Text]（current-origin記録target候補、実行資格とは別）",
+      "impact_condition": "supported_synthetic_condition | content_supported_requires_actual_qualification | Unknown",
+      "actual_all_conditions_verified": "literal false",
+      "actual_implementation_complete": "literal false",
+      "actual_connection_complete": "literal false",
+      "actual_requirement_approved": "literal false",
+      "actual_completion": "literal false",
+      "unmatched_record_ids": "tuple[Text]",
+      "unresolved_reverification_conditions": "tuple[Text]",
+      "rejected_external_verification_record_ids": "tuple[Text]"
+    },
+    "TraceCandidate": "TraceValueと同じ閉じたfield集合。literal false位置も提出主張を比較し実成立を拒否。reason/retain_unaffected_materialは説明metadataとして別保持し、それ以外未知fieldは拒否する。",
+    "TraceFinding": {
+      "code": "F01 finding_codes",
+      "pointer": "JSON Pointer（/input,/context,/candidate）",
+      "condition_ids": "tuple[Text]",
+      "basis_refs": "tuple[Ref]",
+      "return_owner": "Text"
+    },
+    "TraceResult": {
+      "outcome": "content_supported | unknown | conflict | invalid",
+      "value": "TraceValue | null（構造解釈不能のみ）",
+      "findings": "tuple[TraceFinding]",
+      "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
+      "candidate_conflicting_fields": "tuple[Text]",
+      "retained_input_sha256": "Digest（canonical logical bytes）",
+      "retained_context_sha256": "Digest（canonical logical bytes）"
     }
   },
   "functions": [
@@ -882,6 +1045,95 @@
         "影響を成立stateにせず、synthetic pass/failも実upper passed/failed/再実行/完了ではない。"
       ],
       "scope_limit": "F02部分詳細。17原例と固定合成Contextを定義し、全構造/複合/qualification/実codec/oracle凍結は未完。"
+    },
+    {
+      "id": "HARNESS-L5-004-F01",
+      "requirement_ref": "HARNESS-L3-004-F01",
+      "l4_ref": "HARNESS-L4-004-F01",
+      "l9_ref": "HARNESS-L9-004-F01",
+      "l8_ref": "HARNESS-L8-004-F01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-F01",
+        "parent": "HARNESS-L2-004",
+        "title": "要求から対設計・検証へのtrace",
+        "obligation": "要求identity/revision/scope/sourceから設計と対検証へ上下方向のrelationを辿り、変更した要求条件に対応する設計/検証/oracle/再検証範囲を導出する。pair片側/孤立/出典/revision不足を識別し、件数/link存在だけで全条件の検証対応にしない。所有/実装/接続/検証の欠落、未所属と二重所有をそれぞれ識別し、unknown影響を影響なしへ補完しない。",
+        "oracle_ref": "HARNESS-L10-004-F01"
+      },
+      "symbol": "compare_condition_trace_coverage",
+      "signature": "compare_condition_trace_coverage(input: TraceInput, context: TraceContext, candidate: TraceCandidate | None = None) -> TraceResult",
+      "preconditions": [
+        "対象requirement版/scope、原条件ID/原文/oracle/owner割当は独立Contextへ固定する。原input/候補/件数/linkから網羅性や資格を作らない。",
+        "catalogはkind/record_identity/content digest/原bytes/原Refと資格根拠を照合する。record原内容が固定資料にあることと現行revisionや意味に適合することを別条件にする。",
+        "synthetic rootは実owner原資料資格ではない。actual_owner_inputの実consumer/資格bindingは未完でunknownを返す。"
+      ],
+      "algorithm": [
+        {
+          "id": "T1",
+          "rule": "閉じた型/未知field/重複ID/重複edge/多重record/未知条件IDをlocatorへ蓄積。必要なnull欠落と不正型を区別し、読めた材料を失わない。Context条件ID全件を結果母集団とし、提出側で条件を減らして充足へしない。"
+        },
+        {
+          "id": "T2",
+          "rule": "target版/scopeとContext、各要求の全Ref成分・raw UTF-8 digest・原oracleを独立資料へ照合。source不足/異内容/不明資格をsource cellへ返す。原文digest一致だけで設計・検証の意味対応を生成しない。"
+        },
+        {
+          "id": "T3",
+          "rule": "各条件idへ設計/検証recordをjoin。無ければ当該cell missing、複数候補はconflict、選択外recordはunmatched_record_idsへ残す。recordの存在と同版/意味対応は別cellで評価する。legacy_CIなど外部旧originはverification conflict、rejected_external_verification_record_idsへ保持しcurrentを補わない。"
+        },
+        {
+          "id": "T4",
+          "rule": "設計と検証のbindingを対象要求版へ照合しrevision cellへstale/conflictを返す。設計source_sha256と要求原digestをsource cellで比較。個別cellは別軸なので、版staleを他の内容比較結果やreadable原recordの存在へ混ぜない。"
+        },
+        {
+          "id": "T5",
+          "rule": "条件→設計、設計→条件、設計→検証、検証→設計の4方向について、各endpointが選択された実在recordであり同target bindingのcurrent-origin edgeがあるか読む。片側/孤立endpoint/legacy_graphしかない方向はbidirectional_trace missing。件数で充足にしない。edgeのtarget版とendpoint recordの版は別に照合して全軸の成立を要する。"
+        },
+        {
+          "id": "T6",
+          "rule": "要求oracle、設計behavior_contract、検証oracleのinput/expected/expected_failureを型付き全内容比較。必須oracle無し/設計検証欠落はsemantic_oracle missing、内容差または旧CI依存はconflict。nullやbool-number型差を同値化しない。ID/型/hashだけで内容を合格にしない。"
+        },
+        {
+          "id": "T7",
+          "rule": "所有と所属を独立割当へ照合。owners空はowner missing、多重owner/異ownerはconflict、memberships空はmembership missing、対象外scope/多重所属はconflict。実装/接続recordはそれぞれ無しならmissing、参照designが無ければunknown_design_join、原Ref scope違いはconflict、版/owner/内容不一致は当該cellへ保持。合成trace recordは実code/接続の証拠でない。"
+        },
+        {
+          "id": "T8",
+          "rule": "全10cellの不足/矛盾/旧版/不明を各条件のunresolvedへ保持しimpact_condition Unknown。無関係条件の内容と入力を消さない。changed_conditionsごとに存在するcurrent-origin検証record IDだけを再検証target候補へ列挙し、無い条件はunresolved_reverification_conditionsへ。候補targetは資料名の診断であり、oracle欠落/版不一致のあるtargetを実行適格と認定しない。旧CI IDはtargetにしない。"
+        },
+        {
+          "id": "T9",
+          "rule": "原valueの5実作用はfalse。candidateは第三引数として全value fieldを比較し差分field全件を返す。件数/trace登録による検証済み/実装/接続/承認/完了のtrue主張をconflictへ、原valueは保持。未提出not_submitted、同内容corresponding_content_only。原内容未解決ならoutcome unknown、全内容対応ならcontent_supported、候補矛盾はconflict、解釈不能構造はinvalid。"
+        }
+      ],
+      "finding_codes": [
+        "input_invalid",
+        "condition_population_conflict",
+        "record_missing",
+        "record_ambiguous",
+        "reference_missing",
+        "reference_unknown",
+        "reference_conflict",
+        "reference_stale",
+        "source_content_conflict",
+        "unmatched_record",
+        "orphan_endpoint",
+        "pair_direction_missing",
+        "semantic_oracle_missing",
+        "semantic_oracle_conflict",
+        "owner_missing",
+        "owner_conflict",
+        "membership_missing",
+        "membership_conflict",
+        "implementation_join_unknown",
+        "connection_join_unknown",
+        "external_verification_rejected",
+        "candidate_conflict"
+      ],
+      "postconditions": [
+        "input/context/candidateを変更せず、全条件と欠落/未対応を個別に保持。I/O/network/DB/clock/保存/旧graphや旧CI実行を呼ばない。",
+        "同logical引数で同value/finding集合。Text集合はUnicode順、findingは(code,pointer,condition_ids,return_owner)順。副次finding/別locatorを潰さない。",
+        "domain digestはUTF-8/sorted keys/compact/有限値のcanonical logical bytes。原transport/owner bytesは別codec bindingに保持し実資格へ昇格しない。"
+      ],
+      "scope_limit": "27原例と固定合成Contextの部分詳細。追加全型/複合/資格/実codec/全finding/oracle凍結は未完。"
     }
   ]
 }
