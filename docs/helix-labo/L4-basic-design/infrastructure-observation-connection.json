@@ -1,0 +1,150 @@
+{
+  "parent": "HELIXLABO-L2-026",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+    "boundary": "選択INFRA resource/runtime evidenceの許可範囲付き受領。全資源・全環境の収集やresource操作を本Draftから生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        67,
+        67
+      ],
+      "quote": "| **HIL-BR-15** | 将来のproduct-data sourceをversioned connectorで取り込み、由来・鮮度・schema・authorityを保持した正規projectionとして設計判断、coverage、impact、Issue routing、docgen/detectorへ供給する。 |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "880385839788ea49f14544ee9dd0f1ed5037bc84b1707a9ba55f4fa6a267c2f5",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "runtime observation/projectionと意味authorityの分離、source由来/版/鮮度/権限の境界を保持する。",
+      "change": "旧製品DB/DevOS/単一runtimeを移植せず、採択026のINFRA資源正本とLABO observationの別owner・固有connector・stale/unknown未成立へ再導出する。",
+      "reason": "9/26のINFRA配置と9/28 LABO採択、10/12限定026承認に従う。観測受領が資源操作やauthority移管にならない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        29,
+        30
+      ],
+      "quote": "Requirement、Definition、Contract、Release、Deploymentの意味authorityはHELIX-HARNESSに置く。runtime observation、log、metric、\ntrace、notification、provider control plane、DevOS、`harness.db`は証拠またはprojectionであり、意味authorityとして手編集しない。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "e277f6a891b50c2662b4f4fea61d172ea9757d108ad870e462cf51aaf5cfe4a3",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "runtime observation/projectionと意味authorityの分離、source由来/版/鮮度/権限の境界を保持する。",
+      "change": "旧製品DB/DevOS/単一runtimeを移植せず、採択026のINFRA資源正本とLABO observationの別owner・固有connector・stale/unknown未成立へ再導出する。",
+      "reason": "9/26のINFRA配置と9/28 LABO採択、10/12限定026承認に従う。観測受領が資源操作やauthority移管にならない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "INFRA source契約、資源/環境の実revision、SEC既決data-use、専用connector/契約版、両端receiptと001 observationのowner-qualified exact bindingは未成立。",
+    "正式schema/codec・permission/freshness/provenance/receipt resolver・原子記録/並行revision/replay・全組合せ・対L5L8・oracle凍結は未完。",
+    "実装前Red→Green→Refactor→再検証、実認可/実資源観測/実受領/実L9L10/PO L11、全92親430対の設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXLABO-L4-026",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "infra_resource_evidence_reader",
+      "infra_aggregate_connector",
+      "data_use_scope_reader",
+      "source_revision_freshness_reader",
+      "labo_observation_receipt_reader"
+    ],
+    "flow": [
+      "INFRAが所有する資源/runtime evidenceと許可範囲を固有connectorから読む",
+      "source/資源/環境revisionと原field/未観測をLABO observationの別identityへ結ぶ",
+      "同scope/revisionの両端receiptを比較しstale/unknown/不足をINFRA・接続・SECの該当ownerへ返す"
+    ],
+    "python_boundary": "Python接続は予定する観測受渡しと未成立理由の返却を担う。資源正本writer・collector起動・権限変更・LABO評価/Worker配置はこのDraftで実装しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXLABO-L4-026-F01",
+      "requirement_ref": "HELIXLABO-L3-026-F01",
+      "system_oracle_ref": "HELIXLABO-L10-026-F01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-026-F01",
+        "parent": "HELIXLABO-L2-026",
+        "title": "INFRA資源観測の受領",
+        "obligation": "許可resource/runtime evidenceを専用connectorで受けsource版/provenance/scopeを保持しINFRA resource authorityを移さない。stale/unknownはcurrentにせず元sourceへ返す。",
+        "oracle_ref": "HELIXLABO-L10-026-F01"
+      },
+      "content_rules": [
+        "INFRAが元resource/runtime evidenceを所有し、LABOは別identityのobservationとsource参照を持つ。受領を資源authority移管にしない。",
+        "固有connection/connectorと契約identity/版でINFRA source revision・provenance・資源/環境scope・許可範囲を保持する。共通pack/権限の実resolverは別閉包に残す。",
+        "原fieldの観測状態を保持し、stale/unknown/未観測をcurrent/healthyで補わない。鮮度条件はsource契約へ結び、新たなTTLを発明しない。",
+        "両端receiptは同じ資源/元source/revision/契約/scope/内容を参照する。別版・欠落・片側成功では成立させず元記録を保って該当ownerへ戻す。"
+      ],
+      "representation_limit": "合成参照。fixture declared permission/currentとreceiptを実認可・実観測・実受領へ昇格しない。"
+    }
+  ]
+}
