@@ -1,0 +1,1077 @@
+{
+  "parent": "HELIXSECURITY-L2-001",
+  "status": "candidate_detail_and_unit_oracles_pending_independent_review",
+  "source_main": "b31c613993d109a81ab4608f00f017d668071b98",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "boundary": "001の未信頼source/分類と明示owner経路だけ。全Guard/全Bot/分類方式/実authority/enforcer/実保存・学習を生成しない。"
+  },
+  "parent_pair_revision": "b31c613993d109a81ab4608f00f017d668071b98",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "source_pins": [
+    {
+      "path": "docs/helix-security/L4-basic-design/external-input-trust-boundary.json",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "9e1a4fd0f331cee16f120ba5ac99272deaa915f2bb20f456bae2077cd3ac91b3"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/external-input-trust-boundary.json",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "e8ce817ab5b89e7c2a535463cd81fbdcf70f9e282fb34bd31b0a5fe42dacfa63"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/trace-impact-reconfirmation.json",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "bb31b5abe547b5caaea80a62992fa3e967f94a2273430ffd64b17e50c7fd36b2"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "699a0a0df5e92cfe7367dded2ab4c1e1d1cc6f4d8b1bff0418cdfa58e4768c0c"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "5c42c983506b2d182fb5d548c16ac264b63325b07b2010e6a46641528077ba3b"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "88816f81ca26c02c3913eea6b609e16eda0d6b5b4fa59ea69e024268969bc703"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "revision": "b31c613993d109a81ab4608f00f017d668071b98",
+      "sha256": "be5052acb26625928207a4d8538a2c9db342c223b2c699c660b5735ad86a360b"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "selected_line_quotes": [
+        {
+          "line": 186,
+          "text": "| HR-NFR-P8-02 | HNFR-P8 / HBR-P8 | prompt injection / tool injection / data exfiltration 誘導を検出・分類し、外部データ由来の命令を隔離、redaction、human review、deny のいずれかに送る | HAC-N8-02a / HAC-N8-02b |",
+          "utf8_sha256": "4a75b4dc8718d0c5d2ee4d5b53966ce820f8913efaf4ed544b9cf17265eeb199"
+        },
+        {
+          "line": 267,
+          "text": "| HAC-P8-04a | Web/docs/OSS/issue/PR/comment など外部 text を取り込む | security filter が入力を解析 | raw content、source metadata、trusted extraction、model instruction を別 field に分離する |",
+          "utf8_sha256": "3e3090502079bdfed7f356b25298ac477489f0464b14dcd88fd7ff9002207389"
+        },
+        {
+          "line": 268,
+          "text": "| HAC-P8-04b | 外部 text に命令・secret 要求・tool 実行誘導が含まれる | agent が利用しようとする | instruction として採用せず、引用/要約対象または threat finding として扱う |",
+          "utf8_sha256": "20cb7ac273c938080ec02087505a12fcf7ffbb9cde3a84cd254e4dc2e986d2a2"
+        },
+        {
+          "line": 297,
+          "text": "| HAC-N8-02a | prompt injection pattern または data exfiltration 誘導がある | filter policy を評価 | threat class、source、matched rule、decision、redacted span が audit に残る |",
+          "utf8_sha256": "d652629a4db952c4d7aa37bdc12b7d85e252a4f7244c8665971c4b0ee92fb42a"
+        },
+        {
+          "line": 298,
+          "text": "| HAC-N8-02b | filter が high-risk と判定する | downstream tool call を生成 | deny または human review に止め、外部データが tool args / system prompt へ直結しない |",
+          "utf8_sha256": "57dfd152b023e6981a256f0f60c219aad8f206e05ba65375fbf5e5fa3493b2a1"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "外部raw/source metadataとinstructionの分離、外部dataを命令やtool実行へ直結しない。原source・判断と不足を個別に追跡する。",
+      "change": "旧security filter検出中心/DB audit実装/旧runtimeを移植せず、9/26原文と9/28採択001のRead/Trust/Instruction/Authority/Persist/Learn分離と七sinkのowner経路を001の局所比較へ具体化する。旧filterの検出結果だけをtrustへ変換しない。",
+      "reason": "10/12に承認された001の2義務の設計を降ろす。個別sink保存/採用は既存ownerへ返し、毎回の人承認や新authorityを作らない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B8BBC1D5A8C91E746405",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "file_sha256": "d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56",
+      "selected_line_quotes": [
+        {
+          "line": 145,
+          "text": "- **security filter**: HB-P8 は external text を raw / metadata / instruction に分離し、prompt injection,",
+          "utf8_sha256": "9d5006b76875545b4ef446f3a5f1bb1f09c7a7094e043c2f8ee623b5b17b6fcc"
+        },
+        {
+          "line": 146,
+          "text": "  tool injection, exfiltration, excessive agency を audit event へ送る。",
+          "utf8_sha256": "43e0a9255fd3acf4e93c09ea66a5aea6c4ea7f91d8eaf432a34300cc1cd22667"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "外部raw/source metadataとinstructionの分離、外部dataを命令やtool実行へ直結しない。原source・判断と不足を個別に追跡する。",
+      "change": "旧security filter検出中心/DB audit実装/旧runtimeを移植せず、9/26原文と9/28採択001のRead/Trust/Instruction/Authority/Persist/Learn分離と七sinkのowner経路を001の局所比較へ具体化する。旧filterの検出結果だけをtrustへ変換しない。",
+      "reason": "10/12に承認された001の2義務の設計を降ろす。個別sink保存/採用は既存ownerへ返し、毎回の人承認や新authorityを作らない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B8E26435839A72B1A0D9",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/pillar-detail-design.md",
+      "file_sha256": "d8221c8d3d31e62c72b19184a03831f3597dbdb6d469833ca36a6b5e082afbed",
+      "selected_line_quotes": [
+        {
+          "line": 50,
+          "text": "| HC-P8 security-boundary-contract | HB-P8 | external research / sandbox / token / security filter の trust-boundary contract を定義する | external input -> security audit |",
+          "utf8_sha256": "79364215d8dc4206ce14ec4d7c325c30c3437a9bd24901e32a5e8ef81cb844d2"
+        },
+        {
+          "line": 123,
+          "text": "L5 は L4 block の名前を移すだけではなく、L8 で結合観測できる **module contract** を固定する。各",
+          "utf8_sha256": "6075133d32014c442d4b7ac5ac66594af2df5688713dc36e440399edda2f48a2"
+        },
+        {
+          "line": 136,
+          "text": "| HC-P8 security-boundary-contract | external source artifact、raw text、tool/API/GitHub action、sandbox profile、token scope、approval record、threat pattern、snapshot-bound approval packet | research artifact + security event + token policy + approval audit + reviewed snapshot binding | `SecurityBoundaryDecision` (`allow_read` / `sanitize` / `sandbox` / `human_required` / `deny`) | untrusted text が instruction になること、source attribution 欠落、sandbox/token scope なしの external code/API action、action-binding approval なしの high-impact action、`reviewed_snapshot_binding` が packet field 名だけで current `sha256:` snapshotId を持たない snapshot-bound approval | source attribution validator、security filter parser、sandbox/token policy selector |",
+          "utf8_sha256": "568a5a51f7aa1aa0cd6317de7a76480406cafd3a0102b061bd156028d322f8a9"
+        },
+        {
+          "line": 155,
+          "text": "- **module boundary**: scheduler、runtime adapter、verification gate、repair feedback、distribution planner、memory/glossary、security filter、relation graph、adapter preflight は L5 では module 結合境界までを確定し、関数 signature は L6 へ降ろす。",
+          "utf8_sha256": "2aa5c54b108ebebf858af1a3b946cb744d501cf8f2b91aa4a673f7191e7effdc"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "source attribution・未信頼textとinstructionの分離、入出力/失敗条件/関数境界を詳細化する。",
+      "change": "旧L5 module/旧L6 signature・SecurityBoundaryDecision allow/sanitize等・DB/token実行器は移植しない。現行V12のL5詳細/L8単体へ3純粋domain関数と全Resultの対照を置く。",
+      "reason": "現行001の承認2義務と基本対を降ろす。実permissionや個別sink保存/採用は既存ownerに保持し、局所比較から許可を生成しない。"
+    }
+  ],
+  "remaining": [
+    "実owner資格/信頼rootからのsnapshot構築、正規source/consumer binding、選択分類016/secret005/authority008と個別sink契約の実適用。",
+    "論理domain型とfixtureは正式wire schema/strict codec/parser/resolverではない。形式・数値/Unicode/duplicate-key・資源budget・接続と全schema閉包をL6/L7と既存HARNESS004へ結ぶ。",
+    "独立したtest/oracle凍結→実装前Red→最小実装→Green→Refactor/再検証、実L8/L9/L10、実CI/PO L11は未成立。",
+    "全92親430対の基本/詳細/実装準備と変更時再確認追跡・最終整合/独立二重確認を継続する。"
+  ],
+  "diagnostic_vocabulary": {
+    "codes": [
+      {
+        "code": "classification_class_mismatch",
+        "default_pointer": "/context/classification_owner_record/class",
+        "owner_role": "classification-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "classification_owner_unresolved",
+        "default_pointer": "/context/classification_owner_record",
+        "owner_role": "classification-owner",
+        "kind": "unknown",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "classification_project_mismatch",
+        "default_pointer": "/context/classification_owner_record/project",
+        "owner_role": "classification-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "classification_revision_mismatch",
+        "default_pointer": "/context/classification_owner_record/revision",
+        "owner_role": "classification-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "classification_source_identity_mismatch",
+        "default_pointer": "/context/classification_owner_record/source_identity",
+        "owner_role": "classification-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "classification_unresolved",
+        "default_pointer": "/input/source/classification",
+        "owner_role": "classification-owner",
+        "kind": "unknown",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "identity_mismatch",
+        "default_pointer": "/input/source/identity",
+        "owner_role": "source-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "identity_missing",
+        "default_pointer": "/input/source/identity",
+        "owner_role": "source-owner",
+        "kind": "unknown",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "project_mismatch",
+        "default_pointer": "/input/source/project",
+        "owner_role": "source-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "project_missing",
+        "default_pointer": "/input/source/project",
+        "owner_role": "source-owner",
+        "kind": "unknown",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "result_owner_mismatch",
+        "default_pointer": "/context/owner_result_record/owner",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "result_project_mismatch",
+        "default_pointer": "/context/owner_result_record/project",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "result_route_identity_mismatch",
+        "default_pointer": "/context/owner_result_record/route_identity",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "result_route_revision_mismatch",
+        "default_pointer": "/context/owner_result_record/route_revision",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "result_sink_mismatch",
+        "default_pointer": "/context/owner_result_record/sink",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "result_source_identity_mismatch",
+        "default_pointer": "/context/owner_result_record/source_identity",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "result_source_revision_mismatch",
+        "default_pointer": "/context/owner_result_record/source_revision",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "revision_mismatch",
+        "default_pointer": "/input/source/revision",
+        "owner_role": "source-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "revision_missing",
+        "default_pointer": "/input/source/revision",
+        "owner_role": "source-owner",
+        "kind": "unknown",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "route_condition_mismatch",
+        "default_pointer": "/context/owner_route_record/original_condition",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "route_condition_missing",
+        "default_pointer": "/context/owner_route_record/original_condition",
+        "owner_role": "selected-sink-owner",
+        "kind": "unknown",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "route_identity_mismatch",
+        "default_pointer": "/context/owner_route_record/identity",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "route_missing",
+        "default_pointer": "/context/owner_route_record",
+        "owner_role": "selected-sink-owner",
+        "kind": "unknown",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "route_owner_mismatch",
+        "default_pointer": "/context/owner_route_record/owner",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "route_project_mismatch",
+        "default_pointer": "/context/owner_route_record/project",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "route_revision_mismatch",
+        "default_pointer": "/context/owner_route_record/revision",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "route_sink_mismatch",
+        "default_pointer": "/context/owner_route_record/sink",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "route_source_revision_mismatch",
+        "default_pointer": "/context/owner_route_record/source_revision",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "selected_sink_contract_source_mismatch",
+        "default_pointer": "/context/selected_sink_contract",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "source_owner_unresolved",
+        "default_pointer": "/context/source_owner_record",
+        "owner_role": "source-owner",
+        "kind": "unknown",
+        "source": "L4 shared diagnostic vocabulary"
+      },
+      {
+        "code": "input_invalid",
+        "default_pointer": "/input",
+        "owner_role": "input-owner",
+        "kind": "invalid",
+        "source": "L5 shape/independent context/result不足の所在を具体化。新authority/gateではない。"
+      },
+      {
+        "code": "context_invalid",
+        "default_pointer": "/context",
+        "owner_role": "context-owner",
+        "kind": "invalid",
+        "source": "L5 shape/independent context/result不足の所在を具体化。新authority/gateではない。"
+      },
+      {
+        "code": "selected_sink_contract_unresolved",
+        "default_pointer": "/context/selected_sink_contract",
+        "owner_role": "selected-sink-owner",
+        "kind": "unknown",
+        "source": "L5 shape/independent context/result不足の所在を具体化。新authority/gateではない。"
+      },
+      {
+        "code": "selected_sink_contract_ref_mismatch",
+        "default_pointer": "/context/selected_sink_contract/ref",
+        "owner_role": "selected-sink-owner",
+        "kind": "conflict",
+        "source": "L5 shape/independent context/result不足の所在を具体化。新authority/gateではない。"
+      },
+      {
+        "code": "result_binding_unresolved",
+        "default_pointer": "/context/owner_result_record",
+        "owner_role": "selected-sink-owner",
+        "kind": "unknown",
+        "source": "L5 shape/independent context/result不足の所在を具体化。新authority/gateではない。"
+      }
+    ],
+    "location_rule": "default_pointerは元L9の単一対照の所在。target project/revision不足/相反は既存project_missing/project_mismatch/revision_missing/revision_mismatchを/context/target_project等へ束縛。route tuple未供給はroute_missingを欠落fieldへ、classification owner tuple未供給はclassification_owner_unresolvedを当該fieldへ、result tuple未供給はresult_binding_unresolvedを当該fieldへ束縛する。",
+    "finding_fields": {
+      "code": "列挙code",
+      "pointer": "RFC6901形式の/inputまたは/contextからの所在。missing memberもその期待位置を指す。",
+      "owner_role": "source-owner | classification-owner | selected-sink-owner | input-owner | context-owner",
+      "kind": "invalid | conflict | unknown"
+    },
+    "order": "code→pointer→owner_role→kindのUnicode code point sort、同一4tupleの重複だけを除く。異なる所在の同codeを失わない。",
+    "value_boundary": "findingへraw内容/secret/PII/credentialsを複写しない。owner_roleは戻し先の論理役割であり、実ownerや許可を新設しない。",
+    "dependency_evaluation": "独立した評価可能な所在の不足/相反は全部保持する。依存前提が未供給の面はnot_evaluated/unknownを保持し、入力分類未決時の未来分類ownerやsource未決時のroute/resultを擬似不足にしない。"
+  },
+  "comparison_boundary": {
+    "meaning": "matchedは供給された局所内容の対応だけ。実資格/許可/採否/昇格を成立させない。",
+    "context": "inputから必要project/revision/source owner/分類/選択sink契約を作らない。独立snapshot構築・実資格/参照解決は既存owner/adapterで別に成立させる。qualificationという原注記やowner名の一致だけを資格にしない。",
+    "opaque_content": "RawJSONはshape上のopaque contentで、OriginalAxes/claims/condition/original_result/unaffected_Qの内部へ形制約を足さない。供給済み同owner契約revisionの原内容への対応を照合し、異意味間の条件同値性を文字列/LLMで判定しない。任意精度数値/Unicode/duplicate-key等を保持する正式decode/codecの選定と実成立はHARNESS004/L6L7へ残す。",
+    "effects": "元read/六軸を保持し、実read/trust/instruction/authority/persist/learn/policy/requirement/connection/acceptanceの作用はすべてfalse。後続sink結果が未発生でも有効な依頼材料は比較できる。",
+    "target_comparison_basis": "targetは独立source_owner_record.contentに束縛する。received input.sourceは別にそのowner内容へ照合し、ownerとtargetが合っているのにinput宣言だけが異なる場合はinput所在の相反だけを返す。ownerとinputを同時に別scopeへ変えても独立targetとの相反は保持する。"
+  },
+  "implementation_preparation": {
+    "module_role": "SECURITY001 immutable boundary comparison Python domain。製品path/module/symbol bindingと正式wire exportはL6/L7でexact traceへ指定する。",
+    "tdd_order": [
+      "独立期待全Resultとinput/contextの別fixtureをreviewし凍結",
+      "本体実装前Redの実観測を対象revision/oracleへ固定",
+      "最小実装でGreen",
+      "Refactor後同じ凍結oracle/局所・接続・構成体の再検証"
+    ],
+    "entry_status": "not_ready",
+    "next_requirements": [
+      "対象sourceとowner資格の実binding、適用される安全/隔離/資源",
+      "正式type/schema/codecとL6関数/L7test-symbol trace",
+      "対象oracleの全closure/強度・独立review・freeze証拠"
+    ],
+    "no_inference": "本L5/L8文書の合成対照・件数・静的検証を本体実装、Red/Green、CI、利用者受入や全体完了へ読み替えない。"
+  },
+  "document_id": "HELIXSECURITY-L5-001",
+  "layer": "L5",
+  "pair": "L8",
+  "paired_document": "docs/helix-security/L8-unit-verification/external-input-trust-boundary.json",
+  "type_contract": {
+    "types": [
+      {
+        "name": "SourceMetadata",
+        "kind": "closed_logical_record",
+        "fields": [
+          {
+            "name": "identity",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "project",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "revision",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "classification",
+            "type": "RawJSON",
+            "presence": "optional_preserve_absence"
+          }
+        ]
+      },
+      {
+        "name": "SourceOwnerRecord",
+        "kind": "closed_logical_record",
+        "fields": [
+          {
+            "name": "content",
+            "type": "SourceMetadata|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "owner",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "qualification",
+            "type": "RawJSON",
+            "presence": "optional_preserve_absence"
+          }
+        ]
+      },
+      {
+        "name": "ClassificationOwnerRecord",
+        "kind": "closed_logical_record",
+        "fields": [
+          {
+            "name": "source_identity",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "project",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "revision",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "class",
+            "type": "RawJSON",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "owner",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "qualification",
+            "type": "RawJSON",
+            "presence": "optional_preserve_absence"
+          }
+        ]
+      },
+      {
+        "name": "OriginalAxes",
+        "kind": "closed_logical_record",
+        "fields": [
+          {
+            "name": "read",
+            "type": "RawJSON",
+            "presence": "required"
+          },
+          {
+            "name": "trust",
+            "type": "RawJSON",
+            "presence": "required"
+          },
+          {
+            "name": "instruction",
+            "type": "RawJSON",
+            "presence": "required"
+          },
+          {
+            "name": "authority",
+            "type": "RawJSON",
+            "presence": "required"
+          },
+          {
+            "name": "persist",
+            "type": "RawJSON",
+            "presence": "required"
+          },
+          {
+            "name": "learn",
+            "type": "RawJSON",
+            "presence": "required"
+          }
+        ]
+      },
+      {
+        "name": "SinkContractRef",
+        "kind": "closed_logical_record",
+        "fields": [
+          {
+            "name": "identity",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "revision",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "project",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "owner",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          }
+        ]
+      },
+      {
+        "name": "SelectedSinkContract",
+        "kind": "closed_logical_record",
+        "fields": [
+          {
+            "name": "ref",
+            "type": "SinkContractRef|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "sink",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "project",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "source_identity",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "source_revision",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "route_identity",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "route_revision",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "route_owner",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "route_condition",
+            "type": "RawJSON",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "qualification",
+            "type": "RawJSON",
+            "presence": "optional_preserve_absence"
+          }
+        ]
+      },
+      {
+        "name": "OwnerRouteRecord",
+        "kind": "closed_logical_record",
+        "fields": [
+          {
+            "name": "identity",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "revision",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "owner",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "sink",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "project",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "source_revision",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "original_condition",
+            "type": "RawJSON",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "qualification",
+            "type": "RawJSON",
+            "presence": "optional_preserve_absence"
+          }
+        ]
+      },
+      {
+        "name": "OwnerResultRecord",
+        "kind": "closed_logical_record",
+        "fields": [
+          {
+            "name": "identity",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "owner",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "sink",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "project",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "source_identity",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "source_revision",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "route_identity",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "route_revision",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "original_result",
+            "type": "RawJSON",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "qualification",
+            "type": "RawJSON",
+            "presence": "optional_preserve_absence"
+          }
+        ]
+      },
+      {
+        "name": "F01Input",
+        "kind": "closed_logical_record",
+        "fields": [
+          {
+            "name": "source",
+            "type": "SourceMetadata",
+            "presence": "required"
+          },
+          {
+            "name": "source_kind",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "original_axes",
+            "type": "OriginalAxes",
+            "presence": "required"
+          },
+          {
+            "name": "raw_content_ref",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "unaffected_Q",
+            "type": "RawJSON",
+            "presence": "required"
+          },
+          {
+            "name": "claims",
+            "type": "RawJSONObject",
+            "presence": "optional_preserve_absence"
+          }
+        ]
+      },
+      {
+        "name": "F02Input",
+        "kind": "closed_logical_record",
+        "fields": [
+          {
+            "name": "source",
+            "type": "SourceMetadata",
+            "presence": "required"
+          },
+          {
+            "name": "source_kind",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "original_axes",
+            "type": "OriginalAxes",
+            "presence": "required"
+          },
+          {
+            "name": "raw_content_ref",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "unaffected_Q",
+            "type": "RawJSON",
+            "presence": "required"
+          },
+          {
+            "name": "claims",
+            "type": "RawJSONObject",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "selected_sink",
+            "type": "Sink",
+            "presence": "required"
+          },
+          {
+            "name": "signals",
+            "type": "RawJSONArray",
+            "presence": "required"
+          },
+          {
+            "name": "claimed_promotion",
+            "type": "RawJSON",
+            "presence": "optional_preserve_absence"
+          }
+        ]
+      },
+      {
+        "name": "F01Context",
+        "kind": "closed_logical_record",
+        "fields": [
+          {
+            "name": "target_project",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "target_revision",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "source_owner_record",
+            "type": "SourceOwnerRecord|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "classification_owner_record",
+            "type": "ClassificationOwnerRecord|null",
+            "presence": "optional_preserve_absence"
+          }
+        ]
+      },
+      {
+        "name": "F02Context",
+        "kind": "closed_logical_record",
+        "fields": [
+          {
+            "name": "target_project",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "target_revision",
+            "type": "String|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "source_owner_record",
+            "type": "SourceOwnerRecord|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "classification_owner_record",
+            "type": "ClassificationOwnerRecord|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "selected_sink_contract",
+            "type": "SelectedSinkContract|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "owner_route_record",
+            "type": "OwnerRouteRecord|null",
+            "presence": "optional_preserve_absence"
+          },
+          {
+            "name": "owner_result_record",
+            "type": "OwnerResultRecord|null",
+            "presence": "optional_preserve_absence"
+          }
+        ]
+      }
+    ],
+    "atoms": {
+      "String": "Unicode文字列。数値/boolean/配列をcoerceしない。値の未知/空文字は意味比較で扱う。",
+      "RawValue": "未検査immutable論理値。正式raw bytes parser/codecは別契約。",
+      "RawJSON": "JSON-compatible opaque scalar/object/array/nullを原内容へ参照。booleanとnumberを同一化しない。",
+      "RawJSONObject": "string-keyed原JSON object。内部key/値を規則や期待値として実行しない。",
+      "RawJSONArray": "原JSON array。順序/重複/値を保持。",
+      "Sink": "requirement | agent_instruction | tool_authority | memory | brain | training_data | security_policy"
+    },
+    "presence": "各recordで列挙されたfield以外は形不正。required field欠落はinvalid。optional_preserve_absenceは未供給を独立に保持し、存在するfieldの型を検査する。source/Contextの意味上必要なoptional fieldの欠落/nullはunknownでありshape errorとはしない。claims未供給はoutput claim_resultsが空になるがinputへ{}を挿入しない。",
+    "result": {
+      "comparison_state": "matched | unknown | conflict | invalid（供給内容の局所比較だけ）",
+      "material": "F01Material | F02Material | null（invalidのみnull）",
+      "findings": "typed Finding tuple、common diagnostic_vocabularyのexact fields。",
+      "state_order": "invalid > conflict > unknown > matched。findingによって決める。future result未発生/未支持claimだけはmatchedを妨げない。",
+      "material_fields": "F01/F02Materialはpinned L9 expected_materialの各全fieldを持つ。追加/部分比較で原fieldを落とさない。issuesは評価順にcodeを一度だけ保持、findingsは所在ごとに保持。原参照・owner_return_candidates・claim_results・Q・effectsも全比較対象。"
+    },
+    "validation_result": {
+      "shape": "valid | invalid",
+      "input_ref": "/input | null",
+      "context_ref": "/context | null",
+      "findings": "typed Finding tuple。validは空、invalidは全形不正の所在。",
+      "rule": "invalidなら両ref=null。validは供給immutable input/contextを参照するだけで、意味/資格を確定しない。F01/F02はこのinvalidをmaterial=nullのComparisonResultへ包む。"
+    },
+    "material_types": {
+      "F01Material": {
+        "data_state": "literal untrusted",
+        "source_binding": "matched | unknown | conflict",
+        "classification_binding": "matched | unknown | conflict",
+        "issues": "DiagnosticCode tuple、評価順/同code一回",
+        "claim_results": "string-keyed map of literal not_supported（claim未供給は空）",
+        "owner_return_candidates": "source-owner | classification-owner | selected-sink-owner のordered unique tuple",
+        "original_source": "SourceMetadata 原内容、optional欠落/null差を保持",
+        "original_axes": "OriginalAxes 原内容",
+        "unaffected_Q": "RawJSON 原内容",
+        "effects": "元L9の10 fieldすべてliteral false",
+        "original_source_kind": "String 原値",
+        "classification_inferred_public": "literal false"
+      },
+      "F02Material": {
+        "selected_sink": "Sink 原値",
+        "route_binding": "matched | unknown | conflict | not_evaluated",
+        "result_binding": "matched_original_owner_record | unknown | conflict | not_evaluated | not_available",
+        "owner_result_ref": "String|null（対応時だけ元identity）",
+        "owner_return_candidates": "source-owner | classification-owner | selected-sink-owner のordered unique tuple",
+        "original_source": "SourceMetadata 原内容、optional欠落/null差を保持",
+        "original_axes": "OriginalAxes 原内容",
+        "unaffected_Q": "RawJSON 原内容",
+        "effects": "元L9の10 fieldすべてliteral false",
+        "original_source_kind": "String 原値",
+        "new_promotion_generated": "literal false",
+        "original_owner_result_ref": "String|null（原resultが存在しidentity供給時は未評価でも保持）",
+        "claim_results": "string-keyed map of literal not_supported（claim未供給は空）",
+        "source_binding": "matched | unknown | conflict",
+        "classification_binding": "matched | unknown | conflict",
+        "route_condition_binding": "matched | unknown | conflict | not_evaluated | not_available",
+        "issues": "DiagnosticCode tuple、評価順/同code一回"
+      }
+    }
+  },
+  "functions": [
+    {
+      "id": "HELIXSECURITY-L5-001-validate_boundary_input",
+      "symbol": "validate_boundary_input",
+      "signature": "validate_boundary_input(input: RawValue, context: RawValue, function: F01|F02) -> ValidationResult",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-001-F01",
+        "HELIXSECURITY-L3-001-F02"
+      ],
+      "effect": "none",
+      "algorithm": [
+        "input/contextは別引数。入口全record/配列を検査し、閉じた論理recordのunknown propertyと不正型を全所在にinput_invalid/context_invalidで返す。optional_preserve_absenceは欠落を保持し、列挙nullable型以外のnullは不正。RawJSON内部にrecord制約を適用しない。",
+        "検査失敗はValidationResult shape=invalid, input_ref/context_ref=null, sorted findings。成功はshape=validでimmutable input/contextの原参照を返す。F01/F02がinvalidをmaterial=nullのComparisonResultへ包む。原bytes/存在差を変更せず、shape成功からowner資格/意味一致を成立させない。"
+      ],
+      "unit_oracle_ref": "HELIXSECURITY-L8-001-VALIDATION"
+    },
+    {
+      "id": "HELIXSECURITY-L5-001-F01",
+      "symbol": "compare_untrusted_source",
+      "signature": "compare_untrusted_source(input: F01Input, context: F01Context) -> ComparisonResult[F01Material]",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-001-F01"
+      ],
+      "l4_ref": "HELIXSECURITY-L4-001-F01",
+      "unit_oracle_ref": "HELIXSECURITY-L8-001-F01",
+      "effect": "none",
+      "algorithm": [
+        "1. validate_boundary_inputでinput/contextの論理形を検査。invalidならmaterial=nullで全shape findingを返す。Stringの内容はtrim/coerce/defaultしない。shapeが正しくてもsource/target値の欠落/null/空文字はunknownで、public/別projectへ補わない。",
+        "2. 独立target_project/target_revisionを独立source_owner_record.contentのproject/revisionへ比較する。input.sourceは受領した原宣言であり、このtarget比較の基準にしない。target未供給/null/空文字はproject_missing/revision_missingをContext位置へ返す。ownerの対応内容が未供給なら比較を未評価に保ちstep3のsource_owner_unresolvedへ戻し、input値で補完しない。targetと供給owner内容が相反ならproject_mismatch/revision_mismatchをContext位置へ返す。inputとowner内容が一致していてもtarget比較を省かない。",
+        "3. source_owner_record/content未供給はsource_owner_unresolved。source identity/project/revisionの未供給は各*_missing、供給値と独立owner内容の相反は各*_mismatch。独立した所在の不足/相反は全部保持。source_bindingはconflictがあればconflict、他に不足があればunknown、それ以外matched。 source owner名が未供給/null/空文字、または原owner.content tupleが未供給ならsource_owner_unresolvedを当該所在へ返す。元qualification注記を実資格にしない。",
+        "4. source_bindingがmatchedでなければclassification_binding=unknownとし、依存分類を評価せずsource ownerへの返却候補を保持。source matchedで原input.classificationが未供給/nullならclassification_unresolvedだけを返し分類owner record/tupleを評価しない。分類の依頼材料が未決なのに同時に未来/未供給ownerを不足として前倒ししない。原classificationが供給された場合にだけ独立分類record/owner名/class内容/source tupleを比較し、未供給/null/空文字の必要内容はclassification_owner_unresolvedを当該所在へ返す。同source identity/project/revision/classの供給相反を個別に比較し、conflict優先、未供給unknown、全対応matched。null分類をpublicへ変更しない。",
+        "5. 出力materialは元L9の全fieldを返す。source_kind/source metadata/原六軸/Qを改変せず保持。claimは原内容から分離してnot_supportedとする。claimの未支持だけで元binding診断や新authorityを生成しない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-001-F02",
+      "symbol": "compare_selected_promotion_route",
+      "signature": "compare_selected_promotion_route(input: F02Input, context: F02Context) -> ComparisonResult[F02Material]",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-001-F02"
+      ],
+      "l4_ref": "HELIXSECURITY-L4-001-F02",
+      "unit_oracle_ref": "HELIXSECURITY-L8-001-F02",
+      "effect": "none",
+      "algorithm": [
+        "1. F01と同じshape/source/分類/target比較を行い共通診断を使う。sourceまたは分類がmatchedでなければroute/conditionはnot_evaluated。元resultが存在しても入力意味不足を補償しない。元result identityはoriginal_owner_result_refへ保持し、無関係Qを変更しない。",
+        "2. source/分類matchedの場合、独立selected_sink_contractの未供給または必要内容不足はselected_sink_contract_unresolvedでroute/condition unknown。選択sink/source identity/project/revisionへの対応、ref owner/projectと原route_owner/projectへの対応を照合する。source tuple相反はselected_sink_contract_source_mismatch、sink相反はroute_sink_mismatchを契約sink位置へ、ref相反はselected_sink_contract_ref_mismatch。候補routeを使って契約を生成しない。",
+        "3. 契約対応後、owner_route_record未供給ならroute_binding=unknown、route_condition_binding=not_available。必要tuple未供給/null/空文字はroute_missingを所在へ。供給identity/revision/owner/sink/project/source_revisionは独立契約と照合し各route_*_mismatch。tupleの不足/相反があればconditionはnot_evaluated。",
+        "4. tuple対応後、original_condition未供給/nullはroute_condition_missingでroute/condition unknown。供給原conditionが同owner契約revisionのroute_condition原内容と相反ならroute_condition_mismatchでroute/condition conflict。対応する場合だけroute/condition matched。",
+        "5. 元owner_result_record未供給はresult_binding=not_available、owner_result_ref=null（正常な先行依頼材料でfindingなし）。元resultがありrouteがmatchedでなければnot_evaluated。route matchedの場合の明示評価順はidentity→owner→route_identity→route_revision→source_identity→source_revision→project→sink→original_result。必要内容不足はresult_binding_unresolved、供給tuple相反は対応する各result_*_mismatchを、この順でissuesへ保持する。全対応の場合だけmatched_original_owner_recordと元identity参照を返し、new_promotion_generatedはfalse。元original_result未供給もresult_binding_unresolvedをその所在へ返す。explicit nullという原内容は参照で保持し未供給とは別に扱う。",
+        "6. source/classの返却先とsink経路/条件/resultの返却先を分ける。owner_return_candidatesは当該評価面の不足/相反にだけ発生し、正常な未来result未発生やclaim/signalだけには発生しない。claimed_promotion未供給/nullはclaim_results={}、供給されたclaimはnot_supported。claims内任意主張も個別not_supportedとして原内容と分ける。"
+      ]
+    }
+  ],
+  "determinism": [
+    "同一immutable input/contextで全Result同値、input/context不変、clock/locale/env/network/fs/Git/DB非依存。",
+    "source/分類の共通比較と診断はF01/F02で同じ。sorted findingはunordered owner結果を入力順に捨てない。",
+    "通常診断にraw contentを複写せず、metadata/原owner resultは原参照へ戻る。実secret制御は選択SEC005/016のowner契約へ結ぶ。"
+  ]
+}
