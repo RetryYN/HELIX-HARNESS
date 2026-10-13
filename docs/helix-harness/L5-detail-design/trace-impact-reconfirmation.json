@@ -9322,7 +9322,7 @@
       "unicode_scalar_invalid"
     ],
     "diagnostic_limit": "lexicalに解釈不能なdocumentから完全ASTやdomain valueを捏造しない。拒否でもraw bytes/digestを保全。全副次finding/byte span/全複合は未完、下のminimum code/AST指定例は部分oracle。",
-    "number_and_digest_boundary": "原bytes digestとdomain logical canonical digestを別にする。初回fixed materialのJSON数値はintegerだけであり旧binary64 formatterの採用根拠にしない。数値tokenはASTでlosslessに保持し、数学内容比較/厳密logical materializer/小数・exponent canonical emissionと実consumer版は後続で固定する。既定host conversionや旧JSON.stringifyで丸めてhashを作らない。",
+    "number_and_digest_boundary": "原bytes digestとdomain logical canonical digestを別にする。既L9由来190原例のsource packetを照合した範囲ではJSON数値はintegerだけ（型境界/新wire小数例や実入力全体の範囲制限ではない）であり旧binary64 formatterの採用根拠にしない。数値tokenはASTでlosslessに保持し、数学内容比較/厳密logical materializer/小数・exponent canonical emissionと実consumer版は後続で固定する。既定host conversionや旧JSON.stringifyで丸めてhashを作らない。",
     "legacy_discrepancy": "旧digest inventoryのsrc/workflow/workflow-guide.ts::stableJsonはsorted-object-keys-array-order-preservedとあるが、実source114-116はJSON.stringifyのみ。この分類不一致を現行のkey sort成立根拠にしない。旧shared canonicalJsonはUTF-16 .sortとNumber有限性を使い、旧compareBytewiseはsurrogateのU+FFFD衝突をtie-breakする。現行は既定Unicode順/strict UTF-8からlone surrogate拒否へ再導出し旧sourceをcopy/実行しない。",
     "unclosed": "formal wire registry/consumer/materializer/数値比較・emitter版/資源policy/全lexical finding/全codec oracle/L6L7凍結は未完。decoder例の静的整合を実I/O/probe/運転/実装完了にしない。"
   }
