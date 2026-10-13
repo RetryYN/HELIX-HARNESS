@@ -639,6 +639,165 @@
       "change": "旧TS/固定depth/schema/loaderを移植せずlogical schemaと意味・codec boundaryへ再導出",
       "reason": "構造合格をpair/資格/観測成立にせず、候補矛盾をschemaで消さないため",
       "source_limit": "旧schema/config/library/runtimeは実行せず現行へcopyしない。候補全体採用/実権限を生成しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4A9AB5B2EF182BC30431",
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/canonical-digest.ts",
+      "sha256": "c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation_only_no_old_execution_or_copy",
+      "read_line_locators": [
+        5,
+        6,
+        9,
+        10,
+        18,
+        19,
+        21,
+        35,
+        36
+      ],
+      "line_quotes": [
+        {
+          "line": 5,
+          "text": "export function sha256Digest(value: string | Uint8Array): Sha256Digest {"
+        },
+        {
+          "line": 6,
+          "text": "  return `sha256:${createHash(\"sha256\").update(value).digest(\"hex\")}`;"
+        },
+        {
+          "line": 9,
+          "text": "export function canonicalJson(value: unknown, invalidMessage = \"value is not JSON\"): string {"
+        },
+        {
+          "line": 10,
+          "text": "  return canonicalJsonValue(value, invalidMessage, new Set<object>());"
+        },
+        {
+          "line": 18,
+          "text": "  if (value === null || typeof value === \"boolean\" || typeof value === \"string\") {"
+        },
+        {
+          "line": 19,
+          "text": "    return JSON.stringify(value);"
+        },
+        {
+          "line": 21,
+          "text": "  if (typeof value === \"number\" && Number.isFinite(value)) return JSON.stringify(value);"
+        },
+        {
+          "line": 35,
+          "text": "  try {"
+        },
+        {
+          "line": 36,
+          "text": "    return `{${Object.keys(record)"
+        }
+      ],
+      "preserve": "sorted record/array順保持/有限数とbyte digestの分離",
+      "change": "旧TS/number formatter/UTF16 orderをcopyせずstrict受領AST/原tokenと既domain digest分離へ再導出",
+      "reason": "既承認004の内容比較を文字置換/重複key/数値丸め/旧分類だけで成立させないため。codec選定の新承認/旧authority移植を生成しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9C454F2D93A8F34BD997",
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/digest.ts",
+      "sha256": "89bf2f860a05e674094b5247603b6787ca9606f47a0a19c07988842c59a50851",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation_only_no_old_execution_or_copy",
+      "read_line_locators": [
+        11,
+        12,
+        13,
+        14,
+        21,
+        25
+      ],
+      "line_quotes": [
+        {
+          "line": 11,
+          "text": " * 1. 既定 locale ですら code-point 順と一致しない (`\"aCode\"` < `\"BCode\"` を返す)。"
+        },
+        {
+          "line": 12,
+          "text": " * 2. U+0000 等の completely-ignorable 文字が照合で無視される。区切り文字として"
+        },
+        {
+          "line": 13,
+          "text": " *    `\\0` を挟んだ複合キーは区切りが効かず、異なるキーが等価と判定される。"
+        },
+        {
+          "line": 14,
+          "text": " * 3. UTF-8変換はlone surrogateをU+FFFDへ置換するため、異なるJavaScript文字列が"
+        },
+        {
+          "line": 21,
+          "text": "export function compareBytewise(left: string, right: string): number {"
+        },
+        {
+          "line": 25,
+          "text": "  // NodeのUTF-8変換はunpaired surrogateをU+FFFDへ置換するため、byte列だけでは"
+        }
+      ],
+      "preserve": "locale不依存と異stringが同byteへ丸められるfailureの明示",
+      "change": "旧surrogate置換+tie-breakを採用せずstrict Unicode scalar/UTF8拒否へ",
+      "reason": "既承認004の内容比較を文字置換/重複key/数値丸め/旧分類だけで成立させないため。codec選定の新承認/旧authority移植を生成しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D8787D8B14310B1A1E77",
+      "path": "archive/legacy-generation-2026-09-14/root/src/workflow/workflow-guide.ts",
+      "sha256": "1892b3a1bc5a1b08149ac57d6daf99deed63fa26362b789d5e87640138b52905",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation_only_no_old_execution_or_copy",
+      "read_line_locators": [
+        110,
+        111,
+        114,
+        115,
+        116
+      ],
+      "line_quotes": [
+        {
+          "line": 110,
+          "text": "function digest(bytes: Uint8Array): `sha256:${string}` {"
+        },
+        {
+          "line": 111,
+          "text": "  return `sha256:${createHash(\"sha256\").update(bytes).digest(\"hex\")}`;"
+        },
+        {
+          "line": 114,
+          "text": "function stableJson(value: unknown): string {"
+        },
+        {
+          "line": 115,
+          "text": "  return JSON.stringify(value);"
+        },
+        {
+          "line": 116,
+          "text": "}"
+        }
+      ],
+      "preserve": "実sourceのdigest/serializationの区別を読む",
+      "change": "旧runtime/formatterを採用せずinventory分類と実source不一致を記録",
+      "reason": "既承認004の内容比較を文字置換/重複key/数値丸め/旧分類だけで成立させないため。codec選定の新承認/旧authority移植を生成しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E1816D5502974C572D97",
+      "path": "archive/legacy-generation-2026-09-14/root/config/digest-canonicalization-inventory.json",
+      "sha256": "a2d52ff3dbd1af655e02885cc5b803e625517b3f552cdddf37a511086978d557",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation_only_no_old_execution_or_copy",
+      "read_line_locators": [],
+      "line_quotes": [],
+      "preserve": "variant/byte oracle未freezeのexplicit nonmigration",
+      "change": "分類だけを正しさとせず実sourceとの照合証拠へ限定",
+      "reason": "既承認004の内容比較を文字置換/重複key/数値丸め/旧分類だけで成立させないため。codec選定の新承認/旧authority移植を生成しない。",
+      "selected_hit_ids": [
+        "src/workflow/workflow-guide.ts::stableJson:FunctionDeclaration stableJson::1"
+      ],
+      "classification_discrepancy": "canonicalization sorted-object-keys-array-order-preservedとあるが実source114-116はJSON.stringifyのみ。",
+      "raw_read_limit": "inventory JSONを読み、該当rowを抽出。inventory/configは実行しない。"
     }
   ],
   "full_goal_scope_preserved": {
@@ -647,7 +806,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
@@ -59562,5 +59721,644 @@
       "exclusion": "F04/F05の28部分結果は完全valueが無い。原Context packetは全検査し、部分結果の未指定fieldは創作しない。",
       "effect": "none"
     }
+  },
+  "wire_decode_oracles": {
+    "design_pointer": "/wire_decode_contract",
+    "cases": [
+      {
+        "id": "H004-L8-WIRE-UNICODE-OBJECT",
+        "raw_bytes_hex": "7b22e8aa9e223a22e58e9fe69687222c226e223a317d",
+        "raw_sha256": "a1fc9a485ad3c5938c8e8daa3cdb767485df250056ec7dee5c1e4ed478678d7d",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "object",
+            "members": [
+              [
+                "語",
+                {
+                  "kind": "string",
+                  "value": "原文"
+                }
+              ],
+              [
+                "n",
+                {
+                  "kind": "number",
+                  "token": "1"
+                }
+              ]
+            ]
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-WHITESPACE",
+        "raw_bytes_hex": "200a207b2278223a317d2009",
+        "raw_sha256": "8ed3da7fe49aad08943a0805b1f38a9317cc4ed06f12160f71b5c04f1c1f3f71",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "object",
+            "members": [
+              [
+                "x",
+                {
+                  "kind": "number",
+                  "token": "1"
+                }
+              ]
+            ]
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-ESCAPED-KEY",
+        "raw_bytes_hex": "7b225c7530303631223a747275657d",
+        "raw_sha256": "a7602bf22a678bb5cb8b9958e124e625bf7ac03a53dae2ec5c82508aa62b39ba",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "object",
+            "members": [
+              [
+                "a",
+                {
+                  "kind": "bool",
+                  "value": true
+                }
+              ]
+            ]
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-NULL",
+        "raw_bytes_hex": "6e756c6c",
+        "raw_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "null"
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-EMPTY-STRING",
+        "raw_bytes_hex": "2222",
+        "raw_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "string",
+            "value": ""
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-EMPTY-OBJECT",
+        "raw_bytes_hex": "7b7d",
+        "raw_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "object",
+            "members": []
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-ARRAY-TYPES",
+        "raw_bytes_hex": "5b747275652c312c2231225d",
+        "raw_sha256": "55afbdd9b38d5feee00df61eb7d236b6a617f0ed9946f3193c00e63cff68b2f3",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "array",
+            "items": [
+              {
+                "kind": "bool",
+                "value": true
+              },
+              {
+                "kind": "number",
+                "token": "1"
+              },
+              {
+                "kind": "string",
+                "value": "1"
+              }
+            ]
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-SEPARATE-OBJECT-KEYS",
+        "raw_bytes_hex": "5b7b2261223a317d2c7b2261223a327d5d",
+        "raw_sha256": "99fadecef60e156ff21aff799671271e5fba37d003cce74da416587190ad9b14",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "array",
+            "items": [
+              {
+                "kind": "object",
+                "members": [
+                  [
+                    "a",
+                    {
+                      "kind": "number",
+                      "token": "1"
+                    }
+                  ]
+                ]
+              },
+              {
+                "kind": "object",
+                "members": [
+                  [
+                    "a",
+                    {
+                      "kind": "number",
+                      "token": "2"
+                    }
+                  ]
+                ]
+              }
+            ]
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-UNICODE-NO-NORMALIZE",
+        "raw_bytes_hex": "7b22c3a9223a312c2265cc81223a327d",
+        "raw_sha256": "f126472a603049b5f986bb8f35ba8b5fbace9e37c2d5b2abf5ad131a166835b6",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "object",
+            "members": [
+              [
+                "é",
+                {
+                  "kind": "number",
+                  "token": "1"
+                }
+              ],
+              [
+                "é",
+                {
+                  "kind": "number",
+                  "token": "2"
+                }
+              ]
+            ]
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-SURROGATE-PAIR",
+        "raw_bytes_hex": "225c75643833645c756465303022",
+        "raw_sha256": "e30439cb87e140c0b998ad3095285abfec0294e2a8916f9a8f30d85734e6f82b",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "string",
+            "value": "😀"
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-DECIMAL-EXACT-TOKEN",
+        "raw_bytes_hex": "302e3130303030303030303030303030303031",
+        "raw_sha256": "01bcb760af885969aa9d8bda4a5c9925a37eecb45aeac57c5068cef9805fa835",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "number",
+            "token": "0.10000000000000001"
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-LARGE-EXPONENT-TOKEN",
+        "raw_bytes_hex": "3165343030",
+        "raw_sha256": "f2bba4568fecd4b9729970732e571ac9373a33fb2d6a960794a41f0f2ecdbc25",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "number",
+            "token": "1e400"
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-LARGE-INTEGER-TOKEN",
+        "raw_bytes_hex": "39303037313939323534373430393933",
+        "raw_sha256": "a1c367c29158357e62a3ff5d3e800fb7698a22396439dbc0a9d4929322afd35d",
+        "expected_partial_result": {
+          "status": "decoded",
+          "raw_retained": true,
+          "ast": {
+            "kind": "number",
+            "token": "9007199254740993"
+          },
+          "required_findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "指定AST/raw保全の設計oracle。正式logical数値/codec/emitter/実作用は未成立。"
+      },
+      {
+        "id": "H004-L8-WIRE-DUPLICATE-ROOT",
+        "raw_bytes_hex": "7b2261223a312c2261223a327d",
+        "raw_sha256": "1c53ee0df7b12fd4d65b976120c7fa6b847dc41dffd7f0331c3237a1ceab1756",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/a",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-DUPLICATE-NESTED",
+        "raw_bytes_hex": "7b2278223a7b2261223a312c2261223a327d7d",
+        "raw_sha256": "06d55db68c2ab40693c6dbd8e3d358b352a269731d9ead4defe3e067a6eb6af7",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/x/a",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-DUPLICATE-ESCAPE",
+        "raw_bytes_hex": "7b2261223a312c225c7530303631223a327d",
+        "raw_sha256": "c95ba945b310a34906bbfc28ce1346b87741d5a2b3066d1d3ecfa0acbd86392c",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/a",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-INVALID-UTF8",
+        "raw_bytes_hex": "22ff22",
+        "raw_sha256": "2c1ba6ac713bfc21e74f3429be952fca3e7a796734394fd18a48eb6713880d89",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "utf8_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-NAN",
+        "raw_bytes_hex": "4e614e",
+        "raw_sha256": "d5b592c05dc25b5032553f1b27f4139be95e881f73db33b02b05ab20c3f9981e",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "json_non_finite_literal",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-INFINITY",
+        "raw_bytes_hex": "496e66696e697479",
+        "raw_sha256": "d0067cad9a63e0813759a2bb841051ca73570c0da2e08e840a8eb45db6a7a010",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "json_non_finite_literal",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-NEGATIVE-INFINITY",
+        "raw_bytes_hex": "2d496e66696e697479",
+        "raw_sha256": "c64ddf11bcd45660f0cf66dd0c22d2b4570ef3d3fc6527a9a6f6c722aefa3c39",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "json_non_finite_literal",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-EXTRA-DOCUMENT",
+        "raw_bytes_hex": "7b7d207b7d",
+        "raw_sha256": "2cec2bbf1a64ea5249e8a7ab9ecc782fa48be13f0b35ad5f52bdea741841a230",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-TRAILING-COMMA",
+        "raw_bytes_hex": "7b2261223a312c7d",
+        "raw_sha256": "aa99a5ce3eb0dd8355f0bfb15376ea1d862ad75d0d278af1f8c280ca8c02c640",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-UNESCAPED-CONTROL",
+        "raw_bytes_hex": "226c696e650a22",
+        "raw_sha256": "f01df5356e0cf408cbc2c143fde5e81d5a779d4438b823589f47e131c21f1438",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-LONE-HIGH",
+        "raw_bytes_hex": "225c756438303022",
+        "raw_sha256": "8c0c59dd0d275aadcd462a5fe12eb352cbdfeaf961eae4f85a4660521df7d2f5",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "unicode_scalar_invalid",
+              "pointer": "",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-LONE-LOW",
+        "raw_bytes_hex": "225c756465616422",
+        "raw_sha256": "add0cef85e60fd55ea881f932f8974e8b1b99093cd9aaa31434335185a8474a6",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "unicode_scalar_invalid",
+              "pointer": "",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-BOM",
+        "raw_bytes_hex": "efbbbf7b7d",
+        "raw_sha256": "aa25e978046d680ef8740d837e6de5bc1e2a2dc6089dbda1012544b538d53f65",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-COMMENT",
+        "raw_bytes_hex": "7b2f2a782a2f7d",
+        "raw_sha256": "593aa521cee0e776bef3dbab2634f9cfa6c568c7cfdcb77bac82c03036074cc5",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      },
+      {
+        "id": "H004-L8-WIRE-SINGLE-QUOTE",
+        "raw_bytes_hex": "7b2761273a317d",
+        "raw_sha256": "a84fed7e2eca1809b18c96ccd4571e0cef929a290d0108e0f4df368b7227eb5c",
+        "expected_partial_result": {
+          "status": "rejected",
+          "raw_retained": true,
+          "ast": null,
+          "required_findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed",
+        "oracle_limit": "minimum code/pointerと原bytes保全。全副次finding/byte spanは未完。"
+      }
+    ],
+    "scope_limit": "13 decoded/15 rejected、28部分lexical oracle。実decoder/production consumerは未実装・未実行。静的原bytes/JSON文法/AST/token/拒否条件照合はRed/Greenや実L8ではない。",
+    "logical_material_scope_held": "既127schemas/697既materialと全domain oracleは変更しない。"
   }
 }

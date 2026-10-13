@@ -639,6 +639,165 @@
       "change": "旧TS/固定depth/schema/loaderを移植せずlogical schemaと意味・codec boundaryへ再導出",
       "reason": "構造合格をpair/資格/観測成立にせず、候補矛盾をschemaで消さないため",
       "source_limit": "旧schema/config/library/runtimeは実行せず現行へcopyしない。候補全体採用/実権限を生成しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4A9AB5B2EF182BC30431",
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/canonical-digest.ts",
+      "sha256": "c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation_only_no_old_execution_or_copy",
+      "read_line_locators": [
+        5,
+        6,
+        9,
+        10,
+        18,
+        19,
+        21,
+        35,
+        36
+      ],
+      "line_quotes": [
+        {
+          "line": 5,
+          "text": "export function sha256Digest(value: string | Uint8Array): Sha256Digest {"
+        },
+        {
+          "line": 6,
+          "text": "  return `sha256:${createHash(\"sha256\").update(value).digest(\"hex\")}`;"
+        },
+        {
+          "line": 9,
+          "text": "export function canonicalJson(value: unknown, invalidMessage = \"value is not JSON\"): string {"
+        },
+        {
+          "line": 10,
+          "text": "  return canonicalJsonValue(value, invalidMessage, new Set<object>());"
+        },
+        {
+          "line": 18,
+          "text": "  if (value === null || typeof value === \"boolean\" || typeof value === \"string\") {"
+        },
+        {
+          "line": 19,
+          "text": "    return JSON.stringify(value);"
+        },
+        {
+          "line": 21,
+          "text": "  if (typeof value === \"number\" && Number.isFinite(value)) return JSON.stringify(value);"
+        },
+        {
+          "line": 35,
+          "text": "  try {"
+        },
+        {
+          "line": 36,
+          "text": "    return `{${Object.keys(record)"
+        }
+      ],
+      "preserve": "sorted record/array順保持/有限数とbyte digestの分離",
+      "change": "旧TS/number formatter/UTF16 orderをcopyせずstrict受領AST/原tokenと既domain digest分離へ再導出",
+      "reason": "既承認004の内容比較を文字置換/重複key/数値丸め/旧分類だけで成立させないため。codec選定の新承認/旧authority移植を生成しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9C454F2D93A8F34BD997",
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/digest.ts",
+      "sha256": "89bf2f860a05e674094b5247603b6787ca9606f47a0a19c07988842c59a50851",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation_only_no_old_execution_or_copy",
+      "read_line_locators": [
+        11,
+        12,
+        13,
+        14,
+        21,
+        25
+      ],
+      "line_quotes": [
+        {
+          "line": 11,
+          "text": " * 1. 既定 locale ですら code-point 順と一致しない (`\"aCode\"` < `\"BCode\"` を返す)。"
+        },
+        {
+          "line": 12,
+          "text": " * 2. U+0000 等の completely-ignorable 文字が照合で無視される。区切り文字として"
+        },
+        {
+          "line": 13,
+          "text": " *    `\\0` を挟んだ複合キーは区切りが効かず、異なるキーが等価と判定される。"
+        },
+        {
+          "line": 14,
+          "text": " * 3. UTF-8変換はlone surrogateをU+FFFDへ置換するため、異なるJavaScript文字列が"
+        },
+        {
+          "line": 21,
+          "text": "export function compareBytewise(left: string, right: string): number {"
+        },
+        {
+          "line": 25,
+          "text": "  // NodeのUTF-8変換はunpaired surrogateをU+FFFDへ置換するため、byte列だけでは"
+        }
+      ],
+      "preserve": "locale不依存と異stringが同byteへ丸められるfailureの明示",
+      "change": "旧surrogate置換+tie-breakを採用せずstrict Unicode scalar/UTF8拒否へ",
+      "reason": "既承認004の内容比較を文字置換/重複key/数値丸め/旧分類だけで成立させないため。codec選定の新承認/旧authority移植を生成しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D8787D8B14310B1A1E77",
+      "path": "archive/legacy-generation-2026-09-14/root/src/workflow/workflow-guide.ts",
+      "sha256": "1892b3a1bc5a1b08149ac57d6daf99deed63fa26362b789d5e87640138b52905",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation_only_no_old_execution_or_copy",
+      "read_line_locators": [
+        110,
+        111,
+        114,
+        115,
+        116
+      ],
+      "line_quotes": [
+        {
+          "line": 110,
+          "text": "function digest(bytes: Uint8Array): `sha256:${string}` {"
+        },
+        {
+          "line": 111,
+          "text": "  return `sha256:${createHash(\"sha256\").update(bytes).digest(\"hex\")}`;"
+        },
+        {
+          "line": 114,
+          "text": "function stableJson(value: unknown): string {"
+        },
+        {
+          "line": 115,
+          "text": "  return JSON.stringify(value);"
+        },
+        {
+          "line": 116,
+          "text": "}"
+        }
+      ],
+      "preserve": "実sourceのdigest/serializationの区別を読む",
+      "change": "旧runtime/formatterを採用せずinventory分類と実source不一致を記録",
+      "reason": "既承認004の内容比較を文字置換/重複key/数値丸め/旧分類だけで成立させないため。codec選定の新承認/旧authority移植を生成しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E1816D5502974C572D97",
+      "path": "archive/legacy-generation-2026-09-14/root/config/digest-canonicalization-inventory.json",
+      "sha256": "a2d52ff3dbd1af655e02885cc5b803e625517b3f552cdddf37a511086978d557",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation_only_no_old_execution_or_copy",
+      "read_line_locators": [],
+      "line_quotes": [],
+      "preserve": "variant/byte oracle未freezeのexplicit nonmigration",
+      "change": "分類だけを正しさとせず実sourceとの照合証拠へ限定",
+      "reason": "既承認004の内容比較を文字置換/重複key/数値丸め/旧分類だけで成立させないため。codec選定の新承認/旧authority移植を生成しない。",
+      "selected_hit_ids": [
+        "src/workflow/workflow-guide.ts::stableJson:FunctionDeclaration stableJson::1"
+      ],
+      "classification_discrepancy": "canonicalization sorted-object-keys-array-order-preservedとあるが実source114-116はJSON.stringifyのみ。",
+      "raw_read_limit": "inventory JSONを読み、該当rowを抽出。inventory/configは実行しない。"
     }
   ],
   "full_goal_scope_preserved": {
@@ -647,7 +806,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
@@ -9103,5 +9262,68 @@
       "全既存caseのinput/value/candidate、各Context raw、graph rawを構造検査し既oracleと両立させる。schemaに適合する意味反例をcontent_supportedへ昇格しない。構造反例は別の28negative/型境界で保持する。"
     ],
     "unclosed": "正式wire schema registry/実consumer codec選定/全構造negative oracle/副次finding集合/L6L7凍結は未完。型名/shapeの構造定義で全004閉包を主張しない。"
+  },
+  "wire_decode_contract": {
+    "status": "draft_design_decode_boundary_not_registered_wire_codec",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "symbol": "decode_received_trace_json",
+    "signature": "decode_received_trace_json(raw_bytes: bytes) -> WireDecodeResult",
+    "domain_entrypoints": "logical_structure_schema.entrypointsの7契約。decoderは種類/owner/authorityを推測せず、外側consumerが選んだ型へ別段で渡す。",
+    "standard_source": "https://www.rfc-editor.org/rfc/rfc8259",
+    "model": {
+      "WireDecodeResult": {
+        "status": "decoded | rejected",
+        "raw_sha256": "受信raw bytesのbare lowercase SHA-256",
+        "raw_retained": "literal true（入力bytesを無改変で保持）",
+        "ast": "WireNode | null（rejectedはnull）",
+        "findings": "tuple[WireFinding]",
+        "schema_handoff": "literal false（初回の正式consumer/wire binding未閉包）",
+        "actual_effects": "literal none"
+      },
+      "WireNode": "kind付きnull/bool/string/number/array/object。boolとnumberを別kindにし、numberはRFC JSON文法に一致する原token stringを保持。arrayの要素順を保持、objectはdecoded keyと子nodeの原出現順を保持するpair tuple。",
+      "WireFinding": {
+        "code": "下記closed code集合",
+        "pointer": "JSON Pointer | null（構文解析できない位置はnull、想像で補わない）",
+        "return_owner": "wire-codec-owner"
+      }
+    },
+    "stages": [
+      {
+        "id": "W1",
+        "rule": "decode前に受信raw bytesを保存参照として保持しbare SHA-256を計算。入力bytesを書き換えず、trim/BOM除去/改行統一/escape書換を行わない。保存の実operationは別ownerでdecoderにI/Oを持たせない。"
+      },
+      {
+        "id": "W2",
+        "rule": "strict UTF-8を読む。不正byteをU+FFFDへ置換せずutf8_invalidで拒否。UTF-8として有効でも、JSON先頭BOMを消して通さずこのstrict profileではjson_syntax_invalidへ。JSONの文法内whitespaceは許可しraw bytesは保持。"
+      },
+      {
+        "id": "W3",
+        "rule": "RFC JSON文法で単一値を解析。comment/single quote/trailing comma/追加document/NaN/Infinity/-Infinityは拒否。各数値は原tokenをstringで保持しfloat/intへ変換して丸めない。1e400は文法上finiteな数値tokenであり、host floatのInfinity化を理由に非JSON扱いしない。range/precision/resource/実consumer数値bindingは後段の別条件。"
+      },
+      {
+        "id": "W4",
+        "rule": "各objectの名前はJSON escapeを解いたUnicode scalar stringで比較。同一object内のdecoded同名keyをduplicate_keyで拒否しfirst/last勝ちへしない。別objectの同名は独立。NFC/NFDやcase/空白の正規化はせず別key/別stringとして保持。"
+      },
+      {
+        "id": "W5",
+        "rule": "escapeのsurrogate pairは一つのUnicode scalarへ。decoded key/valueにlone surrogateが残ればunicode_scalar_invalidで拒否し、UTF-8への置換やold tie-breakで補わない。制御文字はJSON文法に従いescapeなしを拒否。"
+      },
+      {
+        "id": "W6",
+        "rule": "全lexical gateが対応した場合だけdecoded ASTを返す。number tokenや元key順を資格済みlogical/digestへ読み替えない。正式consumer materializer/数値表現/canonical emitter/codec revisionが未閉包ならschema_handoff falseのまま。schema適合は後段で全materialへ照合し、DeclaredSourceDigest/欠けたjoinをdomain診断へ残す。"
+      }
+    ],
+    "finding_codes": [
+      "utf8_invalid",
+      "json_syntax_invalid",
+      "json_non_finite_literal",
+      "duplicate_key",
+      "unicode_scalar_invalid"
+    ],
+    "diagnostic_limit": "lexicalに解釈不能なdocumentから完全ASTやdomain valueを捏造しない。拒否でもraw bytes/digestを保全。全副次finding/byte span/全複合は未完、下のminimum code/AST指定例は部分oracle。",
+    "number_and_digest_boundary": "原bytes digestとdomain logical canonical digestを別にする。初回fixed materialのJSON数値はintegerだけであり旧binary64 formatterの採用根拠にしない。数値tokenはASTでlosslessに保持し、数学内容比較/厳密logical materializer/小数・exponent canonical emissionと実consumer版は後続で固定する。既定host conversionや旧JSON.stringifyで丸めてhashを作らない。",
+    "legacy_discrepancy": "旧digest inventoryのsrc/workflow/workflow-guide.ts::stableJsonはsorted-object-keys-array-order-preservedとあるが、実source114-116はJSON.stringifyのみ。この分類不一致を現行のkey sort成立根拠にしない。旧shared canonicalJsonはUTF-16 .sortとNumber有限性を使い、旧compareBytewiseはsurrogateのU+FFFD衝突をtie-breakする。現行は既定Unicode順/strict UTF-8からlone surrogate拒否へ再導出し旧sourceをcopy/実行しない。",
+    "unclosed": "formal wire registry/consumer/materializer/数値比較・emitter版/資源policy/全lexical finding/全codec oracle/L6L7凍結は未完。decoder例の静的整合を実I/O/probe/運転/実装完了にしない。"
   }
 }
