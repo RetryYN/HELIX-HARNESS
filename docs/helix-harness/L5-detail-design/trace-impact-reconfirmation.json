@@ -13,14 +13,14 @@
       "HARNESS-L3-004-F04",
       "HARNESS-L3-004-B01",
       "HARNESS-L3-004-F02",
-      "HARNESS-L3-004-F01"
+      "HARNESS-L3-004-F01",
+      "HARNESS-L3-004-F03"
     ],
     "remaining_requirement_refs": [
-      "HARNESS-L3-004-F03",
       "HARNESS-L3-004-F05",
       "HARNESS-L3-004-N01"
     ],
-    "boundary": "004のB01/F01/F02/F04を部分詳細化。残3契約/正式binding/全oracleを未完保持し、全004完了や実作用を生成しない。"
+    "boundary": "004のB01/F01/F02/F03/F04を部分詳細化。残2契約/正式binding/全oracleを未完保持し、全004完了や実作用を生成しない。"
   },
   "source_pins": [
     {
@@ -291,6 +291,79 @@
         "change": "旧Scrum stage/DB/PLAN/trigger/runtimeを移植せず、B01の純粋内容分類とowner別の不足・候補返却へ再導出。",
         "reason": "承認B01と現在のHARNESS導出/OS運転境界へ具体化するため。旧assetのunresolvedを採用や実copy許可にしない。"
       }
+    },
+    {
+      "asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+      "sha256": "4776830ec12a6a464732db56e6ff8d93f89e8e89a6dcb8c175728a82482cc754",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 28,
+          "text": "> 2026-09-05、PLAN-L3-77固有のL3 human gateが成立した。本書は承認済みcandidateだが、"
+        },
+        {
+          "line": 29,
+          "text": "> canonical promotionとG3再freezeが成立するまではcurrent authorityではない。runtime completion、"
+        },
+        {
+          "line": 30,
+          "text": "> authority自動write、merge／publish／release／cutoverは別境界に残す。"
+        },
+        {
+          "line": 40,
+          "text": "UILで正規化されたeventとfindingからRF0候補を導出する規則を、version、authority digest、source／detector identity、"
+        },
+        {
+          "line": 41,
+          "text": "baseline revision、比較演算、threshold source、観測window、minimum sample、hysteresis、cooldown、expiry、severity、"
+        },
+        {
+          "line": 42,
+          "text": "counterevidence、unknown dispositionへ束縛する。source registryの定義を複製せず、policy値をruntimeへ重複hardcodeしない。"
+        },
+        {
+          "line": 46,
+          "text": "invariant違反、再発、metric budget超過、悪化傾向、structural drift、release boundary、provider change、"
+        },
+        {
+          "line": 47,
+          "text": "scheduled safety-netを別trigger identityとして扱う。LOC、file size、Issue数、AI評価、単一瞬間値だけでは候補をadmitしない。"
+        },
+        {
+          "line": 48,
+          "text": "蓄積評価はversioned windowとminimum sampleを満たし、lifecycle boundaryは評価契機であって悪化証拠なしにrefactorを強制しない。"
+        },
+        {
+          "line": 53,
+          "text": "UIL candidateからRF0へ渡すadmissionはcandidate／finding／trigger evidenceのexact identityとdigest、source registry、"
+        },
+        {
+          "line": 54,
+          "text": "trigger policy、baseline、primary scopeはexactly one、related scope、semantic parity、route candidate、suppression、"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "read_line_locators": [
+        28,
+        29,
+        30,
+        40,
+        41,
+        42,
+        46,
+        47,
+        48,
+        53,
+        54
+      ],
+      "locator_semantics": "explicit individual content lines; file bytes unchanged",
+      "detail_rederivation": {
+        "preserve": "候補/trigger観測とcurrent authority/実操作を別境界に保持し、source/baseline/比較演算/unknownを捨てない。",
+        "change": "旧UIL/RF0/Universal Workflow/trigger政策/数値/windowを移植せず、現行承認003/004の7条件と局所/独立改善の意味候補へ再導出。",
+        "reason": "正常照合への毎回ticket強制や合成値の実policy化を防ぎ、HARNESS意味導出/OS実発行へ分けるため。"
+      }
     }
   ],
   "full_goal_scope_preserved": {
@@ -299,11 +372,12 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004 F03/F05/N01の3契約を同じL5/L8文書へ追加する。",
+    "004 F05/N01の2契約を同じL5/L8文書へ追加する。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。",
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。",
+    "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
   ],
   "document_id": "HARNESS-L5-004",
@@ -816,6 +890,149 @@
       "candidate_conflicting_fields": "tuple[Text]",
       "retained_input_sha256": "Digest（canonical logical bytes）",
       "retained_context_sha256": "Digest（canonical logical bytes）"
+    },
+    "ReconfirmationTarget": {
+      "scope": "Text",
+      "source_binding": "Text（exact版）"
+    },
+    "ProductMeaningSignature": {
+      "value": "LogicalJson（製品価値の原意味。B01 SemanticSignature.valueの要約labelとは別型/用途）",
+      "requirement_acceptance": "LogicalJson",
+      "architecture": "LogicalJson",
+      "detail": "LogicalJson"
+    },
+    "MeaningSignatureChange": {
+      "before": "ProductMeaningSignature",
+      "proposed": "ProductMeaningSignature"
+    },
+    "PublicContractChange": {
+      "before": "LogicalJson",
+      "proposed": "LogicalJson"
+    },
+    "TraceSourceBinding": {
+      "identity": "Text",
+      "binding": "Text"
+    },
+    "ScrumImplementationMerge": {
+      "source": "Text",
+      "qualification": "Text（実設計/authorityを生成しない）"
+    },
+    "ImplementationChange": {
+      "before": "Text",
+      "proposed": "Text"
+    },
+    "ReconfirmationRelation": {
+      "from": "Text",
+      "to": "Text",
+      "binding": "Text",
+      "kind": "requirement_design | design_verification"
+    },
+    "PairMaterial": {
+      "left": "Text",
+      "right": "Text",
+      "binding": "Text"
+    },
+    "PreviousFinding": {
+      "signature": "Text",
+      "source": "Text"
+    },
+    "PerformanceComparison": {
+      "baseline": "finite number（bool不可）",
+      "observed": "finite number（bool不可）",
+      "unit": "Text",
+      "binding": "Text"
+    },
+    "ReverseTriggerEvidence": {
+      "expected_behavior": "LogicalJson",
+      "observed_behavior": "LogicalJson",
+      "provenance": "{identity: Text} | null",
+      "previous_findings": "tuple[PreviousFinding]",
+      "current_finding": "{signature: Text}",
+      "performance": "PerformanceComparison | null",
+      "incident_permanent_remedy": "{incident: Text, permanent_remedy_outstanding: bool} | null",
+      "scrum_reverse_checkpoint": "{identity: Text, ready_for_reverse: bool} | null",
+      "design_dependencies": "{before: tuple[Text], observed: tuple[Text]}"
+    },
+    "ImprovementKind": {
+      "scope": "local | independent",
+      "kind": "structure | architecture | performance"
+    },
+    "ReconfirmationInput": {
+      "target": "ReconfirmationTarget",
+      "signatures": "MeaningSignatureChange",
+      "public_contract": "PublicContractChange",
+      "trace_source": "TraceSourceBinding | null",
+      "scrum_implementation_merge": "ScrumImplementationMerge | null",
+      "implementation": "ImplementationChange",
+      "affected_root": "Text",
+      "relations": "tuple[ReconfirmationRelation]",
+      "work_population": "tuple[Text]",
+      "pair_material": "PairMaterial | null",
+      "trigger_evidence": "ReverseTriggerEvidence",
+      "improvement": "ImprovementKind",
+      "discovery_layer": "Text（検出locatorであり戻し先の意味根拠ではない）",
+      "qualification": "Text（自己申告で実資格を生成しない）",
+      "subject_roles": "mapping[Text,requirement_condition | design | verification | unrelated_design]"
+    },
+    "ReconfirmationReferent": {
+      "field": "ReconfirmationInputのfield名",
+      "raw_utf8": "RawUtf8（当該logical field全内容を表す）",
+      "content_sha256": "Digest",
+      "state": "current | missing | unknown | conflict | stale",
+      "qualification_basis_refs": "tuple[Ref]",
+      "evidence_kind": "synthetic | actual_owner_input"
+    },
+    "ReconfirmationContext": {
+      "target": "ReconfirmationTarget",
+      "affected_root": "Text",
+      "work_population": "tuple[Text]",
+      "subject_roles": "mapping[Text,Text]",
+      "required_relations": "tuple[ReconfirmationRelation]",
+      "required_pairs": "tuple[PairMaterial]",
+      "record_catalog": "tuple[ReconfirmationReferent]",
+      "qualifier_roots": "tuple[Ref]",
+      "evidence_kind": "synthetic | actual_owner_input",
+      "state": "current | missing | unknown | conflict | stale",
+      "actual_trigger_policy_refs": "tuple[Ref]（実owner policy/window/baseline等のbinding、初回合成では空）"
+    },
+    "ReconfirmationValue": {
+      "changed_meaning_axes": "tuple[value | requirement_acceptance | architecture | detail]",
+      "reconfirmation_reasons": "tuple[public_contract_change | requirement_change | trace_missing | scrum_implementation_merge | meaning_signature_change]",
+      "reconfirmation_targets": "tuple[Text]",
+      "required_pair_refs": "tuple[Text]（left<->rightの表示。型付き根拠はrequired_pairs/locatorへ保持）",
+      "pair_reconfirmation_status": "not_required | required_not_performed | unresolved",
+      "pair_material_condition": "supported_synthetic_material | missing | unknown | conflict | stale",
+      "route_candidate": "routine_comparison | right_refactor_and_reverification | backflow_to_changed_meaning | unresolved_origin_recovery | design_grounding_recovery | unresolved_meaning_owner | unresolved_material_return",
+      "backflow_layer_candidate": "L1 | L3/L2 | L4 | L5 | null",
+      "reverse_triggers": "tuple[clear_drift | missing_provenance | recurrence | performance_regression | post_incident_remedy | scrum_reverse_checkpoint | large_design_regression]",
+      "reverse_scope_candidate": "scoped_candidate | full_recovery_candidate | null",
+      "ticket_route_candidate": "current_forward_ticket | Refactor | Design-refactor | Performance-refactor | null",
+      "new_ticket_condition": "bool（候補条件、実発行ではない）",
+      "ticket_operation_owner": "literal OS",
+      "unrelated_Q": "preserved_valid_synthetic_material | retained_without_validity_claim",
+      "actual_pair_frozen": "literal false",
+      "actual_reconfirmed": "literal false",
+      "actual_ticket_issued": "literal false",
+      "actual_work_invalidated": "literal false",
+      "actual_authority_changed": "literal false",
+      "actual_completion": "literal false"
+    },
+    "ReconfirmationCandidate": "ReconfirmationValueと同じ閉じたfield集合。literal制約位置の提出主張も比較して拒否。説明metadataは別保持、未知fieldを捨てない。",
+    "ReconfirmationFinding": {
+      "code": "F03 finding_codes",
+      "pointer": "JSON Pointer（/input,/context,/candidate）",
+      "subject_ids": "tuple[Text]",
+      "basis_refs": "tuple[Ref]",
+      "return_owner": "Text"
+    },
+    "ReconfirmationResult": {
+      "outcome": "content_supported | unknown | conflict | invalid",
+      "value": "ReconfirmationValue | null（構造解釈不能のみ）",
+      "findings": "tuple[ReconfirmationFinding]",
+      "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
+      "candidate_conflicting_paths": "tuple[JSON Pointer]",
+      "retained_input_sha256": "Digest（canonical logical bytes）",
+      "retained_context_sha256": "Digest（canonical logical bytes）"
     }
   },
   "functions": [
@@ -1134,6 +1351,113 @@
         "domain digestはUTF-8/sorted keys/compact/有限値のcanonical logical bytes。原transport/owner bytesは別codec bindingに保持し実資格へ昇格しない。"
       ],
       "scope_limit": "27原例と固定合成Contextの部分詳細。追加全型/複合/資格/実codec/全finding/oracle凍結は未完。"
+    },
+    {
+      "id": "HARNESS-L5-004-F03",
+      "requirement_ref": "HARNESS-L3-004-F03",
+      "l4_ref": "HARNESS-L4-004-F03",
+      "l9_ref": "HARNESS-L9-004-F03",
+      "l8_ref": "HARNESS-L8-004-F03",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-F03",
+        "parent": "HARNESS-L2-004",
+        "title": "限定再確定と意味変更の戻し先",
+        "obligation": "要求/public contract変更、trace欠落、Scrum実装事実の合流では影響する設計/対検証を再確定し必要なpair凍結を確認する。影響しない有効作業を一律失効させない。意味保存可能な不一致は右側Refactor/再検証、詳細L5/architecture境界L4/要件要求受入L3L2/価値L1の意味変更は該当層へBackflowし、発見層だけで戻し先を固定しない。通常照合のticket非発行と、明らかなずれ/由来欠落/同種finding再発/性能退行/障害後恒久対策/Scrum Reverse checkpoint/大きな設計退行のReverse ticket条件を003-F03へ結ぶ。局所は現在のForward ticket、独立構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactorの種類へ分け、実発行はOSへ返す。",
+        "oracle_ref": "HARNESS-L10-004-F03"
+      },
+      "approved_connection_dependency": {
+        "requirement": {
+          "id": "HARNESS-L3-003-F03",
+          "parent": "HARNESS-L2-003",
+          "title": "Vの谷と右側の照合範囲",
+          "obligation": "005/015の凍結→実装前Red実観測→最小Green→局所Refactor/原子CIと双方向traceを同対象へ結び、出力をProvisionalにする。右側では結合scopeを広げるごとに実物を対設計へ照合し、L8↔L5/L9↔L4/L10↔L3を保つ。正規由来が分かる変更は当該scopeのScoped Reverse、由来不明/旧資産/trace欠落/設計を信用できない/大きなずれは全体Reverseの復旧候補に分ける。L9ではinterface、依存の向き、state/dataの所有、transaction、失敗伝播、retry、timeout、冪等性、結合度、責務重複を照合する。通常の照合ではticketを発行しない。明らかな設計/実装のずれ、由来欠落、同種findingの再発、性能退行、障害後の恒久対策、Scrum Reverse checkpoint、大きな設計退行ではReverse ticketの発行条件となる。小さな境界Refactorは現在のForward ticket内、独立した大きな構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactor ticketへ区別する。HARNESSは条件と種類の意味を提供し、実発行はOSが所有する。",
+          "oracle_ref": "HARNESS-L10-003-F03"
+        },
+        "oracle": {
+          "id": "HARNESS-L10-003-F03",
+          "parent": "HARNESS-L2-003",
+          "title": "Vの谷と右側の照合範囲",
+          "requirement_ref": "HARNESS-L3-003-F03",
+          "positive_input": "由来と対が明確な変更、由来不明/trace欠落、実装前Red不足を別々に照合する。通常照合と各Reverse trigger、局所/独立構造改善を分け、L9の各観点の不足を与える。",
+          "expected_observation": "谷の証拠条件と局所/全体照合の選択根拠が辿れ、原子CIを上位証明にしない。L9各観点とticket非発行/発行条件/種類の違いが辿れる。",
+          "negative_input": "正規scope照合でも全体Reverse既定、由来不明を局所成功で埋める、原子CIで品質/Accepted/Release成立。通常照合で毎回Reverse ticket、再発/性能退行のtrigger見落とし、L9のstate所有/transaction/冪等性未検証を照合済み、HARNESSによる実ticket発行。",
+          "failure_observation": "該当証拠/由来不足と復旧候補を残し、Reverse実行成功を生成しない。",
+          "execution_state": "not_executed"
+        },
+        "source_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+        "unmerged_basic_design_used": false
+      },
+      "symbol": "derive_scoped_reconfirmation_and_backflow",
+      "signature": "derive_scoped_reconfirmation_and_backflow(input: ReconfirmationInput, context: ReconfirmationContext, candidate: ReconfirmationCandidate | None = None) -> ReconfirmationResult",
+      "preconditions": [
+        "003-F03の承認L3/L10 exact objectを固定する。未統合003 L4/L9/Draft内容を有効入力にしない。",
+        "Contextの母集団/役割/必要relation/pair/原field版は独立owner資料へ束縛。input/candidate/件数/過去の検出層から資格や網羅性を作らない。",
+        "初回は別固定synthetic catalogのみ。実owner資格/trigger policy/window/baselineのbindingは未完で、actual_owner_inputや実policy未閉包ではunknownへ。合成数値10/20や演算を実運用閾値として採用しない。",
+        "ProductMeaningSignature.valueは製品価値の意味であり、B01の要約labelとは用途を混同しない。"
+      ],
+      "algorithm": [
+        {
+          "id": "R1",
+          "rule": "閉じた型とfield人口、node/edge/pair/原field版の重複を検査し、不正/不足をlocatorへ蓄積。Contextとtarget/affected_root/母集団/役割を照合。catalogはfield名+原内容+digest+資格rootで一意解決しcurrentと内容対応を別に検査。"
+        },
+        {
+          "id": "R2",
+          "rule": "value/requirement_acceptance/architecture/detailを型付き全内容で比較し、変更軸はこの上流順に保持。戻し先は最も上流の差分でL1/L3L2/L4/L5へ、discovery_layerでは決めない。public contract単独差分で意味ownerが未特定ならunresolved_meaning_ownerへ返し、L4等へ推測で固定しない。"
+        },
+        {
+          "id": "R3",
+          "rule": "public contract差→public_contract_change、要求受入差→requirement_change、trace_source無し/由来未解決→trace_missing、Scrum実装事実有り→scrum_implementation_merge、value/architecture/detail差→meaning_signature_changeを原因別に保持。原因の順はこの順。Scrum事実は設計再確定の入力であり既確定やauthorityではない。"
+        },
+        {
+          "id": "R4",
+          "rule": "必要再確定時は同target版のrequired relationと読めた原relationからaffected_rootを辿り、design/verification役割の到達対象だけ返す。必要edge欠落/他版/原資格不明は当該scope不足を保持し、到達しないことを無影響にしない。有限集合で停止、cycle/同key競合はlocatorとunknownへ。独立母集団の無関係Qと原資料を保持し全作業を失効させない。"
+        },
+        {
+          "id": "R5",
+          "rule": "対象design/verificationに必要な型付きpairをContextから列挙し、入力pairのleft/right/binding/原内容を照合。必要pairがあり未実施ならrequired_not_performed、無い条件ならnot_required、必要集合不明ならunresolved。pair record存在は実凍結/再確定の証拠ではない。表示required_pair_refsと型付き原pairの対応を保持する。"
+        },
+        {
+          "id": "R6",
+          "rule": "7 Reverse triggerを独立原観測内容から個別に照合する。clear_driftはexpected/observed差、missing_provenanceはtrace又は観測由来無し、recurrenceは同signatureの過去finding原記録、performance_regressionは同版/unit/baselineで比較悪化、post_incident_remedyは当該Incidentの未完恒久対策、scrum_reverse_checkpointは原checkpoint内容、large_design_regressionは当該設計依存の欠落内容。初回合成では固定oracle条件（observed>baseline、before集合の欠落等）の候補だけを比較する。実性能/大きさの閾値・window/sample/measurement policyへ外挿しない。不明はtrigger無しに補完せずfinding/unknownを保持。"
+        },
+        {
+          "id": "R7",
+          "rule": "意味差分有りはbackflow_to_changed_meaningを返す。意味保存の範囲でmissing_provenanceはunresolved_origin_recovery、large_design_regressionはdesign_grounding_recovery、その他trigger/実装差/Scrum合流はright_refactor_and_reverification、いずれも無しはroutine_comparison。根拠共存は全原因を保持。由来不明/大きな設計退行はfull_recovery_candidate、他の資格付triggerはscoped_candidate。実Reverse実行ではない。"
+        },
+        {
+          "id": "R8",
+          "rule": "通常照合はticket_route_candidate null/new_ticket_condition false。triggerがある局所はcurrent_forward_ticket/false、独立構造はRefactor、architectureはDesign-refactor、性能はPerformance-refactor/new_ticket_condition true。triggerが無い独立改善の実発行条件を推測しない。意味変更と改善種別は別結果として保ち、運転の意味変更は禁止せず該当上流へ返す。ticket_operation_owner OS、6実作用false。"
+        },
+        {
+          "id": "R9",
+          "rule": "candidateは第三引数として全value fieldを型付き内容比較し、全差分のJSON Pointerを返す。誤戻し先/全失効/Q失効/必要pair省略/trigger見落とし/誤ticket種類/実作用主張を原valueと分離してconflictへ。原内容outcomeはContext資格/母集団/比較根拠未解決ならunknown、原inputの明示的なtrace/pair欠落を正しく不足へ導出できる場合はcontent_supported、それ以外も内容対応範囲でcontent_supported（trace欠落やpair未凍結の正しい候補導出と実成立を混同しない）。候補矛盾conflict、解釈不能構造invalid。"
+        }
+      ],
+      "finding_codes": [
+        "input_invalid",
+        "scope_conflict",
+        "population_conflict",
+        "reference_missing",
+        "reference_unknown",
+        "reference_conflict",
+        "reference_stale",
+        "content_digest_conflict",
+        "relation_missing",
+        "relation_cycle",
+        "pair_missing",
+        "pair_conflict",
+        "pair_stale",
+        "meaning_owner_unresolved",
+        "trigger_unqualified",
+        "trigger_policy_unresolved",
+        "candidate_conflict"
+      ],
+      "postconditions": [
+        "原input/Context/candidate/無関係workを変更せず、I/O/network/DB/clock/ticket/pair freeze/authority write/旧trigger runtimeを呼ばない。",
+        "同logical引数で同valueとfinding集合。axis/reasonは定義順、target/trigger集合はUnicode順、findingは(code,pointer,subject_ids,return_owner)順。未解決の別locatorを消さない。",
+        "domain digestはUTF-8/sorted keys/compact/finiteのcanonical logical bytes。実owner原bytes/authorityには別codec bindingが必要。"
+      ],
+      "scope_limit": "40既L9原例と固定合成Contextの部分詳細。複合原因/意味保存の実証/全副次finding/正式policy/schema/owner/codec/test凍結は未完。"
     }
   ]
 }
