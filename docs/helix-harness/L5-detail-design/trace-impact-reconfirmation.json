@@ -378,6 +378,20 @@
         "preserve": "管理projectionを要求/承認/完了へ逆書込みしない。product Forwardと管理改善の意味/operationを分け、TDD・対検証を省略しない。",
         "change": "旧Scrum stage/DB/PLAN/trigger/runtimeを移植せず、B01の純粋内容分類とowner別の不足・候補返却へ再導出。",
         "reason": "承認B01と現在のHARNESS導出/OS運転境界へ具体化するため。旧assetのunresolvedを採用や実copy許可にしない。"
+      },
+      "f03_context_rederivation": {
+        "read_line_locators": [
+          13,
+          14,
+          16,
+          17,
+          24,
+          28,
+          29
+        ],
+        "preserve": "Scrum内のproduct authority非変更、正規対検証/TDDと観測・再発・Reverse先の保全。",
+        "change": "旧管理stage/DB/triggerを移植せず、固定Contextの再確定候補/意味戻し先/必要pair資格を内容診断へ分離。",
+        "reason": "独立原資料不足を義務なしや全作業失効にしないため。実operation/凍結/発行は成立させない。"
       }
     },
     {
@@ -451,6 +465,24 @@
         "preserve": "候補/trigger観測とcurrent authority/実操作を別境界に保持し、source/baseline/比較演算/unknownを捨てない。",
         "change": "旧UIL/RF0/Universal Workflow/trigger政策/数値/windowを移植せず、現行承認003/004の7条件と局所/独立改善の意味候補へ再導出。",
         "reason": "正常照合への毎回ticket強制や合成値の実policy化を防ぎ、HARNESS意味導出/OS実発行へ分けるため。"
+      },
+      "f03_context_rederivation": {
+        "read_line_locators": [
+          28,
+          29,
+          30,
+          40,
+          41,
+          42,
+          46,
+          47,
+          48,
+          53,
+          54
+        ],
+        "preserve": "trigger原観測/baseline/policy/window/unknownとauthority/実作用の分離。",
+        "change": "旧RF0/UIL/policy値を移植せず、triggerと改善種類の独立資格不足を既承認003/004の意味候補へ局所化。",
+        "reason": "合成数値や不明triggerから実ticket条件を作らず、種類のunknownを局所Refactorへ補完しないため。"
       }
     },
     {
@@ -522,7 +554,7 @@
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。 Context21否定例で資格不足のcell局所化/母集団unionと同raw異identityの代用拒否を追加。",
-    "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。",
+    "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。 Context21例で独立資格不足とpair/意味/trigger/種類の局所不足を分離。",
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。",
     "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
@@ -2163,7 +2195,82 @@
         "同logical引数で同valueとfinding集合。axis/reasonは定義順、target/trigger集合はUnicode順、findingは(code,pointer,subject_ids,return_owner)順。未解決の別locatorを消さない。",
         "domain digestはUTF-8/sorted keys/compact/finiteのcanonical logical bytes。実owner原bytes/authorityには別codec bindingが必要。"
       ],
-      "scope_limit": "40既L9原例と固定合成Contextの部分詳細。複合原因/意味保存の実証/全副次finding/正式policy/schema/owner/codec/test凍結は未完。"
+      "scope_limit": "40既L9原例と固定合成Contextの部分詳細。複合原因/意味保存の実証/全副次finding/正式policy/schema/owner/codec/test凍結は未完。 Context21指定valueとminimum locatorを追補。全finding/実binding/凍結は未完。",
+      "context_failure_contract": {
+        "scope": "再確定候補/意味戻し先/triggerとticket種類の資格不足を分離する。候補集合の保全は実再確定/凍結/発行ではない。",
+        "qualification_return_owner": "reconfirmation-qualification-owner",
+        "return_owner_by_field": {
+          "target": "requirement-source-owner",
+          "affected_root": "trace-relation-owner",
+          "work_population": "work-scope-owner",
+          "subject_roles": "work-scope-owner",
+          "relations": "trace-relation-owner",
+          "pair_material": "pair-design-owner",
+          "signatures": "upstream-meaning-owner",
+          "trigger_evidence": "trigger-evidence-owner",
+          "improvement": "improvement-design-owner"
+        },
+        "global_unresolved_projection": {
+          "changed_meaning_axes": [],
+          "reconfirmation_reasons": [],
+          "pair_reconfirmation_status": "unresolved",
+          "pair_material_condition": "unknown",
+          "route_candidate": "unresolved_material_return",
+          "backflow_layer_candidate": null,
+          "reverse_triggers": [],
+          "reverse_scope_candidate": null,
+          "ticket_route_candidate": null,
+          "new_ticket_condition": false,
+          "unrelated_Q": "retained_without_validity_claim"
+        },
+        "candidate_set_preservation": "Context/inputの原work人口はunionをfinding subject_idsへ保持し、読めた再確定target/必要pair表示を既候補として保全する。共通資格未解決で保全した集合は有効な到達/必要集合の確定ではなく、unknown/outcomeとunresolved pairを保持する。空集合へ縮めて義務なしと扱わない。原input不変・6実作用false。",
+        "locator_rules": [
+          {
+            "condition": "Context target scope/source_bindingの不一致",
+            "code": "scope_conflict | reference_stale",
+            "pointer": "/context/target/{field}",
+            "limit": "全資格未解決のprojectionへ。版staleを無影響へしない。"
+          },
+          {
+            "condition": "Context state unknown/stale又はroot不一致/資格空/actual未成立",
+            "code": "reference_unknown | reference_stale | trigger_policy_unresolved",
+            "pointer": "/context/state又はqualifier_roots又はevidence_kind",
+            "limit": "全資格未解決。合成root/閾値を実policyへしない。"
+          },
+          {
+            "condition": "人口不一致/affected_root違い/役割違い",
+            "code": "population_conflict | reference_conflict",
+            "pointer": "/context/work_population又はaffected_root又はsubject_roles/{subject}",
+            "limit": "意味比較の独立資格は保持し、pair範囲はunresolved/unknown。原候補対象と必要pair表示を保全するが到達資格は未確定。Q自身の人口又は役割が未解決なら参照保全のみ。"
+          },
+          {
+            "condition": "独立required relation/pair集合の欠落",
+            "code": "relation_missing | pair_missing",
+            "pointer": "/context/required_relations又はrequired_pairs",
+            "limit": "元必要候補を保全しpair unresolved/unknown。Context空をnot_requiredへしない。意味差と戻し先は独立原資料があれば保持。"
+          },
+          {
+            "condition": "入力field原内容に完全一致するcatalog資料不在/旧版/digest不整合/資格空",
+            "code": "reference_missing | reference_stale | content_digest_conflict | reference_unknown",
+            "pointer": "/context/record_catalog又は/context/record_catalog/{index}/{field}",
+            "limit": "同field別原内容variantを代用しない。pair_material不足だけなら意味/targets/required refsを保持しpair unresolved/unknown。signatures不足なら意味軸と意味由来reasonを未確定、route unresolved_material_return/層nullへ。"
+          },
+          {
+            "condition": "trigger_evidence資格不明",
+            "code": "trigger_unqualified",
+            "pointer": "/context/record_catalog/{index}/state",
+            "limit": "観測から確定できないtriggerは採用しないが、無triggerの正常と区別しunknown/unresolved_material_return。別qualified意味軸/必要pairは保持。ticket条件を生成しない。"
+          },
+          {
+            "condition": "improvement種類の独立原資料資格不明",
+            "code": "reference_unknown",
+            "pointer": "/context/record_catalog/{index}/state",
+            "limit": "qualified triggerと逆照合scopeは保持しticket_route null/new_ticket_condition false。種類を局所やRefactorへ補完しない。"
+          }
+        ],
+        "aggregation": "既R9どおりContext資格/母集団/比較根拠の未解決はoutcome unknown。原版/digest/conflict findingを別保持し、candidate矛盾conflict/構造不正invalidを区別。返却名は意味役割で実owner資格/dispatchを生成しない。",
+        "unclosed": "全複合/全不正構造/全副次finding/cycle/正式trigger policy/実owner-codec/正式schema/L6L7/oracle凍結は未完。以下21例は指定value/minimum findingsの部分oracle。"
+      }
     },
     {
       "id": "HARNESS-L5-004-F05",
