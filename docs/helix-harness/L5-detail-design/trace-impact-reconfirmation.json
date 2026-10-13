@@ -647,7 +647,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
@@ -685,7 +685,7 @@
     "DispositionItem": {
       "atom_id": "Text",
       "source_ref": "Ref",
-      "source_sha256": "Digest",
+      "source_sha256": "DeclaredSourceDigest",
       "destination_ref": "Ref",
       "destination_raw_utf8": "RawUtf8",
       "destination_sha256": "Digest"
@@ -1055,7 +1055,7 @@
       "id": "Text",
       "condition_id": "Text",
       "binding": "Text",
-      "source_sha256": "Digest",
+      "source_sha256": "DeclaredSourceDigest",
       "behavior_contract": "TraceOracle | null"
     },
     "TraceVerification": {
@@ -1523,7 +1523,7 @@
       "required_condition_ids": "tuple[Text]",
       "requirement_content_versions": "tuple[{raw_utf8: RawUtf8,sha256: Digest,target: UnseenRelationTarget}]",
       "required_consumer_relations": "mapping[Text,ConsumerConditionRelation]",
-      "required_operation_joins": "mapping[Text,{operation: ConsumerOperationTrace,rerequirement: ConsumerRerequirementTrace}]",
+      "required_operation_joins": "mapping[Text,UnseenOperationJoin]（提出不足を受領し、必要joinはdomainで比較する）",
       "unobserved_population": "tuple[Text]",
       "probe_owner": "Text",
       "reverification_owners": "mapping[Text,Text]",
@@ -1577,6 +1577,11 @@
       "candidate_conflicting_paths": "tuple[JSON Pointer]",
       "retained_input_sha256": "Digest（canonical logical bytes）",
       "retained_context_sha256": "Digest（canonical logical bytes）"
+    },
+    "DeclaredSourceDigest": "RawUtf8 | null（提出宣言を無改変で受領。既知sourceのDigest形式/内容一致はdomainで検査し、不正宣言と未知atomのnullを資格済みdigestにしない）",
+    "UnseenOperationJoin": {
+      "operation": "optional ConsumerOperationTrace | null（欠落/nullはdomainのoperation_join_unresolvedへ）",
+      "rerequirement": "optional ConsumerRerequirementTrace | null（欠落/nullはdomainのrerequirement_join_unresolvedへ）"
     }
   },
   "functions": [
@@ -2949,7 +2954,7 @@
               "$ref": "#/$defs/Ref"
             },
             "source_sha256": {
-              "$ref": "#/$defs/Digest"
+              "$ref": "#/$defs/DeclaredSourceDigest"
             },
             "destination_ref": {
               "$ref": "#/$defs/Ref"
@@ -2983,7 +2988,7 @@
               "$ref": "#/$defs/Ref"
             },
             "source_sha256": {
-              "$ref": "#/$defs/Digest"
+              "$ref": "#/$defs/DeclaredSourceDigest"
             },
             "destination_ref": {
               "$ref": "#/$defs/Ref"
@@ -5055,7 +5060,7 @@
               "$ref": "#/$defs/Text"
             },
             "source_sha256": {
-              "$ref": "#/$defs/Digest"
+              "$ref": "#/$defs/DeclaredSourceDigest"
             },
             "behavior_contract": {
               "anyOf": [
@@ -8004,20 +8009,7 @@
                 "$ref": "#/$defs/Text"
               },
               "additionalProperties": {
-                "type": "object",
-                "additionalProperties": false,
-                "required": [
-                  "operation",
-                  "rerequirement"
-                ],
-                "properties": {
-                  "operation": {
-                    "$ref": "#/$defs/ConsumerOperationTrace"
-                  },
-                  "rerequirement": {
-                    "$ref": "#/$defs/ConsumerRerequirementTrace"
-                  }
-                }
+                "$ref": "#/$defs/UnseenOperationJoin"
               }
             },
             "unobserved_population": {
@@ -9059,6 +9051,45 @@
             }
           },
           "$comment": "候補の閉じたshape。literal/enum外の型付き提出値も比較対象にし、domain conflictをschemaで消さない。schema適合は内容対応/実成立ではない。"
+        },
+        "DeclaredSourceDigest": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RawUtf8"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "$comment": "原提出宣言を保全する受領型。Digest形式/正本一致はdomain検査。nullは既知sourceのqualified digestではない。"
+        },
+        "UnseenOperationJoin": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "operation": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ConsumerOperationTrace"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "rerequirement": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ConsumerRerequirementTrace"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "$comment": "原join不足の受領型。無操作/無義務ではない。domainが必要join/owner/版を照合しunknown/missingを返す。"
         }
       }
     },
@@ -9067,7 +9098,9 @@
       "wire codecはstrict UTF-8/重複key/NaN/Infinityとunsafe値を拒否し原bytesを保持。論理schemaの合格でcodec完了を生成しない。",
       "全schema findingをpointerで蓄積し、読めた原資料を保全。欠落fieldだけで読める他scopeを捨てず、構造解釈不能時だけresult.value null。schema failureをdomain successへ補正しない。",
       "candidateのliteral/enum外の同primitive型値を許し原valueとの比較でconflictを検出する。未知field/異primitive型は別不正findingとして保全。schemaだけでcandidate対応を生成しない。",
-      "unique ID/重複集合/Ref latest-wildcard/有限number/bool-number内容差/owner宣言key集合は意味・codec検査。schema上のnumberはJSON数学値であり実host数値の安全性を保証しない。"
+      "unique ID/重複集合/Ref latest-wildcard/有限number/bool-number内容差/owner宣言key集合は意味・codec検査。schema上のnumberはJSON数学値であり実host数値の安全性を保証しない。",
+      "提出のsource_sha256宣言はDeclaredSourceDigestで受領しDigest形式・原source一致をdomainへ返す。欠けた運用joinはUnseenOperationJoinで受領し必要joinとの欠落をdomainへ返す。この二つを資格済み値へ正規化しない。strict Digest、必要source record全体の型、core resultのliteralは保持する。",
+      "全既存caseのinput/value/candidate、各Context raw、graph rawを構造検査し既oracleと両立させる。schemaに適合する意味反例をcontent_supportedへ昇格しない。構造反例は別の28negative/型境界で保持する。"
     ],
     "unclosed": "正式wire schema registry/実consumer codec選定/全構造negative oracle/副次finding集合/L6L7凍結は未完。型名/shapeの構造定義で全004閉包を主張しない。"
   }

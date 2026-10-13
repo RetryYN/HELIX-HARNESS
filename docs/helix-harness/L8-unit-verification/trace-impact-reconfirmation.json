@@ -647,7 +647,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
@@ -59513,7 +59513,54 @@
           "kind": "unknown_kind"
         },
         "expected_shape": "invalid"
+      },
+      {
+        "id": "H004-STRUCTURE-DECLARED-DIGEST-BAD-FORMAT",
+        "type": "DeclaredSourceDigest",
+        "value": "synthetic-wrong-digest",
+        "expected_shape": "valid",
+        "domain_limit": "資格済みDigestにせず既source digest不一致へ。"
+      },
+      {
+        "id": "H004-STRUCTURE-DECLARED-DIGEST-UNKNOWN",
+        "type": "DeclaredSourceDigest",
+        "value": null,
+        "expected_shape": "valid",
+        "domain_limit": "未知atomの原null保持。既知source資格にしない。"
+      },
+      {
+        "id": "H004-STRUCTURE-DECLARED-DIGEST-NUMBER",
+        "type": "DeclaredSourceDigest",
+        "value": 1,
+        "expected_shape": "invalid"
+      },
+      {
+        "id": "H004-STRUCTURE-PARTIAL-OPERATION-JOIN",
+        "type": "UnseenOperationJoin",
+        "value": {},
+        "expected_shape": "valid",
+        "domain_limit": "必要join空で充足せずdomainへ未解決。"
+      },
+      {
+        "id": "H004-STRUCTURE-PARTIAL-JOIN-EXTRA",
+        "type": "UnseenOperationJoin",
+        "value": {
+          "undeclared_join": null
+        },
+        "expected_shape": "invalid"
       }
-    ]
+    ],
+    "all_case_material_bindings": {
+      "scope": "全既原case/input/value/candidate、各Context packet、各graph packet/value、全9fixtureをnamed schemaへ照合する。欠落join/不正digest宣言は受領shape適合でも既domain unknown/conflictを保持。",
+      "design_entrypoints": "L5.logical_structure_schema.entrypoints",
+      "source_cases": "verification_obligations[*].cases[*]のsource packet/expected value/candidate_argument",
+      "context_cases": "verification_obligations[*].context_cases[*].context_packet/完全valueがあるexpected_partial_result",
+      "graph_cases": "verification_obligations[*].graph_cases[*].independent_source_packet/expected_partial_result.value",
+      "fixtures": "context_fixtures[*].context又はsource_packet.raw_utf8",
+      "expected_ingress_shape": "valid",
+      "expected_meaning": "全既caseのexpected_result_projection/expected_partial_resultを保持し、schema適合で内容反例を合格へしない。",
+      "exclusion": "F04/F05の28部分結果は完全valueが無い。原Context packetは全検査し、部分結果の未指定fieldは創作しない。",
+      "effect": "none"
+    }
   }
 }
