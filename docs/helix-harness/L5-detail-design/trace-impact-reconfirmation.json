@@ -540,6 +540,19 @@
           25,
           42
         ]
+      },
+      "n01_context_rederivation": {
+        "read_line_locators": [
+          20,
+          22,
+          23,
+          24,
+          25,
+          42
+        ],
+        "preserve": "unknownをobserved/unchanged/0へ変えず、別snapshot joinを拒否し影響exact setと無関係範囲を保全。",
+        "change": "旧delta/UIL/assignment runtimeを移植せず、独立Contextの9cell資格/未観測集合/合成probe条件を純粋比較へ具体化する。",
+        "reason": "旧graph/資料自己申告で未観測とmissingを合格・無影響へ丸めず、局所不足でOLD/Qを失効しないため。候補全体の採用/実copy/authority writeを生成しない。"
       }
     }
   ],
@@ -556,7 +569,7 @@
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。 Context21否定例で資格不足のcell局所化/母集団unionと同raw異identityの代用拒否を追加。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。 Context21例で独立資格不足とpair/意味/trigger/種類の局所不足を分離。",
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。",
-    "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。",
+    "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。 Context25例で資料資格/未観測union/局所9cell/盲検資格の不足を分離。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
   ],
   "document_id": "HARNESS-L5-004",
@@ -2507,7 +2520,115 @@
         "同logical引数で同値と全finding。consumer/未解決/targetの集合はUnicode順、9cellは型定義順、findingは(code,pointer,consumer_ids,condition_ids,return_owner)順で、異なる不足locatorを消さない。",
         "canonical logical digestを既存規則で計算。実owner原bytes/qualification/probe lineageとtransport digestは別codec bindingへ。"
       ],
-      "scope_limit": "27既main L9原例と別固定合成Contextの部分詳細。全副次finding/型/複合/実owner-probe-observation-codec/L6L7/test凍結は未完。"
+      "scope_limit": "27既main L9原例と別固定合成Contextの部分詳細。全副次finding/型/複合/実owner-probe-observation-codec/L6L7/test凍結は未完。 Context25の指定value/minimum locatorを追補。実未見実験/一般網羅/正式bindingは未完。",
+      "context_failure_contract": {
+        "scope": "独立Contextの母集団/原内容/必要関係/観測と原consumer資料の資格不足を分ける。未観測は観測済み/無影響/一般保証へしない。",
+        "catalog_selection": "subject_id + field + canonical logical原内容で完全一致候補を選び、digest/state/root資格を別照合する。同rawでもOLD/NEW/Qが違えば代用しない。別内容版の存在を同内容へ読み替えず、input/candidateから資格資料を増やさない。",
+        "cells_by_field": {
+          "authority": [
+            "authority"
+          ],
+          "design": [
+            "design",
+            "semantic_oracle"
+          ],
+          "verification": [
+            "verification",
+            "semantic_oracle"
+          ],
+          "relation": [
+            "relation",
+            "semantic_oracle",
+            "operation_trace",
+            "rerequirement_trace"
+          ],
+          "operation_trace": [
+            "operation_trace"
+          ],
+          "rerequirement_trace": [
+            "rerequirement_trace"
+          ]
+        },
+        "return_owner_by_field": {
+          "authority": "consumer-authority-owner",
+          "design": "consumer-design-owner",
+          "verification": "verification-owner",
+          "relation": "consumer-relation-owner",
+          "operation_trace": "OS",
+          "rerequirement_trace": "requirement-candidate-owner"
+        },
+        "global_qualification": "target版/scope/共通state/root/実owner-probe-observation資格未閉包、selected consumer人口の不一致では保全したinput/Context consumer union全体の9cell資格をunknownにし、impact Unknown/evaluation unevaluatedへ。全consumer current TEST IDは未解決joinの診断候補として保全し実行適格にしない。",
+        "local_qualification": "consumer field資格不足はcells_by_fieldの当該consumerだけunknown、core7cell不足ならimpact Unknown、運用2cellだけ不足なら既知impactを保持。relation不足はsemantic/operation/rerequirement joinをunknown_relationへ。OLD/Qの独立9cellを消さず、全actualはfalse。",
+        "requirement_content_join": "必要条件の原input内容を、同targetの独立content_versionsへ条件単位で内容比較する。当該条件の対応内容無しはその条件にjoinするconsumerのsemantic_oracle unknown/impact Unknown。別条件が全独立versionで同じ既知内容ならそのconsumerは保持する。digest/対象版不足を内容比較で代用しない。",
+        "probe_limit": "probe_owner不一致又はreleased NEWがprevious_knownに入り独立未見条件が不成立でも、別qualified relation/設計内容の既知impactは保持する。NEW evaluation unevaluated/unresolvedへ。合成盲検条件の不足と実実験/発見の成立を区別する。",
+        "unobserved_preservation": "input/Contextの読めたunobserved人口unionを常に保全。集合が一致しないとpopulation_conflict/outcome unknown、既知consumer9cellと影響は独立資格があれば保持。空になったから観測済みにはしない。",
+        "locator_rules": [
+          {
+            "condition": "Context target scope/binding不一致",
+            "codes": [
+              "scope_conflict",
+              "reference_stale"
+            ],
+            "pointer": "/context/target/{field}",
+            "return_owner": "requirement-source-owner"
+          },
+          {
+            "condition": "共通state unknown/stale、root不一致/空、actual資格未閉包",
+            "codes": [
+              "reference_unknown",
+              "reference_stale"
+            ],
+            "pointer": "/context/state又はqualifier_roots又はevidence_kind",
+            "return_owner": "unseen-qualification-owner"
+          },
+          {
+            "condition": "selected consumer人口不一致/未観測集合不一致",
+            "codes": [
+              "population_conflict"
+            ],
+            "pointer": "/context/selected_consumer_ids又はunobserved_population",
+            "return_owner": "consumer-scope-owner"
+          },
+          {
+            "condition": "probe owner不一致/旧known集合が原probe条件と不一致",
+            "codes": [
+              "probe_unqualified"
+            ],
+            "pointer": "/context/probe_owner又はprevious_known_consumers",
+            "return_owner": "consumer-probe-owner"
+          },
+          {
+            "condition": "対応要求原内容版/必要consumer relation不足",
+            "codes": [
+              "reference_missing",
+              "relation_missing"
+            ],
+            "pointer": "/context/requirement_content_versions又はrequired_consumer_relations/{consumer}/condition_ids",
+            "return_owner": "requirement-source-owner又はconsumer-relation-owner"
+          },
+          {
+            "condition": "独立必要運用join不足",
+            "codes": [
+              "operation_join_unresolved"
+            ],
+            "pointer": "/context/required_operation_joins/{consumer}",
+            "return_owner": "OS"
+          },
+          {
+            "condition": "subject/field/原内容一致catalog不在/旧版/digest不整合/資格空",
+            "codes": [
+              "reference_missing",
+              "reference_unknown",
+              "reference_stale",
+              "content_digest_conflict"
+            ],
+            "pointer": "/context/record_catalog又は/context/record_catalog/{index}/{field}",
+            "return_owner": "当該field owner、qualification不足はunseen-qualification-owner"
+          }
+        ],
+        "aggregation": "N8どおり原cell conflict/candidate矛盾はconflict、missing/unknown/stale/unknown_relation又はContext資格不足はunknown。probe/未観測だけの不足も別findingで保持し一般保証を生成しない。返却名は意味役割で実owner資格や操作許可を生成しない。",
+        "unclosed": "全複合/不正型/全副次finding/全内容版/実probe lineage・観測・owner-codec/正式schema/L6L7/oracle凍結は未完。以下25例は指定value/minimum findingの部分oracle。"
+      }
     }
   ]
 }
