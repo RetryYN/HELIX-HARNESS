@@ -843,6 +843,45 @@
         "preserve": "pure coreとschema adapter/libraryの分離、stable typed failure、不正parse/unknown fieldをtyped成功へしない。",
         "change": "旧TS/loader/schema/library errorをcopyせず、現行ShapeProposal全findingとlane付き組立拒否へ再導出。",
         "reason": "schema failureをNone補完/未知field除去/意味成立にせず、型拒否前にcoreを起動しないため。新要求/承認/実operationを生成しない。"
+      },
+      "readonly_materializer_rederivation": {
+        "read_line_locators": [
+          18,
+          19,
+          20,
+          22,
+          23,
+          24,
+          25,
+          29,
+          30,
+          32,
+          34,
+          36,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          49,
+          51,
+          52,
+          53,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65
+        ],
+        "preserve": "pure function、untrusted inputとstable finding、strict parse不成立時にtyped valueを返さない、coreをlibrary errorへ束縛しない。",
+        "change": "旧TS/template authority wholeを移植せず、既004 readonly view/exact decimalの内容提案へ限定。意味資格/受入/実constructorを生成しない。",
+        "reason": "mutable aliasやfloat conversionで原意味/精度を失わず、変換だけでschema/owner/operation成立を作らないため。",
+        "locator_semantics": "nonempty relevant source lines only"
       }
     },
     {
@@ -1196,7 +1235,8 @@
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。",
     "wire受信WD1〜WD7と60全WireDecodeResultを具体化。原bytes/全finding/無効key位置/構文優先を保持。正式host/materializer/consumer/codec/資源/全入力coverage/実RedGreen/全92親430対の設計閉包は未完。",
     "exact number EN1〜EN6でnormalization38/比較31の全提案を固定。巨大指数を展開/float化せず数学値・整数predicate・全拒否pointerを保持。numeric/adapter profileと原requestを同時更新。正式host/consumer/resources/codec/全coverage/全freeze/全92親430対の閉包は未完。",
-    "canonical emit CE1〜CE8と56全結果でAST不正/予算不足/容量境界/Unicode/巨大指数/循環と共有aliasを分離。原15例/190source logical bindingsを保持。formal host/consumer/codec/resources/全coverage/全freeze/全92親430対閉包は未完。"
+    "canonical emit CE1〜CE8と56全結果でAST不正/予算不足/容量境界/Unicode/巨大指数/循環と共有aliasを分離。原15例/190source logical bindingsを保持。formal host/consumer/codec/resources/全coverage/全freeze/全92親430対閉包は未完。",
+    "readonly materializer RM1〜RM6と74全提案を具体化。raw token/member順・再帰readonly型と原7component×input/contextを保持。schema adapterのmaterializer pin/profileと原requestを対応させ、実host構築・実immutability・正式consumer/codec/資源/全coverage/全freeze/全92親430対閉包は未完。"
   ],
   "document_id": "HARNESS-L5-004",
   "layer": "L5",
@@ -10725,7 +10765,7 @@
       "current127defsのlocal参照だけを解決。network/filesystem/DBのloaderを暗黙呼出しせず、remote/未解決Ref、未対応keyword/type/dialect、同instanceで進捗しないRef cycleはbinding_unresolvedへ。再帰schemaが子instanceへ進む場合と区別する。",
       "unknown schema keywordは一般JSON Schemaでannotationになり得るが、本profileの閉じた対応証拠がない。instanceをinvalidと決めずbinding_unresolvedへ。properties/$defsの名前はschema keywordと混同しない。未知schemaをvalidと黙認しない。"
     ],
-    "logical_view": "decode済みASTから、array tuple/read-only object viewとExactFiniteDecimal leafの内容提案を作る。raw token/member順は元ASTに保持し、floatへ丸めたりnormalized numeric recordをJSON objectとして挿入しない。入力ASTを変更せずmutable viewをconsumerへ渡さない。実Python class/JSON Schema library version/adapter registrationは後続binding。",
+    "logical_view": "decode済みASTから、array tuple/read-only object viewとExactFiniteDecimal leafの内容提案を作る。raw token/member順は元ASTに保持し、floatへ丸めたりnormalized numeric recordをJSON objectとして挿入しない。入力ASTを変更せずmutable viewをconsumerへ渡さない。実Python class/JSON Schema library version/adapter registrationは後続binding。 readonly_materializer_contract RM1〜RM6と全result/value型へ結ぶ。これは内部readonly投影の設計でありschema実consumer構築ではない。",
     "data_model_rules": {
       "number": "JSON Schemaの任意精度base10数学numberへ接続。number/integer/const/enumはexact_number_contractで評価しbool/stringを別kindにする。整数predicateはfraction=0であり1.0/1e400を整数、1.5を非整数として扱う。host isinstance(int)/float変換では決めない。",
       "equality": "同primitive kindと内容。numberは数学同値、stringはscalar/codepoint列、arrayは順と各要素、objectはkey集合と各値（member順は無関係）。schema中のnumeric const/enum原tokenもexactで読む。",
@@ -10765,7 +10805,8 @@
       "aggregation": "binding findingが一つでもあればcondition binding_unresolved、その次にconstraint findingがあればshape_invalid、他はcorresponding_shape。対応が判明した独立の失敗assertionはbinding不足と同時に保持する。原AST/tokenを保持、schema_handoff false/actual_effects none。全schema参照closureの事前照合でbinding不足を検出し、remoteを取得しない。",
       "snapshot_effect": "schema/数値profile snapshotの整合は実資格/正式bindingでない。数学number/bool分離、原token/readonly view、pattern ECMA対応の既条件を保持。",
       "unclosed": "全keyword/全branch組合せ/全127defs/不正wire/資源/正式view・regex・backend・owner/consumer bindingとL6L7/test-oracle凍結は未完。"
-    }
+    },
+    "logical_materializer_contract_sha256": "32df9d17160a67f20265fbb9188e5691fe398bab72f3ea7e1f7f08cb6fcb95f9"
   },
   "assembly_contract": {
     "status": "draft_design_typed_composition_binding_not_runtime_admission",
@@ -10775,7 +10816,7 @@
       "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
       "exact_number_contract": "51aae5c03d2cf6e0f198158a1fe8cf2b0871f344c10942dd279703fac939fe32",
       "canonical_emit_contract": "563f9701a5e4155da373d356169e3c0ef5332fa7c28dd42826d7e00b6619bce2",
-      "schema_adapter_contract": "4e62e4da7b3b745dc0fb4e5f12ab16d3d30e488dce420c91290862ba6d84db7b",
+      "schema_adapter_contract": "f803b281eb7d24013825e7dce91994d1a84ac21325c3c73ed956893cf6646477",
       "logical_structure_schema": "d4be59b9aa8611870fbe666dc78087da9960f710f5bc9d65acb108026897562a"
     },
     "bindings": [
@@ -11775,5 +11816,64 @@
       "sha256": "586a5541755fd1fc1697d843a4c6d3846a09005c623e7892b88dd818b7d26569",
       "scope": "既存部分契約からF04固定45対照の全結果を起草。古いsource_main/source_pinsと採択意味は保持。"
     }
-  ]
+  ],
+  "readonly_materializer_contract": {
+    "status": "draft_design_readonly_value_proposal_not_registered_host_materializer",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "symbol": "propose_trace_readonly_value",
+    "signature": "propose_trace_readonly_value(ast: WireNode) -> ReadonlyMaterialProposal",
+    "fixed_dependencies": {
+      "ast_validation": "canonical_emit_contract.whole_result_contract CE1〜CE4の全shape/Unicode/重複/cycle診断だけ。budget CE5/6とemission CE7を呼ばない。",
+      "exact_numbers": "exact_number_contract.whole_result_contract EN1〜EN3。原tokenから数学内容を導出、host float/ordinary decimal展開を経由しない。"
+    },
+    "result_type": {
+      "condition": "value_proposed | material_rejected",
+      "value_proposal": "ReadonlyValueProposal | null（不正ASTはnull）",
+      "findings": "tuple[{code,pointer,return_owner}]（CE1〜CE4と同じcode/物理pointer/裸wire-codec-owner）",
+      "source_ast_retained": "literal true",
+      "source_number_tokens_retained": "literal true",
+      "source_member_order_retained": "literal true",
+      "schema_handoff": "literal false",
+      "actual_host_value_constructed": "literal false",
+      "actual_core_invoked": "literal false",
+      "actual_operation_invoked": "literal false"
+    },
+    "value_types": {
+      "ReadonlyValueProposal": "kindで分かれる下記closed record。この文書投影を元JSONの値へ代入しない。",
+      "NullValue": "{kind:null}（kindの文字列はnull）",
+      "BoolValue": "{kind:bool,value:literal bool}",
+      "StringValue": "{kind:string,value:Unicode scalar Text}",
+      "ExactNumberValue": "{kind:number,source_token:Text,exact_decimal:ExactFiniteDecimal,is_integer:bool}（raw tokenと数学値を分離、別kindへcastしない）",
+      "ArrayValue": "{kind:array,items:tuple[ReadonlyValueProposal]}（原順、false/zero/null/空を保持）",
+      "ObjectValue": "{kind:object,members:tuple[tuple[Unicode scalar Text,ReadonlyValueProposal]]}（原member順・keyを保持、重複不成立を除去して補完しない）"
+    },
+    "rules": [
+      {
+        "id": "RM1",
+        "rule": "最初にCE1〜CE4だけでASTを全検査し、全findingをCE8の順/uniqueへ固定。1件でもあればmaterial_rejected/value_proposal null。budgetもcanonical bytesも変換成立の条件にせず、予算finding/出力digestを作らない。読めないASTから部分value提案を成立させない。"
+      },
+      {
+        "id": "RM2",
+        "rule": "全AST対応ならnull/bool/string/array/objectのkindと全内容を再帰的readonly value提案へ。object member順/keyとarray順を保持。numberはEN1〜EN3でexact_decimalと整数predicateへ導出し、source_tokenを保持。unknownfield削除/値cast/escape正規化/NFC/trim/empty→None補完を行わない。"
+      },
+      {
+        "id": "RM3",
+        "rule": "循環はCE4で拒否。別枝の共有nodeは内容が同じreadonly子提案へ投影できるが、mutable aliasをconsumerへ持ち込まない。原AST/collectionsを変更せず、元member順とtokenはsource側で保存する。canonical key sortはemitterだけで実施し、本viewのmember順を変えない。"
+      },
+      {
+        "id": "RM4",
+        "rule": "実host実装ではnull/bool/scalar Textと、frozen exact-number record・tuple配列・tuple member recordによる再帰readonly protocolを満たす。数値をmutable JSON objectやhost floatへ置換しない。member lookupは存在するkeyの値（null/false/zero/空を含む）とmissingを区別し、未知keyをdefault Noneへせず、array readは整数index/boundsを別に確認する。実class/Protocol/version/constructor/不変性guardとmutation拒否の実検証は正式host bindingで閉じる。"
+      },
+      {
+        "id": "RM5",
+        "rule": "schema adapterは同一AST/profile/revision/scopeへ結んだreadonly value提案を用い、number/integer/const/enumの数学内容をENで比較する。ReadonlyValueProposalは内部viewの説明であり元JSONのnumeric leafへobjectとして挿入しない。corresponding_shapeやvalue_proposedをdomain意味充足/owner資格/実運転へしない。"
+      },
+      {
+        "id": "RM6",
+        "rule": "consumerのcontract/lane選択はA1/A3の既固定表で行い、viewのshapeからsymbol/ownerを推測しない。原frame/原hash/sourceRef/AST/tokenとContext独立性はA2とCallProvenanceで保持。value提案だけでschema_handoffをtrueにせず、全resultで実host構築/core呼出/操作はfalse。"
+      }
+    ],
+    "unclosed": "実host class/readonly guardと実mutation検証、schema library/regex、正式codec/consumer版と7domain型への結合、資源/pack/owner資格/全composition/全freeze/L6L7は未完。静的提案を実装Readyへしない。"
+  }
 }
