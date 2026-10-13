@@ -1078,7 +1078,6 @@
       "interface_binding_rederivation": {
         "read_line_locators": [
           11,
-          12,
           13,
           14,
           15,
@@ -1086,11 +1085,9 @@
           17,
           18,
           47,
-          48,
           49,
           50,
           51,
-          52,
           53,
           54,
           55,
@@ -1099,14 +1096,13 @@
           61,
           62,
           63,
-          64,
           65,
-          66,
           67
         ],
         "preserve": "read snapshot/immutable analyzerと明示effect実行の分離、contract向き依存、未指定edgeをallowにしない、negative先行。",
         "change": "旧TS/owner paths/DB/CLIを移植せず、固定7bindingと5profileの全内容matching、port signature/型/provenanceと実登録非生成へ再導出。",
-        "reason": "generic owner名とhashの一致だけで実supplier/consumerやregistered状態を作らず、型と戻し先を実装者の補完にしないため。新authority/承認/実operationを生成しない。"
+        "reason": "generic owner名とhashの一致だけで実supplier/consumerやregistered状態を作らず、型と戻し先を実装者の補完にしないため。新authority/承認/実operationを生成しない。",
+        "locator_semantics": "explicit nonempty content lines; blank separators omitted"
       }
     }
   ],
@@ -11375,7 +11371,7 @@
         "profile_unknown",
         "profile_conflict"
       ],
-      "return_owner": "trace-binding-owner（A1の宣言内容の照合責務、実資格/操作の発行者でない）",
+      "return_owner": "trace-binding-owner",
       "result_type": {
         "condition": "specification_corresponding | binding_unresolved | invalid",
         "selected_binding_ref": "Text | null",
@@ -11392,7 +11388,8 @@
       },
       "dependency_boundary": "意味coreは本binding resolver/read port/codec/OSをimportしない。composition root→read port/codec/value contract/meaning coreの既allowed edgeだけ。source/providerのI/Oはread portの既scope/authorityへ結び、pure coreへ持込まない。result receiverも操作を実行しない。",
       "ownership_and_canonical": "docsは意味、跨pack declarationsは宣言、pack内宣言は局所contract、型番台帳はOSの登録事実。port型/型番候補/一致提案を台帳へ複製せず、identityの実登録をこの紙で生成しない。実行instance/案件記録はrepo外の既境界へ。",
-      "unclosed": "supplier/receiverの全field protocol/資格resolver/実pack登録/physical interface/host/runtime/library/regex/view/resources/codec・全composition oracle・全freeze/L6L7未成立。このspecとmatching提案は実admission/実装Readyでない。"
+      "unclosed": "supplier/receiverの全field protocol/資格resolver/実pack登録/physical interface/host/runtime/library/regex/view/resources/codec・全composition oracle・全freeze/L6L7未成立。このspecとmatching提案は実admission/実装Readyでない。",
+      "return_owner_note": "A1の宣言内容の照合責務。実資格/操作の発行者でない。"
     }
   },
   "purity_repeat_contract": {
