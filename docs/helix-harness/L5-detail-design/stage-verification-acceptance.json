@@ -1,0 +1,487 @@
+{
+  "parent": "HARNESS-L2-022",
+  "status": "draft_partial_detail_design_independent_review_pending",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "parent_pair_revision": "ff5f0667f7326d94a79724a7d3b6eba77369019a",
+  "scope": {
+    "l2_individual_version_target": "unspecified",
+    "roster_version_scope": "1.0",
+    "historical_stage": "2a",
+    "authoring_stage": "1_limited_prerequisite",
+    "delegated_content_revision": "ff5f0667f7326d94a79724a7d3b6eba77369019a",
+    "full_parent_capability_adopted": false
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "db5e0e57c793deccaf6a5a0c3292473de2de79031798567c7e3cda859cd306a7",
+      "use": "固定意味/設計/対検証。実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/stage-verification-acceptance.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "60093283def28bb579634b49d3706cd22d0f5e36c80ec0e037e67d16aa53df4c",
+      "use": "固定意味/設計/対検証。実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "use": "固定意味/設計/対検証。実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "use": "固定意味/設計/対検証。実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-layer-acceptance-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "659ddd8975b2d0b87c5a393128a1b1d038f482fa9b7f0cd333ecc5879365d12d",
+      "use": "固定意味/設計/対検証。実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
+      "use": "固定意味/設計/対検証。実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "f683d35fa834eca85e9770544bd55c0a3bcc1328cc7317e6c1d2845080596734",
+      "use": "固定意味/設計/対検証。実proof/運転成立を生成しない。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/trace-impact-reconfirmation.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "bb31b5abe547b5caaea80a62992fa3e967f94a2273430ffd64b17e50c7fd36b2",
+      "use": "固定意味/設計/対検証。実proof/運転成立を生成しない。"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse_class": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 29,
+          "text": "### 要求の参照範囲と最新化"
+        },
+        {
+          "line": 31,
+          "text": "利用者要求はL2、FR／NFR／ACの定義・凍結はL3であり、利用者受入はL11である。"
+        },
+        {
+          "line": 32,
+          "text": "物理pathに残る旧`L1-requirements`等の名称から現行層を判定しない。"
+        },
+        {
+          "line": 33,
+          "text": "[L2要求の参照入口](../design/helix/L2-requirements/README.md)で、既存要求・追補・候補の出典と採用状態を確認する。"
+        },
+        {
+          "line": 34,
+          "text": "Concept v4の承認対象は上位入力として参照するが、候補本文の承認と正本化・runtime適用を同一視しない。"
+        },
+        {
+          "line": 35,
+          "text": "[Concept v4由来のL2整理案](../design/helix/L2-requirements/concept-v4-derived-requirements.md)はdraftであり、"
+        },
+        {
+          "line": 36,
+          "text": "その追加条件に既存revisionの承認を転用しない。"
+        },
+        {
+          "line": 38,
+          "text": "GitHub Issue／PRは作業・実行証跡への参照先であり、要求の意味・採否・合意revisionの正本ではない。"
+        },
+        {
+          "line": 39,
+          "text": "Issueの有無やclose状態から要求を追加・削除せず、要求本文、出典、対象revisionの判断記録を確認する。"
+        },
+        {
+          "line": 40,
+          "text": "DBのtrace／状態projectionも、repo-owned要求文書と指定JSONの意味を上書きしない。"
+        },
+        {
+          "line": 42,
+          "text": "### 層と対"
+        },
+        {
+          "line": 44,
+          "text": "| L | 工程 | V字の対 | 完了条件の核 |"
+        },
+        {
+          "line": 45,
+          "text": "|---|---|---|---|"
+        },
+        {
+          "line": 46,
+          "text": "| L1 | 企画 | L12 運用テスト | 価値、目的、対象、非対象、route判断が確定 |"
+        },
+        {
+          "line": 47,
+          "text": "| L2 | 要求＋画面プロト | L11 受入テスト | 要求とプロトを往復し、合意receiptまたは非UI N/A receiptが存在 |"
+        },
+        {
+          "line": 48,
+          "text": "| L3 | 要件定義・凍結 | L10 総合テスト | FR/NFR/AC、出所、優先度、非目標、test oracleが凍結 |"
+        },
+        {
+          "line": 49,
+          "text": "| L4 | 基本設計 | L9 結合テスト | 外部設計、architecture、境界、依存、接続が確定 |"
+        },
+        {
+          "line": 50,
+          "text": "| L5 | 詳細設計＋先行テスト設計 | L8 単体テスト | 内部設計、契約、edge case、test designが対で凍結 |"
+        },
+        {
+          "line": 51,
+          "text": "| L6 | 実装 | L7 TDD closure | L5契約内のproduct code。scope外機能を追加しない |"
+        },
+        {
+          "line": 52,
+          "text": "| L7 | テスト実装・TDD closure | L6 実装 | Red→Green→Refactor、実装とtestの双方向traceを閉じる |"
+        },
+        {
+          "line": 53,
+          "text": "| L8 | 単体テスト | L5 詳細設計 | 合成/局所データで内部設計を検証 |"
+        },
+        {
+          "line": 54,
+          "text": "| L9 | 結合テスト | L4 基本設計 | 接続、依存、transaction、adapter境界を検証 |"
+        },
+        {
+          "line": 55,
+          "text": "| L10 | 総合テスト | L3 要件 | system全体でFR/NFR/ACを検証 |"
+        },
+        {
+          "line": 56,
+          "text": "| L11 | 受入テスト | L2 要求＋画面プロト | 実利用・実データで要求とUXを検証 |"
+        },
+        {
+          "line": 57,
+          "text": "| L12 | 運用テスト・改善還流 | L1 企画 | 運用時間軸、価値、監視、改善を検証し次cycleへ還流 |"
+        },
+        {
+          "line": 59,
+          "text": "本番releaseはL11受入とL12運用テストの間のmilestoneであり、独立layerを増設しない。"
+        },
+        {
+          "line": 61,
+          "text": "正規V-pairは `L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7` の6組だけである。"
+        },
+        {
+          "line": 63,
+          "text": "## 3. L2画面工程"
+        },
+        {
+          "line": 65,
+          "text": "1. UIが存在する案件は、要求⇔画面プロトの反復と合意receiptなしにL3を凍結してはならない。"
+        },
+        {
+          "line": 66,
+          "text": "2. CLI、library、HARNESS等の非UI案件もL2を暗黙に飛ばしてはならない。`not_applicable`、理由、判定者、対象HEAD、要求への影響、再評価条件をreceiptへ残す。"
+        }
+      ],
+      "preserve": "要求/要件/実利用者受入と正規pairの分離、個別成功と組合せ検収の別証拠、GitHub/DB projectionから意味を生成しない。",
+      "change": "現行Conceptと022のProvisional/Integrated/Verified/Accepted、003/004/005とのscope別契約へ再導出する。旧層番号/Lite-Full/DB/CLI/runtime/CIは採用しない。",
+      "reason": "9/24/9/26/9/28の採択と022-004受入追補、10/12限定再開/今回の12object承認を保持する。",
+      "failure_basis": "利用者受入の記録なしにoracle成功/CI greenをAcceptedへ読み替える不整合を防ぐ。",
+      "limit": "source snapshotの保全または未採用candidateを、現行authority/実proof/完了へ昇格しない。",
+      "source_line_span": [
+        29,
+        66
+      ],
+      "quote_rule": "source_line_spanは原範囲、line_quotesはその範囲内の非空の内容行のみ。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "archive_disposition": "unresolved",
+      "reuse_class": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 64,
+          "text": "### FRS-BR-009 安全閉包と組合せの検収"
+        },
+        {
+          "line": 66,
+          "text": "利用者は各Sliceに必要な安全依存閉包を確認し、無関係な基盤完成を待たず、必要な安全条件が欠ける場合は投入を止められなければならない。"
+        },
+        {
+          "line": 67,
+          "text": "Lite／Fullは検収済みSliceの組合せとし、その統合・更新・rollback・L12運用検証を個別Sliceの成功とは別に確認する。"
+        }
+      ],
+      "preserve": "要求/要件/実利用者受入と正規pairの分離、個別成功と組合せ検収の別証拠、GitHub/DB projectionから意味を生成しない。",
+      "change": "現行Conceptと022のProvisional/Integrated/Verified/Accepted、003/004/005とのscope別契約へ再導出する。旧層番号/Lite-Full/DB/CLI/runtime/CIは採用しない。",
+      "reason": "9/24/9/26/9/28の採択と022-004受入追補、10/12限定再開/今回の12object承認を保持する。",
+      "failure_basis": "利用者受入の記録なしにoracle成功/CI greenをAcceptedへ読み替える不整合を防ぐ。",
+      "limit": "source snapshotの保全または未採用candidateを、現行authority/実proof/完了へ昇格しない。",
+      "source_line_span": [
+        64,
+        67
+      ],
+      "quote_rule": "source_line_spanは原範囲、line_quotesはその範囲内の非空の内容行のみ。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EF18357A994D043719D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+      "sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation_only",
+      "read_line_locators": [
+        18,
+        19,
+        20,
+        29,
+        30,
+        31,
+        34
+      ],
+      "line_quotes": [
+        {
+          "line": 18,
+          "text": "実装候補は`src/design/design-template-authority.ts`の単一moduleとする。まずpure functionだけで成立させ、"
+        },
+        {
+          "line": 19,
+          "text": "repository loader、CLI、DB projection、Markdown writerは本sliceへ追加しない。JSON Schema libraryは"
+        },
+        {
+          "line": 20,
+          "text": "既存dependencyを再利用できる場合だけadapter側で使い、core resultをlibrary固有errorへ束縛しない。"
+        },
+        {
+          "line": 29,
+          "text": "type ValidationResult<T> ="
+        },
+        {
+          "line": 30,
+          "text": "  | { ok: true; value: T; findings: [] }"
+        },
+        {
+          "line": 31,
+          "text": "  | { ok: false; findings: Finding[] };"
+        },
+        {
+          "line": 34,
+          "text": "findingは`code -> pointer -> message`の順でstable sortし、入力順やruntime localeでdigestを変えない。"
+        }
+      ],
+      "preserve": "pure core/schema adapterの分離、typed findingと安定順。",
+      "change": "旧TS/schema/loader/CLIをcopyせず現行022-F04の同scope利用者判断/記録と内容oracleの別比較へ再導出。",
+      "reason": "CI/agent oracle/候補の自己申告からAcceptedと利用者意思を生成する失敗を防ぐ。新承認は追加しない。",
+      "source_limit": "旧runtime/test/CIは実行せず、旧confirmedは現行authorityへ継承しない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "remaining": [
+    "F01/F02/F03/N01/B01の詳細契約と全6契約の設計閉包。",
+    "F04全構造/複合/全finding/Context資格、正式schema/codec/実owner/原記録供給・利用者本人性binding。",
+    "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。"
+  ],
+  "document_id": "HARNESS-L5-022-STAGE-ACCEPTANCE",
+  "layer": "L5",
+  "pair": "L8",
+  "paired_document": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+  "types": {
+    "Text": "nonempty Unicode scalar string",
+    "RawText": "Unicode scalar string（不正/unknown受領宣言を補正しない）",
+    "Digest": "64 lowercase hex SHA-256",
+    "LogicalJson": "null/bool/Text/exact finite decimal/array/object、boolとnumberは別、重複key/UTF8はcodecへ",
+    "Target": {
+      "artifact_identity": "Text",
+      "artifact_revision": "Text",
+      "requirement_revision": "Text",
+      "scope": "Text"
+    },
+    "MaterialRole": "Verified_basis | L2_meaning | L11_oracle | L11_content_result | user_decision | user_receipt",
+    "MaterialRecord": {
+      "artifact_identity": "RawText",
+      "artifact_revision": "RawText",
+      "contents": "LogicalJson",
+      "evidence_id": "RawText",
+      "execution": "RawText",
+      "identity": "RawText",
+      "oracle_revision": "RawText",
+      "owner": "RawText",
+      "pair": "RawText | null",
+      "requirement_revision": "RawText",
+      "scope": "RawText",
+      "source_id": "RawText"
+    },
+    "EvidenceRecord": {
+      "artifact_identity": "RawText",
+      "artifact_revision": "RawText",
+      "contents": "LogicalJson",
+      "identity": "RawText",
+      "oracle_revision": "RawText",
+      "owner": "RawText",
+      "pair": "RawText | null",
+      "requirement_revision": "RawText",
+      "scope": "RawText",
+      "source_id": "RawText"
+    },
+    "UserDecisionRecord": {
+      "artifact_identity": "RawText",
+      "artifact_revision": "RawText",
+      "authority": "RawText",
+      "decision": "RawText",
+      "identity": "RawText",
+      "owner": "RawText",
+      "requirement_revision": "RawText",
+      "revision": "RawText",
+      "scope": "RawText",
+      "source_id": "RawText"
+    },
+    "AcceptanceInput": {
+      "context": "Target",
+      "materials": "closed map[MaterialRole, MaterialRecord | null]",
+      "evidence_materials": "map[Text,EvidenceRecord]",
+      "independent_profiles": "map[Text,LogicalJson]（原宣言を保全。実Context資格ではない）",
+      "independent_user_record": "UserDecisionRecord | null（原宣言を保全。実本人性ではない）",
+      "CI_green": "bool",
+      "L10_pass": "bool",
+      "producer": "RawText",
+      "executor": "RawText",
+      "unrelated_scope": "LogicalJson"
+    },
+    "AcceptanceContext": {
+      "target": "Target",
+      "expected_profiles": "map[Text,LogicalJson]",
+      "original_user_record": "UserDecisionRecord | null",
+      "expected_material_owners": "closed map[MaterialRole,Text]",
+      "expected_user_owner": "Text",
+      "material_roles": "tuple[MaterialRole]",
+      "expected_pairs": "closed map[MaterialRole,Text | null]",
+      "evidence_kind": "synthetic | actual_owner_input",
+      "snapshot_revision": "Text",
+      "qualification": "LogicalJson | null（nullは実資格未確認）"
+    },
+    "AcceptanceValue": {
+      "material_results": "LogicalJson",
+      "material_findings": "LogicalJson",
+      "unresolved_materials": "LogicalJson",
+      "owner_return_candidates": "LogicalJson",
+      "user_record_findings": "LogicalJson",
+      "verified_candidate": "LogicalJson",
+      "content_oracle_candidate": "LogicalJson",
+      "user_acceptance_candidate": "LogicalJson",
+      "accepted_candidate": "LogicalJson",
+      "semantic_backflow_candidate": "LogicalJson",
+      "CI_or_L10_is_user_receipt": "literal false",
+      "external_and_internal_same_contract": "literal true",
+      "unrelated_Q": "LogicalJson",
+      "actual_stage_promoted": "literal false",
+      "actual_accepted": "literal false",
+      "actual_CI_executed": "literal false"
+    },
+    "AcceptanceCandidate": "AcceptanceValueの閉じた受領field集合。enum/actualの意味矛盾を元提出値のまま比較、unknown fieldを捨てない。",
+    "AcceptanceResult": {
+      "outcome": "content_compared | invalid | unresolved",
+      "value": "AcceptanceValue | null（構造で比較不能のときのみnull）",
+      "findings": "tuple[Finding]",
+      "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
+      "candidate_conflicting_paths": "tuple[Text]"
+    },
+    "Finding": {
+      "code": "Text",
+      "pointer": "Text（JSON Pointer）",
+      "material_role": "MaterialRole | null",
+      "return_owner": "Text",
+      "source_case_code": "Text | null（元caseのcodeを保全）"
+    }
+  },
+  "functions": [
+    {
+      "id": "HARNESS-L5-022-F04",
+      "requirement_ref": "HARNESS-L3-022-F04",
+      "l4_ref": "HARNESS-L4-022-F04",
+      "l9_ref": "HARNESS-L9-022-F04",
+      "l8_ref": "HARNESS-L8-022-F04",
+      "symbol": "compare_acceptance_content_and_user_receipt",
+      "signature": "compare_acceptance_content_and_user_receipt(input: AcceptanceInput, context: AcceptanceContext, candidate: AcceptanceCandidate | None = None) -> AcceptanceResult",
+      "approved_requirement": {
+        "id": "HARNESS-L3-022-F04",
+        "parent": "HARNESS-L2-022",
+        "title": "Acceptedの利用者受入記録",
+        "obligation": "VerifiedからAcceptedへはL11の能力別内容oracle（成功条件/反例）と、同じrevision/scopeに対する利用者受入およびその記録を別々に必要とする。oracle成功/CI green/L10 passから利用者受入を生成しない。内容oracle失敗や受入記録欠落/別revisionならAcceptedにせず、実際に満たした段階と当該scopeで確認した内容を引き継ぐ。",
+        "oracle_ref": "HARNESS-L10-022-F04"
+      },
+      "preconditions": [
+        "input/Context/candidateは別immutable材料。runtimeでinput.independent_*をContextへ昇格しない。Contextは独立原owner/対象revision/scope/記録を供給する外側bindingが必要。",
+        "本66例の別固定Contextは設計時に原L9 fixtureの宣言から固定した合成仮説。別packet化/ハッシュ存在は実独立source/owner本人性/authority証拠ではない。",
+        "Context原user recordがreject/defer/unknown/別版でもraw宣言を保全して個別比較し、acceptへ補正しない。candidateは第三引数で原観測を埋めない。"
+      ],
+      "algorithm": [
+        {
+          "id": "A1",
+          "rule": "閉じたfield/型を照合。unknown field/null/不正数値を捨てずlocator findingへ。LogicalJson内容はexact比較しTrueと1を同値にしない。比較不能と未提示/unknown/未実行を区別する。"
+        },
+        {
+          "id": "A2",
+          "rule": "input.independent_profiles/independent_user_recordは原宣言としてContextの別固定材料へ照合し、不一致/独立lineage未確認はcontext/source不足を保持。宣言の一致だけで本人性や資格を生成しない。 input.contextの4対象成分とContext.targetを照合。各6roleのmaterial/evidenceを別走査し、artifact_identity/revision、requirement_revision/scope、role owner/pair、oracle_revision/source_id、executionとevidence_idから一意解決した証拠原内容を照合。同名stage/pass/linkだけでproof内容を埋めない。全検査可能な不足locatorを蓄積し、missing material/execution/evidence、stale artifact_revision、conflict scope/owner/内容を分ける。"
+        },
+        {
+          "id": "A3",
+          "rule": "Verified_basis/L2_meaning/L11_oracle/L11_content_resultはContext.expected_profilesと原観測/evidence双方を比較。L11成功条件と反例のobservedをexpectedへ別照合し、成功だけで反例を省かない。固定一結果/取消後重複0はこの原fixtureの限定oracleで汎用全製品条件へしない。Verified証拠不足でも読めた内容oracleと無関係Qを保持。"
+        },
+        {
+          "id": "A4",
+          "rule": "Context.original_user_recordを別に照合。対象4成分、記録identity/revision/source_id、owner、原authority宣言、decisionを保全し、元synthetic profileと不一致はuser_record_findingsへ。accept/reject/deferは別結果で、agent_verified/unknown authority/別scope/別版を受入へしない。実本人性/actual authorityはこの合成比較で成立させない。"
+        },
+        {
+          "id": "A5",
+          "rule": "user_decision material/evidenceのcontentsは別原判断と比較。user_receiptは原判断identity/revisionへのdecision_ref、同対象4成分、decisionとacceptor、記録identity/revisionを照合。receiptを生成する処理ではなく、すでに提示された記録の対応比較である。原判断欠落はmissing、内容をCI_green/L10_pass/L11 passから作らない。reject/deferの記録も保全しAccepted候補はnot_established。"
+        },
+        {
+          "id": "A6",
+          "rule": "material_results/findings/unresolved/owner戻し先をroleごとに返す。material集約はconflict→stale→unknown→missing→supported_syntheticとし全原因を保持。Verified候補、内容oracle候補、利用者受入候補は別導出。3条件が同revision/scopeで対応しaccept記録のときだけaccepted_candidate=supported_synthetic_only。どれか不足しても他の対応を消さずactual_stage_promoted/actual_accepted/actual_CI_executedはfalse。実owner材料は合成profileでacceptedへせず正式資格不足をunresolvedへ保つ。"
+        },
+        {
+          "id": "A7",
+          "rule": "L2意味/L11 oracle内容が固定要求意味と異なる場合はsemantic_backflow_candidate=L2_requirements_owner。原L11 observationの失敗や受入rejectを一律意味変更へしない。003/004の戻し先を使い、oracleを実装へ合わせて弱めない。外部producer/user_acceptance_no_OSも同内容契約で、④/OSを一律必須にしない。"
+        },
+        {
+          "id": "A8",
+          "rule": "candidateがあれば導出valueの全fieldを元提出値と比較し差分pathをcandidate_conflicting_pathsへ。actual true/CI_or_L10_is_user_receipt trueも拒否し原valueの独立結果を維持。候補の説明metadataは別sidecar、未知value fieldをstripしない。Noneだけ未提出でfalse/空objectは代用しない。"
+        }
+      ],
+      "postconditions": [
+        "全input/context/candidate/原source/無関係Qを変更しない。元資料の不足/未観測/未実行と有効な下位内容を同時保持。",
+        "同logical三引数で同value/finding、role結果はContextの固定role順、異locator findingを潰さず(code,pointer,material_role,return_owner)のUnicode順へ。",
+        "I/O/network/DB/clock/CI/受入記録作成/本人認証/authority/state/ticket/release/deploy/旧runtimeを呼ばない。",
+        "候補対応/合成pass/agent見解はPO実受入/Accepted/承認/操作許可ではない。"
+      ],
+      "finding_codes": [
+        "input_invalid",
+        "context_unresolved",
+        "target_conflict",
+        "material_missing",
+        "material_stale",
+        "material_unknown",
+        "material_conflict",
+        "user_record_missing",
+        "user_record_conflict",
+        "candidate_conflict",
+        "projection_not_authority"
+      ],
+      "scope_limit": "022-F04一関数の部分詳細。F01/F02/F03/N01/B01、正式schema/qualifier/codec/全findingと設計凍結は未完。"
+    }
+  ]
+}
