@@ -1,0 +1,231 @@
+{
+  "parent": "HELIXSECURITY-L2-002",
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "source_main": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "boundary": "002のF01/N01だけ。検出Bot必須/完全検出率/実authority設定・実enforcer・新承認/全SECURITY成立を生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/external-input-trust-boundary.json",
+      "revision": "070daa4c6b8795d89d94d3f56a0429b2c13f58e8",
+      "sha256": "9e1a4fd0f331cee16f120ba5ac99272deaa915f2bb20f456bae2077cd3ac91b3"
+    }
+  ],
+  "source_pin_limit": "全文pinは全対象の採択/精読/意味閉包の証明でない。selected F01/N01のwhole objectを委任承認revisionへ照合。",
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "selected_line_quotes": [
+        {
+          "line": 186,
+          "text": "| HR-NFR-P8-02 | HNFR-P8 / HBR-P8 | prompt injection / tool injection / data exfiltration 誘導を検出・分類し、外部データ由来の命令を隔離、redaction、human review、deny のいずれかに送る | HAC-N8-02a / HAC-N8-02b |",
+          "utf8_sha256": "4a75b4dc8718d0c5d2ee4d5b53966ce820f8913efaf4ed544b9cf17265eeb199"
+        },
+        {
+          "line": 267,
+          "text": "| HAC-P8-04a | Web/docs/OSS/issue/PR/comment など外部 text を取り込む | security filter が入力を解析 | raw content、source metadata、trusted extraction、model instruction を別 field に分離する |",
+          "utf8_sha256": "3e3090502079bdfed7f356b25298ac477489f0464b14dcd88fd7ff9002207389"
+        },
+        {
+          "line": 268,
+          "text": "| HAC-P8-04b | 外部 text に命令・secret 要求・tool 実行誘導が含まれる | agent が利用しようとする | instruction として採用せず、引用/要約対象または threat finding として扱う |",
+          "utf8_sha256": "20cb7ac273c938080ec02087505a12fcf7ffbb9cde3a84cd254e4dc2e986d2a2"
+        },
+        {
+          "line": 297,
+          "text": "| HAC-N8-02a | prompt injection pattern または data exfiltration 誘導がある | filter policy を評価 | threat class、source、matched rule、decision、redacted span が audit に残る |",
+          "utf8_sha256": "d652629a4db952c4d7aa37bdc12b7d85e252a4f7244c8665971c4b0ee92fb42a"
+        },
+        {
+          "line": 298,
+          "text": "| HAC-N8-02b | filter が high-risk と判定する | downstream tool call を生成 | deny または human review に止め、外部データが tool args / system prompt へ直結しない |",
+          "utf8_sha256": "57dfd152b023e6981a256f0f60c219aad8f206e05ba65375fbf5e5fa3493b2a1"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "外部raw/source metadataとinstructionの分離、外部dataを命令やtool実行へ直結しない。原source・判断と不足を個別に追跡する。",
+      "change": "旧filter/runtime/DBを移植せず、採択002の命令様data非実行と検出/authority遮断の分離へ意味再導出。検出一致/不在/完全検出宣言をoperation許可へしない。",
+      "reason": "002の固定F01/N01を基本設計と対検証へ降ろす。実permission変更・新しい人間approve・検出Bot必須を生成しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B8BBC1D5A8C91E746405",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "file_sha256": "d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56",
+      "selected_line_quotes": [
+        {
+          "line": 145,
+          "text": "- **security filter**: HB-P8 は external text を raw / metadata / instruction に分離し、prompt injection,",
+          "utf8_sha256": "9d5006b76875545b4ef446f3a5f1bb1f09c7a7094e043c2f8ee623b5b17b6fcc"
+        },
+        {
+          "line": 146,
+          "text": "  tool injection, exfiltration, excessive agency を audit event へ送る。",
+          "utf8_sha256": "43e0a9255fd3acf4e93c09ea66a5aea6c4ea7f91d8eaf432a34300cc1cd22667"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "外部raw/source metadataとinstructionの分離、外部dataを命令やtool実行へ直結しない。原source・判断と不足を個別に追跡する。",
+      "change": "旧filter/runtime/DBを移植せず、採択002の命令様data非実行と検出/authority遮断の分離へ意味再導出。検出一致/不在/完全検出宣言をoperation許可へしない。",
+      "reason": "002の固定F01/N01を基本設計と対検証へ降ろす。実permission変更・新しい人間approve・検出Bot必須を生成しない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "正式graph/source/Worker scope/slot分類のowner-qualified exact binding、実enforcerとconsumer、未知graph/type/cycle/全複合の詳細L5/L8。",
+    "全不正shape/正本schema/codec/分類001/016・authority008の独立接続と全oracle凍結。",
+    "実装前Red→最小Green→Refactor→再検証・実L9/L10・検出と遮断の独立実観測・PO実物L11未成立。",
+    "全92親430対の基本/詳細設計と実装準備・最終整合/独立二重確認を継続。"
+  ],
+  "document_id": "HELIXSECURITY-L4-002",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "untrusted_authority_path_comparer",
+      "detection_boundary_separation_comparer"
+    ],
+    "flow": [
+      "001の原untrusted資料＋Worker scope＋独立data-flow graph → authority到達の局所比較",
+      "境界結果＋独立detector report → 検出/遮断を別軸で返却",
+      "該当source/flow/scope/consumer ownerへ不足候補。実操作・設定・DB・instruction更新を実行しない。"
+    ],
+    "pure_boundary": "immutable snapshotの内容比較だけ。network/fs/process/clock/env/credential/Tool起動/memory/BRAIN/learning/policy変更なし。",
+    "synthetic_graph_limit": "固定node/role/edgesは合成材料。実authority/slot分類/enforcerの成立ではない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L4-002-F01",
+      "requirement_ref": "HELIXSECURITY-L3-002-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-002-F01",
+      "oracle_ref": "HELIXSECURITY-L9-002-F01",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "37b4a4e59cb8db0d5262f8ab7c405bb2c0e282c0fcd29e32555a079fad33c9db"
+      },
+      "component": "untrusted_authority_path_comparer",
+      "operation_effect": "none",
+      "input_meanings": [
+        "001由来のuntrusted source参照/原bytesとWorkerの明示scope。source名/digest/URLだけでtrustにしない。",
+        "data flow ownerが供給する独立graphのnode identity/role/edgeと、authority-control slotの対応。不明をdata-onlyへ丸めない。"
+      ],
+      "output_meanings": [
+        "命令様原dataを引用/要約対象として保持する経路の局所比較と、authority直結の所在/返却候補。",
+        "path対応は実遮断receipt/operation許可/実source資格でない。"
+      ],
+      "content_comparison": [
+        "raw→quote/summary/translation/抽出のどこでも未信頼由来を保持。trustedラベル、source名、検出no_matchによるauthority化をしない。",
+        "未信頼由来からsystem instruction、Toolのauthority-control args、privileged operation、policy更新、credential送信へ到達する直接data経路を拒否する。中間にquote/summaryを置いた連結もdirect経路のまま。",
+        "独立に選択された既存操作のdata-only引数slotへ引用dataを渡すことと、dataから操作/権限を生成することを区別。data-only資格・元操作scopeの実成立は008/各consumerに残し、本graph labelだけで許可しない。",
+        "未確認graph/slot/source/scopeは該当操作のboundary_unresolved。無関係な操作/全projectへ全停止を広げない。"
+      ],
+      "qualification_rule": "source/graph/Worker scopeとconsumerの独立原資料を対象revision/scopeへ結ぶ。今回の固定合成graphは実binding/enforcementを証明しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L4-002-N01",
+      "requirement_ref": "HELIXSECURITY-L3-002-N01",
+      "system_oracle_ref": "HELIXSECURITY-L10-002-N01",
+      "oracle_ref": "HELIXSECURITY-L9-002-N01",
+      "approved_requirement": {
+        "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "source_path": "docs/helix-security/L3-requirements/nfr-grade.json",
+        "object_canonical_sha256": "b8aedd46d745204dbd5c12d1fd74a137c8ac478cb182d0e49a5d9fed0cba1760"
+      },
+      "component": "detection_boundary_separation_comparer",
+      "operation_effect": "none",
+      "input_meanings": [
+        "同一source/revision/scopeの境界比較結果。",
+        "補助detectorの存在/検出可否/観測状態と、境界判断へ使った由来を別に保持。"
+      ],
+      "output_meanings": [
+        "検出reportとauthority到達可否の別結果。",
+        "detector不在/no_matchを根拠に許可/一律失敗とした原因、完全検出claimの不足候補。"
+      ],
+      "content_comparison": [
+        "検出Bot不在だけで境界不成立/成立へしない。未知言い換えを検出できなくてもauthority直結の禁止は保持。",
+        "検出ありでもauthority直結があれば境界violation、不在でも独立graphの対応証拠があれば対応候補。境界unknownを検出reportで埋めない。",
+        "完全なInjection検出率を保証せず、旧検出/分類/監査観点を補助として保持。"
+      ],
+      "qualification_rule": "detector素材と境界/enforcer素材を分けて固定し、片方の結果で他方の観測を生成しない。"
+    }
+  ],
+  "diagnostic_contract": {
+    "return_owner": "data-flow-owner",
+    "meaning": "原source/scope/graphの不足は各原owner、authority-control slot/consumerの不足は当該ownerへ返す。SECがauthorityを発行/実行しない。",
+    "locality": "不足は対象source/revision/scopeと該当操作へ限定。",
+    "sort": "code/pointer/return_ownerのUnicode scalar順、完全同値3fieldのみunique。"
+  }
+}
