@@ -442,7 +442,8 @@
     "F02の113原例/2Context/5Context否定例と境界/意味保存Refactor後再検証を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
     "H22F-m1対応：未変異REFACTOR Contextとperformed=falseの原NORMAL inputを結合した反例を追加。必要3proof欠落と未成立Integratedを保持、全oracle閉包は未完。",
     "F03の103原例/2Context/6否定例と全義務-下位表現-固有差分を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
-    "N01の36原例/1Context/5否定例と今回未評価/原期限/過去receipt限定scopeを具体化。全構造/複合/正式期限schema/codec/実owner/実holdout/凍結は未完。"
+    "N01の36原例/1Context/6否定例と今回未評価/原期限/過去receipt限定scopeを具体化。全構造/複合/正式期限schema/codec/実owner/実holdout/凍結は未完。",
+    "H22H-m1対応：独立Context期待1を保持し、inputの宣言oracle/body/result/evidenceが2で自己整合する反例を追加。current未評価とQ/原入力保全、実作用falseを固定。"
   ],
   "document_id": "HARNESS-L8-022-STAGE-ACCEPTANCE",
   "layer": "L8",
@@ -71140,6 +71141,87 @@
           },
           "oracle_limit": "必須finding subset/未評価/保全。全valueと副次findingは未完。",
           "execution_state": "not_executed"
+        },
+        {
+          "id": "H022-L8-N01-INDEPENDENT-BEHAVIOR-INPUT-SELF-CONSISTENT-WEAKENED",
+          "design_ref": "HARNESS-L5-022-N01",
+          "requirement_ref": "HARNESS-L3-022-N01",
+          "input_case_ref": "H022-N01-NORMAL",
+          "input_case_object_sha256": "4151161ef0e5c9a7a348ad4082ca7cd4e3e6635e995b8f7d89b38859b87a21a3",
+          "input_case_hash_scope": "L9 NORMAL whole objectのUnicode key順/compact/nonASCII無escape/strict UTF8 canonical SHA-256",
+          "input_mutations": [
+            {
+              "pointer": "/independent_oracle_body/success/result_count",
+              "before": 1,
+              "after": 2
+            },
+            {
+              "pointer": "/oracle/body/success/result_count",
+              "before": 1,
+              "after": 2
+            },
+            {
+              "pointer": "/result/observations/result_count",
+              "before": 1,
+              "after": 2
+            },
+            {
+              "pointer": "/evidence/observations/result_count",
+              "before": 1,
+              "after": 2
+            }
+          ],
+          "input_packet": {
+            "ref": {
+              "identity": "H022-L8-N01-INDEPENDENT-BEHAVIOR-INPUT-SELF-CONSISTENT-WEAKENED-INPUT",
+              "revision": "fixture-334ff7b6960d37ccf27f95c38763428f9bac1cc3664be3cd7c47572ef1062c3f",
+              "owner": "synthetic-input-owner",
+              "scope": "PRODUCT-P"
+            },
+            "raw_utf8": "{\"context\":{\"artifact_identity\":\"UNSEEN-ARTIFACT-U\",\"artifact_revision\":\"ART-U@r1\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"stage\":\"Verified\"},\"evidence\":{\"artifact_identity\":\"UNSEEN-ARTIFACT-U\",\"artifact_revision\":\"ART-U@r1\",\"identity\":\"EVIDENCE-U\",\"observations\":{\"duplicate_result_count\":0,\"result_count\":2},\"oracle_identity\":\"ORACLE-U\",\"oracle_revision\":\"ORACLE@r1\",\"owner\":\"synthetic-evidence-owner\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"stage\":\"Verified\",\"valid_until_epoch\":5},\"executor\":\"user_CI_no_OS\",\"improvement_score\":100,\"independent_oracle_body\":{\"condition\":\"one_result_per_command\",\"counterexample\":{\"duplicate_result_count\":0},\"success\":{\"result_count\":2}},\"lower_stage_pass\":true,\"observation_epoch\":4,\"oracle\":{\"artifact_identity\":\"UNSEEN-ARTIFACT-U\",\"artifact_revision\":\"ART-U@r1\",\"body\":{\"condition\":\"one_result_per_command\",\"counterexample\":{\"duplicate_result_count\":0},\"success\":{\"result_count\":2}},\"identity\":\"ORACLE-U\",\"owner\":\"synthetic-stage-oracle-owner\",\"requirement_revision\":\"REQ@r1\",\"revision\":\"ORACLE@r1\",\"scope\":\"PRODUCT-P\",\"stage\":\"Verified\",\"valid_from_epoch\":3,\"valid_until_epoch\":5},\"other_artifact_pass\":{\"identity\":\"ARTIFACT-V\",\"passed\":true},\"prior_confirmed_receipts\":[{\"artifact_identity\":\"UNSEEN-ARTIFACT-U\",\"artifact_revision\":\"ART-U@r0\",\"confirmed\":\"limited_synthetic_only\",\"limit\":\"prior_revision_not_current_proof\",\"phase\":\"design\",\"scope\":\"PRODUCT-P/design\"},{\"artifact_identity\":\"UNSEEN-ARTIFACT-U\",\"artifact_revision\":\"ART-U@r0\",\"confirmed\":\"limited_synthetic_only\",\"limit\":\"prior_revision_not_current_proof\",\"phase\":\"implementation\",\"scope\":\"PRODUCT-P/implementation\"},{\"artifact_identity\":\"UNSEEN-ARTIFACT-U\",\"artifact_revision\":\"ART-U@r0\",\"confirmed\":\"limited_synthetic_only\",\"limit\":\"prior_revision_not_current_proof\",\"phase\":\"refactor\",\"scope\":\"PRODUCT-P/refactor\"}],\"producer\":\"external_019_candidate\",\"result\":{\"artifact_identity\":\"UNSEEN-ARTIFACT-U\",\"artifact_revision\":\"ART-U@r1\",\"evidence_ref\":\"EVIDENCE-U\",\"execution\":\"observed_synthetic\",\"identity\":\"RESULT-U\",\"observations\":{\"duplicate_result_count\":0,\"result_count\":2},\"oracle_identity\":\"ORACLE-U\",\"oracle_revision\":\"ORACLE@r1\",\"owner\":\"synthetic-result-owner\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"stage\":\"Verified\"},\"unrelated_scope\":{\"id\":\"Q\",\"valid\":true}}",
+            "sha256": "334ff7b6960d37ccf27f95c38763428f9bac1cc3664be3cd7c47572ef1062c3f",
+            "evidence_kind": "synthetic"
+          },
+          "context_base_fixture_ref": "H022-N01-CONTEXT-LIMITED",
+          "context_base_fixture_object_sha256": "62371975aa4022b1bc56a8f59b9391de1641e295b39383c4ec5adbe9faa4c720",
+          "context_mutation": null,
+          "context_packet": {
+            "ref": {
+              "identity": "H022-N01-CONTEXT-LIMITED",
+              "revision": "fixture-28d414f65e71aa23a833f159c8ebc83256b32ce0e87b1a5a1de2cd4cb3bb5ee4",
+              "owner": "independent-synthetic-context-fixture-owner",
+              "scope": "PRODUCT-P"
+            },
+            "raw_utf8": "{\"evidence_kind\":\"synthetic\",\"expected_behavior\":{\"condition\":\"one_result_per_command\",\"counterexample\":{\"duplicate_result_count\":0},\"success\":{\"result_count\":1}},\"expected_evidence_identity\":\"EVIDENCE-U\",\"expected_oracle_identity\":\"ORACLE-U\",\"expected_oracle_revision\":\"ORACLE@r1\",\"expected_owners\":{\"evidence\":\"synthetic-evidence-owner\",\"oracle\":\"synthetic-stage-oracle-owner\",\"result\":\"synthetic-result-owner\"},\"observation_epoch\":4,\"original_owner_qualification\":null,\"prior_receipt_limit\":\"prior_revision_not_current_proof\",\"snapshot_revision\":\"FIXTURE-H022-N01-r1\",\"target\":{\"artifact_identity\":\"UNSEEN-ARTIFACT-U\",\"artifact_revision\":\"ART-U@r1\",\"requirement_revision\":\"REQ@r1\",\"scope\":\"PRODUCT-P\",\"stage\":\"Verified\"}}",
+            "sha256": "28d414f65e71aa23a833f159c8ebc83256b32ce0e87b1a5a1de2cd4cb3bb5ee4",
+            "evidence_kind": "synthetic"
+          },
+          "candidate_argument": null,
+          "expected_partial_result": {
+            "outcome": "unresolved",
+            "required_findings": [
+              {
+                "code": "context_unresolved",
+                "pointer": "/input/independent_oracle_body",
+                "record_role": null,
+                "return_owner": "independent-context-source-owner"
+              }
+            ],
+            "candidate_disposition": "not_submitted",
+            "required_value_fields": {
+              "current_evaluation": "not_evaluated",
+              "evaluated_scope": null
+            },
+            "retained_input_unmodified": true,
+            "unrelated_Q": "preserved_valid_synthetic",
+            "actual_effects": {
+              "stage_promoted": false,
+              "accepted": false,
+              "requirements_approved": false
+            }
+          },
+          "oracle_limit": "input内の弱い宣言oracle/body/result/evidenceが自己整合しても無変異独立Contextの期待1を変更しない。部分finding/value oracle、全副次finding未完。",
+          "execution_state": "not_executed"
         }
       ],
       "context_hash_scope": "fixture object whole canonical SHA-256とpacket raw UTF8 SHA-256は別。",
@@ -71147,7 +71229,7 @@
         "全構造/複合/全finding/期限境界と矛盾/owner違い/時点source/自己整合弱化/不変性/順序/副作用observer",
         "正式有効scope/期限schema/codec/実owner/実holdout/原観測とL6L7 oracle凍結"
       ],
-      "coverage_limit": "36原例/1固定Context/5否定例の部分詳細。F01〜F04の実段階証明/全製品品質保証は未成立。"
+      "coverage_limit": "36原例/1固定Context/6否定例の部分詳細。F01〜F04の実段階証明/全製品品質保証は未成立。"
     }
   ],
   "completion": "部分詳細と先行test設計。実Red/Green/Refactor/受入は未実行。"

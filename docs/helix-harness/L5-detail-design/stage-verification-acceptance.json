@@ -442,7 +442,8 @@
     "F02の113原例/2Context/5Context否定例と境界/意味保存Refactor後再検証を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
     "H22F-m1対応：未変異REFACTOR Contextとperformed=falseの原NORMAL inputを結合した反例を追加。必要3proof欠落と未成立Integratedを保持、全oracle閉包は未完。",
     "F03の103原例/2Context/6否定例と全義務-下位表現-固有差分を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
-    "N01の36原例/1Context/5否定例と今回未評価/原期限/過去receipt限定scopeを具体化。全構造/複合/正式期限schema/codec/実owner/実holdout/凍結は未完。"
+    "N01の36原例/1Context/6否定例と今回未評価/原期限/過去receipt限定scopeを具体化。全構造/複合/正式期限schema/codec/実owner/実holdout/凍結は未完。",
+    "H22H-m1の自己整合弱化input反例と、作成側発見のU6 conflict_content時evaluated_scope=null訂正を対L8/L9へ結ぶ。"
   ],
   "document_id": "HARNESS-L5-022-STAGE-ACCEPTANCE",
   "layer": "L5",
@@ -1425,7 +1426,7 @@
         },
         {
           "id": "U6",
-          "rule": "missing/対象不一致/未開始/失効/未実行/oracle又は参照不足ならcurrent_evaluation=not_evaluated、evaluated_scope=null。前提が有効でもresult/evidence観測がoracleへ不一致ならconflict_content、今回比較できたContext targetをevaluated_scopeとして保持。全対応のみsupported_synthetic_content_only。同時findingは全件保持し、未評価前提は観測conflictより先に未評価集約する。"
+          "rule": "missing/対象不一致/未開始/失効/未実行/oracle又は参照不足ならcurrent_evaluation=not_evaluated、evaluated_scope=null。前提が有効でもresult/evidence観測がoracleへ不一致ならconflict_content、evaluated_scope=nullを保持。対応したscopeが成立したという出力は全内容対応時だけ返し、読めた原targetはinput/Contextとfinding locatorに保全する。全対応のみsupported_synthetic_content_only。同時findingは全件保持し、未評価前提は観測conflictより先に未評価集約する。"
         },
         {
           "id": "U7",
