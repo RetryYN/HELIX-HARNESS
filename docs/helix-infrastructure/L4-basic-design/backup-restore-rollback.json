@@ -1,0 +1,173 @@
+{
+  "parent": "HELIXINFRASTRUCTURE-L2-005",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2a",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "4deb16ca8a4f490ace2c97296805ab2dd347baba",
+    "boundary": "選択scopeのbackup実状態/独立restore/rollback適格性。自動failoverを依存にしない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-infrastructure-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "71b7960efc7daada5d26ded1ef1980de5829ead43ef67bf9c6b9a8da162243e1"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "read_lines": [
+        83,
+        84
+      ],
+      "quote": "`RollbackPlan`と`RollbackReceipt`をDeploymentとは別contractとして保持する。irreversible migration、backup欠落、rollback target不明、\nconsumer-owned bytes破壊、rollback後health未確認を拒否する。rollback successをincident closureやforward fix completionとして扱わない。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "d09107d99273eaf5b2133c2bdde95742721a9a3886287dd6ec7f885f54d3e4e7",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+        "disposition": "unresolved",
+        "source_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+      },
+      "reuse": "reference_only",
+      "preserve": "RollbackPlan/Receiptを別contractとしbackup欠落/target不明/health未確認を拒否し、rollback成功をincident closureへしない。",
+      "change": "旧配備能力を移植せず、採択005のbackup/実restore/rollback target/procedure/互換へ再導出する。",
+      "reason": "10/12承認005の責務へ再導出。旧runtime/CI/testを実行しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md",
+      "read_lines": [
+        12,
+        12
+      ],
+      "quote": "| NIO-L3-06 | backup/restore、rollback、failover、degraded operationは実行可能なprocedureとfault injectionを持ち、名称や文書の存在を成功証拠にしない。 |",
+      "file_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6",
+      "selected_lines_sha256": "d43cb6f6427e9eaabcaae6766a43c1b4a02c345710b89f0f1eaad798d550cb95",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5D41345F55800F23AC38",
+        "disposition": "unresolved",
+        "source_sha256": "73a92522cf1dca8a101c8b63d5b53e0f875499d1ddc5f72b7b7b9d549a7765e6"
+      },
+      "reuse": "reference_only",
+      "preserve": "旧未承認候補を比較資料とし、名称/文書だけで復旧成功にしない。",
+      "change": "未承認fault injection/自動failover能力の採択を生成せず、005の実restore/依存接続/startup/検証義務へ再導出する。",
+      "reason": "採択005は自動failoverを依存にしない。実効果/証拠を文書例と区別する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "state/backup/restore環境/互換/復旧procedureの実sourceとowner-qualified binding、SEC authorityとOS/Workerの実操作/独立検証経路は未成立。",
+    "正式schema/codec/resolver/時刻/期限/互換、全組合せ/実consumer不変性/対L5L8/oracle凍結は未完。",
+    "実装前Red→Green→Refactor→再検証、実backup/restore/rollback、実L9L10/PO L11、全92親430対設計閉包と実装準備は未成立。"
+  ],
+  "document_id": "HELIXINFRASTRUCTURE-L4-005",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "backup_state_reader",
+      "independent_restore_evidence_reader",
+      "rollback_target_and_result_reader"
+    ],
+    "flow": [
+      "state owner/retention/recovery要求→backup記録/実行stateとrestore未評価",
+      "独立restore環境＋実結果＋4検証→同対象の必要条件/未完",
+      "変更前適格state＋rollback target/互換/procedure→適格性/実結果/incident状態の分離"
+    ],
+    "python_boundary": "予定するPython接続は原記録と対象参照を読み返し、状態/必要証拠/未完を情報として返す。backup作成、restore書込、rollback実行、認可、保存、incident closeは本Draftで実装/実行しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-005-F01",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-005-F01",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-005-F01",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-005-F01",
+        "parent": "HELIXINFRASTRUCTURE-L2-005",
+        "title": "backupの実状態",
+        "obligation": "backup target/source revision/time/completeness/location/integrity/expiryと実行stateを記録し、設定/成功/存在/restore可能を別判定にする。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-005-F01"
+      },
+      "content_rules": [
+        "backup設定、backup実行state、backup存在、restore可能性を独立に持つ。設定やjob応答だけから成功を推測せず、存在だけでrestoreを通過させない。",
+        "target/source revision/time/completeness/location/integrity/expiryを対象state owner/retention/recovery要求へ結ぶ。対象外revision/期限外/不完全/原情報不足は成功へしない。",
+        "原backup記録と提出内容を対照し、失敗理由/変更前適格state/復旧未完をstate/recovery ownerとOSへ返す。"
+      ],
+      "representation_limit": "合成値/合格markerは実互換/実復旧/実evidence資格/schema採用ではない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-005-F02",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-005-F02",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-005-F02",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-005-F02",
+        "parent": "HELIXINFRASTRUCTURE-L2-005",
+        "title": "restoreの検証",
+        "obligation": "独立restore environmentで実restoreのintegrity/dependency reconnection/startup/verification evidenceを同対象へ結び、全必要条件成立まで成功としない。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-005-F02"
+      },
+      "content_rules": [
+        "backup参照、独立restore environment、実restore結果を同対象/source revisionへ結び、integrity/dependency reconnection/startup/verificationの各証拠とownerを別々に照合する。",
+        "必要条件はすべて成立して初めて当該restoreの成功情報を返す。backup job greenや他検査の成功で欠落/失敗を相殺しない。",
+        "対象外証拠/環境非独立/互換不明/実restore結果不足は成功へしない。変更前適格stateと失敗記録と未完復旧/検証義務をrecovery設計owner/OSへ返す。"
+      ],
+      "representation_limit": "合成値/合格markerは実互換/実復旧/実evidence資格/schema採用ではない。"
+    },
+    {
+      "id": "HELIXINFRASTRUCTURE-L4-005-F03",
+      "requirement_ref": "HELIXINFRASTRUCTURE-L3-005-F03",
+      "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-005-F03",
+      "approved_requirement": {
+        "id": "HELIXINFRASTRUCTURE-L3-005-F03",
+        "parent": "HELIXINFRASTRUCTURE-L2-005",
+        "title": "rollback適格性とclosure",
+        "obligation": "rollback targetのInfrastructure版/config/artifact/dependency/data compatibility/procedureを照合し未知target/互換不明では適格にしない。rollbackとincident closureを分ける。",
+        "oracle_ref": "HELIXINFRASTRUCTURE-L10-005-F03"
+      },
+      "content_rules": [
+        "rollback targetのInfrastructure版/config/artifact/dependency/data compatibility/procedureを対象scopeと変更前適格stateへ結ぶ。未知target/未確認互換/期限不適格のbackupを適格にしない。",
+        "rollback plan、実結果、復旧検証、incident状態を分ける。rollback実行だけでincident closure/forward fix completionを発行しない。",
+        "実rollback結果の失敗/欠落/対象違いはrecovery owner/OSへ返し、最終適格state・失敗理由・未完復旧/検証と未閉鎖incidentを保持する。"
+      ],
+      "representation_limit": "合成値/合格markerは実互換/実復旧/実evidence資格/schema採用ではない。"
+    }
+  ]
+}
