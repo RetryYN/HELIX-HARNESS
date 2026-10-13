@@ -15,12 +15,11 @@
       "HARNESS-L3-004-F02",
       "HARNESS-L3-004-F01",
       "HARNESS-L3-004-F03",
-      "HARNESS-L3-004-F05"
-    ],
-    "remaining_requirement_refs": [
+      "HARNESS-L3-004-F05",
       "HARNESS-L3-004-N01"
     ],
-    "boundary": "004のB01/F01/F02/F03/F04/F05を部分詳細化。残N01/正式binding/全oracleを未完保持し全004完了や実作用を生成しない。"
+    "remaining_requirement_refs": [],
+    "boundary": "004の7契約を原L9例に対応する部分詳細へ具体化。追加全oracle/正式binding/凍結は未完で、関数数から全004完了/実装適格/実作用を生成しない。"
   },
   "source_pins": [
     {
@@ -67,6 +66,16 @@
       "path": "docs/governance/legacy-asset-reuse-control.md",
       "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
       "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
     }
   ],
   "legacy_comparison": [
@@ -392,6 +401,63 @@
         "change": "旧UIL/RF0/Universal Workflow/trigger政策/数値/windowを移植せず、現行承認003/004の7条件と局所/独立改善の意味候補へ再導出。",
         "reason": "正常照合への毎回ticket強制や合成値の実policy化を防ぎ、HARNESS意味導出/OS実発行へ分けるため。"
       }
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 20,
+          "text": "| AAFD-AC-006 | AAFD-R-06 | 11 changed dimension、previous/observed、unknown、invalidation exact setを欠落なく保持する |"
+        },
+        {
+          "line": 25,
+          "text": "| AAFD-AC-011 | AAFD-R-11 | stale directive、unresolved unknown、missing receiptからassignment/release/retireを発行しない |"
+        },
+        {
+          "line": 42,
+          "text": "- unknownを0、neutral、unchanged、observedへ変換する。"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "n01_rederivation": {
+        "line_quotes": [
+          {
+            "line": 20,
+            "text": "| AAFD-AC-006 | AAFD-R-06 | 11 changed dimension、previous/observed、unknown、invalidation exact setを欠落なく保持する |"
+          },
+          {
+            "line": 22,
+            "text": "| AAFD-AC-008 | AAFD-R-08 | unknown→0/unchanged/observed mutationとdeltaからのRequirement direct writeを拒否する |"
+          },
+          {
+            "line": 23,
+            "text": "| AAFD-AC-009 | AAFD-R-09 | wrong snapshot revision/digestをjoinせず、stale/reobservationへ送る |"
+          },
+          {
+            "line": 24,
+            "text": "| AAFD-AC-010 | AAFD-R-10 | affected exact setだけをstale化し、unaffected projectionを再生成せず、構造変更を#1037へ送る |"
+          },
+          {
+            "line": 25,
+            "text": "| AAFD-AC-011 | AAFD-R-11 | stale directive、unresolved unknown、missing receiptからassignment/release/retireを発行しない |"
+          }
+        ],
+        "preserve": "unknown保持/別revision join拒否/影響exact setと無関係範囲保全/未成立の運転禁止",
+        "change": "旧UIL/TER/delta/Future write/assignment runtimeを移植せず、承認N01の原consumerと各条件joinの純粋比較へ再導出",
+        "reason": "旧graph/別scopeや候補から実観測・要求承認・一般網羅保証を生成しないため",
+        "read_line_locators": [
+          20,
+          22,
+          23,
+          24,
+          25,
+          42
+        ]
+      }
     }
   ],
   "full_goal_scope_preserved": {
@@ -400,13 +466,14 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004 N01契約を同じL5/L8文書へ追加する。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。",
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。",
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。",
+    "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
   ],
   "document_id": "HARNESS-L5-004",
@@ -1183,6 +1250,152 @@
       "candidate_conflicting_paths": "tuple[JSON Pointer]",
       "retained_input_sha256": "Digest（canonical logical bytes）",
       "retained_context_sha256": "Digest（canonical logical bytes）"
+    },
+    "UnseenRelationTarget": {
+      "scope": "Text",
+      "binding": "Text"
+    },
+    "UnseenChange": {
+      "condition_id": "Text",
+      "kind": "new_consumer_relation | withheld_requirement_content_change"
+    },
+    "UnseenRequirementContent": {
+      "input": "LogicalJson",
+      "expected": "LogicalJson"
+    },
+    "ReleasedConsumerProbe": {
+      "consumer_id": "Text",
+      "release_phase": "Text",
+      "material_owner": "Text",
+      "scope": "Text",
+      "binding": "Text",
+      "qualification": "Text（合成claimから実盲検資格を生成しない）"
+    },
+    "ConsumerConditionRelation": {
+      "condition_ids": "tuple[Text]",
+      "origin": "Text"
+    },
+    "ConsumerAuthorityMaterial": {
+      "subject": "Text",
+      "scope": "Text",
+      "binding": "Text",
+      "state": "valid_synthetic_not_actual_approval | missing | unknown | conflict | stale"
+    },
+    "ConsumerDesignMaterial": {
+      "id": "Text",
+      "condition_ids": "tuple[Text]",
+      "expected": "LogicalJson"
+    },
+    "ConsumerVerificationMaterial": {
+      "id": "Text",
+      "condition_ids": "tuple[Text]",
+      "oracle": "UnseenRequirementContent"
+    },
+    "ConsumerOperationTrace": {
+      "from": "Text",
+      "to": "Text",
+      "owner": "Text",
+      "scope": "Text",
+      "binding": "Text"
+    },
+    "ConsumerRerequirementTrace": {
+      "from": "Text",
+      "to": "Text",
+      "role": "Text",
+      "scope": "Text",
+      "binding": "Text"
+    },
+    "UnseenConsumerMaterial": {
+      "id": "Text",
+      "scope": "Text",
+      "binding": "Text",
+      "relation": "ConsumerConditionRelation | null",
+      "authority": "ConsumerAuthorityMaterial | null",
+      "design": "ConsumerDesignMaterial | null",
+      "verification": "ConsumerVerificationMaterial | null",
+      "operation_trace": "ConsumerOperationTrace | null",
+      "rerequirement_trace": "ConsumerRerequirementTrace | null"
+    },
+    "UnseenRelationInput": {
+      "target": "UnseenRelationTarget",
+      "change": "UnseenChange",
+      "requirements": "mapping[Text,UnseenRequirementContent]",
+      "previous_known_consumers": "tuple[Text]",
+      "released_probe": "ReleasedConsumerProbe",
+      "consumers": "tuple[UnseenConsumerMaterial]",
+      "unobserved_population": "tuple[Text]",
+      "qualification": "Text"
+    },
+    "UnseenRelationReferent": {
+      "subject_id": "Text（packet又はconsumer ID）",
+      "field": "Text",
+      "raw_utf8": "RawUtf8",
+      "content_sha256": "Digest",
+      "state": "current | missing | unknown | conflict | stale",
+      "qualification_basis_refs": "tuple[Ref]",
+      "evidence_kind": "synthetic | actual_owner_input"
+    },
+    "UnseenRelationContext": {
+      "target": "UnseenRelationTarget",
+      "selected_consumer_ids": "tuple[Text]",
+      "previous_known_consumers": "tuple[Text]",
+      "required_condition_ids": "tuple[Text]",
+      "requirement_content_versions": "tuple[{raw_utf8: RawUtf8,sha256: Digest,target: UnseenRelationTarget}]",
+      "required_consumer_relations": "mapping[Text,ConsumerConditionRelation]",
+      "required_operation_joins": "mapping[Text,{operation: ConsumerOperationTrace,rerequirement: ConsumerRerequirementTrace}]",
+      "unobserved_population": "tuple[Text]",
+      "probe_owner": "Text",
+      "reverification_owners": "mapping[Text,Text]",
+      "record_catalog": "tuple[UnseenRelationReferent]",
+      "qualifier_roots": "tuple[Ref]",
+      "state": "current | missing | unknown | conflict | stale",
+      "evidence_kind": "synthetic | actual_owner_input",
+      "actual_probe_or_observation_refs": "tuple[Ref]（初回は空、実probe/観測/資格は別binding）"
+    },
+    "UnseenComparisonCell": "supported_synthetic_material | missing | unknown | conflict | stale | unknown_relation",
+    "UnseenConsumerValue": {
+      "relation": "UnseenComparisonCell",
+      "authority": "UnseenComparisonCell",
+      "revision": "UnseenComparisonCell",
+      "scope": "UnseenComparisonCell",
+      "design": "UnseenComparisonCell",
+      "verification": "UnseenComparisonCell",
+      "semantic_oracle": "UnseenComparisonCell",
+      "operation_trace": "UnseenComparisonCell",
+      "rerequirement_trace": "UnseenComparisonCell",
+      "impact": "Affected | Unaffected | Unknown",
+      "evaluation": "supported_synthetic_condition | unevaluated",
+      "reverification_owner": "Text（Contextから）",
+      "actual_test_passed": "literal false",
+      "actual_operation_trace_established": "literal false",
+      "actual_requirement_changed": "literal false",
+      "actual_invalidated": "literal false"
+    },
+    "UnseenRelationValue": {
+      "consumer_results": "mapping[Text,UnseenConsumerValue]",
+      "unresolved_consumers": "tuple[Text]",
+      "reverification_targets": "tuple[Text]（current-origin TESTの診断候補。実行適格ではない）",
+      "unobserved_population": "tuple[Text]",
+      "general_coverage_guarantee": "literal false",
+      "actual_completion": "literal false"
+    },
+    "UnseenRelationCandidate": "UnseenRelationValueと同じ閉じたfield。提出literal違反/未知fieldも保持して比較。",
+    "UnseenRelationFinding": {
+      "code": "N01 finding_codes",
+      "pointer": "JSON Pointer（/input,/context,/candidate）",
+      "consumer_ids": "tuple[Text]",
+      "condition_ids": "tuple[Text]",
+      "basis_refs": "tuple[Ref]",
+      "return_owner": "Text"
+    },
+    "UnseenRelationResult": {
+      "outcome": "content_supported | unknown | conflict | invalid",
+      "value": "UnseenRelationValue | null（構造解釈不能のみ）",
+      "findings": "tuple[UnseenRelationFinding]",
+      "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
+      "candidate_conflicting_paths": "tuple[JSON Pointer]",
+      "retained_input_sha256": "Digest（canonical logical bytes）",
+      "retained_context_sha256": "Digest（canonical logical bytes）"
     }
   },
   "functions": [
@@ -1687,6 +1900,86 @@
         "digestは既存logical canonical規則を使用。実owner原bytes/transport資格と論理入力digestは別codec bindingが必要。"
       ],
       "scope_limit": "36 main L9原例と別固定合成Contextに対応する部分詳細。実内容監査/全consumer/正式policy/全finding/構造変異/実owner-codec/L6L7/test凍結は未完。"
+    },
+    {
+      "id": "HARNESS-L5-004-N01",
+      "requirement_ref": "HARNESS-L3-004-N01",
+      "l4_ref": "HARNESS-L4-004-N01",
+      "l9_ref": "HARNESS-L9-004-N01",
+      "l8_ref": "HARNESS-L8-004-N01",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-N01",
+        "parent": "HARNESS-L2-004",
+        "title": "未見のrelationと未観測範囲",
+        "obligation": "同scopeの伏せた要求変更/新consumer relationに対し、対応する設計/対検証/影響集合を照合する条件を持つ。relation/authority/revisionが不足・矛盾・staleならUnknown/未評価に残し、未観測を影響無しや合格へ変えない。必要な運用観測/再要求化へのtraceも対象revisionへ結び、旧graphや別scope証拠で埋めない。",
+        "oracle_ref": "HARNESS-L10-004-N01"
+      },
+      "symbol": "compare_unseen_relations_and_observation_limits",
+      "signature": "compare_unseen_relations_and_observation_limits(input: UnseenRelationInput, context: UnseenRelationContext, candidate: UnseenRelationCandidate | None = None) -> UnseenRelationResult",
+      "preconditions": [
+        "承認N01/対L10とmain L4/L9を固定。NEW/probe/要求内容変更は独立合成原packetであり実未見実験/発見/観測ではない。",
+        "Contextの要求原内容版/条件/consumer/必要relation/運用join/owner/未観測集合は独立資料へ束縛。input/candidate/件数/旧graphから母集団や資格を縮小・補完しない。",
+        "catalog原field版の存在は内容の正しさではない。独立required条件/内容版/関係/endpoint/ownerと個別比較。実owner-inputのqualification/probe観測/codec bindingは未完でunknownへ保持。"
+      ],
+      "algorithm": [
+        {
+          "id": "N1",
+          "rule": "閉じた型/field人口/重複consumer/条件/原field版を検査。target/consumer集合/旧known集合/未観測集合をContextと照合し欠落/別版/余分を全locatorへ保持。catalogをsubject_id+field+raw内容+digest+資格rootで一意解決。必要条件集合と要求原内容を同targetの固定requirement_content_versionsへ内容joinする。自分のraw digest一致だけで正本資格を作らない。"
+        },
+        {
+          "id": "N2",
+          "rule": "released_probeのconsumerがselectedにありprevious_knownに無いこと、同scope/binding、独立probe owner、合成release_phase条件を照合する。NEWと伏せた要求差分を個別原内容で受け取る。合成qualificationや後出しlabelは実盲検成功ではなく、probe不足/版/owner矛盾をfinding/unknownへ。"
+        },
+        {
+          "id": "N3",
+          "rule": "各consumerのscopeとbindingをtargetへ、authorityのsubject/scope/binding/stateを当該consumerへ個別比較する。scope差conflict、当該binding差stale、authority null missing、state staleはstale、subject/scope/版矛盾はconflict、合成validはsupported_synthetic_material。親の不足を全9cellへ一括伝播せず個別観測を保持する。"
+        },
+        {
+          "id": "N4",
+          "rule": "relationはnull missing、原origin/必要condition_ids/独立required_consumer_relations/原要求集合を内容比較。未知condition/不足/別関係はunknown又はconflictとlocatorへ。design/verificationの有無は個別cellで保持し、condition_idsの対応とdesign expected、verification oracle input/expectedを要求原内容へ比較する。意味不一致はsemantic_oracle conflict、design/verification nullならmissing。relation未解決はsemantic_oracle unknown_relationとし未読のjoinを推測しない。ID/件数だけでは内容一致にしない。"
+        },
+        {
+          "id": "N5",
+          "rule": "operation_traceとrerequirement_traceは必要原joinのfrom/to/同scope/bindingとowner OS/role candidate_not_requirement_approvalを個別比較する。null missing、別scope/誤owner/role/endpoint conflict、古いbinding stale。relation不明ならedge存在でもendpoint joinはunknown_relation。原edge不足のlocatorは残す。旧graph/別scope/別revisionやcandidateからedgeを補完しない。"
+        },
+        {
+          "id": "N6",
+          "rule": "core7cell（relation/authority/revision/scope/design/verification/semantic_oracle）が解決ならchange.condition_idが原relationにあるconsumerだけAffected、独立必要関係が解決し変更条件に無関係ならUnaffected。core不明/矛盾/staleはUnknown。運用traceだけ不足では判明したAffectedを保持するがevaluationはunevaluated。9cell全対応だけsupported_synthetic_condition、どれか未解決ならunresolved_consumersへ。未知を無影響/合格にしない。"
+        },
+        {
+          "id": "N7",
+          "rule": "変更条件とのjoinが必要なconsumerとjoin不明consumerを対象に、読めたcurrent-origin verification IDをreverification_targetsの診断候補へ保持。verification無しはIDを創作しない。候補ID存在は意味適合/実行資格ではない。独立OLD/Q原資料と各cellを保持し、新consumer不足から全scopeを失効させない。未観測人口を結果へ残し一般的網羅保証と全actualはfalse。再要求化edgeは要求候補への参照で承認や実要求変更ではない。"
+        },
+        {
+          "id": "N8",
+          "rule": "candidate全value fieldを型付き比較し全差分JSON Pointerを保持。未見を無影響/旧graphでtrace補完/別scopeでtrace補完/未観測pass/無関係全失効/一般保証/候補から実要求変更又は運用成立をconflictへ。構造解釈不能invalid、candidate矛盾又は原cell conflictはconflict、原cell missing/unknown/stale/unknown_relation又はContext資格不足はunknown、他はcontent_supported。未観測集合の明示保持は内容条件の合成対応であり一般網羅や実観測を生成しない。"
+        }
+      ],
+      "finding_codes": [
+        "input_invalid",
+        "scope_conflict",
+        "population_conflict",
+        "consumer_duplicate",
+        "reference_missing",
+        "reference_unknown",
+        "reference_conflict",
+        "reference_stale",
+        "content_digest_conflict",
+        "probe_unqualified",
+        "relation_missing",
+        "relation_conflict",
+        "semantic_oracle_conflict",
+        "operation_join_unresolved",
+        "rerequirement_join_unresolved",
+        "owner_conflict",
+        "candidate_conflict"
+      ],
+      "postconditions": [
+        "原input/context/candidate/OLD/Qを変更せず、filesystem/DB/clock/network/probe実行/test/authority/要求write/OS観測writeを呼ばない。",
+        "同logical引数で同値と全finding。consumer/未解決/targetの集合はUnicode順、9cellは型定義順、findingは(code,pointer,consumer_ids,condition_ids,return_owner)順で、異なる不足locatorを消さない。",
+        "canonical logical digestを既存規則で計算。実owner原bytes/qualification/probe lineageとtransport digestは別codec bindingへ。"
+      ],
+      "scope_limit": "27既main L9原例と別固定合成Contextの部分詳細。全副次finding/型/複合/実owner-probe-observation-codec/L6L7/test凍結は未完。"
     }
   ]
 }
