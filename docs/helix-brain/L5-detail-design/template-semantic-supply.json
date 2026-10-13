@@ -140,16 +140,72 @@
       "reason": "承認済みBRAIN032の意味と10/12限定範囲から降ろす。旧runtime/schema/CIを復元しない。",
       "input_structure_rederivation": {
         "read_lines": [
-          17,
-          29,
+          18,
+          27,
+          28,
           33,
-          54,
-          86,
-          91
+          56,
+          57,
+          58,
+          97,
+          98,
+          99
         ],
         "preserve": "構造carrierの閉じたmemberと原意味の型検査、unknownをN/Aにしない。",
         "change": "旧template必須key/整数版/TPL grammar/lifecycle/式木を移植せず、既存032 logical SupplyInputの供給memberへ具体化する。未供給の意味は既存ADD03とexecution_contractに従い原absenceとして意味照合へ保持する。",
-        "reason": "欠落配列を空集合へdefaultする旧UTW014を再発させず、構造誤りと意味不足を区別する。新しい承認/採用gateは追加しない。"
+        "reason": "欠落配列を空集合へdefaultする旧UTW014を再発させず、構造誤りと意味不足を区別する。新しい承認/採用gateは追加しない。",
+        "selected_line_quotes": [
+          {
+            "line": 18,
+            "text": "同じ意味を複数schemaへ複製せず、次の4 document kindを一つのversioned familyで管理する。",
+            "utf8_sha256": "50bf74e4ab0a09f412360279d82c16805c8a2b9cf6d33934f6795f00903ccd43"
+          },
+          {
+            "line": 27,
+            "text": "全objectは`additionalProperties: false`相当で閉じる。schema versionは文書kindごとのmajorを持ち、",
+            "utf8_sha256": "5f3fc7b9271368a6463877ed3d8028d2f8913ba269969e7ac2dc531f7d7afff7"
+          },
+          {
+            "line": 28,
+            "text": "unknown majorを互換推測しない。",
+            "utf8_sha256": "47a40b65f0f0bfae7860715996fdce4cb0c2c7d757092c3f80e9256820e02774"
+          },
+          {
+            "line": 33,
+            "text": "required:",
+            "utf8_sha256": "6eaa948911afa686b72ab5f17492c2ce312745e11e4e26e4944aef5a03da52a1"
+          },
+          {
+            "line": 56,
+            "text": "- `template_id`: `TPL-`で始まるstable ID。pathやtitleをidentityにしない。",
+            "utf8_sha256": "2533ca69d57637950859df935d024db553b7495ca3c01cb08a74e3c5c4e4e0ed"
+          },
+          {
+            "line": 57,
+            "text": "- `template_version`: 1以上の整数。同じID/versionの重複を拒否する。",
+            "utf8_sha256": "ef167c4d4cc24ec68647dfc2b84bea4c1e27d5d3ca1d27480c780b147a075502"
+          },
+          {
+            "line": 58,
+            "text": "- `status`: `candidate | verified | approved | canonical | deprecated`の閉じた集合。",
+            "utf8_sha256": "03d38f294c760463ff386d50df61715b929b3266df41854779064fdf8a07ff00"
+          },
+          {
+            "line": 97,
+            "text": "評価結果は`applicable | not_applicable | evaluation_error`の三値とする。missing fieldやunknown enumを",
+            "utf8_sha256": "3dff28bd2a09d81515f943004ec9729b478d850fd8025d302f05618e6dc86be0"
+          },
+          {
+            "line": 98,
+            "text": "`not_applicable`へ丸めない。N/Aは`reason`、`authority`、`reentry_trigger`を持つdispositionであり、",
+            "utf8_sha256": "79edc93831c215dc2deb670f27b91619bb308098df1ea06d600a08148b4f65bf"
+          },
+          {
+            "line": 99,
+            "text": "predicate falseとは別に記録する。",
+            "utf8_sha256": "0fead555d2fe62b16e7873fce40b77ce98ca57fd42d70ac50b3ff2043ec71c4c"
+          }
+        ]
       }
     },
     {
