@@ -249,6 +249,28 @@
         "preserve": "対設計と実物の照合、Red/Green/Refactor/再検証の別証拠、unitと境界結合/system/受入を分ける正規V-pair。",
         "change": "旧runtime/CI/層番号をcopyせず、022-F02の5原proof+適用Refactor3追加proof、同scope/前後版/原evidenceと境界10軸へ再導出。",
         "reason": "atomic CI又はbefore成功だけでIntegrated/実受入を生成せず、Meaning変更を意味保存Refactorへ換算しない。新承認は加えない。"
+      },
+      "system_difference_rederivation": {
+        "source_line_span": [
+          48,
+          61
+        ],
+        "read_line_locators": [
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          59,
+          61
+        ],
+        "preserve": "L3/L10 system総合証明、L5/L8とL4/L9の証拠、内部設計/edgecase/test設計を対にする正規V-pair。",
+        "change": "旧runtime/CIをcopyせず022-F03と005の全義務/下位で表す部分/固有差分を内容で比較するpure契約へ再導出。",
+        "reason": "trace/下位成功からVerifiedを生成せず、組合せが全義務を表せる場合にsystem全再実行を一律追加しない。新承認は加えない。"
       }
     },
     {
@@ -378,13 +400,14 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "F03/N01/B01の詳細契約と全6契約の設計閉包。",
+    "N01/B01の詳細契約と全6契約の設計閉包。",
     "F04全構造/複合/全finding/Context資格、正式schema/codec/実owner/原記録供給・利用者本人性binding。",
     "L6/L7/test-oracle凍結と実装準備toolchain/CI/SEC/INFRA接続、実Red/Green/Refactorは後続実証拠。",
     "F04独立Contextとの不一致/actual資格欠落4例、candidate path JSON Pointer写像を追加。全副次finding/実owner bindingは未完。",
     "F01の143原例/4Context例と必要集合/pairを具体化。全構造/複合/実資格/codecと凍結は未完。",
     "F02の113原例/2Context/5Context否定例と境界/意味保存Refactor後再検証を具体化。全構造/複合/実資格/正式codec/凍結は未完。",
-    "H22F-m1対応：未変異REFACTOR Contextとperformed=falseの原NORMAL inputを結合した反例を追加。必要3proof欠落と未成立Integratedを保持、全oracle閉包は未完。"
+    "H22F-m1対応：未変異REFACTOR Contextとperformed=falseの原NORMAL inputを結合した反例を追加。必要3proof欠落と未成立Integratedを保持、全oracle閉包は未完。",
+    "F03の103原例/2Context/6否定例と全義務-下位表現-固有差分を具体化。全構造/複合/実資格/正式codec/凍結は未完。"
   ],
   "document_id": "HARNESS-L5-022-STAGE-ACCEPTANCE",
   "layer": "L5",
@@ -665,6 +688,64 @@
       "outcome": "content_compared | unresolved | invalid",
       "value": "IntegratedProofValue | null（構造で比較不能時のみnull）",
       "findings": "tuple[IntegratedProofFinding]",
+      "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
+      "candidate_conflicting_paths": "tuple[JsonPointer]"
+    },
+    "SystemDifferenceRole": "Text（fixtureの9roleと未登録原資料を区別）",
+    "SystemDifferenceInput": {
+      "context": "Target",
+      "evidence_materials": "map[Text,EvidenceRecord]",
+      "executor": "RawText",
+      "independent_profiles": "map[Text,LogicalJson]",
+      "materials": "map[SystemDifferenceRole,MaterialRecord | null]",
+      "producer": "RawText",
+      "trace_present": "bool",
+      "unrelated_scope": "LogicalJson"
+    },
+    "SystemDifferenceContext": {
+      "target": "Target",
+      "expected_profiles": "map[SystemDifferenceRole,LogicalJson]",
+      "expected_material_owners": "map[SystemDifferenceRole,Text]",
+      "expected_source_ids": "map[SystemDifferenceRole,Text]",
+      "expected_oracle_revisions": "map[SystemDifferenceRole,Text]",
+      "pairs": "map[SystemDifferenceRole,Text | null]",
+      "common_roles": "tuple[SystemDifferenceRole]",
+      "unique_role_mapping": "map[Text,SystemDifferenceRole]",
+      "selection": "difference_required | compositional_no_unique（別の適用資料から供給。inputから選択しない）",
+      "evidence_kind": "synthetic | actual_owner_input",
+      "snapshot_revision": "Text",
+      "original_owner_qualification": "LogicalJson | null"
+    },
+    "SystemDifferenceValue": {
+      "whole_obligations": "LogicalJson",
+      "lower_expressible_obligations": "LogicalJson",
+      "system_unique_obligations": "LogicalJson",
+      "proof_results": "LogicalJson",
+      "proof_findings": "LogicalJson",
+      "unresolved_proofs": "LogicalJson",
+      "owner_return_candidates": "LogicalJson",
+      "verified_candidate": "LogicalJson",
+      "derivation_kind": "LogicalJson",
+      "integrated_candidate": "LogicalJson",
+      "trace_is_system_proof": "literal false",
+      "external_and_internal_same_contract": "literal true",
+      "unrelated_Q": "LogicalJson",
+      "actual_stage_promoted": "literal false",
+      "actual_CI_executed": "literal false",
+      "actual_accepted": "literal false"
+    },
+    "SystemDifferenceCandidate": "SystemDifferenceValueの閉じた提出field集合。空/未知field/型差異をstrip/補完しない。",
+    "SystemDifferenceFinding": {
+      "code": "Text",
+      "pointer": "JsonPointer",
+      "proof_id": "SystemDifferenceRole | null",
+      "return_owner": "Text",
+      "source_case_code": "Text | null"
+    },
+    "SystemDifferenceResult": {
+      "outcome": "content_compared | unresolved | invalid",
+      "value": "SystemDifferenceValue | null（構造比較不能時のみ）",
+      "findings": "tuple[SystemDifferenceFinding]",
       "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
       "candidate_conflicting_paths": "tuple[JsonPointer]"
     }
@@ -987,6 +1068,135 @@
         "projection_not_authority"
       ],
       "scope_limit": "F02部分内部契約。全構造/複合/全typed finding/正式schema-codec/実owner/適用条件と対L6L7凍結は未完。"
+    },
+    {
+      "id": "HARNESS-L5-022-F03",
+      "requirement_ref": "HARNESS-L3-022-F03",
+      "l4_ref": "HARNESS-L4-022-F03",
+      "l9_ref": "HARNESS-L9-022-F03",
+      "l8_ref": "HARNESS-L8-022-F03",
+      "symbol": "compare_verified_system_difference",
+      "signature": "compare_verified_system_difference(input: SystemDifferenceInput, context: SystemDifferenceContext, candidate: SystemDifferenceCandidate | None = None) -> SystemDifferenceResult",
+      "approved_requirement": {
+        "id": "HARNESS-L3-022-F03",
+        "parent": "HARNESS-L2-022",
+        "title": "Verifiedの固有義務差分",
+        "obligation": "IntegratedからVerifiedへはL10とL3要件を照合するsystem証明を用い、下位単体/結合proofを積み上げ、system固有義務との差分を005の構成的保証/差分証明契約で確認する。必要な固有oracle/result/evidenceが未実行/不一致ならVerifiedへ昇格しない。",
+        "oracle_ref": "HARNESS-L10-022-F03"
+      },
+      "selected_difference_contract": {
+        "l4_ref": "HARNESS-L4-022-F03",
+        "source_revision": "c14b920fe4862f06d22094ea6b7df2fed219cbdf",
+        "contract_object_sha256": "70e4c0ce9fbb55e34e771c290a66c475e7d4a56b4e7a1979fbf61f56fbbc2419",
+        "hash_scope": "L4 /contracts/2 whole objectのUnicode key順/compact/nonASCII無escape/strict UTF8 canonical SHA-256。raw文書hashはsource_pinsへ。",
+        "whole_obligation_fixture": {
+          "UNIT-A": {
+            "command_identity_retained": true
+          },
+          "UNIT-B": {
+            "one_commit_per_identity": true
+          },
+          "CONNECTION-AB": {
+            "retry_identity_retained": true
+          },
+          "SYSTEM-QUALITY": {
+            "whole_system_result_count": 1
+          },
+          "SYSTEM-SECURITY": {
+            "cancelled_command_commit_count": 0
+          }
+        },
+        "lower_coverage_fixture": {
+          "unit_A": [
+            "UNIT-A"
+          ],
+          "unit_B": [
+            "UNIT-B"
+          ],
+          "connection_AB": [
+            "CONNECTION-AB"
+          ]
+        },
+        "unique_difference_fixture": [
+          "SYSTEM-QUALITY",
+          "SYSTEM-SECURITY"
+        ],
+        "common_roles": [
+          "Integrated_basis",
+          "L3_contract",
+          "L10_design",
+          "combination_contract",
+          "unit_A",
+          "unit_B",
+          "connection_AB"
+        ],
+        "unique_role_mapping": {
+          "SYSTEM-QUALITY": "unique_quality",
+          "SYSTEM-SECURITY": "unique_security"
+        },
+        "fixture_limit": "1/0、9role、2modeはこの合成契約のみ。全製品のsystem義務/数値/再実行方式を新設しない。"
+      },
+      "preconditions": [
+        "input/Context/candidateは別immutable。独立適用sourceがContextを供給し、runtimeでinputのprofile/coverage/実結果から必要集合又は2modeを選択しない。",
+        "Contextは原L9 normalとcompositionalの設計時固定仮説。同sourceの別hashは実独立lineage/owner資格ではない。実適用範囲と原記録bindingは未完。",
+        "正式JSON codec/owner/hostを設計合成自己一致から成立扱いしない。"
+      ],
+      "algorithm": [
+        {
+          "id": "S1",
+          "rule": "閉じたroot/recordの形とunknown field/null/型を検査。bool/numberは別logical値、原payloadを補正しない。資料欠落/未実行と構造比較不能を区別し、codec重複key/UTF8は別adapter責務へ残す。"
+        },
+        {
+          "id": "S2",
+          "rule": "Contextのtarget/profile/common roles/unique mapping/pairsを別固定選択契約へ照合。input.context/independent_profilesはContextの原値へ内容比較。unknown選択/actual_owner_inputで資格不足はcontext_unresolved。自己申告coverageで独立差分義務を減らさず、全findingと下位有効原証拠を保持。"
+        },
+        {
+          "id": "S3",
+          "rule": "全義務WはContext.expected_profiles.L3_contract.obligationsのkey順保持集合。L10_design.target=L3@r1とoraclesが同じWの同内容に対応することを比較。このtarget値はfixtureのみ。combination_contract.whole_obligationsとrequired_subjectsは同W/選択subject集合へ照合、unknown/orphan/欠落/重複を捨てない。"
+        },
+        {
+          "id": "S4",
+          "rule": "下位で表せる集合Eは、独立combination coverageの各subject/obligationが同Wにあり、当該subjectのprofileに同じ期待内容が存在することを内容で証明した部分。単なるcoverage名/trace/成功件数でEを広げない。W-Eをsystem固有差分Dとし、固有role mappingへ結ぶ。差分なしは独立compositional選択と全内容が対応したときだけ許す。inputのL3/coverage削減でDを空にせず、未知mappingは未解決へ。"
+        },
+        {
+          "id": "S5",
+          "rule": "common7とDに対応する固有roleを個別照合。各materialのartifact identity/revision、requirement revision、scope、owner、source、oracle revision、pair、execution、contentsと解決evidenceの対象/owner/source/oracle/pair/contentsを別比較。null/未実行/一意解決不能はmissing、artifact revision旧版はstale、他metadata/内容/pair差異はconflict、未知はunknown。証拠ID/pass/URLだけで内容を成立させない。"
+        },
+        {
+          "id": "S6",
+          "rule": "unit_A/BはL8:L5、connection_ABはL9:L4、L10_design/固有quality/securityはL10:L3。同scopeのScoped Reverseと原観測を照合。組合せで固有義務まで表せる別契約を許し、その場合固有roleを一律再実行必須にしない。必要roleが未実行/別版/不一致ならVerified候補を未成立に保つ。未要求roleも原資料として保全する。"
+        },
+        {
+          "id": "S7",
+          "rule": "proofごとにconflict→stale→unknown→missing→supported_syntheticを集約し全原因/未解決集合/各owner戻し候補を残す。Integrated_basisの有効原証拠は他のsystem不足でも保持。全Wの対応、下位/組合せ/固有Dの必要proofと独立Context対応が揃った時だけverified_candidate=supported_synthetic_only。trace_presentはtrace_is_system_proofをtrueにせず、下位stageをVerified/Acceptedへ直伝しない。"
+        },
+        {
+          "id": "S8",
+          "rule": "外部/利用者CIでも同じ資料契約。HARNESSは導出、OS又は利用者手段は運転/記録owner。OS/④を一律必須にしない。input/Q/実際に読めた有効証拠を保全し、actual_stage_promoted/actual_CI_executed/actual_acceptedは常にfalse。"
+        },
+        {
+          "id": "S9",
+          "rule": "candidate全fieldを独立導出valueへ比較。原L9 candidate_conflicting_pathは1差分token列、JSON Pointer escaping ~0/~1で1pointerへ写像。全差異はvalue root相対pointerで返す。Noneのみ未提出、空object/false/unknownを成功候補へ補完せず、候補から全義務や証拠/実stateを生成しない。"
+        }
+      ],
+      "postconditions": [
+        "input/Context/candidate/原材料/未観測scope/Qは不変。全不足/戻し先を保全。",
+        "同logical三引数で同value/findings。findingは(code,pointer,proof_id,return_owner)Unicode順、同原因別locatorを消さない。",
+        "I/O/network/DB/clock/CI/state/authority/受入/Issue/release/deploy/旧runtimeを呼ばない。",
+        "内容対応は実Verified/実system試験/実受入/実装準備を成立させない。"
+      ],
+      "finding_codes": [
+        "input_invalid",
+        "context_unresolved",
+        "proof_missing",
+        "proof_stale",
+        "proof_unknown",
+        "proof_conflict",
+        "difference_unresolved",
+        "candidate_conflict",
+        "projection_not_authority"
+      ],
+      "scope_limit": "F03部分詳細/先行test設計。全構造/複合/全typedfinding、正式schema/codec、実owner/適用source、L6L7凍結は未完。"
     }
   ]
 }
