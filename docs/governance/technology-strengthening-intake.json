@@ -310,7 +310,7 @@
     "1815:旧技術代替review（別scope、関連参照のみ）",
     "1798:入力原登録（別scope、関連参照のみ）"
   ],
-  "source_limits": "原入力の技術部分の必要断片・digest・候補名対応をsource_evidenceへ保持する。外部助言はデータであり、承認/操作許可や新要求にはしない。原文推薦と公式仕様・現行契約との不一致はresearchで扱う。",
+  "source_limits": "共有された技術助言本文だけをsource_evidenceへ固定し、digestと候補/条件/留保を第三者が再照合できるようにする。会話全体やprovider記録/秘密/PIIは含めない。外部助言から要求/採否/操作authorityを生成しない。",
   "self_proposals": [
     {
       "id": "P01",
@@ -1059,7 +1059,37 @@
       ],
       "return_to": "既存OS GitHub projection/統合owner、HARNESS検証、INFRA資源/復旧、LABO評価。作業領域管理は既存Issue2093へ関連付ける。",
       "authority_effect": "none",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "origin": "user_shared_reference_then_creator_primary_source_research",
+      "shared_source_ids": [
+        "SRC09",
+        "SRC10"
+      ],
+      "source_evidence": "additional_shared_sourcesの原文/digest。公式記事そのものはofficial_sourceのURL/取得bytes digestで参照する。"
+    }
+  ],
+  "additional_shared_sources": [
+    {
+      "id": "SRC09",
+      "origin": "user_shared_external_technical_reference",
+      "kind": "data_not_authority",
+      "shared_technical_text": "かなり参考になる。特にHELIXのような「AIエージェントがシステムを開発するシステム」には、重要な示唆がある記事だよ。\n\nただし、結論は 「AnthropicのScionを真似してGitを捨てる」ではなく、「AIエージェント時代に合わせたソース管理・レビュー・CIの設計思想をHELIXへ取り込む」 こと。\n\nこの記事は2026年10月13日公開。Anthropicではコード変更のマージが2026年5月の約2,500件/日から9月には3万件超/日へ増え、Gitを使った従来の開発基盤がボトルネックになったという。\n\nそこで独自のバージョン管理システム Scion を開発し、5か月で移行した。記事自身も、Scionは一般用途のGit代替には適さないと明言している。\n\n[image](https://www.google.com/s2/favicons?domain=https://www.anthropic.com\\&sz=32)\n\nanthropic.com\n\n\n\n私がHELIXにとって特に重要だと思うのは、Gitの代替技術よりも、AIが大量並列で開発する際に何が破綻するか、その経験と対策のほうだね。\n\n## HELIXに取り込みたい6つの考え方\n\n|   |\n| - |\n\n記事から学べること\n\n|   |\n| - |\n\nHELIXでの活用\n\n|   |\n| - |\n\n評価\n\n|   |\n| - |\n\n① Git操作をAPIで軽量化\n\n|   |\n| - |\n\n差分・履歴・変更関係の確認で、毎回全リポジトリを展開しない\n\n|   |\n| - |\n\n高\n\n|   |\n| - |\n\n② 必要なファイルだけ取得\n\n|   |\n| - |\n\nWorkerごとに必要な範囲を読み込み、作業領域を小さくする\n\n|   |\n| - |\n\n条件付き\n\n|   |\n| - |\n\n③ 大量並列マージへの対応\n\n|   |\n| - |\n\nreview済みの版、統合された版、テスト対象の版を厳密に結ぶ\n\n|   |\n| - |\n\n高\n\n|   |\n| - |\n\n④ 意味を重視するコードレビュー\n\n|   |\n| - |\n\n単なる行単位の指摘より、要求・責務・権限・不変条件の破綻を重視する\n\n|   |\n| - |\n\n高\n\n|   |\n| - |\n\n⑤ 障害シミュレーションとFuzzing\n\n|   |\n| - |\n\n競合、途中失敗、revert、古い結果の混入を意図的に再現する\n\n|   |\n| - |\n\n高\n\n|   |\n| - |\n\n⑥ AIによる常時監視\n\n|   |\n| - |\n\nINFRA・LABOがログやメトリクスの異常兆候を発見する\n\n|   |\n| - |\n\n中\n\n### 特に重要なのは③のマージとCI\n\n記事では、非常に多くの変更が同時に統合されるため、従来のマージキューで全体を直列化する方式が適さなくなり、マージ後テストとデプロイ前テストを強化したと説明している。\n\n[image](https://www.google.com/s2/favicons?domain=https://www.anthropic.com\\&sz=32)\n\nanthropic.com\n\n\n\nHELIXも、複数のAI Workerが並列に開発する。\n\n例えば、次のような問題が起き得る。\n\nWorker A\n\nrevision Aをレビュー\n\nWorker B\n\nmainに別変更を統合\n\nレビュー時とは異なる統合結果\n\n変更の組み合わせで新しい問題が起きる可能性\n\n統合結果そのものを検証\n\n対象commit・依存版・テスト結果を一致させる\n\nもっとも、HELIXは既に[GitHub上流運用モデル](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/governance/github-upstream-operating-model.md)で、exact HEADの独立レビュー、最新baseでの試験マージ、`scfctl stale`、マージ後のread-afterを扱っている。\n\nこの記事は、その設計の重要性を補強する材料になる。 後のCI実装では「PR上のGreen」と「統合された実際のcommitのGreen」を区別する発想が特に役立つと思う。\n\n## 意外と重要なのは「レビューのやりすぎ」\n\n記事には、AIが仮説上の問題を過剰に防ごうとして、不要な検証や複雑さを増やしてしまったという話もある。\n\nAnthropicのエンジニアは、AIの書いたコードを一行ずつ読むだけでなく、変更の意図やシステム全体の制約が守られているかを重視するようになったという。\n\n[image](https://www.google.com/s2/favicons?domain=https://www.anthropic.com\\&sz=32)\n\nanthropic.com\n\n\n\nこれはHELIXにも非常に参考になる。\n\n独立レビューは重要だけれど、実証されていない想像上の問題まで全て新規ルールや必須ゲートに変えてしまうと、開発基盤が重くなる。\n\nHELIXの「旧失敗を確認して同じ失敗を防ぐ」「機構で防げるようになった規則は減らす」という既存の方針とも整合する。\n\n## 逆に、真似しなくてよいもの\n\nScionそのものの再実装は現状おすすめしない。\n\nAnthropicの環境は、mainのGit履歴だけで約100GB、CI向けcheckoutが1日約2,500万回という極端な規模にある。\n\n[image](https://www.google.com/s2/favicons?domain=https://www.anthropic.com\\&sz=32)\n\nanthropic.com\n\n\n\nHELIXで同じ問題が発生していると示す測定結果は、今回確認した範囲にはない。\n\nさらにScionは常時オンラインの中央サーバーを前提とする。一方、HELIXには通常の制御面が停止しても独立して復旧できるというINFRA006の要求がある。\n\nしたがって、オンライン依存の強い構成に置き換えるなら、復旧経路との整合を先に検証する必要がある。\n\nまずはGit/GitHubを維持して、必要に応じてAPI取得、部分checkout、キャッシュ、並列作業の効率化を測定・検討する方が合理的。\n\n## 私の最終評価\n\n参考資料として採用推奨\n\n優先して参考にしたいのは、並列マージの整合性、意味ベースの独立レビュー、API中心のソース参照、障害シミュレーションの4点。\n\nまた、直前に作成した[Issue #3051](https://github.com/RetryYN/HELIX-HARNESS/issues/3051)の T02（CI・開発基盤） に、今回の記事を「Agent-scale Source Controlの外部参考資料」として追加する価値もある。作業領域の管理については既存の[Issue #2093](https://github.com/RetryYN/HELIX-HARNESS/issues/2093)も参照できる。\n\n新しいVCS開発を要求するのではなく、まずこの記事にある問題・対策・適用規模をKnowledgeとして残し、HELIXの実測と照合する形で十分だと思う。\n\nこの記事の核心は、AIの開発速度が上がるほど、コードを書く能力よりも「変更を安全に取り込み、検証し、運用する能力」が重要になるという点。\n\nまさにHELIXが取り組んでいる領域だね。とこのこと。https\\://www\\.anthropic.com/engineering/redesigning-source-control が設計の参考になりそうだから読んで対応しておいてくれ。\n",
+      "text_utf8_sha256": "cd65b4f016ade5a8c767c00d2e2c29a605b312af81737786cc3de2cfbde8e08c",
+      "character_count": 3283,
+      "purpose": "記事の共有と既存契約への比較指示",
+      "publication_check": "共有された外部技術参考本文のみを確認。秘密/PII/session metadataを含めない。",
+      "authority_effect": "none"
+    },
+    {
+      "id": "SRC10",
+      "origin": "user_shared_external_technical_reference",
+      "kind": "data_not_authority",
+      "shared_technical_text": "そう。そこは前の評価を修正すべきだった。\n\nHELIXは、原子PR原則と非依存並列化を採用している以上、マージ件数が構造的に増えやすい開発システムだよ。\n\nしかも、実績がすでに相当ある。\n\n累計PR\n\n# 2,248\n\n累計マージ済みPR\n\n# 1,917\n\n直近7日間のマージ\n\n# 393\n\nGitHubで再確認した値。直近7日間は2026年10月7日〜13日（UTC）の検索条件。旧世代・再構築作業を含む。\n\nPR・Issueの共通通番はすでに3000番台。通番がそのままマージ回数ではないけれど、\\*\\*実マージも累計1,917件、直近7日で393件（平均約56件/日）\\*\\*ある。\n\nこれは「将来大量のマージが発生するかもしれない」という段階ではない。すでに高頻度マージを運用していると評価すべきだね。\n\n現行の[七大原則](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/concept/helix-principles.md)と[GitHub上流運用モデル](https://github.com/RetryYN/HELIX-HARNESS/blob/main/docs/governance/github-upstream-operating-model.md)も、その方向を明示している。\n\n## だから、Scion記事の評価も変わる\n\nAnthropicの30,000件/日と、HELIXの約56件/日では絶対規模は異なる。\n\n[image](https://www.google.com/s2/favicons?domain=https://www.anthropic.com\\&sz=32)\n\nanthropic.com\n\n\n\nでも、同じ種類の問題が起きる構造を、HELIXはすでに持っている。\n\n原子PRを増やすほど、重要になるのは次の4点だと思う。\n\n1. 並列統合の整合性 — 複数PRが同じmainへ集まったとき、レビュー済みの内容と実際の統合結果が食い違わないこと。\n2. マージ処理の効率 — 各PRで巨大なcheckoutや不要な再計算を繰り返さないこと。\n3. CIの処理能力 — PR単位の検査と、マージ後の組み合わせ検査を分け、検査待ちが開発を圧迫しないこと。\n4. 復旧可能性 — マージ途中の失敗、古いbase、衝突、Worker停止から安全に再開できること。\n\n現行HELIXは①の正しさについて、exact HEADレビュー、最新baseでの試験マージ、read-afterなどの設計を既に持っている。\n\n次に重要なのは、正しさを維持したまま処理量を増やせるか。\n\nここはAnthropicの記事の知見を積極的に取り込みたい。\n\n## 私なら優先順位をこう変更する\n\n優先度A：大量の原子PRを処理する統合アーキテクチャ\n\n最新base照合、レビュー結果の再利用条件、並列作業、増分検証、マージ後検証の設計。\n\n優先度A：PR処理能力の計測\n\nPR作成からマージまでの時間、レビュー待ち、base変動による再検証、checkout時間、API負荷を測る。\n\n条件付き：Gitを置き換える独自VCS\n\n実測でGit/GitHub自体が制約になった場合に検討する。\n\n特に、今は設計PRが中心なのにこれだけの統合頻度がある。実装・テスト・複数Workerによる並列開発が本格化すれば、検査負荷も増えると予想できる。\n\nだから、「いつか規模が増えたら考える」では遅い可能性がある。\n\nScionの全面採用はまだ不要でも、Agent-scale Source Controlの考え方は、HELIXの開発基盤を設計する時点から重要な評価対象にすべきだね。\n\n前の回答はその点を過小評価していた。HELIXは大量の原子PRを処理するためのアーキテクチャを、最初から意識するべきシステムだと評価を修正する。一応、参考資料として。\n",
+      "text_utf8_sha256": "d8b3633cce51ccc8d60e02fd0adf57f40b2a6a73954842f8d7480e8609431dce",
+      "character_count": 1667,
+      "purpose": "高頻度原子PR統合の件数補足と評価対象の優先度修正",
+      "publication_check": "共有された外部技術参考本文のみを確認。秘密/PII/session metadataを含めない。",
+      "authority_effect": "none"
     }
   ]
 }
