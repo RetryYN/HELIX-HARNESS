@@ -274,6 +274,16 @@
         "change": "旧台帳/gate/runtime/copyを移植せず、承認F05と現行reuse統制へ8不変条件/11trace/byte自己整合/consumer pair/初回参照・意味再導出を具体化。",
         "reason": "旧責務混在をbyte一致で現行化せず、適格資産の不要な再実装とunknownの移管完了化を防ぐため。",
         "reuse": "semantic_rederivation_only_not_actual_copy"
+      },
+      "f05_context_rederivation": {
+        "read_line_locators": [
+          135,
+          138,
+          140
+        ],
+        "preserve": "stable revision/上下trace/全consumer before-after oracle、欠落/staleの保持、意味保存と意味変更の分離。",
+        "change": "旧台帳/gateを移植せず、F05 Contextの選択/必要consumer/原field資格と実copy成立を分けるlocator oracleへ具体化。",
+        "reason": "入力原材料の存在/hashだけでowner資格や移管成立を作る欠落を防ぐため。新しい承認手続きを追加しない。"
       }
     },
     {
@@ -472,7 +482,7 @@
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。",
     "F01の27原例/別固定合成Contextと10軸照合を定義。全副次finding/構造/資格/実codec/対L6L7/test凍結は未完。",
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。",
-    "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。",
+    "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。",
     "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
   ],
@@ -1873,7 +1883,7 @@
         },
         {
           "id": "U8",
-          "rule": "candidate全value fieldを型付き比較し全差分JSON Pointerを保持。unknownを移管済み/候補をcopy済み/旧Greenを現Green/削除を退役/登録を承認/不要再実装/再導出をbyte copyへする主張をconflictへ。値は原内容から導出し候補へ合わせない。構造解釈不能invalid、candidate conflict優先でconflict、原不変条件unknown/分類unknown/必要trace未解決/Context資格不足はunknown、原digest/consumer/pair競合はconflict、他はcontent_supported。content_supportedは合成内容条件の対応のみ。"
+          "rule": "candidate全value fieldを型付き比較し全差分JSON Pointerを保持。unknown移管/候補copy/旧Green現Green/削除退役/登録承認/不要再実装/再導出byte copyの主張をconflictへ。値は原内容から導出し候補へ合わせない。構造解釈不能invalid、candidate矛盾又は原digest/consumer/pair/Context明示矛盾があればconflict、その次に不変条件unknown/分類unknown/必要trace未解決/Context資格不足ならunknown、他はcontent_supported。全findingを保持して副次不足を消さない。"
         }
       ],
       "finding_codes": [
@@ -1899,7 +1909,79 @@
         "input/context/candidate/無関係資産を変更せず、filesystem/DB/clock/network/copy/retire/台帳write/旧test/runtime/権利判断を行わない。",
         "digestは既存logical canonical規則を使用。実owner原bytes/transport資格と論理入力digestは別codec bindingが必要。"
       ],
-      "scope_limit": "36 main L9原例と別固定合成Contextに対応する部分詳細。実内容監査/全consumer/正式policy/全finding/構造変異/実owner-codec/L6L7/test凍結は未完。"
+      "scope_limit": "36 main L9原例と別固定合成Contextに対応する部分詳細。実内容監査/全consumer/正式policy/全finding/構造変異/実owner-codec/L6L7/test凍結は未完。 Context14否定例のdiagnostic locator/局所保全を追補。全finding/実資格を完了扱いにしない。",
+      "context_failure_contract": {
+        "scope": "F05 Contextの資格/母集団/必要consumer/原recordを診断する純粋domain条件。wire認証/実権利判断ではない。",
+        "finding_locators": [
+          {
+            "condition": "Context target.scope又はrequirement_revisionがinput targetと異なる",
+            "code": "scope_conflict",
+            "pointer": "/context/target/{field}",
+            "asset_ids": "input/contextの選択集合のunion",
+            "return_owner": "asset-selection-owner",
+            "effect": "対象の資格が未解決。全資産のrouteをunresolvedに保持し、読めた原bytes比較を失わない。"
+          },
+          {
+            "condition": "selected_asset_idsがinputの資産集合と異なる",
+            "code": "asset_population_conflict",
+            "pointer": "/context/selected_asset_ids",
+            "asset_ids": "集合の対称差",
+            "return_owner": "asset-selection-owner",
+            "effect": "両集合のunionを保全し、差の資産を消さず選択条件unresolved。inputの資産を選択外へ黙って捨てない。"
+          },
+          {
+            "condition": "必要consumer key/集合が無い又はinput traceと内容不一致",
+            "code": "trace_missing | trace_conflict",
+            "pointer": "/context/required_consumers/{asset_id}",
+            "asset_ids": "当該資産のみ",
+            "return_owner": "asset-consumer-owner",
+            "effect": "当該資産のdisposition unresolved/route reference_with_unresolved_conditions。原traceは補完せず他資産を保全。"
+          },
+          {
+            "condition": "入力のasset field原内容に対応するcatalog recordが無い",
+            "code": "reference_missing",
+            "pointer": "/context/record_catalog",
+            "asset_ids": "当該資産のみ",
+            "return_owner": "asset-source-owner（source field）又は当該field owner",
+            "effect": "不足は当該field資格へ局所化し、source又はtargetの資格不明なら8不変条件をunknownへ。raw byteの自己整合比較は原入力の内容として保持。"
+          },
+          {
+            "condition": "record stateがstale/unknown/missing/conflict",
+            "code": "reference_stale | reference_unknown | reference_missing | reference_conflict",
+            "pointer": "/context/record_catalog/{index}/state",
+            "asset_ids": "当該資産のみ",
+            "return_owner": "当該field owner",
+            "effect": "内容セルの資格を未解決にし当該資産をunresolvedへ。staleをcurrentへ継承しない。"
+          },
+          {
+            "condition": "record raw bytesとcontent_sha256が不一致",
+            "code": "content_digest_conflict",
+            "pointer": "/context/record_catalog/{index}/content_sha256",
+            "asset_ids": "当該資産のみ",
+            "return_owner": "当該field owner",
+            "effect": "catalog rootの整合不成立をconflictとして返す。raw材料と宣言を保持し、input rawと照合した値の成功を資格成功にしない。"
+          },
+          {
+            "condition": "record qualification_basis_refs空/資格root不在・別scope・版・owner",
+            "code": "reference_unknown",
+            "pointer": "/context/record_catalog/{index}/qualification_basis_refs又は/context/qualifier_roots/{index}/{field}",
+            "asset_ids": "当該rootへ依存する資産",
+            "return_owner": "asset-clearance-owner",
+            "effect": "field内容の自己申告から資格を生成せずunresolvedへ。空又は偽rootをinput/candidateから補完しない。"
+          },
+          {
+            "condition": "actual_owner_inputだが実clearance refsとその内容対応が未成立",
+            "code": "clearance_unresolved",
+            "pointer": "/context/actual_clearance_refs",
+            "asset_ids": "選択資産集合",
+            "return_owner": "asset-clearance-owner",
+            "effect": "合成catalogを実資格へ昇格せずunknown。全actual false。"
+          }
+        ],
+        "aggregation": "構造解釈不能はinvalid。candidate又は原digest/consumer/pair/Context明示矛盾があればconflict、それ以外に資格/条件不足があればunknown、全合成内容条件対応だけcontent_supported。全findingを保持しconflictとunknown共存を短絡で消さない。",
+        "value_preservation": "対象選択資格の全体不足と資産ごとのfield不足を分ける。局所ASSET-A不足ではASSET-B原valueを保つ。判明したbyte自己整合/原traceを資格不足で消さず、資格未解決の不変条件はunknownとする。actual_*と不要再実装はfalse。",
+        "unclosed": "必要consumerの多重/未列挙consumer、全findingの全組合せ、不正構造、実owner資格のtransport/codec/full schemaは未完。以下Context例はminimum findingsと指定valueの部分oracle。"
+      }
     },
     {
       "id": "HARNESS-L5-004-N01",
