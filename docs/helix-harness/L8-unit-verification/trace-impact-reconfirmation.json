@@ -919,6 +919,27 @@
         "preserve": "array順/record key整列、非JSON/cycle拒否とraw byte digest分離。",
         "change": "旧Number/binary64 formatter/UTF16 key sortをcopyせず、数学decimal内容/Unicode scalar順/strict UTF8/出力capの純粋候補へ再導出。",
         "reason": "大integerや精密小数の丸めを内容一致にせず、旧部分serializerのbytesを現行authorityへ移植しないため。capの固定値/新しい承認手続きは作らない。"
+      },
+      "wire_whole_rederivation": {
+        "read_line_locators": [
+          9,
+          10,
+          17,
+          18,
+          19,
+          20,
+          21,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40
+        ],
+        "preserve": "原資料内容のdigest照合と純粋な値比較。",
+        "change": "旧host Number有限性/JSON.stringifyとkey sortを受信parserへ移植せず、原number token/原bytesを保持し重複key/Unicode拒否の全診断を定義。",
+        "reason": "host変換で重複/精度/原文字を失う前に受信不足を戻し、意味資格や実作用を生成しないため。"
       }
     },
     {
@@ -1139,7 +1160,8 @@
     "F03の40原例/別固定合成Contextと再確定・意味戻し先・7trigger・ticket種類を定義。正式policy/複合原因/全副次finding/実owner-codec/L6L7凍結は未完。 Context21例で独立資格不足とpair/意味/trigger/種類の局所不足を分離。 61固定対照を全ReconfirmationResultへ、複数意味軸11組/公開contract単独/7trigger共存2/同時Context7/複数candidate1の22例を追加。basis/全finding/role/hash/最上流と原因共存を固定。全構造/実policy/実binding/全freezeは未完。",
     "F05の36原例/別固定合成Contextと再利用条件/参照・意味再導出を定義。実内容監査/全consumer/正式policy/全finding/実owner-codec/L6L7凍結は未完。 Context14否定例のlocator/局所保全を追加、全組合せと実bindingは未完。 50固定対照を全AssetReuseResultへ、8各不変条件changed/全8unknown/全11trace欠落/原UTF8・改行非正規化/bool数値型差/相反とunknown共存/Context複合5/原digestと資格共存/複数candidateの21例を追加。全finding/basis/role/hashを固定。全構造/実clearance/consumer閉包/全freeze未完。",
     "N01の27原例/別固定合成Contextと未見relation/9cell/未観測保全を定義。全副次finding/実probe-owner-observation-codec/L6L7凍結は未完。 Context25例で資料資格/未観測union/局所9cell/盲検資格の不足を分離。 52固定対照を全UnseenRelationResultへ、原複合6/Context複合8/相反と資格不足1/consumer順1/複数candidate1の17対照を追加。全finding/basis/role/hash/原欠落と派生join不明を分離。全構造/実probe/全binding/全freezeは未完。",
-    "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
+    "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。",
+    "wire受信WD1〜WD7と60全WireDecodeResultを具体化。原bytes/全finding/無効key位置/構文優先を保持。正式host/materializer/consumer/codec/資源/全入力coverage/実RedGreen/全92親430対の設計閉包は未完。"
   ],
   "document_id": "HARNESS-L8-004",
   "layer": "L8",
@@ -117713,7 +117735,7 @@
     "source_main": "e6e10b1b675fc0b3acd0d379177039d008034f18",
     "fixed_design_binding_rows_sha256": "772c95a2c8d93d770275060e9514146caf162ea41e618582ea72618b3a529af1",
     "fixed_profiles_sha256": {
-      "wire_decode_contract": "592647099edb86dcf62a4c192db625b85dd2c7148845c6fac2fa887d4ea75116",
+      "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
       "exact_number_contract": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
       "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
       "schema_adapter_contract": "46f1522cbcdf585ee8113339ec44c5a5119761eb3d68270323b775803c56693b",
@@ -117737,7 +117759,7 @@
           },
           "result_type": "PartitionResult",
           "profile_digests": {
-            "wire_decode_contract": "592647099edb86dcf62a4c192db625b85dd2c7148845c6fac2fa887d4ea75116",
+            "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
             "exact_number_contract": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
             "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
             "schema_adapter_contract": "46f1522cbcdf585ee8113339ec44c5a5119761eb3d68270323b775803c56693b",
@@ -118077,7 +118099,7 @@
           },
           "result_type": "ChangeResult",
           "profile_digests": {
-            "wire_decode_contract": "592647099edb86dcf62a4c192db625b85dd2c7148845c6fac2fa887d4ea75116",
+            "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
             "exact_number_contract": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
             "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
             "schema_adapter_contract": "46f1522cbcdf585ee8113339ec44c5a5119761eb3d68270323b775803c56693b",
@@ -118417,7 +118439,7 @@
           },
           "result_type": "ImpactResult",
           "profile_digests": {
-            "wire_decode_contract": "592647099edb86dcf62a4c192db625b85dd2c7148845c6fac2fa887d4ea75116",
+            "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
             "exact_number_contract": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
             "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
             "schema_adapter_contract": "46f1522cbcdf585ee8113339ec44c5a5119761eb3d68270323b775803c56693b",
@@ -118757,7 +118779,7 @@
           },
           "result_type": "TraceResult",
           "profile_digests": {
-            "wire_decode_contract": "592647099edb86dcf62a4c192db625b85dd2c7148845c6fac2fa887d4ea75116",
+            "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
             "exact_number_contract": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
             "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
             "schema_adapter_contract": "46f1522cbcdf585ee8113339ec44c5a5119761eb3d68270323b775803c56693b",
@@ -119097,7 +119119,7 @@
           },
           "result_type": "ReconfirmationResult",
           "profile_digests": {
-            "wire_decode_contract": "592647099edb86dcf62a4c192db625b85dd2c7148845c6fac2fa887d4ea75116",
+            "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
             "exact_number_contract": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
             "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
             "schema_adapter_contract": "46f1522cbcdf585ee8113339ec44c5a5119761eb3d68270323b775803c56693b",
@@ -119437,7 +119459,7 @@
           },
           "result_type": "AssetReuseResult",
           "profile_digests": {
-            "wire_decode_contract": "592647099edb86dcf62a4c192db625b85dd2c7148845c6fac2fa887d4ea75116",
+            "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
             "exact_number_contract": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
             "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
             "schema_adapter_contract": "46f1522cbcdf585ee8113339ec44c5a5119761eb3d68270323b775803c56693b",
@@ -119777,7 +119799,7 @@
           },
           "result_type": "UnseenRelationResult",
           "profile_digests": {
-            "wire_decode_contract": "592647099edb86dcf62a4c192db625b85dd2c7148845c6fac2fa887d4ea75116",
+            "wire_decode_contract": "4da3b389e1e48e8908c90c86e2105d97ec7d316bda159f2a657e515ea860bce7",
             "exact_number_contract": "9c1c5ef16789b2b4fbe6cfb7620694640e992651914d592c9628ef0e373c9c03",
             "canonical_emit_contract": "c7eb4b6bc16de5cf91b5148e8cc8f7316a941e36a548a4b3b916b92de3bbd2c1",
             "schema_adapter_contract": "46f1522cbcdf585ee8113339ec44c5a5119761eb3d68270323b775803c56693b",
@@ -126519,5 +126541,1355 @@
       }
     ],
     "scope_limit": "7×16+7=125固定A2全提案。original rawはrefで追跡。7core/425whole/shape/handoff/A1/5profile不変。全frame/type/hex/実custody/lineage/qualification/codec/host/全freeze未閉包。 SF-m1: 未固定pointer/lane分岐6例を追加。全frame形状/複合は未閉包。"
+  },
+  "wire_decode_whole_oracles": {
+    "design_pointer": "/wire_decode_contract/whole_finding_contract",
+    "cases": [
+      {
+        "id": "H004-L8-WIRE-UNICODE-OBJECT-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-UNICODE-OBJECT",
+        "raw_bytes_hex": "7b22e8aa9e223a22e58e9fe69687222c226e223a317d",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "a1fc9a485ad3c5938c8e8daa3cdb767485df250056ec7dee5c1e4ed478678d7d",
+          "raw_retained": true,
+          "ast": {
+            "kind": "object",
+            "members": [
+              [
+                "語",
+                {
+                  "kind": "string",
+                  "value": "原文"
+                }
+              ],
+              [
+                "n",
+                {
+                  "kind": "number",
+                  "token": "1"
+                }
+              ]
+            ]
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-WHITESPACE-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-WHITESPACE",
+        "raw_bytes_hex": "200a207b2278223a317d2009",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "8ed3da7fe49aad08943a0805b1f38a9317cc4ed06f12160f71b5c04f1c1f3f71",
+          "raw_retained": true,
+          "ast": {
+            "kind": "object",
+            "members": [
+              [
+                "x",
+                {
+                  "kind": "number",
+                  "token": "1"
+                }
+              ]
+            ]
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-ESCAPED-KEY-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-ESCAPED-KEY",
+        "raw_bytes_hex": "7b225c7530303631223a747275657d",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "a7602bf22a678bb5cb8b9958e124e625bf7ac03a53dae2ec5c82508aa62b39ba",
+          "raw_retained": true,
+          "ast": {
+            "kind": "object",
+            "members": [
+              [
+                "a",
+                {
+                  "kind": "bool",
+                  "value": true
+                }
+              ]
+            ]
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-NULL-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-NULL",
+        "raw_bytes_hex": "6e756c6c",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+          "raw_retained": true,
+          "ast": {
+            "kind": "null"
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-EMPTY-STRING-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-EMPTY-STRING",
+        "raw_bytes_hex": "2222",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+          "raw_retained": true,
+          "ast": {
+            "kind": "string",
+            "value": ""
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-EMPTY-OBJECT-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-EMPTY-OBJECT",
+        "raw_bytes_hex": "7b7d",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "raw_retained": true,
+          "ast": {
+            "kind": "object",
+            "members": []
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-ARRAY-TYPES-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-ARRAY-TYPES",
+        "raw_bytes_hex": "5b747275652c312c2231225d",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "55afbdd9b38d5feee00df61eb7d236b6a617f0ed9946f3193c00e63cff68b2f3",
+          "raw_retained": true,
+          "ast": {
+            "kind": "array",
+            "items": [
+              {
+                "kind": "bool",
+                "value": true
+              },
+              {
+                "kind": "number",
+                "token": "1"
+              },
+              {
+                "kind": "string",
+                "value": "1"
+              }
+            ]
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-SEPARATE-OBJECT-KEYS-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-SEPARATE-OBJECT-KEYS",
+        "raw_bytes_hex": "5b7b2261223a317d2c7b2261223a327d5d",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "99fadecef60e156ff21aff799671271e5fba37d003cce74da416587190ad9b14",
+          "raw_retained": true,
+          "ast": {
+            "kind": "array",
+            "items": [
+              {
+                "kind": "object",
+                "members": [
+                  [
+                    "a",
+                    {
+                      "kind": "number",
+                      "token": "1"
+                    }
+                  ]
+                ]
+              },
+              {
+                "kind": "object",
+                "members": [
+                  [
+                    "a",
+                    {
+                      "kind": "number",
+                      "token": "2"
+                    }
+                  ]
+                ]
+              }
+            ]
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-UNICODE-NO-NORMALIZE-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-UNICODE-NO-NORMALIZE",
+        "raw_bytes_hex": "7b22c3a9223a312c2265cc81223a327d",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "f126472a603049b5f986bb8f35ba8b5fbace9e37c2d5b2abf5ad131a166835b6",
+          "raw_retained": true,
+          "ast": {
+            "kind": "object",
+            "members": [
+              [
+                "é",
+                {
+                  "kind": "number",
+                  "token": "1"
+                }
+              ],
+              [
+                "é",
+                {
+                  "kind": "number",
+                  "token": "2"
+                }
+              ]
+            ]
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-SURROGATE-PAIR-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-SURROGATE-PAIR",
+        "raw_bytes_hex": "225c75643833645c756465303022",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "e30439cb87e140c0b998ad3095285abfec0294e2a8916f9a8f30d85734e6f82b",
+          "raw_retained": true,
+          "ast": {
+            "kind": "string",
+            "value": "😀"
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-DECIMAL-EXACT-TOKEN-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-DECIMAL-EXACT-TOKEN",
+        "raw_bytes_hex": "302e3130303030303030303030303030303031",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "01bcb760af885969aa9d8bda4a5c9925a37eecb45aeac57c5068cef9805fa835",
+          "raw_retained": true,
+          "ast": {
+            "kind": "number",
+            "token": "0.10000000000000001"
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-LARGE-EXPONENT-TOKEN-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-LARGE-EXPONENT-TOKEN",
+        "raw_bytes_hex": "3165343030",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "f2bba4568fecd4b9729970732e571ac9373a33fb2d6a960794a41f0f2ecdbc25",
+          "raw_retained": true,
+          "ast": {
+            "kind": "number",
+            "token": "1e400"
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-LARGE-INTEGER-TOKEN-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-LARGE-INTEGER-TOKEN",
+        "raw_bytes_hex": "39303037313939323534373430393933",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "a1c367c29158357e62a3ff5d3e800fb7698a22396439dbc0a9d4929322afd35d",
+          "raw_retained": true,
+          "ast": {
+            "kind": "number",
+            "token": "9007199254740993"
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-DUPLICATE-ROOT-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-DUPLICATE-ROOT",
+        "raw_bytes_hex": "7b2261223a312c2261223a327d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "1c53ee0df7b12fd4d65b976120c7fa6b847dc41dffd7f0331c3237a1ceab1756",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/a",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-DUPLICATE-NESTED-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-DUPLICATE-NESTED",
+        "raw_bytes_hex": "7b2278223a7b2261223a312c2261223a327d7d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "06d55db68c2ab40693c6dbd8e3d358b352a269731d9ead4defe3e067a6eb6af7",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/x/a",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-DUPLICATE-ESCAPE-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-DUPLICATE-ESCAPE",
+        "raw_bytes_hex": "7b2261223a312c225c7530303631223a327d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "c95ba945b310a34906bbfc28ce1346b87741d5a2b3066d1d3ecfa0acbd86392c",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/a",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-INVALID-UTF8-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-INVALID-UTF8",
+        "raw_bytes_hex": "22ff22",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "2c1ba6ac713bfc21e74f3429be952fca3e7a796734394fd18a48eb6713880d89",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "utf8_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-NAN-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-NAN",
+        "raw_bytes_hex": "4e614e",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "d5b592c05dc25b5032553f1b27f4139be95e881f73db33b02b05ab20c3f9981e",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_non_finite_literal",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-INFINITY-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-INFINITY",
+        "raw_bytes_hex": "496e66696e697479",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "d0067cad9a63e0813759a2bb841051ca73570c0da2e08e840a8eb45db6a7a010",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_non_finite_literal",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-NEGATIVE-INFINITY-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-NEGATIVE-INFINITY",
+        "raw_bytes_hex": "2d496e66696e697479",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "c64ddf11bcd45660f0cf66dd0c22d2b4570ef3d3fc6527a9a6f6c722aefa3c39",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_non_finite_literal",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-EXTRA-DOCUMENT-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-EXTRA-DOCUMENT",
+        "raw_bytes_hex": "7b7d207b7d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "2cec2bbf1a64ea5249e8a7ab9ecc782fa48be13f0b35ad5f52bdea741841a230",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-TRAILING-COMMA-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-TRAILING-COMMA",
+        "raw_bytes_hex": "7b2261223a312c7d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "aa99a5ce3eb0dd8355f0bfb15376ea1d862ad75d0d278af1f8c280ca8c02c640",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-UNESCAPED-CONTROL-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-UNESCAPED-CONTROL",
+        "raw_bytes_hex": "226c696e650a22",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "f01df5356e0cf408cbc2c143fde5e81d5a779d4438b823589f47e131c21f1438",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-LONE-HIGH-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-LONE-HIGH",
+        "raw_bytes_hex": "225c756438303022",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "8c0c59dd0d275aadcd462a5fe12eb352cbdfeaf961eae4f85a4660521df7d2f5",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "unicode_scalar_invalid",
+              "pointer": "",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-LONE-LOW-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-LONE-LOW",
+        "raw_bytes_hex": "225c756465616422",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "add0cef85e60fd55ea881f932f8974e8b1b99093cd9aaa31434335185a8474a6",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "unicode_scalar_invalid",
+              "pointer": "",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-BOM-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-BOM",
+        "raw_bytes_hex": "efbbbf7b7d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "aa25e978046d680ef8740d837e6de5bc1e2a2dc6089dbda1012544b538d53f65",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-COMMENT-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-COMMENT",
+        "raw_bytes_hex": "7b2f2a782a2f7d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "593aa521cee0e776bef3dbab2634f9cfa6c568c7cfdcb77bac82c03036074cc5",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-SINGLE-QUOTE-WHOLE",
+        "source_partial_case": "H004-L8-WIRE-SINGLE-QUOTE",
+        "raw_bytes_hex": "7b2761273a317d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "a84fed7e2eca1809b18c96ccd4571e0cef929a290d0108e0f4df368b7227eb5c",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-EMPTY-BYTES-WHOLE",
+        "raw_bytes_hex": "",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-WHITESPACE-ONLY-WHOLE",
+        "raw_bytes_hex": "200a09",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "9b8318187072010f3081af0de6d1c356f4695d1b5a5e1778629153663acad751",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-ROOT-FALSE-WHOLE",
+        "raw_bytes_hex": "66616c7365",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+          "raw_retained": true,
+          "ast": {
+            "kind": "bool",
+            "value": false
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-ROOT-ZERO-WHOLE",
+        "raw_bytes_hex": "30",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+          "raw_retained": true,
+          "ast": {
+            "kind": "number",
+            "token": "0"
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-NEGATIVE-ZERO-WHOLE",
+        "raw_bytes_hex": "2d30",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "ed79f26d03f412bde3db206601a698e0bb451bea9e3cc25289636ac17ea74b0a",
+          "raw_retained": true,
+          "ast": {
+            "kind": "number",
+            "token": "-0"
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-EMPTY-ARRAY-WHOLE",
+        "raw_bytes_hex": "5b5d",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "raw_retained": true,
+          "ast": {
+            "kind": "array",
+            "items": []
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-NUMBER-TOKENS-WHOLE",
+        "raw_bytes_hex": "5b2d302c312e30302c31452b3030342c302e31303030303030303030303030303030312c31653430302c393030373139393235343734303939335d",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "f8d021ba7c7e46fdd999b2893cb636eef2f49ffa8849f6ea1a137eb3f5673a31",
+          "raw_retained": true,
+          "ast": {
+            "kind": "array",
+            "items": [
+              {
+                "kind": "number",
+                "token": "-0"
+              },
+              {
+                "kind": "number",
+                "token": "1.00"
+              },
+              {
+                "kind": "number",
+                "token": "1E+004"
+              },
+              {
+                "kind": "number",
+                "token": "0.10000000000000001"
+              },
+              {
+                "kind": "number",
+                "token": "1e400"
+              },
+              {
+                "kind": "number",
+                "token": "9007199254740993"
+              }
+            ]
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-INVALID-LEADING-ZERO-WHOLE",
+        "raw_bytes_hex": "3031",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "938db8c9f82c8cb58d3f3ef4fd250036a48d26a712753d2fde5abd03a85cabf4",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-INVALID-PLUS-WHOLE",
+        "raw_bytes_hex": "2b31",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "c59dc4e44ff99288156d4dff2168f6ac7ddee6b1fc7ccc0754656ffaa6d351ea",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-INVALID-FRACTION-WHOLE",
+        "raw_bytes_hex": "312e",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "c977dbe785221d34114d345fdf8ff4e18bb4af66750751dbea29407f9738735f",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-INVALID-EXPONENT-WHOLE",
+        "raw_bytes_hex": "31652b",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "fb346aaddef670dedd5e4209580bc32df6dde4b89ba9abd9a18fe3e0779cbb9f",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-INVALID-ESCAPE-WHOLE",
+        "raw_bytes_hex": "225c78343122",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "9619e42d6b4c7f7b79f8798042e5aebdc50ed48cd24d93f5e22cff7a66036405",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-DUPLICATE-POINTER-ESCAPE-WHOLE",
+        "raw_bytes_hex": "7b227e2f223a312c227e5c7530303266223a327d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "8e1e6ce05fe23c7e9879bf8aa9dbb9639f122398eb2e5aec4d1584d3cca8bfb3",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/~0~1",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-TRIPLE-DUPLICATE-WHOLE",
+        "raw_bytes_hex": "7b2261223a312c2261223a322c2261223a337d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "d7e96740ee233c5698bc67d0f4d211f676c109f350a0179ff7ac006864747b63",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/a",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-TWO-DUPLICATES-WHOLE",
+        "raw_bytes_hex": "7b227a223a312c227a223a322c2261223a312c2261223a327d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "b6bf9442675dec48e87bcac99ee5f7cd3d16125479ab4dda52a27685966a73a4",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/a",
+              "return_owner": "wire-codec-owner"
+            },
+            {
+              "code": "duplicate_key",
+              "pointer": "/z",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-ARRAY-DUPLICATES-WHOLE",
+        "raw_bytes_hex": "5b7b2261223a312c2261223a327d2c7b2261223a332c2261223a347d5d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "e7d9cbcc9bfcae4fb84d6eb9296dbc0172732d35f389a5537ba3c23d8d1325aa",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/0/a",
+              "return_owner": "wire-codec-owner"
+            },
+            {
+              "code": "duplicate_key",
+              "pointer": "/1/a",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-KEY-LONE-WHOLE",
+        "raw_bytes_hex": "7b225c7564383030223a317d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "02724f63cc02840d4a3eaa7063b83466eb5a385438138fdbdd235c86874d8ff7",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "unicode_scalar_invalid",
+              "pointer": "",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-NESTED-KEY-LONE-WHOLE",
+        "raw_bytes_hex": "7b2278223a7b225c7564383030223a317d7d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "dd6bd1ea34ca304c650fac59cdd92669779050e119d3a5a0142db9cb32845791",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "unicode_scalar_invalid",
+              "pointer": "/x",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-INVALID-KEY-SUBTREE-WHOLE",
+        "raw_bytes_hex": "7b2278223a7b225c7564383030223a7b2261223a225c7564383030222c226b223a312c226b223a327d7d7d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "0787164ba192ce560b13b7bc439ce88f0ff337bc4534b4bfdc5605debdeba5d7",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/x",
+              "return_owner": "wire-codec-owner"
+            },
+            {
+              "code": "unicode_scalar_invalid",
+              "pointer": "/x",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-ARRAY-UNICODE-WHOLE",
+        "raw_bytes_hex": "5b225c7564383030222c225c7564656164225d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "aa0e9906f8be9eb7397b56154f10c42148b8f64fa82ca4bc645c7110d77b81bf",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "unicode_scalar_invalid",
+              "pointer": "/0",
+              "return_owner": "wire-codec-owner"
+            },
+            {
+              "code": "unicode_scalar_invalid",
+              "pointer": "/1",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-DUPLICATE-AND-UNICODE-WHOLE",
+        "raw_bytes_hex": "7b2261223a225c7564383030222c2261223a225c7564656164222c2262223a225c7564383030227d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "54e920c587e3e1a15b034ae75935f66e2f53d50422462422061230f971d9dd78",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/a",
+              "return_owner": "wire-codec-owner"
+            },
+            {
+              "code": "unicode_scalar_invalid",
+              "pointer": "/a",
+              "return_owner": "wire-codec-owner"
+            },
+            {
+              "code": "unicode_scalar_invalid",
+              "pointer": "/b",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-STRUCTURE-OVERRIDES-UNICODE-WHOLE",
+        "raw_bytes_hex": "7b2261223a225c7564383030222c7d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "b88f94a4c540989a19cea5c3fad564922c60d2542d9e429e5bd6fe6285321dc6",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-STRUCTURE-OVERRIDES-DUPLICATE-WHOLE",
+        "raw_bytes_hex": "7b2261223a312c2261223a327d207b7d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "55eaac3f8b3c0d1bc2efe652e2ca1fa2b7cfa43ad1260d7397b432c1221437de",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-STRUCTURE-OVERRIDES-NONFINITE-WHOLE",
+        "raw_bytes_hex": "5b4e614e2c5d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "324e468780a5097c820d9fb640d2057c82540fc82ac0d5e00633399e4f9c4aeb",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_syntax_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-NONFINITE-OVERRIDES-SEMANTICS-WHOLE",
+        "raw_bytes_hex": "7b2261223a225c7564383030222c2261223a4e614e7d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "9dd21ad96329e25203b61bda4b5a6f12f6c02774495f28568e9f45fce41eb479",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_non_finite_literal",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-NESTED-NONFINITE-WHOLE",
+        "raw_bytes_hex": "5b4e614e2c7b226e223a496e66696e6974797d2c2d496e66696e6974795d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "94eabfbb5e6537ff77672777879caecab31da04934f457571bd5bd2f328414ff",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "json_non_finite_literal",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-NONFINITE-TEXT-IS-STRING-WHOLE",
+        "raw_bytes_hex": "5b224e614e222c22496e66696e697479222c222d496e66696e697479225d",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "c0423d1ee669aa4345cb487f824a124ecd2dddf3b65aa92bf545948516008606",
+          "raw_retained": true,
+          "ast": {
+            "kind": "array",
+            "items": [
+              {
+                "kind": "string",
+                "value": "NaN"
+              },
+              {
+                "kind": "string",
+                "value": "Infinity"
+              },
+              {
+                "kind": "string",
+                "value": "-Infinity"
+              }
+            ]
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-PAIRED-SURROGATE-DUPLICATE-WHOLE",
+        "raw_bytes_hex": "7b22f09f9880223a312c225c75643833645c7564653030223a327d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "a5f9379abfba9f78362296e9d35d9d3e3dbcd620ab2f1315c666adddef36ad85",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "duplicate_key",
+              "pointer": "/😀",
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-NO-KEY-TRIM-CASE-WHOLE",
+        "raw_bytes_hex": "7b2261223a312c2241223a322c222061223a332c226120223a347d",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "63649eb418f046bb082c725ae71b06f7367221af5b73c7d093d6bfd61fa59b4c",
+          "raw_retained": true,
+          "ast": {
+            "kind": "object",
+            "members": [
+              [
+                "a",
+                {
+                  "kind": "number",
+                  "token": "1"
+                }
+              ],
+              [
+                "A",
+                {
+                  "kind": "number",
+                  "token": "2"
+                }
+              ],
+              [
+                " a",
+                {
+                  "kind": "number",
+                  "token": "3"
+                }
+              ],
+              [
+                "a ",
+                {
+                  "kind": "number",
+                  "token": "4"
+                }
+              ]
+            ]
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-ESCAPED-CONTROLS-WHOLE",
+        "raw_bytes_hex": "225c75303030305c625c665c6e5c725c7422",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "581510de7187a5b13c1630ec5e9cba3b7f0901813203082255c96754cf348382",
+          "raw_retained": true,
+          "ast": {
+            "kind": "string",
+            "value": "\u0000\b\f\n\r\t"
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-EMBEDDED-BOM-STRING-WHOLE",
+        "raw_bytes_hex": "22efbbbf22",
+        "expected_result": {
+          "status": "decoded",
+          "raw_sha256": "b839e4168b1e2225296aa76599e3ada57bf459000ffb0a192f211b1eeb23e9a8",
+          "raw_retained": true,
+          "ast": {
+            "kind": "string",
+            "value": "﻿"
+          },
+          "findings": [],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "H004-L8-WIRE-UTF8-OVERRIDES-SEMANTICS-WHOLE",
+        "raw_bytes_hex": "7b2261223a312c2261223a322c2278223a22ff227d",
+        "expected_result": {
+          "status": "rejected",
+          "raw_sha256": "8602e41afb2351ff865687483000dad154f027727f90d316009a0a383f9a0558",
+          "raw_retained": true,
+          "ast": null,
+          "findings": [
+            {
+              "code": "utf8_invalid",
+              "pointer": null,
+              "return_owner": "wire-codec-owner"
+            }
+          ],
+          "schema_handoff": false,
+          "actual_effects": "none"
+        },
+        "execution_state": "not_executed"
+      }
+    ],
+    "case_count": 60,
+    "verification_limit": "全7field/raw hash/AST/全findingの文書oracle。原28部分例は変更しない。静的replay/独立reviewは製品実装・実RedGreen・正式codec/consumer資格を証明しない。",
+    "execution_state": "not_executed"
   }
 }
