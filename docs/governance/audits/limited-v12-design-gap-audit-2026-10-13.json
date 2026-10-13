@@ -7715,5 +7715,6 @@
     "HARNESS-L2-004",
     "HARNESS-L2-008",
     "HARNESS-L2-022"
-  ]
+  ],
+  "next_detail_candidate_selection_basis": "mainにL4/L9の本文対があり、mainと監査対象のopen Draftを合わせてもL5/L8の本文対がない親。003/005は詳細対Draftがあるため列挙しない。所在の基準であり設計閉包の判定ではない。"
 }
