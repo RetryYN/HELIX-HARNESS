@@ -181,7 +181,10 @@
     "source_binding": "source identity・project・revision・data classificationと各owner原内容/未決理由を独立に保持。source種別名/digest/URL/通知を資格へ変換しない。",
     "promotion_routes": "要求、Agent instruction、Tool authority、memory、BRAIN、training data、security policyの選択sinkごとに既存owner/経路revision/scopeと結果refを照合。新しいowner役職や許可手続きは生成しない。",
     "future_result_order": "経路を識別し依頼材料を渡せることと、ownerの後続採用/保存結果の成立は別。未発生resultを入口の一律gateにせず、not_availableを未成立として保持する。",
-    "owner_locality": "source意味/分類不足は当該原owner、sink経路/条件/結果不足は当該sink ownerへ戻す。SECは通信/記録/採否を代行しない。該当scope不足で無関係Qを全停止にしない。"
+    "owner_locality": "source意味/分類不足は当該原owner、sink経路/条件/結果不足は当該sink ownerへ戻す。SECは通信/記録/採否を代行しない。該当scope不足で無関係Qを全停止にしない。",
+    "selected_sink_contract": "供給された独立owner契約を、受領routeのsink/project/source revision/owner/identity/revision/原conditionの照合基準にする。実根拠の資格は別bindingで成立させ、候補routeやsignalから必要契約を生成しない。",
+    "condition_comparison": "同一owner契約revisionの原condition内容への対応を検査。fixtureのsynthetic scalarは原内容照合用で、異意味source間の条件同値性を文字列一致/LLMで判定する新方式ではない。条件未供給はunknown、原内容と異なる受領宣言はconflictとしてownerへ返す。",
+    "claim_results": "任意claimはclaim_resultsの辞書に分ける。claim無しは空辞書、昇格claimにsignalだけの裏付けはclaimed_promotion:not_supported。元owner結果の参照対応はresult_binding/owner_result_refで別に保持し、新昇格や許可を生成しない。"
   },
   "contracts": [
     {
@@ -228,7 +231,8 @@
       "component": "owner_promotion_route_comparer",
       "input_meanings": [
         "選択した七sink、原sourceの対象project/revision/classification",
-        "そのsinkの既存ownerが持つ明示経路の参照/内容、条件と原owner結果、claimと通知/review signal"
+        "そのsinkの既存ownerが持つ明示経路の参照/内容、条件と原owner結果、claimと通知/review signal",
+        "選択sinkが要求する既存owner契約の独立内容。受領routeを元に必要owner/条件/版を作り直さない。"
       ],
       "output_meanings": [
         "sinkごとの経路照合/不足と原owner結果の対応、原未成立状態",
@@ -237,7 +241,9 @@
       "content_comparison": [
         "読む経路と七sinkの昇格経路は別。ownerの経路は当該sink/source project/revisionへ照合し、異owner/異版/別projectを適用しない。未選択sinkの後続完了を初回一律gateにしない。",
         "既存ownerの経路が対応しても、結果未供給は未発生/未成立として保存し、後続結果を依頼材料の前提へ前倒ししない。結果が供給されたときはsource/経路/sink/owner/scopeを独立原内容へ照合し、owner元結果の参照だけを返す。",
-        "存在/ACK/review comment/下位greenは採用/保存/学習/要求/命令/authority成立ではない。本文をinstructionへ直結するclaimやsink owner代行のclaimは当該経路未成立で返し、原data/元owner結果を更新しない。"
+        "存在/ACK/review comment/下位greenは採用/保存/学習/要求/命令/authority成立ではない。本文をinstructionへ直結するclaimやsink owner代行のclaimは当該経路未成立で返し、原data/元owner結果を更新しない。",
+        "source/classificationの不足・矛盾は当該原ownerへ、route条件/経路/owner/結果の不足・相反は当該sink ownerへ別に返す。入力不足に依存するroute/result対応は未評価とし、無関係な有効Qを保持する。",
+        "選択sink契約のsource identity/project/revisionも今回sourceへ照合する。原resultが存在しても入力意味不足は補償されず、原result参照を保持した未評価として返す。"
       ],
       "qualification_rule": "原source/分類と選択owner経路/結果を独立入力からidentity/project/revision/scope/owner/contentごと比較。合成対照は実資格ではなく、実root/owner bindingは後続で成立させる。",
       "operation_effect": "none"
@@ -245,8 +251,8 @@
   ],
   "fixture_progress": {
     "cases_by_function": {
-      "F01": 30,
-      "F02": 56
+      "F01": 37,
+      "F02": 231
     },
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false
