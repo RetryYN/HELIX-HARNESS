@@ -1,0 +1,6048 @@
+{
+  "parent": "HARNESS-L2-003",
+  "status": "draft_incomplete_detail_fixtures_and_review_pending",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "execution_state": "not_executed",
+  "source_main": "b4f658e74b3d4ba3682465bc4204c1065723aeaf",
+  "scope": {
+    "authoring_stage": 1,
+    "historical_stage": "unassigned",
+    "version_target": "1.0",
+    "approved_pair_count": 7,
+    "delegated_content_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+    "approved_object_comparison": "14 complete objects equal to delegated revision",
+    "effect": "限定前提の工程規範。実操作・通常L3再開・実物受入は成立させない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-process-trace-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "d58a704fd5163a3469374f9d6aae38b6bb26975bf4a6b3cd2cbffab7529ea864"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/governance/decisions/incidentport-adoption-po-decision-2026-10-11.md",
+      "revision": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+      "sha256": "144594a305825f7b44bf4615cda15d3a7dab17cd2301a8072829ec9a76485210"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/process-state-port.json",
+      "revision": "b4f658e74b3d4ba3682465bc4204c1065723aeaf",
+      "sha256": "f683d35fa834eca85e9770544bd55c0a3bcc1328cc7317e6c1d2845080596734"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/process-state-port.json",
+      "revision": "b4f658e74b3d4ba3682465bc4204c1065723aeaf",
+      "sha256": "a00417d6f052daefb9f00fb37f35fa3fff1428e23075afb72c1116f57153dd27"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        29,
+        66
+      ],
+      "line_quotes": [
+        {
+          "line": 29,
+          "text": "### 要求の参照範囲と最新化"
+        },
+        {
+          "line": 66,
+          "text": "2. CLI、library、HARNESS等の非UI案件もL2を暗黙に飛ばしてはならない。`not_applicable`、理由、判定者、対象HEAD、要求への影響、再評価条件をreceiptへ残す。"
+        }
+      ],
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators",
+      "detail_preservation": "基本設計の保持/意味再導出/保留を継承し、内部関数と部分結果へ分解する。旧source/判断史/consumerの意味を実runtime/CI/admissionとして実行・採用しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+      "sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        24,
+        50
+      ],
+      "line_quotes": [
+        {
+          "line": 27,
+          "text": "相談、質問、仮説、叱責、不満、実況、比喩、作業依頼を、文字列や口調だけで`PO指示`、`PO判断`、承認済みdecisionへ昇格しない。AIの解釈へhuman provenanceを付与しない。"
+        },
+        {
+          "line": 37,
+          "text": "要求・設計・route・model・test・artifactの採択は`selection`、L3 freeze・検収・不可逆actionの認可は`approval`、Issue・PR・finding・proposal・S4の処理結果は`disposition`、validatorやAIの一時的技術評価は`runtime_judgment`として保持する。"
+        },
+        {
+          "line": 41,
+          "text": "明示的なrequest／directiveも作業入力であり、requirements、design、ADR、approvalの代替authorityではない。AIは目的、正本、受入条件、可逆性、安全境界、代替案を評価し、`指示だから`を理由に検証を省略しない。"
+        },
+        {
+          "line": 43,
+          "text": "directiveは許可された作業scopeや優先度を与え得るが、実装方式、技術的正しさ、完了、安全性を自動的に確定しない。AIは独立した技術理由と反証可能な検証結果を保持し、指示への服従をrationale、review verdict、completion evidenceとして再利用しない。"
+        },
+        {
+          "line": 49,
+          "text": "harness memoryはTTL付きagent coordination envelopeとtyped pointerだけを運ぶ。decision本文、approval本文、project要求・設計、利用者profileを保存せず、長期authorityは各正本へ置く。"
+        }
+      ],
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators",
+      "detail_preservation": "基本設計の保持/意味再導出/保留を継承し、内部関数と部分結果へ分解する。旧source/判断史/consumerの意味を実runtime/CI/admissionとして実行・採用しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-19E54587EB063625EC53",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
+      "sha256": "f6379e1294bf4c68c93430903f24949d5373a60b82e5286ac34d51a5eb614a2e",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        23,
+        38
+      ],
+      "line_quotes": [
+        {
+          "line": 23,
+          "text": "| RFA-BR-01 | 目的・前提・選択肢を証拠で整理し、利用者意図の取り違えと監視負担を減らす | RFA-RF-01..04 |"
+        },
+        {
+          "line": 38,
+          "text": "既存CI高速化・Recovery・Cursor限定実行を本候補の完成待ちへ一括変更しない。"
+        }
+      ],
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators",
+      "detail_preservation": "基本設計の保持/意味再導出/保留を継承し、内部関数と部分結果へ分解する。旧source/判断史/consumerの意味を実runtime/CI/admissionとして実行・採用しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        9,
+        16
+      ],
+      "line_quotes": [
+        {
+          "line": 10,
+          "text": "- DGH-BR-01: 外部の実例と既存資産を前提に、論点ごとに根拠を揃えてDesign候補を形成する。DG-R-01..04へ分解する。"
+        },
+        {
+          "line": 11,
+          "text": "- DGH-BR-02: 人間の反応とAI解釈を分離し、客観品質と主観意味を相殺せず必要なscopeだけ再作業する。HR-R-01..04へ分解する。"
+        },
+        {
+          "line": 12,
+          "text": "- DGH-BR-03: 反復で受容した軸を保持し、findingの解消・再発・未解決から収束を検証する。DC-R-01..04へ分解する。"
+        },
+        {
+          "line": 15,
+          "text": "人間の相談・反応を指示/承認へ勝手に昇格しない。半永続的な設計判断はADR、採否・認可はscope付き証拠、作業連絡は期限付きmemoryへ分離する。"
+        },
+        {
+          "line": 16,
+          "text": "Fullの成立とLiteへの昇格は別。Web製品化、別研究engine、全体planner解放、包括的公開権限は非対象。"
+        }
+      ],
+      "locator_correction": {
+        "upstream_end": 19,
+        "actual_end": 16,
+        "meaning_change": false
+      },
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators",
+      "detail_preservation": "基本設計の保持/意味再導出/保留を継承し、内部関数と部分結果へ分解する。旧source/判断史/consumerの意味を実runtime/CI/admissionとして実行・採用しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        20,
+        25,
+        42
+      ],
+      "line_quotes": [
+        {
+          "line": 20,
+          "text": "| AAFD-AC-006 | AAFD-R-06 | 11 changed dimension、previous/observed、unknown、invalidation exact setを欠落なく保持する |"
+        },
+        {
+          "line": 25,
+          "text": "| AAFD-AC-011 | AAFD-R-11 | stale directive、unresolved unknown、missing receiptからassignment/release/retireを発行しない |"
+        },
+        {
+          "line": 42,
+          "text": "- unknownを0、neutral、unchanged、observedへ変換する。"
+        }
+      ],
+      "locator_correction": {
+        "previous_basic_design_locator": [
+          20,
+          42
+        ],
+        "approved_l3_locator": [
+          20,
+          25,
+          42
+        ],
+        "reason": "F4: 25行を落とした著述誤りを承認L3へ合わせて訂正。要求意味・旧資産採否・source bytesは変えない。",
+        "meaning_change": false
+      },
+      "read_lines_semantics": "explicit individual line locators matching approved L3 process_trace.sources",
+      "detail_preservation": "基本設計の保持/意味再導出/保留を継承し、内部関数と部分結果へ分解する。旧source/判断史/consumerの意味を実runtime/CI/admissionとして実行・採用しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5DAB2F0E1C13F846CABB",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md",
+      "sha256": "33462610beba32ec952b1eb4cb3ef4f57886a0ddb7f116ea9949d50042099f59",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        13,
+        29
+      ],
+      "line_quotes": [
+        {
+          "line": 13,
+          "text": "`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`で小さく収束する。S4の採用判断は"
+        },
+        {
+          "line": 14,
+          "text": "Scrum内でproduct authorityを変更せず、正規Vモデルの該当層へScrum Reverseする。"
+        },
+        {
+          "line": 16,
+          "text": "product要求・設計・実装はcanonical L1〜L12のForwardで進める。管理上の緊急性を理由にVペア、"
+        },
+        {
+          "line": 17,
+          "text": "上下edge、TDD、review、acceptanceを省略しない。"
+        },
+        {
+          "line": 24,
+          "text": "- Project Statusから上流意味、承認、完了状態を逆書込みしない。"
+        },
+        {
+          "line": 28,
+          "text": "Issueは観測、影響範囲、再発回数、提案するgate／checklist、現在のScrum stage、Scrum Reverse先を"
+        },
+        {
+          "line": 29,
+          "text": "欠落なく保持する。同一findingを重複起票せず、既存Issueへ観測証拠を追記する。"
+        }
+      ],
+      "locator_correction": {
+        "previous_range": [
+          13,
+          27
+        ],
+        "actual_read_range": [
+          13,
+          29
+        ],
+        "reason": "F4: 管理上の緊急性でもV-pair/受入を省略しない本文とIssue最小契約の内容行まで読む。空の27行を根拠引用として使わない。",
+        "meaning_change": false
+      },
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators",
+      "detail_preservation": "基本設計の保持/意味再導出/保留を継承し、内部関数と部分結果へ分解する。旧source/判断史/consumerの意味を実runtime/CI/admissionとして実行・採用しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        47,
+        47
+      ],
+      "line_quotes": [
+        {
+          "line": 47,
+          "text": "| **FR-L1-16** | Incidentワークフロー（本番障害: 検出 → hotfix → 即release → 収束 → current L1〜L12へbackfill） | incident-workflow | 本番障害alert／SLO逸脱 | troubleshoot/recovery PLAN、postmortem、L12 feedback。Reverse fullback経由で選択済みdevelopment styleへ戻す | P0 | PM-03 (障害シグナル) / HM-06 |"
+        }
+      ],
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators",
+      "detail_preservation": "基本設計の保持/意味再導出/保留を継承し、内部関数と部分結果へ分解する。旧source/判断史/consumerの意味を実runtime/CI/admissionとして実行・採用しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-322CD23B625A08E2BFB3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
+      "sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        14,
+        29
+      ],
+      "line_quotes": [
+        {
+          "line": 14,
+          "text": "HELIXが、資産所有者から明示的に認可されたサイバーセキュリティ業務を、既存の安全capability broker、"
+        },
+        {
+          "line": 29,
+          "text": "- findingの再現、修正、独立検証、remediation evidence"
+        }
+      ],
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators",
+      "detail_preservation": "基本設計の保持/意味再導出/保留を継承し、内部関数と部分結果へ分解する。旧source/判断史/consumerの意味を実runtime/CI/admissionとして実行・採用しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-08373C0AEE18881133D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md",
+      "sha256": "17c7a6f8781768e4daf6da9fc2d9f09320a19d51bf17c4dfb8ca789ea3b51f01",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        7,
+        13
+      ],
+      "line_quotes": [
+        {
+          "line": 7,
+          "text": "| NIO-L1-01 | HELIXは要求形成時に、対象systemの可用性・信頼性・性能・容量・費用・security・privacy・運用・保守・回復・observabilityの適用性を導出し、未決を隠さない。 |"
+        },
+        {
+          "line": 13,
+          "text": "数値SLO、target環境、予算、保持期間、blast radiusは対象RequirementまたはRelease契約で別途承認する。"
+        }
+      ],
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators",
+      "detail_preservation": "基本設計の保持/意味再導出/保留を継承し、内部関数と部分結果へ分解する。旧source/判断史/consumerの意味を実runtime/CI/admissionとして実行・採用しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+      "sha256": "4776830ec12a6a464732db56e6ff8d93f89e8e89a6dcb8c175728a82482cc754",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "read_lines": [
+        1,
+        54
+      ],
+      "line_quotes": [
+        {
+          "line": 28,
+          "text": "> 2026-09-05、PLAN-L3-77固有のL3 human gateが成立した。本書は承認済みcandidateだが、"
+        },
+        {
+          "line": 29,
+          "text": "> canonical promotionとG3再freezeが成立するまではcurrent authorityではない。runtime completion、"
+        },
+        {
+          "line": 30,
+          "text": "> authority自動write、merge／publish／release／cutoverは別境界に残す。"
+        },
+        {
+          "line": 40,
+          "text": "UILで正規化されたeventとfindingからRF0候補を導出する規則を、version、authority digest、source／detector identity、"
+        },
+        {
+          "line": 41,
+          "text": "baseline revision、比較演算、threshold source、観測window、minimum sample、hysteresis、cooldown、expiry、severity、"
+        },
+        {
+          "line": 42,
+          "text": "counterevidence、unknown dispositionへ束縛する。source registryの定義を複製せず、policy値をruntimeへ重複hardcodeしない。"
+        },
+        {
+          "line": 46,
+          "text": "invariant違反、再発、metric budget超過、悪化傾向、structural drift、release boundary、provider change、"
+        },
+        {
+          "line": 47,
+          "text": "scheduled safety-netを別trigger identityとして扱う。LOC、file size、Issue数、AI評価、単一瞬間値だけでは候補をadmitしない。"
+        },
+        {
+          "line": 48,
+          "text": "蓄積評価はversioned windowとminimum sampleを満たし、lifecycle boundaryは評価契機であって悪化証拠なしにrefactorを強制しない。"
+        },
+        {
+          "line": 53,
+          "text": "UIL candidateからRF0へ渡すadmissionはcandidate／finding／trigger evidenceのexact identityとdigest、source registry、"
+        },
+        {
+          "line": 54,
+          "text": "trigger policy、baseline、primary scopeはexactly one、related scope、semantic parity、route candidate、suppression、"
+        }
+      ],
+      "locator_correction": null,
+      "read_lines_semantics": "start/end inclusive range; AAFD uses explicit individual line locators",
+      "detail_preservation": "基本設計の保持/意味再導出/保留を継承し、内部関数と部分結果へ分解する。旧source/判断史/consumerの意味を実runtime/CI/admissionとして実行・採用しない。"
+    }
+  ],
+  "types": {
+    "Ref": {
+      "fields": [
+        "identity",
+        "revision",
+        "scope",
+        "owner"
+      ],
+      "limit": "意味参照の論理型案。正式wire schema/codec/署名/実owner資格ではない。"
+    },
+    "ProcessContext": {
+      "fields": [
+        "requirement_ref",
+        "artifact_ref",
+        "scope",
+        "selected_stage",
+        "selected_pair",
+        "operation_kind"
+      ],
+      "limit": "各値の独立原sourceへ束縛。入力宣言を資格成立にしない。"
+    },
+    "SourceCell": {
+      "fields": [
+        "ref",
+        "binding",
+        "kind",
+        "original_contents",
+        "qualification_state",
+        "qualification_reason"
+      ],
+      "states": [
+        "known",
+        "missing",
+        "unknown",
+        "conflict",
+        "stale"
+      ],
+      "limit": "qualificationは各原sourceへ独立に必要。root packetのbytes資格をembedded反応/authority/実結果へ転用しない。"
+    },
+    "PartialValue": {
+      "fields": [
+        "state",
+        "value",
+        "source_packet_ref",
+        "reason"
+      ],
+      "states": [
+        "known",
+        "missing",
+        "unknown",
+        "conflict",
+        "stale"
+      ],
+      "value_rule": "knownでは当該原資料から確認した論理値を保持。その他はnull。確認済みfalse/空集合と未評価nullを区別し、未解決理由/元参照を残す。"
+    },
+    "ProcessAssessment": {
+      "fields": [
+        "partial_values",
+        "owner_returns",
+        "unaffected_scope",
+        "operation_effect"
+      ],
+      "limit": "進行/Refactor/Backflow/Portの候補。実operationや上流意味更新を実施しない。"
+    }
+  },
+  "common_contract": [
+    "外部原sourceの解決/qualificationと純粋な意味比較を分離し、原資料と候補を別引数にする。",
+    "Contextと各embedded Ref/原反応/oracle/実結果の対象revision/scope/kind/ownerを独立に照合。未知を空/falseへ変えない。",
+    "全体の早期returnで読めた独立結果を消さず、当該ownerへの不足と無関係Qの有効作業を保持。",
+    "関数はticket/state/承認/Release/deployを書かない。条件の意味はHARNESS、原記録/実運転はOS/対象owner。",
+    "正式schema/codec/resolver/資格・実operation bindingは未成立。合成値やroot bytes一致を実事実にしない。"
+  ],
+  "implementation_readiness": "not_ready",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "fixture_progress": {
+    "remaining_functions": [],
+    "B01": {
+      "basic_calls": 23,
+      "typed_expected_cells": 414,
+      "state": "draft_basic_typed_and_qualification_cases_pending_semantic_review",
+      "qualification_calls": 56,
+      "qualification_typed_cells": 1008
+    },
+    "F01": {
+      "basic_calls": 22,
+      "typed_expected_cells": 198,
+      "nested_condition_cells": 76,
+      "state": "draft_basic_typed_qualification_and_content_cases_pending_semantic_review",
+      "qualification_calls": 52,
+      "qualification_typed_cells": 468,
+      "content_counterexamples": 4,
+      "content_counterexample_typed_cells": 36
+    },
+    "F02": {
+      "basic_calls": 24,
+      "typed_expected_cells": 336,
+      "nested_return_cells": 120,
+      "state": "draft_basic_typed_content_and_qualification_cases_pending_semantic_review",
+      "content_counterexamples": 10,
+      "content_counterexample_typed_cells": 140,
+      "qualification_calls": 64,
+      "qualification_typed_cells": 896
+    },
+    "F03": {
+      "basic_calls": 43,
+      "typed_expected_cells": 731,
+      "nested_l9_dimension_cells": 430,
+      "nested_pair_cells": 129,
+      "state": "draft_basic_typed_qualification_and_valley_content_pending_review",
+      "qualification_source_groups": 34,
+      "qualification_matrix_cases": 141,
+      "valley_content_counterexamples": 10,
+      "valley_content_typed_cells": 170
+    },
+    "F04": {
+      "basic_calls": 30,
+      "typed_expected_cells": 210,
+      "nested_state_cells": 240,
+      "state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
+      "qualification_source_groups": 85,
+      "qualification_single_source_examples": 340,
+      "qualification_mixed_examples": 4
+    },
+    "F05": {
+      "basic_calls": 29,
+      "typed_expected_cells": 638,
+      "nested_port_cells": 232,
+      "nested_backfill_cells": 348,
+      "state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
+      "qualification_source_groups": 58,
+      "qualification_baselines": 2,
+      "qualification_single_source_examples": 464,
+      "qualification_mixed_examples": 4
+    },
+    "N01": {
+      "basic_calls": 38,
+      "typed_expected_cells": 190,
+      "nested_target_cells": 1900,
+      "state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
+      "qualification_source_groups": 128,
+      "qualification_baselines": 3,
+      "qualification_single_source_examples": 1536,
+      "qualification_mixed_examples": 4
+    }
+  },
+  "pending": [
+    "全7関数のbasic typed例と独立資格例を起草済み。全関数の必要集合/追加内容/組合せ/返却先実binding・独立reviewと、全限定範囲の基本/詳細設計閉包は未完",
+    "正式schema/codec/resolver/実owner・authority・隔離/資源",
+    "独立reviewと所見閉包",
+    "実oracle凍結→本体実装前Red→最小Green→Refactor/再検証",
+    "実CI/L9/L10/計測/PO L11受入、全限定範囲の実装準備"
+  ],
+  "document_id": "HARNESS-L5-003",
+  "layer": "L5",
+  "pair": "L8",
+  "functions": [
+    {
+      "id": "HARNESS-L5-003-B01",
+      "l4_ref": "HARNESS-L4-003-B01",
+      "requirement_ref": "HARNESS-L3-003-B01",
+      "oracle_ref": "HARNESS-L8-003-B01",
+      "symbol": "assess_grounding_quality_and_human_convergence",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-B01",
+        "parent": "HARNESS-L2-003",
+        "title": "根拠・技術品質・人間受容と運転owner",
+        "obligation": "目的/前提/既存資産/外部実例/比較根拠、受容済み軸と未解決findingを工程条件へ結ぶ。技術理由/反証可能な検証と人間受容を独立に確認し、一方で他方を相殺しない。HARNESSは進行条件、OSは判断/反応の原記録と実行/監視を持ち、相談/反応のAI解釈へhuman provenanceを付けない。管理観測/改善から製品要求を直接変更せず、意味が変わる上流へ返す。",
+        "oracle_ref": "HARNESS-L10-003-B01"
+      },
+      "basic_contract_sha256": "d882e97bbd285f206faf6a83f70815b1e363e51caeed4a20868c9e86a8b4bd40",
+      "input": {
+        "context": "ProcessContext",
+        "original_sources": "purpose/premises/legacy_assets/external_examples/comparison、technical_quality oracle/result、human original reaction、AI interpretation、unresolved findings、management original finding/progressionの個別SourceCell",
+        "candidate": "ProcessAssessment | null",
+        "source_qualifications": "各embedded sourceの独立SourceCell資格map。carrierのknownをembedded sourceへ継承しない。"
+      },
+      "output": {
+        "partial_values": {
+          "grounding_result": "PartialValue",
+          "grounding_missing": "PartialValue",
+          "technical_quality_result": "PartialValue",
+          "human_convergence_result": "PartialValue",
+          "retained_accepted_axes": "PartialValue",
+          "unresolved_findings": "PartialValue",
+          "ai_interpretation_is_human": "PartialValue",
+          "management_return_layer": "PartialValue",
+          "direct_requirement_write": "PartialValue",
+          "request_as_approval": "PartialValue",
+          "actual_L11_accepted": "PartialValue",
+          "actual_completion": "PartialValue",
+          "management_return_result": "PartialValue",
+          "reaction_as_requirement_approval": "PartialValue",
+          "management_progression_result": "PartialValue",
+          "management_missing_conditions": "PartialValue",
+          "actual_pair_omitted": "PartialValue",
+          "actual_acceptance_omitted": "PartialValue"
+        },
+        "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
+        "unaffected_scope": "元の有効な非対象資料",
+        "operation_effect": "none",
+        "source_qualification_results": "個別source資格のknown/missing/unknown/conflict/stale map（原入力の資格観測を保全）"
+      },
+      "internal_steps": [
+        "carrierと全embedded source資格を独立に照合し、qualification_detailのfield_dependenciesだけを当該state/nullへ戻す。known rootや別owner成功でembedded sourceをknownへ補完しない。",
+        "各根拠sourceの対象・原内容・選択肢/比較理由を独立に読む。purpose/premises/旧資産/外部例/比較の不足を当該資料だけへ返す。外部例の合成入力を実researchにしない。",
+        "technical originalと独立oracleの期待owner/観測owner、実行原記録、対象revision/scopeを照合。人の受容・作業依頼で未観測/二重writer/別revisionを相殺しない。",
+        "人のoriginal reactionのkind/source/対象とrequired axesを照合。受容済み軸を保持し未受容/未解決だけを返す。original欠落や別scopeなら受容済み軸はmissing/staleのnull、観測した空集合と区別する。",
+        "AI interpretationのidentityとhuman originalを別に保持。AIの言い換え、work_request、design_axis_reactionを人間decision/要件承認/実物L11受入へ昇格しない。",
+        "管理findingの原意味差を該当上流ownerへ返す。管理Issue/緊急性と当該pair/受入の証拠は別評価。product要求write、pair省略、実受入を行わない。",
+        "各fieldをPartialValueで返す。状態不成立でも読めた別owner資料はknownとして残し、一つの失敗で全結果をmissingにしない。候補評価を追加しても原結果を上書きしない。"
+      ],
+      "detail_state": "draft_concrete_typed_cases_pending_semantic_review",
+      "qualification_detail": {
+        "source_groups": {
+          "grounding_purpose": [
+            "grounding",
+            "purpose"
+          ],
+          "grounding_premises": [
+            "grounding",
+            "premises"
+          ],
+          "grounding_legacy_assets": [
+            "grounding",
+            "legacy_assets"
+          ],
+          "grounding_external_examples": [
+            "grounding",
+            "external_examples"
+          ],
+          "grounding_comparison": [
+            "grounding",
+            "comparison"
+          ],
+          "technical_quality": [
+            "technical_quality"
+          ],
+          "human_original": [
+            "human_convergence",
+            "original"
+          ],
+          "human_required_axes": [
+            "human_convergence",
+            "required_axes"
+          ],
+          "human_findings": [
+            "human_convergence",
+            "unresolved_findings"
+          ],
+          "AI_interpretation": [
+            "human_convergence",
+            "ai_interpretation"
+          ],
+          "management_finding": [
+            "management_improvement"
+          ],
+          "management_progression": [
+            "management_progression"
+          ]
+        },
+        "field_dependencies": {
+          "grounding_result": [
+            "grounding_purpose",
+            "grounding_premises",
+            "grounding_legacy_assets",
+            "grounding_external_examples",
+            "grounding_comparison"
+          ],
+          "grounding_missing": [
+            "grounding_purpose",
+            "grounding_premises",
+            "grounding_legacy_assets",
+            "grounding_external_examples",
+            "grounding_comparison"
+          ],
+          "technical_quality_result": [
+            "technical_quality"
+          ],
+          "human_convergence_result": [
+            "human_original",
+            "human_required_axes",
+            "human_findings"
+          ],
+          "retained_accepted_axes": [
+            "human_original"
+          ],
+          "unresolved_findings": [
+            "human_findings"
+          ],
+          "management_return_layer": [
+            "management_finding"
+          ],
+          "management_return_result": [
+            "management_finding"
+          ],
+          "management_progression_result": [
+            "management_progression"
+          ],
+          "management_missing_conditions": [
+            "management_progression"
+          ]
+        },
+        "constant_false_fields": [
+          "ai_interpretation_is_human",
+          "direct_requirement_write",
+          "request_as_approval",
+          "actual_L11_accepted",
+          "actual_completion",
+          "reaction_as_requirement_approval",
+          "actual_pair_omitted",
+          "actual_acceptance_omitted"
+        ],
+        "carrier_rule": "target/contextのcarrier資格未成立では当該source依存結果をstate/nullにし、別scopeの有効材料を保持する。known carrierでもembeddedの不成立を補完しない。",
+        "mixed_failure_rule": "同一fieldに異なる不成立stateがある場合はfieldをunknown/nullとし、個別source_qualification_results/qualification_returnsで全stateを保持。優先順位で不足を捨てない。",
+        "source_binding_limit": "source_packet_refは物理carrier参照。primitive/listのlocator refは合成例の内容参照で、実原記録/owner資格ではない。",
+        "logical_type_limit": "内部論理型案。正式schema/codec/trust/署名方式を採用しない。"
+      },
+      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。"
+    },
+    {
+      "id": "HARNESS-L5-003-F01",
+      "l4_ref": "HARNESS-L4-003-F01",
+      "requirement_ref": "HARNESS-L3-003-F01",
+      "oracle_ref": "HARNESS-L8-003-F01",
+      "symbol": "derive_revision_bound_progression",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-F01",
+        "parent": "HARNESS-L2-003",
+        "title": "revision別の開始・凍結・差戻し・再開",
+        "obligation": "工程の開始/凍結/差戻し/再開/完了条件を対象scope/revision、必要合意/対成果物/検証/未解決事項へ結ぶ。相談/依頼/採択/要件承認/操作認可を区別し、指示や別revisionから成立を生成しない。委任済み意図の技術的具体化へ不要な反復承認を求めず、未委任の意味/権限変更は対象ownerの判断へ戻す。実装成功だけで完了にしない。",
+        "oracle_ref": "HARNESS-L10-003-F01"
+      },
+      "basic_contract_sha256": "e758968b70f33eb6eae8a9b6a22cda30186d20052c93cb206add04dd360b7f47",
+      "input": {
+        "context": "ProcessContext",
+        "original_sources": "SourceCell map（各対象の独立原資料）",
+        "candidate": "ProcessAssessment | null",
+        "source_qualifications": "Context/carrier/phase契約/委任/各原資料を別々に解決したSourceCell資格入力。合成例のstateは実資格の証明ではない。"
+      },
+      "output": {
+        "partial_values": {
+          "action": "PartialValue",
+          "required_conditions": "PartialValue",
+          "condition_results": "PartialValue（knownのvalueはConditionIdentity→PartialValue map。必要条件集合が未確定ならnull）",
+          "additional_approval_needed": "PartialValue",
+          "meaning_authority_return_owner": "PartialValue",
+          "proceed_condition": "PartialValue",
+          "actual_progressed": "PartialValue",
+          "actual_approval_created": "PartialValue",
+          "actual_completion": "PartialValue"
+        },
+        "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
+        "unaffected_scope": "元の有効な非対象資料",
+        "operation_effect": "none",
+        "source_qualification_results": "個別source資格の状態を保全し、非必要資料の診断と進行条件の未成立を分ける。"
+      },
+      "internal_steps": [
+        "Contextの対象revision/scope、工程、操作種別を独立原資料へ照合し、source packet carrier資格とembedded各資料資格を分離する。",
+        "phase_condition_materialの承認済み原契約から当該actionのrequired_by_actionだけを取得する。対象actionの記載欠落・未解決では必要条件を空集合/defaultへ補わない。合成例の条件集合を全工程の共通承認手続きへ拡張しない。",
+        "必要条件ごとに独立sourceの資格・Ref・binding revision/scope・kind・具体内容を照合する。ひとつの不足で他の既知条件を消さず、condition_resultsは既知membership内の個別PartialValue mapを返す。membership自体が未確定ならcontainerを未解決/nullとし、読めた資料診断は別に保持する。",
+        "agreementの対象要求、requirements_approvalのL3/L10と既存委任、pairの左右層/revision、verificationの期待/観測ownerと対象検証、unresolvedの当該scope未解決items、finding_routeのfinding/戻し層/影響scopeを原契約に照合する。相談/依頼/採択/操作認可をrequirements_approvalへ変換しない。",
+        "delegationの独立sourceから意図scope・技術具体化の範囲・意味変更・authority変更を確認する。既存委任内の技術具体化には追加承認を生成せず、未委任の意味/権限差分だけを当該ownerへ返す。未解決委任を追加承認要/不要のboolへ補わない。",
+        "各required conditionと委任差分を合わせて進行条件候補を返す。複数の異なる未解決状態がある場合は集約をunknown/nullとし、個別状態/理由/原参照を全て保持する。失敗優先順位で状態を消さない。",
+        "candidateは原資料と別に比較し、反復承認要求・相談由来の実承認・実装成功由来の完了などの意味差をfieldで返す。candidateの宣言で元資料の資格/結果を更新しない。",
+        "実進行/承認生成/工程完了はこの照合関数の作用として全てfalse、operation_effectはnone。実進行と記録はOS、原authority判断は当該ownerの責務に保持する。"
+      ],
+      "detail_state": "draft_basic_typed_qualification_and_content_cases_pending_semantic_review",
+      "progression_detail": {
+        "condition_membership_source": "対象revision/scope・工程・actionに束縛されたphase契約の独立原資料。fixtureのrequired_by_actionをglobal defaultへしない。",
+        "source_dependencies": {
+          "action": [
+            "context"
+          ],
+          "required_conditions": [
+            "context",
+            "phase_condition_material"
+          ],
+          "condition_results": [
+            "context",
+            "phase_condition_material",
+            "各必要conditionのmaterials原資料"
+          ],
+          "additional_approval_needed": [
+            "context",
+            "delegation"
+          ],
+          "meaning_authority_return_owner": [
+            "context",
+            "delegation"
+          ],
+          "proceed_condition": [
+            "context",
+            "phase_condition_material",
+            "各必要conditionのmaterials原資料",
+            "delegation"
+          ]
+        },
+        "constant_false_fields": [
+          "actual_progressed",
+          "actual_approval_created",
+          "actual_completion"
+        ],
+        "independent_qualification_limit": "独立資格を合成入力にした論理比較例を起草済み。実resolver/owner/authority資格・正式schema/codec・実運転は未成立。source_packet_refはcarrier参照で、embedded sourceの資格を代替しない。",
+        "partial_result_rule": "既知required集合のcondition_results containerはknownで保持し、当該conditionだけをmissing/unknown/conflict/stale・value nullへする。known false/nullと未知nullはstateで区別する。",
+        "owner_return_rule": "不足条件の原資料参照/対象revision/scope/理由/該当ownerへ返却候補を作る。未解決ownerを別ownerや新規承認主体で補わない。無関係scopeの有効材料を保持する。",
+        "logical_type_limit": "論理型/関数契約案。正式schema/codec/resolver/実権限や運転の成立ではない。",
+        "qualification_groups": {
+          "context": [
+            [
+              "target"
+            ],
+            [
+              "phase"
+            ],
+            [
+              "action"
+            ]
+          ],
+          "phase_contract": [
+            [
+              "phase_condition_material"
+            ]
+          ],
+          "delegation": [
+            [
+              "delegation"
+            ]
+          ],
+          "agreement": [
+            [
+              "materials",
+              "agreement"
+            ]
+          ],
+          "requirements_approval": [
+            [
+              "materials",
+              "requirements_approval"
+            ]
+          ],
+          "pair": [
+            [
+              "materials",
+              "pair"
+            ]
+          ],
+          "verification": [
+            [
+              "materials",
+              "verification"
+            ]
+          ],
+          "unresolved": [
+            [
+              "materials",
+              "unresolved"
+            ]
+          ],
+          "finding_route": [
+            [
+              "materials",
+              "finding_route"
+            ]
+          ]
+        },
+        "qualification_return_rule": "未知の必要条件membershipはunknown/null、未知の委任は承認要/不要へ補完しない。sourceごとの理由/原参照を残し、owner資格が未成立ならowner_targetを当該state/nullにする。非必要資料の不足は診断だけを保持し、無関係Qを消さない。",
+        "undefined_action_rule": "phase契約の当該actionキー欠落はmissing、内容nullはunknown、必要集合の型不一致や未定義操作kindはconflictとして当該field/nullへ返す。別actionの集合や空集合を既定にしない。これらは論理型案の合成比較で正式schemaではない。"
+      }
+    },
+    {
+      "id": "HARNESS-L5-003-F02",
+      "l4_ref": "HARNESS-L4-003-F02",
+      "requirement_ref": "HARNESS-L3-003-F02",
+      "oracle_ref": "HARNESS-L8-003-F02",
+      "symbol": "assess_prototype_poc_backflow",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-F02",
+        "parent": "HARNESS-L2-003",
+        "title": "L2.5の還流と再凍結",
+        "obligation": "001のPrototype/PoC独立適用を使い、適用時は操作/状態/failureや技術成立性をL2.5で確かめる。結果はBackflow/008二次要求形成からDecideの採用/不採用/方針変更と合意へ結び、検証成功だけでL3をfreezeしない。非適用でもL2と非適用記録を残す。要求/設計の変更時は影響する合意と対の再凍結条件を照合する。",
+        "oracle_ref": "HARNESS-L10-003-F02"
+      },
+      "basic_contract_sha256": "31741960cc9dec66a759949c5f85755c6870ba0a728bb0e3a20245863264d62b",
+      "input": {
+        "context": "ProcessContext",
+        "original_sources": "SourceCell map（各対象の独立原資料）",
+        "candidate": "ProcessAssessment | null",
+        "source_qualifications": "Context/carrier/各適用/各N/A/各原結果/還流段を別に解決したSourceCell資格map。"
+      },
+      "output": {
+        "partial_values": {
+          "l2_result": "PartialValue",
+          "prototype_applicability": "PartialValue",
+          "poc_applicability": "PartialValue",
+          "prototype_na_result": "PartialValue",
+          "poc_result": "PartialValue",
+          "return_chain_results": "PartialValue（knownのvalueは還流identity→PartialValue map。必要membershipが未確定ならnull）",
+          "unresolved_return_fields": "PartialValue",
+          "refreeze_condition": "PartialValue",
+          "actual_requirement_adopted": "PartialValue",
+          "actual_requirements_approved": "PartialValue",
+          "actual_l3_frozen": "PartialValue",
+          "actual_completion": "PartialValue",
+          "prototype_result": "PartialValue（適用時の操作/状態/failure原観測、非適用時の記録成立を別に返す）",
+          "poc_na_result": "PartialValue（非適用PoCの6属性、適用時はnot_required）"
+        },
+        "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
+        "unaffected_scope": "元の有効な非対象資料",
+        "operation_effect": "none",
+        "source_qualification_results": "個別原sourceの資格状態を保持し、動的必要branchとの依存を区別する。"
+      },
+      "internal_steps": [
+        "対象Context/carrierとL2原記録、001のPrototype/PoC独立適用判定、各N/A記録、各原結果、還流各段を独立sourceとして解決/資格照合する。非UI判定からPoC省略やL2欠落を補完しない。",
+        "Prototype/PoCのstatusを独立に確認する。not_applicableではnot_applicable・理由・判定者・対象HEAD・要求影響・再評価条件の6属性を保持し、未解決statusを非適用にしない。",
+        "適用Prototypeはoperationと期待/観測state・failureを具体比較し、PoCは期待/観測と技術的unknown解消を比較する。適用時の結果欠落/未知/不一致を、他方の成功で補完しない。",
+        "両方の独立N/Aが成立して結果なしの場合だけ、L2.5結果のない例として還流chainをnot_requiredへする。未実施結果や還流を捏造せずL2と両N/Aを保持する。",
+        "結果がある対象はBackflow→008二次形成→Decide採用/不採用/方針変更→対象合意→対再凍結条件を各原source内容・role・対象revision/scopeで照合する。Decideを実験担当AI解釈から生成しない。",
+        "還流の必要membershipと各段の未解決を分けて返す。既知集合の不足段だけをstate/nullにし、読めた他段とunresolved_return_fieldsを保持する。未知membershipを空集合/全not_requiredへ変換しない。",
+        "要求/設計変更に影響する合意と対のrevisionを再照合し、古い合意をstaleとして対象ownerへ戻す。影響しないscopeの有効材料を一括停止しない。",
+        "candidateを原資料と別に比較する。PoC/Prototype成功・還流成立から要求採用/要件承認/L3凍結/完了を生成せず、関数の実作用はnoneに保つ。"
+      ],
+      "detail_state": "draft_basic_typed_content_and_qualification_cases_pending_semantic_review",
+      "backflow_detail": {
+        "additional_field_derivation": "承認済みF02と基本契約はPrototype/PoCを独立に扱う。基本例の原資料に既存のPrototype観測とPoC N/Aを、prototype_result/poc_na_resultとして内部出力へ明示する。要求意味・基本期待・適用範囲は変更しない。",
+        "na_fields": [
+          "not_applicable",
+          "reason",
+          "decider",
+          "target_head",
+          "requirement_impact",
+          "reevaluation"
+        ],
+        "required_return_chain": [
+          "backflow",
+          "secondary_008",
+          "decide",
+          "agreement",
+          "pair_refreeze"
+        ],
+        "branch_rule": "両方独立N/AとL2が確認できる結果なしの場合だけ当該還流を不要にする。未知/不成立はN/Aではない。",
+        "constant_false_fields": [
+          "actual_requirement_adopted",
+          "actual_requirements_approved",
+          "actual_l3_frozen",
+          "actual_completion"
+        ],
+        "source_binding_limit": "typed basic期待は内容比較の合成例。source_packet_refはcarrier参照で、embedded sourceの実資格を代替しない。",
+        "legacy_preservation": "v1.3:29–66のL2/N/AとV-pair、AVS:24–50の異なるauthority、RFA:23–38の反復と局所影響を内部部分結果へ意味再導出する。旧runtime/CIと未採用候補の能力を採用しない。",
+        "qualification_groups": {
+          "context": [
+            "target"
+          ],
+          "l2": [
+            "l2_record"
+          ],
+          "prototype_applicability": [
+            "applicability",
+            "prototype"
+          ],
+          "prototype_na": [
+            "applicability",
+            "prototype",
+            "na"
+          ],
+          "poc_applicability": [
+            "applicability",
+            "poc"
+          ],
+          "poc_na": [
+            "applicability",
+            "poc",
+            "na"
+          ],
+          "prototype_result": [
+            "L2_5_results",
+            "prototype"
+          ],
+          "poc_result": [
+            "L2_5_results",
+            "poc"
+          ],
+          "backflow": [
+            "return_chain",
+            "backflow"
+          ],
+          "secondary_008": [
+            "return_chain",
+            "secondary_008"
+          ],
+          "decide": [
+            "return_chain",
+            "decide"
+          ],
+          "agreement": [
+            "return_chain",
+            "agreement"
+          ],
+          "pair_refreeze": [
+            "return_chain",
+            "pair_refreeze"
+          ]
+        },
+        "qualification_branch_rule": "片方のqualified applicableがあれば還流必要集合を保持する。両方N/Aによる不要成立には各適用と各N/AとL2の独立資格が必要。非必要sourceの資格不足は診断だけを保持。未確定membershipはstate/nullにし空集合へ変換しない。"
+      }
+    },
+    {
+      "id": "HARNESS-L5-003-F03",
+      "l4_ref": "HARNESS-L4-003-F03",
+      "requirement_ref": "HARNESS-L3-003-F03",
+      "oracle_ref": "HARNESS-L8-003-F03",
+      "symbol": "assess_valley_and_reverse_scope",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-F03",
+        "parent": "HARNESS-L2-003",
+        "title": "Vの谷と右側の照合範囲",
+        "obligation": "005/015の凍結→実装前Red実観測→最小Green→局所Refactor/原子CIと双方向traceを同対象へ結び、出力をProvisionalにする。右側では結合scopeを広げるごとに実物を対設計へ照合し、L8↔L5/L9↔L4/L10↔L3を保つ。正規由来が分かる変更は当該scopeのScoped Reverse、由来不明/旧資産/trace欠落/設計を信用できない/大きなずれは全体Reverseの復旧候補に分ける。L9ではinterface、依存の向き、state/dataの所有、transaction、失敗伝播、retry、timeout、冪等性、結合度、責務重複を照合する。通常の照合ではticketを発行しない。明らかな設計/実装のずれ、由来欠落、同種findingの再発、性能退行、障害後の恒久対策、Scrum Reverse checkpoint、大きな設計退行ではReverse ticketの発行条件となる。小さな境界Refactorは現在のForward ticket内、独立した大きな構造/横断/architecture改善はRefactor/Design-refactor/Performance-refactor ticketへ区別する。HARNESSは条件と種類の意味を提供し、実発行はOSが所有する。",
+        "oracle_ref": "HARNESS-L10-003-F03"
+      },
+      "basic_contract_sha256": "c227980885195a362c0389ff5ddfa5b54a71376ad2dd25b665edd4fc09267380",
+      "input": {
+        "context": "ProcessContext",
+        "original_sources": "SourceCell map（各対象の独立原資料）",
+        "candidate": "ProcessAssessment | null"
+      },
+      "output": {
+        "partial_values": {
+          "valley_result": "PartialValue",
+          "state_ceiling_from_valley": "PartialValue",
+          "reverse_scope_candidate": "PartialValue",
+          "reverse_trigger_materials": "PartialValue",
+          "reverse_ticket_candidate": "PartialValue",
+          "ticket_issuer": "PartialValue",
+          "improvement_route": "PartialValue",
+          "meaning_backflow": "PartialValue",
+          "pair_result": "PartialValue",
+          "l9_dimension_results": "PartialValue（knownのvalueは各L9観点→PartialValue map。必要集合が未知ならnull）",
+          "actual_ticket_issued": "PartialValue",
+          "actual_reverse_executed": "PartialValue",
+          "actual_quality_accepted": "PartialValue",
+          "actual_user_accepted": "PartialValue",
+          "actual_release": "PartialValue",
+          "actual_completion": "PartialValue",
+          "pair_results": "PartialValue（knownのvalueはL8/L9/L10→PartialValue map。対のmembershipが未知ならnull）"
+        },
+        "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
+        "unaffected_scope": "元の有効な非対象資料",
+        "operation_effect": "none"
+      },
+      "internal_steps": [
+        "対象revision/scope/artifact/environmentとcarrier、005/015の谷証拠、由来/trace/設計信頼、右側の実物と対設計、各L9原観測、trigger/改善原資料を独立sourceとして解決・資格照合する。carrier一致やCIタグを各embedded sourceの実資格へ継承しない。",
+        "谷の同一contract/oracleでfreeze→実装前Red実観測→minimum_body→Green→local_refactor→atomic_ciの順序を確認する。Redの本体前HEADから最小実装HEAD、Green HEADから意味保存Refactor後HEADとCI対象までの接続と具体観測を比較する。実装後mutationを本体前Redの代替にしない。",
+        "design/implementation/test_design/test_codeの各必要双方向traceと、Refactor前後の公開契約/要求/architecture/stateの意味保存を照合する。谷不足ではstate_ceiling_from_valleyを当該state/nullとし、Provisionalや上位状態を生成しない。",
+        "正規originの要求/設計/pair/ticket/artifactと上流traceが当該scopeへ結べる変更はScoped Reverse候補。origin欠落/旧資産/trace欠落/信用できない設計/大きなずれはFull Reverse recovery candidateとして理由を保持し、復旧実行成功と区別する。",
+        "scope拡大ごとのL8↔L5/L9↔L4/L10↔L3を個別に、左右層・要求revision・scope包摂・必要/観測設計で比較する。pair_result集約が未成立でも、pair_resultsで影響しない他対を保持する。",
+        "L9のinterface/dependency_direction/state_data_ownership/transaction/failure_propagation/retry/timeout/idempotency/coupling/responsibility_duplicationを原期待/観測で個別比較する。ひとつの未観測を成功や空へ変えず、他9観点と谷証拠を保持する。",
+        "明確なdesign/implementation drift、origin欠落、同種finding再発、性能退行、Incident恒久対策、Scrum Reverse checkpoint、大きな設計退行の原資料から発行条件を区別する。通常照合はticket候補none。threshold/観測window/metric値を合成例から製品規格へ採用しない。",
+        "小さな意味保存境界Refactorはcurrent_Forward、独立構造/横断/architecture/性能改善はRefactor/Design-refactor/Performance-refactor候補。behavior/architecture/requirement/stateの意味差はBackflowへ返し、当該上流ownerの意味を局所Refactorで上書きしない。",
+        "candidateを原資料と別に照合し、通常照合で全体Reverse/新ticket、HARNESS発行、谷から品質/Accepted/Release、候補からReverse実行成功を生成しない。ticket_issuerは責務意味OS、実発行と実記録はOSが保持する。"
+      ],
+      "detail_state": "draft_basic_typed_qualification_and_valley_content_pending_review",
+      "reverse_detail": {
+        "canonical_pairs": {
+          "L8": "L5",
+          "L9": "L4",
+          "L10": "L3"
+        },
+        "l9_dimensions": [
+          "interface",
+          "dependency_direction",
+          "state_data_ownership",
+          "transaction",
+          "failure_propagation",
+          "retry",
+          "timeout",
+          "idempotency",
+          "coupling",
+          "responsibility_duplication"
+        ],
+        "valley_order": [
+          "freeze",
+          "pre_body_red",
+          "minimum_body",
+          "green",
+          "local_refactor",
+          "atomic_ci"
+        ],
+        "constant_false_fields": [
+          "actual_ticket_issued",
+          "actual_reverse_executed",
+          "actual_quality_accepted",
+          "actual_user_accepted",
+          "actual_release",
+          "actual_completion"
+        ],
+        "pair_results_derivation": "承認済みF03と基本契約の三対を内部の個別結果へ分解する。基本の集約pair_resultは保持し、他の有効な対を欠落させない。",
+        "source_binding_limit": "合成設計入力の具体内容比較。実resolver/owner資格/実oracle凍結/TDD/CI/右側実観測ではない。",
+        "legacy_preservation": "旧v1.3のV-pair/TDD、refactoring-trigger-admission-requirements:1–54のtriggerとauthority分離を意味再導出し、旧scope数・route・RF runtimeや追加閾値を継承しない。",
+        "qualification_dependencies": {
+          "context": [
+            [
+              "valley_result"
+            ],
+            [
+              "state_ceiling_from_valley"
+            ],
+            [
+              "reverse_scope_candidate"
+            ],
+            [
+              "reverse_trigger_materials"
+            ],
+            [
+              "reverse_ticket_candidate"
+            ],
+            [
+              "improvement_route"
+            ],
+            [
+              "meaning_backflow"
+            ],
+            [
+              "pair_result"
+            ],
+            [
+              "l9_dimension_results"
+            ],
+            [
+              "pair_results"
+            ]
+          ],
+          "valley_binding": [
+            [
+              "valley_result"
+            ],
+            [
+              "state_ceiling_from_valley"
+            ]
+          ],
+          "valley_freeze": [
+            [
+              "valley_result"
+            ],
+            [
+              "state_ceiling_from_valley"
+            ]
+          ],
+          "valley_pre_body_red": [
+            [
+              "valley_result"
+            ],
+            [
+              "state_ceiling_from_valley"
+            ]
+          ],
+          "valley_minimum_body": [
+            [
+              "valley_result"
+            ],
+            [
+              "state_ceiling_from_valley"
+            ]
+          ],
+          "valley_green": [
+            [
+              "valley_result"
+            ],
+            [
+              "state_ceiling_from_valley"
+            ]
+          ],
+          "valley_local_refactor": [
+            [
+              "valley_result"
+            ],
+            [
+              "state_ceiling_from_valley"
+            ]
+          ],
+          "valley_atomic_ci": [
+            [
+              "valley_result"
+            ],
+            [
+              "state_ceiling_from_valley"
+            ]
+          ],
+          "valley_trace": [
+            [
+              "valley_result"
+            ],
+            [
+              "state_ceiling_from_valley"
+            ]
+          ],
+          "origin": [
+            [
+              "reverse_scope_candidate"
+            ],
+            [
+              "reverse_trigger_materials"
+            ],
+            [
+              "reverse_ticket_candidate"
+            ]
+          ],
+          "legacy_asset": [
+            [
+              "reverse_scope_candidate"
+            ]
+          ],
+          "trace": [
+            [
+              "reverse_scope_candidate"
+            ]
+          ],
+          "design_trust": [
+            [
+              "reverse_scope_candidate"
+            ]
+          ],
+          "large_deviation": [
+            [
+              "reverse_scope_candidate"
+            ],
+            [
+              "reverse_trigger_materials"
+            ],
+            [
+              "reverse_ticket_candidate"
+            ]
+          ],
+          "pair_L8": [
+            [
+              "pair_result"
+            ],
+            [
+              "pair_results",
+              "value",
+              "L8"
+            ]
+          ],
+          "pair_L9": [
+            [
+              "pair_result"
+            ],
+            [
+              "pair_results",
+              "value",
+              "L9"
+            ]
+          ],
+          "pair_L10": [
+            [
+              "pair_result"
+            ],
+            [
+              "pair_results",
+              "value",
+              "L10"
+            ]
+          ],
+          "scope_extents": [
+            [
+              "pair_result"
+            ],
+            [
+              "pair_results",
+              "value",
+              "L8"
+            ],
+            [
+              "pair_results",
+              "value",
+              "L9"
+            ],
+            [
+              "pair_results",
+              "value",
+              "L10"
+            ]
+          ],
+          "l9_interface": [
+            [
+              "l9_dimension_results",
+              "value",
+              "interface"
+            ]
+          ],
+          "l9_dependency_direction": [
+            [
+              "l9_dimension_results",
+              "value",
+              "dependency_direction"
+            ]
+          ],
+          "l9_state_data_ownership": [
+            [
+              "l9_dimension_results",
+              "value",
+              "state_data_ownership"
+            ]
+          ],
+          "l9_transaction": [
+            [
+              "l9_dimension_results",
+              "value",
+              "transaction"
+            ]
+          ],
+          "l9_failure_propagation": [
+            [
+              "l9_dimension_results",
+              "value",
+              "failure_propagation"
+            ]
+          ],
+          "l9_retry": [
+            [
+              "l9_dimension_results",
+              "value",
+              "retry"
+            ]
+          ],
+          "l9_timeout": [
+            [
+              "l9_dimension_results",
+              "value",
+              "timeout"
+            ]
+          ],
+          "l9_idempotency": [
+            [
+              "l9_dimension_results",
+              "value",
+              "idempotency"
+            ]
+          ],
+          "l9_coupling": [
+            [
+              "l9_dimension_results",
+              "value",
+              "coupling"
+            ]
+          ],
+          "l9_responsibility_duplication": [
+            [
+              "l9_dimension_results",
+              "value",
+              "responsibility_duplication"
+            ]
+          ],
+          "trigger_design_implementation_drift": [
+            [
+              "reverse_trigger_materials"
+            ],
+            [
+              "reverse_ticket_candidate"
+            ]
+          ],
+          "trigger_recurrence": [
+            [
+              "reverse_trigger_materials"
+            ],
+            [
+              "reverse_ticket_candidate"
+            ]
+          ],
+          "trigger_performance": [
+            [
+              "reverse_trigger_materials"
+            ],
+            [
+              "reverse_ticket_candidate"
+            ]
+          ],
+          "trigger_incident_permanent_remedy": [
+            [
+              "reverse_trigger_materials"
+            ],
+            [
+              "reverse_ticket_candidate"
+            ]
+          ],
+          "trigger_scrum_checkpoint": [
+            [
+              "reverse_trigger_materials"
+            ],
+            [
+              "reverse_ticket_candidate"
+            ]
+          ],
+          "improvement": [
+            [
+              "improvement_route"
+            ],
+            [
+              "meaning_backflow"
+            ]
+          ]
+        },
+        "qualification_rule": "各source資格を独立に読む。合成正常基準に対する単一資格不足matrixは該当依存結果のみstate/null。混在状態は個別診断を保持し、同一結果の複数異種不足はunknown/null。実作用6項目のfalseと発行責務OSは設計の不変値であり実資格ではない。",
+        "valley_content_rule": "凍結→本体前Red実観測→最小Green→意味保存Refactor→変更後HEADの再検証を同一oracleへ結ぶ。Red未実行/欠陥未検出、凍結後付け、Greenの別oracle、Refactor意味変更、変更前HEAD/未実行/退行した再検証は谷のconflictでありProvisionalを成立させない。他の独立sourceの対/観点/trigger結果は保持する。"
+      },
+      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。"
+    },
+    {
+      "id": "HARNESS-L5-003-F04",
+      "l4_ref": "HARNESS-L4-003-F04",
+      "requirement_ref": "HARNESS-L3-003-F04",
+      "oracle_ref": "HARNESS-L8-003-F04",
+      "symbol": "assess_artifact_stage_evidence",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-F04",
+        "parent": "HARNESS-L2-003",
+        "title": "八状態と段階別の証明",
+        "obligation": "Working→Provisional→Integrated→Verified→Accepted→Release-eligible→Deployed→Observedを別状態にし、原子CI、境界照合/Refactor/結合証明、L10 system証明、L11利用者受入、Port必須条件、対象環境配備、L12運用評価を各成立根拠へ結ぶ。022/005の固有義務差分と受入記録条件を保ち、前状態の成立から次状態を推定しない。",
+        "oracle_ref": "HARNESS-L10-003-F04"
+      },
+      "basic_contract_sha256": "6dcaa04b9bc1a72bf2eb652896377837ec9253e184c798f0c7588288b3f465a6",
+      "input": {
+        "context": "ProcessContext",
+        "original_sources": "SourceCell map（各対象の独立原資料）",
+        "candidate": "ProcessAssessment | null"
+      },
+      "output": {
+        "partial_values": {
+          "own_basis_support": "PartialValue（knownのvalueは八状態→PartialValue map。必要状態集合が未知ならnull）",
+          "contiguous_frontier": "PartialValue",
+          "missing_basis": "PartialValue",
+          "conflicting_basis": "PartialValue",
+          "retain_readable_proofs": "PartialValue",
+          "actual_state_update": "PartialValue",
+          "actual_completion": "PartialValue"
+        },
+        "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
+        "unaffected_scope": "元の有効な非対象資料",
+        "operation_effect": "none"
+      },
+      "internal_steps": [
+        "Context/carrierと対象成果物revision/scope/artifact/environment、各状態の原証拠とembedded観測/人間原受入/Port/配備/運用評価を独立sourceとして解決し、Ref/binding/owner/資格を照合する。claimed_stateや前状態成功を原証拠にしない。",
+        "Workingは同対象のOS作業記録、Provisionalは005/015の同oracle凍結→実装前Red→最小Green→意味保存Refactor→原子CIと双方向traceを内容比較する。文書存在や実装後mutationで谷の実証拠を補わない。",
+        "IntegratedはL9↔L4の対象境界とRefactor意味保存、必要義務ごとの原観測、必要L9各観点の期待/観測を照合する。state/data二重所有や未観測観点を結合証明済みにしない。",
+        "VerifiedはL10↔L3、当該L3固有system義務、005/022の上位差分exact setと原実観測を比較する。下位成功でglobal義務の欠落/不一致を相殺せず、全義務値を合成例から製品へ固定しない。",
+        "AcceptedはL11↔L2の同対象利用者原受入と受入scope/軸を照合し、AI解釈を別sourceとして保持する。L10/CI greenやAIのhuman_provenance宣言だけでは利用者受入を生成しない。意味差分は当該L2/Forward ownerへ返す。",
+        "Release-eligibleはF05通常Portの対象必須条件集合と各原観測、DeployedはOSの同artifact/digest/対象環境実配備、ObservedはL12↔L1の運用時間軸/価値軸/原運用記録と還流先をそれぞれ別に照合する。受入/配備を次状態の代替にしない。",
+        "各状態固有の部分結果を全て保持し、knownの必要状態順序についてWorkingから連続して成立した条件frontierだけを返す。途中欠落より後の原証拠は消さず、後続状態成立への穴埋めにも使わない。Working根拠も未成立ならfrontierを当該state/nullへする。",
+        "既知状態集合のmissing/conflictを個別に列挙し、該当原証拠/理由/ownerへ返却候補を渡す。未知集合/source資格を空集合/falseへ補わず、無関係scopeを一括停止しない。",
+        "照合結果は状態成立の条件材料のみで、actual_state_update/actual_completionはfalse、operation_effectはnone。状態の実保存/実更新はOS、受入や配備の実作用は当該ownerが所有する。"
+      ],
+      "detail_state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
+      "state_detail": {
+        "state_order": [
+          "Working",
+          "Provisional",
+          "Integrated",
+          "Verified",
+          "Accepted",
+          "Release-eligible",
+          "Deployed",
+          "Observed"
+        ],
+        "basis_by_state": {
+          "Working": "作業中。後続証明なし",
+          "Provisional": "同対象の谷証拠と原子CI",
+          "Integrated": "境界照合・Refactor・結合の固有証明",
+          "Verified": "L10 system証明と005/022固有義務差分",
+          "Accepted": "同対象L11利用者原受入",
+          "Release-eligible": "通常Release Portの全必須条件",
+          "Deployed": "対象環境の実配備記録",
+          "Observed": "対象のL12運用評価"
+        },
+        "frontier_rule": "既知状態集合における連続成立の条件材料。後続proofの読取成功と連続成立を分離する。先頭proof未成立なら当該state/null。",
+        "constant_false_fields": [
+          "actual_state_update",
+          "actual_completion"
+        ],
+        "legacy_preservation": "旧v1.3:29–66の六V-pair、谷/検証/受入/運用の別証明を各状態へ意味再導出する。旧層番号や旧CI成功、PR/Issue/DB stateを実承認/完了にしない。",
+        "source_binding_limit": "各状態のtyped合成例。実owner/authority/各embedded観測/原受入資格・正式schema/codec・実操作ではない。",
+        "qualification_groups": {
+          "context": {
+            "affected_state": null,
+            "qualification_role": "target_membership"
+          },
+          "state_proof_membership": {
+            "affected_state": null,
+            "qualification_role": "target_membership"
+          },
+          "Working_root": {
+            "affected_state": "Working",
+            "qualification_role": "state_basis"
+          },
+          "Working_binding": {
+            "affected_state": "Working",
+            "qualification_role": "state_basis"
+          },
+          "Working_work_record": {
+            "affected_state": "Working",
+            "qualification_role": "state_basis"
+          },
+          "Working_artifact": {
+            "affected_state": "Working",
+            "qualification_role": "state_basis"
+          },
+          "Working_work_kind": {
+            "affected_state": "Working",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_root": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_binding": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_contract": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_oracle": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_steps_freeze": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_steps_pre_body_red": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_steps_minimum_body": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_steps_green": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_steps_local_refactor": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_steps_atomic_ci": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_trace": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Provisional_trace_artifacts": {
+            "affected_state": "Provisional",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_root": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_binding": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_pair": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_design": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_observed_boundary": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_refactor": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_required_obligations": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_observations_single_state_owner": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_observations_idempotent_delivery": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_required_l9_dimensions": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_interface": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_dependency_direction": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_state_data_ownership": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_transaction": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_failure_propagation": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_retry": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_timeout": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_idempotency": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_coupling": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Integrated_dimension_observations_responsibility_duplication": {
+            "affected_state": "Integrated",
+            "qualification_role": "state_basis"
+          },
+          "Verified_root": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_binding": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_pair": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_requirement": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_lower_proof_refs": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_system_specific_obligations": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_system_observations_global_balance_conservation": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Verified_005_022_difference": {
+            "affected_state": "Verified",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_root": {
+            "affected_state": "Accepted",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_binding": {
+            "affected_state": "Accepted",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_pair": {
+            "affected_state": "Accepted",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_l2": {
+            "affected_state": "Accepted",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_acceptance_scope": {
+            "affected_state": "Accepted",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_human_original": {
+            "affected_state": "Accepted",
+            "qualification_role": "state_basis"
+          },
+          "Accepted_ai_interpretation": {
+            "affected_state": null,
+            "qualification_role": "interpretation_only"
+          },
+          "Release-eligible_root": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_binding": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_port": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_required": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_proofs": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_artifact_identity": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_environment": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_dependencies": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_security": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_rollback": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_deployment_conditions": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Release-eligible_observations_acceptance": {
+            "affected_state": "Release-eligible",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_root": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_binding": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_deployment": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_artifact": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_target_environment": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_observed_environment": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_expected_digest": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Deployed_observed_digest": {
+            "affected_state": "Deployed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_root": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_binding": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_pair": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_planning": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_operation_record": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_environment": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_value_axis": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_expected_debits_per_command": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_observed_debits_per_command": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "Observed_feedback_target": {
+            "affected_state": "Observed",
+            "qualification_role": "state_basis"
+          },
+          "carrier": {
+            "affected_state": null,
+            "qualification_role": "target_membership"
+          }
+        },
+        "qualification_rule": "状態root/bindingと各工程・観測・人間原受入・AI解釈・Port条件・配備・運用原材料を個別に照合する。状態固有資格が未成立でも他状態の原結果を保持し、連続frontierは最初の未成立の前で止める。原受入の資格不足をAI解釈で補わない。"
+      },
+      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。"
+    },
+    {
+      "id": "HARNESS-L5-003-F05",
+      "l4_ref": "HARNESS-L4-003-F05",
+      "requirement_ref": "HARNESS-L3-003-F05",
+      "oracle_ref": "HARNESS-L8-003-F05",
+      "symbol": "assess_release_port_and_incident_return",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-F05",
+        "parent": "HARNESS-L2-003",
+        "title": "開始時からのRelease Portとhotfix",
+        "obligation": "開発開始時から必要証明/artifact識別/対象環境/依存/security/rollback/配備条件/受入状態のPort義務を持ち、満たしたもの/未充足を各工程へ結ぶ。hotfixにも通常Portと既存操作authorityを適用し、緊急性や暫定収束で省略しない。検出/収束/postmortem/L12 feedback/current L1–L12 backfill/Reverse fullbackから選択方式へ戻る未完を分け、配備成功で恒久対策/未完backfillを完了にしない。初回では実release/Incident運転を選択しない。",
+        "oracle_ref": "HARNESS-L10-003-F05"
+      },
+      "basic_contract_sha256": "45a480fcb2829325a84429d27964ddb24c60a1e6de5d4e7bcb6192fd162acbff",
+      "input": {
+        "context": "ProcessContext",
+        "original_sources": "SourceCell map（各対象の独立原資料）",
+        "candidate": "ProcessAssessment | null"
+      },
+      "output": {
+        "partial_values": {
+          "port_result": "PartialValue",
+          "port_missing": "PartialValue",
+          "port_conflicts": "PartialValue",
+          "authority_result": "PartialValue",
+          "scope_result": "PartialValue",
+          "can_execute": "PartialValue",
+          "convergence_result": "PartialValue",
+          "permanent_remedy_result": "PartialValue",
+          "backfill_missing": "PartialValue",
+          "return_layer_result": "PartialValue",
+          "reverse_fullback_result": "PartialValue",
+          "actual_release": "PartialValue",
+          "actual_deployment": "PartialValue",
+          "actual_approval_created": "PartialValue",
+          "actual_completion": "PartialValue",
+          "port_condition_results": "PartialValue（knownのvalueは必須Port義務→PartialValue map。必要集合未知ならnull）",
+          "port_timing_result": "PartialValue（開発開始時にPort義務が定義されている条件）",
+          "backfill_results": "PartialValue（knownのvalueはcurrent L1〜L12→PartialValue map。各原成果物と対条件を独立照合）",
+          "detection_result": "PartialValue",
+          "mitigation_result": "PartialValue",
+          "postmortem_result": "PartialValue",
+          "feedback_result": "PartialValue"
+        },
+        "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
+        "unaffected_scope": "元の有効な非対象資料",
+        "operation_effect": "none"
+      },
+      "internal_steps": [
+        "Context/carrierと開発開始時Port契約、各必須証拠、既存操作authority、初回操作scope、Incident各原記録を独立sourceとして解決/資格照合する。合成authority参照やPortのknownを実操作許可にしない。",
+        "Port defined_seqとdevelopment_start_seqを比較し、開始時から義務を持つことと各工程で証拠を埋めることを分離する。開始時の全証拠未充足を隠さず、義務の後付けを開始時定義済みにしない。",
+        "当該Port原契約の必要集合を確認し、proofs/artifact_identity/environment/dependencies/security/rollback/deployment_conditions/acceptanceを個別Ref/bindingと具体内容で照合する。参照label一致だけでsystem観測/rollback原結果/人間受入を成立させない。",
+        "通常とhotfixに同じPort義務を適用する。既存authorityの操作/対象revision/scope/artifact/environment・期限・revokeを独立比較し、緊急性や暫定収束から省略/新許可/新承認手続きを生成しない。",
+        "初回scopeでは実release/Incident運転を選択しない。条件比較とcan_execute、actual_release/actual_deployment/actual_approval_created/actual_completionを分離し、実作用はnoneとする。",
+        "検出原観測、暫定対処、収束、postmortemの残原因、L12 feedbackを個別に比較し、暫定改善と恒久対策原証拠を区別する。配備成功とIssue closeは恒久対策/未完還流の原資料を変更しない。",
+        "current L1〜L12 backfillの各原成果物と対成立条件を独立に比較し、欠落を個別state/nullで保持する。全層membershipや資格が未知なら空集合/全完了に補完しない。",
+        "Reverse fullbackの原実結果と対象選択方式の原資料から戻り先を照合する。not_executedを成功にせず、戻り層unknownを適当な層へ補完せず当該ownerへ返す。再開/凍結条件はF01へ結ぶ。",
+        "candidateを原資料と別に比較し、当該義務/原資料/理由/該当ownerへの返却候補と無関係scopeの有効材料を保持する。実Incident/配備/記録/ticketはOS、既存認可はSECURITY、方式の意味は要求ownerが保持する。"
+      ],
+      "detail_state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
+      "port_detail": {
+        "port_fields": [
+          "proofs",
+          "artifact_identity",
+          "environment",
+          "dependencies",
+          "security",
+          "rollback",
+          "deployment_conditions",
+          "acceptance"
+        ],
+        "backfill_layers": [
+          "L1",
+          "L2",
+          "L3",
+          "L4",
+          "L5",
+          "L6",
+          "L7",
+          "L8",
+          "L9",
+          "L10",
+          "L11",
+          "L12"
+        ],
+        "constant_false_fields": [
+          "can_execute",
+          "actual_release",
+          "actual_deployment",
+          "actual_approval_created",
+          "actual_completion"
+        ],
+        "constant_false_limit": "この合成初回scopeは実作用非選択。将来の許可/実施成立ではない。未知scopeをfalseへ変換する汎用規則ではない。",
+        "extra_field_derivation": "承認済みF05/基本契約のPort個別義務・開始時定義・検出/暫定対処/postmortem/L12 feedback/backfillを内部部分結果へ明示する。要求意味/版/基本期待を変更しない。",
+        "legacy_preservation": "旧v1.3:29–66の層/受入とGitHub非authority、security-engagement-authority-requests:14–29の既存認可/対象期限/原結果区別を意味再導出する。旧runtime/追加approval経路/旧Security業務の包括許可は採用しない。",
+        "source_binding_limit": "合成例の独立原内容比較。実owner/authority/資格と正式schema/codec、実release/Incident/deployの成立ではない。",
+        "qualification_dependencies": {
+          "carrier": {
+            "material_locator": [],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_missing"
+              ],
+              [
+                "port_conflicts"
+              ],
+              [
+                "authority_result"
+              ],
+              [
+                "scope_result"
+              ],
+              [
+                "can_execute"
+              ],
+              [
+                "convergence_result"
+              ],
+              [
+                "permanent_remedy_result"
+              ],
+              [
+                "backfill_missing"
+              ],
+              [
+                "return_layer_result"
+              ],
+              [
+                "reverse_fullback_result"
+              ],
+              [
+                "port_condition_results"
+              ],
+              [
+                "port_timing_result"
+              ],
+              [
+                "backfill_results"
+              ],
+              [
+                "detection_result"
+              ],
+              [
+                "mitigation_result"
+              ],
+              [
+                "postmortem_result"
+              ],
+              [
+                "feedback_result"
+              ]
+            ],
+            "qualification_role": "target_membership",
+            "member": null
+          },
+          "context": {
+            "material_locator": [
+              "target"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_missing"
+              ],
+              [
+                "port_conflicts"
+              ],
+              [
+                "authority_result"
+              ],
+              [
+                "scope_result"
+              ],
+              [
+                "can_execute"
+              ],
+              [
+                "convergence_result"
+              ],
+              [
+                "permanent_remedy_result"
+              ],
+              [
+                "backfill_missing"
+              ],
+              [
+                "return_layer_result"
+              ],
+              [
+                "reverse_fullback_result"
+              ],
+              [
+                "port_condition_results"
+              ],
+              [
+                "port_timing_result"
+              ],
+              [
+                "backfill_results"
+              ],
+              [
+                "detection_result"
+              ],
+              [
+                "mitigation_result"
+              ],
+              [
+                "postmortem_result"
+              ],
+              [
+                "feedback_result"
+              ]
+            ],
+            "qualification_role": "target_membership",
+            "member": null
+          },
+          "change_kind": {
+            "material_locator": [
+              "change_kind"
+            ],
+            "affected_partial_paths": [],
+            "qualification_role": "diagnostic_only_same_port_obligations",
+            "member": null
+          },
+          "port_definition": {
+            "material_locator": [
+              "port",
+              "ref"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_missing"
+              ],
+              [
+                "port_conflicts"
+              ],
+              [
+                "port_condition_results"
+              ],
+              [
+                "port_timing_result"
+              ]
+            ],
+            "qualification_role": "port_membership",
+            "member": null
+          },
+          "port_required": {
+            "material_locator": [
+              "port",
+              "required"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_missing"
+              ],
+              [
+                "port_conflicts"
+              ],
+              [
+                "port_condition_results"
+              ]
+            ],
+            "qualification_role": "port_membership",
+            "member": null
+          },
+          "development_start": {
+            "material_locator": [
+              "development_start_seq"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_timing_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "port_defined_seq": {
+            "material_locator": [
+              "port",
+              "defined_seq"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_timing_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "port_proofs_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "proofs"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "proofs"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "proofs"
+          },
+          "port_proofs_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "proofs",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "proofs"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "proofs"
+          },
+          "port_proofs_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "proofs",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "proofs"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "proofs"
+          },
+          "port_artifact_identity_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "artifact_identity"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "artifact_identity"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "artifact_identity"
+          },
+          "port_artifact_identity_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "artifact_identity",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "artifact_identity"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "artifact_identity"
+          },
+          "port_artifact_identity_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "artifact_identity",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "artifact_identity"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "artifact_identity"
+          },
+          "port_environment_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "environment"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "environment"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "environment"
+          },
+          "port_environment_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "environment",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "environment"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "environment"
+          },
+          "port_environment_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "environment",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "environment"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "environment"
+          },
+          "port_dependencies_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "dependencies"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "dependencies"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "dependencies"
+          },
+          "port_dependencies_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "dependencies",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "dependencies"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "dependencies"
+          },
+          "port_dependencies_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "dependencies",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "dependencies"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "dependencies"
+          },
+          "port_security_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "security"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "security"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "security"
+          },
+          "port_security_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "security",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "security"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "security"
+          },
+          "port_security_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "security",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "security"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "security"
+          },
+          "port_rollback_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "rollback"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "rollback"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "rollback"
+          },
+          "port_rollback_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "rollback",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "rollback"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "rollback"
+          },
+          "port_rollback_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "rollback",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "rollback"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "rollback"
+          },
+          "port_deployment_conditions_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "deployment_conditions"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "deployment_conditions"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "deployment_conditions"
+          },
+          "port_deployment_conditions_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "deployment_conditions",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "deployment_conditions"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "deployment_conditions"
+          },
+          "port_deployment_conditions_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "deployment_conditions",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "deployment_conditions"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "deployment_conditions"
+          },
+          "port_acceptance_root": {
+            "material_locator": [
+              "port",
+              "observations",
+              "acceptance"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "acceptance"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "acceptance"
+          },
+          "port_acceptance_binding": {
+            "material_locator": [
+              "port",
+              "observations",
+              "acceptance",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "acceptance"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "acceptance"
+          },
+          "port_acceptance_semantic": {
+            "material_locator": [
+              "port",
+              "observations",
+              "acceptance",
+              "semantic_observation"
+            ],
+            "affected_partial_paths": [
+              [
+                "port_result"
+              ],
+              [
+                "port_condition_results",
+                "value",
+                "acceptance"
+              ]
+            ],
+            "qualification_role": "port_member",
+            "member": "acceptance"
+          },
+          "authority_root": {
+            "material_locator": [
+              "existing_authority"
+            ],
+            "affected_partial_paths": [
+              [
+                "authority_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "authority_binding": {
+            "material_locator": [
+              "existing_authority",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "authority_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "initial_scope": {
+            "material_locator": [
+              "initial_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "scope_result"
+              ],
+              [
+                "can_execute"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_detection": {
+            "material_locator": [
+              "incident",
+              "detection"
+            ],
+            "affected_partial_paths": [
+              [
+                "detection_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_mitigation": {
+            "material_locator": [
+              "incident",
+              "mitigation"
+            ],
+            "affected_partial_paths": [
+              [
+                "mitigation_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_convergence": {
+            "material_locator": [
+              "incident",
+              "convergence"
+            ],
+            "affected_partial_paths": [
+              [
+                "convergence_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_postmortem": {
+            "material_locator": [
+              "incident",
+              "postmortem"
+            ],
+            "affected_partial_paths": [
+              [
+                "postmortem_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_L12_feedback": {
+            "material_locator": [
+              "incident",
+              "L12_feedback"
+            ],
+            "affected_partial_paths": [
+              [
+                "feedback_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_permanent_remedy": {
+            "material_locator": [
+              "incident",
+              "permanent_remedy"
+            ],
+            "affected_partial_paths": [
+              [
+                "permanent_remedy_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_reverse_fullback": {
+            "material_locator": [
+              "incident",
+              "reverse_fullback"
+            ],
+            "affected_partial_paths": [
+              [
+                "reverse_fullback_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_selected_style": {
+            "material_locator": [
+              "incident",
+              "selected_style"
+            ],
+            "affected_partial_paths": [
+              [
+                "return_layer_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "incident_return_layer": {
+            "material_locator": [
+              "incident",
+              "return_layer"
+            ],
+            "affected_partial_paths": [
+              [
+                "return_layer_result"
+              ]
+            ],
+            "qualification_role": "direct",
+            "member": null
+          },
+          "backfill_membership": {
+            "material_locator": [
+              "incident",
+              "current_backfill"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results"
+              ],
+              [
+                "backfill_missing"
+              ]
+            ],
+            "qualification_role": "backfill_membership",
+            "member": null
+          },
+          "backfill_L1": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L1"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L1"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L1"
+          },
+          "backfill_L2": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L2"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L2"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L2"
+          },
+          "backfill_L3": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L3"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L3"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L3"
+          },
+          "backfill_L4": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L4"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L4"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L4"
+          },
+          "backfill_L5": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L5"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L5"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L5"
+          },
+          "backfill_L6": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L6"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L6"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L6"
+          },
+          "backfill_L7": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L7"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L7"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L7"
+          },
+          "backfill_L8": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L8"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L8"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L8"
+          },
+          "backfill_L9": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L9"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L9"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L9"
+          },
+          "backfill_L10": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L10"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L10"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L10"
+          },
+          "backfill_L11": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L11"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L11"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L11"
+          },
+          "backfill_L12": {
+            "material_locator": [
+              "incident",
+              "current_backfill",
+              "L12"
+            ],
+            "affected_partial_paths": [
+              [
+                "backfill_results",
+                "value",
+                "L12"
+              ]
+            ],
+            "qualification_role": "backfill_member",
+            "member": "L12"
+          },
+          "incident_deployment_receipt": {
+            "material_locator": [
+              "incident",
+              "deployment_receipt"
+            ],
+            "affected_partial_paths": [],
+            "qualification_role": "diagnostic_only_no_remedy_or_backfill_proof",
+            "member": null
+          },
+          "incident_issue_closed": {
+            "material_locator": [
+              "incident",
+              "issue_closed"
+            ],
+            "affected_partial_paths": [],
+            "qualification_role": "diagnostic_only_no_remedy_or_backfill_proof",
+            "member": null
+          }
+        },
+        "qualification_rule": "Portの義務集合/開始時定義、各観測のroot/binding/意味原観測、既存authority/対象scope、Incident各段階と各層backfillを独立に資格照合する。未解決sourceが他義務の読める原結果を消さず、hotfixでも通常Portの必要集合を減らさない。初回scope資格がunknownならcan_executeはunknown/nullでありfalseへの一括補完をしない。"
+      }
+    },
+    {
+      "id": "HARNESS-L5-003-N01",
+      "l4_ref": "HARNESS-L4-003-N01",
+      "requirement_ref": "HARNESS-L3-003-N01",
+      "oracle_ref": "HARNESS-L8-003-N01",
+      "symbol": "assess_quality_security_applicability",
+      "approved_requirement": {
+        "id": "HARNESS-L3-003-N01",
+        "parent": "HARNESS-L2-003",
+        "title": "品質・securityの適用と状態",
+        "obligation": "対象製品が承認した品質領域の適用/非適用/unknown/ownerと、保護対象/data/操作/環境/network/severity/開示条件を設計/検証/独立review/利用者受入へ結ぶ。designed/implemented/verified/observed/operatedと推定/再現/検証/修復/再検証/運用成立を分け、根拠無しSLO/RTO/RPO/保持期間を生成しない。特権/credentialの方針・authorityはSECURITY、ticket割当/運転はOSを参照する。",
+        "oracle_ref": "HARNESS-L10-003-N01"
+      },
+      "basic_contract_sha256": "0952162d762dd6db2c887455406827576d6e182bf31b77db3ffb3d2cab7e890d",
+      "input": {
+        "context": "ProcessContext",
+        "original_sources": "SourceCell map（各対象の独立原資料）",
+        "candidate": "ProcessAssessment | null"
+      },
+      "output": {
+        "partial_values": {
+          "target_results": "PartialValue（knownのvalueは対象別row。各rowのscope/owner/原適用/品質段階/finding段階/数値根拠/安全scopeを個別PartialValueで保持）",
+          "healthy": "PartialValue",
+          "actual_security_operation": "PartialValue",
+          "actual_operation_approved": "PartialValue",
+          "actual_completion": "PartialValue"
+        },
+        "owner_returns": "当該未解決/source/revision/scopeとownerへの返却候補",
+        "unaffected_scope": "元の有効な非対象資料",
+        "operation_effect": "none"
+      },
+      "internal_steps": [
+        "対象集合/Context/carrierと各製品の承認済み品質適用原資料、security scope/policy/authority、品質各段/finding各段/数値根拠を独立sourceとして解決/資格照合する。scope/environment/artifact/revision別に分け、一対象の不成立で他対象を消さない。",
+        "製品ownerが指定した適用領域をapplicable/not_applicable/unknownへ区別し、N/A理由/原根拠とownerを保持する。適用未知や理由欠落をN/A、healthy、空集合へ補完しない。領域集合を合成availability/latencyの二つへ固定しない。",
+        "protected_asset/data_scope/operation/environment/network_scope/severity/disclosureの原条件とSECURITYのpolicy/authorityを照合する。OSの割当/運転やHARNESS条件の意味提供から特権方針/credential/認可を生成しない。",
+        "designed/implemented/verified/observed/operatedを別原証拠で照合する。設計oracleの具体owner、実観測の期待/観測owner・executed・対象binding・原経路を比較し、別環境・未実行・旧broker/provider/CIで不足を相殺しない。",
+        "inferred/reproduced/verified/repaired/reverified/operatedを品質段階と別系列で保持する。推定資料のcause_confirmed=falseを再現/原因確定/修復/再検証/運用成立へ昇格しない。",
+        "SLO/RTO/RPO/retentionは当該製品要求/Release原根拠へ照合する。未決値はunknown/nullで保持し、工程規則や他対象の値から既定数値を生成しない。",
+        "target_resultsの各対象/段階/領域のPartialValueを保持する。必要集合または各適用/実観測が未確定ならhealthyはunknown/nullとし、健康とも不健康とも確定しない。合成basicのhealthy=falseはhealthy主張未成立であり、未観測をfalseの実診断へ変換しない。",
+        "candidateを原資料と別に比較し、設計→実装/観測/運用、推定→修復、参照→実認可、数値根拠なし目標への差分を当該fieldで返す。未決は当該製品要求/Release owner、方針/認可はSECURITY、割当/運転はOSへ不足として返す。",
+        "関数は実security操作・認可生成・状態更新・完了を実施しない。actual_security_operation/actual_operation_approved/actual_completionはfalse、operation_effectはnone。"
+      ],
+      "detail_state": "draft_basic_typed_and_parameterized_qualification_pending_content_and_review",
+      "quality_detail": {
+        "quality_stages": [
+          "designed",
+          "implemented",
+          "verified",
+          "observed",
+          "operated"
+        ],
+        "finding_stages": [
+          "inferred",
+          "reproduced",
+          "verified",
+          "repaired",
+          "reverified",
+          "operated"
+        ],
+        "numeric_targets": [
+          "SLO",
+          "RTO",
+          "RPO",
+          "retention"
+        ],
+        "security_fields": [
+          "protected_asset",
+          "data_scope",
+          "operation",
+          "environment",
+          "network_scope",
+          "severity",
+          "disclosure"
+        ],
+        "constant_false_fields": [
+          "actual_security_operation",
+          "actual_operation_approved",
+          "actual_completion"
+        ],
+        "healthy_projection_rule": "basic healthy=falseは成立を主張できないことの否定例。typed結果では未評価/未観測/適用unknownをunknown/nullにして、根拠のない不健康確定も生成しない。原basic期待は無改変で参照/hash束縛する。",
+        "legacy_preservation": "旧infrastructure-operations-quality-l1-request-candidates:7–13の状態分離/未決数値とsecurity-engagement-authority-requests:14–29の既存scope/原finding段階を意味再導出する。旧CI/runtime/包括Security許可や追加数値を採用しない。",
+        "source_binding_limit": "合成例の内部部分比較案。実source/owner/authority資格、正式schema/codec、実観測/実診断/認可の成立ではない。",
+        "qualification_dependencies": {
+          "carrier": {
+            "material_locator": [],
+            "affected_partial_paths": [
+              [
+                "target_results"
+              ]
+            ],
+            "qualification_role": "target_membership"
+          },
+          "target_membership": {
+            "material_locator": [
+              "targets"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results"
+              ]
+            ],
+            "qualification_role": "target_membership"
+          },
+          "P_context": {
+            "material_locator": [
+              "targets",
+              0,
+              "target"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "scope"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "numeric_target_support"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "security_authority_owner"
+              ],
+              [
+                "target_results",
+                "value",
+                0,
+                "ticket_operation_owner"
+              ]
+            ],
+            "qualification_role": "row_context"
+          },
+          "P_quality_applicability_membership": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "P_quality_applicability_availability_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "availability"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_availability_basis": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "availability",
+              "basis"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_availability_status": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "availability",
+              "status"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_availability_owner": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "availability",
+              "owner"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_availability_reason": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "availability",
+              "reason"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_applicability",
+                "availability",
+                "status"
+              ],
+              "equals": "not_applicable"
+            }
+          },
+          "P_quality_applicability_latency_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "latency"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_latency_basis": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "latency",
+              "basis"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_latency_status": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "latency",
+              "status"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_latency_owner": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "latency",
+              "owner"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_applicability_latency_reason": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_applicability",
+              "latency",
+              "reason"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_applicability",
+                "latency",
+                "status"
+              ],
+              "equals": "not_applicable"
+            }
+          },
+          "P_quality_evidence_membership": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "P_quality_evidence_designed_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "designed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "designed"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_evidence_designed_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "designed",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "designed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "designed"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_quality_evidence_designed_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "designed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "designed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "designed"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_quality_evidence_implemented_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "implemented"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "implemented"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_evidence_implemented_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "implemented",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "implemented"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "implemented"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_quality_evidence_implemented_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "implemented"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "implemented"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "implemented"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_quality_evidence_verified_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_evidence_verified_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "verified",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_quality_evidence_verified_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_quality_evidence_observed_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "observed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "observed"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_evidence_observed_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "observed",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "observed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "observed"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_quality_evidence_observed_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "observed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "observed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "observed"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_quality_evidence_operated_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_quality_evidence_operated_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "operated",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_quality_evidence_operated_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "quality_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "quality_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "quality_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_finding_evidence_membership": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "P_finding_evidence_inferred_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "inferred"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "inferred"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_finding_evidence_inferred_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "inferred",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "inferred"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "inferred"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_finding_evidence_inferred_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "inferred"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "inferred"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "inferred"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_finding_evidence_reproduced_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "reproduced"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "reproduced"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_finding_evidence_reproduced_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "reproduced",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "reproduced"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "reproduced"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_finding_evidence_reproduced_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "reproduced"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "reproduced"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "reproduced"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_finding_evidence_verified_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_finding_evidence_verified_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "verified",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_finding_evidence_verified_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_finding_evidence_repaired_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "repaired"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "repaired"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_finding_evidence_repaired_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "repaired",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "repaired"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "repaired"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_finding_evidence_repaired_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "repaired"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "repaired"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "repaired"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_finding_evidence_reverified_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "reverified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "reverified"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_finding_evidence_reverified_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "reverified",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "reverified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "reverified"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_finding_evidence_reverified_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "reverified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "reverified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "reverified"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_finding_evidence_operated_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_finding_evidence_operated_binding": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "operated",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            }
+          },
+          "P_finding_evidence_operated_contents": {
+            "material_locator": [
+              "targets",
+              0,
+              "finding_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "finding_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                0,
+                "finding_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "P_numeric_targets_membership": {
+            "material_locator": [
+              "targets",
+              0,
+              "numeric_targets"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "numeric_target_support"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "P_numeric_targets_SLO_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "numeric_targets",
+              "SLO"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "numeric_target_support",
+                "value",
+                "SLO"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_numeric_targets_RTO_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "numeric_targets",
+              "RTO"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "numeric_target_support",
+                "value",
+                "RTO"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_numeric_targets_RPO_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "numeric_targets",
+              "RPO"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "numeric_target_support",
+                "value",
+                "RPO"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_numeric_targets_retention_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "numeric_targets",
+              "retention"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "numeric_target_support",
+                "value",
+                "retention"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_root": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_protected_asset": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "protected_asset"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_data_scope": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "data_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_operation": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "operation"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_environment": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "environment"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_network_scope": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "network_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_severity": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "severity"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_disclosure": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "disclosure"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_policy_ref": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "policy_ref"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_security_authority_ref": {
+            "material_locator": [
+              "targets",
+              0,
+              "security_scope",
+              "authority_ref"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "P_ticket_owner": {
+            "material_locator": [
+              "targets",
+              0,
+              "ticket_operation_owner"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                0,
+                "ticket_operation_owner"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_context": {
+            "material_locator": [
+              "targets",
+              1,
+              "target"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "scope"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "numeric_target_support"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "security_authority_owner"
+              ],
+              [
+                "target_results",
+                "value",
+                1,
+                "ticket_operation_owner"
+              ]
+            ],
+            "qualification_role": "row_context"
+          },
+          "Q_quality_applicability_membership": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "Q_quality_applicability_availability_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "availability"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_availability_basis": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "availability",
+              "basis"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_availability_status": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "availability",
+              "status"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_availability_owner": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "availability",
+              "owner"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_availability_reason": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "availability",
+              "reason"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "availability"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_applicability",
+                "availability",
+                "status"
+              ],
+              "equals": "not_applicable"
+            }
+          },
+          "Q_quality_applicability_latency_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "latency"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_latency_basis": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "latency",
+              "basis"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_latency_status": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "latency",
+              "status"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_latency_owner": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "latency",
+              "owner"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_applicability_latency_reason": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_applicability",
+              "latency",
+              "reason"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "applicability",
+                "value",
+                "latency"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_applicability",
+                "latency",
+                "status"
+              ],
+              "equals": "not_applicable"
+            }
+          },
+          "Q_quality_evidence_membership": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "Q_quality_evidence_designed_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "designed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "designed"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_evidence_designed_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "designed",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "designed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "designed"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_quality_evidence_designed_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "designed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "designed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "designed"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_quality_evidence_implemented_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "implemented"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "implemented"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_evidence_implemented_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "implemented",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "implemented"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "implemented"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_quality_evidence_implemented_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "implemented"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "implemented"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "implemented"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_quality_evidence_verified_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_evidence_verified_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "verified",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_quality_evidence_verified_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_quality_evidence_observed_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "observed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "observed"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_evidence_observed_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "observed",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "observed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "observed"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_quality_evidence_observed_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "observed"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "observed"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "observed"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_quality_evidence_operated_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_quality_evidence_operated_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "operated",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_quality_evidence_operated_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "quality_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "quality_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "quality_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_finding_evidence_membership": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "Q_finding_evidence_inferred_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "inferred"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "inferred"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_finding_evidence_inferred_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "inferred",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "inferred"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "inferred"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_finding_evidence_inferred_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "inferred"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "inferred"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "inferred"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_finding_evidence_reproduced_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "reproduced"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "reproduced"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_finding_evidence_reproduced_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "reproduced",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "reproduced"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "reproduced"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_finding_evidence_reproduced_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "reproduced"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "reproduced"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "reproduced"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_finding_evidence_verified_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_finding_evidence_verified_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "verified",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_finding_evidence_verified_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "verified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "verified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "verified"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_finding_evidence_repaired_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "repaired"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "repaired"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_finding_evidence_repaired_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "repaired",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "repaired"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "repaired"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_finding_evidence_repaired_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "repaired"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "repaired"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "repaired"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_finding_evidence_reverified_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "reverified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "reverified"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_finding_evidence_reverified_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "reverified",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "reverified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "reverified"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_finding_evidence_reverified_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "reverified"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "reverified"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "reverified"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_finding_evidence_operated_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_finding_evidence_operated_binding": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "operated",
+              "binding"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            }
+          },
+          "Q_finding_evidence_operated_contents": {
+            "material_locator": [
+              "targets",
+              1,
+              "finding_evidence",
+              "operated"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "finding_stage_support",
+                "value",
+                "operated"
+              ]
+            ],
+            "qualification_role": "direct",
+            "required_if": {
+              "locator": [
+                "targets",
+                1,
+                "finding_evidence",
+                "operated"
+              ],
+              "is_not_null": true
+            },
+            "projection": "without_ref_and_binding"
+          },
+          "Q_numeric_targets_membership": {
+            "material_locator": [
+              "targets",
+              1,
+              "numeric_targets"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "numeric_target_support"
+              ]
+            ],
+            "qualification_role": "field_membership"
+          },
+          "Q_numeric_targets_SLO_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "numeric_targets",
+              "SLO"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "numeric_target_support",
+                "value",
+                "SLO"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_numeric_targets_RTO_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "numeric_targets",
+              "RTO"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "numeric_target_support",
+                "value",
+                "RTO"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_numeric_targets_RPO_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "numeric_targets",
+              "RPO"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "numeric_target_support",
+                "value",
+                "RPO"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_numeric_targets_retention_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "numeric_targets",
+              "retention"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "numeric_target_support",
+                "value",
+                "retention"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_root": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_protected_asset": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "protected_asset"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_data_scope": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "data_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_operation": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "operation"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_environment": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "environment"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_network_scope": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "network_scope"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_severity": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "severity"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_disclosure": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "disclosure"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_policy_ref": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "policy_ref"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_security_authority_ref": {
+            "material_locator": [
+              "targets",
+              1,
+              "security_scope",
+              "authority_ref"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "security_scope_result"
+              ]
+            ],
+            "qualification_role": "direct"
+          },
+          "Q_ticket_owner": {
+            "material_locator": [
+              "targets",
+              1,
+              "ticket_operation_owner"
+            ],
+            "affected_partial_paths": [
+              [
+                "target_results",
+                "value",
+                1,
+                "ticket_operation_owner"
+              ]
+            ],
+            "qualification_role": "direct"
+          }
+        },
+        "qualification_rule": "各対象Context/領域membership/原適用・N/A根拠、品質5段とfinding6段のroot/binding/原内容、各数値根拠とsecurity7軸/policy/authorityを個別SourceCellとして照合する。未観測nullと未資格sourceを区別し、無関係targetを保持する。全域のhealthyや操作許可/数値既定を部分的な原資料から生成しない。"
+      },
+      "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。"
+    }
+  ],
+  "review_corrections": {
+    "reviewed_head": "89e08fd64237c2b106c7611dd42625f9b72c35a4",
+    "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2993#issuecomment-6130558104",
+    "F1": "43case/fieldのflat→typed写像をexact basic hashと理由付きで記録。L9原bytes無改変。独立再review未成立。",
+    "F2": "Green未実行/期待不一致の谷原内容反例2件を追加。実TDD未実行。"
+  }
+}
