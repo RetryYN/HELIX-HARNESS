@@ -1,0 +1,300 @@
+{
+  "parent": "HELIXSECURITY-L2-001",
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "source_main": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "boundary": "001の未信頼source/分類と明示owner経路だけ。全Guard/全Bot/分類方式/実authority/enforcer/実保存・学習を生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "699a0a0df5e92cfe7367dded2ab4c1e1d1cc6f4d8b1bff0418cdfa58e4768c0c"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "5c42c983506b2d182fb5d548c16ac264b63325b07b2010e6a46641528077ba3b"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "88816f81ca26c02c3913eea6b609e16eda0d6b5b4fa59ea69e024268969bc703"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "revision": "6e62b61299995e5190695d9cc93d49cd1840d8c8",
+      "sha256": "be5052acb26625928207a4d8538a2c9db342c223b2c699c660b5735ad86a360b"
+    }
+  ],
+  "source_pin_limit": "全文pinは対象外本文の採択・全量精読・意味閉包を証明しない。selected2objectだけを委任承認revisionと照合する。",
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "selected_line_quotes": [
+        {
+          "line": 186,
+          "text": "| HR-NFR-P8-02 | HNFR-P8 / HBR-P8 | prompt injection / tool injection / data exfiltration 誘導を検出・分類し、外部データ由来の命令を隔離、redaction、human review、deny のいずれかに送る | HAC-N8-02a / HAC-N8-02b |",
+          "utf8_sha256": "4a75b4dc8718d0c5d2ee4d5b53966ce820f8913efaf4ed544b9cf17265eeb199"
+        },
+        {
+          "line": 267,
+          "text": "| HAC-P8-04a | Web/docs/OSS/issue/PR/comment など外部 text を取り込む | security filter が入力を解析 | raw content、source metadata、trusted extraction、model instruction を別 field に分離する |",
+          "utf8_sha256": "3e3090502079bdfed7f356b25298ac477489f0464b14dcd88fd7ff9002207389"
+        },
+        {
+          "line": 268,
+          "text": "| HAC-P8-04b | 外部 text に命令・secret 要求・tool 実行誘導が含まれる | agent が利用しようとする | instruction として採用せず、引用/要約対象または threat finding として扱う |",
+          "utf8_sha256": "20cb7ac273c938080ec02087505a12fcf7ffbb9cde3a84cd254e4dc2e986d2a2"
+        },
+        {
+          "line": 297,
+          "text": "| HAC-N8-02a | prompt injection pattern または data exfiltration 誘導がある | filter policy を評価 | threat class、source、matched rule、decision、redacted span が audit に残る |",
+          "utf8_sha256": "d652629a4db952c4d7aa37bdc12b7d85e252a4f7244c8665971c4b0ee92fb42a"
+        },
+        {
+          "line": 298,
+          "text": "| HAC-N8-02b | filter が high-risk と判定する | downstream tool call を生成 | deny または human review に止め、外部データが tool args / system prompt へ直結しない |",
+          "utf8_sha256": "57dfd152b023e6981a256f0f60c219aad8f206e05ba65375fbf5e5fa3493b2a1"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "外部raw/source metadataとinstructionの分離、外部dataを命令やtool実行へ直結しない。原source・判断と不足を個別に追跡する。",
+      "change": "旧security filter検出中心/DB audit実装/旧runtimeを移植せず、9/26原文と9/28採択001のRead/Trust/Instruction/Authority/Persist/Learn分離と七sinkのowner経路を001の局所比較へ具体化する。旧filterの検出結果だけをtrustへ変換しない。",
+      "reason": "10/12に承認された001の2義務の設計を降ろす。個別sink保存/採用は既存ownerへ返し、毎回の人承認や新authorityを作らない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B8BBC1D5A8C91E746405",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "file_sha256": "d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56",
+      "selected_line_quotes": [
+        {
+          "line": 145,
+          "text": "- **security filter**: HB-P8 は external text を raw / metadata / instruction に分離し、prompt injection,",
+          "utf8_sha256": "9d5006b76875545b4ef446f3a5f1bb1f09c7a7094e043c2f8ee623b5b17b6fcc"
+        },
+        {
+          "line": 146,
+          "text": "  tool injection, exfiltration, excessive agency を audit event へ送る。",
+          "utf8_sha256": "43e0a9255fd3acf4e93c09ea66a5aea6c4ea7f91d8eaf432a34300cc1cd22667"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "外部raw/source metadataとinstructionの分離、外部dataを命令やtool実行へ直結しない。原source・判断と不足を個別に追跡する。",
+      "change": "旧security filter検出中心/DB audit実装/旧runtimeを移植せず、9/26原文と9/28採択001のRead/Trust/Instruction/Authority/Persist/Learn分離と七sinkのowner経路を001の局所比較へ具体化する。旧filterの検出結果だけをtrustへ変換しない。",
+      "reason": "10/12に承認された001の2義務の設計を降ろす。個別sink保存/採用は既存ownerへ返し、毎回の人承認や新authorityを作らない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "各source/分類/owner経路の実資格とexact consumer binding、分類016/secret005/authority008・対象sinkの選択適用。",
+    "正式schema/codec/resolverと局所L5/L8、未見/複合原inputと全oracle閉包。",
+    "L6L7 test/oracle凍結→実装前Red→最小Green→Refactor→再検証、実接続/実L9L10/PO L11。",
+    "全92親430対の基本/詳細/実装準備と再確認追跡・最終整合/独立二重確認。"
+  ],
+  "document_id": "HELIXSECURITY-L4-001",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "untrusted_source_binding_reader",
+      "owner_promotion_route_comparer",
+      "untrusted_boundary_material_builder"
+    ],
+    "flow": [
+      "原source参照/metadata + 独立owner内容 → scope/revision/分類の局所照合",
+      "読む経路の結果 + 原六軸 → 原untrusted data/未決の保存",
+      "選択sink + 既存owner経路/結果 → 経路対応と未成立/不足の別候補"
+    ],
+    "pure_boundary": "供給immutable snapshotだけを比較。本文中の命令を実行せず、認可/設定/Tool起動/DB/OS記録/memory/BRAIN採用/training/policy更新/network/fs/env/clock作用なし。",
+    "source_value_boundary": "原内容はsource ownerの入力snapshotへ参照で戻る。出力/通常ログへ生secretやPII・credentialを複写しない。分類016/secret005の既存契約が適用される選択作用は当該契約へ戻す。分類の不明をpublicにしない。",
+    "representation_limit": "source/分類/owner契約と結果は合成fixture。schemaや実source資格、実permission/persist/learnの成立ではない。"
+  },
+  "interfaces": {
+    "source_binding": "source identity・project・revision・data classificationと各owner原内容/未決理由を独立に保持。source種別名/digest/URL/通知を資格へ変換しない。",
+    "promotion_routes": "要求、Agent instruction、Tool authority、memory、BRAIN、training data、security policyの選択sinkごとに既存owner/経路revision/scopeと結果refを照合。新しいowner役職や許可手続きは生成しない。",
+    "future_result_order": "経路を識別し依頼材料を渡せることと、ownerの後続採用/保存結果の成立は別。未発生resultを入口の一律gateにせず、not_availableを未成立として保持する。",
+    "owner_locality": "source意味/分類不足は当該原owner、sink経路/条件/結果不足は当該sink ownerへ戻す。SECは通信/記録/採否を代行しない。該当scope不足で無関係Qを全停止にしない。",
+    "selected_sink_contract": "供給された独立owner契約を、受領routeのsink/project/source revision/owner/identity/revision/原conditionの照合基準にする。実根拠の資格は別bindingで成立させ、候補routeやsignalから必要契約を生成しない。",
+    "condition_comparison": "同一owner契約revisionの原condition内容への対応を検査。fixtureのsynthetic scalarは原内容照合用で、異意味source間の条件同値性を文字列一致/LLMで判定する新方式ではない。条件未供給はunknown、原内容と異なる受領宣言はconflictとしてownerへ返す。",
+    "claim_results": "任意claimはclaim_resultsの辞書に分ける。claim無しは空辞書、昇格claimにsignalだけの裏付けはclaimed_promotion:not_supported。元owner結果の参照対応はresult_binding/owner_result_refで別に保持し、新昇格や許可を生成しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L4-001-F01",
+      "requirement_ref": "HELIXSECURITY-L3-001-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-001-F01",
+      "oracle_ref": "HELIXSECURITY-L9-001-F01",
+      "approved_requirement": {
+        "id": "HELIXSECURITY-L3-001-F01",
+        "parent": "HELIXSECURITY-L2-001",
+        "title": "外部入力の未信頼と出所",
+        "obligation": "外部情報/AI生成物/Tool出力/Issue/PR/Web/MCP/文書をsource・project・revision・data classificationへ結び未信頼dataとして保持する。読む/信頼/命令/authority/永続化/学習を分け、分類不能はunknownのまま保持する。",
+        "oracle_ref": "HELIXSECURITY-L10-001-F01"
+      },
+      "component": "untrusted_source_binding_reader",
+      "input_meanings": [
+        "原source metadataとsource種別、独立source/分類内容、target project/revision",
+        "読む経路の局所結果と元Read/Trust/Instruction/Authority/Persist/Learn各軸、任意claim"
+      ],
+      "output_meanings": [
+        "原source参照とuntrusted data、原六軸を変えない材料",
+        "source/classification各対応・unknown/不足/不一致と原owner返却候補"
+      ],
+      "content_comparison": [
+        "外部情報/AI/Tool/Issue/PR/Web/MCP/文書をそれぞれ未信頼dataとして保持。原identity/project/revisionを独立owner metadataへ照合し別scopeを混ぜない。",
+        "分類はownerの既存分類内容へ照合。欠落/分類不能はunknown、相反は局所conflict。読む成功をtrusted/instruction/authority/persist/learnへ代入せず、分類unknownをpublicへdefaultしない。",
+        "候補claimを原値から分離し、read/存在/digest一致だけの新成立claimは原軸を上書きできない。既存ownerが別経路で成立させた原状態もreadで新設/撤回せず保持する。"
+      ],
+      "qualification_rule": "原source/分類と選択owner経路/結果を独立入力からidentity/project/revision/scope/owner/contentごと比較。合成対照は実資格ではなく、実root/owner bindingは後続で成立させる。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L4-001-F02",
+      "requirement_ref": "HELIXSECURITY-L3-001-F02",
+      "system_oracle_ref": "HELIXSECURITY-L10-001-F02",
+      "oracle_ref": "HELIXSECURITY-L9-001-F02",
+      "approved_requirement": {
+        "id": "HELIXSECURITY-L3-001-F02",
+        "parent": "HELIXSECURITY-L2-001",
+        "title": "明示した昇格経路の分離",
+        "obligation": "要求/Agent instruction/Tool authority/memory/BRAIN/training data/security policyへの昇格は各ownerの明示経路へ結ぶ。入力の存在や通知ACK、review commentだけで昇格しない。個別sinkの保存/採用はその契約へ戻す。",
+        "oracle_ref": "HELIXSECURITY-L10-001-F02"
+      },
+      "component": "owner_promotion_route_comparer",
+      "input_meanings": [
+        "選択した七sink、原sourceの対象project/revision/classification",
+        "そのsinkの既存ownerが持つ明示経路の参照/内容、条件と原owner結果、claimと通知/review signal",
+        "選択sinkが要求する既存owner契約の独立内容。受領routeを元に必要owner/条件/版を作り直さない。"
+      ],
+      "output_meanings": [
+        "sinkごとの経路照合/不足と原owner結果の対応、原未成立状態",
+        "未発生結果と未解決経路の区別、owner別返却候補と原source参照"
+      ],
+      "content_comparison": [
+        "読む経路と七sinkの昇格経路は別。ownerの経路は当該sink/source project/revisionへ照合し、異owner/異版/別projectを適用しない。未選択sinkの後続完了を初回一律gateにしない。",
+        "既存ownerの経路が対応しても、結果未供給は未発生/未成立として保存し、後続結果を依頼材料の前提へ前倒ししない。結果が供給されたときはsource/経路/sink/owner/scopeを独立原内容へ照合し、owner元結果の参照だけを返す。",
+        "存在/ACK/review comment/下位greenは採用/保存/学習/要求/命令/authority成立ではない。本文をinstructionへ直結するclaimやsink owner代行のclaimは当該経路未成立で返し、原data/元owner結果を更新しない。",
+        "source/classificationの不足・矛盾は当該原ownerへ、route条件/経路/owner/結果の不足・相反は当該sink ownerへ別に返す。入力不足に依存するroute/result対応は未評価とし、無関係な有効Qを保持する。",
+        "選択sink契約のsource identity/project/revisionも今回sourceへ照合する。原resultが存在しても入力意味不足は補償されず、原result参照を保持した未評価として返す。"
+      ],
+      "qualification_rule": "原source/分類と選択owner経路/結果を独立入力からidentity/project/revision/scope/owner/contentごと比較。合成対照は実資格ではなく、実root/owner bindingは後続で成立させる。",
+      "operation_effect": "none"
+    }
+  ],
+  "fixture_progress": {
+    "cases_by_function": {
+      "F01": 37,
+      "F02": 231
+    },
+    "synthetic_only": true,
+    "formal_schema_or_actual_execution": false
+  },
+  "diagnostic_contract": {
+    "scope": "001のinput/source/classification/owner route/result照合の内部診断候補。正式typed finding/wire schemaは後続L5/L8で確定する。",
+    "shared_source_vocabulary": "同一source/分類比較はF01/F02で同じissues codeを返す。欠落とnullのclassificationはclassification_unresolvedに揃える。原値/欠落keyの違いはoriginal_sourceから辿れ、診断codeで原入力を変更しない。",
+    "diagnostic_order": "source owner原内容、identity/project/revision、classification宣言/owner内容を先に比較する。不足で依存route/resultがnot_evaluatedなら根拠となるsource/classification診断を保存。routeの選択対象→受領tuple→原condition→元resultを照合する。無関係Qを巻き込まない。",
+    "issues_requirement": "不足/相反によりowner_return_candidatesを返すcaseはissuesが非空。将来result未発生だけの正常依頼材料と、claim_resultsだけの未支持claimはissuesへ擬似errorを生成しない。",
+    "claim_separation": "issuesは元内容のbinding診断、claim_resultsは任意主張の判定。元owner結果の対応と原参照は別に保持。診断でauthority/昇格/保存の新状態を発行しない。",
+    "codes": [
+      "classification_class_mismatch",
+      "classification_owner_unresolved",
+      "classification_project_mismatch",
+      "classification_revision_mismatch",
+      "classification_source_identity_mismatch",
+      "classification_unresolved",
+      "identity_mismatch",
+      "identity_missing",
+      "project_mismatch",
+      "project_missing",
+      "result_owner_mismatch",
+      "result_project_mismatch",
+      "result_route_identity_mismatch",
+      "result_route_revision_mismatch",
+      "result_sink_mismatch",
+      "result_source_identity_mismatch",
+      "result_source_revision_mismatch",
+      "revision_mismatch",
+      "revision_missing",
+      "route_condition_mismatch",
+      "route_condition_missing",
+      "route_identity_mismatch",
+      "route_missing",
+      "route_owner_mismatch",
+      "route_project_mismatch",
+      "route_revision_mismatch",
+      "route_sink_mismatch",
+      "route_source_revision_mismatch",
+      "selected_sink_contract_source_mismatch",
+      "source_owner_unresolved"
+    ],
+    "code_meaning": "*_missingは必要原内容の未供給、*_unresolvedは意味/原owner分類等の未決、*_mismatchは同じbindingの原内容との相反。route/resultのprefixは対象面の所在でありsourceの関数別codeは設けない。"
+  }
+}
