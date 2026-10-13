@@ -697,7 +697,24 @@
       ],
       "preserve": "sorted record/array順保持/有限数とbyte digestの分離",
       "change": "旧TS/number formatter/UTF16 orderをcopyせずstrict受領AST/原tokenと既domain digest分離へ再導出",
-      "reason": "既承認004の内容比較を文字置換/重複key/数値丸め/旧分類だけで成立させないため。codec選定の新承認/旧authority移植を生成しない。"
+      "reason": "既承認004の内容比較を文字置換/重複key/数値丸め/旧分類だけで成立させないため。codec選定の新承認/旧authority移植を生成しない。",
+      "numeric_emission_rederivation": {
+        "read_line_locators": [
+          9,
+          18,
+          19,
+          21,
+          22,
+          26,
+          35,
+          36,
+          37,
+          40
+        ],
+        "preserve": "array順/record key整列、非JSON/cycle拒否とraw byte digest分離。",
+        "change": "旧Number/binary64 formatter/UTF16 key sortをcopyせず、数学decimal内容/Unicode scalar順/strict UTF8/出力capの純粋候補へ再導出。",
+        "reason": "大integerや精密小数の丸めを内容一致にせず、旧部分serializerのbytesを現行authorityへ移植しないため。capの固定値/新しい承認手続きは作らない。"
+      }
     },
     {
       "asset_id": "LEGACY-ASSET-9C454F2D93A8F34BD997",
@@ -806,7 +823,7 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。",
+    "004の7契約の関数と原例対応を具体化済み。各契約の追加全oracle/正式binding/凍結と設計閉包を続ける。 7契約のlogical shapeをJSON Schemaへ構造具体化。正式wire registry/codec/全negative/意味条件の凍結は未完。 H4T-M1対応で宣言digest/欠落joinの受領型と資格済み型を分離、全既case材料を照合。 strict wire受領AST/原token保全の28部分oracleを追加。正式materializer/数値emitter/codec凍結は未完。 exact decimal内容とcanonical emissionの部分設計を追加。formal host/schema adapter/consumer/codec版/資源bindingは未完。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
     "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。 Context19否定例でsourceと役割資格/未使用不足を分離。",
     "F02は17例/独立合成Contextとfinite fixed pointを定義。追加全oracle/実資格/codec/対L6L7は未完。 Context17否定例を追加し関係不足/固有義務不足/履歴資格を分離。全oracle/実bindingは未完。 diamond/cycle4合成graphと固定Context2件を追加。全構造・全finding・実qualificationは未完。",
@@ -9322,8 +9339,64 @@
       "unicode_scalar_invalid"
     ],
     "diagnostic_limit": "lexicalに解釈不能なdocumentから完全ASTやdomain valueを捏造しない。拒否でもraw bytes/digestを保全。全副次finding/byte span/全複合は未完、下のminimum code/AST指定例は部分oracle。",
-    "number_and_digest_boundary": "原bytes digestとdomain logical canonical digestを別にする。既L9由来190原例のsource packetを照合した範囲ではJSON数値はintegerだけ（型境界/新wire小数例や実入力全体の範囲制限ではない）であり旧binary64 formatterの採用根拠にしない。数値tokenはASTでlosslessに保持し、数学内容比較/厳密logical materializer/小数・exponent canonical emissionと実consumer版は後続で固定する。既定host conversionや旧JSON.stringifyで丸めてhashを作らない。",
+    "number_and_digest_boundary": "原bytes digestとdomain logical canonical digestを別にする。既L9由来190原例のsource packetを照合した範囲ではJSON数値はintegerだけ（型境界/新wire小数例や実入力全体の範囲制限ではない）であり旧binary64 formatterの採用根拠にしない。数値tokenはASTでlosslessに保持し、数学内容比較/厳密logical materializer/小数・exponent canonical emissionと実consumer版は後続で固定する。既定host conversionや旧JSON.stringifyで丸めてhashを作らない。 exact_number_contractとcanonical_emit_contractに数学内容とlogical出力規則を具体化した。正式host/schema materializerとconsumer/codec版のbindingは未完。",
     "legacy_discrepancy": "旧digest inventoryのsrc/workflow/workflow-guide.ts::stableJsonはsorted-object-keys-array-order-preservedとあるが、実source114-116はJSON.stringifyのみ。この分類不一致を現行のkey sort成立根拠にしない。旧shared canonicalJsonはUTF-16 .sortとNumber有限性を使い、旧compareBytewiseはsurrogateのU+FFFD衝突をtie-breakする。現行は既定Unicode順/strict UTF-8からlone surrogate拒否へ再導出し旧sourceをcopy/実行しない。",
     "unclosed": "formal wire registry/consumer/materializer/数値比較・emitter版/資源policy/全lexical finding/全codec oracle/L6L7凍結は未完。decoder例の静的整合を実I/O/probe/運転/実装完了にしない。"
+  },
+  "exact_number_contract": {
+    "status": "draft_design_exact_decimal_semantics_not_host_binding",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "model": {
+      "ExactFiniteDecimal": {
+        "sign": "-1 | 0 | 1",
+        "coefficient_digits": "0又は先頭/末尾zeroのない非空ASCII十進digit列",
+        "decimal_exponent": "任意精度integerの正規十進文字列。plus/leading zeroなし、zeroは0。host floatへ変換しない。"
+      },
+      "meaning": "sign * integer(coefficient_digits) * 10**integer(decimal_exponent)の数学値。JSON numberの内部比較表現であり、元JSONへobjectを代入しない。raw number tokenは別保持。"
+    },
+    "normalization": [
+      "RFC number文法を先に確認。integer/fraction/exponentを原tokenから取り、coefficientへ数字を連結しexponentからfraction桁数を引く。host float/固定精度roundを経由しない。",
+      "leading zeroを除き、zeroならsign0/coefficient0/exponent0へ。nonzeroはcoefficient末尾zeroを除いた桁数をexponentへ足す。negative zeroの原tokenはdecoder ASTに保持し、数学zeroの内容比較ではzeroへ。",
+      "既LogicalJsonのnumberは同じ数学category。1/1.0/1e0は内容同値、0.1と0.10000000000000001は別値。bool/stringは別kindとして比較しtrue/1/文字1を同値化しない。",
+      "schemaのtype number/integer/const/enumの数学比較へ接続するhost adapterはこのExactFiniteDecimalの意味を満たす。型やpredicateを通すため近似floatへ変換しない。正式adapter/consumer bindingは別に閉じる。"
+    ],
+    "ordering": "符号を比較し、非zeroはcoefficient桁数+decimal_exponentの数学整数から大きさを比較。同じ桁位置では必要な桁だけを比較し、末尾zero補完で内容を失わない。配列/比較値そのものへ補完zeroを保存しない。",
+    "unclosed": "正式Python number/JSON Schema adapter/資源bindingと全算術oracleは未完。表現の内容契約であり実materializer/実数値計算成功を生成しない。"
+  },
+  "canonical_emit_contract": {
+    "status": "draft_design_logical_canonical_emission_not_registered_wire_codec",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "symbol": "emit_canonical_trace_json",
+    "signature": "emit_canonical_trace_json(ast: WireNode, max_output_bytes: int | None) -> CanonicalEmitResult",
+    "model": {
+      "CanonicalEmitResult": {
+        "status": "emitted | unresolved | rejected",
+        "ast_retained": "literal true",
+        "canonical_utf8_hex": "Text | null（emittedだけ）",
+        "logical_sha256": "bare SHA-256 | null（完全emittedだけ）",
+        "findings": "tuple[{code,pointer,return_owner}]",
+        "schema_handoff": "literal false（正式consumer/codec版未閉包）",
+        "actual_effects": "literal none"
+      }
+    },
+    "number_format": "ExactFiniteDecimalを普通十進記法へ。exponent>=0ならcoefficient+zero、負なら桁位置へdecimal point、桁位置<=0なら0.+zero+coefficient。不要な末尾zero/point、plus、exponentを出さずzeroは0。符号はnonzero負だけ。数学値を変えず、原token形式は別rawで保全する。これは独自logical canonical profileでありRFC8785/JCS/binary64 formatterを名乗らない。",
+    "string_format": "Unicode scalarをstrict UTF-8へ。quote/backslashはJSON escape、C0は既\\b/\\f/\\n/\\r/\\t又はlowercase \\u00xx、solidusと他のscalarはescape不要。NFC/NFD、trim、改行正規化をしない。lone surrogateを置換しない。",
+    "object_and_array": "object decoded keyはUnicode scalar codepoint順へ整列、array順は保持。compact comma/colon、外側whitespace/newline/BOMを出さない。原ASTのmember順は変更せず、出力だけcanonical順へ。duplicate key/未知kind/未知field/欠落field/non-scalar/cyclic host graphを拒否し資料を保全する。",
+    "capacity_boundary": "max_output_bytesはcaller指定の非負integer、bool不可。Noneではemission_budget_unresolved、超過はemission_budget_exceededをunresolvedへ返し、JSON数学値や入力をinvalid/0/unchangedへしない。巨大exponentも必要出力長を数学整数で先に求め、予算内と確認する前にzero展開/buffer allocationを行わない。部分bytes/hashを完全結果へしない。cap値の指定は実resource lease/authorityではなく、実consumerはINFRA/SECの既契約で対象scope/revisionの容量と権限を別に確かめる。固定数値の既定capや新承認を作らない。",
+    "finding_codes": [
+      "number_token_invalid",
+      "unicode_scalar_invalid",
+      "wire_ast_invalid",
+      "duplicate_key",
+      "cyclic_ast",
+      "emission_budget_invalid",
+      "emission_budget_unresolved",
+      "emission_budget_exceeded"
+    ],
+    "return_owner": "wire-codec-owner",
+    "digest_boundary": "完全canonical bytesだけをbare SHA-256へ。raw transport/owner bytesのdigestとroleを分け、bytes一致やlogical digest一致を原owner資格/実観測/承認にしない。旧prefixed/truncated digest形式を移植しない。",
+    "unclosed": "正式wire registry/consumer/host数値・schema adapter/資源policy/全host不正・副次finding/codec版/L6L7凍結は未完。emitted例は設計oracleで実I/O/保存/運転の成立ではない。"
   }
 }
