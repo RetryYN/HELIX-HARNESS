@@ -10,17 +10,17 @@
     "version_target": "1.0",
     "approved_content_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
     "detail_requirements_in_this_revision": [
-      "HARNESS-L3-004-F04"
+      "HARNESS-L3-004-F04",
+      "HARNESS-L3-004-B01"
     ],
     "remaining_requirement_refs": [
-      "HARNESS-L3-004-B01",
       "HARNESS-L3-004-F01",
       "HARNESS-L3-004-F02",
       "HARNESS-L3-004-F03",
       "HARNESS-L3-004-F05",
       "HARNESS-L3-004-N01"
     ],
-    "boundary": "004-F04のsource atom分割を具体化する初回部分詳細。004全7契約の完了や実移管/実判断資格を生成しない。"
+    "boundary": "004-F04の無損失分割とB01の変更分類/運転境界を部分詳細化。残5契約/正式binding/全oracleを未完保持し、全004完了や実作用を生成しない。"
   },
   "source_pins": [
     {
@@ -52,6 +52,16 @@
       "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
       "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
       "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
     }
   ],
   "legacy_comparison": [
@@ -72,7 +82,47 @@
         }
       ],
       "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
-      "detail_rederivation": "stable atom/要求revision・source原文と生存先/人間判断の分離・全atomの処置を、純粋Pythonのpartition比較へ導出する。旧Ledger/DB/consumer書込を実行・移植しない。"
+      "detail_rederivation": "stable atom/要求revision・source原文と生存先/人間判断の分離・全atomの処置を、純粋Pythonのpartition比較へ導出する。旧Ledger/DB/consumer書込を実行・移植しない。",
+      "b01_rederivation": {
+        "read_line_locators": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "line_quotes": [
+          {
+            "line": 31,
+            "text": "利用者要求はL2、FR／NFR／ACの定義・凍結はL3であり、利用者受入はL11である。"
+          },
+          {
+            "line": 38,
+            "text": "GitHub Issue／PRは作業・実行証跡への参照先であり、要求の意味・採否・合意revisionの正本ではない。"
+          },
+          {
+            "line": 39,
+            "text": "Issueの有無やclose状態から要求を追加・削除せず、要求本文、出典、対象revisionの判断記録を確認する。"
+          },
+          {
+            "line": 40,
+            "text": "DBのtrace／状態projectionも、repo-owned要求文書と指定JSONの意味を上書きしない。"
+          },
+          {
+            "line": 41,
+            "text": ""
+          }
+        ],
+        "preserve": "旧要求正本/対象revision/出典とIssue・DB projectionの区別。",
+        "change": "旧DB/層pathから意味を生成せず、純粋内容比較と役割別返却に具体化。",
+        "reason": "B01承認条件へ接続し、原trace責務を失わないため。"
+      }
     },
     {
       "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
@@ -114,6 +164,59 @@
         "adoption": "selected_semantic_comparison_not_whole_legacy_requirement_or_runtime"
       },
       "detail_rederivation": "stable atom/要求revision・source原文と生存先/人間判断の分離・全atomの処置を、純粋Pythonのpartition比較へ導出する。旧Ledger/DB/consumer書込を実行・移植しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5DAB2F0E1C13F846CABB",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md",
+      "sha256": "33462610beba32ec952b1eb4cb3ef4f57886a0ddb7f116ea9949d50042099f59",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 13,
+          "text": "`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`で小さく収束する。S4の採用判断は"
+        },
+        {
+          "line": 14,
+          "text": "Scrum内でproduct authorityを変更せず、正規Vモデルの該当層へScrum Reverseする。"
+        },
+        {
+          "line": 16,
+          "text": "product要求・設計・実装はcanonical L1〜L12のForwardで進める。管理上の緊急性を理由にVペア、"
+        },
+        {
+          "line": 17,
+          "text": "上下edge、TDD、review、acceptanceを省略しない。"
+        },
+        {
+          "line": 24,
+          "text": "- Project Statusから上流意味、承認、完了状態を逆書込みしない。"
+        },
+        {
+          "line": 28,
+          "text": "Issueは観測、影響範囲、再発回数、提案するgate／checklist、現在のScrum stage、Scrum Reverse先を"
+        },
+        {
+          "line": 29,
+          "text": "欠落なく保持する。同一findingを重複起票せず、既存Issueへ観測証拠を追記する。"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "read_line_locators": [
+        13,
+        14,
+        16,
+        17,
+        24,
+        28,
+        29
+      ],
+      "locator_semantics": "explicit individual content lines; file bytes unchanged",
+      "detail_rederivation": {
+        "preserve": "管理projectionを要求/承認/完了へ逆書込みしない。product Forwardと管理改善の意味/operationを分け、TDD・対検証を省略しない。",
+        "change": "旧Scrum stage/DB/PLAN/trigger/runtimeを移植せず、B01の純粋内容分類とowner別の不足・候補返却へ再導出。",
+        "reason": "承認B01と現在のHARNESS導出/OS運転境界へ具体化するため。旧assetのunresolvedを採用や実copy許可にしない。"
+      }
     }
   ],
   "full_goal_scope_preserved": {
@@ -122,8 +225,9 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004 B01/F01/F02/F03/F05/N01の6契約を同じL5/L8文書へ追加する。",
+    "004 F01/F02/F03/F05/N01の5契約を同じL5/L8文書へ追加する。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
+    "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
   ],
   "document_id": "HARNESS-L8-004",
@@ -4072,6 +4176,2958 @@
           "execution_state": "not_executed"
         }
       ]
+    },
+    {
+      "id": "HARNESS-L8-004-B01",
+      "design_ref": "HARNESS-L5-004-B01",
+      "requirement_ref": "HARNESS-L3-004-B01",
+      "l9_ref": "HARNESS-L9-004-B01",
+      "approved_system_oracle": {
+        "id": "HARNESS-L10-004-B01",
+        "parent": "HARNESS-L2-004",
+        "title": "trace・変更判断と運転の境界",
+        "requirement_ref": "HARNESS-L3-004-B01",
+        "positive_input": "同じfindingを意味変更/実装故障/外部環境変化として根拠別に照合する。",
+        "expected_observation": "変更の種類/影響/ownerと運転未成立を分け、管理projectionから正本へ逆書込みしない。",
+        "negative_input": "全findingをRefactor、旧triggerをcurrent、Project状態で意味変更/完了、HARNESSがticket発行/保存を代行。",
+        "failure_observation": "当該種類/owner不足を保持し、候補提示から実操作を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "cases": [
+        {
+          "id": "H004-L8-B01-NORMAL-MEANING",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-NORMAL-MEANING",
+          "l9_case_sha256": "f749273a004dfd0d617e39d04af1bd1814ae8ee9b4632a7fcd6aaad71e3c13c0",
+          "source_case": {
+            "id": "H004-B01-NORMAL-MEANING",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-NORMAL-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-NORMAL-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": null,
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "outcome": "content_supported",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-NORMAL-IMPLEMENTATION",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-NORMAL-IMPLEMENTATION",
+          "l9_case_sha256": "24e2b99d8a8dea383724d4a1f3a0ff1ed41e21c950c66376ad11bb25391118d2",
+          "source_case": {
+            "id": "H004-B01-NORMAL-IMPLEMENTATION",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-NORMAL-IMPLEMENTATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-NORMAL-IMPLEMENTATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":2},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "c0907bc7f7232044ceabc9a5fff89e3c85244f27060755a73f48263a3bc0811c",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "implementation_fault",
+              "route_candidate": "implementation_repair_and_reverification",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": "implementation-owner",
+              "evidence_basis": "same_contract_content_different_behavior"
+            },
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": null,
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "implementation_fault",
+              "route_candidate": "implementation_repair_and_reverification",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": "implementation-owner",
+              "evidence_basis": "same_contract_content_different_behavior"
+            },
+            "outcome": "content_supported",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-NORMAL-ENVIRONMENT",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-NORMAL-ENVIRONMENT",
+          "l9_case_sha256": "b9be1c2a9211cb2ed46f20510c756c6c8de65cd6e53df51d5dd7c973a08c8f39",
+          "source_case": {
+            "id": "H004-B01-NORMAL-ENVIRONMENT",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-NORMAL-ENVIRONMENT",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-NORMAL-ENVIRONMENT",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":null,\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r2\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "99e234807ed269e50328bdb4e6d8dbddcf9f6925d98396962b5ffa1fc878ffa5",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "external_environment_change",
+              "route_candidate": "environment_reobservation_and_impact_evaluation",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": "environment-owner",
+              "evidence_basis": "before_after_environment_content"
+            },
+            "execution_state": "not_executed",
+            "effect": "none"
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": null,
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "external_environment_change",
+              "route_candidate": "environment_reobservation_and_impact_evaluation",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": "environment-owner",
+              "evidence_basis": "before_after_environment_content"
+            },
+            "outcome": "content_supported",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-SOURCE-MISSING",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-SOURCE-MISSING",
+          "l9_case_sha256": "9ee25e6bbe2c806f0db1116358f2e0f2fceee7a11959c2e414a45e822daddc6f",
+          "source_case": {
+            "id": "H004-B01-SOURCE-MISSING",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-SOURCE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-SOURCE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":null,\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "db3baa21067e930e1da8efb51996fc7c8f0d48cd5ec115790d29212b8b6ed90e",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "missing",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "source_binding"
+              ],
+              "before": {
+                "scope": "PRODUCT-P",
+                "binding": "REQ@r1",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "after": null
+            },
+            "mutation_lane": "original",
+            "base_case_ref": "H004-B01-NORMAL-MEANING"
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": null,
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "missing",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "outcome": "incomplete",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-SOURCE-STALE",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-SOURCE-STALE",
+          "l9_case_sha256": "0a614ca22d9cd61fd5092d135b20a1d781cab7a9a0c5c8871a40cd74f7e415eb",
+          "source_case": {
+            "id": "H004-B01-SOURCE-STALE",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-SOURCE-STALE",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-SOURCE-STALE",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r0\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "370efba28657257fff344a7796bf6349cf4764674121da15b0bdc427d2753bc3",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "stale",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "source_binding",
+                "binding"
+              ],
+              "before": "REQ@r1",
+              "after": "REQ@r0"
+            },
+            "mutation_lane": "original",
+            "base_case_ref": "H004-B01-NORMAL-MEANING"
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": null,
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "stale",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "outcome": "stale",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-SOURCE-FOREIGN-SCOPE",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-SOURCE-FOREIGN-SCOPE",
+          "l9_case_sha256": "a19dc2f43ca0cfbf68f197f269a5ce953934ff5d2f05b9009710d21d80899d6a",
+          "source_case": {
+            "id": "H004-B01-SOURCE-FOREIGN-SCOPE",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-SOURCE-FOREIGN-SCOPE",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-SOURCE-FOREIGN-SCOPE",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-Q\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "073d2e0af00d95a22390c3b40a95c9181445200e21318a9c693554edd186bf50",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "conflict",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "source_binding",
+                "scope"
+              ],
+              "before": "PRODUCT-P",
+              "after": "PRODUCT-Q"
+            },
+            "mutation_lane": "original",
+            "base_case_ref": "H004-B01-NORMAL-MEANING"
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": null,
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "conflict",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-BEFORE-SIGNATURE-MISSING",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-BEFORE-SIGNATURE-MISSING",
+          "l9_case_sha256": "dd4d46bca09c36aa01467b4712b96dff750277ef42156fa6700ddbedaccb9e95",
+          "source_case": {
+            "id": "H004-B01-BEFORE-SIGNATURE-MISSING",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-BEFORE-SIGNATURE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-BEFORE-SIGNATURE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":null,\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "0c7ac32cc7d4766c972517bb94066b3a45539cdf3e4302dfa9b16d2eb7bb2ad5",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "missing",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "before_signature"
+              ],
+              "before": {
+                "value": "one debit per command",
+                "requirement_acceptance": {
+                  "debits_per_command": 1
+                },
+                "architecture": "account aggregate owns debit",
+                "detail": "command-id deduplication"
+              },
+              "after": null
+            },
+            "mutation_lane": "original",
+            "base_case_ref": "H004-B01-NORMAL-MEANING"
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": null,
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "missing",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "outcome": "incomplete",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-PROPOSED-SIGNATURE-MISSING",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-PROPOSED-SIGNATURE-MISSING",
+          "l9_case_sha256": "dd4bf10357f342eee25a454403d303567d0bea61580cf8fc614cc9cc5d7d8030",
+          "source_case": {
+            "id": "H004-B01-PROPOSED-SIGNATURE-MISSING",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-PROPOSED-SIGNATURE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-PROPOSED-SIGNATURE-MISSING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":null,\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "56c5fa4b150cbe199a815c1a22be09f2918e4e7b8fb14a27adcacf82b4a214fc",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "missing",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "proposed_signature"
+              ],
+              "before": {
+                "value": "one debit per command",
+                "requirement_acceptance": {
+                  "debits_per_command": 2
+                },
+                "architecture": "account aggregate owns debit",
+                "detail": "command-id deduplication"
+              },
+              "after": null
+            },
+            "mutation_lane": "original",
+            "base_case_ref": "H004-B01-NORMAL-MEANING"
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": null,
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "missing",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "Unknown",
+              "route_candidate": "unresolved_evidence_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "missing_or_unqualified_source"
+            },
+            "outcome": "incomplete",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-OWNER-MISSING-MEANING",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-OWNER-MISSING-MEANING",
+          "l9_case_sha256": "0f9a19147a5524fa983e323982e3e400d285db89b432bf5320ce4959de6c2b2c",
+          "source_case": {
+            "id": "H004-B01-OWNER-MISSING-MEANING",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-OWNER-MISSING-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-OWNER-MISSING-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":null,\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "3441b0f0e4c3d55037010c49b71f88939ba5bf2a25e4906352af3fe3083a803c",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "missing",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "unresolved_owner_return",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": null,
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "owner_bindings",
+                "meaning"
+              ],
+              "before": "upstream-meaning-owner",
+              "after": null
+            },
+            "mutation_lane": "original",
+            "base_case_ref": "H004-B01-NORMAL-MEANING"
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": null,
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "missing",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "unresolved_owner_return",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": null,
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "outcome": "incomplete",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-OWNER-MISSING-IMPLEMENTATION",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-OWNER-MISSING-IMPLEMENTATION",
+          "l9_case_sha256": "c828d2a970dedf17433078afd9d7d6e530491770a41a982ec68084796c2eb519",
+          "source_case": {
+            "id": "H004-B01-OWNER-MISSING-IMPLEMENTATION",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-OWNER-MISSING-IMPLEMENTATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-OWNER-MISSING-IMPLEMENTATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":2},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":null,\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "432f2c02e51f10b6edfcb78159ba1fe35772d41d03f0d1ca67a1a8dfde2b9c66",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "missing",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "implementation_fault",
+              "route_candidate": "unresolved_owner_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "same_contract_content_different_behavior"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "owner_bindings",
+                "implementation"
+              ],
+              "before": "implementation-owner",
+              "after": null
+            },
+            "mutation_lane": "original",
+            "base_case_ref": "H004-B01-NORMAL-IMPLEMENTATION"
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": null,
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "missing",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "implementation_fault",
+              "route_candidate": "unresolved_owner_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "same_contract_content_different_behavior"
+            },
+            "outcome": "incomplete",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-OWNER-MISSING-ENVIRONMENT",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-OWNER-MISSING-ENVIRONMENT",
+          "l9_case_sha256": "965cfe78ffeed110e3be688110759d7611c79ae517f178ab4fe5ca5ba89ecd53",
+          "source_case": {
+            "id": "H004-B01-OWNER-MISSING-ENVIRONMENT",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-OWNER-MISSING-ENVIRONMENT",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-OWNER-MISSING-ENVIRONMENT",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":null,\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r2\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":null},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "428fc85eb6c5a5d674650316be5bf52a82981b7b7ee90da90f67466c3201a331",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "missing",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "external_environment_change",
+              "route_candidate": "unresolved_owner_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "before_after_environment_content"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "owner_bindings",
+                "environment"
+              ],
+              "before": "environment-owner",
+              "after": null
+            },
+            "mutation_lane": "original",
+            "base_case_ref": "H004-B01-NORMAL-ENVIRONMENT"
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": null,
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "missing",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "external_environment_change",
+              "route_candidate": "unresolved_owner_return",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": null,
+              "evidence_basis": "before_after_environment_content"
+            },
+            "outcome": "incomplete",
+            "candidate_disposition": "not_submitted",
+            "candidate_conflicting_fields": [],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-ALL-REFACTOR-MEANING",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-ALL-REFACTOR-MEANING",
+          "l9_case_sha256": "13d289ce77eced7982fa27fbba88f5299bd3f0be53e16c4985c33922016ade5b",
+          "source_case": {
+            "id": "H004-B01-ALL-REFACTOR-MEANING",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-ALL-REFACTOR-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-ALL-REFACTOR-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content",
+              "candidate_disposition": "conflict",
+              "candidate_conflicting_field": "route_candidate"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "route_candidate"
+              ],
+              "before": "backflow_to_changed_upstream",
+              "after": "single_refactor_for_all_findings"
+            },
+            "mutation_lane": "candidate",
+            "base_case_ref": "H004-B01-NORMAL-MEANING",
+            "submitted_candidate": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "single_refactor_for_all_findings",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            }
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "single_refactor_for_all_findings",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "route_candidate"
+            ],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-ALL-REFACTOR-IMPLEMENTATION",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-ALL-REFACTOR-IMPLEMENTATION",
+          "l9_case_sha256": "3a3f175f606e3782b88f1ef17ce4e09d3f6c8238478220f31d677ccd6e94f519",
+          "source_case": {
+            "id": "H004-B01-ALL-REFACTOR-IMPLEMENTATION",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-ALL-REFACTOR-IMPLEMENTATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-ALL-REFACTOR-IMPLEMENTATION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":2},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "c0907bc7f7232044ceabc9a5fff89e3c85244f27060755a73f48263a3bc0811c",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "implementation_fault",
+              "route_candidate": "implementation_repair_and_reverification",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": "implementation-owner",
+              "evidence_basis": "same_contract_content_different_behavior",
+              "candidate_disposition": "conflict",
+              "candidate_conflicting_field": "route_candidate"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "route_candidate"
+              ],
+              "before": "implementation_repair_and_reverification",
+              "after": "single_refactor_for_all_findings"
+            },
+            "mutation_lane": "candidate",
+            "base_case_ref": "H004-B01-NORMAL-IMPLEMENTATION",
+            "submitted_candidate": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "implementation_fault",
+              "route_candidate": "single_refactor_for_all_findings",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": "implementation-owner",
+              "evidence_basis": "same_contract_content_different_behavior"
+            }
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "implementation_fault",
+            "route_candidate": "single_refactor_for_all_findings",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": "implementation-owner",
+            "evidence_basis": "same_contract_content_different_behavior"
+          },
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "implementation_fault",
+              "route_candidate": "implementation_repair_and_reverification",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": "implementation-owner",
+              "evidence_basis": "same_contract_content_different_behavior"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "route_candidate"
+            ],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-ALL-REFACTOR-ENVIRONMENT",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-ALL-REFACTOR-ENVIRONMENT",
+          "l9_case_sha256": "12735d87fc0bc7c61da7522067fd357a898dffd5b9a3de12364ba63a93a052a0",
+          "source_case": {
+            "id": "H004-B01-ALL-REFACTOR-ENVIRONMENT",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-ALL-REFACTOR-ENVIRONMENT",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-ALL-REFACTOR-ENVIRONMENT",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":null,\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r2\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "99e234807ed269e50328bdb4e6d8dbddcf9f6925d98396962b5ffa1fc878ffa5",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "external_environment_change",
+              "route_candidate": "environment_reobservation_and_impact_evaluation",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": "environment-owner",
+              "evidence_basis": "before_after_environment_content",
+              "candidate_disposition": "conflict",
+              "candidate_conflicting_field": "route_candidate"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "route_candidate"
+              ],
+              "before": "environment_reobservation_and_impact_evaluation",
+              "after": "single_refactor_for_all_findings"
+            },
+            "mutation_lane": "candidate",
+            "base_case_ref": "H004-B01-NORMAL-ENVIRONMENT",
+            "submitted_candidate": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "external_environment_change",
+              "route_candidate": "single_refactor_for_all_findings",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": "environment-owner",
+              "evidence_basis": "before_after_environment_content"
+            }
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "external_environment_change",
+            "route_candidate": "single_refactor_for_all_findings",
+            "changed_meaning_axes": [],
+            "backflow_layer_candidate": null,
+            "responsible_owner": "environment-owner",
+            "evidence_basis": "before_after_environment_content"
+          },
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "external_environment_change",
+              "route_candidate": "environment_reobservation_and_impact_evaluation",
+              "changed_meaning_axes": [],
+              "backflow_layer_candidate": null,
+              "responsible_owner": "environment-owner",
+              "evidence_basis": "before_after_environment_content"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "route_candidate"
+            ],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-HARNESS-TICKET",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-HARNESS-TICKET",
+          "l9_case_sha256": "4936d3aa0e9b21ec718b9fa27fe31be88347a181e75b0b00f18e012de2a8d8a4",
+          "source_case": {
+            "id": "H004-B01-HARNESS-TICKET",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-HARNESS-TICKET",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-HARNESS-TICKET",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content",
+              "candidate_disposition": "conflict",
+              "candidate_conflicting_field": "actual_ticket_issued"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "actual_ticket_issued"
+              ],
+              "before": false,
+              "after": true
+            },
+            "mutation_lane": "candidate",
+            "base_case_ref": "H004-B01-NORMAL-MEANING",
+            "submitted_candidate": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": true,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            }
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": true,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "actual_ticket_issued"
+            ],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-HARNESS-SAVE",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-HARNESS-SAVE",
+          "l9_case_sha256": "64e92bb4679325985558a8642ce942864d001d666ee3f91bde3ac3a03ccceb21",
+          "source_case": {
+            "id": "H004-B01-HARNESS-SAVE",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-HARNESS-SAVE",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-HARNESS-SAVE",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content",
+              "candidate_disposition": "conflict",
+              "candidate_conflicting_field": "actual_record_saved"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "actual_record_saved"
+              ],
+              "before": false,
+              "after": true
+            },
+            "mutation_lane": "candidate",
+            "base_case_ref": "H004-B01-NORMAL-MEANING",
+            "submitted_candidate": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": true,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            }
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": true,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "actual_record_saved"
+            ],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-HARNESS-STATE",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-HARNESS-STATE",
+          "l9_case_sha256": "7268a30910e6ad6ab55bb99658cd7f8f18f4871b5e15cc62d0253e7d476e8726",
+          "source_case": {
+            "id": "H004-B01-HARNESS-STATE",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-HARNESS-STATE",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-HARNESS-STATE",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content",
+              "candidate_disposition": "conflict",
+              "candidate_conflicting_field": "actual_state_updated"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "actual_state_updated"
+              ],
+              "before": false,
+              "after": true
+            },
+            "mutation_lane": "candidate",
+            "base_case_ref": "H004-B01-NORMAL-MEANING",
+            "submitted_candidate": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": true,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            }
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": true,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "actual_state_updated"
+            ],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-PROJECT-AS-MEANING",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-PROJECT-AS-MEANING",
+          "l9_case_sha256": "190330add7735208d3cac0ff818d0644deb35a3ce636a56abbf8aeb17312f8a4",
+          "source_case": {
+            "id": "H004-B01-PROJECT-AS-MEANING",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-PROJECT-AS-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-PROJECT-AS-MEANING",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content",
+              "candidate_disposition": "conflict",
+              "candidate_conflicting_field": "actual_requirement_changed"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "actual_requirement_changed"
+              ],
+              "before": false,
+              "after": true
+            },
+            "mutation_lane": "candidate",
+            "base_case_ref": "H004-B01-NORMAL-MEANING",
+            "submitted_candidate": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": true,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            }
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": true,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "actual_requirement_changed"
+            ],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-ISSUE-AS-APPROVAL",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-ISSUE-AS-APPROVAL",
+          "l9_case_sha256": "e4face7dae91cc35023da1a93507b0c9036addf454c165d1f1c44877f275c9cb",
+          "source_case": {
+            "id": "H004-B01-ISSUE-AS-APPROVAL",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-ISSUE-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-ISSUE-AS-APPROVAL",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content",
+              "candidate_disposition": "conflict",
+              "candidate_conflicting_field": "actual_approved"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "actual_approved"
+              ],
+              "before": false,
+              "after": true
+            },
+            "mutation_lane": "candidate",
+            "base_case_ref": "H004-B01-NORMAL-MEANING",
+            "submitted_candidate": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": true,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            }
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": true,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "actual_approved"
+            ],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-CI-AS-COMPLETION",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-CI-AS-COMPLETION",
+          "l9_case_sha256": "2701c2ac45430e9f08c3af61253475ad1a388d9e073a78bc49bac392dbda56f8",
+          "source_case": {
+            "id": "H004-B01-CI-AS-COMPLETION",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-CI-AS-COMPLETION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-CI-AS-COMPLETION",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content",
+              "candidate_disposition": "conflict",
+              "candidate_conflicting_field": "actual_completed"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "actual_completed"
+              ],
+              "before": false,
+              "after": true
+            },
+            "mutation_lane": "candidate",
+            "base_case_ref": "H004-B01-NORMAL-MEANING",
+            "submitted_candidate": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": true,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            }
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": true,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "actual_completed"
+            ],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-OLD-TRIGGER-AS-CURRENT",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-OLD-TRIGGER-AS-CURRENT",
+          "l9_case_sha256": "fab9ad922b0a78079b4c4fe327bc957753b086cbe466b1106d954caf5abfaa0b",
+          "source_case": {
+            "id": "H004-B01-OLD-TRIGGER-AS-CURRENT",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-OLD-TRIGGER-AS-CURRENT",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-OLD-TRIGGER-AS-CURRENT",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content",
+              "candidate_disposition": "conflict",
+              "candidate_conflicting_field": "legacy_trigger_adopted"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "legacy_trigger_adopted"
+              ],
+              "before": false,
+              "after": true
+            },
+            "mutation_lane": "candidate",
+            "base_case_ref": "H004-B01-NORMAL-MEANING",
+            "submitted_candidate": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": true,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            }
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": true,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "legacy_trigger_adopted"
+            ],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-OLD-RUNTIME-AS-CURRENT",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-OLD-RUNTIME-AS-CURRENT",
+          "l9_case_sha256": "56558fbf7565362eac28edfc33f9be16b7e7c70e9fc877815e1a85fa8b170430",
+          "source_case": {
+            "id": "H004-B01-OLD-RUNTIME-AS-CURRENT",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-OLD-RUNTIME-AS-CURRENT",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-OLD-RUNTIME-AS-CURRENT",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content",
+              "candidate_disposition": "conflict",
+              "candidate_conflicting_field": "legacy_runtime_started"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "legacy_runtime_started"
+              ],
+              "before": false,
+              "after": true
+            },
+            "mutation_lane": "candidate",
+            "base_case_ref": "H004-B01-NORMAL-MEANING",
+            "submitted_candidate": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": true,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            }
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": true,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "upstream-meaning-owner",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "legacy_runtime_started"
+            ],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "H004-L8-B01-OS-AS-MEANING-OWNER",
+          "requirement_ref": "HARNESS-L3-004-B01",
+          "design_ref": "HARNESS-L5-004-B01",
+          "l9_case_ref": "H004-B01-OS-AS-MEANING-OWNER",
+          "l9_case_sha256": "820d304e13e71dd52b1ee28a99fe60f6bd2515d2b3c698ac834e7a5b3fc4f998",
+          "source_case": {
+            "id": "H004-B01-OS-AS-MEANING-OWNER",
+            "contract_ref": "HARNESS-L9-004-B01",
+            "original_material": {
+              "source_packet_ref": {
+                "identity": "CASE-SOURCE-H004-B01-OS-AS-MEANING-OWNER",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+            },
+            "independent_source_packet": {
+              "ref": {
+                "identity": "CASE-SOURCE-H004-B01-OS-AS-MEANING-OWNER",
+                "revision": "fixture-r1",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-independent-evidence-owner"
+              },
+              "raw_utf8": "{\"target\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\"},\"reported_finding\":{\"id\":\"SAME-SYMPTOM\",\"text\":\"commandの処理回数について調査が必要\"},\"source_binding\":{\"scope\":\"PRODUCT-P\",\"binding\":\"REQ@r1\",\"owner\":\"synthetic-independent-evidence-owner\"},\"before_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":1},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"proposed_signature\":{\"value\":\"one debit per command\",\"requirement_acceptance\":{\"debits_per_command\":2},\"architecture\":\"account aggregate owns debit\",\"detail\":\"command-id deduplication\"},\"behavior_observation\":{\"expected\":{\"debits\":1},\"observed\":{\"debits\":1},\"qualification\":\"synthetic_observation_not_actual_runtime_result\"},\"environment_before\":{\"dependency_revision\":\"ENV@r1\"},\"environment_after\":{\"dependency_revision\":\"ENV@r1\"},\"owner_bindings\":{\"meaning\":\"upstream-meaning-owner\",\"implementation\":\"implementation-owner\",\"environment\":\"environment-owner\"},\"management_projection\":{\"issue_closed\":true,\"project_status\":\"Done\",\"ci_green\":true},\"historical_trigger\":{\"source\":\"legacy_archive_only\",\"current_adoption\":false},\"unrelated_work\":{\"id\":\"WORK-Q\",\"status\":\"valid_synthetic_material\",\"binding\":\"REQ-Q@r1\"},\"qualification\":\"synthetic_design_fixture_not_actual_authority_or_runtime_evidence\"}",
+              "sha256": "d7b9240897349632fa1791f6f8ab7860007cc592c26c7cf00fbb96b94b0f0529",
+              "qualification": "synthetic_design_fixture_not_actual_owner_or_authority",
+              "effect": "none",
+              "embedded_referents": "owner/authority/実観測の資格は未成立。management projectionは原意味を変更しない。"
+            },
+            "expected_material": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content",
+              "candidate_disposition": "conflict",
+              "candidate_conflicting_field": "responsible_owner"
+            },
+            "execution_state": "not_executed",
+            "effect": "none",
+            "mutation": {
+              "path": [
+                "responsible_owner"
+              ],
+              "before": "upstream-meaning-owner",
+              "after": "OS"
+            },
+            "mutation_lane": "candidate",
+            "base_case_ref": "H004-B01-NORMAL-MEANING",
+            "submitted_candidate": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "OS",
+              "evidence_basis": "before_after_semantic_content"
+            }
+          },
+          "domain_projection": "L9独立packetのlogical materialをChangeInputへ無改変で渡す。candidate laneはsubmitted_candidateを第三引数、それ以外はNone。資格を原input/candidateから導出しない。",
+          "candidate_argument": {
+            "source_condition": "supported_synthetic_material",
+            "owner_condition": "supported_synthetic_material",
+            "derivation_owner": "HARNESS",
+            "operation_owner": "OS",
+            "management_projection_authority": "none",
+            "unrelated_work": "preserved_valid_synthetic_material",
+            "actual_ticket_issued": false,
+            "actual_record_saved": false,
+            "actual_state_updated": false,
+            "actual_requirement_changed": false,
+            "actual_approved": false,
+            "actual_completed": false,
+            "legacy_trigger_adopted": false,
+            "legacy_runtime_started": false,
+            "change_kind": "meaning_change",
+            "route_candidate": "backflow_to_changed_upstream",
+            "changed_meaning_axes": [
+              "requirement_acceptance"
+            ],
+            "backflow_layer_candidate": "L3/L2",
+            "responsible_owner": "OS",
+            "evidence_basis": "before_after_semantic_content"
+          },
+          "context_fixture_ref": "H004-B01-INDEPENDENT-CONTEXT",
+          "expected_result_projection": {
+            "precondition": "別固定synthetic Context H004-B01-INDEPENDENT-CONTEXTを使用する。実owner資格の証拠ではない。",
+            "value": {
+              "source_condition": "supported_synthetic_material",
+              "owner_condition": "supported_synthetic_material",
+              "derivation_owner": "HARNESS",
+              "operation_owner": "OS",
+              "management_projection_authority": "none",
+              "unrelated_work": "preserved_valid_synthetic_material",
+              "actual_ticket_issued": false,
+              "actual_record_saved": false,
+              "actual_state_updated": false,
+              "actual_requirement_changed": false,
+              "actual_approved": false,
+              "actual_completed": false,
+              "legacy_trigger_adopted": false,
+              "legacy_runtime_started": false,
+              "change_kind": "meaning_change",
+              "route_candidate": "backflow_to_changed_upstream",
+              "changed_meaning_axes": [
+                "requirement_acceptance"
+              ],
+              "backflow_layer_candidate": "L3/L2",
+              "responsible_owner": "upstream-meaning-owner",
+              "evidence_basis": "before_after_semantic_content"
+            },
+            "outcome": "conflict",
+            "candidate_disposition": "conflict",
+            "candidate_conflicting_fields": [
+              "responsible_owner"
+            ],
+            "oracle_limit": "value/outcome/candidate_*の内容oracle。全finding集合/原codec digest/副作用観測は追加定義・凍結へ残す。"
+          },
+          "execution_state": "not_executed"
+        }
+      ],
+      "additional_required_families": [
+        "labelだけ一致/差異と意味各軸の独立変化・複数軸で最上流選択",
+        "環境差+behavior差の混合、同一/未観測の区別、bool-number構造差",
+        "Context版/scope/source owner/owner割当/資格root欠落・自己申告拒否",
+        "全不正型/未知field/null/副次finding優先/不変性/副作用observer0",
+        "actual owner/codec binding、対L6L7、実test/oracle凍結"
+      ],
+      "coverage_limit": "既L9 B01全23例をwhole不変で束縛、3正常・8原input変異・12候補変異。全追加familyや実資格閉包を主張しない。"
     }
   ],
   "completion": "部分詳細と先行test設計。実Red/Green/単体合格や全004/全目標完了を生成しない。",
@@ -4095,6 +7151,45 @@
         "H004-F04-NORMAL-RETIRE-REFERENCE"
       ],
       "binding_rule": "全20 legacy inputはこの固定Contextを第三者oracle資料として別に読む。candidateは別引数。正常とは同資料の自己申告がcurrentだからではなく、原bytes/版/owner/参照/qualification recordが一致する合成条件である。"
+    },
+    {
+      "id": "H004-B01-INDEPENDENT-CONTEXT",
+      "kind": "synthetic_independent_context_fixture",
+      "basis": "main L9 B01 NORMAL-MEANINGの固定期待対象/owner割当を設計者が別に固定。変異input/候補から生成しない。",
+      "authority_effect": "none",
+      "evidence_limit": "提出から独立した合成oracle入力。実source/owner資格、authority、実観測/承認を証明しない。",
+      "context": {
+        "target": {
+          "scope": "PRODUCT-P",
+          "binding": "REQ@r1"
+        },
+        "source_owner": "synthetic-independent-evidence-owner",
+        "role_owners": {
+          "meaning": "upstream-meaning-owner",
+          "implementation": "implementation-owner",
+          "environment": "environment-owner"
+        },
+        "state": "current",
+        "evidence_kind": "synthetic",
+        "basis_refs": [
+          {
+            "identity": "SYNTHETIC-B01-ORACLE-BASIS",
+            "revision": "fixture-r1",
+            "scope": "PRODUCT-P",
+            "owner": "synthetic-oracle-author"
+          }
+        ]
+      },
+      "source_packet": {
+        "ref": {
+          "identity": "B01-INDEPENDENT-CONTEXT",
+          "revision": "fixture-r1-content-48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2",
+          "scope": "PRODUCT-P",
+          "owner": "synthetic-oracle-author"
+        },
+        "raw_utf8": "{\"basis_refs\":[{\"identity\":\"SYNTHETIC-B01-ORACLE-BASIS\",\"owner\":\"synthetic-oracle-author\",\"revision\":\"fixture-r1\",\"scope\":\"PRODUCT-P\"}],\"evidence_kind\":\"synthetic\",\"role_owners\":{\"environment\":\"environment-owner\",\"implementation\":\"implementation-owner\",\"meaning\":\"upstream-meaning-owner\"},\"source_owner\":\"synthetic-independent-evidence-owner\",\"state\":\"current\",\"target\":{\"binding\":\"REQ@r1\",\"scope\":\"PRODUCT-P\"}}",
+        "sha256": "48167f62cfa556eebf452f1ad548b4094ac5dc6db41e780154de0943d4a04cb2"
+      }
     }
   ]
 }

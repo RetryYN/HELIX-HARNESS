@@ -10,17 +10,17 @@
     "version_target": "1.0",
     "approved_content_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
     "detail_requirements_in_this_revision": [
-      "HARNESS-L3-004-F04"
+      "HARNESS-L3-004-F04",
+      "HARNESS-L3-004-B01"
     ],
     "remaining_requirement_refs": [
-      "HARNESS-L3-004-B01",
       "HARNESS-L3-004-F01",
       "HARNESS-L3-004-F02",
       "HARNESS-L3-004-F03",
       "HARNESS-L3-004-F05",
       "HARNESS-L3-004-N01"
     ],
-    "boundary": "004-F04のsource atom分割を具体化する初回部分詳細。004全7契約の完了や実移管/実判断資格を生成しない。"
+    "boundary": "004-F04の無損失分割とB01の変更分類/運転境界を部分詳細化。残5契約/正式binding/全oracleを未完保持し、全004完了や実作用を生成しない。"
   },
   "source_pins": [
     {
@@ -52,6 +52,16 @@
       "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
       "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
       "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
     }
   ],
   "legacy_comparison": [
@@ -72,7 +82,47 @@
         }
       ],
       "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
-      "detail_rederivation": "stable atom/要求revision・source原文と生存先/人間判断の分離・全atomの処置を、純粋Pythonのpartition比較へ導出する。旧Ledger/DB/consumer書込を実行・移植しない。"
+      "detail_rederivation": "stable atom/要求revision・source原文と生存先/人間判断の分離・全atomの処置を、純粋Pythonのpartition比較へ導出する。旧Ledger/DB/consumer書込を実行・移植しない。",
+      "b01_rederivation": {
+        "read_line_locators": [
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "line_quotes": [
+          {
+            "line": 31,
+            "text": "利用者要求はL2、FR／NFR／ACの定義・凍結はL3であり、利用者受入はL11である。"
+          },
+          {
+            "line": 38,
+            "text": "GitHub Issue／PRは作業・実行証跡への参照先であり、要求の意味・採否・合意revisionの正本ではない。"
+          },
+          {
+            "line": 39,
+            "text": "Issueの有無やclose状態から要求を追加・削除せず、要求本文、出典、対象revisionの判断記録を確認する。"
+          },
+          {
+            "line": 40,
+            "text": "DBのtrace／状態projectionも、repo-owned要求文書と指定JSONの意味を上書きしない。"
+          },
+          {
+            "line": 41,
+            "text": ""
+          }
+        ],
+        "preserve": "旧要求正本/対象revision/出典とIssue・DB projectionの区別。",
+        "change": "旧DB/層pathから意味を生成せず、純粋内容比較と役割別返却に具体化。",
+        "reason": "B01承認条件へ接続し、原trace責務を失わないため。"
+      }
     },
     {
       "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
@@ -114,6 +164,59 @@
         "adoption": "selected_semantic_comparison_not_whole_legacy_requirement_or_runtime"
       },
       "detail_rederivation": "stable atom/要求revision・source原文と生存先/人間判断の分離・全atomの処置を、純粋Pythonのpartition比較へ導出する。旧Ledger/DB/consumer書込を実行・移植しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5DAB2F0E1C13F846CABB",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md",
+      "sha256": "33462610beba32ec952b1eb4cb3ef4f57886a0ddb7f116ea9949d50042099f59",
+      "archive_disposition": "unresolved",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 13,
+          "text": "`S0 backlog → S1 plan → S2 poc → S3 verify → S4 decide`で小さく収束する。S4の採用判断は"
+        },
+        {
+          "line": 14,
+          "text": "Scrum内でproduct authorityを変更せず、正規Vモデルの該当層へScrum Reverseする。"
+        },
+        {
+          "line": 16,
+          "text": "product要求・設計・実装はcanonical L1〜L12のForwardで進める。管理上の緊急性を理由にVペア、"
+        },
+        {
+          "line": 17,
+          "text": "上下edge、TDD、review、acceptanceを省略しない。"
+        },
+        {
+          "line": 24,
+          "text": "- Project Statusから上流意味、承認、完了状態を逆書込みしない。"
+        },
+        {
+          "line": 28,
+          "text": "Issueは観測、影響範囲、再発回数、提案するgate／checklist、現在のScrum stage、Scrum Reverse先を"
+        },
+        {
+          "line": 29,
+          "text": "欠落なく保持する。同一findingを重複起票せず、既存Issueへ観測証拠を追記する。"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "read_line_locators": [
+        13,
+        14,
+        16,
+        17,
+        24,
+        28,
+        29
+      ],
+      "locator_semantics": "explicit individual content lines; file bytes unchanged",
+      "detail_rederivation": {
+        "preserve": "管理projectionを要求/承認/完了へ逆書込みしない。product Forwardと管理改善の意味/operationを分け、TDD・対検証を省略しない。",
+        "change": "旧Scrum stage/DB/PLAN/trigger/runtimeを移植せず、B01の純粋内容分類とowner別の不足・候補返却へ再導出。",
+        "reason": "承認B01と現在のHARNESS導出/OS運転境界へ具体化するため。旧assetのunresolvedを採用や実copy許可にしない。"
+      }
     }
   ],
   "full_goal_scope_preserved": {
@@ -122,8 +225,9 @@
   },
   "implementation_readiness": "not_ready",
   "remaining": [
-    "004 B01/F01/F02/F03/F05/N01の6契約を同じL5/L8文書へ追加する。",
+    "004 F01/F02/F03/F05/N01の5契約を同じL5/L8文書へ追加する。",
     "F04の独立固定Contextと14部分比較例を具体化。全組合せ/不正構造/全副次finding oracle/実owner資格・codec bindingとL6L7/test-oracle凍結は未完。",
+    "B01追加構造/複合/意味各軸/資格/全finding oracleと実owner/codec binding、対L6L7/test凍結は未完。",
     "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
   ],
   "document_id": "HARNESS-L5-004",
@@ -290,6 +394,110 @@
       "state": "current | missing | unknown | conflict | stale",
       "qualifier_ref": "Ref（独立Contextのqualifier_rootsに全4成分一致）",
       "evidence_kind": "synthetic | actual_owner_input"
+    },
+    "LogicalJson": "null | bool | finite number | string | tuple[LogicalJson] | closed-or-declared-key mapping[str,LogicalJson]。boolとnumberを同一視せず、key順を意味にしない。NaN/Infinity/重複key/不正UTF-8はcodec境界で拒否し原bytesを保持する。",
+    "ChangeTarget": {
+      "scope": "Text",
+      "binding": "Text（opaque identity@revision、latest/wildcard不可）"
+    },
+    "ChangeSourceBinding": {
+      "scope": "Text",
+      "binding": "Text",
+      "owner": "Text"
+    },
+    "SemanticSignature": {
+      "value": "Text（要約label、意味比較の代用にしない）",
+      "requirement_acceptance": "LogicalJson（値を含む原条件内容）",
+      "architecture": "LogicalJson（責務/依存の原意味）",
+      "detail": "LogicalJson（詳細の原意味）"
+    },
+    "BehaviorObservation": {
+      "expected": "LogicalJson",
+      "observed": "LogicalJson",
+      "qualification": "Text（自己申告は実観測資格にしない）"
+    },
+    "EnvironmentSignature": {
+      "dependency_revision": "Text"
+    },
+    "ChangeOwnerBindings": {
+      "meaning": "Text | null",
+      "implementation": "Text | null",
+      "environment": "Text | null"
+    },
+    "ChangeInput": {
+      "target": "ChangeTarget",
+      "reported_finding": {
+        "id": "Text",
+        "text": "Text"
+      },
+      "source_binding": "ChangeSourceBinding | null",
+      "before_signature": "SemanticSignature | null",
+      "proposed_signature": "SemanticSignature | null",
+      "behavior_observation": "BehaviorObservation | null",
+      "environment_before": "EnvironmentSignature | null",
+      "environment_after": "EnvironmentSignature | null",
+      "owner_bindings": "ChangeOwnerBindings",
+      "management_projection": {
+        "issue_closed": "bool",
+        "project_status": "Text",
+        "ci_green": "bool"
+      },
+      "historical_trigger": {
+        "source": "Text",
+        "current_adoption": "bool（要求採用の根拠にしない）"
+      },
+      "unrelated_work": {
+        "id": "Text",
+        "status": "Text",
+        "binding": "Text"
+      },
+      "qualification": "Text（実authorityを自己生成しない）"
+    },
+    "ChangeContext": {
+      "target": "ChangeTarget",
+      "source_owner": "Text",
+      "role_owners": "ChangeOwnerBindings（独立owner割当原資料）",
+      "state": "current | missing | unknown | conflict | stale",
+      "evidence_kind": "synthetic | actual_owner_input",
+      "basis_refs": "tuple[Ref]（独立資格原資料、input/candidateから増やさない）"
+    },
+    "ChangeValue": {
+      "source_condition": "supported_synthetic_material | content_supported_requires_actual_qualification | missing | unknown | conflict | stale",
+      "owner_condition": "supported_synthetic_material | content_supported_requires_actual_qualification | missing | unknown | conflict | stale",
+      "derivation_owner": "literal HARNESS",
+      "operation_owner": "literal OS",
+      "management_projection_authority": "literal none",
+      "unrelated_work": "preserved_valid_synthetic_material | retained_without_validity_claim",
+      "actual_ticket_issued": "literal false",
+      "actual_record_saved": "literal false",
+      "actual_state_updated": "literal false",
+      "actual_requirement_changed": "literal false",
+      "actual_approved": "literal false",
+      "actual_completed": "literal false",
+      "legacy_trigger_adopted": "literal false",
+      "legacy_runtime_started": "literal false",
+      "change_kind": "meaning_change | implementation_fault | external_environment_change | Unknown",
+      "route_candidate": "backflow_to_changed_upstream | implementation_repair_and_reverification | environment_reobservation_and_impact_evaluation | unresolved_evidence_return | unresolved_owner_return",
+      "changed_meaning_axes": "tuple[requirement_acceptance | architecture | detail]",
+      "backflow_layer_candidate": "L3/L2 | L4 | L5 | null",
+      "responsible_owner": "Text | null",
+      "evidence_basis": "before_after_semantic_content | same_contract_content_different_behavior | before_after_environment_content | missing_or_unqualified_source | unresolved_or_combined_evidence"
+    },
+    "ChangeCandidate": "ChangeValueと同じ閉じたfield集合。literal制約の位置にも提出値を許して比較し、実作用true/別owner/誤routeを拒否する。入力原資料を置き換えない。",
+    "ChangeFinding": {
+      "code": "B01 finding_codesの閉じた集合",
+      "pointer": "JSON Pointer（/input、/context、/candidateのどの引数か明示）",
+      "basis_refs": "tuple[Ref]",
+      "return_owner": "Text"
+    },
+    "ChangeResult": {
+      "outcome": "content_supported | incomplete | unknown | conflict | stale | invalid",
+      "value": "ChangeValue | null（構造解釈不能時のみ）",
+      "findings": "tuple[ChangeFinding]",
+      "retained_input_sha256": "Digest",
+      "retained_context_sha256": "Digest",
+      "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
+      "candidate_conflicting_fields": "tuple[Text]"
     }
   },
   "functions": [
@@ -368,6 +576,81 @@
         "projection_not_authority"
       ],
       "scope_limit": "F04一関数の部分詳細。全004やsource全件の移管を閉じない。"
+    },
+    {
+      "id": "HARNESS-L5-004-B01",
+      "requirement_ref": "HARNESS-L3-004-B01",
+      "l4_ref": "HARNESS-L4-004-B01",
+      "l9_ref": "HARNESS-L9-004-B01",
+      "l8_ref": "HARNESS-L8-004-B01",
+      "symbol": "classify_change_and_operation_boundary",
+      "signature": "classify_change_and_operation_boundary(input: ChangeInput, context: ChangeContext, candidate: ChangeCandidate | None = None) -> ChangeResult",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-B01",
+        "parent": "HARNESS-L2-004",
+        "title": "trace・変更判断と運転の境界",
+        "obligation": "HARNESSはtrace/影響/再検証範囲/意味保存/戻し先を導出し、OSは管理登録/状態/実operationを別契約で運転する。構造改善の意味変更、実装故障、外部環境変化を単一refactoring routeへ丸めず、旧L3 trigger/runtimeを採用しない。管理観測/改善は意味が変わる最上流へ候補として戻し、Issue/Project/CIから要求意味/承認/完了を生成しない。",
+        "oracle_ref": "HARNESS-L10-004-B01"
+      },
+      "preconditions": [
+        "独立Contextは対象scope/opaque bindingとsource owner/役割別ownerの原資格snapshotをconsumerが供給する。inputのowner名/qualification/Issue/CIやcandidateから作らない。",
+        "初回Contextは別固定synthetic fixtureだけ。actual_owner_inputの資格binding/consumer/codecは未完で、basis_refsや文字列currentだけでは実資格を証明しない。実資格未閉包ではunknownを返す。",
+        "意味軸の層対応は同じ承認束の004-F03を参照する。requirement_acceptance→L3/L2、architecture→L4、detail→L5。label valueやreported_finding.textを意味の代用にしない。"
+      ],
+      "related_requirement_refs": [
+        "HARNESS-L3-004-F03"
+      ],
+      "algorithm": [
+        {
+          "id": "B1",
+          "rule": "ChangeInput/Context/候補を閉じたfield/typeとして検査。欠落許容nullと不正型を区別。logical JSON比較はbool/numberの型と全内容を区別。入力を正規化/修復して合格へ変えず、不正をlocatorへ蓄積する。"
+        },
+        {
+          "id": "B2",
+          "rule": "input.targetとContext.targetのscope/bindingを先に照合し、source_bindingも同じ対象と独立source_ownerへ照合。source無し/前後signature無しはmissing。scopeまたはsource owner違いはconflict、binding版違いはstale。Context stateや独立basis欠落は当該状態を残す。同対象の優先はconflict→stale→unknown→missing→supported。source不足では種類Unknown、route unresolved_evidence_return、responsible_owner nullへ返し、owner資料の独立状態は失わない。"
+        },
+        {
+          "id": "B3",
+          "rule": "source内容が使える範囲でrequirement_acceptance/architecture/detailの前後を全内容比較し、変更軸を原順（requirement_acceptance,architecture,detail）で返す。変更軸有りならmeaning_change、backflow_to_changed_upstream、最も上流の変更軸の層を返す。label valueだけの一致/差異は意味の証拠にしない。"
+        },
+        {
+          "id": "B4",
+          "rule": "変更軸無しでは環境前後を内容比較し、変化がありbehavior差無し（behavior未観測含む）ならexternal_environment_change/environment_reobservation_and_impact_evaluation。環境同一かつbehavior expected/observedが異なればimplementation_fault/implementation_repair_and_reverification。環境差とbehavior差が共存する場合、単一causeを推測せずUnknown/unresolved_evidence_returnと各比較根拠を保持する。環境同一・behavior同一/未観測のみでは故障/無影響を補完せずUnknown。"
+        },
+        {
+          "id": "B5",
+          "rule": "meaning_changeはmeaning、implementation_faultはimplementation、external_environment_changeはenvironmentのowner割当を独立Contextと照合。選ばれたownerのnullはmissingで分類/意味軸を保持しrouteのみunresolved_owner_returnへ、ownerはnull。違うownerはconflict、未資格はunknown。未使用role不足で確定済み内容を消さず、その不足をfindingへ残す。source不足でもrole資料の状態を別に保持する。"
+        },
+        {
+          "id": "B6",
+          "rule": "HARNESS導出/OS実運転、management_projection_authority none、8作用falseを常に返す。Issue close/Project Done/CI greenと旧trigger current_adoptionは意味/実作用/旧runtimeの根拠にしない。unrelated_workを原まま返却参照として保持し、合成fixture内の有効範囲はpreserved_valid_synthetic_material。実範囲の有効性は未証明ならretained_without_validity_claim。"
+        },
+        {
+          "id": "B7",
+          "rule": "candidateは第三引数としてChangeValueの全fieldへ型付き内容比較。全差分fieldをstable順で返す。candidate conflictは原内容value/source_conditionを改変せずoutcome conflictとcandidate_disposition conflict。未提出はnot_submitted。同内容でもcorresponding_content_onlyであり実承認ではない。内容結果のoutcomeはconflict→stale→unknown→missing(incomplete)→content_supported、構造不正はinvalid。"
+        }
+      ],
+      "postconditions": [
+        "input/context/candidate/WORK-Qを変更せず、I/O/clock/network/DB/チケット/正本write/旧trigger実行を呼ばない。",
+        "同じlogical input/context/candidateで同じvalueとfinding集合。findingは(code,pointer,return_owner)のUnicode順、重複原因を潰さず保持。",
+        "別原因の証拠を一つのRefactor routeにしない。意味変更は最上流ownerへ戻し、運転はOSの別authority条件を要する。",
+        "retained_input_sha256/retained_context_sha256はdomain logical JSONのcanonical bytes（UTF-8、key sort、compact separators、有限数のみ）を指す。元transport原bytesは別codec/source_packet bindingで保持し、domain digestを実原資料資格にしない。"
+      ],
+      "finding_codes": [
+        "input_invalid",
+        "source_missing",
+        "source_unknown",
+        "source_conflict",
+        "source_stale",
+        "owner_missing",
+        "owner_unknown",
+        "owner_conflict",
+        "owner_stale",
+        "comparison_unresolved",
+        "candidate_conflict",
+        "projection_not_authority"
+      ],
+      "scope_limit": "004 B01の部分詳細。23既L9例の正確な内容写像と合成Contextのみ。追加比較/資格/混合/構造/実consumer凍結は未完。"
     }
   ]
 }
