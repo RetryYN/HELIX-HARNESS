@@ -1,0 +1,361 @@
+{
+  "parent": "HARNESS-L2-004",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "parent_pair_revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_partial_detail_pending_independent_review",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "scope": {
+    "authoring_stage": "Stage 1",
+    "version_target": "1.0",
+    "approved_content_revision": "771dd7e802189506d88cf9d9570c42b94cf7b8fb",
+    "detail_requirements_in_this_revision": [
+      "HARNESS-L3-004-F04"
+    ],
+    "remaining_requirement_refs": [
+      "HARNESS-L3-004-B01",
+      "HARNESS-L3-004-F01",
+      "HARNESS-L3-004-F02",
+      "HARNESS-L3-004-F03",
+      "HARNESS-L3-004-F05",
+      "HARNESS-L3-004-N01"
+    ],
+    "boundary": "004-F04のsource atom分割を具体化する初回部分詳細。004全7契約の完了や実移管/実判断資格を生成しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L4-basic-design/trace-impact-reconfirmation.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "bb31b5abe547b5caaea80a62992fa3e967f94a2273430ffd64b17e50c7fd36b2"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/trace-impact-reconfirmation.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "7b4a8f9842cfc973d6058971f22c031d196bc0a2e4142caeff96ceeaf6b5fed8"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-process-trace-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d58a704fd5163a3469374f9d6aae38b6bb26975bf4a6b3cd2cbffab7529ea864"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 29,
+          "text": "### 要求の参照範囲と最新化"
+        },
+        {
+          "line": 66,
+          "text": "2. CLI、library、HARNESS等の非UI案件もL2を暗黙に飛ばしてはならない。`not_applicable`、理由、判定者、対象HEAD、要求への影響、再評価条件をreceiptへ残す。"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "detail_rederivation": "stable atom/要求revision・source原文と生存先/人間判断の分離・全atomの処置を、純粋Pythonのpartition比較へ導出する。旧Ledger/DB/consumer書込を実行・移植しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "archive_disposition": "source_snapshot_preservation",
+      "reuse": "semantic_rederivation",
+      "line_quotes": [
+        {
+          "line": 129,
+          "text": "| **HIL-FR-39** | Design Refactor Gateはdesign graph、重複contract/policy/schema、責務とstate invariant、consumer集合、before/after oracleを比較し、`externalize/commonize/objectize/semantic-rename`を独立変換として計画する。renameは名称の文字列類似だけで決めず、入出力、副作用、failure、state transition、call graph、consumer contractを含むsemantic signatureで、同義名の統一または同名異義の分離を判定する。behavior preservation、全consumer compatibility、Scope Authority、設計pair更新、rollbackが揃う場合だけ既存`Refactor`実装へ接続し、observable behavior、public surface、DB semantics、要求の差分を検出した場合は`Redesign/Retrofit`へrerouteする。 | design-refactor PLAN、変換種別、before/after graph digest、semantic/name collision evidence、behavior-preservation receipt、reroute receipt |"
+        },
+        {
+          "line": 135,
+          "text": "| **HIL-FR-45** | Requirement Definition Ledgerはstable requirement IDとimmutable revisionを持ち、source atom、canonical statement、BR/FR/TR/NFR、modality、priority、scope/non-goal、authority/rationale、acceptance oracle、owner、risk、capability/service、template applicability、design obligationを型付きedgeで保存する。split/merge/rename/supersede/reject/N/Aはbefore/after semantic digest、全source atom disposition、downstream stale、review authorityを持つreceiptがある場合だけ適用する。 | requirement definition/revision、typed edge、change/applicability receipt、orphan/stale finding |"
+        },
+        {
+          "line": 140,
+          "text": "| **HIL-FR-50** | Ledger Design Refactorはlayer ledgerの重複、責務混在、semantic/name collision、変更波及、孤立edgeを比較し、externalize/commonize/objectize/semantic-rename/split/merge候補を生成する。全上下・左右consumer、before/after oracle、pair保持、rollbackが揃うbehavior-preserving変更だけをDesignRefactorへ送り、要求/公開contract/永続state変更はRedesign/Retrofitへrerouteする。 | ledger diff、refactor candidate/plan、pair-preservation receipt、reroute receipt |"
+        }
+      ],
+      "source_limit": "旧候補全体/層番号/gate/runtimeを移植せず、004承認済みのtrace/意味保存/影響分離/原文保全の根拠として参照する。",
+      "semantic_rederivation": {
+        "preserve": "HIL-FR-39のsemantic signature/consumerとbefore-after oracle、45のstable ID/immutable revision/source atom disposition/downstream stale、50の全consumer/pairと意味保存・意味変更の別route（129/135/140）。",
+        "change": "旧Design Refactor Gate/Requirement Definition Ledger/Ledger Design Refactorのruntime、台帳schema、固定route、旧L6実装pairやcopy機構を採用しない。004の型付きrelation候補・影響/成立の分離・無損失分割と最上流Backflow/OS実運転境界へ意味を再導出する。",
+        "reason": "承認済み004と003のowner境界および現行V12のpairを満たし、旧graphや旧成功が要求authority/完了の根拠になる失敗を避けるため。意味変更・移管・retireは既存上流判断へ戻す。",
+        "applies_to": [
+          "HARNESS-L4-004-F02",
+          "HARNESS-L4-004-F03",
+          "HARNESS-L4-004-F04",
+          "HARNESS-L4-004-F05",
+          "HARNESS-L4-004-B01"
+        ],
+        "source_lines": [
+          129,
+          135,
+          140
+        ],
+        "adoption": "selected_semantic_comparison_not_whole_legacy_requirement_or_runtime"
+      },
+      "detail_rederivation": "stable atom/要求revision・source原文と生存先/人間判断の分離・全atomの処置を、純粋Pythonのpartition比較へ導出する。旧Ledger/DB/consumer書込を実行・移植しない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "remaining": [
+    "004 B01/F01/F02/F03/F05/N01の6契約を同じL5/L8文書へ追加する。",
+    "F04全組合せ/不正構造/Context owner資格とraw referent/正式codecの実binding・対L6L7とtest/oracle凍結は未完。",
+    "実装準備のtoolchain/検査構成/SEC/INFRAの選択scopeを閉じる。実装前Red/Green/Refactor・実L8L9L10・PO実物L11は後続実証拠であり本部分設計から生成しない。"
+  ],
+  "document_id": "HARNESS-L5-004",
+  "layer": "L5",
+  "pair": "L8",
+  "paired_document": "docs/helix-harness/L8-unit-verification/trace-impact-reconfirmation.json",
+  "types": {
+    "Text": "非空Unicode string。自動trim/normalizeしない。",
+    "RawUtf8": "Unicode stringをstrict UTF-8へencodeしたbyte内容。digestは原bytes、改行/空白/Unicodeを正規化しない。",
+    "Digest": "64 lowercase hex",
+    "Ref": {
+      "identity": "Text",
+      "revision": "Text（latest/wildcard不可）",
+      "scope": "Text",
+      "owner": "Text"
+    },
+    "Atom": {
+      "id": "Text",
+      "raw_utf8": "RawUtf8",
+      "sha256": "Digest"
+    },
+    "SourcePopulation": {
+      "ref": "Ref",
+      "selection_scope": "Text",
+      "atoms": "tuple[Atom]",
+      "outside_selection": "tuple[Text]"
+    },
+    "DispositionItem": {
+      "atom_id": "Text",
+      "source_ref": "Ref",
+      "source_sha256": "Digest",
+      "destination_ref": "Ref",
+      "destination_raw_utf8": "RawUtf8",
+      "destination_sha256": "Digest"
+    },
+    "HumanDispositionItem": {
+      "base": "DispositionItemの全field",
+      "decision_ref": "Ref",
+      "disposition": "change | retire"
+    },
+    "Partition": {
+      "retained": "tuple[DispositionItem]",
+      "pending": "tuple[DispositionItem]",
+      "human_changed_or_retired": "tuple[HumanDispositionItem]"
+    },
+    "DestinationRecord": {
+      "ref": "Ref",
+      "state": "Text（live_requirement/live_candidate/changed_requirement/expired_candidate/adopted_requirement等を内容判定。未知状態をlive扱いにしない）",
+      "raw_utf8": "RawUtf8",
+      "sha256": "Digest"
+    },
+    "HumanDecision": {
+      "ref": "Ref",
+      "kind": "Text",
+      "source_ref": "Ref",
+      "source_atom": "Text",
+      "source_sha256": "Digest",
+      "target_ref": "Ref",
+      "target_sha256": "Digest",
+      "outcome": "change | retire",
+      "reason": "Text",
+      "impact_scope": "Text",
+      "qualification": "Text（syntheticは実判断ではない）"
+    },
+    "CoverageReceipt": {
+      "ref": "Ref",
+      "source_ref": "Ref",
+      "covered_atom_ids": "tuple[Text]",
+      "claim_scope": "Text"
+    },
+    "ContainerRegistration": {
+      "kind": "Text",
+      "authority_effect": "Text（診断入力、採用/許可の根拠にしない）"
+    },
+    "PartitionInput": {
+      "source_population": "SourcePopulation",
+      "partition": "Partition",
+      "destination_records": "tuple[DestinationRecord]",
+      "human_decisions": "tuple[HumanDecision]",
+      "coverage_receipt": "CoverageReceipt",
+      "container_registration": "ContainerRegistration",
+      "scenario_kind": "Text（診断field、成立根拠にしない）"
+    },
+    "QualifiedReferent": {
+      "ref": "Ref",
+      "content_sha256": "Digest",
+      "raw_utf8": "RawUtf8",
+      "state": "current | missing | unknown | conflict | stale",
+      "kind": "source_population | live_requirement | live_candidate | changed_requirement | human_meaning_change | human_meaning_retire | coverage_receipt",
+      "qualification_basis_refs": "tuple[Ref]",
+      "evidence_kind": "synthetic | actual_owner_input"
+    },
+    "PartitionContext": {
+      "target_source_ref": "Ref",
+      "selection_scope": "Text",
+      "referents": "tuple[QualifiedReferent]",
+      "snapshot_revision": "Text",
+      "evidence_kind": "synthetic | actual_owner_input"
+    },
+    "Finding": {
+      "code": "closed codes below",
+      "pointer": "JSON Pointer",
+      "atom_ids": "tuple[Text]",
+      "basis_refs": "tuple[Ref]",
+      "return_owner": "Text"
+    },
+    "PartitionValue": {
+      "source_atom_ids": "tuple[Text]",
+      "retained_atom_ids": "tuple[Text]",
+      "pending_atom_ids": "tuple[Text]",
+      "human_changed_or_retired_atom_ids": "tuple[Text]",
+      "unaccounted_atom_ids": "tuple[Text]",
+      "duplicate_atom_ids": "tuple[Text]",
+      "unknown_atom_ids": "tuple[Text]",
+      "invalid_destination_atom_ids": "tuple[Text]",
+      "invalid_decision_atom_ids": "tuple[Text]",
+      "invalid_source_atom_ids": "tuple[Text]",
+      "invalid_receipt": "bool",
+      "partition_condition": "supported_synthetic_condition | content_supported_requires_actual_qualification | missing | unknown | conflict | stale",
+      "coverage_scope": "Text",
+      "outside_selection": "tuple[Text]",
+      "actual_no_loss_certified": "literal false",
+      "actual_source_migration_complete": "literal false",
+      "actual_requirement_adopted": "literal false",
+      "actual_implementation_authorized": "literal false",
+      "actual_retirement": "literal false"
+    },
+    "PartitionResult": {
+      "outcome": "content_supported | incomplete | unknown | conflict | stale | invalid",
+      "value": "PartitionValue | null（invalid構造で内容解釈不能のみnull）",
+      "findings": "tuple[Finding]",
+      "retained_input_sha256": "Digest",
+      "candidate_disposition": "not_submitted | corresponding_content_only | conflict | invalid",
+      "candidate_conflicting_fields": "tuple[Text]"
+    },
+    "PartitionCandidate": {
+      "source_atom_ids": "tuple[Text]",
+      "retained_atom_ids": "tuple[Text]",
+      "pending_atom_ids": "tuple[Text]",
+      "human_changed_or_retired_atom_ids": "tuple[Text]",
+      "unaccounted_atom_ids": "tuple[Text]",
+      "duplicate_atom_ids": "tuple[Text]",
+      "unknown_atom_ids": "tuple[Text]",
+      "invalid_destination_atom_ids": "tuple[Text]",
+      "invalid_decision_atom_ids": "tuple[Text]",
+      "invalid_source_atom_ids": "tuple[Text]",
+      "invalid_receipt": "bool",
+      "partition_condition": "Text（提出候補値、domain比較結果と照合）",
+      "coverage_scope": "Text",
+      "outside_selection": "tuple[Text]",
+      "actual_no_loss_certified": "bool（提出候補の主張、trueを照合成立へしない）",
+      "actual_source_migration_complete": "bool（提出候補の主張、trueを照合成立へしない）",
+      "actual_requirement_adopted": "bool（提出候補の主張、trueを照合成立へしない）",
+      "actual_implementation_authorized": "bool（提出候補の主張、trueを照合成立へしない）",
+      "actual_retirement": "bool（提出候補の主張、trueを照合成立へしない）"
+    }
+  },
+  "functions": [
+    {
+      "id": "HARNESS-L5-004-F04",
+      "requirement_ref": "HARNESS-L3-004-F04",
+      "l4_ref": "HARNESS-L4-004-F04",
+      "l9_ref": "HARNESS-L9-004-F04",
+      "l8_ref": "HARNESS-L8-004-F04",
+      "symbol": "check_source_atom_partition",
+      "signature": "check_source_atom_partition(input: PartitionInput, context: PartitionContext, candidate: PartitionCandidate | None = None) -> PartitionResult",
+      "approved_requirement": {
+        "id": "HARNESS-L3-004-F04",
+        "parent": "HARNESS-L2-004",
+        "title": "source atomの無損失変更",
+        "obligation": "入力source atom全件を、当該要求へ保持する集合、別の生存中候補へ残す集合、対象revision付き人間decisionで変更/retireする集合へ完全分割し、未計上atomを0にする。atom/原文digest/生存先/判断revisionと被覆receiptを辿り、container関連付け/仮登録で移管完了や採択を生成しない。",
+        "oracle_ref": "HARNESS-L10-004-F04"
+      },
+      "preconditions": [
+        "input/contextは別immutable snapshot。Contextはconsumerが供給する対象revision/owner資格/原referent bytesを持つ。input自身やfixture refs存在からContextを作らない。",
+        "referent同keyの完全重複/異内容は個別findingで保持し、first/last winsしない。各Refの現在版解決と資格の実供給元bindingは別の準備義務。",
+        "candidateは原source人口/原input/独立Contextとは別の提出結果。candidateのfield存在/主張で原内容を埋めない。"
+      ],
+      "algorithm": [
+        {
+          "id": "P1",
+          "rule": "全fieldの型と重複key/未知fieldを走査し不正を蓄積。recordは閉じたfield集合。JSON decoding/transportは別境界、domain関数は未検査のlogical inputを検査する。tupleでは順番を意味にせずindexのlocatorは原順序を保持。"
+        },
+        {
+          "id": "P2",
+          "rule": "source人口の原atom raw UTF-8と宣言digestを比較しID母集団を確定。Context.target_source_ref/selection_scopeと全4 Ref成分を照合。原sourceの資格/版/内容が欠ければ部分結果にunknown/missing/staleを保ち、提出側で人口を削って完全分割へしない。"
+        },
+        {
+          "id": "P3",
+          "rule": "三bucketのatom_id出現回数を独立に数える。source全IDとの差をunaccounted、複数出現をduplicate、人口外IDをunknown_atomへ返す。非計上と多重計上を相殺しない。各bucketの提出IDとoutside_selectionは失敗時も保持。"
+        },
+        {
+          "id": "P4",
+          "rule": "各項目のsource_ref全成分、source_sha256と人口atomの原digestを比較。destination原recordは独立Context referentに同keyで解決しraw/digest/版/owner/scope/stateを照合。retainedはlive_requirementで原内容不変、pendingはlive_candidateで原内容不変。候補をadopted_requirementへ変えることを保持/保留の成立にしない。未知/失効/別内容/原byte改変はinvalid_destinationとして個別に返す。"
+        },
+        {
+          "id": "P5",
+          "rule": "change/retire bucketはdecision_refを独立Contextで解決する。決定kindがhuman_meaning_change/retireでoutcome/disposition一致、source_ref/atom/digest、target_ref/digest、impact_scope、理由、対象revisionの資格根拠を照合。AI名や文字列human/qualification自称で人間判断を作らない。未提示はmissing、不明資格unknown、別revisionはstale、矛盾はconflict。target原内容/digestも別照合。retire参照があっても実retirementはfalse。"
+        },
+        {
+          "id": "P6",
+          "rule": "coverage receiptのsource_ref/claim_scope/covered_atom_idsをsource母集団と比較。receipt自己申告でP2〜P5の不足を埋めない。選択外source/4020資産へ範囲を広げず限定coverage_scopeとoutside_selectionを出す。"
+        },
+        {
+          "id": "P7",
+          "rule": "全内容findingを保持し、conflict→stale→unknown→missing→supportedで原内容のpartition_conditionを選ぶ。構造invalidはoutcome invalid。synthetic対応はsupported_synthetic_condition、actual_owner_input対応はcontent_supported_requires_actual_qualificationで、実no_loss資格/採否/操作許可ではない。別引数candidateがあれば、原入力から導いたvalueと全提出fieldを比較する。actual5 fieldのtrueはprojection_not_authority/conflict。候補不一致はcandidate_disposition/conflicting_fields/outcomeへ返し、原内容のpartition_conditionと有効atomを保持する。container自己申告は成立根拠にしない。candidate無しはnot_submitted。"
+        }
+      ],
+      "postconditions": [
+        "原input/Context/原source/生存先/人間判断を変更しない。局所不足で別atomや選択外sourceを消さない。",
+        "決定性は同logical input/contextで同value/finding集合。集合はTextのUnicode code point順でstable sortし、重複出現は診断を保持する。",
+        "I/O、DB、network、clock、copy/retire/ticket/state writeを呼ばない。",
+        "実5作用のliteral falseを維持し意味比較結果を採否/認可/移管へ昇格しない。"
+      ],
+      "finding_codes": [
+        "input_invalid",
+        "source_population_missing",
+        "source_population_conflict",
+        "reference_missing",
+        "reference_unknown",
+        "reference_conflict",
+        "reference_stale",
+        "content_digest_conflict",
+        "atom_unaccounted",
+        "atom_duplicate",
+        "atom_outside_population",
+        "destination_unqualified",
+        "human_decision_unqualified",
+        "coverage_receipt_invalid",
+        "projection_not_authority"
+      ],
+      "scope_limit": "F04一関数の部分詳細。全004やsource全件の移管を閉じない。"
+    }
+  ]
+}
