@@ -1120,8 +1120,8 @@
     {
       "id": "SEC012-L8-ARTIFACT-PRODUCER-JOIN",
       "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
-      "raw_utf8": "{\"actual_artifact\":{\"producer_ref\":\"producer-A\"},\"reference_artifact\":{\"producer_ref\":\"producer-B\"}}",
-      "raw_sha256": "ac06a446f0927e589b32eadb00a0ceddae3610c3b8030f3cef454cf00bf6869d",
+      "raw_utf8": "{\"actual_artifact\":{\"producer_ref\":\"producer-A\"},\"reference_artifact\":{\"producer_ref\":\"producer-B\"},\"node_id\":\"pkg-a\"}",
+      "raw_sha256": "ba9dc4a05cabdb3d254c22edaf2e656d4681e4348e26ff5bc2951327a6caab7d",
       "expected_material": {
         "required_findings": [
           {
@@ -2502,8 +2502,8 @@
     {
       "id": "SEC012-L8-ARTIFACT-ASSET-JOIN",
       "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
-      "raw_utf8": "{\"artifact\":{\"asset_ref\":\"asset-old\",\"asset_revision_ref\":\"rev-old\"},\"context_identity\":{\"asset_id\":\"asset-new\",\"asset_revision\":\"rev-new\"}}",
-      "raw_sha256": "eb98c423403f64feef5d0e6b4770eb7b1121ad2badb42d225edee65c48f2f850",
+      "raw_utf8": "{\"artifact\":{\"asset_ref\":\"asset-old\",\"asset_revision_ref\":\"rev-old\"},\"context_identity\":{\"asset_id\":\"asset-new\",\"asset_revision\":\"rev-new\"},\"node_id\":\"pkg-a\"}",
+      "raw_sha256": "2c5691ca2d7241d7ef5b102c834cc506010341940a5a488b347ef6e7c407557d",
       "expected_material": {
         "required_findings": [
           {
@@ -2568,8 +2568,8 @@
     {
       "id": "SEC012-L8-ENTRY-NONDICT",
       "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
-      "raw_utf8": "{\"field\":\"source\",\"actual_entry\":null,\"reference_entry\":{}}",
-      "raw_sha256": "663366a79eb2dd6ccfbc8dabb544ec7c7f609bece77ed1c63bb97e93f9756b38",
+      "raw_utf8": "{\"field\":\"source\",\"actual_entry\":null,\"reference_entry\":{},\"node_id\":\"pkg-a\"}",
+      "raw_sha256": "1634ec0ff618060abae7227ac02f2a31c2d25a9aab9f6bbefbbb0802a738c213",
       "expected_material": {
         "field_grade": "unknown",
         "field_state": null,
@@ -2600,8 +2600,8 @@
     {
       "id": "SEC012-L8-ENTRY-CANDIDATE-JOIN",
       "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
-      "raw_utf8": "{\"field\":\"permission\",\"actual_entry_binding\":{\"candidate_revision\":\"candidate-old\"},\"context_binding\":{\"candidate_revision\":\"candidate-new\"},\"reference_entry_binding\":{\"candidate_revision\":\"candidate-new\"}}",
-      "raw_sha256": "eba01cafa7bf521fef87c837c24497837f468efb665869f6e9b6881f17435e7e",
+      "raw_utf8": "{\"field\":\"permission\",\"actual_entry_binding\":{\"candidate_revision\":\"candidate-old\"},\"context_binding\":{\"candidate_revision\":\"candidate-new\"},\"reference_entry_binding\":{\"candidate_revision\":\"candidate-new\"},\"node_id\":\"pkg-a\"}",
+      "raw_sha256": "4fd4280ee68514dbe00d2d9c9580064ebe46db2712b98a411816ba97fe41e8bf",
       "expected_material": {
         "required_findings": [
           {
@@ -2630,8 +2630,8 @@
     {
       "id": "SEC012-L8-VERSION-ARTIFACT-JOIN",
       "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
-      "raw_utf8": "{\"field\":\"version\",\"actual_entry\":{\"value_ref\":\"version-other\"},\"context_artifact\":{\"version_ref\":\"version-fixed\"}}",
-      "raw_sha256": "125933bdf27220a8a69e578c48d87aae6fb197a2f88be69f24c55d37c83bb223",
+      "raw_utf8": "{\"field\":\"version\",\"actual_entry\":{\"value_ref\":\"version-other\"},\"context_artifact\":{\"version_ref\":\"version-fixed\"},\"node_id\":\"pkg-a\"}",
+      "raw_sha256": "a35b798ee488bb66540734471a8d34c58644a8150c0e9f08f7bca51c269b7716",
       "expected_material": {
         "required_findings": [
           {
@@ -2662,8 +2662,8 @@
     {
       "id": "SEC012-L8-ORIGIN-NONENUM",
       "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
-      "raw_utf8": "{\"field\":\"source\",\"actual_entry\":{\"origin\":\"host-name\"},\"reference_entry\":{\"origin\":\"asset_evidence\"}}",
-      "raw_sha256": "d852445e296f1c2659a4163028e4e6f4f48373bd87105c675194ae600eda0026",
+      "raw_utf8": "{\"field\":\"source\",\"actual_entry\":{\"origin\":\"host-name\"},\"reference_entry\":{\"origin\":\"asset_evidence\"},\"node_id\":\"pkg-a\"}",
+      "raw_sha256": "701b51d6ea365086e62304008320a550b52997c35c90b36e736244db67e3ca3e",
       "expected_material": {
         "required_findings": [
           {
@@ -3054,7 +3054,7 @@
   "expectation_freeze": {
     "basis_order": "承認110fdb3e whole→L4固有R01–R12→旧source/failure/consumer→手起草raw/期待。実装/evaluator返却値から期待を逆算しない。",
     "kind": "設計材料の固定、実製品test/oracleの凍結ではない。",
-    "raw_cases_canonical_sha256": "85bf09b44b32e6358f82bd3a9af479a75fd31c7bc63831b1dda295562569e780",
+    "raw_cases_canonical_sha256": "a9b5bb481a0b0969c439eefc5b2d2ddc77450c18cc8a1a6c5d33e0f57783e390",
     "L4_1751_material": "元L9 whole bytesとreview修正をpinし、case/expected出力をコピーしない。",
     "negative_separation": "raw_utf8にexpected/code/outcomeを混ぜない。部分assertionsはoracle_basisとobligationへtraceし、全出力成功に拡張しない。"
   },
