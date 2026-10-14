@@ -1,0 +1,512 @@
+{
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2a",
+    "authoring_stage": "限定前提形成の先行L4/L9",
+    "approved_content_revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+    "boundary": "019全6要求の原event/provenance・交代累積・重複/replay・checkpoint・利用条件の素材比較。実event/保存/再生/共有/学習/権限を生成しない。"
+  },
+  "source_pin_limit": "全6whole要求を7f1719fb承認revisionへ照合。原eventと派生viewを分け、full-file pin/record数を実再構築の証明にしない。",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "parent": "HELIXOS-L2-019",
+  "source_main": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/po-decision-2026-10-03-additions10.md",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "a42baefd1f1c24461b6abb62e4daa88aec3fba36e5409170f8660cdbc8f6c8ad"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/operation-authority-reuse.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "b7ccddc646d070ab2dd7f82feac699a154e3d76cdc9131d8fbdf7b64e4a91086"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/revoke-quarantine-propagation.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "dde56181db3d564d97222ba9cacdb3fb204888a669b72ed562f19bb77bd41fb5"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "1330e3b3c6f3dc3cc8ab394c401cfa03844c337fed4b487308389e48a4d84f9a"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/worker-assignment-attempt.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "a6748aecb12106c7046f7e170b117aa3ca0dd1e6b4750fe372d2b52af3689645"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "revision": "b003ec6211eb89c5258676a42ee7e08cdc4a83ed",
+      "sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requirements.md",
+      "file_sha256": "f511be38c3099f428e5f7a062264d074899b63a86a37247b469ab2470f5b5eed",
+      "selected_line_quotes": [
+        {
+          "line": 16,
+          "text": "会話にしかない未保存情報、撤回・旧版、不明へ分類する。文書やdigestの存在だけで意味保存済みとせず、",
+          "utf8_sha256": "a06fd3a0728a8b6a662ce085db5acd9e4316b12de4fdbff5e22f0f7eb514e041"
+        },
+        {
+          "line": 17,
+          "text": "重要情報が未保存または不明なら自動切替を保留する。",
+          "utf8_sha256": "a9b85921280fe08436e59fa179adef71b4763d9d2659b6b4f6b9dd16a3fc0f33"
+        },
+        {
+          "line": 21,
+          "text": "要求、判断、code、test、実行証跡、現在地は既存の責務所有先へ保存する。会話にしかない人間の意図は",
+          "utf8_sha256": "50b7c1b274ed530ea43c3691572b22017a66e76b1e7deaa0c8f3b0b902f964a5"
+        },
+        {
+          "line": 22,
+          "text": "出典付き原文または必要部分として、仮説・棄却理由は未確定情報として保持する。checkpointは論理作業、PLAN、",
+          "utf8_sha256": "962b9f13aa4d084d7cca628265ae10955c67ffb79222dfeeba2d6dcd9fd79885"
+        },
+        {
+          "line": 23,
+          "text": "repo／branch／worktree／HEAD、未commit・未追跡変更、契約版、未完義務、実行中worker／CI／外部操作、証拠、",
+          "utf8_sha256": "4269c9896a87949d28129e934a634709f7ec46c52f769bcdcb158c15bcfd17a8"
+        },
+        {
+          "line": 24,
+          "text": "累積予算と失敗回数を必要範囲で束縛する派生viewとし、第二正本にしない。未承認意図を正式要求へ昇格しない。",
+          "utf8_sha256": "33eaf4df813e98ee7b61d3c4ef6e24e25746332aae2d60ac96e7e34e70a6d019"
+        },
+        {
+          "line": 28,
+          "text": "必要情報の保存、後続consumerでの再取得、版・意味・未完義務の対応、安全な切替可能性が確認できたscopeだけを",
+          "utf8_sha256": "18098c3324b0444836f5d1e22c722593fc67b6951d0e366f5721a2dd53c3c260"
+        },
+        {
+          "line": 29,
+          "text": "次回以降のmodel inputから外す。会話原本、Git履歴、監査証拠の削除を意味せず、反復要約を正本にしない。",
+          "utf8_sha256": "a993cb00dcab5b95b1518ffabf28a70a2cc72358ef332b9f3a8860d3258720af"
+        },
+        {
+          "line": 39,
+          "text": "safe point、save/read-after、旧writer停止またはhandover、successor再束縛、再構成確認の順を守る。",
+          "utf8_sha256": "6c0085507621adf628beacfd25b63ef27c5898619e41ba0ee832bd33ad808ce5"
+        },
+        {
+          "line": 40,
+          "text": "assignment、lease/fence、operation ID、author history、budget、deadline、retry、未完義務をsession切替で初期化せず、",
+          "utf8_sha256": "db6aa391c5eb25873b7e989171843393ad8c6354a8c894d6f7c0c297faf6a91b"
+        },
+        {
+          "line": 41,
+          "text": "同一branchの二重writerと二重副作用を防ぐ。新sessionを独立reviewer成立の根拠にしない。",
+          "utf8_sha256": "55b5edf605de10878d6ceae9b7a45116d16cf8b4e8cb132ed6d9585359e7261d"
+        },
+        {
+          "line": 46,
+          "text": "上限超過時に必須情報を黙って切らず分割取得または切替保留へ送る。撤回claim、取消権限、secret、private reasoning、",
+          "utf8_sha256": "1bef2dc42573cab1e853cec4050173916c7d061ce0c540b48bedae7d732fc1f4"
+        },
+        {
+          "line": 47,
+          "text": "他案件情報、作成側の結論誘導を混入させない。",
+          "utf8_sha256": "cddc11edbb836c146a69531550dc4f273df7ec4810d3306f59b52b3a724f84a3"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "原event/正本/projection区別、checkpoint派生view、旧失敗/未完/累積制約の保持、二重副作用防止、後日の許可で過去を成功にしない。",
+      "change": "旧物理memory/DB/CLI/runtime/固定compact方式を移植せず、019と018/015/053/SEC/LABOの既存責務へ再導出。新sessionや件数から実継続/独立性/完了を生成しない。",
+      "reason": "episode境界・scope・source revision・失敗位置を失わず、用途制約を原情報へ結び、未知情報を初回/0/成功へ補完しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "selected_line_quotes": [
+        {
+          "line": 83,
+          "text": "| Assignment | 実行者・実行場所・予算・lease/fenceとTicketのbinding | Ticketの目的・scopeの独自変更 |",
+          "utf8_sha256": "4975c587c7883b50b63d9a09ba61fb37bff3e0e608ef57c3735617cf88e63523"
+        },
+        {
+          "line": 84,
+          "text": "| ExecutionAttempt | 一回の実行条件・観測・結果・retry lineage | 永続的な仕事の意味 |",
+          "utf8_sha256": "efacf6e415dcc4ab7eb0264412844fe5a1299c3d3105cbbf13036162e013fdea"
+        },
+        {
+          "line": 141,
+          "text": "AssignmentはTicket ref、owner/lane/runtime descriptor、execution namespace、branch/worktree、base/head、予算、capability snapshot、lease/fenceを持つ。read-only/evaluation経路で不要なbranch等は、明示的なprofile上の`not_applicable`として扱い、欠落と区別する。",
+          "utf8_sha256": "c9c49e587fa1799e343bc92f39e7ea9bd48741d5835480b0ab2b2a000fbf556f"
+        },
+        {
+          "line": 143,
+          "text": "Attemptは`attempt_id / assignment_ref / ticket_ref / started_at / completed_at / outcome / retry_lineage / actual_execution_snapshot / receipt_refs`を持つ。起動前拒否は`InvocationDenied`等として記録し、実際にproviderが起動したというreceiptを作らない。実行後にmodelやprofileが判明した場合は出典付き追補を行い、当初のrequested値を上書きしない。",
+          "utf8_sha256": "58ad3196d64f86bba744509ee4aa6fceab121aa2e2a7c20fce095fdf614e8adc"
+        },
+        {
+          "line": 242,
+          "text": "連続失敗・retry budgetはdurable eventと既存Recovery policyから導出する。session再開を初回扱いしない。台帳取得不能・上限超過は新規retryを止め、理由に応じてRecovery/Reverse/Requirement Re-entry/Human Requiredへ戻す。実験retryは本線retryと別budgetで数える。",
+          "utf8_sha256": "a25826895972b79062aeedfe4bb058326101a2bed8f9b093231fd58c1e32f113"
+        },
+        {
+          "line": 246,
+          "text": "通常変更のcloseはcurrent Ticket/Assignment、必要なexact-head CI/oracle/独立review、scope/lease/fence、証拠本体、必要なGitHub/DB read-afterで判定する。PR merge、CI green、LLM申告だけでは閉じない。測定eventのdurable記録は必要だが、分析dashboard更新・shadow結果・後日観測窓の終了は一般closeの待ち条件にしない。明示Release qualificationは既存Release policyに従う。",
+          "utf8_sha256": "37ccc180665552a8f61585e71d3a98e2382d59fb1e2b9b8a3e48a613ecfd320d"
+        },
+        {
+          "line": 258,
+          "text": "正規Ticket/Assignment/Attempt/PR/CI/review/closure factsから進行を導出する。LLM申告、コメント時刻、Issue open率、branch数、手入力%を完成根拠にしない。Bench measurement coverage、実行成功率、要求完成率は異なる分母として表示する。",
+          "utf8_sha256": "c8812991162488f15d83b46542ac621e930a737bd6fc97d64c3757c543020d20"
+        },
+        {
+          "line": 298,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 450,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "原event/正本/projection区別、checkpoint派生view、旧失敗/未完/累積制約の保持、二重副作用防止、後日の許可で過去を成功にしない。",
+      "change": "旧物理memory/DB/CLI/runtime/固定compact方式を移植せず、019と018/015/053/SEC/LABOの既存責務へ再導出。新sessionや件数から実継続/独立性/完了を生成しない。",
+      "reason": "episode境界・scope・source revision・失敗位置を失わず、用途制約を原情報へ結び、未知情報を初回/0/成功へ補完しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "selected_line_quotes": [
+        {
+          "line": 289,
+          "text": "| `HR-FR-HYB-005` | memory v2はwrite/list/surfaceに加え、expiry、takeover、one-shot deliver/consume、長期層のfenced/idempotent retire、compaction fenceを持つ。active harness/project memoryは正本へ追突後にbody-free receiptへretireし、stale instructionを再提示しない | `HR-AC-HYB-005`: retire前の未反映memory、二重deliver、期限切れtakeover、lost update、terminal receiptのactive再表示を拒否する |",
+          "utf8_sha256": "787a77ff8b6b8d378fb2b652c2688523ba64094595e76cdf7634200fcfa21f96"
+        },
+        {
+          "line": 290,
+          "text": "| `HR-FR-HYB-006` | feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する | `HR-AC-HYB-006`: 未ack findingの消失、prose handoverだけの解決、source HEAD不一致を拒否する |",
+          "utf8_sha256": "2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "原event/正本/projection区別、checkpoint派生view、旧失敗/未完/累積制約の保持、二重副作用防止、後日の許可で過去を成功にしない。",
+      "change": "旧物理memory/DB/CLI/runtime/固定compact方式を移植せず、019と018/015/053/SEC/LABOの既存責務へ再導出。新sessionや件数から実継続/独立性/完了を生成しない。",
+      "reason": "episode境界・scope・source revision・失敗位置を失わず、用途制約を原情報へ結び、未知情報を初回/0/成功へ補完しない。"
+    }
+  ],
+  "remaining": [
+    "正式event/source/actor/分類/訂正/custodyのowner資格・019の不可変ledgerとprojection generation・015/018/053/023/HARNESS/SEC/CONNECT/LABO exact bindingは未成立。",
+    "L5/L8の全型/sequence/digest/訂正lineage/累積ledger全履歴/未完解消/並行append/replay・crash・重複/retention-time codec/利用scope判定/正式source分類/未見独立fixtureを閉じる。",
+    "原event fixed素材と生成view一致は実保存・再構築・handoff/全memory能力でない。旧HATの実行やcontroller/runtimeを使用しない。",
+    "全92親430対の意味閉包/対設計/oracle凍結→実装前Red→最小Green→Refactor再検証/実L9L10/PO L11/実装準備/最終独立二重監査は未成立。"
+  ],
+  "document_id": "HELIXOS-L4-019",
+  "layer": "L4",
+  "pair": "L9",
+  "architecture": {
+    "components": [
+      "original_event_provenance_comparer",
+      "handoff_cumulative_continuity_comparer",
+      "duplicate_replay_effect_comparer",
+      "checkpoint_failure_boundary_comparer",
+      "purpose_scope_retention_comparer",
+      "observation_scope_limit_comparer"
+    ],
+    "flow": [
+      "原event/source/revision/actor/訂正/classification → episode素材",
+      "unique eventとeffect原結果 → projection世代/保存境界 → 派生checkpoint素材",
+      "交代前後の元episode/制約/未完 → 同continuity",
+      "利用要求だけ既存SEC用途/retention/scope、後の許可で過去を書換えない。"
+    ],
+    "pure_boundary": "実ledger/DB/provider memory/write/replay/share/学習/authorizationを操作しない。",
+    "stage_boundary": "inspectは原素材、replayは原結果/保存projection境界、handoffは累積、useは用途条件。未選択未来操作を一律gateにしない。",
+    "origin_binding": "handoff prior/successor bindingは元episode/assignment/attemptへのprovenance anchor。新attempt/actorの実生成は018/正式bindingが持ち、この固定fixtureで旧新assignment/attemptを同一実体へ統合しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXOS-L4-019-F01",
+      "requirement_ref": "HELIXOS-L3-019-F01",
+      "system_oracle_ref": "HELIXOS-L10-019-F01",
+      "oracle_ref": "HELIXOS-L9-019-F01",
+      "approved_requirement": {
+        "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+        "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "06c6c2ba44db24d675cc82e5551fe3e3f3d5ba8de453b57a9370ee9ccb305e96"
+      },
+      "component": "original_event_provenance_comparer",
+      "input_meaning": "要求・判断・変更・実行・検証・手戻り・運用結果の原eventとsource/revision、相関ID、actor、訂正履歴、data-use classを同じepisodeへ結ぶ。欠落/重複/stale/拒否/未実行を成功から分け、provider memoryをcontinuity正本にしない。",
+      "output_meaning": "episode/replay/累積/checkpoint/用途の素材対応・不足。原結果区分と失敗/未観測を保持し、実eventや許可を作らない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXOS-L4-019-F02",
+      "requirement_ref": "HELIXOS-L3-019-F02",
+      "system_oracle_ref": "HELIXOS-L10-019-F02",
+      "oracle_ref": "HELIXOS-L9-019-F02",
+      "approved_requirement": {
+        "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+        "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "79904da03472dba67f93067c10340188da90f8ac47d88252bb0ae80f2c2e56d5"
+      },
+      "component": "handoff_cumulative_continuity_comparer",
+      "input_meaning": "担当/session/runtime交代後も期限・累積budget・失敗回数・scope・停止理由・未完義務を引き継ぐ。新担当の記録は元episode/assignment/attemptへ結び、継続情報不足を初回状態と推定しない。",
+      "output_meaning": "episode/replay/累積/checkpoint/用途の素材対応・不足。原結果区分と失敗/未観測を保持し、実eventや許可を作らない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXOS-L4-019-F03",
+      "requirement_ref": "HELIXOS-L3-019-F03",
+      "system_oracle_ref": "HELIXOS-L10-019-F03",
+      "oracle_ref": "HELIXOS-L9-019-F03",
+      "approved_requirement": {
+        "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+        "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "a7a1ac6cbf3c84c1c7819ab3cd262c6f1c6e03fcbde00ea05ff79a9b4eeaf4b8"
+      },
+      "component": "duplicate_replay_effect_comparer",
+      "input_meaning": "重複event/再送を元event・副作用結果へ結び、同じ副作用を二重実行しない。原eventとprojectionを区別し、replay/再構築失敗を成功として公開しない。",
+      "output_meaning": "episode/replay/累積/checkpoint/用途の素材対応・不足。原結果区分と失敗/未観測を保持し、実eventや許可を作らない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXOS-L4-019-F04",
+      "requirement_ref": "HELIXOS-L3-019-F04",
+      "system_oracle_ref": "HELIXOS-L10-019-F04",
+      "oracle_ref": "HELIXOS-L9-019-F04",
+      "approved_requirement": {
+        "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+        "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "851ab6f3367b247ebf54ca9cb744bdef56665ed56aba1d98048b61c01b34e514"
+      },
+      "component": "checkpoint_failure_boundary_comparer",
+      "input_meaning": "書込/projection/replayに失敗した記録を成功checkpointとして公開せず、原eventから失敗位置を特定して再構築する。欠落証拠を発生元へ戻し、再開時も失敗と未完義務を維持する。",
+      "output_meaning": "episode/replay/累積/checkpoint/用途の素材対応・不足。原結果区分と失敗/未観測を保持し、実eventや許可を作らない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXOS-L4-019-N01",
+      "requirement_ref": "HELIXOS-L3-019-N01",
+      "system_oracle_ref": "HELIXOS-L10-019-N01",
+      "oracle_ref": "HELIXOS-L9-019-N01",
+      "approved_requirement": {
+        "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+        "source_path": "docs/helix-os/L3-requirements/nfr-grade.json",
+        "object_canonical_sha256": "c8ce339e1c48502c1d1cb417786fc348567005021267cd23d014233b6114f1ea"
+      },
+      "component": "purpose_scope_retention_comparer",
+      "input_meaning": "data-use classと用途・source・対象scopeを辿り、既存SECURITY条件の利用許可/retention/共有範囲に従う。不明/不一致の記録を学習や別projectへ転用せず、後の許可で過去の無許可処理を成功に書換えない。",
+      "output_meaning": "episode/replay/累積/checkpoint/用途の素材対応・不足。原結果区分と失敗/未観測を保持し、実eventや許可を作らない。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXOS-L4-019-N02",
+      "requirement_ref": "HELIXOS-L3-019-N02",
+      "system_oracle_ref": "HELIXOS-L10-019-N02",
+      "oracle_ref": "HELIXOS-L9-019-N02",
+      "approved_requirement": {
+        "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+        "source_path": "docs/helix-os/L3-requirements/nfr-grade.json",
+        "object_canonical_sha256": "0a08da6dbead5b4f1db283438fac9d43f6851005b20ea74476a71a3013ca08fd"
+      },
+      "component": "observation_scope_limit_comparer",
+      "input_meaning": "入力整合・record存在・件数・生成viewを実episode/handoff/全能力の成立証拠にせず、未観測・未発生・未回収と未完を保持する。異なるproject/actor/revisionの未見fixtureで原情報への再構築を確かめる。",
+      "output_meaning": "episode/replay/累積/checkpoint/用途の素材対応・不足。原結果区分と失敗/未観測を保持し、実eventや許可を作らない。",
+      "operation_effect": "none"
+    }
+  ],
+  "diagnostic_contract": {
+    "return_owner": "episode-continuity-owner",
+    "role_note": "019比較ラベル。欠落原sourceは発生元、保存/projection/continuityはOS、利用条件はSEC、評価素材はLABO等へL5で正式振分け。",
+    "pointer_base": "given.input root、原field。原record欠落だけrecord root。",
+    "code_classes": {
+      "canonical_source_not_original": "violation",
+      "canonical_source_unresolved": "unknown",
+      "checkpoint_boundary_conflict": "violation",
+      "checkpoint_boundary_unresolved": "unknown",
+      "checkpoint_publication_unresolved": "unknown",
+      "checkpoint_published_before_boundary": "violation",
+      "cumulative_constraint_reset": "violation",
+      "data_use_permission_rejected": "violation",
+      "data_use_permission_unresolved": "unknown",
+      "data_use_scope_conflict": "violation",
+      "data_use_source_conflict": "violation",
+      "duplicate_event_content_conflict": "violation",
+      "duplicate_side_effect_execution": "violation",
+      "effect_execution_not_observed": "unknown",
+      "effect_record_unresolved": "unknown",
+      "effect_source_unresolved": "unknown",
+      "event_identity_unresolved": "unknown",
+      "event_kind_unresolved": "unknown",
+      "event_sequence_conflict": "violation",
+      "event_sequence_order_conflict": "violation",
+      "event_source_set_conflict": "violation",
+      "event_status_unresolved": "unknown",
+      "historical_use_rewritten": "violation",
+      "historical_use_unresolved": "unknown",
+      "original_event_missing": "unknown",
+      "outstanding_obligation_lost": "violation",
+      "outstanding_unresolved": "unknown",
+      "persistence_stage_failed": "violation",
+      "persistence_stage_unresolved": "unknown",
+      "phase_unresolved": "unknown",
+      "projection_event_set_conflict": "violation",
+      "projection_event_set_unresolved": "unknown",
+      "projection_rebuild_unresolved": "unknown",
+      "quantity_unresolved": "unknown",
+      "retention_window_expired": "violation",
+      "source_conflict": "violation",
+      "source_unresolved": "unknown",
+      "whole_scope_claim_unproven": "violation",
+      "whole_scope_claim_unresolved": "unknown"
+    },
+    "sort": "code/pointer/return_owner scalar順のexact三fieldunique。"
+  },
+  "legacy_normative_objects": [
+    {
+      "id": "HIL-NFR-32",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "id_field": "requirement_id",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "object_canonical_sha256": "c0e380cbbcba0edbe323b16b9e1ed64c42283d90d2cd5bcf2480aac066366951",
+      "source_status": "specified",
+      "use": "管理・authority/原子正本・履歴保持の間接規範/consumer source。共有consumer全範囲・旧Markdown正本/runtime/旧test合格を019へ移植/昇格しない。"
+    },
+    {
+      "id": "HR-FR-HIL-19",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "id_field": "system_contract_id",
+      "file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "object_canonical_sha256": "90b11611fb15b9ffcdde1063f69b4b56aa558fd9b644ff77243bea97ed01288f",
+      "source_status": "specified",
+      "use": "管理・authority/原子正本・履歴保持の間接規範/consumer source。共有consumer全範囲・旧Markdown正本/runtime/旧test合格を019へ移植/昇格しない。"
+    },
+    {
+      "id": "HAC-HIL-19a",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id_field": "acceptance_id",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object_canonical_sha256": "197edc6b5eaed43751c6af42944e129524ad375d1a7bc4883b0cf7ae4d910b57",
+      "source_status": "specified",
+      "use": "管理・authority/原子正本・履歴保持の間接規範/consumer source。共有consumer全範囲・旧Markdown正本/runtime/旧test合格を019へ移植/昇格しない。"
+    },
+    {
+      "id": "HAC-HIL-19b",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id_field": "acceptance_id",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object_canonical_sha256": "8737efa3243a47fb23234edef20b4f5403d0d71151ca66d63be17fdf20d22da6",
+      "source_status": "specified",
+      "use": "管理・authority/原子正本・履歴保持の間接規範/consumer source。共有consumer全範囲・旧Markdown正本/runtime/旧test合格を019へ移植/昇格しない。"
+    },
+    {
+      "id": "HAC-HIL-19c",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id_field": "acceptance_id",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object_canonical_sha256": "1b7cc7b4809cf781c866d071fc0bf5d1a81bd810ebd6aa7e0fbf7d628b2b245e",
+      "source_status": "specified",
+      "use": "管理・authority/原子正本・履歴保持の間接規範/consumer source。共有consumer全範囲・旧Markdown正本/runtime/旧test合格を019へ移植/昇格しない。"
+    },
+    {
+      "id": "HAT-HIL-19",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "id_field": "system_test_id",
+      "file_sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "object_canonical_sha256": "256f22745af197e88d2ef8b8fe1cea80589af36a4f4240ceeba90481f450f190",
+      "source_status": "designed_not_implemented",
+      "use": "管理・authority/原子正本・履歴保持の間接規範/consumer source。共有consumer全範囲・旧Markdown正本/runtime/旧test合格を019へ移植/昇格しない。"
+    }
+  ]
+}
