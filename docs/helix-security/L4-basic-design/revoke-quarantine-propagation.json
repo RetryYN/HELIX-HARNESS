@@ -284,6 +284,7 @@
       "isolation_unresolved": "unknown",
       "propagation_phase_unresolved": "unknown",
       "recipient_actions_conflict": "violation",
+      "recipient_actions_unresolved": "unknown",
       "recipient_application_unresolved": "unknown",
       "recipient_continues_after_stop": "violation",
       "recipient_not_applied": "violation",
@@ -296,6 +297,7 @@
       "recovery_incomplete": "violation",
       "recovery_unresolved": "unknown",
       "safety_trigger_unresolved": "unknown",
+      "stop_scope_unresolved": "unknown",
       "trigger_category_conflict": "violation",
       "trigger_category_unresolved": "unknown"
     }

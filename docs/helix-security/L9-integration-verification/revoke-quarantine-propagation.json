@@ -290,14 +290,14 @@
       ]
     },
     "algorithm": [
-      "固定shape。categoryはsafety/general_meaningだけ既知、eventと独立expected_categoryが異なればtrigger_category_conflict、閉集合外はtrigger_category_unresolved。両方general_meaningなら一般meaning通知とし、安全trigger/recipient/結果を評価しない。ただしall_scopes_stop_requested=trueはglobal_stop_expansion違反、false以外はstop_scope_unresolved。",
+      "固定shape。categoryはsafety/general_meaningだけ既知、eventと独立expected_categoryが異なればtrigger_category_conflict、閉集合外はtrigger_category_unresolved。両方general_meaningなら一般meaning通知とし、安全trigger/recipient/結果を評価しない。ただしall_scopes_stop_requested=trueはglobal_stop_expansion違反、false以外はstop_scope_unresolved。 stop_scope_unresolvedはunknown。",
       "安全/分類未解決ではtriggerを六trigger closed setへ照合し外はsafety_trigger_unresolved。policy.selected_recipientsと独立expected_recipientsは五recipient名の重複なしlist、片側不正ならその位置recipient_set_unresolved、両側既知set相反ならpolicy位置recipient_set_conflict。selectedは独立expected setの固定五recipient順、未確定なら空。選択scope由来で全機構/未選択recipientを完成待ちにしない。",
       "known identity/refは非空文字列。event.identity→independent expected identityはcommon5field＋selected固有fieldだけ、policy binding→eventはcommon5だけ。instruction/対象phase report bindingはcommon5＋recipient固有fieldをeventへ照合する。片側未知はbinding_unresolvedをその原位置、両側known相反だけbinding_conflict。source_refも同じ規則で独立expected_policy/report refsへ比較。",
-      "各selected instructionがnullならinstruction_unresolved。actionsは重複なし非空文字列list、形式不正ならrecipient_actions_unresolved、固定recipientのrequired action exact setと違えばrecipient_actions_conflict。Workerはstop_executionとisolate_partial_artifact両方。他recipientは個別停止actionのみ。",
+      "各selected instructionがnullならinstruction_unresolved。actionsは重複なし非空文字列list、形式不正ならrecipient_actions_unresolved、固定recipientのrequired action exact setと違えばrecipient_actions_conflict。Workerはstop_executionとisolate_partial_artifact両方。他recipientは個別停止actionのみ。 recipient_actions_unresolvedはunknown。",
       "dispatchはreportsを要求しない。received/applied/recoveryはreport nullでrecipient_report_unresolved、receipt not_deliveredでrecipient_not_delivered、received以外はrecipient_receipt_unresolved。ACK素材だけでappliedを生成しない。",
       "applied/recoveryだけ各required actionのapplicationを照合。not_appliedはrecipient_not_applied違反、applied以外はrecipient_application_unresolved。各recipient post_stateの継続/露出flagはtrueならrecipient_continues_after_stop違反、false以外はrecipient_post_state_unresolved。新規停止だけでin-flight/通信/use/access停止にしない。",
       "applied/recoveryはisolation binding/source_ref/before_state_refを原event/独立contextへknown比較。state not_isolatedはisolation_not_applied違反、isolated以外はisolation_unresolved。受領とは別。recoveryだけ復旧binding/source_refを同様比較し、partial/unavailableはrecovery_incomplete違反、restored以外はrecovery_unresolved。restoredの場合だけrestored_state_refを独立before_state_refへ比較。復旧計画や部分復旧を原状態対応にしない。",
-      "phaseはdispatch/received/applied/recoveryだけknown、外はpropagation_phase_unresolved。各axisと全体はviolation→unknown→corresponding。generalが証明され全体対応ならnot_safety_notification、他はrevoke_material_<全体状態>。selected_phase/selected_triggerは閉集合値かnull。selected recipient別結果とpolicy/isolation/recoveryを分け、未評価isolation/recoveryはnot_evaluated。 finding codeの違反/未確認分類はdiagnostic_code_classesの明示mapに従う。not_deliveredは既知の未達失敗なのでviolation、観測なし/不明とは分ける。",
+      "phaseはdispatch/received/applied/recoveryだけknown、外はpropagation_phase_unresolved。各axisと全体はviolation→unknown→corresponding。generalが証明され全体対応ならnot_safety_notification、他はrevoke_material_<全体状態>。selected_phase/selected_triggerは閉集合値かnull。selected recipient別結果とpolicy/isolation/recoveryを分け、未評価isolation/recoveryはnot_evaluated。 finding codeの違反/未確認分類はdiagnostic_code_classesの明示mapに従う。not_deliveredは既知の未達失敗なのでviolation、観測なし/不明とは分ける。 明示mapは既存caseで観測したcode集合から推定せず、本文が定義する全codeを含む。",
       "local_hold_requestedはgeneral証明時だけfalse、それ以外trueだが実停止ではない。unrelated_scope_stop_requested=false、affected_revision_scopeは原eventの同fieldをnull含め保持して補完しない。fixed_latency_limit/実revoke・適用・復旧verified/実resume_authorizedは全false。空selected setでも全recipient実停止を生成しない。findingsは原位置・裸owner・exact三fieldunique昇順。全18fieldをwhole比較する。"
     ],
     "result_fields": [
@@ -330,6 +330,7 @@
       "isolation_unresolved": "unknown",
       "propagation_phase_unresolved": "unknown",
       "recipient_actions_conflict": "violation",
+      "recipient_actions_unresolved": "unknown",
       "recipient_application_unresolved": "unknown",
       "recipient_continues_after_stop": "violation",
       "recipient_not_applied": "violation",
@@ -342,6 +343,7 @@
       "recovery_incomplete": "violation",
       "recovery_unresolved": "unknown",
       "safety_trigger_unresolved": "unknown",
+      "stop_scope_unresolved": "unknown",
       "trigger_category_conflict": "violation",
       "trigger_category_unresolved": "unknown"
     }
@@ -107900,10 +107902,5458 @@
       },
       "execution_state": "not_executed",
       "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-SAFETY-STOP-SCOPE-NULL",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": null
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "corresponding",
+          "connect_communication": "corresponding",
+          "credential_use": "corresponding",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "unknown",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "stop_scope_unresolved",
+            "pointer": "/policy/all_scopes_stop_requested",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-GENERAL-MEANING-STOP-SCOPE-NULL",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "general_meaning",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": null
+          },
+          "context": {
+            "expected_category": "general_meaning",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": null,
+        "selected_recipients": [],
+        "recipient_correspondence": {},
+        "policy_correspondence": "unknown",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": false,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "stop_scope_unresolved",
+            "pointer": "/policy/all_scopes_stop_requested",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-ACTIONS-DUPLICATE",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment",
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "unknown",
+          "worker_execution": "corresponding",
+          "connect_communication": "corresponding",
+          "credential_use": "corresponding",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/os_assignment/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-ACTIONS-NONSTRING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                false
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "unknown",
+          "worker_execution": "corresponding",
+          "connect_communication": "corresponding",
+          "credential_use": "corresponding",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/os_assignment/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-OS_ASSIGNMENT-ACTIONS-NONLIST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": {
+                "invalid": "not-a-list"
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "unknown",
+          "worker_execution": "corresponding",
+          "connect_communication": "corresponding",
+          "credential_use": "corresponding",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/os_assignment/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-ACTIONS-DUPLICATE",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact",
+                "stop_execution"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "unknown",
+          "connect_communication": "corresponding",
+          "credential_use": "corresponding",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/worker_execution/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-ACTIONS-NONSTRING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                false
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "unknown",
+          "connect_communication": "corresponding",
+          "credential_use": "corresponding",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/worker_execution/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-WORKER_EXECUTION-ACTIONS-NONLIST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": {
+                "invalid": "not-a-list"
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "unknown",
+          "connect_communication": "corresponding",
+          "credential_use": "corresponding",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/worker_execution/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-ACTIONS-DUPLICATE",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication",
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "corresponding",
+          "connect_communication": "unknown",
+          "credential_use": "corresponding",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/connect_communication/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-ACTIONS-NONSTRING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                false
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "corresponding",
+          "connect_communication": "unknown",
+          "credential_use": "corresponding",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/connect_communication/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-CONNECT_COMMUNICATION-ACTIONS-NONLIST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": {
+                "invalid": "not-a-list"
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "corresponding",
+          "connect_communication": "unknown",
+          "credential_use": "corresponding",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/connect_communication/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-ACTIONS-DUPLICATE",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use",
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "corresponding",
+          "connect_communication": "corresponding",
+          "credential_use": "unknown",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/credential_use/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-ACTIONS-NONSTRING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                false
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "corresponding",
+          "connect_communication": "corresponding",
+          "credential_use": "unknown",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/credential_use/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-CREDENTIAL_USE-ACTIONS-NONLIST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": {
+                "invalid": "not-a-list"
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "corresponding",
+          "connect_communication": "corresponding",
+          "credential_use": "unknown",
+          "artifact_access": "corresponding"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/credential_use/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-ACTIONS-DUPLICATE",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                "stop_access",
+                "stop_access"
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "corresponding",
+          "connect_communication": "corresponding",
+          "credential_use": "corresponding",
+          "artifact_access": "unknown"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/artifact_access/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-ACTIONS-NONSTRING",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": [
+                false
+              ]
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "corresponding",
+          "connect_communication": "corresponding",
+          "credential_use": "corresponding",
+          "artifact_access": "unknown"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/artifact_access/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "SEC009-ARTIFACT_ACCESS-ACTIONS-NONLIST",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-009-B01",
+        "HELIXSECURITY-L3-009-F01",
+        "HELIXSECURITY-L3-009-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "dispatch",
+          "event": {
+            "category": "safety",
+            "trigger": "revoked",
+            "identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            }
+          },
+          "policy": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "selected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "all_scopes_stop_requested": false
+          },
+          "context": {
+            "expected_category": "safety",
+            "expected_identity": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A",
+              "worker": "WORKER-A",
+              "environment": "ENV-A",
+              "connection": "CONNECTION-A",
+              "credential": "CREDENTIAL-USE-REF",
+              "artifact": "ARTIFACT-A"
+            },
+            "expected_recipients": [
+              "os_assignment",
+              "worker_execution",
+              "connect_communication",
+              "credential_use",
+              "artifact_access"
+            ],
+            "expected_policy_refs": {
+              "os_assignment": "POLICY-os_assignment",
+              "worker_execution": "POLICY-worker_execution",
+              "connect_communication": "POLICY-connect_communication",
+              "credential_use": "POLICY-credential_use",
+              "artifact_access": "POLICY-artifact_access"
+            },
+            "expected_report_refs": {
+              "os_assignment": "REPORT-os_assignment",
+              "worker_execution": "REPORT-worker_execution",
+              "connect_communication": "REPORT-connect_communication",
+              "credential_use": "REPORT-credential_use",
+              "artifact_access": "REPORT-artifact_access"
+            },
+            "before_state_ref": "BEFORE-A",
+            "isolation_source_ref": "ISOLATION-A",
+            "recovery_source_ref": "RECOVERY-A"
+          },
+          "instructions": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "POLICY-os_assignment",
+              "actions": [
+                "stop_new_assignment"
+              ]
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "POLICY-worker_execution",
+              "actions": [
+                "stop_execution",
+                "isolate_partial_artifact"
+              ]
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "POLICY-connect_communication",
+              "actions": [
+                "stop_communication"
+              ]
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "POLICY-credential_use",
+              "actions": [
+                "stop_use"
+              ]
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "POLICY-artifact_access",
+              "actions": {
+                "invalid": "not-a-list"
+              }
+            }
+          },
+          "reports": {
+            "os_assignment": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A"
+              },
+              "source_ref": "REPORT-os_assignment",
+              "receipt": "received",
+              "application": {
+                "stop_new_assignment": "applied"
+              },
+              "post_state": {
+                "new_assignment_continues": false
+              }
+            },
+            "worker_execution": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "worker": "WORKER-A",
+                "environment": "ENV-A"
+              },
+              "source_ref": "REPORT-worker_execution",
+              "receipt": "received",
+              "application": {
+                "stop_execution": "applied",
+                "isolate_partial_artifact": "applied"
+              },
+              "post_state": {
+                "execution_continues": false,
+                "partial_artifact_exposed": false
+              }
+            },
+            "connect_communication": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "connection": "CONNECTION-A"
+              },
+              "source_ref": "REPORT-connect_communication",
+              "receipt": "received",
+              "application": {
+                "stop_communication": "applied"
+              },
+              "post_state": {
+                "communication_continues": false
+              }
+            },
+            "credential_use": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "credential": "CREDENTIAL-USE-REF"
+              },
+              "source_ref": "REPORT-credential_use",
+              "receipt": "received",
+              "application": {
+                "stop_use": "applied"
+              },
+              "post_state": {
+                "use_continues": false
+              }
+            },
+            "artifact_access": {
+              "binding": {
+                "event_id": "EVENT-A",
+                "revision": "request-r1",
+                "scope": "PROJECT-A",
+                "operation": "OPERATION-A",
+                "project": "PROJECT-A",
+                "artifact": "ARTIFACT-A"
+              },
+              "source_ref": "REPORT-artifact_access",
+              "receipt": "received",
+              "application": {
+                "stop_access": "applied"
+              },
+              "post_state": {
+                "access_continues": false
+              }
+            }
+          },
+          "isolation": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "isolated",
+            "before_state_ref": "BEFORE-A",
+            "source_ref": "ISOLATION-A"
+          },
+          "recovery": {
+            "binding": {
+              "event_id": "EVENT-A",
+              "revision": "request-r1",
+              "scope": "PROJECT-A",
+              "operation": "OPERATION-A",
+              "project": "PROJECT-A"
+            },
+            "state": "restored",
+            "restored_state_ref": "BEFORE-A",
+            "source_ref": "RECOVERY-A"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/refs/stateのみ。原受領/適用/隔離/復旧labelは実観測や資格を証明しない。値・時刻/latency上限・実命令なし。"
+      },
+      "when": "選択phaseと全該当recipientの素材照合。実停止/失効/隔離/回復なし。",
+      "expected_proposal": {
+        "condition": "revoke_material_unknown",
+        "selected_phase": "dispatch",
+        "selected_trigger": "revoked",
+        "selected_recipients": [
+          "os_assignment",
+          "worker_execution",
+          "connect_communication",
+          "credential_use",
+          "artifact_access"
+        ],
+        "recipient_correspondence": {
+          "os_assignment": "corresponding",
+          "worker_execution": "corresponding",
+          "connect_communication": "corresponding",
+          "credential_use": "corresponding",
+          "artifact_access": "unknown"
+        },
+        "policy_correspondence": "corresponding",
+        "isolation_correspondence": "not_evaluated",
+        "recovery_correspondence": "not_evaluated",
+        "local_hold_requested": true,
+        "unrelated_scope_stop_requested": false,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "recipient_actions_unresolved",
+            "pointer": "/instructions/artifact_access/actions",
+            "return_owner": "revoke-quarantine-owner"
+          }
+        ],
+        "fixed_latency_limit_added": false,
+        "actual_revoke_or_stop_invoked": false,
+        "actual_application_verified": false,
+        "actual_recovery_verified": false,
+        "resume_authorized": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
     }
   ],
   "completion": {
     "status": "unproven",
-    "evidence": "339fixed synthetic proposals。全該当recipientの実停止・隔離・復旧/実source/全閉包は未成立。"
+    "evidence": "356fixed synthetic proposals。全該当recipientの実停止・隔離・復旧/実source/全閉包は未成立。"
   }
 }
