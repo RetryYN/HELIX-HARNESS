@@ -321,10 +321,10 @@
     "algorithm": [
       "固定shape、before_execution/after_execution/handoffを分ける。assignment ownerと各rolesはindependent expected role素材へknown文字列比較。OS以外のproposal/evaluationからassignment stateをissued_materialに生成しない。state=proposalはproposal_not_actual_assignment違反、他未知はassignment_state_unresolved。役割badge/issued labelは実資格でない。",
       "core19 binding fieldをcontext expectedへ、assignment bindingをcore bindingへ比較。post artifact/evidence/result三fieldはafter/handoffだけ。片側非空文字列でないならsource_unresolvedをその原位置、両側known相反だけsource_conflict。logical_work/assignment/attemptを同identityに潰すとexecution_identity_collapsed違反。authority/capability/leaseのrevoked/stale/deniedはexecution_condition_rejected、current以外はexecution_condition_unresolved。resource observed_material以外はactual_resource_unresolved。",
-      "model_levelの未評価を宣言評価済みにしたらunassessed_promoted_to_evaluated。source_revision/task/scope素材と適用task/scopeを照合し不足/model_level_conflictをevaluation facetへ。未評価を単独で操作不許可にしない。数値水準/effort/model既定値を新設しない。 model_levelのstate/source_revision/task/scopeを独立expected_model_levelへ原field比較し、source revision driftを保持。 model_levelの適用task/scopeとの比較も、比較相手がunknownならその原位置source_unresolved、両側knownの相反だけmodel_level_conflict。",
+      "model_levelの未評価を宣言評価済みにしたらunassessed_promoted_to_evaluated。source_revision/task/scope素材と適用task/scopeを照合し不足/model_level_conflictをevaluation facetへ。未評価を単独で操作不許可にしない。数値水準/effort/model既定値を新設しない。 model_levelのstate/source_revision/task/scopeを独立expected_model_levelへ原field比較し、source revision driftを保持。 model_levelの適用task/scopeとの比較も、比較相手がunknownならその原位置source_unresolved、両側knownの相反だけmodel_level_conflict。 model_level_unresolvedの発生位置・汎用codeとの併記はspecific_unresolved_emissionに従う。actual source_revision/task/scopeの不足はsource_unresolvedと併記、declared_evaluated非booleanは専用codeのみ、state/独立期待/適用相手は汎用codeだけ。",
       "累積素材は非負integerのsynthetic unit/tickだけ。cost/budget/deadline/failures/claim数を型照合、budget/deadlineをindependent descriptorへ同値比較。now>=deadlineはexecution_deadline_reached、spent>budgetはbudget_exhausted。priorは任意で、ある場合だけ同logicalwork、old_claim_active=false、spent/failure非減少、budget/deadline同値、未完set包含を比較。二重claim、旧claim未fence、reset、未完喪失を保持。義務解消proof/単位codec/全履歴/実fenceはL5へ。",
       "after/handoffでcollectionを同join7fieldへ、三成果refと停止理由・未完包含を原binding/currentへ照合。handoffだけreview actor/context/authority素材を独立expectedへ、同actor/同context自己reviewを違反にする。provider名を独立性に使わず実review成立は主張しない。 collection.terminal_stateは独立expected_terminal_stateの成功/中断/失敗/停止/終了不明へ照合する。停止理由refはinterrupted/failed/stopped/outcome_unknownの場合だけ必要で、正常成功へ停止理由を新gateとして要求しない。 producer_contextも独立expected_producer_contextへ比較し、不明を独立性成立へ補完しない。",
-      "after/handoffでrun/default/reasonはjoin7fieldで照合。run config8fieldをindependent expected実素材へ比較し、default currentとvalues knownの場合だけdeviationを計算する。deviationなら既存reason recorded/source_refとjoinを照合。不明sourceを逸脱なしにせずnullを保持。default/order未知は当該facetで、全assignmentの新gateにしない。 default source/owner/valuesはindependent expected_defaultへ比較し、run/defaultのbinding/source/valuesに不足/相反があればdeviation=nullとする。逸脱事実が既知の後にreasonが不足してもdeviation=trueを保持。 default source_revisionを独立expected_defaultの同fieldへ比較し、要求revisionとpolicy revisionを別保持する。",
+      "after/handoffでrun/default/reasonはjoin7fieldで照合。run config8fieldをindependent expected実素材へ比較し、default currentとvalues knownの場合だけdeviationを計算する。deviationなら既存reason recorded/source_refとjoinを照合。不明sourceを逸脱なしにせずnullを保持。default/order未知は当該facetで、全assignmentの新gateにしない。 default source/owner/valuesはindependent expected_defaultへ比較し、run/defaultのbinding/source/valuesに不足/相反があればdeviation=nullとする。逸脱事実が既知の後にreasonが不足してもdeviation=trueを保持。 default source_revisionを独立expected_defaultの同fieldへ比較し、要求revisionとpolicy revisionを別保持する。 default_source_unresolvedはdefault.state非currentの位置に専用codeだけ。source_ref/owner_ref/source_revision不足は汎用source_unresolvedだけ。actual default.values不足はsource_unresolvedとdefault_value_unresolvedを同じ原fieldへ併記、expected values不足は汎用だけ（specific_unresolved_emission）。",
       "quality event_selected=falseならorder/stepを要求せずnot_selected。trueなら既存order current/sourceと重複なしorder、actual_steps→independent expected steps whole照合。step stateはexecuted/failed/stoppedとresult_refだけ既知、予定stepをactualにしない。stepの順序はorder内の厳密増加、未知/逆順は違反。全数ならcomplete、prefixならpartial、空はunknown。partialをresult successに変換しない。planned_stepsは実receiptでない。実順序の全consumer適用はL5へ。 event_selectedは独立expected_quality_eventへ照合し、両方falseの時だけorder/stepsを非評価にする。order/source_refを独立expectedへ照合。actual_stepsとexpected_stepsは件数と各leafを別比較し、nullのresult_refをknown相反にしない。 order_source_revisionを独立expected_order_source_revisionへ比較。policy/order版を要求revisionで代用しない。 quality eventのboolean不足は各原fieldへunknown、両側known相反だけquality_event_conflict。品質source/order/stepの不足・相反があればquality_path_status=unknownとしてraw本数で完了を生成しない。",
       "evaluationはunassessed/observedを分け、未評価はevaluation_unassessedを当該facetへ。task/risk/fixture/rubric/sourceとjoin、total_cost→独立expected総費用を照合。重大failureをsummaryで消すとmajor_failure_masked、optimal claimはこの素材だけではunqualified。性能未評価を操作権限へ読み替えず、最適証明は全false。 evaluationの適用task/riskも両側known時だけ相反、独立期待がnullならその原位置source_unresolved。",
       "dependenciesは独立expected class/selectionからalways、operation selected、input selectedだけsource/stateを評価、referenceは旧runtime/schema参照だけ。normative consumerのclass降格/選択改変を違反として保持。always欠落はbinding、選択input/operation欠落はdependency facet。未選択consult/supportを要求しない。正式IR/HR/HAC/HAT consumer全被覆は未証明。 常時必須consumerの分類改変はbinding facetにも返し、参照資料への降格でoperation素材を通さない。 dependency class/selectionも閉集合/booleanの両側known時だけ相反、片側null/閉集合外はその位置unresolved。",
@@ -400,6 +400,31 @@
       "source_unresolved": "unknown",
       "stop_reason_unresolved": "unknown",
       "unassessed_promoted_to_evaluated": "violation"
+    },
+    "specific_unresolved_emission": {
+      "model_level_unresolved": {
+        "actual_fields": [
+          "source_revision",
+          "task",
+          "scope"
+        ],
+        "rule": "actual fieldが非空文字列でない場合、先のknown比較によるsource_unresolvedに加えて同じ原fieldにmodel_level_unresolvedを併記する。declared_evaluatedが非booleanの場合はその原fieldにmodel_level_unresolvedだけ。",
+        "generic_only": "model_level.state、expected_model_levelの各field、適用task/scopeの比較相手が不明の場合はsource_unresolvedだけ。"
+      },
+      "default_source_unresolved": {
+        "actual_fields": [
+          "state"
+        ],
+        "rule": "default.stateがcurrent以外の場合、その原fieldにdefault_source_unresolvedだけ。",
+        "generic_only": "default.source_ref/owner_ref/source_revisionと各independent expected fieldが不明ならsource_unresolvedだけ。default_source_unresolvedはこれらに付けない。"
+      },
+      "default_value_unresolved": {
+        "actual_fields": [
+          "values/<config-field>"
+        ],
+        "rule": "actual default.values fieldが非空文字列でない場合、known比較によるsource_unresolvedとdefault_value_unresolvedを同じ原fieldへ併記する。",
+        "generic_only": "expected_default.values fieldが不明ならsource_unresolvedだけ。"
+      }
     }
   },
   "cases": [
@@ -111975,11 +112000,2226 @@
       },
       "execution_state": "not_executed",
       "actual_observation": "not_observed"
+    },
+    {
+      "id": "OS018-MODEL-DECLARED-EVALUATED-NONBOOLEAN",
+      "requirement_refs": [
+        "HELIXOS-L3-018-B01",
+        "HELIXOS-L3-018-F01",
+        "HELIXOS-L3-018-F02",
+        "HELIXOS-L3-018-F03",
+        "HELIXOS-L3-018-F04",
+        "HELIXOS-L3-018-F05",
+        "HELIXOS-L3-018-N01",
+        "HELIXOS-L3-018-N02"
+      ],
+      "given": {
+        "input": {
+          "phase": "after_execution",
+          "binding": {
+            "logical_work": "SYNTHETIC-LOGICAL_WORK",
+            "ticket_ref": "SYNTHETIC-TICKET_REF",
+            "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+            "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "assignment": "SYNTHETIC-ASSIGNMENT",
+            "attempt": "SYNTHETIC-ATTEMPT",
+            "actor": "SYNTHETIC-ACTOR",
+            "worker": "SYNTHETIC-WORKER",
+            "lane": "SYNTHETIC-LANE",
+            "scope": "SYNTHETIC-SCOPE",
+            "head": "SYNTHETIC-HEAD",
+            "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+            "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+            "lease_ref": "SYNTHETIC-LEASE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+            "oracle_ref": "SYNTHETIC-ORACLE_REF",
+            "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+            "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+            "result_ref": "SYNTHETIC-RESULT_REF"
+          },
+          "assignment": {
+            "state": "issued_material",
+            "owner": "OS",
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "ticket_ref": "SYNTHETIC-TICKET_REF",
+              "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+              "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "actor": "SYNTHETIC-ACTOR",
+              "worker": "SYNTHETIC-WORKER",
+              "lane": "SYNTHETIC-LANE",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+              "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+              "lease_ref": "SYNTHETIC-LEASE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+              "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+              "result_ref": "SYNTHETIC-RESULT_REF"
+            }
+          },
+          "context": {
+            "expected_binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "ticket_ref": "SYNTHETIC-TICKET_REF",
+              "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+              "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "actor": "SYNTHETIC-ACTOR",
+              "worker": "SYNTHETIC-WORKER",
+              "lane": "SYNTHETIC-LANE",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+              "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+              "lease_ref": "SYNTHETIC-LEASE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+              "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+              "result_ref": "SYNTHETIC-RESULT_REF"
+            },
+            "expected_roles": {
+              "assignment": "OS",
+              "proposal": "INTELLIGENCE",
+              "evaluation": "LABO",
+              "oracle": "HARNESS",
+              "authority": "SECURITY"
+            },
+            "expected_config": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            },
+            "expected_steps": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ],
+            "expected_dependency_classes": {
+              "normative_consumer": "always",
+              "consult": "operation",
+              "selected_input": "input",
+              "legacy_runtime": "reference"
+            },
+            "expected_dependency_selection": {
+              "normative_consumer": true,
+              "consult": false,
+              "selected_input": true,
+              "legacy_runtime": false
+            },
+            "expected_dependency_refs": {
+              "normative_consumer": "NORMATIVE-CONSUMER-A",
+              "consult": null,
+              "selected_input": "INPUT-A",
+              "legacy_runtime": null
+            },
+            "expected_review": {
+              "actor": "REVIEW-ACTOR",
+              "context": "REVIEW-CONTEXT",
+              "authority_ref": "REVIEW-AUTHORITY"
+            },
+            "now": 90,
+            "budget_limit": 100,
+            "deadline": 100,
+            "expected_total_cost": 7,
+            "expected_model_level": {
+              "state": "unassessed",
+              "declared_evaluated": false,
+              "source_revision": "LEVEL-r1",
+              "task": "SYNTHETIC-TASK",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "expected_default": {
+              "binding": {
+                "logical_work": "SYNTHETIC-LOGICAL_WORK",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "assignment": "SYNTHETIC-ASSIGNMENT",
+                "attempt": "SYNTHETIC-ATTEMPT",
+                "scope": "SYNTHETIC-SCOPE",
+                "head": "SYNTHETIC-HEAD",
+                "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+              },
+              "state": "current",
+              "source_ref": "DEFAULT-SOURCE-A",
+              "owner_ref": "EXISTING-POLICY-OWNER",
+              "values": {
+                "task": "SYNTHETIC-TASK",
+                "risk": "SYNTHETIC-RISK",
+                "runtime": "SYNTHETIC-RUNTIME",
+                "model": "SYNTHETIC-MODEL",
+                "effort": "SYNTHETIC-EFFORT",
+                "retry": "SYNTHETIC-RETRY",
+                "quality": "SYNTHETIC-QUALITY",
+                "cost": "SYNTHETIC-COST"
+              },
+              "source_revision": "DEFAULT-r1"
+            },
+            "expected_order": [
+              "STEP-A",
+              "STEP-B"
+            ],
+            "expected_order_source_ref": "ORDER-SOURCE-A",
+            "expected_quality_event": true,
+            "expected_order_source_revision": "ORDER-r1",
+            "expected_terminal_state": "interrupted",
+            "expected_producer_context": "PRODUCER-CONTEXT"
+          },
+          "roles": {
+            "assignment": "OS",
+            "proposal": "INTELLIGENCE",
+            "evaluation": "LABO",
+            "oracle": "HARNESS",
+            "authority": "SECURITY"
+          },
+          "resource_state": "observed_material",
+          "authority_state": "current",
+          "capability_state": "current",
+          "lease_state": "current",
+          "prior": {
+            "logical_work": "SYNTHETIC-LOGICAL_WORK",
+            "old_claim_active": false,
+            "cost_spent": 4,
+            "budget_limit": 100,
+            "deadline": 100,
+            "failures": 1,
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "current_constraints": {
+            "cost_spent": 7,
+            "budget_limit": 100,
+            "deadline": 100,
+            "failures": 2,
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "active_claim_count": 1
+          },
+          "collection": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "collected",
+            "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+            "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+            "result_ref": "SYNTHETIC-RESULT_REF",
+            "stop_reason_ref": "STOP-REASON-A",
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "terminal_state": "interrupted"
+          },
+          "review": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "actor": "REVIEW-ACTOR",
+            "context": "REVIEW-CONTEXT",
+            "authority_ref": "REVIEW-AUTHORITY",
+            "producer_context": "PRODUCER-CONTEXT",
+            "provider": "SAME-PROVIDER"
+          },
+          "run": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "config": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            }
+          },
+          "default": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "current",
+            "source_ref": "DEFAULT-SOURCE-A",
+            "owner_ref": "EXISTING-POLICY-OWNER",
+            "values": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            },
+            "source_revision": "DEFAULT-r1"
+          },
+          "deviation_reason": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "recorded",
+            "source_ref": "EXISTING-REASON-A"
+          },
+          "quality": {
+            "event_selected": true,
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "order_state": "current",
+            "order_source_ref": "ORDER-SOURCE-A",
+            "order": [
+              "STEP-A",
+              "STEP-B"
+            ],
+            "actual_steps": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ],
+            "planned_steps": [
+              "UNSELECTED-CONSULT"
+            ],
+            "result_state": "partial",
+            "order_source_revision": "ORDER-r1"
+          },
+          "dependencies": {
+            "normative_consumer": {
+              "class": "always",
+              "selected": true,
+              "state": "corresponding",
+              "source_ref": "NORMATIVE-CONSUMER-A"
+            },
+            "consult": {
+              "class": "operation",
+              "selected": false,
+              "state": "unknown",
+              "source_ref": null
+            },
+            "selected_input": {
+              "class": "input",
+              "selected": true,
+              "state": "corresponding",
+              "source_ref": "INPUT-A"
+            },
+            "legacy_runtime": {
+              "class": "reference",
+              "selected": false,
+              "state": "unknown",
+              "source_ref": null
+            }
+          },
+          "evaluation": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "observed",
+            "source_ref": "LABO-EVIDENCE-A",
+            "task": "SYNTHETIC-TASK",
+            "risk": "SYNTHETIC-RISK",
+            "fixture_ref": "FIXTURE-A",
+            "rubric_ref": "RUBRIC-A",
+            "total_cost": 7,
+            "major_failure": false,
+            "summary_major_failure": false,
+            "scope_violation": false,
+            "optimal_claim": false
+          },
+          "model_level": {
+            "state": "unassessed",
+            "declared_evaluated": null,
+            "source_revision": "LEVEL-r1",
+            "task": "SYNTHETIC-TASK",
+            "scope": "SYNTHETIC-SCOPE"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/owner/state/cost-tick/refのみ。issued/observed等は実資格・実観測を証明しない。100/90/7はfixtureのみ。"
+      },
+      "when": "全8要求のfacetを分ける素材比較。実割当/Worker/authority/receipt/default/orderを作らない。",
+      "expected_proposal": {
+        "condition": "assignment_material_unknown",
+        "selected_phase": "after_execution",
+        "execution_binding_material": "corresponding",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "binding": "corresponding",
+          "cumulative": "corresponding",
+          "collection": "corresponding",
+          "default": "corresponding",
+          "quality": "corresponding",
+          "dependencies": "corresponding",
+          "evaluation": "unknown"
+        },
+        "default_deviation": false,
+        "quality_path_status": "partial",
+        "evaluation_status": "observed",
+        "affected_revision_scope": {
+          "revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE"
+        },
+        "findings": [
+          {
+            "code": "model_level_unresolved",
+            "pointer": "/model_level/declared_evaluated",
+            "return_owner": "worker-assignment-owner"
+          }
+        ],
+        "unassessed_promoted_to_evaluated": false,
+        "new_default_or_order_added": false,
+        "provider_name_used_for_independence": false,
+        "actual_assignment_issued": false,
+        "actual_worker_invoked": false,
+        "actual_receipt_generated": false,
+        "optimal_configuration_proven": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "OS018-DEFAULT-SOURCE-REF-MISSING-AFTER",
+      "requirement_refs": [
+        "HELIXOS-L3-018-B01",
+        "HELIXOS-L3-018-F01",
+        "HELIXOS-L3-018-F02",
+        "HELIXOS-L3-018-F03",
+        "HELIXOS-L3-018-F04",
+        "HELIXOS-L3-018-F05",
+        "HELIXOS-L3-018-N01",
+        "HELIXOS-L3-018-N02"
+      ],
+      "given": {
+        "input": {
+          "phase": "after_execution",
+          "binding": {
+            "logical_work": "SYNTHETIC-LOGICAL_WORK",
+            "ticket_ref": "SYNTHETIC-TICKET_REF",
+            "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+            "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "assignment": "SYNTHETIC-ASSIGNMENT",
+            "attempt": "SYNTHETIC-ATTEMPT",
+            "actor": "SYNTHETIC-ACTOR",
+            "worker": "SYNTHETIC-WORKER",
+            "lane": "SYNTHETIC-LANE",
+            "scope": "SYNTHETIC-SCOPE",
+            "head": "SYNTHETIC-HEAD",
+            "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+            "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+            "lease_ref": "SYNTHETIC-LEASE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+            "oracle_ref": "SYNTHETIC-ORACLE_REF",
+            "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+            "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+            "result_ref": "SYNTHETIC-RESULT_REF"
+          },
+          "assignment": {
+            "state": "issued_material",
+            "owner": "OS",
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "ticket_ref": "SYNTHETIC-TICKET_REF",
+              "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+              "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "actor": "SYNTHETIC-ACTOR",
+              "worker": "SYNTHETIC-WORKER",
+              "lane": "SYNTHETIC-LANE",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+              "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+              "lease_ref": "SYNTHETIC-LEASE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+              "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+              "result_ref": "SYNTHETIC-RESULT_REF"
+            }
+          },
+          "context": {
+            "expected_binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "ticket_ref": "SYNTHETIC-TICKET_REF",
+              "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+              "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "actor": "SYNTHETIC-ACTOR",
+              "worker": "SYNTHETIC-WORKER",
+              "lane": "SYNTHETIC-LANE",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+              "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+              "lease_ref": "SYNTHETIC-LEASE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+              "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+              "result_ref": "SYNTHETIC-RESULT_REF"
+            },
+            "expected_roles": {
+              "assignment": "OS",
+              "proposal": "INTELLIGENCE",
+              "evaluation": "LABO",
+              "oracle": "HARNESS",
+              "authority": "SECURITY"
+            },
+            "expected_config": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            },
+            "expected_steps": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ],
+            "expected_dependency_classes": {
+              "normative_consumer": "always",
+              "consult": "operation",
+              "selected_input": "input",
+              "legacy_runtime": "reference"
+            },
+            "expected_dependency_selection": {
+              "normative_consumer": true,
+              "consult": false,
+              "selected_input": true,
+              "legacy_runtime": false
+            },
+            "expected_dependency_refs": {
+              "normative_consumer": "NORMATIVE-CONSUMER-A",
+              "consult": null,
+              "selected_input": "INPUT-A",
+              "legacy_runtime": null
+            },
+            "expected_review": {
+              "actor": "REVIEW-ACTOR",
+              "context": "REVIEW-CONTEXT",
+              "authority_ref": "REVIEW-AUTHORITY"
+            },
+            "now": 90,
+            "budget_limit": 100,
+            "deadline": 100,
+            "expected_total_cost": 7,
+            "expected_model_level": {
+              "state": "unassessed",
+              "declared_evaluated": false,
+              "source_revision": "LEVEL-r1",
+              "task": "SYNTHETIC-TASK",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "expected_default": {
+              "binding": {
+                "logical_work": "SYNTHETIC-LOGICAL_WORK",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "assignment": "SYNTHETIC-ASSIGNMENT",
+                "attempt": "SYNTHETIC-ATTEMPT",
+                "scope": "SYNTHETIC-SCOPE",
+                "head": "SYNTHETIC-HEAD",
+                "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+              },
+              "state": "current",
+              "source_ref": "DEFAULT-SOURCE-A",
+              "owner_ref": "EXISTING-POLICY-OWNER",
+              "values": {
+                "task": "SYNTHETIC-TASK",
+                "risk": "SYNTHETIC-RISK",
+                "runtime": "SYNTHETIC-RUNTIME",
+                "model": "SYNTHETIC-MODEL",
+                "effort": "SYNTHETIC-EFFORT",
+                "retry": "SYNTHETIC-RETRY",
+                "quality": "SYNTHETIC-QUALITY",
+                "cost": "SYNTHETIC-COST"
+              },
+              "source_revision": "DEFAULT-r1"
+            },
+            "expected_order": [
+              "STEP-A",
+              "STEP-B"
+            ],
+            "expected_order_source_ref": "ORDER-SOURCE-A",
+            "expected_quality_event": true,
+            "expected_order_source_revision": "ORDER-r1",
+            "expected_terminal_state": "interrupted",
+            "expected_producer_context": "PRODUCER-CONTEXT"
+          },
+          "roles": {
+            "assignment": "OS",
+            "proposal": "INTELLIGENCE",
+            "evaluation": "LABO",
+            "oracle": "HARNESS",
+            "authority": "SECURITY"
+          },
+          "resource_state": "observed_material",
+          "authority_state": "current",
+          "capability_state": "current",
+          "lease_state": "current",
+          "prior": {
+            "logical_work": "SYNTHETIC-LOGICAL_WORK",
+            "old_claim_active": false,
+            "cost_spent": 4,
+            "budget_limit": 100,
+            "deadline": 100,
+            "failures": 1,
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "current_constraints": {
+            "cost_spent": 7,
+            "budget_limit": 100,
+            "deadline": 100,
+            "failures": 2,
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "active_claim_count": 1
+          },
+          "collection": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "collected",
+            "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+            "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+            "result_ref": "SYNTHETIC-RESULT_REF",
+            "stop_reason_ref": "STOP-REASON-A",
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "terminal_state": "interrupted"
+          },
+          "review": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "actor": "REVIEW-ACTOR",
+            "context": "REVIEW-CONTEXT",
+            "authority_ref": "REVIEW-AUTHORITY",
+            "producer_context": "PRODUCER-CONTEXT",
+            "provider": "SAME-PROVIDER"
+          },
+          "run": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "config": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            }
+          },
+          "default": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "current",
+            "source_ref": null,
+            "owner_ref": "EXISTING-POLICY-OWNER",
+            "values": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            },
+            "source_revision": "DEFAULT-r1"
+          },
+          "deviation_reason": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "recorded",
+            "source_ref": "EXISTING-REASON-A"
+          },
+          "quality": {
+            "event_selected": true,
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "order_state": "current",
+            "order_source_ref": "ORDER-SOURCE-A",
+            "order": [
+              "STEP-A",
+              "STEP-B"
+            ],
+            "actual_steps": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ],
+            "planned_steps": [
+              "UNSELECTED-CONSULT"
+            ],
+            "result_state": "partial",
+            "order_source_revision": "ORDER-r1"
+          },
+          "dependencies": {
+            "normative_consumer": {
+              "class": "always",
+              "selected": true,
+              "state": "corresponding",
+              "source_ref": "NORMATIVE-CONSUMER-A"
+            },
+            "consult": {
+              "class": "operation",
+              "selected": false,
+              "state": "unknown",
+              "source_ref": null
+            },
+            "selected_input": {
+              "class": "input",
+              "selected": true,
+              "state": "corresponding",
+              "source_ref": "INPUT-A"
+            },
+            "legacy_runtime": {
+              "class": "reference",
+              "selected": false,
+              "state": "unknown",
+              "source_ref": null
+            }
+          },
+          "evaluation": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "observed",
+            "source_ref": "LABO-EVIDENCE-A",
+            "task": "SYNTHETIC-TASK",
+            "risk": "SYNTHETIC-RISK",
+            "fixture_ref": "FIXTURE-A",
+            "rubric_ref": "RUBRIC-A",
+            "total_cost": 7,
+            "major_failure": false,
+            "summary_major_failure": false,
+            "scope_violation": false,
+            "optimal_claim": false
+          },
+          "model_level": {
+            "state": "unassessed",
+            "declared_evaluated": false,
+            "source_revision": "LEVEL-r1",
+            "task": "SYNTHETIC-TASK",
+            "scope": "SYNTHETIC-SCOPE"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/owner/state/cost-tick/refのみ。issued/observed等は実資格・実観測を証明しない。100/90/7はfixtureのみ。"
+      },
+      "when": "全8要求のfacetを分ける素材比較。実割当/Worker/authority/receipt/default/orderを作らない。",
+      "expected_proposal": {
+        "condition": "assignment_material_unknown",
+        "selected_phase": "after_execution",
+        "execution_binding_material": "corresponding",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "binding": "corresponding",
+          "cumulative": "corresponding",
+          "collection": "corresponding",
+          "default": "unknown",
+          "quality": "corresponding",
+          "dependencies": "corresponding",
+          "evaluation": "corresponding"
+        },
+        "default_deviation": null,
+        "quality_path_status": "partial",
+        "evaluation_status": "observed",
+        "affected_revision_scope": {
+          "revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/default/source_ref",
+            "return_owner": "worker-assignment-owner"
+          }
+        ],
+        "unassessed_promoted_to_evaluated": false,
+        "new_default_or_order_added": false,
+        "provider_name_used_for_independence": false,
+        "actual_assignment_issued": false,
+        "actual_worker_invoked": false,
+        "actual_receipt_generated": false,
+        "optimal_configuration_proven": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "OS018-DEFAULT-OWNER-REF-MISSING-AFTER",
+      "requirement_refs": [
+        "HELIXOS-L3-018-B01",
+        "HELIXOS-L3-018-F01",
+        "HELIXOS-L3-018-F02",
+        "HELIXOS-L3-018-F03",
+        "HELIXOS-L3-018-F04",
+        "HELIXOS-L3-018-F05",
+        "HELIXOS-L3-018-N01",
+        "HELIXOS-L3-018-N02"
+      ],
+      "given": {
+        "input": {
+          "phase": "after_execution",
+          "binding": {
+            "logical_work": "SYNTHETIC-LOGICAL_WORK",
+            "ticket_ref": "SYNTHETIC-TICKET_REF",
+            "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+            "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "assignment": "SYNTHETIC-ASSIGNMENT",
+            "attempt": "SYNTHETIC-ATTEMPT",
+            "actor": "SYNTHETIC-ACTOR",
+            "worker": "SYNTHETIC-WORKER",
+            "lane": "SYNTHETIC-LANE",
+            "scope": "SYNTHETIC-SCOPE",
+            "head": "SYNTHETIC-HEAD",
+            "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+            "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+            "lease_ref": "SYNTHETIC-LEASE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+            "oracle_ref": "SYNTHETIC-ORACLE_REF",
+            "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+            "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+            "result_ref": "SYNTHETIC-RESULT_REF"
+          },
+          "assignment": {
+            "state": "issued_material",
+            "owner": "OS",
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "ticket_ref": "SYNTHETIC-TICKET_REF",
+              "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+              "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "actor": "SYNTHETIC-ACTOR",
+              "worker": "SYNTHETIC-WORKER",
+              "lane": "SYNTHETIC-LANE",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+              "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+              "lease_ref": "SYNTHETIC-LEASE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+              "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+              "result_ref": "SYNTHETIC-RESULT_REF"
+            }
+          },
+          "context": {
+            "expected_binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "ticket_ref": "SYNTHETIC-TICKET_REF",
+              "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+              "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "actor": "SYNTHETIC-ACTOR",
+              "worker": "SYNTHETIC-WORKER",
+              "lane": "SYNTHETIC-LANE",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+              "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+              "lease_ref": "SYNTHETIC-LEASE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+              "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+              "result_ref": "SYNTHETIC-RESULT_REF"
+            },
+            "expected_roles": {
+              "assignment": "OS",
+              "proposal": "INTELLIGENCE",
+              "evaluation": "LABO",
+              "oracle": "HARNESS",
+              "authority": "SECURITY"
+            },
+            "expected_config": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            },
+            "expected_steps": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ],
+            "expected_dependency_classes": {
+              "normative_consumer": "always",
+              "consult": "operation",
+              "selected_input": "input",
+              "legacy_runtime": "reference"
+            },
+            "expected_dependency_selection": {
+              "normative_consumer": true,
+              "consult": false,
+              "selected_input": true,
+              "legacy_runtime": false
+            },
+            "expected_dependency_refs": {
+              "normative_consumer": "NORMATIVE-CONSUMER-A",
+              "consult": null,
+              "selected_input": "INPUT-A",
+              "legacy_runtime": null
+            },
+            "expected_review": {
+              "actor": "REVIEW-ACTOR",
+              "context": "REVIEW-CONTEXT",
+              "authority_ref": "REVIEW-AUTHORITY"
+            },
+            "now": 90,
+            "budget_limit": 100,
+            "deadline": 100,
+            "expected_total_cost": 7,
+            "expected_model_level": {
+              "state": "unassessed",
+              "declared_evaluated": false,
+              "source_revision": "LEVEL-r1",
+              "task": "SYNTHETIC-TASK",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "expected_default": {
+              "binding": {
+                "logical_work": "SYNTHETIC-LOGICAL_WORK",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "assignment": "SYNTHETIC-ASSIGNMENT",
+                "attempt": "SYNTHETIC-ATTEMPT",
+                "scope": "SYNTHETIC-SCOPE",
+                "head": "SYNTHETIC-HEAD",
+                "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+              },
+              "state": "current",
+              "source_ref": "DEFAULT-SOURCE-A",
+              "owner_ref": "EXISTING-POLICY-OWNER",
+              "values": {
+                "task": "SYNTHETIC-TASK",
+                "risk": "SYNTHETIC-RISK",
+                "runtime": "SYNTHETIC-RUNTIME",
+                "model": "SYNTHETIC-MODEL",
+                "effort": "SYNTHETIC-EFFORT",
+                "retry": "SYNTHETIC-RETRY",
+                "quality": "SYNTHETIC-QUALITY",
+                "cost": "SYNTHETIC-COST"
+              },
+              "source_revision": "DEFAULT-r1"
+            },
+            "expected_order": [
+              "STEP-A",
+              "STEP-B"
+            ],
+            "expected_order_source_ref": "ORDER-SOURCE-A",
+            "expected_quality_event": true,
+            "expected_order_source_revision": "ORDER-r1",
+            "expected_terminal_state": "interrupted",
+            "expected_producer_context": "PRODUCER-CONTEXT"
+          },
+          "roles": {
+            "assignment": "OS",
+            "proposal": "INTELLIGENCE",
+            "evaluation": "LABO",
+            "oracle": "HARNESS",
+            "authority": "SECURITY"
+          },
+          "resource_state": "observed_material",
+          "authority_state": "current",
+          "capability_state": "current",
+          "lease_state": "current",
+          "prior": {
+            "logical_work": "SYNTHETIC-LOGICAL_WORK",
+            "old_claim_active": false,
+            "cost_spent": 4,
+            "budget_limit": 100,
+            "deadline": 100,
+            "failures": 1,
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "current_constraints": {
+            "cost_spent": 7,
+            "budget_limit": 100,
+            "deadline": 100,
+            "failures": 2,
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "active_claim_count": 1
+          },
+          "collection": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "collected",
+            "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+            "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+            "result_ref": "SYNTHETIC-RESULT_REF",
+            "stop_reason_ref": "STOP-REASON-A",
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "terminal_state": "interrupted"
+          },
+          "review": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "actor": "REVIEW-ACTOR",
+            "context": "REVIEW-CONTEXT",
+            "authority_ref": "REVIEW-AUTHORITY",
+            "producer_context": "PRODUCER-CONTEXT",
+            "provider": "SAME-PROVIDER"
+          },
+          "run": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "config": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            }
+          },
+          "default": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "current",
+            "source_ref": "DEFAULT-SOURCE-A",
+            "owner_ref": null,
+            "values": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            },
+            "source_revision": "DEFAULT-r1"
+          },
+          "deviation_reason": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "recorded",
+            "source_ref": "EXISTING-REASON-A"
+          },
+          "quality": {
+            "event_selected": true,
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "order_state": "current",
+            "order_source_ref": "ORDER-SOURCE-A",
+            "order": [
+              "STEP-A",
+              "STEP-B"
+            ],
+            "actual_steps": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ],
+            "planned_steps": [
+              "UNSELECTED-CONSULT"
+            ],
+            "result_state": "partial",
+            "order_source_revision": "ORDER-r1"
+          },
+          "dependencies": {
+            "normative_consumer": {
+              "class": "always",
+              "selected": true,
+              "state": "corresponding",
+              "source_ref": "NORMATIVE-CONSUMER-A"
+            },
+            "consult": {
+              "class": "operation",
+              "selected": false,
+              "state": "unknown",
+              "source_ref": null
+            },
+            "selected_input": {
+              "class": "input",
+              "selected": true,
+              "state": "corresponding",
+              "source_ref": "INPUT-A"
+            },
+            "legacy_runtime": {
+              "class": "reference",
+              "selected": false,
+              "state": "unknown",
+              "source_ref": null
+            }
+          },
+          "evaluation": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "observed",
+            "source_ref": "LABO-EVIDENCE-A",
+            "task": "SYNTHETIC-TASK",
+            "risk": "SYNTHETIC-RISK",
+            "fixture_ref": "FIXTURE-A",
+            "rubric_ref": "RUBRIC-A",
+            "total_cost": 7,
+            "major_failure": false,
+            "summary_major_failure": false,
+            "scope_violation": false,
+            "optimal_claim": false
+          },
+          "model_level": {
+            "state": "unassessed",
+            "declared_evaluated": false,
+            "source_revision": "LEVEL-r1",
+            "task": "SYNTHETIC-TASK",
+            "scope": "SYNTHETIC-SCOPE"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/owner/state/cost-tick/refのみ。issued/observed等は実資格・実観測を証明しない。100/90/7はfixtureのみ。"
+      },
+      "when": "全8要求のfacetを分ける素材比較。実割当/Worker/authority/receipt/default/orderを作らない。",
+      "expected_proposal": {
+        "condition": "assignment_material_unknown",
+        "selected_phase": "after_execution",
+        "execution_binding_material": "corresponding",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "binding": "corresponding",
+          "cumulative": "corresponding",
+          "collection": "corresponding",
+          "default": "unknown",
+          "quality": "corresponding",
+          "dependencies": "corresponding",
+          "evaluation": "corresponding"
+        },
+        "default_deviation": null,
+        "quality_path_status": "partial",
+        "evaluation_status": "observed",
+        "affected_revision_scope": {
+          "revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/default/owner_ref",
+            "return_owner": "worker-assignment-owner"
+          }
+        ],
+        "unassessed_promoted_to_evaluated": false,
+        "new_default_or_order_added": false,
+        "provider_name_used_for_independence": false,
+        "actual_assignment_issued": false,
+        "actual_worker_invoked": false,
+        "actual_receipt_generated": false,
+        "optimal_configuration_proven": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "OS018-DEFAULT-EXPECTED-VALUE-MISSING-AFTER",
+      "requirement_refs": [
+        "HELIXOS-L3-018-B01",
+        "HELIXOS-L3-018-F01",
+        "HELIXOS-L3-018-F02",
+        "HELIXOS-L3-018-F03",
+        "HELIXOS-L3-018-F04",
+        "HELIXOS-L3-018-F05",
+        "HELIXOS-L3-018-N01",
+        "HELIXOS-L3-018-N02"
+      ],
+      "given": {
+        "input": {
+          "phase": "after_execution",
+          "binding": {
+            "logical_work": "SYNTHETIC-LOGICAL_WORK",
+            "ticket_ref": "SYNTHETIC-TICKET_REF",
+            "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+            "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "assignment": "SYNTHETIC-ASSIGNMENT",
+            "attempt": "SYNTHETIC-ATTEMPT",
+            "actor": "SYNTHETIC-ACTOR",
+            "worker": "SYNTHETIC-WORKER",
+            "lane": "SYNTHETIC-LANE",
+            "scope": "SYNTHETIC-SCOPE",
+            "head": "SYNTHETIC-HEAD",
+            "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+            "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+            "lease_ref": "SYNTHETIC-LEASE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+            "oracle_ref": "SYNTHETIC-ORACLE_REF",
+            "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+            "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+            "result_ref": "SYNTHETIC-RESULT_REF"
+          },
+          "assignment": {
+            "state": "issued_material",
+            "owner": "OS",
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "ticket_ref": "SYNTHETIC-TICKET_REF",
+              "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+              "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "actor": "SYNTHETIC-ACTOR",
+              "worker": "SYNTHETIC-WORKER",
+              "lane": "SYNTHETIC-LANE",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+              "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+              "lease_ref": "SYNTHETIC-LEASE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+              "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+              "result_ref": "SYNTHETIC-RESULT_REF"
+            }
+          },
+          "context": {
+            "expected_binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "ticket_ref": "SYNTHETIC-TICKET_REF",
+              "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+              "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "actor": "SYNTHETIC-ACTOR",
+              "worker": "SYNTHETIC-WORKER",
+              "lane": "SYNTHETIC-LANE",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+              "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+              "lease_ref": "SYNTHETIC-LEASE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+              "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+              "result_ref": "SYNTHETIC-RESULT_REF"
+            },
+            "expected_roles": {
+              "assignment": "OS",
+              "proposal": "INTELLIGENCE",
+              "evaluation": "LABO",
+              "oracle": "HARNESS",
+              "authority": "SECURITY"
+            },
+            "expected_config": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            },
+            "expected_steps": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ],
+            "expected_dependency_classes": {
+              "normative_consumer": "always",
+              "consult": "operation",
+              "selected_input": "input",
+              "legacy_runtime": "reference"
+            },
+            "expected_dependency_selection": {
+              "normative_consumer": true,
+              "consult": false,
+              "selected_input": true,
+              "legacy_runtime": false
+            },
+            "expected_dependency_refs": {
+              "normative_consumer": "NORMATIVE-CONSUMER-A",
+              "consult": null,
+              "selected_input": "INPUT-A",
+              "legacy_runtime": null
+            },
+            "expected_review": {
+              "actor": "REVIEW-ACTOR",
+              "context": "REVIEW-CONTEXT",
+              "authority_ref": "REVIEW-AUTHORITY"
+            },
+            "now": 90,
+            "budget_limit": 100,
+            "deadline": 100,
+            "expected_total_cost": 7,
+            "expected_model_level": {
+              "state": "unassessed",
+              "declared_evaluated": false,
+              "source_revision": "LEVEL-r1",
+              "task": "SYNTHETIC-TASK",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "expected_default": {
+              "binding": {
+                "logical_work": "SYNTHETIC-LOGICAL_WORK",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "assignment": "SYNTHETIC-ASSIGNMENT",
+                "attempt": "SYNTHETIC-ATTEMPT",
+                "scope": "SYNTHETIC-SCOPE",
+                "head": "SYNTHETIC-HEAD",
+                "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+              },
+              "state": "current",
+              "source_ref": "DEFAULT-SOURCE-A",
+              "owner_ref": "EXISTING-POLICY-OWNER",
+              "values": {
+                "task": "SYNTHETIC-TASK",
+                "risk": "SYNTHETIC-RISK",
+                "runtime": "SYNTHETIC-RUNTIME",
+                "model": null,
+                "effort": "SYNTHETIC-EFFORT",
+                "retry": "SYNTHETIC-RETRY",
+                "quality": "SYNTHETIC-QUALITY",
+                "cost": "SYNTHETIC-COST"
+              },
+              "source_revision": "DEFAULT-r1"
+            },
+            "expected_order": [
+              "STEP-A",
+              "STEP-B"
+            ],
+            "expected_order_source_ref": "ORDER-SOURCE-A",
+            "expected_quality_event": true,
+            "expected_order_source_revision": "ORDER-r1",
+            "expected_terminal_state": "interrupted",
+            "expected_producer_context": "PRODUCER-CONTEXT"
+          },
+          "roles": {
+            "assignment": "OS",
+            "proposal": "INTELLIGENCE",
+            "evaluation": "LABO",
+            "oracle": "HARNESS",
+            "authority": "SECURITY"
+          },
+          "resource_state": "observed_material",
+          "authority_state": "current",
+          "capability_state": "current",
+          "lease_state": "current",
+          "prior": {
+            "logical_work": "SYNTHETIC-LOGICAL_WORK",
+            "old_claim_active": false,
+            "cost_spent": 4,
+            "budget_limit": 100,
+            "deadline": 100,
+            "failures": 1,
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "current_constraints": {
+            "cost_spent": 7,
+            "budget_limit": 100,
+            "deadline": 100,
+            "failures": 2,
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "active_claim_count": 1
+          },
+          "collection": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "collected",
+            "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+            "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+            "result_ref": "SYNTHETIC-RESULT_REF",
+            "stop_reason_ref": "STOP-REASON-A",
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "terminal_state": "interrupted"
+          },
+          "review": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "actor": "REVIEW-ACTOR",
+            "context": "REVIEW-CONTEXT",
+            "authority_ref": "REVIEW-AUTHORITY",
+            "producer_context": "PRODUCER-CONTEXT",
+            "provider": "SAME-PROVIDER"
+          },
+          "run": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "config": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            }
+          },
+          "default": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "current",
+            "source_ref": "DEFAULT-SOURCE-A",
+            "owner_ref": "EXISTING-POLICY-OWNER",
+            "values": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            },
+            "source_revision": "DEFAULT-r1"
+          },
+          "deviation_reason": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "recorded",
+            "source_ref": "EXISTING-REASON-A"
+          },
+          "quality": {
+            "event_selected": true,
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "order_state": "current",
+            "order_source_ref": "ORDER-SOURCE-A",
+            "order": [
+              "STEP-A",
+              "STEP-B"
+            ],
+            "actual_steps": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ],
+            "planned_steps": [
+              "UNSELECTED-CONSULT"
+            ],
+            "result_state": "partial",
+            "order_source_revision": "ORDER-r1"
+          },
+          "dependencies": {
+            "normative_consumer": {
+              "class": "always",
+              "selected": true,
+              "state": "corresponding",
+              "source_ref": "NORMATIVE-CONSUMER-A"
+            },
+            "consult": {
+              "class": "operation",
+              "selected": false,
+              "state": "unknown",
+              "source_ref": null
+            },
+            "selected_input": {
+              "class": "input",
+              "selected": true,
+              "state": "corresponding",
+              "source_ref": "INPUT-A"
+            },
+            "legacy_runtime": {
+              "class": "reference",
+              "selected": false,
+              "state": "unknown",
+              "source_ref": null
+            }
+          },
+          "evaluation": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "observed",
+            "source_ref": "LABO-EVIDENCE-A",
+            "task": "SYNTHETIC-TASK",
+            "risk": "SYNTHETIC-RISK",
+            "fixture_ref": "FIXTURE-A",
+            "rubric_ref": "RUBRIC-A",
+            "total_cost": 7,
+            "major_failure": false,
+            "summary_major_failure": false,
+            "scope_violation": false,
+            "optimal_claim": false
+          },
+          "model_level": {
+            "state": "unassessed",
+            "declared_evaluated": false,
+            "source_revision": "LEVEL-r1",
+            "task": "SYNTHETIC-TASK",
+            "scope": "SYNTHETIC-SCOPE"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/owner/state/cost-tick/refのみ。issued/observed等は実資格・実観測を証明しない。100/90/7はfixtureのみ。"
+      },
+      "when": "全8要求のfacetを分ける素材比較。実割当/Worker/authority/receipt/default/orderを作らない。",
+      "expected_proposal": {
+        "condition": "assignment_material_unknown",
+        "selected_phase": "after_execution",
+        "execution_binding_material": "corresponding",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "binding": "corresponding",
+          "cumulative": "corresponding",
+          "collection": "corresponding",
+          "default": "unknown",
+          "quality": "corresponding",
+          "dependencies": "corresponding",
+          "evaluation": "corresponding"
+        },
+        "default_deviation": null,
+        "quality_path_status": "partial",
+        "evaluation_status": "observed",
+        "affected_revision_scope": {
+          "revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/expected_default/values/model",
+            "return_owner": "worker-assignment-owner"
+          }
+        ],
+        "unassessed_promoted_to_evaluated": false,
+        "new_default_or_order_added": false,
+        "provider_name_used_for_independence": false,
+        "actual_assignment_issued": false,
+        "actual_worker_invoked": false,
+        "actual_receipt_generated": false,
+        "optimal_configuration_proven": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "OS018-MODEL-LEVEL-STATE-MISSING-AFTER",
+      "requirement_refs": [
+        "HELIXOS-L3-018-B01",
+        "HELIXOS-L3-018-F01",
+        "HELIXOS-L3-018-F02",
+        "HELIXOS-L3-018-F03",
+        "HELIXOS-L3-018-F04",
+        "HELIXOS-L3-018-F05",
+        "HELIXOS-L3-018-N01",
+        "HELIXOS-L3-018-N02"
+      ],
+      "given": {
+        "input": {
+          "phase": "after_execution",
+          "binding": {
+            "logical_work": "SYNTHETIC-LOGICAL_WORK",
+            "ticket_ref": "SYNTHETIC-TICKET_REF",
+            "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+            "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "assignment": "SYNTHETIC-ASSIGNMENT",
+            "attempt": "SYNTHETIC-ATTEMPT",
+            "actor": "SYNTHETIC-ACTOR",
+            "worker": "SYNTHETIC-WORKER",
+            "lane": "SYNTHETIC-LANE",
+            "scope": "SYNTHETIC-SCOPE",
+            "head": "SYNTHETIC-HEAD",
+            "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+            "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+            "lease_ref": "SYNTHETIC-LEASE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+            "oracle_ref": "SYNTHETIC-ORACLE_REF",
+            "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+            "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+            "result_ref": "SYNTHETIC-RESULT_REF"
+          },
+          "assignment": {
+            "state": "issued_material",
+            "owner": "OS",
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "ticket_ref": "SYNTHETIC-TICKET_REF",
+              "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+              "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "actor": "SYNTHETIC-ACTOR",
+              "worker": "SYNTHETIC-WORKER",
+              "lane": "SYNTHETIC-LANE",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+              "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+              "lease_ref": "SYNTHETIC-LEASE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+              "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+              "result_ref": "SYNTHETIC-RESULT_REF"
+            }
+          },
+          "context": {
+            "expected_binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "ticket_ref": "SYNTHETIC-TICKET_REF",
+              "ticket_revision": "SYNTHETIC-TICKET_REVISION",
+              "ticket_digest": "SYNTHETIC-TICKET_DIGEST",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "actor": "SYNTHETIC-ACTOR",
+              "worker": "SYNTHETIC-WORKER",
+              "lane": "SYNTHETIC-LANE",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF",
+              "capability_ref": "SYNTHETIC-CAPABILITY_REF",
+              "lease_ref": "SYNTHETIC-LEASE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+              "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+              "result_ref": "SYNTHETIC-RESULT_REF"
+            },
+            "expected_roles": {
+              "assignment": "OS",
+              "proposal": "INTELLIGENCE",
+              "evaluation": "LABO",
+              "oracle": "HARNESS",
+              "authority": "SECURITY"
+            },
+            "expected_config": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            },
+            "expected_steps": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ],
+            "expected_dependency_classes": {
+              "normative_consumer": "always",
+              "consult": "operation",
+              "selected_input": "input",
+              "legacy_runtime": "reference"
+            },
+            "expected_dependency_selection": {
+              "normative_consumer": true,
+              "consult": false,
+              "selected_input": true,
+              "legacy_runtime": false
+            },
+            "expected_dependency_refs": {
+              "normative_consumer": "NORMATIVE-CONSUMER-A",
+              "consult": null,
+              "selected_input": "INPUT-A",
+              "legacy_runtime": null
+            },
+            "expected_review": {
+              "actor": "REVIEW-ACTOR",
+              "context": "REVIEW-CONTEXT",
+              "authority_ref": "REVIEW-AUTHORITY"
+            },
+            "now": 90,
+            "budget_limit": 100,
+            "deadline": 100,
+            "expected_total_cost": 7,
+            "expected_model_level": {
+              "state": "unassessed",
+              "declared_evaluated": false,
+              "source_revision": "LEVEL-r1",
+              "task": "SYNTHETIC-TASK",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "expected_default": {
+              "binding": {
+                "logical_work": "SYNTHETIC-LOGICAL_WORK",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "assignment": "SYNTHETIC-ASSIGNMENT",
+                "attempt": "SYNTHETIC-ATTEMPT",
+                "scope": "SYNTHETIC-SCOPE",
+                "head": "SYNTHETIC-HEAD",
+                "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+              },
+              "state": "current",
+              "source_ref": "DEFAULT-SOURCE-A",
+              "owner_ref": "EXISTING-POLICY-OWNER",
+              "values": {
+                "task": "SYNTHETIC-TASK",
+                "risk": "SYNTHETIC-RISK",
+                "runtime": "SYNTHETIC-RUNTIME",
+                "model": "SYNTHETIC-MODEL",
+                "effort": "SYNTHETIC-EFFORT",
+                "retry": "SYNTHETIC-RETRY",
+                "quality": "SYNTHETIC-QUALITY",
+                "cost": "SYNTHETIC-COST"
+              },
+              "source_revision": "DEFAULT-r1"
+            },
+            "expected_order": [
+              "STEP-A",
+              "STEP-B"
+            ],
+            "expected_order_source_ref": "ORDER-SOURCE-A",
+            "expected_quality_event": true,
+            "expected_order_source_revision": "ORDER-r1",
+            "expected_terminal_state": "interrupted",
+            "expected_producer_context": "PRODUCER-CONTEXT"
+          },
+          "roles": {
+            "assignment": "OS",
+            "proposal": "INTELLIGENCE",
+            "evaluation": "LABO",
+            "oracle": "HARNESS",
+            "authority": "SECURITY"
+          },
+          "resource_state": "observed_material",
+          "authority_state": "current",
+          "capability_state": "current",
+          "lease_state": "current",
+          "prior": {
+            "logical_work": "SYNTHETIC-LOGICAL_WORK",
+            "old_claim_active": false,
+            "cost_spent": 4,
+            "budget_limit": 100,
+            "deadline": 100,
+            "failures": 1,
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "current_constraints": {
+            "cost_spent": 7,
+            "budget_limit": 100,
+            "deadline": 100,
+            "failures": 2,
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "active_claim_count": 1
+          },
+          "collection": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "collected",
+            "artifact_ref": "SYNTHETIC-ARTIFACT_REF",
+            "evidence_ref": "SYNTHETIC-EVIDENCE_REF",
+            "result_ref": "SYNTHETIC-RESULT_REF",
+            "stop_reason_ref": "STOP-REASON-A",
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "terminal_state": "interrupted"
+          },
+          "review": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "actor": "REVIEW-ACTOR",
+            "context": "REVIEW-CONTEXT",
+            "authority_ref": "REVIEW-AUTHORITY",
+            "producer_context": "PRODUCER-CONTEXT",
+            "provider": "SAME-PROVIDER"
+          },
+          "run": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "config": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            }
+          },
+          "default": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "current",
+            "source_ref": "DEFAULT-SOURCE-A",
+            "owner_ref": "EXISTING-POLICY-OWNER",
+            "values": {
+              "task": "SYNTHETIC-TASK",
+              "risk": "SYNTHETIC-RISK",
+              "runtime": "SYNTHETIC-RUNTIME",
+              "model": "SYNTHETIC-MODEL",
+              "effort": "SYNTHETIC-EFFORT",
+              "retry": "SYNTHETIC-RETRY",
+              "quality": "SYNTHETIC-QUALITY",
+              "cost": "SYNTHETIC-COST"
+            },
+            "source_revision": "DEFAULT-r1"
+          },
+          "deviation_reason": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "recorded",
+            "source_ref": "EXISTING-REASON-A"
+          },
+          "quality": {
+            "event_selected": true,
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "order_state": "current",
+            "order_source_ref": "ORDER-SOURCE-A",
+            "order": [
+              "STEP-A",
+              "STEP-B"
+            ],
+            "actual_steps": [
+              {
+                "step": "STEP-A",
+                "state": "executed",
+                "result_ref": "RESULT-A"
+              }
+            ],
+            "planned_steps": [
+              "UNSELECTED-CONSULT"
+            ],
+            "result_state": "partial",
+            "order_source_revision": "ORDER-r1"
+          },
+          "dependencies": {
+            "normative_consumer": {
+              "class": "always",
+              "selected": true,
+              "state": "corresponding",
+              "source_ref": "NORMATIVE-CONSUMER-A"
+            },
+            "consult": {
+              "class": "operation",
+              "selected": false,
+              "state": "unknown",
+              "source_ref": null
+            },
+            "selected_input": {
+              "class": "input",
+              "selected": true,
+              "state": "corresponding",
+              "source_ref": "INPUT-A"
+            },
+            "legacy_runtime": {
+              "class": "reference",
+              "selected": false,
+              "state": "unknown",
+              "source_ref": null
+            }
+          },
+          "evaluation": {
+            "binding": {
+              "logical_work": "SYNTHETIC-LOGICAL_WORK",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "assignment": "SYNTHETIC-ASSIGNMENT",
+              "attempt": "SYNTHETIC-ATTEMPT",
+              "scope": "SYNTHETIC-SCOPE",
+              "head": "SYNTHETIC-HEAD",
+              "continuity_ref": "SYNTHETIC-CONTINUITY_REF"
+            },
+            "state": "observed",
+            "source_ref": "LABO-EVIDENCE-A",
+            "task": "SYNTHETIC-TASK",
+            "risk": "SYNTHETIC-RISK",
+            "fixture_ref": "FIXTURE-A",
+            "rubric_ref": "RUBRIC-A",
+            "total_cost": 7,
+            "major_failure": false,
+            "summary_major_failure": false,
+            "scope_violation": false,
+            "optimal_claim": false
+          },
+          "model_level": {
+            "state": null,
+            "declared_evaluated": false,
+            "source_revision": "LEVEL-r1",
+            "task": "SYNTHETIC-TASK",
+            "scope": "SYNTHETIC-SCOPE"
+          }
+        },
+        "evidence_limit": "fixed synthetic identity/owner/state/cost-tick/refのみ。issued/observed等は実資格・実観測を証明しない。100/90/7はfixtureのみ。"
+      },
+      "when": "全8要求のfacetを分ける素材比較。実割当/Worker/authority/receipt/default/orderを作らない。",
+      "expected_proposal": {
+        "condition": "assignment_material_unknown",
+        "selected_phase": "after_execution",
+        "execution_binding_material": "corresponding",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "binding": "corresponding",
+          "cumulative": "corresponding",
+          "collection": "corresponding",
+          "default": "corresponding",
+          "quality": "corresponding",
+          "dependencies": "corresponding",
+          "evaluation": "unknown"
+        },
+        "default_deviation": false,
+        "quality_path_status": "partial",
+        "evaluation_status": "observed",
+        "affected_revision_scope": {
+          "revision": "SYNTHETIC-REQUIREMENT_REVISION",
+          "scope": "SYNTHETIC-SCOPE"
+        },
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/model_level/state",
+            "return_owner": "worker-assignment-owner"
+          }
+        ],
+        "unassessed_promoted_to_evaluated": false,
+        "new_default_or_order_added": false,
+        "provider_name_used_for_independence": false,
+        "actual_assignment_issued": false,
+        "actual_worker_invoked": false,
+        "actual_receipt_generated": false,
+        "optimal_configuration_proven": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
     }
   ],
   "completion": {
     "status": "unproven",
-    "evidence": "249固定metadata対照。実全8要求/全consumer/実停止回収/正式closureは未成立。"
+    "evidence": "254固定metadata対照。実全8要求/全consumer/実停止回収/正式closureは未成立。"
   },
   "legacy_normative_objects": [
     {

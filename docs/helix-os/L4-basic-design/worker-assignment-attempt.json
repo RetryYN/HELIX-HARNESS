@@ -462,6 +462,31 @@
       "source_unresolved": "unknown",
       "stop_reason_unresolved": "unknown",
       "unassessed_promoted_to_evaluated": "violation"
+    },
+    "specific_unresolved_emission": {
+      "model_level_unresolved": {
+        "actual_fields": [
+          "source_revision",
+          "task",
+          "scope"
+        ],
+        "rule": "actual fieldが非空文字列でない場合、先のknown比較によるsource_unresolvedに加えて同じ原fieldにmodel_level_unresolvedを併記する。declared_evaluatedが非booleanの場合はその原fieldにmodel_level_unresolvedだけ。",
+        "generic_only": "model_level.state、expected_model_levelの各field、適用task/scopeの比較相手が不明の場合はsource_unresolvedだけ。"
+      },
+      "default_source_unresolved": {
+        "actual_fields": [
+          "state"
+        ],
+        "rule": "default.stateがcurrent以外の場合、その原fieldにdefault_source_unresolvedだけ。",
+        "generic_only": "default.source_ref/owner_ref/source_revisionと各independent expected fieldが不明ならsource_unresolvedだけ。default_source_unresolvedはこれらに付けない。"
+      },
+      "default_value_unresolved": {
+        "actual_fields": [
+          "values/<config-field>"
+        ],
+        "rule": "actual default.values fieldが非空文字列でない場合、known比較によるsource_unresolvedとdefault_value_unresolvedを同じ原fieldへ併記する。",
+        "generic_only": "expected_default.values fieldが不明ならsource_unresolvedだけ。"
+      }
     }
   },
   "legacy_normative_objects": [
