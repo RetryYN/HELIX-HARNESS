@@ -15745,7 +15745,33 @@
           "meaning_completion_effect": "none",
           "observation": "Refのopaque版とnullを保持。原source資格は判定しない。"
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/sha256",
+            "state": "explicit_null"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-REF-ABSENT",
@@ -15760,7 +15786,33 @@
           "meaning_completion_effect": "none",
           "observation": "identity等はabsent。null/空stringへdefaultしない。"
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "absent"
+          },
+          {
+            "pointer": "/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/source_locator",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sha256",
+            "state": "absent"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-REF-NULL",
@@ -15777,7 +15829,33 @@
           "meaning_completion_effect": "none",
           "observation": "identityはexplicit_null、残りはabsent。"
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/source_locator",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sha256",
+            "state": "absent"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-REF-OPAQUE",
@@ -15799,7 +15877,33 @@
           "meaning_completion_effect": "none",
           "observation": "RawValue任意keyと整数値を丸めず保存。文字列unknownからN/Aを作らない。"
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "absent"
+          },
+          {
+            "pointer": "/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/source_locator",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sha256",
+            "state": "absent"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-REF-TYPE",
@@ -15876,7 +15980,10 @@
           "value": null,
           "wire_shape_accepted": false,
           "meaning_completion_effect": "none",
-          "observation": "byte13のinvalid UTF-8を置換せず原octets/失敗位置を保持。"
+          "observation": "byte13のinvalid UTF-8を置換せず原octets/失敗位置を保持。",
+          "input_issue_locator": "",
+          "input_issue_byte_offset": 13,
+          "byte_offset_origin": "zero_based_raw_octets"
         },
         "execution_state": "not_executed"
       },
@@ -15891,7 +15998,8 @@
           "value": null,
           "wire_shape_accepted": false,
           "meaning_completion_effect": "none",
-          "observation": "末尾別valueを無視しない。"
+          "observation": "末尾別valueを無視しない。",
+          "input_issue_locator": ""
         },
         "execution_state": "not_executed"
       },
@@ -15906,7 +16014,8 @@
           "value": null,
           "wire_shape_accepted": false,
           "meaning_completion_effect": "none",
-          "observation": "途中EOF。意味missingのdecode成功に置換しない。"
+          "observation": "途中EOF。意味missingのdecode成功に置換しない。",
+          "input_issue_locator": ""
         },
         "execution_state": "not_executed"
       },
@@ -15921,7 +16030,8 @@
           "value": null,
           "wire_shape_accepted": false,
           "meaning_completion_effect": "none",
-          "observation": "非JSON numberをnullへ補正しない。"
+          "observation": "非JSON numberをnullへ補正しない。",
+          "input_issue_locator": ""
         },
         "execution_state": "not_executed"
       },
@@ -15967,7 +16077,53 @@
             "outcome": "bytes/body一致でも資格未成立。意味依存項目をunknownで元ownerへ返す。"
           }
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/ref/sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/content",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/content_bytes",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/role",
+            "state": "supplied"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-SOURCE-BODY",
@@ -16011,7 +16167,53 @@
             "outcome": "source InputIssue/unusable_source_refsへ保持。wire valueをnullへ落とさない。"
           }
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/ref/sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/content",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/content_bytes",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/role",
+            "state": "supplied"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-SOURCE-BYTES",
@@ -16055,7 +16257,53 @@
             "outcome": "元bytesを再正規化してdigest成功にしない。"
           }
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/ref/sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/content",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/content_bytes",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/role",
+            "state": "supplied"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-SOURCE-ABSENT",
@@ -16072,7 +16320,29 @@
           "meaning_completion_effect": "none",
           "observation": "ref/content/bytes/資格はabsentのまま。意味担当へ不足を返す。"
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/content",
+            "state": "absent"
+          },
+          {
+            "pointer": "/content_bytes",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/role",
+            "state": "supplied"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-SOURCE-NULL",
@@ -16090,7 +16360,29 @@
           "meaning_completion_effect": "none",
           "observation": "opaque content nullと資格未供給nullを独立保持。"
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/content",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/content_bytes",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/role",
+            "state": "absent"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-SOURCE-ROLE",
@@ -16159,7 +16451,105 @@
           "meaning_completion_effect": "none",
           "observation": "shapeだけを保存。root/owner/subject/source custody実資格を成立させない。"
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/ref/sha256",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/subject_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/subject_ref/sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/applicable_scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_body",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/root_ref/sha256",
+            "state": "explicit_null"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-QUALIFICATION-ROOT-ABSENT",
@@ -16202,7 +16592,81 @@
           "meaning_completion_effect": "none",
           "observation": "root_refをsubject/digest/ownerから創作しない。"
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/ref/sha256",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/subject_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/subject_ref/sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/applicable_scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_body",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref",
+            "state": "absent"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-QUALIFICATION-ROOT-NULL",
@@ -16236,7 +16700,81 @@
           "meaning_completion_effect": "none",
           "observation": "roots空集合、descriptor明示null、required集合欠落を別に保持。complete inputとみなさない。"
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/binding",
+            "state": "absent"
+          },
+          {
+            "pointer": "/required_descriptor_kinds",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_roots",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/qualifications",
+            "state": "absent"
+          },
+          {
+            "pointer": "/descriptors",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/meaning_comparisons",
+            "state": "absent"
+          },
+          {
+            "pointer": "/section_fields",
+            "state": "absent"
+          },
+          {
+            "pointer": "/values",
+            "state": "absent"
+          },
+          {
+            "pointer": "/applicability_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/relations",
+            "state": "absent"
+          },
+          {
+            "pointer": "/oracle_bindings",
+            "state": "absent"
+          },
+          {
+            "pointer": "/compatibility_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/knowledge_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/dependencies",
+            "state": "absent"
+          },
+          {
+            "pointer": "/handoff_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/claims",
+            "state": "absent"
+          },
+          {
+            "pointer": "/candidates",
+            "state": "absent"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-INPUT-ROOTS-NULL",
@@ -16311,7 +16849,233 @@
           "meaning_completion_effect": "none",
           "observation": "unknown/reason/null owner/input不足と空候補を保存。完成/実受領/実副作用証明にしない。"
         },
-        "execution_state": "not_executed"
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/binding",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/binding/template_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/knowledge_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/requirement_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/oracle_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/pack_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/pack_contract_version",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/pack_artifact_version",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/pack_dependency_versions",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/version_target",
+            "state": "absent"
+          },
+          {
+            "pointer": "/candidate_refs",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/comparisons",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/axes",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/subject_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/subject_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/subject_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/subject_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/subject_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/subject_ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/subject_ref/sha256",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/binding",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/binding/template_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/binding/knowledge_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/binding/requirement_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/binding/oracle_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/binding/pack_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/binding/pack_contract_version",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/binding/pack_artifact_version",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/binding/pack_dependency_versions",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/binding/version_target",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/axis",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/state",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/original_refs",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/reason",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/axes/0/backflow_owner",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/comparisons/0/findings",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/comparisons/0/producer_symbol",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/template_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/knowledge_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/requirement_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/oracle_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/pack_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/pack_contract_version",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/pack_artifact_version",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/pack_dependency_versions",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/version_target",
+            "state": "absent"
+          },
+          {
+            "pointer": "/input_issues",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/input_issues/0/locator",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/input_issues/0/reason",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/input_issues/0/source_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/source_refs",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/required_inputs",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/counterexamples",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/limits",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/side_effect_count",
+            "state": "supplied"
+          }
+        ]
       },
       {
         "id": "HELIXBRAIN-L8-032-WIRE-ANALYSIS-MISSING",
@@ -16374,6 +17138,33 @@
       "QUALIFICATION-NORMAL": "root/source原契約未供給なら形成立のみ",
       "QUALIFICATION-ROOT-ABSENT": "独立root欠落を自己補充しない"
     },
-    "completion_limit": "schema整合・固定rawの構文/供給形/期待値とsource byte hashの静的照合のみ。実codec、正式資格供給元/実custody/独立review、L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、全92親430対と実装Readyは未成立。"
+    "completion_limit": "schema整合・固定rawの構文/供給形/期待値とsource byte hashの静的照合のみ。実codec、正式資格供給元/実custody/独立review、L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、全92親430対と実装Readyは未成立。 小数/指数（1.0・1e0・0.1）、1e400の具体数値表現とencodeへの非JSON値入力は、具体parser/host値型/encode入口未選定により期待stageと失敗条件の範囲未固定。unfixed_numeric_and_encode_rangeに保持し、27固定rawと整数対照の合格からこの範囲の完了を生成しない。",
+    "presence_contract": "decoded各caseのexpected_presenceは、既存input_structure_verificationの{pointer,state}と同じ形の列。宣言memberを原供給構造の各所在で列挙する。supplied構造object/配列要素の宣言memberへ再帰し、absent/nullの内側objectを創作しない。RawValue mapのopaque keyは宣言memberへ拡張しない。各pointerは原順序indexとRFC6901 escaping。presenceもencode/decode往復の比較対象。",
+    "unfixed_numeric_and_encode_range": [
+      {
+        "range": "decimal_and_exponent",
+        "raw_examples": [
+          "{\"scope\":1.0}",
+          "{\"scope\":1e0}",
+          "{\"scope\":0.1}"
+        ],
+        "expected_stage": "not_fixed",
+        "reason": "JSON number値を丸めない規則は保持するが、lexeme保存とexact数値carrier/具体parserの対応は未選定。整数fixture成功をこの範囲の実証にしない。"
+      },
+      {
+        "range": "large_exponent",
+        "raw_examples": [
+          "{\"scope\":1e400}"
+        ],
+        "expected_stage": "not_fixed",
+        "reason": "JSON numberとしてのsyntaxと具体数値表現幅を分離する。float infinity化/JSON null化を成功へ丸めない。具体parser未選定のためdecode成功または理由付き表現不能失敗の対象条件は未固定。"
+      },
+      {
+        "range": "encode_non_json_value",
+        "input_examples_description": "JSON carrier外の値、非表現可能数値・文字列",
+        "expected_stage": "not_fixed",
+        "reason": "具体言語/host値型/encode入口と失敗分類の凍結が未成立。decode負例やshape_failedモデルでencode固有分岐を検証済みにしない。"
+      }
+    ]
   }
 }

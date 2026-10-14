@@ -5518,7 +5518,8 @@
     "remaining": [
       "このschema/codec候補の独立review、全Context/Result/findingの全量凍結、具体parser/libraryのexact number/Unicode/容量挙動とresource条件は未成立。容量値や旧safe integer/512件等を既定へ転写しない。",
       "正式資格供給元、実source custody/root resolver、opaque資格bodyの原owner契約、BRAIN→CORE/OS正式両端binding/codec/互換/receipt、registry/式木/実fixture/oracle凍結は未閉包。",
-      "L6は関数設計、L7は関数検証、実装成果は層外。test/oracle凍結→実装前Red→Green→Refactorと実接続/保存/PO受入は未成立。全92親430対閉包と実装Readyも未成立。"
+      "L6は関数設計、L7は関数検証、実装成果は層外。test/oracle凍結→実装前Red→Green→Refactorと実接続/保存/PO受入は未成立。全92親430対閉包と実装Readyも未成立。",
+      "小数/指数（1.0・1e0・0.1）/1e400とencode非JSON値の具体期待stage・失敗対象条件は未固定。L8 unfixed_numeric_and_encode_rangeへ明示し、具体parser/host幅/encode入口や閾値を推測で新設しない。"
     ]
   }
 }
