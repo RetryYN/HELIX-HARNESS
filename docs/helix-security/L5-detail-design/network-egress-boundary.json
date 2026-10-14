@@ -1,0 +1,4151 @@
+{
+  "parent": "HELIXSECURITY-L2-006",
+  "status": "draft_logical_detail_and_independent_raw_oracles_pending_review",
+  "source_main": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+  "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "json_pointer": "/requirements/8",
+      "source_value": {
+        "id": "HELIXSECURITY-L3-006-F01",
+        "parent": "HELIXSECURITY-L2-006",
+        "title": "default denyとegress tuple",
+        "obligation": "送信元/destination/protocol/endpoint/path・data classification・sent bytes・purpose・authority・expiryを、明示allowlist/許可scopeへ照合する。必要宛先だけを許可しvendor privacy設定をHELIX側の保証にしない。",
+        "oracle_ref": "HELIXSECURITY-L10-006-F01"
+      },
+      "value_canonical_sha256": "34aa87a30ba0cd24951eda6fe56ce03d5f5ac36b0c73f623b0024f55a650ddb6",
+      "id": "HELIXSECURITY-L3-006-F01"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "json_pointer": "/requirements/9",
+      "source_value": {
+        "id": "HELIXSECURITY-L3-006-F02",
+        "parent": "HELIXSECURITY-L2-006",
+        "title": "一般egressと分類基盤の接続",
+        "obligation": "005のsecret検査、016の1.0分類記録/data-use、CONNECTの論理接続、INFRAの実経路へ同revision/scopeで結び、path filtering/送信量計測/data minimizationの結果を確認する。019や1.x sink enforcementを1.0一般送信の必須依存にしない。",
+        "oracle_ref": "HELIXSECURITY-L10-006-F02"
+      },
+      "value_canonical_sha256": "6947a569a6fe4b9864c5d844d5d02fb468fd3fde2778cebc1a68a6861211d4bb",
+      "id": "HELIXSECURITY-L3-006-F02"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "json_pointer": "/cases/8",
+      "source_value": {
+        "id": "HELIXSECURITY-L10-006-F01",
+        "parent": "HELIXSECURITY-L2-006",
+        "title": "default denyとegress tuple",
+        "requirement_ref": "HELIXSECURITY-L3-006-F01",
+        "positive_input": "許可tupleと一fieldだけ欠落/不一致/unknown、通信なしを別caseにする。",
+        "expected_observation": "送信判定・範囲・計測値・根拠が辿れ、未許可先は通らない。",
+        "negative_input": "vendor設定のみで許可、未知宛先/分類/目的/authority、別scope送信。",
+        "failure_observation": "当該送信をdenyし、policyはSEC、実network経路は024/INFRAへ返す。",
+        "execution_state": "not_executed"
+      },
+      "value_canonical_sha256": "042a10ee9c4577531c1ee3e7f3d9cb8054de54f94ed6f31eb46a22c306c6b078",
+      "id": "HELIXSECURITY-L10-006-F01"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "json_pointer": "/cases/9",
+      "source_value": {
+        "id": "HELIXSECURITY-L10-006-F02",
+        "parent": "HELIXSECURITY-L2-006",
+        "title": "一般egressと分類基盤の接続",
+        "requirement_ref": "HELIXSECURITY-L3-006-F02",
+        "positive_input": "1.x資産sink機能がない構成で一般送信の必要条件と量/最小化を照合する。",
+        "expected_observation": "一般egressと1.x asset-specific egress、未観測を別に判定する。",
+        "negative_input": "1.x機能完成待ち、許可tupleだけで実経路/計測成立、未分類をallow。",
+        "failure_observation": "該当接続/分類/計測不足を各ownerへ返す。根拠なし定量上限を新設しない。",
+        "execution_state": "not_executed"
+      },
+      "value_canonical_sha256": "90ff07bf393713f8badcee2ddd4cda5a4da182cfd495a4c8857b170c1eaeca7e",
+      "id": "HELIXSECURITY-L10-006-F02"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/helix-security/L4-basic-design/network-egress-boundary.json",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "e57359a19c4d3b5c9b8f8e3540185aca33ee607bfbdc3f4f7682349ae5f25efe"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/network-egress-boundary.json",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "bf6e7f86a0695f0d965c0e58782f393dc61ba4e068cbcf61638e0428e86f7e1f"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "start_line": 51,
+      "end_line": 51,
+      "exact_quote": "| HELIXSECURITY-L1-006 | 人間は、外部への通信を既定で拒否し、必要な送信先だけを明示して許可できる。送信先、protocol、endpoint、dataの機密区分、送った量、目的、許可、期限を管理し、vendor側のprivacyの設定だけをsecurityの保証として信用しない。HELIX側でnetworkの許可一覧、pathの絞り込み、送信量の計測、dataの最小化を強制できる | §7 | 1.0 | 単体 |",
+      "quote_utf8_sha256": "2e0dc2ed27a464eb50249ce49844dadf90fb9d59d4ba02725541b485c8001ee5"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "start_line": 120,
+      "end_line": 128,
+      "exact_quote": "### HELIXSECURITY-L2-006 Network / Egress境界\n\n- **受け取るもの**：送信元、destination、protocol、endpoint/path、data classification、送信量、purpose、authority、expiry。\n- **提供するもの**：default denyを基準とした許可一覧、許可判断、計測値、data minimization結果。\n- **保証すること**：必要な宛先のみ明示許可し、vendorのprivacy設定だけをHELIX側の保証にしない。許可範囲・目的・期限が一致しない送信を拒否する。\n- **単独依存**：L2-005のsecret検査、L2-016の1.0分類基盤（data-use classificationとasset exposure classの記録だけ）、CONNECTの論理接続、INFRASTRUCTUREの実network経路。L2-019のCore Asset Egress GuardとL2-016の1.x sink enforcementは依存に含めない。\n- **検証範囲／版**：外部通信の宛先・protocol・path・data classification・量・目的・authorityの対応。分類入力は1.0の分類基盤で扱い、asset-specific egress blockingはL2-019 (1.x)へ分ける。定量上限はL1にないため追加しない。1.0。\n- **失敗時の戻し先**：宛先/分類/目的/authorityがunknownならdenyし、方針の意味差はL1-006へ戻す。物理経路の不明はL2-024へ。\n- **束ねる既存条件**：L1-006、PO §7、旧brokerのdata/sink分類とunknown拒否。",
+      "quote_utf8_sha256": "a5f3d0cfde1a66e9c0d7bb787724f2c98a162bc08268afdb6d567fe393090543"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "start_line": 30,
+      "end_line": 30,
+      "exact_quote": "| HELIXSECURITY-L2-006 | 1.0 | 送信先/protocol/endpoint/data class/bytes/purpose/authority/expiryを照合し、明示許可された範囲内の送信だけを通す。分類はL2-016の1.0分類記録基盤から読み、L2-019や1.x sink enforcementが存在しない状態でも1.0の送信判定は成立する。vendor側privacy設定だけがある送信、未許可destination、未知classificationが通れば不合格。L2-019のasset-specific egressは別の1.x受入とする。 |",
+      "quote_utf8_sha256": "0a48798ef2b523f862862cd929582d6efcb114c5e9baa7a7cab11d3ba2ed4f1d"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/network-egress-boundary.json",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "e57359a19c4d3b5c9b8f8e3540185aca33ee607bfbdc3f4f7682349ae5f25efe",
+      "json_pointer": "/contracts",
+      "source_value": [
+        {
+          "id": "HELIXSECURITY-L4-006-F01",
+          "requirement_ref": "HELIXSECURITY-L3-006-F01",
+          "system_oracle_ref": "HELIXSECURITY-L10-006-F01",
+          "oracle_ref": "HELIXSECURITY-L9-006-F01",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "34aa87a30ba0cd24951eda6fe56ce03d5f5ac36b0c73f623b0024f55a650ddb6"
+          },
+          "component": "egress_tuple_scope_comparer",
+          "operation_effect": "none",
+          "input_meanings": [
+            "send_requested、送信元/destination/protocol/endpoint/path/classification/purpose/authority/expiry/scope/revision、prepared payloadの量metadata。",
+            "独立明示allowlistの単一選択ruleとauthority素材、時間観測。vendor privacy設定は補助metadata。"
+          ],
+          "output_meanings": [
+            "precondition内容対応/違反/unknownの候補。default denyの不足を保持。",
+            "実許可・通信・送信成功を生成しない。"
+          ],
+          "content_comparison": [
+            "送信要求がある場合だけ全tupleと明示allowlistへ照合。unknown先/分類/目的/authorityをpublic/allowへ補完しない。",
+            "planned bytesはowner供給prepared payload bytesへ完全一致で照合する個別artifact対応で、固定数値上限ではない。",
+            "expiryとowner供給timepointを照合し、vendor_privacy_claimだけでは許可しない。",
+            "通信なしはno_send_requestedとして示す。未使用宛先/authority不足を無関係な全operationへ広げない。"
+          ],
+          "qualification_rule": "固定合成ruleの内容比較だけ。実authority/current source/許可は別bindingへ。"
+        },
+        {
+          "id": "HELIXSECURITY-L4-006-F02",
+          "requirement_ref": "HELIXSECURITY-L3-006-F02",
+          "system_oracle_ref": "HELIXSECURITY-L10-006-F02",
+          "oracle_ref": "HELIXSECURITY-L9-006-F02",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "6947a569a6fe4b9864c5d844d5d02fb468fd3fde2778cebc1a68a6861211d4bb"
+          },
+          "component": "egress_dependency_observation_comparer",
+          "operation_effect": "none",
+          "input_meanings": [
+            "005検査、016の1.0分類/data-use、CONNECT論理、INFRA経路の原metadataとindependent expected binding。",
+            "path filtering/data minimization/measurementの状態と各revision/scope、sent_bytes観測。"
+          ],
+          "output_meanings": [
+            "preconditionの接続対応と、送信後観測のcorresponding/conflict/unknownを分ける。",
+            "未観測を成功にせず、該当分類/接続/計測ownerへ不足候補。"
+          ],
+          "content_comparison": [
+            "各依存を同じ要求revision/scopeへ照合。分類recordのasset exposure classとdata-use purposeを別に扱い、未知分類をpublicへしない。",
+            "path filter/minimizationは準備結果、実sent_bytes計測は別観測。未来の送信後結果を事前判定の一律gateにせず、許可tupleだけで経路/計測成立も生成しない。",
+            "prepared payload bytesとreported sent_bytesの対応は個別材料への照合で、一般量上限を新設しない。",
+            "019/1.x guard presenceはこの1.0判定に使わず、必要な005/016/CONNECT/INFRA不足は保持。"
+          ],
+          "qualification_rule": "state=current/correspondingは合成metadataのみ。source/実path/実量/最小化/owner資格の独立実観測は正式consumerで閉じる。"
+        }
+      ],
+      "value_canonical_sha256": "c2576eecb009f5953723d3113e652b79abd3edfa6924081d82f1001fe64b728c"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/network-egress-boundary.json",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "bf6e7f86a0695f0d965c0e58782f393dc61ba4e068cbcf61638e0428e86f7e1f",
+      "json_pointer": "/fixture_contract",
+      "source_value": {
+        "scope": "固定shape/単一選択rule/同revision-scope metadataだけ。多rule・URL/bytes/Ref/time codec・全未知typeはL5へ。",
+        "tuple_fields": [
+          "source",
+          "destination",
+          "protocol",
+          "endpoint",
+          "path",
+          "classification",
+          "purpose",
+          "authority",
+          "expiry",
+          "scope",
+          "revision"
+        ],
+        "dependencies": [
+          "secret_inspection",
+          "classification_record",
+          "logical_connection",
+          "physical_route",
+          "path_filter",
+          "data_minimization"
+        ],
+        "algorithm": [
+          "send_requested=trueだけrequest→selected ruleとrule→independent expectedを全11fieldで両側既知のとき比較。欠落は各原位置unresolved、既知相反は別finding。allowlist absentは明示許可なし、noncurrentはunknown。vendor claimを代用しない。",
+          "classificationは016の1.0六分類とdata-use purposeを別に読み、unknownをpublicにしない。planned bytesはprepared payload固有のowner量へ照合、負値/未観測はunknown、固定一般上限は作らない。expiryのtime観測を保持。 量の比較は両側が非負integerの場合だけ。invalid量を原位置のunknownへし、相反値として使わない。",
+          "6依存のstate/binding ref/scope/revisionを同requestへ照合。unknownは不足、violation/別binding/別scope-revisionは相反。path filter/minimizationはpre材料、sent bytes measurementはpostの別結果。 binding refの自己側又はindependent expected側が欠落/不明なら原位置のdependency_source_unresolved。両側既知のときだけ相反比較し、missingからconflictを作らない。",
+          "measurement observedの場合だけ非負integer sent_bytesをprepared payload量、scope/revisionへ照合する。未観測はpost unknown。preconditionのcorrespondingをpost成立に読み替えない。未来post結果をpreの一律gateにしない。",
+          "pre/postはviolation→unknown→correspondingの別軸。全体は既知違反優先、次unknown。通信未要求はno_send_requestedとして未使用条件を評価しない。asset_specific_guard_presentは判定に使わず019/1.xを必須にしない。",
+          "全findingはgiven.inputのmetadata位置、code/pointer/owner scalar順unique。precondition_material_correspondingは計画の内容候補で実許可/dispatchではない。実network/実verified/数値上限追加/asset guard必須化は全false。"
+        ],
+        "result_fields": [
+          "condition",
+          "precondition_correspondence",
+          "observation_correspondence",
+          "precondition_material_corresponding",
+          "classification_channels_separated",
+          "reported_sent_bytes",
+          "affected_revision_scope",
+          "findings",
+          "fixed_quantitative_limit_added",
+          "asset_specific_guard_required",
+          "actual_network_invoked",
+          "actual_send_verified",
+          "operation_effect"
+        ],
+        "return_owner": "egress-boundary-owner"
+      },
+      "value_canonical_sha256": "799c14424a166926f3fc5ed6fb30b2339c06377460f7cccf1a85ee210874dc54"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/network-egress-boundary.json",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "bf6e7f86a0695f0d965c0e58782f393dc61ba4e068cbcf61638e0428e86f7e1f",
+      "json_pointer": "/cases/0/given/input",
+      "source_value": {
+        "send_requested": true,
+        "request": {
+          "source": "SYNTHETIC-SOURCE-A",
+          "destination": "SYNTHETIC-DEST-A",
+          "protocol": "SYNTHETIC-PROTOCOL",
+          "endpoint": "SYNTHETIC-ENDPOINT-A",
+          "path": "SYNTHETIC-PATH-A",
+          "classification": "public",
+          "purpose": "SYNTHETIC-PURPOSE-A",
+          "authority": "SYNTHETIC-AUTHORITY-REF",
+          "expiry": 100,
+          "scope": "PROJECT-A",
+          "revision": "request-r1",
+          "planned_bytes": 4
+        },
+        "allowlist_state": "current",
+        "rule": {
+          "source": "SYNTHETIC-SOURCE-A",
+          "destination": "SYNTHETIC-DEST-A",
+          "protocol": "SYNTHETIC-PROTOCOL",
+          "endpoint": "SYNTHETIC-ENDPOINT-A",
+          "path": "SYNTHETIC-PATH-A",
+          "classification": "public",
+          "purpose": "SYNTHETIC-PURPOSE-A",
+          "authority": "SYNTHETIC-AUTHORITY-REF",
+          "expiry": 100,
+          "scope": "PROJECT-A",
+          "revision": "request-r1"
+        },
+        "context": {
+          "expected_rule": {
+            "source": "SYNTHETIC-SOURCE-A",
+            "destination": "SYNTHETIC-DEST-A",
+            "protocol": "SYNTHETIC-PROTOCOL",
+            "endpoint": "SYNTHETIC-ENDPOINT-A",
+            "path": "SYNTHETIC-PATH-A",
+            "classification": "public",
+            "purpose": "SYNTHETIC-PURPOSE-A",
+            "authority": "SYNTHETIC-AUTHORITY-REF",
+            "expiry": 100,
+            "scope": "PROJECT-A",
+            "revision": "request-r1"
+          },
+          "prepared_payload_bytes": 4,
+          "observed_time": 90,
+          "known_classifications": [
+            "public",
+            "customer-owned",
+            "service-internal",
+            "HELIX-confidential",
+            "HELIX-restricted",
+            "secret"
+          ],
+          "expected_binding_refs": {
+            "secret_inspection": "SYNTHETIC-secret_inspection",
+            "classification_record": "SYNTHETIC-classification_record",
+            "logical_connection": "SYNTHETIC-logical_connection",
+            "physical_route": "SYNTHETIC-physical_route",
+            "path_filter": "SYNTHETIC-path_filter",
+            "data_minimization": "SYNTHETIC-data_minimization"
+          }
+        },
+        "dependencies": {
+          "secret_inspection": {
+            "state": "corresponding",
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "binding_ref": "SYNTHETIC-secret_inspection"
+          },
+          "classification_record": {
+            "state": "corresponding",
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "binding_ref": "SYNTHETIC-classification_record",
+            "asset_exposure_class": "public",
+            "data_use_purpose": "SYNTHETIC-PURPOSE-A"
+          },
+          "logical_connection": {
+            "state": "corresponding",
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "binding_ref": "SYNTHETIC-logical_connection"
+          },
+          "physical_route": {
+            "state": "corresponding",
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "binding_ref": "SYNTHETIC-physical_route"
+          },
+          "path_filter": {
+            "state": "corresponding",
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "binding_ref": "SYNTHETIC-path_filter"
+          },
+          "data_minimization": {
+            "state": "corresponding",
+            "scope": "PROJECT-A",
+            "revision": "request-r1",
+            "binding_ref": "SYNTHETIC-data_minimization"
+          }
+        },
+        "measurement": {
+          "state": "observed",
+          "sent_bytes": 4,
+          "scope": "PROJECT-A",
+          "revision": "request-r1"
+        },
+        "vendor_privacy_claim": false,
+        "asset_specific_guard_present": false
+      },
+      "value_canonical_sha256": "7001f5b948abe71c29c66559bef7319f20ae9c52f1fd9e76ae617cf08a477c82"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/network-egress-boundary.json",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "bf6e7f86a0695f0d965c0e58782f393dc61ba4e068cbcf61638e0428e86f7e1f",
+      "json_pointer": "/cases/0/expected_proposal",
+      "source_value": {
+        "condition": "egress_material_corresponding",
+        "precondition_correspondence": "corresponding",
+        "observation_correspondence": "corresponding",
+        "precondition_material_corresponding": true,
+        "classification_channels_separated": true,
+        "reported_sent_bytes": 4,
+        "affected_revision_scope": {
+          "revision": "request-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [],
+        "fixed_quantitative_limit_added": false,
+        "asset_specific_guard_required": false,
+        "actual_network_invoked": false,
+        "actual_send_verified": false,
+        "operation_effect": "none"
+      },
+      "value_canonical_sha256": "0bb7efafc30e0d93ab7f2e021a810e8b7e5eebd2a5e119d07ceed4efed4ead5c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "start_line": 97,
+      "end_line": 112,
+      "exact_quote": "### 1.4 data classification と sink authority\n\n送信元dataと送信先sinkを同じ`network_allowed` booleanへ畳み込まない。\n\n| data classification | 既定扱い |\n|---|---|\n| `public` | 登録済みsinkへ送信候補 |\n| `repository_content` | exact artifact、目的、retentionを束縛 |\n| `sensitive` / `pii` | broker外送信を拒否、action binding必須 |\n| `credential` | 外部送信・ログ・command argvへの出力を拒否 |\n| `unknown` | 分類不能として拒否 |\n\n`sink_authority`は`local_workspace`、`git_object`、`github_api`、`network_endpoint`、\n`cloud_control_plane`、`process_environment`、`unknown`を区別する。sinkがexact target、\n目的、認可範囲、expiry、read-before、dry-run、postcondition、rollback可否を持たない場合は\n`approval_required`ではなく`unresolved`としてfail-closeする。",
+      "quote_utf8_sha256": "ca101b8ee0dfffc24d903a12bc5fccb93d231e973b63415fc31d451b38f4d080"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-policy.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "152a7a5806001ae1b2e0215d7cd61db14b7c61cbc4b4b501524bda58622716cf",
+      "start_line": 19,
+      "end_line": 43,
+      "exact_quote": "## 1. preconditionと状態遷移\n\n`attestWorkerIsolationPolicy`はadapter-private mapが保持するexact wrapper executionだけを受ける。\ntask classificationは`non_secret`だけを許可し、既存`isSecretLike`をwrapper stdin／argvへ追加適用する。\n許可scopeはrelative exact pathまたは末尾`/`のdirectory prefixへ正規化し、empty／absolute／drive path／NUL／`.`／`..`／\n`.git`／`.helix`／`harness.db`を拒否する。egressは`deny_all`だけで、host allowlistは起動前に拒否する。\n\nbrokerはcapability object identityとwrapper `origin_digest`を再検証し、bubblewrapへ`--unshare-net`を必須付与する。\nprocess終了後、input manifestとscratch post-stateのdigest集合を比較する。scope内変更だけを成功とし、違反時はgeneric reasonだけを返す。\n\n## 2. failure完全集合\n\n| reason code | 到達fixture |\n|---|---|\n| `WORKER_ISOLATION_POLICY_UNRESOLVED` | wrapper／policyの複製、またはorigin不一致 |\n| `WORKER_ISOLATION_SECRET_TASK_DENIED` | secret、unknown、実tokenを含むtask |\n| `WORKER_ISOLATION_EGRESS_UNSUPPORTED` | 1件以上のhost allowlist要求 |\n| `WORKER_ISOLATION_SCOPE_INVALID` | absolute、traversal、authority path、曖昧scope |\n| `WORKER_ISOLATION_SCOPE_VIOLATION` | scope外add/modify/delete、symlink、特殊file、oversize |\n\n## 3. resource・security契約\n\npost-stateは1 file 4 MiB、total 16 MiB、entry 4,096件、depth 64を上限とし、regular fileを`O_NOFOLLOW`でopenした同一fdから読む。\nmtimeやprose flagは判定根拠にせず、path、type、size、content digestで比較する。違反resultへpath、content、secretを含めない。\nnetworkはnamespace denyを実行境界とし、dry-run egress reportやCodex `workspace-write`を代替根拠にしない。",
+      "quote_utf8_sha256": "d131897b85a5575350985b84db1e2bfb5cd8a64c813ff69cfff28277c2aa5699"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-isolation-policy.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "1c57cd7da89b007a81b3b7477ef9b6fb13cbfb7af8c21286391086473c871990",
+      "start_line": 19,
+      "end_line": 27,
+      "exact_quote": "- `attestWorkerIsolationPolicy(request)`: exact wrapper、task sensitivity、actual secret marker、write scope、deny-all egressを検証し、module-private capabilityを発行する。\n- `isWorkerIsolationPolicyCapability(value)`: module-private `WeakSet`にある同一objectだけをtrueにする。\n- `auditWorkerIsolationScope(workspacePath, baseline, writablePaths)`: byte／entry count／depthがboundedなpost-stateを読み、add／modify／deleteのexact setをscopeと照合する。\n- `prepareWorkerIsolationLaunch(request)`: policy capabilityとwrapper `origin_digest`を再検証し、failure時spawn 0にする。\n- `runWorkerIsolationLaunch(launch, spawn?)`: `--unshare-net`を含むsealed argvで実行し、post-state違反時はgeneric failureだけを返す。\n\n`allowed_egress_hosts`はemptyだけを許可する。host許可はbroker-owned proxy／namespace firewall authorityが実装されるまで\n`WORKER_ISOLATION_EGRESS_UNSUPPORTED`で拒否する。scopeはglobを受けず、exact pathまたは末尾`/`のdirectory prefixだけとする。\nFR-05/06のoutput schema、proposal再検証、lifecycle receipt、canonical commitは別contractである。",
+      "quote_utf8_sha256": "48697c5c539560b937ccb91be486ab61c87212d883d169266d27aa130ed732e6"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "start_line": 35,
+      "end_line": 63,
+      "exact_quote": "credential storeへの実接続、認証設定、token取得、write-backは行わない。fixtureとinjected portによるcontract設計だけを扱う。\n\n既定はread-onlyである。product側write-backは別Issue、Universal Reverse、security review、action-binding approvalを備えた\n別設計が承認されるまでNode/Python双方から拒否する。connectorのgreen、Python workerの完了、raw snapshotの取得だけを\ncurrent projectionの完了証拠にしない。\n\n## §1 componentとauthority\n\n| component | 責務 | authority | 禁止 |\n|---|---|---|---|\n| `ProductDataConnectorRegistry` | source、connector/schema/mapping version、credential reference、classification、sync/read-write policy、owner、freshness/retentionを管理 | Node registry event | credential値保存、不明version、write権限の暗黙付与 |\n| `ProductDataIngestionCoordinator` | full/incremental run、lease/fence、state、idempotency、checkpointを順序制御 | run event | connector固有mapping、Python結果の直接commit |\n| `ProductDataReadConnectorPort` | versioned requestを外部read adapterへ渡しrecord pageとcursorを返す | bounded ephemeral observation | arbitrary query、write-back、credential本文の返却、raw inputのpersistent seal |\n| `ProductDataProjectionWorker` | raw pageからcanonical entity/mapping proposalを導出 | Python proposal artifactだけ | harness.db、current pointer、watermarkへのwrite |\n| `ProductDataProposalIngestionPort` | worker envelope、source/schema/mapping/lineage/digestをNodeで再検証 | staged proposal | partial result、late fence、schema不明resultの昇格 |\n| `ProductDataPolicyGate` | classification、redaction、retention、freshness、agent-context field allowlistを評価 | policy receipt | PII/secret/raw payload複製、unknown classificationの通過 |\n| `ProductDataProjectionCommitter` | entity/mapping、旧current、snapshot、watermarkを一transactionでcommit | Node `HarnessDbPort`だけ | Python/connectorからのDB write、watermark先行更新 |\n| `ProductDataQuarantineStore` | drift/policy/authority findingとrelease条件をappend-only管理 | quarantine event | raw payload保存、無期限・ownerなしrelease |\n\nPythonは共通`PythonWorkerBroker`を通じてproposalだけを返す。run output root以外のwrite、DB pathの受領、repository/current\npointerへのアクセスを許可しない。Nodeは`complete`後にresult set、schema、provenance、lease/fence、artifact digestを再検証し、\n検証済みproposalだけをprojection transactionへ渡す。`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN`は\n`HIL_PYTHON_AUTHORITY_BYPASS`をproduct-data境界で失わず集約する。\n\n## §2 connector registry契約\n\nconnector versionは次を必須とする。\n\n```ts",
+      "quote_utf8_sha256": "3a9bac6797f09103af1bc42f7066d1b304d7eb616115121a9a0e17c99d13b75f"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+      "start_line": 27,
+      "end_line": 33,
+      "exact_quote": "## §0 関数境界\n\npure functionはnetwork、credential store、DB、filesystem、clockを直接読まず、明示入力を判定する。connector/Python adapterは\nobservation/proposalを返すだけで、projection commitはNode portに限定する。外部認証・接続、credential解決、write-back APIは\n本sliceに実装しない。\n\n## §1 public APIとexact oracle",
+      "quote_utf8_sha256": "5e1688de15353f45ec35aa863d8fea9af9fbb0cd0a74a72b9f4ccc3c993793a9"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/security-credential-egress-guard.ts",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "8a6c1b9f86c04964a88a637986d91de708bac939612c8619d8f223d9e518cd07",
+      "start_line": 1,
+      "end_line": 44,
+      "exact_quote": "export const SECURITY_CREDENTIAL_EGRESS_GUARD_SCHEMA_VERSION =\n  \"security-credential-egress-guard.v1\";\n\nexport type EgressPolicy = \"offline\" | \"allowlist\" | \"undefined\";\nexport type ActivationKind = \"none\" | \"external_api\" | \"auth\" | \"infra\";\n\nexport interface ToolEgressCheckInput {\n  tool_name: string;\n  external: boolean;\n  egress_policy?: EgressPolicy | null;\n  allowed_hosts?: string[];\n  args?: string[];\n  activation_kind?: ActivationKind;\n  action_binding_approval_present?: boolean;\n}\n\nexport interface SecurityCredentialEgressGuardReport {\n  schema_version: typeof SECURITY_CREDENTIAL_EGRESS_GUARD_SCHEMA_VERSION;\n  ok: boolean;\n  dry_run: true;\n  credential_contract: {\n    scoped_token_only: true;\n    no_raw_secret_exposure: true;\n    broker_required_for_external_auth: true;\n  };\n  tool_policy: {\n    tool_name: string;\n    external: boolean;\n    egress_policy: EgressPolicy;\n    allowed_hosts: string[];\n    activation_kind: ActivationKind;\n    action_binding_approval_present: boolean;\n  };\n  findings: Array<{ code: string; severity: \"warning\" | \"error\"; detail: string }>;\n  source_command: string;\n}\n\nconst SECRET_LIKE_RE =\n  /\\b[A-Za-z0-9_-]*(?:token|api[_-]?key|secret|password|passwd|pwd|bearer)[A-Za-z0-9_-]*\\s*[=:]\\s*\\S+/i;\n\nexport function buildSecurityCredentialEgressGuardReport(\n  input: ToolEgressCheckInput,\n  options: { sourceCommand?: string } = {},\n): SecurityCredentialEgressGuardReport {",
+      "quote_utf8_sha256": "887615d79fc298f57a339492f5b7f3dd9e3a818a21b1d9772d255caea03bf321"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/security-credential-egress-guard.ts",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "8a6c1b9f86c04964a88a637986d91de708bac939612c8619d8f223d9e518cd07",
+      "start_line": 48,
+      "end_line": 101,
+      "exact_quote": "  const findings: SecurityCredentialEgressGuardReport[\"findings\"] = [];\n\n  if (input.external && policy === \"undefined\") {\n    findings.push({\n      code: \"undefined_egress_policy_fail_close\",\n      severity: \"error\",\n      detail: `${input.tool_name} is external but has no egress policy`,\n    });\n  }\n  if (policy === \"allowlist\" && (input.allowed_hosts ?? []).length === 0) {\n    findings.push({\n      code: \"allowlist_without_hosts\",\n      severity: \"error\",\n      detail: `${input.tool_name} uses allowlist policy without allowed hosts`,\n    });\n  }\n  for (const arg of input.args ?? []) {\n    if (SECRET_LIKE_RE.test(arg)) {\n      findings.push({\n        code: \"credential_like_tool_argument_blocked\",\n        severity: \"error\",\n        detail: `${input.tool_name} argument contains secret-like material`,\n      });\n    }\n  }\n  if (activationKind !== \"none\" && !approvalPresent) {\n    findings.push({\n      code: \"action_binding_approval_required\",\n      severity: \"error\",\n      detail: `${activationKind} activation is not ready without action-binding approval`,\n    });\n  }\n\n  return {\n    schema_version: SECURITY_CREDENTIAL_EGRESS_GUARD_SCHEMA_VERSION,\n    ok: !findings.some((finding) => finding.severity === \"error\"),\n    dry_run: true,\n    credential_contract: {\n      scoped_token_only: true,\n      no_raw_secret_exposure: true,\n      broker_required_for_external_auth: true,\n    },\n    tool_policy: {\n      tool_name: input.tool_name,\n      external: input.external,\n      egress_policy: policy,\n      allowed_hosts: input.allowed_hosts ?? [],\n      activation_kind: activationKind,\n      action_binding_approval_present: approvalPresent,\n    },\n    findings,\n    source_command: options.sourceCommand ?? \"helix security egress-check --dry-run --json\",\n  };\n}",
+      "quote_utf8_sha256": "57c00ac14b04ae839323fc4069b8564bbdb9fc8fdb2ded311a08f8d0782e1ba0"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/secret-egress-hook.ts",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "332b8be1ea1bbb0375d7150f40c7bedbeeb31ea47e475eb23ca4ab13b9e95d76",
+      "start_line": 273,
+      "end_line": 286,
+      "exact_quote": "      )?.[1]\n      ?.toLowerCase();\n    if (gitAction === \"add\")\n      return block(changedWorkingArtifacts(opts.repoRoot, explicitGitAddPathspecs(command)));\n    if (gitAction === \"commit\") return block(stagedArtifacts(opts.repoRoot));\n    if (gitAction === \"push\") return block(outgoingArtifacts(opts.repoRoot));\n    return { exitCode: 0, checked: proposed ? 1 : 0 };\n  } catch {\n    return {\n      exitCode: 2,\n      message: \"[helix-secret-egress-guard] BLOCK: egress scopeを検証できません。\",\n    };\n  }\n}",
+      "quote_utf8_sha256": "397afdeb2fe748bb814b15228555e69a5232c900735b9342559a5a0ff499a455"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-370-security-credential-egress-guard.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "264e80d5743adcb0ed2f9f56373960abc8fae42f73c35685d5f0c2bc83ca83b1",
+      "start_line": 75,
+      "end_line": 101,
+      "exact_quote": "---\n\n# PLAN-L7-370: security credential と egress guard\n\n## 目的\n\nOneCLI / authsome / Armorer Guard / ActPlane / NemoClaw / microVM sandbox 系の知見を HELIX P8 に接続し、\nagent 実行時の credential、network egress、prompt/tool injection、filesystem access を統一 policy として扱う。\n\n## スコープ\n\n- credential broker / scoped token / no raw secret exposure の contract を L6/P8 へ backprop する。\n- egress policy、allowed host、offline mode、tool-call argument scanner の schema を定義する。\n- prompt injection / data exfiltration finding を gate / actionable / telemetry に分類する。\n- actual credential store や OS sandbox apply は plan-only / approval-gated とする。\n\n## 対象外\n\n- secret の保存、移行、表示。\n- OAuth provider 設定。\n- OS-level eBPF / microVM の実適用。\n\n## 受入条件\n\n- credential を docs / logs / examples に出さない。\n- external API / auth / infra activation は action-binding approval なしに ready にならない。\n- egress policy 未定義の external tool は fail-close する。",
+      "quote_utf8_sha256": "8e7d98b7f7740ea6d0fe4c8648f686354578a5e77d1c32a7cbd640f8f28d74b2"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-worker-isolation-policy-unit-test-design.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "e02ae67bf03317bf0fb8e98971c79589c6850585a5a1c190335f41968ed8870a",
+      "start_line": 19,
+      "end_line": 31,
+      "exact_quote": "\n| U-ID | 対象 | 反例と期待結果 | test citation |\n|---|---|---|---|\n| U-WIP-001 | policy封印 | exact wrapperへdeny-all／normalized scopeを束縛 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-002 | secret deny | secret／unknown／実token taskはspawn前拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-003 | identity／egress | copied wrapper、non-empty host allowlistを拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-004 | scope構文 | absolute／traversal／git/state/DBを拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-005 | scope内diff | 許可add／modify／deleteのexact setを返す | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-006 | scope外diff | contentを露出せずgeneric failure | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-007 | post-state resource | symlink／特殊file／oversize／4,096件超／depth 64超を拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-008 | static mutation fence | network／scope enforcement token欠落をRed | `tests/worker-isolation-policy.test.ts` |\n| U-WIB-010 | broker結線 | `--unshare-net`とpost-run audit、copied policy拒否 | `tests/worker-isolation-broker.test.ts` |\n| U-DRB-015 | mutation reachability | policy failure 5分岐の除去をRed | `tests/design-reality-binding.test.ts` |",
+      "quote_utf8_sha256": "4168068b95f3c00860e88f1397a2c2e59a3dc9e915a0c534a5dd11ad85b93bc7"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/cli.ts",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "608660021df710e6c91239dbfbb4d23e9357d73bc0b7c9ffd5c4f5b4544f0dad",
+      "start_line": 13614,
+      "end_line": 13647,
+      "exact_quote": "      if (!isEgressPolicy(opts.egressPolicy) || !isActivationKind(opts.activationKind)) {\n        const output = {\n          ok: false,\n          error: \"invalid_security_egress_option\",\n          egress_policy: opts.egressPolicy ?? null,\n          activation_kind: opts.activationKind ?? null,\n          source_command: \"helix security egress-check --dry-run --json\",\n        };\n        process.exitCode = 1;\n        if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\\n`);\n        else process.stderr.write(\"invalid security egress option\\n\");\n        return;\n      }\n      const report = buildSecurityCredentialEgressGuardReport(\n        {\n          tool_name: opts.tool ?? \"tool\",\n          external: Boolean(opts.external),\n          egress_policy: opts.egressPolicy,\n          allowed_hosts: opts.allowedHost ?? [],\n          args: opts.arg ?? [],\n          activation_kind: opts.activationKind,\n          action_binding_approval_present: Boolean(opts.approvalPresent),\n        },\n        { sourceCommand: \"helix security egress-check --dry-run --json\" },\n      );\n      process.exitCode = report.ok ? 0 : 1;\n      if (opts.json) {\n        process.stdout.write(`${JSON.stringify(report, null, 2)}\\n`);\n        return;\n      }\n      process.stdout.write(\n        `security egress-check: ${report.ok ? \"ok\" : \"blocked\"} tool=${report.tool_policy.tool_name} policy=${report.tool_policy.egress_policy}\\n`,\n      );\n      for (const finding of report.findings) {",
+      "quote_utf8_sha256": "063202fd3d01745ebf244e97c253f1fa4babac215abdb84d9009c5c736790dd6"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "start_line": 77,
+      "end_line": 89,
+      "exact_quote": "| UTW-011 | High | macOS legがなく、Windowsはfast/toolchain scopeのみ | workflow 2 legs | UTH-FR-012 |\n| UTW-012 | High | tracked runtime stateが207 filesあり、source/evidence/generated state境界が太い | `.ut-tdd` tracked inventory | UTH-FR-007 |\n| UTW-013 | High | fail-open/warn-onlyが安全性、観測性、可用性で統一分類されていない | session log、handover、update、scan、graphの複数方針 | UTH-FR-009 |\n| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n| UTW-015 | High | branch lifecycleが閉じず、main未包含6 heads、最大54 commits aheadが残る | mirror ref inventory | UTH-FR-013、UTH-FR-014 |\n| UTW-016 | High | tag 0でrelease provenanceとsource snapshot authorityが弱い | ref inventory | UTH-FR-027 |\n| UTW-017 | High | Issue Formsのlabel bootstrap/inbound dogfoodが未閉包 | 既存UT-GH-08/09 | UTH-FR-016 |\n| UTW-018 | High | merge後branch/state/memory cleanupがtransactionalでない | UT-GH-02/13/14 | UTH-FR-018、UTH-FR-019 |\n| UTW-019 | High | subagent/agent spawn guardはruntime surface差分に追随し続ける必要がある | 対象rulesの旧「未配線」履歴と現guard test | UTH-FR-008 |\n| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |\n| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |\n| UTW-022 | High | external MCP/tool/pluginの実行、権限、supply-chain検証がprofile設計より後追い | backlog IMP-120〜124 | UTH-FR-024 |\n| UTW-023 | High | improvement backlogにobserved/triaged/verifiedが92件あり、status名と実装実体が一致しない行がある | backlog status集計 | UTH-FR-025 |",
+      "quote_utf8_sha256": "f9a969ebb6d72258dd32e7e85559f81051278f11876ae0e8f64273b10e96d6f9"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "start_line": 73,
+      "end_line": 73,
+      "exact_quote": "| UTW-007 | Critical | secret/PII scanの一部がwarn-onlyまたはhook依存で、CI全push blob再検証が不足 | `secret-scan-diff`既定warn、UT-GH-15 | UTH-FR-020 |",
+      "quote_utf8_sha256": "45964d646e362422fbddae7d41f5681221f6ddcd29f8c10787922b869c988f06"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "whole_file_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "start_line": 97,
+        "end_line": 112,
+        "exact_quote": "### 1.4 data classification と sink authority\n\n送信元dataと送信先sinkを同じ`network_allowed` booleanへ畳み込まない。\n\n| data classification | 既定扱い |\n|---|---|\n| `public` | 登録済みsinkへ送信候補 |\n| `repository_content` | exact artifact、目的、retentionを束縛 |\n| `sensitive` / `pii` | broker外送信を拒否、action binding必須 |\n| `credential` | 外部送信・ログ・command argvへの出力を拒否 |\n| `unknown` | 分類不能として拒否 |\n\n`sink_authority`は`local_workspace`、`git_object`、`github_api`、`network_endpoint`、\n`cloud_control_plane`、`process_environment`、`unknown`を区別する。sinkがexact target、\n目的、認可範囲、expiry、read-before、dry-run、postcondition、rollback可否を持たない場合は\n`approval_required`ではなく`unresolved`としてfail-closeする。",
+        "quote_utf8_sha256": "ca101b8ee0dfffc24d903a12bc5fccb93d231e973b63415fc31d451b38f4d080"
+      },
+      "reuse_class": "semantic_rederivation",
+      "preserve": "data/sink分類・unknown拒否",
+      "change": "旧語彙、broker/root/catalog・旧追加approval gateを新006へ写さず六分類/authority008と各ownerへ分ける。",
+      "reason": "既決006 F01/F02と原118素材の意味を保全し、資格/実source/外部作用の未成立を論理型による成功へ昇格させない。未成立だけを置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-604CADBAF8004788EB15",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-policy.md",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "whole_file_sha256": "152a7a5806001ae1b2e0215d7cd61db14b7c61cbc4b4b501524bda58622716cf",
+        "start_line": 19,
+        "end_line": 43,
+        "exact_quote": "## 1. preconditionと状態遷移\n\n`attestWorkerIsolationPolicy`はadapter-private mapが保持するexact wrapper executionだけを受ける。\ntask classificationは`non_secret`だけを許可し、既存`isSecretLike`をwrapper stdin／argvへ追加適用する。\n許可scopeはrelative exact pathまたは末尾`/`のdirectory prefixへ正規化し、empty／absolute／drive path／NUL／`.`／`..`／\n`.git`／`.helix`／`harness.db`を拒否する。egressは`deny_all`だけで、host allowlistは起動前に拒否する。\n\nbrokerはcapability object identityとwrapper `origin_digest`を再検証し、bubblewrapへ`--unshare-net`を必須付与する。\nprocess終了後、input manifestとscratch post-stateのdigest集合を比較する。scope内変更だけを成功とし、違反時はgeneric reasonだけを返す。\n\n## 2. failure完全集合\n\n| reason code | 到達fixture |\n|---|---|\n| `WORKER_ISOLATION_POLICY_UNRESOLVED` | wrapper／policyの複製、またはorigin不一致 |\n| `WORKER_ISOLATION_SECRET_TASK_DENIED` | secret、unknown、実tokenを含むtask |\n| `WORKER_ISOLATION_EGRESS_UNSUPPORTED` | 1件以上のhost allowlist要求 |\n| `WORKER_ISOLATION_SCOPE_INVALID` | absolute、traversal、authority path、曖昧scope |\n| `WORKER_ISOLATION_SCOPE_VIOLATION` | scope外add/modify/delete、symlink、特殊file、oversize |\n\n## 3. resource・security契約\n\npost-stateは1 file 4 MiB、total 16 MiB、entry 4,096件、depth 64を上限とし、regular fileを`O_NOFOLLOW`でopenした同一fdから読む。\nmtimeやprose flagは判定根拠にせず、path、type、size、content digestで比較する。違反resultへpath、content、secretを含めない。\nnetworkはnamespace denyを実行境界とし、dry-run egress reportやCodex `workspace-write`を代替根拠にしない。",
+        "quote_utf8_sha256": "d131897b85a5575350985b84db1e2bfb5cd8a64c813ff69cfff28277c2aa5699"
+      },
+      "reuse_class": "semantic_rederivation",
+      "preserve": "dry-runとnamespace適用の非同一性、host許可未成立",
+      "change": "旧deny_all-only/WeakSet/bubblewrap/固定limitを一般egressの唯一方式として採用しない。006は論理比較、007/024/INFRA実適用は別対。",
+      "reason": "既決006 F01/F02と原118素材の意味を保全し、資格/実source/外部作用の未成立を論理型による成功へ昇格させない。未成立だけを置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A3A83F1432DF43D564F0",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-isolation-policy.md",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "whole_file_sha256": "1c57cd7da89b007a81b3b7477ef9b6fb13cbfb7af8c21286391086473c871990",
+        "start_line": 19,
+        "end_line": 27,
+        "exact_quote": "- `attestWorkerIsolationPolicy(request)`: exact wrapper、task sensitivity、actual secret marker、write scope、deny-all egressを検証し、module-private capabilityを発行する。\n- `isWorkerIsolationPolicyCapability(value)`: module-private `WeakSet`にある同一objectだけをtrueにする。\n- `auditWorkerIsolationScope(workspacePath, baseline, writablePaths)`: byte／entry count／depthがboundedなpost-stateを読み、add／modify／deleteのexact setをscopeと照合する。\n- `prepareWorkerIsolationLaunch(request)`: policy capabilityとwrapper `origin_digest`を再検証し、failure時spawn 0にする。\n- `runWorkerIsolationLaunch(launch, spawn?)`: `--unshare-net`を含むsealed argvで実行し、post-state違反時はgeneric failureだけを返す。\n\n`allowed_egress_hosts`はemptyだけを許可する。host許可はbroker-owned proxy／namespace firewall authorityが実装されるまで\n`WORKER_ISOLATION_EGRESS_UNSUPPORTED`で拒否する。scopeはglobを受けず、exact pathまたは末尾`/`のdirectory prefixだけとする。\nFR-05/06のoutput schema、proposal再検証、lifecycle receipt、canonical commitは別contractである。",
+        "quote_utf8_sha256": "48697c5c539560b937ccb91be486ab61c87212d883d169266d27aa130ed732e6"
+      },
+      "reuse_class": "semantic_rederivation",
+      "preserve": "hostallowlist未対応を成功へしない",
+      "change": "未実装hostproxy/firewallを実在root/providerとして扱わない。旧関数起動/署名認証を復活させない。",
+      "reason": "既決006 F01/F02と原118素材の意味を保全し、資格/実source/外部作用の未成立を論理型による成功へ昇格させない。未成立だけを置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "whole_file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+        "start_line": 35,
+        "end_line": 63,
+        "exact_quote": "credential storeへの実接続、認証設定、token取得、write-backは行わない。fixtureとinjected portによるcontract設計だけを扱う。\n\n既定はread-onlyである。product側write-backは別Issue、Universal Reverse、security review、action-binding approvalを備えた\n別設計が承認されるまでNode/Python双方から拒否する。connectorのgreen、Python workerの完了、raw snapshotの取得だけを\ncurrent projectionの完了証拠にしない。\n\n## §1 componentとauthority\n\n| component | 責務 | authority | 禁止 |\n|---|---|---|---|\n| `ProductDataConnectorRegistry` | source、connector/schema/mapping version、credential reference、classification、sync/read-write policy、owner、freshness/retentionを管理 | Node registry event | credential値保存、不明version、write権限の暗黙付与 |\n| `ProductDataIngestionCoordinator` | full/incremental run、lease/fence、state、idempotency、checkpointを順序制御 | run event | connector固有mapping、Python結果の直接commit |\n| `ProductDataReadConnectorPort` | versioned requestを外部read adapterへ渡しrecord pageとcursorを返す | bounded ephemeral observation | arbitrary query、write-back、credential本文の返却、raw inputのpersistent seal |\n| `ProductDataProjectionWorker` | raw pageからcanonical entity/mapping proposalを導出 | Python proposal artifactだけ | harness.db、current pointer、watermarkへのwrite |\n| `ProductDataProposalIngestionPort` | worker envelope、source/schema/mapping/lineage/digestをNodeで再検証 | staged proposal | partial result、late fence、schema不明resultの昇格 |\n| `ProductDataPolicyGate` | classification、redaction、retention、freshness、agent-context field allowlistを評価 | policy receipt | PII/secret/raw payload複製、unknown classificationの通過 |\n| `ProductDataProjectionCommitter` | entity/mapping、旧current、snapshot、watermarkを一transactionでcommit | Node `HarnessDbPort`だけ | Python/connectorからのDB write、watermark先行更新 |\n| `ProductDataQuarantineStore` | drift/policy/authority findingとrelease条件をappend-only管理 | quarantine event | raw payload保存、無期限・ownerなしrelease |\n\nPythonは共通`PythonWorkerBroker`を通じてproposalだけを返す。run output root以外のwrite、DB pathの受領、repository/current\npointerへのアクセスを許可しない。Nodeは`complete`後にresult set、schema、provenance、lease/fence、artifact digestを再検証し、\n検証済みproposalだけをprojection transactionへ渡す。`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN`は\n`HIL_PYTHON_AUTHORITY_BYPASS`をproduct-data境界で失わず集約する。\n\n## §2 connector registry契約\n\nconnector versionは次を必須とする。\n\n```ts",
+        "quote_utf8_sha256": "3a9bac6797f09103af1bc42f7066d1b304d7eb616115121a9a0e17c99d13b75f"
+      },
+      "reuse_class": "semantic_rederivation",
+      "preserve": "connector/worker proposalと外部認証・authoritative保存の分離",
+      "change": "旧Node/DB/adapter schema・別approval要件を新006のtransportや新gateへ移植しない。",
+      "reason": "既決006 F01/F02と原118素材の意味を保全し、資格/実source/外部作用の未成立を論理型による成功へ昇格させない。未成立だけを置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "whole_file_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+        "start_line": 27,
+        "end_line": 33,
+        "exact_quote": "## §0 関数境界\n\npure functionはnetwork、credential store、DB、filesystem、clockを直接読まず、明示入力を判定する。connector/Python adapterは\nobservation/proposalを返すだけで、projection commitはNode portに限定する。外部認証・接続、credential解決、write-back APIは\n本sliceに実装しない。\n\n## §1 public APIとexact oracle",
+        "quote_utf8_sha256": "5e1688de15353f45ec35aa863d8fea9af9fbb0cd0a74a72b9f4ccc3c993793a9"
+      },
+      "reuse_class": "semantic_rederivation",
+      "preserve": "pure比較へnetwork/clock/credential/DBを持ち込まない",
+      "change": "旧API/runtime/数字を新schema/actualnetwork方式とせず、明示typed引数をraw素材へ対応する。",
+      "reason": "既決006 F01/F02と原118素材の意味を保全し、資格/実source/外部作用の未成立を論理型による成功へ昇格させない。未成立だけを置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DF4F7AD0127375C31C07",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/src/runtime/security-credential-egress-guard.ts",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "whole_file_sha256": "8a6c1b9f86c04964a88a637986d91de708bac939612c8619d8f223d9e518cd07",
+        "start_line": 1,
+        "end_line": 44,
+        "exact_quote": "export const SECURITY_CREDENTIAL_EGRESS_GUARD_SCHEMA_VERSION =\n  \"security-credential-egress-guard.v1\";\n\nexport type EgressPolicy = \"offline\" | \"allowlist\" | \"undefined\";\nexport type ActivationKind = \"none\" | \"external_api\" | \"auth\" | \"infra\";\n\nexport interface ToolEgressCheckInput {\n  tool_name: string;\n  external: boolean;\n  egress_policy?: EgressPolicy | null;\n  allowed_hosts?: string[];\n  args?: string[];\n  activation_kind?: ActivationKind;\n  action_binding_approval_present?: boolean;\n}\n\nexport interface SecurityCredentialEgressGuardReport {\n  schema_version: typeof SECURITY_CREDENTIAL_EGRESS_GUARD_SCHEMA_VERSION;\n  ok: boolean;\n  dry_run: true;\n  credential_contract: {\n    scoped_token_only: true;\n    no_raw_secret_exposure: true;\n    broker_required_for_external_auth: true;\n  };\n  tool_policy: {\n    tool_name: string;\n    external: boolean;\n    egress_policy: EgressPolicy;\n    allowed_hosts: string[];\n    activation_kind: ActivationKind;\n    action_binding_approval_present: boolean;\n  };\n  findings: Array<{ code: string; severity: \"warning\" | \"error\"; detail: string }>;\n  source_command: string;\n}\n\nconst SECRET_LIKE_RE =\n  /\\b[A-Za-z0-9_-]*(?:token|api[_-]?key|secret|password|passwd|pwd|bearer)[A-Za-z0-9_-]*\\s*[=:]\\s*\\S+/i;\n\nexport function buildSecurityCredentialEgressGuardReport(\n  input: ToolEgressCheckInput,\n  options: { sourceCommand?: string } = {},\n): SecurityCredentialEgressGuardReport {",
+        "quote_utf8_sha256": "887615d79fc298f57a339492f5b7f3dd9e3a818a21b1d9772d255caea03bf321"
+      },
+      "reuse_class": "semantic_rederivation",
+      "preserve": "旧ToolEgressCheckInputとdry_run reportの役割",
+      "change": "hostlist/external/approval booleanだけを新許可tupleへ置換しない。個別source/分類/量/目的/authority/期限とpre/postの独立軸へ意味再導出。",
+      "reason": "既決006 F01/F02と原118素材の意味を保全し、資格/実source/外部作用の未成立を論理型による成功へ昇格させない。未成立だけを置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DF4F7AD0127375C31C07",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/src/runtime/security-credential-egress-guard.ts",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "whole_file_sha256": "8a6c1b9f86c04964a88a637986d91de708bac939612c8619d8f223d9e518cd07",
+        "start_line": 48,
+        "end_line": 101,
+        "exact_quote": "  const findings: SecurityCredentialEgressGuardReport[\"findings\"] = [];\n\n  if (input.external && policy === \"undefined\") {\n    findings.push({\n      code: \"undefined_egress_policy_fail_close\",\n      severity: \"error\",\n      detail: `${input.tool_name} is external but has no egress policy`,\n    });\n  }\n  if (policy === \"allowlist\" && (input.allowed_hosts ?? []).length === 0) {\n    findings.push({\n      code: \"allowlist_without_hosts\",\n      severity: \"error\",\n      detail: `${input.tool_name} uses allowlist policy without allowed hosts`,\n    });\n  }\n  for (const arg of input.args ?? []) {\n    if (SECRET_LIKE_RE.test(arg)) {\n      findings.push({\n        code: \"credential_like_tool_argument_blocked\",\n        severity: \"error\",\n        detail: `${input.tool_name} argument contains secret-like material`,\n      });\n    }\n  }\n  if (activationKind !== \"none\" && !approvalPresent) {\n    findings.push({\n      code: \"action_binding_approval_required\",\n      severity: \"error\",\n      detail: `${activationKind} activation is not ready without action-binding approval`,\n    });\n  }\n\n  return {\n    schema_version: SECURITY_CREDENTIAL_EGRESS_GUARD_SCHEMA_VERSION,\n    ok: !findings.some((finding) => finding.severity === \"error\"),\n    dry_run: true,\n    credential_contract: {\n      scoped_token_only: true,\n      no_raw_secret_exposure: true,\n      broker_required_for_external_auth: true,\n    },\n    tool_policy: {\n      tool_name: input.tool_name,\n      external: input.external,\n      egress_policy: policy,\n      allowed_hosts: input.allowed_hosts ?? [],\n      activation_kind: activationKind,\n      action_binding_approval_present: approvalPresent,\n    },\n    findings,\n    source_command: options.sourceCommand ?? \"helix security egress-check --dry-run --json\",\n  };\n}",
+        "quote_utf8_sha256": "57c00ac14b04ae839323fc4069b8564bbdb9fc8fdb2ded311a08f8d0782e1ba0"
+      },
+      "reuse_class": "semantic_rederivation",
+      "preserve": "undefinedegress fail-closeとactualauth分離",
+      "change": "旧defaults/allowed_hosts[]/action_binding approval presentを原presence保存・既決authority再利用へ照合。旧tool実行/秘密scannerコピー無し。",
+      "reason": "既決006 F01/F02と原118素材の意味を保全し、資格/実source/外部作用の未成立を論理型による成功へ昇格させない。未成立だけを置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-1BCE113F756891A391B5",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/src/runtime/secret-egress-hook.ts",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "whole_file_sha256": "332b8be1ea1bbb0375d7150f40c7bedbeeb31ea47e475eb23ca4ab13b9e95d76",
+        "start_line": 273,
+        "end_line": 286,
+        "exact_quote": "      )?.[1]\n      ?.toLowerCase();\n    if (gitAction === \"add\")\n      return block(changedWorkingArtifacts(opts.repoRoot, explicitGitAddPathspecs(command)));\n    if (gitAction === \"commit\") return block(stagedArtifacts(opts.repoRoot));\n    if (gitAction === \"push\") return block(outgoingArtifacts(opts.repoRoot));\n    return { exitCode: 0, checked: proposed ? 1 : 0 };\n  } catch {\n    return {\n      exitCode: 2,\n      message: \"[helix-secret-egress-guard] BLOCK: egress scopeを検証できません。\",\n    };\n  }\n}",
+        "quote_utf8_sha256": "397afdeb2fe748bb814b15228555e69a5232c900735b9342559a5a0ff499a455"
+      },
+      "reuse_class": "semantic_rederivation",
+      "preserve": "scope検査不能を成功へしない",
+      "change": "旧git/fs/hook/credential command scanは起動せず、005検査reportと006原source不足を別責務へ返す。",
+      "reason": "既決006 F01/F02と原118素材の意味を保全し、資格/実source/外部作用の未成立を論理型による成功へ昇格させない。未成立だけを置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-115B1F2565C26D40C025",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-370-security-credential-egress-guard.md",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "whole_file_sha256": "264e80d5743adcb0ed2f9f56373960abc8fae42f73c35685d5f0c2bc83ca83b1",
+        "start_line": 75,
+        "end_line": 101,
+        "exact_quote": "---\n\n# PLAN-L7-370: security credential と egress guard\n\n## 目的\n\nOneCLI / authsome / Armorer Guard / ActPlane / NemoClaw / microVM sandbox 系の知見を HELIX P8 に接続し、\nagent 実行時の credential、network egress、prompt/tool injection、filesystem access を統一 policy として扱う。\n\n## スコープ\n\n- credential broker / scoped token / no raw secret exposure の contract を L6/P8 へ backprop する。\n- egress policy、allowed host、offline mode、tool-call argument scanner の schema を定義する。\n- prompt injection / data exfiltration finding を gate / actionable / telemetry に分類する。\n- actual credential store や OS sandbox apply は plan-only / approval-gated とする。\n\n## 対象外\n\n- secret の保存、移行、表示。\n- OAuth provider 設定。\n- OS-level eBPF / microVM の実適用。\n\n## 受入条件\n\n- credential を docs / logs / examples に出さない。\n- external API / auth / infra activation は action-binding approval なしに ready にならない。\n- egress policy 未定義の external tool は fail-close する。",
+        "quote_utf8_sha256": "8e7d98b7f7740ea6d0fe4c8648f686354578a5e77d1c32a7cbd640f8f28d74b2"
+      },
+      "reuse_class": "semantic_rederivation",
+      "preserve": "旧planの認証/OS適用未成立",
+      "change": "旧acceptance/actionbinding-gateを新gate化しない。批准006/008の範囲に限定。",
+      "reason": "既決006 F01/F02と原118素材の意味を保全し、資格/実source/外部作用の未成立を論理型による成功へ昇格させない。未成立だけを置換理由にしない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E9954F654E58B47A08B8",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-worker-isolation-policy-unit-test-design.md",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "whole_file_sha256": "e02ae67bf03317bf0fb8e98971c79589c6850585a5a1c190335f41968ed8870a",
+        "start_line": 19,
+        "end_line": 31,
+        "exact_quote": "\n| U-ID | 対象 | 反例と期待結果 | test citation |\n|---|---|---|---|\n| U-WIP-001 | policy封印 | exact wrapperへdeny-all／normalized scopeを束縛 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-002 | secret deny | secret／unknown／実token taskはspawn前拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-003 | identity／egress | copied wrapper、non-empty host allowlistを拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-004 | scope構文 | absolute／traversal／git/state/DBを拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-005 | scope内diff | 許可add／modify／deleteのexact setを返す | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-006 | scope外diff | contentを露出せずgeneric failure | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-007 | post-state resource | symlink／特殊file／oversize／4,096件超／depth 64超を拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-008 | static mutation fence | network／scope enforcement token欠落をRed | `tests/worker-isolation-policy.test.ts` |\n| U-WIB-010 | broker結線 | `--unshare-net`とpost-run audit、copied policy拒否 | `tests/worker-isolation-broker.test.ts` |\n| U-DRB-015 | mutation reachability | policy failure 5分岐の除去をRed | `tests/design-reality-binding.test.ts` |",
+        "quote_utf8_sha256": "4168068b95f3c00860e88f1397a2c2e59a3dc9e915a0c534a5dd11ad85b93bc7"
+      },
+      "reuse_class": "semantic_rederivation",
+      "preserve": "egress/identity個別反例、dry-runと適用結果別",
+      "change": "旧テストはReadのみ。新L8rawは批准と現L4L9固有規則から先に凍結する素材で実TDDではない。",
+      "reason": "既決006 F01/F02と原118素材の意味を保全し、資格/実source/外部作用の未成立を論理型による成功へ昇格させない。未成立だけを置換理由にしない。"
+    }
+  ],
+  "consumer_basis": {
+    "source": {
+      "path": "archive/legacy-generation-2026-09-14/root/src/cli.ts",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "608660021df710e6c91239dbfbb4d23e9357d73bc0b7c9ffd5c4f5b4544f0dad",
+      "start_line": 13614,
+      "end_line": 13647,
+      "exact_quote": "      if (!isEgressPolicy(opts.egressPolicy) || !isActivationKind(opts.activationKind)) {\n        const output = {\n          ok: false,\n          error: \"invalid_security_egress_option\",\n          egress_policy: opts.egressPolicy ?? null,\n          activation_kind: opts.activationKind ?? null,\n          source_command: \"helix security egress-check --dry-run --json\",\n        };\n        process.exitCode = 1;\n        if (opts.json) process.stdout.write(`${JSON.stringify(output, null, 2)}\\n`);\n        else process.stderr.write(\"invalid security egress option\\n\");\n        return;\n      }\n      const report = buildSecurityCredentialEgressGuardReport(\n        {\n          tool_name: opts.tool ?? \"tool\",\n          external: Boolean(opts.external),\n          egress_policy: opts.egressPolicy,\n          allowed_hosts: opts.allowedHost ?? [],\n          args: opts.arg ?? [],\n          activation_kind: opts.activationKind,\n          action_binding_approval_present: Boolean(opts.approvalPresent),\n        },\n        { sourceCommand: \"helix security egress-check --dry-run --json\" },\n      );\n      process.exitCode = report.ok ? 0 : 1;\n      if (opts.json) {\n        process.stdout.write(`${JSON.stringify(report, null, 2)}\\n`);\n        return;\n      }\n      process.stdout.write(\n        `security egress-check: ${report.ok ? \"ok\" : \"blocked\"} tool=${report.tool_policy.tool_name} policy=${report.tool_policy.egress_policy}\\n`,\n      );\n      for (const finding of report.findings) {",
+      "quote_utf8_sha256": "063202fd3d01745ebf244e97c253f1fa4babac215abdb84d9009c5c736790dd6"
+    },
+    "preserve": "旧dry_run reportをCLIが表示するconsumer。report.ok/exitCodeはactualnetwork/許可の証拠でない。",
+    "current_limit": "CONNECT adapter/005/016/024/INFRAの正式qualified source・consumer/provider/custody/API未閉包。"
+  },
+  "failure_basis": {
+    "source": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+      "whole_file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "start_line": 77,
+      "end_line": 89,
+      "exact_quote": "| UTW-011 | High | macOS legがなく、Windowsはfast/toolchain scopeのみ | workflow 2 legs | UTH-FR-012 |\n| UTW-012 | High | tracked runtime stateが207 filesあり、source/evidence/generated state境界が太い | `.ut-tdd` tracked inventory | UTH-FR-007 |\n| UTW-013 | High | fail-open/warn-onlyが安全性、観測性、可用性で統一分類されていない | session log、handover、update、scan、graphの複数方針 | UTH-FR-009 |\n| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n| UTW-015 | High | branch lifecycleが閉じず、main未包含6 heads、最大54 commits aheadが残る | mirror ref inventory | UTH-FR-013、UTH-FR-014 |\n| UTW-016 | High | tag 0でrelease provenanceとsource snapshot authorityが弱い | ref inventory | UTH-FR-027 |\n| UTW-017 | High | Issue Formsのlabel bootstrap/inbound dogfoodが未閉包 | 既存UT-GH-08/09 | UTH-FR-016 |\n| UTW-018 | High | merge後branch/state/memory cleanupがtransactionalでない | UT-GH-02/13/14 | UTH-FR-018、UTH-FR-019 |\n| UTW-019 | High | subagent/agent spawn guardはruntime surface差分に追随し続ける必要がある | 対象rulesの旧「未配線」履歴と現guard test | UTH-FR-008 |\n| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |\n| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |\n| UTW-022 | High | external MCP/tool/pluginの実行、権限、supply-chain検証がprofile設計より後追い | backlog IMP-120〜124 | UTH-FR-024 |\n| UTW-023 | High | improvement backlogにobserved/triaged/verifiedが92件あり、status名と実装実体が一致しない行がある | backlog status集計 | UTH-FR-025 |",
+      "quote_utf8_sha256": "f9a969ebb6d72258dd32e7e85559f81051278f11876ae0e8f64273b10e96d6f9"
+    },
+    "ids": [
+      "UTW-007",
+      "UTW-013",
+      "UTW-014",
+      "UTW-019",
+      "UTW-020",
+      "UTW-021",
+      "UTW-022"
+    ],
+    "preserve": "秘密露出/absence blindness/局所failure/自己申告completion/外部権限後追いを防ぐ既存意味の照合。新gateを生成しない。",
+    "additional_sources": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "revision": "40d6da48a44625bfd064ccabceb7f7ecb47dcd7c",
+        "whole_file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "start_line": 73,
+        "end_line": 73,
+        "exact_quote": "| UTW-007 | Critical | secret/PII scanの一部がwarn-onlyまたはhook依存で、CI全push blob再検証が不足 | `secret-scan-diff`既定warn、UT-GH-15 | UTH-FR-020 |",
+        "quote_utf8_sha256": "45964d646e362422fbddae7d41f5681221f6ddcd29f8c10787922b869c988f06"
+      }
+    ]
+  },
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "original_pair_fixture_pins": [
+    {
+      "id": "SEC006-NORMAL",
+      "input_pointer": "/cases/0/given/input",
+      "input_canonical_sha256": "7001f5b948abe71c29c66559bef7319f20ae9c52f1fd9e76ae617cf08a477c82",
+      "expected_pointer": "/cases/0/expected_proposal",
+      "expected_canonical_sha256": "0bb7efafc30e0d93ab7f2e021a810e8b7e5eebd2a5e119d07ceed4efed4ead5c"
+    },
+    {
+      "id": "SEC006-REQUEST-SOURCE-MISSING",
+      "input_pointer": "/cases/1/given/input",
+      "input_canonical_sha256": "ffcbb2d0bb31076955fd5629388fa21266e59971524d9a91c6a52595aa00df05",
+      "expected_pointer": "/cases/1/expected_proposal",
+      "expected_canonical_sha256": "2aac87abae2aae4d919fd9e0d3c457df79f0c6453e90146581cdc6ae182dbcd2"
+    },
+    {
+      "id": "SEC006-REQUEST-SOURCE-CONFLICT",
+      "input_pointer": "/cases/2/given/input",
+      "input_canonical_sha256": "634d6a2bb21377d67c7e4bb0067e6c60bb5d7b20b620d0579995916fb6a9c83f",
+      "expected_pointer": "/cases/2/expected_proposal",
+      "expected_canonical_sha256": "97acf42ca7c33784eda2530fb47c67eed94dcaea05c7e53b77590788b0925b9d"
+    },
+    {
+      "id": "SEC006-REQUEST-DESTINATION-MISSING",
+      "input_pointer": "/cases/3/given/input",
+      "input_canonical_sha256": "88c3470ea42ee0e34440f7a666edabcfb117feb46a0bd3b322282a67c5a215aa",
+      "expected_pointer": "/cases/3/expected_proposal",
+      "expected_canonical_sha256": "59cad99fb72b9617f9a7e1c31e2e4fa97c876ae46e3277d31865c8bcac59b663"
+    },
+    {
+      "id": "SEC006-REQUEST-DESTINATION-CONFLICT",
+      "input_pointer": "/cases/4/given/input",
+      "input_canonical_sha256": "015d8767585bfe85191ecc8bfd7d54c727e40f682cf6102f38d67105da884894",
+      "expected_pointer": "/cases/4/expected_proposal",
+      "expected_canonical_sha256": "27dcb10feebed79d5584ee334b935d69a9fcce338d0eade3e537a58bc71b0756"
+    },
+    {
+      "id": "SEC006-REQUEST-PROTOCOL-MISSING",
+      "input_pointer": "/cases/5/given/input",
+      "input_canonical_sha256": "0e890b4150415a03832eac8cf3392edf1539aff6620f58f2932cb6bc89509332",
+      "expected_pointer": "/cases/5/expected_proposal",
+      "expected_canonical_sha256": "21ac63b6f5a189c38c39888dd74a05495028eb2391a921a795c952cd86e44974"
+    },
+    {
+      "id": "SEC006-REQUEST-PROTOCOL-CONFLICT",
+      "input_pointer": "/cases/6/given/input",
+      "input_canonical_sha256": "812a2382bbb19619ddd5da226f142e91830a368ce56841720c62de27096e4229",
+      "expected_pointer": "/cases/6/expected_proposal",
+      "expected_canonical_sha256": "3ed23e797d0a9adda74e5664996e89e0a19e7416af03683a881bfc03adc6f606"
+    },
+    {
+      "id": "SEC006-REQUEST-ENDPOINT-MISSING",
+      "input_pointer": "/cases/7/given/input",
+      "input_canonical_sha256": "6287b1634c097cccb7f105f10a3b24735423894d4ebe46effc7801a2e7a96dc6",
+      "expected_pointer": "/cases/7/expected_proposal",
+      "expected_canonical_sha256": "1ae4efe304cf0420da6ef34ad695763fc0c589999e93b5330a87748c5e45dbdd"
+    },
+    {
+      "id": "SEC006-REQUEST-ENDPOINT-CONFLICT",
+      "input_pointer": "/cases/8/given/input",
+      "input_canonical_sha256": "e9dfbed9ffb37e60bb1a5a14d4be5239c8ef1065800bc4ced141ec81b0b40099",
+      "expected_pointer": "/cases/8/expected_proposal",
+      "expected_canonical_sha256": "9cf68a9638b054d2507a685a690e82a843e0edbff1271f1eb4f91f054817c41f"
+    },
+    {
+      "id": "SEC006-REQUEST-PATH-MISSING",
+      "input_pointer": "/cases/9/given/input",
+      "input_canonical_sha256": "cb11ab18abc8572c9dd320a940651858be1e9e5d999ffe30ed71c666fb29a5ae",
+      "expected_pointer": "/cases/9/expected_proposal",
+      "expected_canonical_sha256": "9456684e9ce1eeaf5d481716178a3bf7989f547cd43303e01e331e0b8b683453"
+    },
+    {
+      "id": "SEC006-REQUEST-PATH-CONFLICT",
+      "input_pointer": "/cases/10/given/input",
+      "input_canonical_sha256": "2c8f2acbb268f12218f1c9a94306731d74bfd872291c20dcd048af03159a040b",
+      "expected_pointer": "/cases/10/expected_proposal",
+      "expected_canonical_sha256": "b18a6245a8022700d257df683ca33a5bc043f546817aaca1651a281c43e8ab1d"
+    },
+    {
+      "id": "SEC006-REQUEST-CLASSIFICATION-MISSING",
+      "input_pointer": "/cases/11/given/input",
+      "input_canonical_sha256": "4ee8b3d5e28263ae74d8c723519563eca51680b44e032c74dbb0bd28becc99ab",
+      "expected_pointer": "/cases/11/expected_proposal",
+      "expected_canonical_sha256": "f2a34bc13f97f2991c6afa6acc2b67f1ffbecad5f1dbce5bf3707f872161c3c7"
+    },
+    {
+      "id": "SEC006-REQUEST-CLASSIFICATION-CONFLICT",
+      "input_pointer": "/cases/12/given/input",
+      "input_canonical_sha256": "7ed3319ee4ef08b780662fe6d4ec3620242dc91c8ae5d87fe6b173d08fd28c5a",
+      "expected_pointer": "/cases/12/expected_proposal",
+      "expected_canonical_sha256": "a88729b5c6ddad0a8b5bf8f7894ee7c7341ae87a3fa72845d3d954452353a1c0"
+    },
+    {
+      "id": "SEC006-REQUEST-PURPOSE-MISSING",
+      "input_pointer": "/cases/13/given/input",
+      "input_canonical_sha256": "edf09127cac574e3dd794641736b0888be00c4298895a8e70f089a96a161703f",
+      "expected_pointer": "/cases/13/expected_proposal",
+      "expected_canonical_sha256": "c22b9ed105c4a7c4e8564546923ca38498fa583b900f9846f0a5ec9a51f9ef2f"
+    },
+    {
+      "id": "SEC006-REQUEST-PURPOSE-CONFLICT",
+      "input_pointer": "/cases/14/given/input",
+      "input_canonical_sha256": "4a8c4aab87b20f8ae852fd78089f8a8a963692bce4195dbc27351bbab58ccaa8",
+      "expected_pointer": "/cases/14/expected_proposal",
+      "expected_canonical_sha256": "55cbe2c358c30c89a4e15070d6362e8d839bf409541d9da01aa9c1e50684adc5"
+    },
+    {
+      "id": "SEC006-REQUEST-AUTHORITY-MISSING",
+      "input_pointer": "/cases/15/given/input",
+      "input_canonical_sha256": "f9c30ca8aa0391360ee2473c582b49afea058a885e302715a4e16cc5f7f6576b",
+      "expected_pointer": "/cases/15/expected_proposal",
+      "expected_canonical_sha256": "a5224bcbab672076501384ec869209cab073e8b5d2bddf9cab6c7bd15c5fe8f3"
+    },
+    {
+      "id": "SEC006-REQUEST-AUTHORITY-CONFLICT",
+      "input_pointer": "/cases/16/given/input",
+      "input_canonical_sha256": "e92f06a540818024d43fb69e91f48c49f27d9685946e28a32215ded34750442c",
+      "expected_pointer": "/cases/16/expected_proposal",
+      "expected_canonical_sha256": "beb4032d48eee7f20eeb57fe1d69a5e14c3e4f33107861831bc9daed3eb358e1"
+    },
+    {
+      "id": "SEC006-REQUEST-EXPIRY-MISSING",
+      "input_pointer": "/cases/17/given/input",
+      "input_canonical_sha256": "6f4d5d2a40e814c97310250515380895eaa31c557e1c635b7974811f36661cd6",
+      "expected_pointer": "/cases/17/expected_proposal",
+      "expected_canonical_sha256": "00f61c54ed31407f3664086ad2d9ed42b7dcdc479eb8df47778f7494023d75a7"
+    },
+    {
+      "id": "SEC006-REQUEST-EXPIRY-CONFLICT",
+      "input_pointer": "/cases/18/given/input",
+      "input_canonical_sha256": "c241445be467c50acddd3b8519f8b0b44c186908a920a3805060e085aec78d59",
+      "expected_pointer": "/cases/18/expected_proposal",
+      "expected_canonical_sha256": "7e089245651890eaafce33b188602f99ccbb0db403c2ba42ec92d89b63b12257"
+    },
+    {
+      "id": "SEC006-REQUEST-SCOPE-MISSING",
+      "input_pointer": "/cases/19/given/input",
+      "input_canonical_sha256": "c287376531e0245a3f78f1d422810697075e9a143664094f281036e0ede60820",
+      "expected_pointer": "/cases/19/expected_proposal",
+      "expected_canonical_sha256": "019a26c20000dcead08c596d1a94e44ee0691bbb0ede5611a5e9f280666bb26f"
+    },
+    {
+      "id": "SEC006-REQUEST-SCOPE-CONFLICT",
+      "input_pointer": "/cases/20/given/input",
+      "input_canonical_sha256": "b826f8281e8a86a588a656c034d6d8cafd832b96c46ea89278e4b6606bc77566",
+      "expected_pointer": "/cases/20/expected_proposal",
+      "expected_canonical_sha256": "fa187ef3704698c3207432a2bb28d6a98e338c2cc6db8d9f49e5a396bbd406bb"
+    },
+    {
+      "id": "SEC006-REQUEST-REVISION-MISSING",
+      "input_pointer": "/cases/21/given/input",
+      "input_canonical_sha256": "454c74059e986cd2f635321eaf6b771114a40dd4da1c80ec08cc3deccb9fcee4",
+      "expected_pointer": "/cases/21/expected_proposal",
+      "expected_canonical_sha256": "d4a62c728cb81dbe14cf99bd903c111480d68b0b8ab79af8c902a56e071a4505"
+    },
+    {
+      "id": "SEC006-REQUEST-REVISION-CONFLICT",
+      "input_pointer": "/cases/22/given/input",
+      "input_canonical_sha256": "021a058f3229fed2e8139a5ddc81d183750019f5dc69ddd0fb2894b1420a9cba",
+      "expected_pointer": "/cases/22/expected_proposal",
+      "expected_canonical_sha256": "2174e8fbb36dee42638d19e21743d02300a7fff6718c9fea35099cef9e54ee34"
+    },
+    {
+      "id": "SEC006-RULE-SOURCE-MISSING",
+      "input_pointer": "/cases/23/given/input",
+      "input_canonical_sha256": "c28e605bd16abd5712594111289cf70b2d7772d5e60ec6cd005808d81533fb9f",
+      "expected_pointer": "/cases/23/expected_proposal",
+      "expected_canonical_sha256": "cc662e8c759a88fb3dc48a4793db72cfdc07cde53c8b69adfa45eb8c82ef658e"
+    },
+    {
+      "id": "SEC006-RULE-SOURCE-CONFLICT",
+      "input_pointer": "/cases/24/given/input",
+      "input_canonical_sha256": "9e3a49bb9ca68d9f1da228be18e640299bb1568fd9f171282efb6ca15bcea30b",
+      "expected_pointer": "/cases/24/expected_proposal",
+      "expected_canonical_sha256": "aafc132a18a9a915ea15a09aea9636340cdb6f58e4e793aff4da9fae3b513d66"
+    },
+    {
+      "id": "SEC006-RULE-DESTINATION-MISSING",
+      "input_pointer": "/cases/25/given/input",
+      "input_canonical_sha256": "2b9cf891f474fbe7a4a7908e3b5d63c777af6e7792d3c37bbdf76a042ab7f732",
+      "expected_pointer": "/cases/25/expected_proposal",
+      "expected_canonical_sha256": "d5bac5e3671ec96981d7f95546c56b9c011b4dde2c5bdac1e86b80a136467125"
+    },
+    {
+      "id": "SEC006-RULE-DESTINATION-CONFLICT",
+      "input_pointer": "/cases/26/given/input",
+      "input_canonical_sha256": "eb45f84f86c9fa5b1fd03a597412c5028415b2285f3a77f86344aa97ce565163",
+      "expected_pointer": "/cases/26/expected_proposal",
+      "expected_canonical_sha256": "f73dfddc1eac5f54241ad29955b550c8c26705286806ba91ecd26ae91e0d2424"
+    },
+    {
+      "id": "SEC006-RULE-PROTOCOL-MISSING",
+      "input_pointer": "/cases/27/given/input",
+      "input_canonical_sha256": "b03322994d25f592c00e364380195efeaab8fe499bb9a529136cef3e002d1563",
+      "expected_pointer": "/cases/27/expected_proposal",
+      "expected_canonical_sha256": "46c1efd85ad6f8e7d149ff27fdb8e7dbf102c878dcab7397095eb6e70bc206b8"
+    },
+    {
+      "id": "SEC006-RULE-PROTOCOL-CONFLICT",
+      "input_pointer": "/cases/28/given/input",
+      "input_canonical_sha256": "7939cb334d83ccfc89f7d1f65d25fcbb3bc1293fe599432b9b53514ac7e1e027",
+      "expected_pointer": "/cases/28/expected_proposal",
+      "expected_canonical_sha256": "e79287bf2be0393f242b1a715d7ca51a644a2dea62495344406067cb0236a83c"
+    },
+    {
+      "id": "SEC006-RULE-ENDPOINT-MISSING",
+      "input_pointer": "/cases/29/given/input",
+      "input_canonical_sha256": "a29f3896d278d207295cb893f13de927d6bb1c9c3e2b85e5b298b3a3b7bb42f0",
+      "expected_pointer": "/cases/29/expected_proposal",
+      "expected_canonical_sha256": "9566b2e24bdc3a83da8f4bce9b517324d7faa09939e69f858e2c3b76dc3649a0"
+    },
+    {
+      "id": "SEC006-RULE-ENDPOINT-CONFLICT",
+      "input_pointer": "/cases/30/given/input",
+      "input_canonical_sha256": "afff2891589da32c274f41a2880da847d5c4a17f30f1d5883093cc113013699a",
+      "expected_pointer": "/cases/30/expected_proposal",
+      "expected_canonical_sha256": "123a56f697fe2907cb1ad44cf36c59ea204e8c6f1098deef8504b0550a05a2b9"
+    },
+    {
+      "id": "SEC006-RULE-PATH-MISSING",
+      "input_pointer": "/cases/31/given/input",
+      "input_canonical_sha256": "ec40e46c121091d34b4854936683bfb28c3c441c9a7c38b5ee91858f3228e69d",
+      "expected_pointer": "/cases/31/expected_proposal",
+      "expected_canonical_sha256": "8666c748dc4fe3128406e07961a748d872aff20e6611771f9126bb55e424973f"
+    },
+    {
+      "id": "SEC006-RULE-PATH-CONFLICT",
+      "input_pointer": "/cases/32/given/input",
+      "input_canonical_sha256": "a335b74c482bbeb2a88da4eb036bf49651696aa9f98e8235befd0dec051d42d9",
+      "expected_pointer": "/cases/32/expected_proposal",
+      "expected_canonical_sha256": "f5dab014ee29b8a54f1b15c80591d6cc518f11c53892f0434a7fc0d249b39696"
+    },
+    {
+      "id": "SEC006-RULE-CLASSIFICATION-MISSING",
+      "input_pointer": "/cases/33/given/input",
+      "input_canonical_sha256": "b78bf2d5bd057ece79bdfcf0569fb215d86215a3725bd5e71b014145ff905324",
+      "expected_pointer": "/cases/33/expected_proposal",
+      "expected_canonical_sha256": "6aac4bd148d2621252beeec6de020c2e8c0473c7bf066282d99bcb9a935b7616"
+    },
+    {
+      "id": "SEC006-RULE-CLASSIFICATION-CONFLICT",
+      "input_pointer": "/cases/34/given/input",
+      "input_canonical_sha256": "d8f002c9a164216c42d14b62c994992ff0cf8ff9e7593cdc87dba879ec551126",
+      "expected_pointer": "/cases/34/expected_proposal",
+      "expected_canonical_sha256": "7220d76649efa29bedec1e96d87d2e32526d9b13826301cd42fc57d998f05c80"
+    },
+    {
+      "id": "SEC006-RULE-PURPOSE-MISSING",
+      "input_pointer": "/cases/35/given/input",
+      "input_canonical_sha256": "583019862be14e526faecfd44603e932ba19e6f3f12a80df1e02c004769180fe",
+      "expected_pointer": "/cases/35/expected_proposal",
+      "expected_canonical_sha256": "d669abfcec57f4b05243e4b675d019678d0a0baa78d960bf7ded47b8f8cca34d"
+    },
+    {
+      "id": "SEC006-RULE-PURPOSE-CONFLICT",
+      "input_pointer": "/cases/36/given/input",
+      "input_canonical_sha256": "8b7a5f2c98e80136b989882b1cf94f31b3ad3e589b6b2791c478293f6a6874d9",
+      "expected_pointer": "/cases/36/expected_proposal",
+      "expected_canonical_sha256": "e35e8c69d9c92d4971a2b9b1824fef884ae009d686af7e92288fed183e8cf0a9"
+    },
+    {
+      "id": "SEC006-RULE-AUTHORITY-MISSING",
+      "input_pointer": "/cases/37/given/input",
+      "input_canonical_sha256": "3585c0a9f0b0e3a2de891409c973680f3b4c91e224bdafa104f8c4689f91ef94",
+      "expected_pointer": "/cases/37/expected_proposal",
+      "expected_canonical_sha256": "ccf3109836ccfaa98e833249291107f3ef2fe34976d325693000391091343573"
+    },
+    {
+      "id": "SEC006-RULE-AUTHORITY-CONFLICT",
+      "input_pointer": "/cases/38/given/input",
+      "input_canonical_sha256": "c8f9893f3f2d6d34d47c797ec548bbb011c23ce7ecb94a2f6cf8d8124c469589",
+      "expected_pointer": "/cases/38/expected_proposal",
+      "expected_canonical_sha256": "20feb1b8ae982a708f940612aa1a0336aa46fb74dfbe4b1d5a5645e3e0dabd5b"
+    },
+    {
+      "id": "SEC006-RULE-EXPIRY-MISSING",
+      "input_pointer": "/cases/39/given/input",
+      "input_canonical_sha256": "f590fedf563714337a9c874abf402305718d1a9056ac842ac46606896286ed60",
+      "expected_pointer": "/cases/39/expected_proposal",
+      "expected_canonical_sha256": "68bf4e57b9b0455f5ecb23eea97b1abc3e9c417a91ce1a076c50e7985994bd8b"
+    },
+    {
+      "id": "SEC006-RULE-EXPIRY-CONFLICT",
+      "input_pointer": "/cases/40/given/input",
+      "input_canonical_sha256": "07b775a24402f7374061b92731d387f6ab4c989c70af396950a7ff6a4cdab8fb",
+      "expected_pointer": "/cases/40/expected_proposal",
+      "expected_canonical_sha256": "cbd11db71888a39a3fc03093b702a9968d37754baa1710925a3c7934a57e3642"
+    },
+    {
+      "id": "SEC006-RULE-SCOPE-MISSING",
+      "input_pointer": "/cases/41/given/input",
+      "input_canonical_sha256": "2a5fadc0f6efbe9d8ed2bda9f452e182c5ac4c98a74d41b72cef62ac26873093",
+      "expected_pointer": "/cases/41/expected_proposal",
+      "expected_canonical_sha256": "2b23f3bbbf746fe9df53250cdfecdaa52b33bf3180ee17f6ea0bcd4db6c1352f"
+    },
+    {
+      "id": "SEC006-RULE-SCOPE-CONFLICT",
+      "input_pointer": "/cases/42/given/input",
+      "input_canonical_sha256": "418cbd7443d2c4b2e1d529ffadfd2893b1bd9b850013e8809ce9c0f92f823fac",
+      "expected_pointer": "/cases/42/expected_proposal",
+      "expected_canonical_sha256": "54147f26e0c569e026ed3d756be00137ddf28f1921dffddb58a5b30ba344a660"
+    },
+    {
+      "id": "SEC006-RULE-REVISION-MISSING",
+      "input_pointer": "/cases/43/given/input",
+      "input_canonical_sha256": "4043bf48ea2b7084d41dbb55806a4c75af7b2760bb1ab1a06a83766784d14496",
+      "expected_pointer": "/cases/43/expected_proposal",
+      "expected_canonical_sha256": "e6a0493c18cac138a2716d740a7ddcf156bc0aba6b939a830271eb05010c70c0"
+    },
+    {
+      "id": "SEC006-RULE-REVISION-CONFLICT",
+      "input_pointer": "/cases/44/given/input",
+      "input_canonical_sha256": "1adf5de9547c08a7ce87414f04be97388562d98a83e01839f32998235fcc6860",
+      "expected_pointer": "/cases/44/expected_proposal",
+      "expected_canonical_sha256": "09dbee95df295c0696539a98a8563fe61de9b230046dd66684060a84dbc1c20e"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-SOURCE-MISSING",
+      "input_pointer": "/cases/45/given/input",
+      "input_canonical_sha256": "0543aa4710181e083dc4be6bc11948caa3e9dcb2ee1f135347e2f5e6ec3a90d7",
+      "expected_pointer": "/cases/45/expected_proposal",
+      "expected_canonical_sha256": "9ef4999bb0a1e0c8794c0bb8a4c80a835042b3dc3108c07aac012773fee53f53"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-SOURCE-CONFLICT",
+      "input_pointer": "/cases/46/given/input",
+      "input_canonical_sha256": "13155e5ef643968606044298ec150478ce85833122f327fc07710c59e379d61a",
+      "expected_pointer": "/cases/46/expected_proposal",
+      "expected_canonical_sha256": "b686276123fe19b1b2687cf56f5ef9cbfbdda641e694e592dae9f1b849c387ad"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-DESTINATION-MISSING",
+      "input_pointer": "/cases/47/given/input",
+      "input_canonical_sha256": "4d24557ea91e8200cbc6ce9109908cf98ddef407d91b5d47a8322099730b60be",
+      "expected_pointer": "/cases/47/expected_proposal",
+      "expected_canonical_sha256": "0855fe21a0bf19649e8c92a281a93af014ae829c9ec32d681fdb8282ca177a6c"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-DESTINATION-CONFLICT",
+      "input_pointer": "/cases/48/given/input",
+      "input_canonical_sha256": "6d3b7fad63db0b95a49861da7b052a3e79dfda3cafd508353a14dce278ddb83c",
+      "expected_pointer": "/cases/48/expected_proposal",
+      "expected_canonical_sha256": "e71578f3bd9fd0b6216bc6c17ebad47d4a0ba887cff3ab710a8c701e842584be"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-PROTOCOL-MISSING",
+      "input_pointer": "/cases/49/given/input",
+      "input_canonical_sha256": "a2b26883f1871da1490fab5c15d824c854e1b6ce35b39183e2c257de393cdf21",
+      "expected_pointer": "/cases/49/expected_proposal",
+      "expected_canonical_sha256": "e3cad9051944128a4675033beacf69ab613a3ea3f0c1e4551b0e8b236fda3a24"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-PROTOCOL-CONFLICT",
+      "input_pointer": "/cases/50/given/input",
+      "input_canonical_sha256": "143ec1ae3b47f5fee313039fa0c423f3358eb025545e493f691c9b7cf85ccdc3",
+      "expected_pointer": "/cases/50/expected_proposal",
+      "expected_canonical_sha256": "40d1cc327d89021fb3e8f11028d5013b5a79d7954d8cd77f1270d83e932830cc"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-ENDPOINT-MISSING",
+      "input_pointer": "/cases/51/given/input",
+      "input_canonical_sha256": "f4f540737930d394678353afd8ac913abdce383fdac4f331dbae0631ed217efa",
+      "expected_pointer": "/cases/51/expected_proposal",
+      "expected_canonical_sha256": "cf4076fbc87cccaa2cf25879cab43b60358d2b23ff1fbe065ecd61bc88592890"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-ENDPOINT-CONFLICT",
+      "input_pointer": "/cases/52/given/input",
+      "input_canonical_sha256": "d24bc70b399eb099ff4d72d1b05bf2a5a15c26335c89120d404d2001b314c459",
+      "expected_pointer": "/cases/52/expected_proposal",
+      "expected_canonical_sha256": "030aedc2895b1de1426f96545fc768a57c6bdebccddaca9732bfa4dcf1624a0f"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-PATH-MISSING",
+      "input_pointer": "/cases/53/given/input",
+      "input_canonical_sha256": "cd5898747b4d9a0e8f68701383abef976f430af0fdd8cc100f335e06315a762e",
+      "expected_pointer": "/cases/53/expected_proposal",
+      "expected_canonical_sha256": "c019b793fe85dd55e8de9fd90308cfb0c9a76fc8b55701721fded8cfca4f9e67"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-PATH-CONFLICT",
+      "input_pointer": "/cases/54/given/input",
+      "input_canonical_sha256": "9f6ac7060f163ac2a60603d96cd61684277439aa6ca05af9aee1f40d17c17d6a",
+      "expected_pointer": "/cases/54/expected_proposal",
+      "expected_canonical_sha256": "17bd9680afe21e4c729a607591ad1a450fd16c566a9a1ad2b50eb2c1ae2fee2d"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-CLASSIFICATION-MISSING",
+      "input_pointer": "/cases/55/given/input",
+      "input_canonical_sha256": "2e807d9372bb3963629f1f4022698d5f9145de3f9a5fdb2be980990f8e5afa34",
+      "expected_pointer": "/cases/55/expected_proposal",
+      "expected_canonical_sha256": "cdee4c4b97861c1f613eef70a4a187076e31cc9e28c9de9b0a051e9725f138a7"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-CLASSIFICATION-CONFLICT",
+      "input_pointer": "/cases/56/given/input",
+      "input_canonical_sha256": "80cbd81a820ca73f92b6e05d9e0802e283697d1ed46c36a684383c132637a542",
+      "expected_pointer": "/cases/56/expected_proposal",
+      "expected_canonical_sha256": "523e24cce4f357562e8045158d74cd4d505afc2de11e5eb4eb39e0d62db6ad6a"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-PURPOSE-MISSING",
+      "input_pointer": "/cases/57/given/input",
+      "input_canonical_sha256": "7bbfdb11555753473547cb7835f947c7b22611438e3570632fbd3573a9b39548",
+      "expected_pointer": "/cases/57/expected_proposal",
+      "expected_canonical_sha256": "b63cb7a41906085727fba26bec97024f2e6c66bdab310654ae1f32e0a4251da5"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-PURPOSE-CONFLICT",
+      "input_pointer": "/cases/58/given/input",
+      "input_canonical_sha256": "09cc679320ed84c0f42fae065071b9c4f0aa61ae80ddf9abac00cf0a8543dbf5",
+      "expected_pointer": "/cases/58/expected_proposal",
+      "expected_canonical_sha256": "996fd2384f153de3e36822a610bbe0eca3a997dd1b1e72ef8ce253026fe84062"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-AUTHORITY-MISSING",
+      "input_pointer": "/cases/59/given/input",
+      "input_canonical_sha256": "f2cb104810d7daefead213e76f41eb1da74ce2f21080382d538a4060b75c3bd8",
+      "expected_pointer": "/cases/59/expected_proposal",
+      "expected_canonical_sha256": "68b256d23ccc80e90142f6dd10ff077410f9db62a45067fae6498180f795bcda"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-AUTHORITY-CONFLICT",
+      "input_pointer": "/cases/60/given/input",
+      "input_canonical_sha256": "a01fa5662f5328f1b6df95968ead587300cf903edb1900b4a22d6f4c6a21a48b",
+      "expected_pointer": "/cases/60/expected_proposal",
+      "expected_canonical_sha256": "1b3784a3c6cbefbc1921fa7c59a6277ebda66f24ab9204e59f1f2704ede5b789"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-EXPIRY-MISSING",
+      "input_pointer": "/cases/61/given/input",
+      "input_canonical_sha256": "1d6f0d07c19b0e752ee696069d1fb58d19d97d7e819a0945733e379188d958d7",
+      "expected_pointer": "/cases/61/expected_proposal",
+      "expected_canonical_sha256": "373fd92a9a4e1862e537d7f138866b9e3ddfaf0fa526d02791fabad56e2a8de7"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-EXPIRY-CONFLICT",
+      "input_pointer": "/cases/62/given/input",
+      "input_canonical_sha256": "9fb44df358c8dc5aee64b61cecedbe165df0db32f2cb24a81d6bdd75dfb78a49",
+      "expected_pointer": "/cases/62/expected_proposal",
+      "expected_canonical_sha256": "9675e95e1656f097fef934ad96478e3a9b2fd410edef301354d167f80f3adecb"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-SCOPE-MISSING",
+      "input_pointer": "/cases/63/given/input",
+      "input_canonical_sha256": "d8c44e6aee597f1132336ecf06e2ab3568ae0fd2019b5d659a416eb6b8397ee3",
+      "expected_pointer": "/cases/63/expected_proposal",
+      "expected_canonical_sha256": "932d1e95985ba7646c31e134d6d1116326d5291f7b75ba9158004e9681463087"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-SCOPE-CONFLICT",
+      "input_pointer": "/cases/64/given/input",
+      "input_canonical_sha256": "1e3935c0c5b6fc20134a01f90b9b7ca62a58d8283fb39c6565117e3b68909416",
+      "expected_pointer": "/cases/64/expected_proposal",
+      "expected_canonical_sha256": "492985e9109d15351ec65c6dcb2c3687a2788b55ef6931a67053f83fb657b716"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-REVISION-MISSING",
+      "input_pointer": "/cases/65/given/input",
+      "input_canonical_sha256": "d075212b3b66cc5b75dde0313410c1af85eaf762fbae6ed160a8d64521c662ef",
+      "expected_pointer": "/cases/65/expected_proposal",
+      "expected_canonical_sha256": "871cc472865f47b4b5bfca54035208bd14ae5b5b0869ec464c11f60f9df05e3c"
+    },
+    {
+      "id": "SEC006-CONTEXT-EXPECTED_RULE-REVISION-CONFLICT",
+      "input_pointer": "/cases/66/given/input",
+      "input_canonical_sha256": "620bcb6be94c93104eebb431700d95d0ad0af1bcc6e7faf1f7171bba77f0f0dc",
+      "expected_pointer": "/cases/66/expected_proposal",
+      "expected_canonical_sha256": "3f11bc1ad068af62608356314e26bcafde17875a1fb9ecd12da27590843cccce"
+    },
+    {
+      "id": "SEC006-SECRET_INSPECTION-UNKNOWN",
+      "input_pointer": "/cases/67/given/input",
+      "input_canonical_sha256": "de68f54daf828a2ae9feedd4e16b49af84e8becaff2364dee285c55ca5a44c6d",
+      "expected_pointer": "/cases/67/expected_proposal",
+      "expected_canonical_sha256": "dcaebb90558102b15fd18d0c1295dfdab5228bfe01baad508098244dc88bbbcd"
+    },
+    {
+      "id": "SEC006-SECRET_INSPECTION-VIOLATION",
+      "input_pointer": "/cases/68/given/input",
+      "input_canonical_sha256": "749ea76fc26d23e82da2ca668289d23105f5129de3578c9d4c1709f925582234",
+      "expected_pointer": "/cases/68/expected_proposal",
+      "expected_canonical_sha256": "f11daf483718dba26b57d590c71b3c97cb0e66968b46efb490f70d26eac41655"
+    },
+    {
+      "id": "SEC006-SECRET_INSPECTION-SCOPE",
+      "input_pointer": "/cases/69/given/input",
+      "input_canonical_sha256": "739945af572581faa9da76b3ae902f55238f1466acdaba2c0cd849da91cc8e59",
+      "expected_pointer": "/cases/69/expected_proposal",
+      "expected_canonical_sha256": "8b801aa22f52f203f90acfb32ee82f59011e593388e3ea058794a9bd083930e2"
+    },
+    {
+      "id": "SEC006-SECRET_INSPECTION-REVISION",
+      "input_pointer": "/cases/70/given/input",
+      "input_canonical_sha256": "9bb1d325ae893278a73347279b45d9473e87b93c5a7f51282651116aa68a7d93",
+      "expected_pointer": "/cases/70/expected_proposal",
+      "expected_canonical_sha256": "5c931ff52e3d9dad76046d6283d1f96549661af9dfe66c63cdd2508ca48c069c"
+    },
+    {
+      "id": "SEC006-SECRET_INSPECTION-SOURCE",
+      "input_pointer": "/cases/71/given/input",
+      "input_canonical_sha256": "c1d8e6035f3fcd50853515f7e665aaff3488c9d9ec2231c2ea05f3282ab59bea",
+      "expected_pointer": "/cases/71/expected_proposal",
+      "expected_canonical_sha256": "8db6015115f97008f802e43089717a2365fe0b2ef8919013fdcb8e810a3b6c7a"
+    },
+    {
+      "id": "SEC006-CLASSIFICATION_RECORD-UNKNOWN",
+      "input_pointer": "/cases/72/given/input",
+      "input_canonical_sha256": "d722848800a1a9cc4fb319d3b6c468ca0fad0c4c2db93e602ccc0213a77fa1b7",
+      "expected_pointer": "/cases/72/expected_proposal",
+      "expected_canonical_sha256": "cb4d50199503512a420a8a4787efbf217f0ef127fa94755c6ccd8dda38f803b5"
+    },
+    {
+      "id": "SEC006-CLASSIFICATION_RECORD-VIOLATION",
+      "input_pointer": "/cases/73/given/input",
+      "input_canonical_sha256": "975217905ab4c5b224ab269fa1f6602609a7bdb1fbf2a55f98c1d4b5acddd126",
+      "expected_pointer": "/cases/73/expected_proposal",
+      "expected_canonical_sha256": "e57ae00a16c073ef129718328fc6f7dbbfbd46e7a5e84684061b7da19bbd4e1d"
+    },
+    {
+      "id": "SEC006-CLASSIFICATION_RECORD-SCOPE",
+      "input_pointer": "/cases/74/given/input",
+      "input_canonical_sha256": "bdf38d1865d04774abc70ae62b2410c9753acf1b4785c65ba8bd5057c270565f",
+      "expected_pointer": "/cases/74/expected_proposal",
+      "expected_canonical_sha256": "38a78f480421a590e5adee16604dae13e7634390b3488de6fe5b05452640b07a"
+    },
+    {
+      "id": "SEC006-CLASSIFICATION_RECORD-REVISION",
+      "input_pointer": "/cases/75/given/input",
+      "input_canonical_sha256": "1a91c084b06368c267a99ac8bc61e8075ec51a647bbb598c5c0240b0e1bbbc29",
+      "expected_pointer": "/cases/75/expected_proposal",
+      "expected_canonical_sha256": "6a44b87f0e50ba8d5a18c522341fb8e4decabb506a70ed3bf1a6b0ba1102bcea"
+    },
+    {
+      "id": "SEC006-CLASSIFICATION_RECORD-SOURCE",
+      "input_pointer": "/cases/76/given/input",
+      "input_canonical_sha256": "a1171328c0f835d94839d89cdda565410e3ba33596d706bb6a505f086bbd1abb",
+      "expected_pointer": "/cases/76/expected_proposal",
+      "expected_canonical_sha256": "ede8969d98b7e1d528a9db09973190856fa9dc09f9d27e1e029f392d09f52b39"
+    },
+    {
+      "id": "SEC006-LOGICAL_CONNECTION-UNKNOWN",
+      "input_pointer": "/cases/77/given/input",
+      "input_canonical_sha256": "70806abd8ee13670237c872aa6480e947090776b91117ff0da08079ff0182865",
+      "expected_pointer": "/cases/77/expected_proposal",
+      "expected_canonical_sha256": "1b47f39f4b638650bf5ba86cef0d93bffe9e8bf09b00c23d3ca0aa517a76e1b0"
+    },
+    {
+      "id": "SEC006-LOGICAL_CONNECTION-VIOLATION",
+      "input_pointer": "/cases/78/given/input",
+      "input_canonical_sha256": "2d9242c009f87116fbbd7deb3ea6007573c1f6106cd7a3774c6ba8f00b66b978",
+      "expected_pointer": "/cases/78/expected_proposal",
+      "expected_canonical_sha256": "db4d8923160bfebb707812857e7d28728f8140fb59b98b977bd3ce6b49a3a58f"
+    },
+    {
+      "id": "SEC006-LOGICAL_CONNECTION-SCOPE",
+      "input_pointer": "/cases/79/given/input",
+      "input_canonical_sha256": "f5f33966daa8ba4835c3f9ac4dc4243cc70358f58d2c1dcb6f85309ab2bdacc6",
+      "expected_pointer": "/cases/79/expected_proposal",
+      "expected_canonical_sha256": "b4497cd66c3d7724376a4e0db78ff9b715a8c7c7d13173724c975a4ebe6388f6"
+    },
+    {
+      "id": "SEC006-LOGICAL_CONNECTION-REVISION",
+      "input_pointer": "/cases/80/given/input",
+      "input_canonical_sha256": "869d8e4d0991b69dfc3602a6c0ce825022f47e3ecd887b4695a87d3df5647154",
+      "expected_pointer": "/cases/80/expected_proposal",
+      "expected_canonical_sha256": "7a57c7c9c47a3791960222839c5c62351027f3fc7c0f2490473befd7c52ddd3d"
+    },
+    {
+      "id": "SEC006-LOGICAL_CONNECTION-SOURCE",
+      "input_pointer": "/cases/81/given/input",
+      "input_canonical_sha256": "35b48463b03ddb15940fab7056fcb315a5ae68a665d02a8a534e3d0323174db9",
+      "expected_pointer": "/cases/81/expected_proposal",
+      "expected_canonical_sha256": "a2be04b0fe6b803df505551966cdafb05aa7e039c4801abb7341b7a6c84dd7c6"
+    },
+    {
+      "id": "SEC006-PHYSICAL_ROUTE-UNKNOWN",
+      "input_pointer": "/cases/82/given/input",
+      "input_canonical_sha256": "85542c40055aef739e02d827f555894ed83306aaa05a1a055fe98e64559ff9bc",
+      "expected_pointer": "/cases/82/expected_proposal",
+      "expected_canonical_sha256": "22830e26a1b9bfb5ff37967ae7207a392522338c87d084170b5bdc19fb90acd6"
+    },
+    {
+      "id": "SEC006-PHYSICAL_ROUTE-VIOLATION",
+      "input_pointer": "/cases/83/given/input",
+      "input_canonical_sha256": "b1890196ab94bd7a3f9f2988f17c51f7f3bc7975a9280bd1b7bb70e9acabe8b8",
+      "expected_pointer": "/cases/83/expected_proposal",
+      "expected_canonical_sha256": "0345c0227505d8ffb3cf2357b39cd408c0dc0de7736859a8108eceeaf73d0416"
+    },
+    {
+      "id": "SEC006-PHYSICAL_ROUTE-SCOPE",
+      "input_pointer": "/cases/84/given/input",
+      "input_canonical_sha256": "5ff38352f19e75e5dbf597e8930cf74a0690f237bf03cfe3f684d0c856d90c0d",
+      "expected_pointer": "/cases/84/expected_proposal",
+      "expected_canonical_sha256": "99fea1f77b34559d8ad00b1737d77aa9f1ca4f184df81eff6dfb53c47e0ac98b"
+    },
+    {
+      "id": "SEC006-PHYSICAL_ROUTE-REVISION",
+      "input_pointer": "/cases/85/given/input",
+      "input_canonical_sha256": "09534858be2cd2904126a353ea3822819b5d33d6e668c15d6dcd690435b19f93",
+      "expected_pointer": "/cases/85/expected_proposal",
+      "expected_canonical_sha256": "915044e757401ad05aa31b91946640449dd8b47744f1ca32cfa48541282e3e56"
+    },
+    {
+      "id": "SEC006-PHYSICAL_ROUTE-SOURCE",
+      "input_pointer": "/cases/86/given/input",
+      "input_canonical_sha256": "52dd1ff6b64e8b8202986e2f610492bd66dc76e55525b8e45fe6186b7a33a17e",
+      "expected_pointer": "/cases/86/expected_proposal",
+      "expected_canonical_sha256": "d86c6764ddd01f7b8bde1285f7db5856cc11b7e1fa8b16c775f9a311c650063b"
+    },
+    {
+      "id": "SEC006-PATH_FILTER-UNKNOWN",
+      "input_pointer": "/cases/87/given/input",
+      "input_canonical_sha256": "d98a1bb30af393c34357d8d542e3c5d09310b4a9d716194c98dc0e9116130f3c",
+      "expected_pointer": "/cases/87/expected_proposal",
+      "expected_canonical_sha256": "9f8a52875c953d991d23c65d118669bc3798c9b03ca940c10227812d517b8c14"
+    },
+    {
+      "id": "SEC006-PATH_FILTER-VIOLATION",
+      "input_pointer": "/cases/88/given/input",
+      "input_canonical_sha256": "688b6e617d105e525b9881b36d3a9d2197c094f45e484107674c21d79ba4ce07",
+      "expected_pointer": "/cases/88/expected_proposal",
+      "expected_canonical_sha256": "f8cb8637845445a6a02ddcf7e0c083ce13d4654435c25e8626cd1959a096858e"
+    },
+    {
+      "id": "SEC006-PATH_FILTER-SCOPE",
+      "input_pointer": "/cases/89/given/input",
+      "input_canonical_sha256": "f8c7bbdc1c87a9ffe3c6e8ac2064fcd1442048e058de7c888d0a412cd67f0f00",
+      "expected_pointer": "/cases/89/expected_proposal",
+      "expected_canonical_sha256": "da2dae71df84c632ac2eca4bf0a8b4656aa08b3cd5f56a5607ac012a9e25f602"
+    },
+    {
+      "id": "SEC006-PATH_FILTER-REVISION",
+      "input_pointer": "/cases/90/given/input",
+      "input_canonical_sha256": "8785e6c1383a8eb3e12a323aa72e06149b86a52ceecd1151ff1513211fd4b540",
+      "expected_pointer": "/cases/90/expected_proposal",
+      "expected_canonical_sha256": "a22a0e7a838311c9fe8ed71aa101327779d86cfd851c2ffb32879df75c612728"
+    },
+    {
+      "id": "SEC006-PATH_FILTER-SOURCE",
+      "input_pointer": "/cases/91/given/input",
+      "input_canonical_sha256": "9b0e56385a1d075e7b15b247cf843e696367bafe461b885deb29361b7ebdc8db",
+      "expected_pointer": "/cases/91/expected_proposal",
+      "expected_canonical_sha256": "f6b72d1ee244e44483c5bcdc71048433e1cc9e35217afa0e3667695574c460ef"
+    },
+    {
+      "id": "SEC006-DATA_MINIMIZATION-UNKNOWN",
+      "input_pointer": "/cases/92/given/input",
+      "input_canonical_sha256": "222a404a11b88a2f74f86be256383e0b781eed32317143b6dd6cdeef51b14ca8",
+      "expected_pointer": "/cases/92/expected_proposal",
+      "expected_canonical_sha256": "e3a5c29eadb347b3b33999a75cfbf6483bf364cab24c5944bb8a63968b029581"
+    },
+    {
+      "id": "SEC006-DATA_MINIMIZATION-VIOLATION",
+      "input_pointer": "/cases/93/given/input",
+      "input_canonical_sha256": "a5f66fdfba24ae76e76c55a59844261e363af25be716bc3e856ff2edf5c9a9a4",
+      "expected_pointer": "/cases/93/expected_proposal",
+      "expected_canonical_sha256": "fcfeef20f433465666b4cbf4511bb8c3a8b46b72fda4f6e9efb05d5e72cff043"
+    },
+    {
+      "id": "SEC006-DATA_MINIMIZATION-SCOPE",
+      "input_pointer": "/cases/94/given/input",
+      "input_canonical_sha256": "65a42bb943cb392857568cd04675ecab9fe89641d5c46525b727651eb2f03734",
+      "expected_pointer": "/cases/94/expected_proposal",
+      "expected_canonical_sha256": "8939357f3226715c675b87d697391e50d348cec92f171bd4e5ee94c72775a49d"
+    },
+    {
+      "id": "SEC006-DATA_MINIMIZATION-REVISION",
+      "input_pointer": "/cases/95/given/input",
+      "input_canonical_sha256": "18a2b9993e81bf7f0850de6d3ae1aab234bd45dda2cadaa6f33ae71727ac00a9",
+      "expected_pointer": "/cases/95/expected_proposal",
+      "expected_canonical_sha256": "5b4bbd783db1e263b710dd86746922af799e78cab73b9ca4b21ad829b314bfe7"
+    },
+    {
+      "id": "SEC006-DATA_MINIMIZATION-SOURCE",
+      "input_pointer": "/cases/96/given/input",
+      "input_canonical_sha256": "055a97dcc1fc74590981a98cc1f4453d3b1c8a7d2b3579dd152f0e2f5628ea50",
+      "expected_pointer": "/cases/96/expected_proposal",
+      "expected_canonical_sha256": "307458c73c9806a4be5f4f81da4fd2ef0225b590059ae21119509986f90428b3"
+    },
+    {
+      "id": "SEC006-ALLOWLIST-ABSENT",
+      "input_pointer": "/cases/97/given/input",
+      "input_canonical_sha256": "89656f0387dd1d400f125495149dd6d5bb040a2654c20e3b4c90ebb2725b38c3",
+      "expected_pointer": "/cases/97/expected_proposal",
+      "expected_canonical_sha256": "9b2cd7cffec8b3c09ac0c700a479d040d0d267ac66e4853921539dbd1bf36a69"
+    },
+    {
+      "id": "SEC006-ALLOWLIST-UNKNOWN",
+      "input_pointer": "/cases/98/given/input",
+      "input_canonical_sha256": "714f284239629aaf68ce802a9c1c0468141e81cd0ec07f8c59ffc72b0649d85d",
+      "expected_pointer": "/cases/98/expected_proposal",
+      "expected_canonical_sha256": "ea99ea98d8b09d167d0803e86ba296e0f02850b7c74e6ebd4f6cac40b888e139"
+    },
+    {
+      "id": "SEC006-VENDOR-ONLY",
+      "input_pointer": "/cases/99/given/input",
+      "input_canonical_sha256": "b9c3b246ac57d591cd2c33c763cf1689035d8a73816eb49b6eef16c783645e95",
+      "expected_pointer": "/cases/99/expected_proposal",
+      "expected_canonical_sha256": "9b2cd7cffec8b3c09ac0c700a479d040d0d267ac66e4853921539dbd1bf36a69"
+    },
+    {
+      "id": "SEC006-ASSET-GUARD-PRESENT",
+      "input_pointer": "/cases/100/given/input",
+      "input_canonical_sha256": "6da6fb7d5306d5ee0489a71d90aa31263156bcfa1b89c5f7fa1012653eb3a07d",
+      "expected_pointer": "/cases/100/expected_proposal",
+      "expected_canonical_sha256": "0bb7efafc30e0d93ab7f2e021a810e8b7e5eebd2a5e119d07ceed4efed4ead5c"
+    },
+    {
+      "id": "SEC006-MEASUREMENT-NOT-OBSERVED",
+      "input_pointer": "/cases/101/given/input",
+      "input_canonical_sha256": "599e8d1234f50b60b5decf223adb39e8c081664f22a07d5a88658aa2c7f7f797",
+      "expected_pointer": "/cases/101/expected_proposal",
+      "expected_canonical_sha256": "0a38dc7b8fb28c3aabf3061b55a3c8abcd5051bb7af79318b380e5f1e6ae89b1"
+    },
+    {
+      "id": "SEC006-SENT-COUNT-MISMATCH",
+      "input_pointer": "/cases/102/given/input",
+      "input_canonical_sha256": "12c6ddf2893bcccc4a6644a1c88bf010016bc6473f08a62ec663755a4e3c1577",
+      "expected_pointer": "/cases/102/expected_proposal",
+      "expected_canonical_sha256": "7969580d988b6605c0bc60ca23f1cd23a7fc8e149e93533d5ee1b59a949b3565"
+    },
+    {
+      "id": "SEC006-SENT-COUNT-UNKNOWN",
+      "input_pointer": "/cases/103/given/input",
+      "input_canonical_sha256": "d6e86aba060ac1fa99c476b6d61d56c5e3a0f5442c556345cb1617f4ab0f5a73",
+      "expected_pointer": "/cases/103/expected_proposal",
+      "expected_canonical_sha256": "433677ea6b61f7b9cefe768f9359585199b9f4b6d1e06732b7b3e6ceb416232d"
+    },
+    {
+      "id": "SEC006-PREPARED-COUNT-UNKNOWN",
+      "input_pointer": "/cases/104/given/input",
+      "input_canonical_sha256": "a81d50414d2beabfb9f7052f2e500434d8a16f56ca9c40538a1f2cf026ab229a",
+      "expected_pointer": "/cases/104/expected_proposal",
+      "expected_canonical_sha256": "c33070500fd41d2504de9ad23b105505b5a9513569655dd253a724a3e93ae82b"
+    },
+    {
+      "id": "SEC006-PLANNED-COUNT-MISMATCH",
+      "input_pointer": "/cases/105/given/input",
+      "input_canonical_sha256": "0b21e7260302b3e7f3428141754895cc8a9ed2f22c9ba26a1da372f9318cbdb6",
+      "expected_pointer": "/cases/105/expected_proposal",
+      "expected_canonical_sha256": "7a4212296d44eee24bb9b34ac2389ddbd1dd1f3636d75217164a72457d153b81"
+    },
+    {
+      "id": "SEC006-TIME-UNKNOWN",
+      "input_pointer": "/cases/106/given/input",
+      "input_canonical_sha256": "69c20bb576b776053c34a165ee8b6141e3acff56a8206498bae5eb60613af88d",
+      "expected_pointer": "/cases/106/expected_proposal",
+      "expected_canonical_sha256": "7e4accce829ca8a0552cc417dcb1d020aae7d2d066b47f6e2c90319e501b2d43"
+    },
+    {
+      "id": "SEC006-AT-EXPIRY",
+      "input_pointer": "/cases/107/given/input",
+      "input_canonical_sha256": "8923c8db3ab4d7b7dcd3ac97d9d5ae4a7032b50018d853c443d3b3846a0c9cbe",
+      "expected_pointer": "/cases/107/expected_proposal",
+      "expected_canonical_sha256": "57e430a8d31051b99b059ac49503ccf32b01b218516926479a9acf12aa0920ec"
+    },
+    {
+      "id": "SEC006-DATA-USE-UNKNOWN",
+      "input_pointer": "/cases/108/given/input",
+      "input_canonical_sha256": "3692d4f2abbf5d56f163bb6e71745cde4ae9ffb0f81b541d153a069bda6d4d22",
+      "expected_pointer": "/cases/108/expected_proposal",
+      "expected_canonical_sha256": "730531960f048319713344e50b524a7fd906ab377e7c2148a3ac9af7d29d8957"
+    },
+    {
+      "id": "SEC006-NO-COMMUNICATION",
+      "input_pointer": "/cases/109/given/input",
+      "input_canonical_sha256": "3c49361d9eccc2397b87a3bcdc4b7209180b5c5b4d180bc1f6f7b3298e3a815e",
+      "expected_pointer": "/cases/109/expected_proposal",
+      "expected_canonical_sha256": "7a842ea568aca4eb192975bb611b29f59032e7bc9f9b2ee910177e41ac060206"
+    },
+    {
+      "id": "SEC006-NO-INVENTED-FIXED-LIMIT",
+      "input_pointer": "/cases/110/given/input",
+      "input_canonical_sha256": "61aa8759b240d08b398d556b2e217a6630c4636031e5e0ed6f7c900a39b50d74",
+      "expected_pointer": "/cases/110/expected_proposal",
+      "expected_canonical_sha256": "b7094cf25d6a545343e504cc9f239ccd071c947eb471cb6c4d0376a96e3881dc"
+    },
+    {
+      "id": "SEC006-COMPOUND-DENY-ROUTE-MEASURE-UNKNOWN",
+      "input_pointer": "/cases/111/given/input",
+      "input_canonical_sha256": "01a437b74e127c06aa760d26eaba4d4b519d145b1597d4397897c11c91554934",
+      "expected_pointer": "/cases/111/expected_proposal",
+      "expected_canonical_sha256": "4416aa79e8e05e43cf75fb473324e7ff90cd00ea56f4e9a1cc60301aa4826b06"
+    },
+    {
+      "id": "SEC006-DEPENDENCY-REF-MISSING",
+      "input_pointer": "/cases/112/given/input",
+      "input_canonical_sha256": "3f90c4cd8eea8f523033899eb7ed9e60edaa7be410d9f719bd4fbf0cdd9dd5c1",
+      "expected_pointer": "/cases/112/expected_proposal",
+      "expected_canonical_sha256": "2df55c00f9c8609109ca6a345388fed61bb95a8373207c610a116cf0741759e4"
+    },
+    {
+      "id": "SEC006-EXPECTED-DEPENDENCY-REF-MISSING",
+      "input_pointer": "/cases/113/given/input",
+      "input_canonical_sha256": "2fa38b06b3e7f24ccada6397ffa0e7df7edfc6003b56fe8ac5ac2fc3c4905add",
+      "expected_pointer": "/cases/113/expected_proposal",
+      "expected_canonical_sha256": "6a315ac1eabeea40949a56f09521ac18be9afe3ce93a905528d75c811fb3b82d"
+    },
+    {
+      "id": "SEC006-PLANNED-NEGATIVE",
+      "input_pointer": "/cases/114/given/input",
+      "input_canonical_sha256": "13e13a7e25c662aad2e6d126b901929c1d3748a0d6329b2ca09c177582a468be",
+      "expected_pointer": "/cases/114/expected_proposal",
+      "expected_canonical_sha256": "f19c6e0667bb8afaafb330a331c3b87aef15635ba93f100d08b7490e66623c26"
+    },
+    {
+      "id": "SEC006-PREPARED-NEGATIVE",
+      "input_pointer": "/cases/115/given/input",
+      "input_canonical_sha256": "2720d59c54e5b0ee7dc3da96a3871fe4e8d5122eab5ec88ec66a12edc6fb9b95",
+      "expected_pointer": "/cases/115/expected_proposal",
+      "expected_canonical_sha256": "c33070500fd41d2504de9ad23b105505b5a9513569655dd253a724a3e93ae82b"
+    },
+    {
+      "id": "SEC006-CLASSIFICATION-RECORD-UNKNOWN",
+      "input_pointer": "/cases/116/given/input",
+      "input_canonical_sha256": "d6a5826e7a1f9b939e67909bd58ba2c798685f20786e0af396815df7fcceb9e4",
+      "expected_pointer": "/cases/116/expected_proposal",
+      "expected_canonical_sha256": "ee379b98aa69d866dba098bcbe608c7c068f96661bcc7c30bc78ba986a83892c"
+    },
+    {
+      "id": "SEC006-DATA-USE-CONFLICT",
+      "input_pointer": "/cases/117/given/input",
+      "input_canonical_sha256": "fe6704f2aacf620a3af80400d858eb9e9fa620cf6737bd5c0eea5f343ec6405d",
+      "expected_pointer": "/cases/117/expected_proposal",
+      "expected_canonical_sha256": "bf289fa24bb2cae4096e602605ce8d53744fcf6e90ecc068ea577c28736ea9a3"
+    }
+  ],
+  "remaining": [
+    "正式source/owner資格/root/原bytes-body custody/authority008/005検査/016分類/CONNECT/024INFRA/measurement/準備consumer実binding未閉包。sources型は不足の保持口で実資格を発行しない。",
+    "正式wire/schema/codec、URL/protocol/path/DNS表現・canonicalizationの採否、複数rule選択/allowpolicy、time/量のparser/host representation/資源条件、実clockと量/最小化/receiptは未閉包。一般上限・新registry/署名/truststore/毎回承認gateを追加しない。",
+    "L6は関数設計、L7は対関数検証、実装成果は層外。test/oracle凍結→実装前Red→Green→Refactor/再検証、実network/資格情報/Worker/CI/L9L10/PO L11と全92親430対意味閉包・実装Readyは未成立。"
+  ],
+  "document_id": "HELIXSECURITY-L5-006-NETWORK-EGRESS-BOUNDARY",
+  "layer": "L5",
+  "pair": "L8",
+  "paired_document": "docs/helix-security/L8-unit-verification/network-egress-boundary.json",
+  "purpose": "2批准契約のegress内容、独立owner素材、pre/postと局所不足を論理typed input/output・signature・branchへ具体化する。",
+  "type_contract": {
+    "kind": "logical_design_not_formal_wire_schema",
+    "domains": {
+      "Text": {
+        "kind": "nonempty_string",
+        "normalization": "none; trim/casefold/NFC/path/URL/DNS変換なし"
+      },
+      "Bool": {
+        "kind": "boolean"
+      },
+      "Nat": {
+        "kind": "nonnegative_integer",
+        "boolean_excluded": true,
+        "limit": "固定上限なし。exact量の元値保存。parser/host幅・budgetは未選定。"
+      },
+      "FiniteNumber": {
+        "kind": "finite_number",
+        "boolean_excluded": true,
+        "limit": "expiry/timeのowner供給同一比較domainの素材。単位/epoch/clock trustは未閉包、秒やmsを発明しない。正式parser/十進/host representation未選定。"
+      },
+      "AllowlistState": {
+        "kind": "enum",
+        "values": [
+          "current",
+          "absent",
+          "unknown"
+        ]
+      },
+      "DependencyState": {
+        "kind": "enum",
+        "values": [
+          "corresponding",
+          "violation",
+          "unknown"
+        ]
+      },
+      "MeasurementState": {
+        "kind": "enum",
+        "values": [
+          "observed",
+          "not_observed"
+        ]
+      },
+      "ClassificationLiteral": {
+        "kind": "enum",
+        "values": [
+          "public",
+          "customer-owned",
+          "service-internal",
+          "HELIX-confidential",
+          "HELIX-restricted",
+          "secret"
+        ]
+      },
+      "ClassificationList": {
+        "kind": "list",
+        "item": "ClassificationLiteral",
+        "empty": "known empty list、publicへ補完しない"
+      },
+      "TextList": {
+        "kind": "list",
+        "item": "Text"
+      },
+      "Grade": {
+        "kind": "enum",
+        "values": [
+          "corresponding",
+          "unknown",
+          "violation"
+        ]
+      },
+      "SendState": {
+        "kind": "enum",
+        "values": [
+          "compare_requested",
+          "not_requested",
+          "unknown"
+        ]
+      },
+      "SourceRole": {
+        "kind": "enum",
+        "values": [
+          "allowlist",
+          "authority",
+          "time",
+          "prepared_payload",
+          "secret_inspection",
+          "classification_record",
+          "logical_connection",
+          "physical_route",
+          "path_filter",
+          "data_minimization",
+          "measurement"
+        ]
+      },
+      "OptionalNat": {
+        "kind": "nullable_domain",
+        "domain": "Nat"
+      },
+      "RawValue": {
+        "kind": "raw_json",
+        "meaning": "元値保存だけ。root/内部参照資格・secret値をここから生成しない。素材は値なしsynthetic metadata限定。"
+      },
+      "FindingList": {
+        "kind": "list",
+        "item": "Finding"
+      },
+      "OwnerSourceList": {
+        "kind": "list",
+        "item_record": "OwnerSourceMaterial",
+        "logical_item_type": "Materialized<OwnerSourceMaterial>"
+      },
+      "SourceRoleList": {
+        "kind": "list",
+        "item": "SourceRole",
+        "meaning": "caller明示の該当役割集合。未選択sourceを常時必須へ増やさず、資格供給方式を定めない。"
+      },
+      "String": {
+        "kind": "string",
+        "meaning": "任意JSON property key等の原string。空keyも保持。identityのTextとは別。"
+      }
+    },
+    "logical_types": {
+      "EgressTuple": {
+        "fields": {
+          "source": "Field<Text>",
+          "destination": "Field<Text>",
+          "protocol": "Field<Text>",
+          "endpoint": "Field<Text>",
+          "path": "Field<Text>",
+          "classification": "Field<Text>",
+          "purpose": "Field<Text>",
+          "authority": "Field<Text>",
+          "expiry": "Field<FiniteNumber>",
+          "scope": "Field<Text>",
+          "revision": "Field<Text>"
+        },
+        "raw_shape": {
+          "fields": {
+            "source": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "destination": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "protocol": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "endpoint": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "path": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "classification": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "purpose": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "authority": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "expiry": {
+              "kind": "field",
+              "domain": "FiniteNumber"
+            },
+            "scope": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "revision": {
+              "kind": "field",
+              "domain": "Text"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "EgressRequest": {
+        "fields": {
+          "source": "Field<Text>",
+          "destination": "Field<Text>",
+          "protocol": "Field<Text>",
+          "endpoint": "Field<Text>",
+          "path": "Field<Text>",
+          "classification": "Field<Text>",
+          "purpose": "Field<Text>",
+          "authority": "Field<Text>",
+          "expiry": "Field<FiniteNumber>",
+          "scope": "Field<Text>",
+          "revision": "Field<Text>",
+          "planned_bytes": "Field<Nat>"
+        },
+        "raw_shape": {
+          "fields": {
+            "source": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "destination": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "protocol": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "endpoint": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "path": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "classification": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "purpose": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "authority": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "expiry": {
+              "kind": "field",
+              "domain": "FiniteNumber"
+            },
+            "scope": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "revision": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "planned_bytes": {
+              "kind": "field",
+              "domain": "Nat"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "DependencyReport": {
+        "fields": {
+          "state": "Field<DependencyState>",
+          "scope": "Field<Text>",
+          "revision": "Field<Text>",
+          "binding_ref": "Field<Text>"
+        },
+        "raw_shape": {
+          "fields": {
+            "state": {
+              "kind": "field",
+              "domain": "DependencyState"
+            },
+            "scope": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "revision": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "binding_ref": {
+              "kind": "field",
+              "domain": "Text"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "ClassificationReport": {
+        "fields": {
+          "state": "Field<DependencyState>",
+          "scope": "Field<Text>",
+          "revision": "Field<Text>",
+          "binding_ref": "Field<Text>",
+          "asset_exposure_class": "Field<Text>",
+          "data_use_purpose": "Field<Text>"
+        },
+        "raw_shape": {
+          "fields": {
+            "state": {
+              "kind": "field",
+              "domain": "DependencyState"
+            },
+            "scope": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "revision": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "binding_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "asset_exposure_class": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "data_use_purpose": {
+              "kind": "field",
+              "domain": "Text"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "ExpectedBindingRefs": {
+        "fields": {
+          "secret_inspection": "Field<Text>",
+          "classification_record": "Field<Text>",
+          "logical_connection": "Field<Text>",
+          "physical_route": "Field<Text>",
+          "path_filter": "Field<Text>",
+          "data_minimization": "Field<Text>"
+        },
+        "raw_shape": {
+          "fields": {
+            "secret_inspection": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "classification_record": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "logical_connection": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "physical_route": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "path_filter": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "data_minimization": {
+              "kind": "field",
+              "domain": "Text"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "DependencySet": {
+        "fields": {
+          "secret_inspection": "Materialized<DependencyReport>",
+          "classification_record": "Materialized<ClassificationReport>",
+          "logical_connection": "Materialized<DependencyReport>",
+          "physical_route": "Materialized<DependencyReport>",
+          "path_filter": "Materialized<DependencyReport>",
+          "data_minimization": "Materialized<DependencyReport>"
+        },
+        "raw_shape": {
+          "fields": {
+            "secret_inspection": {
+              "kind": "record",
+              "target": "DependencyReport"
+            },
+            "classification_record": {
+              "kind": "record",
+              "target": "ClassificationReport"
+            },
+            "logical_connection": {
+              "kind": "record",
+              "target": "DependencyReport"
+            },
+            "physical_route": {
+              "kind": "record",
+              "target": "DependencyReport"
+            },
+            "path_filter": {
+              "kind": "record",
+              "target": "DependencyReport"
+            },
+            "data_minimization": {
+              "kind": "record",
+              "target": "DependencyReport"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "EgressContext": {
+        "fields": {
+          "expected_rule": "Materialized<EgressTuple>",
+          "prepared_payload_bytes": "Field<Nat>",
+          "observed_time": "Field<FiniteNumber>",
+          "known_classifications": "Field<ClassificationList>",
+          "expected_binding_refs": "Materialized<ExpectedBindingRefs>"
+        },
+        "raw_shape": {
+          "fields": {
+            "expected_rule": {
+              "kind": "record",
+              "target": "EgressTuple"
+            },
+            "prepared_payload_bytes": {
+              "kind": "field",
+              "domain": "Nat"
+            },
+            "observed_time": {
+              "kind": "field",
+              "domain": "FiniteNumber"
+            },
+            "known_classifications": {
+              "kind": "field",
+              "domain": "ClassificationList"
+            },
+            "expected_binding_refs": {
+              "kind": "record",
+              "target": "ExpectedBindingRefs"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "Measurement": {
+        "fields": {
+          "state": "Field<MeasurementState>",
+          "sent_bytes": "Field<Nat>",
+          "scope": "Field<Text>",
+          "revision": "Field<Text>"
+        },
+        "raw_shape": {
+          "fields": {
+            "state": {
+              "kind": "field",
+              "domain": "MeasurementState"
+            },
+            "sent_bytes": {
+              "kind": "field",
+              "domain": "Nat"
+            },
+            "scope": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "revision": {
+              "kind": "field",
+              "domain": "Text"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "EgressFrame": {
+        "fields": {
+          "send_requested": "Field<Bool>",
+          "request": "Materialized<EgressRequest>",
+          "allowlist_state": "Field<AllowlistState>",
+          "rule": "Materialized<EgressTuple>",
+          "context": "Materialized<EgressContext>",
+          "dependencies": "Materialized<DependencySet>",
+          "measurement": "Materialized<Measurement>",
+          "vendor_privacy_claim": "Field<Bool>",
+          "asset_specific_guard_present": "Field<Bool>"
+        },
+        "raw_shape": {
+          "fields": {
+            "send_requested": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "request": {
+              "kind": "record",
+              "target": "EgressRequest"
+            },
+            "allowlist_state": {
+              "kind": "field",
+              "domain": "AllowlistState"
+            },
+            "rule": {
+              "kind": "record",
+              "target": "EgressTuple"
+            },
+            "context": {
+              "kind": "record",
+              "target": "EgressContext"
+            },
+            "dependencies": {
+              "kind": "record",
+              "target": "DependencySet"
+            },
+            "measurement": {
+              "kind": "record",
+              "target": "Measurement"
+            },
+            "vendor_privacy_claim": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "asset_specific_guard_present": {
+              "kind": "field",
+              "domain": "Bool"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "SendInput": {
+        "fields": {
+          "send_requested": "Field<Bool>"
+        },
+        "raw_shape": {
+          "fields": {
+            "send_requested": {
+              "kind": "field",
+              "domain": "Bool"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "TupleInput": {
+        "fields": {
+          "request": "Materialized<EgressRequest>",
+          "rule": "Materialized<EgressTuple>",
+          "context": "Materialized<TupleContext>"
+        },
+        "raw_shape": {
+          "fields": {
+            "request": {
+              "kind": "record",
+              "target": "EgressRequest"
+            },
+            "rule": {
+              "kind": "record",
+              "target": "EgressTuple"
+            },
+            "context": {
+              "kind": "record",
+              "target": "TupleContext"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "AllowlistInput": {
+        "fields": {
+          "allowlist_state": "Field<AllowlistState>",
+          "vendor_privacy_claim": "Field<Bool>"
+        },
+        "raw_shape": {
+          "fields": {
+            "allowlist_state": {
+              "kind": "field",
+              "domain": "AllowlistState"
+            },
+            "vendor_privacy_claim": {
+              "kind": "field",
+              "domain": "Bool"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "QuantityInput": {
+        "fields": {
+          "request": "Materialized<QuantityRequest>",
+          "context": "Materialized<QuantityContext>"
+        },
+        "raw_shape": {
+          "fields": {
+            "request": {
+              "kind": "record",
+              "target": "QuantityRequest"
+            },
+            "context": {
+              "kind": "record",
+              "target": "QuantityContext"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "ExpiryInput": {
+        "fields": {
+          "request": "Materialized<ExpiryRequest>",
+          "context": "Materialized<ExpiryContext>"
+        },
+        "raw_shape": {
+          "fields": {
+            "request": {
+              "kind": "record",
+              "target": "ExpiryRequest"
+            },
+            "context": {
+              "kind": "record",
+              "target": "ExpiryContext"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "ClassificationInput": {
+        "fields": {
+          "request": "Materialized<ClassificationRequest>",
+          "context": "Materialized<ClassificationContext>",
+          "dependencies": "Materialized<ClassificationDependencies>"
+        },
+        "raw_shape": {
+          "fields": {
+            "request": {
+              "kind": "record",
+              "target": "ClassificationRequest"
+            },
+            "context": {
+              "kind": "record",
+              "target": "ClassificationContext"
+            },
+            "dependencies": {
+              "kind": "record",
+              "target": "ClassificationDependencies"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "DependencyInput": {
+        "fields": {
+          "request": "Materialized<EgressRequest>",
+          "dependencies": "Materialized<DependencySet>",
+          "context": "Materialized<DependencyContext>"
+        },
+        "raw_shape": {
+          "fields": {
+            "request": {
+              "kind": "record",
+              "target": "EgressRequest"
+            },
+            "dependencies": {
+              "kind": "record",
+              "target": "DependencySet"
+            },
+            "context": {
+              "kind": "record",
+              "target": "DependencyContext"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "MeasurementInput": {
+        "fields": {
+          "measurement": "Materialized<Measurement>",
+          "context": "Materialized<MeasurementContext>",
+          "request": "Materialized<EgressRequest>"
+        },
+        "raw_shape": {
+          "fields": {
+            "measurement": {
+              "kind": "record",
+              "target": "Measurement"
+            },
+            "context": {
+              "kind": "record",
+              "target": "MeasurementContext"
+            },
+            "request": {
+              "kind": "record",
+              "target": "EgressRequest"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "GradePart": {
+        "fields": {
+          "grade": "Field<Grade>",
+          "findings": "Field<FindingList>"
+        },
+        "raw_shape": {
+          "fields": {
+            "grade": {
+              "kind": "field",
+              "domain": "Grade"
+            },
+            "findings": {
+              "kind": "field",
+              "domain": "FindingList"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "PreParts": {
+        "fields": {
+          "tuple": "Materialized<GradePart>",
+          "allowlist": "Materialized<GradePart>",
+          "quantity": "Materialized<GradePart>",
+          "expiry": "Materialized<GradePart>",
+          "classification": "Materialized<GradePart>",
+          "dependencies": "Materialized<GradePart>"
+        },
+        "raw_shape": {
+          "fields": {
+            "tuple": {
+              "kind": "record",
+              "target": "GradePart"
+            },
+            "allowlist": {
+              "kind": "record",
+              "target": "GradePart"
+            },
+            "quantity": {
+              "kind": "record",
+              "target": "GradePart"
+            },
+            "expiry": {
+              "kind": "record",
+              "target": "GradePart"
+            },
+            "classification": {
+              "kind": "record",
+              "target": "GradePart"
+            },
+            "dependencies": {
+              "kind": "record",
+              "target": "GradePart"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "ObservationPart": {
+        "fields": {
+          "grade": "Field<Grade>",
+          "reported_sent_bytes": "Field<OptionalNat>",
+          "findings": "Field<FindingList>"
+        },
+        "raw_shape": {
+          "fields": {
+            "grade": {
+              "kind": "field",
+              "domain": "Grade"
+            },
+            "reported_sent_bytes": {
+              "kind": "field",
+              "domain": "OptionalNat"
+            },
+            "findings": {
+              "kind": "field",
+              "domain": "FindingList"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "CompositionInput": {
+        "fields": {
+          "send_state": "Field<SendState>",
+          "request": "Materialized<EgressRequest>",
+          "pre_parts": "Materialized<PreParts>",
+          "observation": "Materialized<ObservationPart>",
+          "original_frame": "Materialized<EgressFrame>"
+        },
+        "raw_shape": {
+          "fields": {
+            "send_state": {
+              "kind": "field",
+              "domain": "SendState"
+            },
+            "request": {
+              "kind": "record",
+              "target": "EgressRequest"
+            },
+            "pre_parts": {
+              "kind": "record",
+              "target": "PreParts"
+            },
+            "observation": {
+              "kind": "record",
+              "target": "ObservationPart"
+            },
+            "original_frame": {
+              "kind": "record",
+              "target": "EgressFrame"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "OwnerSourceMaterial": {
+        "fields": {
+          "dependency_name": "Field<SourceRole>",
+          "owner": "Field<Text>",
+          "source_ref": "Field<Text>",
+          "source_revision": "Field<Text>",
+          "scope": "Field<Text>",
+          "subject_ref": "Field<Text>",
+          "body_digest": "Field<Text>",
+          "root_refs": "Field<TextList>",
+          "qualification_material": "Field<RawValue>",
+          "provider_material": "Field<RawValue>"
+        },
+        "raw_shape": {
+          "fields": {
+            "dependency_name": {
+              "kind": "field",
+              "domain": "SourceRole"
+            },
+            "owner": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "source_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "source_revision": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "scope": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "subject_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "body_digest": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "root_refs": {
+              "kind": "field",
+              "domain": "TextList"
+            },
+            "qualification_material": {
+              "kind": "field",
+              "domain": "RawValue"
+            },
+            "provider_material": {
+              "kind": "field",
+              "domain": "RawValue"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "SourceInput": {
+        "fields": {
+          "request": "Materialized<EgressRequest>",
+          "sources": "Field<OwnerSourceList>",
+          "required_roles": "Field<SourceRoleList>"
+        },
+        "raw_shape": {
+          "fields": {
+            "request": {
+              "kind": "record",
+              "target": "EgressRequest"
+            },
+            "sources": {
+              "kind": "field",
+              "domain": "OwnerSourceList"
+            },
+            "required_roles": {
+              "kind": "field",
+              "domain": "SourceRoleList"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "BackflowInput": {
+        "fields": {
+          "findings": "Field<FindingList>"
+        },
+        "raw_shape": {
+          "fields": {
+            "findings": {
+              "kind": "field",
+              "domain": "FindingList"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "TupleContext": {
+        "fields": {
+          "expected_rule": "Materialized<EgressTuple>"
+        },
+        "raw_shape": {
+          "fields": {
+            "expected_rule": {
+              "kind": "record",
+              "target": "EgressTuple"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "QuantityRequest": {
+        "fields": {
+          "planned_bytes": "Field<Nat>"
+        },
+        "raw_shape": {
+          "fields": {
+            "planned_bytes": {
+              "kind": "field",
+              "domain": "Nat"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "QuantityContext": {
+        "fields": {
+          "prepared_payload_bytes": "Field<Nat>"
+        },
+        "raw_shape": {
+          "fields": {
+            "prepared_payload_bytes": {
+              "kind": "field",
+              "domain": "Nat"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "ExpiryRequest": {
+        "fields": {
+          "expiry": "Field<FiniteNumber>"
+        },
+        "raw_shape": {
+          "fields": {
+            "expiry": {
+              "kind": "field",
+              "domain": "FiniteNumber"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "ExpiryContext": {
+        "fields": {
+          "observed_time": "Field<FiniteNumber>"
+        },
+        "raw_shape": {
+          "fields": {
+            "observed_time": {
+              "kind": "field",
+              "domain": "FiniteNumber"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "ClassificationRequest": {
+        "fields": {
+          "classification": "Field<Text>",
+          "purpose": "Field<Text>"
+        },
+        "raw_shape": {
+          "fields": {
+            "classification": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "purpose": {
+              "kind": "field",
+              "domain": "Text"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "ClassificationContext": {
+        "fields": {
+          "known_classifications": "Field<ClassificationList>"
+        },
+        "raw_shape": {
+          "fields": {
+            "known_classifications": {
+              "kind": "field",
+              "domain": "ClassificationList"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "ClassificationDependencies": {
+        "fields": {
+          "classification_record": "Materialized<ClassificationReport>"
+        },
+        "raw_shape": {
+          "fields": {
+            "classification_record": {
+              "kind": "record",
+              "target": "ClassificationReport"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "DependencyContext": {
+        "fields": {
+          "expected_binding_refs": "Materialized<ExpectedBindingRefs>"
+        },
+        "raw_shape": {
+          "fields": {
+            "expected_binding_refs": {
+              "kind": "record",
+              "target": "ExpectedBindingRefs"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      },
+      "MeasurementContext": {
+        "fields": {
+          "prepared_payload_bytes": "Field<Nat>"
+        },
+        "raw_shape": {
+          "fields": {
+            "prepared_payload_bytes": {
+              "kind": "field",
+              "domain": "Nat"
+            }
+          },
+          "raw_member_requirement": "全宣言memberの原presenceを保存する。raw欠落でもprojection memberを省略せずabsentを置く。root引数欠落は未知として保持、他引数を補わない。",
+          "nullable_record": true
+        }
+      }
+    },
+    "result_types": {
+      "Finding": {
+        "fields": {
+          "code": "FindingCode",
+          "pointer": "Pointer",
+          "return_owner": "ComparisonOwner"
+        }
+      },
+      "InputIssue": {
+        "fields": {
+          "code": "InputIssueCode",
+          "pointer": "Pointer",
+          "raw_tag": "RawTag"
+        }
+      },
+      "SendPlan": {
+        "fields": {
+          "state": "SendState",
+          "input_issues": "List<InputIssue>"
+        }
+      },
+      "TupleAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "findings": "List<Finding>"
+        }
+      },
+      "AllowlistAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "findings": "List<Finding>"
+        }
+      },
+      "QuantityAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "findings": "List<Finding>"
+        }
+      },
+      "ExpiryAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "findings": "List<Finding>"
+        }
+      },
+      "ClassificationAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "findings": "List<Finding>",
+          "classification_channels_separated": "True"
+        }
+      },
+      "DependencyAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "findings": "List<Finding>"
+        }
+      },
+      "MeasurementAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "reported_sent_bytes": "Nat|null",
+          "findings": "List<Finding>"
+        }
+      },
+      "PreconditionAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "findings": "List<Finding>"
+        }
+      },
+      "AffectedScope": {
+        "fields": {
+          "revision": "Text|null",
+          "scope": "Text|null"
+        }
+      },
+      "EgressMaterialAnalysis": {
+        "fields": {
+          "condition": "EgressCondition",
+          "precondition_correspondence": "PreCorrespondence",
+          "observation_correspondence": "ObservationCorrespondence",
+          "precondition_material_corresponding": "Bool",
+          "classification_channels_separated": "True",
+          "reported_sent_bytes": "Nat|null",
+          "affected_revision_scope": "AffectedScope",
+          "findings": "List<Finding>",
+          "fixed_quantitative_limit_added": "False",
+          "asset_specific_guard_required": "False",
+          "actual_network_invoked": "False",
+          "actual_send_verified": "False",
+          "operation_effect": "NoneEffect"
+        }
+      },
+      "SourceGap": {
+        "fields": {
+          "dependency_name": "SourceRole",
+          "reason": "SourceGapKind",
+          "pointer": "Pointer"
+        }
+      },
+      "SourceBindingAnalysis": {
+        "fields": {
+          "qualification_state": "UnclosedQualification",
+          "source_gaps": "List<SourceGap>",
+          "retained_materials": "List<Materialized<OwnerSourceMaterial>>",
+          "qualified_source_created": "False"
+        }
+      },
+      "BackflowCandidate": {
+        "fields": {
+          "source_finding": "Finding",
+          "candidate_owner": "ResponsibilityOwner",
+          "parent_ref": "OwnerParent|null",
+          "scope": "AffectedScope|null",
+          "operation_effect": "NoneEffect"
+        }
+      },
+      "BackflowAnalysis": {
+        "fields": {
+          "candidates": "List<BackflowCandidate>",
+          "actual_route_invoked": "False"
+        }
+      },
+      "MaterializationResult<T>": {
+        "fields": {
+          "argument": "Materialized<T>",
+          "input_issues": "List<InputIssue>"
+        },
+        "type_parameters": {
+          "T": [
+            "EgressTuple",
+            "EgressRequest",
+            "DependencyReport",
+            "ClassificationReport",
+            "ExpectedBindingRefs",
+            "DependencySet",
+            "EgressContext",
+            "Measurement",
+            "EgressFrame",
+            "SendInput",
+            "TupleInput",
+            "AllowlistInput",
+            "QuantityInput",
+            "ExpiryInput",
+            "ClassificationInput",
+            "DependencyInput",
+            "MeasurementInput",
+            "GradePart",
+            "PreParts",
+            "ObservationPart",
+            "CompositionInput",
+            "OwnerSourceMaterial",
+            "SourceInput",
+            "BackflowInput",
+            "TupleContext",
+            "QuantityRequest",
+            "QuantityContext",
+            "ExpiryRequest",
+            "ExpiryContext",
+            "ClassificationRequest",
+            "ClassificationContext",
+            "ClassificationDependencies",
+            "DependencyContext",
+            "MeasurementContext"
+          ]
+        }
+      },
+      "Materialized<T>": {
+        "fields": {
+          "tag": "RecordTag",
+          "pointer": "Pointer",
+          "original": "RawPresence",
+          "fields": "T|null",
+          "unknown_members": "map<String,RawValue>"
+        },
+        "type_parameters": {
+          "T": [
+            "EgressTuple",
+            "EgressRequest",
+            "DependencyReport",
+            "ClassificationReport",
+            "ExpectedBindingRefs",
+            "DependencySet",
+            "EgressContext",
+            "Measurement",
+            "EgressFrame",
+            "SendInput",
+            "TupleInput",
+            "AllowlistInput",
+            "QuantityInput",
+            "ExpiryInput",
+            "ClassificationInput",
+            "DependencyInput",
+            "MeasurementInput",
+            "GradePart",
+            "PreParts",
+            "ObservationPart",
+            "CompositionInput",
+            "OwnerSourceMaterial",
+            "SourceInput",
+            "BackflowInput",
+            "TupleContext",
+            "QuantityRequest",
+            "QuantityContext",
+            "ExpiryRequest",
+            "ExpiryContext",
+            "ClassificationRequest",
+            "ClassificationContext",
+            "ClassificationDependencies",
+            "DependencyContext",
+            "MeasurementContext"
+          ]
+        }
+      },
+      "Field<T>": {
+        "fields": {
+          "tag": "FieldTag",
+          "pointer": "Pointer",
+          "original": "RawPresence",
+          "value": "T|null"
+        },
+        "type_parameters": {
+          "T": [
+            "Text",
+            "Bool",
+            "Nat",
+            "FiniteNumber",
+            "AllowlistState",
+            "DependencyState",
+            "MeasurementState",
+            "ClassificationLiteral",
+            "ClassificationList",
+            "TextList",
+            "Grade",
+            "SendState",
+            "SourceRole",
+            "OptionalNat",
+            "RawValue",
+            "FindingList",
+            "OwnerSourceList",
+            "SourceRoleList",
+            "String"
+          ]
+        }
+      },
+      "RawPresence": {
+        "variants": {
+          "absent": {
+            "tag": "absent"
+          },
+          "supplied": {
+            "tag": "supplied",
+            "raw": "RawValue"
+          }
+        }
+      }
+    },
+    "result_domains": {
+      "FindingCode": [
+        "allowlist_material_unresolved",
+        "allowlist_source_conflict",
+        "classification_record_conflict",
+        "classification_unresolved",
+        "data_use_conflict",
+        "data_use_unresolved",
+        "dependency_binding_conflict",
+        "dependency_binding_unresolved",
+        "dependency_conflict",
+        "dependency_source_conflict",
+        "dependency_source_unresolved",
+        "dependency_unresolved",
+        "egress_authority_expired",
+        "egress_tuple_conflict",
+        "egress_tuple_unresolved",
+        "expiry_observation_unresolved",
+        "explicit_allowlist_absent",
+        "measurement_binding_conflict",
+        "measurement_binding_unresolved",
+        "measurement_unresolved",
+        "payload_quantity_conflict",
+        "payload_quantity_unresolved",
+        "sent_quantity_conflict"
+      ],
+      "ComparisonOwner": [
+        "egress-boundary-owner"
+      ],
+      "InputIssueCode": [
+        "logical_argument_unknown",
+        "logical_field_unknown"
+      ],
+      "RawTag": [
+        "absent",
+        "supplied"
+      ],
+      "FieldTag": [
+        "absent",
+        "explicit_null",
+        "known",
+        "invalid_or_unknown"
+      ],
+      "RecordTag": [
+        "absent",
+        "explicit_null",
+        "record",
+        "invalid_or_unknown"
+      ],
+      "Pointer": {
+        "kind": "original_input_json_pointer",
+        "root": ""
+      },
+      "EgressCondition": [
+        "no_send_requested",
+        "egress_material_corresponding",
+        "egress_unresolved",
+        "egress_violation"
+      ],
+      "PreCorrespondence": [
+        "not_requested",
+        "corresponding",
+        "unknown",
+        "violation"
+      ],
+      "ObservationCorrespondence": [
+        "not_applicable",
+        "corresponding",
+        "unknown",
+        "violation"
+      ],
+      "UnclosedQualification": [
+        "unclosed"
+      ],
+      "SourceGapKind": [
+        "source_not_supplied",
+        "source_member_unresolved",
+        "qualification_provider_unclosed",
+        "raw_list_invalid"
+      ],
+      "ResponsibilityOwner": [
+        "SECURITY-egress-policy",
+        "SECURITY005-secret-inspection",
+        "SECURITY016-classification-data-use",
+        "CONNECT-logical-connection",
+        "SECURITY024-INFRA-physical-path",
+        "egress-measurement-owner",
+        "egress-preparation-owner"
+      ],
+      "OwnerParent": [
+        "HELIXSECURITY-L2-006",
+        "HELIXSECURITY-L2-005",
+        "HELIXSECURITY-L2-016",
+        "HELIXSECURITY-L2-024"
+      ],
+      "True": [
+        true
+      ],
+      "False": [
+        false
+      ],
+      "NoneEffect": [
+        "none"
+      ]
+    },
+    "materialization_contract": {
+      "generic_parameters_closed": {
+        "Materialized<T>": [
+          "EgressTuple",
+          "EgressRequest",
+          "DependencyReport",
+          "ClassificationReport",
+          "ExpectedBindingRefs",
+          "DependencySet",
+          "EgressContext",
+          "Measurement",
+          "EgressFrame",
+          "SendInput",
+          "TupleInput",
+          "AllowlistInput",
+          "QuantityInput",
+          "ExpiryInput",
+          "ClassificationInput",
+          "DependencyInput",
+          "MeasurementInput",
+          "GradePart",
+          "PreParts",
+          "ObservationPart",
+          "CompositionInput",
+          "OwnerSourceMaterial",
+          "SourceInput",
+          "BackflowInput",
+          "TupleContext",
+          "QuantityRequest",
+          "QuantityContext",
+          "ExpiryRequest",
+          "ExpiryContext",
+          "ClassificationRequest",
+          "ClassificationContext",
+          "ClassificationDependencies",
+          "DependencyContext",
+          "MeasurementContext"
+        ],
+        "Field<T>": [
+          "Text",
+          "Bool",
+          "Nat",
+          "FiniteNumber",
+          "AllowlistState",
+          "DependencyState",
+          "MeasurementState",
+          "ClassificationLiteral",
+          "ClassificationList",
+          "TextList",
+          "Grade",
+          "SendState",
+          "SourceRole",
+          "OptionalNat",
+          "RawValue",
+          "FindingList",
+          "OwnerSourceList",
+          "SourceRoleList",
+          "String"
+        ]
+      },
+      "field_tags": {
+        "absent": "member未記載。original={tag:absent},value=null。",
+        "explicit_null": "原supplied(null)。nullable意味を許容してもabsentと別。",
+        "known": "declared domain値だけ、original rawと値を保存。RawValue内部やSourceRoleList presenceだけで資格を生成しない。",
+        "invalid_or_unknown": "型/finite enum/list item域が不明。元raw保持、value=null。known Tへcastしない。"
+      },
+      "record_tags": {
+        "record": "全declared projection memberを持ち、raw欠落fieldもtagを置く。unknown_membersをopaque保存。",
+        "absent": "元record key未記載。field個数0や空recordと同一にしない。",
+        "explicit_null": "元record null。",
+        "invalid_or_unknown": "非record原値を保持。"
+      },
+      "list_rule": "全原list/itemの順序/元値/長さを保存。有限domain不正itemはwhole field invalid_or_unknownで元listを保持、dropしない。OwnerSourceListは各itemのMaterialized<OwnerSourceMaterial> tagを保存する。",
+      "input_issue_boundary": "RawValue→全named Materialized引数の静的形材料。formal codecや全InputIssue parser規格ではない。domain unknownをsource資格へ補完しない。",
+      "scalar_rule": "bool≠integer、量Nat、expiry/time FiniteNumber。空/invalid/unknownの原値保存。文字列をURL/path/IDとして正規化しない。",
+      "argument_presence": "各関数のsignatureはnamed input一引数で、内部全declared field/tag/value/元pointerをmaterializeする。追加inputを外部contextやundefinedtypenameへ逃がさない。",
+      "input_issue_rules": {
+        "root_unknown": "root absent/explicit_null/invalid_or_unknownはlogical_argument_unknown、pointer空文字。",
+        "field_invalid": "root recordの最小invalid_or_unknown field/recordだけlogical_field_unknown。全元raw/pointerを保持。",
+        "semantic_missing_null": "member absent/explicit_null自体はField/Materializedのtagで保持し、invalid_or_unknownへcastしない。",
+        "unknown_property": "unknown_membersはopaque保存。正式codecの余剰key可否を新設しない。"
+      }
+    }
+  },
+  "functions": [
+    {
+      "id": "HELIXSECURITY-L5-006-materialize_egress_frame",
+      "symbol": "materialize_egress_frame",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "RawValue"
+        }
+      ],
+      "signature": "materialize_egress_frame(input: RawValue) -> MaterializationResult<EgressFrame>",
+      "output_type": "MaterializationResult<EgressFrame>",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F01",
+        "HELIXSECURITY-L3-006-F02"
+      ],
+      "pre": "JSONの値なし合成metadata又はcaller明示raw。",
+      "post": "全EgressFrameの型付きprojectionと局所InputIssue。未検査原値の改変なし。",
+      "pure_algorithm": [
+        "各declared memberを原presenceと型/domainへ対応する。全projection fieldを必ず置き、absent/null/known/invalid_or_unknownを区別する。原mapとunknown memberを保持し、wire余剰keyの採否を生成しない。",
+        "record非dictは原record pointerでinvalid_or_unknown、nullはexplicit_null。配列の全item/list長を保持し不正itemをdropしない。Field<T>にinvalid rawをTとしてcastしない。",
+        "raw→typed logical引数の対応だけ。formal codec、owner資格/root、許可・実sendの成功を生成しない。",
+        "root absent/null/非recordはlogical_argument_unknownをroot pointerへ。root recordではinvalid_or_unknownの各最小declared field/recordだけlogical_field_unknownを元pointerへ。absent/explicit_null自体は意味不足としてtagへ保持し、構造不正へ変換しない。unknown_membersへwire拒否方針を追加しない。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": ""
+        }
+      ],
+      "return_root_fields": {
+        "argument": "Materialized<EgressFrame>",
+        "input_issues": "List<InputIssue>"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-plan_send_comparison",
+      "symbol": "plan_send_comparison",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<SendInput>"
+        }
+      ],
+      "signature": "plan_send_comparison(input: Materialized<SendInput>) -> SendPlan",
+      "output_type": "SendPlan",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F01",
+        "HELIXSECURITY-L3-006-F02"
+      ],
+      "pre": "SendInputの全member projection。",
+      "post": "通信未要求と要求flag不明の区別。実dispatch無し。",
+      "pure_algorithm": [
+        "send_requestedのknown falseだけnot_requested。known trueだけcompare_requested。absent/null/非booleanはunknown+logical_field_unknown /send_requested。",
+        "not_requestedでは後段unused destination/authority/dependency/measurementを比較せず、no_send_requestedを保持。unknownをfalseへ補完しない。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/send_requested"
+        }
+      ],
+      "return_root_fields": {
+        "state": "SendState",
+        "input_issues": "List<InputIssue>"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-compare_egress_tuple",
+      "symbol": "compare_egress_tuple",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<TupleInput>"
+        }
+      ],
+      "signature": "compare_egress_tuple(input: Materialized<TupleInput>) -> TupleAnalysis",
+      "output_type": "TupleAnalysis",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F01"
+      ],
+      "pre": "request/rule/expected_ruleの全原projectionが独立に明示。",
+      "post": "gradeはviolation優先→unknown→corresponding。全tupleの原finding、他scopeへの停止無し。",
+      "pure_algorithm": [
+        "11fieldの各known値をrequest↔rule、rule↔independent expected_ruleの二辺へ照合する。どちらか未知ならその原field pointerへegress_tuple_unresolved。known同士の差だけrequest側egress_tuple_conflict又はrule側allowlist_source_conflict。",
+        "missingからconflictを作らず、二辺の同一unknown findingは3field完全一致だけuniqueにする。互いに相反する既知fieldと別未知fieldを同時保持。",
+        "文字列は原opaque値でexact比較、URL/protocol/path canonicalization/DNS/host接続を行わない。expiryのfield比較は原有限number同士、単位変換なし。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/source"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/destination"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/protocol"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/endpoint"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/path"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/classification"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/purpose"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/authority"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/expiry"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/rule/source"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/rule/destination"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/rule/protocol"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/rule/endpoint"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/rule/path"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/rule/classification"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/rule/purpose"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/rule/authority"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/rule/expiry"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/rule/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/rule/revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_rule/source"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_rule/destination"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_rule/protocol"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_rule/endpoint"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_rule/path"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_rule/classification"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_rule/purpose"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_rule/authority"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_rule/expiry"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_rule/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_rule/revision"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "findings": "List<Finding>"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-compare_allowlist_material",
+      "symbol": "compare_allowlist_material",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<AllowlistInput>"
+        }
+      ],
+      "signature": "compare_allowlist_material(input: Materialized<AllowlistInput>) -> AllowlistAnalysis",
+      "output_type": "AllowlistAnalysis",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F01"
+      ],
+      "pre": "原allowlist/vendor memberをmaterialize済み。",
+      "post": "内容state候補だけ、currentから正式許可を生成しない。",
+      "pure_algorithm": [
+        "current素材だけcorresponding。明示absentはexplicit_allowlist_absent /allowlist_state+violation。unknown/その他無効stateはallowlist_material_unresolved+unknown。",
+        "vendor_privacy_claimは保持するが明示allowlist/authorityに代用しない。多rule選択/暗黙latest/新allowlist policyを作らない。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/allowlist_state"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/vendor_privacy_claim"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "findings": "List<Finding>"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-compare_payload_quantity",
+      "symbol": "compare_payload_quantity",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<QuantityInput>"
+        }
+      ],
+      "signature": "compare_payload_quantity(input: Materialized<QuantityInput>) -> QuantityAnalysis",
+      "output_type": "QuantityAnalysis",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F01"
+      ],
+      "pre": "prepared payload量は独立owner入力素材。",
+      "post": "量の原値と局所unknown/差分、数量合致は実測の成立でない。",
+      "pure_algorithm": [
+        "planned/preparedがそれぞれNat既知か照合。未知は原 /request/planned_bytes 又は/context/prepared_payload_bytes のpayload_quantity_unresolved。",
+        "両側Nat既知の場合だけ差をpayload_quantity_conflict /request/planned_bytesへ。負値/boolean/小数量を既知相反へ使わない。",
+        "等しい個別payload量はcorresponding。固定上限と一般送信量policyを追加しない。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/planned_bytes"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/prepared_payload_bytes"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "findings": "List<Finding>"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-compare_expiry_time",
+      "symbol": "compare_expiry_time",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<ExpiryInput>"
+        }
+      ],
+      "signature": "compare_expiry_time(input: Materialized<ExpiryInput>) -> ExpiryAnalysis",
+      "output_type": "ExpiryAnalysis",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F01"
+      ],
+      "pre": "同比較domainとしてcallerが供給したexpiry/time素材。",
+      "post": "時間内容比較だけ、実authority有効性を検証したとしない。",
+      "pure_algorithm": [
+        "原expiry/timeがFiniteNumber既知でない場合は各 /request/expiry、/context/observed_time へexpiry_observation_unresolved。",
+        "両側既知ならobserved_time>=expiryをegress_authority_expired /context/observed_timeへ。境界equalも期限終了。",
+        "時刻source資格・clock/epoch/unit整合は未閉包として別source bindingへ、default time/今時刻を読まない。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/expiry"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/observed_time"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "findings": "List<Finding>"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-compare_classification_and_purpose",
+      "symbol": "compare_classification_and_purpose",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<ClassificationInput>"
+        }
+      ],
+      "signature": "compare_classification_and_purpose(input: Materialized<ClassificationInput>) -> ClassificationAnalysis",
+      "output_type": "ClassificationAnalysis",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F02"
+      ],
+      "pre": "016の1.0分類/data-use素材と独立classification知識list。",
+      "post": "classification_channels_separated=true、未知をpublic/allowへ補完せず006 scopeの候補。",
+      "pure_algorithm": [
+        "known_classificationsは原六分類の有限listとして全item/空を保存する。request classification又はrecord exposure classが欠落/未知/listにない場合は原 /request/classification 又は/dependencies/classification_record/asset_exposure_class にclassification_unresolved。",
+        "両classificationが既知分類で相反ならclassification_record_conflict /dependencies/classification_record/asset_exposure_classへ。原tuple文字列一致の比較は別関数であり未知分類stringのtuple差も捨てない。",
+        "record data_use_purposeとrequest purposeは別軸。未知を各原pointerのdata_use_unresolved、known差だけdata_use_conflict record側へ。asset exposureの一致でpurpose不足を消さない。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/classification"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/purpose"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/known_classifications"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/classification_record/asset_exposure_class"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/classification_record/data_use_purpose"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "findings": "List<Finding>",
+        "classification_channels_separated": "True"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-compare_dependency_bindings",
+      "symbol": "compare_dependency_bindings",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<DependencyInput>"
+        }
+      ],
+      "signature": "compare_dependency_bindings(input: Materialized<DependencyInput>) -> DependencyAnalysis",
+      "output_type": "DependencyAnalysis",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F02"
+      ],
+      "pre": "全6report、request scope/revision、独立expected refsを別sourceとしてmaterialize済み。",
+      "post": "既知相反優先のgradeと各dependency原位置finding。実physical/network適用の成功は返さない。",
+      "pure_algorithm": [
+        "6declared dependencyを固定nameで個別走査する。state=violationはdependency_conflict、corresponding以外/不明はdependency_unresolved、原各state pointerへ。",
+        "scope/revisionのreportとrequestのいずれか未知ならreport側dependency_binding_unresolved。known差だけreport側dependency_binding_conflict。request未解決を無関係scopeで補完しない。",
+        "binding_refと独立expected_binding_refsの欠落/不明は各原所在dependency_source_unresolved。両known差だけreport側dependency_source_conflict。caller自己labelで資格を生成しない。",
+        "path_filter/minimizationを準備結果、secret005/分類016/CONNECT/INFRAを各独立素材で保持。019/1.x guardは不使用。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/secret_inspection/state"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/secret_inspection/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/secret_inspection/revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/secret_inspection/binding_ref"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/classification_record/state"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/classification_record/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/classification_record/revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/classification_record/binding_ref"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/logical_connection/state"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/logical_connection/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/logical_connection/revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/logical_connection/binding_ref"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/physical_route/state"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/physical_route/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/physical_route/revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/physical_route/binding_ref"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/path_filter/state"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/path_filter/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/path_filter/revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/path_filter/binding_ref"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/data_minimization/state"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/data_minimization/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/data_minimization/revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/data_minimization/binding_ref"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_binding_refs/secret_inspection"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_binding_refs/classification_record"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_binding_refs/logical_connection"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_binding_refs/physical_route"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_binding_refs/path_filter"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_binding_refs/data_minimization"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "findings": "List<Finding>"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-compare_sent_observation",
+      "symbol": "compare_sent_observation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<MeasurementInput>"
+        }
+      ],
+      "signature": "compare_sent_observation(input: Materialized<MeasurementInput>) -> MeasurementAnalysis",
+      "output_type": "MeasurementAnalysis",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F02"
+      ],
+      "pre": "原sent量とprepared量とrequest bindingを明示。",
+      "post": "post専用grade/reported値/findings、pre/実送信verifiedの推定無し。",
+      "pure_algorithm": [
+        "measurement state=observedだけ量/req binding照合。その他はmeasurement_unresolved /measurement/state、grade unknown、reported_sent_bytes=null。",
+        "observedでsent/preparedがNat既知でない場合は各元pointerへmeasurement_unresolved。sent既知ならprepared未知でもreported_sent_bytes原値を保持する。両Nat known差だけsent_quantity_conflict /measurement/sent_bytes。",
+        "scope/revisionはrequestと両known比較、欠落ならmeasurement_binding_unresolved report側、known差はmeasurement_binding_conflict。",
+        "post unknown/違反でprecondition内容対応を消さず、将来measurementを事前一律gateにしない。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/measurement/state"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/measurement/sent_bytes"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/measurement/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/measurement/revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/prepared_payload_bytes"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/revision"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "reported_sent_bytes": "Nat|null",
+        "findings": "List<Finding>"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-compose_precondition",
+      "symbol": "compose_precondition",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<PreParts>"
+        }
+      ],
+      "signature": "compose_precondition(input: Materialized<PreParts>) -> PreconditionAnalysis",
+      "output_type": "PreconditionAnalysis",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F01",
+        "HELIXSECURITY-L3-006-F02"
+      ],
+      "pre": "各named比較partを独立引数として供給。",
+      "post": "準備の局所内容grade、post結果・source資格を融合しない。",
+      "pure_algorithm": [
+        "6named grade partとfindingsの元fieldを全保持。violationが一つでもviolation、次にunknown、全correspondingだけcorresponding。",
+        "part不在/無効gradeはunknownとして返し、原presence/不正値の所在は明示Materialized引数に保持する。前段MaterializationResultのInputIssueとは別出力である。実比較済みや独立review済みという自己資格は作らない。",
+        "全findingsをcode/pointer/return_owner scalar順、完全同値3fieldだけuniqueへ。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/tuple/grade"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/tuple/findings"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/allowlist/grade"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/allowlist/findings"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/quantity/grade"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/quantity/findings"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/expiry/grade"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/expiry/findings"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/classification/grade"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/classification/findings"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/grade"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/dependencies/findings"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "findings": "List<Finding>"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-build_egress_material_analysis",
+      "symbol": "build_egress_material_analysis",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<CompositionInput>"
+        }
+      ],
+      "signature": "build_egress_material_analysis(input: Materialized<CompositionInput>) -> EgressMaterialAnalysis",
+      "output_type": "EgressMaterialAnalysis",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F01",
+        "HELIXSECURITY-L3-006-F02"
+      ],
+      "pre": "送信plan、原request、named pre partsとpost part、原diagnostic rootとしてoriginal_frameを全て明示。前段のwholepipeline合格を主張しない。",
+      "post": "既存13rootfield/domainで内容候補。実operation/許可/測定/ACK/保存は成立しない。",
+      "pure_algorithm": [
+        "not_requested: condition=no_send_requested, pre=not_requested, post=not_applicable, reported=null, findings=[]。原request revision/scopeはknownならその値、不明null。未使用条件を評価しない。",
+        "compare_requested: pre_partsの優先gradeとpost gradeを別に保持。全体は既知violation優先→unknown→material_corresponding、precondition_material_correspondingはpre=correspondingの場合だけtrue。",
+        "send_state不明はegress_unresolved/pre unknown/post unknownへ。欠落をno_send_requestedへしない。InputIssueは前段の既存MaterializationResult/SendPlan出力としてcallerが別に保持し、この13field意味finding語彙へ拡張して隠さない。",
+        "classification_channels_separated=true、fixed_quantitative_limit_added/asset_specific_guard_required/actual_network_invoked/actual_send_verified=false、operation_effect=noneを固定。",
+        "reported_sent_bytesはpost原素材のNat又はnull。ソース値をmessageへ複写せずscopeは原req以外へ拡張しない。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/send_state"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/pre_parts"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/observation/grade"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/observation/reported_sent_bytes"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/observation/findings"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/original_frame"
+        }
+      ],
+      "return_root_fields": {
+        "condition": "EgressCondition",
+        "precondition_correspondence": "PreCorrespondence",
+        "observation_correspondence": "ObservationCorrespondence",
+        "precondition_material_corresponding": "Bool",
+        "classification_channels_separated": "True",
+        "reported_sent_bytes": "Nat|null",
+        "affected_revision_scope": "AffectedScope",
+        "findings": "List<Finding>",
+        "fixed_quantitative_limit_added": "False",
+        "asset_specific_guard_required": "False",
+        "actual_network_invoked": "False",
+        "actual_send_verified": "False",
+        "operation_effect": "NoneEffect"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-retain_owner_source_material",
+      "symbol": "retain_owner_source_material",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<SourceInput>"
+        }
+      ],
+      "signature": "retain_owner_source_material(input: Materialized<SourceInput>) -> SourceBindingAnalysis",
+      "output_type": "SourceBindingAnalysis",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F01",
+        "HELIXSECURITY-L3-006-F02"
+      ],
+      "pre": "caller明示required_roles、source素材listと原request scope。required_rolesから実資格/許可を生成しない。",
+      "post": "qualification_state=unclosed, qualified_source_created=false。元材料と不足のtyped返却口。",
+      "pure_algorithm": [
+        "required_rolesの原listはcallerが該当scopeで明示。各該当roleのsources原listとrecord/memberのpresenceを保持。list不正はraw_list_invalid /sources、未供給の該当roleはsource_not_supplied。未選択roleを自動必須化しない。",
+        "owner/source_ref/revision/scope/subject/digest/root_refs、qualification/provider原素材を各元pointerへ保全。不足はsource_member_unresolved、存在してもqualification_provider_unclosed。",
+        "source ID/shape/digest/self current/許可tupleの一致からrootやsource資格を発行しない。実供給元/custody/原bytes-body一致/issuer scopeを方式発明で埋めない。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/required_roles"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources/*/dependency_name"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources/*/owner"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources/*/source_ref"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources/*/source_revision"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources/*/scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources/*/subject_ref"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources/*/body_digest"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources/*/root_refs"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources/*/qualification_material"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources/*/provider_material"
+        }
+      ],
+      "return_root_fields": {
+        "qualification_state": "UnclosedQualification",
+        "source_gaps": "List<SourceGap>",
+        "retained_materials": "List<Materialized<OwnerSourceMaterial>>",
+        "qualified_source_created": "False"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-describe_egress_backflow",
+      "symbol": "describe_egress_backflow",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<BackflowInput>"
+        }
+      ],
+      "signature": "describe_egress_backflow(input: Materialized<BackflowInput>) -> BackflowAnalysis",
+      "output_type": "BackflowAnalysis",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-006-F01",
+        "HELIXSECURITY-L3-006-F02"
+      ],
+      "pre": "原FindingListのみ（rawsource値は含めない）。",
+      "post": "元findingと既存parent候補を保持、実ルーティング未成立。",
+      "pure_algorithm": [
+        "原Findingはegress-boundary-ownerのまま保持し、pointer/codeから既存責務候補を付ける。",
+        "dependencies/secret_inspection→005、classification_record又はclassification/data_use→016、logical_connection→CONNECT責務候補（正式parent binding不明はnull）、physical_route/measurement binding→024/INFRA、quantity/path_filter/minimization→egress準備、残tuple/allowlist/expiry→SEC006 policy。",
+        "候補は不足責務への案だけ。正式route/provider/owner権限を作らず実配送0、別scopeへ停止を広げない。"
+      ],
+      "effect": "none",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/findings"
+        }
+      ],
+      "return_root_fields": {
+        "candidates": "List<BackflowCandidate>",
+        "actual_route_invoked": "False"
+      },
+      "branch_expectation_scope": "列挙したlocal raw素材で指定branchの期待を固定する。全未知shape/全compound/実operation・全関数完了を主張しない。"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L5-006-F01",
+      "requirement_ref": "HELIXSECURITY-L3-006-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-006-F01",
+      "l4_ref": "HELIXSECURITY-L4-006-F01",
+      "operation_refs": [
+        "HELIXSECURITY-L5-006-materialize_egress_frame",
+        "HELIXSECURITY-L5-006-plan_send_comparison",
+        "HELIXSECURITY-L5-006-compare_egress_tuple",
+        "HELIXSECURITY-L5-006-compare_allowlist_material",
+        "HELIXSECURITY-L5-006-compare_payload_quantity",
+        "HELIXSECURITY-L5-006-compare_expiry_time",
+        "HELIXSECURITY-L5-006-compose_precondition",
+        "HELIXSECURITY-L5-006-build_egress_material_analysis",
+        "HELIXSECURITY-L5-006-retain_owner_source_material",
+        "HELIXSECURITY-L5-006-describe_egress_backflow"
+      ],
+      "unit_case_refs": [
+        "SEC006-L8-MATERIALIZE-FULL-FRAME",
+        "SEC006-L8-SEND-TRUE",
+        "SEC006-L8-SEND-FALSE",
+        "SEC006-L8-SEND-ABSENT",
+        "SEC006-L8-SEND-NULL",
+        "SEC006-L8-SEND-TEXT-FALSE",
+        "SEC006-L8-TUPLE-NORMAL",
+        "SEC006-L8-TUPLE-NULL-SOURCE",
+        "SEC006-L8-TUPLE-CONFLICT-SOURCE",
+        "SEC006-L8-TUPLE-NULL-DESTINATION",
+        "SEC006-L8-TUPLE-CONFLICT-DESTINATION",
+        "SEC006-L8-TUPLE-NULL-PROTOCOL",
+        "SEC006-L8-TUPLE-CONFLICT-PROTOCOL",
+        "SEC006-L8-TUPLE-NULL-ENDPOINT",
+        "SEC006-L8-TUPLE-CONFLICT-ENDPOINT",
+        "SEC006-L8-TUPLE-NULL-PATH",
+        "SEC006-L8-TUPLE-CONFLICT-PATH",
+        "SEC006-L8-TUPLE-NULL-CLASSIFICATION",
+        "SEC006-L8-TUPLE-CONFLICT-CLASSIFICATION",
+        "SEC006-L8-TUPLE-NULL-PURPOSE",
+        "SEC006-L8-TUPLE-CONFLICT-PURPOSE",
+        "SEC006-L8-TUPLE-NULL-AUTHORITY",
+        "SEC006-L8-TUPLE-CONFLICT-AUTHORITY",
+        "SEC006-L8-TUPLE-NULL-EXPIRY",
+        "SEC006-L8-TUPLE-CONFLICT-EXPIRY",
+        "SEC006-L8-TUPLE-NULL-SCOPE",
+        "SEC006-L8-TUPLE-CONFLICT-SCOPE",
+        "SEC006-L8-TUPLE-NULL-REVISION",
+        "SEC006-L8-TUPLE-CONFLICT-REVISION",
+        "SEC006-L8-TUPLE-RULE-ABSENT",
+        "SEC006-L8-TUPLE-EXPECTED-CONFLICT",
+        "SEC006-L8-ALLOWLIST-CURRENT",
+        "SEC006-L8-VENDOR-ONLY",
+        "SEC006-L8-ALLOWLIST-UNKNOWN",
+        "SEC006-L8-ALLOWLIST-UNKNOWN-ENUM",
+        "SEC006-L8-QUANTITY-NORMAL",
+        "SEC006-L8-QUANTITY-LARGE-EQUAL",
+        "SEC006-L8-QUANTITY-DIFFERENT",
+        "SEC006-L8-QUANTITY-NEGATIVE",
+        "SEC006-L8-QUANTITY-BOOL",
+        "SEC006-L8-QUANTITY-FRACTION",
+        "SEC006-L8-QUANTITY-PREPARED-ABSENT",
+        "SEC006-L8-EXPIRY-BEFORE",
+        "SEC006-L8-EXPIRY-EQUAL",
+        "SEC006-L8-EXPIRY-NULL",
+        "SEC006-L8-EXPIRY-BOOL",
+        "SEC006-L8-EXPIRY-FINITE-FRACTION",
+        "SEC006-L8-PRE-COMPOSITION-NORMAL",
+        "SEC006-L8-PRE-COMPOSITION-CONFLICT-UNKNOWN",
+        "SEC006-L8-RESULT-FULL-NORMAL",
+        "SEC006-L8-RESULT-PRE-NORMAL-POST-UNKNOWN",
+        "SEC006-L8-RESULT-NO-SEND-UNUSED",
+        "SEC006-L8-RESULT-VIOLATION-POST-UNKNOWN",
+        "SEC006-L8-SOURCE-NONE",
+        "SEC006-L8-SOURCE-SELF-CLAIM",
+        "SEC006-L8-SOURCE-ROOTS-NULL",
+        "SEC006-L8-BACKFLOW-CONNECT-UNBOUND",
+        "SEC006-L8-SOURCE-LIST-NULL",
+        "SEC006-L8-MATERIALIZE-ROOT-NULL",
+        "SEC006-L8-MATERIALIZE-ROOT-LIST",
+        "SEC006-L8-MATERIALIZE-MEMBER-PRESENCE",
+        "SEC006-L8-MATERIALIZE-BOOL-NONINTEGER",
+        "SEC006-L8-MATERIALIZE-EMPTY-RECORD"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-006-F02",
+      "requirement_ref": "HELIXSECURITY-L3-006-F02",
+      "system_oracle_ref": "HELIXSECURITY-L10-006-F02",
+      "l4_ref": "HELIXSECURITY-L4-006-F02",
+      "operation_refs": [
+        "HELIXSECURITY-L5-006-materialize_egress_frame",
+        "HELIXSECURITY-L5-006-plan_send_comparison",
+        "HELIXSECURITY-L5-006-compare_classification_and_purpose",
+        "HELIXSECURITY-L5-006-compare_dependency_bindings",
+        "HELIXSECURITY-L5-006-compare_sent_observation",
+        "HELIXSECURITY-L5-006-compose_precondition",
+        "HELIXSECURITY-L5-006-build_egress_material_analysis",
+        "HELIXSECURITY-L5-006-retain_owner_source_material",
+        "HELIXSECURITY-L5-006-describe_egress_backflow"
+      ],
+      "unit_case_refs": [
+        "SEC006-L8-MATERIALIZE-FULL-FRAME",
+        "SEC006-L8-SEND-TRUE",
+        "SEC006-L8-SEND-FALSE",
+        "SEC006-L8-SEND-ABSENT",
+        "SEC006-L8-SEND-NULL",
+        "SEC006-L8-SEND-TEXT-FALSE",
+        "SEC006-L8-CLASSIFICATION-NORMAL",
+        "SEC006-L8-CLASSIFICATION-UNKNOWN",
+        "SEC006-L8-CLASSIFICATION-EMPTY-LIST",
+        "SEC006-L8-CLASSIFICATION-BAD-LIST-ITEM",
+        "SEC006-L8-CLASSIFICATION-RECORD-NULL",
+        "SEC006-L8-CLASSIFICATION-RECORD-CONFLICT",
+        "SEC006-L8-PURPOSE-NULL",
+        "SEC006-L8-PURPOSE-CONFLICT",
+        "SEC006-L8-DEPENDENCY-NORMAL",
+        "SEC006-L8-DEPENDENCY-UNKNOWN-SECRET_INSPECTION",
+        "SEC006-L8-DEPENDENCY-UNKNOWN-CLASSIFICATION_RECORD",
+        "SEC006-L8-DEPENDENCY-UNKNOWN-LOGICAL_CONNECTION",
+        "SEC006-L8-DEPENDENCY-UNKNOWN-PHYSICAL_ROUTE",
+        "SEC006-L8-DEPENDENCY-UNKNOWN-PATH_FILTER",
+        "SEC006-L8-DEPENDENCY-UNKNOWN-DATA_MINIMIZATION",
+        "SEC006-L8-DEPENDENCY-REF-ABSENT",
+        "SEC006-L8-DEPENDENCY-EXPECTED-REF-NULL",
+        "SEC006-L8-DEPENDENCY-REF-CONFLICT",
+        "SEC006-L8-DEPENDENCY-SCOPE-CONFLICT",
+        "SEC006-L8-DEPENDENCY-REQUEST-REV-NULL",
+        "SEC006-L8-DEPENDENCY-STATE-VIOLATION",
+        "SEC006-L8-MEASUREMENT-NORMAL",
+        "SEC006-L8-MEASUREMENT-NOT-OBSERVED",
+        "SEC006-L8-MEASUREMENT-SENT-NULL",
+        "SEC006-L8-MEASUREMENT-PREPARED-NULL",
+        "SEC006-L8-MEASUREMENT-SENT-CONFLICT",
+        "SEC006-L8-MEASUREMENT-SCOPE-CONFLICT",
+        "SEC006-L8-MEASUREMENT-SENT-BOOL",
+        "SEC006-L8-PRE-COMPOSITION-NORMAL",
+        "SEC006-L8-PRE-COMPOSITION-CONFLICT-UNKNOWN",
+        "SEC006-L8-RESULT-FULL-NORMAL",
+        "SEC006-L8-RESULT-PRE-NORMAL-POST-UNKNOWN",
+        "SEC006-L8-RESULT-NO-SEND-UNUSED",
+        "SEC006-L8-RESULT-VIOLATION-POST-UNKNOWN",
+        "SEC006-L8-SOURCE-NONE",
+        "SEC006-L8-SOURCE-SELF-CLAIM",
+        "SEC006-L8-SOURCE-ROOTS-NULL",
+        "SEC006-L8-BACKFLOW-CONNECT-UNBOUND",
+        "SEC006-L8-SOURCE-LIST-NULL",
+        "SEC006-L8-MATERIALIZE-ROOT-NULL",
+        "SEC006-L8-MATERIALIZE-ROOT-LIST",
+        "SEC006-L8-MATERIALIZE-MEMBER-PRESENCE",
+        "SEC006-L8-MATERIALIZE-BOOL-NONINTEGER",
+        "SEC006-L8-MATERIALIZE-EMPTY-RECORD"
+      ]
+    }
+  ],
+  "source_separation": {
+    "comparison": "原material値/13field分析は合成内容比較。source qualificationのunknownをactualsend成功へ昇格しない。",
+    "source": "SourceInputは該当role/source/owner/revision/scope/subject/digest/roots/qualification/provider材料を型付きで保存し、実供給元が不明ならunclosed。",
+    "bytes_body": "body原byte形式/codec/正式digest対象は未閉包。opaque body_digestだけで原bytes/body一致/内部参照資格を成立させない。",
+    "phase": "allowlist/tuple/payload/expiry/dependenciesはpre、measurementはpost。未観測postはpre材料対応を消さず、pre対応で実sendをverifiedにしない。",
+    "backflow": "元Findingは比較責務ラベルで保持。consumer/実振分け先は別候補でunknown/nullを残す。"
+  },
+  "pure_flow": [
+    "materialize all declared raw arguments",
+    "plan_send_comparison",
+    "tuple/allowlist/quantity/expiry/classification/dependency comparisons",
+    "compose_precondition",
+    "compare_sent_observation separately",
+    "build_egress_material_analysis",
+    "retain_owner_source_material and describe_egress_backflow separately",
+    "callerは前段MaterializationResult/SendPlanのInputIssueと原typed argumentを別成果として保持する。buildの13field分析から原shape不足を消さない。"
+  ],
+  "logical_fixture_boundary": {
+    "materialization": "正式codecがなくても論理型の全declared引数はraw field/presence/tag/list/valueから具体化する。定義済みtypename/signatureが読むfieldを外部自由文contextへ逃がさない。",
+    "pointer_roots": "局所比較のraw inputは原request/context/dependencies/measurement構造を保持し、Finding.pointerが直接戻れる。組立だけは明示original_frame root、供給済みFinding.pointer自体の保持oracleは別に明記。",
+    "output": "各function return_root_fieldsと各case expected_root_field_domainsをexact joinする。full result fieldsの素材期待を全branch/full pipeline成功へ一般化しない。"
+  }
+}
