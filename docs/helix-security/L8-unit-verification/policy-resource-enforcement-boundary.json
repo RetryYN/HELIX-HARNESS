@@ -232,16 +232,16 @@
       "B01",
       "F01"
     ],
-    "adjacent_failure_evidence": {
+    "interpretation": "資源記録の値露出、責務逆転、未観測と不一致の混同を、固定raw差分として示す。本文から実許可や資源状態を変更しない。",
+    "failure_evidence": {
       "id": "T38",
       "pointer": "/failure_types/37",
       "line_start": 3444,
-      "line_end": 3539,
+      "line_end": 3538,
       "failure": "repository hookで覆えないhosted surfaceが手続き依存、guard適用有無が隠れる",
       "assessment": "宣言security policyと対象実環境強制を結び、hookの有無だけで適用済みにしない。unsupportedなsurfaceは未適用として拒否する。",
-      "use_limit": "隣接するSEC004/007のfailure evidenceとして保持する。SEC024の新しい拒否gateへ拡張せず、024のapproved L4/L10と固定ケースの意味を優先する。"
-    },
-    "interpretation": "資源記録の値露出、責務逆転、未観測と不一致の混同を、固定raw差分として示す。本文から実許可や資源状態を変更しない。"
+      "use_limit": "監査T38はSEC024-F01自身をcurrent_pair_evidenceに含むfailure evidenceとして位置づける。隣接pairのfailure evidenceとは扱わず、新しい拒否gateへ拡張しない。"
+    }
   },
   "consumer_basis": [
     {
@@ -276,11 +276,6 @@
       "path": "docs/helix-security/L4-basic-design/worker-control-enforcement.json",
       "sha256": "85473251be87bfdcc15899fd63398dae616cde7a792a01a83b8addde6018d632",
       "role": "SEC007/Workerの適用境界を参照。SECURITYはenforcerにならない。"
-    },
-    {
-      "path": "docs/helix-security/L4-basic-design/operation-authority-reuse.json",
-      "sha256": "b7ccddc646d070ab2dd7f82feac699a154e3d76cdc9131d8fbdf7b64e4a91086",
-      "role": "SEC008の既存actor/target/operation/revision/environment/scope/expiry authority tupleを保持し、024はpermissionを生成しない。"
     },
     {
       "path": "docs/helix-security/L4-basic-design/candidate-promotion-state-chain.json",
@@ -569,6 +564,7 @@
                 "credential_reference": "SYNTH-SECRET-HANDLE-A",
                 "value_present": false,
                 "payload_marker": null,
+                "payload_marker_presence": "absent",
                 "exposed": false
               },
               {
@@ -576,6 +572,7 @@
                 "credential_reference": "SYNTH-SECRET-HANDLE-A",
                 "value_present": false,
                 "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL",
+                "payload_marker_presence": "value",
                 "exposed": false
               },
               {
@@ -583,6 +580,7 @@
                 "credential_reference": "SYNTH-SECRET-HANDLE-A",
                 "value_present": false,
                 "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL",
+                "payload_marker_presence": "value",
                 "exposed": false
               }
             ],
@@ -605,22 +603,181 @@
               }
             ],
             "binding_comparisons": [],
-            "observation_states": [],
+            "observation_states": [
+              {
+                "kind": "security_005_policy",
+                "state": "known",
+                "source_pointer": "/resource/value/security_005",
+                "value": {
+                  "credential_policy": "no raw credential in ordinary record",
+                  "policy_state": "declared"
+                }
+              },
+              {
+                "kind": "resource_record",
+                "state": "observed",
+                "source_pointer": "/resource/value/resource_record",
+                "value": {
+                  "resource_identity": "SYNTH-RESOURCE-STORE-A",
+                  "state": "observed",
+                  "credential_reference": "SYNTH-SECRET-HANDLE-A",
+                  "credential_value_present": false
+                }
+              },
+              {
+                "kind": "backup",
+                "state": "observed",
+                "source_pointer": "/resource/value/backup",
+                "value": {
+                  "source_revision": "SYNTH-REV-024-A",
+                  "state": "observed",
+                  "credential_reference": "SYNTH-SECRET-HANDLE-A",
+                  "contains_credential_value": false,
+                  "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+                }
+              },
+              {
+                "kind": "snapshot",
+                "state": "observed",
+                "source_pointer": "/resource/value/snapshot",
+                "value": {
+                  "source_revision": "SYNTH-REV-024-A",
+                  "state": "observed",
+                  "credential_reference": "SYNTH-SECRET-HANDLE-A",
+                  "contains_credential_value": false,
+                  "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+                }
+              }
+            ],
             "findings": [],
             "return_targets": [],
             "stage_scope": {
-              "historical_stage": null,
-              "stage4_scope": "initial_safe_connection_rule_only",
-              "scope": null,
-              "all_stage4_capabilities": "not_in_scope"
+              "historical_stage": "Stage 4",
+              "stage4_scope": {
+                "state": "value",
+                "value": "initial_safe_connection_rule_only",
+                "source_pointer": "/resource/value/stage4_scope"
+              },
+              "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+              "all_stage4_capabilities": {
+                "state": "value",
+                "value": "not_in_scope",
+                "source_pointer": "/resource/value/all_stage4_capabilities"
+              }
             },
             "execution_state": "not_executed"
           }
         }
       ],
       "intermediate_expected": {
-        "materialize_boundary_input_ref": "/cases/0/function_invocations/0/expected_output",
-        "compare_resource_boundary_ref": "/cases/0/function_invocations/1/expected_output"
+        "credential_exposure": [
+          {
+            "source": "resource_record",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "value_present": false,
+            "payload_marker": null,
+            "payload_marker_presence": "absent",
+            "exposed": false
+          },
+          {
+            "source": "backup",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "value_present": false,
+            "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL",
+            "payload_marker_presence": "value",
+            "exposed": false
+          },
+          {
+            "source": "snapshot",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "value_present": false,
+            "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL",
+            "payload_marker_presence": "value",
+            "exposed": false
+          }
+        ],
+        "owner_separation": [
+          {
+            "role": "policy",
+            "value": "SECURITY"
+          },
+          {
+            "role": "resource_state",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "physical_enforcement",
+            "value": "Worker execution environment"
+          },
+          {
+            "role": "evidence_custody",
+            "value": "INFRASTRUCTURE observation reference; SECURITY policy reference"
+          }
+        ],
+        "binding_comparisons": [],
+        "observation_states": [
+          {
+            "kind": "security_005_policy",
+            "state": "known",
+            "source_pointer": "/resource/value/security_005",
+            "value": {
+              "credential_policy": "no raw credential in ordinary record",
+              "policy_state": "declared"
+            }
+          },
+          {
+            "kind": "resource_record",
+            "state": "observed",
+            "source_pointer": "/resource/value/resource_record",
+            "value": {
+              "resource_identity": "SYNTH-RESOURCE-STORE-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "credential_value_present": false
+            }
+          },
+          {
+            "kind": "backup",
+            "state": "observed",
+            "source_pointer": "/resource/value/backup",
+            "value": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+            }
+          },
+          {
+            "kind": "snapshot",
+            "state": "observed",
+            "source_pointer": "/resource/value/snapshot",
+            "value": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+            }
+          }
+        ],
+        "findings": [],
+        "return_targets": [],
+        "stage_scope": {
+          "historical_stage": "Stage 4",
+          "stage4_scope": {
+            "state": "value",
+            "value": "initial_safe_connection_rule_only",
+            "source_pointer": "/resource/value/stage4_scope"
+          },
+          "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+          "all_stage4_capabilities": {
+            "state": "value",
+            "value": "not_in_scope",
+            "source_pointer": "/resource/value/all_stage4_capabilities"
+          }
+        },
+        "execution_state": "not_executed"
       },
       "expected_source_observation": {
         "owners": {
@@ -741,15 +898,18 @@
           "execution_state": "not_executed"
         },
         "assessment_output_whole_ref": "/cases/0/function_invocations/1/expected_output",
-        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。"
+        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
+        "source_diagnostic_pointer": "/positive_cases/0/then/observation_limit",
+        "source_defect_clause": null
       },
       "failure_route": {
         "source_field": "failure_observation",
         "source_value": "当該保存/回収不足をSEC/INFRAへ返し、実許可設定を本文から変更しない。"
       },
-      "diagnostic": null,
+      "diagnostic": "known値は各fieldの合成record値として保持する。synthetic-only値を実観測に変換せず、environment Bの宣言はknown、実適用/未適用のいずれもunknownとして保持する。",
       "execution_state": "not_executed",
-      "meaning_completion_effect": "none"
+      "meaning_completion_effect": "none",
+      "diagnostic_source_pointer": "/positive_cases/0/then/observation_limit"
     },
     {
       "id": "SEC024-L8-P02",
@@ -956,74 +1116,118 @@
               {
                 "name": "revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
-                "state": "equal"
-              },
-              {
-                "name": "scope",
-                "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
-                "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/infra_resource/revision",
                 "state": "equal"
               },
               {
                 "name": "environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/infra_resource/environment",
                 "state": "equal"
               },
               {
                 "name": "worker_revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/revision",
                 "state": "equal"
               },
               {
                 "name": "worker_scope",
                 "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/scope",
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/scope",
                 "state": "equal"
               },
               {
                 "name": "worker_environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/environment",
                 "state": "equal"
               },
               {
                 "name": "worker_policy_reference",
                 "left": "SYNTH-SEC-POLICY-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/id",
                 "right": "SYNTH-SEC-POLICY-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/policy_reference",
                 "state": "equal"
               },
               {
                 "name": "receipt_environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/environment",
                 "state": "equal"
               },
               {
                 "name": "receipt_revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/revision",
                 "state": "equal"
               },
               {
                 "name": "receipt_scope",
                 "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/scope",
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/scope",
                 "state": "equal"
               },
               {
                 "name": "receipt_policy_reference",
                 "left": "SYNTH-SEC-POLICY-024-A",
-                "right": "SYNTH-SEC-POLICY-024-A",
-                "state": "equal"
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/id",
+                "right": null,
+                "right_presence": "absent",
+                "right_source_pointer": null,
+                "state": "unknown"
               }
             ],
             "observation_states": [
               {
+                "kind": "policy_binding_scope",
+                "state": "known",
+                "source_pointer": "/policy/value",
+                "value": {
+                  "revision": "SYNTH-REV-024-A",
+                  "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+                }
+              },
+              {
                 "kind": "policy_declaration",
                 "state": "known",
+                "source_pointer": "/policy/value/security_policy",
                 "value": {
                   "id": "SYNTH-SEC-POLICY-024-A",
                   "owner": "SECURITY",
@@ -1039,6 +1243,7 @@
               {
                 "kind": "resource_state",
                 "state": "observed",
+                "source_pointer": "/policy/value/infra_resource",
                 "value": {
                   "owner": "INFRASTRUCTURE",
                   "identity": "SYNTH-RESOURCE-NODE-A",
@@ -1055,6 +1260,7 @@
               {
                 "kind": "worker_enforcement_fixture",
                 "state": "synthetic_only",
+                "source_pointer": "/policy/value/worker_enforcement",
                 "value": {
                   "owner": "Worker execution environment",
                   "environment": "SYNTH-ENV-DEV-A",
@@ -1069,6 +1275,7 @@
               {
                 "kind": "environment_b_declaration",
                 "state": "known",
+                "source_pointer": "/policy/value/environment_b/declaration",
                 "value": {
                   "state": "known",
                   "policy": "egress_restricted",
@@ -1079,6 +1286,7 @@
               {
                 "kind": "environment_b_application",
                 "state": "unknown",
+                "source_pointer": "/policy/value/environment_b/application_observation",
                 "value": {
                   "state": "unknown",
                   "applied": null,
@@ -1089,6 +1297,7 @@
               {
                 "kind": "receipt",
                 "state": "synthetic_only",
+                "source_pointer": "/policy/value/receipt",
                 "value": {
                   "environment": "SYNTH-ENV-DEV-A",
                   "revision": "SYNTH-REV-024-A",
@@ -1096,20 +1305,29 @@
                   "contains_credential_value": false,
                   "value": "policy/resource/enforcer refs only"
                 }
+              },
+              {
+                "kind": "os_work_state",
+                "state": "known",
+                "source_pointer": "/policy/value/os_work_state",
+                "value": "separate_and_not_a_policy_or_resource_authority"
               }
             ],
             "findings": [
               {
                 "code": "application_unobserved",
-                "environment": "SYNTH-REV-024-A/SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "source": null,
+                "field": null,
+                "environment": "SYNTH-ENV-DEV-A",
+                "revision": "SYNTH-REV-024-A",
+                "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "source_pointer": "/policy/value/environment_b/application_observation",
                 "observed_value": {
                   "state": "unknown",
                   "applied": null,
                   "not_applied": null,
                   "evidence_ref": null
                 },
-                "source": null,
-                "field": null,
                 "left": null,
                 "right": null
               }
@@ -1125,17 +1343,286 @@
             ],
             "stage_scope": {
               "historical_stage": "Stage 4",
-              "stage4_scope": null,
-              "scope": "initial safe connection rule only",
-              "all_stage4_capabilities": "not established"
+              "stage4_scope": {
+                "state": "absent",
+                "value": null,
+                "source_pointer": null
+              },
+              "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+              "all_stage4_capabilities": {
+                "state": "absent",
+                "value": null,
+                "source_pointer": null
+              }
             },
             "execution_state": "not_executed"
           }
         }
       ],
       "intermediate_expected": {
-        "materialize_boundary_input_ref": "/cases/1/function_invocations/0/expected_output",
-        "compare_resource_boundary_ref": "/cases/1/function_invocations/1/expected_output"
+        "credential_exposure": [],
+        "owner_separation": [
+          {
+            "role": "policy",
+            "value": "SECURITY"
+          },
+          {
+            "role": "resource_state",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "resource_placement",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "physical_enforcement",
+            "value": "Worker execution environment"
+          }
+        ],
+        "binding_comparisons": [
+          {
+            "name": "revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/infra_resource/revision",
+            "state": "equal"
+          },
+          {
+            "name": "environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/infra_resource/environment",
+            "state": "equal"
+          },
+          {
+            "name": "worker_revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/revision",
+            "state": "equal"
+          },
+          {
+            "name": "worker_scope",
+            "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/scope",
+            "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/scope",
+            "state": "equal"
+          },
+          {
+            "name": "worker_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/environment",
+            "state": "equal"
+          },
+          {
+            "name": "worker_policy_reference",
+            "left": "SYNTH-SEC-POLICY-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/id",
+            "right": "SYNTH-SEC-POLICY-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/policy_reference",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/environment",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/revision",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_scope",
+            "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/scope",
+            "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/scope",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_policy_reference",
+            "left": "SYNTH-SEC-POLICY-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/id",
+            "right": null,
+            "right_presence": "absent",
+            "right_source_pointer": null,
+            "state": "unknown"
+          }
+        ],
+        "observation_states": [
+          {
+            "kind": "policy_binding_scope",
+            "state": "known",
+            "source_pointer": "/policy/value",
+            "value": {
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+            }
+          },
+          {
+            "kind": "policy_declaration",
+            "state": "known",
+            "source_pointer": "/policy/value/security_policy",
+            "value": {
+              "id": "SYNTH-SEC-POLICY-024-A",
+              "owner": "SECURITY",
+              "network": "egress_restricted",
+              "credential": "reference_only",
+              "environment": "SYNTH-ENV-DEV-A",
+              "project_isolation": "SYNTH-PROJECT-A",
+              "operation_authority": "not_granted_by_fixture",
+              "update": "candidate_review_only",
+              "egress": "restricted"
+            }
+          },
+          {
+            "kind": "resource_state",
+            "state": "observed",
+            "source_pointer": "/policy/value/infra_resource",
+            "value": {
+              "owner": "INFRASTRUCTURE",
+              "identity": "SYNTH-RESOURCE-NODE-A",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "network": "egress_restricted",
+              "credential_store": "SYNTH-STORE-REF-A",
+              "credential_value_present": false,
+              "safety_claim": "not_claimed",
+              "placement_owner": "INFRASTRUCTURE"
+            }
+          },
+          {
+            "kind": "worker_enforcement_fixture",
+            "state": "synthetic_only",
+            "source_pointer": "/policy/value/worker_enforcement",
+            "value": {
+              "owner": "Worker execution environment",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "policy_reference": "SYNTH-SEC-POLICY-024-A",
+              "network": "egress_restricted",
+              "credential_value_exposure": "blocked_as_synthetic_fixture",
+              "observation": "synthetic_only"
+            }
+          },
+          {
+            "kind": "environment_b_declaration",
+            "state": "known",
+            "source_pointer": "/policy/value/environment_b/declaration",
+            "value": {
+              "state": "known",
+              "policy": "egress_restricted",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+            }
+          },
+          {
+            "kind": "environment_b_application",
+            "state": "unknown",
+            "source_pointer": "/policy/value/environment_b/application_observation",
+            "value": {
+              "state": "unknown",
+              "applied": null,
+              "not_applied": null,
+              "evidence_ref": null
+            }
+          },
+          {
+            "kind": "receipt",
+            "state": "synthetic_only",
+            "source_pointer": "/policy/value/receipt",
+            "value": {
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "contains_credential_value": false,
+              "value": "policy/resource/enforcer refs only"
+            }
+          },
+          {
+            "kind": "os_work_state",
+            "state": "known",
+            "source_pointer": "/policy/value/os_work_state",
+            "value": "separate_and_not_a_policy_or_resource_authority"
+          }
+        ],
+        "findings": [
+          {
+            "code": "application_unobserved",
+            "source": null,
+            "field": null,
+            "environment": "SYNTH-ENV-DEV-A",
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "source_pointer": "/policy/value/environment_b/application_observation",
+            "observed_value": {
+              "state": "unknown",
+              "applied": null,
+              "not_applied": null,
+              "evidence_ref": null
+            },
+            "left": null,
+            "right": null
+          }
+        ],
+        "return_targets": [
+          {
+            "finding": "application_unobserved",
+            "recipients": [
+              "INFRASTRUCTURE",
+              "Worker execution environment"
+            ]
+          }
+        ],
+        "stage_scope": {
+          "historical_stage": "Stage 4",
+          "stage4_scope": {
+            "state": "absent",
+            "value": null,
+            "source_pointer": null
+          },
+          "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+          "all_stage4_capabilities": {
+            "state": "absent",
+            "value": null,
+            "source_pointer": null
+          }
+        },
+        "execution_state": "not_executed"
       },
       "expected_source_observation": {
         "known_policy_values": {
@@ -1322,15 +1809,18 @@
           "os_work_state": "separate_and_not_a_policy_or_resource_authority"
         },
         "assessment_output_whole_ref": "/cases/1/function_invocations/1/expected_output",
-        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。"
+        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
+        "source_diagnostic_pointer": "/positive_cases/1/then/observation_limit",
+        "source_defect_clause": null
       },
       "failure_route": {
         "source_field": "failure_observation",
         "source_value": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。"
       },
-      "diagnostic": null,
+      "diagnostic": "known値は各fieldの合成record値として保持する。synthetic-only値を実観測に変換せず、environment Bの宣言はknown、実適用/未適用のいずれもunknownとして保持する。",
       "execution_state": "not_executed",
-      "meaning_completion_effect": "none"
+      "meaning_completion_effect": "none",
+      "diagnostic_source_pointer": "/positive_cases/1/then/observation_limit"
     },
     {
       "id": "SEC024-L8-N01",
@@ -1357,7 +1847,7 @@
         ],
         "apply_to_packet_ref": "PKT-024-RESOURCE-BASE"
       },
-      "source_defect_clause": null,
+      "source_defect_clause": "通常snapshotにraw値",
       "packet_value_refs": [
         {
           "packet_id": "PKT-024-RESOURCE-BASE",
@@ -1511,6 +2001,7 @@
                 "credential_reference": "SYNTH-SECRET-HANDLE-A",
                 "value_present": false,
                 "payload_marker": null,
+                "payload_marker_presence": "absent",
                 "exposed": false
               },
               {
@@ -1518,6 +2009,7 @@
                 "credential_reference": "SYNTH-SECRET-HANDLE-A",
                 "value_present": false,
                 "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL",
+                "payload_marker_presence": "value",
                 "exposed": false
               },
               {
@@ -1525,6 +2017,7 @@
                 "credential_reference": "SYNTH-SECRET-HANDLE-A",
                 "value_present": true,
                 "payload_marker": "SYNTHETIC-RAW-CREDENTIAL-PLACEHOLDER-NOT-A-CREDENTIAL",
+                "payload_marker_presence": "value",
                 "exposed": true
               }
             ],
@@ -1547,13 +2040,61 @@
               }
             ],
             "binding_comparisons": [],
-            "observation_states": [],
+            "observation_states": [
+              {
+                "kind": "security_005_policy",
+                "state": "known",
+                "source_pointer": "/resource/value/security_005",
+                "value": {
+                  "credential_policy": "no raw credential in ordinary record",
+                  "policy_state": "declared"
+                }
+              },
+              {
+                "kind": "resource_record",
+                "state": "observed",
+                "source_pointer": "/resource/value/resource_record",
+                "value": {
+                  "resource_identity": "SYNTH-RESOURCE-STORE-A",
+                  "state": "observed",
+                  "credential_reference": "SYNTH-SECRET-HANDLE-A",
+                  "credential_value_present": false
+                }
+              },
+              {
+                "kind": "backup",
+                "state": "observed",
+                "source_pointer": "/resource/value/backup",
+                "value": {
+                  "source_revision": "SYNTH-REV-024-A",
+                  "state": "observed",
+                  "credential_reference": "SYNTH-SECRET-HANDLE-A",
+                  "contains_credential_value": false,
+                  "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+                }
+              },
+              {
+                "kind": "snapshot",
+                "state": "observed",
+                "source_pointer": "/resource/value/snapshot",
+                "value": {
+                  "source_revision": "SYNTH-REV-024-A",
+                  "state": "observed",
+                  "credential_reference": "SYNTH-SECRET-HANDLE-A",
+                  "contains_credential_value": true,
+                  "payload_marker": "SYNTHETIC-RAW-CREDENTIAL-PLACEHOLDER-NOT-A-CREDENTIAL"
+                }
+              }
+            ],
             "findings": [
               {
                 "code": "credential_value_exposed",
                 "source": "snapshot",
                 "field": null,
                 "environment": null,
+                "revision": null,
+                "scope": null,
+                "source_pointer": "/resource/value/snapshot/contains_credential_value",
                 "observed_value": {
                   "flag": true,
                   "payload_marker": "SYNTHETIC-RAW-CREDENTIAL-PLACEHOLDER-NOT-A-CREDENTIAL"
@@ -1572,18 +2113,156 @@
               }
             ],
             "stage_scope": {
-              "historical_stage": null,
-              "stage4_scope": "initial_safe_connection_rule_only",
-              "scope": null,
-              "all_stage4_capabilities": "not_in_scope"
+              "historical_stage": "Stage 4",
+              "stage4_scope": {
+                "state": "value",
+                "value": "initial_safe_connection_rule_only",
+                "source_pointer": "/resource/value/stage4_scope"
+              },
+              "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+              "all_stage4_capabilities": {
+                "state": "value",
+                "value": "not_in_scope",
+                "source_pointer": "/resource/value/all_stage4_capabilities"
+              }
             },
             "execution_state": "not_executed"
           }
         }
       ],
       "intermediate_expected": {
-        "materialize_boundary_input_ref": "/cases/2/function_invocations/0/expected_output",
-        "compare_resource_boundary_ref": "/cases/2/function_invocations/1/expected_output"
+        "credential_exposure": [
+          {
+            "source": "resource_record",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "value_present": false,
+            "payload_marker": null,
+            "payload_marker_presence": "absent",
+            "exposed": false
+          },
+          {
+            "source": "backup",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "value_present": false,
+            "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL",
+            "payload_marker_presence": "value",
+            "exposed": false
+          },
+          {
+            "source": "snapshot",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "value_present": true,
+            "payload_marker": "SYNTHETIC-RAW-CREDENTIAL-PLACEHOLDER-NOT-A-CREDENTIAL",
+            "payload_marker_presence": "value",
+            "exposed": true
+          }
+        ],
+        "owner_separation": [
+          {
+            "role": "policy",
+            "value": "SECURITY"
+          },
+          {
+            "role": "resource_state",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "physical_enforcement",
+            "value": "Worker execution environment"
+          },
+          {
+            "role": "evidence_custody",
+            "value": "INFRASTRUCTURE observation reference; SECURITY policy reference"
+          }
+        ],
+        "binding_comparisons": [],
+        "observation_states": [
+          {
+            "kind": "security_005_policy",
+            "state": "known",
+            "source_pointer": "/resource/value/security_005",
+            "value": {
+              "credential_policy": "no raw credential in ordinary record",
+              "policy_state": "declared"
+            }
+          },
+          {
+            "kind": "resource_record",
+            "state": "observed",
+            "source_pointer": "/resource/value/resource_record",
+            "value": {
+              "resource_identity": "SYNTH-RESOURCE-STORE-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "credential_value_present": false
+            }
+          },
+          {
+            "kind": "backup",
+            "state": "observed",
+            "source_pointer": "/resource/value/backup",
+            "value": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+            }
+          },
+          {
+            "kind": "snapshot",
+            "state": "observed",
+            "source_pointer": "/resource/value/snapshot",
+            "value": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": true,
+              "payload_marker": "SYNTHETIC-RAW-CREDENTIAL-PLACEHOLDER-NOT-A-CREDENTIAL"
+            }
+          }
+        ],
+        "findings": [
+          {
+            "code": "credential_value_exposed",
+            "source": "snapshot",
+            "field": null,
+            "environment": null,
+            "revision": null,
+            "scope": null,
+            "source_pointer": "/resource/value/snapshot/contains_credential_value",
+            "observed_value": {
+              "flag": true,
+              "payload_marker": "SYNTHETIC-RAW-CREDENTIAL-PLACEHOLDER-NOT-A-CREDENTIAL"
+            },
+            "left": null,
+            "right": null
+          }
+        ],
+        "return_targets": [
+          {
+            "finding": "credential_value_exposed",
+            "recipients": [
+              "INFRASTRUCTURE",
+              "SECURITY"
+            ]
+          }
+        ],
+        "stage_scope": {
+          "historical_stage": "Stage 4",
+          "stage4_scope": {
+            "state": "value",
+            "value": "initial_safe_connection_rule_only",
+            "source_pointer": "/resource/value/stage4_scope"
+          },
+          "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+          "all_stage4_capabilities": {
+            "state": "value",
+            "value": "not_in_scope",
+            "source_pointer": "/resource/value/all_stage4_capabilities"
+          }
+        },
+        "execution_state": "not_executed"
       },
       "expected_source_observation": {
         "snapshot.contains_credential_value": true,
@@ -1611,7 +2290,9 @@
           "snapshot.payload_marker": "SYNTHETIC-RAW-CREDENTIAL-PLACEHOLDER-NOT-A-CREDENTIAL"
         },
         "assessment_output_whole_ref": "/cases/2/function_invocations/1/expected_output",
-        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。"
+        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
+        "source_diagnostic_pointer": "/negative_cases/0/failure_route/case_route",
+        "source_defect_clause": "通常snapshotにraw値"
       },
       "failure_route": {
         "source_field": "failure_observation",
@@ -1620,7 +2301,8 @@
       },
       "diagnostic": "当該snapshotの保存境界をINFRASTRUCTUREへ、credential方針と許容記録の不足をSECURITYへ戻す。",
       "execution_state": "not_executed",
-      "meaning_completion_effect": "none"
+      "meaning_completion_effect": "none",
+      "diagnostic_source_pointer": "/negative_cases/0/failure_route/case_route"
     },
     {
       "id": "SEC024-L8-N02",
@@ -1642,7 +2324,7 @@
         ],
         "apply_to_packet_ref": "PKT-024-RESOURCE-BASE"
       },
-      "source_defect_clause": null,
+      "source_defect_clause": "OSが資源authority代替",
       "packet_value_refs": [
         {
           "packet_id": "PKT-024-RESOURCE-BASE",
@@ -1791,6 +2473,7 @@
                 "credential_reference": "SYNTH-SECRET-HANDLE-A",
                 "value_present": false,
                 "payload_marker": null,
+                "payload_marker_presence": "absent",
                 "exposed": false
               },
               {
@@ -1798,6 +2481,7 @@
                 "credential_reference": "SYNTH-SECRET-HANDLE-A",
                 "value_present": false,
                 "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL",
+                "payload_marker_presence": "value",
                 "exposed": false
               },
               {
@@ -1805,6 +2489,7 @@
                 "credential_reference": "SYNTH-SECRET-HANDLE-A",
                 "value_present": false,
                 "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL",
+                "payload_marker_presence": "value",
                 "exposed": false
               }
             ],
@@ -1827,17 +2512,66 @@
               }
             ],
             "binding_comparisons": [],
-            "observation_states": [],
+            "observation_states": [
+              {
+                "kind": "security_005_policy",
+                "state": "known",
+                "source_pointer": "/resource/value/security_005",
+                "value": {
+                  "credential_policy": "no raw credential in ordinary record",
+                  "policy_state": "declared"
+                }
+              },
+              {
+                "kind": "resource_record",
+                "state": "observed",
+                "source_pointer": "/resource/value/resource_record",
+                "value": {
+                  "resource_identity": "SYNTH-RESOURCE-STORE-A",
+                  "state": "observed",
+                  "credential_reference": "SYNTH-SECRET-HANDLE-A",
+                  "credential_value_present": false
+                }
+              },
+              {
+                "kind": "backup",
+                "state": "observed",
+                "source_pointer": "/resource/value/backup",
+                "value": {
+                  "source_revision": "SYNTH-REV-024-A",
+                  "state": "observed",
+                  "credential_reference": "SYNTH-SECRET-HANDLE-A",
+                  "contains_credential_value": false,
+                  "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+                }
+              },
+              {
+                "kind": "snapshot",
+                "state": "observed",
+                "source_pointer": "/resource/value/snapshot",
+                "value": {
+                  "source_revision": "SYNTH-REV-024-A",
+                  "state": "observed",
+                  "credential_reference": "SYNTH-SECRET-HANDLE-A",
+                  "contains_credential_value": false,
+                  "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+                }
+              }
+            ],
             "findings": [
               {
                 "code": "owner_boundary_mismatch",
-                "observed_value": {
-                  "policy": "SECURITY",
-                  "resource_state": "OS"
-                },
                 "source": null,
-                "field": null,
+                "field": "owners.resource_state",
                 "environment": null,
+                "revision": null,
+                "scope": null,
+                "source_pointer": "/resource/value/owners/resource_state",
+                "observed_value": {
+                  "role": "resource_state",
+                  "value": "OS",
+                  "expected": "INFRASTRUCTURE"
+                },
                 "left": null,
                 "right": null
               }
@@ -1852,18 +2586,157 @@
               }
             ],
             "stage_scope": {
-              "historical_stage": null,
-              "stage4_scope": "initial_safe_connection_rule_only",
-              "scope": null,
-              "all_stage4_capabilities": "not_in_scope"
+              "historical_stage": "Stage 4",
+              "stage4_scope": {
+                "state": "value",
+                "value": "initial_safe_connection_rule_only",
+                "source_pointer": "/resource/value/stage4_scope"
+              },
+              "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+              "all_stage4_capabilities": {
+                "state": "value",
+                "value": "not_in_scope",
+                "source_pointer": "/resource/value/all_stage4_capabilities"
+              }
             },
             "execution_state": "not_executed"
           }
         }
       ],
       "intermediate_expected": {
-        "materialize_boundary_input_ref": "/cases/3/function_invocations/0/expected_output",
-        "compare_resource_boundary_ref": "/cases/3/function_invocations/1/expected_output"
+        "credential_exposure": [
+          {
+            "source": "resource_record",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "value_present": false,
+            "payload_marker": null,
+            "payload_marker_presence": "absent",
+            "exposed": false
+          },
+          {
+            "source": "backup",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "value_present": false,
+            "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL",
+            "payload_marker_presence": "value",
+            "exposed": false
+          },
+          {
+            "source": "snapshot",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "value_present": false,
+            "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL",
+            "payload_marker_presence": "value",
+            "exposed": false
+          }
+        ],
+        "owner_separation": [
+          {
+            "role": "policy",
+            "value": "SECURITY"
+          },
+          {
+            "role": "resource_state",
+            "value": "OS"
+          },
+          {
+            "role": "physical_enforcement",
+            "value": "Worker execution environment"
+          },
+          {
+            "role": "evidence_custody",
+            "value": "INFRASTRUCTURE observation reference; SECURITY policy reference"
+          }
+        ],
+        "binding_comparisons": [],
+        "observation_states": [
+          {
+            "kind": "security_005_policy",
+            "state": "known",
+            "source_pointer": "/resource/value/security_005",
+            "value": {
+              "credential_policy": "no raw credential in ordinary record",
+              "policy_state": "declared"
+            }
+          },
+          {
+            "kind": "resource_record",
+            "state": "observed",
+            "source_pointer": "/resource/value/resource_record",
+            "value": {
+              "resource_identity": "SYNTH-RESOURCE-STORE-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "credential_value_present": false
+            }
+          },
+          {
+            "kind": "backup",
+            "state": "observed",
+            "source_pointer": "/resource/value/backup",
+            "value": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+            }
+          },
+          {
+            "kind": "snapshot",
+            "state": "observed",
+            "source_pointer": "/resource/value/snapshot",
+            "value": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+            }
+          }
+        ],
+        "findings": [
+          {
+            "code": "owner_boundary_mismatch",
+            "source": null,
+            "field": "owners.resource_state",
+            "environment": null,
+            "revision": null,
+            "scope": null,
+            "source_pointer": "/resource/value/owners/resource_state",
+            "observed_value": {
+              "role": "resource_state",
+              "value": "OS",
+              "expected": "INFRASTRUCTURE"
+            },
+            "left": null,
+            "right": null
+          }
+        ],
+        "return_targets": [
+          {
+            "finding": "owner_boundary_mismatch",
+            "recipients": [
+              "SECURITY",
+              "INFRASTRUCTURE"
+            ]
+          }
+        ],
+        "stage_scope": {
+          "historical_stage": "Stage 4",
+          "stage4_scope": {
+            "state": "value",
+            "value": "initial_safe_connection_rule_only",
+            "source_pointer": "/resource/value/stage4_scope"
+          },
+          "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+          "all_stage4_capabilities": {
+            "state": "value",
+            "value": "not_in_scope",
+            "source_pointer": "/resource/value/all_stage4_capabilities"
+          }
+        },
+        "execution_state": "not_executed"
       },
       "expected_source_observation": {
         "owners.resource_state": "OS"
@@ -1888,7 +2761,9 @@
           "owners.resource_state": "OS"
         },
         "assessment_output_whole_ref": "/cases/3/function_invocations/1/expected_output",
-        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。"
+        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
+        "source_diagnostic_pointer": "/negative_cases/1/failure_route/case_route",
+        "source_defect_clause": "OSが資源authority代替"
       },
       "failure_route": {
         "source_field": "failure_observation",
@@ -1897,7 +2772,8 @@
       },
       "diagnostic": "資源authorityをOSへ移さず、resource state ownerのINFRASTRUCTUREへ戻す。",
       "execution_state": "not_executed",
-      "meaning_completion_effect": "none"
+      "meaning_completion_effect": "none",
+      "diagnostic_source_pointer": "/negative_cases/1/failure_route/case_route"
     },
     {
       "id": "SEC024-L8-N03",
@@ -1919,7 +2795,7 @@
         ],
         "apply_to_packet_ref": "PKT-024-RESOURCE-BASE"
       },
-      "source_defect_clause": null,
+      "source_defect_clause": "Stage4全能力前倒し",
       "packet_value_refs": [
         {
           "packet_id": "PKT-024-RESOURCE-BASE",
@@ -2068,6 +2944,7 @@
                 "credential_reference": "SYNTH-SECRET-HANDLE-A",
                 "value_present": false,
                 "payload_marker": null,
+                "payload_marker_presence": "absent",
                 "exposed": false
               },
               {
@@ -2075,6 +2952,7 @@
                 "credential_reference": "SYNTH-SECRET-HANDLE-A",
                 "value_present": false,
                 "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL",
+                "payload_marker_presence": "value",
                 "exposed": false
               },
               {
@@ -2082,6 +2960,7 @@
                 "credential_reference": "SYNTH-SECRET-HANDLE-A",
                 "value_present": false,
                 "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL",
+                "payload_marker_presence": "value",
                 "exposed": false
               }
             ],
@@ -2104,14 +2983,62 @@
               }
             ],
             "binding_comparisons": [],
-            "observation_states": [],
+            "observation_states": [
+              {
+                "kind": "security_005_policy",
+                "state": "known",
+                "source_pointer": "/resource/value/security_005",
+                "value": {
+                  "credential_policy": "no raw credential in ordinary record",
+                  "policy_state": "declared"
+                }
+              },
+              {
+                "kind": "resource_record",
+                "state": "observed",
+                "source_pointer": "/resource/value/resource_record",
+                "value": {
+                  "resource_identity": "SYNTH-RESOURCE-STORE-A",
+                  "state": "observed",
+                  "credential_reference": "SYNTH-SECRET-HANDLE-A",
+                  "credential_value_present": false
+                }
+              },
+              {
+                "kind": "backup",
+                "state": "observed",
+                "source_pointer": "/resource/value/backup",
+                "value": {
+                  "source_revision": "SYNTH-REV-024-A",
+                  "state": "observed",
+                  "credential_reference": "SYNTH-SECRET-HANDLE-A",
+                  "contains_credential_value": false,
+                  "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+                }
+              },
+              {
+                "kind": "snapshot",
+                "state": "observed",
+                "source_pointer": "/resource/value/snapshot",
+                "value": {
+                  "source_revision": "SYNTH-REV-024-A",
+                  "state": "observed",
+                  "credential_reference": "SYNTH-SECRET-HANDLE-A",
+                  "contains_credential_value": false,
+                  "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+                }
+              }
+            ],
             "findings": [
               {
                 "code": "stage_scope_overclaim",
-                "observed_value": "advanced_all_stage4",
                 "source": null,
-                "field": null,
+                "field": "all_stage4_capabilities",
                 "environment": null,
+                "revision": null,
+                "scope": null,
+                "source_pointer": "/resource/value/all_stage4_capabilities",
+                "observed_value": "advanced_all_stage4",
                 "left": null,
                 "right": null
               }
@@ -2120,23 +3047,159 @@
               {
                 "finding": "stage_scope_overclaim",
                 "recipients": [
-                  "SECURITY"
+                  "SECURITY",
+                  "INFRASTRUCTURE"
                 ]
               }
             ],
             "stage_scope": {
-              "historical_stage": null,
-              "stage4_scope": "initial_safe_connection_rule_only",
-              "scope": null,
-              "all_stage4_capabilities": "advanced_all_stage4"
+              "historical_stage": "Stage 4",
+              "stage4_scope": {
+                "state": "value",
+                "value": "initial_safe_connection_rule_only",
+                "source_pointer": "/resource/value/stage4_scope"
+              },
+              "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+              "all_stage4_capabilities": {
+                "state": "value",
+                "value": "advanced_all_stage4",
+                "source_pointer": "/resource/value/all_stage4_capabilities"
+              }
             },
             "execution_state": "not_executed"
           }
         }
       ],
       "intermediate_expected": {
-        "materialize_boundary_input_ref": "/cases/4/function_invocations/0/expected_output",
-        "compare_resource_boundary_ref": "/cases/4/function_invocations/1/expected_output"
+        "credential_exposure": [
+          {
+            "source": "resource_record",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "value_present": false,
+            "payload_marker": null,
+            "payload_marker_presence": "absent",
+            "exposed": false
+          },
+          {
+            "source": "backup",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "value_present": false,
+            "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL",
+            "payload_marker_presence": "value",
+            "exposed": false
+          },
+          {
+            "source": "snapshot",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "value_present": false,
+            "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL",
+            "payload_marker_presence": "value",
+            "exposed": false
+          }
+        ],
+        "owner_separation": [
+          {
+            "role": "policy",
+            "value": "SECURITY"
+          },
+          {
+            "role": "resource_state",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "physical_enforcement",
+            "value": "Worker execution environment"
+          },
+          {
+            "role": "evidence_custody",
+            "value": "INFRASTRUCTURE observation reference; SECURITY policy reference"
+          }
+        ],
+        "binding_comparisons": [],
+        "observation_states": [
+          {
+            "kind": "security_005_policy",
+            "state": "known",
+            "source_pointer": "/resource/value/security_005",
+            "value": {
+              "credential_policy": "no raw credential in ordinary record",
+              "policy_state": "declared"
+            }
+          },
+          {
+            "kind": "resource_record",
+            "state": "observed",
+            "source_pointer": "/resource/value/resource_record",
+            "value": {
+              "resource_identity": "SYNTH-RESOURCE-STORE-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "credential_value_present": false
+            }
+          },
+          {
+            "kind": "backup",
+            "state": "observed",
+            "source_pointer": "/resource/value/backup",
+            "value": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+            }
+          },
+          {
+            "kind": "snapshot",
+            "state": "observed",
+            "source_pointer": "/resource/value/snapshot",
+            "value": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+            }
+          }
+        ],
+        "findings": [
+          {
+            "code": "stage_scope_overclaim",
+            "source": null,
+            "field": "all_stage4_capabilities",
+            "environment": null,
+            "revision": null,
+            "scope": null,
+            "source_pointer": "/resource/value/all_stage4_capabilities",
+            "observed_value": "advanced_all_stage4",
+            "left": null,
+            "right": null
+          }
+        ],
+        "return_targets": [
+          {
+            "finding": "stage_scope_overclaim",
+            "recipients": [
+              "SECURITY",
+              "INFRASTRUCTURE"
+            ]
+          }
+        ],
+        "stage_scope": {
+          "historical_stage": "Stage 4",
+          "stage4_scope": {
+            "state": "value",
+            "value": "initial_safe_connection_rule_only",
+            "source_pointer": "/resource/value/stage4_scope"
+          },
+          "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+          "all_stage4_capabilities": {
+            "state": "value",
+            "value": "advanced_all_stage4",
+            "source_pointer": "/resource/value/all_stage4_capabilities"
+          }
+        },
+        "execution_state": "not_executed"
       },
       "expected_source_observation": {
         "all_stage4_capabilities": "advanced_all_stage4"
@@ -2161,7 +3224,9 @@
           "all_stage4_capabilities": "advanced_all_stage4"
         },
         "assessment_output_whole_ref": "/cases/4/function_invocations/1/expected_output",
-        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。"
+        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
+        "source_diagnostic_pointer": "/negative_cases/2/failure_route/case_route",
+        "source_defect_clause": "Stage4全能力前倒し"
       },
       "failure_route": {
         "source_field": "failure_observation",
@@ -2170,7 +3235,8 @@
       },
       "diagnostic": "安全接続の初回必要規範にscopeを戻し、全Stage4能力の成立を主張しない。",
       "execution_state": "not_executed",
-      "meaning_completion_effect": "none"
+      "meaning_completion_effect": "none",
+      "diagnostic_source_pointer": "/negative_cases/2/failure_route/case_route"
     },
     {
       "id": "SEC024-L8-N04",
@@ -2192,7 +3258,7 @@
         ],
         "apply_to_packet_ref": "PKT-024-POLICY-BASE"
       },
-      "source_defect_clause": null,
+      "source_defect_clause": "policyだけで資源安全",
       "packet_value_refs": [
         {
           "packet_id": "PKT-024-POLICY-BASE",
@@ -2402,74 +3468,118 @@
               {
                 "name": "revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
-                "state": "equal"
-              },
-              {
-                "name": "scope",
-                "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
-                "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/infra_resource/revision",
                 "state": "equal"
               },
               {
                 "name": "environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/infra_resource/environment",
                 "state": "equal"
               },
               {
                 "name": "worker_revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/revision",
                 "state": "equal"
               },
               {
                 "name": "worker_scope",
                 "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/scope",
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/scope",
                 "state": "equal"
               },
               {
                 "name": "worker_environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/environment",
                 "state": "equal"
               },
               {
                 "name": "worker_policy_reference",
                 "left": "SYNTH-SEC-POLICY-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/id",
                 "right": "SYNTH-SEC-POLICY-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/policy_reference",
                 "state": "equal"
               },
               {
                 "name": "receipt_environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/environment",
                 "state": "equal"
               },
               {
                 "name": "receipt_revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/revision",
                 "state": "equal"
               },
               {
                 "name": "receipt_scope",
                 "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/scope",
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/scope",
                 "state": "equal"
               },
               {
                 "name": "receipt_policy_reference",
                 "left": "SYNTH-SEC-POLICY-024-A",
-                "right": "SYNTH-SEC-POLICY-024-A",
-                "state": "equal"
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/id",
+                "right": null,
+                "right_presence": "absent",
+                "right_source_pointer": null,
+                "state": "unknown"
               }
             ],
             "observation_states": [
               {
+                "kind": "policy_binding_scope",
+                "state": "known",
+                "source_pointer": "/policy/value",
+                "value": {
+                  "revision": "SYNTH-REV-024-A",
+                  "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+                }
+              },
+              {
                 "kind": "policy_declaration",
                 "state": "known",
+                "source_pointer": "/policy/value/security_policy",
                 "value": {
                   "id": "SYNTH-SEC-POLICY-024-A",
                   "owner": "SECURITY",
@@ -2485,6 +3595,7 @@
               {
                 "kind": "resource_state",
                 "state": "observed",
+                "source_pointer": "/policy/value/infra_resource",
                 "value": {
                   "owner": "INFRASTRUCTURE",
                   "identity": "SYNTH-RESOURCE-NODE-A",
@@ -2501,6 +3612,7 @@
               {
                 "kind": "worker_enforcement_fixture",
                 "state": "synthetic_only",
+                "source_pointer": "/policy/value/worker_enforcement",
                 "value": {
                   "owner": "Worker execution environment",
                   "environment": "SYNTH-ENV-DEV-A",
@@ -2515,6 +3627,7 @@
               {
                 "kind": "environment_b_declaration",
                 "state": "known",
+                "source_pointer": "/policy/value/environment_b/declaration",
                 "value": {
                   "state": "known",
                   "policy": "egress_restricted",
@@ -2525,6 +3638,7 @@
               {
                 "kind": "environment_b_application",
                 "state": "unknown",
+                "source_pointer": "/policy/value/environment_b/application_observation",
                 "value": {
                   "state": "unknown",
                   "applied": null,
@@ -2535,6 +3649,7 @@
               {
                 "kind": "receipt",
                 "state": "synthetic_only",
+                "source_pointer": "/policy/value/receipt",
                 "value": {
                   "environment": "SYNTH-ENV-DEV-A",
                   "revision": "SYNTH-REV-024-A",
@@ -2542,29 +3657,41 @@
                   "contains_credential_value": false,
                   "value": "policy/resource/enforcer refs only"
                 }
+              },
+              {
+                "kind": "os_work_state",
+                "state": "known",
+                "source_pointer": "/policy/value/os_work_state",
+                "value": "separate_and_not_a_policy_or_resource_authority"
               }
             ],
             "findings": [
               {
                 "code": "policy_only_safety_claim",
-                "observed_value": "safe_from_policy_only",
                 "source": null,
-                "field": null,
+                "field": "infra_resource.safety_claim",
                 "environment": null,
+                "revision": null,
+                "scope": null,
+                "source_pointer": "/policy/value/infra_resource/safety_claim",
+                "observed_value": "safe_from_policy_only",
                 "left": null,
                 "right": null
               },
               {
                 "code": "application_unobserved",
-                "environment": "SYNTH-REV-024-A/SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "source": null,
+                "field": null,
+                "environment": "SYNTH-ENV-DEV-A",
+                "revision": "SYNTH-REV-024-A",
+                "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "source_pointer": "/policy/value/environment_b/application_observation",
                 "observed_value": {
                   "state": "unknown",
                   "applied": null,
                   "not_applied": null,
                   "evidence_ref": null
                 },
-                "source": null,
-                "field": null,
                 "left": null,
                 "right": null
               }
@@ -2586,17 +3713,304 @@
             ],
             "stage_scope": {
               "historical_stage": "Stage 4",
-              "stage4_scope": null,
-              "scope": "initial safe connection rule only",
-              "all_stage4_capabilities": "not established"
+              "stage4_scope": {
+                "state": "absent",
+                "value": null,
+                "source_pointer": null
+              },
+              "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+              "all_stage4_capabilities": {
+                "state": "absent",
+                "value": null,
+                "source_pointer": null
+              }
             },
             "execution_state": "not_executed"
           }
         }
       ],
       "intermediate_expected": {
-        "materialize_boundary_input_ref": "/cases/5/function_invocations/0/expected_output",
-        "compare_resource_boundary_ref": "/cases/5/function_invocations/1/expected_output"
+        "credential_exposure": [],
+        "owner_separation": [
+          {
+            "role": "policy",
+            "value": "SECURITY"
+          },
+          {
+            "role": "resource_state",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "resource_placement",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "physical_enforcement",
+            "value": "Worker execution environment"
+          }
+        ],
+        "binding_comparisons": [
+          {
+            "name": "revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/infra_resource/revision",
+            "state": "equal"
+          },
+          {
+            "name": "environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/infra_resource/environment",
+            "state": "equal"
+          },
+          {
+            "name": "worker_revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/revision",
+            "state": "equal"
+          },
+          {
+            "name": "worker_scope",
+            "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/scope",
+            "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/scope",
+            "state": "equal"
+          },
+          {
+            "name": "worker_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/environment",
+            "state": "equal"
+          },
+          {
+            "name": "worker_policy_reference",
+            "left": "SYNTH-SEC-POLICY-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/id",
+            "right": "SYNTH-SEC-POLICY-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/policy_reference",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/environment",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/revision",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_scope",
+            "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/scope",
+            "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/scope",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_policy_reference",
+            "left": "SYNTH-SEC-POLICY-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/id",
+            "right": null,
+            "right_presence": "absent",
+            "right_source_pointer": null,
+            "state": "unknown"
+          }
+        ],
+        "observation_states": [
+          {
+            "kind": "policy_binding_scope",
+            "state": "known",
+            "source_pointer": "/policy/value",
+            "value": {
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+            }
+          },
+          {
+            "kind": "policy_declaration",
+            "state": "known",
+            "source_pointer": "/policy/value/security_policy",
+            "value": {
+              "id": "SYNTH-SEC-POLICY-024-A",
+              "owner": "SECURITY",
+              "network": "egress_restricted",
+              "credential": "reference_only",
+              "environment": "SYNTH-ENV-DEV-A",
+              "project_isolation": "SYNTH-PROJECT-A",
+              "operation_authority": "not_granted_by_fixture",
+              "update": "candidate_review_only",
+              "egress": "restricted"
+            }
+          },
+          {
+            "kind": "resource_state",
+            "state": "observed",
+            "source_pointer": "/policy/value/infra_resource",
+            "value": {
+              "owner": "INFRASTRUCTURE",
+              "identity": "SYNTH-RESOURCE-NODE-A",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "network": "egress_restricted",
+              "credential_store": "SYNTH-STORE-REF-A",
+              "credential_value_present": false,
+              "safety_claim": "safe_from_policy_only",
+              "placement_owner": "INFRASTRUCTURE"
+            }
+          },
+          {
+            "kind": "worker_enforcement_fixture",
+            "state": "synthetic_only",
+            "source_pointer": "/policy/value/worker_enforcement",
+            "value": {
+              "owner": "Worker execution environment",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "policy_reference": "SYNTH-SEC-POLICY-024-A",
+              "network": "egress_restricted",
+              "credential_value_exposure": "blocked_as_synthetic_fixture",
+              "observation": "synthetic_only"
+            }
+          },
+          {
+            "kind": "environment_b_declaration",
+            "state": "known",
+            "source_pointer": "/policy/value/environment_b/declaration",
+            "value": {
+              "state": "known",
+              "policy": "egress_restricted",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+            }
+          },
+          {
+            "kind": "environment_b_application",
+            "state": "unknown",
+            "source_pointer": "/policy/value/environment_b/application_observation",
+            "value": {
+              "state": "unknown",
+              "applied": null,
+              "not_applied": null,
+              "evidence_ref": null
+            }
+          },
+          {
+            "kind": "receipt",
+            "state": "synthetic_only",
+            "source_pointer": "/policy/value/receipt",
+            "value": {
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "contains_credential_value": false,
+              "value": "policy/resource/enforcer refs only"
+            }
+          },
+          {
+            "kind": "os_work_state",
+            "state": "known",
+            "source_pointer": "/policy/value/os_work_state",
+            "value": "separate_and_not_a_policy_or_resource_authority"
+          }
+        ],
+        "findings": [
+          {
+            "code": "policy_only_safety_claim",
+            "source": null,
+            "field": "infra_resource.safety_claim",
+            "environment": null,
+            "revision": null,
+            "scope": null,
+            "source_pointer": "/policy/value/infra_resource/safety_claim",
+            "observed_value": "safe_from_policy_only",
+            "left": null,
+            "right": null
+          },
+          {
+            "code": "application_unobserved",
+            "source": null,
+            "field": null,
+            "environment": "SYNTH-ENV-DEV-A",
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "source_pointer": "/policy/value/environment_b/application_observation",
+            "observed_value": {
+              "state": "unknown",
+              "applied": null,
+              "not_applied": null,
+              "evidence_ref": null
+            },
+            "left": null,
+            "right": null
+          }
+        ],
+        "return_targets": [
+          {
+            "finding": "policy_only_safety_claim",
+            "recipients": [
+              "SECURITY"
+            ]
+          },
+          {
+            "finding": "application_unobserved",
+            "recipients": [
+              "INFRASTRUCTURE",
+              "Worker execution environment"
+            ]
+          }
+        ],
+        "stage_scope": {
+          "historical_stage": "Stage 4",
+          "stage4_scope": {
+            "state": "absent",
+            "value": null,
+            "source_pointer": null
+          },
+          "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+          "all_stage4_capabilities": {
+            "state": "absent",
+            "value": null,
+            "source_pointer": null
+          }
+        },
+        "execution_state": "not_executed"
       },
       "expected_source_observation": {
         "infra_resource.safety_claim": "safe_from_policy_only"
@@ -2621,7 +4035,9 @@
           "infra_resource.safety_claim": "safe_from_policy_only"
         },
         "assessment_output_whole_ref": "/cases/5/function_invocations/1/expected_output",
-        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。"
+        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
+        "source_diagnostic_pointer": "/negative_cases/3/failure_route/case_route",
+        "source_defect_clause": "policyだけで資源安全"
       },
       "failure_route": {
         "source_field": "failure_observation",
@@ -2630,7 +4046,8 @@
       },
       "diagnostic": "policy意味・安全判定の問題をSECURITYへ返し、実資源適用はINFRASTRUCTUREで別観測のまま保持する。",
       "execution_state": "not_executed",
-      "meaning_completion_effect": "none"
+      "meaning_completion_effect": "none",
+      "diagnostic_source_pointer": "/negative_cases/3/failure_route/case_route"
     },
     {
       "id": "SEC024-L8-N05",
@@ -2652,7 +4069,7 @@
         ],
         "apply_to_packet_ref": "PKT-024-POLICY-BASE"
       },
-      "source_defect_clause": null,
+      "source_defect_clause": "INFRAがpolicy発行",
       "packet_value_refs": [
         {
           "packet_id": "PKT-024-POLICY-BASE",
@@ -2862,74 +4279,118 @@
               {
                 "name": "revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
-                "state": "equal"
-              },
-              {
-                "name": "scope",
-                "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
-                "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/infra_resource/revision",
                 "state": "equal"
               },
               {
                 "name": "environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/infra_resource/environment",
                 "state": "equal"
               },
               {
                 "name": "worker_revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/revision",
                 "state": "equal"
               },
               {
                 "name": "worker_scope",
                 "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/scope",
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/scope",
                 "state": "equal"
               },
               {
                 "name": "worker_environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/environment",
                 "state": "equal"
               },
               {
                 "name": "worker_policy_reference",
                 "left": "SYNTH-SEC-POLICY-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/id",
                 "right": "SYNTH-SEC-POLICY-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/policy_reference",
                 "state": "equal"
               },
               {
                 "name": "receipt_environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/environment",
                 "state": "equal"
               },
               {
                 "name": "receipt_revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/revision",
                 "state": "equal"
               },
               {
                 "name": "receipt_scope",
                 "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/scope",
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/scope",
                 "state": "equal"
               },
               {
                 "name": "receipt_policy_reference",
                 "left": "SYNTH-SEC-POLICY-024-A",
-                "right": "SYNTH-SEC-POLICY-024-A",
-                "state": "equal"
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/id",
+                "right": null,
+                "right_presence": "absent",
+                "right_source_pointer": null,
+                "state": "unknown"
               }
             ],
             "observation_states": [
               {
+                "kind": "policy_binding_scope",
+                "state": "known",
+                "source_pointer": "/policy/value",
+                "value": {
+                  "revision": "SYNTH-REV-024-A",
+                  "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+                }
+              },
+              {
                 "kind": "policy_declaration",
                 "state": "known",
+                "source_pointer": "/policy/value/security_policy",
                 "value": {
                   "id": "SYNTH-SEC-POLICY-024-A",
                   "owner": "INFRASTRUCTURE",
@@ -2945,6 +4406,7 @@
               {
                 "kind": "resource_state",
                 "state": "observed",
+                "source_pointer": "/policy/value/infra_resource",
                 "value": {
                   "owner": "INFRASTRUCTURE",
                   "identity": "SYNTH-RESOURCE-NODE-A",
@@ -2961,6 +4423,7 @@
               {
                 "kind": "worker_enforcement_fixture",
                 "state": "synthetic_only",
+                "source_pointer": "/policy/value/worker_enforcement",
                 "value": {
                   "owner": "Worker execution environment",
                   "environment": "SYNTH-ENV-DEV-A",
@@ -2975,6 +4438,7 @@
               {
                 "kind": "environment_b_declaration",
                 "state": "known",
+                "source_pointer": "/policy/value/environment_b/declaration",
                 "value": {
                   "state": "known",
                   "policy": "egress_restricted",
@@ -2985,6 +4449,7 @@
               {
                 "kind": "environment_b_application",
                 "state": "unknown",
+                "source_pointer": "/policy/value/environment_b/application_observation",
                 "value": {
                   "state": "unknown",
                   "applied": null,
@@ -2995,6 +4460,7 @@
               {
                 "kind": "receipt",
                 "state": "synthetic_only",
+                "source_pointer": "/policy/value/receipt",
                 "value": {
                   "environment": "SYNTH-ENV-DEV-A",
                   "revision": "SYNTH-REV-024-A",
@@ -3002,34 +4468,45 @@
                   "contains_credential_value": false,
                   "value": "policy/resource/enforcer refs only"
                 }
+              },
+              {
+                "kind": "os_work_state",
+                "state": "known",
+                "source_pointer": "/policy/value/os_work_state",
+                "value": "separate_and_not_a_policy_or_resource_authority"
               }
             ],
             "findings": [
               {
                 "code": "owner_boundary_mismatch",
-                "observed_value": {
-                  "policy": "INFRASTRUCTURE",
-                  "resource": "INFRASTRUCTURE",
-                  "placement": "INFRASTRUCTURE",
-                  "enforcer": "Worker execution environment"
-                },
                 "source": null,
-                "field": null,
+                "field": "security_policy.owner",
                 "environment": null,
+                "revision": null,
+                "scope": null,
+                "source_pointer": "/policy/value/security_policy/owner",
+                "observed_value": {
+                  "role": "policy",
+                  "value": "INFRASTRUCTURE",
+                  "expected": "SECURITY"
+                },
                 "left": null,
                 "right": null
               },
               {
                 "code": "application_unobserved",
-                "environment": "SYNTH-REV-024-A/SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "source": null,
+                "field": null,
+                "environment": "SYNTH-ENV-DEV-A",
+                "revision": "SYNTH-REV-024-A",
+                "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "source_pointer": "/policy/value/environment_b/application_observation",
                 "observed_value": {
                   "state": "unknown",
                   "applied": null,
                   "not_applied": null,
                   "evidence_ref": null
                 },
-                "source": null,
-                "field": null,
                 "left": null,
                 "right": null
               }
@@ -3039,8 +4516,7 @@
                 "finding": "owner_boundary_mismatch",
                 "recipients": [
                   "SECURITY",
-                  "INFRASTRUCTURE",
-                  "Worker execution environment"
+                  "INFRASTRUCTURE"
                 ]
               },
               {
@@ -3053,17 +4529,309 @@
             ],
             "stage_scope": {
               "historical_stage": "Stage 4",
-              "stage4_scope": null,
-              "scope": "initial safe connection rule only",
-              "all_stage4_capabilities": "not established"
+              "stage4_scope": {
+                "state": "absent",
+                "value": null,
+                "source_pointer": null
+              },
+              "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+              "all_stage4_capabilities": {
+                "state": "absent",
+                "value": null,
+                "source_pointer": null
+              }
             },
             "execution_state": "not_executed"
           }
         }
       ],
       "intermediate_expected": {
-        "materialize_boundary_input_ref": "/cases/6/function_invocations/0/expected_output",
-        "compare_resource_boundary_ref": "/cases/6/function_invocations/1/expected_output"
+        "credential_exposure": [],
+        "owner_separation": [
+          {
+            "role": "policy",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "resource_state",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "resource_placement",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "physical_enforcement",
+            "value": "Worker execution environment"
+          }
+        ],
+        "binding_comparisons": [
+          {
+            "name": "revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/infra_resource/revision",
+            "state": "equal"
+          },
+          {
+            "name": "environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/infra_resource/environment",
+            "state": "equal"
+          },
+          {
+            "name": "worker_revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/revision",
+            "state": "equal"
+          },
+          {
+            "name": "worker_scope",
+            "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/scope",
+            "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/scope",
+            "state": "equal"
+          },
+          {
+            "name": "worker_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/environment",
+            "state": "equal"
+          },
+          {
+            "name": "worker_policy_reference",
+            "left": "SYNTH-SEC-POLICY-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/id",
+            "right": "SYNTH-SEC-POLICY-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/policy_reference",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/environment",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/revision",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_scope",
+            "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/scope",
+            "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/scope",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_policy_reference",
+            "left": "SYNTH-SEC-POLICY-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/id",
+            "right": null,
+            "right_presence": "absent",
+            "right_source_pointer": null,
+            "state": "unknown"
+          }
+        ],
+        "observation_states": [
+          {
+            "kind": "policy_binding_scope",
+            "state": "known",
+            "source_pointer": "/policy/value",
+            "value": {
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+            }
+          },
+          {
+            "kind": "policy_declaration",
+            "state": "known",
+            "source_pointer": "/policy/value/security_policy",
+            "value": {
+              "id": "SYNTH-SEC-POLICY-024-A",
+              "owner": "INFRASTRUCTURE",
+              "network": "egress_restricted",
+              "credential": "reference_only",
+              "environment": "SYNTH-ENV-DEV-A",
+              "project_isolation": "SYNTH-PROJECT-A",
+              "operation_authority": "not_granted_by_fixture",
+              "update": "candidate_review_only",
+              "egress": "restricted"
+            }
+          },
+          {
+            "kind": "resource_state",
+            "state": "observed",
+            "source_pointer": "/policy/value/infra_resource",
+            "value": {
+              "owner": "INFRASTRUCTURE",
+              "identity": "SYNTH-RESOURCE-NODE-A",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "network": "egress_restricted",
+              "credential_store": "SYNTH-STORE-REF-A",
+              "credential_value_present": false,
+              "safety_claim": "not_claimed",
+              "placement_owner": "INFRASTRUCTURE"
+            }
+          },
+          {
+            "kind": "worker_enforcement_fixture",
+            "state": "synthetic_only",
+            "source_pointer": "/policy/value/worker_enforcement",
+            "value": {
+              "owner": "Worker execution environment",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "policy_reference": "SYNTH-SEC-POLICY-024-A",
+              "network": "egress_restricted",
+              "credential_value_exposure": "blocked_as_synthetic_fixture",
+              "observation": "synthetic_only"
+            }
+          },
+          {
+            "kind": "environment_b_declaration",
+            "state": "known",
+            "source_pointer": "/policy/value/environment_b/declaration",
+            "value": {
+              "state": "known",
+              "policy": "egress_restricted",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+            }
+          },
+          {
+            "kind": "environment_b_application",
+            "state": "unknown",
+            "source_pointer": "/policy/value/environment_b/application_observation",
+            "value": {
+              "state": "unknown",
+              "applied": null,
+              "not_applied": null,
+              "evidence_ref": null
+            }
+          },
+          {
+            "kind": "receipt",
+            "state": "synthetic_only",
+            "source_pointer": "/policy/value/receipt",
+            "value": {
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "contains_credential_value": false,
+              "value": "policy/resource/enforcer refs only"
+            }
+          },
+          {
+            "kind": "os_work_state",
+            "state": "known",
+            "source_pointer": "/policy/value/os_work_state",
+            "value": "separate_and_not_a_policy_or_resource_authority"
+          }
+        ],
+        "findings": [
+          {
+            "code": "owner_boundary_mismatch",
+            "source": null,
+            "field": "security_policy.owner",
+            "environment": null,
+            "revision": null,
+            "scope": null,
+            "source_pointer": "/policy/value/security_policy/owner",
+            "observed_value": {
+              "role": "policy",
+              "value": "INFRASTRUCTURE",
+              "expected": "SECURITY"
+            },
+            "left": null,
+            "right": null
+          },
+          {
+            "code": "application_unobserved",
+            "source": null,
+            "field": null,
+            "environment": "SYNTH-ENV-DEV-A",
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "source_pointer": "/policy/value/environment_b/application_observation",
+            "observed_value": {
+              "state": "unknown",
+              "applied": null,
+              "not_applied": null,
+              "evidence_ref": null
+            },
+            "left": null,
+            "right": null
+          }
+        ],
+        "return_targets": [
+          {
+            "finding": "owner_boundary_mismatch",
+            "recipients": [
+              "SECURITY",
+              "INFRASTRUCTURE"
+            ]
+          },
+          {
+            "finding": "application_unobserved",
+            "recipients": [
+              "INFRASTRUCTURE",
+              "Worker execution environment"
+            ]
+          }
+        ],
+        "stage_scope": {
+          "historical_stage": "Stage 4",
+          "stage4_scope": {
+            "state": "absent",
+            "value": null,
+            "source_pointer": null
+          },
+          "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+          "all_stage4_capabilities": {
+            "state": "absent",
+            "value": null,
+            "source_pointer": null
+          }
+        },
+        "execution_state": "not_executed"
       },
       "expected_source_observation": {
         "security_policy.owner": "INFRASTRUCTURE"
@@ -3088,7 +4856,9 @@
           "security_policy.owner": "INFRASTRUCTURE"
         },
         "assessment_output_whole_ref": "/cases/6/function_invocations/1/expected_output",
-        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。"
+        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
+        "source_diagnostic_pointer": "/negative_cases/4/failure_route/case_route",
+        "source_defect_clause": "INFRAがpolicy発行"
       },
       "failure_route": {
         "source_field": "failure_observation",
@@ -3097,7 +4867,8 @@
       },
       "diagnostic": "policy ownerをSECURITYへ戻し、INFRASTRUCTUREが実資源状態を持つ境界を保持する。",
       "execution_state": "not_executed",
-      "meaning_completion_effect": "none"
+      "meaning_completion_effect": "none",
+      "diagnostic_source_pointer": "/negative_cases/4/failure_route/case_route"
     },
     {
       "id": "SEC024-L8-N06",
@@ -3119,7 +4890,7 @@
         ],
         "apply_to_packet_ref": "PKT-024-POLICY-BASE"
       },
-      "source_defect_clause": null,
+      "source_defect_clause": "SECが資源配置",
       "packet_value_refs": [
         {
           "packet_id": "PKT-024-POLICY-BASE",
@@ -3329,74 +5100,118 @@
               {
                 "name": "revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
-                "state": "equal"
-              },
-              {
-                "name": "scope",
-                "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
-                "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/infra_resource/revision",
                 "state": "equal"
               },
               {
                 "name": "environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/infra_resource/environment",
                 "state": "equal"
               },
               {
                 "name": "worker_revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/revision",
                 "state": "equal"
               },
               {
                 "name": "worker_scope",
                 "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/scope",
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/scope",
                 "state": "equal"
               },
               {
                 "name": "worker_environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/environment",
                 "state": "equal"
               },
               {
                 "name": "worker_policy_reference",
                 "left": "SYNTH-SEC-POLICY-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/id",
                 "right": "SYNTH-SEC-POLICY-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/policy_reference",
                 "state": "equal"
               },
               {
                 "name": "receipt_environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/environment",
                 "state": "equal"
               },
               {
                 "name": "receipt_revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/revision",
                 "state": "equal"
               },
               {
                 "name": "receipt_scope",
                 "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/scope",
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/scope",
                 "state": "equal"
               },
               {
                 "name": "receipt_policy_reference",
                 "left": "SYNTH-SEC-POLICY-024-A",
-                "right": "SYNTH-SEC-POLICY-024-A",
-                "state": "equal"
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/id",
+                "right": null,
+                "right_presence": "absent",
+                "right_source_pointer": null,
+                "state": "unknown"
               }
             ],
             "observation_states": [
               {
+                "kind": "policy_binding_scope",
+                "state": "known",
+                "source_pointer": "/policy/value",
+                "value": {
+                  "revision": "SYNTH-REV-024-A",
+                  "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+                }
+              },
+              {
                 "kind": "policy_declaration",
                 "state": "known",
+                "source_pointer": "/policy/value/security_policy",
                 "value": {
                   "id": "SYNTH-SEC-POLICY-024-A",
                   "owner": "SECURITY",
@@ -3412,6 +5227,7 @@
               {
                 "kind": "resource_state",
                 "state": "observed",
+                "source_pointer": "/policy/value/infra_resource",
                 "value": {
                   "owner": "INFRASTRUCTURE",
                   "identity": "SYNTH-RESOURCE-NODE-A",
@@ -3428,6 +5244,7 @@
               {
                 "kind": "worker_enforcement_fixture",
                 "state": "synthetic_only",
+                "source_pointer": "/policy/value/worker_enforcement",
                 "value": {
                   "owner": "Worker execution environment",
                   "environment": "SYNTH-ENV-DEV-A",
@@ -3442,6 +5259,7 @@
               {
                 "kind": "environment_b_declaration",
                 "state": "known",
+                "source_pointer": "/policy/value/environment_b/declaration",
                 "value": {
                   "state": "known",
                   "policy": "egress_restricted",
@@ -3452,6 +5270,7 @@
               {
                 "kind": "environment_b_application",
                 "state": "unknown",
+                "source_pointer": "/policy/value/environment_b/application_observation",
                 "value": {
                   "state": "unknown",
                   "applied": null,
@@ -3462,6 +5281,7 @@
               {
                 "kind": "receipt",
                 "state": "synthetic_only",
+                "source_pointer": "/policy/value/receipt",
                 "value": {
                   "environment": "SYNTH-ENV-DEV-A",
                   "revision": "SYNTH-REV-024-A",
@@ -3469,34 +5289,44 @@
                   "contains_credential_value": false,
                   "value": "policy/resource/enforcer refs only"
                 }
+              },
+              {
+                "kind": "os_work_state",
+                "state": "known",
+                "source_pointer": "/policy/value/os_work_state",
+                "value": "separate_and_not_a_policy_or_resource_authority"
               }
             ],
             "findings": [
               {
                 "code": "owner_boundary_mismatch",
-                "observed_value": {
-                  "policy": "SECURITY",
-                  "resource": "INFRASTRUCTURE",
-                  "placement": "SECURITY",
-                  "enforcer": "Worker execution environment"
-                },
                 "source": null,
-                "field": null,
+                "field": "infra_resource.owner_or_placement_owner",
                 "environment": null,
+                "revision": null,
+                "scope": null,
+                "source_pointer": "/policy/value/infra_resource",
+                "observed_value": {
+                  "owner": "INFRASTRUCTURE",
+                  "placement_owner": "SECURITY"
+                },
                 "left": null,
                 "right": null
               },
               {
                 "code": "application_unobserved",
-                "environment": "SYNTH-REV-024-A/SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "source": null,
+                "field": null,
+                "environment": "SYNTH-ENV-DEV-A",
+                "revision": "SYNTH-REV-024-A",
+                "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "source_pointer": "/policy/value/environment_b/application_observation",
                 "observed_value": {
                   "state": "unknown",
                   "applied": null,
                   "not_applied": null,
                   "evidence_ref": null
                 },
-                "source": null,
-                "field": null,
                 "left": null,
                 "right": null
               }
@@ -3506,8 +5336,7 @@
                 "finding": "owner_boundary_mismatch",
                 "recipients": [
                   "SECURITY",
-                  "INFRASTRUCTURE",
-                  "Worker execution environment"
+                  "INFRASTRUCTURE"
                 ]
               },
               {
@@ -3520,17 +5349,308 @@
             ],
             "stage_scope": {
               "historical_stage": "Stage 4",
-              "stage4_scope": null,
-              "scope": "initial safe connection rule only",
-              "all_stage4_capabilities": "not established"
+              "stage4_scope": {
+                "state": "absent",
+                "value": null,
+                "source_pointer": null
+              },
+              "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+              "all_stage4_capabilities": {
+                "state": "absent",
+                "value": null,
+                "source_pointer": null
+              }
             },
             "execution_state": "not_executed"
           }
         }
       ],
       "intermediate_expected": {
-        "materialize_boundary_input_ref": "/cases/7/function_invocations/0/expected_output",
-        "compare_resource_boundary_ref": "/cases/7/function_invocations/1/expected_output"
+        "credential_exposure": [],
+        "owner_separation": [
+          {
+            "role": "policy",
+            "value": "SECURITY"
+          },
+          {
+            "role": "resource_state",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "resource_placement",
+            "value": "SECURITY"
+          },
+          {
+            "role": "physical_enforcement",
+            "value": "Worker execution environment"
+          }
+        ],
+        "binding_comparisons": [
+          {
+            "name": "revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/infra_resource/revision",
+            "state": "equal"
+          },
+          {
+            "name": "environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/infra_resource/environment",
+            "state": "equal"
+          },
+          {
+            "name": "worker_revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/revision",
+            "state": "equal"
+          },
+          {
+            "name": "worker_scope",
+            "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/scope",
+            "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/scope",
+            "state": "equal"
+          },
+          {
+            "name": "worker_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/environment",
+            "state": "equal"
+          },
+          {
+            "name": "worker_policy_reference",
+            "left": "SYNTH-SEC-POLICY-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/id",
+            "right": "SYNTH-SEC-POLICY-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/policy_reference",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/environment",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/revision",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_scope",
+            "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/scope",
+            "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/scope",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_policy_reference",
+            "left": "SYNTH-SEC-POLICY-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/id",
+            "right": null,
+            "right_presence": "absent",
+            "right_source_pointer": null,
+            "state": "unknown"
+          }
+        ],
+        "observation_states": [
+          {
+            "kind": "policy_binding_scope",
+            "state": "known",
+            "source_pointer": "/policy/value",
+            "value": {
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+            }
+          },
+          {
+            "kind": "policy_declaration",
+            "state": "known",
+            "source_pointer": "/policy/value/security_policy",
+            "value": {
+              "id": "SYNTH-SEC-POLICY-024-A",
+              "owner": "SECURITY",
+              "network": "egress_restricted",
+              "credential": "reference_only",
+              "environment": "SYNTH-ENV-DEV-A",
+              "project_isolation": "SYNTH-PROJECT-A",
+              "operation_authority": "not_granted_by_fixture",
+              "update": "candidate_review_only",
+              "egress": "restricted"
+            }
+          },
+          {
+            "kind": "resource_state",
+            "state": "observed",
+            "source_pointer": "/policy/value/infra_resource",
+            "value": {
+              "owner": "INFRASTRUCTURE",
+              "identity": "SYNTH-RESOURCE-NODE-A",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "network": "egress_restricted",
+              "credential_store": "SYNTH-STORE-REF-A",
+              "credential_value_present": false,
+              "safety_claim": "not_claimed",
+              "placement_owner": "SECURITY"
+            }
+          },
+          {
+            "kind": "worker_enforcement_fixture",
+            "state": "synthetic_only",
+            "source_pointer": "/policy/value/worker_enforcement",
+            "value": {
+              "owner": "Worker execution environment",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "policy_reference": "SYNTH-SEC-POLICY-024-A",
+              "network": "egress_restricted",
+              "credential_value_exposure": "blocked_as_synthetic_fixture",
+              "observation": "synthetic_only"
+            }
+          },
+          {
+            "kind": "environment_b_declaration",
+            "state": "known",
+            "source_pointer": "/policy/value/environment_b/declaration",
+            "value": {
+              "state": "known",
+              "policy": "egress_restricted",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+            }
+          },
+          {
+            "kind": "environment_b_application",
+            "state": "unknown",
+            "source_pointer": "/policy/value/environment_b/application_observation",
+            "value": {
+              "state": "unknown",
+              "applied": null,
+              "not_applied": null,
+              "evidence_ref": null
+            }
+          },
+          {
+            "kind": "receipt",
+            "state": "synthetic_only",
+            "source_pointer": "/policy/value/receipt",
+            "value": {
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "contains_credential_value": false,
+              "value": "policy/resource/enforcer refs only"
+            }
+          },
+          {
+            "kind": "os_work_state",
+            "state": "known",
+            "source_pointer": "/policy/value/os_work_state",
+            "value": "separate_and_not_a_policy_or_resource_authority"
+          }
+        ],
+        "findings": [
+          {
+            "code": "owner_boundary_mismatch",
+            "source": null,
+            "field": "infra_resource.owner_or_placement_owner",
+            "environment": null,
+            "revision": null,
+            "scope": null,
+            "source_pointer": "/policy/value/infra_resource",
+            "observed_value": {
+              "owner": "INFRASTRUCTURE",
+              "placement_owner": "SECURITY"
+            },
+            "left": null,
+            "right": null
+          },
+          {
+            "code": "application_unobserved",
+            "source": null,
+            "field": null,
+            "environment": "SYNTH-ENV-DEV-A",
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "source_pointer": "/policy/value/environment_b/application_observation",
+            "observed_value": {
+              "state": "unknown",
+              "applied": null,
+              "not_applied": null,
+              "evidence_ref": null
+            },
+            "left": null,
+            "right": null
+          }
+        ],
+        "return_targets": [
+          {
+            "finding": "owner_boundary_mismatch",
+            "recipients": [
+              "SECURITY",
+              "INFRASTRUCTURE"
+            ]
+          },
+          {
+            "finding": "application_unobserved",
+            "recipients": [
+              "INFRASTRUCTURE",
+              "Worker execution environment"
+            ]
+          }
+        ],
+        "stage_scope": {
+          "historical_stage": "Stage 4",
+          "stage4_scope": {
+            "state": "absent",
+            "value": null,
+            "source_pointer": null
+          },
+          "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+          "all_stage4_capabilities": {
+            "state": "absent",
+            "value": null,
+            "source_pointer": null
+          }
+        },
+        "execution_state": "not_executed"
       },
       "expected_source_observation": {
         "infra_resource.placement_owner": "SECURITY"
@@ -3555,7 +5675,9 @@
           "infra_resource.placement_owner": "SECURITY"
         },
         "assessment_output_whole_ref": "/cases/7/function_invocations/1/expected_output",
-        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。"
+        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
+        "source_diagnostic_pointer": "/negative_cases/5/failure_route/case_route",
+        "source_defect_clause": "SECが資源配置"
       },
       "failure_route": {
         "source_field": "failure_observation",
@@ -3564,7 +5686,8 @@
       },
       "diagnostic": "資源配置をINFRASTRUCTUREへ戻し、SECURITYはpolicy/authority ownerに留める。",
       "execution_state": "not_executed",
-      "meaning_completion_effect": "none"
+      "meaning_completion_effect": "none",
+      "diagnostic_source_pointer": "/negative_cases/5/failure_route/case_route"
     },
     {
       "id": "SEC024-L8-N07",
@@ -3586,7 +5709,7 @@
         ],
         "apply_to_packet_ref": "PKT-024-POLICY-BASE"
       },
-      "source_defect_clause": null,
+      "source_defect_clause": "別環境receipt",
       "packet_value_refs": [
         {
           "packet_id": "PKT-024-POLICY-BASE",
@@ -3796,74 +5919,118 @@
               {
                 "name": "revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
-                "state": "equal"
-              },
-              {
-                "name": "scope",
-                "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
-                "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/infra_resource/revision",
                 "state": "equal"
               },
               {
                 "name": "environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/infra_resource/environment",
                 "state": "equal"
               },
               {
                 "name": "worker_revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/revision",
                 "state": "equal"
               },
               {
                 "name": "worker_scope",
                 "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/scope",
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/scope",
                 "state": "equal"
               },
               {
                 "name": "worker_environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/environment",
                 "state": "equal"
               },
               {
                 "name": "worker_policy_reference",
                 "left": "SYNTH-SEC-POLICY-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/id",
                 "right": "SYNTH-SEC-POLICY-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/policy_reference",
                 "state": "equal"
               },
               {
                 "name": "receipt_environment",
                 "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
                 "right": "SYNTH-ENV-DEV-B",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/environment",
                 "state": "mismatch"
               },
               {
                 "name": "receipt_revision",
                 "left": "SYNTH-REV-024-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/revision",
                 "right": "SYNTH-REV-024-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/revision",
                 "state": "equal"
               },
               {
                 "name": "receipt_scope",
                 "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/scope",
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/receipt/scope",
                 "state": "equal"
               },
               {
                 "name": "receipt_policy_reference",
                 "left": "SYNTH-SEC-POLICY-024-A",
-                "right": "SYNTH-SEC-POLICY-024-A",
-                "state": "equal"
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/id",
+                "right": null,
+                "right_presence": "absent",
+                "right_source_pointer": null,
+                "state": "unknown"
               }
             ],
             "observation_states": [
               {
+                "kind": "policy_binding_scope",
+                "state": "known",
+                "source_pointer": "/policy/value",
+                "value": {
+                  "revision": "SYNTH-REV-024-A",
+                  "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+                }
+              },
+              {
                 "kind": "policy_declaration",
                 "state": "known",
+                "source_pointer": "/policy/value/security_policy",
                 "value": {
                   "id": "SYNTH-SEC-POLICY-024-A",
                   "owner": "SECURITY",
@@ -3879,6 +6046,7 @@
               {
                 "kind": "resource_state",
                 "state": "observed",
+                "source_pointer": "/policy/value/infra_resource",
                 "value": {
                   "owner": "INFRASTRUCTURE",
                   "identity": "SYNTH-RESOURCE-NODE-A",
@@ -3895,6 +6063,7 @@
               {
                 "kind": "worker_enforcement_fixture",
                 "state": "synthetic_only",
+                "source_pointer": "/policy/value/worker_enforcement",
                 "value": {
                   "owner": "Worker execution environment",
                   "environment": "SYNTH-ENV-DEV-A",
@@ -3909,6 +6078,7 @@
               {
                 "kind": "environment_b_declaration",
                 "state": "known",
+                "source_pointer": "/policy/value/environment_b/declaration",
                 "value": {
                   "state": "known",
                   "policy": "egress_restricted",
@@ -3919,6 +6089,7 @@
               {
                 "kind": "environment_b_application",
                 "state": "unknown",
+                "source_pointer": "/policy/value/environment_b/application_observation",
                 "value": {
                   "state": "unknown",
                   "applied": null,
@@ -3929,6 +6100,7 @@
               {
                 "kind": "receipt",
                 "state": "synthetic_only",
+                "source_pointer": "/policy/value/receipt",
                 "value": {
                   "environment": "SYNTH-ENV-DEV-B",
                   "revision": "SYNTH-REV-024-A",
@@ -3936,43 +6108,55 @@
                   "contains_credential_value": false,
                   "value": "policy/resource/enforcer refs only"
                 }
+              },
+              {
+                "kind": "os_work_state",
+                "state": "known",
+                "source_pointer": "/policy/value/os_work_state",
+                "value": "separate_and_not_a_policy_or_resource_authority"
               }
             ],
             "findings": [
               {
+                "code": "receipt_binding_mismatch",
+                "source": null,
+                "field": "receipt_environment",
+                "environment": null,
+                "revision": null,
+                "scope": null,
+                "source_pointer": "/policy/value/receipt/environment",
+                "observed_value": null,
+                "left": "SYNTH-ENV-DEV-A",
+                "right": "SYNTH-ENV-DEV-B"
+              },
+              {
                 "code": "application_unobserved",
-                "environment": "SYNTH-REV-024-A/SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "source": null,
+                "field": null,
+                "environment": "SYNTH-ENV-DEV-A",
+                "revision": "SYNTH-REV-024-A",
+                "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+                "source_pointer": "/policy/value/environment_b/application_observation",
                 "observed_value": {
                   "state": "unknown",
                   "applied": null,
                   "not_applied": null,
                   "evidence_ref": null
                 },
-                "source": null,
-                "field": null,
                 "left": null,
                 "right": null
-              },
-              {
-                "code": "receipt_binding_mismatch",
-                "field": "environment",
-                "left": "SYNTH-ENV-DEV-A",
-                "right": "SYNTH-ENV-DEV-B",
-                "source": null,
-                "environment": null,
-                "observed_value": null
               }
             ],
             "return_targets": [
               {
-                "finding": "application_unobserved",
+                "finding": "receipt_binding_mismatch",
                 "recipients": [
                   "INFRASTRUCTURE",
                   "Worker execution environment"
                 ]
               },
               {
-                "finding": "receipt_binding_mismatch",
+                "finding": "application_unobserved",
                 "recipients": [
                   "INFRASTRUCTURE",
                   "Worker execution environment"
@@ -3981,17 +6165,305 @@
             ],
             "stage_scope": {
               "historical_stage": "Stage 4",
-              "stage4_scope": null,
-              "scope": "initial safe connection rule only",
-              "all_stage4_capabilities": "not established"
+              "stage4_scope": {
+                "state": "absent",
+                "value": null,
+                "source_pointer": null
+              },
+              "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+              "all_stage4_capabilities": {
+                "state": "absent",
+                "value": null,
+                "source_pointer": null
+              }
             },
             "execution_state": "not_executed"
           }
         }
       ],
       "intermediate_expected": {
-        "materialize_boundary_input_ref": "/cases/8/function_invocations/0/expected_output",
-        "compare_resource_boundary_ref": "/cases/8/function_invocations/1/expected_output"
+        "credential_exposure": [],
+        "owner_separation": [
+          {
+            "role": "policy",
+            "value": "SECURITY"
+          },
+          {
+            "role": "resource_state",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "resource_placement",
+            "value": "INFRASTRUCTURE"
+          },
+          {
+            "role": "physical_enforcement",
+            "value": "Worker execution environment"
+          }
+        ],
+        "binding_comparisons": [
+          {
+            "name": "revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/infra_resource/revision",
+            "state": "equal"
+          },
+          {
+            "name": "environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/infra_resource/environment",
+            "state": "equal"
+          },
+          {
+            "name": "worker_revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/revision",
+            "state": "equal"
+          },
+          {
+            "name": "worker_scope",
+            "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/scope",
+            "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/scope",
+            "state": "equal"
+          },
+          {
+            "name": "worker_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/environment",
+            "state": "equal"
+          },
+          {
+            "name": "worker_policy_reference",
+            "left": "SYNTH-SEC-POLICY-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/id",
+            "right": "SYNTH-SEC-POLICY-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/policy_reference",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-B",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/environment",
+            "state": "mismatch"
+          },
+          {
+            "name": "receipt_revision",
+            "left": "SYNTH-REV-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/revision",
+            "right": "SYNTH-REV-024-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/revision",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_scope",
+            "left": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/scope",
+            "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/receipt/scope",
+            "state": "equal"
+          },
+          {
+            "name": "receipt_policy_reference",
+            "left": "SYNTH-SEC-POLICY-024-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/id",
+            "right": null,
+            "right_presence": "absent",
+            "right_source_pointer": null,
+            "state": "unknown"
+          }
+        ],
+        "observation_states": [
+          {
+            "kind": "policy_binding_scope",
+            "state": "known",
+            "source_pointer": "/policy/value",
+            "value": {
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+            }
+          },
+          {
+            "kind": "policy_declaration",
+            "state": "known",
+            "source_pointer": "/policy/value/security_policy",
+            "value": {
+              "id": "SYNTH-SEC-POLICY-024-A",
+              "owner": "SECURITY",
+              "network": "egress_restricted",
+              "credential": "reference_only",
+              "environment": "SYNTH-ENV-DEV-A",
+              "project_isolation": "SYNTH-PROJECT-A",
+              "operation_authority": "not_granted_by_fixture",
+              "update": "candidate_review_only",
+              "egress": "restricted"
+            }
+          },
+          {
+            "kind": "resource_state",
+            "state": "observed",
+            "source_pointer": "/policy/value/infra_resource",
+            "value": {
+              "owner": "INFRASTRUCTURE",
+              "identity": "SYNTH-RESOURCE-NODE-A",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "network": "egress_restricted",
+              "credential_store": "SYNTH-STORE-REF-A",
+              "credential_value_present": false,
+              "safety_claim": "not_claimed",
+              "placement_owner": "INFRASTRUCTURE"
+            }
+          },
+          {
+            "kind": "worker_enforcement_fixture",
+            "state": "synthetic_only",
+            "source_pointer": "/policy/value/worker_enforcement",
+            "value": {
+              "owner": "Worker execution environment",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "policy_reference": "SYNTH-SEC-POLICY-024-A",
+              "network": "egress_restricted",
+              "credential_value_exposure": "blocked_as_synthetic_fixture",
+              "observation": "synthetic_only"
+            }
+          },
+          {
+            "kind": "environment_b_declaration",
+            "state": "known",
+            "source_pointer": "/policy/value/environment_b/declaration",
+            "value": {
+              "state": "known",
+              "policy": "egress_restricted",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+            }
+          },
+          {
+            "kind": "environment_b_application",
+            "state": "unknown",
+            "source_pointer": "/policy/value/environment_b/application_observation",
+            "value": {
+              "state": "unknown",
+              "applied": null,
+              "not_applied": null,
+              "evidence_ref": null
+            }
+          },
+          {
+            "kind": "receipt",
+            "state": "synthetic_only",
+            "source_pointer": "/policy/value/receipt",
+            "value": {
+              "environment": "SYNTH-ENV-DEV-B",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "contains_credential_value": false,
+              "value": "policy/resource/enforcer refs only"
+            }
+          },
+          {
+            "kind": "os_work_state",
+            "state": "known",
+            "source_pointer": "/policy/value/os_work_state",
+            "value": "separate_and_not_a_policy_or_resource_authority"
+          }
+        ],
+        "findings": [
+          {
+            "code": "receipt_binding_mismatch",
+            "source": null,
+            "field": "receipt_environment",
+            "environment": null,
+            "revision": null,
+            "scope": null,
+            "source_pointer": "/policy/value/receipt/environment",
+            "observed_value": null,
+            "left": "SYNTH-ENV-DEV-A",
+            "right": "SYNTH-ENV-DEV-B"
+          },
+          {
+            "code": "application_unobserved",
+            "source": null,
+            "field": null,
+            "environment": "SYNTH-ENV-DEV-A",
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "source_pointer": "/policy/value/environment_b/application_observation",
+            "observed_value": {
+              "state": "unknown",
+              "applied": null,
+              "not_applied": null,
+              "evidence_ref": null
+            },
+            "left": null,
+            "right": null
+          }
+        ],
+        "return_targets": [
+          {
+            "finding": "receipt_binding_mismatch",
+            "recipients": [
+              "INFRASTRUCTURE",
+              "Worker execution environment"
+            ]
+          },
+          {
+            "finding": "application_unobserved",
+            "recipients": [
+              "INFRASTRUCTURE",
+              "Worker execution environment"
+            ]
+          }
+        ],
+        "stage_scope": {
+          "historical_stage": "Stage 4",
+          "stage4_scope": {
+            "state": "absent",
+            "value": null,
+            "source_pointer": null
+          },
+          "scope": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+          "all_stage4_capabilities": {
+            "state": "absent",
+            "value": null,
+            "source_pointer": null
+          }
+        },
+        "execution_state": "not_executed"
       },
       "expected_source_observation": {
         "receipt.environment": "SYNTH-ENV-DEV-B"
@@ -4016,7 +6488,9 @@
           "receipt.environment": "SYNTH-ENV-DEV-B"
         },
         "assessment_output_whole_ref": "/cases/8/function_invocations/1/expected_output",
-        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。"
+        "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
+        "source_diagnostic_pointer": "/negative_cases/6/failure_route/case_route",
+        "source_defect_clause": "別環境receipt"
       },
       "failure_route": {
         "source_field": "failure_observation",
@@ -4025,7 +6499,8 @@
       },
       "diagnostic": "環境不一致のreceiptを該当resource/実適用の未成立としてINFRASTRUCTURE/実環境へ戻す。OS作業状態では補完しない。",
       "execution_state": "not_executed",
-      "meaning_completion_effect": "none"
+      "meaning_completion_effect": "none",
+      "diagnostic_source_pointer": "/negative_cases/6/failure_route/case_route"
     }
   ],
   "pair_trace": [
@@ -4123,5 +6598,10 @@
     "実行・CI/TDD・L11・意味全体閉包"
   ],
   "source_pin_revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
-  "legacy_comparison_verification": "archive引用は記載line_start..line_endの実行をsource_quoteとUTF-8完全一致で照合し、source_sha256はそのarchive file bytes全体を照合する。"
+  "legacy_comparison_verification": "archive quote bytes must equal the exact source lines at the fixed source_main revision, and whole-file hash must match; quote self-hash alone is insufficient.",
+  "candidate_pair_binding": {
+    "paired_document_id": "HELIXSECURITY-L5-024-DETAIL-DESIGN",
+    "candidate_local": true,
+    "revision_claim": "same candidate pair; no synthetic Git revision"
+  }
 }
