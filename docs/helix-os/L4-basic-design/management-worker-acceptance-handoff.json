@@ -1,0 +1,602 @@
+{
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "parent": "HELIXOS-L2-023",
+  "source_main": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2a",
+    "authoring_stage": "限定前提形成の先行L4/L9",
+    "approved_content_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+    "boundary": "F01/F02/F03/N01全4要求、4handoffの局所source/端/受理/別受入/未観測素材。実handoff・元work消込・全scope構成を生成しない。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "approved_whole_objects": [
+    {
+      "id": "HELIXOS-L3-023-F01",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "approved_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "6c0c2eb79171b619250fd870cd2226890cccae8e6869cd01d34e2ffa81155850",
+      "object": {
+        "id": "HELIXOS-L3-023-F01",
+        "parent": "HELIXOS-L2-023",
+        "title": "各handoffの束縛",
+        "obligation": "015/016のauthorityと接続状況、017ticket、018assignment/attempt、020検証義務/結果、019evidenceの関係する必要unitと版付きinterfaceを使い、管理→推進→Worker→検収→管理の各handoffを対象revision/digest・因果ID・scope・未完義務・停止理由・証拠へ結ぶ。初回結果/receiptは当該実行後に生じる証拠として扱う。",
+        "oracle_ref": "HELIXOS-L10-023-F01"
+      }
+    },
+    {
+      "id": "HELIXOS-L10-023-F01",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "approved_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "ec179a0eeafd5cb8a345b11fe2a78ff83fdaa66428388ffa70518c26ce4e1557",
+      "object": {
+        "id": "HELIXOS-L10-023-F01",
+        "parent": "HELIXOS-L2-023",
+        "title": "各handoffの束縛",
+        "requirement_ref": "HELIXOS-L3-023-F01",
+        "positive_input": "各端の対応recordと受渡しを同scopeへ結び、開始前と実行後の入力を分ける。",
+        "expected_observation": "handoffごとの相関/元revisionと未完、未来receiptの未発生が辿れる。",
+        "negative_input": "別revision/scope/因果IDの組合せ、必要interface版欠落、未来の実結果を左要件起草の前提。",
+        "failure_observation": "当該connectionを未成立にし、発生側sourceまたは管理へ返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXOS-L3-023-F02",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "approved_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "e24dacfe2c216704f279e70710c8c0cec168db3c43bbd49a2cc009994ddf4b07",
+      "object": {
+        "id": "HELIXOS-L3-023-F02",
+        "parent": "HELIXOS-L2-023",
+        "title": "単体と接続の別受入",
+        "obligation": "各unitの成功、handoffの成功、接続固有受入、構成体の成立を別々に確認する。作成側の自己reviewを独立reviewにせず、provider名だけで独立性を確定しない。推進/Worker/検収のauthorityを混同しない。",
+        "oracle_ref": "HELIXOS-L10-023-F02"
+      }
+    },
+    {
+      "id": "HELIXOS-L10-023-F02",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "approved_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "1784088266c74379a6e6ce0ac3d58efb9d45aa851f402242c453053dc36bd823",
+      "object": {
+        "id": "HELIXOS-L10-023-F02",
+        "parent": "HELIXOS-L2-023",
+        "title": "単体と接続の別受入",
+        "requirement_ref": "HELIXOS-L3-023-F02",
+        "positive_input": "unitは成功だがhandoffまたは固有受入が不足するfixtureを分ける。",
+        "expected_observation": "判定が別に残り、independent reviewerのidentity/context/authority/routeへ辿れる。",
+        "negative_input": "unit successで次段受入/完了、作成側兼独立review、推進が検収義務変更、検収が要求/ticket発行。",
+        "failure_observation": "不足する接続/独立性を保持し、unit成功だけで合格にしない。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXOS-L3-023-F03",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "approved_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "93c55d42c9b83bb7fb802071ad25aa77a3f36a7102ad11030f16bf34b0f4257b",
+      "object": {
+        "id": "HELIXOS-L3-023-F03",
+        "parent": "HELIXOS-L2-023",
+        "title": "未完義務の受理と元作業",
+        "obligation": "受渡し不一致では停止理由/未完義務を保持し、受信側が同revision/scopeの未完義務を受理した証拠を確認するまで元作業を完了にしない。受理/ACKと意味解決/検証合格を分け、元義務の消込条件はそのownerの契約へ戻る。",
+        "oracle_ref": "HELIXOS-L10-023-F03"
+      }
+    },
+    {
+      "id": "HELIXOS-L10-023-F03",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "approved_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "1abf2f9306ac84847e8a14d509f15032706e4ff55e7f70de448005e4dee70b59",
+      "object": {
+        "id": "HELIXOS-L10-023-F03",
+        "parent": "HELIXOS-L2-023",
+        "title": "未完義務の受理と元作業",
+        "requirement_ref": "HELIXOS-L3-023-F03",
+        "positive_input": "返却/ACK/受信側受理/実解決/元義務消込を別々に照合する。",
+        "expected_observation": "元作業と受信側に対応する未完・証拠と解消先が辿れる。",
+        "negative_input": "通知ACKだけで未完消失、受理なし元作業完了。",
+        "failure_observation": "当該handoff/完了を未成立にし、受理不足と元義務を保持する。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXOS-L3-023-N01",
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "approved_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "23a91542df5e974c2fb2c7d92298643ef1cb74318566a5b448f2a43eaf84d2c3",
+      "object": {
+        "id": "HELIXOS-L3-023-N01",
+        "parent": "HELIXOS-L2-023",
+        "title": "局所失敗と未観測範囲",
+        "obligation": "各端のrevision/digest/authority/証拠不一致を接続単位で識別し、他unit/他scope成功で穴を埋めない。未見actor/project/revisionのfixtureで受渡しを再構築し、未観測/未発生の接続は未成立のまま残す。",
+        "oracle_ref": "HELIXOS-L10-023-N01"
+      }
+    },
+    {
+      "id": "HELIXOS-L10-023-N01",
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "approved_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "a3893a1af0af5fb6326e3aad71fc8ee33e0c6b6f580b03913fdbc249ae6dee43",
+      "object": {
+        "id": "HELIXOS-L10-023-N01",
+        "parent": "HELIXOS-L2-023",
+        "title": "局所失敗と未観測範囲",
+        "requirement_ref": "HELIXOS-L3-023-N01",
+        "positive_input": "伏せた別project/actorと一端だけの故障から各handoffを照合する。",
+        "expected_observation": "発生端/戻し先・未完が具体的で、無関係な有効unitを保持する。",
+        "negative_input": "field存在/件数だけで接続成功、全scope成功へ外挿、未知edgeを影響なし。",
+        "failure_observation": "未観測/未解決edgeを保持し、全体成立を主張しない。",
+        "execution_state": "not_executed"
+      }
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-workflow-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "f6f4a3476cf9314621dbcb9f34d720baad3967d0a40a7eeef6fc72e5f1da30ff"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "9b94cc9ea65b158191ea782f2c66d1b7f8c0340d4da3f69c1ac8529fa3998dcc"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/worker-assignment-attempt.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "a6748aecb12106c7046f7e170b117aa3ca0dd1e6b4750fe372d2b52af3689645"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/event-episode-continuity.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "be04a234e500cbc11b683f15ef0799bfa284af1aa48d7316f161258752048ba3"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "1a7814e6016c464777a394ee41587aa4903de12887b77d8dc684ac5495499a8d"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "608e8bb18145d9c74c610bf0d988a9bff7879781",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    }
+  ],
+  "source_pin_limit": "exact承認wholeは4L3/4L10のみ。full-file pinは全内容採択/精読や各unit全実能力の成立を示さない。",
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "selected_line_quotes": [
+        {
+          "line": 222,
+          "text": "Assignmentはexactly-one Ticket revision/digestへ束縛し、actor/lane/runtime、実行場所、base/head、予算、lease/fence、capabilityを所有する。scopeやacceptanceを独自変更しない。provider交代は旧lease失効とhandoverを要求し、同一仕事ならTicketを作り直さない。",
+          "utf8_sha256": "4cc3ce0941a2383c23b62ff20b02e23b9d06b767d381526b3059de6611eeffc8"
+        },
+        {
+          "line": 230,
+          "text": "cell/delegation/acceptance receiptへTicket ID/revision/digestをversionedに結合する。Issueやbehaviorが同じでもTicketが違えば別仕事とする。既存dependency/conflict/parent acceptanceを複製せず、旧receiptは明示adapterで読む。",
+          "utf8_sha256": "f1044419f9569d060b5533a3f66640233dacdf2e5e57eed90fb13c2c9bca1d2d"
+        },
+        {
+          "line": 238,
+          "text": "一回の実行を独立recordとし、Ticket/Assignment、実際のruntime/model/effort/profile、input/packet/fixture/base/head、時刻、outcome、output/test/egress/review refs、retry lineageを保持する。requested/admitted/deniedと実際のprovider起動を区別し、全状態を観測イベントへ接続する。",
+          "utf8_sha256": "21feea976c9b27414507c5050da19aa3c2ba0839a3beede736c86419646d6611"
+        },
+        {
+          "line": 242,
+          "text": "連続失敗・retry budgetはdurable eventと既存Recovery policyから導出する。session再開を初回扱いしない。台帳取得不能・上限超過は新規retryを止め、理由に応じてRecovery/Reverse/Requirement Re-entry/Human Requiredへ戻す。実験retryは本線retryと別budgetで数える。",
+          "utf8_sha256": "a25826895972b79062aeedfe4bb058326101a2bed8f9b093231fd58c1e32f113"
+        },
+        {
+          "line": 246,
+          "text": "通常変更のcloseはcurrent Ticket/Assignment、必要なexact-head CI/oracle/独立review、scope/lease/fence、証拠本体、必要なGitHub/DB read-afterで判定する。PR merge、CI green、LLM申告だけでは閉じない。測定eventのdurable記録は必要だが、分析dashboard更新・shadow結果・後日観測窓の終了は一般closeの待ち条件にしない。明示Release qualificationは既存Release policyに従う。",
+          "utf8_sha256": "37ccc180665552a8f61585e71d3a98e2382d59fb1e2b9b8a3e48a613ecfd320d"
+        },
+        {
+          "line": 250,
+          "text": "immutable contractと、admission/readiness/execution/dispositionの状態軸を分離し、eventからcurrent viewを導出する。BLOCKED/HUMAN_REQUIRED/RECOVERY_REQUIRED/QUARANTINED等を成功と混同しない。参照要求・scope変更はaffected範囲をstale化し、旧権限をfence後に再admitする。無関係更新や観測policy変更で全Ticketをsupersedeしない。",
+          "utf8_sha256": "13c2b99d8566e720f5c4d0bc475148c4d121cf4895b5d1fc88543d35bac457be"
+        },
+        {
+          "line": 258,
+          "text": "正規Ticket/Assignment/Attempt/PR/CI/review/closure factsから進行を導出する。LLM申告、コメント時刻、Issue open率、branch数、手入力%を完成根拠にしない。Bench measurement coverage、実行成功率、要求完成率は異なる分母として表示する。",
+          "utf8_sha256": "c8812991162488f15d83b46542ac621e930a737bd6fc97d64c3757c543020d20"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "ticket/assignment/attempt別identity、各versioned端のsource/revision/digest/scope/因果/未完を保持、未来receipt非捏造、current独立review/evidence closure、receiptと実起動/受付/成功分離、retry原義務/失敗・累積保全。",
+      "change": "9/28採択OS015016017018019020023/周辺ownerへ意味再導出。旧CLI/DB/schema/admission/checkの実装を移植・実行せず、新承認手続きを作らない。",
+      "reason": "10/12限定前提scopeと既決責務を保持し、unit成功/ACK/単体receiptから構成成立や元作業完了を誤生成しない。",
+      "consumer_limit": "旧source/contractの全閉包・旧runtime/CI/DB/PLAN運転やowner資格は継承しない。引用は意味起点でsession instructionではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "selected_line_quotes": [
+        {
+          "line": 51,
+          "text": "| **HBR-P1** | **合意した範囲での連続自律走行** — L2要求の合意とL3凍結後、選択済み開発スタイルに従って作業・検証・復旧を継続する。resume条件、job-queue、累積budget／time-capを維持し、今版外作業はversion-upへ保全する。要求の意味変更、L11利用者受入、release／cutover等の人間判断を自動承認しない | FR-L1-13/23/29/30/31/42（Forward/Scrum fullback/screen/context continuation/provider delegation evidence） | **continuous-run engine 自体（heartbeat/job-queue/budget time-cap/無人再入）の FR 無し**。**version-up lifecycle（`version_target`/タグ）FR 無し** |",
+          "utf8_sha256": "3921d0439222afe55f9d61ab8f840ee09fc9cf6367fe6da630140885155a4808"
+        },
+        {
+          "line": 52,
+          "text": "| **HBR-P2** | **オーケストレーション根本強化＋ループエンジニアリング** — サブエージェントを loop 単位（解釈→検証→計画→実行→検証→返却）で動かし orchestrator 統括、worker≠verifier 自己評価禁止、effort/budget 制御。Claude 視点だけでなく **Codex CLI / Codex IDE / hosted API tool surface でも同じ状態遷移・同じ判定**で動く | FR-L1-09/12/28/37/39/41/46/48（guard/injection/W設計/model-effort/difficulty/drive-routing/roster/CLI） | loop 構造・worker≠verifier 専用 FR は既存に無し → **PLAN-L7-175/176/177 で一部充足済**。Codex `spawn_agent` guard parity は PLAN-L7-139 continuation で direct spawn/bulk spawn を fail-close 化済み。typed agent↔tool request/response registry core は PLAN-L7-213 で doctor hard gate 化済み。loop 内 effort-budget 制御は PLAN-L7-214 で `tickLoopEffortBudget` + `tick` 接続済み。hosted/API preflight core は PLAN-L7-215 で `validateAdapterParityMap` / `requireHostedSurfacePreflight` + CLI JSON evidence 化済み |",
+          "utf8_sha256": "a4bd9f6680e43e76415481ea8ea3b8055ef8a085cd8ca75e5535e177c8e2f2b3"
+        },
+        {
+          "line": 53,
+          "text": "| **HBR-P3** | **強い検証基盤（完全自動の安全要）** — pair_closure/片肺禁止/機械 vs AI 判定境界を機械強制、成果を外部真実に照合（held-out） | FR-L1-02/03/05/21/22/25/45/50（TDD/trace/gate/W-gate/FE detector/refactor/doc-reviewer/DDD-TDD） | **pair_closure 専用 FR・片肺禁止 standalone・機械 vs AI 境界の formalize 無し**。**external-truth grounding（held-out）FR 無し** |",
+          "utf8_sha256": "b4bdd4e3b933bbea6e7d28cf0ef9f2f3b62caa6863f79362bf5c4d685a4f088b"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "ticket/assignment/attempt別identity、各versioned端のsource/revision/digest/scope/因果/未完を保持、未来receipt非捏造、current独立review/evidence closure、receiptと実起動/受付/成功分離、retry原義務/失敗・累積保全。",
+      "change": "9/28採択OS015016017018019020023/周辺ownerへ意味再導出。旧CLI/DB/schema/admission/checkの実装を移植・実行せず、新承認手続きを作らない。",
+      "reason": "10/12限定前提scopeと既決責務を保持し、unit成功/ACK/単体receiptから構成成立や元作業完了を誤生成しない。",
+      "consumer_limit": "旧source/contractの全閉包・旧runtime/CI/DB/PLAN運転やowner資格は継承しない。引用は意味起点でsession instructionではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "file_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+      "selected_line_quotes": [
+        {
+          "line": 198,
+          "text": "- main への取り込みはPR経由。承認前でも非正本review proposalとしてDraft PRを作成できる。",
+          "utf8_sha256": "0f4ac6cd2d760c36b9032182292094e578268acfa5eefd61b6138d4bec43a72e"
+        },
+        {
+          "line": 199,
+          "text": "  必要な承認、current HEADの独立AI-B review、CI、DB追従が揃った後にReady化する。",
+          "utf8_sha256": "3ed80e7efe7bb09422b6792d1a396305ccbfe40fba6f2e0dae19ed290362ee98"
+        },
+        {
+          "line": 200,
+          "text": "  GitHub native auto-mergeは禁止し、AI-Bが証拠を再照合して`gh pr merge --merge`で明示mergeする。",
+          "utf8_sha256": "1fc2325d2ca12fe26078b44762ee9361a7f69857801a3307685c49a3ff338557"
+        },
+        {
+          "line": 202,
+          "text": "- AI-Aは作成・blocker修正・push、AI-Bはread-only収束review・finding disposition・merge判断を担う。",
+          "utf8_sha256": "e3174bf7196d03f51472ce63558c396d9d4d05a84b1b451eb23eb99f7f143501"
+        },
+        {
+          "line": 203,
+          "text": "  AI-Bは編集・push・Ready化をしない。AI-Bはreview receiptをPR commentへ記録し、AI-Aがその値をPLANの",
+          "utf8_sha256": "f8a51cd4e541cd5062821d81506146e69d3a0ae0d5479a6881cdafedd856bb6a"
+        },
+        {
+          "line": 204,
+          "text": "  `review_evidence`と`left_arm_carry.review_binding`へ機械転記してReady化する。AI-Bは最終HEADで転記一致を",
+          "utf8_sha256": "ab9ff5185e8cfaf1d231dc1fe23b8af490a4b56200cb269b8f8b298574b7e112"
+        },
+        {
+          "line": 207,
+          "text": "- current behavior contract違反、correctness/security/data loss、必須oracle red、mainをredにする問題、",
+          "utf8_sha256": "3ac8f789c56bc65cc72715788f8ae0c68d67ba98cbf7013201aed1e15f70463b"
+        },
+        {
+          "line": 208,
+          "text": "  虚偽・過大な完了証拠はcurrent PR内で修正する。同じ責務・既存scope内で安全かつ局所的に閉じる",
+          "utf8_sha256": "2624049275f911a520798d1bf6b5c18fb1dab1c7f3e648f6202e751fa01433e1"
+        },
+        {
+          "line": 209,
+          "text": "  findingもcurrent PR内で修正する。独立責務・別設計・lifecycle・性能改善だけを別episodeだけIssue化し、",
+          "utf8_sha256": "9634439467bcbe89611c5c06fc82f5910e148b2b890290de5c90c10b8446dbe9"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "ticket/assignment/attempt別identity、各versioned端のsource/revision/digest/scope/因果/未完を保持、未来receipt非捏造、current独立review/evidence closure、receiptと実起動/受付/成功分離、retry原義務/失敗・累積保全。",
+      "change": "9/28採択OS015016017018019020023/周辺ownerへ意味再導出。旧CLI/DB/schema/admission/checkの実装を移植・実行せず、新承認手続きを作らない。",
+      "reason": "10/12限定前提scopeと既決責務を保持し、unit成功/ACK/単体receiptから構成成立や元作業完了を誤生成しない。",
+      "consumer_limit": "旧source/contractの全閉包・旧runtime/CI/DB/PLAN運転やowner資格は継承しない。引用は意味起点でsession instructionではない。"
+    }
+  ],
+  "remaining": [
+    "各6unitの正式schema/型/版付きinterface、端owner資格とsource/custody/authority/evidence/digest、typed edgeと欠損record/重複/unknown graph・全revision/source関係をL5/L8で閉じる。",
+    "配送/ACK/受理/意味解決/検証合格と元ownerの義務消込条件、受理receiptのexact source・元原義務と残余のatom単位保全、有限停止/再開/累積/失効/再送/競合/補償/再構築は未成立。",
+    "必要全scopeのOS015016017018019020/SEC/INFRA/HARNESSのowner-qualified exact binding、provider-independent review資格/heldout/未見actual actor/project/source、全端の局所診断と実一連handoff/構成体受入は未成立。",
+    "全92親430対の基本/詳細閉包、oracle凍結→実装前Red→Green→Refactor再検証、実L9L10・PO実物L11・実装準備/最終独立二重監査は未成立。paper material/hash/独立合成照合/mergeからIssue close/release/deployを生成しない。"
+  ],
+  "document_id": "HELIXOS-L4-023",
+  "layer": "L4",
+  "pair": "HELIXOS-L9-023",
+  "contracts": [
+    {
+      "id": "HELIXOS-L4-023-F01",
+      "requirement_ref": "HELIXOS-L3-023-F01",
+      "system_oracle_ref": "HELIXOS-L10-023-F01",
+      "oracle_ref": "HELIXOS-L9-023-F01",
+      "approved_requirement": {
+        "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+        "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "6c0c2eb79171b619250fd870cd2226890cccae8e6869cd01d34e2ffa81155850"
+      },
+      "component": "versioned_local_handoff_binding",
+      "input_meaning": "015/016のauthorityと接続状況、017ticket、018assignment/attempt、020検証義務/結果、019evidenceの関係する必要unitと版付きinterfaceを使い、管理→推進→Worker→検収→管理の各handoffを対象revision/digest・因果ID・scope・未完義務・停止理由・証拠へ結ぶ。初回結果/receiptは当該実行後に生じる証拠として扱う。",
+      "output_meaning": "各edge独立facet/原状態/未完とsource-ownerへの不足素材。実effect none。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXOS-L4-023-F02",
+      "requirement_ref": "HELIXOS-L3-023-F02",
+      "system_oracle_ref": "HELIXOS-L10-023-F02",
+      "oracle_ref": "HELIXOS-L9-023-F02",
+      "approved_requirement": {
+        "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+        "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "e24dacfe2c216704f279e70710c8c0cec168db3c43bbd49a2cc009994ddf4b07"
+      },
+      "component": "separate_unit_connection_review_material",
+      "input_meaning": "各unitの成功、handoffの成功、接続固有受入、構成体の成立を別々に確認する。作成側の自己reviewを独立reviewにせず、provider名だけで独立性を確定しない。推進/Worker/検収のauthorityを混同しない。",
+      "output_meaning": "各edge独立facet/原状態/未完とsource-ownerへの不足素材。実effect none。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXOS-L4-023-F03",
+      "requirement_ref": "HELIXOS-L3-023-F03",
+      "system_oracle_ref": "HELIXOS-L10-023-F03",
+      "oracle_ref": "HELIXOS-L9-023-F03",
+      "approved_requirement": {
+        "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+        "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "93c55d42c9b83bb7fb802071ad25aa77a3f36a7102ad11030f16bf34b0f4257b"
+      },
+      "component": "unfinished_receiver_acceptance_and_source_work_boundary",
+      "input_meaning": "受渡し不一致では停止理由/未完義務を保持し、受信側が同revision/scopeの未完義務を受理した証拠を確認するまで元作業を完了にしない。受理/ACKと意味解決/検証合格を分け、元義務の消込条件はそのownerの契約へ戻る。",
+      "output_meaning": "各edge独立facet/原状態/未完とsource-ownerへの不足素材。実effect none。",
+      "operation_effect": "none"
+    },
+    {
+      "id": "HELIXOS-L4-023-N01",
+      "requirement_ref": "HELIXOS-L3-023-N01",
+      "system_oracle_ref": "HELIXOS-L10-023-N01",
+      "oracle_ref": "HELIXOS-L9-023-N01",
+      "approved_requirement": {
+        "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+        "source_path": "docs/helix-os/L3-requirements/nfr-grade.json",
+        "object_canonical_sha256": "23a91542df5e974c2fb2c7d92298643ef1cb74318566a5b448f2a43eaf84d2c3"
+      },
+      "component": "unobserved_local_scope_and_unseen_reconstruction_material",
+      "input_meaning": "各端のrevision/digest/authority/証拠不一致を接続単位で識別し、他unit/他scope成功で穴を埋めない。未見actor/project/revisionのfixtureで受渡しを再構築し、未観測/未発生の接続は未成立のまま残す。",
+      "output_meaning": "各edge独立facet/原状態/未完とsource-ownerへの不足素材。実effect none。",
+      "operation_effect": "none"
+    }
+  ],
+  "diagnostic_contract": {
+    "phase_names": [
+      "preflight",
+      "receive",
+      "reconcile"
+    ],
+    "edge_roles": {
+      "management_promotion": [
+        "management",
+        "promotion"
+      ],
+      "promotion_worker": [
+        "promotion",
+        "worker"
+      ],
+      "worker_acceptance": [
+        "worker",
+        "acceptance"
+      ],
+      "acceptance_management": [
+        "acceptance",
+        "management"
+      ]
+    },
+    "binding_fields": [
+      "project",
+      "requirement_revision",
+      "scope",
+      "causal_id",
+      "subject_ref",
+      "subject_revision",
+      "subject_digest",
+      "interface_ref",
+      "interface_revision",
+      "authority_ref"
+    ],
+    "join_fields": [
+      "project",
+      "requirement_revision",
+      "scope",
+      "causal_id",
+      "subject_ref",
+      "subject_revision",
+      "subject_digest",
+      "interface_ref",
+      "interface_revision"
+    ],
+    "review_fields": [
+      "actor",
+      "context",
+      "authority_ref",
+      "route_ref"
+    ],
+    "facet_names": [
+      "binding",
+      "units",
+      "delivery",
+      "reception",
+      "connection",
+      "review",
+      "unfinished",
+      "coverage"
+    ],
+    "condition_names": [
+      "handoff_material_corresponding",
+      "handoff_material_unknown",
+      "handoff_material_violation"
+    ],
+    "algorithm": [
+      "L9 given.inputは保存用base_ref/replacements/expanded_input_sha256。fixture_inputs[base_ref]を独立deepcopyし、各replacement.path（既存dict keyまたはlist indexの配列）の原位置をvalueへ置換する。展開したinputをJSON UTF-8 sort_keys=true compact separator ensure_ascii=false allow_nan=falseでcanonical化しSHA-256一致を確認した後、以下の意味比較に渡す。これはpaper fixtureだけの保存表現で、正式schema/codec/runtimeへ採用しない。",
+      "phaseはpreflight/receive/reconcileだけ。不明phaseはphase_unresolved→global、selected_phase=null。selected_edges/context.selected_edgesは重複なしstring listかつ全IDが4edge語彙に存在するときだけknown selection。片側不明は原selection root edge_selection_unresolved、未知非空IDは当該list index unknown_edge_identityを併記。両known集合相反はactual selection root edge_selection_conflict。未知を非適用/影響なしへ補完しない。",
+      "known stringは非空文字列、known setは重複なし非空文字列list（集合自体は空を許す）。比較は片側unknownなら原pointer source_unresolved、両側unknownなら両pointer、両known相反だけactual pointer source_conflict。setはsort比較。固定codeのfacet/violation/unknownは宣言表に従い、generic比較codeのfacetはその比較を記すlaneとする。findingはcode/pointer/return_ownerで一意化し同順sort。ownerはmanagement-handoff-owner。",
+      "4edgeを固定順に出力。actual known selectionに含むedgeだけをactiveにする。inactiveで両側selection knownなら全8facet not_selected、それ以外全8facet unknown。inactiveのunit/delivery/retainedはnull、transfer/connectionはfalse。activeだがexpected selection不明ならcoverage unknownを先に保持。",
+      "active全phaseでsender/receiverの10binding fieldとroleを独立context同端へstring比較。context roleは固定edge_rolesへも比較。receiver→senderはauthority_refを除く9fieldを比較する。両端authorityは別owner sourceであり同一権限に固定しない。sender_outstandingを独立context同fieldへset比較、stop_reason_refはstring比較する。source_remainingがset型不明ならsource_obligations_unresolved、knowncontext.sender_outstandingがknownsource_remainingに包含されなければsource_obligation_lost。retained_obligationsはknownsource_remaining原値かnull。",
+      "receive/reconcileだけunit sender/receiver stateを独立context同fieldへ比較。閉集合success_material/failed_material/unobserved/not_occurred。両known状態相反はsource_conflict、閉集合外は各原位置source_unresolved。actual failed_materialはunit_failed、success_material以外はunit_unobservedを併記。出力は各原閉集合stateかnullで、原failureを他unit成功で消さない。",
+      "同phaseのdelivery stateはdelivered_material/failed_material/unobserved/not_occurredで同じclosed comparison、actual failedはdelivery_failed、normal以外はdelivery_unobserved。delivery_refをcontext同fieldへstring比較。receiver_acceptance stateはaccepted_material/refused_material/unobserved/not_occurredで同じ比較、actual refusedはreceiver_refused、normal以外はreceiver_unobserved。source_refは独立context acceptance.source_ref、binding10fieldとroleはcontext.receiverへ比較。outstandingがset型不明ならreceiver_obligations_unresolved、context.sender_outstandingがそのknown集合に包含されなければreceiver_obligation_lost。observed=falseはedge_unobserved、true以外はedge_observation_unresolved。ack値とprovider名はこれらの素材を補わない。",
+      "reconcileだけconnection_acceptance.stateをverified_material/failed_material/unobserved/not_occurred閉集合で同context比較し、failedはconnection_acceptance_failed、normal以外はconnection_acceptance_unobserved。source_refは独立context同fieldへ比較。reviewが非dictなら原record root review_record_unresolved、expected非dictならexpected root同code。両dictの場合actor/context/authority_ref/route_refを独立context.reviewへ比較し、producer.actor/contextも独立context.producerへ比較。known reviewer actorがproducer actorと同じならproducer_self_review、knowncontextが同じならreview_context_not_independent。provider名だけで独立性を確定しない。",
+      "receiver_transfer_materialはreceive/reconcileでbinding/delivery/reception/coverageにmarkerが1つもないときだけtrue。unit成功/ACKだけではtransferを生成しない。source_completion_claim=trueでは、そのtransferがfalseならsource_completion_without_receiver、trueでもsource_completion_unprovenとしてsource-work ownerの残る消込契約を未成立に保持。false以外のunknownはsource_completion_claim_unresolved。meaning_resolved_claim=trueはack_not_meaning_resolution、false以外はmeaning_resolution_claim_unresolved。受理と意味解決/検証合格は別で、元義務の消込条件はownerへ戻る。",
+      "connection_material_correspondenceはreconcileでbinding/units/delivery/reception/connection/review/coverageにmarkerが1つもないときだけtrue（unfinishedは独立に原未完を保持）。whole_scope_claim=trueはglobal whole_scope_claim_unproven、false以外はwhole_scope_claim_unresolved。全actual flagsはfalse、whole_composition_verified=false、operation_effect=none。facetはviolation優先、次unknown、次not_selected、他corresponding。conditionはglobalと全edge facetを同じ優先でhandoff_material_violation/handoff_material_unknown/handoff_material_correspondingへ集約し、not_selectedは成功の証拠へ数えない。素材対応・件数・paper再束縛で実構成体/独立actual heldoutを成立させない。"
+    ],
+    "diagnostic_code_facets": {
+      "source_unresolved": "comparison",
+      "source_conflict": "comparison",
+      "phase_unresolved": "global",
+      "edge_selection_unresolved": "global",
+      "edge_selection_conflict": "global",
+      "unknown_edge_identity": "global",
+      "unit_failed": "units",
+      "unit_unobserved": "units",
+      "delivery_failed": "delivery",
+      "delivery_unobserved": "delivery",
+      "receiver_refused": "reception",
+      "receiver_unobserved": "reception",
+      "receiver_obligations_unresolved": "reception",
+      "receiver_obligation_lost": "reception",
+      "connection_acceptance_failed": "connection",
+      "connection_acceptance_unobserved": "connection",
+      "review_record_unresolved": "review",
+      "producer_self_review": "review",
+      "review_context_not_independent": "review",
+      "source_obligations_unresolved": "unfinished",
+      "source_obligation_lost": "unfinished",
+      "source_completion_without_receiver": "unfinished",
+      "source_completion_unproven": "unfinished",
+      "source_completion_claim_unresolved": "unfinished",
+      "ack_not_meaning_resolution": "unfinished",
+      "meaning_resolution_claim_unresolved": "unfinished",
+      "edge_unobserved": "coverage",
+      "edge_observation_unresolved": "coverage",
+      "whole_scope_claim_unproven": "global",
+      "whole_scope_claim_unresolved": "global"
+    },
+    "diagnostic_code_dispositions": {
+      "source_unresolved": "unknown",
+      "source_conflict": "violation",
+      "phase_unresolved": "unknown",
+      "edge_selection_unresolved": "unknown",
+      "edge_selection_conflict": "violation",
+      "unknown_edge_identity": "unknown",
+      "unit_failed": "violation",
+      "unit_unobserved": "unknown",
+      "delivery_failed": "violation",
+      "delivery_unobserved": "unknown",
+      "receiver_refused": "violation",
+      "receiver_unobserved": "unknown",
+      "receiver_obligations_unresolved": "unknown",
+      "receiver_obligation_lost": "violation",
+      "connection_acceptance_failed": "violation",
+      "connection_acceptance_unobserved": "unknown",
+      "review_record_unresolved": "unknown",
+      "producer_self_review": "violation",
+      "review_context_not_independent": "violation",
+      "source_obligations_unresolved": "unknown",
+      "source_obligation_lost": "violation",
+      "source_completion_without_receiver": "violation",
+      "source_completion_unproven": "unknown",
+      "source_completion_claim_unresolved": "unknown",
+      "ack_not_meaning_resolution": "violation",
+      "meaning_resolution_claim_unresolved": "unknown",
+      "edge_unobserved": "unknown",
+      "edge_observation_unresolved": "unknown",
+      "whole_scope_claim_unproven": "violation",
+      "whole_scope_claim_unresolved": "unknown"
+    },
+    "result_fields": [
+      "condition",
+      "selected_phase",
+      "edge_correspondence",
+      "unit_material_states",
+      "delivery_material_states",
+      "receiver_transfer_material",
+      "connection_material_correspondence",
+      "retained_obligations",
+      "findings",
+      "actual_handoff_performed",
+      "actual_source_work_completed",
+      "whole_composition_verified",
+      "operation_effect"
+    ],
+    "finding_fields": [
+      "code",
+      "pointer",
+      "return_owner"
+    ],
+    "return_owner": "management-handoff-owner",
+    "fixed_shape_limit": "展開後の外側shapeと4edge key集合は固定fixture。formal codec/未知外側shape/全graph/資格を扱う実enforcerではない。source receiptを実操作前に生成しない。"
+  }
+}
