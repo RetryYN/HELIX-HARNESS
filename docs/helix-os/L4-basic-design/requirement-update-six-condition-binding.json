@@ -1,0 +1,1163 @@
+{
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "parent": "HELIXOS-L2-001",
+  "source_main": "757e624ef456432cdb906a9040e76701b2c70bbb",
+  "scope": {
+    "approval_revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+    "requirements": [
+      "HELIXOS-L3-001-F01",
+      "HELIXOS-L3-001-F02",
+      "HELIXOS-L3-001-F03",
+      "HELIXOS-L3-001-F04",
+      "HELIXOS-L3-001-B01"
+    ],
+    "oracles": [
+      "HELIXOS-L10-001-B01",
+      "HELIXOS-L10-001-F01",
+      "HELIXOS-L10-001-F02",
+      "HELIXOS-L10-001-F03",
+      "HELIXOS-L10-001-F04"
+    ],
+    "operation": "管理source・更新案・既存policy・選択意味変更の六条件と更新観測の文書照合。実更新はしない。",
+    "version_boundary": "1.0はMPR六条件に限定。001旧routingの版指定は追加しない。",
+    "historical_stage": "10/12限定前提著述。001の旧routingは10/3 roster外。MPR六条件の1.0以外へ版を追加しない。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "approved_whole_objects": [
+    {
+      "id": "HELIXOS-L3-001-F01",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-001-F01",
+        "parent": "HELIXOS-L2-001",
+        "title": "対象と判断の正本参照",
+        "obligation": "対象projectとscopeごとにConcept/L1/要求identity・revision、採否/合意と判断出所、担当責務を元正本へ結ぶ。GitHub状態から要求や採否を推定しない。",
+        "oracle_ref": "HELIXOS-L10-001-F01"
+      },
+      "object_canonical_sha256": "d230c3e1b36e2919220ae5856fb301c6d5355470a8ad6159c0cf130ef116abc4"
+    },
+    {
+      "id": "HELIXOS-L3-001-F02",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-001-F02",
+        "parent": "HELIXOS-L2-001",
+        "title": "更新案と適用根拠",
+        "obligation": "未確定変更案の原文・理由・対象・変更前revisionを保持し、変更する要求/契約/受入/検証/下流影響と生成projection追従を分ける。既存policy・根拠・scopeで自動適用/修復/必要な人判断/拒否/競合を区別し、有効な既決許可を同じ理由で再質問しない。",
+        "oracle_ref": "HELIXOS-L10-001-F02"
+      },
+      "object_canonical_sha256": "2092bee2088565c0771e18e783f1d0f0aed58c6c12d57f6eb104ab0c9dc72fcc"
+    },
+    {
+      "id": "HELIXOS-L3-001-F03",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-001-F03",
+        "parent": "HELIXOS-L2-001",
+        "title": "六条件を同じ意味変更へ結合",
+        "obligation": "意味変更をcanonicalizeする操作を選んだ場合、authority、impact、pairと互換revision、oracle/expected failure、rollback/recovery根拠、影響下流のstale state更新根拠を同じoperation/base/revision/scopeへ結ぶ。六条件の不足/不一致では正本化せず、HARNESSの意味/影響/pair/oracleをOSで作らない。",
+        "oracle_ref": "HELIXOS-L10-001-F03"
+      },
+      "object_canonical_sha256": "e35c70d81abfd46bf99a4b98786825b22a6e973e04facfb51ae8851d1de3f91e"
+    },
+    {
+      "id": "HELIXOS-L3-001-F04",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-001-F04",
+        "parent": "HELIXOS-L2-001",
+        "title": "更新故障と六条件不足の別判定",
+        "obligation": "stale base拒否、初期write/receipt faultでのpartial-current防止、複数revision証拠混在拒否を、六つの一条件不足oracleから分けて照合する。OS053の原子的保存とHARNESS052のcommand意味判定を参照し、旧shadow/互換Markdown/Issue本文から最新JSONを巻き戻さない。",
+        "oracle_ref": "HELIXOS-L10-001-F04"
+      },
+      "object_canonical_sha256": "a0fd1c8efd1036ec4784d172d4bdb09ff51f316d0e31fbacd110fd9d84704b22"
+    },
+    {
+      "id": "HELIXOS-L3-001-B01",
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-001-B01",
+        "parent": "HELIXOS-L2-001",
+        "title": "更新成立と上流判断の境界",
+        "obligation": "正本更新の運転は承認済み意味と既存authorityに従う。更新成功は未完実装/未実行test、L11利用者受入、要求の新採択を成立させない。六条件は選択した意味変更操作へ適用し、読み取りや非該当操作に全source/全consumerを一律必須にしない。",
+        "oracle_ref": "HELIXOS-L10-001-B01"
+      },
+      "object_canonical_sha256": "4ee597c38327254df01b768028a10f276b6e92b16b1e87dc6017d338a607b512"
+    },
+    {
+      "id": "HELIXOS-L10-001-B01",
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-001-B01",
+        "parent": "HELIXOS-L2-001",
+        "title": "更新成立と上流判断の境界",
+        "requirement_ref": "HELIXOS-L3-001-B01",
+        "positive_input": "正本更新receiptと未実装/未検証の別状態を照合する。",
+        "expected_observation": "更新成功と上流意味判断/実物状態が別に見える。",
+        "negative_input": "更新receiptから要求採択/実装/受入を生成、無関係な有効scopeへ六条件を一律適用。",
+        "failure_observation": "越境した成立主張を拒み、該当操作の不足のみを保持する。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "37d69b44366760112899bbdf4002b6254eb93fc6d5ac1cd9909636643dc99e06"
+    },
+    {
+      "id": "HELIXOS-L10-001-F01",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-001-F01",
+        "parent": "HELIXOS-L2-001",
+        "title": "対象と判断の正本参照",
+        "requirement_ref": "HELIXOS-L3-001-F01",
+        "positive_input": "二projectの異なる要求revisionと判断sourceを入力する。",
+        "expected_observation": "各対象の意味正本・判断・責務を別々に辿れる。",
+        "negative_input": "Issue closeやPR mergeだけ、別projectの合意revision、責務欠落。",
+        "failure_observation": "対象/source/責務の不足を保持し、判断主体または正本ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "126f18a2934623d811bdb95893d3979fbb9aaeffc517fce016ab1f7d9ede04a3"
+    },
+    {
+      "id": "HELIXOS-L10-001-F02",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-001-F02",
+        "parent": "HELIXOS-L2-001",
+        "title": "更新案と適用根拠",
+        "requirement_ref": "HELIXOS-L3-001-F02",
+        "positive_input": "未確定案と許可scope内/外の案、意味変更とview変更を比較する。",
+        "expected_observation": "原案と適用判断の根拠、影響対象と差分を同じ操作へ辿れる。",
+        "negative_input": "正本化待ちの案を消失、policy自己拡張、全変更に追加承認、一view更新を意味採択。",
+        "failure_observation": "元案と不成立理由を保持し、必要な判断だけを既存authority境界へ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "8a8a3fcdb44c4f3ce749f107a51165e94319c57987d0f8b448643bdaf7df56de"
+    },
+    {
+      "id": "HELIXOS-L10-001-F03",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-001-F03",
+        "parent": "HELIXOS-L2-001",
+        "title": "六条件を同じ意味変更へ結合",
+        "requirement_ref": "HELIXOS-L3-001-F03",
+        "positive_input": "同一操作へ六条件を束縛し、各条件の根拠を独立に照合する。",
+        "expected_observation": "六条件と元source/revisionが一つずつ辿れ、適用外の全consumer完了を要求しない。",
+        "negative_input": "他入力を固定しauthority/impact/pair互換revision/oracle/rollback/downstream stale根拠を一回一条件だけ欠落または不一致にする六fixture。",
+        "failure_observation": "各fixtureで不足する一条件を特定しcanonicalizationを未成立にする。初期transaction成功だけで下流stale更新根拠欠落を補わない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "2f7d06235fa8d37d42a6270b4fbd30455afcc3d4e0df689633a1c4c389d74793"
+    },
+    {
+      "id": "HELIXOS-L10-001-F04",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-001-F04",
+        "parent": "HELIXOS-L2-001",
+        "title": "更新故障と六条件不足の別判定",
+        "requirement_ref": "HELIXOS-L3-001-F04",
+        "positive_input": "同じ意味変更で三種の更新故障と六条件の独立不足を比較する。",
+        "expected_observation": "故障段階・当該owner・未完義務が別に示され、成功時は要求/契約/受入/失効/view/DB/receiptへ同じ更新から辿れる。",
+        "negative_input": "初期write成功を全六条件成功、旧PLAN transaction/読取り検査を更新証拠、旧shadowから最新JSON再生成。",
+        "failure_observation": "別oracleの未完を相殺せず、復旧先/旧revision/原文を保持する。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "714537dffd6e2cf1547bea9a8fe96879c4abe8762877e4b4b0df6fa30268a5e7"
+    }
+  ],
+  "legacy_normative_whole_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "id": "HIL-NFR-32",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "object": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-NFR-32",
+        "revision": 1,
+        "kind": "non_functional",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "意味変更はauthority、impact、pair、oracle、rollback、downstream stale propagationが揃わない限りCanonical化しない。",
+          "semantic_digest": "sha256:1beba8953dbc66f4ebfc308995105ad2cf1a0545fa7dc700b526c89b7f1a6a5b"
+        },
+        "assertion_id": "HIA-NFR-032",
+        "primary_system_contract_id": "HR-FR-HIL-19",
+        "acceptance_ids": [
+          "HAC-HIL-19a",
+          "HAC-HIL-19b",
+          "HAC-HIL-19c"
+        ],
+        "system_test_id": "HAT-HIL-19",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-NFR-32",
+          "owner_id": "HR-FR-HIL-19",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-NFR-32",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:212",
+          "authority_id": "RAS-HIL-19"
+        },
+        "semantic_digest": "sha256:d72e7284f3f1a7afb2ecb1cc1692dee2e795fde0c47ddca5779fb8e1b9a5651e"
+      },
+      "object_canonical_sha256": "c0e380cbbcba0edbe323b16b9e1ed64c42283d90d2cd5bcf2480aac066366951"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "id": "HR-FR-HIL-19",
+      "file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "object": {
+        "schema_version": "helix-system-contract.v1",
+        "system_contract_id": "HR-FR-HIL-19",
+        "revision": 1,
+        "status": "specified",
+        "requirement_ids": [
+          "HIL-BR-26",
+          "HIL-FR-51",
+          "HIL-FR-52",
+          "HIL-FR-53",
+          "HIL-NFR-30",
+          "HIL-NFR-31",
+          "HIL-NFR-32"
+        ],
+        "behavior": "AI AuthoringをProposalとして許可し、意味差分・authority・pair・impactを検査した変更だけを原子的にCanonical化し、asset identityとrevision履歴を維持する",
+        "transition_contract": "proposal、base revision、policyあり → 自動Admission又は明示decision、部分current 0",
+        "failure_and_evidence": "過剰確認、無権限変更、partial write、stale base、identity/oracle消失 / admission、transaction、revision、rollback receipt",
+        "acceptance_ids": [
+          "HAC-HIL-19a",
+          "HAC-HIL-19b",
+          "HAC-HIL-19c"
+        ],
+        "system_test_id": "HAT-HIL-19",
+        "semantic_digest": "sha256:081fd30a519f53deb260dba56b406ef75ac51bd6e04e9dbe95ea8c0adc72654c"
+      },
+      "object_canonical_sha256": "90b11611fb15b9ffcdde1063f69b4b56aa558fd9b644ff77243bea97ed01288f"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-19a",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-19a",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-19",
+        "polarity": "positive",
+        "statement": "可逆変更を人手なしで原子的Canonical化",
+        "system_test_id": "HAT-HIL-19",
+        "semantic_digest": "sha256:06dc52b35a96f6b0a7a08a5e1397520321a26f3454360f546af39c5beae67d2c"
+      },
+      "object_canonical_sha256": "197edc6b5eaed43751c6af42944e129524ad375d1a7bc4883b0cf7ae4d910b57"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-19b",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-19b",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-19",
+        "polarity": "negative",
+        "statement": "authority/impact/transaction欠落を拒否",
+        "system_test_id": "HAT-HIL-19",
+        "semantic_digest": "sha256:544a427c9d66e265f7d1a2afa2811df76d822dffba151f001099cda870a14c38"
+      },
+      "object_canonical_sha256": "8737efa3243a47fb23234edef20b4f5403d0d71151ca66d63be17fdf20d22da6"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-19c",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-19c",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-19",
+        "polarity": "boundary",
+        "statement": "stale/rename/split/mergeでidentityとrollback保持",
+        "system_test_id": "HAT-HIL-19",
+        "semantic_digest": "sha256:b406c2facb58c1d33c27c86615a25a1d385dbe7057bf42d43fe6ade1659f476b"
+      },
+      "object_canonical_sha256": "1b7cc7b4809cf781c866d071fc0bf5d1a81bd810ebd6aa7e0fbf7d628b2b245e"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "id": "HAT-HIL-19",
+      "file_sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "object": {
+        "schema_version": "helix-system-test.v1",
+        "system_test_id": "HAT-HIL-19",
+        "revision": 1,
+        "status": "designed_not_implemented",
+        "system_contract_id": "HR-FR-HIL-19",
+        "acceptance_ids": [
+          "HAC-HIL-19a",
+          "HAC-HIL-19b",
+          "HAC-HIL-19c"
+        ],
+        "supporting_test_ids": [
+          "HOT-HIL-48",
+          "HOT-HIL-49"
+        ],
+        "scenario": "Authoring Admissionと原子的Canonical化を検証",
+        "required_evidence": "decision、revision、transaction、rollback、identity receipt",
+        "negative_boundary": "過剰確認、無権限、partial、stale、oracle消失",
+        "semantic_digest": "sha256:6fbefab680d7d2a48946bfc2bce20879450f2c102438cb0c95e992a6beb412ed"
+      },
+      "object_canonical_sha256": "256f22745af197e88d2ef8b8fe1cea80589af36a4f4240ceeba90481f450f190"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "file_sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。"
+    },
+    {
+      "path": "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+      "file_sha256": "ff1a4872408f9ee0b55f69bf089bd6cebe2199a3afd46d5afd376be0a4ea5a23",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "file_sha256": "1330e3b3c6f3dc3cc8ab394c401cfa03844c337fed4b487308389e48a4d84f9a",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/command-meaning-identity.json",
+      "file_sha256": "b50bcc43fc293e0678a7f9f59b2b4bd05ecfffecd4e47cca657cfd85f88be90a",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "file_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。",
+      "selected_line_quotes": [
+        {
+          "line": 241,
+          "text": "## 要求正本更新の受入",
+          "utf8_sha256": "41b0da6b347bcc7c3162637e096e8cbda4c8cb5246da45dac83c68ac17cbd8f8"
+        },
+        {
+          "line": 242,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 243,
+          "text": "HELIXOS-L2-001／002／007／009とHR-FR-HIL-19の利用者受入案。全件未実行。",
+          "utf8_sha256": "dc5caf59807e600ebb0f6a83200529f3f0039a7678e48b415ab3b9fc90da73c1"
+        },
+        {
+          "line": 244,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 245,
+          "text": "- L2凍結境界の是正案を入力し、対象7レコード・変更前revision・意味差分・下流影響を確認できる。変更案を登録しただけでは正本更新済みにならない。",
+          "utf8_sha256": "44ad4ac0d8829633a5ce555df818734db9504cef80ef75c5ae2e298e7b05a453"
+        },
+        {
+          "line": 246,
+          "text": "- 許可scope内の変更は根拠付きで進み、scope外の変更は必要な判断を提示する。policyを自分で拡張して通過しない。",
+          "utf8_sha256": "642ca6656f4a07e69342bd92d30e5db0ea84a64f2014a115f1985d32f3c389e9"
+        },
+        {
+          "line": 247,
+          "text": "- 更新途中で保存・projectionを失敗させ、部分的に新旧が混在した状態を現行正本として提示しない。失敗理由と復旧先を確認できる。",
+          "utf8_sha256": "8b36964c4cde2f11a2276a2c635ec38757ee75c6584005a8752ae70ab923dabc"
+        },
+        {
+          "line": 248,
+          "text": "- 同一operationを再送してもrevisionを二重に進めず、競合する変更前revisionは明示的に拒否する。",
+          "utf8_sha256": "46d005d138140c7b3c16bfdc6abb8e4d4651ff3c1118286bd44e6048cac7d8a3"
+        },
+        {
+          "line": 249,
+          "text": "- 旧shadowやIssue本文を更新入力に与え、最新要求が巻き戻らないことを確認する。原文と旧revisionは履歴として追跡できる。",
+          "utf8_sha256": "c75676aa1dd6bcb699955eef646a583c032bdf8bf2f9426a041c66ce36f82459"
+        },
+        {
+          "line": 250,
+          "text": "- 成功時に要求・契約・受入・下流失効・生成view・DB・receiptを同じ更新へ辿る。未完実装・未実行テストの状態は更新成功と独立に保持する。",
+          "utf8_sha256": "8b71b84a7cc0fd81dc9b2f9a98d4c80328085dd3ca346951e7b5e86353dd2350"
+        },
+        {
+          "line": 251,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 252,
+          "text": "既存の読取りauthority検査やPLAN transactionの成功を、この要求更新の実行証拠へ転用しない。",
+          "utf8_sha256": "8d684a3c47e900e92ba975ca953ec4cd728774e7f12c2585cf82440621f2d5a5"
+        },
+        {
+          "line": 1231,
+          "text": "### 要求正本更新の受入：HIL-NFR-32の六条件候補",
+          "utf8_sha256": "c62c3be62fb6ad470b849ffbb3f89cb9829c9e589caeec678b1d1f9c8454ca42"
+        },
+        {
+          "line": 1232,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 1233,
+          "text": "本追補は、既存の「要求正本更新の受入」（`governance-acceptance.md` 241–252行）とHELIXOS-L2-001に結び付く、未採択のL11候補partである。source identityは旧HIL-NFR-32全体の一atomを保持する。L2へ新しいguardは加えず、既存の「要求正本を更新する管理条件」（`governance-requirements.md` 515–532行）を適用先とする。候補登録`MPR-RC-HELIXOS-L2-001-001`とreceiptの`condition_mapping`から、選択partと各条件の対応を辿る。",
+          "utf8_sha256": "e24cfff991d0e8e7eb821f2eb5e1810b31200c281f84a94bec6a7e0f3594cb96"
+        },
+        {
+          "line": 1234,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 1235,
+          "text": "旧原文は「意味変更はauthority、impact、pair、oracle、rollback、downstream stale propagationが揃わない限りCanonical化しない。」である。sourceの六条件を保持し、意味変更をCanonical化する候補operationに対する独立fixtureを示す。HARNESSが要求意味、影響範囲、pair、verification obligationとoracleを所有する。OSは同じoperation/base/scopeの入力根拠を照合し要求正本更新を管理するが、HARNESSの検証義務を引き受けない。",
+          "utf8_sha256": "a9258235b61ead31132b0ec1201057211934ae6f7a6c9a9384126ca71195299f"
+        },
+        {
+          "line": 1236,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 1237,
+          "text": "- **正常fixture（未実行）**：同一の意味変更operation、変更前の要求revision、適用scopeを固定し、そのoperationに適用されるauthority、影響要求/designと既存pair・互換revision、適用されるoracle/expected failure、rollback/recovery根拠、影響するdownstream relationと既存管理条件で対象となるstale state更新結果を同一の更新traceへ結ぶ。適用される六条件を一つずつ根拠へ辿れ、別operationや別revisionの証拠を混ぜない。scope外のsourceや無関係な全consumerを一律に要求しない。",
+          "utf8_sha256": "55063c258777c72a9ab3dc6a7e5ac406ed64240e671ca1eb24164678ccb594c5"
+        },
+        {
+          "line": 1238,
+          "text": "- **六つの独立negative fixture（各々未実行）**：正常fixtureのoperation、base revision、scopeおよび他の入力を固定し、一回に一条件だけ欠落・不一致とする。各caseでcanonicalizationを成立させない。",
+          "utf8_sha256": "341ba2c2171906c3cd6f157c4352028a4ebd95b4126c165b912c0fe547aa096e"
+        },
+        {
+          "line": 1239,
+          "text": "  1. 適用されるauthorityの根拠だけを欠落、または無権限にする。",
+          "utf8_sha256": "0466cf35c93a5c797228810d7a49f90b57bdb1d089c9cf70a80db91e514c44e4"
+        },
+        {
+          "line": 1240,
+          "text": "  2. 影響対象と変更のrelationだけを欠落させ、影響範囲をunknownにする。",
+          "utf8_sha256": "a67bed7f59cddc911dfbfb3a5186f422053ef715d0c2d6d12fe08779706f60a1"
+        },
+        {
+          "line": 1241,
+          "text": "  3. 対象changeに結ばれたpairまたは互換revisionだけを欠落・不一致にする。",
+          "utf8_sha256": "254e7da6781d7f5e5865c43b662092c6b2e1d20508ad90512dabdc8b8274b446"
+        },
+        {
+          "line": 1242,
+          "text": "  4. 適用されるoracle/expected failureだけを欠落、または対象changeと不一致にする。",
+          "utf8_sha256": "e5c2e976c5ee079e2e6752ab3303ecda134e65e5430e8f453351f13121720d10"
+        },
+        {
+          "line": 1243,
+          "text": "  5. rollback/recoveryの根拠だけを欠落させる。",
+          "utf8_sha256": "f1ac0abeea0cc6e699ce90917fefcaf78fa51eeb3a4f25878a41d6a9605f1116"
+        },
+        {
+          "line": 1244,
+          "text": "  6. 既存管理条件で対象となる影響下流のstale state更新根拠だけを欠落させる。これはその更新条件のnegativeであり、全consumerや全downstream作業の完了を要求する条件には広げない。",
+          "utf8_sha256": "fa6360bba29276f429f59d4c57ced0f46ecff11347d320298a9ab71bc37ca287"
+        },
+        {
+          "line": 1245,
+          "text": "- **別oracleのnegative（未実行）**：stale base拒否、更新・receipt初期write fault時のpartial-current防止、複数revisionの証拠混在拒否を六つの一条件欠落caseと分ける。初期write faultは原子的確定とrollback/recoveryを確認する。downstream stale state更新根拠の欠落は、初期transaction成功だけでは正本化条件を満たさないことを確認する。二つのfailure段階を一つのoracleにまとめない。",
+          "utf8_sha256": "f218cee10541baaac7d99dba4e2001096bad09df5a2ecc35afdcd1e3a8493af2"
+        },
+        {
+          "line": 1246,
+          "text": "- **未見・unknown（未実行）**：選択input source、適用scopeまたは影響relationが不明ならunknown/未完のまま保持する。非該当・影響なし・成功に読み替えない。適用根拠の選択を明記し、無関係なすべてのsourceを一律必須にはしない。",
+          "utf8_sha256": "b830e9286b4139f8f5d132b532c898ae0b7456c69a00fa4b8784213945cc14a7"
+        },
+        {
+          "line": 1247,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 1248,
+          "text": "HARNESS-L2-023の実行dependency分類は次のとおり。これはfixture実行時のdependencyのみを示し、規範IRやconsumer契約を参照資料へ降格しない。",
+          "utf8_sha256": "1edd47f31eb7b7b104dee5b0ac30dde9f2fb277a9ab2017154789e4c12f0b518"
+        },
+        {
+          "line": 1249,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 1250,
+          "text": "| 分類 | この候補での扱い |",
+          "utf8_sha256": "711267e2e20cae2739336ae34b16b4519471889075f73290d19edcc7d5493ea2"
+        },
+        {
+          "line": 1251,
+          "text": "|---|---|",
+          "utf8_sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
+        },
+        {
+          "line": 1252,
+          "text": "| 常時必須 | 対象requirement identity/revision、変更前base、operation scope、現行L2/L11契約。 |",
+          "utf8_sha256": "b6cccff3dfe7a0f0e0b153bf3c9c138742d94b0460d7430200f515d2d85d6197"
+        },
+        {
+          "line": 1253,
+          "text": "| 特定操作時のみ | 意味変更をcanonicalizeするoperationを選択したとき、原文の六条件を照合する。 |",
+          "utf8_sha256": "e27230da4f6aa81ce2566e076e6856929d5020a12c39c146a0cb0418783526aa"
+        },
+        {
+          "line": 1254,
+          "text": "| 選択した入力元に応じて必須 | 当該operationに適用されるauthority、impact/pair、oracle、rollback/recovery、downstream relationについて、source identity・revision・scopeを結ぶ。IRはnormative、L1同文はcorroboration、HR-FR-HIL-19/HAC-HIL-19a..c/HAT-HIL-19はcontract・設計済みoracle/testのconsumer contextである。 |",
+          "utf8_sha256": "15e7862e237f9414db2a25e264e29c1afe5963e1e9d5354ff517433657980450"
+        },
+        {
+          "line": 1255,
+          "text": "| 参照資料のみ | 旧runtime、CLI、schema、enum、実装class名。旧test/runtimeは実行しない。 |",
+          "utf8_sha256": "9217c8ea2b96589ffa54aca288494ac529a928f678c014651a51ec8a4b6a91c5"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。",
+      "selected_line_quotes": [
+        {
+          "line": 515,
+          "text": "## 要求正本を更新する管理条件",
+          "utf8_sha256": "0bf4dcf762ebeee873350826ba9a0fdf19758c1e1e020853262558be284b5f64"
+        },
+        {
+          "line": 516,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 517,
+          "text": "**版**：HELIXOS-L2-001（`MPR-RC-HELIXOS-L2-001-001`、HIL-NFR-32の6条件）は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。",
+          "utf8_sha256": "5418f48fcdeca52610c465ef047a3a0e097b2d373921f3c35d8c5b787a2765b1"
+        },
+        {
+          "line": 518,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 519,
+          "text": "HELIXOS-L2-001／002／007／009を、指定JSONのHIL-BR-26、HIL-FR-51..53、HIL-NFR-30..32と",
+          "utf8_sha256": "4e418728d8febdf04a2d927427bd6f87dc34c81ab8ea75646b02c6d01f5fb93c"
+        },
+        {
+          "line": 520,
+          "text": "HR-FR-HIL-19から具体化する。原文は[JSON正本](../../../archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json)、",
+          "utf8_sha256": "7d3815a01aa21951a6d768013ac7bd9dd7f270382b43de5c1c15e1f9112e940b"
+        },
+        {
+          "line": 521,
+          "text": "[契約](../../../archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json)を参照する。新しいAdmission Engineや要求DBの追加ではない。",
+          "utf8_sha256": "bf93a924a0dab360995adb4c5231ad185d1e08a76c01e87320342a0fae62ff05"
+        },
+        {
+          "line": 522,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 523,
+          "text": "| 条件 | 利用者が確認できるべき結果 |",
+          "utf8_sha256": "f1c893b5f0d73db029696f04ee923eec7c2c3542c1b6f51ae7a239a36770fe71"
+        },
+        {
+          "line": 524,
+          "text": "|---|---|",
+          "utf8_sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
+        },
+        {
+          "line": 525,
+          "text": "| 変更案の保持 | 未確定の要求変更も原文・理由・対象・変更前revisionとともに保持し、正本化待ちを理由に消失させない |",
+          "utf8_sha256": "baebeba91b027fa630e71dcf96439c76f2a08dd2253c9a31e0f0cf4674c094d7"
+        },
+        {
+          "line": 526,
+          "text": "| 更新範囲の提示 | 変更する要求・契約・受入・検証・下流影響を示し、意味変更と生成projectionの追従を区別する |",
+          "utf8_sha256": "43a69e73bff21a8d3e10a43df249c0b12a52d2774e3199d00fdfc14487efe126"
+        },
+        {
+          "line": 527,
+          "text": "| 適用判断 | 適用するpolicy・根拠・scopeから自動適用、修復、必要な人間判断、拒否、競合を区別する。既に許可された変更を同じ理由で再質問しない |",
+          "utf8_sha256": "36599391342fc71e72c3f2b6dd847ae3658846a053d21bfa636b9e1b2aaf002a"
+        },
+        {
+          "line": 528,
+          "text": "| 原子的な確定 | 要求revision・履歴・trace・下流失効・生成view・DB・receiptの整合を確認できる。部分更新を現行正本として公開しない |",
+          "utf8_sha256": "da757f3e860dbda6448407d7131188f794cff69a7c4247547e6a487bee1805a2"
+        },
+        {
+          "line": 529,
+          "text": "| 競合と再実行 | staleな変更前revisionを拒否し、同じoperationの再試行で二重更新しない。失敗時は元状態または復旧待ちを明示する |",
+          "utf8_sha256": "209a356341e2d6d5fb91e2e99bb3ac81c03d657766d2f4ab60467eb3675cb650"
+        },
+        {
+          "line": 530,
+          "text": "| 旧版からの保護 | 互換Markdown・旧shadow・Issue本文から現行JSONを再生成して最新要求を巻き戻さない |",
+          "utf8_sha256": "6220664af1fcf1428f0e16df460f5da1ad4fa8d99e013d8efdfff72a6d3c528f"
+        },
+        {
+          "line": 531,
+          "text": "| 更新経路の実証 | 契約文書やCLI名の存在だけで更新可能と表示せず、正規経路の実行結果・before／after revision・receiptへ辿れる |",
+          "utf8_sha256": "171ae14030e0b9045beac18fdf9931dc1c055b957f4edf1808ddbef7dc20c455"
+        },
+        {
+          "line": 532,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "file_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
+      "file_sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62",
+      "role": "対象whole/管理条件/依存ownerの所在固定。file全量の採用・精読や実資格を意味しない。"
+    }
+  ],
+  "dependency_references": [
+    {
+      "path": "docs/helix-os/L4-basic-design/atomic-canonicalization.json",
+      "file_sha256": "3e14df41a7782889a4d7e1d416afe98b99693e9d7a32bb8fb17c006466129e62",
+      "contract_ids": [
+        "OS-L4-053-F01",
+        "OS-L4-053-F02",
+        "OS-L4-053-F03",
+        "OS-L4-053-F04",
+        "OS-L4-053-F05",
+        "OS-L4-053-F06",
+        "OS-L4-053-F07",
+        "OS-L4-053-F08",
+        "OS-L4-053-N01",
+        "OS-L4-053-N02",
+        "OS-L4-053-B01"
+      ],
+      "remaining": [
+        "L5/L8で全対象assetとclosure source/adapter、schema/domain型、CAS/保存/読出し/receipt/復旧の具体algorithm、孤立reader、durability/lock/設定/版、failure分類を固定する。",
+        "SQLite候補を選ぶ場合、全必須writeが本当に同一store/transactionへ載ることを対象単位で照合。外側source/viewのwriteが残るならその原子性を別設計で閉じる。未閉包のまま実装準備完了にしない。",
+        "L6/L7の実装前test/oracleコード凍結→実装前Red→Green、実L9/L10、実SEC/INFRA/authorityとPO L11受入は未成立。",
+        "053→042不整合の履歴変換、release/内部デプロイ、全Nightly、全OS能力はこの対から解禁しない。"
+      ],
+      "role": "現行意味/保存ownerの文書参照。実依存bindingや全能力を成立させない。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/command-meaning-identity.json",
+      "file_sha256": "b50bcc43fc293e0678a7f9f59b2b4bd05ecfffecd4e47cca657cfd85f88be90a",
+      "contract_ids": [
+        "HARNESS-L4-052-F01",
+        "HARNESS-L4-052-F02",
+        "HARNESS-L4-052-F03",
+        "HARNESS-L4-052-F04",
+        "HARNESS-L4-052-F05",
+        "HARNESS-L4-052-F06",
+        "HARNESS-L4-052-N01",
+        "HARNESS-L4-052-B01"
+      ],
+      "remaining": [
+        "L5/L8でexact型/正規化algorithm/schema/互換・エラー・局所oracleとtoolchainを定義する。旧TS/正規化実装のcopy・実行はしない。",
+        "L6/L7の実装前test/oracle定義凍結とRed/Green、OS053実adapter/lookup/全base CAS/receipt/readとの実L9/L10、操作別SEC/INFRA bindingsが必要。",
+        "全92親/430義務の他対設計と配置4論点/開発環境/文書監査は未完。053→042不整合と当該履歴実変換停止を保持。"
+      ],
+      "role": "現行意味/保存ownerの文書参照。実依存bindingや全能力を成立させない。"
+    }
+  ],
+  "legacy_comparison": {
+    "reuse_class": "semantic_rederivation",
+    "preserve": "意味変更の六条件を同operation/base/revision/scopeへ束縛し、初期write/receipt fault・stale base・混在revisionを別oracleで判定。policy適用と既決許可を保持し、部分成功やGitHub状態から上流意味を生成しない。",
+    "change": "採択001の元案・判断出所・適用根拠・六条件と053保存/052意味ownerへ再導出。旧Markdown/DB正本・shadowから最新JSON巻戻し・旧runtime/test合格を移植しない。",
+    "reason": "10/12限定承認とJSONAUTH/既決自律境界に沿い、必要判断だけを既存authorityへ返す。人間再承認や読取り六条件一律gateを足さない。",
+    "consumer_boundary": "HR19/HAC19/HAT19の全shared能力・FR53履歴変換は残す。旧testはdesigned_not_implementedのまま実行せず、旧gate/CLI/DB/schema/PLAN transactionを現行成立証拠へしない。六条件の意味/impact/pair/oracleはHARNESS等の原ownerから受け、OS053が保存/CAS/receiptを担う。"
+  },
+  "remaining": [
+    "正式source/proposal/policy/condition/observation/product-state型と資格・任意対象集合/graph、HARNESS052意味結果・OS053全write/CAS/3read/receipt/rollbackへexact bindingをL5/L8で閉じる。",
+    "policy.directiveは独立原policyの材料値。どのpolicyが実操作を許可するか、既決許可の資格・人判断のsourceは未成立。素材対応から新しい権限や人判断を作らない。",
+    "六条件sourceの全meaning/変更内容/互換性/expected failure/影響downstream/復旧先の閉包と実実証拠、実writer/partial-current防止/replay/復旧は未成立。",
+    "文書stateを報告することと実操作成功は別。更新とは独立の製品状態を保持し、製品全体の実装/実test/L11受入を更新から導かない。",
+    "全92親430対の設計閉包・L6設計/対L7と実装前oracle凍結・実Red→Green→Refactor・実CI/L9/L10/PO L11・実装Readyは未成立。"
+  ],
+  "document_id": "HELIXOS-L4-001",
+  "layer": "L4",
+  "pair": "HELIXOS-L9-001",
+  "contracts": [
+    {
+      "id": "HELIXOS-L4-001-F01",
+      "requirement_ref": "HELIXOS-L3-001-F01",
+      "oracle_ref": "HELIXOS-L10-001-F01",
+      "contract": "二projectのConcept/L1/要求/採否/合意と判断/責務・正本sourceのexact revisionを別に辿る。選択operationをそのproject/scopeへ結び、GitHub状態や別project判断から意味を生成しない。"
+    },
+    {
+      "id": "HELIXOS-L4-001-F02",
+      "requirement_ref": "HELIXOS-L3-001-F02",
+      "oracle_ref": "HELIXOS-L10-001-F02",
+      "contract": "更新案の原文ref/理由/対象/変更前revisionと、要求/契約/受入/検証/impact/view差分を保全する。既存policyのsource/版/根拠/許可/scopeに結ばれた5区分を保持し、policy自己拡張・同じ既決許可の再質問を発行しない。"
+    },
+    {
+      "id": "HELIXOS-L4-001-F03",
+      "requirement_ref": "HELIXOS-L3-001-F03",
+      "oracle_ref": "HELIXOS-L10-001-F03",
+      "contract": "選択kind=meaning_changeの場合だけ六条件を同operation/base/要求revision/対象revision/scopeへ束縛する。各condition sourceを独立に照合し、一条件の不足/相反を他条件やstore commitで相殺しない。inspect/view_changeへ全consumer完了gateを広げない。"
+    },
+    {
+      "id": "HELIXOS-L4-001-F04",
+      "requirement_ref": "HELIXOS-L3-001-F04",
+      "oracle_ref": "HELIXOS-L10-001-F04",
+      "contract": "observe段階でstale_base/initial_write_fault/receipt_write_fault/mixed_revision/未観測を別状態として保持する。OS053の実保存/独立read、052意味結果は原ownerへ戻す。known mixed/partial currentや旧shadow/MD/HTML/Issueをcurrent JSON sourceにしない。prepareに未来の観測receiptを必須にしない。"
+    },
+    {
+      "id": "HELIXOS-L4-001-B01",
+      "requirement_ref": "HELIXOS-L3-001-B01",
+      "oracle_ref": "HELIXOS-L10-001-B01",
+      "contract": "更新の材料対応を実canonicalization、新要求採択、実装完了、実test実行、PO L11受入へ変換しない。製品の既存stateを別sourceとして原値保持し、選択外projectの不足で選択した根拠を消さない。"
+    }
+  ],
+  "diagnostic_contract": {
+    "input_domain": "固定2project/1operationと選択3kind/2phaseの文書shape。任意JSON/欠落key/任意graphは正式validation未設計。contextは独立sourceの合成代理で、実資格を生成しない。",
+    "projects": [
+      "project_a",
+      "project_b"
+    ],
+    "project_fields": [
+      "project_id",
+      "scope",
+      "concept_ref",
+      "concept_revision",
+      "l1_ref",
+      "l1_revision",
+      "requirement_id",
+      "requirement_revision",
+      "disposition_ref",
+      "disposition_revision",
+      "agreement_ref",
+      "agreement_revision",
+      "decision_ref",
+      "responsibility_ref",
+      "canonical_json_ref",
+      "source_revision",
+      "source_digest"
+    ],
+    "binding_fields": [
+      "operation_id",
+      "command_id",
+      "project_id",
+      "scope",
+      "base_revision",
+      "requirement_revision",
+      "target_revision",
+      "canonical_json_ref"
+    ],
+    "proposal_fields": [
+      "proposal_ref",
+      "original_text_ref",
+      "reason_ref",
+      "target_requirement_id",
+      "scope",
+      "before_revision",
+      "requirement_delta_ref",
+      "contract_delta_ref",
+      "acceptance_delta_ref",
+      "verification_delta_ref",
+      "impact_ref",
+      "projection_followup_ref"
+    ],
+    "policy_fields": [
+      "policy_ref",
+      "policy_revision",
+      "basis_ref",
+      "authorization_ref",
+      "operation_id",
+      "base_revision",
+      "scope"
+    ],
+    "condition_names": [
+      "authority",
+      "impact",
+      "pair",
+      "oracle",
+      "rollback",
+      "downstream_stale"
+    ],
+    "condition_fields": {
+      "authority": [
+        "authority_ref",
+        "policy_revision"
+      ],
+      "impact": [
+        "impact_relation_ref",
+        "change_ref"
+      ],
+      "pair": [
+        "pair_ref",
+        "compatible_revision"
+      ],
+      "oracle": [
+        "oracle_ref",
+        "expected_failure_ref"
+      ],
+      "rollback": [
+        "rollback_ref",
+        "recovery_ref"
+      ],
+      "downstream_stale": [
+        "downstream_relation_ref",
+        "stale_update_ref"
+      ]
+    },
+    "witness_fields": [
+      "source_ref",
+      "source_revision",
+      "source_digest",
+      "owner_ref"
+    ],
+    "update_links": [
+      "requirement_ref",
+      "contract_ref",
+      "acceptance_ref",
+      "verification_ref",
+      "stale_update_ref",
+      "view_ref",
+      "db_ref",
+      "receipt_ref"
+    ],
+    "product_fields": [
+      "implementation",
+      "verification",
+      "L11",
+      "source_ref",
+      "source_revision"
+    ],
+    "kinds": [
+      "inspect",
+      "view_change",
+      "meaning_change"
+    ],
+    "phases": [
+      "prepare",
+      "observe"
+    ],
+    "policy_directives": [
+      "auto_apply",
+      "repair_then_retry",
+      "human_decision_required",
+      "reject",
+      "conflict"
+    ],
+    "condition_states": [
+      "satisfied_material",
+      "missing",
+      "unknown",
+      "conflict"
+    ],
+    "observation_states": [
+      "committed",
+      "stale_base",
+      "initial_write_fault",
+      "receipt_write_fault",
+      "mixed_revision",
+      "unobserved"
+    ],
+    "source_origins": [
+      "canonical_json",
+      "legacy_shadow",
+      "markdown",
+      "html",
+      "issue"
+    ],
+    "coherence_states": [
+      "coherent_material",
+      "mixed_material",
+      "unobserved"
+    ],
+    "owner_by_facet": {
+      "source": "requirement-source-owner",
+      "proposal": "proposal-source-owner",
+      "policy": "existing-policy-owner",
+      "six_conditions": "condition-source-owner",
+      "update_observation": "OS053-store-owner",
+      "product_state": "product-state-owner",
+      "boundary": "management-authority-owner"
+    },
+    "codes": [
+      {
+        "code": "field_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "field_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "kind_unknown",
+        "facet": "boundary",
+        "disposition": "unknown"
+      },
+      {
+        "code": "phase_unknown",
+        "facet": "boundary",
+        "disposition": "unknown"
+      },
+      {
+        "code": "selected_project_unknown",
+        "facet": "source",
+        "disposition": "unknown"
+      },
+      {
+        "code": "proposal_missing",
+        "facet": "proposal",
+        "disposition": "unknown"
+      },
+      {
+        "code": "policy_missing",
+        "facet": "policy",
+        "disposition": "unknown"
+      },
+      {
+        "code": "directive_unknown",
+        "facet": "policy",
+        "disposition": "unknown"
+      },
+      {
+        "code": "directive_conflict",
+        "facet": "policy",
+        "disposition": "violation"
+      },
+      {
+        "code": "condition_missing",
+        "facet": "six_conditions",
+        "disposition": "unknown"
+      },
+      {
+        "code": "condition_state_unknown",
+        "facet": "six_conditions",
+        "disposition": "unknown"
+      },
+      {
+        "code": "condition_state_conflict",
+        "facet": "six_conditions",
+        "disposition": "violation"
+      },
+      {
+        "code": "condition_unresolved",
+        "facet": "six_conditions",
+        "disposition": "unknown"
+      },
+      {
+        "code": "condition_conflict",
+        "facet": "six_conditions",
+        "disposition": "violation"
+      },
+      {
+        "code": "observation_missing",
+        "facet": "update_observation",
+        "disposition": "unknown"
+      },
+      {
+        "code": "observation_state_unknown",
+        "facet": "update_observation",
+        "disposition": "unknown"
+      },
+      {
+        "code": "observation_state_conflict",
+        "facet": "update_observation",
+        "disposition": "violation"
+      },
+      {
+        "code": "observation_unobserved",
+        "facet": "update_observation",
+        "disposition": "unknown"
+      },
+      {
+        "code": "source_origin_unknown",
+        "facet": "update_observation",
+        "disposition": "unknown"
+      },
+      {
+        "code": "legacy_source_forbidden",
+        "facet": "boundary",
+        "disposition": "violation"
+      },
+      {
+        "code": "coherence_unknown",
+        "facet": "update_observation",
+        "disposition": "unknown"
+      },
+      {
+        "code": "coherence_conflict",
+        "facet": "update_observation",
+        "disposition": "violation"
+      },
+      {
+        "code": "mixed_current_forbidden",
+        "facet": "update_observation",
+        "disposition": "violation"
+      },
+      {
+        "code": "partial_current_forbidden",
+        "facet": "update_observation",
+        "disposition": "violation"
+      },
+      {
+        "code": "boolean_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "unproven_success_claim",
+        "facet": "boundary",
+        "disposition": "violation"
+      },
+      {
+        "code": "forbidden_boundary_claim",
+        "facet": "boundary",
+        "disposition": "violation"
+      },
+      {
+        "code": "kind_conflict",
+        "facet": "boundary",
+        "disposition": "violation"
+      },
+      {
+        "code": "phase_conflict",
+        "facet": "boundary",
+        "disposition": "violation"
+      },
+      {
+        "code": "publication_coherence_unproven",
+        "facet": "update_observation",
+        "disposition": "unknown"
+      }
+    ],
+    "rules": [
+      {
+        "id": "R01",
+        "rule": "各projectのproject_fieldsをactual/contextへstring比較。非空stringでない側ごとfield_unknown、両側known相違はactual field_conflict、project_correspondenceへも記録する。op binding_fieldsも同じ比較。selected_projectはactual binding.project_idがprojects内のときだけ採用、不明はselected_project_unknown。選択projectのproject_id/scope/requirement_revision/canonical_json_refをcontextへjoinし、base_revisionもcontext project.requirement_revisionへjoinする。"
+      },
+      {
+        "id": "R02",
+        "rule": "actual/context kind/phaseは各closed集合。不明側にkind_unknown/phase_unknown。known同士相違はactual kind_conflict/phase_conflict。以降の適用はactualのknown kind/phaseだけから決め、unknownをinspectなどのdefaultへしない。"
+      },
+      {
+        "id": "R03",
+        "rule": "actual kind=view_change/meaning_changeのときproposal/policy dictを両側に要求。不明側はproposal_missing/policy_missing。両側dictなら各fieldをR01 string比較。proposal scope/before_revisionをcontext op scope/base_revisionへ、target_requirement_idを選択projectのcontext requirement_idへjoin。policy scope/base_revision/operation_idをcontext op bindingへjoin。directiveは5closed値、不明側directive_unknown、known差はactual directive_conflict。policy_directiveはactual known値かnull。inspectにはこれらをgateにしない。"
+      },
+      {
+        "id": "R04",
+        "rule": "meaning_changeのときだけconditionを各々評価。不明dict側はcondition_missing。stateはcondition_statesのclosed、不明側condition_state_unknown、known差はactual condition_state_conflict。actual missing/unknownはcondition_unresolved、actual conflictはcondition_conflict。各binding fieldをcontext conditionへ比較しcontext opへもjoin。witness_fieldsと当該condition_fieldsを比較。当該condition内だけでviolation>unknown>correspondingを返し、他条件で相殺しない。適用外はnot_applicableとして保持し内容を評価しない。"
+      },
+      {
+        "id": "R05",
+        "rule": "actual phase=observeかつkind=view_change/meaning_changeのときobservation dictを両側に要求。不明は各側observation_missing。stateはobservation_states、不明側observation_state_unknown、known差はactual observation_state_conflict、actual unobservedはobservation_unobserved。update_observed_stateはactual known stateかnull。prepare/inspectの未来observationは評価しない。"
+      },
+      {
+        "id": "R06",
+        "rule": "R05適用内でsource_kindはsource_origins closed、不明側source_origin_unknown、known差はactual field_conflict(update_observation facet)、actual canonical_json以外known originはlegacy_source_forbidden(boundary)。revision_coherenceはcoherence_states closed、不明側coherence_unknown、known差はactual coherence_conflict。actual state=committedでknown mixed_materialならmixed_current_forbidden、それ以外のnoncoherentならpublication_coherence_unproven。unknownをknown mixedへしない。"
+      },
+      {
+        "id": "R07",
+        "rule": "R05適用内でactual partial_current_claim=trueはpartial_current_forbidden、非boolはboolean_unknown。observation.bindingをcontext observationとcontext opへdouble joinし、witness_fields/update_links/visible_current_revisionを比較。actual committedならvisible_current_revisionはmeaning_changeではcontext target_revision、view_changeではcontext base_revisionへjoin。faultの状態をcommitで補完しない。"
+      },
+      {
+        "id": "R08",
+        "rule": "core_validは選択projectがknownで当該project sourceのfinding=0、op binding/joins自身のsource finding=0、proposal/policy finding=0。選択外projectのsource findingをcore_validのgateにしない。six_validはactual meaning_changeで全6conditionがcorrespondingのみ。material_successはmeaning_change/observe/committed/core_valid/six_validかつupdate_observation/boundary finding=0、directive=auto_apply。prepare/inspect/viewから意味正本化成功を生成しない。"
+      },
+      {
+        "id": "R09",
+        "rule": "actual canonicalization_success_claim=trueでmaterial_successでなければunproven_success_claim。非boolはboolean_unknown(boundary)。operation.claimsのtrueはforbidden_boundary_claim、false以外はboolean_unknown(boundary)。claimsはこの更新を根拠に生成する主張で、別ownerの既存factを禁止する意味ではない。製品stateは別のproduct_state/contextへ保持し、各product_fieldsをR01 string比較(product_state facet)。製品stateの未知/不一致を更新根拠のgateにしない。"
+      },
+      {
+        "id": "R10",
+        "rule": "facetと全体はviolation>unknown>corresponding。conditionはupdate_material_*、project_correspondenceは各projectのsourceだけ。canonicalization_material_correspondingはmaterial_successかつboundary finding=0のみtrue（正式成立ではない）。actual/referenceとproduct_state原値をdeepcopyして保全。findingはcode/pointer/return_ownerで重複除去・同3field辞書順、owner_by_facetを使用。actual_canonicalized/requirement_adopted/implementation_completed/test_executed/L11_acceptedは全false、operation_effect none（この文書照合がそれらを生成しない）。"
+      }
+    ],
+    "output_fields": [
+      "condition",
+      "facet_correspondence",
+      "project_correspondence",
+      "selected_project",
+      "selected_kind",
+      "selected_phase",
+      "policy_directive",
+      "six_condition_material",
+      "update_observed_state",
+      "canonicalization_material_corresponding",
+      "retained_actual",
+      "retained_reference",
+      "retained_product_state_actual",
+      "findings",
+      "actual_canonicalized",
+      "actual_requirement_adopted",
+      "actual_implementation_completed",
+      "actual_test_executed",
+      "actual_L11_accepted",
+      "operation_effect"
+    ],
+    "material_limit": "material_correspondingは合成sourceの文書対応。六条件実充足/owner資格/保存成功/上流承認を生成しない。全体source reportと選択operation根拠の適格性を別に返す。"
+  }
+}
