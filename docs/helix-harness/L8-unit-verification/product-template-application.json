@@ -92890,5 +92890,2193 @@
       "expected_output_rule": "Concrete ApplicationAnalysis structure; comparison reasons must reference original grounds rather than equal illustrative reason text.",
       "input_preparation": "Reconstruct fixture, execute only the documented dependency DAG to make the context; never supply expected_output as an input or cached dependency result."
     }
-  ]
+  ],
+  "wire_codec_verification": {
+    "id": "HARNESS-L8-009-WIRE-CODEC",
+    "design_ref": "HARNESS-L5-009-WIRE-CODEC",
+    "schema_ref": {
+      "document_id": "HARNESS-L5-009-PRODUCT-TEMPLATE-APPLICATION",
+      "pointer": "/wire_codec_contract/schema",
+      "canonical_sha256": "a0d70ab27009473013feab2d0008c3f037aec737fcac5f0b3e279d3f4c3f42e0"
+    },
+    "fixture_boundary": "全固定rawはcodec設計の合成原値。既存106負例/24追加unit/11関数oracle/6正常variant/正常期待とsource再構成recipeを変えない。case expectedは原rawへ混ぜない。",
+    "cases": [
+      {
+        "id": "HARNESS-L8-009-WIRE-REF-NORMAL",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}",
+        "raw_octets_hex": null,
+        "raw_sha256": "92e58ecedb9a16cc1988ae641fe9f5a50b18673abedf349c0093cdfc3c9002bf",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "identity": "synthetic-core-source",
+            "revision": "synthetic-core-rev",
+            "scope": {
+              "project": "synthetic-only"
+            },
+            "owner": "synthetic-core-owner",
+            "source_locator": null,
+            "sha256": null
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "opaque版/nullable欄を保持。資格成功なし。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/sha256",
+            "state": "explicit_null"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-REF-ABSENT",
+        "entry_type": "Ref",
+        "raw_utf8": "{}",
+        "raw_octets_hex": null,
+        "raw_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "expected": {
+          "stage": "decoded",
+          "value": {},
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "全known memberはabsent。nullや空stringを追加しない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "absent"
+          },
+          {
+            "pointer": "/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/source_locator",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sha256",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-REF-NULL",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"identity\":null}",
+        "raw_octets_hex": null,
+        "raw_sha256": "b6cbc901f8fd56e07f4a604bbba1fb27e8962203325177755c5f10828b772b47",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "identity": null
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "identity nullと他欄absenceを別に保存。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/source_locator",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sha256",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-REF-TYPE",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"identity\":17}",
+        "raw_octets_hex": null,
+        "raw_sha256": "72113366b583486a5e206dea3b8162c8f588b3d7c26d852ef224c4c1a728f6c5",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "供給型不正を局所pointerで返す。",
+          "input_issue_locator": "/identity"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-REF-EXTENSION",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"future\":{\"opaque\":true,\"n\":9007199254740993}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "a1804e814205849e611cc5138a6c5c34f9472eb8686ca962c5e6f6fd7a96b858",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "future": {
+              "opaque": true,
+              "n": 9007199254740993
+            }
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "未知拡張keyと整数原値を保持。未来欄をidentity/authorityへ解釈しない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "absent"
+          },
+          {
+            "pointer": "/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/source_locator",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sha256",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-REF-DUPLICATE",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"identity\":\"A\",\"identity\":\"B\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "058b27d1a60ee61341a7a2f8fc8a8ccdb2c4aea1e65a235c4ecbf64f5a55ed2e",
+        "expected": {
+          "stage": "json_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "重複object keyをlast-winsへ変換しない。",
+          "input_issue_locator": "/identity"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-REF-ESCAPED-DUPLICATE",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"identity\":\"A\",\"\\u0069dentity\":\"B\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "d0252cec4cd448bb518f7cf634f76b83d75c891eb8786c2445a36c19b664dc48",
+        "expected": {
+          "stage": "json_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "escapeをdecodeした同一keyの両出現を保存。",
+          "input_issue_locator": "/identity"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-UTF8",
+        "entry_type": "Ref",
+        "raw_utf8": null,
+        "raw_octets_hex": "7b226964656e74697479223a22ff227d",
+        "raw_sha256": "7b5f1ca1f315ef8e6d79f031c71b48866dd2537c174c0fcdb7fd99d26712108f",
+        "expected": {
+          "stage": "utf8_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "invalid UTF-8の原octetsと失敗位置を保持。",
+          "input_issue_locator": "",
+          "input_issue_byte_offset": 13,
+          "byte_offset_origin": "zero_based_raw_octets"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-TRAILING",
+        "entry_type": "Ref",
+        "raw_utf8": "{} {}",
+        "raw_octets_hex": null,
+        "raw_sha256": "2cec2bbf1a64ea5249e8a7ab9ecc782fa48be13f0b35ad5f52bdea741841a230",
+        "expected": {
+          "stage": "json_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "末尾別valueを無視しない。",
+          "input_issue_locator": ""
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-INCOMPLETE",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"identity\":",
+        "raw_octets_hex": null,
+        "raw_sha256": "15f5e5039f80738167e1f5136d7775854f6b4106b20964f684ad3c11c1ef5120",
+        "expected": {
+          "stage": "json_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "EOFを意味unknownのdecode成功にしない。",
+          "input_issue_locator": ""
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-NAN",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"scope\":NaN}",
+        "raw_octets_hex": null,
+        "raw_sha256": "668b99c5f9b6e2062e5747e770d0981170abeead7726d5581f8832702a922d93",
+        "expected": {
+          "stage": "json_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "非JSON numberをnullへ補正しない。",
+          "input_issue_locator": ""
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ENVELOPE-NORMAL",
+        "entry_type": "SourceEnvelope",
+        "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": \"d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2\"}, \"body\": {\"records\": [{\"ref\": \"synthetic-only\", \"type\": \"opaque\", \"payload\": {\"unseen\": null}}]}, \"content_bytes\": \"{ \\\"records\\\": [{\\\"ref\\\": \\\"synthetic-only\\\", \\\"type\\\": \\\"opaque\\\", \\\"payload\\\": {\\\"unseen\\\": null}}] }\\n\", \"qualification_ref\": null, \"role\": \"semantic_source\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "2377446b6d995880ee54df55d245f3914e2f16c89b9434c1c426abdd8d0b12e3",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "ref": {
+              "identity": "synthetic-core-source",
+              "revision": "synthetic-core-rev",
+              "scope": {
+                "project": "synthetic-only"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": "d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2"
+            },
+            "body": {
+              "records": [
+                {
+                  "ref": "synthetic-only",
+                  "type": "opaque",
+                  "payload": {
+                    "unseen": null
+                  }
+                }
+              ]
+            },
+            "content_bytes": "{ \"records\": [{\"ref\": \"synthetic-only\", \"type\": \"opaque\", \"payload\": {\"unseen\": null}}] }\n",
+            "qualification_ref": null,
+            "role": "semantic_source"
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "CORE body/semantic_sourceを原値で保持。",
+          "source_boundary_observation": {
+            "bytes_digest": "match",
+            "body": "match",
+            "qualification": "missing",
+            "outcome": "bytes/body一致でも原資格未成立。"
+          }
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/ref/sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/body",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/content_bytes",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/role",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ENVELOPE-BODY",
+        "entry_type": "SourceEnvelope",
+        "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": \"d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2\"}, \"body\": {\"records\": [{\"ref\": \"synthetic-only\", \"type\": \"opaque\", \"payload\": {\"unseen\": \"conflict\"}}]}, \"content_bytes\": \"{ \\\"records\\\": [{\\\"ref\\\": \\\"synthetic-only\\\", \\\"type\\\": \\\"opaque\\\", \\\"payload\\\": {\\\"unseen\\\": null}}] }\\n\", \"qualification_ref\": null, \"role\": \"semantic_source\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "fd7791dd580311aed331ddc14970b3f74cccf78ab04dfeb11f605c5777982f7b",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "ref": {
+              "identity": "synthetic-core-source",
+              "revision": "synthetic-core-rev",
+              "scope": {
+                "project": "synthetic-only"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": "d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2"
+            },
+            "body": {
+              "records": [
+                {
+                  "ref": "synthetic-only",
+                  "type": "opaque",
+                  "payload": {
+                    "unseen": "conflict"
+                  }
+                }
+              ]
+            },
+            "content_bytes": "{ \"records\": [{\"ref\": \"synthetic-only\", \"type\": \"opaque\", \"payload\": {\"unseen\": null}}] }\n",
+            "qualification_ref": null,
+            "role": "semantic_source"
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "wire shapeと原body相反は別段階。",
+          "source_boundary_observation": {
+            "bytes_digest": "match",
+            "body": "mismatch",
+            "qualification": "not_established",
+            "outcome": "source問題を局所化しdecode可能snapshotを保持。"
+          }
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/ref/sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/body",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/content_bytes",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/role",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ENVELOPE-BYTES",
+        "entry_type": "SourceEnvelope",
+        "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": \"d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2\"}, \"body\": {\"records\": [{\"ref\": \"synthetic-only\", \"type\": \"opaque\", \"payload\": {\"unseen\": null}}]}, \"content_bytes\": \"{\\\"records\\\": [{\\\"ref\\\": \\\"synthetic-only\\\", \\\"type\\\": \\\"opaque\\\", \\\"payload\\\": {\\\"unseen\\\": null}}]}\", \"qualification_ref\": null, \"role\": \"semantic_source\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "39bb384ba8e4ac43c946c35f66f1ac630761c2efe38e3e8d06a5527dbd5d5e4f",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "ref": {
+              "identity": "synthetic-core-source",
+              "revision": "synthetic-core-rev",
+              "scope": {
+                "project": "synthetic-only"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": "d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2"
+            },
+            "body": {
+              "records": [
+                {
+                  "ref": "synthetic-only",
+                  "type": "opaque",
+                  "payload": {
+                    "unseen": null
+                  }
+                }
+              ]
+            },
+            "content_bytes": "{\"records\": [{\"ref\": \"synthetic-only\", \"type\": \"opaque\", \"payload\": {\"unseen\": null}}]}",
+            "qualification_ref": null,
+            "role": "semantic_source"
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "同値bodyでも元text空白/LF差のhashを保持。",
+          "source_boundary_observation": {
+            "bytes_digest": "mismatch",
+            "body": "match",
+            "qualification": "not_established",
+            "outcome": "再正規化による元digestの成功補完なし。"
+          }
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/ref/sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/body",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/content_bytes",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/role",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ENVELOPE-ABSENT",
+        "entry_type": "SourceEnvelope",
+        "raw_utf8": "{\"role\":\"semantic_source\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "d8f8b291b82d0e7ce2534010d7fb9071cae420653fbebfcf91a4b6e6f9043556",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "role": "semantic_source"
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "body/bytes/ref/資格欠落を空record正常へ補完しない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/body",
+            "state": "absent"
+          },
+          {
+            "pointer": "/content_bytes",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/role",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ENVELOPE-NULL",
+        "entry_type": "SourceEnvelope",
+        "raw_utf8": "{\"body\":null,\"qualification_ref\":null}",
+        "raw_octets_hex": null,
+        "raw_sha256": "ed11b6ec7958ede3f9769e909fd7647a5987c9dfa23367e226c11c12923abbbb",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "body": null,
+            "qualification_ref": null
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "原body unknown nullと資格nullを別に保存。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/body",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/content_bytes",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/role",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ENVELOPE-BRAIN-ROLE",
+        "entry_type": "SourceEnvelope",
+        "raw_utf8": "{\"role\":\"semantic_json\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "65cf20160826fb146e9a5f0e9ad433857f2f44ec0226af30dcef94af9e41de7b",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "BRAIN roleをCORE roleへ無言共通化しない。",
+          "input_issue_locator": "/role"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ENVELOPE-CONTENT-EXTENSION",
+        "entry_type": "SourceEnvelope",
+        "raw_utf8": "{\"content\":{\"records\":[]}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "60771636f2d5827418262e520ec14cd26a68a04d3059fa92db570c4e12b53729",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "content": {
+              "records": []
+            }
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "原拡張contentは保持するがCORE bodyはabsent。BRAIN contentをbodyへaliasしない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/body",
+            "state": "absent"
+          },
+          {
+            "pointer": "/content_bytes",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/role",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-QUALIFICATION-NORMAL",
+        "entry_type": "Qualification",
+        "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}, \"root_ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}, \"subject_ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": \"d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2\"}, \"subject_sha256\": \"d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2\", \"owner\": null, \"scope\": null, \"body\": {\"unknown_origin\": true}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "2baf948ad0e96cdd3215d7c98c50b3bdb18530cd44ad7fedef747d7644d07273",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "ref": {
+              "identity": "synthetic-core-source",
+              "revision": "synthetic-core-rev",
+              "scope": {
+                "project": "synthetic-only"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "root_ref": {
+              "identity": "synthetic-core-source",
+              "revision": "synthetic-core-rev",
+              "scope": {
+                "project": "synthetic-only"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "subject_ref": {
+              "identity": "synthetic-core-source",
+              "revision": "synthetic-core-rev",
+              "scope": {
+                "project": "synthetic-only"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": "d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2"
+            },
+            "subject_sha256": "d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2",
+            "owner": null,
+            "scope": null,
+            "body": {
+              "unknown_origin": true
+            }
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "原nullable owner/scope/opaque bodyを保持。実root供給元unknown。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/ref/sha256",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/root_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/root_ref/sha256",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/subject_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/subject_ref/sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/scope",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/body",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-QUALIFICATION-ABSENT",
+        "entry_type": "Qualification",
+        "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}, \"subject_ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": \"d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2\"}, \"subject_sha256\": \"d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2\", \"owner\": null, \"scope\": null, \"body\": {\"unknown_origin\": true}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "bc022bb6cf959c7b08a7f2db8d8332ac671268b3ddedc6d3337cc9418ac37e36",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "ref": {
+              "identity": "synthetic-core-source",
+              "revision": "synthetic-core-rev",
+              "scope": {
+                "project": "synthetic-only"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "subject_ref": {
+              "identity": "synthetic-core-source",
+              "revision": "synthetic-core-rev",
+              "scope": {
+                "project": "synthetic-only"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": "d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2"
+            },
+            "subject_sha256": "d70f12c672a6a0837aca4f49ce94cbc904ab4506b6a1ad12b6b081985b1670b2",
+            "owner": null,
+            "scope": null,
+            "body": {
+              "unknown_origin": true
+            }
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "原root欠落をsource digest/ownerから創作しない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/ref/sha256",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/root_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/subject_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/subject_ref/sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/scope",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/body",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-QUALIFICATION-NULL",
+        "entry_type": "Qualification",
+        "raw_utf8": "{\"root_ref\":null}",
+        "raw_octets_hex": null,
+        "raw_sha256": "9f804ca606ccbb9db1e8c4bf4be710baa86179b9e83d0115bb3517aee4baac0e",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "Ref型rootの供給nullは型不正。absenceと区別。",
+          "input_issue_locator": "/root_ref"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ROOTS-EMPTY",
+        "entry_type": "QualificationRoots",
+        "raw_utf8": "[]",
+        "raw_octets_hex": null,
+        "raw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "expected": {
+          "stage": "decoded",
+          "value": [],
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "原独立root空集合を資格済みへ変えない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": []
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ROOTS-DUPLICATE",
+        "entry_type": "QualificationRoots",
+        "raw_utf8": "[{\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}, {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}]",
+        "raw_octets_hex": null,
+        "raw_sha256": "4333d863d53bb3d46fe4907ea737368b2db9e1e64307a44a9c7c1faa7726e654",
+        "expected": {
+          "stage": "decoded",
+          "value": [
+            {
+              "identity": "synthetic-core-source",
+              "revision": "synthetic-core-rev",
+              "scope": {
+                "project": "synthetic-only"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            {
+              "identity": "synthetic-core-source",
+              "revision": "synthetic-core-rev",
+              "scope": {
+                "project": "synthetic-only"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          ],
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "配列重複は原順序のまま。object duplicate keyやroot資格成功へ転用しない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/0/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/0/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/0/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/0/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/0/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/0/sha256",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/1/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/1/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/1/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/1/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/1/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/1/sha256",
+            "state": "explicit_null"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ROOTS-NULL",
+        "entry_type": "QualificationRoots",
+        "raw_utf8": "null",
+        "raw_octets_hex": null,
+        "raw_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "Ref[]型の供給nullを[]へdefaultしない。",
+          "input_issue_locator": ""
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-INPUT-PRESENCE",
+        "entry_type": "ApplicationInput",
+        "raw_utf8": "{\"axis_facts\": null, \"universes\": [], \"qualification_roots\": [], \"nonsemantic_metadata\": {\"unknown_key\": [\"unknown\", null]}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "bdf85e0a9ad750618d2f8930464227e1735708bb7366a755b26d3c1461e75fc2",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "axis_facts": null,
+            "universes": [],
+            "qualification_roots": [],
+            "nonsemantic_metadata": {
+              "unknown_key": [
+                "unknown",
+                null
+              ]
+            }
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "axis明示null/母集合配列empty/他必要memberabsentを別に保存。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/binding",
+            "state": "absent"
+          },
+          {
+            "pointer": "/operations",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_roots",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/qualifications",
+            "state": "absent"
+          },
+          {
+            "pointer": "/axis_requirements",
+            "state": "absent"
+          },
+          {
+            "pointer": "/axis_facts",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/universes",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/templates",
+            "state": "absent"
+          },
+          {
+            "pointer": "/conditions",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons",
+            "state": "absent"
+          },
+          {
+            "pointer": "/application_policies",
+            "state": "absent"
+          },
+          {
+            "pointer": "/na_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/obligations",
+            "state": "absent"
+          },
+          {
+            "pointer": "/required_trace_refs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/trace_edges",
+            "state": "absent"
+          },
+          {
+            "pointer": "/field_inputs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/gap_proposals",
+            "state": "absent"
+          },
+          {
+            "pointer": "/knowledge_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/consumers",
+            "state": "absent"
+          },
+          {
+            "pointer": "/meaning_deltas",
+            "state": "absent"
+          },
+          {
+            "pointer": "/impact_evidence",
+            "state": "absent"
+          },
+          {
+            "pointer": "/claims",
+            "state": "absent"
+          },
+          {
+            "pointer": "/nonsemantic_metadata",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/semantic_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/trace_requirements",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-INPUT-ABSENT",
+        "entry_type": "ApplicationInput",
+        "raw_utf8": "{}",
+        "raw_octets_hex": null,
+        "raw_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "expected": {
+          "stage": "decoded",
+          "value": {},
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "意味担当が必要操作と独立contractから欠落を解決。空集合成功にしない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/binding",
+            "state": "absent"
+          },
+          {
+            "pointer": "/operations",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_roots",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualifications",
+            "state": "absent"
+          },
+          {
+            "pointer": "/axis_requirements",
+            "state": "absent"
+          },
+          {
+            "pointer": "/axis_facts",
+            "state": "absent"
+          },
+          {
+            "pointer": "/universes",
+            "state": "absent"
+          },
+          {
+            "pointer": "/templates",
+            "state": "absent"
+          },
+          {
+            "pointer": "/conditions",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons",
+            "state": "absent"
+          },
+          {
+            "pointer": "/application_policies",
+            "state": "absent"
+          },
+          {
+            "pointer": "/na_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/obligations",
+            "state": "absent"
+          },
+          {
+            "pointer": "/required_trace_refs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/trace_edges",
+            "state": "absent"
+          },
+          {
+            "pointer": "/field_inputs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/gap_proposals",
+            "state": "absent"
+          },
+          {
+            "pointer": "/knowledge_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/consumers",
+            "state": "absent"
+          },
+          {
+            "pointer": "/meaning_deltas",
+            "state": "absent"
+          },
+          {
+            "pointer": "/impact_evidence",
+            "state": "absent"
+          },
+          {
+            "pointer": "/claims",
+            "state": "absent"
+          },
+          {
+            "pointer": "/nonsemantic_metadata",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/trace_requirements",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-INPUT-NULL-AXIS",
+        "entry_type": "ApplicationInput",
+        "raw_utf8": "{\"axis_facts\":null,\"universes\":null}",
+        "raw_octets_hex": null,
+        "raw_sha256": "b9d335d5684bc5552cd23431f4ca25397423f0913593cd44943c8378439c5037",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "axis_facts": null,
+            "universes": null
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "両nullable母資料のnullはunknownの原材料。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/binding",
+            "state": "absent"
+          },
+          {
+            "pointer": "/operations",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_roots",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualifications",
+            "state": "absent"
+          },
+          {
+            "pointer": "/axis_requirements",
+            "state": "absent"
+          },
+          {
+            "pointer": "/axis_facts",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/universes",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/templates",
+            "state": "absent"
+          },
+          {
+            "pointer": "/conditions",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons",
+            "state": "absent"
+          },
+          {
+            "pointer": "/application_policies",
+            "state": "absent"
+          },
+          {
+            "pointer": "/na_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/obligations",
+            "state": "absent"
+          },
+          {
+            "pointer": "/required_trace_refs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/trace_edges",
+            "state": "absent"
+          },
+          {
+            "pointer": "/field_inputs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/gap_proposals",
+            "state": "absent"
+          },
+          {
+            "pointer": "/knowledge_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/consumers",
+            "state": "absent"
+          },
+          {
+            "pointer": "/meaning_deltas",
+            "state": "absent"
+          },
+          {
+            "pointer": "/impact_evidence",
+            "state": "absent"
+          },
+          {
+            "pointer": "/claims",
+            "state": "absent"
+          },
+          {
+            "pointer": "/nonsemantic_metadata",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/trace_requirements",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-INPUT-ROOT-NULL",
+        "entry_type": "ApplicationInput",
+        "raw_utf8": "{\"qualification_roots\":null}",
+        "raw_octets_hex": null,
+        "raw_sha256": "5a25223584190a3ab3bd19f4be182a9702d5b43ffd7c17dcc098de385fb52c4c",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "非nullable roots型。missingと供給nullを分ける。",
+          "input_issue_locator": "/qualification_roots"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-INPUT-FALSE",
+        "entry_type": "ApplicationInput",
+        "raw_utf8": "{\"semantic_comparisons\":[{\"same_meaning\":false}]}",
+        "raw_octets_hex": null,
+        "raw_sha256": "a018a2ae299ded889ed10cf02b6a55c8137b849fbbd07426d324a60c5c6135e5",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "semantic_comparisons": [
+              {
+                "same_meaning": false
+              }
+            ]
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "falseを元不一致として保持。N/A/完了をcodecで作らない。他意味根拠欠落も保持。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/binding",
+            "state": "absent"
+          },
+          {
+            "pointer": "/operations",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_roots",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualifications",
+            "state": "absent"
+          },
+          {
+            "pointer": "/axis_requirements",
+            "state": "absent"
+          },
+          {
+            "pointer": "/axis_facts",
+            "state": "absent"
+          },
+          {
+            "pointer": "/universes",
+            "state": "absent"
+          },
+          {
+            "pointer": "/templates",
+            "state": "absent"
+          },
+          {
+            "pointer": "/conditions",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/semantic_comparisons/0/ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons/0/left_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons/0/right_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons/0/same_meaning",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/semantic_comparisons/0/source_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons/0/reason",
+            "state": "absent"
+          },
+          {
+            "pointer": "/application_policies",
+            "state": "absent"
+          },
+          {
+            "pointer": "/na_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/obligations",
+            "state": "absent"
+          },
+          {
+            "pointer": "/required_trace_refs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/trace_edges",
+            "state": "absent"
+          },
+          {
+            "pointer": "/field_inputs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/gap_proposals",
+            "state": "absent"
+          },
+          {
+            "pointer": "/knowledge_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/consumers",
+            "state": "absent"
+          },
+          {
+            "pointer": "/meaning_deltas",
+            "state": "absent"
+          },
+          {
+            "pointer": "/impact_evidence",
+            "state": "absent"
+          },
+          {
+            "pointer": "/claims",
+            "state": "absent"
+          },
+          {
+            "pointer": "/nonsemantic_metadata",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/trace_requirements",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-INPUT-UNKNOWN",
+        "entry_type": "ApplicationInput",
+        "raw_utf8": "{\"semantic_comparisons\":[{\"same_meaning\":null}]}",
+        "raw_octets_hex": null,
+        "raw_sha256": "20873538d2599c24c557e538fe45ee7229c9988067351fc84a88c78a7957dd68",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "semantic_comparisons": [
+              {
+                "same_meaning": null
+              }
+            ]
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "同意味unknown nullと確定falseを混ぜない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/binding",
+            "state": "absent"
+          },
+          {
+            "pointer": "/operations",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_roots",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualifications",
+            "state": "absent"
+          },
+          {
+            "pointer": "/axis_requirements",
+            "state": "absent"
+          },
+          {
+            "pointer": "/axis_facts",
+            "state": "absent"
+          },
+          {
+            "pointer": "/universes",
+            "state": "absent"
+          },
+          {
+            "pointer": "/templates",
+            "state": "absent"
+          },
+          {
+            "pointer": "/conditions",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/semantic_comparisons/0/ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons/0/left_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons/0/right_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons/0/same_meaning",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/semantic_comparisons/0/source_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_comparisons/0/reason",
+            "state": "absent"
+          },
+          {
+            "pointer": "/application_policies",
+            "state": "absent"
+          },
+          {
+            "pointer": "/na_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/obligations",
+            "state": "absent"
+          },
+          {
+            "pointer": "/required_trace_refs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/trace_edges",
+            "state": "absent"
+          },
+          {
+            "pointer": "/field_inputs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/gap_proposals",
+            "state": "absent"
+          },
+          {
+            "pointer": "/knowledge_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/consumers",
+            "state": "absent"
+          },
+          {
+            "pointer": "/meaning_deltas",
+            "state": "absent"
+          },
+          {
+            "pointer": "/impact_evidence",
+            "state": "absent"
+          },
+          {
+            "pointer": "/claims",
+            "state": "absent"
+          },
+          {
+            "pointer": "/nonsemantic_metadata",
+            "state": "absent"
+          },
+          {
+            "pointer": "/semantic_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/trace_requirements",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ANALYSIS-NORMAL",
+        "entry_type": "ApplicationAnalysis",
+        "raw_utf8": "{\"binding\": {}, \"candidate_material\": {\"disposition\": \"conditional\", \"condition\": null}, \"obligations\": [], \"gap_material\": null, \"impact_material\": {\"state\": \"Unknown\"}, \"comparisons\": [{\"producer_symbol\": \"compare_applicability\", \"input_binding\": {}, \"original_axes\": [{\"subject_ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}, \"binding\": {}, \"axis\": \"applicability\", \"state\": \"unknown\", \"original_refs\": [], \"reason\": \"合成codec対照：元条件未決\", \"backflow_owner\": null}], \"findings\": [], \"material\": {\"unfinished\": true}}], \"input_issues\": [{\"locator\": \"/universes\", \"reason\": \"合成codec対照：母集合根拠不足\", \"source_ref\": null}], \"source_refs\": [], \"side_effect_count\": 0}",
+        "raw_octets_hex": null,
+        "raw_sha256": "57159dc34d9ee860d25182c09203011df4e1750ba7f7e37dbe214f6dceb548e6",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "binding": {},
+            "candidate_material": {
+              "disposition": "conditional",
+              "condition": null
+            },
+            "obligations": [],
+            "gap_material": null,
+            "impact_material": {
+              "state": "Unknown"
+            },
+            "comparisons": [
+              {
+                "producer_symbol": "compare_applicability",
+                "input_binding": {},
+                "original_axes": [
+                  {
+                    "subject_ref": {
+                      "identity": "synthetic-core-source",
+                      "revision": "synthetic-core-rev",
+                      "scope": {
+                        "project": "synthetic-only"
+                      },
+                      "owner": "synthetic-core-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "binding": {},
+                    "axis": "applicability",
+                    "state": "unknown",
+                    "original_refs": [],
+                    "reason": "合成codec対照：元条件未決",
+                    "backflow_owner": null
+                  }
+                ],
+                "findings": [],
+                "material": {
+                  "unfinished": true
+                }
+              }
+            ],
+            "input_issues": [
+              {
+                "locator": "/universes",
+                "reason": "合成codec対照：母集合根拠不足",
+                "source_ref": null
+              }
+            ],
+            "source_refs": [],
+            "side_effect_count": 0
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "conditional未完/Unknown/null owner/不足/CORE original_axes/materialを候補材料として保持。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/binding",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/binding/requirement_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/product_scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/process_contract_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/application_contract_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/template_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/knowledge_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/binding/oracle_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/candidate_material",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/obligations",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/gap_material",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/impact_material",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/producer_symbol",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/requirement_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/product_scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/process_contract_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/application_contract_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/template_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/knowledge_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/input_binding/oracle_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/subject_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/subject_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/subject_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/subject_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/subject_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/subject_ref/source_locator",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/subject_ref/sha256",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/binding",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/binding/requirement_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/binding/product_scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/binding/process_contract_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/binding/application_contract_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/binding/template_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/binding/knowledge_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/binding/oracle_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/axis",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/state",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/original_refs",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/reason",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/comparisons/0/original_axes/0/backflow_owner",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/comparisons/0/findings",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/comparisons/0/material",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/input_issues",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/input_issues/0/locator",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/input_issues/0/reason",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/input_issues/0/source_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/source_refs",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/side_effect_count",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ANALYSIS-MISSING",
+        "entry_type": "ApplicationAnalysis",
+        "raw_utf8": "{\"binding\": {}, \"candidate_material\": {\"disposition\": \"conditional\", \"condition\": null}, \"obligations\": [], \"gap_material\": null, \"impact_material\": {\"state\": \"Unknown\"}, \"input_issues\": [{\"locator\": \"/universes\", \"reason\": \"合成codec対照：母集合根拠不足\", \"source_ref\": null}], \"source_refs\": [], \"side_effect_count\": 0}",
+        "raw_octets_hex": null,
+        "raw_sha256": "5b6ed6444faca6c817629b51ca1e6f494a7ca3bd9394cf001617672197a82cc1",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "生成結果欠落を[]へ補ってencodeしない。",
+          "input_issue_locator": "/comparisons"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ANALYSIS-USED",
+        "entry_type": "ApplicationAnalysis",
+        "raw_utf8": "{\"binding\": {}, \"candidate_material\": {\"disposition\": \"conditional\", \"condition\": null}, \"obligations\": [], \"gap_material\": null, \"impact_material\": {\"state\": \"Unknown\"}, \"comparisons\": [{\"producer_symbol\": \"compare_applicability\", \"input_binding\": {}, \"original_axes\": [{\"subject_ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}, \"binding\": {}, \"axis\": \"applicability\", \"state\": \"unknown\", \"original_refs\": [], \"reason\": \"合成codec対照：元条件未決\", \"backflow_owner\": null}], \"findings\": [], \"material\": {\"unfinished\": true}}], \"input_issues\": [{\"locator\": \"/universes\", \"reason\": \"合成codec対照：母集合根拠不足\", \"source_ref\": null}], \"source_refs\": [], \"side_effect_count\": 0, \"used\": true}",
+        "raw_octets_hex": null,
+        "raw_sha256": "1776659759dd61192f894e5cf99036652d673f33b09f25e692a39e714146663b",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "OS使用済み裁定fieldはCORE生成結果へ出さない。",
+          "input_issue_locator": "/used"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ANALYSIS-BOOL",
+        "entry_type": "ApplicationAnalysis",
+        "raw_utf8": "{\"binding\": {}, \"candidate_material\": {\"disposition\": \"conditional\", \"condition\": null}, \"obligations\": [], \"gap_material\": null, \"impact_material\": {\"state\": \"Unknown\"}, \"comparisons\": [{\"producer_symbol\": \"compare_applicability\", \"input_binding\": {}, \"original_axes\": [{\"subject_ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}, \"binding\": {}, \"axis\": \"applicability\", \"state\": \"unknown\", \"original_refs\": [], \"reason\": \"合成codec対照：元条件未決\", \"backflow_owner\": null}], \"findings\": [], \"material\": {\"unfinished\": true}}], \"input_issues\": [{\"locator\": \"/universes\", \"reason\": \"合成codec対照：母集合根拠不足\", \"source_ref\": null}], \"source_refs\": [], \"side_effect_count\": true}",
+        "raw_octets_hex": null,
+        "raw_sha256": "88de3b68bcb8ba46506edc617039d49c51748a20fadd39680bfc6070688c2e01",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "booleanをinteger1へcoerceしない。",
+          "input_issue_locator": "/side_effect_count"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-ANALYSIS-BRAIN-COMPARISON",
+        "entry_type": "ApplicationAnalysis",
+        "raw_utf8": "{\"binding\": {}, \"candidate_material\": {\"disposition\": \"conditional\", \"condition\": null}, \"obligations\": [], \"gap_material\": null, \"impact_material\": {\"state\": \"Unknown\"}, \"comparisons\": [{\"producer_symbol\": \"compare_applicability\", \"input_binding\": {}, \"original_axes\": [{\"subject_ref\": {\"identity\": \"synthetic-core-source\", \"revision\": \"synthetic-core-rev\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-core-owner\", \"source_locator\": null, \"sha256\": null}, \"binding\": {}, \"axis\": \"applicability\", \"state\": \"unknown\", \"original_refs\": [], \"reason\": \"合成codec対照：元条件未決\", \"backflow_owner\": null}], \"findings\": [], \"material\": {\"unfinished\": true}, \"axes\": []}], \"input_issues\": [{\"locator\": \"/universes\", \"reason\": \"合成codec対照：母集合根拠不足\", \"source_ref\": null}], \"source_refs\": [], \"side_effect_count\": 0}",
+        "raw_octets_hex": null,
+        "raw_sha256": "49b2e5ca05d7625c45d868ca7be018843229edb8dbce01b28a66ee805942d934",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "BRAIN axesをCORE original_axes/materialへ無言転写しない。",
+          "input_issue_locator": "/comparisons/0/axes"
+        },
+        "execution_state": "not_executed"
+      }
+    ],
+    "encoder_obligations": [
+      "decoded原値はencode→decodeでもmember presence/extension/null/原配列順/整数/文字列/content_bytesを保存。外側bytes一致は意味資格ではない。",
+      "全型不正/出力required欠落/closed出力裁定fieldは同じ所在へ失敗返却。入力未知extensionを削除/aliasせず、意味担当の原不足を保持。",
+      "decoded ApplicationAnalysis/Comparisonをcaller cached oracleとして評価器へ再利用せず、受領/使用/消込を生成しない。"
+    ],
+    "completion_limit": "source pins/旧引用/固定raw bytehash/schema形/期待原値/既存memberの静的照合のみ。実codec/library採用/資格供給元/実custody/独立review、L6関数設計/L7関数検証、層外実装とtest/oracle凍結→Red→Green→Refactor、全92親430対閉包と実装Readyは未成立。 小数/指数(1.0/1e0/0.1)、1e400、encode非JSON値の具体期待stageと適用条件は未固定。unfixed_numeric_and_encode_rangeへ保持する。",
+    "presence_contract": "expected_presenceは宣言memberごとの{pointer,state}列。原供給構造の既知memberだけを再帰走査し、absent/null内の仮objectやopaque/extension mapの宣言を創作しない。配列indexは所在でidentityではない。原値とpresenceをencode/decode往復で照合する。",
+    "unfixed_numeric_and_encode_range": [
+      {
+        "range": "decimal_and_exponent",
+        "raw_examples": [
+          "{\"scope\":1.0}",
+          "{\"scope\":1e0}",
+          "{\"scope\":0.1}"
+        ],
+        "expected_stage": "not_fixed",
+        "reason": "exact number規則は保持。具体parser/lexeme/host数値carrier未選定。"
+      },
+      {
+        "range": "large_exponent",
+        "raw_examples": [
+          "{\"scope\":1e400}"
+        ],
+        "expected_stage": "not_fixed",
+        "reason": "JSON syntaxとhost表現幅を分離。成功または理由付き表現不能失敗の適用条件を未固定として保持し、infinity/nullへ補正しない。"
+      },
+      {
+        "range": "encode_non_json_value",
+        "input_examples_description": "JSON carrier外の値・表現不能数値/文字列",
+        "expected_stage": "not_fixed",
+        "reason": "具体host型/encode入口/分岐条件未凍結。decode固定rawでencode固有失敗まで完了にしない。"
+      }
+    ]
+  }
 }
