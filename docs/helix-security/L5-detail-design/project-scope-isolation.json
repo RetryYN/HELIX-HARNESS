@@ -1,0 +1,3818 @@
+{
+  "status": "draft_logical_detail_and_fixed_raw_material_pending_independent_review",
+  "parent": "HELIXSECURITY-L2-003",
+  "source_main": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+  "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "boundary": "F01/F02局所の論理比較詳細。正式issuer/資格/権限/隔離/保存/通信を生成しない。"
+  },
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "json_pointer": "/requirements/3",
+      "source_value": {
+        "id": "HELIXSECURITY-L3-003-F01",
+        "parent": "HELIXSECURITY-L2-003",
+        "title": "隔離identityと作用範囲",
+        "obligation": "権限/state/data/Worker/credential/artifact/memory/実行対象をproject・tenant・environment・assignment/worktreeへ結ぶ。OSのassignment、INFRAの実環境、CONNECTの明示接続identityを各ownerから照合する。対象にないtenantを捏造せず、適用されるtenantは省略しない。",
+        "oracle_ref": "HELIXSECURITY-L10-003-F01"
+      },
+      "value_canonical_sha256": "1369f93ccafb41c6ba10e144cba9197e2da1a38aacf2f635416c1c88a06adfa9",
+      "id": "HELIXSECURITY-L3-003-F01"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "json_pointer": "/requirements/4",
+      "source_value": {
+        "id": "HELIXSECURITY-L3-003-F02",
+        "parent": "HELIXSECURITY-L2-003",
+        "title": "資産とstateの越境拒否",
+        "obligation": "Agent/Hook/memory/credential/設定/Workerが明示接続なしに他projectへ作用しない。read/write/execute/network/state/credential/artifactの各境界を対象revision/scopeへ照合し、各機構のstate正本を代替しない。",
+        "oracle_ref": "HELIXSECURITY-L10-003-F02"
+      },
+      "value_canonical_sha256": "19b26caf00defe161d17757bf7a0eabc001062fa7b8e8cf8f910461297b7e351",
+      "id": "HELIXSECURITY-L3-003-F02"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "json_pointer": "/cases/3",
+      "source_value": {
+        "id": "HELIXSECURITY-L10-003-F01",
+        "parent": "HELIXSECURITY-L2-003",
+        "title": "隔離identityと作用範囲",
+        "requirement_ref": "HELIXSECURITY-L3-003-F01",
+        "positive_input": "合成A/B project/tenant/environment/worktreeと同scope/別scopeの作用を照合する。",
+        "expected_observation": "明示接続のある作用だけが対象内に限定され、identityの出所が辿れる。",
+        "negative_input": "identity欠落/衝突、primary tree/別project fallback、tenant適用省略。",
+        "failure_observation": "該当操作を止め、identity不足はそのowner、実環境不足はINFRAへ返す。",
+        "execution_state": "not_executed"
+      },
+      "value_canonical_sha256": "17b262cc24e1b75f42eff2910bccaeeb9dfd0d5b487ced623cf09b5a56863615",
+      "id": "HELIXSECURITY-L10-003-F01"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "json_pointer": "/cases/4",
+      "source_value": {
+        "id": "HELIXSECURITY-L10-003-F02",
+        "parent": "HELIXSECURITY-L2-003",
+        "title": "資産とstateの越境拒否",
+        "requirement_ref": "HELIXSECURITY-L3-003-F02",
+        "positive_input": "各作用種別を同projectの有効接続と別project/環境へ一つずつ試す。",
+        "expected_observation": "許可対象と拒否/未観測を分け、scope不明を許可にしない。",
+        "negative_input": "別project stateを最新扱い、暗黙fallback、あるread許可で全write/network許可。",
+        "failure_observation": "該当境界へ戻し、無関係な有効scopeを保持する。",
+        "execution_state": "not_executed"
+      },
+      "value_canonical_sha256": "27841ff00050409c3f65a1ebc6ed29f0a5be70f4b9cd8df77ce13ba585687803",
+      "id": "HELIXSECURITY-L10-003-F02"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-broker.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "e270bff996249360fdeb29ee4f36e3bf9ab6e27e50a013451f6ece153a5d46d4"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-policy.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "152a7a5806001ae1b2e0215d7cd61db14b7c61cbc4b4b501524bda58622716cf"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-isolation-policy.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "1c57cd7da89b007a81b3b7477ef9b6fb13cbfb7af8c21286391086473c871990"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-RECOVERY-1573-isolation-launch-cleanup.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "cb453050ff35ff3106b24b18675988ae24e3d966b4606dc62de078a667c3893d"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-isolation-broker.ts",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "5a0f69619306f27c2c04fac3f05566346aec5c499631d62440d34c7e7b0e220d"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-connect/L4-basic-design/operation-envelope-receipt.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "fe85e808b2b2c9243b5e352e623d296d76b712c18b34074b5d1030593ca5e6e7"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/resource-topology-environment.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "c219e0c4b841da38d61d7f33f01199bdd667efdbfd62e5967365f6dfcf636025"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/worker-assignment-attempt.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "a6748aecb12106c7046f7e170b117aa3ca0dd1e6b4750fe372d2b52af3689645"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "f8230cd5cfa1911e0209294d4ba78fbc45adb3e7ebdf25eb67dd3ee1634d18eb"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "710756a8829a2cd6116ce25a6b16267c8cdb45ebcee52a3ea2fe2845eec62b27"
+    }
+  ],
+  "source_pin_limit": "whole hashと引用/原値の静的一致だけ。未読sourceの意味/正式binding閉包を証明しない。",
+  "upstream_wholefiles": [
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "e9ef8fea59cfed03b96ff61e2f556fc22fa72279cf660fa47786c2b1f24fa877"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "0fc000a1bd25a5a9c77cb845870b294bc246367051e49daa378cabb4fd6ffdd4"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "a3123757f7f057f787ce8d1e08437512278f892f974652d5e5dace245e777231"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "d7ce3514fd0dd3ba3bd5545fb97075425d2a8abb3156a107bfaf6e7d56db2dbf"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "9d27bf4b9ebb6783e3da2fb5c20667d957d26a49f1861b5d1ae3af578e811dba"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "07468dcc9d059396fdf7ca060910bda77cc8e67cb1a44861f5483274f20c13ff"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "622072ec5eae8b73395091638034e7d76b35c916f4b0799c2ff37a4ec57e649e"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "161426bd23eba08f84a17072b046fe567e8acdd4145db4d795998718201f4132"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66"
+    }
+  ],
+  "original_L9_fixture_custody": {
+    "source": {
+      "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "710756a8829a2cd6116ce25a6b16267c8cdb45ebcee52a3ea2fe2845eec62b27"
+    },
+    "count": 205,
+    "records": [
+      {
+        "id": "SEC003-AGENT-READ-TENANT",
+        "json_pointer": "/cases/0",
+        "input_canonical_sha256": "7ce3451da1e39531f229eb083ba80b189fd941b5dae05a4e1dc0fd5596dd3cf0",
+        "expected_canonical_sha256": "67d7b2dd917f7e85c194a13ddc0e22128ce8b5d8fa9e69ae35437415d514ea13"
+      },
+      {
+        "id": "SEC003-AGENT-READ-NO-TENANT",
+        "json_pointer": "/cases/1",
+        "input_canonical_sha256": "692d2641e027a5dee6d7c64561b31480c766960b901b95d71c1f2f971a65b54a",
+        "expected_canonical_sha256": "2dcb98a79916eb86d754f702ff1fce60a05bac0c05d898e3f65739fd85cc82f4"
+      },
+      {
+        "id": "SEC003-AGENT-WRITE-TENANT",
+        "json_pointer": "/cases/2",
+        "input_canonical_sha256": "534666f56cf1c2120f472bb4d43266411757fb9967aa818e36745d95a0322bf3",
+        "expected_canonical_sha256": "dd26523f400c5f7b1757d4fae022e18be35f9cfad9731d8e291bf64b3d875927"
+      },
+      {
+        "id": "SEC003-AGENT-WRITE-NO-TENANT",
+        "json_pointer": "/cases/3",
+        "input_canonical_sha256": "709de320b6e763fd0c9dbce0f12c4c70a3fb3361b5c121ad9d5aaebe9fec19a7",
+        "expected_canonical_sha256": "fdfe187abbc4ae04b69e131659b0466401dfcef9969fd89205625b8f07d5ab17"
+      },
+      {
+        "id": "SEC003-AGENT-EXECUTE-TENANT",
+        "json_pointer": "/cases/4",
+        "input_canonical_sha256": "4ac94987a0b6a7e3b6b41cf1f250c4e6bc15bc5a6ec107bed007ea092161b385",
+        "expected_canonical_sha256": "33dd01a70f80b8bfd84a38008647c33845067e1ebc697f299dee3a70dab42568"
+      },
+      {
+        "id": "SEC003-AGENT-EXECUTE-NO-TENANT",
+        "json_pointer": "/cases/5",
+        "input_canonical_sha256": "44019e1fb11feae87f3b64f4eb650e739a184d09842b1135cd94b4c07df3f4c4",
+        "expected_canonical_sha256": "2af88d771ca5c6fbaf208b5de1bc3515c81dcff3dbbb0c19be9cc7f160df84df"
+      },
+      {
+        "id": "SEC003-AGENT-NETWORK-TENANT",
+        "json_pointer": "/cases/6",
+        "input_canonical_sha256": "f27d517dcc9a11486b38c799b22299d6ca70a0c05a775b97985b2392725219b6",
+        "expected_canonical_sha256": "741867051998bf5af070b8e2f8d9a18eda2a018f064d8d53b468562b2ec73be4"
+      },
+      {
+        "id": "SEC003-AGENT-NETWORK-NO-TENANT",
+        "json_pointer": "/cases/7",
+        "input_canonical_sha256": "b03ee78e0f959166302e5f6900be1219b1ebf9faeb6666314dad2dfedca80cf9",
+        "expected_canonical_sha256": "2580425db3cba6169c304a28ac286da34eb56e61c4bdb1f0ef999349122a73c6"
+      },
+      {
+        "id": "SEC003-AGENT-STATE-TENANT",
+        "json_pointer": "/cases/8",
+        "input_canonical_sha256": "542cd8fd209a08b5dc2a602aaed7b0c11d65ce493c3817db9aff12a15304928a",
+        "expected_canonical_sha256": "f8b2b8c2e61880b631cff193639c39fee5b17bbe3d2c0befbaa75ce75f2ba0fa"
+      },
+      {
+        "id": "SEC003-AGENT-STATE-NO-TENANT",
+        "json_pointer": "/cases/9",
+        "input_canonical_sha256": "6811ab4913db861a9574512611ea02488571486546739e41d0189937832010f9",
+        "expected_canonical_sha256": "89345d777b9e42f7f334339f2c9506288db770bc91d3de1cec319d44889d46c7"
+      },
+      {
+        "id": "SEC003-AGENT-CREDENTIAL-TENANT",
+        "json_pointer": "/cases/10",
+        "input_canonical_sha256": "f90733a750edbc168efedae5314061d9582e3ac965bb83858a2cd6c7aa0591ff",
+        "expected_canonical_sha256": "2c08f087723b9f320983627415fcc21fe14d0f03aef5fbb550dca529952ff224"
+      },
+      {
+        "id": "SEC003-AGENT-CREDENTIAL-NO-TENANT",
+        "json_pointer": "/cases/11",
+        "input_canonical_sha256": "20965fb18cbc06f448610b590609a0b1255d1b194c699eb6c6aa65958427c3fa",
+        "expected_canonical_sha256": "85e6f62500eb521afe5ce1a8f70772faff4529bb6efe2abfaadc88c8307e19d7"
+      },
+      {
+        "id": "SEC003-AGENT-ARTIFACT-TENANT",
+        "json_pointer": "/cases/12",
+        "input_canonical_sha256": "d798c43e525d1157a722108e8a1f56907be0fa1192929748b787472b72dc0558",
+        "expected_canonical_sha256": "ed620ba25d2936d27c11ffd5703ca7e43166e52feb6a6def94038b6887266823"
+      },
+      {
+        "id": "SEC003-AGENT-ARTIFACT-NO-TENANT",
+        "json_pointer": "/cases/13",
+        "input_canonical_sha256": "8628038956d91867f8e78dbf3d3288a714a4b4cdae34482a608498d1e16c5618",
+        "expected_canonical_sha256": "9ee8593e8f777fbf464afeff5685e00a305b2df1e756b72ed8402f2ade2d0778"
+      },
+      {
+        "id": "SEC003-HOOK-READ-TENANT",
+        "json_pointer": "/cases/14",
+        "input_canonical_sha256": "e229547af1a989b909f016c78f6d1c2d74ce65a4681b1de4a1c676b579449d80",
+        "expected_canonical_sha256": "67d7b2dd917f7e85c194a13ddc0e22128ce8b5d8fa9e69ae35437415d514ea13"
+      },
+      {
+        "id": "SEC003-HOOK-READ-NO-TENANT",
+        "json_pointer": "/cases/15",
+        "input_canonical_sha256": "ad4c2917976d5206c234d2dc2dd8c91ce458883e30b59e0138e2d4f35cf8b00c",
+        "expected_canonical_sha256": "2dcb98a79916eb86d754f702ff1fce60a05bac0c05d898e3f65739fd85cc82f4"
+      },
+      {
+        "id": "SEC003-HOOK-WRITE-TENANT",
+        "json_pointer": "/cases/16",
+        "input_canonical_sha256": "2b66afc360f626c023c26162490c2b7ca41dfacddc920ad4238712e6549d0e45",
+        "expected_canonical_sha256": "dd26523f400c5f7b1757d4fae022e18be35f9cfad9731d8e291bf64b3d875927"
+      },
+      {
+        "id": "SEC003-HOOK-WRITE-NO-TENANT",
+        "json_pointer": "/cases/17",
+        "input_canonical_sha256": "3774721d498e55c76313ec3f9acc2d504c482511fbc22dde694bfb08a0d37cb4",
+        "expected_canonical_sha256": "fdfe187abbc4ae04b69e131659b0466401dfcef9969fd89205625b8f07d5ab17"
+      },
+      {
+        "id": "SEC003-HOOK-EXECUTE-TENANT",
+        "json_pointer": "/cases/18",
+        "input_canonical_sha256": "4830f02f1ed4c7d2834bed410eccce512114a23b2ce7db64dd9757e21397393f",
+        "expected_canonical_sha256": "33dd01a70f80b8bfd84a38008647c33845067e1ebc697f299dee3a70dab42568"
+      },
+      {
+        "id": "SEC003-HOOK-EXECUTE-NO-TENANT",
+        "json_pointer": "/cases/19",
+        "input_canonical_sha256": "554caf8b184831648eed1ca6fc1218bed0d14dbae14e7bd6c4b0bcd96a7054a3",
+        "expected_canonical_sha256": "2af88d771ca5c6fbaf208b5de1bc3515c81dcff3dbbb0c19be9cc7f160df84df"
+      },
+      {
+        "id": "SEC003-HOOK-NETWORK-TENANT",
+        "json_pointer": "/cases/20",
+        "input_canonical_sha256": "5118c2df90b55c995033fdfcc963dacf73f5505d828a9f5ad60c4561100490a8",
+        "expected_canonical_sha256": "741867051998bf5af070b8e2f8d9a18eda2a018f064d8d53b468562b2ec73be4"
+      },
+      {
+        "id": "SEC003-HOOK-NETWORK-NO-TENANT",
+        "json_pointer": "/cases/21",
+        "input_canonical_sha256": "fb5cdac479efcb557add428803c35510f1827a83167827d543fb15433e3f4657",
+        "expected_canonical_sha256": "2580425db3cba6169c304a28ac286da34eb56e61c4bdb1f0ef999349122a73c6"
+      },
+      {
+        "id": "SEC003-HOOK-STATE-TENANT",
+        "json_pointer": "/cases/22",
+        "input_canonical_sha256": "785035c8ea3d519b2aa1f0174ee71f7d8350a126c9a825134ced517a72096da8",
+        "expected_canonical_sha256": "f8b2b8c2e61880b631cff193639c39fee5b17bbe3d2c0befbaa75ce75f2ba0fa"
+      },
+      {
+        "id": "SEC003-HOOK-STATE-NO-TENANT",
+        "json_pointer": "/cases/23",
+        "input_canonical_sha256": "67fd867099d328e2f04ef95dfd616ae0e164ebc459883459ec2530ab67f368cc",
+        "expected_canonical_sha256": "89345d777b9e42f7f334339f2c9506288db770bc91d3de1cec319d44889d46c7"
+      },
+      {
+        "id": "SEC003-HOOK-CREDENTIAL-TENANT",
+        "json_pointer": "/cases/24",
+        "input_canonical_sha256": "6c8d8bff1d522dc21e9b951401123c79c73dd44d2fd2fcfbd7abf9c1e21d9418",
+        "expected_canonical_sha256": "2c08f087723b9f320983627415fcc21fe14d0f03aef5fbb550dca529952ff224"
+      },
+      {
+        "id": "SEC003-HOOK-CREDENTIAL-NO-TENANT",
+        "json_pointer": "/cases/25",
+        "input_canonical_sha256": "2f206a029a1d733a44977da2cdd29e5006710749a3bc5bbe3b36e3e02b9efdab",
+        "expected_canonical_sha256": "85e6f62500eb521afe5ce1a8f70772faff4529bb6efe2abfaadc88c8307e19d7"
+      },
+      {
+        "id": "SEC003-HOOK-ARTIFACT-TENANT",
+        "json_pointer": "/cases/26",
+        "input_canonical_sha256": "01c889e0bed48b8d14de7702a0f396292c4bfc326182ef7d9f8dd4ab46623382",
+        "expected_canonical_sha256": "ed620ba25d2936d27c11ffd5703ca7e43166e52feb6a6def94038b6887266823"
+      },
+      {
+        "id": "SEC003-HOOK-ARTIFACT-NO-TENANT",
+        "json_pointer": "/cases/27",
+        "input_canonical_sha256": "81763507bd3938ed4ba001026f9324868908c1012e2ff4a8174f86cc12d29fd0",
+        "expected_canonical_sha256": "9ee8593e8f777fbf464afeff5685e00a305b2df1e756b72ed8402f2ade2d0778"
+      },
+      {
+        "id": "SEC003-MEMORY-READ-TENANT",
+        "json_pointer": "/cases/28",
+        "input_canonical_sha256": "1798859a766d47566f2d4d6770b9dfaa2a04bbdc43bb9f145e86115ccf80faf2",
+        "expected_canonical_sha256": "67d7b2dd917f7e85c194a13ddc0e22128ce8b5d8fa9e69ae35437415d514ea13"
+      },
+      {
+        "id": "SEC003-MEMORY-READ-NO-TENANT",
+        "json_pointer": "/cases/29",
+        "input_canonical_sha256": "7b31944d7cd004fc7472c6adb05005f40ead8fca2f9285634e2a67d39b5c5f3e",
+        "expected_canonical_sha256": "2dcb98a79916eb86d754f702ff1fce60a05bac0c05d898e3f65739fd85cc82f4"
+      },
+      {
+        "id": "SEC003-MEMORY-WRITE-TENANT",
+        "json_pointer": "/cases/30",
+        "input_canonical_sha256": "ef1b22ee5890ce21577341f5f167822955398f18ae4af1d9e0044a45a979a8d9",
+        "expected_canonical_sha256": "dd26523f400c5f7b1757d4fae022e18be35f9cfad9731d8e291bf64b3d875927"
+      },
+      {
+        "id": "SEC003-MEMORY-WRITE-NO-TENANT",
+        "json_pointer": "/cases/31",
+        "input_canonical_sha256": "33c1acf0a4e8d2dd691a191207d92a26cf0ff570dbd23c6e75a317ae3c5fbfc3",
+        "expected_canonical_sha256": "fdfe187abbc4ae04b69e131659b0466401dfcef9969fd89205625b8f07d5ab17"
+      },
+      {
+        "id": "SEC003-MEMORY-EXECUTE-TENANT",
+        "json_pointer": "/cases/32",
+        "input_canonical_sha256": "7b5411b66c4d8e553001b69f56d6f5a23d9129eb51490a443ba9470203bc9438",
+        "expected_canonical_sha256": "33dd01a70f80b8bfd84a38008647c33845067e1ebc697f299dee3a70dab42568"
+      },
+      {
+        "id": "SEC003-MEMORY-EXECUTE-NO-TENANT",
+        "json_pointer": "/cases/33",
+        "input_canonical_sha256": "d280eab60cfedb9b8da2460367743c0a48d439cec2e110d54f1c858b5a87c8a7",
+        "expected_canonical_sha256": "2af88d771ca5c6fbaf208b5de1bc3515c81dcff3dbbb0c19be9cc7f160df84df"
+      },
+      {
+        "id": "SEC003-MEMORY-NETWORK-TENANT",
+        "json_pointer": "/cases/34",
+        "input_canonical_sha256": "1ac00a651b0bf331252d1a68caad153f788e2918b4fea785cbe8816c4449540d",
+        "expected_canonical_sha256": "741867051998bf5af070b8e2f8d9a18eda2a018f064d8d53b468562b2ec73be4"
+      },
+      {
+        "id": "SEC003-MEMORY-NETWORK-NO-TENANT",
+        "json_pointer": "/cases/35",
+        "input_canonical_sha256": "03838a2b786f47432462f0fe0a5965435d98c39a853458ef3f3585fb19ae1f80",
+        "expected_canonical_sha256": "2580425db3cba6169c304a28ac286da34eb56e61c4bdb1f0ef999349122a73c6"
+      },
+      {
+        "id": "SEC003-MEMORY-STATE-TENANT",
+        "json_pointer": "/cases/36",
+        "input_canonical_sha256": "6506e64b52c5d615904fc60d0507ce0002063de02eb46295388cb3d48f40baa1",
+        "expected_canonical_sha256": "f8b2b8c2e61880b631cff193639c39fee5b17bbe3d2c0befbaa75ce75f2ba0fa"
+      },
+      {
+        "id": "SEC003-MEMORY-STATE-NO-TENANT",
+        "json_pointer": "/cases/37",
+        "input_canonical_sha256": "bdad6b5b23801af2495fb48e8742308468f3c53cad436fe72d9ff25c04119afd",
+        "expected_canonical_sha256": "89345d777b9e42f7f334339f2c9506288db770bc91d3de1cec319d44889d46c7"
+      },
+      {
+        "id": "SEC003-MEMORY-CREDENTIAL-TENANT",
+        "json_pointer": "/cases/38",
+        "input_canonical_sha256": "25880b3a8290bf33b25efc41603551184a0c6d952de4ec25b3527e9186b35862",
+        "expected_canonical_sha256": "2c08f087723b9f320983627415fcc21fe14d0f03aef5fbb550dca529952ff224"
+      },
+      {
+        "id": "SEC003-MEMORY-CREDENTIAL-NO-TENANT",
+        "json_pointer": "/cases/39",
+        "input_canonical_sha256": "be1c7ba440beb8789f287f717d7a7df5054f9d1a602d462c38277b4774aea896",
+        "expected_canonical_sha256": "85e6f62500eb521afe5ce1a8f70772faff4529bb6efe2abfaadc88c8307e19d7"
+      },
+      {
+        "id": "SEC003-MEMORY-ARTIFACT-TENANT",
+        "json_pointer": "/cases/40",
+        "input_canonical_sha256": "298bd671509576442f526c498e747fee4c864f82197c1c2766ae9939b4bc0ccb",
+        "expected_canonical_sha256": "ed620ba25d2936d27c11ffd5703ca7e43166e52feb6a6def94038b6887266823"
+      },
+      {
+        "id": "SEC003-MEMORY-ARTIFACT-NO-TENANT",
+        "json_pointer": "/cases/41",
+        "input_canonical_sha256": "bdcdbd12b1355d48b8e42375ea0bc6b2fc227b265a403280bb705f60fc075a03",
+        "expected_canonical_sha256": "9ee8593e8f777fbf464afeff5685e00a305b2df1e756b72ed8402f2ade2d0778"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-READ-TENANT",
+        "json_pointer": "/cases/42",
+        "input_canonical_sha256": "f8a2946b5d2a4865330f10b09dc12e0335d1900431b0e05f084a3da8ba3abc72",
+        "expected_canonical_sha256": "67d7b2dd917f7e85c194a13ddc0e22128ce8b5d8fa9e69ae35437415d514ea13"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-READ-NO-TENANT",
+        "json_pointer": "/cases/43",
+        "input_canonical_sha256": "b01475be5f862768836586211680c6f694f1e2c90ac9ec9eb302b974a4505f61",
+        "expected_canonical_sha256": "2dcb98a79916eb86d754f702ff1fce60a05bac0c05d898e3f65739fd85cc82f4"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-WRITE-TENANT",
+        "json_pointer": "/cases/44",
+        "input_canonical_sha256": "b029e948c1cb8a245a6ca53cedd64c2334660657860b661ba5701b76dd059f5b",
+        "expected_canonical_sha256": "dd26523f400c5f7b1757d4fae022e18be35f9cfad9731d8e291bf64b3d875927"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-WRITE-NO-TENANT",
+        "json_pointer": "/cases/45",
+        "input_canonical_sha256": "89d91f8dc633760483a9105405e7e0642bd3d7b39a0530f753c5e8cf73c5ba88",
+        "expected_canonical_sha256": "fdfe187abbc4ae04b69e131659b0466401dfcef9969fd89205625b8f07d5ab17"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-EXECUTE-TENANT",
+        "json_pointer": "/cases/46",
+        "input_canonical_sha256": "7132365f23b08e758947bda0c7d61d1c8734cc55282f5f7a530ecf3863866c23",
+        "expected_canonical_sha256": "33dd01a70f80b8bfd84a38008647c33845067e1ebc697f299dee3a70dab42568"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-EXECUTE-NO-TENANT",
+        "json_pointer": "/cases/47",
+        "input_canonical_sha256": "4cbd30d84f518ad6b26aea7aafef19ab11d5c9bc59d881c2ce4315750fa0ca08",
+        "expected_canonical_sha256": "2af88d771ca5c6fbaf208b5de1bc3515c81dcff3dbbb0c19be9cc7f160df84df"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-NETWORK-TENANT",
+        "json_pointer": "/cases/48",
+        "input_canonical_sha256": "9fe6ed48e8594407e8ece42a90af4fcd67a5acfce3867c477c13f9c5636ddc59",
+        "expected_canonical_sha256": "741867051998bf5af070b8e2f8d9a18eda2a018f064d8d53b468562b2ec73be4"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-NETWORK-NO-TENANT",
+        "json_pointer": "/cases/49",
+        "input_canonical_sha256": "bc6b37b0d907c05a658feb4c9f1f4419b31efcf17019a8c01b9cf5338abfe1c2",
+        "expected_canonical_sha256": "2580425db3cba6169c304a28ac286da34eb56e61c4bdb1f0ef999349122a73c6"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-STATE-TENANT",
+        "json_pointer": "/cases/50",
+        "input_canonical_sha256": "3750d5a93a388df052c902808ed92077491851de92329a28f6252544a9d0193e",
+        "expected_canonical_sha256": "f8b2b8c2e61880b631cff193639c39fee5b17bbe3d2c0befbaa75ce75f2ba0fa"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-STATE-NO-TENANT",
+        "json_pointer": "/cases/51",
+        "input_canonical_sha256": "87e7d901a7be0fe49f3ce9355e1da0f8bc05ac0b4f60b021017a2e320d0522ce",
+        "expected_canonical_sha256": "89345d777b9e42f7f334339f2c9506288db770bc91d3de1cec319d44889d46c7"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-CREDENTIAL-TENANT",
+        "json_pointer": "/cases/52",
+        "input_canonical_sha256": "72775f4cd7a3e7b1f406fa1425b5431cc28e6ed711e6a1f61d631ba82d510757",
+        "expected_canonical_sha256": "2c08f087723b9f320983627415fcc21fe14d0f03aef5fbb550dca529952ff224"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-CREDENTIAL-NO-TENANT",
+        "json_pointer": "/cases/53",
+        "input_canonical_sha256": "eafb643d9cbe0601e5afbda01c74964e23f1da31359a3ee216dacfd4c3720d88",
+        "expected_canonical_sha256": "85e6f62500eb521afe5ce1a8f70772faff4529bb6efe2abfaadc88c8307e19d7"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-ARTIFACT-TENANT",
+        "json_pointer": "/cases/54",
+        "input_canonical_sha256": "d71ed8bc26b717f5e459c99a1c82b1fce652d746917a492d68538c67c2c6753f",
+        "expected_canonical_sha256": "ed620ba25d2936d27c11ffd5703ca7e43166e52feb6a6def94038b6887266823"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-ARTIFACT-NO-TENANT",
+        "json_pointer": "/cases/55",
+        "input_canonical_sha256": "17232e8cb5c6ada3e679a3922e1aa49d2ed27cdfbbf90ecddfdf83620c830486",
+        "expected_canonical_sha256": "9ee8593e8f777fbf464afeff5685e00a305b2df1e756b72ed8402f2ade2d0778"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-READ-TENANT",
+        "json_pointer": "/cases/56",
+        "input_canonical_sha256": "63d45d04265baa6955bd758aafe4916c6355ffb4f34a7160264247eacd60ef14",
+        "expected_canonical_sha256": "67d7b2dd917f7e85c194a13ddc0e22128ce8b5d8fa9e69ae35437415d514ea13"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-READ-NO-TENANT",
+        "json_pointer": "/cases/57",
+        "input_canonical_sha256": "f0dcfc0017302cf8c0cdb4ea394c822b77c571b109623a254ff94dcffe6766ad",
+        "expected_canonical_sha256": "2dcb98a79916eb86d754f702ff1fce60a05bac0c05d898e3f65739fd85cc82f4"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-WRITE-TENANT",
+        "json_pointer": "/cases/58",
+        "input_canonical_sha256": "bd68d9d6a50958398371eb6af4fb91dfd7430597da02c8fc52280c308a5eabbf",
+        "expected_canonical_sha256": "dd26523f400c5f7b1757d4fae022e18be35f9cfad9731d8e291bf64b3d875927"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-WRITE-NO-TENANT",
+        "json_pointer": "/cases/59",
+        "input_canonical_sha256": "1994e20b6208e9fb4c5899edb164817310bfdf60844d6a26a807afd2147da323",
+        "expected_canonical_sha256": "fdfe187abbc4ae04b69e131659b0466401dfcef9969fd89205625b8f07d5ab17"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-EXECUTE-TENANT",
+        "json_pointer": "/cases/60",
+        "input_canonical_sha256": "d5fcd016dd869b405972b48c5332b0493438f6e6b5b3cf3d00910d9bebfef1c5",
+        "expected_canonical_sha256": "33dd01a70f80b8bfd84a38008647c33845067e1ebc697f299dee3a70dab42568"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-EXECUTE-NO-TENANT",
+        "json_pointer": "/cases/61",
+        "input_canonical_sha256": "18abe58c75584de6e5e3faddf4eec091a8ed4652dfa400ca49d64c68499d2810",
+        "expected_canonical_sha256": "2af88d771ca5c6fbaf208b5de1bc3515c81dcff3dbbb0c19be9cc7f160df84df"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-NETWORK-TENANT",
+        "json_pointer": "/cases/62",
+        "input_canonical_sha256": "07e775121d28cd5f23325730b734d464d585418806e75767d373e3ff96090834",
+        "expected_canonical_sha256": "741867051998bf5af070b8e2f8d9a18eda2a018f064d8d53b468562b2ec73be4"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-NETWORK-NO-TENANT",
+        "json_pointer": "/cases/63",
+        "input_canonical_sha256": "d877e9e86362b79ab820170e5952eec260b15e9c1605da72f12f2a379cb2b52f",
+        "expected_canonical_sha256": "2580425db3cba6169c304a28ac286da34eb56e61c4bdb1f0ef999349122a73c6"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-STATE-TENANT",
+        "json_pointer": "/cases/64",
+        "input_canonical_sha256": "dea0fd61f20d43947952ffde5cbb69eebe2df426e86f74d8fae1e84e86253730",
+        "expected_canonical_sha256": "f8b2b8c2e61880b631cff193639c39fee5b17bbe3d2c0befbaa75ce75f2ba0fa"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-STATE-NO-TENANT",
+        "json_pointer": "/cases/65",
+        "input_canonical_sha256": "556fc012cc125429e64636724b606df215e047b9e2e40e5a97ad1d14d3af231a",
+        "expected_canonical_sha256": "89345d777b9e42f7f334339f2c9506288db770bc91d3de1cec319d44889d46c7"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-CREDENTIAL-TENANT",
+        "json_pointer": "/cases/66",
+        "input_canonical_sha256": "780e2ef4057939a92b2f854534d199a983f36e4bda8a623b7a0dd56422b37f95",
+        "expected_canonical_sha256": "2c08f087723b9f320983627415fcc21fe14d0f03aef5fbb550dca529952ff224"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-CREDENTIAL-NO-TENANT",
+        "json_pointer": "/cases/67",
+        "input_canonical_sha256": "ddd98f3a625eb883eb6cd7b815e1168d04d0785301de15d0d3c677e4c3355162",
+        "expected_canonical_sha256": "85e6f62500eb521afe5ce1a8f70772faff4529bb6efe2abfaadc88c8307e19d7"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-ARTIFACT-TENANT",
+        "json_pointer": "/cases/68",
+        "input_canonical_sha256": "830a2d44d4c1174588c65e3bfcdb460a2f2615e34fa44f81a26ce44e1680d97e",
+        "expected_canonical_sha256": "ed620ba25d2936d27c11ffd5703ca7e43166e52feb6a6def94038b6887266823"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-ARTIFACT-NO-TENANT",
+        "json_pointer": "/cases/69",
+        "input_canonical_sha256": "bf82a7f00c8cd52186b233cae72a292f26b3cae40064edf864f79b7d534ecfbb",
+        "expected_canonical_sha256": "9ee8593e8f777fbf464afeff5685e00a305b2df1e756b72ed8402f2ade2d0778"
+      },
+      {
+        "id": "SEC003-WORKER-READ-TENANT",
+        "json_pointer": "/cases/70",
+        "input_canonical_sha256": "dcfd797eaa22b404519d043dbf1b9d1fbc731dd793182aacc746b1f245e5adcb",
+        "expected_canonical_sha256": "67d7b2dd917f7e85c194a13ddc0e22128ce8b5d8fa9e69ae35437415d514ea13"
+      },
+      {
+        "id": "SEC003-WORKER-READ-NO-TENANT",
+        "json_pointer": "/cases/71",
+        "input_canonical_sha256": "1da0fa54512306270c85529c49440d1875ced4de9c3780093d4e560abdf8284e",
+        "expected_canonical_sha256": "2dcb98a79916eb86d754f702ff1fce60a05bac0c05d898e3f65739fd85cc82f4"
+      },
+      {
+        "id": "SEC003-WORKER-WRITE-TENANT",
+        "json_pointer": "/cases/72",
+        "input_canonical_sha256": "78319dc8f78972ab6e743fa6e43f345d4f33f6e0a8b5a67e775a03b74bf23bc7",
+        "expected_canonical_sha256": "dd26523f400c5f7b1757d4fae022e18be35f9cfad9731d8e291bf64b3d875927"
+      },
+      {
+        "id": "SEC003-WORKER-WRITE-NO-TENANT",
+        "json_pointer": "/cases/73",
+        "input_canonical_sha256": "4764ce3adc11058497efaf564ede8226d32b75dd0329a0a8d62e9bc75fa3d5ea",
+        "expected_canonical_sha256": "fdfe187abbc4ae04b69e131659b0466401dfcef9969fd89205625b8f07d5ab17"
+      },
+      {
+        "id": "SEC003-WORKER-EXECUTE-TENANT",
+        "json_pointer": "/cases/74",
+        "input_canonical_sha256": "a1e9e33e74f8b0f8c49e70388f0df9efd7ff9889fad265f273b9e636a6050a41",
+        "expected_canonical_sha256": "33dd01a70f80b8bfd84a38008647c33845067e1ebc697f299dee3a70dab42568"
+      },
+      {
+        "id": "SEC003-WORKER-EXECUTE-NO-TENANT",
+        "json_pointer": "/cases/75",
+        "input_canonical_sha256": "af91ab03cf9a4ecb9b1bd37d7828f0f6d7c130e6a5fc83e005db584313abfc7f",
+        "expected_canonical_sha256": "2af88d771ca5c6fbaf208b5de1bc3515c81dcff3dbbb0c19be9cc7f160df84df"
+      },
+      {
+        "id": "SEC003-WORKER-NETWORK-TENANT",
+        "json_pointer": "/cases/76",
+        "input_canonical_sha256": "170b9324b436c9daaa2e9bf1644d1eafdfe015087ee7a705e3946f43aa39a08b",
+        "expected_canonical_sha256": "741867051998bf5af070b8e2f8d9a18eda2a018f064d8d53b468562b2ec73be4"
+      },
+      {
+        "id": "SEC003-WORKER-NETWORK-NO-TENANT",
+        "json_pointer": "/cases/77",
+        "input_canonical_sha256": "50e144830ccc757a9f6379506b48d1d9d3d0c9ee6ebb70a5c39b499ac21085a4",
+        "expected_canonical_sha256": "2580425db3cba6169c304a28ac286da34eb56e61c4bdb1f0ef999349122a73c6"
+      },
+      {
+        "id": "SEC003-WORKER-STATE-TENANT",
+        "json_pointer": "/cases/78",
+        "input_canonical_sha256": "89987634884e7c9299b356d97197d448ef491836e4e149f8434d3d961ddec735",
+        "expected_canonical_sha256": "f8b2b8c2e61880b631cff193639c39fee5b17bbe3d2c0befbaa75ce75f2ba0fa"
+      },
+      {
+        "id": "SEC003-WORKER-STATE-NO-TENANT",
+        "json_pointer": "/cases/79",
+        "input_canonical_sha256": "2af6d2074bd37bfdede1998bd39ec09a100cace1c64b57228eb549ddda298d4a",
+        "expected_canonical_sha256": "89345d777b9e42f7f334339f2c9506288db770bc91d3de1cec319d44889d46c7"
+      },
+      {
+        "id": "SEC003-WORKER-CREDENTIAL-TENANT",
+        "json_pointer": "/cases/80",
+        "input_canonical_sha256": "a0c0082ad8573e3be9ed2151ef2c6165a18905d9d62e71f66954421340d6d05e",
+        "expected_canonical_sha256": "2c08f087723b9f320983627415fcc21fe14d0f03aef5fbb550dca529952ff224"
+      },
+      {
+        "id": "SEC003-WORKER-CREDENTIAL-NO-TENANT",
+        "json_pointer": "/cases/81",
+        "input_canonical_sha256": "8d7d0543dc1a08d0103689bfd36016e22dc100a872b63894e559f86f873c94d6",
+        "expected_canonical_sha256": "85e6f62500eb521afe5ce1a8f70772faff4529bb6efe2abfaadc88c8307e19d7"
+      },
+      {
+        "id": "SEC003-WORKER-ARTIFACT-TENANT",
+        "json_pointer": "/cases/82",
+        "input_canonical_sha256": "7e4c2dcb6ebc170ced78dae5addd363af7de62421ab0a25db1f5f2097f1aa597",
+        "expected_canonical_sha256": "ed620ba25d2936d27c11ffd5703ca7e43166e52feb6a6def94038b6887266823"
+      },
+      {
+        "id": "SEC003-WORKER-ARTIFACT-NO-TENANT",
+        "json_pointer": "/cases/83",
+        "input_canonical_sha256": "aac6ecce3bf4574548295df6e228d5e632c10cb9f64ff9b6a8352a97db9cb02f",
+        "expected_canonical_sha256": "9ee8593e8f777fbf464afeff5685e00a305b2df1e756b72ed8402f2ade2d0778"
+      },
+      {
+        "id": "SEC003-PERMISSION-ASSET-PROJECT-DRIFT",
+        "json_pointer": "/cases/84",
+        "input_canonical_sha256": "6841ef857daabe6b6a53e74835584fef42f40c2ca9a33984aa96e364d3ccf8d3",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-PERMISSION-ASSET-TENANT-DRIFT",
+        "json_pointer": "/cases/85",
+        "input_canonical_sha256": "6ab1f6b95a6ade22011c75816c009bd95be0adc66c3eb93a16e74f0c7d70e142",
+        "expected_canonical_sha256": "4e28fd728c0ffe164b510f943092c5ef6026e36963058e4f3a90a05de6fd8da5"
+      },
+      {
+        "id": "SEC003-PERMISSION-ASSET-ENVIRONMENT-DRIFT",
+        "json_pointer": "/cases/86",
+        "input_canonical_sha256": "f4cc1b7c4f1522fb39adfb379bb6e42697edd241cd901dd500f938c9d96f5612",
+        "expected_canonical_sha256": "ca07243f30d0824c6d9863dd4f6f5d8a3eb1b947cdd6e1bb393b3c631b362a02"
+      },
+      {
+        "id": "SEC003-PERMISSION-ASSET-ASSIGNMENT-DRIFT",
+        "json_pointer": "/cases/87",
+        "input_canonical_sha256": "8690aba37d1fbdb81cb2ae68a4b846955d1fcb89d5ce0f5f182d9965a775d573",
+        "expected_canonical_sha256": "d940f6ff7cbb75981041270edc24e21e6cb88568bc415cfa949994eaf2c4b6e2"
+      },
+      {
+        "id": "SEC003-PERMISSION-ASSET-WORKTREE-DRIFT",
+        "json_pointer": "/cases/88",
+        "input_canonical_sha256": "9592466d688b7a7721390081a2ed933e9684b99cacbc709092a335c20a1ad3df",
+        "expected_canonical_sha256": "928240140211a2b614f28c03051feb39913b208f6df1387f6e383b42ca92764e"
+      },
+      {
+        "id": "SEC003-PERMISSION-ASSET-REVISION-DRIFT",
+        "json_pointer": "/cases/89",
+        "input_canonical_sha256": "ad55a24dfa0f790d936385b7d02873f9d9e871f695f63b2cb4a392c6d672812f",
+        "expected_canonical_sha256": "b0b619727757a46dca12053229185a91c65b48dde74717f42450bfd09807f1a5"
+      },
+      {
+        "id": "SEC003-STATE-ASSET-PROJECT-DRIFT",
+        "json_pointer": "/cases/90",
+        "input_canonical_sha256": "f01bd293cbe3ac023d4ca0d3c1e4d463c58b18d0ac04b5698f5dfb3a5351bbe1",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-STATE-ASSET-TENANT-DRIFT",
+        "json_pointer": "/cases/91",
+        "input_canonical_sha256": "afc917f44389d571b021e54cb9d8f50b685af9097268282b41c9af206ef1f08a",
+        "expected_canonical_sha256": "4e28fd728c0ffe164b510f943092c5ef6026e36963058e4f3a90a05de6fd8da5"
+      },
+      {
+        "id": "SEC003-STATE-ASSET-ENVIRONMENT-DRIFT",
+        "json_pointer": "/cases/92",
+        "input_canonical_sha256": "e3a65307b3c7738d39b71343b61b5a50b8611b4f74be9a49e436b5475ec0c6a2",
+        "expected_canonical_sha256": "ca07243f30d0824c6d9863dd4f6f5d8a3eb1b947cdd6e1bb393b3c631b362a02"
+      },
+      {
+        "id": "SEC003-STATE-ASSET-ASSIGNMENT-DRIFT",
+        "json_pointer": "/cases/93",
+        "input_canonical_sha256": "8de01f1469a21874a42e327736c19a67690209ed0184d1285f9b0fc58a057a90",
+        "expected_canonical_sha256": "d940f6ff7cbb75981041270edc24e21e6cb88568bc415cfa949994eaf2c4b6e2"
+      },
+      {
+        "id": "SEC003-STATE-ASSET-WORKTREE-DRIFT",
+        "json_pointer": "/cases/94",
+        "input_canonical_sha256": "5a01af6d28210e87c9483a11a4012f9c100ee5ed4066ef1a68f2b8f81c7876eb",
+        "expected_canonical_sha256": "928240140211a2b614f28c03051feb39913b208f6df1387f6e383b42ca92764e"
+      },
+      {
+        "id": "SEC003-STATE-ASSET-REVISION-DRIFT",
+        "json_pointer": "/cases/95",
+        "input_canonical_sha256": "bafb9dcc23ce4f14fcc1ab09f17cd9177e54ca2154e9a62ea4305ee5aad33bf0",
+        "expected_canonical_sha256": "b0b619727757a46dca12053229185a91c65b48dde74717f42450bfd09807f1a5"
+      },
+      {
+        "id": "SEC003-DATA-ASSET-PROJECT-DRIFT",
+        "json_pointer": "/cases/96",
+        "input_canonical_sha256": "7ab57f20c68639dcf0dbb69d24299c579764edefb67f7e50421c68982230996d",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-DATA-ASSET-TENANT-DRIFT",
+        "json_pointer": "/cases/97",
+        "input_canonical_sha256": "44e18ea2ce1d9946e8f7be52d87e0b615bee966606eff94e3cbcad3aa33a5a03",
+        "expected_canonical_sha256": "4e28fd728c0ffe164b510f943092c5ef6026e36963058e4f3a90a05de6fd8da5"
+      },
+      {
+        "id": "SEC003-DATA-ASSET-ENVIRONMENT-DRIFT",
+        "json_pointer": "/cases/98",
+        "input_canonical_sha256": "4f53ffc2f7d91dad841f8f7332563e5a248c1318cf4ebf2f98be02d0499dec28",
+        "expected_canonical_sha256": "ca07243f30d0824c6d9863dd4f6f5d8a3eb1b947cdd6e1bb393b3c631b362a02"
+      },
+      {
+        "id": "SEC003-DATA-ASSET-ASSIGNMENT-DRIFT",
+        "json_pointer": "/cases/99",
+        "input_canonical_sha256": "1552c3913a8bbd258b7c96759482dd63b76ba1bf2ca6064d49e32e7bbf4cc5e7",
+        "expected_canonical_sha256": "d940f6ff7cbb75981041270edc24e21e6cb88568bc415cfa949994eaf2c4b6e2"
+      },
+      {
+        "id": "SEC003-DATA-ASSET-WORKTREE-DRIFT",
+        "json_pointer": "/cases/100",
+        "input_canonical_sha256": "48032541d1b8eb918e35948eecbdf6f413ef65d9b176b645db8ca79ca7721e9d",
+        "expected_canonical_sha256": "928240140211a2b614f28c03051feb39913b208f6df1387f6e383b42ca92764e"
+      },
+      {
+        "id": "SEC003-DATA-ASSET-REVISION-DRIFT",
+        "json_pointer": "/cases/101",
+        "input_canonical_sha256": "d36a2a7e0b921133a2ebf75a956d9a903d4896e184e8c1582e3a9dc02ba0816c",
+        "expected_canonical_sha256": "b0b619727757a46dca12053229185a91c65b48dde74717f42450bfd09807f1a5"
+      },
+      {
+        "id": "SEC003-WORKER-ASSET-PROJECT-DRIFT",
+        "json_pointer": "/cases/102",
+        "input_canonical_sha256": "e91ba0a8945b28c34580794511fc281047383dd6046c691602b179b33a729e10",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-WORKER-ASSET-TENANT-DRIFT",
+        "json_pointer": "/cases/103",
+        "input_canonical_sha256": "5385c75a20d09811102bf20991aae1671dda8802253826b231c1d4d8f5effb6d",
+        "expected_canonical_sha256": "4e28fd728c0ffe164b510f943092c5ef6026e36963058e4f3a90a05de6fd8da5"
+      },
+      {
+        "id": "SEC003-WORKER-ASSET-ENVIRONMENT-DRIFT",
+        "json_pointer": "/cases/104",
+        "input_canonical_sha256": "98136a4821dc48b28aa4773be39f0ae5647f1dc9670c28ea370caa25f7195878",
+        "expected_canonical_sha256": "ca07243f30d0824c6d9863dd4f6f5d8a3eb1b947cdd6e1bb393b3c631b362a02"
+      },
+      {
+        "id": "SEC003-WORKER-ASSET-ASSIGNMENT-DRIFT",
+        "json_pointer": "/cases/105",
+        "input_canonical_sha256": "e19707e8b85002c17ac13f42749199bb677d1138e8ab29dc1ffcccb2cce1031a",
+        "expected_canonical_sha256": "d940f6ff7cbb75981041270edc24e21e6cb88568bc415cfa949994eaf2c4b6e2"
+      },
+      {
+        "id": "SEC003-WORKER-ASSET-WORKTREE-DRIFT",
+        "json_pointer": "/cases/106",
+        "input_canonical_sha256": "9db738df9782d2b557dfbbb9c909d1ebc592b609bce69985eefcd9d4130c644d",
+        "expected_canonical_sha256": "928240140211a2b614f28c03051feb39913b208f6df1387f6e383b42ca92764e"
+      },
+      {
+        "id": "SEC003-WORKER-ASSET-REVISION-DRIFT",
+        "json_pointer": "/cases/107",
+        "input_canonical_sha256": "92439095d1b00683d2cc7bb0b5e82b813ed91771aeeabfdaf6e3a54a6e6be3b3",
+        "expected_canonical_sha256": "b0b619727757a46dca12053229185a91c65b48dde74717f42450bfd09807f1a5"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-ASSET-PROJECT-DRIFT",
+        "json_pointer": "/cases/108",
+        "input_canonical_sha256": "280aa45e73c1885819a21a5c55f7302f7b7de462f16527463eb30414bc0e2580",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-ASSET-TENANT-DRIFT",
+        "json_pointer": "/cases/109",
+        "input_canonical_sha256": "8f872c393372a3ea9e6ee28ca3b215b5e5a08814238b6f86f524913a537db6ff",
+        "expected_canonical_sha256": "4e28fd728c0ffe164b510f943092c5ef6026e36963058e4f3a90a05de6fd8da5"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-ASSET-ENVIRONMENT-DRIFT",
+        "json_pointer": "/cases/110",
+        "input_canonical_sha256": "2554c957e9086056fd83cbc4df4b2b3e5a4c752760d3411937469abdbaf10a1d",
+        "expected_canonical_sha256": "ca07243f30d0824c6d9863dd4f6f5d8a3eb1b947cdd6e1bb393b3c631b362a02"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-ASSET-ASSIGNMENT-DRIFT",
+        "json_pointer": "/cases/111",
+        "input_canonical_sha256": "1a4dc7d02ae5507ca160380ebc9e123f057a452fbfe0a8332c2685cc80d7354f",
+        "expected_canonical_sha256": "d940f6ff7cbb75981041270edc24e21e6cb88568bc415cfa949994eaf2c4b6e2"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-ASSET-WORKTREE-DRIFT",
+        "json_pointer": "/cases/112",
+        "input_canonical_sha256": "7f2b998a2dfdf6bfbeb570fbec997ac94a13696d3f1e2899cb6dba439d698257",
+        "expected_canonical_sha256": "928240140211a2b614f28c03051feb39913b208f6df1387f6e383b42ca92764e"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-ASSET-REVISION-DRIFT",
+        "json_pointer": "/cases/113",
+        "input_canonical_sha256": "ba882e9a526a92b7f815b09249979329e5b27f2a4d7b0bfdb7c76408ba2ebdde",
+        "expected_canonical_sha256": "b0b619727757a46dca12053229185a91c65b48dde74717f42450bfd09807f1a5"
+      },
+      {
+        "id": "SEC003-ARTIFACT-ASSET-PROJECT-DRIFT",
+        "json_pointer": "/cases/114",
+        "input_canonical_sha256": "510bdda81ba9a0f8f884fe6e04b20b71b5540844405a6ca14d98416c96a9c10d",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-ARTIFACT-ASSET-TENANT-DRIFT",
+        "json_pointer": "/cases/115",
+        "input_canonical_sha256": "8b56ee62dc99a7bb44f1b08e7836c57903cd25ea1ec4b47ba75559a3dddfe69b",
+        "expected_canonical_sha256": "4e28fd728c0ffe164b510f943092c5ef6026e36963058e4f3a90a05de6fd8da5"
+      },
+      {
+        "id": "SEC003-ARTIFACT-ASSET-ENVIRONMENT-DRIFT",
+        "json_pointer": "/cases/116",
+        "input_canonical_sha256": "59da8f66bc1e3beb6afe16cf13442c4011ec494c61ab2e2a198e090b61b50ac4",
+        "expected_canonical_sha256": "ca07243f30d0824c6d9863dd4f6f5d8a3eb1b947cdd6e1bb393b3c631b362a02"
+      },
+      {
+        "id": "SEC003-ARTIFACT-ASSET-ASSIGNMENT-DRIFT",
+        "json_pointer": "/cases/117",
+        "input_canonical_sha256": "1ae8349723529861ef4df979afbc5020bc18d6c87bad63a8c5d24b9bf5d36df5",
+        "expected_canonical_sha256": "d940f6ff7cbb75981041270edc24e21e6cb88568bc415cfa949994eaf2c4b6e2"
+      },
+      {
+        "id": "SEC003-ARTIFACT-ASSET-WORKTREE-DRIFT",
+        "json_pointer": "/cases/118",
+        "input_canonical_sha256": "dc201156a14fc97659ab07e0308ede8a74914be8427b6eb674d4e5973efc25aa",
+        "expected_canonical_sha256": "928240140211a2b614f28c03051feb39913b208f6df1387f6e383b42ca92764e"
+      },
+      {
+        "id": "SEC003-ARTIFACT-ASSET-REVISION-DRIFT",
+        "json_pointer": "/cases/119",
+        "input_canonical_sha256": "6d115c5f3aa9c21b120591d986928f995f4edf09eaae105b33503c081d05ee68",
+        "expected_canonical_sha256": "b0b619727757a46dca12053229185a91c65b48dde74717f42450bfd09807f1a5"
+      },
+      {
+        "id": "SEC003-MEMORY-ASSET-PROJECT-DRIFT",
+        "json_pointer": "/cases/120",
+        "input_canonical_sha256": "ca22d3895eed6514fd37b6f9e530f0a7b8191d874553aa927bef7ddbdd4f3451",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-MEMORY-ASSET-TENANT-DRIFT",
+        "json_pointer": "/cases/121",
+        "input_canonical_sha256": "7bd37022218efae2dd8dcb5d92e5752ad16b89b2b5395f838ea16a47f66e9c54",
+        "expected_canonical_sha256": "4e28fd728c0ffe164b510f943092c5ef6026e36963058e4f3a90a05de6fd8da5"
+      },
+      {
+        "id": "SEC003-MEMORY-ASSET-ENVIRONMENT-DRIFT",
+        "json_pointer": "/cases/122",
+        "input_canonical_sha256": "af880fcb47e281c36ea62b7f8950217493904fc8bebf2a39bc76f3068c540415",
+        "expected_canonical_sha256": "ca07243f30d0824c6d9863dd4f6f5d8a3eb1b947cdd6e1bb393b3c631b362a02"
+      },
+      {
+        "id": "SEC003-MEMORY-ASSET-ASSIGNMENT-DRIFT",
+        "json_pointer": "/cases/123",
+        "input_canonical_sha256": "bfbdd55a56e8028cd57d57a4a0aa8b38808fd1d21457529dc4120cc2c0612548",
+        "expected_canonical_sha256": "d940f6ff7cbb75981041270edc24e21e6cb88568bc415cfa949994eaf2c4b6e2"
+      },
+      {
+        "id": "SEC003-MEMORY-ASSET-WORKTREE-DRIFT",
+        "json_pointer": "/cases/124",
+        "input_canonical_sha256": "eb10afce8f3a41b2e2b046c7bbca509430b894dd422d505bcb8c656ccca2ac2f",
+        "expected_canonical_sha256": "928240140211a2b614f28c03051feb39913b208f6df1387f6e383b42ca92764e"
+      },
+      {
+        "id": "SEC003-MEMORY-ASSET-REVISION-DRIFT",
+        "json_pointer": "/cases/125",
+        "input_canonical_sha256": "c437449e65fbd64dbd8df6742f1e7e934e9bde05b306c31da3ff3a9a88bde28d",
+        "expected_canonical_sha256": "b0b619727757a46dca12053229185a91c65b48dde74717f42450bfd09807f1a5"
+      },
+      {
+        "id": "SEC003-EXECUTION_TARGET-ASSET-PROJECT-DRIFT",
+        "json_pointer": "/cases/126",
+        "input_canonical_sha256": "9fc80651b1e9166b5fd6e57114c34c8639a489dbf84d4f8ca9dadbdafec7e92f",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-EXECUTION_TARGET-ASSET-TENANT-DRIFT",
+        "json_pointer": "/cases/127",
+        "input_canonical_sha256": "3571730ebbdd6a76249365d3241d6a239c5f612fc3d246336e5c40b3b634c9d9",
+        "expected_canonical_sha256": "4e28fd728c0ffe164b510f943092c5ef6026e36963058e4f3a90a05de6fd8da5"
+      },
+      {
+        "id": "SEC003-EXECUTION_TARGET-ASSET-ENVIRONMENT-DRIFT",
+        "json_pointer": "/cases/128",
+        "input_canonical_sha256": "bbee35e958b155d9e024b569010b70b5af2b0d48ed1115de7c23c90e3a19031f",
+        "expected_canonical_sha256": "ca07243f30d0824c6d9863dd4f6f5d8a3eb1b947cdd6e1bb393b3c631b362a02"
+      },
+      {
+        "id": "SEC003-EXECUTION_TARGET-ASSET-ASSIGNMENT-DRIFT",
+        "json_pointer": "/cases/129",
+        "input_canonical_sha256": "28bd2a2b783fd8815a2e60c8156872a3ccc0c9256dde0c8e7df668cece7beff0",
+        "expected_canonical_sha256": "d940f6ff7cbb75981041270edc24e21e6cb88568bc415cfa949994eaf2c4b6e2"
+      },
+      {
+        "id": "SEC003-EXECUTION_TARGET-ASSET-WORKTREE-DRIFT",
+        "json_pointer": "/cases/130",
+        "input_canonical_sha256": "ed000d06a8802cdc12eec91a666d80d229238fabf77d16128f4f05ea86b690c6",
+        "expected_canonical_sha256": "928240140211a2b614f28c03051feb39913b208f6df1387f6e383b42ca92764e"
+      },
+      {
+        "id": "SEC003-EXECUTION_TARGET-ASSET-REVISION-DRIFT",
+        "json_pointer": "/cases/131",
+        "input_canonical_sha256": "88d2580264261670834bf3d31be3efec84d73f34cfb3d0118b22fd0cef5e9836",
+        "expected_canonical_sha256": "b0b619727757a46dca12053229185a91c65b48dde74717f42450bfd09807f1a5"
+      },
+      {
+        "id": "SEC003-CROSS-READ-CURRENT",
+        "json_pointer": "/cases/132",
+        "input_canonical_sha256": "9c51b433be08cfd2e68e7bf57e1c7716f932074593036cda89f2f878899b561b",
+        "expected_canonical_sha256": "67d7b2dd917f7e85c194a13ddc0e22128ce8b5d8fa9e69ae35437415d514ea13"
+      },
+      {
+        "id": "SEC003-CROSS-READ-ABSENT",
+        "json_pointer": "/cases/133",
+        "input_canonical_sha256": "c133d8de377f0a22c642b96cd3d3da40f9487f757dd2b5cd9f98be0c31daa6ed",
+        "expected_canonical_sha256": "f3ddf36c4f6e1b34bc65bfbe18c91f740790630a635deed1c62f8e763078d68f"
+      },
+      {
+        "id": "SEC003-CROSS-WRITE-CURRENT",
+        "json_pointer": "/cases/134",
+        "input_canonical_sha256": "0e9c1825644ce54f1d61999ff0732ef2c4e5da27941f7a70580a01ab7909c174",
+        "expected_canonical_sha256": "dd26523f400c5f7b1757d4fae022e18be35f9cfad9731d8e291bf64b3d875927"
+      },
+      {
+        "id": "SEC003-CROSS-WRITE-ABSENT",
+        "json_pointer": "/cases/135",
+        "input_canonical_sha256": "2bbfbb2dfa1f7cb3d8d3cacf6623a3b7a86a5d8b73c373b5d0c687f053de4803",
+        "expected_canonical_sha256": "c889bede4f6e92a10e797a58a954cd972995edab4f4b45a313cb9a46032ad3c7"
+      },
+      {
+        "id": "SEC003-CROSS-EXECUTE-CURRENT",
+        "json_pointer": "/cases/136",
+        "input_canonical_sha256": "79a0a814320936cf25bdf770039122757f02d13f544a8fa38c154ba4d2f2e35c",
+        "expected_canonical_sha256": "33dd01a70f80b8bfd84a38008647c33845067e1ebc697f299dee3a70dab42568"
+      },
+      {
+        "id": "SEC003-CROSS-EXECUTE-ABSENT",
+        "json_pointer": "/cases/137",
+        "input_canonical_sha256": "ec54c81e3ca373ab1ec84b57916e10b7784280c274fe47c293a6b2dcdc0d6d72",
+        "expected_canonical_sha256": "7eec5ddb1daaf76fb5b13c5a85791b269eae302f5b4edfc3edb048c90041319d"
+      },
+      {
+        "id": "SEC003-CROSS-NETWORK-CURRENT",
+        "json_pointer": "/cases/138",
+        "input_canonical_sha256": "24504f0bdbb54c5d707565b4bc9c511f3ebb7a793f8ed1913de3c7c27ac907a2",
+        "expected_canonical_sha256": "741867051998bf5af070b8e2f8d9a18eda2a018f064d8d53b468562b2ec73be4"
+      },
+      {
+        "id": "SEC003-CROSS-NETWORK-ABSENT",
+        "json_pointer": "/cases/139",
+        "input_canonical_sha256": "662035a4aee0c6f1dbfe707d9753c2185b82ee86d44e680ef5dfee0bf848ee00",
+        "expected_canonical_sha256": "49b2b2eaf1b0ee1c5113eb8405f477cf4d38c7f7d5154dba30be87030cc9cff3"
+      },
+      {
+        "id": "SEC003-CROSS-STATE-CURRENT",
+        "json_pointer": "/cases/140",
+        "input_canonical_sha256": "4942333db267109d8cae72687fc448be597b79f24337eea20e738613dbdf2cf1",
+        "expected_canonical_sha256": "f8b2b8c2e61880b631cff193639c39fee5b17bbe3d2c0befbaa75ce75f2ba0fa"
+      },
+      {
+        "id": "SEC003-CROSS-STATE-ABSENT",
+        "json_pointer": "/cases/141",
+        "input_canonical_sha256": "e54459405d190bde68ec8feeb1fb9b9ed1f9787fb44666b06c440642bcadc23b",
+        "expected_canonical_sha256": "5e7483e592aab2a563ee1882978786cc613e1a518b95c01a454b4aa1c0e1c278"
+      },
+      {
+        "id": "SEC003-CROSS-CREDENTIAL-CURRENT",
+        "json_pointer": "/cases/142",
+        "input_canonical_sha256": "76fe5be3a043899ca052183fee74ab99e5bc2035b4486fe7eb3ddfcd743f7062",
+        "expected_canonical_sha256": "2c08f087723b9f320983627415fcc21fe14d0f03aef5fbb550dca529952ff224"
+      },
+      {
+        "id": "SEC003-CROSS-CREDENTIAL-ABSENT",
+        "json_pointer": "/cases/143",
+        "input_canonical_sha256": "8775ddbdd32f61ba1938b7480955b66d8506484f128b2ba1aac455b72099609c",
+        "expected_canonical_sha256": "b79400dc06c3f3c843624b47ab43d063818a035f911e822ff3ad05c28e94c61a"
+      },
+      {
+        "id": "SEC003-CROSS-ARTIFACT-CURRENT",
+        "json_pointer": "/cases/144",
+        "input_canonical_sha256": "b018fb210425b7e1c48c9f918edd699b81b2681782e1a0f104eea15cb37e0e19",
+        "expected_canonical_sha256": "ed620ba25d2936d27c11ffd5703ca7e43166e52feb6a6def94038b6887266823"
+      },
+      {
+        "id": "SEC003-CROSS-ARTIFACT-ABSENT",
+        "json_pointer": "/cases/145",
+        "input_canonical_sha256": "fae6a814e05645e84f71a766b7e57bd23d7c99c257ee9a74ebd520e12ae47a49",
+        "expected_canonical_sha256": "7c7667225e5f5fc542d8da524b3f0464c836b1bd03b654a10fed9f42b43f328d"
+      },
+      {
+        "id": "SEC003-TARGET-PROJECT-MISSING",
+        "json_pointer": "/cases/146",
+        "input_canonical_sha256": "712da102af44a1b60b696c3d5fa23cba1623c68abad52996de05ac03665f5956",
+        "expected_canonical_sha256": "bb1a5edfe7c65c1250b1236c39e02fb00ca72c754226b74efb9e5a86f54bbd46"
+      },
+      {
+        "id": "SEC003-TARGET-TENANT-MISSING",
+        "json_pointer": "/cases/147",
+        "input_canonical_sha256": "120a9dde56f4a80f2c355d5889afc42d338c772ac3d782de028dd8c034719e13",
+        "expected_canonical_sha256": "17662f5c412b6c70616ce6aca453cbf45ecf7e1e4e974d29e5f56d7224f9d3fb"
+      },
+      {
+        "id": "SEC003-TARGET-ENVIRONMENT-MISSING",
+        "json_pointer": "/cases/148",
+        "input_canonical_sha256": "ff11d44b77d81b59f6aa55159ac5dba020b87e2aa8d769926fed96ef53d81003",
+        "expected_canonical_sha256": "35ae33c75f0fa279fb1c0aa5208d0b6c74401ac9a1e7e9523c9c64595dab344c"
+      },
+      {
+        "id": "SEC003-TARGET-ASSIGNMENT-MISSING",
+        "json_pointer": "/cases/149",
+        "input_canonical_sha256": "f98f0b9fb9ca744d254f5fe6a084405775f9c61c1f14bd60603685132fce816c",
+        "expected_canonical_sha256": "95c722bfdb1034fd95e4875b23c02d0dd2e9a44d62526dd751f0b19607aeebb3"
+      },
+      {
+        "id": "SEC003-TARGET-WORKTREE-MISSING",
+        "json_pointer": "/cases/150",
+        "input_canonical_sha256": "89cf7c728c79aae94cf7f0a4f4fec62ce9d9b8d46cf38547f225eecf27da5cbc",
+        "expected_canonical_sha256": "54a277c68d092d8d3c751cc9e2d647bdab2f866335b1ecd1a46bded3120d6fd4"
+      },
+      {
+        "id": "SEC003-TARGET-REVISION-MISSING",
+        "json_pointer": "/cases/151",
+        "input_canonical_sha256": "48d72723f73969a89bd784eb75aa1052140f30cdc8576d1cf53a7803384a32b2",
+        "expected_canonical_sha256": "41ec523f0e25d53ce8f4baf723b32dafd792ee4257f68dd5ea5e772c3d7efe74"
+      },
+      {
+        "id": "SEC003-TENANT-INVENTED",
+        "json_pointer": "/cases/152",
+        "input_canonical_sha256": "973741e1fc879c1a777e9a4ac4b639ce593381627ece5c35116a04836874c2a0",
+        "expected_canonical_sha256": "1cf53146348fe03eb3fa3560ee59306643fdbb70b0ece25c91418b4e46593eb7"
+      },
+      {
+        "id": "SEC003-PRIMARY-TREE-FALLBACK",
+        "json_pointer": "/cases/153",
+        "input_canonical_sha256": "a84b91b5b1a1794c42be9bd0e6d72598e782153eed7b903ae0f956f1d62fcd0b",
+        "expected_canonical_sha256": "ae04c06c841eca000a9a837c28c0379bc87eacf38341fe981dca7bee390dcf46"
+      },
+      {
+        "id": "SEC003-OTHER-PROJECT-FALLBACK",
+        "json_pointer": "/cases/154",
+        "input_canonical_sha256": "44fc0b56641ed91af14367b46c2534e6d748cb44e2c5b27d44b879ff520c4bd6",
+        "expected_canonical_sha256": "ae04c06c841eca000a9a837c28c0379bc87eacf38341fe981dca7bee390dcf46"
+      },
+      {
+        "id": "SEC003-OTHER-PROJECT-LATEST",
+        "json_pointer": "/cases/155",
+        "input_canonical_sha256": "c1d018e7d2343527a744a98a6b08936367b0e2a274713c637da2edfe3e995b58",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-CONNECTION-REVISION",
+        "json_pointer": "/cases/156",
+        "input_canonical_sha256": "b1ce90131d2f6f9b2dec18d8da764dd0fb5e732843f97dd74fd4b4685510404f",
+        "expected_canonical_sha256": "2646958a0d1a92e9492b620dc69c25dc27b210a53b44a3ccb1115f666ff98739"
+      },
+      {
+        "id": "SEC003-CONNECTION-UNKNOWN",
+        "json_pointer": "/cases/157",
+        "input_canonical_sha256": "390b52662b0dbf72acfe12bc5ddf1973dafcc4ff5b499f289b8f40bb4521d02e",
+        "expected_canonical_sha256": "32ea962c93289cb9f619090bc6c59c7407c9f1b22daf4072fb445acbf09a3409"
+      },
+      {
+        "id": "SEC003-TENANT-APPLICABILITY-UNKNOWN",
+        "json_pointer": "/cases/158",
+        "input_canonical_sha256": "d32b40aded400770e1c1a262dc048eb62aca038638424f8f061cc28398ff75b1",
+        "expected_canonical_sha256": "8618c517cbb23c3ddb4ec2969511deb7aed2f95b02f5d1527903667c623b5878"
+      },
+      {
+        "id": "SEC003-OS-MATERIAL-UNKNOWN",
+        "json_pointer": "/cases/159",
+        "input_canonical_sha256": "07ca0f13d96312e2895fead26cdb911e2ba147b5a88dedb311c97d5c91e33501",
+        "expected_canonical_sha256": "d04fd9a421abb74077d90fbb1625f1db4a68e61d575ddccfe98a2b2eb7a12563"
+      },
+      {
+        "id": "SEC003-INFRA-MATERIAL-UNKNOWN",
+        "json_pointer": "/cases/160",
+        "input_canonical_sha256": "638767692200d5fafea7223942407585417473c6871d9877beae444e3285b34d",
+        "expected_canonical_sha256": "df50645aba9eb982b7b052fae25f83158d080f66af088588bbf7ffb68ed6eced"
+      },
+      {
+        "id": "SEC003-CONNECT-MATERIAL-UNKNOWN",
+        "json_pointer": "/cases/161",
+        "input_canonical_sha256": "74e2e3330a27166557da2e168102b3610bf8b47945c93d3b280dd06ed2d96bcb",
+        "expected_canonical_sha256": "378ec499380cc1988a41d5970ddb9a26861ca319e3fd33c4dd74335aa35cd49a"
+      },
+      {
+        "id": "SEC003-READ-DOES-NOT-GRANT-WRITE",
+        "json_pointer": "/cases/162",
+        "input_canonical_sha256": "f1a8681535aa4ef81fc636a009408e398ee97d93054863f684e26d8c7b13ee49",
+        "expected_canonical_sha256": "df32af3fb6affdf7ce077b6c588a1f6507bd5e05d177c866da0ff8d364db8826"
+      },
+      {
+        "id": "SEC003-READ-DOES-NOT-GRANT-EXECUTE",
+        "json_pointer": "/cases/163",
+        "input_canonical_sha256": "efcf902cc8c5c446c070013ca7ea75431af92458541841cb3a089b15f7ce7a4d",
+        "expected_canonical_sha256": "145fbb552c61c1e440dee9f14ca16d6ab5acb4817b499bac9692311fecca2b5c"
+      },
+      {
+        "id": "SEC003-READ-DOES-NOT-GRANT-NETWORK",
+        "json_pointer": "/cases/164",
+        "input_canonical_sha256": "233afefddcde7ddeb68bcc57e1e62747a0335d8616b28602bb155387f8062d63",
+        "expected_canonical_sha256": "ba091c51dd2ca8bb2bde10e099ec4216cb0a96f2d7de9e07905640dc900a7d79"
+      },
+      {
+        "id": "SEC003-READ-DOES-NOT-GRANT-STATE",
+        "json_pointer": "/cases/165",
+        "input_canonical_sha256": "a0cf18318a6a2fccac0fa6a7c4bfa7e2635742ef4635498d41ee91e98299a4ba",
+        "expected_canonical_sha256": "e4c747a6549689567aa0548c16ff5ebef0fcfca920bb9a420062c833184cac70"
+      },
+      {
+        "id": "SEC003-READ-DOES-NOT-GRANT-CREDENTIAL",
+        "json_pointer": "/cases/166",
+        "input_canonical_sha256": "c9f23283efe2c6826f4f1a9efdd2a5b9ba25e4b5c9f363f81ebd58218f386d91",
+        "expected_canonical_sha256": "3dfff90ad19003d6b5a385a3250c16ad651958a6b5e231b64e55847767326773"
+      },
+      {
+        "id": "SEC003-READ-DOES-NOT-GRANT-ARTIFACT",
+        "json_pointer": "/cases/167",
+        "input_canonical_sha256": "1fcffa6f066ad04d6c1dd9ecb39ffb7ffc8aa8881dcd1dfde878da0ce58bcd0d",
+        "expected_canonical_sha256": "6a9f11a5318fb6c48a9ed758bda4afa71520b4372236fa9b04efcfeba0f01edc"
+      },
+      {
+        "id": "SEC003-COMPOUND-LOCAL-FAILURE",
+        "json_pointer": "/cases/168",
+        "input_canonical_sha256": "17e70604f578f225e0395041b5df856fefa4ac6a0172aefc0433b3b41051abb3",
+        "expected_canonical_sha256": "4d3f1036e9cdde96dc2e3ed0b2e3d40235f7435bd148fdaa80e989cbb4c00de4"
+      },
+      {
+        "id": "SEC003-ORIGIN-PROJECT-CONFLICT",
+        "json_pointer": "/cases/169",
+        "input_canonical_sha256": "5f0e53caa60cc3791b06f66c6359efd7ce1e18dcc7b596aae15df2ec88a8c3c1",
+        "expected_canonical_sha256": "ce059e2d4edc39be26c68f9771ba4b3260af11088c7ad38d267f3053b452fbdb"
+      },
+      {
+        "id": "SEC003-ORIGIN-TENANT-CONFLICT",
+        "json_pointer": "/cases/170",
+        "input_canonical_sha256": "4147f904a51f1e271d844ebd1ceab53f3fa0648c4124a78061345d36daefe067",
+        "expected_canonical_sha256": "55394c1f8b01c58e757fcb78b2095292e578d610394440be19decff2be3dee87"
+      },
+      {
+        "id": "SEC003-ORIGIN-ENVIRONMENT-CONFLICT",
+        "json_pointer": "/cases/171",
+        "input_canonical_sha256": "5694ed7297bc66cd7246e5d0c63a037dd88a71b7d7e8c1f1b953c6274ca551f3",
+        "expected_canonical_sha256": "2955fb30111acebc9b8a4db6a6185b73c7c417f5f6edbe7128949ddb35d0a307"
+      },
+      {
+        "id": "SEC003-ORIGIN-ASSIGNMENT-CONFLICT",
+        "json_pointer": "/cases/172",
+        "input_canonical_sha256": "a2b493fca7687167b2ada760f24327d9c7f4a62ddc4e3ac6c6b86d481b8c09b9",
+        "expected_canonical_sha256": "84d74445987698753e2424e5289c6d579a239a2bd93bb7b36b2268cfc497690b"
+      },
+      {
+        "id": "SEC003-ORIGIN-WORKTREE-CONFLICT",
+        "json_pointer": "/cases/173",
+        "input_canonical_sha256": "b2500bca3382f5cb3203f79cf18950ce77b7b8bb40557fc0f8350aaa5685ea20",
+        "expected_canonical_sha256": "02dfc5171ce7a5db25f7d6adc78f1a2853789e59c8db0811dba6c25ca1c28bf8"
+      },
+      {
+        "id": "SEC003-ORIGIN-REVISION-CONFLICT",
+        "json_pointer": "/cases/174",
+        "input_canonical_sha256": "8be2927d3e60d3de5d4ad6842ea537d2ccb4d002fedbb6270ae3d812d16f7904",
+        "expected_canonical_sha256": "48068995381ff4bcebc44df2315b5c2ee5b84aabc1e70121dfdbdb089e4e8c57"
+      },
+      {
+        "id": "SEC003-TARGET-PROJECT-CONFLICT",
+        "json_pointer": "/cases/175",
+        "input_canonical_sha256": "fc45f336fb60d58c2d54aff7d2424e7194b009cb970305195c1b132b09160930",
+        "expected_canonical_sha256": "731aaaaab76c2732f67d9a2d65c249a2e3db58b49faab7bd70d229bf2a6ae057"
+      },
+      {
+        "id": "SEC003-TARGET-TENANT-CONFLICT",
+        "json_pointer": "/cases/176",
+        "input_canonical_sha256": "1c4ea0d2b384703e2ced793e00af3424a26d5c690db70f4a3a0a11f7e1137c1c",
+        "expected_canonical_sha256": "0d6cb493b29e3b7218f30cbc5e3fb99536cdd35cb291bbad353b78f618c8f7d8"
+      },
+      {
+        "id": "SEC003-TARGET-ENVIRONMENT-CONFLICT",
+        "json_pointer": "/cases/177",
+        "input_canonical_sha256": "ac29b754233f4d7dbcc19ccb4f8ee57690875082a24a09ededac2b6885809d6b",
+        "expected_canonical_sha256": "54eda466975b818a69be7fcc06e547bd264595814bc11279eff2bb7810e52923"
+      },
+      {
+        "id": "SEC003-TARGET-ASSIGNMENT-CONFLICT",
+        "json_pointer": "/cases/178",
+        "input_canonical_sha256": "2abb42bbd54d6621f31298757aa114da3a555293a8d7a1b3162cd033003e8afe",
+        "expected_canonical_sha256": "2ed77d81aef3fee51817268955016e2ee11dfb79d4e21384ff18167d737eaa5b"
+      },
+      {
+        "id": "SEC003-TARGET-WORKTREE-CONFLICT",
+        "json_pointer": "/cases/179",
+        "input_canonical_sha256": "fb87ce66587f2fdc62026e1fd1bd24cd57e8b7fbcd802fb85564a5af2dd8b5bb",
+        "expected_canonical_sha256": "0f0496997aaa383c31a7ecdbba441ba58d6b5a219d33ce8d2dc6225a18a93847"
+      },
+      {
+        "id": "SEC003-TARGET-REVISION-CONFLICT",
+        "json_pointer": "/cases/180",
+        "input_canonical_sha256": "20179ef25e1af5c53819441a548347efa82b1235fe076c19bcc22e89da00bf16",
+        "expected_canonical_sha256": "f8574e6c8fabcf9c1246871e933d7901821f0a391247aac296ce661440659ce8"
+      },
+      {
+        "id": "SEC003-ORIGIN-PROJECT-MISSING",
+        "json_pointer": "/cases/181",
+        "input_canonical_sha256": "88a84bce97e8366a7b8c32e6b0e7ce450fb7ed7eb8b636b53d581c89c09cba18",
+        "expected_canonical_sha256": "a6f8bcac1dc196e4f67b8980b69da503840eac8ea8c051ab12bfc04af2eac842"
+      },
+      {
+        "id": "SEC003-ORIGIN-TENANT-MISSING",
+        "json_pointer": "/cases/182",
+        "input_canonical_sha256": "e05b8ad4436e707b1af9fc1268524264907d66d23f4ef72d4b475245a580ea05",
+        "expected_canonical_sha256": "7de00a0b57fe2394686d8a01b365735ad52682936516614bc05e0535b815ffbe"
+      },
+      {
+        "id": "SEC003-ORIGIN-ENVIRONMENT-MISSING",
+        "json_pointer": "/cases/183",
+        "input_canonical_sha256": "2a9d142b4b061106a367c53b94227699972823970829a5d0a66d77669c489002",
+        "expected_canonical_sha256": "00bf04e628e9e68276ad2cf26924d61dc77ece1185ec15c767b69e3375255df4"
+      },
+      {
+        "id": "SEC003-ORIGIN-ASSIGNMENT-MISSING",
+        "json_pointer": "/cases/184",
+        "input_canonical_sha256": "81e195360195daf88708d1cf542c6573ccb3f7266c9e048d1dab4d96fcfe1a10",
+        "expected_canonical_sha256": "2fa787c51b23291d5116d67ebaf034d5a729ad60867eb1ec30a4e6123c994897"
+      },
+      {
+        "id": "SEC003-ORIGIN-WORKTREE-MISSING",
+        "json_pointer": "/cases/185",
+        "input_canonical_sha256": "60f3257e75d02ea01bebbb391b7f4fcaac4dd6c3aeea4d05f7e9af32d23d6992",
+        "expected_canonical_sha256": "fa798bd75ca89be5003b4f6d487a9f5244ad9c199652dae2dce901e22735e88f"
+      },
+      {
+        "id": "SEC003-ORIGIN-REVISION-MISSING",
+        "json_pointer": "/cases/186",
+        "input_canonical_sha256": "698044a73532f82491677620ee5cd99f438fe4fbbe00356a4db8f6007365d5bf",
+        "expected_canonical_sha256": "b86c4e18f38a72a80b4a181c051fa6423e9761d5f0a8052342caa7242cb06bf4"
+      },
+      {
+        "id": "SEC003-SAME-PROJECT-NO-CONNECTION",
+        "json_pointer": "/cases/187",
+        "input_canonical_sha256": "6d600dbe65e4a9a6e6dd7d96c39345172de220d676cc6115b9146a1b114e5343",
+        "expected_canonical_sha256": "f3ddf36c4f6e1b34bc65bfbe18c91f740790630a635deed1c62f8e763078d68f"
+      },
+      {
+        "id": "SEC003-AGENT-PRIMARY-TREE-FALLBACK",
+        "json_pointer": "/cases/188",
+        "input_canonical_sha256": "aaa0bc57c64b053d940bf4413b0662bc84f0a31b6d882835bf51f7dc3616eb58",
+        "expected_canonical_sha256": "ae04c06c841eca000a9a837c28c0379bc87eacf38341fe981dca7bee390dcf46"
+      },
+      {
+        "id": "SEC003-AGENT-OTHER-PROJECT-LATEST",
+        "json_pointer": "/cases/189",
+        "input_canonical_sha256": "0dd26737a7045f9661b823d0fedaf002667100f65e4f422f5582d60d76fbef6a",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-AGENT-READ-DOES-NOT-GRANT-NETWORK",
+        "json_pointer": "/cases/190",
+        "input_canonical_sha256": "e4ca0b75ba28201ecec197e489f3f72e708892954c61ffc62cab5622c8d64c67",
+        "expected_canonical_sha256": "ba091c51dd2ca8bb2bde10e099ec4216cb0a96f2d7de9e07905640dc900a7d79"
+      },
+      {
+        "id": "SEC003-HOOK-PRIMARY-TREE-FALLBACK",
+        "json_pointer": "/cases/191",
+        "input_canonical_sha256": "78df41ebc2a28460280ed89909d23f7fb31292b3eeb79d52926bb1cb3e9e8991",
+        "expected_canonical_sha256": "ae04c06c841eca000a9a837c28c0379bc87eacf38341fe981dca7bee390dcf46"
+      },
+      {
+        "id": "SEC003-HOOK-OTHER-PROJECT-LATEST",
+        "json_pointer": "/cases/192",
+        "input_canonical_sha256": "b3364c756d4024198bcf3a02ff9f8ceb80a4984820474fd288ac1fea2bafd37f",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-HOOK-READ-DOES-NOT-GRANT-NETWORK",
+        "json_pointer": "/cases/193",
+        "input_canonical_sha256": "461913bdd93eb77bf8787f8050775f666707026c571b9ce4595cbbc38609acef",
+        "expected_canonical_sha256": "ba091c51dd2ca8bb2bde10e099ec4216cb0a96f2d7de9e07905640dc900a7d79"
+      },
+      {
+        "id": "SEC003-MEMORY-PRIMARY-TREE-FALLBACK",
+        "json_pointer": "/cases/194",
+        "input_canonical_sha256": "253b0b7af4329ce091040d170a148e12a903bcd427ec55857677e969b9d8b65c",
+        "expected_canonical_sha256": "ae04c06c841eca000a9a837c28c0379bc87eacf38341fe981dca7bee390dcf46"
+      },
+      {
+        "id": "SEC003-MEMORY-OTHER-PROJECT-LATEST",
+        "json_pointer": "/cases/195",
+        "input_canonical_sha256": "d4b9ec7b88d60f41a10325cbcfeb9a0517755c0f1d7268b1ec343300ba7116e1",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-MEMORY-READ-DOES-NOT-GRANT-NETWORK",
+        "json_pointer": "/cases/196",
+        "input_canonical_sha256": "78c2c183dd87fc7bf79448ab8f5ae1f667d51ed0411614bb35a056f1a5a81863",
+        "expected_canonical_sha256": "ba091c51dd2ca8bb2bde10e099ec4216cb0a96f2d7de9e07905640dc900a7d79"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-PRIMARY-TREE-FALLBACK",
+        "json_pointer": "/cases/197",
+        "input_canonical_sha256": "b149b2593d0873aef789aa4c9fa7c5d3a546a48733d22769151c537e7e0b3592",
+        "expected_canonical_sha256": "ae04c06c841eca000a9a837c28c0379bc87eacf38341fe981dca7bee390dcf46"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-OTHER-PROJECT-LATEST",
+        "json_pointer": "/cases/198",
+        "input_canonical_sha256": "d6bf4766eba55e69d4cb4f50952feac082e91af4859d19505ddc1016fd8d58ca",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-CREDENTIAL-READ-DOES-NOT-GRANT-NETWORK",
+        "json_pointer": "/cases/199",
+        "input_canonical_sha256": "8e304f3cad040319fa367919a7f791b5cbcc3c1a9176f6cbacbaf1cfac344a2b",
+        "expected_canonical_sha256": "ba091c51dd2ca8bb2bde10e099ec4216cb0a96f2d7de9e07905640dc900a7d79"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-PRIMARY-TREE-FALLBACK",
+        "json_pointer": "/cases/200",
+        "input_canonical_sha256": "9fba9c463e166253855a4cdb755cf9c834b13944f6a0d0c8594356f5b16041f5",
+        "expected_canonical_sha256": "ae04c06c841eca000a9a837c28c0379bc87eacf38341fe981dca7bee390dcf46"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-OTHER-PROJECT-LATEST",
+        "json_pointer": "/cases/201",
+        "input_canonical_sha256": "fa16cfcc5ae7e5e742d3fb34b0b4e7cd7c63933085ca6a13bfd9e1e6f751c10f",
+        "expected_canonical_sha256": "f2085c23b4da27b2417cda318fc203b294ae15aa868511b5acf78a661f818344"
+      },
+      {
+        "id": "SEC003-CONFIGURATION-READ-DOES-NOT-GRANT-NETWORK",
+        "json_pointer": "/cases/202",
+        "input_canonical_sha256": "7d970477061981f2deed02ec870ad75b9c65b84b712437e4ba583d1c6a6c35e4",
+        "expected_canonical_sha256": "ba091c51dd2ca8bb2bde10e099ec4216cb0a96f2d7de9e07905640dc900a7d79"
+      },
+      {
+        "id": "SEC003-ORIGIN-TENANT-UNKNOWN-VALUES",
+        "json_pointer": "/cases/203",
+        "input_canonical_sha256": "0395a90cfde91b21b8d797089249c7f3f89e4360cc009a008df6958a95d96396",
+        "expected_canonical_sha256": "5595eeda5620925dceda9cc30691cfa5aaa7a71fec394ea16f6f74345ba91667"
+      },
+      {
+        "id": "SEC003-TARGET-TENANT-UNKNOWN-VALUES",
+        "json_pointer": "/cases/204",
+        "input_canonical_sha256": "59f56746240a4efce1b7fcc489b6fd24a431ffd2857c20c1f5759d12cd61053b",
+        "expected_canonical_sha256": "8618c517cbb23c3ddb4ec2969511deb7aed2f95b02f5d1527903667c623b5878"
+      }
+    ]
+  },
+  "legacy_comparison": {
+    "mode": "semantic_rederivation",
+    "asset_inventory": [
+      {
+        "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+        "source_path": "docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "source_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-13362A81144CD6852A5B",
+        "source_path": "docs/design/helix/L5-detail/worker-isolation-broker.md",
+        "source_sha256": "e270bff996249360fdeb29ee4f36e3bf9ab6e27e50a013451f6ece153a5d46d4"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-604CADBAF8004788EB15",
+        "source_path": "docs/design/helix/L5-detail/worker-isolation-policy.md",
+        "source_sha256": "152a7a5806001ae1b2e0215d7cd61db14b7c61cbc4b4b501524bda58622716cf"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A3A83F1432DF43D564F0",
+        "source_path": "docs/design/helix/L6-function-design/worker-isolation-policy.md",
+        "source_sha256": "1c57cd7da89b007a81b3b7477ef9b6fb13cbfb7af8c21286391086473c871990"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-349061A71CEF2554B9A7",
+        "source_path": "docs/governance/candidates/security-engagement-authority-acceptance.md",
+        "source_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-D461943347D372ECF6DA",
+        "source_path": "docs/governance/candidates/security-engagement-authority-requirements.md",
+        "source_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-ACB237D6D79834511124",
+        "source_path": "docs/plans/PLAN-RECOVERY-1573-isolation-launch-cleanup.md",
+        "source_sha256": "cb453050ff35ff3106b24b18675988ae24e3d966b4606dc62de078a667c3893d"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-93040CD4C281E3AC3C06",
+        "source_path": "src/runtime/worker-isolation-broker.ts",
+        "source_sha256": "5a0f69619306f27c2c04fac3f05566346aec5c499631d62440d34c7e7b0e220d"
+      }
+    ],
+    "source_quotes": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+        "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+        "whole_file_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+        "start_line": 24,
+        "end_line": 26,
+        "exact_quote": "| `SEA-FR-001` | `SecurityAuthorization`はauthorization ID、asset owner、source、authorized target exact set、allowed／forbidden action、environment、network／data scope、issued／expiry、human authority、provider access class、digestを別fieldで保持する。 |\n| `SEA-FR-002` | authorization不在、期限切れ、target／scope／environment／provider class／digest不一致ではmodel、tool、network invocationを0件にする。 |\n| `SEA-FR-003` | `NORMAL`と`PRIVILEGED_INTERNAL_SECURITY`のcredential、queue、lease、evidence、fallbackを分離し、通常taskから特権classへ到達不能にする。 |",
+        "quote_utf8_sha256": "13bb77082aff1fd3cf83a54e4a0aec0ab71af264595b6a5b73afc10c723c5e54"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
+        "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+        "whole_file_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+        "start_line": 39,
+        "end_line": 40,
+        "exact_quote": "- `SEA-NFR-001 Fail-close`: unknown、ambiguous、missing、stale、multi-target driftを推測しない。\n- `SEA-NFR-002 Least privilege`: credentialとnetwork capabilityはengagement、target、operation、TTLの最小範囲に限定する。",
+        "quote_utf8_sha256": "4bb545ec9da48b562f9c6935d98b13b09dfb940da1fe32b419bee916f2356f21"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
+        "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+        "whole_file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc",
+        "start_line": 14,
+        "end_line": 15,
+        "exact_quote": "| `SEA-AC-001` | `SEA-FR-001..002` | authorization不在、期限切れ、wrong target／scope／environment／provider class／digest、第三者targetでmodel・tool・network invocationが0件になる。 |\n| `SEA-AC-002` | `SEA-FR-003` | 通常customer／tenant taskから特権credential、queue、lease、evidenceを選択できず、fallbackでも境界を越えない。 |",
+        "quote_utf8_sha256": "690034901c1129c4641c0d7d348f8b8314e25a8055f2420269f97978ee9a2b7d"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+        "whole_file_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "start_line": 69,
+        "end_line": 81,
+        "exact_quote": "\npath targetは次の証拠を別々に保持する。\n\n- `lexical_target`: 入力で宣言されたrepo-relative POSIX pathまたはtyped external target。\n- `physical_target`: realpath（実体パス）、ancestor symlink/junction（祖先リンク/接合）、mount（マウント）、device/inode（デバイス/inode）、file type（ファイル種別）。\n- `target_set`: exact member list、cardinality、glob・再帰・生成展開の有無。\n- `repository_identity`: repository（リポジトリ）、worktree（作業木）、Git object（Gitオブジェクト）、GitHub owner/name（所有者/名前）、ref（参照）、HEAD（基準点）。\n\nlexical pathがrepo内でもphysical targetがrepo外、symlink/junctionで境界を越える、mount/bind\nまたはhardlinkで同一実体が別pathから到達できる、target集合を確定できない場合は拒否する。\nTOCTOUを防ぐため、判定時と実行直前のidentity digestを一致させる。一致しない場合は再実行せず\n新しいpreflightを要求する。\n",
+        "quote_utf8_sha256": "208f86330f25f5a04b3b826c2a0eab0a8d0e6ffdc53a51b2a6536e7fcd60f03c"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-broker.md",
+        "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+        "whole_file_sha256": "e270bff996249360fdeb29ee4f36e3bf9ab6e27e50a013451f6ece153a5d46d4",
+        "start_line": 22,
+        "end_line": 29,
+        "exact_quote": "backend/runtime IDとcontent digestをexact照合し、実file digestも一致するときだけmodule-private capabilityを発行する。\ncapabilityはcanonical authority rootとcatalog digestも封印し、`prepare`対象repoのcanonical rootとexact一致を要求するため、別rootでmintした\ncatalog capabilityを転用できない。backend IDは`bubblewrap`のclosed literalである。空catalogは安全側の初期値であり、未登録runtimeを起動しない。\n`prepare`はLinux、sealed authority、immutable wrapper execution、current admitted descriptor、\nrepo外scratch、regular allowlisted inputを順に検査する。成功時だけbounded byte snapshotを作り、module-private `WeakSet`へlaunch objectを封印する。\n`run`は同一object identityだけをbubblewrapへ渡し、spread copyをspawn前に拒否する。\n\n## 2. failure完全集合",
+        "quote_utf8_sha256": "62573d46ea5c6cb33b5f9071af566a71c67899d9265658a1b787dc84dc28ef5b"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-policy.md",
+        "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+        "whole_file_sha256": "152a7a5806001ae1b2e0215d7cd61db14b7c61cbc4b4b501524bda58622716cf",
+        "start_line": 22,
+        "end_line": 29,
+        "exact_quote": "task classificationは`non_secret`だけを許可し、既存`isSecretLike`をwrapper stdin／argvへ追加適用する。\n許可scopeはrelative exact pathまたは末尾`/`のdirectory prefixへ正規化し、empty／absolute／drive path／NUL／`.`／`..`／\n`.git`／`.helix`／`harness.db`を拒否する。egressは`deny_all`だけで、host allowlistは起動前に拒否する。\n\nbrokerはcapability object identityとwrapper `origin_digest`を再検証し、bubblewrapへ`--unshare-net`を必須付与する。\nprocess終了後、input manifestとscratch post-stateのdigest集合を比較する。scope内変更だけを成功とし、違反時はgeneric reasonだけを返す。\n\n## 2. failure完全集合",
+        "quote_utf8_sha256": "fe2459d48025dc538fba0e17f08692320776962c76510824d9ec1cb94fb92877"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-isolation-policy.md",
+        "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+        "whole_file_sha256": "1c57cd7da89b007a81b3b7477ef9b6fb13cbfb7af8c21286391086473c871990",
+        "start_line": 22,
+        "end_line": 27,
+        "exact_quote": "- `prepareWorkerIsolationLaunch(request)`: policy capabilityとwrapper `origin_digest`を再検証し、failure時spawn 0にする。\n- `runWorkerIsolationLaunch(launch, spawn?)`: `--unshare-net`を含むsealed argvで実行し、post-state違反時はgeneric failureだけを返す。\n\n`allowed_egress_hosts`はemptyだけを許可する。host許可はbroker-owned proxy／namespace firewall authorityが実装されるまで\n`WORKER_ISOLATION_EGRESS_UNSUPPORTED`で拒否する。scopeはglobを受けず、exact pathまたは末尾`/`のdirectory prefixだけとする。\nFR-05/06のoutput schema、proposal再検証、lifecycle receipt、canonical commitは別contractである。",
+        "quote_utf8_sha256": "ef238314b71821fd0564903d1d710fc8df9f6699ccc73db4f5a0845dd8d2650e"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-isolation-broker.ts",
+        "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+        "whole_file_sha256": "5a0f69619306f27c2c04fac3f05566346aec5c499631d62440d34c7e7b0e220d",
+        "start_line": 74,
+        "end_line": 94,
+        "exact_quote": "export interface WorkerAdmissionBinding {\n  request: WorkerDescriptorRequestV1;\n  snapshot: WorkerRegistrySnapshotV1;\n  decision: WorkerDescriptorAdmissionDecisionV1;\n}\n\nexport interface WorkerIsolationPrepareRequest {\n  repoRoot: string;\n  scratchBaseDir: string;\n  inputPaths: readonly string[];\n  wrapperLaunch: WrapperLaunchExecution;\n  policy: WorkerIsolationPolicyCapability;\n  admission: WorkerAdmissionBinding;\n  authority: WorkerIsolationAuthorityCapability;\n  riskClass?: \"low\" | \"medium\" | \"high\" | \"critical\";\n  benchmark?: WorkerBenchmarkExecutionCapability;\n  blindJudge?: WorkerBlindJudgeContextCapability;\n  platform?: NodeJS.Platform;\n}\n\nexport interface WorkerIsolationAuthorityBinding {",
+        "quote_utf8_sha256": "c8b038c881f7b10f88645a69ff5e9a90a79e15e3063165569ff0226244b31a28"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-isolation-broker.ts",
+        "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+        "whole_file_sha256": "5a0f69619306f27c2c04fac3f05566346aec5c499631d62440d34c7e7b0e220d",
+        "start_line": 748,
+        "end_line": 780,
+        "exact_quote": "  spawn: IsolationSpawn = (command, args, options) => spawnSync(command, args, options),\n): WorkerIsolationRunResult {\n  if (!sealedLaunches.has(launch)) {\n    return { isolated: false, failure_code: \"WORKER_ISOLATION_LAUNCH_UNSEALED\" };\n  }\n  const resources = launchResources.get(launch);\n  const policy = launchPolicies.get(launch);\n  const outputBinding = launchOutputBindings.get(launch);\n  const executionBinding = launchExecutionBindings.get(launch);\n  if (!resources || !policy || !outputBinding || !executionBinding)\n    throw new Error(\"sealed isolation launch is missing broker-owned resources\");\n  // 起動結果にかかわらず一度だけ消費し、再入・例外後の再利用を拒否する。\n  sealedLaunches.delete(launch);\n  const started = process.hrtime.bigint();\n  let result: ReturnType<IsolationSpawn>;\n  try {\n    result = spawn(\"/proc/self/fd/3\", sandboxArguments(launch), {\n      encoding: \"buffer\",\n      env: {},\n      input: Buffer.from(launch.wrapper_launch.stdin ?? \"\", \"utf8\"),\n      maxBuffer: 8 * 1024 * 1024,\n      stdio: [\"pipe\", \"pipe\", \"pipe\", resources.backendFd, resources.runtimeFd],\n      timeout: 10 * 60 * 1000,\n    });\n  } finally {\n    launchResources.delete(launch);\n    launchPolicies.delete(launch);\n    launchOutputBindings.delete(launch);\n    launchExecutionBindings.delete(launch);\n    try {\n      closeSync(resources.backendFd);\n    } finally {\n      closeSync(resources.runtimeFd);",
+        "quote_utf8_sha256": "eba628819c655559d43ad7c10e3d3c53c6392addf223ae71becedc93473128b6"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-RECOVERY-1573-isolation-launch-cleanup.md",
+        "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+        "whole_file_sha256": "cb453050ff35ff3106b24b18675988ae24e3d966b4606dc62de078a667c3893d",
+        "start_line": 67,
+        "end_line": 80,
+        "exact_quote": "\n## 欠陥と修復境界\n\n基準main `8f835e23c8d4110260d1eff97c9b167987bff37d`。\n注入spawnが例外を投げた場合、既存実装はFDと内部mapを回収せず、同じlaunchの再利用も許した。\nIssue #1543 comment 5554716261へ実測を記録した。実providerの障害・隔離突破実績とは区別する。\n\n起動前にsealed identityを消費し、引数構築・spawnをfinallyで囲む。\nbackend/runtimeの両FDを閉鎖し、公開APIでsingle-use拒否とFD閉鎖を検証する。\n内部WeakMap削除も維持するが、これは公開APIから観測不能な衛生措置であり、\n既存反例によって削除自体が証明されたとは扱わない。\n再入と同objectの再試行はspawn前に拒否する。再試行はadmissionを再検証するprepareから\n新しいlaunchを生成する。起動例外は成功receiptに変換せず伝播する。\n",
+        "quote_utf8_sha256": "89a10ce8ebfbaed8fe88adcb7b6ddff0dc9fa156295014bd94778b83330f6c37"
+      }
+    ],
+    "preserve": "origin/target/scope/environment/operation別field、unknown非推測、他project/primary-tree fallback拒否、exact identityとbounded custody、別root capability転用不可、例外/途中失敗を成功へ変換しない。",
+    "change": "既決003の6軸/tenant適用とOS/INFRA/CONNECT責務からpure論理typed fixtureへ再導出。旧NORMAL/PRIVILEGED、追加human gate、bubblewrap/WeakSet/FD/host/path制約/閾値/DB/runtime/署名を現authorityとして継承しない。",
+    "reason": "批准003は明示接続と素材identity/出所比較を求める。旧実装方式を採用せず、原carrierの不足を局所unknown、owner資格/custody/consumer不足を別未閉包として露出する。"
+  },
+  "failure_basis": {
+    "source": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "start_line": 79,
+      "end_line": 87,
+      "exact_quote": "| UTW-013 | High | fail-open/warn-onlyが安全性、観測性、可用性で統一分類されていない | session log、handover、update、scan、graphの複数方針 | UTH-FR-009 |\n| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n| UTW-015 | High | branch lifecycleが閉じず、main未包含6 heads、最大54 commits aheadが残る | mirror ref inventory | UTH-FR-013、UTH-FR-014 |\n| UTW-016 | High | tag 0でrelease provenanceとsource snapshot authorityが弱い | ref inventory | UTH-FR-027 |\n| UTW-017 | High | Issue Formsのlabel bootstrap/inbound dogfoodが未閉包 | 既存UT-GH-08/09 | UTH-FR-016 |\n| UTW-018 | High | merge後branch/state/memory cleanupがtransactionalでない | UT-GH-02/13/14 | UTH-FR-018、UTH-FR-019 |\n| UTW-019 | High | subagent/agent spawn guardはruntime surface差分に追随し続ける必要がある | 対象rulesの旧「未配線」履歴と現guard test | UTH-FR-008 |\n| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |\n| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |",
+      "quote_utf8_sha256": "29a870df2299a533b1caf887d4a24f391c86a059fc745c86a027ed568f4033e3"
+    },
+    "ids": [
+      "UTW-013",
+      "UTW-014",
+      "UTW-019",
+      "UTW-020",
+      "UTW-021"
+    ],
+    "meaning": "fail-open/absence blindness/配車surface差/粗いpartial failure/自己申告completionを当該scopeの原値不足とbinding未閉包へ結ぶ。新gateを発明しない。"
+  },
+  "consumer_source_pins": [
+    {
+      "path": "docs/helix-os/L4-basic-design/worker-assignment-attempt.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "a6748aecb12106c7046f7e170b117aa3ca0dd1e6b4750fe372d2b52af3689645",
+      "json_pointer": "/contracts/1",
+      "source_value": {
+        "id": "HELIXOS-L4-018-F01",
+        "requirement_ref": "HELIXOS-L3-018-F01",
+        "system_oracle_ref": "HELIXOS-L10-018-F01",
+        "oracle_ref": "HELIXOS-L9-018-F01",
+        "approved_requirement": {
+          "revision": "e0cf203d954a7b82375d46ad6fec2f8e5bcc8818",
+          "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "46af6815e917ad212cdef30440352589b5d78c41215987b2e5ad42fc89a6ff49"
+        },
+        "component": "assignment_attempt_binding_comparer",
+        "input_meaning": "ticket revision/digest、要求revision、actor/Worker/呼出しlane、scope/head、authority、capability、lease、予算、期限、成果と証拠を辿る。LABO/HELIX-Benchのモデルクラス水準と評価状態を、その根拠revision・適用task/scopeへ束縛し、未評価を評価済みとして扱わない。仕事の意味とassignment/attemptを別identityにし、OSがSECURITYの認可やINFRASTRUCTUREの実資源状態を代替しない。",
+        "output_meaning": "facet別素材対応/違反/unknown、当該source/ownerへの不足候補。実assignment/実receipt/権限を生成しない。",
+        "operation_effect": "none"
+      },
+      "value_canonical_sha256": "b3fa162016c96d959fb7f078e6e5b715e0b7a4c719c583962ca492891af8f2ca"
+    },
+    {
+      "path": "docs/helix-infrastructure/L4-basic-design/resource-topology-environment.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "c219e0c4b841da38d61d7f33f01199bdd667efdbfd62e5967365f6dfcf636025",
+      "json_pointer": "/contracts/1",
+      "source_value": {
+        "id": "HELIXINFRASTRUCTURE-L4-001-F02",
+        "requirement_ref": "HELIXINFRASTRUCTURE-L3-001-F02",
+        "system_oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F02",
+        "approved_requirement": {
+          "id": "HELIXINFRASTRUCTURE-L3-001-F02",
+          "parent": "HELIXINFRASTRUCTURE-L2-001",
+          "title": "環境とnetworkの区別",
+          "obligation": "環境identityごとにresource/config/network/credential scope/data/version/authorityを分離する。CONNECT論理接続と物理runtime pathを分け、後者のsource/destination/protocol/endpoint/direction/purpose/security boundary/dependencyを参照する。",
+          "oracle_ref": "HELIXINFRASTRUCTURE-L10-001-F02"
+        },
+        "input_roles": [
+          "environment_identity",
+          "resource_ref",
+          "config_ref",
+          "network_scope",
+          "credential_scope_ref",
+          "data_scope",
+          "version",
+          "authority_ref"
+        ],
+        "content_rules": [
+          "原必要集合/属性は元ownerの宣言へ結び、原missing/unknownを提出推測で成立させない。",
+          "観測source/revision/environment/resource/scopeと原過去観測を分離し、欠測/部分/古い観測をcurrent/healthyへしない。",
+          "環境と論理/物理path、永続/一時、scope対象/非対象、CORE/INFRA/OS/SEC/INT/LABOの正本を分ける。"
+        ],
+        "owner_by_role": {
+          "environment_identity": "network-resource-owner",
+          "resource_ref": "network-resource-owner",
+          "config_ref": "network-resource-owner",
+          "network_scope": "network-resource-owner",
+          "credential_scope_ref": "HELIX-SECURITY",
+          "data_scope": "network-resource-owner",
+          "version": "network-resource-owner",
+          "authority_ref": "HELIX-SECURITY"
+        },
+        "representation_limit": "各field/環境名/属性値/必要集合は合成例。正式schema/実配置/数値/新policyを採用しない。"
+      },
+      "value_canonical_sha256": "3bf327e8fa7174c196a77a75f4e40ca52e672c877b336f99e392773be5c915dc"
+    },
+    {
+      "path": "docs/helix-connect/L4-basic-design/operation-envelope-receipt.json",
+      "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+      "whole_file_sha256": "fe85e808b2b2c9243b5e352e623d296d76b712c18b34074b5d1030593ca5e6e7",
+      "json_pointer": "/contracts/0",
+      "source_value": {
+        "id": "HELIXCONNECT-L4-003-F01",
+        "requirement_ref": "HELIXCONNECT-L3-003-F01",
+        "system_oracle_ref": "HELIXCONNECT-L10-003-F01",
+        "oracle_ref": "HELIXCONNECT-L9-003-F01",
+        "approved_requirement": {
+          "id": "HELIXCONNECT-L3-003-F01",
+          "parent": "HELIXCONNECT-L2-003",
+          "title": "契約に束縛したenvelope",
+          "obligation": "接続identity/operation identity・契約revision・現在互換receipt・能力名・依存版・scope・correlation・expiry・idempotency・result state・適用許可とenvelopeを同送受信へ結ぶ。未知operation/契約外field/異revisionは正常受信とせず拒否または隔離する。",
+          "oracle_ref": "HELIXCONNECT-L10-003-F01"
+        },
+        "component": "operation_envelope_receipt_reader",
+        "input_meanings": [
+          "独立原登録・known operation・現在互換・許可/expiry・envelope受領契約",
+          "原header/envelopeと両端receipt/観測地点/元recovery",
+          "提出header/envelope/両端receipt/recovery"
+        ],
+        "output_meanings": [
+          "元operationへ結ぶ送受信state/理由と該当owner",
+          "原/提出内容対照と対象header/digest照合/元未完handoff"
+        ],
+        "content_comparison": [
+          "field存在だけで契約に束縛しない。原/提出一致と同operation対象一致を分ける。",
+          "未識別operation・契約外field・異版/期限外/許可外は正常受領にしない。",
+          "原unknown/拒否と未完handoffを保持し、技術成功を実受領/業務成立へ昇格しない。"
+        ],
+        "qualification_rule": "合成原receipt/許可/expiry/判断から実source資格/通信/受領/業務成立/authority/Accepted/設計閉包を生成しない。",
+        "operation_effect": "none"
+      },
+      "value_canonical_sha256": "4b41e2f9292c44e246e1ee46969e6d776461df3e0dba9c31080da63c193b4954"
+    }
+  ],
+  "completion_limit": [
+    "全92親430対の意味閉包/実装Readyは未成立。文書/shape/rawの配置や一致を意味完成としない。",
+    "正式source custody/issuer/qualification/root/owner-qualified exact binding、OS assignment/lease、INFRA実環境、CONNECT両端consumer/SEC008認可・007制約の実接続は未閉包。",
+    "JSON codec/parser/float/duplicate-key/resource/encodeの正式方式は未選定。本raw_utf8は固定素材で正式wire decoder成功を主張しない。",
+    "L6は関数設計・対L7は関数検証、実装成果は層外。その前のtest/oracle凍結→実装前Red→Green→Refactorと独立再検証/実L9L10/PO実物L11は未成立。",
+    "新署名/truststore/backend/registry/閾値/毎回人承認gate/実作用を追加しない。",
+    "source/consumer required member集合は呼出し側の原義務素材。未選択fieldを新必須gateへせず、集合自体unknownはtyped不足に保持する。",
+    "各局所function rawは原request/context階層へ揃え、診断pointerをその実在又は欠落member所在へ結ぶ。composition partのfindingは同入力の原ScopeFrameを参照し、source/consumer不足とは軸を混同しない。",
+    "logical source/consumerのbody_digestは原opaque textとして保存する素材。digest形式・一致だけからbytes custody/owner資格を生成しない。"
+  ],
+  "document_id": "HELIXSECURITY-L5-003",
+  "layer": "L5",
+  "pair": "L8",
+  "architecture": {
+    "pure_boundary": "不変な原値/独立expectedの内容比較。fs/process/network/env/clock/credential/DB/実権限変更無し。",
+    "flow": [
+      "原carrier→全declared member materialization→side/asset/owner/connection/operation/fallback局所結果",
+      "明示partと元origin/target→11field proposal。source/consumer材料は別analysis→owner返却候補。"
+    ],
+    "grade_scope": "material_grade/gradeは局所内容だけ。qualification unclosedとscope_correspondingを別保持。"
+  },
+  "type_contract": {
+    "domains": {
+      "Text": {
+        "kind": "nonempty_string",
+        "normalization": "none; 空白trim/casefold/path正規化/URL解決をしない"
+      },
+      "Bool": {
+        "kind": "boolean"
+      },
+      "RawValue": {
+        "kind": "raw_json",
+        "meaning": "値なしsynthetic素材の元JSON値。内部値をdeclared carrier又は資格へ無言昇格しない。"
+      },
+      "Side": {
+        "kind": "enum",
+        "values": [
+          "origin",
+          "target"
+        ]
+      },
+      "Operation": {
+        "kind": "enum",
+        "values": [
+          "read",
+          "write",
+          "execute",
+          "network",
+          "state",
+          "credential",
+          "artifact"
+        ]
+      },
+      "CallerKind": {
+        "kind": "enum",
+        "values": [
+          "Agent",
+          "Hook",
+          "memory",
+          "credential",
+          "configuration",
+          "Worker"
+        ]
+      },
+      "AssetKind": {
+        "kind": "enum",
+        "values": [
+          "permission",
+          "state",
+          "data",
+          "Worker",
+          "credential",
+          "artifact",
+          "memory",
+          "execution_target"
+        ]
+      },
+      "MaterialState": {
+        "kind": "enum",
+        "values": [
+          "current",
+          "absent",
+          "unknown",
+          "stale",
+          "conflict"
+        ]
+      },
+      "Fallback": {
+        "kind": "enum",
+        "values": [
+          "none",
+          "primary_tree",
+          "other_project"
+        ]
+      },
+      "Grade": {
+        "kind": "enum",
+        "values": [
+          "corresponding",
+          "unknown",
+          "violation"
+        ]
+      },
+      "TenantDisposition": {
+        "kind": "enum",
+        "values": [
+          "applicable",
+          "not_applicable",
+          "unknown"
+        ]
+      },
+      "OwnerRole": {
+        "kind": "enum",
+        "values": [
+          "OS",
+          "INFRA",
+          "CONNECT"
+        ]
+      },
+      "MemberAxis": {
+        "kind": "enum",
+        "values": [
+          "owner",
+          "subject_ref",
+          "source_ref",
+          "source_revision",
+          "operation",
+          "scope",
+          "lease_ref",
+          "body_digest"
+        ]
+      },
+      "TextList": {
+        "kind": "list",
+        "item": "Text"
+      },
+      "OperationList": {
+        "kind": "list",
+        "item": "Operation"
+      },
+      "RoleList": {
+        "kind": "list",
+        "item": "OwnerRole"
+      },
+      "MemberList": {
+        "kind": "list",
+        "item": "MemberAxis"
+      },
+      "FindingList": {
+        "kind": "list",
+        "item_result": "Finding"
+      },
+      "SourceList": {
+        "kind": "list",
+        "item_record": "OwnerSourceMaterial"
+      },
+      "SourceMemberAxis": {
+        "kind": "enum",
+        "values": [
+          "role",
+          "owner",
+          "subject_ref",
+          "source_ref",
+          "source_revision",
+          "scope",
+          "operation",
+          "lease_ref",
+          "body_digest",
+          "root_refs",
+          "qualification_material",
+          "custody_material",
+          "provider_material"
+        ]
+      },
+      "SourceMemberList": {
+        "kind": "list",
+        "item": "SourceMemberAxis"
+      },
+      "String": {
+        "kind": "string"
+      }
+    },
+    "logical_types": {
+      "ScopeIdentity": {
+        "raw_shape": {
+          "fields": {
+            "project": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "tenant": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "environment": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "assignment": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "worktree": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "revision": {
+              "kind": "field",
+              "domain": "Text"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "project": "Field<Text>",
+          "tenant": "Field<Text>",
+          "environment": "Field<Text>",
+          "assignment": "Field<Text>",
+          "worktree": "Field<Text>",
+          "revision": "Field<Text>"
+        }
+      },
+      "ConnectionMaterial": {
+        "raw_shape": {
+          "fields": {
+            "identity": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "revision": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "origin": {
+              "kind": "record",
+              "target": "ScopeIdentity"
+            },
+            "target": {
+              "kind": "record",
+              "target": "ScopeIdentity"
+            },
+            "allowed_operations": {
+              "kind": "field",
+              "domain": "OperationList"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "identity": "Field<Text>",
+          "revision": "Field<Text>",
+          "origin": "Materialized<ScopeIdentity>",
+          "target": "Materialized<ScopeIdentity>",
+          "allowed_operations": "Field<OperationList>"
+        }
+      },
+      "OwnerStates": {
+        "raw_shape": {
+          "fields": {
+            "OS": {
+              "kind": "field",
+              "domain": "MaterialState"
+            },
+            "INFRA": {
+              "kind": "field",
+              "domain": "MaterialState"
+            },
+            "CONNECT": {
+              "kind": "field",
+              "domain": "MaterialState"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "OS": "Field<MaterialState>",
+          "INFRA": "Field<MaterialState>",
+          "CONNECT": "Field<MaterialState>"
+        }
+      },
+      "ScopeRequest": {
+        "raw_shape": {
+          "fields": {
+            "caller_kind": {
+              "kind": "field",
+              "domain": "CallerKind"
+            },
+            "asset_kind": {
+              "kind": "field",
+              "domain": "AssetKind"
+            },
+            "operation": {
+              "kind": "field",
+              "domain": "Operation"
+            },
+            "origin": {
+              "kind": "record",
+              "target": "ScopeIdentity"
+            },
+            "target": {
+              "kind": "record",
+              "target": "ScopeIdentity"
+            },
+            "asset_scope": {
+              "kind": "record",
+              "target": "ScopeIdentity"
+            },
+            "connection_state": {
+              "kind": "field",
+              "domain": "MaterialState"
+            },
+            "connection": {
+              "kind": "record",
+              "target": "ConnectionMaterial"
+            },
+            "fallback": {
+              "kind": "field",
+              "domain": "Fallback"
+            },
+            "asset_state_latest_claim": {
+              "kind": "field",
+              "domain": "Bool"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "caller_kind": "Field<CallerKind>",
+          "asset_kind": "Field<AssetKind>",
+          "operation": "Field<Operation>",
+          "origin": "Materialized<ScopeIdentity>",
+          "target": "Materialized<ScopeIdentity>",
+          "asset_scope": "Materialized<ScopeIdentity>",
+          "connection_state": "Field<MaterialState>",
+          "connection": "Materialized<ConnectionMaterial>",
+          "fallback": "Field<Fallback>",
+          "asset_state_latest_claim": "Field<Bool>"
+        }
+      },
+      "ScopeContext": {
+        "raw_shape": {
+          "fields": {
+            "expected_origin": {
+              "kind": "record",
+              "target": "ScopeIdentity"
+            },
+            "expected_target": {
+              "kind": "record",
+              "target": "ScopeIdentity"
+            },
+            "origin_tenant_applicable": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "target_tenant_applicable": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "owner_material_states": {
+              "kind": "record",
+              "target": "OwnerStates"
+            },
+            "expected_connection": {
+              "kind": "record",
+              "target": "ConnectionMaterial"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "expected_origin": "Materialized<ScopeIdentity>",
+          "expected_target": "Materialized<ScopeIdentity>",
+          "origin_tenant_applicable": "Field<Bool>",
+          "target_tenant_applicable": "Field<Bool>",
+          "owner_material_states": "Materialized<OwnerStates>",
+          "expected_connection": "Materialized<ConnectionMaterial>"
+        }
+      },
+      "ScopeFrame": {
+        "raw_shape": {
+          "fields": {
+            "request": {
+              "kind": "record",
+              "target": "ScopeRequest"
+            },
+            "context": {
+              "kind": "record",
+              "target": "ScopeContext"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "request": "Materialized<ScopeRequest>",
+          "context": "Materialized<ScopeContext>"
+        }
+      },
+      "SideInput": {
+        "raw_shape": {
+          "fields": {
+            "side": {
+              "kind": "field",
+              "domain": "Side"
+            },
+            "request": {
+              "kind": "record",
+              "target": "ScopeRequest"
+            },
+            "context": {
+              "kind": "record",
+              "target": "ScopeContext"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "side": "Field<Side>",
+          "request": "Materialized<ScopeRequest>",
+          "context": "Materialized<ScopeContext>"
+        }
+      },
+      "AssetInput": {
+        "raw_shape": {
+          "fields": {
+            "request": {
+              "kind": "record",
+              "target": "ScopeRequest"
+            },
+            "context": {
+              "kind": "record",
+              "target": "ScopeContext"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "request": "Materialized<ScopeRequest>",
+          "context": "Materialized<ScopeContext>"
+        }
+      },
+      "OwnerStatesInput": {
+        "raw_shape": {
+          "fields": {
+            "context": {
+              "kind": "record",
+              "target": "OwnerStatesContext"
+            }
+          },
+          "additional_members": "原opaque保存のみ、carrier採用や正式wire extension許可を作らない"
+        },
+        "fields": {
+          "context": "Materialized<OwnerStatesContext>"
+        }
+      },
+      "ConnectionInput": {
+        "raw_shape": {
+          "fields": {
+            "request": {
+              "kind": "record",
+              "target": "ScopeRequest"
+            },
+            "context": {
+              "kind": "record",
+              "target": "ScopeContext"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "request": "Materialized<ScopeRequest>",
+          "context": "Materialized<ScopeContext>"
+        }
+      },
+      "OperationInput": {
+        "raw_shape": {
+          "fields": {
+            "request": {
+              "kind": "record",
+              "target": "OperationRequest"
+            },
+            "context": {
+              "kind": "record",
+              "target": "OperationContext"
+            }
+          },
+          "additional_members": "原opaque保存のみ、carrier採用や正式wire extension許可を作らない"
+        },
+        "fields": {
+          "request": "Materialized<OperationRequest>",
+          "context": "Materialized<OperationContext>"
+        }
+      },
+      "FallbackInput": {
+        "raw_shape": {
+          "fields": {
+            "request": {
+              "kind": "record",
+              "target": "FallbackRequest"
+            }
+          },
+          "additional_members": "原opaque保存のみ、carrier採用や正式wire extension許可を作らない"
+        },
+        "fields": {
+          "request": "Materialized<FallbackRequest>"
+        }
+      },
+      "GradePart": {
+        "raw_shape": {
+          "fields": {
+            "grade": {
+              "kind": "field",
+              "domain": "Grade"
+            },
+            "findings": {
+              "kind": "field",
+              "domain": "FindingList"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "grade": "Field<Grade>",
+          "findings": "Field<FindingList>"
+        }
+      },
+      "SidePart": {
+        "raw_shape": {
+          "fields": {
+            "grade": {
+              "kind": "field",
+              "domain": "Grade"
+            },
+            "findings": {
+              "kind": "field",
+              "domain": "FindingList"
+            },
+            "joinable": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "tenant_disposition": {
+              "kind": "field",
+              "domain": "TenantDisposition"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "grade": "Field<Grade>",
+          "findings": "Field<FindingList>",
+          "joinable": "Field<Bool>",
+          "tenant_disposition": "Field<TenantDisposition>"
+        }
+      },
+      "ConnectionPart": {
+        "raw_shape": {
+          "fields": {
+            "grade": {
+              "kind": "field",
+              "domain": "Grade"
+            },
+            "findings": {
+              "kind": "field",
+              "domain": "FindingList"
+            },
+            "content_corresponding": {
+              "kind": "field",
+              "domain": "Bool"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "grade": "Field<Grade>",
+          "findings": "Field<FindingList>",
+          "content_corresponding": "Field<Bool>"
+        }
+      },
+      "ProposalInput": {
+        "raw_shape": {
+          "fields": {
+            "operation": {
+              "kind": "field",
+              "domain": "Operation"
+            },
+            "origin": {
+              "kind": "record",
+              "target": "SidePart"
+            },
+            "target": {
+              "kind": "record",
+              "target": "SidePart"
+            },
+            "asset": {
+              "kind": "record",
+              "target": "GradePart"
+            },
+            "owners": {
+              "kind": "record",
+              "target": "GradePart"
+            },
+            "connection": {
+              "kind": "record",
+              "target": "ConnectionPart"
+            },
+            "operation_part": {
+              "kind": "record",
+              "target": "GradePart"
+            },
+            "fallback": {
+              "kind": "record",
+              "target": "GradePart"
+            },
+            "caller": {
+              "kind": "record",
+              "target": "GradePart"
+            },
+            "request": {
+              "kind": "record",
+              "target": "ScopeRequest"
+            },
+            "context": {
+              "kind": "record",
+              "target": "ScopeContext"
+            }
+          },
+          "additional_members": "原opaque保存のみ、carrier採用や正式wire extension許可を作らない"
+        },
+        "fields": {
+          "operation": "Field<Operation>",
+          "origin": "Materialized<SidePart>",
+          "target": "Materialized<SidePart>",
+          "asset": "Materialized<GradePart>",
+          "owners": "Materialized<GradePart>",
+          "connection": "Materialized<ConnectionPart>",
+          "operation_part": "Materialized<GradePart>",
+          "fallback": "Materialized<GradePart>",
+          "caller": "Materialized<GradePart>",
+          "request": "Materialized<ScopeRequest>",
+          "context": "Materialized<ScopeContext>"
+        }
+      },
+      "OwnerSourceMaterial": {
+        "raw_shape": {
+          "fields": {
+            "role": {
+              "kind": "field",
+              "domain": "OwnerRole"
+            },
+            "owner": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "subject_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "source_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "source_revision": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "scope": {
+              "kind": "record",
+              "target": "ScopeIdentity"
+            },
+            "operation": {
+              "kind": "field",
+              "domain": "Operation"
+            },
+            "lease_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "body_digest": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "root_refs": {
+              "kind": "field",
+              "domain": "TextList"
+            },
+            "qualification_material": {
+              "kind": "field",
+              "domain": "RawValue"
+            },
+            "custody_material": {
+              "kind": "field",
+              "domain": "RawValue"
+            },
+            "provider_material": {
+              "kind": "field",
+              "domain": "RawValue"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "role": "Field<OwnerRole>",
+          "owner": "Field<Text>",
+          "subject_ref": "Field<Text>",
+          "source_ref": "Field<Text>",
+          "source_revision": "Field<Text>",
+          "scope": "Materialized<ScopeIdentity>",
+          "operation": "Field<Operation>",
+          "lease_ref": "Field<Text>",
+          "body_digest": "Field<Text>",
+          "root_refs": "Field<TextList>",
+          "qualification_material": "Field<RawValue>",
+          "custody_material": "Field<RawValue>",
+          "provider_material": "Field<RawValue>"
+        }
+      },
+      "SourceInput": {
+        "raw_shape": {
+          "fields": {
+            "required_roles": {
+              "kind": "field",
+              "domain": "RoleList"
+            },
+            "sources": {
+              "kind": "field",
+              "domain": "SourceList"
+            },
+            "required_source_members": {
+              "kind": "field",
+              "domain": "SourceMemberList"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "required_roles": "Field<RoleList>",
+          "sources": "Field<SourceList>",
+          "required_source_members": "Field<SourceMemberList>"
+        }
+      },
+      "ConsumerMember": {
+        "raw_shape": {
+          "fields": {
+            "owner": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "subject_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "source_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "source_revision": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "operation": {
+              "kind": "field",
+              "domain": "Operation"
+            },
+            "scope": {
+              "kind": "record",
+              "target": "ScopeIdentity"
+            },
+            "lease_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "body_digest": {
+              "kind": "field",
+              "domain": "Text"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "owner": "Field<Text>",
+          "subject_ref": "Field<Text>",
+          "source_ref": "Field<Text>",
+          "source_revision": "Field<Text>",
+          "operation": "Field<Operation>",
+          "scope": "Materialized<ScopeIdentity>",
+          "lease_ref": "Field<Text>",
+          "body_digest": "Field<Text>"
+        }
+      },
+      "ConsumerInput": {
+        "raw_shape": {
+          "fields": {
+            "role": {
+              "kind": "field",
+              "domain": "OwnerRole"
+            },
+            "required_members": {
+              "kind": "field",
+              "domain": "MemberList"
+            },
+            "source": {
+              "kind": "record",
+              "target": "ConsumerMember"
+            },
+            "consumer": {
+              "kind": "record",
+              "target": "ConsumerMember"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "role": "Field<OwnerRole>",
+          "required_members": "Field<MemberList>",
+          "source": "Materialized<ConsumerMember>",
+          "consumer": "Materialized<ConsumerMember>"
+        }
+      },
+      "BackflowInput": {
+        "raw_shape": {
+          "fields": {
+            "findings": {
+              "kind": "field",
+              "domain": "FindingList"
+            },
+            "operation": {
+              "kind": "field",
+              "domain": "Operation"
+            },
+            "source_frame": {
+              "kind": "record",
+              "target": "ScopeFrame"
+            }
+          },
+          "additional_members": "opaque raw metadata retained; 比較の既知member集合へ含めない。正式wire extension採否は未決。"
+        },
+        "fields": {
+          "findings": "Field<FindingList>",
+          "operation": "Field<Operation>",
+          "source_frame": "Materialized<ScopeFrame>"
+        }
+      },
+      "CallerInput": {
+        "raw_shape": {
+          "fields": {
+            "request": {
+              "kind": "record",
+              "target": "CallerRequest"
+            }
+          },
+          "additional_members": "原opaque保存のみ、carrier採用や正式wire extension許可を作らない"
+        },
+        "fields": {
+          "request": "Materialized<CallerRequest>"
+        }
+      },
+      "OwnerStatesContext": {
+        "raw_shape": {
+          "fields": {
+            "owner_material_states": {
+              "kind": "record",
+              "target": "OwnerStates"
+            }
+          },
+          "additional_members": "原opaque保存のみ、carrier採用や正式wire extension許可を作らない"
+        },
+        "fields": {
+          "owner_material_states": "Materialized<OwnerStates>"
+        }
+      },
+      "OperationRequest": {
+        "raw_shape": {
+          "fields": {
+            "operation": {
+              "kind": "field",
+              "domain": "Operation"
+            },
+            "connection_state": {
+              "kind": "field",
+              "domain": "MaterialState"
+            },
+            "connection": {
+              "kind": "record",
+              "target": "ConnectionMaterial"
+            }
+          },
+          "additional_members": "原opaque保存のみ、carrier採用や正式wire extension許可を作らない"
+        },
+        "fields": {
+          "operation": "Field<Operation>",
+          "connection_state": "Field<MaterialState>",
+          "connection": "Materialized<ConnectionMaterial>"
+        }
+      },
+      "OperationContext": {
+        "raw_shape": {
+          "fields": {
+            "expected_connection": {
+              "kind": "record",
+              "target": "ConnectionMaterial"
+            }
+          },
+          "additional_members": "原opaque保存のみ、carrier採用や正式wire extension許可を作らない"
+        },
+        "fields": {
+          "expected_connection": "Materialized<ConnectionMaterial>"
+        }
+      },
+      "FallbackRequest": {
+        "raw_shape": {
+          "fields": {
+            "fallback": {
+              "kind": "field",
+              "domain": "Fallback"
+            }
+          },
+          "additional_members": "原opaque保存のみ、carrier採用や正式wire extension許可を作らない"
+        },
+        "fields": {
+          "fallback": "Field<Fallback>"
+        }
+      },
+      "CallerRequest": {
+        "raw_shape": {
+          "fields": {
+            "caller_kind": {
+              "kind": "field",
+              "domain": "CallerKind"
+            }
+          },
+          "additional_members": "原opaque保存のみ、carrier採用や正式wire extension許可を作らない"
+        },
+        "fields": {
+          "caller_kind": "Field<CallerKind>"
+        }
+      }
+    },
+    "result_types": {
+      "Finding": {
+        "fields": {
+          "code": "FindingCode",
+          "pointer": "Pointer",
+          "return_owner": "ComparisonOwner"
+        }
+      },
+      "InputIssue": {
+        "fields": {
+          "code": "InputIssueCode",
+          "pointer": "Pointer",
+          "raw_tag": "RawTag"
+        }
+      },
+      "MaterializationResult<T>": {
+        "fields": {
+          "argument": "Materialized<T>",
+          "input_issues": "List<InputIssue>"
+        }
+      },
+      "Materialized<T>": {
+        "fields": {
+          "tag": "RecordTag",
+          "pointer": "Pointer",
+          "original": "RawPresence",
+          "fields": "T|null",
+          "unknown_members": "map<String,RawValue>"
+        }
+      },
+      "Field<T>": {
+        "fields": {
+          "tag": "FieldTag",
+          "pointer": "Pointer",
+          "original": "RawPresence",
+          "value": "T|null"
+        }
+      },
+      "RawPresence": {
+        "variants": {
+          "absent": {
+            "tag": "absent"
+          },
+          "supplied": {
+            "tag": "supplied",
+            "raw": "RawValue"
+          }
+        }
+      },
+      "SideAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "tenant_disposition": "TenantDisposition",
+          "joinable": "Bool",
+          "findings": "List<Finding>"
+        }
+      },
+      "PartAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "findings": "List<Finding>"
+        }
+      },
+      "ConnectionAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "content_corresponding": "Bool",
+          "findings": "List<Finding>"
+        }
+      },
+      "TenantPair": {
+        "fields": {
+          "origin": "TenantDisposition",
+          "target": "TenantDisposition"
+        }
+      },
+      "ScopeProposal": {
+        "fields": {
+          "condition": "Condition",
+          "origin_identity_preserved": "True",
+          "target_identity_preserved": "True",
+          "tenant_disposition": "TenantPair",
+          "requested_operation": "Operation|null",
+          "connection_content_corresponding": "Bool",
+          "findings": "List<Finding>",
+          "pending_operations": "List<Operation>",
+          "actual_scope_authorized": "False",
+          "actual_state_changed": "False",
+          "operation_effect": "NoneEffect"
+        }
+      },
+      "SourceGap": {
+        "fields": {
+          "role": "OwnerRole|null",
+          "reason": "SourceGapKind",
+          "pointer": "Pointer"
+        }
+      },
+      "OwnerSourceAnalysis": {
+        "fields": {
+          "qualification_state": "Unclosed",
+          "source_gaps": "List<SourceGap>",
+          "retained_materials": "RawValue",
+          "qualified_source_created": "False"
+        }
+      },
+      "BindingGap": {
+        "fields": {
+          "member": "MemberAxis|null",
+          "reason": "BindingGapKind",
+          "pointer": "Pointer"
+        }
+      },
+      "ConsumerBindingAnalysis": {
+        "fields": {
+          "material_grade": "Grade",
+          "gaps": "List<BindingGap>",
+          "binding_state": "Unclosed",
+          "qualified_binding_created": "False"
+        }
+      },
+      "BackflowCandidate": {
+        "fields": {
+          "finding": "Finding",
+          "candidate_owner": "ResponsibilityOwner",
+          "parent_ref": "OwnerParent",
+          "operation": "Operation|null",
+          "scope_material": "RawValue"
+        }
+      },
+      "BackflowAnalysis": {
+        "fields": {
+          "candidates": "List<BackflowCandidate>",
+          "actual_route_invoked": "False"
+        }
+      }
+    },
+    "result_domains": {
+      "FindingCode": [
+        "asset_scope_conflict",
+        "connection_content_conflict",
+        "connection_material_unresolved",
+        "connection_scope_conflict",
+        "explicit_connection_absent",
+        "implicit_fallback",
+        "operation_scope_conflict",
+        "owner_material_unresolved",
+        "scope_identity_conflict",
+        "scope_identity_unresolved",
+        "scope_input_unresolved",
+        "tenant_applicability_unresolved",
+        "tenant_invented"
+      ],
+      "ComparisonOwner": [
+        "scope-binding-owner"
+      ],
+      "InputIssueCode": [
+        "logical_argument_unknown",
+        "logical_field_unknown"
+      ],
+      "RawTag": [
+        "absent",
+        "supplied"
+      ],
+      "FieldTag": [
+        "absent",
+        "explicit_null",
+        "known",
+        "invalid_or_unknown"
+      ],
+      "RecordTag": [
+        "absent",
+        "explicit_null",
+        "record",
+        "invalid_or_unknown"
+      ],
+      "Pointer": {
+        "kind": "string"
+      },
+      "Condition": [
+        "scope_corresponding",
+        "scope_unresolved",
+        "isolation_violation"
+      ],
+      "SourceGapKind": [
+        "required_role_unresolved",
+        "source_not_supplied",
+        "source_member_unresolved",
+        "qualification_provider_unclosed"
+      ],
+      "BindingGapKind": [
+        "required_member_unresolved",
+        "member_unresolved",
+        "member_conflict",
+        "binding_provider_unclosed"
+      ],
+      "ResponsibilityOwner": [
+        "OS",
+        "INFRA",
+        "CONNECT",
+        "SECURITY003"
+      ],
+      "OwnerParent": [
+        "HELIXOS-L2-018",
+        "HELIXINFRASTRUCTURE-L2-001",
+        "HELIXCONNECT-L2-003",
+        "HELIXSECURITY-L2-003"
+      ],
+      "False": [
+        false
+      ],
+      "True": [
+        true
+      ],
+      "NoneEffect": [
+        "none"
+      ],
+      "Unclosed": [
+        "unclosed"
+      ]
+    },
+    "projection_rules": [
+      "全宣言memberの元presence/tag/pointer/original/valueを保存。",
+      "raw field欠落とexplicit nullは同一にしない。invalid rawをTへcastしない。",
+      "unknown_membersとRawValue mapはopaque保存、declared carrierへ無言採用しない。",
+      "source raw bytes/body digestとowner/subject/root資格は独立。",
+      "mapのkeyはString（空keyも含む原JSON member名）、Text domainへ正規化しない。"
+    ]
+  },
+  "functions": [
+    {
+      "id": "HELIXSECURITY-L5-003-materialize_scope_frame",
+      "symbol": "materialize_scope_frame",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "RawValue"
+        }
+      ],
+      "signature": "materialize_scope_frame(input: RawValue) -> MaterializationResult<ScopeFrame>",
+      "output_type": "MaterializationResult<ScopeFrame>",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/request"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context"
+        }
+      ],
+      "return_root_fields": {
+        "argument": "Materialized<ScopeFrame>",
+        "input_issues": "List<InputIssue>"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "pre": "固定合成JSON値又は明示raw素材。",
+      "post": "原値/presence保持だけ。codec/schema library/parser/資格を選定しない。",
+      "pure_algorithm": [
+        "declared全memberをabsent/explicit_null/known/invalid_or_unknownへ対応し、recordはrecord tag。member欠落でもprojection memberを省略しない。",
+        "opaque原map/余剰memberをunknown_membersへ保持する。既知carrierへの採用と正式wire余剰key許可は生成しない。",
+        "不正rootはlogical_argument_unknown root、invalid leafはlogical_field_unknown元pointer。missing/nullはtag保存だけ。list不正itemをdropしない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-compare_scope_side",
+      "symbol": "compare_scope_side",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<SideInput>"
+        }
+      ],
+      "signature": "compare_scope_side(input: Materialized<SideInput>) -> SideAnalysis",
+      "output_type": "SideAnalysis",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/side"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/origin"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/target"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_origin"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_target"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/origin_tenant_applicable"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/target_tenant_applicable"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "tenant_disposition": "TenantDisposition",
+        "joinable": "Bool",
+        "findings": "List<Finding>"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "pre": "SideInput全宣言projection。",
+      "post": "tenant disposition、request side join可能性、全不足/相反を独立保持。",
+      "pure_algorithm": [
+        "identity record全体がabsent/null/非recordならその元record pointerのscope_identity_unresolvedを1件保持し、存在しない内部field位置を作らない。独立した他record/他軸の比較は保持する。",
+        "side未知はscope_input_unresolved /side、tenant unknown/joinable false。side既知ならそのrequestと独立expectedの各非tenant5軸を両known非空Textだけexact比較。未知所在はscope_identity_unresolved、known差はscope_identity_conflict。",
+        "tenant適用known trueは同様にtenant照合。known falseではrequest tenantがexplicit nullだけ非適用、absentは未知、非null suppliedはtenant_invented。unknown適用はtenant_applicability_unresolved元contextへ、tenant値を比較しない。",
+        "joinableはrequest非tenant5軸が全knownText、tenant trueならknownText、falseならexplicitnullの場合だけtrue。expectedとの相反はjoinable自体をfalseにせず内容findingへ残す。",
+        "gradeはviolation優先→unknown→corresponding。unknown側へ他sideやprimary treeを補完しない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-compare_asset_scope",
+      "symbol": "compare_asset_scope",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<AssetInput>"
+        }
+      ],
+      "signature": "compare_asset_scope(input: Materialized<AssetInput>) -> PartAnalysis",
+      "output_type": "PartAnalysis",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/asset_kind"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/asset_scope"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/asset_state_latest_claim"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_target"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/target_tenant_applicable"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "findings": "List<Finding>"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "pre": "AssetInput全projection。",
+      "post": "8資産の原scopeを保持し、owner正本を作らない。",
+      "pure_algorithm": [
+        "identity record全体がabsent/null/非recordならその元record pointerのscope_identity_unresolvedを1件保持し、存在しない内部field位置を作らない。独立した他record/他軸の比較は保持する。",
+        "asset_kind既知8種に同じscope比較を適用。未知kindはscope_input_unresolved元pointer、権限/stateなどへ類推しない。",
+        "asset6軸とexpected_targetをside規則で比較。target適用unknownならtenant値を不足/相反へ推測せず、他5軸を比較。falseでnonnull suppliedならtenant_invented。",
+        "既知両側差だけasset_scope_conflict、未知はscope_identity_unresolved原asset/expected所在。asset_state_latest_claimは比較不足を埋めず、資格へ昇格しない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-compare_owner_material_states",
+      "symbol": "compare_owner_material_states",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<OwnerStatesInput>"
+        }
+      ],
+      "signature": "compare_owner_material_states(input: Materialized<OwnerStatesInput>) -> PartAnalysis",
+      "output_type": "PartAnalysis",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/owner_material_states"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "findings": "List<Finding>"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01"
+      ],
+      "pre": "3owner素材を別fieldで供給。",
+      "post": "各owner局所unknownを保持。",
+      "pure_algorithm": [
+        "OS/INFRA/CONNECT各fieldのknown currentだけ内容current扱い。他state/欠落/null/不正は各owner_material_unresolved /context/owner_material_states/<role>。",
+        "currentはmetadata内容だけ。source資格/実環境・assignment・接続bindingを生成しない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-compare_connection_content",
+      "symbol": "compare_connection_content",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<ConnectionInput>"
+        }
+      ],
+      "signature": "compare_connection_content(input: Materialized<ConnectionInput>) -> ConnectionAnalysis",
+      "output_type": "ConnectionAnalysis",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/connection_state"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/connection"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/origin"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/target"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_connection"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/origin_tenant_applicable"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/target_tenant_applicable"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "content_corresponding": "Bool",
+        "findings": "List<Finding>"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "pre": "全required引数と両expected/actual projectionが独立供給。",
+      "post": "内容flagと全体scope/資格/許可を分離。",
+      "pure_algorithm": [
+        "connection_state known absentはexplicit_connection_absent違反、current以外はconnection_material_unresolved元state、content false。",
+        "currentでは宣言connection全member（identity/revision/両side6軸/allowed_operations）の元presence/値をindependent expectedと照合。双方既知とtenant explicitnullの完全内容一致だけ基礎true。不正/欠落片側をconflictにせずconnection_material_unresolved元所在。双方正常known内容差はconnection_content_conflict /request/connection。operation listは順序/重複も保存しset化しない。",
+        "request各sideがside規則でjoin可能な場合だけconnectionの同sideの非tenant5軸と適用true tenantを比較。known差はconnection_scope_conflict /request/connection/<side>、不足はconnection_material_unresolved元connection所在。比較不能request sideはjoinをskipし、その不足はside functionへ残す。",
+        "content_correspondingはcurrent独立connection内容完全一致かつ実行したside join差/不足無し。skip sideの成立・requested operation許可・asset/source資格をこのflagから生成しない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-compare_operation_scope",
+      "symbol": "compare_operation_scope",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<OperationInput>"
+        }
+      ],
+      "signature": "compare_operation_scope(input: Materialized<OperationInput>) -> PartAnalysis",
+      "output_type": "PartAnalysis",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/operation"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/connection_state"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/connection/allowed_operations"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context/expected_connection/allowed_operations"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "findings": "List<Finding>"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "pre": "OperationInput全projection。",
+      "post": "内容の列挙対応だけ、実authority008は別。",
+      "pure_algorithm": [
+        "operation未知はscope_input_unresolved /request/operation、他known operationへ補完しない。",
+        "current接続だけの局所operation比較。state absent/unknownならこのpartはunknown/空finding、接続state findingはconnection functionが保持。",
+        "両allowed_operations listが全Operation domainならrequested memberが両listにあるかを確認。不在はoperation_scope_conflict /request/operation。list欠落/null/不正itemはconnection_material_unresolved元list pointer。",
+        "read memberから他operationや全callerの権限を導かない。空listは既知の空許可内容であり不明へ丸めない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-compare_fallback",
+      "symbol": "compare_fallback",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<FallbackInput>"
+        }
+      ],
+      "signature": "compare_fallback(input: Materialized<FallbackInput>) -> PartAnalysis",
+      "output_type": "PartAnalysis",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/fallback"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "findings": "List<Finding>"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "pre": "原fallback1field。",
+      "post": "caller共通の局所fallback候補。",
+      "pure_algorithm": [
+        "known noneはcorresponding。known primary_tree/other_projectはimplicit_fallback違反 /request/fallback。未知enum/欠落/null/不正はscope_input_unresolved元fallback、未知を暗黙許可にしない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-compose_scope_proposal",
+      "symbol": "compose_scope_proposal",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<ProposalInput>"
+        }
+      ],
+      "signature": "compose_scope_proposal(input: Materialized<ProposalInput>) -> ScopeProposal",
+      "output_type": "ScopeProposal",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/operation"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/origin"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/target"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/asset"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/owners"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/connection"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/operation_part"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/fallback"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/caller"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/origin"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/target"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/context"
+        }
+      ],
+      "return_root_fields": {
+        "condition": "Condition",
+        "origin_identity_preserved": "True",
+        "target_identity_preserved": "True",
+        "tenant_disposition": "TenantPair",
+        "requested_operation": "Operation|null",
+        "connection_content_corresponding": "Bool",
+        "findings": "List<Finding>",
+        "pending_operations": "List<Operation>",
+        "actual_scope_authorized": "False",
+        "actual_state_changed": "False",
+        "operation_effect": "NoneEffect"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "pre": "前段partと原ScopeFrame request/contextを全signature引数として供給。",
+      "post": "既存L9の11result fieldと意味を保持。資格/実許可/保存は未成立。",
+      "pure_algorithm": [
+        "全8partを独立明示素材で受ける。各grade/全findingを保持し、violation優先、unknown次、それ以外corresponding。part不足/不正gradeはscope_input_unresolved該当part pointerとしてunknown。",
+        "未知operationはrequested_operation null/pending_operations []、scope_input_unresolved /request/operationを保持。既知operationのcondition非正常ならその1memberだけpending、正常なら空。元caller全体/他scopeを停止しない。",
+        "findingsはcode/pointer/return_owner scalar codepoint順unique（全3field同値だけ）。元ScopeFrame request/contextを別入力として保存し、preserved trueは無変換保持の契約、実identity資格でない。",
+        "connection content flagとtenant dispositionは独立part原値、欠落ならfalse/unknownに保持。全actual false/operation none。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-retain_owner_source_material",
+      "symbol": "retain_owner_source_material",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<SourceInput>"
+        }
+      ],
+      "signature": "retain_owner_source_material(input: Materialized<SourceInput>) -> OwnerSourceAnalysis",
+      "output_type": "OwnerSourceAnalysis",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/required_roles"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/required_source_members"
+        }
+      ],
+      "return_root_fields": {
+        "qualification_state": "Unclosed",
+        "source_gaps": "List<SourceGap>",
+        "retained_materials": "RawValue",
+        "qualified_source_created": "False"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "pre": "required rolesとsourceを原ownerから渡す責務。合成素材は正式供給元ではない。",
+      "post": "source bytes/bodyの一致、shape、root資格を分離し原素材をそのまま返す。",
+      "pure_algorithm": [
+        "required_rolesをcaller明示で受ける。欠落/null/不正listはrequired_role_unresolved /required_roles、空known listは追加roleを創作しない。",
+        "各required roleのsource素材不在はsource_not_supplied /sources。sourceが存在する場合owner/subject/source/revision/scope/operation/lease/digest/root/custody/provider/qualificationの原presenceと値を保存する。unknown memberもopaque保持。",
+        "required_source_membersをcaller明示集合として受け、既知listの各memberだけ不足をsource_member_unresolved元pointerへ返す。集合欠落/null/不正はrequired_role_unresolved /required_source_membersへ残す。未選択fieldのpresenceも保全するが、OSのleaseをINFRA/CONNECTへ一律必須化しない。shape正常/選択body digest一致/root自己申告でもqualification_provider_unclosed元source rootを常に別保持する。qualification_state unclosed/qualified_source_created false。",
+        "leaseはOS018 assignment材料へ結ぶ参照の保存だけ。実issuer/更新/TTL/clock/権限/保存の意味を追加しない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-compare_consumer_binding",
+      "symbol": "compare_consumer_binding",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<ConsumerInput>"
+        }
+      ],
+      "signature": "compare_consumer_binding(input: Materialized<ConsumerInput>) -> ConsumerBindingAnalysis",
+      "output_type": "ConsumerBindingAnalysis",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/role"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/required_members"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/source"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/consumer"
+        }
+      ],
+      "return_root_fields": {
+        "material_grade": "Grade",
+        "gaps": "List<BindingGap>",
+        "binding_state": "Unclosed",
+        "qualified_binding_created": "False"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "pre": "role/required_members/source/consumerの全材料を明示供給。",
+      "post": "consumer member接続内容候補だけ。追加承認gate/署名/registry/実権限を作らない。",
+      "pure_algorithm": [
+        "caller明示required_membersの各memberをsource↔consumerへ比較する。owner/subject/source/revision/operation/lease/digestは両known同domainだけexact比較、scopeは6軸原presence/値の完全比較。",
+        "member片側欠落/null/不正はmember_unresolvedその原pointer。双方known差だけmember_conflict consumer側pointer。scope nonapplicable tenant nullは保存markerとして比較、tenant適用規則そのものはこの関数へ移さない。",
+        "unknown required member/list又はroleはrequired_member_unresolved元pointer、空既知listは追加必須memberを生成しない。material_gradeはviolation優先→unknown→corresponding。",
+        "別gaps binding_provider_unclosed rootを常時保持しbinding_state unclosed/qualified_binding_created false。shape一致や素材一致を正式資格・issuer成立にしない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-describe_scope_backflow",
+      "symbol": "describe_scope_backflow",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<BackflowInput>"
+        }
+      ],
+      "signature": "describe_scope_backflow(input: Materialized<BackflowInput>) -> BackflowAnalysis",
+      "output_type": "BackflowAnalysis",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/findings"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/operation"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/source_frame/request/origin"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/source_frame/request/target"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/source_frame/context"
+        }
+      ],
+      "return_root_fields": {
+        "candidates": "List<BackflowCandidate>",
+        "actual_route_invoked": "False"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "pre": "原finding list、操作、診断元source_frameを全signatureで供給。finding.pointerはinput.source_frameをrootとする。",
+      "post": "L10 F01不足owner/INFRA返却を局所候補へ具体化。正式配送/Acceptedを生成しない。",
+      "pure_algorithm": [
+        "各原findingを保持しcode/pointerから内容責務owner候補を付ける。environment軸又はINFRA素材不足はINFRA、connection/operation scope/CONNECT素材はCONNECT、identity/project/tenant/assignment/worktree/revision/OS素材はOS、fallback/全体入力不足はSECURITY003。",
+        "candidate parentは既存OS018/INFRA001/CONNECT003/SEC003の参照だけ。root資格/正式dispatch routeは未成立。operation未知はnull、scope_materialにはsource_frameの元request origin/target rawだけを保持する。",
+        "元findingのreturn_owner scope-binding-ownerを書換えず、candidate_ownerを別fieldで返す。無関係scopeを停止せず実route false。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-compare_caller_material",
+      "symbol": "compare_caller_material",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<CallerInput>"
+        }
+      ],
+      "signature": "compare_caller_material(input: Materialized<CallerInput>) -> PartAnalysis",
+      "output_type": "PartAnalysis",
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/request/caller_kind"
+        }
+      ],
+      "return_root_fields": {
+        "grade": "Grade",
+        "findings": "List<Finding>"
+      },
+      "requirement_refs": [
+        "HELIXSECURITY-L3-003-F01",
+        "HELIXSECURITY-L3-003-F02"
+      ],
+      "pre": "caller_kindの原presence/tag/valueを明示供給。",
+      "post": "caller1fieldの内容認識だけ。権限/Worker実起動の成立でない。",
+      "pure_algorithm": [
+        "6既知callerはcorresponding、未知enum/absent/null/不正primitiveはscope_input_unresolved /request/caller_kindとしてunknown。",
+        "Workerへ未知callerを補完せず、known caller同士に異なるauthorityや包括許可を発明しない。"
+      ],
+      "effect": "none"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L5-003-F01",
+      "requirement_ref": "HELIXSECURITY-L3-003-F01",
+      "oracle_ref": "HELIXSECURITY-L8-003-F01",
+      "basic_contract": {
+        "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+        "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+        "whole_file_sha256": "f8230cd5cfa1911e0209294d4ba78fbc45adb3e7ebdf25eb67dd3ee1634d18eb",
+        "json_pointer": "/contracts/0",
+        "source_value": {
+          "id": "HELIXSECURITY-L4-003-F01",
+          "requirement_ref": "HELIXSECURITY-L3-003-F01",
+          "system_oracle_ref": "HELIXSECURITY-L10-003-F01",
+          "oracle_ref": "HELIXSECURITY-L9-003-F01",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "1369f93ccafb41c6ba10e144cba9197e2da1a38aacf2f635416c1c88a06adfa9"
+          },
+          "component": "scope_identity_content_comparer",
+          "operation_effect": "none",
+          "input_meanings": [
+            "原origin/target/asset identityのproject・tenant・environment・assignment・worktree・revisionと各ownerの独立expected identity。",
+            "tenant適用true/falseは独立ownerの対象条件から読む。非適用はnull、不明を非適用にせずunknownへ。OS/INFRA/CONNECTの原素材状態を別保持。"
+          ],
+          "output_meanings": [
+            "各identityの対応/不足/相反、tenant適用/非適用/unknownの別候補。",
+            "原request identityを保持し、操作/実環境/tenantを生成しない。"
+          ],
+          "content_comparison": [
+            "permission/state/data/Worker/credential/artifact/memory/execution_targetを原identityへ結ぶ。caller種別Agent/Hook/memory/credential/configuration/Workerでも境界を保持。",
+            "OSのassignment/project（適用tenantを含む）、INFRAの実環境、CONNECTの明示接続を各ownerの資料へ照合。metadata currentだけで実資格を生成しない。",
+            "tenant適用時の欠落はunknown、非適用時にtenantを投入している場合はtenant_invented。identity欠落・相反をprimary treeや別projectの値で補完しない。",
+            "tenant=trueは必要Textをexpectedと比較。falseはnull以外をtenant_inventedとしtenant値の同一性は比較しない。unknownはtenant_applicability_unresolvedとしtenant値をidentity/asset/接続の意味比較から除く。他5軸の不足/相反は独立に保持する。sideが接続照合可能なのは他5軸が全て既知非空Textで、trueならtenantも既知Text、falseならtenantがnullの場合だけ。unknown又はtenant_invented/必要identity不足のside全体のrequest→connection joinは未成立として比較を補完しない。"
+          ],
+          "qualification_rule": "この基本pairは固定合成expected snapshotと内容を比較するだけ。実owner/custody/state正本の成立は独立consumer bindingへ。"
+        },
+        "value_canonical_sha256": "00f23afe6b9f2202bc6097bd73375dc80411aba2710e2104a7fe9d0bc749b80c"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-003-materialize_scope_frame",
+        "HELIXSECURITY-L5-003-compare_scope_side",
+        "HELIXSECURITY-L5-003-compare_asset_scope",
+        "HELIXSECURITY-L5-003-compare_owner_material_states",
+        "HELIXSECURITY-L5-003-compose_scope_proposal",
+        "HELIXSECURITY-L5-003-retain_owner_source_material",
+        "HELIXSECURITY-L5-003-compare_consumer_binding",
+        "HELIXSECURITY-L5-003-describe_scope_backflow",
+        "HELIXSECURITY-L5-003-compare_caller_material"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-003-F02",
+      "requirement_ref": "HELIXSECURITY-L3-003-F02",
+      "oracle_ref": "HELIXSECURITY-L8-003-F02",
+      "basic_contract": {
+        "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+        "revision": "acd77a14e543e3b3c29fe388b45fc60f9637a76b",
+        "whole_file_sha256": "f8230cd5cfa1911e0209294d4ba78fbc45adb3e7ebdf25eb67dd3ee1634d18eb",
+        "json_pointer": "/contracts/1",
+        "source_value": {
+          "id": "HELIXSECURITY-L4-003-F02",
+          "requirement_ref": "HELIXSECURITY-L3-003-F02",
+          "system_oracle_ref": "HELIXSECURITY-L10-003-F02",
+          "oracle_ref": "HELIXSECURITY-L9-003-F02",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "19b26caf00defe161d17757bf7a0eabc001062fa7b8e8cf8f910461297b7e351"
+          },
+          "component": "explicit_connection_boundary_comparer",
+          "operation_effect": "none",
+          "input_meanings": [
+            "requested operation（read/write/execute/network/state/credential/artifact）とorigin→targetの接続identity/revision・許容operation集合。",
+            "独立CONNECT expected connection、asset scope、fallback選択、OS/INFRA/CONNECTの素材状態。"
+          ],
+          "output_meanings": [
+            "対象operationだけのscope_corresponding/isolation_violation/scope_unresolved候補と該当操作停止候補。",
+            "実許可/変更/操作を行わず、他の有効scope/操作を保持する。"
+          ],
+          "content_comparison": [
+            "同projectも別projectも明示接続の対象origin/target/revision/operationへ照合する。明示接続がある越境は一律禁止しない。",
+            "あるread条件からwrite/network等へ拡張せず、actual connectionを独立expected connectionと完全一致で比較しrequested operationが列挙内か確認。",
+            "Agent/Hook/memory/credential/configuration/Workerにprimary_tree/other_projectの暗黙fallbackを許さない。",
+            "別projectや別environmentのasset/stateをlatest自己申告だけで現scopeへ採用しない。各機構の正本stateを比較候補で代替しない。"
+          ],
+          "qualification_rule": "対応は接続内容の比較候補だけ。実authority008/制約007と実resource/enforcement/owner bindingを別に成立させる。"
+        },
+        "value_canonical_sha256": "813efa2fa2fbe87157ec0044e829ac80d2ce9caa0fe1ae9a80f5e3dee895ae44"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-003-materialize_scope_frame",
+        "HELIXSECURITY-L5-003-compare_connection_content",
+        "HELIXSECURITY-L5-003-compare_operation_scope",
+        "HELIXSECURITY-L5-003-compare_fallback",
+        "HELIXSECURITY-L5-003-compose_scope_proposal",
+        "HELIXSECURITY-L5-003-retain_owner_source_material",
+        "HELIXSECURITY-L5-003-compare_consumer_binding",
+        "HELIXSECURITY-L5-003-describe_scope_backflow",
+        "HELIXSECURITY-L5-003-compare_caller_material"
+      ]
+    }
+  ],
+  "diagnostic_contract": {
+    "finding_pointer_base": "通常functionは当該raw input root。compositionも同rawに原request/contextを持つ。backflowだけは入力findingが参照するsource_frame rootを明示し、候補が元findingを無変換保持する。",
+    "missing_member": "dict carrier内のabsent memberはその期待member pointer、carrier全体不正なら実carrier root pointer。",
+    "sort": "code/pointer/return_owner scalar codepoint順unique。"
+  }
+}
