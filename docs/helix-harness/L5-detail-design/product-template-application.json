@@ -4533,8 +4533,8 @@
         },
         "reuse_mode": "semantic_rederivation",
         "preserve": "JSON正本/説明分離、元source/版/trace、不一致の所在と独立反例、意味unknownとN/Aの分離、typed失敗返却。",
-        "change": "旧全field必須/未知property拒否・TPL文法/整数版/lifecycle/registry/式木/instance digest/TS/Zod/固定上限を移さない。COREの既存nullable/RawValue/欠落保存と候補返却をJSON carrierへ具体化する。",
-        "reason": "009承認11対と現行型/validate/fixtureに従い、欠落/拡張内容をcodecの補完・全面拒否・意味裁定へ変えない。旧consumerのactivationや層番号を現行codec/実装完了へ転写しない。"
+        "change": "旧のTPL文法/整数版/lifecycle/registry/式木/instance digest/TS/Zod/固定上限と全field必須を移さない。CORE既存型の列挙memberへcarrierをclosedとし、供給memberの元nullable型、未供給memberのabsence、RawValueとnonsemantic_metadataのopaque内容を保持する。",
+        "reason": "現行type_contractのfield集合、validate_application_inputの入力責務、既存正常fixtureを起点とする。初稿の25入力carrierで定義外keyを受理する拡張はこれらに根拠がなく撤回する。旧unknown property失敗は保持し、現行の欠落保存とRawValue内任意mapは別軸として再導出する。旧consumerのactivationや層番号をcodec/実装完了へ転写しない。"
       },
       {
         "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
@@ -4548,8 +4548,8 @@
         },
         "reuse_mode": "semantic_rederivation",
         "preserve": "JSON正本/説明分離、元source/版/trace、不一致の所在と独立反例、意味unknownとN/Aの分離、typed失敗返却。",
-        "change": "旧全field必須/未知property拒否・TPL文法/整数版/lifecycle/registry/式木/instance digest/TS/Zod/固定上限を移さない。COREの既存nullable/RawValue/欠落保存と候補返却をJSON carrierへ具体化する。",
-        "reason": "009承認11対と現行型/validate/fixtureに従い、欠落/拡張内容をcodecの補完・全面拒否・意味裁定へ変えない。旧consumerのactivationや層番号を現行codec/実装完了へ転写しない。"
+        "change": "旧のTPL文法/整数版/lifecycle/registry/式木/instance digest/TS/Zod/固定上限と全field必須を移さない。CORE既存型の列挙memberへcarrierをclosedとし、供給memberの元nullable型、未供給memberのabsence、RawValueとnonsemantic_metadataのopaque内容を保持する。",
+        "reason": "現行type_contractのfield集合、validate_application_inputの入力責務、既存正常fixtureを起点とする。初稿の25入力carrierで定義外keyを受理する拡張はこれらに根拠がなく撤回する。旧unknown property失敗は保持し、現行の欠落保存とRawValue内任意mapは別軸として再導出する。旧consumerのactivationや層番号をcodec/実装完了へ転写しない。"
       },
       {
         "asset_id": "LEGACY-ASSET-EF18357A994D043719D5",
@@ -4563,8 +4563,8 @@
         },
         "reuse_mode": "semantic_rederivation",
         "preserve": "JSON正本/説明分離、元source/版/trace、不一致の所在と独立反例、意味unknownとN/Aの分離、typed失敗返却。",
-        "change": "旧全field必須/未知property拒否・TPL文法/整数版/lifecycle/registry/式木/instance digest/TS/Zod/固定上限を移さない。COREの既存nullable/RawValue/欠落保存と候補返却をJSON carrierへ具体化する。",
-        "reason": "009承認11対と現行型/validate/fixtureに従い、欠落/拡張内容をcodecの補完・全面拒否・意味裁定へ変えない。旧consumerのactivationや層番号を現行codec/実装完了へ転写しない。"
+        "change": "旧のTPL文法/整数版/lifecycle/registry/式木/instance digest/TS/Zod/固定上限と全field必須を移さない。CORE既存型の列挙memberへcarrierをclosedとし、供給memberの元nullable型、未供給memberのabsence、RawValueとnonsemantic_metadataのopaque内容を保持する。",
+        "reason": "現行type_contractのfield集合、validate_application_inputの入力責務、既存正常fixtureを起点とする。初稿の25入力carrierで定義外keyを受理する拡張はこれらに根拠がなく撤回する。旧unknown property失敗は保持し、現行の欠落保存とRawValue内任意mapは別軸として再導出する。旧consumerのactivationや層番号をcodec/実装完了へ転写しない。"
       },
       {
         "asset_id": "LEGACY-ASSET-F68FCEF7D82C4F7FA1EB",
@@ -4573,13 +4573,13 @@
           "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
           "whole_file_sha256": "c3640d846d0cbd27c45d5f267baed76f839b481ad5e748ee2280a418353ca1b4",
           "start_line": 16,
-          "end_line": 36,
+          "end_line": 34,
           "exact_quote": "| oracle | mutation | 合格条件 |\n|---|---|---|\n| IT-DTJ-001 | required fieldまたはunknown propertyを混入 | `schema_invalid`、activation不可 |\n| IT-DTJ-002 | template ID/versionを重複 | `template_identity_duplicate` |\n| IT-DTJ-003 | registry digestとtemplate byteをずらす | `template_digest_mismatch` |\n| IT-DTJ-004 | applicabilityへunknown field/operator、型不一致、空allを入れる | `applicability_invalid`、推測fallback 0 |\n| IT-DTJ-005 | requirement/obligation/system contract traceを一つ欠落 | `trace_incomplete` |\n| IT-DTJ-006 | pair template、negative oracle、pair revisionを一つ欠落 | `pair_incomplete` |\n| IT-DTJ-007 | measurement thresholdとN/A authorityを両方欠落 | `measurement_incomplete` |\n| IT-DTJ-008 | 同値classへcanonical normative ownerを2件設定 | `normative_owner_duplicate` |\n| IT-DTJ-009 | source atomをowner/re-entryなしで未変換にする | `shadow_atom_unmapped` |\n| IT-DTJ-010 | compatibility artifactの値をcurrent defaultへ昇格 | `legacy_authority_promotion` |\n| IT-DTJ-011 | generated viewだけを編集 | `generated_view_drift`、JSON変更0 |\n| IT-DTJ-012 | narrative Markdownを除去して再検証 | template identity、applicability、trace、pair、completionをJSONだけで再現 |\n| IT-DTJ-013 | `explained_delta`へreview/design decisionを付けない | cutover不可 |\n| IT-DTJ-014 | findingを複数順序で入力 | stable順の同一finding setと同一logical digest |\n\nL8はschema validator、registry、applicability evaluator、shadow compiler、generated view digestの結線を\n検証する。各mutationを別oracleとしてkillし、別fieldのgreenやMarkdown説明で相殺しない。"
         },
         "reuse_mode": "semantic_rederivation",
         "preserve": "JSON正本/説明分離、元source/版/trace、不一致の所在と独立反例、意味unknownとN/Aの分離、typed失敗返却。",
-        "change": "旧全field必須/未知property拒否・TPL文法/整数版/lifecycle/registry/式木/instance digest/TS/Zod/固定上限を移さない。COREの既存nullable/RawValue/欠落保存と候補返却をJSON carrierへ具体化する。",
-        "reason": "009承認11対と現行型/validate/fixtureに従い、欠落/拡張内容をcodecの補完・全面拒否・意味裁定へ変えない。旧consumerのactivationや層番号を現行codec/実装完了へ転写しない。"
+        "change": "旧のTPL文法/整数版/lifecycle/registry/式木/instance digest/TS/Zod/固定上限と全field必須を移さない。CORE既存型の列挙memberへcarrierをclosedとし、供給memberの元nullable型、未供給memberのabsence、RawValueとnonsemantic_metadataのopaque内容を保持する。",
+        "reason": "現行type_contractのfield集合、validate_application_inputの入力責務、既存正常fixtureを起点とする。初稿の25入力carrierで定義外keyを受理する拡張はこれらに根拠がなく撤回する。旧unknown property失敗は保持し、現行の欠落保存とRawValue内任意mapは別軸として再導出する。旧consumerのactivationや層番号をcodec/実装完了へ転写しない。"
       }
     ],
     "failure_basis": {
@@ -4687,9 +4687,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "SourceEnvelope": {
           "type": "object",
@@ -4723,9 +4721,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "Qualification": {
           "type": "object",
@@ -4766,9 +4762,7 @@
               "$ref": "#/$defs/RawValue"
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "ApplicationInput": {
           "type": "object",
@@ -4935,9 +4929,7 @@
               }
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "ApplicationBinding": {
           "type": "object",
@@ -4985,9 +4977,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "OperationSelection": {
           "type": "object",
@@ -5014,9 +5004,7 @@
               }
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "AxisRequirement": {
           "type": "object",
@@ -5061,9 +5049,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "AxisFact": {
           "type": "object",
@@ -5101,9 +5087,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "CandidateUniverse": {
           "type": "object",
@@ -5144,9 +5128,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "TemplateSnapshot": {
           "type": "object",
@@ -5209,9 +5191,7 @@
               }
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "ConditionBinding": {
           "type": "object",
@@ -5263,9 +5243,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "SemanticComparison": {
           "type": "object",
@@ -5310,9 +5288,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "ApplicationPolicy": {
           "type": "object",
@@ -5367,9 +5343,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "NARecord": {
           "type": "object",
@@ -5427,9 +5401,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "KindObligation": {
           "type": "object",
@@ -5481,9 +5453,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "TraceEdge": {
           "type": "object",
@@ -5545,9 +5515,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "FieldInput": {
           "type": "object",
@@ -5598,9 +5566,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "GapProposal": {
           "type": "object",
@@ -5657,9 +5623,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "KnowledgeUseRecord": {
           "type": "object",
@@ -5723,9 +5687,7 @@
               "$ref": "#/$defs/RawValue"
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "ConsumerSnapshot": {
           "type": "object",
@@ -5778,9 +5740,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "MeaningDelta": {
           "type": "object",
@@ -5845,9 +5805,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "ImpactEvidence": {
           "type": "object",
@@ -5895,9 +5853,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "Claim": {
           "type": "object",
@@ -5934,9 +5890,7 @@
               }
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "SemanticRecord": {
           "type": "object",
@@ -5964,9 +5918,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "TraceRequirement": {
           "type": "object",
@@ -6000,9 +5952,7 @@
               ]
             }
           },
-          "additionalProperties": {
-            "$ref": "#/$defs/RawValue"
-          }
+          "additionalProperties": false
         },
         "ApplicationAnalysis": {
           "type": "object",
@@ -6244,8 +6194,8 @@
       "explicit_null": "元型がnullを許す供給memberだけ受理し、absenceと混ぜない。axis_facts/universes nullと[]は別原状態。",
       "empty": "配列順と重複、空配列/空object/空stringを変更せず保存。母集合emptyから完全/非適用を生成しない。",
       "unknown": "意味unknown/state/理由/根拠は既存owner出力のまま。codec独自unknownタグやN/A/fallbackを作らない。",
-      "opaque_and_extension": "RawValueのbody/scope/material/metadata等は任意map keyをそのまま保存。入力carrierの既知keyには元型を適用し、それ以外のJSON extension keyも原内容として保存する。未知keyを既知欄へaliasせず、authorityや適用理由にしない。旧のadditionalProperties:falseを根拠に全面拒否へ変えない。",
-      "output": "ApplicationAnalysis/Comparison/AxisResult/Finding/InputIssueの生成済みfieldは全requiredでclosed。欠落結果をdefaultで生成せず、宣言外のselected/used/Acceptedを結果fieldとして出力しない。Ref/Binding/KindObligationなど原資料carrierのabsence/extension保存は維持。",
+      "opaque_and_extension": "Ref/SourceEnvelope等の入力carrier25型は現行宣言fieldへclosedとする。定義外keyは削除して成功にせず、そのJSON Pointerを持つInputIssueへvalue=nullで返す。宣言されたRawValueのscope/body/material/nonsemantic_metadata等の任意map keyはopaque原値として保持し、未知keyを意味/authorityへaliasしない。carrierの未供給memberは引き続きabsentであり全requiredに変えない。",
+      "output": "ApplicationAnalysis/Comparison/AxisResult/Finding/InputIssueの生成済みfieldは全requiredでclosed。欠落結果をdefaultで生成せず、宣言外のselected/used/Acceptedを結果fieldとして出力しない。Ref/Binding/KindObligationなど原資料carrierのabsenceと宣言RawValue内の任意map保存は維持。",
       "numbers": "JSON numberの値と原lexemeを暗黙float化/整数化/丸めしない。exact値を表現不能なら成功にせず理由付きcodec失敗へ返す。具体library/言語幅/閾値は未選定。booleanをintegerへcoerceしない。"
     },
     "codec_operations": [
@@ -6257,7 +6207,7 @@
         "steps": [
           "UTF-8を置換なしでdecode。失敗はvalue=null/root pointerのInputIssueと元byte位置。原octetsを診断原資料へ残し、logや外部送信の許可にしない。",
           "単一JSON valueを末尾までparse。途中EOF/末尾別value/非JSON numberはvalue=nullのInputIssueへ返す。object decoded key重複は両出現と所在を原rawへ保持しlast-wins/dedupで成功にしない。配列の同identity record重複/相反とは分ける。",
-          "選択entryの既知member供給形を検査。型不正を該当JSON Pointerへ返す。inputの未供給member/extensionやRawValue opaque内容をschema都合で除去/補完しない。",
+          "選択entryの宣言member供給形とclosed carrierを検査。型不正/定義外carrier keyは該当JSON PointerのInputIssueへvalue=nullで返す。未供給member/null/RawValue opaque内容を除去/補完/coerceしない。",
           "decode可能なら原値/key集合/null/原配列順/重複を保持してpresenceを別材料に返す。原必要集合/selected知識/資格/意味不一致はこのcodecのshape成功で充足しない。"
         ]
       },
@@ -6274,14 +6224,14 @@
       }
     ],
     "source_resolution_stages": [
-      "SourceEnvelope.ref/body/content_bytes/qualification_ref/roleをCORE自身の欄で保存する。BRAINのcontent/semantic_jsonやQualification.applicable_scope/qualification_bodyをbody/scopeへ暗黙renameしない。入力extensionとして保持したcontentもbody不足の代替にならない。",
+      "SourceEnvelope.ref/body/content_bytes/qualification_ref/roleをCORE自身の欄で保存する。BRAINのcontent/semantic_jsonやQualification.applicable_scope/qualification_bodyをbody/scopeへ暗黙renameしない。CORE SourceEnvelopeの定義外contentはshape失敗へ返し、bodyへaliasしない。",
       "content_bytes原textのUTF-8 bytesとsource ref digestを独立照合し、parseしたbody内recordsの内容とbodyを比較する。外側wire hash/再生成body hashを元digestへ代用しない。",
       "body内recordsのref/type/payloadを元subject/revision/scope/ownerへ解決し、同名文字列/digest/形だけで意味/内部ref資格を証明しない。複数相反recordは別原sourceのまま保持。",
       "qualification_ref→Qualification→独立qualification_roots Ref[]へ、subject/digest/owner/scope/revisionと原body根拠を照合する。自己資格/bytes一致だけでは資格成立しない。実root供給元/実custody/原owner根拠resolverはunknown/未閉包のまま。新署名/truststore/issuerを作らない。",
       "source不足/相反はvalidate_application_inputのInputIssue/unusable sourceと依存項目へ局所化し、decode可能snapshotと無関係な有資格内容を保持。未資格をraw形不正で全snapshot消失へ変えない。"
     ],
     "application_boundary": "codecは必要axis/候補母集合/trace端集合を現供給値から創作しない。same_meaning=falseは元不一致、nullは未知、conditional未充足は未完のまま。cacheされたComparison decodeは評価器producer根拠でなく、ApplicationAnalysisの候補/義務/不足/影響はOS selected/used/消込/実受領/POAcceptedを構成しない。",
-    "owner_boundary": "同名Refが似ていてもBRAIN/OS型を共有APIへコピーしない。CORE SourceEnvelope/bodyとQualification/owner/scope/body、CORE Comparison.original_axes/materialを原型に対応。正式両端schema/codec/互換/receiptはBRAIN/OS/CONNECTへ残し、毎回承認gate/閾値/実ライブラリ採用/権限変更を追加しない。",
+    "owner_boundary": "同名Refが似ていてもBRAIN/OS型を共有APIへコピーしない。CORE SourceEnvelope/bodyとQualification/owner/scope/body、CORE Comparison.original_axes/materialを原型に対応。正式両端schema/codec/互換/receiptはBRAIN/OS/CONNECTへ残し、毎回承認gate/閾値/実ライブラリ採用/権限変更を追加しない。 BRAIN032同様carrierとRawValueの責務を分けるが、COREの列挙memberはCORE自身の原型に従う。BRAINのcontent/semantic_json/qualification_bodyや型名をコピーしない。初稿のCORE carrier拡張受理に現行根拠があったとは扱わない。",
     "remaining": [
       "全Context/Result/opaque body record契約の全量凍結、独立review、具体parserのexact number/Unicode/resource条件は未成立。schema図式の静的照合をライブラリ採用/実codec成立にしない。",
       "正式root/資格供給元/実source custody/意味比較provider/原owner契約、BRAIN→CORE/CORE→OSの正式bindingとCONNECT版/receiptは未閉包。",

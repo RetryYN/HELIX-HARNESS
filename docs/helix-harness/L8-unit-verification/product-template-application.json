@@ -92897,7 +92897,7 @@
     "schema_ref": {
       "document_id": "HARNESS-L5-009-PRODUCT-TEMPLATE-APPLICATION",
       "pointer": "/wire_codec_contract/schema",
-      "canonical_sha256": "a0d70ab27009473013feab2d0008c3f037aec737fcac5f0b3e279d3f4c3f42e0"
+      "canonical_sha256": "bfe54fb87d5995a144d46f31b6369bbac0e43f14f187a774a203cff8e2d6300e"
     },
     "fixture_boundary": "全固定rawはcodec設計の合成原値。既存106負例/24追加unit/11関数oracle/6正常variant/正常期待とsource再構成recipeを変えない。case expectedは原rawへ混ぜない。",
     "cases": [
@@ -93058,44 +93058,14 @@
         "raw_octets_hex": null,
         "raw_sha256": "a1804e814205849e611cc5138a6c5c34f9472eb8686ca962c5e6f6fd7a96b858",
         "expected": {
-          "stage": "decoded",
-          "value": {
-            "future": {
-              "opaque": true,
-              "n": 9007199254740993
-            }
-          },
-          "wire_shape_accepted": true,
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
           "meaning_completion_effect": "none",
-          "observation": "未知拡張keyと整数原値を保持。未来欄をidentity/authorityへ解釈しない。"
+          "observation": "定義外carrier keyを削除/aliasせず該当pointerのInputIssueへ返す。原rawは保持し、RawValue内任意mapの受理とは分ける。",
+          "input_issue_locator": "/future"
         },
-        "execution_state": "not_executed",
-        "expected_presence": [
-          {
-            "pointer": "/identity",
-            "state": "absent"
-          },
-          {
-            "pointer": "/revision",
-            "state": "absent"
-          },
-          {
-            "pointer": "/scope",
-            "state": "absent"
-          },
-          {
-            "pointer": "/owner",
-            "state": "absent"
-          },
-          {
-            "pointer": "/source_locator",
-            "state": "absent"
-          },
-          {
-            "pointer": "/sha256",
-            "state": "absent"
-          }
-        ]
+        "execution_state": "not_executed"
       },
       {
         "id": "HARNESS-L8-009-WIRE-REF-DUPLICATE",
@@ -93573,39 +93543,14 @@
         "raw_octets_hex": null,
         "raw_sha256": "60771636f2d5827418262e520ec14cd26a68a04d3059fa92db570c4e12b53729",
         "expected": {
-          "stage": "decoded",
-          "value": {
-            "content": {
-              "records": []
-            }
-          },
-          "wire_shape_accepted": true,
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
           "meaning_completion_effect": "none",
-          "observation": "原拡張contentは保持するがCORE bodyはabsent。BRAIN contentをbodyへaliasしない。"
+          "observation": "定義外carrier keyを削除/aliasせず該当pointerのInputIssueへ返す。原rawは保持し、RawValue内任意mapの受理とは分ける。",
+          "input_issue_locator": "/content"
         },
-        "execution_state": "not_executed",
-        "expected_presence": [
-          {
-            "pointer": "/ref",
-            "state": "absent"
-          },
-          {
-            "pointer": "/body",
-            "state": "absent"
-          },
-          {
-            "pointer": "/content_bytes",
-            "state": "absent"
-          },
-          {
-            "pointer": "/qualification_ref",
-            "state": "absent"
-          },
-          {
-            "pointer": "/role",
-            "state": "absent"
-          }
-        ]
+        "execution_state": "not_executed"
       },
       {
         "id": "HARNESS-L8-009-WIRE-QUALIFICATION-NORMAL",
@@ -95043,15 +94988,63 @@
           "input_issue_locator": "/comparisons/0/axes"
         },
         "execution_state": "not_executed"
+      },
+      {
+        "id": "HARNESS-L8-009-WIRE-REF-SCOPE-OPAQUE-MAP",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"scope\":{\"future\":{\"opaque\":true,\"n\":9007199254740993}}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "389c394940ce96c069fe046e75078b9a09d261b85e96ac0cb2173bc0c0cbea95",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "scope": {
+              "future": {
+                "opaque": true,
+                "n": 9007199254740993
+              }
+            }
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "宣言scope内RawValueの任意map keyと整数原値を保持。carrierのfuture受理とは分離する。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "absent"
+          },
+          {
+            "pointer": "/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/source_locator",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sha256",
+            "state": "absent"
+          }
+        ]
       }
     ],
     "encoder_obligations": [
-      "decoded原値はencode→decodeでもmember presence/extension/null/原配列順/整数/文字列/content_bytesを保存。外側bytes一致は意味資格ではない。",
-      "全型不正/出力required欠落/closed出力裁定fieldは同じ所在へ失敗返却。入力未知extensionを削除/aliasせず、意味担当の原不足を保持。",
+      "decoded原値はencode→decodeでも宣言member presence/RawValue内任意map/null/原配列順/整数/文字列/content_bytesを保存。外側bytes一致は意味資格ではない。",
+      "全型不正/定義外carrier key/出力required欠落は同じ所在へ失敗返却。定義外keyを削除/aliasして成功にせず、宣言memberの欠落/nullとRawValue内opaque原値を保持。",
       "decoded ApplicationAnalysis/Comparisonをcaller cached oracleとして評価器へ再利用せず、受領/使用/消込を生成しない。"
     ],
     "completion_limit": "source pins/旧引用/固定raw bytehash/schema形/期待原値/既存memberの静的照合のみ。実codec/library採用/資格供給元/実custody/独立review、L6関数設計/L7関数検証、層外実装とtest/oracle凍結→Red→Green→Refactor、全92親430対閉包と実装Readyは未成立。 小数/指数(1.0/1e0/0.1)、1e400、encode非JSON値の具体期待stageと適用条件は未固定。unfixed_numeric_and_encode_rangeへ保持する。",
-    "presence_contract": "expected_presenceは宣言memberごとの{pointer,state}列。原供給構造の既知memberだけを再帰走査し、absent/null内の仮objectやopaque/extension mapの宣言を創作しない。配列indexは所在でidentityではない。原値とpresenceをencode/decode往復で照合する。",
+    "presence_contract": "expected_presenceは宣言memberごとの{pointer,state}列。原供給構造の既知memberだけを再帰走査し、absent/null内の仮objectや宣言RawValue内opaque mapの宣言を創作しない。配列indexは所在でidentityではない。原値とpresenceをencode/decode往復で照合する。",
     "unfixed_numeric_and_encode_range": [
       {
         "range": "decimal_and_exponent",
