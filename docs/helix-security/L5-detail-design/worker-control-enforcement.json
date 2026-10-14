@@ -1,0 +1,3415 @@
+{
+  "parent": "HELIXSECURITY-L2-007",
+  "status": "draft_candidate_static_checks_passed_pending_independent_review",
+  "source_main": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+  "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F01",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F01",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "policy・assignment・実環境の束縛",
+        "obligation": "SECURITYのscope/authority/policy、OS assignment、Worker実環境capabilityを同revision/scopeへ結び、制約ごとの受渡し/実適用/観測/回収を照合する。enforcerは実環境で、SECURITYやWorkerの自己判断で制約を広げない。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F01"
+      },
+      "object_canonical_sha256": "6853e9b0a04e0220ebd9e72840197042aa427a598c081cc1f544ea869cd40279"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F02",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F02",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "write path制御",
+        "obligation": "許可write pathのexact setに実diffを照合する。read-onlyでもwrite禁止の強制と対象scopeの前後状態不変を観測する。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F02"
+      },
+      "object_canonical_sha256": "1f8bf2861dab406265140589ec50e164bd860c57df63671f656faed359778150"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F03",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F03",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "network制御",
+        "obligation": "network制限を実環境へ適用し、同assignmentの許可/拒否と実接続状態を照合する。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F03"
+      },
+      "object_canonical_sha256": "6c2b6494d5eb1cf93b94939a3353ec430c1de74878200e01d630bbad313103d1"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F04",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F04",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "credential制御",
+        "obligation": "credential遮断を適用し、provider/storeへのアクセスを拒否する。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F04"
+      },
+      "object_canonical_sha256": "3e5ca2ae75bd9a9bbe3ab38ee824a86a435625cf07e81f8df027c8392319c788"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F05",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F05",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "environment制御",
+        "obligation": "許可されたenvironment variableだけを渡し、host全体やcredential-bearing変数を継承しない。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F05"
+      },
+      "object_canonical_sha256": "2df61b64fa60ec1c47775e18545f5e7f2822ac7118633a542c14ee23f3245324"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F06",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F06",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "timeout制御",
+        "obligation": "入力descriptorの期限を実適用し、期限内terminal resultと期限到達/中断を分ける。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F06"
+      },
+      "object_canonical_sha256": "942d27f4c2a13063b7b4f49799c7ec459a39a873d8c49b4d2ccf770114a4ddd5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F07",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F07",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "resource制御",
+        "obligation": "入力resource descriptorの制約を実環境へ渡して適用/到達状態を観測する。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F07"
+      },
+      "object_canonical_sha256": "80592c5d10f04f01a2b55a9874adc75ed87e669b153622433cdab49bb3a7ed57"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F08",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F08",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "diff検査制御",
+        "obligation": "before tree digestとexact allowed diffを固定し、実post-stateから差分を検査する。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F08"
+      },
+      "object_canonical_sha256": "1e00eb4403685f89f0a1dc3a80a3d717806141ac35ef7cb7d2c987df597082d4"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F09",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F09",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "rollback制御",
+        "obligation": "適用対象の復旧後状態をbefore digestへ照合し、部分復元/復旧不能/未完を分ける。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F09"
+      },
+      "object_canonical_sha256": "5ce58be9c16c762f43498f5ee5360cd2edccff2fe1b4141091962d5e93f65e8e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F10",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F10",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "result collection制御",
+        "obligation": "各caseのassignment/policy/source revision/status・制約適用/diff/rollback状態を元caseへ結んで回収する。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F10"
+      },
+      "object_canonical_sha256": "b9127fd7ed78b780f8876b0fa7e1f03e9b418c17d59ac042aa7f88a8c2ca0dc8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "0c881ef2e059404f2290f40977546d415a7c85cb932fbef730131a5af8146eaf",
+      "id": "HELIXSECURITY-L3-007-N01",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-N01",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "九制御の個別欠落と未見環境",
+        "obligation": "同scopeで実行前binding・実行時九制御・実行後diff/結果/復旧を照合し、各制御を一つずつ欠落させる。未見assignment/環境で再評価し、未観測を実適用や安全とみなさない。",
+        "oracle_ref": "HELIXSECURITY-L10-007-N01"
+      },
+      "object_canonical_sha256": "61a2fb980cdc9564433cf8df0f17d30f2675931b18f6c1cb5b3a5485d71256a9"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F01",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F01",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "policy・assignment・実環境の束縛",
+        "requirement_ref": "HELIXSECURITY-L3-007-F01",
+        "positive_input": "同assignment/policy/source revisionで実適用証拠と未適用/未観測/unsupportedを比較する。",
+        "expected_observation": "宣言と実適用が別に辿れ、適用不能時hostへfallbackしない。",
+        "negative_input": "設定存在だけで適用、Worker自己拡張、別host/backend fallback。",
+        "failure_observation": "当該実行を停止/unknownにし、policy不足はSEC、実適用はINFRA/実環境へ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "1a34203416602a3542eb3068cec17febf96d3a615ca6f73b238e3350c24aa0ad"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F02",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F02",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "write path制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F02",
+        "positive_input": "合成allow内write、範囲外write、read-only禁止writeと前後treeを別caseにする。",
+        "expected_observation": "許可diffまたはwrite拒否/変更なしを観測する。",
+        "negative_input": "read-onlyラベルだけ、禁止write成功、要求pathだけ記録。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "bedafd8295ac17a50925863e9e78619a2c2245760f49a6f540ec98350d42160b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F03",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F03",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "network制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F03",
+        "positive_input": "deny-allと隔離された合成端点への接続試行を使い、外部通信しない。",
+        "expected_observation": "deny適用と接続未成立が辿れる。",
+        "negative_input": "未適用/unknownで通信、host fallback。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "0da3f28630efd5375f4ba1dd1a0578e91d6dee066e67fbde01781ed3afa43a19"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F04",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F04",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "credential制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F04",
+        "positive_input": "値なしのprovider/store参照要求を使う。",
+        "expected_observation": "遮断適用と参照拒否を観測し、raw値を証跡に置かない。",
+        "negative_input": "host credential fallback、store到達、原値env/log。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "3c9322946bed6706606b4f67599765f1a24f5004a13b4210e21de8f1b004e17e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F05",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F05",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "environment制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F05",
+        "positive_input": "合成allow set TASK_MODE/LANGと値なし未許可HOST_SECRET_REFを使う。",
+        "expected_observation": "allow setのみが渡った事実がpolicyへ辿れる。",
+        "negative_input": "全host env継承、設定宣言だけで適用。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "8cbcfeec1ccd3211de767facfdad225eeff3fbc7a69d655b8ab887280d71122a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F06",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F06",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "timeout制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F06",
+        "positive_input": "fixture限定90sで期限内終了と期限到達を比較する。",
+        "expected_observation": "期限後結果/side effectを成功へ混ぜず、値のfixture由来を残す。",
+        "negative_input": "90sを製品既定値、期限無視、期限後成功。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "6c78bb46d1a38e33a1fa29b15af2d32e3ddc6be6f88ba435ecea1845d679662b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F07",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F07",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "resource制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F07",
+        "positive_input": "fixture限定cpu1/memory256MiBの制約と到達を比較する。",
+        "expected_observation": "受渡しと実適用、到達時状態が対応する。",
+        "negative_input": "自己拡張、設定だけで適用、fixture値を共通limit。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "d938b6b614a9d83cc362909d3be91ad6476e303a3ccb5ea674732798662c8e2b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F08",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F08",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "diff検査制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F08",
+        "positive_input": "許可合成result pathと範囲外path追加を比較する。",
+        "expected_observation": "範囲外差分を隔離/拒否し、内容を通常証跡へ露出しない。",
+        "negative_input": "実状態未照合、範囲外通過、secret含有diff複写。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "7172d352cd30a8eba5d74514d6f8bc7733d17d7e8b69ebbe836abeda518d2cfa"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F09",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F09",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "rollback制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F09",
+        "positive_input": "postcondition failureと復旧、変更なしが証明できるcaseを分ける。",
+        "expected_observation": "復旧実結果を観測し、変更なしを確認できたcaseだけrollback N/A。",
+        "negative_input": "計画だけで復旧済、変更有無unknownでN/A、無関係scope復元。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "36bf30ad3b45cf3831147e30ae0a467f1f37037e681491e25c530b0580687561"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F10",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F10",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "result collection制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F10",
+        "positive_input": "同runと欠落/stale/別run結果、部分rollbackを比較する。",
+        "expected_observation": "欠落は未回収、失敗/部分復旧は成功へ変換しない。",
+        "negative_input": "stdout/自己申告のみで適用、別revision receipt、値入り証跡。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "f67bb7e6388cabc1ab074489d52b7c8dcc791aefefc8f4aa7adfb9e4d66d01dd"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "f76c6b0387e2b98b0f3697b3e9b4fd121b71953a567ab4782a289fa9cffc4617",
+      "id": "HELIXSECURITY-L10-007-N01",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-N01",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "九制御の個別欠落と未見環境",
+        "requirement_ref": "HELIXSECURITY-L3-007-N01",
+        "positive_input": "正常入力と九制御の独立欠落、伏せた環境を使う。",
+        "expected_observation": "不足制御と発生端、未完/停止を個別に特定する。",
+        "negative_input": "一制御greenやreceipt数で全適用、read-only観測省略、未見環境へ旧結果転用。",
+        "failure_observation": "該当実行の不足を残し、全能力/実安全成立を文書から生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "78116b0b1452742fe2f290831ecbfe271447f67d955be95743717c439c17461c"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "0c881ef2e059404f2290f40977546d415a7c85cb932fbef730131a5af8146eaf"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "f76c6b0387e2b98b0f3697b3e9b4fd121b71953a567ab4782a289fa9cffc4617"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/worker-control-enforcement.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "85473251be87bfdcc15899fd63398dae616cde7a792a01a83b8addde6018d632",
+      "json_pointer": "/contracts",
+      "source_value": [
+        {
+          "id": "HELIXSECURITY-L4-007-F01",
+          "requirement_ref": "HELIXSECURITY-L3-007-F01",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F01",
+          "oracle_ref": "HELIXSECURITY-L9-007-F01",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "6853e9b0a04e0220ebd9e72840197042aa427a598c081cc1f544ea869cd40279"
+          },
+          "component": "execution_binding_comparer",
+          "input_meaning": "SECURITYのscope/authority/policy、OS assignment、Worker実環境capabilityを同revision/scopeへ結び、制約ごとの受渡し/実適用/観測/回収を照合する。enforcerは実環境で、SECURITYやWorkerの自己判断で制約を広げない。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F02",
+          "requirement_ref": "HELIXSECURITY-L3-007-F02",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F02",
+          "oracle_ref": "HELIXSECURITY-L9-007-F02",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "1f8bf2861dab406265140589ec50e164bd860c57df63671f656faed359778150"
+          },
+          "component": "write_path_comparer",
+          "input_meaning": "許可write pathのexact setに実diffを照合する。read-onlyでもwrite禁止の強制と対象scopeの前後状態不変を観測する。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F03",
+          "requirement_ref": "HELIXSECURITY-L3-007-F03",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F03",
+          "oracle_ref": "HELIXSECURITY-L9-007-F03",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "6c2b6494d5eb1cf93b94939a3353ec430c1de74878200e01d630bbad313103d1"
+          },
+          "component": "network_comparer",
+          "input_meaning": "network制限を実環境へ適用し、同assignmentの許可/拒否と実接続状態を照合する。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F04",
+          "requirement_ref": "HELIXSECURITY-L3-007-F04",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F04",
+          "oracle_ref": "HELIXSECURITY-L9-007-F04",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "3e5ca2ae75bd9a9bbe3ab38ee824a86a435625cf07e81f8df027c8392319c788"
+          },
+          "component": "credential_comparer",
+          "input_meaning": "credential遮断を適用し、provider/storeへのアクセスを拒否する。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F05",
+          "requirement_ref": "HELIXSECURITY-L3-007-F05",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F05",
+          "oracle_ref": "HELIXSECURITY-L9-007-F05",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "2df61b64fa60ec1c47775e18545f5e7f2822ac7118633a542c14ee23f3245324"
+          },
+          "component": "environment_comparer",
+          "input_meaning": "許可されたenvironment variableだけを渡し、host全体やcredential-bearing変数を継承しない。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F06",
+          "requirement_ref": "HELIXSECURITY-L3-007-F06",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F06",
+          "oracle_ref": "HELIXSECURITY-L9-007-F06",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "942d27f4c2a13063b7b4f49799c7ec459a39a873d8c49b4d2ccf770114a4ddd5"
+          },
+          "component": "timeout_comparer",
+          "input_meaning": "入力descriptorの期限を実適用し、期限内terminal resultと期限到達/中断を分ける。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F07",
+          "requirement_ref": "HELIXSECURITY-L3-007-F07",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F07",
+          "oracle_ref": "HELIXSECURITY-L9-007-F07",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "80592c5d10f04f01a2b55a9874adc75ed87e669b153622433cdab49bb3a7ed57"
+          },
+          "component": "resource_comparer",
+          "input_meaning": "入力resource descriptorの制約を実環境へ渡して適用/到達状態を観測する。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F08",
+          "requirement_ref": "HELIXSECURITY-L3-007-F08",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F08",
+          "oracle_ref": "HELIXSECURITY-L9-007-F08",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "1e00eb4403685f89f0a1dc3a80a3d717806141ac35ef7cb7d2c987df597082d4"
+          },
+          "component": "diff_inspection_comparer",
+          "input_meaning": "before tree digestとexact allowed diffを固定し、実post-stateから差分を検査する。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F09",
+          "requirement_ref": "HELIXSECURITY-L3-007-F09",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F09",
+          "oracle_ref": "HELIXSECURITY-L9-007-F09",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "5ce58be9c16c762f43498f5ee5360cd2edccff2fe1b4141091962d5e93f65e8e"
+          },
+          "component": "rollback_comparer",
+          "input_meaning": "適用対象の復旧後状態をbefore digestへ照合し、部分復元/復旧不能/未完を分ける。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F10",
+          "requirement_ref": "HELIXSECURITY-L3-007-F10",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F10",
+          "oracle_ref": "HELIXSECURITY-L9-007-F10",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "b9127fd7ed78b780f8876b0fa7e1f03e9b418c17d59ac042aa7f88a8c2ca0dc8"
+          },
+          "component": "result_collection_comparer",
+          "input_meaning": "各caseのassignment/policy/source revision/status・制約適用/diff/rollback状態を元caseへ結んで回収する。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。 原runtime terminalとcase terminalを分け、timeout/resource停止・失敗からcase successを作らない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-N01",
+          "requirement_ref": "HELIXSECURITY-L3-007-N01",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-N01",
+          "oracle_ref": "HELIXSECURITY-L9-007-N01",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/nfr-grade.json",
+            "object_canonical_sha256": "61a2fb980cdc9564433cf8df0f17d30f2675931b18f6c1cb5b3a5485d71256a9"
+          },
+          "component": "all_control_phase_composer",
+          "input_meaning": "同scopeで実行前binding・実行時九制御・実行後diff/結果/復旧を照合し、各制御を一つずつ欠落させる。未見assignment/環境で再評価し、未観測を実適用や安全とみなさない。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/worker-control-enforcement.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "85473251be87bfdcc15899fd63398dae616cde7a792a01a83b8addde6018d632",
+      "json_pointer": "/architecture",
+      "source_value": {
+        "components": [
+          "execution_binding_comparer",
+          "write_path_comparer",
+          "network_comparer",
+          "credential_comparer",
+          "environment_comparer",
+          "timeout_comparer",
+          "resource_comparer",
+          "diff_inspection_comparer",
+          "rollback_comparer",
+          "result_collection_comparer",
+          "all_control_phase_composer"
+        ],
+        "flow": [
+          "SEC policy/authority + OS assignment + INFRA/Worker実環境 → 同revision/scope内容比較",
+          "九制御のhandoff/applied/observed/collectedは別記録。実enforcerはWorker実環境、比較ownerはSEC接続。",
+          "selected phase → 各制御対応/違反/未観測を保持、postだけ全九制御観測の比較。"
+        ],
+        "phase_boundary": "preはbindingとhandoff/appliedの設定適用素材だけ、runは先行六制御の観測、postは全九制御の観測と回収。rollback/result等の将来結果をpreへ要求せず、未評価の将来観測から全適用も生成しない。",
+        "pure_boundary": "metadata比較。実起動/制約適用/許可/環境変数値/network/store/復旧/回収なし。",
+        "authority_boundary": "既決authorityの内容素材を照合するだけ。Worker自己拡張/host fallback拒否、毎回human gate/共通数値limit/旧actor復活なし。"
+      }
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/worker-control-enforcement.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "85473251be87bfdcc15899fd63398dae616cde7a792a01a83b8addde6018d632",
+      "json_pointer": "/diagnostic_contract",
+      "source_value": {
+        "return_owner": "worker-control-owner",
+        "role_note": "007の比較責務ラベル。policy不足はSEC、実enforcementはINFRA/Worker、assignment/回収はOSの正式ownerへL5で振り分ける。",
+        "pointer_base": "given.input root、原metadata実在位置。複合原因は別findingを保持。 他制御から参照するsource fieldがnull/unknownなら、その原field（after_tree/observed/data.state/data.terminal_status）のpointerを返す。制御記録自体がnullの場合だけ /controls/<name> を返す。依存型ごとの例外は設けない。",
+        "sort": "code/pointer/return_owner scalar順のexact三field重複だけ除去。"
+      }
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/worker-control-enforcement.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "f661985740ca5c1402f67ca228188c544d398b6103fec6ea5af5fce7eb73cedc",
+      "json_pointer": "/fixture_contract",
+      "source_value": {
+        "scope": "11要求全部に結ぶ固定shape/合成metadata/単一run。全型/方式/正式receipt/実enforcer資格はL5/L8へ。",
+        "binding_fields": [
+          "scope",
+          "revision",
+          "assignment",
+          "policy",
+          "environment",
+          "backend",
+          "authority"
+        ],
+        "control_names": [
+          "write_path",
+          "network",
+          "credential",
+          "environment",
+          "timeout",
+          "resource",
+          "diff_inspection",
+          "rollback",
+          "result_collection"
+        ],
+        "stages": [
+          "handoff",
+          "applied",
+          "observed",
+          "collected"
+        ],
+        "phase_data_applicability": {
+          "pre": [],
+          "run": [
+            "write_path",
+            "network",
+            "credential",
+            "environment",
+            "timeout",
+            "resource"
+          ],
+          "post": [
+            "write_path",
+            "network",
+            "credential",
+            "environment",
+            "timeout",
+            "resource",
+            "diff_inspection",
+            "rollback",
+            "result_collection"
+          ]
+        },
+        "algorithm": [
+          "固定shapeを対象とする。known bindingは非空文字列、unknownはnull/空。request/policy/assignment/environment各七fieldをindependent context expectedへ比較し、各制御のbindingはrequestへ比較。片側unknownは当該位置unresolved、両側known相反だけconflict。worker自己拡張/host fallbackはtrue違反・非boolean unknown。",
+          "各制御missingはその位置unknown。source_refと独立control_source_refsを同じknown比較。handoff/appliedは全phase、observedはrunの先行六制御とpost全九、collectedはpost全九のみ。state=correspondingは素材対応、violationは違反、それ以外はunknown。pre/runで将来観測を要求しない。",
+          "preはcontrol dataを評価しない。runはwrite/network/credential/environment/timeout/resourceのdataだけ、postは全data。known setは重複のない非空文字列list、treeは非空文字列key/digest値dict（empty tree可）。nullは未観測。diffはbefore/afterのkey和集合の値相反/追加/削除を昇順で再導出。",
+          "write: declared allowed_pathsをcontextの独立exact setへ比較。beforeを独立before treeへ比較。reported_diffを再導出diffへset照合し、diffがallowedを越えたら違反。read_onlyは実観測素材のbefore=afterとwrite_attempt=blockedの両方が必要、succeededは違反・他unknown。writableは許可範囲内diff。",
+          "networkはこのfixtureのdeny_allだけを検証し、connection_established/host_fallback=falseを要求する。credentialはprovider_store_reached/raw_value_exposed/host_credential_fallback=false、environmentはallowed_names/passed_namesを独立allow setと完全一致させhost_all/credential_bearing継承falseを要求。boolean以外はunknown、反対は違反。raw値を扱わない。",
+          "timeout/resourceは独立context descriptorの非負integerとconfigured値を両側既知でexact比較。秒/CPU/メモリ単位は固定fixtureのみ。ended_at>=timeoutならdeadline_reached=trueかつterminal_status=terminated/interrupted、期限前はknown terminalであること。late_side_effect=false。resource limit_reached=trueならterminated/interrupted、falseならknown terminal、未知はunknown。self_expanded=false。90/1/256を共通limitにしない。",
+          "diff: 独立before、write観測afterとの対応、実post treeからのdiffとreported_diff、独立allowed setとの包含を別照合。raw_secret_copied=false。値を証跡へ複写せずdigest素材だけ。 独立allowed setが未観測ならdiff_allow_set_unresolvedを同context位置へ返し、他軸unknownの有無にかかわらずdiff自身をunknownにする。",
+          "rollback: afterをdiff観測afterへ、target_scopeをrequest scopeへ照合。before/after未観測ならunknown。state=not_applicableは観測before=afterだけ、変更ありN/Aは違反。restoredは復旧treeを独立beforeへ比較。partial/unavailableは未完違反、planned/その他はunknown。必要な実復旧条件と実状態は正式bindingで閉じる。",
+          "result: case_refを独立caseへ、reported_terminal_statusを原terminal_statusへ比較。known terminalはsuccess/failed/interrupted/terminated。constraint_states全九を各原observed状態、diff_stateを原diff observed、rollback_stateを原rollback stateへ比較、片側null unknown。raw_value_exposed/stdout_only=false。receipt数/自己申告から全適用を作らない。 resultのruntime_terminal_statusは原timeout/resourceのprocess terminal素材へ両方照合する。実行後postcondition失敗のcase terminal=failedはruntime successと別でよいが、runtime failed/interrupted/terminatedをcase successにしない。runtime未知は未確認を残す。 terminal比較ではsuccess/failed/interrupted/terminatedだけを既知とする。null/unknown/その他enumを推測でknown相反へ変えず、原位置のunknownを保持する。",
+          "各軸はviolation→unknown→corresponding、全体も全軸の同優先順。case binding/scoped controlの不足は当該実行だけへ戻す候補。findingsはgiven.inputの原位置、裸owner・exact三fieldunique昇順。全結果14field比較、actual_worker/enforcement=false、host fallback許可/共通limit追加/未来結果の事前要求=false。対応は選択phaseのsynthetic内容だけ。postのwhole_nine_control_observation_compared=trueも実全適用ではない。 他制御から参照するsource fieldがnull/unknownなら、その原field（after_tree/observed/data.state/data.terminal_status）のpointerを返す。制御記録自体がnullの場合だけ /controls/<name> を返す。依存型ごとの例外は設けない。"
+        ],
+        "result_fields": [
+          "condition",
+          "selected_phase",
+          "binding_correspondence",
+          "control_correspondence",
+          "content_for_selected_phase_corresponding",
+          "whole_nine_control_observation_compared",
+          "future_results_required_before_execution",
+          "affected_revision_scope",
+          "findings",
+          "fixed_resource_or_timeout_limit_added",
+          "host_fallback_allowed",
+          "actual_worker_invoked",
+          "actual_enforcement_verified",
+          "operation_effect"
+        ],
+        "return_owner": "worker-control-owner"
+      }
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "start_line": 52,
+      "end_line": 54,
+      "exact_quote": "| HELIXSECURITY-L1-007 | 人間は、AI Worker、CLI、Agent、Toolを、許可した隔離の実行環境でだけ動かせる。書き込めるpathの限定、networkの制限、資格情報の遮断、環境変数の最小化、timeout、資源の上限、fileの差分の検査、巻き戻し、結果の回収を最低の条件とする。制約とauthorityはSECURITYが決め、Workerの実行環境がその制約を強制する。Workerは制約を自分で広げない（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)、PR #2149） | §8 | 1.0 | 接続（Worker） |\n| HELIXSECURITY-L1-008 | 人間は、操作（読む、書く、実行、network、install、削除、merge、release、deploy、資格情報の使用、securityの変更）ごとにauthorityを分けられる。「このAgentを使える」から包括的な書込みやdeployの権限を生成せず、影響の大きい操作には、actor、対象、操作、revision、環境、範囲、期限を結びつけた個別のauthorityを求める | §9 | 1.0 | 単体 |\n| HELIXSECURITY-L1-009 | 人間は、authorityの失効、範囲の逸脱、不明な外部の副作用、資格情報の漏洩、異常な通信、実行環境の逸脱を検出したときに、失効と隔離を、OS（新しい割当ての停止）、Workerの実行（実行の停止と、途中の成果物の隔離）、CONNECT（通信の停止）、資格情報（使用の停止）、成果物（accessの停止）へ伝えられる。不明な状態を成功として続けない | §10 | 1.0 | 構成体（SECURITY、OS、Worker、CONNECT） |"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "start_line": 130,
+      "end_line": 138,
+      "exact_quote": "### HELIXSECURITY-L2-007 Worker実行環境への制約適用（接続）\n\n- **受け取るもの**：SECURITYが決めたscope/authority制約とOSのassignment identity、Worker実行環境のcapabilities。\n- **提供するもの**：実行前に適用された制約、結果/証拠の回収状態、停止・rollback・再開可否。\n- **保証すること**：許可された隔離環境だけでWorker/CLI/Agent/Toolを動かす。write path限定、network制限、credential遮断、environment variable最小化、timeout、resource limit、file差分検査、rollback、結果回収を検証対象とする。Workerは制約を自分で広げない。具体のenforcerはWorkerの実行環境でありSECURITYではない。\n- **単独依存**：Concept/Worker実行契約、OS assignment、INFRASTRUCTURE実資源、L2-003/005/006/008。旧Runner/Sandbox actorを復活させない。\n- **検証範囲／版**：制約ごとの要求→Worker実行環境への受渡し→適用証拠の対応。適用不能はhostへfallbackしない。1.0。\n- **失敗時の戻し先**：未適用/未観測/unsupportedは実行停止・unknown。SECURITY方針不足はL1-007、物理enforcement欠落はINFRASTRUCTURE接続の候補へ戻す。\n- **束ねる既存条件**：L1-007、PO §8、Worker統一判断。実装が利用可能であるとは主張しない。"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "start_line": 31,
+      "end_line": 31,
+      "exact_quote": "| HELIXSECURITY-L2-007 | 1.0 | 各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。後掲の9制御fixtureで条件を個別に確認する。 |"
+    },
+    {
+      "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+      "json_pointer": "/canonical_meaning",
+      "source_value": {
+        "planning": "L1",
+        "requirement": "L2",
+        "specification": "L3",
+        "basic_design": "L4",
+        "detail_design": "L5",
+        "function_design": "L6",
+        "function_verification": "L7",
+        "unit_verification": "L8",
+        "integration_verification": "L9",
+        "system_verification": "L10",
+        "acceptance": "L11",
+        "operation_evaluation": "L12"
+      }
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+      "json_pointer": "/outside_kinds",
+      "source_value": [
+        "charter",
+        "concept",
+        "implementation"
+      ]
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-604CADBAF8004788EB15",
+      "role": "旧policy/前後tree/値非表示",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-policy.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "152a7a5806001ae1b2e0215d7cd61db14b7c61cbc4b4b501524bda58622716cf",
+        "start_line": 20,
+        "end_line": 45,
+        "exact_quote": "\n`attestWorkerIsolationPolicy`はadapter-private mapが保持するexact wrapper executionだけを受ける。\ntask classificationは`non_secret`だけを許可し、既存`isSecretLike`をwrapper stdin／argvへ追加適用する。\n許可scopeはrelative exact pathまたは末尾`/`のdirectory prefixへ正規化し、empty／absolute／drive path／NUL／`.`／`..`／\n`.git`／`.helix`／`harness.db`を拒否する。egressは`deny_all`だけで、host allowlistは起動前に拒否する。\n\nbrokerはcapability object identityとwrapper `origin_digest`を再検証し、bubblewrapへ`--unshare-net`を必須付与する。\nprocess終了後、input manifestとscratch post-stateのdigest集合を比較する。scope内変更だけを成功とし、違反時はgeneric reasonだけを返す。\n\n## 2. failure完全集合\n\n| reason code | 到達fixture |\n|---|---|\n| `WORKER_ISOLATION_POLICY_UNRESOLVED` | wrapper／policyの複製、またはorigin不一致 |\n| `WORKER_ISOLATION_SECRET_TASK_DENIED` | secret、unknown、実tokenを含むtask |\n| `WORKER_ISOLATION_EGRESS_UNSUPPORTED` | 1件以上のhost allowlist要求 |\n| `WORKER_ISOLATION_SCOPE_INVALID` | absolute、traversal、authority path、曖昧scope |\n| `WORKER_ISOLATION_SCOPE_VIOLATION` | scope外add/modify/delete、symlink、特殊file、oversize |\n\n## 3. resource・security契約\n\npost-stateは1 file 4 MiB、total 16 MiB、entry 4,096件、depth 64を上限とし、regular fileを`O_NOFOLLOW`でopenした同一fdから読む。\nmtimeやprose flagは判定根拠にせず、path、type、size、content digestで比較する。違反resultへpath、content、secretを含めない。\nnetworkはnamespace denyを実行境界とし、dry-run egress reportやCodex `workspace-write`を代替根拠にしない。\n\n## 4. Design Reality Binding契約"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-13362A81144CD6852A5B",
+      "role": "旧broker/authority/capture/環境上限",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-broker.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "e270bff996249360fdeb29ee4f36e3bf9ab6e27e50a013451f6ece153a5d46d4",
+        "start_line": 20,
+        "end_line": 48,
+        "exact_quote": "\n`attestWorkerIsolationAuthority`はharness authority rootの`config/worker-isolation-runtime-catalog.json`に登録された\nbackend/runtime IDとcontent digestをexact照合し、実file digestも一致するときだけmodule-private capabilityを発行する。\ncapabilityはcanonical authority rootとcatalog digestも封印し、`prepare`対象repoのcanonical rootとexact一致を要求するため、別rootでmintした\ncatalog capabilityを転用できない。backend IDは`bubblewrap`のclosed literalである。空catalogは安全側の初期値であり、未登録runtimeを起動しない。\n`prepare`はLinux、sealed authority、immutable wrapper execution、current admitted descriptor、\nrepo外scratch、regular allowlisted inputを順に検査する。成功時だけbounded byte snapshotを作り、module-private `WeakSet`へlaunch objectを封印する。\n`run`は同一object identityだけをbubblewrapへ渡し、spread copyをspawn前に拒否する。\n\n## 2. failure完全集合\n\n| reason code | 到達fixture |\n|---|---|\n| `WORKER_ISOLATION_PLATFORM_UNSUPPORTED` | `platform=win32` |\n| `WORKER_ISOLATION_BACKEND_UNAVAILABLE` | backend欠落／実行不能 |\n| `WORKER_ISOLATION_WRAPPER_UNADMITTED` | spread複製されたwrapper execution |\n| `WORKER_ISOLATION_ADMISSION_STALE` | registry revision drift／拒否済みdecision |\n| `WORKER_ISOLATION_BOUNDARY_INVALID` | scratchがrepo配下または包含 |\n| `WORKER_ISOLATION_SOURCE_REJECTED` | symlink、`.git`、`.helix`、`harness.db`、非regular/oversize |\n| `WORKER_ISOLATION_RUNTIME_INVALID` | provider binary欠落／実行不能 |\n| `WORKER_ISOLATION_LAUNCH_UNSEALED` | spread複製されたbroker launch |\n\n## 3. resource契約\n\nsourceは`O_NOFOLLOW`で一度だけopenし、`/proc/self/fd`の実体がrepo内か再検証した同一fdからsize上限分だけ読む。\nstageとmanifest digestは同じcaptured bytesから生成し、検査後にpathを再読込しない。1 file 4 MiB、total 16 MiB、\nstdout/stderr 8 MiB、timeout 10分を上限とする。child envは`HOME/LANG/PATH/TMPDIR`だけで、\nwrapper supplied envとparent envを渡さない。`/usr`はread-only、provider executableはexact fileだけread-only、scratchだけread-writeである。\nbackend/runtimeもcatalog一致byteをbroker-owned stagingへ固定してopen FDを保持し、runは`/proc/self/fd/3`をexec、fd 4をread-only bindする。"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A3A83F1432DF43D564F0",
+      "role": "旧policy関数境界",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-isolation-policy.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "1c57cd7da89b007a81b3b7477ef9b6fb13cbfb7af8c21286391086473c871990",
+        "start_line": 20,
+        "end_line": 27,
+        "exact_quote": "- `isWorkerIsolationPolicyCapability(value)`: module-private `WeakSet`にある同一objectだけをtrueにする。\n- `auditWorkerIsolationScope(workspacePath, baseline, writablePaths)`: byte／entry count／depthがboundedなpost-stateを読み、add／modify／deleteのexact setをscopeと照合する。\n- `prepareWorkerIsolationLaunch(request)`: policy capabilityとwrapper `origin_digest`を再検証し、failure時spawn 0にする。\n- `runWorkerIsolationLaunch(launch, spawn?)`: `--unshare-net`を含むsealed argvで実行し、post-state違反時はgeneric failureだけを返す。\n\n`allowed_egress_hosts`はemptyだけを許可する。host許可はbroker-owned proxy／namespace firewall authorityが実装されるまで\n`WORKER_ISOLATION_EGRESS_UNSUPPORTED`で拒否する。scopeはglobを受けず、exact pathまたは末尾`/`のdirectory prefixだけとする。\nFR-05/06のoutput schema、proposal再検証、lifecycle receipt、canonical commitは別contractである。"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5EDA0159C475B1445A9B",
+      "role": "旧broker関数/single-use/例外回収",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-isolation-broker.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "797f7f4660a2bc523febd0cb1325f77b7f61eccb5751864e2c92fbb690a0e932",
+        "start_line": 20,
+        "end_line": 36,
+        "exact_quote": "- `prepareWorkerIsolationLaunch(request)`: immutable wrapper、fresh admission、authority、race-resistant fd capture、manifest digest、sealed launch生成。failure時spawn 0。\n- `runWorkerIsolationLaunch(launch, spawn?)`: sealed identity検査、fixed bubblewrap argv/env、bounded synchronous execution。\n- `isWrapperLaunchExecution(value)`: adapter-private capability mapが保持するexecution objectとの同一性だけをtrueにする。\n\npathはrepo-relative、重複なし、NUL/absolute/`..`/`.git`/`.helix`/`harness.db`なしとし、opened fdの実体を再検証する。\nbackendとprovider binaryはabsolute executable fileに加えcatalog digest exact一致を要求し、captured byteをbroker-owned FDへ固定する。\nWCC-FR-04のnetwork/secret policy fieldは公開しない。\n\n## 起動capabilityの寿命と例外回収\n\n`runWorkerIsolationLaunch`は起動前にsealed launchを一度だけ消費する。同じobjectの再入、\n例外後・終了後の再実行は既存の`WORKER_ISOLATION_LAUNCH_UNSEALED`で拒否し、spawnへ進めない。\n引数構築またはspawnが例外を投げても、finallyでbackend/runtime FDを閉鎖する。\n同finallyの内部WeakMap削除は実装上の衛生措置として維持するが、公開APIから削除自体を\n観測するoracleはない。single-use消費と両FD閉鎖の反例成功を、WeakMap回収の実証に流用しない。\n起動例外は成功receiptへ変換せず呼出元へ伝播する。別の再試行はadmissionを再検証するprepareから新しいlaunchを生成する。\nこれはprocess隔離policyの緩和やproduction callerの接続完了を意味しない。"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E9954F654E58B47A08B8",
+      "role": "旧policy consumer",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-worker-isolation-policy-unit-test-design.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "e02ae67bf03317bf0fb8e98971c79589c6850585a5a1c190335f41968ed8870a",
+        "start_line": 20,
+        "end_line": 31,
+        "exact_quote": "| U-ID | 対象 | 反例と期待結果 | test citation |\n|---|---|---|---|\n| U-WIP-001 | policy封印 | exact wrapperへdeny-all／normalized scopeを束縛 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-002 | secret deny | secret／unknown／実token taskはspawn前拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-003 | identity／egress | copied wrapper、non-empty host allowlistを拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-004 | scope構文 | absolute／traversal／git/state/DBを拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-005 | scope内diff | 許可add／modify／deleteのexact setを返す | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-006 | scope外diff | contentを露出せずgeneric failure | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-007 | post-state resource | symlink／特殊file／oversize／4,096件超／depth 64超を拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-008 | static mutation fence | network／scope enforcement token欠落をRed | `tests/worker-isolation-policy.test.ts` |\n| U-WIB-010 | broker結線 | `--unshare-net`とpost-run audit、copied policy拒否 | `tests/worker-isolation-broker.test.ts` |\n| U-DRB-015 | mutation reachability | policy failure 5分岐の除去をRed | `tests/design-reality-binding.test.ts` |"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7EB315092F6A83BE8555",
+      "role": "旧broker consumer",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-worker-isolation-broker-unit-test-design.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "a384dd6d72f03dfa6a0489621229804962d659fcaf58e25b4f59607c7cddfae4",
+        "start_line": 20,
+        "end_line": 29,
+        "exact_quote": "|---|---|\n| `U-WIB-001` | repo内scratch拒否 |\n| `U-WIB-002` | symlink/git/state/DB拒否 |\n| `U-WIB-003` | platform/backend拒否 |\n| `U-WIB-004` | wrapper execution copy拒否 |\n| `U-WIB-005` | 上限付きregular byte snapshot |\n| `U-WIB-006` | broker launch copy拒否 |\n| `U-WIB-007` | 実processのrepo/state/DB/credential不可視 |\n| `U-WIB-008` | descriptor admission stale拒否 |\n| `U-WIB-009` | filesystem isolation mutationをRed化 |"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "role": "旧coverageと未成立の非相殺",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "start_line": 135,
+        "end_line": 151,
+        "exact_quote": "Claude Code hook、Codex CLI/IDE hook、Cursor、hosted tool、worker sandboxは別surfaceとして\ncoverage matrixへ登録する。hook非強制surfaceは「hookがある」と扱わず、capability brokerまたは\nsandboxを唯一の実行境界とする。matcher drift、hook trust drift、coverage unknown、sandbox\nunavailableはfail-closeする。\n\ncanonical authorityの失敗をlegacy guardや別scannerのgreenで相殺しない。admissionは次のAND条件を\n満たす場合だけ後続実行へ進む。\n\n```text\nrequirements / policy current\nAND physical target current\nAND provenance bounded\nAND data-sink policy current\nAND approval binding current (必要時)\nAND runtime surface covered\nAND postcondition / rollback / expiry valid\n```"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    }
+  ],
+  "failure_basis": {
+    "source": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "start_line": 65,
+      "end_line": 101,
+      "exact_quote": "| ID | severity | 弱点 | 観測根拠 | 要件化 |\n|---|---|---|---|---|\n| UTW-001 | Critical | L0〜L14とBunがsource全体のcurrent authorityとして深く埋め込まれている | Core Reads、README、package、CI、32 active Bun reference files | UTH-FR-002〜004 |\n| UTW-002 | Critical | prose/CURRENT handoverがcontinuation正本で、event-first DB projectionと競合する | AGENTS/CLAUDEのSession Start、`.ut-tdd/handover` | UTH-FR-006 |\n| UTW-003 | Critical | repository hookで覆えないhosted tool surfaceが手続き依存 | 対象AGENTSのscope boundary | UTH-FR-008 |\n| UTW-004 | Critical | live policyと文書policyが乖離し得る | ruleset、branch policy、既存UT-GH-03〜05 | UTH-FR-017 |\n| UTW-005 | Critical | PR trace/review evidenceが最新HEAD・merge-baseへ常時再束縛されない | 既存UT-GH-06/07/12 | UTH-FR-015 |\n| UTW-006 | Critical | GitHub signal→Issue→PLAN→PR→CI→merge→memoryが単一exactly-once episodeで閉じない | execution episode branchがmain未統合、UT-GH-09/10/13 | UTH-FR-018 |\n| UTW-007 | Critical | secret/PII scanの一部がwarn-onlyまたはhook依存で、CI全push blob再検証が不足 | `secret-scan-diff`既定warn、UT-GH-15 | UTH-FR-020 |\n| UTW-008 | High | 素のtest入口と正規snapshot runnerの意味が異なり、37 fail/4 errorsになる | 実測 | UTH-NFR-001、UTH-FR-010 |\n| UTW-009 | High | full regression/doctorが重く、timeoutと長いself-heal loopを生む | 220.54秒、doctor test 214.17秒 | UTH-NFR-002、UTH-FR-011 |\n| UTW-010 | High | Bun runtime/CIがLinux・Windows双方の必須前提 | package engines、workflow | UTH-FR-003、UTH-FR-012 |\n| UTW-011 | High | macOS legがなく、Windowsはfast/toolchain scopeのみ | workflow 2 legs | UTH-FR-012 |\n| UTW-012 | High | tracked runtime stateが207 filesあり、source/evidence/generated state境界が太い | `.ut-tdd` tracked inventory | UTH-FR-007 |\n| UTW-013 | High | fail-open/warn-onlyが安全性、観測性、可用性で統一分類されていない | session log、handover、update、scan、graphの複数方針 | UTH-FR-009 |\n| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n| UTW-015 | High | branch lifecycleが閉じず、main未包含6 heads、最大54 commits aheadが残る | mirror ref inventory | UTH-FR-013、UTH-FR-014 |\n| UTW-016 | High | tag 0でrelease provenanceとsource snapshot authorityが弱い | ref inventory | UTH-FR-027 |\n| UTW-017 | High | Issue Formsのlabel bootstrap/inbound dogfoodが未閉包 | 既存UT-GH-08/09 | UTH-FR-016 |\n| UTW-018 | High | merge後branch/state/memory cleanupがtransactionalでない | UT-GH-02/13/14 | UTH-FR-018、UTH-FR-019 |\n| UTW-019 | High | subagent/agent spawn guardはruntime surface差分に追随し続ける必要がある | 対象rulesの旧「未配線」履歴と現guard test | UTH-FR-008 |\n| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |\n| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |\n| UTW-022 | High | external MCP/tool/pluginの実行、権限、supply-chain検証がprofile設計より後追い | backlog IMP-120〜124 | UTH-FR-024 |\n| UTW-023 | High | improvement backlogにobserved/triaged/verifiedが92件あり、status名と実装実体が一致しない行がある | backlog status集計 | UTH-FR-025 |\n| UTW-024 | High | source全refのatom化・採否・要件traceがcurrent receiptとして閉じていない | HELIX source ledgerのpredecessor-ut BLOCKED | UTH-FR-001、UTH-FR-023 |\n| UTW-025 | Medium | docs 1,045、Markdown 1,311で正本・compatibility・archiveの認識負荷が高い | main inventory | UTH-NFR-003、UTH-FR-005 |\n| UTW-026 | Medium | CLI、doctor、projectionのmonolithが変更影響とtargeted verificationを拡大する | long-running suites、既存refactor carry | UTH-FR-011、UTH-NFR-004 |\n| UTW-027 | Medium | wrapperがcloneを重ね、disk/process/resource予算が明示的でない | snapshot runner実測 | UTH-NFR-002、UTH-FR-026 |\n| UTW-028 | Medium | Node SQLite experimental warningが大量に出てsignal/noiseを悪化させる | 正規test output | UTH-NFR-005 |\n| UTW-029 | Medium | consumer setup、source repo、clean distributionで検証集合が分岐しやすい | source/Pack workflow分離 | UTH-FR-027 |\n| UTW-030 | Medium | update-checkなど外部可用性をfail-openにする機能にfreshness/decision impactの統一receiptがない | update advisory設計 | UTH-FR-028 |\n| UTW-031 | Medium | manual approvalの対象、snapshot binding、expiry、reapproval triggerが機能ごとに不均一 | setup/release/cutover/security docs | UTH-FR-029 |\n| UTW-032 | Medium | self-improvementがfinding数の消化へ寄り、before/after metricと再発率で閉じない | backlog、quality audit surface | UTH-FR-025、UTH-FR-030 |\n| UTW-033 | High | freeze checkpointとreopen impact再検証がmain未統合で、確定済み成果物の再開境界が弱い | `work/freeze-checkpoint-plans`固有PLAN群 | UTH-FR-031 |\n| UTW-034 | Critical | PLAN revisionのCAS、provenance、replay、rollbackを束ねるtransactional authoringがmain未統合 | `work/recovery-plan-revision-authoring`の25固有commit | UTH-FR-032 |\n| UTW-035 | High | specialist agent registryのschema、sync、drift、guard digest、検証team招集が設計branchに残る | `work/l6-81-agent-registry-design` | UTH-FR-033 |"
+    },
+    "ids": [
+      "UTW-013",
+      "UTW-019",
+      "UTW-020",
+      "UTW-021",
+      "UTW-022"
+    ],
+    "meaning": "surface差のguard、partial failureの診断粗さ、自己申告完成、外部実行権限後追いを、制御/元source/phase/局所失敗へ分けて保持する。失敗から新gate/製品要求を生成しない。"
+  },
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430,
+    "meaning_closure": "unproven"
+  },
+  "implementation_readiness": "not_ready",
+  "document_id": "HELIXSECURITY-L5-007",
+  "layer": "L5",
+  "pair": "L8",
+  "purpose": "全11pairの九制御をdeclaredfield/nullability・pure分岐・局所元pointerへ詳細化。実isolation backend/Worker/設定/新gateを起動しない。",
+  "type_contract": {
+    "kind": "logical_declared_types_not_formal_wire_schema",
+    "types": {
+      "String": {
+        "kind": "scalar",
+        "base": "string"
+      },
+      "Boolean": {
+        "kind": "scalar",
+        "base": "boolean"
+      },
+      "NonEmptyString": {
+        "kind": "scalar",
+        "base": "string",
+        "known_predicate": "空でない原文字列だけknown。trim/grammar/実identityを創作しない。"
+      },
+      "NonNegativeInteger": {
+        "kind": "scalar",
+        "base": "integer",
+        "known_predicate": "非負integer、boolean不可。固定合成domain、host幅/単位/codec未選定。"
+      },
+      "RawValue": {
+        "kind": "raw_json",
+        "meaning": "未検査原値。欠落/null/空集合/余剰fieldを原資料へ保持。正式wire余剰key方針/codec未選定。"
+      },
+      "Provided": {
+        "kind": "generic_presence",
+        "parameter": "T",
+        "variants": [
+          "absent",
+          "supplied(T)",
+          "supplied(null)"
+        ],
+        "meaning": "単純presenceの参考論理宣言。007比較入力のdeclared fieldはinvalid rawを型付き不足へ残すFieldProjectionへ具体化する。CORE/BRAIN/OS型と共通化しない。"
+      },
+      "Phase": {
+        "kind": "enum",
+        "values": [
+          "pre",
+          "run",
+          "post"
+        ],
+        "outside_set": "原値保持・比較unknown。別known値へcoerceしない。"
+      },
+      "ControlName": {
+        "kind": "enum",
+        "values": [
+          "write_path",
+          "network",
+          "credential",
+          "environment",
+          "timeout",
+          "resource",
+          "diff_inspection",
+          "rollback",
+          "result_collection"
+        ],
+        "outside_set": "原値保持・比較unknown。別known値へcoerceしない。"
+      },
+      "Grade": {
+        "kind": "enum",
+        "values": [
+          "corresponding",
+          "unknown",
+          "violation"
+        ],
+        "outside_set": "原値保持・比較unknown。別known値へcoerceしない。"
+      },
+      "StageLabel": {
+        "kind": "enum",
+        "values": [
+          "corresponding",
+          "violation"
+        ],
+        "outside_set": "原値保持・比較unknown。別known値へcoerceしない。"
+      },
+      "Terminal": {
+        "kind": "enum",
+        "values": [
+          "success",
+          "failed",
+          "interrupted",
+          "terminated"
+        ],
+        "outside_set": "原値保持・比較unknown。別known値へcoerceしない。"
+      },
+      "WriteMode": {
+        "kind": "enum",
+        "values": [
+          "read_only",
+          "writable"
+        ],
+        "outside_set": "原値保持・比較unknown。別known値へcoerceしない。"
+      },
+      "RollbackState": {
+        "kind": "enum",
+        "values": [
+          "not_applicable",
+          "restored",
+          "partial",
+          "unavailable",
+          "planned"
+        ],
+        "outside_set": "原値保持・比較unknown。別known値へcoerceしない。"
+      },
+      "Condition": {
+        "kind": "enum",
+        "values": [
+          "worker_control_corresponding",
+          "worker_control_unknown",
+          "worker_control_violation"
+        ],
+        "outside_set": "原値保持・比較unknown。別known値へcoerceしない。"
+      },
+      "StringSet": {
+        "kind": "array",
+        "element_type": "NonEmptyString",
+        "unique": true,
+        "empty_allowed": true,
+        "meaning": "重複/非文字列はunknown。set比較のみ順序独立、原配列順を保存。"
+      },
+      "DigestTree": {
+        "kind": "map",
+        "key_type": "NonEmptyString",
+        "value_type": "NonEmptyString",
+        "empty_allowed": true,
+        "meaning": "固定key/digest素材。null/非dict/空key/valueは未観測/unknown。実path/bytes/物理identityでない。"
+      },
+      "Binding": {
+        "kind": "object",
+        "fields": {
+          "scope": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "revision": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "assignment": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "policy": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "environment": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "backend": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "authority": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "原七binding field。scope/版/assignment/backendの同名やref文字列から実source資格を作らない。"
+      },
+      "ControlStateMap": {
+        "kind": "object",
+        "fields": {
+          "write_path": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "network": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "credential": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "environment": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "timeout": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "resource": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "diff_inspection": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "rollback": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "result_collection": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "result受領stateと各元observedを別比較する。未知元fieldのpointerを元側へ返す。"
+      },
+      "WriteData": {
+        "kind": "object",
+        "fields": {
+          "mode": {
+            "type": "FieldProjection",
+            "value_type": "WriteMode",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "allowed_paths": {
+            "type": "FieldProjection",
+            "value_type": "StringSet",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "reported_diff": {
+            "type": "FieldProjection",
+            "value_type": "StringSet",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "write_attempt": {
+            "type": "FieldProjection",
+            "value_type": "String",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "before_tree": {
+            "type": "FieldProjection",
+            "value_type": "DigestTree",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "after_tree": {
+            "type": "FieldProjection",
+            "value_type": "DigestTree",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "供給fieldのnullable/欠落を保持し、対象phaseでだけ各原規則へ解決。未観測をfalse/empty/成功にしない。"
+      },
+      "NetworkData": {
+        "kind": "object",
+        "fields": {
+          "restriction": {
+            "type": "FieldProjection",
+            "value_type": "String",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "connection_established": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "host_fallback": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "供給fieldのnullable/欠落を保持し、対象phaseでだけ各原規則へ解決。未観測をfalse/empty/成功にしない。"
+      },
+      "CredentialData": {
+        "kind": "object",
+        "fields": {
+          "provider_store_reached": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "raw_value_exposed": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "host_credential_fallback": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "供給fieldのnullable/欠落を保持し、対象phaseでだけ各原規則へ解決。未観測をfalse/empty/成功にしない。"
+      },
+      "EnvironmentData": {
+        "kind": "object",
+        "fields": {
+          "allowed_names": {
+            "type": "FieldProjection",
+            "value_type": "StringSet",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "passed_names": {
+            "type": "FieldProjection",
+            "value_type": "StringSet",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "host_all_inherited": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "credential_bearing_inherited": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "供給fieldのnullable/欠落を保持し、対象phaseでだけ各原規則へ解決。未観測をfalse/empty/成功にしない。"
+      },
+      "TimeoutData": {
+        "kind": "object",
+        "fields": {
+          "configured_seconds": {
+            "type": "FieldProjection",
+            "value_type": "NonNegativeInteger",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "ended_at_seconds": {
+            "type": "FieldProjection",
+            "value_type": "NonNegativeInteger",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "deadline_reached": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "terminal_status": {
+            "type": "FieldProjection",
+            "value_type": "Terminal",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "late_side_effect": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "供給fieldのnullable/欠落を保持し、対象phaseでだけ各原規則へ解決。未観測をfalse/empty/成功にしない。"
+      },
+      "ResourceData": {
+        "kind": "object",
+        "fields": {
+          "configured_cpu": {
+            "type": "FieldProjection",
+            "value_type": "NonNegativeInteger",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "configured_memory_mib": {
+            "type": "FieldProjection",
+            "value_type": "NonNegativeInteger",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "limit_reached": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "terminal_status": {
+            "type": "FieldProjection",
+            "value_type": "Terminal",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "self_expanded": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "供給fieldのnullable/欠落を保持し、対象phaseでだけ各原規則へ解決。未観測をfalse/empty/成功にしない。"
+      },
+      "DiffData": {
+        "kind": "object",
+        "fields": {
+          "before_tree": {
+            "type": "FieldProjection",
+            "value_type": "DigestTree",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "after_tree": {
+            "type": "FieldProjection",
+            "value_type": "DigestTree",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "reported_diff": {
+            "type": "FieldProjection",
+            "value_type": "StringSet",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "raw_secret_copied": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "供給fieldのnullable/欠落を保持し、対象phaseでだけ各原規則へ解決。未観測をfalse/empty/成功にしない。"
+      },
+      "RollbackData": {
+        "kind": "object",
+        "fields": {
+          "state": {
+            "type": "FieldProjection",
+            "value_type": "RollbackState",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "after_tree": {
+            "type": "FieldProjection",
+            "value_type": "DigestTree",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "restored_tree": {
+            "type": "FieldProjection",
+            "value_type": "DigestTree",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "target_scope": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "供給fieldのnullable/欠落を保持し、対象phaseでだけ各原規則へ解決。未観測をfalse/empty/成功にしない。"
+      },
+      "ResultData": {
+        "kind": "object",
+        "fields": {
+          "case_ref": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "terminal_status": {
+            "type": "FieldProjection",
+            "value_type": "Terminal",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "reported_terminal_status": {
+            "type": "FieldProjection",
+            "value_type": "Terminal",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "constraint_states": {
+            "type": "FieldProjection",
+            "value_type": "ControlStateMap",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "diff_state": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "rollback_state": {
+            "type": "FieldProjection",
+            "value_type": "RollbackState",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "raw_value_exposed": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "stdout_only": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "runtime_terminal_status": {
+            "type": "FieldProjection",
+            "value_type": "Terminal",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "供給fieldのnullable/欠落を保持し、対象phaseでだけ各原規則へ解決。未観測をfalse/empty/成功にしない。"
+      },
+      "ControlRecord": {
+        "kind": "object",
+        "fields": {
+          "binding": {
+            "type": "FieldProjection",
+            "value_type": "Binding",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "source_ref": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "handoff": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "applied": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "observed": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "collected": {
+            "type": "FieldProjection",
+            "value_type": "StageLabel",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "data": {
+            "type": "FieldProjection",
+            "value_type": "RawValue",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "dataはcontrol名→data_type_dispatchの宣言型へ解決後だけ比較。不足/不正shapeは元rawとpointerへ保持し、任意RawValueのまま意味比較しない。"
+      },
+      "Controls": {
+        "kind": "object",
+        "fields": {
+          "write_path": {
+            "type": "FieldProjection",
+            "value_type": "ControlRecord",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "network": {
+            "type": "FieldProjection",
+            "value_type": "ControlRecord",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "credential": {
+            "type": "FieldProjection",
+            "value_type": "ControlRecord",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "environment": {
+            "type": "FieldProjection",
+            "value_type": "ControlRecord",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "timeout": {
+            "type": "FieldProjection",
+            "value_type": "ControlRecord",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "resource": {
+            "type": "FieldProjection",
+            "value_type": "ControlRecord",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "diff_inspection": {
+            "type": "FieldProjection",
+            "value_type": "ControlRecord",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "rollback": {
+            "type": "FieldProjection",
+            "value_type": "ControlRecord",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "result_collection": {
+            "type": "FieldProjection",
+            "value_type": "ControlRecord",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "九制御は別record。missing全体とrecord内field nullを別に返す。"
+      },
+      "ControlSourceRefs": {
+        "kind": "object",
+        "fields": {
+          "write_path": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "network": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "credential": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "environment": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "timeout": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "resource": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "diff_inspection": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "rollback": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "result_collection": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "各独立control source原参照。自己申告source_refから再生成しない。"
+      },
+      "WorkerContext": {
+        "kind": "object",
+        "fields": {
+          "expected_binding": {
+            "type": "FieldProjection",
+            "value_type": "Binding",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "control_source_refs": {
+            "type": "FieldProjection",
+            "value_type": "ControlSourceRefs",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "allowed_paths": {
+            "type": "FieldProjection",
+            "value_type": "StringSet",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "allowed_environment_names": {
+            "type": "FieldProjection",
+            "value_type": "StringSet",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "before_tree": {
+            "type": "FieldProjection",
+            "value_type": "DigestTree",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "case_ref": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "timeout_seconds": {
+            "type": "FieldProjection",
+            "value_type": "NonNegativeInteger",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "cpu": {
+            "type": "FieldProjection",
+            "value_type": "NonNegativeInteger",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "memory_mib": {
+            "type": "FieldProjection",
+            "value_type": "NonNegativeInteger",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "独立expected資料。90/1/256はfixture例でありglobal defaultではない。"
+      },
+      "WorkerControlInput": {
+        "kind": "object",
+        "fields": {
+          "phase": {
+            "type": "FieldProjection",
+            "value_type": "Phase",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "request_binding": {
+            "type": "FieldProjection",
+            "value_type": "Binding",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "policy_binding": {
+            "type": "FieldProjection",
+            "value_type": "Binding",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "assignment_binding": {
+            "type": "FieldProjection",
+            "value_type": "Binding",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "environment_binding": {
+            "type": "FieldProjection",
+            "value_type": "Binding",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "context": {
+            "type": "FieldProjection",
+            "value_type": "WorkerContext",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "worker_self_expansion": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "host_backend_fallback": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "controls": {
+            "type": "FieldProjection",
+            "value_type": "Controls",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "unseen_environment": {
+            "type": "FieldProjection",
+            "value_type": "Boolean",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          }
+        },
+        "meaning": "原fixed inputのfield集合を保持。非dict/nullは原資料と局所typed不足へ、未見環境に旧結果を無断転用しない。 原full rawはInputInspection/CompositionInput.original_rawへ別保持し、未解決fieldや余剰memberを捨てない。"
+      },
+      "MaterialFinding": {
+        "kind": "object",
+        "fields": {
+          "code": {
+            "type": "String",
+            "required": true,
+            "nullable": false
+          },
+          "pointer": {
+            "type": "String",
+            "required": true,
+            "nullable": false
+          },
+          "return_owner": {
+            "type": "String",
+            "required": true,
+            "nullable": false,
+            "fixed_value": "worker-control-owner"
+          }
+        },
+        "meaning": "既存code/原pointer/worker-control-owner。raw値をmessageへ複写せず三fieldだけunique/scalar順。"
+      },
+      "Findings": {
+        "kind": "array",
+        "element_type": "MaterialFinding"
+      },
+      "ControlNames": {
+        "kind": "array",
+        "element_type": "ControlName"
+      },
+      "PhasePlan": {
+        "kind": "object",
+        "fields": {
+          "selected_phase": {
+            "type": "Phase",
+            "required": true,
+            "nullable": true
+          },
+          "handoff_applied_controls": {
+            "type": "ControlNames",
+            "required": true,
+            "nullable": false
+          },
+          "observed_controls": {
+            "type": "ControlNames",
+            "required": true,
+            "nullable": false
+          },
+          "collected_controls": {
+            "type": "ControlNames",
+            "required": true,
+            "nullable": false
+          },
+          "data_controls": {
+            "type": "ControlNames",
+            "required": true,
+            "nullable": false
+          },
+          "raw_phase": {
+            "type": "RawValue",
+            "required": true,
+            "nullable": true
+          }
+        },
+        "meaning": "known pre/run/postの評価集合だけ固定。unknown phaseは未解決素材、正式全shapeや新dispatch gateでない。"
+      },
+      "BindingComparison": {
+        "kind": "object",
+        "fields": {
+          "grade": {
+            "type": "Grade",
+            "required": true,
+            "nullable": false
+          },
+          "findings": {
+            "type": "Findings",
+            "required": true,
+            "nullable": false
+          },
+          "retained_bindings": {
+            "type": "RawValue",
+            "required": true,
+            "nullable": true
+          }
+        },
+        "meaning": ""
+      },
+      "TreeDiffInput": {
+        "kind": "object",
+        "fields": {
+          "before": {
+            "type": "FieldProjection",
+            "value_type": "DigestTree",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "after": {
+            "type": "FieldProjection",
+            "value_type": "DigestTree",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "before_pointer": {
+            "type": "String",
+            "required": true,
+            "nullable": false
+          },
+          "after_pointer": {
+            "type": "String",
+            "required": true,
+            "nullable": false
+          }
+        },
+        "meaning": ""
+      },
+      "TreeDiffResult": {
+        "kind": "object",
+        "fields": {
+          "computed": {
+            "type": "Boolean",
+            "required": true,
+            "nullable": false
+          },
+          "changed_keys": {
+            "type": "StringSet",
+            "required": true,
+            "nullable": true
+          },
+          "before": {
+            "type": "RawValue",
+            "required": true,
+            "nullable": true
+          },
+          "after": {
+            "type": "RawValue",
+            "required": true,
+            "nullable": true
+          },
+          "findings": {
+            "type": "Findings",
+            "required": true,
+            "nullable": false
+          }
+        },
+        "meaning": "未観測はcomputed=false/diff=null。空観測{}と別。key和集合から追加/変更/削除を昇順導出。"
+      },
+      "ControlEvaluationInput": {
+        "kind": "object",
+        "fields": {
+          "control_name": {
+            "type": "ControlName",
+            "required": true,
+            "nullable": false
+          },
+          "phase_plan": {
+            "type": "PhasePlan",
+            "required": true,
+            "nullable": false
+          },
+          "input": {
+            "type": "WorkerControlInput",
+            "required": true,
+            "nullable": false
+          }
+        },
+        "meaning": "source/record/dataはinput内原pointerで参照。選択phaseの未使用将来dataを参照しない。"
+      },
+      "ControlComparison": {
+        "kind": "object",
+        "fields": {
+          "control_name": {
+            "type": "ControlName",
+            "required": true,
+            "nullable": false
+          },
+          "grade": {
+            "type": "Grade",
+            "required": true,
+            "nullable": false
+          },
+          "data_evaluated": {
+            "type": "Boolean",
+            "required": true,
+            "nullable": false
+          },
+          "findings": {
+            "type": "Findings",
+            "required": true,
+            "nullable": false
+          },
+          "retained_record": {
+            "type": "RawValue",
+            "required": true,
+            "nullable": true
+          },
+          "tree_diff": {
+            "type": "TreeDiffResult",
+            "required": true,
+            "nullable": true
+          },
+          "stage_grade": {
+            "type": "Grade",
+            "required": true,
+            "nullable": true
+          },
+          "data_grade": {
+            "type": "Grade",
+            "required": true,
+            "nullable": true
+          }
+        },
+        "meaning": "比較素材。data未評価とunknownを区別し、実適用成功にしない。 stage helperはstage_grade/data_grade=null、data helperはstage_grade=null/data_gradeを返す。片側helperが不在でなくこの結果の役割を明示する。"
+      },
+      "ControlComparisons": {
+        "kind": "map",
+        "key_type": "ControlName",
+        "value_type": "ControlComparison"
+      },
+      "CompositionInput": {
+        "kind": "object",
+        "fields": {
+          "input": {
+            "type": "WorkerControlInput",
+            "required": true,
+            "nullable": false
+          },
+          "phase_plan": {
+            "type": "PhasePlan",
+            "required": true,
+            "nullable": false
+          },
+          "binding_result": {
+            "type": "BindingComparison",
+            "required": true,
+            "nullable": false
+          },
+          "control_results": {
+            "type": "ControlComparisonParts",
+            "required": true,
+            "nullable": false
+          },
+          "original_raw": {
+            "type": "RawValue",
+            "required": true,
+            "nullable": true
+          }
+        },
+        "meaning": "同request/revision/scopeに束縛したpure材料だけ。別環境cached結果を混ぜない。"
+      },
+      "ControlGrades": {
+        "kind": "object",
+        "fields": {
+          "write_path": {
+            "type": "Grade",
+            "required": true,
+            "nullable": false
+          },
+          "network": {
+            "type": "Grade",
+            "required": true,
+            "nullable": false
+          },
+          "credential": {
+            "type": "Grade",
+            "required": true,
+            "nullable": false
+          },
+          "environment": {
+            "type": "Grade",
+            "required": true,
+            "nullable": false
+          },
+          "timeout": {
+            "type": "Grade",
+            "required": true,
+            "nullable": false
+          },
+          "resource": {
+            "type": "Grade",
+            "required": true,
+            "nullable": false
+          },
+          "diff_inspection": {
+            "type": "Grade",
+            "required": true,
+            "nullable": false
+          },
+          "rollback": {
+            "type": "Grade",
+            "required": true,
+            "nullable": false
+          },
+          "result_collection": {
+            "type": "Grade",
+            "required": true,
+            "nullable": false
+          }
+        },
+        "meaning": ""
+      },
+      "AffectedRevisionScope": {
+        "kind": "object",
+        "fields": {
+          "revision": {
+            "type": "RawValue",
+            "required": true,
+            "nullable": true
+          },
+          "scope": {
+            "type": "RawValue",
+            "required": true,
+            "nullable": true
+          }
+        },
+        "meaning": "原結果のrequest_binding値投影。input presenceは別保存しnullから供給資格を作らない。"
+      },
+      "WorkerControlAnalysis": {
+        "kind": "object",
+        "fields": {
+          "condition": {
+            "type": "Condition",
+            "required": true,
+            "nullable": false
+          },
+          "selected_phase": {
+            "type": "Phase",
+            "required": true,
+            "nullable": true
+          },
+          "binding_correspondence": {
+            "type": "Grade",
+            "required": true,
+            "nullable": false
+          },
+          "control_correspondence": {
+            "type": "ControlGrades",
+            "required": true,
+            "nullable": false
+          },
+          "content_for_selected_phase_corresponding": {
+            "type": "Boolean",
+            "required": true,
+            "nullable": false
+          },
+          "whole_nine_control_observation_compared": {
+            "type": "Boolean",
+            "required": true,
+            "nullable": false
+          },
+          "future_results_required_before_execution": {
+            "type": "Boolean",
+            "required": true,
+            "nullable": false
+          },
+          "affected_revision_scope": {
+            "type": "AffectedRevisionScope",
+            "required": true,
+            "nullable": false
+          },
+          "findings": {
+            "type": "Findings",
+            "required": true,
+            "nullable": false
+          },
+          "fixed_resource_or_timeout_limit_added": {
+            "type": "Boolean",
+            "required": true,
+            "nullable": false
+          },
+          "host_fallback_allowed": {
+            "type": "Boolean",
+            "required": true,
+            "nullable": false
+          },
+          "actual_worker_invoked": {
+            "type": "Boolean",
+            "required": true,
+            "nullable": false
+          },
+          "actual_enforcement_verified": {
+            "type": "Boolean",
+            "required": true,
+            "nullable": false
+          },
+          "operation_effect": {
+            "type": "String",
+            "required": true,
+            "nullable": false
+          }
+        },
+        "meaning": "原14欄。false flagsとeffect noneはconstant_outputsで固定、素材trueから実worker/enforcementを生成しない。"
+      },
+      "SourceBindingMaterial": {
+        "kind": "object",
+        "fields": {
+          "role": {
+            "type": "String",
+            "required": true,
+            "nullable": false
+          },
+          "source_ref": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "source_revision": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "source_digest": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "owner_ref": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "subject_ref": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "qualification_ref": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "root_ref": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "custody_ref": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "environment_ref": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "observer_ref": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "consumer_ref": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "qualification_state": {
+            "type": "String",
+            "required": true,
+            "nullable": false,
+            "fixed_value": "unresolved_source_qualification"
+          }
+        },
+        "meaning": "実policy/assignment/backend/観測者/回収者/root資格は未閉包。参照口を新registry/truststore/署名/gateにしない。 qualification_stateはunresolved_source_qualification。ref lexical knownは実root資格knownでない。"
+      },
+      "SourceBindings": {
+        "kind": "array",
+        "element_type": "SourceBindingMaterial"
+      },
+      "BackflowMaterial": {
+        "kind": "object",
+        "fields": {
+          "finding": {
+            "type": "MaterialFinding",
+            "required": true,
+            "nullable": false
+          },
+          "request_binding": {
+            "type": "FieldProjection",
+            "value_type": "Binding",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "existing_owner_role": {
+            "type": "String",
+            "required": true,
+            "nullable": false
+          },
+          "owner_qualification": {
+            "type": "FieldProjection",
+            "value_type": "NonEmptyString",
+            "required": false,
+            "nullable": true,
+            "presence": "missing/explicit_null/known/invalid_or_unknownを別保持。unknownは原raw/pointerに残す。"
+          },
+          "state": {
+            "type": "String",
+            "required": true,
+            "nullable": false
+          }
+        },
+        "meaning": "原bare owner labelを保持し、責務別返却候補を添えるだけ。実停止/隔離/受領/復旧receiptを発行しない。"
+      },
+      "Backflows": {
+        "kind": "array",
+        "element_type": "BackflowMaterial"
+      },
+      "DetailedWorkerControlAnalysis": {
+        "kind": "object",
+        "fields": {
+          "material": {
+            "type": "WorkerControlAnalysis",
+            "required": true,
+            "nullable": false
+          },
+          "retained_input": {
+            "type": "RawValue",
+            "required": true,
+            "nullable": true
+          },
+          "source_bindings": {
+            "type": "SourceBindings",
+            "required": true,
+            "nullable": false
+          },
+          "backflow_materials": {
+            "type": "Backflows",
+            "required": true,
+            "nullable": false
+          }
+        },
+        "meaning": "原14欄と資格/実作用不足を分離するwrapper。"
+      },
+      "FieldProjection": {
+        "kind": "generic_field_projection",
+        "parameter": "T",
+        "variants": [
+          {
+            "state": "missing",
+            "presence": "absent",
+            "raw": "not_supplied",
+            "known_value": "none"
+          },
+          {
+            "state": "explicit_null",
+            "presence": "supplied(null)",
+            "raw": "null",
+            "known_value": "none"
+          },
+          {
+            "state": "known",
+            "presence": "supplied(T)",
+            "raw_type": "RawValue",
+            "known_value_type": "T"
+          },
+          {
+            "state": "invalid_or_unknown",
+            "presence": "supplied(raw)",
+            "raw_type": "RawValue",
+            "known_value": "none"
+          }
+        ],
+        "meaning": "比較用の派生projection。invalid rawをTへcastせず、原presence/rawを残す。これは原recordのstateや正式wireタグを新設しない。"
+      },
+      "PresenceRows": {
+        "kind": "array",
+        "element_type": "MemberPresence"
+      },
+      "MemberPresence": {
+        "kind": "object",
+        "fields": {
+          "pointer": {
+            "type": "String",
+            "required": true,
+            "nullable": false
+          },
+          "presence": {
+            "type": "String",
+            "required": true,
+            "nullable": false
+          },
+          "projection_state": {
+            "type": "String",
+            "required": true,
+            "nullable": false
+          }
+        },
+        "meaning": "原declared fieldの元位置と供給状態を記録。opaque raw内に仮の宣言fieldを創作しない。"
+      },
+      "InputInspection": {
+        "kind": "object",
+        "fields": {
+          "input": {
+            "type": "WorkerControlInput",
+            "required": true,
+            "nullable": true
+          },
+          "retained_raw": {
+            "type": "RawValue",
+            "required": true,
+            "nullable": true
+          },
+          "declared_presence": {
+            "type": "PresenceRows",
+            "required": true,
+            "nullable": false
+          }
+        },
+        "meaning": "元raw全域と宣言fieldの型付きprojectionを別に保持。root非dict/nullはinput=null/元raw保持で正式全shape意味の未閉包を明示し、新dispatch gateにしない。"
+      },
+      "ControlComparisonParts": {
+        "kind": "array",
+        "element_type": "ControlComparison",
+        "meaning": "選択phaseで各controlのstage結果と必要data結果だけを保持する。control_nameで結合し未使用future dataをunknownにしない。"
+      }
+    },
+    "control_data_type_dispatch": {
+      "write_path": "WriteData",
+      "network": "NetworkData",
+      "credential": "CredentialData",
+      "environment": "EnvironmentData",
+      "timeout": "TimeoutData",
+      "resource": "ResourceData",
+      "diff_inspection": "DiffData",
+      "rollback": "RollbackData",
+      "result_collection": "ResultData"
+    },
+    "binding_fields": [
+      "scope",
+      "revision",
+      "assignment",
+      "policy",
+      "environment",
+      "backend",
+      "authority"
+    ],
+    "control_names": [
+      "write_path",
+      "network",
+      "credential",
+      "environment",
+      "timeout",
+      "resource",
+      "diff_inspection",
+      "rollback",
+      "result_collection"
+    ],
+    "field_preservation": "FieldProjection<T>は原presence/rawとknown Tまたは未解決を別に保持する比較用logical型。required/nullableは当該fieldの比較素材供給形を宣言し、unknown rawをTにcast/default/coerceしない。元wire keyやowner stateを新設せず、正式追加key/codecは未閉包。",
+    "constant_outputs": {
+      "future_results_required_before_execution": false,
+      "fixed_resource_or_timeout_limit_added": false,
+      "host_fallback_allowed": false,
+      "actual_worker_invoked": false,
+      "actual_enforcement_verified": false,
+      "operation_effect": "none"
+    }
+  },
+  "local_rule_basis": [
+    {
+      "id": "S01",
+      "source_pointer": "/fixture_contract/algorithm/0",
+      "source_text": "固定shapeを対象とする。known bindingは非空文字列、unknownはnull/空。request/policy/assignment/environment各七fieldをindependent context expectedへ比較し、各制御のbindingはrequestへ比較。片側unknownは当該位置unresolved、両側known相反だけconflict。worker自己拡張/host fallbackはtrue違反・非boolean unknown。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S02",
+      "source_pointer": "/fixture_contract/algorithm/1",
+      "source_text": "各制御missingはその位置unknown。source_refと独立control_source_refsを同じknown比較。handoff/appliedは全phase、observedはrunの先行六制御とpost全九、collectedはpost全九のみ。state=correspondingは素材対応、violationは違反、それ以外はunknown。pre/runで将来観測を要求しない。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S03",
+      "source_pointer": "/fixture_contract/algorithm/2",
+      "source_text": "preはcontrol dataを評価しない。runはwrite/network/credential/environment/timeout/resourceのdataだけ、postは全data。known setは重複のない非空文字列list、treeは非空文字列key/digest値dict（empty tree可）。nullは未観測。diffはbefore/afterのkey和集合の値相反/追加/削除を昇順で再導出。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S04",
+      "source_pointer": "/fixture_contract/algorithm/3",
+      "source_text": "write: declared allowed_pathsをcontextの独立exact setへ比較。beforeを独立before treeへ比較。reported_diffを再導出diffへset照合し、diffがallowedを越えたら違反。read_onlyは実観測素材のbefore=afterとwrite_attempt=blockedの両方が必要、succeededは違反・他unknown。writableは許可範囲内diff。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S05",
+      "source_pointer": "/fixture_contract/algorithm/4",
+      "source_text": "networkはこのfixtureのdeny_allだけを検証し、connection_established/host_fallback=falseを要求する。credentialはprovider_store_reached/raw_value_exposed/host_credential_fallback=false、environmentはallowed_names/passed_namesを独立allow setと完全一致させhost_all/credential_bearing継承falseを要求。boolean以外はunknown、反対は違反。raw値を扱わない。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S06",
+      "source_pointer": "/fixture_contract/algorithm/5",
+      "source_text": "timeout/resourceは独立context descriptorの非負integerとconfigured値を両側既知でexact比較。秒/CPU/メモリ単位は固定fixtureのみ。ended_at>=timeoutならdeadline_reached=trueかつterminal_status=terminated/interrupted、期限前はknown terminalであること。late_side_effect=false。resource limit_reached=trueならterminated/interrupted、falseならknown terminal、未知はunknown。self_expanded=false。90/1/256を共通limitにしない。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S07",
+      "source_pointer": "/fixture_contract/algorithm/6",
+      "source_text": "diff: 独立before、write観測afterとの対応、実post treeからのdiffとreported_diff、独立allowed setとの包含を別照合。raw_secret_copied=false。値を証跡へ複写せずdigest素材だけ。 独立allowed setが未観測ならdiff_allow_set_unresolvedを同context位置へ返し、他軸unknownの有無にかかわらずdiff自身をunknownにする。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S08",
+      "source_pointer": "/fixture_contract/algorithm/7",
+      "source_text": "rollback: afterをdiff観測afterへ、target_scopeをrequest scopeへ照合。before/after未観測ならunknown。state=not_applicableは観測before=afterだけ、変更ありN/Aは違反。restoredは復旧treeを独立beforeへ比較。partial/unavailableは未完違反、planned/その他はunknown。必要な実復旧条件と実状態は正式bindingで閉じる。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S09",
+      "source_pointer": "/fixture_contract/algorithm/8",
+      "source_text": "result: case_refを独立caseへ、reported_terminal_statusを原terminal_statusへ比較。known terminalはsuccess/failed/interrupted/terminated。constraint_states全九を各原observed状態、diff_stateを原diff observed、rollback_stateを原rollback stateへ比較、片側null unknown。raw_value_exposed/stdout_only=false。receipt数/自己申告から全適用を作らない。 resultのruntime_terminal_statusは原timeout/resourceのprocess terminal素材へ両方照合する。実行後postcondition失敗のcase terminal=failedはruntime successと別でよいが、runtime failed/interrupted/terminatedをcase successにしない。runtime未知は未確認を残す。 terminal比較ではsuccess/failed/interrupted/terminatedだけを既知とする。null/unknown/その他enumを推測でknown相反へ変えず、原位置のunknownを保持する。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S10",
+      "source_pointer": "/fixture_contract/algorithm/9",
+      "source_text": "各軸はviolation→unknown→corresponding、全体も全軸の同優先順。case binding/scoped controlの不足は当該実行だけへ戻す候補。findingsはgiven.inputの原位置、裸owner・exact三fieldunique昇順。全結果14field比較、actual_worker/enforcement=false、host fallback許可/共通limit追加/未来結果の事前要求=false。対応は選択phaseのsynthetic内容だけ。postのwhole_nine_control_observation_compared=trueも実全適用ではない。 他制御から参照するsource fieldがnull/unknownなら、その原field（after_tree/observed/data.state/data.terminal_status）のpointerを返す。制御記録自体がnullの場合だけ /controls/<name> を返す。依存型ごとの例外は設けない。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    }
+  ],
+  "phase_data_applicability": {
+    "pre": [],
+    "run": [
+      "write_path",
+      "network",
+      "credential",
+      "environment",
+      "timeout",
+      "resource"
+    ],
+    "post": [
+      "write_path",
+      "network",
+      "credential",
+      "environment",
+      "timeout",
+      "resource",
+      "diff_inspection",
+      "rollback",
+      "result_collection"
+    ]
+  },
+  "functions": [
+    {
+      "id": "HELIXSECURITY-L5-007-inspect_worker_control_input",
+      "symbol": "inspect_worker_control_input",
+      "signature": {
+        "input_type": "RawValue",
+        "output_type": "InputInspection"
+      },
+      "rule_refs": [
+        "S01",
+        "S03",
+        "S06"
+      ],
+      "pre": "元未検査fixed-domain資料。",
+      "post": "全fieldのdeclared型/presence/nullとrawを分けて保持。",
+      "branch_algorithm": [
+        "元root rawをInputInspection.retained_rawへ保存。root非dict/nullならinput=nullを残し、formal全shapeのcomparison結果は未閉包。",
+        "各原declared memberのmissing/null/known/invalid_or_unknownをFieldProjectionへ。Tのknown predicateを満たさない原値をTへcastせず、presenceとrawを保全する。",
+        "正式wire追加key方針/物理path/tree codecは選ばない。invalid sourceは原pointerへ局所typed不足として残す。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-plan_control_phase",
+      "symbol": "plan_control_phase",
+      "signature": {
+        "input_type": "WorkerControlInput",
+        "output_type": "PhasePlan"
+      },
+      "rule_refs": [
+        "S02",
+        "S03"
+      ],
+      "pre": "元phaseと九制御名。",
+      "post": "pre/run/postのdata/観測/回収集合を固定、未使用futureは要求しない。",
+      "branch_algorithm": [
+        "全phase handoff/appliedは九制御。pre observed/collected/dataは空。",
+        "run observed/dataは先行六、collected空。postは全九observed/collected/data。",
+        "unknown phaseは元値/選択未解決として残し、postへ補完しない。正式unknown-phase全結果は未閉包。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "symbol": "compare_execution_binding",
+      "signature": {
+        "input_type": "WorkerControlInput",
+        "output_type": "BindingComparison"
+      },
+      "rule_refs": [
+        "S01"
+      ],
+      "pre": "request/policy/assignment/environmentと独立expected binding原七軸。",
+      "post": "片側unknownは原位置unresolved、両側known相反だけconflict。",
+      "branch_algorithm": [
+        "各七軸を独立expectedへ照合。control bindingはstage比較でrequestへ別照合。",
+        "worker_self_expansion/host_backend_fallback trueは違反、false対応、非boolean unknown。",
+        "別assignment/environment/版の一致を当該scopeの資格にしない。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-compare_control_stages",
+      "symbol": "compare_control_stages",
+      "signature": {
+        "input_type": "ControlEvaluationInput",
+        "output_type": "ControlComparison"
+      },
+      "rule_refs": [
+        "S01",
+        "S02",
+        "S10"
+      ],
+      "pre": "選択phase planと原control/source参照。",
+      "post": "record不足/必要stage不足/source不足を局所化し、未使用未来stageを失敗にしない。",
+      "branch_algorithm": [
+        "control missing/nullは/controls/name。source_refと独立context.control_source_refs/nameはknown比較。",
+        "control.binding七fieldをrequestへ比較。phaseで必要なhandoff/applied/observed/collectedだけ比較。",
+        "correspondingは素材対応、violationは違反、その他/nullはunknown。raw receipt数から全適用を作らない。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-derive_tree_diff",
+      "symbol": "derive_tree_diff",
+      "signature": {
+        "input_type": "TreeDiffInput",
+        "output_type": "TreeDiffResult"
+      },
+      "rule_refs": [
+        "S03"
+      ],
+      "pre": "before/after原treeと元pointer。",
+      "post": "known双方だけchanged keys sorted、片側未観測はnull。",
+      "branch_algorithm": [
+        "非空文字列key/digest値dictだけknown、{}は有効。null/非dict/無効memberは元tree pointerへunknown。",
+        "両treeのkey和集合で値差/追加/削除を集合化し昇順。raw内容/実pathを読むことはない。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-compare_write_path",
+      "symbol": "compare_write_path",
+      "signature": {
+        "input_type": "ControlEvaluationInput",
+        "output_type": "ControlComparison"
+      },
+      "rule_refs": [
+        "S03",
+        "S04"
+      ],
+      "pre": "phase planでこのdataが適用されるときだけ原宣言型へ解決。",
+      "post": "対応/違反/unknownと元field所在を保持。未来未評価は対応観測に昇格しない。",
+      "branch_algorithm": [
+        "run/postのみdataをWriteDataへ解決。declared allow setを独立context setへ、beforeをcontext beforeへ照合。",
+        "before/after diffを再導出、reported diffをset比較、diffがallowを越えたら違反。",
+        "read_onlyはbefore=afterとwrite_attempt=blocked両方が必要。succeeded違反、その他unknown。writableは許可範囲内diffだけ。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-compare_network",
+      "symbol": "compare_network",
+      "signature": {
+        "input_type": "ControlEvaluationInput",
+        "output_type": "ControlComparison"
+      },
+      "rule_refs": [
+        "S05"
+      ],
+      "pre": "phase planでこのdataが適用されるときだけ原宣言型へ解決。",
+      "post": "対応/違反/unknownと元field所在を保持。未来未評価は対応観測に昇格しない。",
+      "branch_algorithm": [
+        "run/postの原NetworkDataのみ。このdomainのrestriction deny_allを確認する。",
+        "connection_established/host_fallbackはfalse対応・true違反・非boolean/null unknown。",
+        "実接続遮断/任意allowlist方式は未閉包。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-compare_credential",
+      "symbol": "compare_credential",
+      "signature": {
+        "input_type": "ControlEvaluationInput",
+        "output_type": "ControlComparison"
+      },
+      "rule_refs": [
+        "S05"
+      ],
+      "pre": "phase planでこのdataが適用されるときだけ原宣言型へ解決。",
+      "post": "対応/違反/unknownと元field所在を保持。未来未評価は対応観測に昇格しない。",
+      "branch_algorithm": [
+        "provider_store_reached/raw_value_exposed/host_credential_fallbackはfalse対応・true違反・その他unknown。",
+        "provider/storeにアクセスせず、credential値をraw/receiptへ格納しない。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-compare_environment",
+      "symbol": "compare_environment",
+      "signature": {
+        "input_type": "ControlEvaluationInput",
+        "output_type": "ControlComparison"
+      },
+      "rule_refs": [
+        "S05"
+      ],
+      "pre": "phase planでこのdataが適用されるときだけ原宣言型へ解決。",
+      "post": "対応/違反/unknownと元field所在を保持。未来未評価は対応観測に昇格しない。",
+      "branch_algorithm": [
+        "allowed_names/passed_namesは各known setを独立context allowed_environment_namesへexact set照合。",
+        "host_all_inherited/credential_bearing_inherited=falseを比較。",
+        "元変数名の素材だけ。値/host環境を読まない。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-compare_timeout",
+      "symbol": "compare_timeout",
+      "signature": {
+        "input_type": "ControlEvaluationInput",
+        "output_type": "ControlComparison"
+      },
+      "rule_refs": [
+        "S06"
+      ],
+      "pre": "phase planでこのdataが適用されるときだけ原宣言型へ解決。",
+      "post": "対応/違反/unknownと元field所在を保持。未来未評価は対応観測に昇格しない。",
+      "branch_algorithm": [
+        "configured_secondsを独立context.timeout_secondsへknown非負integer exact照合。boolean/nullはunknown。",
+        "ended_at>=timeoutならdeadline_reached=trueかつterminal terminated/interrupted。期限前はknown terminalを保持。",
+        "late_side_effect=false。unknown time/terminalの元位置を返す。90は共通limitにしない。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-compare_resource",
+      "symbol": "compare_resource",
+      "signature": {
+        "input_type": "ControlEvaluationInput",
+        "output_type": "ControlComparison"
+      },
+      "rule_refs": [
+        "S06"
+      ],
+      "pre": "phase planでこのdataが適用されるときだけ原宣言型へ解決。",
+      "post": "対応/違反/unknownと元field所在を保持。未来未評価は対応観測に昇格しない。",
+      "branch_algorithm": [
+        "configured_cpu/configured_memory_mibを独立context cpu/memoryへ非負integer exact照合。",
+        "limit_reached=trueならterminal terminated/interrupted、falseならknown terminal、非boolean/null unknown。",
+        "self_expanded=false。1/256は共通limitにせず単位/host幅は未閉包。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-compare_diff_inspection",
+      "symbol": "compare_diff_inspection",
+      "signature": {
+        "input_type": "ControlEvaluationInput",
+        "output_type": "ControlComparison"
+      },
+      "rule_refs": [
+        "S03",
+        "S07",
+        "S10"
+      ],
+      "pre": "phase planでこのdataが適用されるときだけ原宣言型へ解決。",
+      "post": "対応/違反/unknownと元field所在を保持。未来未評価は対応観測に昇格しない。",
+      "branch_algorithm": [
+        "独立context beforeとDiffData.before、write観測afterとDiffData.afterを別照合。",
+        "元before/after diff再導出とreported_diff照合。独立context.allowed_paths包含を別照合。",
+        "allow未観測は/context/allowed_pathsへdiff_allow_set_unresolved、diff自身unknown。他軸unknownで隠さない。",
+        "raw_secret_copied=false。write.after_tree不足はその元field pointerへ返し、record全体pointerへ丸めない。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-compare_rollback",
+      "symbol": "compare_rollback",
+      "signature": {
+        "input_type": "ControlEvaluationInput",
+        "output_type": "ControlComparison"
+      },
+      "rule_refs": [
+        "S08"
+      ],
+      "pre": "phase planでこのdataが適用されるときだけ原宣言型へ解決。",
+      "post": "対応/違反/unknownと元field所在を保持。未来未評価は対応観測に昇格しない。",
+      "branch_algorithm": [
+        "RollbackData.afterをdiff観測after、target_scopeをrequest scopeへ照合。",
+        "独立beforeまたはafter未観測はunknown。not_applicableはbefore=afterだけ、変更ありN/Aは違反。",
+        "restoredは復旧treeを独立beforeへ照合。partial/unavailableは未完違反、planned/その他はunknown。",
+        "diff.after_tree不足はその元field pointer。実復旧を実行しない。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-compare_result_collection",
+      "symbol": "compare_result_collection",
+      "signature": {
+        "input_type": "ControlEvaluationInput",
+        "output_type": "ControlComparison"
+      },
+      "rule_refs": [
+        "S09",
+        "S10"
+      ],
+      "pre": "phase planでこのdataが適用されるときだけ原宣言型へ解決。",
+      "post": "対応/違反/unknownと元field所在を保持。未来未評価は対応観測に昇格しない。",
+      "branch_algorithm": [
+        "case_refをcontext caseへ、reported_terminal_statusを元case terminalへknown比較。",
+        "constraint_states九欄を各原observed、diff_stateをdiff.observed、rollback_stateをrollback.data.stateへ比較。元field nullは原fieldのpointer、record nullだけrecord pointer。",
+        "runtime_terminal_statusをtimeout/resource各data.terminal_statusへ照合。runtime failed/interrupted/terminatedをcase successにしない。runtime successとpostcondition case failedは別のまま許される。",
+        "success/failed/interrupted/terminated以外/nullはunknownでありknown conflictへ丸めない。raw_value_exposed/stdout_only=false。実回収/保存や自己申告全適用を発行しない。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+      "symbol": "compose_worker_control_analysis",
+      "signature": {
+        "input_type": "CompositionInput",
+        "output_type": "WorkerControlAnalysis"
+      },
+      "rule_refs": [
+        "S10",
+        "S02",
+        "S03"
+      ],
+      "pre": "同request/revision/scopeのbinding/stage/data pure材料。",
+      "post": "原14欄のgrade/phase/局所failureを保持し、実作用false/none。",
+      "branch_algorithm": [
+        "各control_nameごとにstage/data partsを結合する。全phaseでstage part、phase_plan.data_controlsに含むnameだけdata partが必要。不足stage/必要dataはunknown、未使用future data part不在は当該phaseの失敗ではない。findingsを全保持し一方の成功で補償しない。",
+        "各制御stage/dataとbindingはviolation>unknown>corresponding。全体も同優先順、部分成功で相殺しない。",
+        "whole_nine_control_observation_comparedはpostの比較範囲だけを表す。実全適用/実安全ではない。",
+        "sourcefield不足のfindingは各原pointer、code/pointer/return_owner exact三fieldだけuniqueしてscalar順。",
+        "request_binding原revision/scopeを結果へ。future requirement/limit追加/host fallback/実worker/実enforcement flagsはfalse、effect none。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-retain_source_backflow",
+      "symbol": "retain_source_backflow",
+      "signature": {
+        "input_type": "CompositionInput",
+        "output_type": "DetailedWorkerControlAnalysis"
+      },
+      "rule_refs": [
+        "S01",
+        "S10"
+      ],
+      "pre": "正式policy/assignment/実環境/観測者/consumerの原参照。",
+      "post": "unknown root/資格/環境と責務別返却素材を保持し実停止/復旧を主張しない。",
+      "branch_algorithm": [
+        "CompositionInputからcompose_worker_control_analysisの原14欄を参照し、original_rawと不足source/返却素材をwrapperへ。原14欄やrawを再生成して変更しない。",
+        "SEC policy/008 authority/003005006 source不足、OS assignment/回収不足、INFRA024/Worker実環境適用/観測不足を各既存owner役割へ別返却素材にする。",
+        "bare worker-control-ownerを変更せず、実owner資格は未閉包のまま。反復新承認/新issuer/truststore/backendを設計しない。",
+        "未見assignment/environmentは原新inputで再比較し、旧snapshot成功を移植しない。該当scopeの未完/unknownを保持。"
+      ],
+      "effect": "none",
+      "invariants": [
+        "input/contextと各controlの原値/presenceを変更しない。独立contextをcandidate変異から再生成しない。",
+        "clock/filesystem/network/store/runtime/Worker/backend/認可設定を操作しない。",
+        "必要元field不足はその元pointer、record不足だけrecord pointerへ。無関係scopeを全停止にしない。"
+      ]
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L5-007-F01",
+      "basic_ref": "HELIXSECURITY-L4-007-F01",
+      "requirement_ref": "HELIXSECURITY-L3-007-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F01",
+      "oracle_ref": "HELIXSECURITY-L8-007-F01",
+      "approved_obligation": "SECURITYのscope/authority/policy、OS assignment、Worker実環境capabilityを同revision/scopeへ結び、制約ごとの受渡し/実適用/観測/回収を照合する。enforcerは実環境で、SECURITYやWorkerの自己判断で制約を広げない。",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-007-F01",
+        "requirement_ref": "HELIXSECURITY-L3-007-F01",
+        "system_oracle_ref": "HELIXSECURITY-L10-007-F01",
+        "oracle_ref": "HELIXSECURITY-L9-007-F01",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "6853e9b0a04e0220ebd9e72840197042aa427a598c081cc1f544ea869cd40279"
+        },
+        "component": "execution_binding_comparer",
+        "input_meaning": "SECURITYのscope/authority/policy、OS assignment、Worker実環境capabilityを同revision/scopeへ結び、制約ごとの受渡し/実適用/観測/回収を照合する。enforcerは実環境で、SECURITYやWorkerの自己判断で制約を広げない。",
+        "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+        "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+        "operation_effect": "none"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-007-inspect_worker_control_input",
+        "HELIXSECURITY-L5-007-plan_control_phase",
+        "HELIXSECURITY-L5-007-compare_execution_binding",
+        "HELIXSECURITY-L5-007-compare_control_stages",
+        "HELIXSECURITY-L5-007-derive_tree_diff",
+        "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+        "HELIXSECURITY-L5-007-retain_source_backflow"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-F02",
+      "basic_ref": "HELIXSECURITY-L4-007-F02",
+      "requirement_ref": "HELIXSECURITY-L3-007-F02",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F02",
+      "oracle_ref": "HELIXSECURITY-L8-007-F02",
+      "approved_obligation": "許可write pathのexact setに実diffを照合する。read-onlyでもwrite禁止の強制と対象scopeの前後状態不変を観測する。",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-007-F02",
+        "requirement_ref": "HELIXSECURITY-L3-007-F02",
+        "system_oracle_ref": "HELIXSECURITY-L10-007-F02",
+        "oracle_ref": "HELIXSECURITY-L9-007-F02",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "1f8bf2861dab406265140589ec50e164bd860c57df63671f656faed359778150"
+        },
+        "component": "write_path_comparer",
+        "input_meaning": "許可write pathのexact setに実diffを照合する。read-onlyでもwrite禁止の強制と対象scopeの前後状態不変を観測する。",
+        "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+        "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+        "operation_effect": "none"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-007-inspect_worker_control_input",
+        "HELIXSECURITY-L5-007-plan_control_phase",
+        "HELIXSECURITY-L5-007-compare_control_stages",
+        "HELIXSECURITY-L5-007-derive_tree_diff",
+        "HELIXSECURITY-L5-007-compare_write_path",
+        "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+        "HELIXSECURITY-L5-007-retain_source_backflow",
+        "HELIXSECURITY-L5-007-compare_execution_binding"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-F03",
+      "basic_ref": "HELIXSECURITY-L4-007-F03",
+      "requirement_ref": "HELIXSECURITY-L3-007-F03",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F03",
+      "oracle_ref": "HELIXSECURITY-L8-007-F03",
+      "approved_obligation": "network制限を実環境へ適用し、同assignmentの許可/拒否と実接続状態を照合する。",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-007-F03",
+        "requirement_ref": "HELIXSECURITY-L3-007-F03",
+        "system_oracle_ref": "HELIXSECURITY-L10-007-F03",
+        "oracle_ref": "HELIXSECURITY-L9-007-F03",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "6c2b6494d5eb1cf93b94939a3353ec430c1de74878200e01d630bbad313103d1"
+        },
+        "component": "network_comparer",
+        "input_meaning": "network制限を実環境へ適用し、同assignmentの許可/拒否と実接続状態を照合する。",
+        "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+        "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+        "operation_effect": "none"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-007-inspect_worker_control_input",
+        "HELIXSECURITY-L5-007-plan_control_phase",
+        "HELIXSECURITY-L5-007-compare_control_stages",
+        "HELIXSECURITY-L5-007-derive_tree_diff",
+        "HELIXSECURITY-L5-007-compare_network",
+        "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+        "HELIXSECURITY-L5-007-retain_source_backflow",
+        "HELIXSECURITY-L5-007-compare_execution_binding"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-F04",
+      "basic_ref": "HELIXSECURITY-L4-007-F04",
+      "requirement_ref": "HELIXSECURITY-L3-007-F04",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F04",
+      "oracle_ref": "HELIXSECURITY-L8-007-F04",
+      "approved_obligation": "credential遮断を適用し、provider/storeへのアクセスを拒否する。",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-007-F04",
+        "requirement_ref": "HELIXSECURITY-L3-007-F04",
+        "system_oracle_ref": "HELIXSECURITY-L10-007-F04",
+        "oracle_ref": "HELIXSECURITY-L9-007-F04",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "3e5ca2ae75bd9a9bbe3ab38ee824a86a435625cf07e81f8df027c8392319c788"
+        },
+        "component": "credential_comparer",
+        "input_meaning": "credential遮断を適用し、provider/storeへのアクセスを拒否する。",
+        "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+        "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+        "operation_effect": "none"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-007-inspect_worker_control_input",
+        "HELIXSECURITY-L5-007-plan_control_phase",
+        "HELIXSECURITY-L5-007-compare_control_stages",
+        "HELIXSECURITY-L5-007-derive_tree_diff",
+        "HELIXSECURITY-L5-007-compare_credential",
+        "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+        "HELIXSECURITY-L5-007-retain_source_backflow",
+        "HELIXSECURITY-L5-007-compare_execution_binding"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-F05",
+      "basic_ref": "HELIXSECURITY-L4-007-F05",
+      "requirement_ref": "HELIXSECURITY-L3-007-F05",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F05",
+      "oracle_ref": "HELIXSECURITY-L8-007-F05",
+      "approved_obligation": "許可されたenvironment variableだけを渡し、host全体やcredential-bearing変数を継承しない。",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-007-F05",
+        "requirement_ref": "HELIXSECURITY-L3-007-F05",
+        "system_oracle_ref": "HELIXSECURITY-L10-007-F05",
+        "oracle_ref": "HELIXSECURITY-L9-007-F05",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "2df61b64fa60ec1c47775e18545f5e7f2822ac7118633a542c14ee23f3245324"
+        },
+        "component": "environment_comparer",
+        "input_meaning": "許可されたenvironment variableだけを渡し、host全体やcredential-bearing変数を継承しない。",
+        "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+        "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+        "operation_effect": "none"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-007-inspect_worker_control_input",
+        "HELIXSECURITY-L5-007-plan_control_phase",
+        "HELIXSECURITY-L5-007-compare_control_stages",
+        "HELIXSECURITY-L5-007-derive_tree_diff",
+        "HELIXSECURITY-L5-007-compare_environment",
+        "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+        "HELIXSECURITY-L5-007-retain_source_backflow",
+        "HELIXSECURITY-L5-007-compare_execution_binding"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-F06",
+      "basic_ref": "HELIXSECURITY-L4-007-F06",
+      "requirement_ref": "HELIXSECURITY-L3-007-F06",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F06",
+      "oracle_ref": "HELIXSECURITY-L8-007-F06",
+      "approved_obligation": "入力descriptorの期限を実適用し、期限内terminal resultと期限到達/中断を分ける。",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-007-F06",
+        "requirement_ref": "HELIXSECURITY-L3-007-F06",
+        "system_oracle_ref": "HELIXSECURITY-L10-007-F06",
+        "oracle_ref": "HELIXSECURITY-L9-007-F06",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "942d27f4c2a13063b7b4f49799c7ec459a39a873d8c49b4d2ccf770114a4ddd5"
+        },
+        "component": "timeout_comparer",
+        "input_meaning": "入力descriptorの期限を実適用し、期限内terminal resultと期限到達/中断を分ける。",
+        "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+        "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+        "operation_effect": "none"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-007-inspect_worker_control_input",
+        "HELIXSECURITY-L5-007-plan_control_phase",
+        "HELIXSECURITY-L5-007-compare_control_stages",
+        "HELIXSECURITY-L5-007-derive_tree_diff",
+        "HELIXSECURITY-L5-007-compare_timeout",
+        "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+        "HELIXSECURITY-L5-007-retain_source_backflow",
+        "HELIXSECURITY-L5-007-compare_execution_binding"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-F07",
+      "basic_ref": "HELIXSECURITY-L4-007-F07",
+      "requirement_ref": "HELIXSECURITY-L3-007-F07",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F07",
+      "oracle_ref": "HELIXSECURITY-L8-007-F07",
+      "approved_obligation": "入力resource descriptorの制約を実環境へ渡して適用/到達状態を観測する。",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-007-F07",
+        "requirement_ref": "HELIXSECURITY-L3-007-F07",
+        "system_oracle_ref": "HELIXSECURITY-L10-007-F07",
+        "oracle_ref": "HELIXSECURITY-L9-007-F07",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "80592c5d10f04f01a2b55a9874adc75ed87e669b153622433cdab49bb3a7ed57"
+        },
+        "component": "resource_comparer",
+        "input_meaning": "入力resource descriptorの制約を実環境へ渡して適用/到達状態を観測する。",
+        "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+        "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+        "operation_effect": "none"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-007-inspect_worker_control_input",
+        "HELIXSECURITY-L5-007-plan_control_phase",
+        "HELIXSECURITY-L5-007-compare_control_stages",
+        "HELIXSECURITY-L5-007-derive_tree_diff",
+        "HELIXSECURITY-L5-007-compare_resource",
+        "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+        "HELIXSECURITY-L5-007-retain_source_backflow",
+        "HELIXSECURITY-L5-007-compare_execution_binding"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-F08",
+      "basic_ref": "HELIXSECURITY-L4-007-F08",
+      "requirement_ref": "HELIXSECURITY-L3-007-F08",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F08",
+      "oracle_ref": "HELIXSECURITY-L8-007-F08",
+      "approved_obligation": "before tree digestとexact allowed diffを固定し、実post-stateから差分を検査する。",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-007-F08",
+        "requirement_ref": "HELIXSECURITY-L3-007-F08",
+        "system_oracle_ref": "HELIXSECURITY-L10-007-F08",
+        "oracle_ref": "HELIXSECURITY-L9-007-F08",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "1e00eb4403685f89f0a1dc3a80a3d717806141ac35ef7cb7d2c987df597082d4"
+        },
+        "component": "diff_inspection_comparer",
+        "input_meaning": "before tree digestとexact allowed diffを固定し、実post-stateから差分を検査する。",
+        "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+        "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+        "operation_effect": "none"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-007-inspect_worker_control_input",
+        "HELIXSECURITY-L5-007-plan_control_phase",
+        "HELIXSECURITY-L5-007-compare_control_stages",
+        "HELIXSECURITY-L5-007-derive_tree_diff",
+        "HELIXSECURITY-L5-007-compare_diff_inspection",
+        "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+        "HELIXSECURITY-L5-007-retain_source_backflow",
+        "HELIXSECURITY-L5-007-compare_execution_binding"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-F09",
+      "basic_ref": "HELIXSECURITY-L4-007-F09",
+      "requirement_ref": "HELIXSECURITY-L3-007-F09",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F09",
+      "oracle_ref": "HELIXSECURITY-L8-007-F09",
+      "approved_obligation": "適用対象の復旧後状態をbefore digestへ照合し、部分復元/復旧不能/未完を分ける。",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-007-F09",
+        "requirement_ref": "HELIXSECURITY-L3-007-F09",
+        "system_oracle_ref": "HELIXSECURITY-L10-007-F09",
+        "oracle_ref": "HELIXSECURITY-L9-007-F09",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "5ce58be9c16c762f43498f5ee5360cd2edccff2fe1b4141091962d5e93f65e8e"
+        },
+        "component": "rollback_comparer",
+        "input_meaning": "適用対象の復旧後状態をbefore digestへ照合し、部分復元/復旧不能/未完を分ける。",
+        "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+        "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+        "operation_effect": "none"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-007-inspect_worker_control_input",
+        "HELIXSECURITY-L5-007-plan_control_phase",
+        "HELIXSECURITY-L5-007-compare_control_stages",
+        "HELIXSECURITY-L5-007-derive_tree_diff",
+        "HELIXSECURITY-L5-007-compare_rollback",
+        "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+        "HELIXSECURITY-L5-007-retain_source_backflow",
+        "HELIXSECURITY-L5-007-compare_execution_binding"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-F10",
+      "basic_ref": "HELIXSECURITY-L4-007-F10",
+      "requirement_ref": "HELIXSECURITY-L3-007-F10",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F10",
+      "oracle_ref": "HELIXSECURITY-L8-007-F10",
+      "approved_obligation": "各caseのassignment/policy/source revision/status・制約適用/diff/rollback状態を元caseへ結んで回収する。",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-007-F10",
+        "requirement_ref": "HELIXSECURITY-L3-007-F10",
+        "system_oracle_ref": "HELIXSECURITY-L10-007-F10",
+        "oracle_ref": "HELIXSECURITY-L9-007-F10",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "b9127fd7ed78b780f8876b0fa7e1f03e9b418c17d59ac042aa7f88a8c2ca0dc8"
+        },
+        "component": "result_collection_comparer",
+        "input_meaning": "各caseのassignment/policy/source revision/status・制約適用/diff/rollback状態を元caseへ結んで回収する。",
+        "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。 原runtime terminalとcase terminalを分け、timeout/resource停止・失敗からcase successを作らない。",
+        "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+        "operation_effect": "none"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-007-inspect_worker_control_input",
+        "HELIXSECURITY-L5-007-plan_control_phase",
+        "HELIXSECURITY-L5-007-compare_control_stages",
+        "HELIXSECURITY-L5-007-derive_tree_diff",
+        "HELIXSECURITY-L5-007-compare_result_collection",
+        "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+        "HELIXSECURITY-L5-007-retain_source_backflow",
+        "HELIXSECURITY-L5-007-compare_execution_binding"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-007-N01",
+      "basic_ref": "HELIXSECURITY-L4-007-N01",
+      "requirement_ref": "HELIXSECURITY-L3-007-N01",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-N01",
+      "oracle_ref": "HELIXSECURITY-L8-007-N01",
+      "approved_obligation": "同scopeで実行前binding・実行時九制御・実行後diff/結果/復旧を照合し、各制御を一つずつ欠落させる。未見assignment/環境で再評価し、未観測を実適用や安全とみなさない。",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-007-N01",
+        "requirement_ref": "HELIXSECURITY-L3-007-N01",
+        "system_oracle_ref": "HELIXSECURITY-L10-007-N01",
+        "oracle_ref": "HELIXSECURITY-L9-007-N01",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/nfr-grade.json",
+          "object_canonical_sha256": "61a2fb980cdc9564433cf8df0f17d30f2675931b18f6c1cb5b3a5485d71256a9"
+        },
+        "component": "all_control_phase_composer",
+        "input_meaning": "同scopeで実行前binding・実行時九制御・実行後diff/結果/復旧を照合し、各制御を一つずつ欠落させる。未見assignment/環境で再評価し、未観測を実適用や安全とみなさない。",
+        "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+        "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+        "operation_effect": "none"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-007-inspect_worker_control_input",
+        "HELIXSECURITY-L5-007-plan_control_phase",
+        "HELIXSECURITY-L5-007-compare_execution_binding",
+        "HELIXSECURITY-L5-007-compare_control_stages",
+        "HELIXSECURITY-L5-007-derive_tree_diff",
+        "HELIXSECURITY-L5-007-compare_write_path",
+        "HELIXSECURITY-L5-007-compare_network",
+        "HELIXSECURITY-L5-007-compare_credential",
+        "HELIXSECURITY-L5-007-compare_environment",
+        "HELIXSECURITY-L5-007-compare_timeout",
+        "HELIXSECURITY-L5-007-compare_resource",
+        "HELIXSECURITY-L5-007-compare_diff_inspection",
+        "HELIXSECURITY-L5-007-compare_rollback",
+        "HELIXSECURITY-L5-007-compare_result_collection",
+        "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+        "HELIXSECURITY-L5-007-retain_source_backflow"
+      ]
+    }
+  ],
+  "dependency_pointer_contract": {
+    "return_owner": "worker-control-owner",
+    "role_note": "007の比較責務ラベル。policy不足はSEC、実enforcementはINFRA/Worker、assignment/回収はOSの正式ownerへL5で振り分ける。",
+    "pointer_base": "given.input root、原metadata実在位置。複合原因は別findingを保持。 他制御から参照するsource fieldがnull/unknownなら、その原field（after_tree/observed/data.state/data.terminal_status）のpointerを返す。制御記録自体がnullの場合だけ /controls/<name> を返す。依存型ごとの例外は設けない。",
+    "sort": "code/pointer/return_owner scalar順のexact三field重複だけ除去。"
+  },
+  "source_qualification_boundary": {
+    "policy": "SEC/008/003005006の独立current source/subject/版/scope/rootを正式ownerへ解決、方式未知をSourceBindingMaterialへ残す。",
+    "assignment": "OSの原assignment/revisionと回収consumerへ独立解決。新assignment/Workerをここで作らない。",
+    "environment": "INFRA024/Workerの実backend/capability/観測者と九制御receipt原資料へ解決。source_ref名や合成tree一致は実観測でない。",
+    "backflow": "finding原bare ownerを保持。policy不足はSEC、適用/観測はINFRA/Worker、assignment/回収はOSの該当scopeへ返却候補のみ。実停止/隔離は009/既存各owner、受領/解決は未成立。"
+  },
+  "remaining": [
+    "正式SEC policy/008 authority/003005006、OS assignment、INFRA024実環境/Worker backendのsource/root/資格/custody/観測者とresult consumerは未閉包。対応label/同名refで資格を生成しない。",
+    "物理path/symlink/TOCTOU/実bytes/tree codec/CPU・メモリ・時刻単位/実制約適用と未知enum/継続・途中失敗の正式schema全域は未閉包。論理projectionのdeclared型を正式wire/backend採用へしない。",
+    "実readonly write拒否/不変、network/store遮断、環境/timeout/resource適用、実diff/復旧/回収・未知環境での実再評価・停止/隔離/Backflow受領は未成立。",
+    "L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、実L9/L10/PO L11/独立review、全92親430対閉包/実装Readyは未成立。"
+  ]
+}
