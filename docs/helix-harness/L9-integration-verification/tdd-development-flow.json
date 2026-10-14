@@ -4113,7 +4113,9 @@
                 },
                 "sequence": 1
               },
-              "after": null
+              "after": {
+                "created_at": "2026-10-01T00:00:01Z"
+              }
             },
             "qualification_kind": "synthetic_design_fixture_not_actual_owner_authority",
             "authority_effect": "none",
