@@ -523,12 +523,14 @@
         "security": {
           "identity": "SYNTH-CANDIDATE-023-UNSEEN",
           "revision": "r9",
-          "state": "not_established"
+          "state": "not_established",
+          "review_actor_ref": "SYNTH-ACTOR-023-UNSEEN-REVIEWER"
         },
         "worker": {
           "identity": "SYNTH-CANDIDATE-023-UNSEEN",
           "revision": "r9",
-          "execution": "not_executed"
+          "execution": "not_executed",
+          "execution_actor_ref": "SYNTH-ACTOR-023-UNSEEN-EXECUTOR"
         },
         "harness": {
           "identity": "SYNTH-CANDIDATE-023-UNSEEN",
@@ -540,6 +542,10 @@
           "revision": "r9",
           "promotion": "not_promoted"
         }
+      },
+      "actors": {
+        "review_actor_ref": "SYNTH-ACTOR-023-UNSEEN-REVIEWER",
+        "execution_actor_ref": "SYNTH-ACTOR-023-UNSEEN-EXECUTOR"
       },
       "composite": {
         "state": "incomplete"
@@ -1067,12 +1073,14 @@
               "security": {
                 "identity": "SYNTH-CANDIDATE-023-UNSEEN",
                 "revision": "r9",
-                "state": "not_established"
+                "state": "not_established",
+                "review_actor_ref": "SYNTH-ACTOR-023-UNSEEN-REVIEWER"
               },
               "worker": {
                 "identity": "SYNTH-CANDIDATE-023-UNSEEN",
                 "revision": "r9",
-                "execution": "not_executed"
+                "execution": "not_executed",
+                "execution_actor_ref": "SYNTH-ACTOR-023-UNSEEN-EXECUTOR"
               },
               "harness": {
                 "identity": "SYNTH-CANDIDATE-023-UNSEEN",
@@ -1084,6 +1092,10 @@
                 "revision": "r9",
                 "promotion": "not_promoted"
               }
+            },
+            "actors": {
+              "review_actor_ref": "SYNTH-ACTOR-023-UNSEEN-REVIEWER",
+              "execution_actor_ref": "SYNTH-ACTOR-023-UNSEEN-EXECUTOR"
             },
             "composite": {
               "state": "incomplete"
@@ -1114,12 +1126,14 @@
             "security": {
               "identity": "SYNTH-CANDIDATE-023-UNSEEN",
               "revision": "r9",
-              "state": "not_established"
+              "state": "not_established",
+              "review_actor_ref": "SYNTH-ACTOR-023-UNSEEN-REVIEWER"
             },
             "worker": {
               "identity": "SYNTH-CANDIDATE-023-UNSEEN",
               "revision": "r9",
-              "execution": "not_executed"
+              "execution": "not_executed",
+              "execution_actor_ref": "SYNTH-ACTOR-023-UNSEEN-EXECUTOR"
             },
             "harness": {
               "identity": "SYNTH-CANDIDATE-023-UNSEEN",
@@ -1131,6 +1145,10 @@
               "revision": "r9",
               "promotion": "not_promoted"
             }
+          },
+          "unseen_actors": {
+            "review_actor_ref": "SYNTH-ACTOR-023-UNSEEN-REVIEWER",
+            "execution_actor_ref": "SYNTH-ACTOR-023-UNSEEN-EXECUTOR"
           },
           "composite_state": "incomplete",
           "po_acceptance": "not_established"
@@ -1204,35 +1222,54 @@
           }
         },
         "defect_clause": "審査だけでpromotion",
-        "mutation_source_path": "security.admission",
-        "pre_patch_value": "not_established"
+        "mutation_source_path": "os.promotion",
+        "pre_patch_value": "not_promoted"
       },
       "when": {
-        "patch": {
-          "path": "security.admission",
-          "from": "not_established",
-          "to": "accepted"
-        },
+        "patch": [
+          {
+            "path": "security.admission",
+            "from": "not_established",
+            "to": "accepted"
+          },
+          {
+            "path": "os.promotion",
+            "from": "not_promoted",
+            "to": "promoted_from_security_only"
+          }
+        ],
         "apply_to_packet_ref": "PKT-023-STAGE-BASE"
       },
       "then": {
         "source_field": "expected_observation",
         "source_value": "各ownerと前後状態/未完が別に辿れる。OS ticketの存在とSEC受入/HARNESS検証の成立を別々に追跡する。",
         "observed_post_patch": {
-          "mutated_field": "security.admission",
-          "post_patch_value": "accepted",
-          "corroborating_field": "os.promotion",
-          "corroborating_value": "not_promoted",
-          "expected_post_value": "promoted_from_security_only"
+          "mutated_field": "os.promotion",
+          "post_patch_value": "promoted_from_security_only",
+          "corroborating_field": "security.admission",
+          "corroborating_value": "accepted",
+          "expected_post_value": "accepted",
+          "applied_operations": [
+            {
+              "path": "security.admission",
+              "from": "not_established",
+              "post_patch_value": "accepted"
+            },
+            {
+              "path": "os.promotion",
+              "from": "not_promoted",
+              "post_patch_value": "promoted_from_security_only"
+            }
+          ]
         },
-        "diagnostic_in_japanese": "SECURITY審査不足をSECURITY ownerへ戻し、実行/検証/昇格はそれぞれ未成立で止める。"
+        "diagnostic_in_japanese": "SECURITY admissionだけを根拠にpromotionしたpacket値を明示し、SECURITY ownerへ戻す。実行/検証/昇格の実資格は成立させない。"
       },
       "failure_route": {
         "source_field": "failure_observation",
         "source_value": "意味/審査不足はSEC、実行はWorker/INFRA、検証はHARNESS、進行はOSへ返す。",
-        "case_route": "SECURITY審査不足をSECURITY ownerへ戻し、実行/検証/昇格はそれぞれ未成立で止める。"
+        "case_route": "SECURITY admissionだけを根拠にpromotionしたpacket値を明示し、SECURITY ownerへ戻す。実行/検証/昇格の実資格は成立させない。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N02",
@@ -1297,35 +1334,54 @@
           }
         },
         "defect_clause": "CIだけでsecurity受入",
-        "mutation_source_path": "harness.verification",
+        "mutation_source_path": "security.admission",
         "pre_patch_value": "not_established"
       },
       "when": {
-        "patch": {
-          "path": "harness.verification",
-          "from": "not_established",
-          "to": "synthetic_green_claim"
-        },
+        "patch": [
+          {
+            "path": "harness.verification",
+            "from": "not_established",
+            "to": "synthetic_green_claim"
+          },
+          {
+            "path": "security.admission",
+            "from": "not_established",
+            "to": "accepted_from_harness_only"
+          }
+        ],
         "apply_to_packet_ref": "PKT-023-STAGE-BASE"
       },
       "then": {
         "source_field": "expected_observation",
         "source_value": "各ownerと前後状態/未完が別に辿れる。OS ticketの存在とSEC受入/HARNESS検証の成立を別々に追跡する。",
         "observed_post_patch": {
-          "mutated_field": "harness.verification",
-          "post_patch_value": "synthetic_green_claim",
-          "corroborating_field": "security.admission",
-          "corroborating_value": "not_established",
-          "expected_post_value": "accepted_from_harness_only"
+          "mutated_field": "security.admission",
+          "post_patch_value": "accepted_from_harness_only",
+          "corroborating_field": "harness.verification",
+          "corroborating_value": "synthetic_green_claim",
+          "expected_post_value": "synthetic_green_claim",
+          "applied_operations": [
+            {
+              "path": "harness.verification",
+              "from": "not_established",
+              "post_patch_value": "synthetic_green_claim"
+            },
+            {
+              "path": "security.admission",
+              "from": "not_established",
+              "post_patch_value": "accepted_from_harness_only"
+            }
+          ]
         },
-        "diagnostic_in_japanese": "SECURITY受入の意味不足をSECURITY ownerへ戻す。HARNESS green主張は受入を作らず、合成値のまま保持する。"
+        "diagnostic_in_japanese": "HARNESS green claimだけでSECURITY受入を作ったpacket値を明示し、SECURITY ownerへ戻す。green claimは合成値のままとする。"
       },
       "failure_route": {
         "source_field": "failure_observation",
         "source_value": "意味/審査不足はSEC、実行はWorker/INFRA、検証はHARNESS、進行はOSへ返す。",
-        "case_route": "SECURITY受入の意味不足をSECURITY ownerへ戻す。HARNESS green主張は受入を作らず、合成値のまま保持する。"
+        "case_route": "HARNESS green claimだけでSECURITY受入を作ったpacket値を明示し、SECURITY ownerへ戻す。green claimは合成値のままとする。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N03",
@@ -1409,7 +1465,14 @@
           "post_patch_value": "complete_from_first_run",
           "corroborating_field": "composite.unmet",
           "corroborating_value": "実資格・実隔離・実検証・昇格未成立",
-          "expected_post_value": "cleared"
+          "expected_post_value": "実資格・実隔離・実検証・昇格未成立",
+          "applied_operations": [
+            {
+              "path": "composite.historical_stage4",
+              "from": "not_established",
+              "post_patch_value": "complete_from_first_run"
+            }
+          ]
         },
         "diagnostic_in_japanese": "初回規範の範囲を越える主張を未成立に戻し、各ownerの未完状態を保持する。"
       },
@@ -1418,7 +1481,7 @@
         "source_value": "意味/審査不足はSEC、実行はWorker/INFRA、検証はHARNESS、進行はOSへ返す。",
         "case_route": "初回規範の範囲を越える主張を未成立に戻し、各ownerの未完状態を保持する。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N04",
@@ -1502,7 +1565,14 @@
           "post_patch_value": "promoted_from_ticket_only",
           "corroborating_field": "security.admission",
           "corroborating_value": "not_established",
-          "expected_post_value": "still_not_established"
+          "expected_post_value": "not_established",
+          "applied_operations": [
+            {
+              "path": "os.promotion",
+              "from": "not_promoted",
+              "post_patch_value": "promoted_from_ticket_only"
+            }
+          ]
         },
         "diagnostic_in_japanese": "ticket単独の進行をOS ownerへ戻し、SECURITY受入とHARNESS検証を未成立として止める。"
       },
@@ -1511,7 +1581,7 @@
         "source_value": "意味/審査不足はSEC、実行はWorker/INFRA、検証はHARNESS、進行はOSへ返す。",
         "case_route": "ticket単独の進行をOS ownerへ戻し、SECURITY受入とHARNESS検証を未成立として止める。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N05",
@@ -1625,9 +1695,16 @@
         "observed_post_patch": {
           "mutated_field": "receipts.worker_candidate_ref",
           "post_patch_value": "candidate_b",
-          "corroborating_field": "candidate.identity",
+          "corroborating_field": "candidate_a.identity",
           "corroborating_value": "SYNTH-CANDIDATE-023-A",
-          "expected_post_value": "SYNTH-CANDIDATE-023-A"
+          "expected_post_value": "SYNTH-CANDIDATE-023-A",
+          "applied_operations": [
+            {
+              "path": "receipts.worker_candidate_ref",
+              "from": "candidate_a",
+              "post_patch_value": "candidate_b"
+            }
+          ]
         },
         "diagnostic_in_japanese": "一致しないreceiptを該当段階の入力不整合としてWorker/INFRAとSECURITYへ戻す。"
       },
@@ -1636,7 +1713,7 @@
         "source_value": "当該段階の入力/authority/環境を未成立にし発生ownerへ返す。",
         "case_route": "一致しないreceiptを該当段階の入力不整合としてWorker/INFRAとSECURITYへ戻す。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N06",
@@ -1752,7 +1829,14 @@
           "post_patch_value": "SYNTH-WORKER-RESULT-NOT-YET-GENERATED",
           "corroborating_field": "worker.execution_started",
           "corroborating_value": false,
-          "expected_post_value": false
+          "expected_post_value": false,
+          "applied_operations": [
+            {
+              "path": "review_input.future_result_ref",
+              "from": null,
+              "post_patch_value": "SYNTH-WORKER-RESULT-NOT-YET-GENERATED"
+            }
+          ]
         },
         "diagnostic_in_japanese": "未来の結果参照で初期審査を循環させず、初回入力をcandidateと既存材料へ戻す。"
       },
@@ -1761,7 +1845,7 @@
         "source_value": "当該段階の入力/authority/環境を未成立にし発生ownerへ返す。",
         "case_route": "未来の結果参照で初期審査を循環させず、初回入力をcandidateと既存材料へ戻す。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N07",
@@ -1877,7 +1961,14 @@
           "post_patch_value": true,
           "corroborating_field": "worker.isolation_applied",
           "corroborating_value": false,
-          "expected_post_value": false
+          "expected_post_value": false,
+          "applied_operations": [
+            {
+              "path": "worker.execution_started",
+              "from": false,
+              "post_patch_value": true
+            }
+          ]
         },
         "diagnostic_in_japanese": "007の隔離適用が未成立なら実行開始を未成立にし、環境適用はWorker/INFRAへ戻す。"
       },
@@ -1886,7 +1977,7 @@
         "source_value": "当該段階の入力/authority/環境を未成立にし発生ownerへ返す。",
         "case_route": "007の隔離適用が未成立なら実行開始を未成立にし、環境適用はWorker/INFRAへ戻す。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N08",
@@ -1968,7 +2059,14 @@
           "post_patch_value": "closed_on_ack_only",
           "corroborating_field": "obligation.resolved",
           "corroborating_value": false,
-          "expected_post_value": false
+          "expected_post_value": false,
+          "applied_operations": [
+            {
+              "path": "obligation.state",
+              "from": "open",
+              "post_patch_value": "closed_on_ack_only"
+            }
+          ]
         },
         "diagnostic_in_japanese": "受領ACKと解決を分離し、未完義務を該当段階と接続ownerへ戻す。"
       },
@@ -1977,7 +2075,7 @@
         "source_value": "該当段階と接続を未完にし既存ownerへ戻す。",
         "case_route": "受領ACKと解決を分離し、未完義務を該当段階と接続ownerへ戻す。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N09",
@@ -2059,7 +2157,14 @@
           "post_patch_value": "promoted_despite_harness_failure",
           "corroborating_field": "harness.verification",
           "corroborating_value": "failed",
-          "expected_post_value": "failed"
+          "expected_post_value": "failed",
+          "applied_operations": [
+            {
+              "path": "os.promotion",
+              "from": "not_promoted",
+              "post_patch_value": "promoted_despite_harness_failure"
+            }
+          ]
         },
         "diagnostic_in_japanese": "検証失敗をHARNESS対応pairへ戻し、OS昇格を未成立に保持する。"
       },
@@ -2068,7 +2173,7 @@
         "source_value": "該当段階と接続を未完にし既存ownerへ戻す。",
         "case_route": "検証失敗をHARNESS対応pairへ戻し、OS昇格を未成立に保持する。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N10",
@@ -2150,7 +2255,14 @@
           "post_patch_value": "r1",
           "corroborating_field": "candidate.revision",
           "corroborating_value": "r2",
-          "expected_post_value": "r2"
+          "expected_post_value": "r2",
+          "applied_operations": [
+            {
+              "path": "security_accept.candidate_revision",
+              "from": "r2",
+              "post_patch_value": "r1"
+            }
+          ]
         },
         "diagnostic_in_japanese": "旧revisionのaccept流用を拒み、現revisionのSECURITY判定を未成立としてSECURITY ownerへ戻す。"
       },
@@ -2159,7 +2271,7 @@
         "source_value": "該当段階と接続を未完にし既存ownerへ戻す。",
         "case_route": "旧revisionのaccept流用を拒み、現revisionのSECURITY判定を未成立としてSECURITY ownerへ戻す。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N11",
@@ -2235,7 +2347,14 @@
           "post_patch_value": true,
           "corroborating_field": "selected_operation.operation",
           "corroborating_value": "初回開発環境でのtool利用検討",
-          "expected_post_value": "初回開発環境でのtool利用検討"
+          "expected_post_value": "初回開発環境でのtool利用検討",
+          "applied_operations": [
+            {
+              "path": "security_review.claimed_release_permission",
+              "from": false,
+              "post_patch_value": true
+            }
+          ]
         },
         "diagnostic_in_japanese": "release authorityを生成せず、操作ごとの既存SEC008 tupleの未成立をSECURITY ownerへ戻す。"
       },
@@ -2244,7 +2363,7 @@
         "source_value": "操作/資源/保存不足を各ownerへ返し、上流意味変更だけ該当L1/L2へ戻す。",
         "case_route": "release authorityを生成せず、操作ごとの既存SEC008 tupleの未成立をSECURITY ownerへ戻す。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N12",
@@ -2324,6 +2443,13 @@
           ],
           "expected_post_value": [
             "SYNTH-PLUGIN-B"
+          ],
+          "applied_operations": [
+            {
+              "path": "plugins.all_required_for_initial_acceptance",
+              "from": false,
+              "post_patch_value": true
+            }
           ]
         },
         "diagnostic_in_japanese": "初回選択外のplugin実運転を必須へ拡張せず、未選択範囲を未観測に保つ。"
@@ -2333,7 +2459,7 @@
         "source_value": "操作/資源/保存不足を各ownerへ返し、上流意味変更だけ該当L1/L2へ戻す。",
         "case_route": "初回選択外のplugin実運転を必須へ拡張せず、未選択範囲を未観測に保つ。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N13",
@@ -2409,7 +2535,14 @@
           "post_patch_value": "SECURITY",
           "corroborating_field": "os.promotion",
           "corroborating_value": "not_promoted",
-          "expected_post_value": "not_promoted"
+          "expected_post_value": "not_promoted",
+          "applied_operations": [
+            {
+              "path": "os.state_owner",
+              "from": "OS",
+              "post_patch_value": "SECURITY"
+            }
+          ]
         },
         "diagnostic_in_japanese": "OSの進行/正本更新責務をOSへ戻し、SECURITYはpolicy/admissionの責務に留める。"
       },
@@ -2418,7 +2551,7 @@
         "source_value": "操作/資源/保存不足を各ownerへ返し、上流意味変更だけ該当L1/L2へ戻す。",
         "case_route": "OSの進行/正本更新責務をOSへ戻し、SECURITYはpolicy/admissionの責務に留める。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N14",
@@ -2467,12 +2600,14 @@
               "security": {
                 "identity": "SYNTH-CANDIDATE-023-UNSEEN",
                 "revision": "r9",
-                "state": "not_established"
+                "state": "not_established",
+                "review_actor_ref": "SYNTH-ACTOR-023-UNSEEN-REVIEWER"
               },
               "worker": {
                 "identity": "SYNTH-CANDIDATE-023-UNSEEN",
                 "revision": "r9",
-                "execution": "not_executed"
+                "execution": "not_executed",
+                "execution_actor_ref": "SYNTH-ACTOR-023-UNSEEN-EXECUTOR"
               },
               "harness": {
                 "identity": "SYNTH-CANDIDATE-023-UNSEEN",
@@ -2484,6 +2619,10 @@
                 "revision": "r9",
                 "promotion": "not_promoted"
               }
+            },
+            "actors": {
+              "review_actor_ref": "SYNTH-ACTOR-023-UNSEEN-REVIEWER",
+              "execution_actor_ref": "SYNTH-ACTOR-023-UNSEEN-EXECUTOR"
             },
             "composite": {
               "state": "incomplete"
@@ -2510,7 +2649,14 @@
           "post_patch_value": "complete_from_unit_green",
           "corroborating_field": "connection.state",
           "corroborating_value": "failed",
-          "expected_post_value": "failed"
+          "expected_post_value": "failed",
+          "applied_operations": [
+            {
+              "path": "composite.state",
+              "from": "incomplete",
+              "post_patch_value": "complete_from_unit_green"
+            }
+          ]
         },
         "diagnostic_in_japanese": "構成体接続故障を未完のまま保ち、単体010/011/012/013値を全体成立へ一般化しない。"
       },
@@ -2519,7 +2665,7 @@
         "source_value": "該当構成体を未完にし内容/接続/利用者判断の別条件を保つ。",
         "case_route": "構成体接続故障を未完のまま保ち、単体010/011/012/013値を全体成立へ一般化しない。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N15",
@@ -2568,12 +2714,14 @@
               "security": {
                 "identity": "SYNTH-CANDIDATE-023-UNSEEN",
                 "revision": "r9",
-                "state": "not_established"
+                "state": "not_established",
+                "review_actor_ref": "SYNTH-ACTOR-023-UNSEEN-REVIEWER"
               },
               "worker": {
                 "identity": "SYNTH-CANDIDATE-023-UNSEEN",
                 "revision": "r9",
-                "execution": "not_executed"
+                "execution": "not_executed",
+                "execution_actor_ref": "SYNTH-ACTOR-023-UNSEEN-EXECUTOR"
               },
               "harness": {
                 "identity": "SYNTH-CANDIDATE-023-UNSEEN",
@@ -2585,6 +2733,10 @@
                 "revision": "r9",
                 "promotion": "not_promoted"
               }
+            },
+            "actors": {
+              "review_actor_ref": "SYNTH-ACTOR-023-UNSEEN-REVIEWER",
+              "execution_actor_ref": "SYNTH-ACTOR-023-UNSEEN-EXECUTOR"
             },
             "composite": {
               "state": "incomplete"
@@ -2609,18 +2761,25 @@
         "observed_post_patch": {
           "mutated_field": "worker.execution",
           "post_patch_value": "success",
-          "corroborating_field": "worker.execution",
+          "corroborating_field": "stage_records.worker.execution",
           "corroborating_value": "not_executed",
-          "expected_post_value": "not_executed"
+          "expected_post_value": "not_executed",
+          "applied_operations": [
+            {
+              "path": "worker.execution",
+              "from": "not_executed",
+              "post_patch_value": "success"
+            }
+          ]
         },
-        "diagnostic_in_japanese": "未実行を成功扱いせず、Worker実行段階の未成立として保持する。"
+        "diagnostic_in_japanese": "未実行を成功扱いせず、別のstage_records内のWorker実行記録をnot_executedとして保持する。"
       },
       "failure_route": {
         "source_field": "failure_observation",
         "source_value": "該当構成体を未完にし内容/接続/利用者判断の別条件を保つ。",
-        "case_route": "未実行を成功扱いせず、Worker実行段階の未成立として保持する。"
+        "case_route": "未実行を成功扱いせず、別のstage_records内のWorker実行記録をnot_executedとして保持する。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     },
     {
       "id": "HELIXSECURITY-L9-023-N16",
@@ -2669,12 +2828,14 @@
               "security": {
                 "identity": "SYNTH-CANDIDATE-023-UNSEEN",
                 "revision": "r9",
-                "state": "not_established"
+                "state": "not_established",
+                "review_actor_ref": "SYNTH-ACTOR-023-UNSEEN-REVIEWER"
               },
               "worker": {
                 "identity": "SYNTH-CANDIDATE-023-UNSEEN",
                 "revision": "r9",
-                "execution": "not_executed"
+                "execution": "not_executed",
+                "execution_actor_ref": "SYNTH-ACTOR-023-UNSEEN-EXECUTOR"
               },
               "harness": {
                 "identity": "SYNTH-CANDIDATE-023-UNSEEN",
@@ -2686,6 +2847,10 @@
                 "revision": "r9",
                 "promotion": "not_promoted"
               }
+            },
+            "actors": {
+              "review_actor_ref": "SYNTH-ACTOR-023-UNSEEN-REVIEWER",
+              "execution_actor_ref": "SYNTH-ACTOR-023-UNSEEN-EXECUTOR"
             },
             "composite": {
               "state": "incomplete"
@@ -2712,7 +2877,14 @@
           "post_patch_value": "accepted_from_ai_verification",
           "corroborating_field": "harness.verification_owner",
           "corroborating_value": "AI-fixture",
-          "expected_post_value": "AI-fixture"
+          "expected_post_value": "AI-fixture",
+          "applied_operations": [
+            {
+              "path": "po.acceptance",
+              "from": "not_established",
+              "post_patch_value": "accepted_from_ai_verification"
+            }
+          ]
         },
         "diagnostic_in_japanese": "検証者のfixture表記からPO判断を生成せず、利用者判断の別条件を未成立に保持する。"
       },
@@ -2721,7 +2893,7 @@
         "source_value": "該当構成体を未完にし内容/接続/利用者判断の別条件を保つ。",
         "case_route": "検証者のfixture表記からPO判断を生成せず、利用者判断の別条件を未成立に保持する。"
       },
-      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。"
+      "expected_distinction": "このfixture変異は原L10負例の指定節を実値で作る。正常packetから変異し、同一oracleの別節を暗黙に代用しない。expected_post_valueはmutation後に保たれるcorroborating_valueを表し、誤った結論はpost_patch_valueで示す。"
     }
   ],
   "case_counts": {
