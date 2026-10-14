@@ -1,0 +1,2578 @@
+{
+  "status": "draft_logical_detail_and_fixed_raw_oracles_pending_independent_review",
+  "parent": "HELIXSECURITY-L2-016",
+  "source_main": "17078480664a1e444dc2216808f5d577f08dd6fa",
+  "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "boundary": "1.0は既存六分類語彙とunknownの記録基盤に限る。sink別1.x enforcementは別受入とし、L2-005 secret非露出およびL2-006一般egressを延期しない。",
+    "deferred_scope": "1.x公開時/sink classification enforcement"
+  },
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "implementation_readiness": "not_ready",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "7b5f78087ce4506ecc8a23ec2b1bb9a2efb65e210443196bad05166522970041",
+      "json_pointer": "/requirements/4",
+      "source_value": {
+        "id": "HELIXSECURITY-L3-016-B01",
+        "parent": "HELIXSECURITY-L2-016",
+        "title": "分類基盤とsink強制の境界",
+        "obligation": "1.0の分類記録基盤は全Web/API/log/error/stack trace/debug/source map/Tool result/artifact/LLM contextへの1.x強制を完了条件にしない。005の生secret非露出や006一般egress等の既存1.0条件は延期しない。",
+        "oracle_ref": "HELIXSECURITY-L10-016-B01"
+      },
+      "value_canonical_sha256": "c573a9cdbe3b0084d2433235798071a648ede2b3a2198fa148174ff1244ff83d",
+      "id": "HELIXSECURITY-L3-016-B01"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "json_pointer": "/requirements/24",
+      "source_value": {
+        "id": "HELIXSECURITY-L3-016-F01",
+        "parent": "HELIXSECURITY-L2-016",
+        "title": "六分類とunknownの記録",
+        "obligation": "public/customer-owned/service-internal/HELIX-confidential/HELIX-restricted/secretの全六語彙を定義し、015 asset identityへ分類とowner/source/revisionを付与・参照する。未分類はunknownとして保存し、public/allowへ推測しない。",
+        "oracle_ref": "HELIXSECURITY-L10-016-F01"
+      },
+      "value_canonical_sha256": "44016ce795f6732177685e48a7cfa1ac09adcb66ec47dfbb3440c1673878acf2",
+      "id": "HELIXSECURITY-L3-016-F01"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "96876217c635ff31c08f67fc01d5c2321b85c9415baae64c933e704743653084",
+      "json_pointer": "/cases/4",
+      "source_value": {
+        "id": "HELIXSECURITY-L10-016-B01",
+        "parent": "HELIXSECURITY-L2-016",
+        "title": "分類基盤とsink強制の境界",
+        "requirement_ref": "HELIXSECURITY-L3-016-B01",
+        "positive_input": "1.x sink enforcerなしで分類利用と1.0secret/egress条件を比較する。",
+        "expected_observation": "分類・sink強制・既存送信判定が別に残る。",
+        "negative_input": "1.x未構築で一般egress禁止、分類だけで全sink安全、1.0secret制約延期。",
+        "failure_observation": "該当条件ownerへ戻し、後続sink能力を成功にしない。",
+        "execution_state": "not_executed"
+      },
+      "value_canonical_sha256": "5c28fa66db829c5278f0eeb9e288673bff8fcb135599b993628b3c151145d8b5",
+      "id": "HELIXSECURITY-L10-016-B01"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "json_pointer": "/cases/24",
+      "source_value": {
+        "id": "HELIXSECURITY-L10-016-F01",
+        "parent": "HELIXSECURITY-L2-016",
+        "title": "六分類とunknownの記録",
+        "requirement_ref": "HELIXSECURITY-L3-016-F01",
+        "positive_input": "全六分類と未分類、別asset/revision分類を照合する。",
+        "expected_observation": "分類出所とunknown、不一致が辿れ、公開範囲とdata-use許可/operation authorityを区別する。",
+        "negative_input": "分類不明をpublic、旧revision転用、分類だけで利用/送信許可。",
+        "failure_observation": "当該分類をunknown/未成立にし、分類意味はSEC/資産出所はownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "value_canonical_sha256": "c9defb4380a72c71095f9ac21ea8105d697ea1a149e85c778a2f2721590b0f57",
+      "id": "HELIXSECURITY-L10-016-F01"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "2dfa97ebba7be0f93c4e5fbcb2da13514e029900a2c593e92127ba257ad1fb9b"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/asset-identity-foundation.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "1ea213ea4e0466f7f89a8f2ed67c2bd923cbd01c580c3e2a08a99e600d0106cc"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "2174775ec98f96b4bb4d6bb0a3187311d8d98a45bebb48823577ef0a6e52d4b6"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/data-use-classification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "7313b8155d18a4cf6d0acba51beea492eb0fddc2738d10d9710d2b139561457d"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/external-input-trust-boundary.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "9e1a4fd0f331cee16f120ba5ac99272deaa915f2bb20f456bae2077cd3ac91b3"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/network-egress-boundary.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "e57359a19c4d3b5c9b8f8e3540185aca33ee607bfbdc3f4f7682349ae5f25efe"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/operation-authority-reuse.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "b7ccddc646d070ab2dd7f82feac699a154e3d76cdc9131d8fbdf7b64e4a91086"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/data-use-classification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "cf8e9df983e5cc99f9f717f4954edc2e8d7373b8156bb0ad54e1491d3bdb5c1d"
+    }
+  ],
+  "upstream_wholefiles": [
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/business-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "b01cdbd03885b523254aba339bd166ad235382402942527e4e7844825ea05fcd"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/functional-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "8728cf7c2730a29375f3c7dad75c77157a119d603e52b46f775ede8f1eae474d"
+    },
+    {
+      "path": "docs/helix-connect/L10-verification/nfr-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "e9ef8fea59cfed03b96ff61e2f556fc22fa72279cf660fa47786c2b1f24fa877"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/business-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "29ca195ff54d61f422050f28740c2cf887defaf21a3ad7da4c37f3ef797bd0ed"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/functional-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "fb04683632d92e5c51c46fdc2eecf388a58e406856f243b8105513e075a49421"
+    },
+    {
+      "path": "docs/helix-connect/L3-requirements/nfr-grade.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "0fc000a1bd25a5a9c77cb845870b294bc246367051e49daa378cabb4fd6ffdd4"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a"
+    },
+    {
+      "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8"
+    },
+    {
+      "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/business-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "a3123757f7f057f787ce8d1e08437512278f892f974652d5e5dace245e777231"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "d7ce3514fd0dd3ba3bd5545fb97075425d2a8abb3156a107bfaf6e7d56db2dbf"
+    },
+    {
+      "path": "docs/helix-intelligence/L10-verification/nfr-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "9d27bf4b9ebb6783e3da2fb5c20667d957d26a49f1861b5d1ae3af578e811dba"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/business-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "07468dcc9d059396fdf7ca060910bda77cc8e67cb1a44861f5483274f20c13ff"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "622072ec5eae8b73395091638034e7d76b35c916f4b0799c2ff37a4ec57e649e"
+    },
+    {
+      "path": "docs/helix-intelligence/L3-requirements/nfr-grade.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "161426bd23eba08f84a17072b046fe567e8acdd4145db4d795998718201f4132"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66"
+    }
+  ],
+  "source_pin_limit": "bytes/quote/object一致は実資格/意味閉包ではない。",
+  "legacy_comparison": {
+    "mode": "semantic_rederivation",
+    "asset_inventory": [
+      {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "source_path": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+        "source_path": "docs/design/helix/L5-detail/product-data-connector.md",
+        "source_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6",
+        "source_path": "docs/design/helix/L6-function-design/product-data-connector.md",
+        "source_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42"
+      }
+    ],
+    "source_quotes": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+        "whole_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "start_line": 113,
+        "end_line": 113,
+        "exact_quote": "| **HIL-FR-23** | Product Data Connector Registryはsource種別、connector/schema version、credential reference、classification、read/write方針、sync方式、owner、enabled stateを保持する。credential値は保存しない。 | connector contract、digest、enable/disable receipt |",
+        "quote_utf8_sha256": "85a92638e7c8e010055e880609ea9c634e205df5c61f0e80bdea3fbc9be68c92"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+        "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+        "whole_file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+        "start_line": 197,
+        "end_line": 197,
+        "exact_quote": "| **HIL-NFR-17** | product dataはclassification、最小取得、redaction、retention、freshness SLAを持ち、PII/secret/raw payloadを通常projectionやagent contextへ複製しない。 |",
+        "quote_utf8_sha256": "186a5b69b53e453fec1351f40e72221a3fea749e727ba0668d842a512a9566f6"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+        "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+        "whole_file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+        "start_line": 43,
+        "end_line": 50,
+        "exact_quote": "| component | 責務 | authority | 禁止 |\n|---|---|---|---|\n| `ProductDataConnectorRegistry` | source、connector/schema/mapping version、credential reference、classification、sync/read-write policy、owner、freshness/retentionを管理 | Node registry event | credential値保存、不明version、write権限の暗黙付与 |\n| `ProductDataIngestionCoordinator` | full/incremental run、lease/fence、state、idempotency、checkpointを順序制御 | run event | connector固有mapping、Python結果の直接commit |\n| `ProductDataReadConnectorPort` | versioned requestを外部read adapterへ渡しrecord pageとcursorを返す | bounded ephemeral observation | arbitrary query、write-back、credential本文の返却、raw inputのpersistent seal |\n| `ProductDataProjectionWorker` | raw pageからcanonical entity/mapping proposalを導出 | Python proposal artifactだけ | harness.db、current pointer、watermarkへのwrite |\n| `ProductDataProposalIngestionPort` | worker envelope、source/schema/mapping/lineage/digestをNodeで再検証 | staged proposal | partial result、late fence、schema不明resultの昇格 |\n| `ProductDataPolicyGate` | classification、redaction、retention、freshness、agent-context field allowlistを評価 | policy receipt | PII/secret/raw payload複製、unknown classificationの通過 |",
+        "quote_utf8_sha256": "d7b8ebf81516aaca5734734935bd8cd36db2b80069987b023183e689550cdce6"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+        "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+        "whole_file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+        "start_line": 149,
+        "end_line": 151,
+        "exact_quote": "全source/entity fieldはclassificationを持ち、agent contextへ渡せるfieldはconnector contractの明示allowlistとredaction済み\nartifactだけに限定する。PII、secret、credential、自由形式raw payload、unknown classificationは通常projectionへ保存しない。\nredactionは値を不可逆変換またはdropし、evidenceにはpolicy/version、field path、input/output digest、finding countだけを残す。",
+        "quote_utf8_sha256": "94aaf8b82e8de0a61272eb130f191b6ae3c325f8c2ab521c11487fbe139ff9e5"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+        "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+        "whole_file_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+        "start_line": 43,
+        "end_line": 54,
+        "exact_quote": "| `validateProductPageChain` | `(plan, pages, terminal) => ResultV1<ValidatedRecordSetV1, ProductDataFailureV1>` | page sequence、record key、cursor、content digest、終端exactly-one | `U-PDC-006` | `HAC-HIL-11a` | `HST-CASE-010-11` | `HIL_PRODUCT_INGESTION_INVALID` |\n| `validateProductSourceSchema` | `(registered, observed, driftPolicy) => SchemaValidationDecisionV1` | field/type/nullability/enum/identity差分を全件分類 | `U-PDC-007` | `HAC-HIL-11b` | `HST-CASE-010-03` | `HIL_PRODUCT_SCHEMA_DRIFT` |\n| `deriveCanonicalProductEntity` | `(record, mapping, source) => ResultV1<CanonicalEntityProposalV1, ProductDataFailureV1>` | stable ID、record key digest、mapping version、classification必須 | `U-PDC-008` | `HAC-HIL-11a` | `HST-CASE-010-09` | `HIL_PRODUCT_DATA_LINEAGE_MISSING` |\n| `deriveProductMappingEdges` | `(entity, targets, mapping) => ResultV1<ProductMappingEdgeV1[], ProductDataFailureV1>` | target存在、kind/ID/version/evidence一意 | `U-PDC-009` | `HAC-HIL-11a` | `HST-CASE-010-09` | `HIL_PRODUCT_DATA_LINEAGE_MISSING` |\n| `applyProductTombstone` | `(current, deletion, retention) => TombstoneDecisionV1` | 正常deleteは直前version/delete lineageを要求しmappingをstale化。未知/lineageなしはingestion反例 | `U-PDC-010` | `HAC-HIL-11c` | `HST-CASE-010-04`（正常） / `HST-CASE-010-11`（反例） | `なし（正常系）` / `HIL_PRODUCT_INGESTION_INVALID` |\n| `evaluateProductDataRedaction` | `(ephemeralInput, classification, policy, ttl, nodeClock) => RedactionDecisionV1` | bounded ephemeralだけを受理し、pre-classification seal禁止、secret即時reject、終端/TTL削除receiptを要求 | `U-PDC-011` | `HAC-HIL-11b` | `HST-CASE-010-08` | `HIL_PRODUCT_REDACTION_REQUIRED` |\n| `evaluateProductSnapshotFreshness` | `(sourceObservedAtUntrusted, nodeReceivedAt, nodeNow, sla, allowedSkew) => FreshnessDecisionV1` | Node trusted clockでfresh-untilを再導出し、未来/許容skew超過/期限超過をstaleまたはquarantine | `U-PDC-012` | `HAC-HIL-11c` | `HST-CASE-010-05` | `HIL_PRODUCT_SNAPSHOT_STALE` |\n| `buildProductDataLineage` | `(contract, run, records, mapping, worker) => ResultV1<ProductLineageV1, ProductDataFailureV1>` | source→connector→run→cursor→schema→mapping→resultを完全結線 | `U-PDC-013` | `HAC-HIL-11a` | `HST-CASE-010-09` | `HIL_PRODUCT_DATA_LINEAGE_MISSING` |\n| `validateProductWorkerProposal` | `(run, staged, authority) => ResultV1<ValidatedProductProposalV1, ProductDataFailureV1>` | complete/schema/provenance/current fenceを検証し、proposal-onlyかつdirect write 0を要求 | `U-PDC-014` | `HAC-HIL-11b` | `HST-CASE-010-06` | `HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN` |\n| `planProductProjectionTransaction` | `(current, snapshot, entities, mappings, tombstones, watermark) => ProjectionTransactionPlanV1` | 正常系は全stepを一計画へ閉じ、欠落stepはingestion反例として拒否 | `U-PDC-015` | `HAC-HIL-11a`, `HAC-HIL-11c` | `HST-CASE-010-01`（正常） / `HST-CASE-010-11`（反例） | `なし（正常系）` / `HIL_PRODUCT_INGESTION_INVALID` |\n| `commitProductProjection` | `(bundle: ProductProjectionCommitBundleV1, nodePort: ProductProjectionNodePortV1, store: ProductProjectionStoreV1) => Promise<ResultV1<ProductProjectionCommitReceiptV1, ProductDataFailureV1>>` | Node portはadapterとして唯一write authorityのstoreへ一回だけ委譲。同key同digest一回、異digest/CAS/failure増分0 | `U-PDC-016` | `HAC-HIL-11a`, `HAC-HIL-11b` | `HST-CASE-010-07` | `HIL_PRODUCT_WATERMARK_REGRESSION` |\n| `evaluateProductDataPolicy` | `(projection, contextRequest, policy, freshness) => ProductDataPolicyDecisionV1` | classification/redaction/retention/freshness/context allowlist全件評価 | `U-PDC-017` | `HAC-HIL-11b`, `HAC-HIL-11c` | `HST-CASE-010-12` | `HIL_PRODUCT_DATA_POLICY_VIOLATION` |",
+        "quote_utf8_sha256": "800e55a2d6994d1b418139de81464df23e954786746f4c99884cfc2709ff5b43"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md",
+        "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+        "whole_file_sha256": "48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42",
+        "start_line": 206,
+        "end_line": 209,
+        "exact_quote": "raw product inputはbounded ephemeral領域だけに置き、classification/redaction前のpersistent sealを禁止する。projection schemaは\nraw product payload、credential値、未redact PII/secretをfieldとして持たない。cursorはopaque valueとして保存できるが、比較は\nconnector codecのversionとdigestへbindする。`source_observed_at_untrusted`は非権威的observationであり、Node trusted clock receiptの\n`node_received_at`から`captured_at`と`fresh_until`を再導出する。これらの時刻をentity identityやcontent determinism digestへ混入させない。",
+        "quote_utf8_sha256": "4850531caec2bf7bdf7f8f9bd1b6c1626534575ddd8a3a5b83dcd25f2dfda639"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+        "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+        "whole_file_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+        "start_line": 188,
+        "end_line": 192,
+        "exact_quote": "| `HIL_PRODUCT_REDACTION_REQUIRED` | PII/secret/raw/unknown classificationが未redact | entity増分0、quarantine |\n| `HIL_PRODUCT_RETENTION_REQUIRED` | retention receiptなしのpurge | purge 0 |\n| `HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN` | Python/connectorからDB/current/watermark write | authoritative増分0、quarantine |\n| `HIL_PRODUCT_INGESTION_INVALID` | full/incrementalのpage、cursor、entity、mapping、transaction契約不成立 | run failed/quarantined |\n| `HIL_PRODUCT_DATA_POLICY_VIOLATION` | classification/redaction/retention/freshness/context policy違反 | projection/context公開0 |",
+        "quote_utf8_sha256": "066a838f5839ac4a214a021b7686abb926f8705af8d246ee736acb73d3c8aea6"
+      }
+    ],
+    "preserve": "classification/owner/source/revision、credential値非保持、未知分類を許可へ変換しない責務、分類と実policy/enforcement/正本書込の分離。",
+    "change": "旧registry/Node/Python/DB/clock/retention/全policy gateを移植せず、批准016の六分類記録1.0とsink適用1.xへ再導出する。既存005/006は延期しない。",
+    "reason": "旧connector consumerの実分類/redaction/許可と現016の分類参照基盤は範囲が異なる。分類metadataの対応からauthority/data-useや全sink安全を生成しない。 未分類metadataの記録とpayload公開の判断を分け、後者は元consumerと005/006/019/025へ保持する。"
+  },
+  "failure_basis": {
+    "sources": [
+      {
+        "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md",
+        "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+        "whole_file_sha256": "2dfa97ebba7be0f93c4e5fbcb2da13514e029900a2c593e92127ba257ad1fb9b",
+        "start_line": 26,
+        "end_line": 26,
+        "exact_quote": "| 規律が初回scopeから漏れる | HARNESS023-F01〜F04、004-F04、040-F04 | 歴史Stage/版印と初回必要入力を区別。選択operationの必須依存を再帰照合し、未指定版やunknownを非選択に落とさない |",
+        "quote_utf8_sha256": "69561a6e43c106ea2019c8e41dd981519cd2956ccd8f75d8259ba3b1daf7fbf7"
+      },
+      {
+        "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md",
+        "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+        "whole_file_sha256": "2dfa97ebba7be0f93c4e5fbcb2da13514e029900a2c593e92127ba257ad1fb9b",
+        "start_line": 74,
+        "end_line": 74,
+        "exact_quote": "分母は「見つかったfindingの数」ではなく、記録された失敗型全行、選択inputの全要素、選択operationの必須依存、各domain不変条件、対oracleとする。各要素を保持・理由付き非適用・未解決へ分け、unknownを対象外へ逃がさない。既存HARNESS004/041/040/005の契約を使うもので、新しい全ticket一律gateではない。",
+        "quote_utf8_sha256": "9e9d20c12eb9cbc855396d9b871e22712260f5276b4c81af13e24236b84c0837"
+      }
+    ],
+    "meaning": "選択入力/unknownの取り落としと件数/hashだけのreviewを防ぐ原oracle比較。SEC016固有実分類failureの記録不在から新gateを導かない。"
+  },
+  "consumer_source_pins": [
+    {
+      "path": "docs/helix-security/L4-basic-design/external-input-trust-boundary.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "9e1a4fd0f331cee16f120ba5ac99272deaa915f2bb20f456bae2077cd3ac91b3",
+      "json_pointer": "/contracts/0",
+      "source_value": {
+        "id": "HELIXSECURITY-L4-001-F01",
+        "requirement_ref": "HELIXSECURITY-L3-001-F01",
+        "system_oracle_ref": "HELIXSECURITY-L10-001-F01",
+        "oracle_ref": "HELIXSECURITY-L9-001-F01",
+        "approved_requirement": {
+          "id": "HELIXSECURITY-L3-001-F01",
+          "parent": "HELIXSECURITY-L2-001",
+          "title": "外部入力の未信頼と出所",
+          "obligation": "外部情報/AI生成物/Tool出力/Issue/PR/Web/MCP/文書をsource・project・revision・data classificationへ結び未信頼dataとして保持する。読む/信頼/命令/authority/永続化/学習を分け、分類不能はunknownのまま保持する。",
+          "oracle_ref": "HELIXSECURITY-L10-001-F01"
+        },
+        "component": "untrusted_source_binding_reader",
+        "input_meanings": [
+          "原source metadataとsource種別、独立source/分類内容、target project/revision",
+          "読む経路の局所結果と元Read/Trust/Instruction/Authority/Persist/Learn各軸、任意claim"
+        ],
+        "output_meanings": [
+          "原source参照とuntrusted data、原六軸を変えない材料",
+          "source/classification各対応・unknown/不足/不一致と原owner返却候補"
+        ],
+        "content_comparison": [
+          "外部情報/AI/Tool/Issue/PR/Web/MCP/文書をそれぞれ未信頼dataとして保持。原identity/project/revisionを独立owner metadataへ照合し別scopeを混ぜない。",
+          "分類はownerの既存分類内容へ照合。欠落/分類不能はunknown、相反は局所conflict。読む成功をtrusted/instruction/authority/persist/learnへ代入せず、分類unknownをpublicへdefaultしない。",
+          "候補claimを原値から分離し、read/存在/digest一致だけの新成立claimは原軸を上書きできない。既存ownerが別経路で成立させた原状態もreadで新設/撤回せず保持する。"
+        ],
+        "qualification_rule": "原source/分類と選択owner経路/結果を独立入力からidentity/project/revision/scope/owner/contentごと比較。合成対照は実資格ではなく、実root/owner bindingは後続で成立させる。",
+        "operation_effect": "none"
+      },
+      "value_canonical_sha256": "10e9a3868fc245262798a9014f42e2a28617aa7eadb7079a2de59ce0cf0b5754"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "2174775ec98f96b4bb4d6bb0a3187311d8d98a45bebb48823577ef0a6e52d4b6",
+      "json_pointer": "/contracts/0",
+      "source_value": {
+        "id": "HELIXSECURITY-L4-005-F01",
+        "requirement_ref": "HELIXSECURITY-L3-005-F01",
+        "system_oracle_ref": "HELIXSECURITY-L10-005-F01",
+        "oracle_ref": "HELIXSECURITY-L9-005-F01",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "ebd4d1e8c7053224a0f5983fca21731dce9a5d7e6fe1daa1859da30197145382"
+        },
+        "component": "bounded_credential_use_comparer",
+        "operation_effect": "none",
+        "input_meanings": [
+          "値を持たないrequest tuple actor/operation/target/environment/scope/expiry/purpose/classificationとcapability tuple。",
+          "独立既存authorityのexpected capability・class集合、007/006条件とauthority資料状態、明示入力time観測。"
+        ],
+        "output_meanings": [
+          "範囲付き利用内容のcorresponding/conflict/unresolved候補とexpired/revoked/unknown。",
+          "実capability発行/credential利用なし。原値やstore addressを出力しない。"
+        ],
+        "content_comparison": [
+          "request→capabilityとcapability→既存authority expectedを全8field別々に照合し、欠落/相反を保持。未知classをpublicや既定classへしない。",
+          "expiryはowner供給の合成integer timepointでobserved_time>=expiryを期限切れ。clock読取なし、source/time/expiry unknownを補完しない。実time format/bindingはL5。",
+          "storeはWorkerへ直接見せず、7surfaceで値非露出の独立観測状態を読む。redacted宣言は観測/資格の代用でない。",
+          "007/006のcorresponding/unknown/violationを既契約の対象operation条件として保持。005から新許可・毎回人approveを作らない。",
+          "8項目の各joinは両側が既知で適合型の場合だけ内容の相反を比較する。request/capabilityの欠落は各原位置credential_binding_unresolved、独立expectedの欠落は/context/expected_capabilityのauthority_expected_unresolved。同じjoinの片側欠落から他側の相反を作らない。別項目の既知相反・expiry/revoke・値露出等の独立causeは保持する。"
+        ],
+        "qualification_rule": "合成metadata比較だけ。実broker/値注入/authority/source資格・surface検証は正式owner接続で閉じる。"
+      },
+      "value_canonical_sha256": "2dee2aa6d0c1a6729963473414b429420cedb8f756cfa0ed337b760d66ca46f6"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/network-egress-boundary.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "e57359a19c4d3b5c9b8f8e3540185aca33ee607bfbdc3f4f7682349ae5f25efe",
+      "json_pointer": "/contracts/1",
+      "source_value": {
+        "id": "HELIXSECURITY-L4-006-F02",
+        "requirement_ref": "HELIXSECURITY-L3-006-F02",
+        "system_oracle_ref": "HELIXSECURITY-L10-006-F02",
+        "oracle_ref": "HELIXSECURITY-L9-006-F02",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "6947a569a6fe4b9864c5d844d5d02fb468fd3fde2778cebc1a68a6861211d4bb"
+        },
+        "component": "egress_dependency_observation_comparer",
+        "operation_effect": "none",
+        "input_meanings": [
+          "005検査、016の1.0分類/data-use、CONNECT論理、INFRA経路の原metadataとindependent expected binding。",
+          "path filtering/data minimization/measurementの状態と各revision/scope、sent_bytes観測。"
+        ],
+        "output_meanings": [
+          "preconditionの接続対応と、送信後観測のcorresponding/conflict/unknownを分ける。",
+          "未観測を成功にせず、該当分類/接続/計測ownerへ不足候補。"
+        ],
+        "content_comparison": [
+          "各依存を同じ要求revision/scopeへ照合。分類recordのasset exposure classとdata-use purposeを別に扱い、未知分類をpublicへしない。",
+          "path filter/minimizationは準備結果、実sent_bytes計測は別観測。未来の送信後結果を事前判定の一律gateにせず、許可tupleだけで経路/計測成立も生成しない。",
+          "prepared payload bytesとreported sent_bytesの対応は個別材料への照合で、一般量上限を新設しない。",
+          "019/1.x guard presenceはこの1.0判定に使わず、必要な005/016/CONNECT/INFRA不足は保持。"
+        ],
+        "qualification_rule": "state=current/correspondingは合成metadataのみ。source/実path/実量/最小化/owner資格の独立実観測は正式consumerで閉じる。"
+      },
+      "value_canonical_sha256": "af90b638cfbd3afe826efbf6f6bc974d02ecf32a7345ea31a0ffa17ef10f84c7"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/operation-authority-reuse.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "b7ccddc646d070ab2dd7f82feac699a154e3d76cdc9131d8fbdf7b64e4a91086",
+      "json_pointer": "/contracts/1",
+      "source_value": {
+        "id": "HELIXSECURITY-L4-008-F01",
+        "requirement_ref": "HELIXSECURITY-L3-008-F01",
+        "system_oracle_ref": "HELIXSECURITY-L10-008-F01",
+        "oracle_ref": "HELIXSECURITY-L9-008-F01",
+        "approved_requirement": {
+          "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+          "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "5e5bcd3abd1007a52135179778b47546965d2307c67ef71efc0613da7cb99b60"
+        },
+        "component": "operation_authority_tuple_comparer",
+        "input_meaning": "read/write/execute/network/install/delete/merge/release/deploy/credential-use/security-changeを別authorityとし、actor/target/operation/revision/environment/scope/expiryを操作要求へ照合してallow/deny/constrainと理由を返す。高影響操作は全tuple一致の個別authorityを要する。",
+        "output_meaning": "操作別allow/deny/constrainの素材候補、理由、同条件の既決権限再利用候補。実authority成立/実操作許可ではない。",
+        "boundary": "有効同tupleの通常反復に新承認を要求しない。変更/失効/不足を旧既決権限やAgent利用権で補わない。",
+        "operation_effect": "none"
+      },
+      "value_canonical_sha256": "829dedef5ad9ba0df192400586dad6f9497eedfc3eee577b276d16bcf22684f6"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/asset-identity-foundation.json",
+      "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+      "whole_file_sha256": "1ea213ea4e0466f7f89a8f2ed67c2bd923cbd01c580c3e2a08a99e600d0106cc",
+      "json_pointer": "/contracts/0",
+      "source_value": {
+        "contract_id": "SECURITY015-IDENTITY-PROVENANCE",
+        "requirement_trace": [
+          "HELIXSECURITY-L3-015-F01",
+          "HELIXSECURITY-L10-015-F01"
+        ],
+        "input": "全六owner群の対象例と、列挙外資産も対象になり得ること。各合成recordにはowner/source/revision/digestと、独立した合成stable_asset_identityを持たせる。identity値はowner、asset_label、source、revision、digest、pathから生成しない。",
+        "behavior": "独立した安定asset identityをprovenance参照へ結ぶ。表示名やpathの変更だけで同じ意味revisionと決めず、意味変更は既存ownerへ返す。",
+        "output": "識別状態、stable asset identityとprovenance参照を示す。正式field名、型、codec、永続化は固定しない。",
+        "failure": "owner/source/revision/digestまたはstable asset identityが不明・不一致ならunknown/unclassifiedとして保留し、不足をasset ownerへ返す。"
+      },
+      "value_canonical_sha256": "903181003b31847eba0ab092a8b664e51c33cea25dd85e138f050e7260671497"
+    }
+  ],
+  "consumer_boundaries": {
+    "001": "未信頼source/六軸/owner経路は001。016は内容分類を資格へ変換しない。",
+    "015": "stable asset identity/source/revisionは015 ownerの原資料。分類definition ownerと分離。",
+    "005": "secret非露出1.0は005。分類secretという値をraw値としない。",
+    "006": "egressはdestination/purpose/authority別の006判断。分類のみでallow/denyしない。",
+    "008": "operation authority/policyは008既存責務。OSは該当operation記録/適用との接続責務を持つが、016からpolicy authorityを移管しない。",
+    "original_L4_owner_label_limit": "原L4のHELIX_OS operation authority ownerラベルは保持し、008 policy/authorityとOS記録適用の正式bindingは未閉包として区別。L4又は上流wholeを変更しない。",
+    "data_use": "data-use許可は独立owner資料。公開範囲分類は許可でない。",
+    "019025": "1.x sink enforcementの各owner。016 1.0へ全適用gateを持ち込まない。"
+  },
+  "completion_limit": [
+    "正式owner資格/custody/source body供給/rootとconsumer exact binding、実分類/記録、data-use/操作許可/egress/sink enforcementは未成立。",
+    "ClassificationValueは六値だけ、unknownはstate。原missing/null/invalid/空listを保存しpublic/allowへ補完しない。",
+    "論理型/fixtureと原JSON bytes/hashは正式schema/codec/parser/resolver/署名/truststore/library採用ではない。resource/数値/duplicate-key/Unicode保持方式は未固定。",
+    "L6は関数設計、対L7は関数検証、実装成果は層外。独立oracle凍結→実装前Red→Green→Refactor/再検証、CI/実L9L10/PO実物L11は未成立。",
+    "全92親430対の意味閉包・実装Readyは未成立。新一律gate/毎回承認/registry/実作用なし。",
+    "permission/authorityの不正主張は局所gradeに保持し、対応済み分類内容を消さない。独立owner snapshotと提出値の一致も実owner資格にしない。",
+    "PacketProjection.gradeは選択record内容の集約表示。positive原packetの未分類recordだけはunknownのまま保持し、他8recordの分類内容を消去せず、全operation停止を生成しない。"
+  ],
+  "document_id": "HELIXSECURITY-L5-016",
+  "layer": "L5",
+  "pair": "L8",
+  "type_contract": {
+    "domains": {
+      "Text": {
+        "kind": "nonempty_string",
+        "normalization": "none; exact opaque原値"
+      },
+      "String": {
+        "kind": "string"
+      },
+      "Bool": {
+        "kind": "boolean"
+      },
+      "RawValue": {
+        "kind": "raw_json",
+        "meaning": "値なし合成metadata又はopaque原内容。分類/資格/許可を生成しない。"
+      },
+      "TextList": {
+        "kind": "list",
+        "item": "Text"
+      },
+      "ClassificationValue": {
+        "kind": "enum",
+        "values": [
+          "public",
+          "customer-owned",
+          "service-internal",
+          "HELIX-confidential",
+          "HELIX-restricted",
+          "secret"
+        ]
+      },
+      "ClassificationState": {
+        "kind": "enum",
+        "values": [
+          "recorded",
+          "unknown"
+        ]
+      },
+      "Grade": {
+        "kind": "enum",
+        "values": [
+          "corresponding",
+          "unknown",
+          "violation"
+        ]
+      },
+      "BindingState": {
+        "kind": "enum",
+        "values": [
+          "matched",
+          "conflict",
+          "unknown",
+          "not_available"
+        ]
+      },
+      "ClassList": {
+        "kind": "list",
+        "item": "ClassificationValue"
+      },
+      "SourceRole": {
+        "kind": "enum",
+        "values": [
+          "asset015",
+          "classification016",
+          "trust001",
+          "secret005",
+          "egress006",
+          "authority008",
+          "data_use_owner",
+          "sink019025"
+        ]
+      },
+      "RoleList": {
+        "kind": "list",
+        "item": "SourceRole"
+      },
+      "RecordList": {
+        "kind": "list",
+        "item_record": "ClassificationRecord"
+      },
+      "FindingList": {
+        "kind": "list",
+        "item_result": "Finding"
+      },
+      "RecordProjectionList": {
+        "kind": "list",
+        "item_result": "RecordProjection"
+      },
+      "CustodyList": {
+        "kind": "list",
+        "item_record": "CustodyMaterial"
+      },
+      "CustodyMember": {
+        "kind": "enum",
+        "values": [
+          "role",
+          "owner",
+          "subject_ref",
+          "source_ref",
+          "source_revision",
+          "body_digest",
+          "root_refs",
+          "qualification_material",
+          "provider_material"
+        ]
+      },
+      "CustodyMemberList": {
+        "kind": "list",
+        "item": "CustodyMember"
+      },
+      "RawPresenceValue": {
+        "kind": "result_record",
+        "target": "RawPresence"
+      },
+      "UnclosedState": {
+        "kind": "enum",
+        "values": [
+          "unclosed"
+        ]
+      }
+    },
+    "logical_types": {
+      "ClassificationOrigin": {
+        "raw_shape": {
+          "fields": {
+            "owner": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "source_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "revision": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "qualification": {
+              "kind": "field",
+              "domain": "RawValue"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "owner": "Field<Text>",
+          "source_ref": "Field<Text>",
+          "revision": "Field<Text>",
+          "qualification": "Field<RawValue>"
+        }
+      },
+      "ClassificationAssignment": {
+        "raw_shape": {
+          "fields": {
+            "record_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "classification_value": {
+              "kind": "field",
+              "domain": "ClassificationValue"
+            },
+            "source_asset_revision": {
+              "kind": "field",
+              "domain": "Text"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "record_ref": "Field<Text>",
+          "classification_value": "Field<ClassificationValue>",
+          "source_asset_revision": "Field<Text>"
+        }
+      },
+      "ClassificationRecord": {
+        "raw_shape": {
+          "fields": {
+            "classification_record_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "asset_identity_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "asset_owner": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "asset_source_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "asset_revision": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "classification_origin_owner": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "classification_source_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "classification_source_revision": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "classification_value": {
+              "kind": "field",
+              "domain": "ClassificationValue"
+            },
+            "classification_state": {
+              "kind": "field",
+              "domain": "ClassificationState"
+            },
+            "classification_source_qualification": {
+              "kind": "field",
+              "domain": "RawValue"
+            },
+            "asset_owner_qualification": {
+              "kind": "field",
+              "domain": "RawValue"
+            },
+            "data_use_permission": {
+              "kind": "field",
+              "domain": "RawValue"
+            },
+            "operation_authority": {
+              "kind": "field",
+              "domain": "RawValue"
+            },
+            "fixture_only": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "classification_assignment": {
+              "kind": "record",
+              "target": "ClassificationAssignment"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "classification_record_ref": "Field<Text>",
+          "asset_identity_ref": "Field<Text>",
+          "asset_owner": "Field<Text>",
+          "asset_source_ref": "Field<Text>",
+          "asset_revision": "Field<Text>",
+          "classification_origin_owner": "Field<Text>",
+          "classification_source_ref": "Field<Text>",
+          "classification_source_revision": "Field<Text>",
+          "classification_value": "Field<ClassificationValue>",
+          "classification_state": "Field<ClassificationState>",
+          "classification_source_qualification": "Field<RawValue>",
+          "asset_owner_qualification": "Field<RawValue>",
+          "data_use_permission": "Field<RawValue>",
+          "operation_authority": "Field<RawValue>",
+          "fixture_only": "Field<Bool>",
+          "classification_assignment": "Materialized<ClassificationAssignment>"
+        }
+      },
+      "SinkAssessment": {
+        "raw_shape": {
+          "fields": {
+            "outcome": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "basis": {
+              "kind": "field",
+              "domain": "RawValue"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "outcome": "Field<Text>",
+          "basis": "Field<RawValue>"
+        }
+      },
+      "SinkContext": {
+        "raw_shape": {
+          "fields": {
+            "selected_sinks": {
+              "kind": "field",
+              "domain": "TextList"
+            },
+            "sink_enforcer_1x_state": {
+              "kind": "field",
+              "domain": "RawValue"
+            },
+            "classification_alone_establishes_sink_safety": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "sink_assessment": {
+              "kind": "record",
+              "target": "SinkAssessment"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "selected_sinks": "Field<TextList>",
+          "sink_enforcer_1x_state": "Field<RawValue>",
+          "classification_alone_establishes_sink_safety": "Field<Bool>",
+          "sink_assessment": "Materialized<SinkAssessment>"
+        }
+      },
+      "ExistingConditions": {
+        "raw_shape": {
+          "fields": {
+            "L2-005_secret_nonexposure_state": {
+              "kind": "field",
+              "domain": "RawValue"
+            },
+            "secret_value_in_fixture_or_output": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "L2-006_general_egress_rule": {
+              "kind": "field",
+              "domain": "RawValue"
+            },
+            "L2-006_fixture_egress_decision": {
+              "kind": "field",
+              "domain": "RawValue"
+            },
+            "blanket_general_egress_denial": {
+              "kind": "field",
+              "domain": "RawValue"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "L2-005_secret_nonexposure_state": "Field<RawValue>",
+          "secret_value_in_fixture_or_output": "Field<Bool>",
+          "L2-006_general_egress_rule": "Field<RawValue>",
+          "L2-006_fixture_egress_decision": "Field<RawValue>",
+          "blanket_general_egress_denial": "Field<RawValue>"
+        }
+      },
+      "ClassificationPacket": {
+        "raw_shape": {
+          "fields": {
+            "packet_id": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "synthetic": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "execution_state": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "real_owner_qualification": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "real_classification_observation": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "real_sink_enforcement": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "classification_vocabulary": {
+              "kind": "field",
+              "domain": "ClassList"
+            },
+            "unknown_state": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "classification_origin": {
+              "kind": "record",
+              "target": "ClassificationOrigin"
+            },
+            "classification_records": {
+              "kind": "field",
+              "domain": "RecordList"
+            },
+            "sink_context": {
+              "kind": "record",
+              "target": "SinkContext"
+            },
+            "existing_1_0_conditions": {
+              "kind": "record",
+              "target": "ExistingConditions"
+            },
+            "fixture_note": {
+              "kind": "field",
+              "domain": "Text"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "packet_id": "Field<Text>",
+          "synthetic": "Field<Bool>",
+          "execution_state": "Field<Text>",
+          "real_owner_qualification": "Field<Bool>",
+          "real_classification_observation": "Field<Bool>",
+          "real_sink_enforcement": "Field<Bool>",
+          "classification_vocabulary": "Field<ClassList>",
+          "unknown_state": "Field<Text>",
+          "classification_origin": "Materialized<ClassificationOrigin>",
+          "classification_records": "Field<RecordList>",
+          "sink_context": "Materialized<SinkContext>",
+          "existing_1_0_conditions": "Materialized<ExistingConditions>",
+          "fixture_note": "Field<Text>"
+        }
+      },
+      "VocabularyInput": {
+        "raw_shape": {
+          "fields": {
+            "classification_value": {
+              "kind": "field",
+              "domain": "ClassificationValue"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "classification_value": "Field<ClassificationValue>"
+        }
+      },
+      "RecordInput": {
+        "raw_shape": {
+          "fields": {
+            "record": {
+              "kind": "record",
+              "target": "ClassificationRecord"
+            },
+            "expected_record": {
+              "kind": "record",
+              "target": "ClassificationRecord"
+            },
+            "classification_origin": {
+              "kind": "record",
+              "target": "ClassificationOrigin"
+            },
+            "expected_origin": {
+              "kind": "record",
+              "target": "ClassificationOrigin"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "record": "Materialized<ClassificationRecord>",
+          "expected_record": "Materialized<ClassificationRecord>",
+          "classification_origin": "Materialized<ClassificationOrigin>",
+          "expected_origin": "Materialized<ClassificationOrigin>"
+        }
+      },
+      "BoundaryInput": {
+        "raw_shape": {
+          "fields": {
+            "packet": {
+              "kind": "record",
+              "target": "ClassificationPacket"
+            },
+            "expected_packet": {
+              "kind": "record",
+              "target": "ClassificationPacket"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "packet": "Materialized<ClassificationPacket>",
+          "expected_packet": "Materialized<ClassificationPacket>"
+        }
+      },
+      "RevisionSide": {
+        "raw_shape": {
+          "fields": {
+            "revision": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "classification_record_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "classification_value": {
+              "kind": "field",
+              "domain": "ClassificationValue"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "revision": "Field<Text>",
+          "classification_record_ref": "Field<Text>",
+          "classification_value": "Field<ClassificationValue>"
+        }
+      },
+      "RevisionComparison": {
+        "raw_shape": {
+          "fields": {
+            "asset_identity_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "asset_owner": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "asset_source_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "prior_revision": {
+              "kind": "record",
+              "target": "RevisionSide"
+            },
+            "current_revision": {
+              "kind": "record",
+              "target": "RevisionSide"
+            },
+            "current_revision_uses_current_record": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "classification_reused_across_revision": {
+              "kind": "field",
+              "domain": "Bool"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "asset_identity_ref": "Field<Text>",
+          "asset_owner": "Field<Text>",
+          "asset_source_ref": "Field<Text>",
+          "prior_revision": "Materialized<RevisionSide>",
+          "current_revision": "Materialized<RevisionSide>",
+          "current_revision_uses_current_record": "Field<Bool>",
+          "classification_reused_across_revision": "Field<Bool>"
+        }
+      },
+      "RevisionInput": {
+        "raw_shape": {
+          "fields": {
+            "comparison": {
+              "kind": "record",
+              "target": "RevisionComparison"
+            },
+            "records": {
+              "kind": "field",
+              "domain": "RecordList"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "comparison": "Materialized<RevisionComparison>",
+          "records": "Field<RecordList>"
+        }
+      },
+      "BindingPart": {
+        "raw_shape": {
+          "fields": {
+            "grade": {
+              "kind": "field",
+              "domain": "Grade"
+            },
+            "binding": {
+              "kind": "field",
+              "domain": "BindingState"
+            },
+            "findings": {
+              "kind": "field",
+              "domain": "FindingList"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "grade": "Field<Grade>",
+          "binding": "Field<BindingState>",
+          "findings": "Field<FindingList>"
+        }
+      },
+      "ValuePart": {
+        "raw_shape": {
+          "fields": {
+            "grade": {
+              "kind": "field",
+              "domain": "Grade"
+            },
+            "state": {
+              "kind": "field",
+              "domain": "ClassificationState"
+            },
+            "value": {
+              "kind": "field",
+              "domain": "ClassificationValue"
+            },
+            "findings": {
+              "kind": "field",
+              "domain": "FindingList"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "grade": "Field<Grade>",
+          "state": "Field<ClassificationState>",
+          "value": "Field<ClassificationValue>",
+          "findings": "Field<FindingList>"
+        }
+      },
+      "PermissionPart": {
+        "raw_shape": {
+          "fields": {
+            "grade": {
+              "kind": "field",
+              "domain": "Grade"
+            },
+            "data_use_state": {
+              "kind": "field",
+              "domain": "UnclosedState"
+            },
+            "authority_state": {
+              "kind": "field",
+              "domain": "UnclosedState"
+            },
+            "findings": {
+              "kind": "field",
+              "domain": "FindingList"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "grade": "Field<Grade>",
+          "data_use_state": "Field<UnclosedState>",
+          "authority_state": "Field<UnclosedState>",
+          "findings": "Field<FindingList>"
+        }
+      },
+      "RecordComposition": {
+        "raw_shape": {
+          "fields": {
+            "source_input": {
+              "kind": "record",
+              "target": "RecordInput"
+            },
+            "asset": {
+              "kind": "record",
+              "target": "BindingPart"
+            },
+            "origin": {
+              "kind": "record",
+              "target": "BindingPart"
+            },
+            "value": {
+              "kind": "record",
+              "target": "ValuePart"
+            },
+            "assignment": {
+              "kind": "record",
+              "target": "BindingPart"
+            },
+            "permission": {
+              "kind": "record",
+              "target": "PermissionPart"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "source_input": "Materialized<RecordInput>",
+          "asset": "Materialized<BindingPart>",
+          "origin": "Materialized<BindingPart>",
+          "value": "Materialized<ValuePart>",
+          "assignment": "Materialized<BindingPart>",
+          "permission": "Materialized<PermissionPart>"
+        }
+      },
+      "PacketComposition": {
+        "raw_shape": {
+          "fields": {
+            "source_input": {
+              "kind": "record",
+              "target": "BoundaryInput"
+            },
+            "record_results": {
+              "kind": "field",
+              "domain": "RecordProjectionList"
+            },
+            "boundary_result": {
+              "kind": "record",
+              "target": "BoundaryPart"
+            },
+            "revision_result": {
+              "kind": "record",
+              "target": "RevisionPart"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "source_input": "Materialized<BoundaryInput>",
+          "record_results": "Field<RecordProjectionList>",
+          "boundary_result": "Materialized<BoundaryPart>",
+          "revision_result": "Materialized<RevisionPart>"
+        }
+      },
+      "CustodyMaterial": {
+        "raw_shape": {
+          "fields": {
+            "role": {
+              "kind": "field",
+              "domain": "SourceRole"
+            },
+            "owner": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "subject_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "source_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "source_revision": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "body_digest": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "root_refs": {
+              "kind": "field",
+              "domain": "TextList"
+            },
+            "qualification_material": {
+              "kind": "field",
+              "domain": "RawValue"
+            },
+            "provider_material": {
+              "kind": "field",
+              "domain": "RawValue"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "role": "Field<SourceRole>",
+          "owner": "Field<Text>",
+          "subject_ref": "Field<Text>",
+          "source_ref": "Field<Text>",
+          "source_revision": "Field<Text>",
+          "body_digest": "Field<Text>",
+          "root_refs": "Field<TextList>",
+          "qualification_material": "Field<RawValue>",
+          "provider_material": "Field<RawValue>"
+        }
+      },
+      "CustodyInput": {
+        "raw_shape": {
+          "fields": {
+            "required_roles": {
+              "kind": "field",
+              "domain": "RoleList"
+            },
+            "required_members": {
+              "kind": "field",
+              "domain": "CustodyMemberList"
+            },
+            "sources": {
+              "kind": "field",
+              "domain": "CustodyList"
+            }
+          },
+          "additional_members": "opaque原map保存だけ。declared carrier/正式wire extension資格へ採用しない。"
+        },
+        "fields": {
+          "required_roles": "Field<RoleList>",
+          "required_members": "Field<CustodyMemberList>",
+          "sources": "Field<CustodyList>"
+        }
+      },
+      "BoundaryPart": {
+        "raw_shape": {
+          "fields": {
+            "grade": {
+              "kind": "field",
+              "domain": "Grade"
+            },
+            "sink_state": {
+              "kind": "field",
+              "domain": "RawPresenceValue"
+            },
+            "sink_assessment": {
+              "kind": "field",
+              "domain": "RawPresenceValue"
+            },
+            "secret_condition": {
+              "kind": "field",
+              "domain": "RawPresenceValue"
+            },
+            "egress_decision": {
+              "kind": "field",
+              "domain": "RawPresenceValue"
+            },
+            "findings": {
+              "kind": "field",
+              "domain": "FindingList"
+            },
+            "actual_sink_enforced": {
+              "kind": "field",
+              "domain": "Bool"
+            },
+            "actual_egress_allowed": {
+              "kind": "field",
+              "domain": "Bool"
+            }
+          },
+          "additional_members": "opaque原値だけ。正常な前段resultだけを明示member対応で渡す。"
+        },
+        "fields": {
+          "grade": "Field<Grade>",
+          "sink_state": "Field<RawPresenceValue>",
+          "sink_assessment": "Field<RawPresenceValue>",
+          "secret_condition": "Field<RawPresenceValue>",
+          "egress_decision": "Field<RawPresenceValue>",
+          "findings": "Field<FindingList>",
+          "actual_sink_enforced": "Field<Bool>",
+          "actual_egress_allowed": "Field<Bool>"
+        }
+      },
+      "RevisionPart": {
+        "raw_shape": {
+          "fields": {
+            "grade": {
+              "kind": "field",
+              "domain": "Grade"
+            },
+            "binding": {
+              "kind": "field",
+              "domain": "BindingState"
+            },
+            "prior_record_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "current_record_ref": {
+              "kind": "field",
+              "domain": "Text"
+            },
+            "findings": {
+              "kind": "field",
+              "domain": "FindingList"
+            }
+          },
+          "additional_members": "opaque原値だけ。正常な前段resultだけを明示member対応で渡す。"
+        },
+        "fields": {
+          "grade": "Field<Grade>",
+          "binding": "Field<BindingState>",
+          "prior_record_ref": "Field<Text>",
+          "current_record_ref": "Field<Text>",
+          "findings": "Field<FindingList>"
+        }
+      }
+    },
+    "result_types": {
+      "Finding": {
+        "fields": {
+          "code": "FindingCode",
+          "pointer": "Pointer",
+          "return_owner": "ComparisonOwner"
+        }
+      },
+      "InputIssue": {
+        "fields": {
+          "code": "InputIssueCode",
+          "pointer": "Pointer",
+          "raw_tag": "RawTag"
+        }
+      },
+      "RawPresence": {
+        "variants": {
+          "absent": {
+            "tag": "absent"
+          },
+          "supplied": {
+            "tag": "supplied",
+            "raw": "RawValue"
+          }
+        }
+      },
+      "Field<T>": {
+        "fields": {
+          "tag": "FieldTag",
+          "pointer": "Pointer",
+          "original": "RawPresence",
+          "value": "T|null"
+        }
+      },
+      "Materialized<T>": {
+        "fields": {
+          "tag": "RecordTag",
+          "pointer": "Pointer",
+          "original": "RawPresence",
+          "fields": "T|null",
+          "unknown_members": "map<String,RawValue>"
+        }
+      },
+      "MaterializationResult<T>": {
+        "fields": {
+          "argument": "Materialized<T>",
+          "input_issues": "List<InputIssue>"
+        }
+      },
+      "ValueAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "state": "ClassificationState",
+          "value": "ClassificationValue|null",
+          "findings": "List<Finding>"
+        }
+      },
+      "BindingAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "binding": "BindingState",
+          "findings": "List<Finding>"
+        }
+      },
+      "PermissionAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "data_use_state": "Unclosed",
+          "authority_state": "Unclosed",
+          "findings": "List<Finding>"
+        }
+      },
+      "BoundaryAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "sink_state": "RawPresence",
+          "sink_assessment": "RawPresence",
+          "secret_condition": "RawPresence",
+          "egress_decision": "RawPresence",
+          "findings": "List<Finding>",
+          "actual_sink_enforced": "False",
+          "actual_egress_allowed": "False"
+        }
+      },
+      "RevisionAnalysis": {
+        "fields": {
+          "grade": "Grade",
+          "binding": "BindingState",
+          "prior_record_ref": "Text|null",
+          "current_record_ref": "Text|null",
+          "findings": "List<Finding>"
+        }
+      },
+      "RecordProjection": {
+        "fields": {
+          "grade": "Grade",
+          "classification_state": "ClassificationState",
+          "classification_value": "ClassificationValue|null",
+          "original_record": "RawPresence",
+          "findings": "List<Finding>",
+          "classification_qualification": "Unclosed",
+          "data_use_permission": "Unclosed",
+          "operation_authority": "Unclosed",
+          "actual_classification_recorded": "False",
+          "actual_permission_granted": "False"
+        }
+      },
+      "PacketProjection": {
+        "fields": {
+          "grade": "Grade",
+          "records": "List<RecordProjection>",
+          "boundary": "BoundaryAnalysis",
+          "revision": "RevisionAnalysis",
+          "original_packet": "RawPresence",
+          "actual_source_qualified": "False",
+          "actual_classification_recorded": "False",
+          "actual_authority_granted": "False",
+          "operation_effect": "NoneEffect"
+        }
+      },
+      "CustodyGap": {
+        "fields": {
+          "role": "SourceRole|null",
+          "reason": "CustodyGapKind",
+          "pointer": "Pointer"
+        }
+      },
+      "CustodyAnalysis": {
+        "fields": {
+          "qualification_state": "Unclosed",
+          "gaps": "List<CustodyGap>",
+          "original_sources": "RawPresence",
+          "qualified_source_created": "False"
+        }
+      }
+    },
+    "result_domains": {
+      "FindingCode": [
+        "classification_value_unclassified",
+        "classification_value_invalid",
+        "classification_value_conflict",
+        "classification_origin_unresolved",
+        "classification_origin_conflict",
+        "asset_binding_unresolved",
+        "asset_binding_conflict",
+        "assignment_unresolved",
+        "assignment_conflict",
+        "permission_from_classification",
+        "authority_from_classification",
+        "boundary_material_unresolved",
+        "sink_safety_from_classification",
+        "secret_condition_deferred",
+        "blanket_egress_from_sink_absence",
+        "egress_from_classification",
+        "existing_condition_conflict",
+        "revision_binding_unresolved",
+        "revision_binding_conflict"
+      ],
+      "ComparisonOwner": [
+        "classification-boundary-owner"
+      ],
+      "Pointer": {
+        "kind": "string"
+      },
+      "FieldTag": [
+        "absent",
+        "explicit_null",
+        "known",
+        "invalid_or_unknown"
+      ],
+      "RecordTag": [
+        "absent",
+        "explicit_null",
+        "record",
+        "invalid_or_unknown"
+      ],
+      "InputIssueCode": [
+        "logical_argument_unknown",
+        "logical_field_unknown"
+      ],
+      "RawTag": [
+        "absent",
+        "supplied"
+      ],
+      "Unclosed": [
+        "unclosed"
+      ],
+      "False": [
+        false
+      ],
+      "NoneEffect": [
+        "none"
+      ],
+      "CustodyGapKind": [
+        "required_set_unknown",
+        "source_missing",
+        "member_unresolved",
+        "qualification_provider_unclosed"
+      ]
+    },
+    "projection_rules": [
+      "全宣言memberにpresence/tag/pointer/original/valueを保持。missing/null/invalidを統合しない。",
+      "opaque RawValue/unknown_membersは型shape保存だけ。宣言carrier/資格を生成しない。"
+    ]
+  },
+  "functions": [
+    {
+      "id": "HELIXSECURITY-L5-016-materialize_classification_packet",
+      "symbol": "materialize_classification_packet",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "RawValue"
+        }
+      ],
+      "signature": "materialize_classification_packet(input: RawValue) -> MaterializationResult<ClassificationPacket>",
+      "output_type": "MaterializationResult<ClassificationPacket>",
+      "return_root_fields": {
+        "argument": "Materialized<ClassificationPacket>",
+        "input_issues": "List<InputIssue>"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/classification_vocabulary"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/classification_origin"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/classification_records"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sink_context"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/existing_1_0_conditions"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-016-F01",
+        "HELIXSECURITY-L3-016-B01"
+      ],
+      "pre": "全declared引数の原presence/tag/valueを独立素材として供給。expected/owner材料を提出recordから作らない。",
+      "post": "原値不変の局所内容候補、全root field返却。実分類/資格/許可/保存/通信/CIを生成しない。",
+      "pure_algorithm": [
+        "全宣言memberをabsent/explicit_null/known/invalid_or_unknownへ対応し、原値/順序/余剰opaque mapを保持する。record全体不正はそのroot、未知leafは元pointerへInputIssue。",
+        "classification value enumは六値だけ。unknownは状態で、raw literal unknownを第7値としてacceptせずinvalid tagを保持。codec/library/分類registryを新設しない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-016-inspect_classification_value",
+      "symbol": "inspect_classification_value",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<VocabularyInput>"
+        }
+      ],
+      "signature": "inspect_classification_value(input: Materialized<VocabularyInput>) -> ValueAnalysis",
+      "output_type": "ValueAnalysis",
+      "return_root_fields": {
+        "grade": "Grade",
+        "state": "ClassificationState",
+        "value": "ClassificationValue|null",
+        "findings": "List<Finding>"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/classification_value"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-016-F01"
+      ],
+      "pre": "全declared引数の原presence/tag/valueを独立素材として供給。expected/owner材料を提出recordから作らない。",
+      "post": "原値不変の局所内容候補、全root field返却。実分類/資格/許可/保存/通信/CIを生成しない。",
+      "pure_algorithm": [
+        "六known値だけrecorded/value同値/grade corresponding。absent/nullはunknown/value nullとclassification_value_unclassified元pointer。",
+        "literal unknown・未知enum・不正primitiveはunknown/value null、classification_value_invalid。RawPresenceがmissing/null/raw invalidを保持しpublicへ補完しない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-016-compare_asset_binding",
+      "symbol": "compare_asset_binding",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<RecordInput>"
+        }
+      ],
+      "signature": "compare_asset_binding(input: Materialized<RecordInput>) -> BindingAnalysis",
+      "output_type": "BindingAnalysis",
+      "return_root_fields": {
+        "grade": "Grade",
+        "binding": "BindingState",
+        "findings": "List<Finding>"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/record"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/expected_record"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-016-F01"
+      ],
+      "pre": "全declared引数の原presence/tag/valueを独立素材として供給。expected/owner材料を提出recordから作らない。",
+      "post": "原値不変の局所内容候補、全root field返却。実分類/資格/許可/保存/通信/CIを生成しない。",
+      "pure_algorithm": [
+        "asset identity/owner/source/revisionの4軸を独立expected_recordへexact照合。両knownText差だけasset_binding_conflict record側、必要未知は各原位置asset_binding_unresolved。record全体不正は元root。",
+        "gradeはviolation→unknown→corresponding、bindingはconflict→unknown→matched。asset owner名/digestの一致はSEC015実資格でない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-016-compare_classification_origin",
+      "symbol": "compare_classification_origin",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<RecordInput>"
+        }
+      ],
+      "signature": "compare_classification_origin(input: Materialized<RecordInput>) -> BindingAnalysis",
+      "output_type": "BindingAnalysis",
+      "return_root_fields": {
+        "grade": "Grade",
+        "binding": "BindingState",
+        "findings": "List<Finding>"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/record"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/expected_record/classification_value"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/classification_origin"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/expected_origin"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-016-F01"
+      ],
+      "pre": "全declared引数の原presence/tag/valueを独立素材として供給。expected/owner材料を提出recordから作らない。",
+      "post": "原値不変の局所内容候補、全root field返却。実分類/資格/許可/保存/通信/CIを生成しない。",
+      "pure_algorithm": [
+        "independent expected分類値がunknown/null/absentなら未来分類ownerを要求せずbinding not_available/grade corresponding。原unknownのまま保持。",
+        "expected分類knownなら提出recordの分類owner/source/revisionと独立expected_origin owner/source_ref/revision、及び提出classification_origin三軸を独立expectedへ別比較。known差はclassification_origin_conflict、未知はclassification_origin_unresolved各原pointer。",
+        "qualificationという原注記は比較値であり、not_establishedでもmetadata内容の局所対応は比較できる。実資格は常に別未閉包。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-016-compare_declared_classification",
+      "symbol": "compare_declared_classification",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<RecordInput>"
+        }
+      ],
+      "signature": "compare_declared_classification(input: Materialized<RecordInput>) -> ValueAnalysis",
+      "output_type": "ValueAnalysis",
+      "return_root_fields": {
+        "grade": "Grade",
+        "state": "ClassificationState",
+        "value": "ClassificationValue|null",
+        "findings": "List<Finding>"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/record/classification_value"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/record/classification_state"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/expected_record/classification_value"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/expected_record/classification_state"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-016-F01"
+      ],
+      "pre": "全declared引数の原presence/tag/valueを独立素材として供給。expected/owner材料を提出recordから作らない。",
+      "post": "原値不変の局所内容候補、全root field返却。実分類/資格/許可/保存/通信/CIを生成しない。",
+      "pure_algorithm": [
+        "expected分類が未分類なら提出valueがnull/absentの場合はunknown/unclassified、known public等への変更はclassification_value_conflictでunknownを保つ。",
+        "expected六分類knownなら提出値の欠落/不正はunknown、別known値はconflict、同known値だけrecorded/value原値。unknownは分類値に足さない。",
+        "classification_state absentは値の記録候補から区別可能でありrawへrecorded fieldを追加しない。原stateがsupplied unknownなのにvalueを持つなど相反は元stateへconflict。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-016-compare_classification_assignment",
+      "symbol": "compare_classification_assignment",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<RecordInput>"
+        }
+      ],
+      "signature": "compare_classification_assignment(input: Materialized<RecordInput>) -> BindingAnalysis",
+      "output_type": "BindingAnalysis",
+      "return_root_fields": {
+        "grade": "Grade",
+        "binding": "BindingState",
+        "findings": "List<Finding>"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/record/classification_assignment"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/expected_record"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-016-F01"
+      ],
+      "pre": "全declared引数の原presence/tag/valueを独立素材として供給。expected/owner材料を提出recordから作らない。",
+      "post": "原値不変の局所内容候補、全root field返却。実分類/資格/許可/保存/通信/CIを生成しない。",
+      "pure_algorithm": [
+        "assignmentが双方absentならnot_availableで未来材料を要求しない。independent expected_assignmentが存在する場合だけcurrent record ref/classification/source_asset_revisionへ提出assignmentをexact照合。",
+        "両known差はassignment_conflict各原assignment field、欠落/null/不正はassignment_unresolved各原所在。旧revisionを同assetの現revisionへ継承しない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-016-compare_permission_axes",
+      "symbol": "compare_permission_axes",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<RecordInput>"
+        }
+      ],
+      "signature": "compare_permission_axes(input: Materialized<RecordInput>) -> PermissionAnalysis",
+      "output_type": "PermissionAnalysis",
+      "return_root_fields": {
+        "grade": "Grade",
+        "data_use_state": "Unclosed",
+        "authority_state": "Unclosed",
+        "findings": "List<Finding>"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/record/data_use_permission"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/record/operation_authority"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/expected_record/data_use_permission"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/expected_record/operation_authority"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-016-F01",
+        "HELIXSECURITY-L3-016-B01"
+      ],
+      "pre": "全declared引数の原presence/tag/valueを独立素材として供給。expected/owner材料を提出recordから作らない。",
+      "post": "原値不変の局所内容候補、全root field返却。実分類/資格/許可/保存/通信/CIを生成しない。",
+      "pure_algorithm": [
+        "classificationからdata-use又はoperation authorityを生成しない。提出各原軸を独立expected原状態へ別比較し、known差はpermission_from_classification/authority_from_classification各原fieldへ保持。",
+        "未供給軸はboundary_material_unresolved。結果data_use_state/authority_stateはunclosed固定。独立した正式ownerの別判断を代筆/書換えず、raw宣言はoriginal_recordへ保全。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-016-compare_classification_boundary",
+      "symbol": "compare_classification_boundary",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<BoundaryInput>"
+        }
+      ],
+      "signature": "compare_classification_boundary(input: Materialized<BoundaryInput>) -> BoundaryAnalysis",
+      "output_type": "BoundaryAnalysis",
+      "return_root_fields": {
+        "grade": "Grade",
+        "sink_state": "RawPresence",
+        "sink_assessment": "RawPresence",
+        "secret_condition": "RawPresence",
+        "egress_decision": "RawPresence",
+        "findings": "List<Finding>",
+        "actual_sink_enforced": "False",
+        "actual_egress_allowed": "False"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/packet/sink_context"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/packet/existing_1_0_conditions"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/expected_packet/sink_context"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/expected_packet/existing_1_0_conditions"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-016-F01",
+        "HELIXSECURITY-L3-016-B01"
+      ],
+      "pre": "全declared引数の原presence/tag/valueを独立素材として供給。expected/owner材料を提出recordから作らない。",
+      "post": "原値不変の局所内容候補、全root field返却。実分類/資格/許可/保存/通信/CIを生成しない。",
+      "pure_algorithm": [
+        "sink enforcerの未成立だけでは1.0分類記録/一般egressを禁止しない。実sink状態/assessment、005条件、006個別decisionを別原軸として保持。",
+        "元not_assessed/basis nullに対するclassification_record_only all_safeはsink_safety_from_classification /packet/sink_context/sink_assessment。",
+        "005条件のdeferred_to_1xはsecret_condition_deferred、006のsink不在による一律denyはblanket_egress_from_sink_absence、分類だけpermitはegress_from_classification。独立expectedとのその他内容差はexisting_condition_conflict、不足はboundary_material_unresolved。",
+        "RawPresenceで元状態を返し全actual false。019/025の1.x強制を1.0新gateにせず005/006を延期しない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-016-compare_revision_records",
+      "symbol": "compare_revision_records",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<RevisionInput>"
+        }
+      ],
+      "signature": "compare_revision_records(input: Materialized<RevisionInput>) -> RevisionAnalysis",
+      "output_type": "RevisionAnalysis",
+      "return_root_fields": {
+        "grade": "Grade",
+        "binding": "BindingState",
+        "prior_record_ref": "Text|null",
+        "current_record_ref": "Text|null",
+        "findings": "List<Finding>"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/comparison"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/records"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-016-F01"
+      ],
+      "pre": "全declared引数の原presence/tag/valueを独立素材として供給。expected/owner材料を提出recordから作らない。",
+      "post": "原値不変の局所内容候補、全root field返却。実分類/資格/許可/保存/通信/CIを生成しない。",
+      "pure_algorithm": [
+        "comparison未提供/nullはnot_available/grade corresponding。存在時は原asset identity/owner/sourceとprior/currentのrevision/record ref/classificationを同recordsへ一意exact照合。",
+        "元priorとcurrentは別原記録に保ち、record毎の分類変更自体を拒否しない。候補0又は複数/必要未知はrevision_binding_unresolved、known差はrevision_binding_conflict。",
+        "metadata current_revision_uses_current_record/classification_reused_across_revisionは原申告だけ。実資格の代用でない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-016-build_classification_record_projection",
+      "symbol": "build_classification_record_projection",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<RecordComposition>"
+        }
+      ],
+      "signature": "build_classification_record_projection(input: Materialized<RecordComposition>) -> RecordProjection",
+      "output_type": "RecordProjection",
+      "return_root_fields": {
+        "grade": "Grade",
+        "classification_state": "ClassificationState",
+        "classification_value": "ClassificationValue|null",
+        "original_record": "RawPresence",
+        "findings": "List<Finding>",
+        "classification_qualification": "Unclosed",
+        "data_use_permission": "Unclosed",
+        "operation_authority": "Unclosed",
+        "actual_classification_recorded": "False",
+        "actual_permission_granted": "False"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/source_input"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/asset"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/origin"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/value"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/assignment"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/permission"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-016-F01",
+        "HELIXSECURITY-L3-016-B01"
+      ],
+      "pre": "全declared引数の原presence/tag/valueを独立素材として供給。expected/owner材料を提出recordから作らない。",
+      "post": "原値不変の局所内容候補、全root field返却。実分類/資格/許可/保存/通信/CIを生成しない。",
+      "pure_algorithm": [
+        "同source_inputの5part全引数を受ける。各grade/findingを保持しviolation優先、次unknown。",
+        "classification_state/valueはasset/origin/value/assignmentの4面だけで決める。value recorded、asset/origin matched、assignment matched又はnot_availableのときrecorded/value同値、他はunknown/value null。permissionの不正推測は別grade/findingへ保ち、対応済み分類内容を消さない。元宣言はoriginal_recordへRawPresenceで保持する。",
+        "分類内容が対応してもclassification_qualification/data_use_permission/operation_authorityはunclosed、実記録/許可false。原unknownをpublicへ変更しない。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-016-build_classification_packet_projection",
+      "symbol": "build_classification_packet_projection",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<PacketComposition>"
+        }
+      ],
+      "signature": "build_classification_packet_projection(input: Materialized<PacketComposition>) -> PacketProjection",
+      "output_type": "PacketProjection",
+      "return_root_fields": {
+        "grade": "Grade",
+        "records": "List<RecordProjection>",
+        "boundary": "BoundaryAnalysis",
+        "revision": "RevisionAnalysis",
+        "original_packet": "RawPresence",
+        "actual_source_qualified": "False",
+        "actual_classification_recorded": "False",
+        "actual_authority_granted": "False",
+        "operation_effect": "NoneEffect"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/source_input"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/record_results"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/boundary_result"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/revision_result"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-016-F01",
+        "HELIXSECURITY-L3-016-B01"
+      ],
+      "pre": "全declared引数の原presence/tag/valueを独立素材として供給。expected/owner材料を提出recordから作らない。",
+      "post": "原値不変の局所内容候補、全root field返却。実分類/資格/許可/保存/通信/CIを生成しない。",
+      "pure_algorithm": [
+        "同source_inputのrecord結果全件/順序とboundary/revision前段結果を全引数で受ける。recordをdrop/別asset結合せずgradeの違反優先・未知次を保持する。",
+        "original_packetをRawPresenceで保全、記録候補・境界・revisionを独立rootへ返す。実source資格/分類記録/authority/外部作用は全false。"
+      ],
+      "effect": "none"
+    },
+    {
+      "id": "HELIXSECURITY-L5-016-retain_classification_owner_custody",
+      "symbol": "retain_classification_owner_custody",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "Materialized<CustodyInput>"
+        }
+      ],
+      "signature": "retain_classification_owner_custody(input: Materialized<CustodyInput>) -> CustodyAnalysis",
+      "output_type": "CustodyAnalysis",
+      "return_root_fields": {
+        "qualification_state": "Unclosed",
+        "gaps": "List<CustodyGap>",
+        "original_sources": "RawPresence",
+        "qualified_source_created": "False"
+      },
+      "read_fields": [
+        {
+          "parameter": "input",
+          "raw_pointer": "/required_roles"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/required_members"
+        },
+        {
+          "parameter": "input",
+          "raw_pointer": "/sources"
+        }
+      ],
+      "requirement_refs": [
+        "HELIXSECURITY-L3-016-F01",
+        "HELIXSECURITY-L3-016-B01"
+      ],
+      "pre": "全declared引数の原presence/tag/valueを独立素材として供給。expected/owner材料を提出recordから作らない。",
+      "post": "原値不変の局所内容候補、全root field返却。実分類/資格/許可/保存/通信/CIを生成しない。",
+      "pure_algorithm": [
+        "必要role/member集合はcaller明示。missing/null/不正集合はrequired_set_unknown、空既知は追加必須roleを作らない。",
+        "各選択sourceをowner/subject/source/revision/body digest/root/provider/資格の原presenceと結ぶ。source不在と選択member不足を別gapsへ。",
+        "body bytes/hash/metadata/owner名一致で資格は作らずqualification_provider_unclosed/qualified_source_created falseを保持。001/015/005/006/008の既存責務とdata-use/sink ownerを代行しない。"
+      ],
+      "effect": "none"
+    }
+  ],
+  "diagnostic_contract": {
+    "pointer_base": "各function raw root。組立はsource_input root、保持する元findingのrootを移さず宣言して渡す。",
+    "return_owner": "classification-boundary-owner",
+    "sort": "code/pointer/return_owner scalar順unique。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L5-016-B01",
+      "requirement_ref": "HELIXSECURITY-L3-016-B01",
+      "oracle_ref": "HELIXSECURITY-L8-016-B01",
+      "basic_contract": {
+        "path": "docs/helix-security/L4-basic-design/data-use-classification.json",
+        "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+        "whole_file_sha256": "7313b8155d18a4cf6d0acba51beea492eb0fddc2738d10d9710d2b139561457d",
+        "json_pointer": "/contracts/0",
+        "source_value": {
+          "id": "HELIXSECURITY-L4-016-B01",
+          "requirement_ref": "HELIXSECURITY-L3-016-B01",
+          "system_oracle_ref": "HELIXSECURITY-L10-016-B01",
+          "oracle_ref": "HELIXSECURITY-L9-016-B01",
+          "title": "1.0分類基盤と1.x sink強制の分離",
+          "rules": [
+            "R04",
+            "R05",
+            "R06"
+          ],
+          "input": "分類利用の合成record、sink enforcer未成立、1.0 secret/egress条件。",
+          "behavior": "1.0分類記録、1.x sink enforcement、L2-005 secret非露出、L2-006一般egressを独立して示す。sink未成立を一律egress禁止やsink安全の根拠にせず、既存1.0条件も延期しない。",
+          "expected_output": "分類参照、sink enforcement状態、既存secret/egress条件を別々に表す。",
+          "failure": "一律egress禁止/分類だけのsink安全/secret条件延期を未成立とし、後続sink能力を成功にしない。既存条件違反は該当ownerへ返す。",
+          "case_refs": [
+            "HELIXSECURITY-L9-016-GWT-B01",
+            "HELIXSECURITY-L9-016-B01-N01",
+            "HELIXSECURITY-L9-016-B01-N02",
+            "HELIXSECURITY-L9-016-B01-N03"
+          ]
+        },
+        "value_canonical_sha256": "a4b536975a36584e183d399ec9eac141e468b79464caa2e450db7feb3472e5bf"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-016-materialize_classification_packet",
+        "HELIXSECURITY-L5-016-compare_permission_axes",
+        "HELIXSECURITY-L5-016-compare_classification_boundary",
+        "HELIXSECURITY-L5-016-build_classification_record_projection",
+        "HELIXSECURITY-L5-016-build_classification_packet_projection",
+        "HELIXSECURITY-L5-016-retain_classification_owner_custody"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-016-F01",
+      "requirement_ref": "HELIXSECURITY-L3-016-F01",
+      "oracle_ref": "HELIXSECURITY-L8-016-F01",
+      "basic_contract": {
+        "path": "docs/helix-security/L4-basic-design/data-use-classification.json",
+        "revision": "17078480664a1e444dc2216808f5d577f08dd6fa",
+        "whole_file_sha256": "7313b8155d18a4cf6d0acba51beea492eb0fddc2738d10d9710d2b139561457d",
+        "json_pointer": "/contracts/1",
+        "source_value": {
+          "id": "HELIXSECURITY-L4-016-F01",
+          "requirement_ref": "HELIXSECURITY-L3-016-F01",
+          "system_oracle_ref": "HELIXSECURITY-L10-016-F01",
+          "oracle_ref": "HELIXSECURITY-L9-016-F01",
+          "title": "六分類・unknown・revision別provenance",
+          "rules": [
+            "R01",
+            "R02",
+            "R03",
+            "R04",
+            "R06"
+          ],
+          "input": "六分類値、unknown状態、asset identityとowner/source/revisionを持つ合成record。",
+          "behavior": "分類出所と値をasset identity/source/revisionへ結ぶ。unknownとrecord不一致を保持し、異なるrevisionへ古い分類recordを転用しない。公開範囲をdata-use permissionやoperation authorityと分ける。",
+          "expected_output": "六分類/unknown、分類由来、owner/source/revision、revision間差異を辿る。",
+          "failure": "unknownをpublic、旧revision record転用、分類だけの利用/送信allowを未成立とし、分類意味はSECURITY、asset source/revisionは資産ownerへ返す。",
+          "case_refs": [
+            "HELIXSECURITY-L9-016-GWT-F01",
+            "HELIXSECURITY-L9-016-F01-N01",
+            "HELIXSECURITY-L9-016-F01-N02",
+            "HELIXSECURITY-L9-016-F01-N03",
+            "HELIXSECURITY-L9-016-F01-N04"
+          ]
+        },
+        "value_canonical_sha256": "69d19be17eff63813e6c11349c49b6918c7a2a8abeaa7174ea6254906eede292"
+      },
+      "function_refs": [
+        "HELIXSECURITY-L5-016-materialize_classification_packet",
+        "HELIXSECURITY-L5-016-inspect_classification_value",
+        "HELIXSECURITY-L5-016-compare_asset_binding",
+        "HELIXSECURITY-L5-016-compare_classification_origin",
+        "HELIXSECURITY-L5-016-compare_declared_classification",
+        "HELIXSECURITY-L5-016-compare_classification_assignment",
+        "HELIXSECURITY-L5-016-compare_permission_axes",
+        "HELIXSECURITY-L5-016-compare_classification_boundary",
+        "HELIXSECURITY-L5-016-compare_revision_records",
+        "HELIXSECURITY-L5-016-build_classification_record_projection",
+        "HELIXSECURITY-L5-016-build_classification_packet_projection",
+        "HELIXSECURITY-L5-016-retain_classification_owner_custody"
+      ]
+    }
+  ],
+  "pipeline_contract": {
+    "member_connections": [
+      {
+        "producer_function_ref": "HELIXSECURITY-L5-016-compare_asset_binding",
+        "producer_output_type": "BindingAnalysis",
+        "consumer_function_ref": "HELIXSECURITY-L5-016-build_classification_record_projection",
+        "consumer_raw_member_pointer": "/asset",
+        "consumer_record_type": "BindingPart",
+        "member_map": {
+          "grade": "grade",
+          "binding": "binding",
+          "findings": "findings"
+        },
+        "source_binding": "same RecordInput; record/expected_record separately bound to packet/independent expected packet index"
+      },
+      {
+        "producer_function_ref": "HELIXSECURITY-L5-016-compare_classification_origin",
+        "producer_output_type": "BindingAnalysis",
+        "consumer_function_ref": "HELIXSECURITY-L5-016-build_classification_record_projection",
+        "consumer_raw_member_pointer": "/origin",
+        "consumer_record_type": "BindingPart",
+        "member_map": {
+          "grade": "grade",
+          "binding": "binding",
+          "findings": "findings"
+        },
+        "source_binding": "same RecordInput; record/expected_record separately bound to packet/independent expected packet index"
+      },
+      {
+        "producer_function_ref": "HELIXSECURITY-L5-016-compare_declared_classification",
+        "producer_output_type": "ValueAnalysis",
+        "consumer_function_ref": "HELIXSECURITY-L5-016-build_classification_record_projection",
+        "consumer_raw_member_pointer": "/value",
+        "consumer_record_type": "ValuePart",
+        "member_map": {
+          "grade": "grade",
+          "state": "state",
+          "value": "value",
+          "findings": "findings"
+        },
+        "source_binding": "same RecordInput; record/expected_record separately bound to packet/independent expected packet index"
+      },
+      {
+        "producer_function_ref": "HELIXSECURITY-L5-016-compare_classification_assignment",
+        "producer_output_type": "BindingAnalysis",
+        "consumer_function_ref": "HELIXSECURITY-L5-016-build_classification_record_projection",
+        "consumer_raw_member_pointer": "/assignment",
+        "consumer_record_type": "BindingPart",
+        "member_map": {
+          "grade": "grade",
+          "binding": "binding",
+          "findings": "findings"
+        },
+        "source_binding": "same RecordInput; record/expected_record separately bound to packet/independent expected packet index"
+      },
+      {
+        "producer_function_ref": "HELIXSECURITY-L5-016-compare_permission_axes",
+        "producer_output_type": "PermissionAnalysis",
+        "consumer_function_ref": "HELIXSECURITY-L5-016-build_classification_record_projection",
+        "consumer_raw_member_pointer": "/permission",
+        "consumer_record_type": "PermissionPart",
+        "member_map": {
+          "grade": "grade",
+          "data_use_state": "data_use_state",
+          "authority_state": "authority_state",
+          "findings": "findings"
+        },
+        "source_binding": "same RecordInput; record/expected_record separately bound to packet/independent expected packet index"
+      },
+      {
+        "producer_function_ref": "HELIXSECURITY-L5-016-compare_classification_boundary",
+        "producer_output_type": "BoundaryAnalysis",
+        "consumer_function_ref": "HELIXSECURITY-L5-016-build_classification_packet_projection",
+        "consumer_raw_member_pointer": "/boundary_result",
+        "consumer_record_type": "BoundaryPart",
+        "member_map": {
+          "grade": "grade",
+          "sink_state": "sink_state",
+          "sink_assessment": "sink_assessment",
+          "secret_condition": "secret_condition",
+          "egress_decision": "egress_decision",
+          "findings": "findings",
+          "actual_sink_enforced": "actual_sink_enforced",
+          "actual_egress_allowed": "actual_egress_allowed"
+        },
+        "source_binding": "same submitted/independent packet, explicit revision comparison and original records"
+      },
+      {
+        "producer_function_ref": "HELIXSECURITY-L5-016-compare_revision_records",
+        "producer_output_type": "RevisionAnalysis",
+        "consumer_function_ref": "HELIXSECURITY-L5-016-build_classification_packet_projection",
+        "consumer_raw_member_pointer": "/revision_result",
+        "consumer_record_type": "RevisionPart",
+        "member_map": {
+          "grade": "grade",
+          "binding": "binding",
+          "prior_record_ref": "prior_record_ref",
+          "current_record_ref": "current_record_ref",
+          "findings": "findings"
+        },
+        "source_binding": "same submitted/independent packet, explicit revision comparison and original records"
+      }
+    ],
+    "record_collection_edge": {
+      "producer_function_ref": "HELIXSECURITY-L5-016-build_classification_record_projection",
+      "consumer_function_ref": "HELIXSECURITY-L5-016-build_classification_packet_projection",
+      "consumer_raw_member_pointer": "/record_results",
+      "order": "same packet.classification_records order and exact count; preserve unknown record",
+      "domain": "RecordProjectionList"
+    },
+    "classification_permission_independence": "permission/authority不足又は不正推測は別軸へ保持。対応済み分類内容を許可/拒否に置換しない。",
+    "diagnostic_anchor": "record段階は各明示RecordInput、boundaryはBoundaryInput、revisionはRevisionInput。組立後も元finding/rootを保持し、原case traceでnative packet indexへ結ぶ。"
+  }
+}
