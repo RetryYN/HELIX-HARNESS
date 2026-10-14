@@ -43,8 +43,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"facts\":{\"all_1_0_source_capabilities\":\"incomplete\",\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"authority\":\"HELIX-OS source/result owner\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture-only supplied condition; actual permission unqualified\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W8\",\"revision\":\"WR-8\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"success\"}},\"unselected_sources\":{\"BRAIN-A\":\"not_selected\",\"OS-A\":\"not_selected\",\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"P-B01-WORKER-SUCCESS\",\"source_revision\":\"fixture-labo058-r2\"}",
-              "sha256": "b457b4e9da509fd0a0d556412c0dfc86e49138424fd219b605cd861e3e695d2d"
+              "raw_utf8": "{\"facts\":{\"all_1_0_source_capabilities\":\"incomplete\",\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"authority\":\"HELIXLABO-L2-028\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture-only supplied condition; actual permission unqualified\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W8\",\"revision\":\"WR-8\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"success\"}},\"unselected_sources\":{\"BRAIN-A\":\"not_selected\",\"OS-A\":\"not_selected\",\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"P-B01-WORKER-SUCCESS\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "c9548001d21cbd76953bc3f5a6008b86c784c255af49fba2afd5b215b5a28b21"
             }
           ],
           "given": "WORKER-Aだけが選択され、fixture値はcontract=C-28-r3、receipt=R-W8、revision=WR-8、state=success。OS-A/BRAIN-A/WEB-Aはnot_selectedで、全1.0能力はincomplete。",
@@ -115,8 +115,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"facts\":{\"all_1_0_source_capabilities\":\"incomplete\",\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"block_call_until_all_sources_complete\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"authority\":\"HELIX-OS source/result owner\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture-only supplied condition; actual permission unqualified\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W8\",\"revision\":\"WR-8\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"success\"}},\"unselected_sources\":{\"BRAIN-A\":\"not_selected\",\"OS-A\":\"not_selected\",\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"P-B01-WAIT-ALL-COMPLETION\",\"source_revision\":\"fixture-labo058-r2\"}",
-              "sha256": "fc4d0f204134e4343ef2f8f78ff8b7594f51d883640b3a9d37c7475f9b11c13f"
+              "raw_utf8": "{\"facts\":{\"all_1_0_source_capabilities\":\"incomplete\",\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"block_call_until_all_sources_complete\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"authority\":\"HELIXLABO-L2-028\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture-only supplied condition; actual permission unqualified\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W8\",\"revision\":\"WR-8\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"success\"}},\"unselected_sources\":{\"BRAIN-A\":\"not_selected\",\"OS-A\":\"not_selected\",\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"P-B01-WAIT-ALL-COMPLETION\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "6c846ec82bcf49fb1b323f43d0b622b3c5d8e78d1996c31d8723a3c87f8415d6"
             }
           ],
           "given": "WORKER-Aのみ選択されreceipt R-W8があり、OS-A/BRAIN-A/WEB-Aは未選択かつ未完。提案は全source completionまでcallを待たせる。",
@@ -158,8 +158,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"facts\":{\"all_1_0_source_capabilities\":\"incomplete\",\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"set_all_capabilities_complete_from_worker_success\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"authority\":\"HELIX-OS source/result owner\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture-only supplied condition; actual permission unqualified\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W8\",\"revision\":\"WR-8\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"success\"}},\"unselected_sources\":{\"BRAIN-A\":\"not_selected\",\"OS-A\":\"not_selected\",\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"P-B01-SUCCESS-ALL-COMPLETE\",\"source_revision\":\"fixture-labo058-r2\"}",
-              "sha256": "e9703539d5200f51a788e4d5246ad4dc022505d69c3318ed1494f1337ee0fc7b"
+              "raw_utf8": "{\"facts\":{\"all_1_0_source_capabilities\":\"incomplete\",\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"set_all_capabilities_complete_from_worker_success\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"authority\":\"HELIXLABO-L2-028\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture-only supplied condition; actual permission unqualified\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W8\",\"revision\":\"WR-8\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"success\"}},\"unselected_sources\":{\"BRAIN-A\":\"not_selected\",\"OS-A\":\"not_selected\",\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"P-B01-SUCCESS-ALL-COMPLETE\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "0c0924df215548c303925be7d89ef75d5e18e34415bc78d23460e2c967390018"
             }
           ],
           "given": "WORKER-Aのstate=successだが、OS-A/BRAIN-A/WEB-Aはnot_selectedかつ未完。提案は個別successからall_capabilities=completeを出す。",
@@ -319,6 +319,77 @@
       },
       "cases": [
         {
+          "id": "HELIXLABO-L9-058-F01-WORKER-ONLY",
+          "basis": "HELIXLABO-L10-058-F01 positive_input Workerのみ。当該節「選択sourceごとに001 provenance/revision/state/scope/data-use/authority/版を保持しsource正本を変更しない」を示す。",
+          "requirement_ref": "HELIXLABO-L3-058-F01",
+          "system_oracle_ref": "HELIXLABO-L10-058-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-F01-WORKER-ONLY",
+                "revision": "fixture-labo058-r2",
+                "owner": "fixture-only; actual source owner remains the referenced L2 owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"all_1_0_source_capabilities\":\"incomplete\",\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"authority\":\"HELIXLABO-L2-028\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture-only supplied condition; actual permission unqualified\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W8\",\"revision\":\"WR-8\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"success\"}},\"unselected_sources\":{\"BRAIN-A\":\"not_selected\",\"OS-A\":\"not_selected\",\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"P-F01-WORKER-ONLY\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "e07556e4dafb04911cdb1d6f32bf4c8f1d2d343b212283ae14b2463670a193e3"
+            }
+          ],
+          "given": "WORKER-Aだけが選択され、fixture値はcontract=C-28-r3、receipt=R-W8、revision=WR-8、state=success。OS-A/BRAIN-A/WEB-Aはnot_selectedで、全1.0能力はincomplete。 選択根拠TASK-A、scope=PRODUCT-A、001 provenance=HELIXLABO-L2-028、authority=HELIXLABO-L2-028、data_useはfixture供給条件のみ、source_of_truth_mutated=false。",
+          "when": "Worker単独選択の001 fieldと閉包を、Worker+OS選択caseと比較する。",
+          "then": "選択Workerの条件を保持する。OSはnot_selectedのためnot_observedであり、選択OSのreceipt欠落とは区別する。source正本は変更しない。",
+          "expected_observation": "選択根拠TASK-Aに対応するWorkerのみの個別閉包。OS not_selected/not_observedを不足した選択OSへ変換しない。全能力incompleteは保持。",
+          "return_to": [
+            "不足は該当source owner/SECURITYへ具体値付きで返す。",
+            "全能力1.0の未完は能力ownerへ保持して示す。"
+          ],
+          "failure_observation": "合成packetに対する設計期待のみ。実source、実評価、資格成立を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "l10_clause": "選択sourceごとに001 provenance/revision/state/scope/data-use/authority/版を保持しsource正本を変更しない",
+          "given_raw_values": [
+            {
+              "path": "$.facts.all_1_0_source_capabilities",
+              "value": "incomplete"
+            },
+            {
+              "path": "$.facts.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.sources.WORKER-A.contract",
+              "value": "C-28-r3"
+            },
+            {
+              "path": "$.facts.sources.WORKER-A.receipt",
+              "value": "R-W8"
+            },
+            {
+              "path": "$.facts.sources.WORKER-A.revision",
+              "value": "WR-8"
+            },
+            {
+              "path": "$.facts.sources.WORKER-A.state",
+              "value": "success"
+            },
+            {
+              "path": "$.facts.unselected_sources.BRAIN-A",
+              "value": "not_selected"
+            },
+            {
+              "path": "$.facts.unselected_sources.OS-A",
+              "value": "not_selected"
+            },
+            {
+              "path": "$.facts.unselected_sources.WEB-A",
+              "value": "not_selected"
+            }
+          ]
+        },
+        {
           "id": "HELIXLABO-L9-058-F01-WORKER-OS-FIELDS",
           "basis": "HELIXLABO-L10-058-F01 positive_input と L3 obligation の全001 field保持に対応する固定raw入力。 当該節「選択sourceごとに001 provenance/revision/state/scope/data-use/authority/版を保持しsource正本を変更しない」を示す。",
           "requirement_ref": "HELIXLABO-L3-058-F01",
@@ -381,8 +452,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"missing OS receiptを未選択として完全扱い\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\",\"OS-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"OS-A\":{\"contract\":\"C-22-r2\",\"permission\":\"allowed_fixture\",\"receipt\":null,\"revision\":\"OS-4\",\"state\":\"unknown\"},\"WORKER-A\":{\"contract\":\"C-28-r3\",\"permission\":\"allowed_fixture\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"state\":\"failure\"}},\"unselected_sources\":{\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"N-MISSING-SELECTED\",\"source_revision\":\"fixture-labo058-r1\"}",
-              "sha256": "8d9db4759afe9ab4b9e4419b9c23372df8d7f9aa78078a50d8e112e2856da348"
+              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"missing OS receiptを未選択として完全扱い\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\",\"OS-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"OS-A\":{\"authority\":\"HELIXLABO-L2-022\",\"contract\":\"C-22-r2\",\"data_use\":\"fixture declared; actual permission unknown\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-022\",\"receipt\":null,\"revision\":\"OS-4\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"unknown\"},\"WORKER-A\":{\"authority\":\"HELIXLABO-L2-028\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture declared; actual permission unknown\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"failure\"}},\"unselected_sources\":{\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"N-MISSING-SELECTED\",\"source_revision\":\"fixture-labo058-r1\"}",
+              "sha256": "59f30c1ec09e317c1526b63275c74c9a89aface42a10a823557119ccf9c3b49b"
             }
           ],
           "given": "WORKER-AとOS-Aは選択済み。OS-A receipt=nullだがrevision OS-4、contract C-22-r2、permission allowed_fixture。",
@@ -441,8 +512,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"unknown選択を空集合に置換\",\"scope\":\"PRODUCT-A\",\"selected_sources\":null,\"selection_basis\":null,\"sources\":{\"WORKER-A\":{\"contract\":\"C-28-r3\",\"permission\":\"allowed_fixture\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"state\":\"failure\"}},\"unselected_sources\":{}},\"fixture_only\":true,\"packet_id\":\"N-UNKNOWN-SELECTION\",\"source_revision\":\"fixture-labo058-r1\"}",
-              "sha256": "69730eb9a0f0ae8e404ff440538e65a9b8bb5d84af31a7b06aa43b6ffd236a82"
+              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"unknown選択を空集合に置換\",\"scope\":\"PRODUCT-A\",\"selected_sources\":null,\"selection_basis\":null,\"sources\":{\"WORKER-A\":{\"authority\":\"HELIXLABO-L2-028\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture declared; actual permission unknown\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"failure\"}},\"unselected_sources\":{}},\"fixture_only\":true,\"packet_id\":\"N-UNKNOWN-SELECTION\",\"source_revision\":\"fixture-labo058-r1\"}",
+              "sha256": "f3a50310a64952ab50dc8a61fa7b03945d69536231ffc62800ddce12790ee074"
             }
           ],
           "given": "selected_sources=null、selection_basis=null。WORKER-Aにはreceipt R-W7がある。",
@@ -482,8 +553,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"treat_safety_dependency_as_reference_and_accept\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"OS-A\"],\"selection_basis\":\"TASK-SAFETY\",\"sources\":{\"OS-A\":{\"authority\":\"HELIX-OS\",\"contract_version\":\"C-22-r2\",\"data_use\":null,\"permission\":\"unknown\",\"provenance\":\"HELIXLABO-L2-022\",\"receipt\":\"R-O4\",\"revision\":\"OS-4\",\"safety_dependency\":\"reference_only\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"unknown\"}}},\"fixture_only\":true,\"packet_id\":\"P-F01-SAFETY-REFERENCE-ONLY\",\"source_revision\":\"fixture-labo058-r2\"}",
-              "sha256": "b07248c885bcfbeb5ef25d71b50ea9f92261bd69d47d4f5b3efeb221d9e9aaad"
+              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"treat_safety_dependency_as_reference_and_accept\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"OS-A\"],\"selection_basis\":\"TASK-SAFETY\",\"sources\":{\"OS-A\":{\"authority\":\"HELIXLABO-L2-022\",\"contract_version\":\"C-22-r2\",\"data_use\":null,\"permission\":\"unknown\",\"provenance\":\"HELIXLABO-L2-022\",\"receipt\":\"R-O4\",\"revision\":\"OS-4\",\"safety_dependency\":\"reference_only\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"unknown\"}}},\"fixture_only\":true,\"packet_id\":\"P-F01-SAFETY-REFERENCE-ONLY\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "844c3b00f355e8de36e50684b80704e2def41228ea76976111d01ea5a5b0bca3"
             }
           ],
           "given": "OS-Aのみを選択。OS-Aのidentity/revision/receiptはあるが、data-use/permission classificationはunknownで安全依存をreference_onlyとして扱う提案。",
@@ -557,8 +628,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"contract\":\"C-28-r3\",\"permission\":\"allowed_fixture\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"state\":\"failure\"}},\"unselected_sources\":{\"WEB-A\":\"not_selected\",\"contract_031\":\"not_selected\"},\"version_target\":\"1.0\"},\"fixture_only\":true,\"packet_id\":\"P-WEB-UNSELECTED\",\"source_revision\":\"fixture-labo058-r1\"}",
-              "sha256": "20b90cd05fd2f03b26e4098cc1f1e3d455026773a792275912829f0663751707"
+              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"authority\":\"HELIXLABO-L2-028\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture declared; actual permission unknown\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"failure\"}},\"unselected_sources\":{\"WEB-A\":\"not_selected\",\"contract_031\":\"not_selected\"},\"version_target\":\"1.0\"},\"fixture_only\":true,\"packet_id\":\"P-WEB-UNSELECTED\",\"source_revision\":\"fixture-labo058-r1\"}",
+              "sha256": "40999971f3e5e6439713aade0bcc68ed1d0856ad420e4009138a08baa9f02410"
             }
           ],
           "given": "version_target=1.0、選択はWORKER-Aのみ。WEB-Aと031 contractは未選択。",
@@ -602,11 +673,11 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"facts\":{\"actual_contract_adoption\":\"unknown\",\"actual_provider\":\"unknown\",\"actual_qualification\":\"unknown\",\"fixture_premises_only\":true,\"not_a_real_qualification\":\"true\",\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WEB-PRODUCT-FIXTURE\",\"WEB-OS-FIXTURE\"],\"selection_basis\":\"TASK-WEB-OPTIONAL\",\"sources\":{\"WEB-OS-FIXTURE\":{\"authority\":\"WEB-OS\",\"connection_owner\":\"HELIX-CONNECT\",\"connection_receipt\":\"fixture-connect-32\",\"contract_adoption_premise\":\"fixture_only_assumed\",\"contract_version\":\"fixture-contract-032-r1\",\"data_use\":\"fixture-permitted\",\"identity\":\"fixture-web-os-32\",\"owner\":\"WEB-OS\",\"permission\":\"fixture-only\",\"revision\":\"fixture-os-r1\",\"scope\":\"PRODUCT-A\",\"security_dependency\":\"fixture-satisfied\",\"source_ref\":\"HELIXLABO-L2-032\"},\"WEB-PRODUCT-FIXTURE\":{\"authority\":\"Web product source owner\",\"connection_owner\":\"HELIX-CONNECT\",\"connection_receipt\":\"fixture-connect-31\",\"contract_adoption_premise\":\"fixture_only_assumed\",\"contract_version\":\"fixture-contract-031-r1\",\"data_use\":\"fixture-permitted\",\"identity\":\"fixture-web-product-31\",\"owner\":\"Web product source owner\",\"permission\":\"fixture-only\",\"revision\":\"fixture-web-r1\",\"scope\":\"PRODUCT-A\",\"security_dependency\":\"fixture-satisfied\",\"source_ref\":\"HELIXLABO-L2-031\"}},\"version_target\":\"1.0\"},\"fixture_only\":true,\"packet_id\":\"P-F02-WEB-WEBOS-SELECTED-CONDITIONAL\",\"source_revision\":\"fixture-labo058-r2\"}",
-              "sha256": "e44d08ac27662f870870fa29e4e2656675bbb5befd3ef306f53557c2cd228733"
+              "raw_utf8": "{\"facts\":{\"actual_contract_adoption\":\"unknown\",\"actual_provider\":\"unknown\",\"actual_qualification\":\"unknown\",\"fixture_premises_only\":true,\"not_a_real_qualification\":\"true\",\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WEB-PRODUCT-FIXTURE\",\"WEB-OS-FIXTURE\"],\"selection_basis\":\"TASK-WEB-OPTIONAL\",\"sources\":{\"WEB-OS-FIXTURE\":{\"authority\":\"HELIXLABO-L2-032\",\"connection_owner\":\"HELIX-CONNECT\",\"connection_receipt\":\"fixture-connect-32\",\"contract_adoption_premise\":\"fixture_only_assumed\",\"contract_version\":\"fixture-contract-032-r1\",\"data_use\":\"fixture-permitted\",\"identity\":\"fixture-web-os-32\",\"owner\":\"WEB-OS\",\"permission\":\"fixture-only\",\"provenance\":\"HELIXLABO-L2-032\",\"revision\":\"fixture-os-r1\",\"scope\":\"PRODUCT-A\",\"security_dependency\":\"fixture-satisfied\",\"source_of_truth_mutated\":false,\"source_ref\":\"HELIXLABO-L2-032\",\"state\":\"supplied_fixture_only\"},\"WEB-PRODUCT-FIXTURE\":{\"authority\":\"HELIXLABO-L2-031\",\"connection_owner\":\"HELIX-CONNECT\",\"connection_receipt\":\"fixture-connect-31\",\"contract_adoption_premise\":\"fixture_only_assumed\",\"contract_version\":\"fixture-contract-031-r1\",\"data_use\":\"fixture-permitted\",\"identity\":\"fixture-web-product-31\",\"owner\":\"Web product source owner\",\"permission\":\"fixture-only\",\"provenance\":\"HELIXLABO-L2-031\",\"revision\":\"fixture-web-r1\",\"scope\":\"PRODUCT-A\",\"security_dependency\":\"fixture-satisfied\",\"source_of_truth_mutated\":false,\"source_ref\":\"HELIXLABO-L2-031\",\"state\":\"supplied_fixture_only\"}},\"version_target\":\"1.0\"},\"fixture_only\":true,\"packet_id\":\"P-F02-WEB-WEBOS-SELECTED-CONDITIONAL\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "9c18e3c90c8224a95d31019418500b7d1798ada9c09d616dfb70822df499db02"
             }
           ],
-          "given": "WEB-PRODUCT-FIXTUREとWEB-OS-FIXTUREを選択。各sourceのL2-031/032 owner、contract adoption/connection/permission/safety premiseをfixture-onlyとして明示する。実provider・実採択・実資格はunknown。",
+          "given": "WEB-PRODUCT-FIXTUREとHELIXLABO-L2-032-FIXTUREを選択。各sourceのL2-031/032 owner、contract adoption/connection/permission/safety premiseをfixture-onlyとして明示する。実provider・実採択・実資格はunknown。 明示raw値 $.facts.selected_sources[1]=WEB-OS-FIXTURE。",
           "when": "選択operationの031/032依存閉包を、明記されたfixture premiseに限って照合する。",
           "then": "この合成入力内では両sourceの条件が揃うときに限りcall closureを成立期待とし、実資格はunknownのまま残す。",
           "expected_observation": "実source adoption/connection/SECURITY evidenceが無ければ実callを成立扱いしない。",
@@ -639,7 +710,7 @@
             },
             {
               "path": "$.facts.sources.WEB-OS-FIXTURE.authority",
-              "value": "WEB-OS"
+              "value": "HELIXLABO-L2-032"
             },
             {
               "path": "$.facts.sources.WEB-OS-FIXTURE.owner",
@@ -671,8 +742,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WEB-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WEB-A\":{\"contract_031\":\"candidate_not_adopted\",\"permission\":\"unknown\",\"receipt\":null,\"revision\":null,\"state\":\"not_observed\"}},\"unselected_sources\":{\"WORKER-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"N-WEB-UNADOPTED\",\"source_revision\":\"fixture-labo058-r1\"}",
-              "sha256": "0a23061efbe6c95f959521ff994ea2ecc512d49bb08b0e9a0b6253ca689bcce2"
+              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WEB-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WEB-A\":{\"authority\":\"HELIXLABO-L2-031\",\"contract_031\":\"candidate_not_adopted\",\"data_use\":\"fixture declared; actual permission unknown\",\"permission\":\"unknown\",\"provenance\":\"HELIXLABO-L2-031\",\"receipt\":null,\"revision\":null,\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"not_observed\"}},\"unselected_sources\":{\"WORKER-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"N-WEB-UNADOPTED\",\"source_revision\":\"fixture-labo058-r1\"}",
+              "sha256": "c1018d6c5ce6d9262df6cccfa8eb9e71fc0b2a722dd7308b5781f097598b862d"
             }
           ],
           "given": "WEB-Aが選択済みだが031はcandidate_not_adopted、revision/receipt=null、permission=unknown。",
@@ -965,8 +1036,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"facts\":{\"additional_source_proposal\":{\"external_033\":\"include without selected source contract\"},\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"sources\":{\"WORKER-A\":{\"contract\":\"C-28-r3\",\"permission\":\"allowed_fixture\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"state\":\"failure\"}},\"version_target\":\"1.0\"},\"fixture_only\":true,\"packet_id\":\"N-ADD-EXTERNAL-033\",\"source_revision\":\"fixture-labo058-r1\"}",
-              "sha256": "ea368fc1a9d4e4d5e7d560d3dd96b5a58e52d64b2e2c9d4239e98d168c15966c"
+              "raw_utf8": "{\"facts\":{\"additional_source_proposal\":{\"external_033\":\"include without selected source contract\"},\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"sources\":{\"WORKER-A\":{\"authority\":\"HELIXLABO-L2-028\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture declared; actual permission unknown\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"failure\"}},\"version_target\":\"1.0\"},\"fixture_only\":true,\"packet_id\":\"N-ADD-EXTERNAL-033\",\"source_revision\":\"fixture-labo058-r1\"}",
+              "sha256": "65d8225ed8096a7b898b5bd6932af7b04807f73d01055b90caf0d18dc55b11b8"
             }
           ],
           "given": "version_target=1.0、WORKER-A選択中にcontractなしのexternal_033を追加する提案がある。",
