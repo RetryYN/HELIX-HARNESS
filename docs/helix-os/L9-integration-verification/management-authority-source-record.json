@@ -457,7 +457,9 @@
       "generated_authority_forbidden": "HELIXOS-L9-015-C0496",
       "generated_authority_claim_unresolved": "HELIXOS-L9-015-C0497",
       "whole_registry_claim_unproven": "HELIXOS-L9-015-C0503",
-      "whole_registry_claim_unresolved": "HELIXOS-L9-015-C0504"
+      "whole_registry_claim_unresolved": "HELIXOS-L9-015-C0504",
+      "first_classification_prior_present": "HELIXOS-L9-015-C0573",
+      "first_classification_prior_unresolved": "HELIXOS-L9-015-C0576"
     }
   },
   "fixture_inputs": {
@@ -71968,10 +71970,1632 @@
         "operation_effect": "none"
       },
       "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0573",
+      "title": "OS15-M1 初回分類の旧分類前提:actual:{'classification_ref': 'OLD-CLASS-target_a', 'classification_revision': 'CLASS-r1', 'event_id': 'SYNTHETIC-EVENT_ID-target_a', 'event_revision': 'EVENT-r1', 'kind': 'old_kind', 'source_ref': 'OLD-CLASS-SOURCE-target_a'}",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F02",
+        "oracle_ref": "HELIXOS-L10-015-F02"
+      },
+      "given": {
+        "input": {
+          "base_ref": "classify",
+          "replacements": [
+            {
+              "path": [
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": {
+                "classification_ref": "OLD-CLASS-target_a",
+                "classification_revision": "CLASS-r1",
+                "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                "event_revision": "EVENT-r1",
+                "kind": "old_kind",
+                "source_ref": "OLD-CLASS-SOURCE-target_a"
+              }
+            }
+          ],
+          "expanded_input_sha256": "0caa9c9666add694384805bc5abf26bd5790a99ede3f636e89082e81a20e3ae3"
+        }
+      },
+      "expected_proposal": {
+        "condition": "management_material_violation",
+        "selected_phase": "classify",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "violation",
+            "history": "violation",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": true,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "classification_material_present",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": {
+            "classification_ref": "OLD-CLASS-target_a",
+            "classification_revision": "CLASS-r1",
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "kind": "old_kind",
+            "source_ref": "OLD-CLASS-SOURCE-target_a"
+          },
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": [
+            "NEW-CLASS-target_a@CLASS-r2:current_material"
+          ],
+          "target_b": [
+            "NEW-CLASS-target_b@CLASS-r2:current_material"
+          ]
+        },
+        "findings": [
+          {
+            "code": "first_classification_prior_present",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "original_classification_mutated",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0574",
+      "title": "OS15-M1 初回分類の旧分類前提:context:{'classification_ref': 'OLD-CLASS-target_a', 'classification_revision': 'CLASS-r1', 'event_id': 'SYNTHETIC-EVENT_ID-target_a', 'event_revision': 'EVENT-r1', 'kind': 'old_kind', 'source_ref': 'OLD-CLASS-SOURCE-target_a'}",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F02",
+        "oracle_ref": "HELIXOS-L10-015-F02"
+      },
+      "given": {
+        "input": {
+          "base_ref": "classify",
+          "replacements": [
+            {
+              "path": [
+                "context",
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": {
+                "classification_ref": "OLD-CLASS-target_a",
+                "classification_revision": "CLASS-r1",
+                "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                "event_revision": "EVENT-r1",
+                "kind": "old_kind",
+                "source_ref": "OLD-CLASS-SOURCE-target_a"
+              }
+            }
+          ],
+          "expanded_input_sha256": "5a7948fcd5626fa63379a7ae0db44e8b742fdaa11719aeab6b30124985f274c1"
+        }
+      },
+      "expected_proposal": {
+        "condition": "management_material_violation",
+        "selected_phase": "classify",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "violation",
+            "history": "violation",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": true,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "unclassified_material",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": null,
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": [
+            "NEW-CLASS-target_a@CLASS-r2:current_material"
+          ],
+          "target_b": [
+            "NEW-CLASS-target_b@CLASS-r2:current_material"
+          ]
+        },
+        "findings": [
+          {
+            "code": "first_classification_prior_present",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "original_classification_mutated",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0575",
+      "title": "OS15-M1 初回分類の旧分類前提:both:{'classification_ref': 'OLD-CLASS-target_a', 'classification_revision': 'CLASS-r1', 'event_id': 'SYNTHETIC-EVENT_ID-target_a', 'event_revision': 'EVENT-r1', 'kind': 'old_kind', 'source_ref': 'OLD-CLASS-SOURCE-target_a'}",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F02",
+        "oracle_ref": "HELIXOS-L10-015-F02"
+      },
+      "given": {
+        "input": {
+          "base_ref": "classify",
+          "replacements": [
+            {
+              "path": [
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": {
+                "classification_ref": "OLD-CLASS-target_a",
+                "classification_revision": "CLASS-r1",
+                "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                "event_revision": "EVENT-r1",
+                "kind": "old_kind",
+                "source_ref": "OLD-CLASS-SOURCE-target_a"
+              }
+            },
+            {
+              "path": [
+                "context",
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": {
+                "classification_ref": "OLD-CLASS-target_a",
+                "classification_revision": "CLASS-r1",
+                "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                "event_revision": "EVENT-r1",
+                "kind": "old_kind",
+                "source_ref": "OLD-CLASS-SOURCE-target_a"
+              }
+            }
+          ],
+          "expanded_input_sha256": "99b66273f06831b5fd3295c4fdf49b34806da85d580f98e20c8afb74fb1bfd1f"
+        }
+      },
+      "expected_proposal": {
+        "condition": "management_material_violation",
+        "selected_phase": "classify",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "violation",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": true,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "classification_material_present",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": {
+            "classification_ref": "OLD-CLASS-target_a",
+            "classification_revision": "CLASS-r1",
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "kind": "old_kind",
+            "source_ref": "OLD-CLASS-SOURCE-target_a"
+          },
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": [
+            "NEW-CLASS-target_a@CLASS-r2:current_material"
+          ],
+          "target_b": [
+            "NEW-CLASS-target_b@CLASS-r2:current_material"
+          ]
+        },
+        "findings": [
+          {
+            "code": "first_classification_prior_present",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "first_classification_prior_present",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0576",
+      "title": "OS15-M1 初回分類の旧分類前提:actual:{}",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F02",
+        "oracle_ref": "HELIXOS-L10-015-F02"
+      },
+      "given": {
+        "input": {
+          "base_ref": "classify",
+          "replacements": [
+            {
+              "path": [
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": {}
+            }
+          ],
+          "expanded_input_sha256": "a272cd166d470aed32ba7bbc07bebbc5a5fa85f68837f767ffb078209f36c73e"
+        }
+      },
+      "expected_proposal": {
+        "condition": "management_material_violation",
+        "selected_phase": "classify",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "unknown",
+            "history": "violation",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": true,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "classification_material_present",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": {},
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": [
+            "NEW-CLASS-target_a@CLASS-r2:current_material"
+          ],
+          "target_b": [
+            "NEW-CLASS-target_b@CLASS-r2:current_material"
+          ]
+        },
+        "findings": [
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "original_classification_mutated",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0577",
+      "title": "OS15-M1 初回分類の旧分類前提:context:{}",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F02",
+        "oracle_ref": "HELIXOS-L10-015-F02"
+      },
+      "given": {
+        "input": {
+          "base_ref": "classify",
+          "replacements": [
+            {
+              "path": [
+                "context",
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": {}
+            }
+          ],
+          "expanded_input_sha256": "39593fb283cb22badf86c59a265a9449d36bf4aaab9c29144709a5fe2482f7ce"
+        }
+      },
+      "expected_proposal": {
+        "condition": "management_material_violation",
+        "selected_phase": "classify",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "unknown",
+            "history": "violation",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": true,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "unclassified_material",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": null,
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": [
+            "NEW-CLASS-target_a@CLASS-r2:current_material"
+          ],
+          "target_b": [
+            "NEW-CLASS-target_b@CLASS-r2:current_material"
+          ]
+        },
+        "findings": [
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "original_classification_mutated",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0578",
+      "title": "OS15-M1 初回分類の旧分類前提:both:{}",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F02",
+        "oracle_ref": "HELIXOS-L10-015-F02"
+      },
+      "given": {
+        "input": {
+          "base_ref": "classify",
+          "replacements": [
+            {
+              "path": [
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": {}
+            },
+            {
+              "path": [
+                "context",
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": {}
+            }
+          ],
+          "expanded_input_sha256": "89f3fd01ece80c9576841b2b5c7556393198e1fb070aabaac0ef26da8b686fd9"
+        }
+      },
+      "expected_proposal": {
+        "condition": "management_material_unknown",
+        "selected_phase": "classify",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "unknown",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": true,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "classification_material_present",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": {},
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": [
+            "NEW-CLASS-target_a@CLASS-r2:current_material"
+          ],
+          "target_b": [
+            "NEW-CLASS-target_b@CLASS-r2:current_material"
+          ]
+        },
+        "findings": [
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0579",
+      "title": "OS15-M1 初回分類の旧分類前提:actual:UNKNOWN-PRIOR",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F02",
+        "oracle_ref": "HELIXOS-L10-015-F02"
+      },
+      "given": {
+        "input": {
+          "base_ref": "classify",
+          "replacements": [
+            {
+              "path": [
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": "UNKNOWN-PRIOR"
+            }
+          ],
+          "expanded_input_sha256": "b807d7c40121ac266011d10c9a5ce316c750eca0ee8c0548e17935c95e895009"
+        }
+      },
+      "expected_proposal": {
+        "condition": "management_material_violation",
+        "selected_phase": "classify",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "unknown",
+            "history": "violation",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": true,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "classification_material_present",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": "UNKNOWN-PRIOR",
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": [
+            "NEW-CLASS-target_a@CLASS-r2:current_material"
+          ],
+          "target_b": [
+            "NEW-CLASS-target_b@CLASS-r2:current_material"
+          ]
+        },
+        "findings": [
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "original_classification_mutated",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0580",
+      "title": "OS15-M1 初回分類の旧分類前提:context:UNKNOWN-PRIOR",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F02",
+        "oracle_ref": "HELIXOS-L10-015-F02"
+      },
+      "given": {
+        "input": {
+          "base_ref": "classify",
+          "replacements": [
+            {
+              "path": [
+                "context",
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": "UNKNOWN-PRIOR"
+            }
+          ],
+          "expanded_input_sha256": "d034a0faa908957715bba295565cc97d9542a44949478323adf1eb613350e9b6"
+        }
+      },
+      "expected_proposal": {
+        "condition": "management_material_violation",
+        "selected_phase": "classify",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "unknown",
+            "history": "violation",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": true,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "unclassified_material",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": null,
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": [
+            "NEW-CLASS-target_a@CLASS-r2:current_material"
+          ],
+          "target_b": [
+            "NEW-CLASS-target_b@CLASS-r2:current_material"
+          ]
+        },
+        "findings": [
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "original_classification_mutated",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0581",
+      "title": "OS15-M1 初回分類の旧分類前提:both:UNKNOWN-PRIOR",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F02",
+        "oracle_ref": "HELIXOS-L10-015-F02"
+      },
+      "given": {
+        "input": {
+          "base_ref": "classify",
+          "replacements": [
+            {
+              "path": [
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": "UNKNOWN-PRIOR"
+            },
+            {
+              "path": [
+                "context",
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": "UNKNOWN-PRIOR"
+            }
+          ],
+          "expanded_input_sha256": "876b14318dbe2118931db728413bb1162334edcf0fb2daa7841f80f1d3b12f81"
+        }
+      },
+      "expected_proposal": {
+        "condition": "management_material_unknown",
+        "selected_phase": "classify",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "unknown",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": true,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "classification_material_present",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": "UNKNOWN-PRIOR",
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": [
+            "NEW-CLASS-target_a@CLASS-r2:current_material"
+          ],
+          "target_b": [
+            "NEW-CLASS-target_b@CLASS-r2:current_material"
+          ]
+        },
+        "findings": [
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "first_classification_prior_unresolved",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_ref",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/records/target_a/new_classification/prior_classification_revision",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0582",
+      "title": "OS15-M1 classifyで既存分類同ref/revision上書きを拒否",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F02",
+        "oracle_ref": "HELIXOS-L10-015-F02"
+      },
+      "given": {
+        "input": {
+          "base_ref": "classify",
+          "replacements": [
+            {
+              "path": [
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": {
+                "classification_ref": "OLD-CLASS-target_a",
+                "classification_revision": "CLASS-r1",
+                "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                "event_revision": "EVENT-r1",
+                "kind": "old_kind",
+                "source_ref": "OLD-CLASS-SOURCE-target_a"
+              }
+            },
+            {
+              "path": [
+                "records",
+                "target_a",
+                "new_classification",
+                "classification_ref"
+              ],
+              "value": "OLD-CLASS-target_a"
+            },
+            {
+              "path": [
+                "records",
+                "target_a",
+                "new_classification",
+                "prior_classification_ref"
+              ],
+              "value": "OLD-CLASS-target_a"
+            },
+            {
+              "path": [
+                "records",
+                "target_a",
+                "new_classification",
+                "classification_revision"
+              ],
+              "value": "CLASS-r1"
+            },
+            {
+              "path": [
+                "records",
+                "target_a",
+                "new_classification",
+                "prior_classification_revision"
+              ],
+              "value": "CLASS-r1"
+            },
+            {
+              "path": [
+                "context",
+                "records",
+                "target_a",
+                "original_classification"
+              ],
+              "value": {
+                "classification_ref": "OLD-CLASS-target_a",
+                "classification_revision": "CLASS-r1",
+                "event_id": "SYNTHETIC-EVENT_ID-target_a",
+                "event_revision": "EVENT-r1",
+                "kind": "old_kind",
+                "source_ref": "OLD-CLASS-SOURCE-target_a"
+              }
+            },
+            {
+              "path": [
+                "context",
+                "records",
+                "target_a",
+                "new_classification",
+                "classification_ref"
+              ],
+              "value": "OLD-CLASS-target_a"
+            },
+            {
+              "path": [
+                "context",
+                "records",
+                "target_a",
+                "new_classification",
+                "prior_classification_ref"
+              ],
+              "value": "OLD-CLASS-target_a"
+            },
+            {
+              "path": [
+                "context",
+                "records",
+                "target_a",
+                "new_classification",
+                "classification_revision"
+              ],
+              "value": "CLASS-r1"
+            },
+            {
+              "path": [
+                "context",
+                "records",
+                "target_a",
+                "new_classification",
+                "prior_classification_revision"
+              ],
+              "value": "CLASS-r1"
+            }
+          ],
+          "expanded_input_sha256": "f29a638488f00dc7c9b2e19875ddaf2ba05f4f3e458dadb7e94b1fd214969801"
+        }
+      },
+      "expected_proposal": {
+        "condition": "management_material_violation",
+        "selected_phase": "classify",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "violation",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": true,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "classification_material_present",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": {
+            "classification_ref": "OLD-CLASS-target_a",
+            "classification_revision": "CLASS-r1",
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "kind": "old_kind",
+            "source_ref": "OLD-CLASS-SOURCE-target_a"
+          },
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": [
+            "NEW-CLASS-target_a@CLASS-r2:current_material"
+          ],
+          "target_b": [
+            "NEW-CLASS-target_b@CLASS-r2:current_material"
+          ]
+        },
+        "findings": [
+          {
+            "code": "first_classification_prior_present",
+            "pointer": "/context/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          },
+          {
+            "code": "first_classification_prior_present",
+            "pointer": "/records/target_a/original_classification",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-015-C0583",
+      "title": "Info1 両側new classification未観測のactual診断",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-015-F02",
+        "oracle_ref": "HELIXOS-L10-015-F02"
+      },
+      "given": {
+        "input": {
+          "base_ref": "classify",
+          "replacements": [
+            {
+              "path": [
+                "records",
+                "target_a",
+                "new_classification"
+              ],
+              "value": null
+            },
+            {
+              "path": [
+                "context",
+                "records",
+                "target_a",
+                "new_classification"
+              ],
+              "value": null
+            }
+          ],
+          "expanded_input_sha256": "f1eb8aff70d25eba4468aa2a7114dfee7f737c0d9a36599651d23b5950311560"
+        }
+      },
+      "expected_proposal": {
+        "condition": "management_material_unknown",
+        "selected_phase": "classify",
+        "target_correspondence": {
+          "target_a": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "unknown",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          },
+          "target_b": {
+            "source": "corresponding",
+            "original_event": "corresponding",
+            "authority": "corresponding",
+            "classification": "corresponding",
+            "history": "corresponding",
+            "boundary": "corresponding"
+          }
+        },
+        "current_source_material": {
+          "target_a": true,
+          "target_b": true
+        },
+        "original_classification_state": {
+          "target_a": "unclassified_material",
+          "target_b": "unclassified_material"
+        },
+        "original_authority_state": {
+          "target_a": "current_material",
+          "target_b": "current_material"
+        },
+        "retained_original_events": {
+          "target_a": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_a",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_a",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_a",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_a",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_a",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_a",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_a",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_a"
+          },
+          "target_b": {
+            "event_id": "SYNTHETIC-EVENT_ID-target_b",
+            "event_revision": "EVENT-r1",
+            "source_ref": "SYNTHETIC-SOURCE_REF-target_b",
+            "source_revision": "SYNTHETIC-SOURCE_REVISION-target_b",
+            "source_digest": "SYNTHETIC-SOURCE_DIGEST-target_b",
+            "actor_ref": "SYNTHETIC-ACTOR_REF-target_b",
+            "observed_at_ref": "SYNTHETIC-OBSERVED_AT_REF-target_b",
+            "causal_id": "SYNTHETIC-CAUSAL_ID-target_b",
+            "payload_ref": "SYNTHETIC-PAYLOAD_REF-target_b"
+          }
+        },
+        "retained_original_classifications": {
+          "target_a": null,
+          "target_b": null
+        },
+        "retained_unresolved_history": {
+          "target_a": [
+            "UNRESOLVED-target_a"
+          ],
+          "target_b": [
+            "UNRESOLVED-target_b"
+          ]
+        },
+        "retained_classification_lineage": {
+          "target_a": [
+            "NEW-CLASS-target_a@CLASS-r2:current_material"
+          ],
+          "target_b": [
+            "NEW-CLASS-target_b@CLASS-r2:current_material"
+          ]
+        },
+        "findings": [
+          {
+            "code": "new_classification_unresolved",
+            "pointer": "/records/target_a/new_classification",
+            "return_owner": "management-authority-owner"
+          }
+        ],
+        "actual_management_record_written": false,
+        "actual_event_rewritten": false,
+        "actual_authority_generated": false,
+        "whole_registry_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "synthetic_document_comparison_only"
     }
   ],
   "completion": {
-    "synthetic_case_count": 572,
+    "synthetic_case_count": 583,
     "formal_closure": "unproven",
     "independent_review": "pending",
     "actual_red_green_refactor": "not_executed"
