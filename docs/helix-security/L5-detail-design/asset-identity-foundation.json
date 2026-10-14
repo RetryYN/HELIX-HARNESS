@@ -958,8 +958,8 @@
       },
       "rules": [
         "identity_base_stateと各1.x運用値、return_owner、scope_comparisonをそれぞれ独立のfieldとして返す。",
-        "return_ownerはidentity assessmentから渡された不足返送先候補の合成値であり、通知・送信・権限を実行しない。",
-        "scope_comparisonはunlisted_scope_omitted判定に限り参照する。他のclaim比較の前提条件にはしない。"
+        "scope_comparisonはunlisted_scope_omitted判定に限り参照する。他のclaim比較の前提条件にはしない。",
+        "return_ownerは通常identity.return_ownerを保つ。listed_onlyで追加候補recordがちょうど1件なら、そのownerのpresence付き原値（value/absent/null）を返送先候補として返す。複数recordでは先頭選択せず、全候補recordをscope_comparisonに保ったままidentity.return_ownerを維持する。単一ownerを決められない場合はrouting未解決であり、通知・送信・権限を実行しない。"
       ]
     },
     {
@@ -1088,21 +1088,21 @@
       "name": "assess_claims",
       "signature": "assess_claims(identity: IdentityAssessment, context: ProtectionContext) -> ClaimAssessment",
       "reads": [
-        "identity.classification_state",
-        "identity.classification_claim_value",
-        "identity.content_dump_present",
-        "identity.return_owner",
-        "context.web_protection_state",
-        "context.web_operation",
+        "context.identity_base_state",
+        "context.identity_requires_content_dump",
+        "context.inventory_scope",
         "context.public_authorization",
         "context.publication_authorization",
-        "context.identity_base_state",
-        "context.inventory_scope",
-        "context.identity_requires_content_dump",
         "context.scope_comparison",
         "context.scope_comparison.presence",
         "context.scope_comparison.value.additional_candidate_records.presence",
-        "context.scope_comparison.value.additional_candidate_records.value"
+        "context.scope_comparison.value.additional_candidate_records.value",
+        "context.web_operation",
+        "context.web_protection_state",
+        "identity.classification_claim_value",
+        "identity.classification_state",
+        "identity.content_dump_present",
+        "identity.return_owner"
       ],
       "returns": [
         "identity_base_state",
@@ -1122,7 +1122,7 @@
         "3. web_protection_state=established_claim、またはweb_operation=performed_claimならinventory_does_not_establish_protectionを記録する。",
         "4. public_authorizationまたはpublication_authorizationがgranted_from_identity_onlyならidentity_does_not_grant_publicationを記録する。",
         "5. identity_base_state=blocked_until_all_pattern_capabilitiesならpattern_completion_not_required_for_1_0を記録する。",
-        "6. inventory_scope=listed_onlyの場合に限ってcontext.scope_comparisonを読む。context.scope_comparison.presence=valueかつcontext.scope_comparison.value.additional_candidate_records.presence=valueで、そのvalue.itemsが1件以上ならunlisted_scope_omittedを記録する。scope comparisonの欠落/null/空はこのfindingを出さない。他claimの比較には影響しない。",
+        "6. inventory_scope=listed_onlyの場合に限ってcontext.scope_comparisonを読む。presence=valueかつadditional_candidate_records.presence=valueでvalue.itemsが1件以上ならunlisted_scope_omittedを記録する。ちょうど1件の追加recordでowner.presence=valueなら、そのpresence付きownerをClaimAssessment.return_ownerへ写す。ownerがabsent/nullならそのtagを保つ。複数recordでは一件目を選ばずidentity.return_ownerを保持し、全recordとownerをscope_comparisonに残して単一返送先未解決とする。scope比較欠落/null/空ではfindingを出さず、identity.return_ownerを保持する。",
         "7. identity_requires_content_dump=trueかつidentity.content_dump_present=falseならcontent_dump_not_requiredを記録する。",
         "8. identity.classification_claim_valueがvalueかつidentity.classification_state=unknownならclassification_reference_unqualifiedを記録する。元のknown identity値は保持し、unknown identityをpublicへ昇格しない。"
       ],
@@ -1135,31 +1135,32 @@
       "name": "render_identity_view",
       "signature": "render_identity_view(identity: IdentityAssessment, claims: ClaimAssessment) -> IdentityView",
       "reads": [
-        "identity.identity_state",
-        "identity.identity_value",
-        "identity.identity_resolution_value",
-        "identity.asset_label_value",
-        "identity.provenance_state",
-        "identity.owner_value",
-        "identity.source_value",
-        "identity.revision_value",
-        "identity.digest_value",
-        "identity.classification_state",
-        "identity.classification_source_owner",
-        "identity.classification_source_revision",
-        "identity.classification_claim_value",
-        "identity.content_dump_present",
-        "identity.source_qualification",
-        "identity.return_owner",
-        "identity.reason_codes",
+        "claims.claim_consistency",
+        "claims.content_dump_required",
         "claims.identity_base_state",
-        "claims.web_protection_state",
-        "claims.web_operation",
+        "claims.inventory_scope",
         "claims.public_authorization",
         "claims.publication_authorization",
-        "claims.content_dump_required",
-        "claims.inventory_scope",
-        "claims.claim_consistency"
+        "claims.return_owner",
+        "claims.web_operation",
+        "claims.web_protection_state",
+        "identity.asset_label_value",
+        "identity.classification_claim_value",
+        "identity.classification_source_owner",
+        "identity.classification_source_revision",
+        "identity.classification_state",
+        "identity.content_dump_present",
+        "identity.digest_value",
+        "identity.identity_resolution_value",
+        "identity.identity_state",
+        "identity.identity_value",
+        "identity.owner_value",
+        "identity.provenance_state",
+        "identity.reason_codes",
+        "identity.return_owner",
+        "identity.revision_value",
+        "identity.source_qualification",
+        "identity.source_value"
       ],
       "returns": [
         "identity_state_text",
@@ -1177,7 +1178,7 @@
         "qualification_textはsource_qualification enumをnot_claimed→「資格: 未申告」、self_declared→「資格: 自己申告（未検証）」、qualified_by_external_contract→「資格: 外部契約による申告（実資格未確認）」へ写し、識別成立の文言と結合しない。",
         "classification_textはclassification_stateをknown→「分類claim: known」、unknown→「分類claim: unknown」、conflict→「分類claim: conflict」へ写し、unknownをpublicへ置換しない。",
         "protection_textはweb_protection_state/web_operation/publication_authorizationを上記FieldValue形式で並べ、末尾にclaim_consistency=[<順序を保ったfinding token列>]を付ける。identity_base_stateから保護や公開を推論しない。",
-        "return_owner_textもFieldValue形式でpresenceを区別して表示する。"
+        "return_owner_textはClaimAssessment.return_ownerのpresence/value/null markerを区別して表示し、単一追加候補の返送先値を含む。identity側の別owner値へ戻さない。"
       ],
       "preconditions": [
         "identityはIdentityAssessment、claimsはClaimAssessmentの型付き論理値である。説明表示のためにraw JSONを再解釈しない。"
