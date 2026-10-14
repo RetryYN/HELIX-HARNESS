@@ -1,0 +1,2035 @@
+{
+  "parent": "HELIXOS-L2-017",
+  "source_main": "65e8e0180da7901b5c9e405382714a14d4d20002",
+  "approved_content_revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+  "approval_record": "docs/governance/decisions/helix-os-workflow-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+  "approved_whole_objects": [
+    {
+      "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "1522ef187cc899780ba9fbee084695561822d9f5b03a7319ad39059d534bfdd3",
+      "object": {
+        "id": "HELIXOS-L3-017-F01",
+        "parent": "HELIXOS-L2-017",
+        "title": "ticketとworkflowの入力",
+        "obligation": "管理の目的・要求・制約・許可・優先度・依存・資源・budget・期限・停止条件、HARNESS版/工程契約、接続状況、提供されたINTELLIGENCE案とLABO水準を元revision/scopeへ結ぶ。対象・kind・親revision・scope・依存・受入義務・戻し先をticket graphへ保持する。",
+        "oracle_ref": "HELIXOS-L10-017-F01"
+      }
+    },
+    {
+      "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "03d8ea7b4efc46c6eea5eadba8f8f1a16df2df4fe0d516de61aae266d04dede5",
+      "object": {
+        "id": "HELIXOS-L3-017-F02",
+        "parent": "HELIXOS-L2-017",
+        "title": "案の適格性と1.0工程",
+        "obligation": "INTELLIGENCE案をHARNESS語彙/順序/義務、authority、budget、期限、依存へ照合してからworkflow instanceへ進める。1.0は定義済み工程部品の規則的組合せと途中結果による既定戻し先への差戻しに限り、部品外flow生成は4.0に保持する。",
+        "oracle_ref": "HELIXOS-L10-017-F02"
+      }
+    },
+    {
+      "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "c55089c05ed42d4cbc886cfd4919ad0fd7629316bcc31681f7c958ae7461ce61",
+      "object": {
+        "id": "HELIXOS-L3-017-F03",
+        "parent": "HELIXOS-L2-017",
+        "title": "差戻しと再開の保存",
+        "obligation": "途中結果/未解決依存/unknown/conflict/scope逸脱をticketの元revisionと既存戻し先へ結ぶ。再開時も停止理由・元要求revision・未完義務・累積budget/期限を保持し、意味変更をOSが自己確定しない。",
+        "oracle_ref": "HELIXOS-L10-017-F03"
+      }
+    },
+    {
+      "source_path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "1377e86de17bb19d269dd9f15fa4ce3d9cb77608a8d43d1fc6f3df5e120f16c4",
+      "object": {
+        "id": "HELIXOS-L3-017-B01",
+        "parent": "HELIXOS-L2-017",
+        "title": "推進と他ownerの境界",
+        "obligation": "推進はOSが担い、HARNESSが工程と検証義務、INTELLIGENCEが案、LABOが水準、SECURITYがauthority、INFRASTRUCTUREが資源を持つ。ticketとIssue/PR projection、仕事の意味とassignment/attempt/測定を分け、案やclose/mergeを実行/完了へ昇格しない。",
+        "oracle_ref": "HELIXOS-L10-017-B01"
+      }
+    },
+    {
+      "source_path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "dbdf7c9ad556cf60b248a7594937126732dea08ad0797c0f6c78f583ea21dfae",
+      "object": {
+        "id": "HELIXOS-L10-017-B01",
+        "parent": "HELIXOS-L2-017",
+        "title": "推進と他ownerの境界",
+        "requirement_ref": "HELIXOS-L3-017-B01",
+        "positive_input": "意味/案/制約/記録と実行結果を異なるownerから受け取る。",
+        "expected_observation": "各判断の出所と対象scopeが別に辿れる。",
+        "negative_input": "案作成側がticket/割当/承認を代行、GitHub labelのみでactive workflow変更。",
+        "failure_observation": "越境を拒み、既存ownerと該当契約へ戻す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "source_path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "f7b59378213549e6136bfae9ae806db5d6435fffdd52f571a875496221e411e1",
+      "object": {
+        "id": "HELIXOS-L10-017-F01",
+        "parent": "HELIXOS-L2-017",
+        "title": "ticketとworkflowの入力",
+        "requirement_ref": "HELIXOS-L3-017-F01",
+        "positive_input": "同じ確定入力を二回、対象と依存だけが異なる入力を別々に使う。",
+        "expected_observation": "同じ入力から同じticket候補/工程digestが得られ、異なる対象/依存の差を保持する。",
+        "negative_input": "目的/義務/依存を推測、入力不明をready、全案件に固定ticket列。",
+        "failure_observation": "不足する入力と元要求を保持し、未解決の要求/許可/依存へ返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "source_path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "ed4c1488245bfc491c2a54b0368c6eb03a09589a256a39f27dbc8df9cf102165",
+      "object": {
+        "id": "HELIXOS-L10-017-F02",
+        "parent": "HELIXOS-L2-017",
+        "title": "案の適格性と1.0工程",
+        "requirement_ref": "HELIXOS-L3-017-F02",
+        "positive_input": "同じ案を有効な工程部品/制約と、部品外/制約逸脱へ比較する。",
+        "expected_observation": "選択理由と適格性/不成立が辿れ、部品外能力は1.0成功にならない。",
+        "negative_input": "案を無条件採用、OSが工程規則を再定義、部品外を1.0必須、全案件固定列。",
+        "failure_observation": "該当scopeを未実行にし、不足/逸脱を工程または制約ownerへ返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "source_path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+      "object_canonical_sha256": "a215598b81f6c8e987ce8b1a299b32157b7ca6c1ad2e0fcaa02469664c30a885",
+      "object": {
+        "id": "HELIXOS-L10-017-F03",
+        "parent": "HELIXOS-L2-017",
+        "title": "差戻しと再開の保存",
+        "requirement_ref": "HELIXOS-L3-017-F03",
+        "positive_input": "既定差戻しと入力更新後の再開を同一の仕事へ照合する。",
+        "expected_observation": "停止と再開理由、維持した制約と未完、再導出した候補が辿れる。",
+        "negative_input": "停止理由削除、budget reset、元要求を別scopeへ差替え、未解決を実行可能。",
+        "failure_observation": "未完と解消先を保持し、許可/意味の不足を当該ownerへ返す。",
+        "execution_state": "not_executed"
+      }
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-workflow-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "f6f4a3476cf9314621dbcb9f34d720baad3967d0a40a7eeef6fc72e5f1da30ff"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/event-episode-continuity.json",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "be04a234e500cbc11b683f15ef0799bfa284af1aa48d7316f161258752048ba3"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/ticket-workflow-derivation.json",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "9b94cc9ea65b158191ea782f2c66d1b7f8c0340d4da3f69c1ac8529fa3998dcc"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/worker-assignment-attempt.json",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "a6748aecb12106c7046f7e170b117aa3ca0dd1e6b4750fe372d2b52af3689645"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/ticket-workflow-derivation.json",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "fa579b288405aa12c5e553c44347056c7b45e5a36ea0695e5cb758e5e9b72548"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "bb5f5912049d1b86ebdc3d42ce094f24b18b5bd9d9ac3dbb54057f41f766d14a"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-sdop-20260929/README.md",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "3f2c49633949e8f60a586a7c3fb40e6b70c3c6dfe4e8d9fbade0f79fa8c4cf98"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/README.md",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd"
+    }
+  ],
+  "parent_basic_source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-workflow-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "f6f4a3476cf9314621dbcb9f34d720baad3967d0a40a7eeef6fc72e5f1da30ff"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/worker-assignment-attempt.json",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "a6748aecb12106c7046f7e170b117aa3ca0dd1e6b4750fe372d2b52af3689645"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/event-episode-continuity.json",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "be04a234e500cbc11b683f15ef0799bfa284af1aa48d7316f161258752048ba3"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "e3bd0bdb8d51a2af8f0554606b53f6693736cb01",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "selected_line_quotes": [
+        {
+          "line": 80,
+          "text": "| 要求・要件正本 | 満たすべき価値・制約・承認境界 | 現在の実行担当・スコア |",
+          "utf8_sha256": "a67140d2f7d04ac9d242493da2cef70d890c4124c5981f8e846987c3bb842b4a"
+        },
+        {
+          "line": 81,
+          "text": "| Design / PLAN | 正本に従う設計・原子的変更統制 | 別の要求正本、瞬間的な配車状態 |",
+          "utf8_sha256": "f2bd72ca9e36e7cd991543dbec325c8bf61333d5e7e7e890960cae653ea6e80c"
+        },
+        {
+          "line": 82,
+          "text": "| ExecutionTicket | 導出された実行契約：目的・責務・scope・受入義務 | provider、assignee、branch、lease、進捗、score |",
+          "utf8_sha256": "52effd2df7c65594affd912bbb7050a92040fe9159576c75490ae3e36cc562ee"
+        },
+        {
+          "line": 85,
+          "text": "| TaskSnapshot / ExperimentDefinition | 比較対象・fixture・protocol・treatment・共通採点基準 | 本番Ticketの意味変更・本番権限 |",
+          "utf8_sha256": "64cbb721efdcdc1ce17d707b91e7327cb85ce6524cc9ba85c11781866b0ee1cc"
+        },
+        {
+          "line": 105,
+          "text": "7. provider変更・観測方針変更・配車順位変更だけでTicketの意味revisionを増やさない。",
+          "utf8_sha256": "8237eb2d0b85a33cf0a9f6041b1148ac2d95ff6856215ab3f08699cbf4491506"
+        },
+        {
+          "line": 190,
+          "text": "Ticketはrepo/project-ownedなmachine-readable immutable recordとして保持する。logical ID、revision、source refs、scope、acceptance、digestを持ち、保存pathと分割は既存authority/migration規約に従う。GitHub viewやread-model rowを独立編集可能な正本にしない。",
+          "utf8_sha256": "8d9bae046bee47fe8777deb029826cb4d2d48374646858abf133b180412e928c"
+        },
+        {
+          "line": 194,
+          "text": "要求・要件正本、Design/PLAN、Ticket、Assignment、Attempt、Measurementを分離する。PLANの原子的変更統制は維持する。1 PLANから複数Ticketへ分解する場合も、各責務・成果物・受入・集約条件を明示し、Ticketを理由に巨大なPRや新しいWBS正本を正当化しない。",
+          "utf8_sha256": "4527ce9aac3fd86479dd9031a99e1f8944876f31fad2b1d0fe027e4b30493345"
+        },
+        {
+          "line": 198,
+          "text": "確定したRequirement IR、Design/PLAN、Responsibility、Verification Obligationとcompiler policyから同一入力に同一byte/digestのcandidateを生成する。AIによる分解案は候補であり、未確定objective/scope/acceptance/dependencyをcompilerが推測しない。Release配置・可変priority・measurement policyは生成物への外部bindingとする。",
+          "utf8_sha256": "12da676f826da1ea6bed76202f42039fcfd540b88f396f482114c67cb2c4b903"
+        },
+        {
+          "line": 206,
+          "text": "logical ID、contract revision、digest、source provenanceを分ける。同一確定入力の再生成を重複Ticketにしない。provider/model、割当、現在priority、scorerの変更はTicket改版理由にしない。意味変更・split・recoveryは新revision/lineageまたはtyped conflictとする。",
+          "utf8_sha256": "5d4e65ae44118335a0ec3bdcf47e1d306882333dbfe58f0cced5cfe8cb0de83f"
+        },
+        {
+          "line": 210,
+          "text": "既存atomic-slice admissionのexactly-one behavior/responsibility、path/companion、scope expansion、no-code order、current blocker検査を再利用する。事前Ticketでは実diffや未来candidate HEADを捏造せず、計画scopeを検査する。実装後のactual pathとの照合は実diffを入力に再検査する。",
+          "utf8_sha256": "f526ec0710a2b228c718cf76f86cde5e71f7f8c9a0d5bdf46ba0ec4314c1b3d0"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "canonical ticket/assignment/attempt/measurement/GitHub別意味、同入力、可変priority外部binding、源source/義務、依存disposition",
+      "change": "旧CLI/DB/schema/admission engine/固定mode/provider/required checkを採択しない。現在ownerの承認4要求へ再導出する。",
+      "reason": "9/28採択owner境界と10/12限定前提scopeを保持。新しい承認手続きを作らず旧runtime/合格を実証にしない。",
+      "consumer_limit": "旧candidate全体/consumer全閉包は未採用。本対象の意味source。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "selected_line_quotes": [
+        {
+          "line": 68,
+          "text": "| UTW-002 | Critical | prose/CURRENT handoverがcontinuation正本で、event-first DB projectionと競合する | AGENTS/CLAUDEのSession Start、`.ut-tdd/handover` | UTH-FR-006 |",
+          "utf8_sha256": "b92871ad3408ab4c84a7af9dc568a096a1d32980b98df9fccbc62d74a2aae9ff"
+        },
+        {
+          "line": 71,
+          "text": "| UTW-005 | Critical | PR trace/review evidenceが最新HEAD・merge-baseへ常時再束縛されない | 既存UT-GH-06/07/12 | UTH-FR-015 |",
+          "utf8_sha256": "43bb122180db589a1d2135a3076b9bc4ba911184948b7eec6c8b998f61a2c1ad"
+        },
+        {
+          "line": 87,
+          "text": "| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |",
+          "utf8_sha256": "3a6bddbe4c73e4a6d0f4e0d0c9db39c06d47691f3d2fd1ff0a11675bc7df5f44"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "UTW-002/005/021の継続正本/対象HEAD/自己申告の失敗を保持。",
+      "change": "旧CLI/DB/schema/admission engine/固定mode/provider/required checkを採択しない。現在ownerの承認4要求へ再導出する。",
+      "reason": "9/28採択owner境界と10/12限定前提scopeを保持。新しい承認手続きを作らず旧runtime/合格を実証にしない。",
+      "consumer_limit": "旧candidate全体/consumer全閉包は未採用。本対象の意味source。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/workflow-switch-route-allocation-schema.md",
+      "file_sha256": "4b1788f093807b5ef01d842c8a5bd772d47a718fff385b2166f9de8aceb7ecdc",
+      "selected_line_quotes": [
+        {
+          "line": 23,
+          "text": "parserはinputを変更せず、成功時にcanonical value、失敗時にstable failure codeとJSON pointerを返す。",
+          "utf8_sha256": "4c5bef669920db350fc1399a4cbd736e5354e51d2ebb7bd717117456ebb1d0a1"
+        },
+        {
+          "line": 24,
+          "text": "clock、network、DB、Git、GitHub、worker dispatchへ触れないpure contractとする。",
+          "utf8_sha256": "913ec74c2ee2a8fb26a60abd468e452e4872619351ce971613836cc88919d9ab"
+        },
+        {
+          "line": 105,
+          "text": "`findings`のexact setを持つ。dispositionは`proposed|decision_required|rejected`だけで、`approved`、`committed`、",
+          "utf8_sha256": "bc35196ce6e0926645b0ecd54b7026c0cea384f16daabb82a7bfdbcd3a7dbbd6"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "pure comparison/input不変、proposalとcommit/dispatch/approvalの分離。",
+      "change": "旧9root schema、固定metric9、full_v/scrum receipt、旧failure順/旧L6実装表現を採用しない。",
+      "reason": "原OS017の4批准対と現V12へ導出。旧schemaを現在のauthorityへ昇格させず、新gateを作らない。",
+      "consumer_limit": "旧L8 U-UWJSCHEMA-001..015と旧planner/evaluatorの参考。現OS018/019 consumerの資格供給を代替しない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "pairs": 430
+  },
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "implementation_readiness": "not_ready",
+  "scope": "OS017 B01/F01/F02/F03の4批准対に限る論理型/純比較詳細。1.0定義済工程部品と既定差戻し。部品外flowは4.0。実ticket/工程起動/割当/差戻し/再開/権限/完了を生成しない。",
+  "unclosed_source_supply": [
+    {
+      "subject": "management/requirement/plan input custody",
+      "responsible_owner": "OS015/016/017・上流owner",
+      "qualification_root": {
+        "tag": "absent"
+      },
+      "source_custody": {
+        "tag": "absent"
+      },
+      "remaining": "binding/managementの固定素材は具体化。正式source/許可/意味供給のroot/custodyと変更影響再導出は未閉包。"
+    },
+    {
+      "subject": "process/obligation/route source",
+      "responsible_owner": "HARNESS",
+      "qualification_root": {
+        "tag": "absent"
+      },
+      "source_custody": {
+        "tag": "absent"
+      },
+      "remaining": "parts/edges/obligations/backflow_refは論理carrierへ保持。正式工程部品source/資格と全terminal dispositionは未成立。OSがsourceを創作しない。"
+    },
+    {
+      "subject": "proposal/level/constraints sources",
+      "responsible_owner": "INTELLIGENCE/LABO/SECURITY/INFRASTRUCTURE",
+      "qualification_root": {
+        "tag": "absent"
+      },
+      "source_custody": {
+        "tag": "absent"
+      },
+      "remaining": "選択案/水準と制約の値比較のみ。実source提供資格・実許可/資源/quantity単位・time authorityは未成立。"
+    },
+    {
+      "subject": "ticket graph decomposition and routing",
+      "responsible_owner": "OS017/HARNESS",
+      "qualification_root": {
+        "tag": "absent"
+      },
+      "source_custody": {
+        "tag": "absent"
+      },
+      "remaining": "原graphの8field/同index/既定第1ticket戻しを具体化。全typed relation/cycle/方向/atomicity/複数result routingの一般規則・素材は未供給。"
+    },
+    {
+      "subject": "assignment/episode/collection/resume",
+      "responsible_owner": "OS018/019/020/023",
+      "qualification_root": {
+        "tag": "absent"
+      },
+      "source_custody": {
+        "tag": "absent"
+      },
+      "remaining": "原ticket/source/累積制約と部分保持を接続。実assignment/lease/attempt/回収/部分義務解消receipt/全履歴/競合・正式再開能力は未成立。"
+    }
+  ],
+  "remaining": [
+    "正式wire/schema/codec（parser/float/resource/encode/unknown key方針）と任意外側shape/不正memberの全反例は未成立。原217例のlogical引数/返却値は具体化済みで、codec欠如を理由に未materializeにしない。",
+    "全owner-qualified source/binding/graph/atomicity/複数routing/量単位/time/実解消receipt・実行/回収/再開/CI/実TDD/L11受入・全92親430意味閉包/実装Readyは未成立。",
+    "L6は関数設計、L7は対の関数検証。実装成果は層外。test/oracle凍結→実装前Red→Green→Refactorの前提素材を作る作業であり、実TDD/CIの合格証拠ではない。"
+  ],
+  "id": "HELIXOS-L5-017",
+  "pair": "HELIXOS-L8-017",
+  "status": "draft_detail_for_parent_review",
+  "contracts": [
+    {
+      "id": "HELIXOS-L5-017-F01",
+      "source_contract": {
+        "id": "HELIXOS-L4-017-F01",
+        "requirement_ref": "HELIXOS-L3-017-F01",
+        "system_oracle_ref": "HELIXOS-L10-017-F01",
+        "oracle_ref": "HELIXOS-L9-017-F01",
+        "approved_requirement": {
+          "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+          "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "1522ef187cc899780ba9fbee084695561822d9f5b03a7319ad39059d534bfdd3"
+        },
+        "component": "source_bound_deterministic_ticket_material",
+        "input_meaning": "管理の目的・要求・制約・許可・優先度・依存・資源・budget・期限・停止条件、HARNESS版/工程契約、接続状況、提供されたINTELLIGENCE案とLABO水準を元revision/scopeへ結ぶ。対象・kind・親revision・scope・依存・受入義務・戻し先をticket graphへ保持する。",
+        "output_meaning": "facet別対応/unknown/違反、原source不足候補と既定戻し先素材。実操作はnone。",
+        "operation_effect": "none"
+      },
+      "source_contract_canonical_sha256": "bd3a692347e6cb0e22a90fa5cdb6b9c7e42d97933bfede6378b52ba8125be344",
+      "functions": [
+        "F01701",
+        "F01702",
+        "F01708"
+      ]
+    },
+    {
+      "id": "HELIXOS-L5-017-F02",
+      "source_contract": {
+        "id": "HELIXOS-L4-017-F02",
+        "requirement_ref": "HELIXOS-L3-017-F02",
+        "system_oracle_ref": "HELIXOS-L10-017-F02",
+        "oracle_ref": "HELIXOS-L9-017-F02",
+        "approved_requirement": {
+          "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+          "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "03d8ea7b4efc46c6eea5eadba8f8f1a16df2df4fe0d516de61aae266d04dede5"
+        },
+        "component": "predefined_process_proposal_eligibility",
+        "input_meaning": "INTELLIGENCE案をHARNESS語彙/順序/義務、authority、budget、期限、依存へ照合してからworkflow instanceへ進める。1.0は定義済み工程部品の規則的組合せと途中結果による既定戻し先への差戻しに限り、部品外flow生成は4.0に保持する。",
+        "output_meaning": "facet別対応/unknown/違反、原source不足候補と既定戻し先素材。実操作はnone。",
+        "operation_effect": "none"
+      },
+      "source_contract_canonical_sha256": "aeaca08e6bd18d04409da5d6a14a526cf1e9fc3c318c5c45b4c6292f6e154d95",
+      "functions": [
+        "F01701",
+        "F01703",
+        "F01704",
+        "F01708"
+      ]
+    },
+    {
+      "id": "HELIXOS-L5-017-F03",
+      "source_contract": {
+        "id": "HELIXOS-L4-017-F03",
+        "requirement_ref": "HELIXOS-L3-017-F03",
+        "system_oracle_ref": "HELIXOS-L10-017-F03",
+        "oracle_ref": "HELIXOS-L9-017-F03",
+        "approved_requirement": {
+          "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+          "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "c55089c05ed42d4cbc886cfd4919ad0fd7629316bcc31681f7c958ae7461ce61"
+        },
+        "component": "existing_backflow_and_cumulative_resume",
+        "input_meaning": "途中結果/未解決依存/unknown/conflict/scope逸脱をticketの元revisionと既存戻し先へ結ぶ。再開時も停止理由・元要求revision・未完義務・累積budget/期限を保持し、意味変更をOSが自己確定しない。",
+        "output_meaning": "facet別対応/unknown/違反、原source不足候補と既定戻し先素材。実操作はnone。",
+        "operation_effect": "none"
+      },
+      "source_contract_canonical_sha256": "52c85a0770230f7f9fb0b49ad7b287316e0f13c7e32b7cd2d190cf89c2d870e6",
+      "functions": [
+        "F01701",
+        "F01705",
+        "F01706",
+        "F01708"
+      ]
+    },
+    {
+      "id": "HELIXOS-L5-017-B01",
+      "source_contract": {
+        "id": "HELIXOS-L4-017-B01",
+        "requirement_ref": "HELIXOS-L3-017-B01",
+        "system_oracle_ref": "HELIXOS-L10-017-B01",
+        "oracle_ref": "HELIXOS-L9-017-B01",
+        "approved_requirement": {
+          "revision": "5c62d19b78fca3be1964c0cd3157a540950150dc",
+          "source_path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "object_canonical_sha256": "1377e86de17bb19d269dd9f15fa4ce3d9cb77608a8d43d1fc6f3df5e120f16c4"
+        },
+        "component": "promotion_owner_and_projection_boundary",
+        "input_meaning": "推進はOSが担い、HARNESSが工程と検証義務、INTELLIGENCEが案、LABOが水準、SECURITYがauthority、INFRASTRUCTUREが資源を持つ。ticketとIssue/PR projection、仕事の意味とassignment/attempt/測定を分け、案やclose/mergeを実行/完了へ昇格しない。",
+        "output_meaning": "facet別対応/unknown/違反、原source不足候補と既定戻し先素材。実操作はnone。",
+        "operation_effect": "none"
+      },
+      "source_contract_canonical_sha256": "a9e74bced7326fd6b351e4c684e896f617ab0a71f3422f37c0df0a4828469f57",
+      "functions": [
+        "F01701",
+        "F01702",
+        "F01707",
+        "F01708"
+      ]
+    }
+  ],
+  "trace": [
+    {
+      "l3": "HELIXOS-L3-017-F01",
+      "l4": "HELIXOS-L4-017-F01",
+      "l5": "HELIXOS-L5-017-F01",
+      "l8": "HELIXOS-L8-017-F01",
+      "l9": "HELIXOS-L9-017-F01",
+      "l10": "HELIXOS-L10-017-F01",
+      "source_cases": [
+        "OS017-L8-NORMAL-CANDIDATE",
+        "OS017-L8-SAME-INPUT-REPEAT",
+        "OS017-L8-BINDING-PROJECT-UNKNOWN",
+        "OS017-L8-BINDING-PROJECT-CONFLICT",
+        "OS017-L8-BINDING-REQUIREMENT_REVISION-UNKNOWN",
+        "OS017-L8-BINDING-REQUIREMENT_REVISION-CONFLICT",
+        "OS017-L8-BINDING-SCOPE-UNKNOWN",
+        "OS017-L8-BINDING-SCOPE-CONFLICT",
+        "OS017-L8-BINDING-PLAN_REVISION-UNKNOWN",
+        "OS017-L8-BINDING-PLAN_REVISION-CONFLICT",
+        "OS017-L8-BINDING-CONTRACT_REVISION-UNKNOWN",
+        "OS017-L8-BINDING-CONTRACT_REVISION-CONFLICT",
+        "OS017-L8-MANAGEMENT-PURPOSE_REF-UNKNOWN",
+        "OS017-L8-MANAGEMENT-PURPOSE_REF-CONFLICT",
+        "OS017-L8-MANAGEMENT-REQUEST_REF-UNKNOWN",
+        "OS017-L8-MANAGEMENT-REQUEST_REF-CONFLICT",
+        "OS017-L8-MANAGEMENT-CONSTRAINT_REF-UNKNOWN",
+        "OS017-L8-MANAGEMENT-CONSTRAINT_REF-CONFLICT",
+        "OS017-L8-MANAGEMENT-PERMISSION_REF-UNKNOWN",
+        "OS017-L8-MANAGEMENT-PERMISSION_REF-CONFLICT",
+        "OS017-L8-MANAGEMENT-PRIORITY_REF-UNKNOWN",
+        "OS017-L8-MANAGEMENT-PRIORITY_REF-CONFLICT",
+        "OS017-L8-MANAGEMENT-DEPENDENCY_REF-UNKNOWN",
+        "OS017-L8-MANAGEMENT-DEPENDENCY_REF-CONFLICT",
+        "OS017-L8-MANAGEMENT-RESOURCE_REF-UNKNOWN",
+        "OS017-L8-MANAGEMENT-RESOURCE_REF-CONFLICT",
+        "OS017-L8-MANAGEMENT-BUDGET_REF-UNKNOWN",
+        "OS017-L8-MANAGEMENT-BUDGET_REF-CONFLICT",
+        "OS017-L8-MANAGEMENT-DEADLINE_REF-UNKNOWN",
+        "OS017-L8-MANAGEMENT-DEADLINE_REF-CONFLICT",
+        "OS017-L8-MANAGEMENT-STOP_CONDITION_REF-UNKNOWN",
+        "OS017-L8-MANAGEMENT-STOP_CONDITION_REF-CONFLICT",
+        "OS017-L8-MANAGEMENT-HARNESS_VERSION-UNKNOWN",
+        "OS017-L8-MANAGEMENT-HARNESS_VERSION-CONFLICT",
+        "OS017-L8-MANAGEMENT-CONNECTION_REF-UNKNOWN",
+        "OS017-L8-MANAGEMENT-CONNECTION_REF-CONFLICT",
+        "OS017-L8-TICKET-TICKET_REF-UNKNOWN",
+        "OS017-L8-TICKET-TICKET_REF-CONFLICT",
+        "OS017-L8-TICKET-TARGET-UNKNOWN",
+        "OS017-L8-TICKET-TARGET-CONFLICT",
+        "OS017-L8-TICKET-KIND-UNKNOWN",
+        "OS017-L8-TICKET-KIND-CONFLICT",
+        "OS017-L8-TICKET-PARENT_REVISION-UNKNOWN",
+        "OS017-L8-TICKET-PARENT_REVISION-CONFLICT",
+        "OS017-L8-TICKET-SCOPE-UNKNOWN",
+        "OS017-L8-TICKET-SCOPE-CONFLICT",
+        "OS017-L8-TICKET-DEPENDENCIES-UNKNOWN",
+        "OS017-L8-TICKET-DEPENDENCIES-CONFLICT",
+        "OS017-L8-TICKET-ACCEPTANCE-UNKNOWN",
+        "OS017-L8-TICKET-ACCEPTANCE-CONFLICT",
+        "OS017-L8-TICKET-BACKFLOW_REF-UNKNOWN",
+        "OS017-L8-TICKET-BACKFLOW_REF-CONFLICT",
+        "OS017-L8-EXPECTED-BINDING-PROJECT-UNKNOWN",
+        "OS017-L8-EXPECTED-BINDING-REQUIREMENT_REVISION-UNKNOWN",
+        "OS017-L8-EXPECTED-BINDING-SCOPE-UNKNOWN",
+        "OS017-L8-EXPECTED-BINDING-PLAN_REVISION-UNKNOWN",
+        "OS017-L8-EXPECTED-BINDING-CONTRACT_REVISION-UNKNOWN",
+        "OS017-L8-EXPECTED-MANAGEMENT-PURPOSE_REF-UNKNOWN",
+        "OS017-L8-EXPECTED-MANAGEMENT-REQUEST_REF-UNKNOWN",
+        "OS017-L8-EXPECTED-MANAGEMENT-CONSTRAINT_REF-UNKNOWN",
+        "OS017-L8-EXPECTED-MANAGEMENT-PERMISSION_REF-UNKNOWN",
+        "OS017-L8-EXPECTED-MANAGEMENT-PRIORITY_REF-UNKNOWN",
+        "OS017-L8-EXPECTED-MANAGEMENT-DEPENDENCY_REF-UNKNOWN",
+        "OS017-L8-EXPECTED-MANAGEMENT-RESOURCE_REF-UNKNOWN",
+        "OS017-L8-EXPECTED-MANAGEMENT-BUDGET_REF-UNKNOWN",
+        "OS017-L8-EXPECTED-MANAGEMENT-DEADLINE_REF-UNKNOWN",
+        "OS017-L8-EXPECTED-MANAGEMENT-STOP_CONDITION_REF-UNKNOWN",
+        "OS017-L8-EXPECTED-MANAGEMENT-HARNESS_VERSION-UNKNOWN",
+        "OS017-L8-EXPECTED-MANAGEMENT-CONNECTION_REF-UNKNOWN",
+        "OS017-L8-PHASE-UNKNOWN",
+        "OS017-L8-CANDIDATE-NO-FUTURE-GATE",
+        "OS017-L8-PRIORITY-REBIND-NO-TICKET-REVISION",
+        "OS017-L8-DIFFERENT-TARGET",
+        "OS017-L8-DIFFERENT-DEPENDENCY",
+        "OS017-L8-TWO-TICKET-GRAPH",
+        "OS017-L8-EMPTY-ACTUAL-TICKET-GRAPH",
+        "OS017-L8-EMPTY-EXPECTED-TICKET-GRAPH",
+        "OS017-L8-EMPTY-BOTH-ACCEPTANCE",
+        "OS017-L8-CANDIDATE-DOES-NOT-ADMIT-AUTHORITY"
+      ]
+    },
+    {
+      "l3": "HELIXOS-L3-017-F02",
+      "l4": "HELIXOS-L4-017-F02",
+      "l5": "HELIXOS-L5-017-F02",
+      "l8": "HELIXOS-L8-017-F02",
+      "l9": "HELIXOS-L9-017-F02",
+      "l10": "HELIXOS-L10-017-F02",
+      "source_cases": [
+        "OS017-L8-NORMAL-WORKFLOW",
+        "OS017-L8-AUTHORITY-SOURCE_REF-UNKNOWN",
+        "OS017-L8-AUTHORITY-SOURCE_REF-CONFLICT",
+        "OS017-L8-RESOURCE-SOURCE_REF-UNKNOWN",
+        "OS017-L8-RESOURCE-SOURCE_REF-CONFLICT",
+        "OS017-L8-DEPENDENCY-STATE-UNKNOWN",
+        "OS017-L8-DEPENDENCY-STATE-CONFLICT",
+        "OS017-L8-DEPENDENCY-SOURCE_REF-UNKNOWN",
+        "OS017-L8-DEPENDENCY-SOURCE_REF-CONFLICT",
+        "OS017-L8-DEPENDENCY-REQUIREMENT_REVISION-UNKNOWN",
+        "OS017-L8-DEPENDENCY-REQUIREMENT_REVISION-CONFLICT",
+        "OS017-L8-DEPENDENCY-SCOPE-UNKNOWN",
+        "OS017-L8-DEPENDENCY-SCOPE-CONFLICT",
+        "OS017-L8-PROCESS-SOURCE_REF-UNKNOWN",
+        "OS017-L8-PROCESS-SOURCE_REF-CONFLICT",
+        "OS017-L8-PROCESS-REVISION-UNKNOWN",
+        "OS017-L8-PROCESS-REVISION-CONFLICT",
+        "OS017-L8-PROCESS-PARTS-UNKNOWN",
+        "OS017-L8-PROCESS-PARTS-CONFLICT",
+        "OS017-L8-PROCESS-ALLOWED_EDGES-UNKNOWN",
+        "OS017-L8-PROCESS-ALLOWED_EDGES-CONFLICT",
+        "OS017-L8-PROCESS-OBLIGATIONS-UNKNOWN",
+        "OS017-L8-PROCESS-OBLIGATIONS-CONFLICT",
+        "OS017-L8-PROCESS-BACKFLOW_REF-UNKNOWN",
+        "OS017-L8-PROCESS-BACKFLOW_REF-CONFLICT",
+        "OS017-L8-EXPECTED-BINDING-REQUIREMENT_REVISION-UNKNOWN",
+        "OS017-L8-EXPECTED-BINDING-SCOPE-UNKNOWN",
+        "OS017-L8-EXPECTED-BINDING-CONTRACT_REVISION-UNKNOWN",
+        "OS017-L8-EXPECTED-DEPENDENCY-STATE-UNKNOWN",
+        "OS017-L8-EXPECTED-DEPENDENCY-SOURCE_REF-UNKNOWN",
+        "OS017-L8-EXPECTED-DEPENDENCY-REQUIREMENT_REVISION-UNKNOWN",
+        "OS017-L8-EXPECTED-DEPENDENCY-SCOPE-UNKNOWN",
+        "OS017-L8-PROPOSAL-SOURCE_REF-UNKNOWN",
+        "OS017-L8-PROPOSAL-REQUIREMENT_REVISION-UNKNOWN",
+        "OS017-L8-PROPOSAL-SCOPE-UNKNOWN",
+        "OS017-L8-PROPOSAL-REASON_REF-UNKNOWN",
+        "OS017-L8-PROPOSAL-PARTS-UNKNOWN",
+        "OS017-L8-PROPOSAL-OBLIGATIONS-UNKNOWN",
+        "OS017-L8-PROPOSAL-OUTSIDE-PARTS",
+        "OS017-L8-PROPOSAL-ORDER-REVERSED",
+        "OS017-L8-PROPOSAL-OBLIGATION-LOST",
+        "OS017-L8-PROPOSAL-MISSING",
+        "OS017-L8-PROPOSAL-SELECTION-UNKNOWN",
+        "OS017-L8-PROPOSAL-SELECTION-SILENT-DOWNGRADE",
+        "OS017-L8-OPTIONAL-PROPOSAL-NOT-PROVIDED",
+        "OS017-L8-OPTIONAL-LEVEL-PROVIDED",
+        "OS017-L8-LEVEL-PROVIDED-WRONG-SCOPE",
+        "OS017-L8-LEVEL-SELECTION-UNKNOWN",
+        "OS017-L8-AUTHORITY-REVOKED",
+        "OS017-L8-AUTHORITY-STALE",
+        "OS017-L8-AUTHORITY-DENIED",
+        "OS017-L8-AUTHORITY-FAILED",
+        "OS017-L8-AUTHORITY-UNKNOWN",
+        "OS017-L8-RESOURCE-REVOKED",
+        "OS017-L8-RESOURCE-STALE",
+        "OS017-L8-RESOURCE-DENIED",
+        "OS017-L8-RESOURCE-FAILED",
+        "OS017-L8-RESOURCE-UNKNOWN",
+        "OS017-L8-DEPENDENCY-MISSING",
+        "OS017-L8-DEPENDENCY-FAILED",
+        "OS017-L8-DEPENDENCY-CONFLICT",
+        "OS017-L8-DEPENDENCY-STALE",
+        "OS017-L8-DEPENDENCY-ISSUE_CLOSED",
+        "OS017-L8-DEPENDENCY-UNKNOWN",
+        "OS017-L8-QUANTITY-BUDGET_LIMIT-NONE",
+        "OS017-L8-QUANTITY-BUDGET_LIMIT--1",
+        "OS017-L8-QUANTITY-BUDGET_LIMIT-UNKNOWN",
+        "OS017-L8-QUANTITY-DEADLINE-NONE",
+        "OS017-L8-QUANTITY-DEADLINE--1",
+        "OS017-L8-QUANTITY-DEADLINE-UNKNOWN",
+        "OS017-L8-QUANTITY-COST_SPENT-NONE",
+        "OS017-L8-QUANTITY-COST_SPENT--1",
+        "OS017-L8-QUANTITY-COST_SPENT-UNKNOWN",
+        "OS017-L8-QUANTITY-FAILURES-NONE",
+        "OS017-L8-QUANTITY-FAILURES--1",
+        "OS017-L8-QUANTITY-FAILURES-UNKNOWN",
+        "OS017-L8-QUANTITY-NOW-NONE",
+        "OS017-L8-QUANTITY-NOW--1",
+        "OS017-L8-QUANTITY-NOW-UNKNOWN",
+        "OS017-L8-BUDGET-EXHAUSTED",
+        "OS017-L8-DEADLINE-REACHED",
+        "OS017-L8-PROPOSAL-REQUIREMENT_REVISION-BOTH-FOREIGN",
+        "OS017-L8-PROPOSAL-SCOPE-BOTH-FOREIGN",
+        "OS017-L8-DEPENDENCY-REQUIREMENT_REVISION-BOTH-FOREIGN",
+        "OS017-L8-DEPENDENCY-SCOPE-BOTH-FOREIGN",
+        "OS017-L8-PROCESS-BOTH-FOREIGN-REVISION",
+        "OS017-L8-BACKFLOW-PHASE-AUTHORITY-REVOKED",
+        "OS017-L8-BACKFLOW-PHASE-DEPENDENCY-UNRESOLVED",
+        "OS017-L8-WORKFLOW-NO-FUTURE-RESUME-GATE"
+      ]
+    },
+    {
+      "l3": "HELIXOS-L3-017-F03",
+      "l4": "HELIXOS-L4-017-F03",
+      "l5": "HELIXOS-L5-017-F03",
+      "l8": "HELIXOS-L8-017-F03",
+      "l9": "HELIXOS-L9-017-F03",
+      "l10": "HELIXOS-L10-017-F03",
+      "source_cases": [
+        "OS017-L8-NORMAL-BACKFLOW",
+        "OS017-L8-NORMAL-RESUME",
+        "OS017-L8-SAME-INPUT-REPEAT",
+        "OS017-L8-EXPECTED-BINDING-REQUIREMENT_REVISION-UNKNOWN",
+        "OS017-L8-EXPECTED-BINDING-SCOPE-UNKNOWN",
+        "OS017-L8-BACKFLOW-REQUIREMENT_REVISION-CONFLICT",
+        "OS017-L8-BACKFLOW-REQUIREMENT_REVISION-UNKNOWN",
+        "OS017-L8-BACKFLOW-SCOPE-CONFLICT",
+        "OS017-L8-BACKFLOW-SCOPE-UNKNOWN",
+        "OS017-L8-BACKFLOW-TICKET_REF-CONFLICT",
+        "OS017-L8-BACKFLOW-TICKET_REF-UNKNOWN",
+        "OS017-L8-BACKFLOW-BACKFLOW_REF-CONFLICT",
+        "OS017-L8-BACKFLOW-BACKFLOW_REF-UNKNOWN",
+        "OS017-L8-BACKFLOW-UNKNOWN",
+        "OS017-L8-BACKFLOW-CONFLICT",
+        "OS017-L8-BACKFLOW-SCOPE_VIOLATION",
+        "OS017-L8-BACKFLOW-UNRESOLVED_DEPENDENCY",
+        "OS017-L8-BACKFLOW-RESULT-MISSING",
+        "OS017-L8-RESUME-REQUIREMENT_REVISION-UNKNOWN",
+        "OS017-L8-RESUME-REQUIREMENT_REVISION-CONFLICT",
+        "OS017-L8-RESUME-SCOPE-UNKNOWN",
+        "OS017-L8-RESUME-SCOPE-CONFLICT",
+        "OS017-L8-RESUME-STOP_REASON_REF-UNKNOWN",
+        "OS017-L8-RESUME-STOP_REASON_REF-CONFLICT",
+        "OS017-L8-RESUME-BUDGET_LIMIT-UNKNOWN",
+        "OS017-L8-RESUME-BUDGET_LIMIT-RESET",
+        "OS017-L8-RESUME-DEADLINE-UNKNOWN",
+        "OS017-L8-RESUME-DEADLINE-RESET",
+        "OS017-L8-RESUME-COST_SPENT-UNKNOWN",
+        "OS017-L8-RESUME-COST_SPENT-RESET",
+        "OS017-L8-RESUME-FAILURES-UNKNOWN",
+        "OS017-L8-RESUME-FAILURES-RESET",
+        "OS017-L8-RESUME-OUTSTANDING-LOST",
+        "OS017-L8-RESUME-OUTSTANDING-UNKNOWN",
+        "OS017-L8-RESUME-MEANING-SELF-CONFIRMED",
+        "OS017-L8-RESUME-MEANING-CONFIRMATION-UNKNOWN",
+        "OS017-L8-PRIORITY-REBIND-NO-TICKET-REVISION",
+        "OS017-L8-EMPTY-EXPECTED-TICKET-GRAPH",
+        "OS017-L8-BACKFLOW-PHASE-WRONG-ROUTE",
+        "OS017-L8-BACKFLOW-PHASE-WRONG-SCOPE",
+        "OS017-L8-BACKFLOW-PHASE-UNKNOWN-ROUTE",
+        "OS017-L8-BACKFLOW-PHASE-UNKNOWN-RESULT"
+      ]
+    },
+    {
+      "l3": "HELIXOS-L3-017-B01",
+      "l4": "HELIXOS-L4-017-B01",
+      "l5": "HELIXOS-L5-017-B01",
+      "l8": "HELIXOS-L8-017-B01",
+      "l9": "HELIXOS-L9-017-B01",
+      "l10": "HELIXOS-L10-017-B01",
+      "source_cases": [
+        "OS017-L8-ROLES-PROMOTION-UNKNOWN",
+        "OS017-L8-ROLES-PROMOTION-CONFLICT",
+        "OS017-L8-ROLES-PROCESS-UNKNOWN",
+        "OS017-L8-ROLES-PROCESS-CONFLICT",
+        "OS017-L8-ROLES-PROPOSAL-UNKNOWN",
+        "OS017-L8-ROLES-PROPOSAL-CONFLICT",
+        "OS017-L8-ROLES-LEVEL-UNKNOWN",
+        "OS017-L8-ROLES-LEVEL-CONFLICT",
+        "OS017-L8-ROLES-AUTHORITY-UNKNOWN",
+        "OS017-L8-ROLES-AUTHORITY-CONFLICT",
+        "OS017-L8-ROLES-RESOURCE-UNKNOWN",
+        "OS017-L8-ROLES-RESOURCE-CONFLICT",
+        "OS017-L8-COMPLETION-CLAIM-TRUE",
+        "OS017-L8-COMPLETION-CLAIM-NONE",
+        "OS017-L8-PROJECTION-DONE-NO-ACTUAL-COMPLETION"
+      ]
+    }
+  ],
+  "logical_types": [
+    {
+      "name": "RawValue",
+      "kind": "json",
+      "meaning": "原metadataのopaque JSON。出所と実資格を生成しない。"
+    },
+    {
+      "name": "Field<T>",
+      "kind": "generic",
+      "tags": [
+        "absent",
+        "null",
+        "empty",
+        "supplied"
+      ],
+      "meaning": "欠落/明示null/空/値を別tagで残す。比較でunknownでも原presenceを失わない。"
+    },
+    {
+      "name": "QuantitySource",
+      "kind": "union",
+      "members": [
+        "number",
+        "string",
+        "boolean"
+      ],
+      "meaning": "原の不正数量（負数/UNKNOWN/boolean等）も値を失わず保持するcarrier。known quantityはbool以外の非負integerのみ。finite値の形と意味判定を分離する。"
+    },
+    {
+      "name": "Binding",
+      "kind": "record",
+      "fields": {
+        "project": "Field<string>",
+        "requirement_revision": "Field<string>",
+        "scope": "Field<string>",
+        "plan_revision": "Field<string>",
+        "contract_revision": "Field<string>"
+      },
+      "meaning": "OS017の対象/元要件/計画/工程revision。文字列同値は正式binding/資格の証拠ではない。"
+    },
+    {
+      "name": "ManagementSources",
+      "kind": "record",
+      "fields": {
+        "purpose_ref": "Field<string>",
+        "request_ref": "Field<string>",
+        "constraint_ref": "Field<string>",
+        "permission_ref": "Field<string>",
+        "priority_ref": "Field<string>",
+        "dependency_ref": "Field<string>",
+        "resource_ref": "Field<string>",
+        "budget_ref": "Field<string>",
+        "deadline_ref": "Field<string>",
+        "stop_condition_ref": "Field<string>",
+        "harness_version": "Field<string>",
+        "connection_ref": "Field<string>"
+      },
+      "meaning": "管理の12入力。priority/resource/connectionは候補bodyから外すが比較から省かない外部binding。"
+    },
+    {
+      "name": "OwnerRoles",
+      "kind": "record",
+      "fields": {
+        "promotion": "Field<string>",
+        "process": "Field<string>",
+        "proposal": "Field<string>",
+        "level": "Field<string>",
+        "authority": "Field<string>",
+        "resource": "Field<string>"
+      },
+      "meaning": "各ownerの責務を明示する原label。labelの自己申告から資格を得ない。"
+    },
+    {
+      "name": "TicketNode",
+      "kind": "record",
+      "fields": {
+        "ticket_ref": "Field<string>",
+        "target": "Field<string>",
+        "kind": "Field<string>",
+        "parent_revision": "Field<string>",
+        "scope": "Field<string>",
+        "backflow_ref": "Field<string>",
+        "dependencies": "Field<list<string>>",
+        "acceptance": "Field<list<string>>"
+      },
+      "meaning": "kindは原の非空string。新しいkind閉集合を発明しない。dependenciesは原参照集合で全typed graph/cycle/terminal dispositionは未供給。"
+    },
+    {
+      "name": "ProcessSource",
+      "kind": "record",
+      "fields": {
+        "source_ref": "Field<string>",
+        "revision": "Field<string>",
+        "parts": "Field<list<string>>",
+        "allowed_edges": "Field<list<list<string>>>",
+        "obligations": "Field<map<list<string>>>",
+        "backflow_ref": "Field<string>"
+      },
+      "meaning": "HARNESSの工程語彙set・順序edge・義務map・既定戻し先。OSが内容を再定義しない。"
+    },
+    {
+      "name": "ProposalSource",
+      "kind": "record",
+      "fields": {
+        "source_ref": "Field<string>",
+        "requirement_revision": "Field<string>",
+        "scope": "Field<string>",
+        "reason_ref": "Field<string>",
+        "parts": "Field<list<string>>",
+        "obligations": "Field<map<list<string>>>"
+      },
+      "meaning": "INTELLIGENCEの案。partsは順序保持。選択trueの時だけ読む。工程sourceと同型に統合しない。"
+    },
+    {
+      "name": "LevelSource",
+      "kind": "record",
+      "fields": {
+        "state": "Field<string>",
+        "source_ref": "Field<string>",
+        "requirement_revision": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "選択時のLABO素材。state比較とLABOの正式評価資格は別。"
+    },
+    {
+      "name": "ConditionSource",
+      "kind": "record",
+      "fields": {
+        "state": "Field<string>",
+        "source_ref": "Field<string>"
+      },
+      "meaning": "同shapeのauthority/resource原carrier。authority currentとresource observed_materialを別owner/分岐として評価する。"
+    },
+    {
+      "name": "DependencySource",
+      "kind": "record",
+      "fields": {
+        "state": "Field<string>",
+        "source_ref": "Field<string>",
+        "requirement_revision": "Field<string>",
+        "scope": "Field<string>"
+      }
+    },
+    {
+      "name": "Constraints",
+      "kind": "record",
+      "fields": {
+        "budget_limit": "Field<QuantitySource>",
+        "deadline": "Field<QuantitySource>",
+        "cost_spent": "Field<QuantitySource>",
+        "failures": "Field<QuantitySource>",
+        "now": "Field<QuantitySource>"
+      },
+      "meaning": "原tick/費用単位のcaller供給値。clock/閾値/単位変換を新設しない。"
+    },
+    {
+      "name": "PriorState",
+      "kind": "record",
+      "fields": {
+        "requirement_revision": "Field<string>",
+        "scope": "Field<string>",
+        "stop_reason_ref": "Field<string>",
+        "budget_limit": "Field<QuantitySource>",
+        "deadline": "Field<QuantitySource>",
+        "cost_spent": "Field<QuantitySource>",
+        "failures": "Field<QuantitySource>",
+        "outstanding": "Field<list<string>>"
+      },
+      "meaning": "context.priorを独立比較元とし元revision/scope/停止/累積制約/未完を保持。"
+    },
+    {
+      "name": "ResumedState",
+      "kind": "record",
+      "fields": {
+        "requirement_revision": "Field<string>",
+        "scope": "Field<string>",
+        "stop_reason_ref": "Field<string>",
+        "budget_limit": "Field<QuantitySource>",
+        "deadline": "Field<QuantitySource>",
+        "cost_spent": "Field<QuantitySource>",
+        "failures": "Field<QuantitySource>",
+        "outstanding": "Field<list<string>>",
+        "meaning_change_self_confirmed": "Field<boolean>"
+      }
+    },
+    {
+      "name": "IntermediateResult",
+      "kind": "record",
+      "fields": {
+        "state": "Field<string>",
+        "requirement_revision": "Field<string>",
+        "scope": "Field<string>",
+        "ticket_ref": "Field<string>",
+        "backflow_ref": "Field<string>"
+      },
+      "meaning": "failed/unknown/conflict/scope_violation/unresolved_dependencyは戻し素材の区分で、解消や成功ではない。"
+    },
+    {
+      "name": "Projection",
+      "kind": "record",
+      "fields": {
+        "issue_closed": "Field<boolean>",
+        "pr_merged": "Field<boolean>",
+        "label": "Field<string>"
+      },
+      "meaning": "観測carrierに保持しticket意味/actual完了へ投影しない。"
+    },
+    {
+      "name": "ExpectedContext",
+      "kind": "record",
+      "fields": {
+        "binding": "Field<Binding>",
+        "management": "Field<ManagementSources>",
+        "roles": "Field<OwnerRoles>",
+        "ticket_graph": "Field<list<TicketNode>>",
+        "process": "Field<ProcessSource>",
+        "proposal_selected": "Field<boolean>",
+        "proposal": "Field<ProposalSource>",
+        "dependency": "Field<DependencySource>",
+        "level_selected": "Field<boolean>",
+        "level": "Field<LevelSource>",
+        "resource_ref": "Field<string>",
+        "authority_ref": "Field<string>",
+        "expected_budget_limit": "Field<QuantitySource>",
+        "expected_deadline": "Field<QuantitySource>",
+        "prior": "Field<PriorState>"
+      },
+      "meaning": "原L9で独立供給する比較元。actual同値からsource custodyを推定せず、欠落元値をactualで補完しない。"
+    },
+    {
+      "name": "WorkflowInput",
+      "kind": "record",
+      "fields": {
+        "phase": "Field<string>",
+        "binding": "Field<Binding>",
+        "management": "Field<ManagementSources>",
+        "roles": "Field<OwnerRoles>",
+        "ticket_graph": "Field<list<TicketNode>>",
+        "process": "Field<ProcessSource>",
+        "proposal_selected": "Field<boolean>",
+        "proposal": "Field<ProposalSource>",
+        "level_selected": "Field<boolean>",
+        "level": "Field<LevelSource>",
+        "authority": "Field<ConditionSource>",
+        "resource": "Field<ConditionSource>",
+        "dependency": "Field<DependencySource>",
+        "constraints": "Field<Constraints>",
+        "intermediate": "Field<IntermediateResult>",
+        "prior": "Field<PriorState>",
+        "resumed": "Field<ResumedState>",
+        "completion_claim": "Field<boolean>",
+        "projection": "Field<Projection>",
+        "context": "Field<ExpectedContext>"
+      },
+      "meaning": "217固定原素材を論理Field化。未知keyはRawPacket.valueに残し正式codecの拡張受理を主張しない。一般外側shapeの失敗設計は未閉包。"
+    },
+    {
+      "name": "RawPacket",
+      "kind": "record",
+      "fields": {
+        "value": "RawValue",
+        "canonical_sha256": "string"
+      },
+      "meaning": "原given.input object。canonical表現は文書fixture固定用のみ、原供給bytes/正式codec/資格ではない。"
+    },
+    {
+      "name": "InputProjection",
+      "kind": "record",
+      "fields": {
+        "raw": "RawPacket",
+        "fields": "WorkflowInput"
+      }
+    },
+    {
+      "name": "Phase",
+      "kind": "enum",
+      "values": [
+        "candidate",
+        "workflow",
+        "backflow",
+        "resume"
+      ]
+    },
+    {
+      "name": "MaybePhase",
+      "kind": "nullable",
+      "inner": "Phase"
+    },
+    {
+      "name": "Facet",
+      "kind": "enum",
+      "values": [
+        "ownership",
+        "inputs",
+        "ticket",
+        "workflow",
+        "backflow",
+        "continuity",
+        "scope_limit"
+      ]
+    },
+    {
+      "name": "Disposition",
+      "kind": "enum",
+      "values": [
+        "unknown",
+        "violation"
+      ]
+    },
+    {
+      "name": "FacetState",
+      "kind": "enum",
+      "values": [
+        "corresponding",
+        "unknown",
+        "violation"
+      ]
+    },
+    {
+      "name": "Condition",
+      "kind": "enum",
+      "values": [
+        "workflow_material_corresponding",
+        "workflow_material_unknown",
+        "workflow_material_violation"
+      ]
+    },
+    {
+      "name": "FindingCode",
+      "kind": "enum",
+      "values": [
+        "source_unresolved",
+        "source_conflict",
+        "quantity_unresolved",
+        "phase_unresolved",
+        "proposal_selection_unresolved",
+        "proposal_record_unresolved",
+        "workflow_condition_rejected",
+        "workflow_condition_unresolved",
+        "dependency_unresolved",
+        "dependency_not_resolved",
+        "undefined_process_component",
+        "process_order_conflict",
+        "process_obligation_missing",
+        "budget_exhausted",
+        "deadline_reached",
+        "backflow_result_unresolved",
+        "stop_reason_unresolved",
+        "cumulative_constraint_reset",
+        "outstanding_obligation_lost",
+        "meaning_change_self_confirmed",
+        "completion_claim_unproven",
+        "completion_claim_unresolved"
+      ]
+    },
+    {
+      "name": "Finding",
+      "kind": "record",
+      "fields": {
+        "code": "FindingCode",
+        "pointer": "string",
+        "return_owner": "string"
+      }
+    },
+    {
+      "name": "FacetFinding",
+      "kind": "record",
+      "fields": {
+        "facet": "Facet",
+        "disposition": "Disposition",
+        "finding": "Finding"
+      },
+      "meaning": "同じfinding keyでも異facet影響を保持し、facet集約後だけ最終findingを一意化。"
+    },
+    {
+      "name": "MetadataAssessment",
+      "kind": "record",
+      "fields": {
+        "selected_phase": "MaybePhase",
+        "findings": "list<FacetFinding>"
+      }
+    },
+    {
+      "name": "FacetAssessment",
+      "kind": "record",
+      "fields": {
+        "findings": "list<FacetFinding>"
+      }
+    },
+    {
+      "name": "FacetCorrespondence",
+      "kind": "record",
+      "fields": {
+        "ownership": "FacetState",
+        "inputs": "FacetState",
+        "ticket": "FacetState",
+        "workflow": "FacetState",
+        "backflow": "FacetState",
+        "continuity": "FacetState",
+        "scope_limit": "FacetState"
+      }
+    },
+    {
+      "name": "BindingBody",
+      "kind": "record",
+      "fields": {
+        "project": "string",
+        "requirement_revision": "string",
+        "scope": "string",
+        "plan_revision": "string",
+        "contract_revision": "string"
+      }
+    },
+    {
+      "name": "ManagementBody",
+      "kind": "record",
+      "fields": {
+        "purpose_ref": "string",
+        "request_ref": "string",
+        "constraint_ref": "string",
+        "permission_ref": "string",
+        "dependency_ref": "string",
+        "budget_ref": "string",
+        "deadline_ref": "string",
+        "stop_condition_ref": "string",
+        "harness_version": "string"
+      }
+    },
+    {
+      "name": "TicketBody",
+      "kind": "record",
+      "fields": {
+        "ticket_ref": "string",
+        "target": "string",
+        "kind": "string",
+        "parent_revision": "string",
+        "scope": "string",
+        "backflow_ref": "string",
+        "dependencies": "list<string>",
+        "acceptance": "list<string>"
+      }
+    },
+    {
+      "name": "CandidateBody",
+      "kind": "record",
+      "fields": {
+        "binding": "BindingBody",
+        "management_refs": "ManagementBody",
+        "ticket_graph": "list<TicketBody>"
+      },
+      "meaning": "意味bodyと外部可変priority/資源/接続、assignment/attempt/measurementを区別する。"
+    },
+    {
+      "name": "MaybeCandidate",
+      "kind": "nullable",
+      "inner": "CandidateBody"
+    },
+    {
+      "name": "MaybeString",
+      "kind": "nullable",
+      "inner": "string"
+    },
+    {
+      "name": "WorkflowProposal",
+      "kind": "record",
+      "fields": {
+        "condition": "Condition",
+        "selected_phase": "MaybePhase",
+        "facet_correspondence": "FacetCorrespondence",
+        "candidate_material": "MaybeCandidate",
+        "candidate_material_digest": "MaybeString",
+        "workflow_material_corresponding": "boolean",
+        "backflow_material_ref": "MaybeString",
+        "resume_material_corresponding": "boolean",
+        "findings": "list<Finding>",
+        "actual_ticket_written": "boolean",
+        "actual_workflow_started": "boolean",
+        "actual_assignment_issued": "boolean",
+        "actual_backflow_applied": "boolean",
+        "actual_resume_executed": "boolean",
+        "whole_workflow_verified": "boolean",
+        "operation_effect": "string"
+      }
+    },
+    {
+      "name": "SourceSupplyGap",
+      "kind": "record",
+      "fields": {
+        "subject": "string",
+        "responsible_owner": "string",
+        "qualification_root": "Field<string>",
+        "source_custody": "Field<string>",
+        "remaining": "string"
+      }
+    }
+  ],
+  "functions": [
+    {
+      "id": "F01701",
+      "name": "project_workflow_input",
+      "arguments": {
+        "raw": "RawPacket"
+      },
+      "signature": "project_workflow_input(raw: RawPacket) -> InputProjection",
+      "return_type": "InputProjection",
+      "reads": {
+        "raw": [
+          "value",
+          "canonical_sha256"
+        ]
+      },
+      "returns": [
+        "raw",
+        "fields"
+      ],
+      "return_derivation": {
+        "raw": "入力RawPacket同値",
+        "fields": "全WorkflowInput memberの原presenceと値。"
+      },
+      "preconditions": [
+        "raw.valueは原given.inputのJSON objectで、raw.canonical_sha256はfixture canonical表現のhashと一致する。",
+        "raw以外の暗黙引数/parsed_json/clock/network/source資格を要求しない。実wire parse/正式codecは選定していない。"
+      ],
+      "algorithm": [
+        "raw.valueの全宣言memberをWorkflowInputへ再帰投影。missingはabsent、nullはnull、空文字/空list/空mapはempty、他はsupplied。map keyは工程part IDをopaqueに保持しkindへ読み替えない。",
+        "原raw値とfixture canonical hashを保持する。unknown keyはraw.valueに残り、正式codec採用/追加keyの受理を主張しない。"
+      ],
+      "postconditions": [
+        "入力不変、effect=none。対応は素材対応であり実workflow/READY/割当/権限/差戻し適用/再開/完了を生成しない。"
+      ],
+      "effects": "none"
+    },
+    {
+      "id": "F01702",
+      "name": "compare_ticket_metadata",
+      "arguments": {
+        "input": "WorkflowInput"
+      },
+      "signature": "compare_ticket_metadata(input: WorkflowInput) -> MetadataAssessment",
+      "return_type": "MetadataAssessment",
+      "reads": {
+        "input": [
+          "phase",
+          "binding",
+          "management",
+          "roles",
+          "ticket_graph",
+          "context.binding",
+          "context.management",
+          "context.roles",
+          "context.ticket_graph"
+        ]
+      },
+      "returns": [
+        "selected_phase",
+        "findings"
+      ],
+      "return_derivation": {
+        "selected_phase": "原phaseが4閉集合に含まれる時だけその値。他はnullとphase_unresolved。",
+        "findings": "inputs/ownership/ticketの原比較値からFacetFinding。source_conflictは双方known相反だけ。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。異なるfacet/dispositionは別所見として集約まで保持する。"
+      },
+      "preconditions": [
+        "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
+        "input.contextは原L9の独立比較元。fixtureのsource label/body/digestを正式owner資格へ変換しない。",
+        "各比較ではFieldを元presenceへ解釈し、absent/null/不正scalarはknown値へ補完しない。正式wire/schema/codecと全不正外側shapeの結果は未固定。"
+      ],
+      "algorithm": [
+        "固定素材shapeに対してphase=candidate/workflow/backflow/resumeだけを選択。不明phaseはphase_unresolved・inputs unknown、selected_phase=null。binding5、management12、roles6を独立context同fieldへ照合。context rolesは固定6ownerへも照合。ticket_graphは独立contextと件数および同indexの8fieldを照合し、parent_revision/scopeをcontext bindingへも照合する。assignment/attempt/measurement/GitHub projectionはticket意味へ含めない。",
+        "比較tableに従う。stringは非空文字列、quantityはbool以外の非負integer、set/orderedは重複なし非空文字列list（list自体は空を許す）、obligationsは非空文字列key→重複なし非空文字列listのdict、edgesは長さ2の非空文字列listのlist。片側不明はその原pointerにsource_unresolved（数量だけquantity_unresolved）、両側不明は両pointer、両側knownで差があるときだけactual pointerへsource_conflict。setはsort比較、ordered/edgesは順序付き比較、obligationsはvalue listだけsort。重複はfacet/disposition/finding完全一致のみ一意化し、異facet影響は保持する。",
+        "空graphは各原rootにsource_unresolved。両非空だけ件数相反、同index8fieldとactual親revision/scopeをcontext.bindingへ比較。acceptance=[]は各原fieldに不足。原graphを並べ替えない。",
+        "context.rolesと固定6ownerの照合は通常string比較と同じcodeを使う。不明は/context/roles/<key>にsource_unresolved、既知相反は同pointerにsource_conflict（ownership）。両ticket_graphが非空で件数が相反する場合は/ticket_graphにsource_conflict（ticket）。"
+      ],
+      "postconditions": [
+        "入力不変、effect=none。対応は素材対応であり実workflow/READY/割当/権限/差戻し適用/再開/完了を生成しない。"
+      ],
+      "effects": "none"
+    },
+    {
+      "id": "F01703",
+      "name": "compare_predefined_process",
+      "arguments": {
+        "input": "WorkflowInput",
+        "phase": "MaybePhase"
+      },
+      "signature": "compare_predefined_process(input: WorkflowInput, phase: MaybePhase) -> FacetAssessment",
+      "return_type": "FacetAssessment",
+      "reads": {
+        "input": [
+          "process",
+          "proposal_selected",
+          "proposal",
+          "context.process",
+          "context.proposal_selected",
+          "context.proposal",
+          "context.binding"
+        ],
+        "phase": [
+          "$value"
+        ]
+      },
+      "returns": [
+        "findings"
+      ],
+      "return_derivation": {
+        "findings": "workflow/backflow/resumeだけ工程/案の6field、selector、parts語彙/順序/義務包含から所見。candidate/不明phaseでは[]。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。異なるfacet/dispositionは別所見として集約まで保持する。"
+      },
+      "preconditions": [
+        "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
+        "input.contextは原L9の独立比較元。fixtureのsource label/body/digestを正式owner資格へ変換しない。",
+        "各比較ではFieldを元presenceへ解釈し、absent/null/不正scalarはknown値へ補完しない。正式wire/schema/codecと全不正外側shapeの結果は未固定。"
+      ],
+      "algorithm": [
+        "workflow/backflow/resumeだけprocess6fieldを独立contextへ照合。process.partsは語彙set、allowed_edgesはedges、obligationsはobligations、その他はstring。proposal_selectedは両側booleanか照合し、型不明はactual selectorにproposal_selection_unresolved、両側boolean相反はsource_conflict。actual selected=trueの時だけproposalを読む。actual/expected recordがdictでなければそれぞれのrecord rootへproposal_record_unresolved。両dictならsource_ref/requirement_revision/scope/reason_ref string、parts ordered、obligationsを同field比較。非提供案を一律requiredにしない。",
+        "提供案の各known partを順に扱う。process.partsがknown string listで含まない場合undefined_process_componentを当該parts indexへ。2番目以降はprocess.allowed_edgesがlistで直前part→当該partがない場合process_order_conflictを当該parts indexへ。partに対する両obligation listがknownならrequired process義務がproposalに包含されない場合process_obligation_missingを当該proposal obligation keyへ。unknown sourceを空集合や別工程へ補完しない。OSが独自に変更したprocess sourceは独立contextとのsource_conflictで保持。1.0は定義済み部品だけ、部品外flowは4.0。",
+        "process.revisionをcontext.binding.contract_revisionへ、選択されたproposalのrequirement_revision/scopeをcontext.bindingへ別照合。actual/expectedの双方が同じforeign値でも相反を見落とさない。"
+      ],
+      "postconditions": [
+        "入力不変、effect=none。対応は素材対応であり実workflow/READY/割当/権限/差戻し適用/再開/完了を生成しない。"
+      ],
+      "effects": "none"
+    },
+    {
+      "id": "F01704",
+      "name": "compare_workflow_conditions",
+      "arguments": {
+        "input": "WorkflowInput",
+        "phase": "MaybePhase"
+      },
+      "signature": "compare_workflow_conditions(input: WorkflowInput, phase: MaybePhase) -> FacetAssessment",
+      "return_type": "FacetAssessment",
+      "reads": {
+        "input": [
+          "level_selected",
+          "level",
+          "authority",
+          "resource",
+          "dependency",
+          "constraints",
+          "context.level_selected",
+          "context.level",
+          "context.authority_ref",
+          "context.resource_ref",
+          "context.dependency",
+          "context.binding",
+          "context.expected_budget_limit",
+          "context.expected_deadline"
+        ],
+        "phase": [
+          "$value"
+        ]
+      },
+      "returns": [
+        "findings"
+      ],
+      "return_derivation": {
+        "findings": "選択phaseだけLABO提供条件/SECURITY authority/INFRA資源/dependency/累積数量の比較所見。案の対応を実認可へ昇格しない。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。異なるfacet/dispositionは別所見として集約まで保持する。"
+      },
+      "preconditions": [
+        "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
+        "input.contextは原L9の独立比較元。fixtureのsource label/body/digestを正式owner資格へ変換しない。",
+        "各比較ではFieldを元presenceへ解釈し、absent/null/不正scalarはknown値へ補完しない。正式wire/schema/codecと全不正外側shapeの結果は未固定。"
+      ],
+      "algorithm": [
+        "phaseがworkflow/backflow/resumeの時だけ以下の比較を行う。candidateまたはnullの時はfindings=[]を返し、将来の水準・authority・資源・依存・数量を候補形成の必須gateへしない。",
+        "level_selectedは両側boolean照合。不明selectorは原pointer source_unresolved、両known相反はactual selector source_conflict。actual selected=true時だけlevel recordを読む。actual/expectedいずれか非dictなら/level source_unresolved、両dictならstate/source_ref/requirement_revision/scopeの4stringを比較。falseの水準を未来gateへしない。提供された水準の実資格/評価基準はLABO ownerで未成立。",
+        "authority/resource source_refを独立contextのauthority_ref/resource_refへ比較。revoked/denied/stale/failedはworkflow_condition_rejected、その他current（authority）/observed_material（resource）以外はworkflow_condition_unresolvedを各stateへ。dependencyはsource_ref/requirement_revision/scopeを独立contextへ比較。state比較のknown閉集合はresolved/missing/failed/conflict/stale/issue_closedで、閉集合外は原位置source_unresolved、known相反だけactual state source_conflict。その上でmissing/failed/conflict/stale/issue_closedはdependency_not_resolved、既知閉集合外だけdependency_unresolvedをactual stateへ付す（dependency_not_resolvedとは排他）。Issue closeで解消しない。",
+        "constraintsのbudget_limit/deadline/cost_spent/failures/nowはquantity型だけ自己照合し、budget_limit/deadlineは独立context.expected_*とも比較する。known cost_spent>budget_limitはbudget_exhausted、known now>=deadlineはdeadline_reachedをactual cost/nowへ。100/90などは素材のtick/費用単位で、製品閾値/actual計測ではない。",
+        "提供levelとdependencyのrequirement_revision/scopeをcontext.bindingへ別照合。quantityはbool以外の非負integer。不正値はそのまま保持しquantity_unresolved。cost==limitは枯渇とせず、now==deadlineは到達とする。"
+      ],
+      "postconditions": [
+        "入力不変、effect=none。対応は素材対応であり実workflow/READY/割当/権限/差戻し適用/再開/完了を生成しない。"
+      ],
+      "effects": "none"
+    },
+    {
+      "id": "F01705",
+      "name": "compare_existing_backflow",
+      "arguments": {
+        "input": "WorkflowInput",
+        "phase": "MaybePhase"
+      },
+      "signature": "compare_existing_backflow(input: WorkflowInput, phase: MaybePhase) -> FacetAssessment",
+      "return_type": "FacetAssessment",
+      "reads": {
+        "input": [
+          "intermediate",
+          "context.binding",
+          "context.ticket_graph",
+          "context.process.backflow_ref"
+        ],
+        "phase": [
+          "$value"
+        ]
+      },
+      "returns": [
+        "findings"
+      ],
+      "return_derivation": {
+        "findings": "backflow/resumeだけ元対象/原ticket/既定route/結果区分を比較。不足とknown相反を保持。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。異なるfacet/dispositionは別所見として集約まで保持する。"
+      },
+      "preconditions": [
+        "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
+        "input.contextは原L9の独立比較元。fixtureのsource label/body/digestを正式owner資格へ変換しない。",
+        "各比較ではFieldを元presenceへ解釈し、absent/null/不正scalarはknown値へ補完しない。正式wire/schema/codecと全不正外側shapeの結果は未固定。"
+      ],
+      "algorithm": [
+        "backflow/resumeだけintermediateのrequirement_revision/scopeを独立context.bindingへ、ticket_refをcontext.ticket_graph[0].ticket_refへ、backflow_refをcontext.process.backflow_refへstring比較。stateはfailed/unknown/conflict/scope_violation/unresolved_dependencyだけ既定差戻し素材とし、それ以外はbackflow_result_unresolved。不成立を解消/実適用成功へ昇格しない。複数ticketの実result routingと返し先のqualificationは本限定詳細設計でも未閉包としてremainingへ保持する。",
+        "context.ticket_graphが空ならticket_ref照合を捏造せず/context/ticket_graphへbackflow source_unresolved。戻し先materialは単一原ticket[0]との局所照合で、複数ticketの全routingを完了扱いにしない。"
+      ],
+      "postconditions": [
+        "入力不変、effect=none。対応は素材対応であり実workflow/READY/割当/権限/差戻し適用/再開/完了を生成しない。"
+      ],
+      "effects": "none"
+    },
+    {
+      "id": "F01706",
+      "name": "compare_cumulative_resume",
+      "arguments": {
+        "input": "WorkflowInput",
+        "phase": "MaybePhase"
+      },
+      "signature": "compare_cumulative_resume(input: WorkflowInput, phase: MaybePhase) -> FacetAssessment",
+      "return_type": "FacetAssessment",
+      "reads": {
+        "input": [
+          "prior",
+          "resumed",
+          "context.prior"
+        ],
+        "phase": [
+          "$value"
+        ]
+      },
+      "returns": [
+        "findings"
+      ],
+      "return_derivation": {
+        "findings": "resumeだけpriorの8fieldと再開の元revision/scope/stop/4quantity/outstanding/self-confirmedを照合。unknown priorを初回やresetへ補完しない。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。異なるfacet/dispositionは別所見として集約まで保持する。"
+      },
+      "preconditions": [
+        "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
+        "input.contextは原L9の独立比較元。fixtureのsource label/body/digestを正式owner資格へ変換しない。",
+        "各比較ではFieldを元presenceへ解釈し、absent/null/不正scalarはknown値へ補完しない。正式wire/schema/codecと全不正外側shapeの結果は未固定。"
+      ],
+      "algorithm": [
+        "resumeだけpriorのrequirement_revision/scope/stop_reason_refをstring、budget_limit/deadline/cost_spent/failuresをquantity、outstandingをsetでcontext.prior同fieldへ照合。resumedのrequirement_revision/scope/stop_reason_refもcontext.priorへstring比較し、stop reason不明はstop_reason_unresolved併記。resumedの4quantityが不明は原位置quantity_unresolved、双方knownでbudget_limit/deadlineが違う、cost_spent/failuresが減る場合cumulative_constraint_reset。outstandingはstring listでなければsource_unresolved、known prior集合がresumedに包含されなければoutstanding_obligation_lost。意味自己確定trueはmeaning_change_self_confirmed、false以外はsource_unresolved。部分義務解消の実証拠/全履歴は未成立。",
+        "resumedの全比較基準（revision/scope/stop reason、4数量、outstanding）は独立context.priorであり、input.priorではない。input.prior自体もcontext.priorへ別比較し、一方の不一致を他方で相殺しない。"
+      ],
+      "postconditions": [
+        "入力不変、effect=none。対応は素材対応であり実workflow/READY/割当/権限/差戻し適用/再開/完了を生成しない。"
+      ],
+      "effects": "none"
+    },
+    {
+      "id": "F01707",
+      "name": "compare_completion_boundary",
+      "arguments": {
+        "input": "WorkflowInput"
+      },
+      "signature": "compare_completion_boundary(input: WorkflowInput) -> FacetAssessment",
+      "return_type": "FacetAssessment",
+      "reads": {
+        "input": [
+          "completion_claim"
+        ]
+      },
+      "returns": [
+        "findings"
+      ],
+      "return_derivation": {
+        "findings": "completionの独立claimからscope_limit所見。原projectionは保持のみで意味のauthorityにしない。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。異なるfacet/dispositionは別所見として集約まで保持する。"
+      },
+      "preconditions": [
+        "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
+        "input.contextは原L9の独立比較元。fixtureのsource label/body/digestを正式owner資格へ変換しない。",
+        "各比較ではFieldを元presenceへ解釈し、absent/null/不正scalarはknown値へ補完しない。正式wire/schema/codecと全不正外側shapeの結果は未固定。"
+      ],
+      "algorithm": [
+        "completion_claim=trueはscope_limitへcompletion_claim_unproven、false以外はcompletion_claim_unresolved。falseは所見なし。projectionのlabel/close/mergeから補完しない。"
+      ],
+      "postconditions": [
+        "入力不変、effect=none。対応は素材対応であり実workflow/READY/割当/権限/差戻し適用/再開/完了を生成しない。"
+      ],
+      "effects": "none"
+    },
+    {
+      "id": "F01708",
+      "name": "assemble_workflow_material",
+      "arguments": {
+        "input": "WorkflowInput",
+        "metadata": "MetadataAssessment",
+        "process": "FacetAssessment",
+        "conditions": "FacetAssessment",
+        "backflow": "FacetAssessment",
+        "continuity": "FacetAssessment",
+        "claims": "FacetAssessment"
+      },
+      "signature": "assemble_workflow_material(input: WorkflowInput, metadata: MetadataAssessment, process: FacetAssessment, conditions: FacetAssessment, backflow: FacetAssessment, continuity: FacetAssessment, claims: FacetAssessment) -> WorkflowProposal",
+      "return_type": "WorkflowProposal",
+      "reads": {
+        "input": [
+          "binding",
+          "management",
+          "ticket_graph",
+          "intermediate.backflow_ref"
+        ],
+        "metadata": [
+          "selected_phase",
+          "findings"
+        ],
+        "process": [
+          "findings"
+        ],
+        "conditions": [
+          "findings"
+        ],
+        "backflow": [
+          "findings"
+        ],
+        "continuity": [
+          "findings"
+        ],
+        "claims": [
+          "findings"
+        ]
+      },
+      "returns": [
+        "condition",
+        "selected_phase",
+        "facet_correspondence",
+        "candidate_material",
+        "candidate_material_digest",
+        "workflow_material_corresponding",
+        "backflow_material_ref",
+        "resume_material_corresponding",
+        "findings",
+        "actual_ticket_written",
+        "actual_workflow_started",
+        "actual_assignment_issued",
+        "actual_backflow_applied",
+        "actual_resume_executed",
+        "whole_workflow_verified",
+        "operation_effect"
+      ],
+      "return_derivation": {
+        "condition": "全7facetのviolation優先→unknown→correspondingを元3conditionへ写す。",
+        "selected_phase": "metadata.selected_phase原値",
+        "facet_correspondence": "全中間facet/dispositionから7fieldを計算。",
+        "candidate_material": "ownership/inputs/ticket全対応時だけ原bindingとmanagementのpriority/resource/connection以外9field、原ticket_graph。",
+        "candidate_material_digest": "candidate非null時だけfixture canonical UTF8 SHA256、他null。実意味digest/資格ではない。",
+        "workflow_material_corresponding": "phase workflow/backflow/resumeかつownership/inputs/ticket/workflow全対応。",
+        "backflow_material_ref": "backflow/resumeかつbackflow facet対応時だけ原intermediate.backflow_ref、他null。",
+        "resume_material_corresponding": "resumeかつscope_limit以外の6facet全対応。",
+        "findings": "facet集約後にcode/pointer/return_ownerで一意化した最終所見。",
+        "actual_ticket_written": "false",
+        "actual_workflow_started": "false",
+        "actual_assignment_issued": "false",
+        "actual_backflow_applied": "false",
+        "actual_resume_executed": "false",
+        "whole_workflow_verified": "false",
+        "operation_effect": "none"
+      },
+      "preconditions": [
+        "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
+        "input.contextは原L9の独立比較元。fixtureのsource label/body/digestを正式owner資格へ変換しない。",
+        "各比較ではFieldを元presenceへ解釈し、absent/null/不正scalarはknown値へ補完しない。正式wire/schema/codecと全不正外側shapeの結果は未固定。"
+      ],
+      "algorithm": [
+        "completion_claim=trueはcompletion_claim_unproven、false以外はcompletion_claim_unresolved。projection値からflagを補わない。facetはviolation優先、次unknown、他corresponding。全体conditionも同じ優先。全actual flagsはfalse、operation_effect=none。candidate_materialはownership/inputs/ticket全corresponding時だけbinding、management_refs（priority_ref/resource_ref/connection_refを除く外部binding）、ticket_graphを原値保持。digestはそのfixture JSON UTF-8、sort_keys=true、compact separator、ensure_ascii=false、allow_nan=falseのSHA-256。これは正式JSON codec/意味digestではない。workflow_material_correspondingはphase workflow/backflow/resumeでownership/inputs/ticket/workflow全corresponding。backflow_material_refはbackflow/resumeでbackflow facet対応時だけ原intermediateのref。resume_material_correspondingはresumeでscope_limitを除く全6facet対応時だけ。素材対応から実READY/実workflow/実権限を生成しない。",
+        "全中間FacetFindingから先にfacet状態を集約し、その後だけcode/pointer/return_ownerで最終所見を一意化し辞書順sortする。異facetに同じ不足pointerが現れても影響を消さない。"
+      ],
+      "postconditions": [
+        "入力不変、effect=none。対応は素材対応であり実workflow/READY/割当/権限/差戻し適用/再開/完了を生成しない。"
+      ],
+      "effects": "none"
+    }
+  ],
+  "diagnostic_policy": {
+    "phase_names": [
+      "candidate",
+      "workflow",
+      "backflow",
+      "resume"
+    ],
+    "facet_names": [
+      "ownership",
+      "inputs",
+      "ticket",
+      "workflow",
+      "backflow",
+      "continuity",
+      "scope_limit"
+    ],
+    "owner_roles": {
+      "promotion": "OS",
+      "process": "HARNESS",
+      "proposal": "INTELLIGENCE",
+      "level": "LABO",
+      "authority": "SECURITY",
+      "resource": "INFRASTRUCTURE"
+    },
+    "algorithm": [
+      "空のactual/expected ticket_graphは原root source_unresolvedで保持し、片側空をknown件数相反にしない。両集合非空のときだけ件数相反を評価する。各ticketのactual/expected acceptance=[]はその原field source_unresolvedを併記する。expected ticketが空ならintermediate ticket_ref照合を捏造せず/context/ticket_graphにbackflow source_unresolved。 提供process.revision→context.binding.contract_revision、proposal/dependency/提供levelのrequirement_revision/scope→context.bindingをstring比較し、提供record同士が一致しても元bindingへ結ぶ。",
+      "固定素材shapeに対してphase=candidate/workflow/backflow/resumeだけを選択。不明phaseはphase_unresolved・inputs unknown、selected_phase=null。binding5、management12、roles6を独立context同fieldへ照合。context rolesは固定6ownerへも照合。ticket_graphは独立contextと件数および同indexの8fieldを照合し、parent_revision/scopeをcontext bindingへも照合する。assignment/attempt/measurement/GitHub projectionはticket意味へ含めない。",
+      "比較tableに従う。stringは非空文字列、quantityはbool以外の非負integer、set/orderedは重複なし非空文字列list（list自体は空を許す）、obligationsは非空文字列key→重複なし非空文字列listのdict、edgesは長さ2の非空文字列listのlist。片側不明はその原pointerにsource_unresolved（数量だけquantity_unresolved）、両側不明は両pointer、両側knownで差があるときだけactual pointerへsource_conflict。setはsort比較、ordered/edgesは順序付き比較、obligationsはvalue listだけsort。重複findingはcode/pointer/return_ownerで一意化。",
+      "workflow/backflow/resumeだけprocess6fieldを独立contextへ照合。process.partsは語彙set、allowed_edgesはedges、obligationsはobligations、その他はstring。proposal_selectedは両側booleanか照合し、型不明はactual selectorにproposal_selection_unresolved、両側boolean相反はsource_conflict。actual selected=trueの時だけproposalを読む。actual/expected recordがdictでなければそれぞれのrecord rootへproposal_record_unresolved。両dictならsource_ref/revision/scope/reason_ref string、parts ordered、obligationsを同field比較。非提供案を一律requiredにしない。",
+      "提供案の各known partを順に扱う。process.partsがknown string listで含まない場合undefined_process_componentを当該parts indexへ。2番目以降はprocess.allowed_edgesがlistで直前part→当該partがない場合process_order_conflictを当該parts indexへ。partに対する両obligation listがknownならrequired process義務がproposalに包含されない場合process_obligation_missingを当該proposal obligation keyへ。unknown sourceを空集合や別工程へ補完しない。OSが独自に変更したprocess sourceは独立contextとのsource_conflictで保持。1.0は定義済み部品だけ、部品外flowは4.0。",
+      "level_selectedは両側boolean照合。不明selectorは原pointer source_unresolved、両known相反はactual selector source_conflict。actual selected=true時だけlevel recordを読む。actual/expectedいずれか非dictなら/level source_unresolved、両dictならstate/source_ref/requirement_revision/scopeの4stringを比較。falseの水準を未来gateへしない。提供された水準の実資格/評価基準はLABO ownerで未成立。",
+      "authority/resource source_refを独立contextのauthority_ref/resource_refへ比較。revoked/denied/stale/failedはworkflow_condition_rejected、その他current（authority）/observed_material（resource）以外はworkflow_condition_unresolvedを各stateへ。dependencyはsource_ref/revision/scopeを独立contextへ比較。state比較のknown閉集合はresolved/missing/failed/conflict/stale/issue_closedで、閉集合外は原位置source_unresolved、known相反だけactual state source_conflict。その上でmissing/failed/conflict/stale/issue_closedはdependency_not_resolved、resolved以外はdependency_unresolvedをactual stateへ併記。Issue closeで解消しない。",
+      "constraintsのbudget_limit/deadline/cost_spent/failures/nowはquantity型だけ自己照合し、budget_limit/deadlineは独立context.expected_*とも比較する。known cost_spent>budget_limitはbudget_exhausted、known now>=deadlineはdeadline_reachedをactual cost/nowへ。100/90などは素材のtick/費用単位で、製品閾値/actual計測ではない。",
+      "backflow/resumeだけintermediateのrequirement_revision/scopeを独立context.bindingへ、ticket_refをcontext.ticket_graph[0].ticket_refへ、backflow_refをcontext.process.backflow_refへstring比較。stateはfailed/unknown/conflict/scope_violation/unresolved_dependencyだけ既定差戻し素材とし、それ以外はbackflow_result_unresolved。不成立を解消/実適用成功へ昇格しない。複数ticketの実result routingと返し先のqualificationはL5/L8に残る。",
+      "resumeだけpriorのrevision/scope/stop_reason_refをstring、budget_limit/deadline/cost_spent/failuresをquantity、outstandingをsetでcontext.prior同fieldへ照合。resumedのrevision/scope/stop_reason_refもcontext.priorへstring比較し、stop reason不明はstop_reason_unresolved併記。resumedの4quantityが不明は原位置quantity_unresolved、双方knownでbudget_limit/deadlineが違う、cost_spent/failuresが減る場合cumulative_constraint_reset。outstandingはstring listでなければsource_unresolved、known prior集合がresumedに包含されなければoutstanding_obligation_lost。意味自己確定trueはmeaning_change_self_confirmed、false以外はsource_unresolved。部分義務解消の実証拠/全履歴は未成立。",
+      "completion_claim=trueはcompletion_claim_unproven、false以外はcompletion_claim_unresolved。projection値からflagを補わない。facetはviolation優先、次unknown、他corresponding。全体conditionも同じ優先。全actual flagsはfalse、operation_effect=none。candidate_materialはownership/inputs/ticket全corresponding時だけbinding、management_refs（priority_ref/resource_ref/connection_refを除く外部binding）、ticket_graphを原値保持。digestはそのfixture JSON UTF-8、sort_keys=true、compact separator、ensure_ascii=false、allow_nan=falseのSHA-256。これは正式JSON codec/意味digestではない。workflow_material_correspondingはphase workflow/backflow/resumeでownership/inputs/ticket/workflow全corresponding。backflow_material_refはbackflow/resumeでbackflow facet対応時だけ原intermediateのref。resume_material_correspondingはresumeでscope_limitを除く全6facet対応時だけ。素材対応から実READY/実workflow/実権限を生成しない。"
+    ],
+    "comparison_table": {
+      "binding": {
+        "fields": [
+          "project",
+          "requirement_revision",
+          "scope",
+          "plan_revision",
+          "contract_revision"
+        ],
+        "facet": "inputs",
+        "type": "string",
+        "phases": [
+          "candidate",
+          "workflow",
+          "backflow",
+          "resume"
+        ]
+      },
+      "management": {
+        "fields": [
+          "purpose_ref",
+          "request_ref",
+          "constraint_ref",
+          "permission_ref",
+          "priority_ref",
+          "dependency_ref",
+          "resource_ref",
+          "budget_ref",
+          "deadline_ref",
+          "stop_condition_ref",
+          "harness_version",
+          "connection_ref"
+        ],
+        "facet": "inputs",
+        "type": "string",
+        "phases": [
+          "candidate",
+          "workflow",
+          "backflow",
+          "resume"
+        ]
+      },
+      "roles": {
+        "fields": [
+          "promotion",
+          "process",
+          "proposal",
+          "level",
+          "authority",
+          "resource"
+        ],
+        "facet": "ownership",
+        "type": "string",
+        "phases": [
+          "candidate",
+          "workflow",
+          "backflow",
+          "resume"
+        ]
+      },
+      "ticket_graph": {
+        "fields": [
+          "ticket_ref",
+          "target",
+          "kind",
+          "parent_revision",
+          "scope",
+          "dependencies",
+          "acceptance",
+          "backflow_ref"
+        ],
+        "set_fields": [
+          "dependencies",
+          "acceptance"
+        ],
+        "facet": "ticket",
+        "phases": [
+          "candidate",
+          "workflow",
+          "backflow",
+          "resume"
+        ]
+      },
+      "process/proposal/dependency/authority/resource/level/constraints": {
+        "facet": "workflow",
+        "phases": [
+          "workflow",
+          "backflow",
+          "resume"
+        ],
+        "details": "algorithmの型・pointer・選択条件をそのまま適用。"
+      },
+      "intermediate": {
+        "facet": "backflow",
+        "phases": [
+          "backflow",
+          "resume"
+        ]
+      },
+      "prior/resumed": {
+        "facet": "continuity",
+        "phases": [
+          "resume"
+        ]
+      }
+    },
+    "diagnostic_code_facets": {
+      "source_unresolved": "comparison facet",
+      "source_conflict": "comparison facet",
+      "quantity_unresolved": "comparison facet",
+      "phase_unresolved": "inputs",
+      "proposal_selection_unresolved": "workflow",
+      "proposal_record_unresolved": "workflow",
+      "workflow_condition_rejected": "workflow",
+      "workflow_condition_unresolved": "workflow",
+      "dependency_unresolved": "workflow",
+      "dependency_not_resolved": "workflow",
+      "undefined_process_component": "workflow",
+      "process_order_conflict": "workflow",
+      "process_obligation_missing": "workflow",
+      "budget_exhausted": "workflow",
+      "deadline_reached": "workflow",
+      "backflow_result_unresolved": "backflow",
+      "stop_reason_unresolved": "continuity",
+      "cumulative_constraint_reset": "continuity",
+      "outstanding_obligation_lost": "continuity",
+      "meaning_change_self_confirmed": "continuity",
+      "completion_claim_unproven": "scope_limit",
+      "completion_claim_unresolved": "scope_limit"
+    },
+    "finding_fields": [
+      "code",
+      "pointer",
+      "return_owner"
+    ],
+    "return_owner": "ticket-workflow-owner",
+    "result_fields": [
+      "condition",
+      "selected_phase",
+      "facet_correspondence",
+      "candidate_material",
+      "candidate_material_digest",
+      "workflow_material_corresponding",
+      "backflow_material_ref",
+      "resume_material_corresponding",
+      "findings",
+      "actual_ticket_written",
+      "actual_workflow_started",
+      "actual_assignment_issued",
+      "actual_backflow_applied",
+      "actual_resume_executed",
+      "whole_workflow_verified",
+      "operation_effect"
+    ],
+    "fixed_shape_limit": "外側record/dict/list shapeは固定metadata入力。正式codec、全type/typed finding、missing outer record/non-list graphはL5/L8で閉じる。unknown scalar sourceをknown conflictや空/falseへ補完しない。",
+    "condition_names": [
+      "workflow_material_corresponding",
+      "workflow_material_unknown",
+      "workflow_material_violation"
+    ],
+    "condition_semantics": "conditionは選択phaseで適用した7facetの集約。violationが1つでもあればworkflow_material_violation、違反なしでunknownがあればworkflow_material_unknown、それ以外workflow_material_corresponding。workflow実適格性や実完了を意味しない。boolean workflow_material_correspondingは別の素材flagで、candidate phaseでは必ずfalse。candidate phaseのconditionがworkflow_material_correspondingでもworkflow instanceの成立を示さない。",
+    "case_input_integrity": "givenの値をcaseごとに独立保持する。全caseをcanonical givenでgroup化し、同一入力ならexpected_proposal全field同値を静的に照合する。これは同入力決定性の文書整合証拠で、正式codec/実装oracle凍結を成立させない。",
+    "primary_requirement_ref_semantics": "requirement_refsは親4要求の全体trace、primary_requirement_refsはcaseの直接検証concern。negativeは不成立facet→ownership/scope_limit:B01、inputs/ticket:F01、workflow:F02、backflow/continuity:F03。positiveは選択phaseの主目的、projectionと決定性/対象差はその直接concernを明示。絞込参照は全4要求の完了宣言ではない。"
+  },
+  "diagnostic_dispositions": {
+    "source_unresolved": "unknown",
+    "source_conflict": "violation",
+    "quantity_unresolved": "unknown",
+    "phase_unresolved": "unknown",
+    "proposal_selection_unresolved": "unknown",
+    "proposal_record_unresolved": "unknown",
+    "workflow_condition_rejected": "violation",
+    "workflow_condition_unresolved": "unknown",
+    "dependency_unresolved": "unknown",
+    "dependency_not_resolved": "violation",
+    "undefined_process_component": "violation",
+    "process_order_conflict": "violation",
+    "process_obligation_missing": "violation",
+    "budget_exhausted": "violation",
+    "deadline_reached": "violation",
+    "backflow_result_unresolved": "unknown",
+    "stop_reason_unresolved": "unknown",
+    "cumulative_constraint_reset": "violation",
+    "outstanding_obligation_lost": "violation",
+    "meaning_change_self_confirmed": "violation",
+    "completion_claim_unproven": "violation",
+    "completion_claim_unresolved": "unknown"
+  },
+  "representation": "同一OS017宣言carrierをactual/expectedで明示共有。source body/fixture bytes/digestとowner資格は独立。RawValue/工程obligation mapはopaque node-keyを保持し宣言carrierのfieldとは分ける。",
+  "design_limits": "型の存在から資格/実成功/新registry/署名/truststore/一律承認gate/CI/runtimeを生成しない。原graph素材の比較を全ticket合成・運転の閉包と主張しない。",
+  "read_path_notation": "readsのpathは宣言argument recordのmemberへ解決する。$valueはprimitive/nullable引数全体を読む記法で、primitiveにvalue memberがあるとは主張しない。",
+  "consumer_connections": [
+    {
+      "consumer": "OS018",
+      "source_path": "docs/helix-os/L4-basic-design/worker-assignment-attempt.json",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "a6748aecb12106c7046f7e170b117aa3ca0dd1e6b4750fe372d2b52af3689645",
+      "source_contract_pointer": "/contracts/0",
+      "source_contract_canonical_sha256": "e9d1d9bb5faafa409f9be5cf7dde23117a80871dd5869a9fd1fdb9661f8775b8",
+      "source_contract": {
+        "id": "HELIXOS-L4-018-B01",
+        "requirement_ref": "HELIXOS-L3-018-B01",
+        "system_oracle_ref": "HELIXOS-L10-018-B01",
+        "oracle_ref": "HELIXOS-L9-018-B01",
+        "approved_requirement": {
+          "revision": "e0cf203d954a7b82375d46ad6fec2f8e5bcc8818",
+          "source_path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "object_canonical_sha256": "a3b3beef61cea5760f89f8db8d11c61fd2f32f250819236a8555f12c1c2a2acc"
+        },
+        "component": "owner_and_receipt_origin_comparer",
+        "input_meaning": "INTELLIGENCEが案、LABOが比較評価、HARNESSがoracle/検証義務、SECURITYがauthority、既存policy ownerがdefault/orderの意味を持つ。OSだけが既存経路でassignment/attemptと実操作receiptを生成する。019の同event/continuityを参照し、別timeline/完了authority/schemaを要求しない。",
+        "output_meaning": "facet別素材対応/違反/unknown、当該source/ownerへの不足候補。実assignment/実receipt/権限を生成しない。",
+        "operation_effect": "none"
+      },
+      "logical_value_sources": "candidate_material.binding + candidate_material.ticket_graph",
+      "consumer_responsibility": "assignment/attempt input boundary",
+      "preserved_boundary": "仕事の意味とassignment/attempt/leaseを分離。候補素材から実割当を生成しない。",
+      "exact_binding_state": "未成立。これは原contractへの意味接続で、正式consumer wire/member資格の成立を主張しない。"
+    },
+    {
+      "consumer": "OS019",
+      "source_path": "docs/helix-os/L4-basic-design/event-episode-continuity.json",
+      "revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+      "whole_sha256": "be04a234e500cbc11b683f15ef0799bfa284af1aa48d7316f161258752048ba3",
+      "source_contract_pointer": "/contracts/0",
+      "source_contract_canonical_sha256": "2bdc2165c950a43b3c4f08213f848db1b8e2acbec49a3b068fa0304a18378da9",
+      "source_contract": {
+        "id": "HELIXOS-L4-019-F01",
+        "requirement_ref": "HELIXOS-L3-019-F01",
+        "system_oracle_ref": "HELIXOS-L10-019-F01",
+        "oracle_ref": "HELIXOS-L9-019-F01",
+        "approved_requirement": {
+          "revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+          "source_path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "object_canonical_sha256": "06c6c2ba44db24d675cc82e5551fe3e3f3d5ba8de453b57a9370ee9ccb305e96"
+        },
+        "component": "original_event_provenance_comparer",
+        "input_meaning": "要求・判断・変更・実行・検証・手戻り・運用結果の原eventとsource/revision、相関ID、actor、訂正履歴、data-use classを同じepisodeへ結ぶ。欠落/重複/stale/拒否/未実行を成功から分け、provider memoryをcontinuity正本にしない。",
+        "output_meaning": "episode/replay/累積/checkpoint/用途の素材対応・不足。原結果区分と失敗/未観測を保持し、実eventや許可を作らない。",
+        "operation_effect": "none"
+      },
+      "logical_value_sources": "prior/resumed + intermediate + binding",
+      "consumer_responsibility": "episode cumulative continuity boundary",
+      "preserved_boundary": "元revision/scope/停止理由/予算/期限/未完を保持し、原event/custodyを作らない。",
+      "exact_binding_state": "未成立。これは原contractへの意味接続で、正式consumer wire/member資格の成立を主張しない。"
+    }
+  ],
+  "diagnostic_policy_scope_note": {
+    "source_snapshot_preserved": true,
+    "fixed_shape_limit_interpretation": "diagnostic_policy.fixed_shape_limitのL5/L8で閉じるは原L4の後続課題を保存した引用。本限定L5/L8で正式codec、全外側shape/全type/実qualified source/全routingが閉じたとは宣言せず、remainingとunclosed_source_supplyに未閉包を保持する。",
+    "finding_normalization": "中間はfacet/disposition/finding全体で一意化しcode→pointer順。最終は全facet集約後にfinding code/pointer/return_ownerだけを一意化する。"
+  }
+}
