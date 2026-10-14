@@ -1,0 +1,3050 @@
+{
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "parent": "HELIXSECURITY-L2-011",
+  "source_main": "0152dc5e48f1cf2f32c196b1cfe81eceaff3adf9",
+  "scope": {
+    "approval_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+    "historical_stage": "Stage 1",
+    "version_boundary": "1.0の初回必要能力比較規範。固定provider/runtime/後続版を追加しない。",
+    "requirements": [
+      "HELIXSECURITY-L3-011-B01",
+      "HELIXSECURITY-L3-011-F01",
+      "HELIXSECURITY-L3-011-F02",
+      "HELIXSECURITY-L3-011-N01"
+    ],
+    "oracles": [
+      "HELIXSECURITY-L10-011-B01",
+      "HELIXSECURITY-L10-011-F01",
+      "HELIXSECURITY-L10-011-F02",
+      "HELIXSECURITY-L10-011-N01"
+    ],
+    "operation": "前後構成・宣言/観測能力・security impactのimmutable文書資料比較。実観測/更新/権限変更なし。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "id": "HELIXSECURITY-L3-011-B01",
+      "object": {
+        "id": "HELIXSECURITY-L3-011-B01",
+        "parent": "HELIXSECURITY-L2-011",
+        "title": "file差分と能力差分の分離",
+        "obligation": "更新candidateのfile/version差分とread/write/shell/network等のcapability差分、security impactを別々に保つ。hash一致や同名fileだけで能力不変を決めず、比較結果から自己のauthorityを拡張しない。",
+        "oracle_ref": "HELIXSECURITY-L10-011-B01"
+      },
+      "object_canonical_sha256": "d8234f30a436d8d0df25e60f5c3c1316ec12f7eba573cae5f549a8bdcc8991a1"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-011-F01",
+      "object": {
+        "id": "HELIXSECURITY-L3-011-F01",
+        "parent": "HELIXSECURITY-L2-011",
+        "title": "前後構成と候補の束縛",
+        "obligation": "004の構成identityと010の審査前candidate revisionへ、更新前後のfile/version構成と宣言/観測capabilityを結ぶ。read-onlyからread+write+shell+networkへの変化を含め、model/Agent/MCP/plugin等の対象でも同じ比較契約を使う。",
+        "oracle_ref": "HELIXSECURITY-L10-011-F01"
+      },
+      "object_canonical_sha256": "b936b360bb8b8cd240feca7879bed765dda3a0f68910259141f70046b2da676c"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-011-F02",
+      "object": {
+        "id": "HELIXSECURITY-L3-011-F02",
+        "parent": "HELIXSECURITY-L2-011",
+        "title": "比較不能と受入保留",
+        "obligation": "能力記述欠落、宣言/実能力不一致、比較不能な変更はunknownとし、010へ根拠付き未完材料として返す。能力分類を推測せず、旧scopeの比較結果を新候補の受入へ流用しない。",
+        "oracle_ref": "HELIXSECURITY-L10-011-F02"
+      },
+      "object_canonical_sha256": "f58fa77d6e6c000abe5781cca8acc0854f57864ffa0a5d0ef9309428534c4b1a"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "id": "HELIXSECURITY-L3-011-N01",
+      "object": {
+        "id": "HELIXSECURITY-L3-011-N01",
+        "parent": "HELIXSECURITY-L2-011",
+        "title": "未見能力差分の内容証拠",
+        "obligation": "伏せた構成/candidateで能力拡張・縮小・比較不能を内容で確認し、field存在やdiff件数だけを証明にしない。同scopeでもcandidate改訂後は旧比較の有効性を照合する。",
+        "oracle_ref": "HELIXSECURITY-L10-011-N01"
+      },
+      "object_canonical_sha256": "f99201f6d58b384702778b073dd6592814a3a412207ebb7990f0ec933eaf795d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "id": "HELIXSECURITY-L10-011-B01",
+      "object": {
+        "id": "HELIXSECURITY-L10-011-B01",
+        "parent": "HELIXSECURITY-L2-011",
+        "title": "file差分と能力差分の分離",
+        "requirement_ref": "HELIXSECURITY-L3-011-B01",
+        "positive_input": "同じfile名と異なる実能力を比較する。",
+        "expected_observation": "file/versionからcapabilityと影響へ辿れ、判定と許可を分ける。",
+        "negative_input": "同名なので不変、能力diffをexecute許可にする。",
+        "failure_observation": "能力意味の不足はL1-011、実許可は008へ戻す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "4dead3960cd0b704c4c321d55e86e53a9473e41f260b454fbff29ebf36ec7837"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-011-F01",
+      "object": {
+        "id": "HELIXSECURITY-L10-011-F01",
+        "parent": "HELIXSECURITY-L2-011",
+        "title": "前後構成と候補の束縛",
+        "requirement_ref": "HELIXSECURITY-L3-011-F01",
+        "positive_input": "同名構成、能力拡張、model/Agent/MCP/pluginを個別に照合する。",
+        "expected_observation": "前後identity/revisionと能力ごとの変化・security impactが辿れる。",
+        "negative_input": "read-only→write/networkを見逃す、packageだけ比較、前後scope違い。",
+        "failure_observation": "対象比較をunknown/不成立にし、構成は004、候補は010、能力意味は011へ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "b71f507d136a3076b8c6e99ca58ac20762ce7c06db213e3660f40e807b5045f8"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-011-F02",
+      "object": {
+        "id": "HELIXSECURITY-L10-011-F02",
+        "parent": "HELIXSECURITY-L2-011",
+        "title": "比較不能と受入保留",
+        "requirement_ref": "HELIXSECURITY-L3-011-F02",
+        "positive_input": "同じfile差分の既知/欠落/宣言不一致の能力を比較する。",
+        "expected_observation": "比較できた軸と未比較軸を同candidateへ残す。",
+        "negative_input": "unknownを変更なし、shell能力欠落を別tool成功で相殺。",
+        "failure_observation": "能力分類不足をL1-011へ、候補情報不足を010へ返し受入にしない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "56df64aab7eda1f97dd8ebb5156d83e3813908adde6a26d3d0dc6132e8b37d7a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "id": "HELIXSECURITY-L10-011-N01",
+      "object": {
+        "id": "HELIXSECURITY-L10-011-N01",
+        "parent": "HELIXSECURITY-L2-011",
+        "title": "未見能力差分の内容証拠",
+        "requirement_ref": "HELIXSECURITY-L3-011-N01",
+        "positive_input": "未見の能力変更と同名別revisionを同判定へ入力する。",
+        "expected_observation": "具体的な能力変化または比較不足を検出できる。",
+        "negative_input": "欄あり/件数一致だけで能力不変、新版へ旧判定継承。",
+        "failure_observation": "当該候補の能力diffを未完にし再比較ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "bcdbe948686e80d3fff05a6cb114a92cd53769132dd9ebeb8607fdb6f6332981"
+    }
+  ],
+  "legacy_normative_whole_sources": [],
+  "legacy_normative_line_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "line": 160,
+      "text": "| `SEC-FR-CAP-001` | operation capabilityとimpactを独立typed fieldで保持し、未知・混同・欠落を拒否する | `SEC-AC-CAP-001` |",
+      "utf8_sha256": "b9e29e09fbf8a5ea0611733684eeb0a0477bc93c57f4803f64a98529013b8c8d"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "line": 161,
+      "text": "| `SEC-FR-CAP-002` | lexical/physical target、target set、TOCTOU identityを実行直前に検証する | `SEC-AC-CAP-002` |",
+      "utf8_sha256": "0752c04b341049bbbb50e0f3e736268f1b3dd0e0cb3c253e999b2f137dbb9335"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "line": 162,
+      "text": "| `SEC-FR-CAP-003` | direct/bounded/script/generated/unknown provenanceを区別し、未検証間接実行をhostへ渡さない | `SEC-AC-CAP-003` |",
+      "utf8_sha256": "009a826a859a3e61dbdb638110bdb41ac06226d1ef526a4a9656a6760e5588ef"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "line": 163,
+      "text": "| `SEC-FR-CAP-004` | data classificationとsink authorityを分離し、credential／PII／archive egressをbroker外で拒否する | `SEC-AC-CAP-004` |",
+      "utf8_sha256": "7a649bfee1e73b7475593a8c616176f9b3d0caa6270e99c285ef0b63200a0be6"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "line": 164,
+      "text": "| `SEC-FR-CAP-005` | external/destructive actionをexact target、dry-run、postcondition、rollback、expiry、action bindingへ束縛する | `SEC-AC-CAP-005` |",
+      "utf8_sha256": "358eff66693743da37178a6f076773c645be477d7dc5f65fb5d06f6938a30af4"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "line": 165,
+      "text": "| `SEC-FR-CAP-006` | hook/sandbox coverageをruntime別に検査し、unsupported surfaceをhost実行へfallbackしない | `SEC-AC-CAP-006` |",
+      "utf8_sha256": "4e1298d0df0869352b05e7bcce1e196fcb450c6a999e2a441a0c7742ffe73b85"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "line": 166,
+      "text": "| `SEC-FR-CAP-007` | canonical safety failureをlegacy greenで相殺せず、値非表示のreceiptへ全reasonを記録する | `SEC-AC-CAP-007` |",
+      "utf8_sha256": "e39adcc6a7e0aef83ee04c813ed28699a293c5161c8f70c31447ea9d81283ea5"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "line": 20,
+      "text": "| `SEC-AC-CAP-001` | `SEC-FR-CAP-001` | operation、impact、approvalを同一enumへ混在、未知値、欠落、複数候補 | 軸混同・未知・欠落をreason付き`unresolved`で拒否する |",
+      "utf8_sha256": "98448eb22a71fc9d88f39375564d3f1d6287bdb8b80b822a04a876c4e2f38581"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "line": 21,
+      "text": "| `SEC-AC-CAP-002` | `SEC-FR-CAP-002` | repo内literal、ancestor symlink、junction、bind mount、hardlink、repo外realpath、glob、TOCTOU変更 | exact physical identityとtarget setが一致するliteralだけ許可候補。その他は拒否する |",
+      "utf8_sha256": "de05762055c8c4c1f3bf6aaa8532689fd24f1750dd72b76bb728a7ae054c3472"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "line": 22,
+      "text": "| `SEC-AC-CAP-003` | `SEC-FR-CAP-003` | direct literal、bounded wrapper、script digest、find/xargs、変数、dynamic interpreter、解析深度超過 | bounded以外の間接実行をhostへ渡さず、sandboxまたは拒否へ送る |",
+      "utf8_sha256": "c6f44b596aa4db74f84f2cc25289226909a9ba2b159aaf11a8fb812d4db86f38"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "line": 23,
+      "text": "| `SEC-AC-CAP-004` | `SEC-FR-CAP-004` | public/repository/sensitive/PII/credential/unknownとlocal/GitHub/network/cloud sinkの直積 | credential、PII、archive、unknownはbroker外送信を拒否し、ログにも値を出さない |",
+      "utf8_sha256": "261e472e99c7cee3f17fad3975c7dd5652b867f9537b8b50c9f41143cdba1e76"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "line": 24,
+      "text": "| `SEC-AC-CAP-005` | `SEC-FR-CAP-005` | destructive external actionのtarget、dry-run、rollback、expiry、approval receiptの各欠落・drift | exact tupleが揃うまで`approval_required`または`unresolved`で実行を拒否する |",
+      "utf8_sha256": "84a9a36a88f1fc497249879def26cfddae54846593fd5f976f821d280097f1f4"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "line": 25,
+      "text": "| `SEC-AC-CAP-006` | `SEC-FR-CAP-006` | Claude、Codex CLI/IDE、Cursor、hosted tool、workerのcovered/unsupported/trust drift/sandbox unavailable | unsupported、drift、sandbox unavailableはhost実行へfallbackせずfail-closeする |",
+      "utf8_sha256": "36887d174c549dd43ae942efc29d2989e605bcf6dc011864758a2df35c4fc6c6"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "line": 26,
+      "text": "| `SEC-AC-CAP-007` | `SEC-FR-CAP-007` | canonical failure、legacy guard green、別scanner green、値を含むraw error | AND admissionを維持し、legacy/別scannerのgreenで相殺せずredacted receiptだけを残す |",
+      "utf8_sha256": "b604af99e90692849098b2ddeb65364a0f2fc687944fd9e478338411f4141105"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "line": 27,
+      "text": "| `SEC-AC-CAP-008` | `SEC-FR-CAP-001..007` |同一targetを判定後に置換、permission変更、process停止、container root mount | 実行直前identity／policy再検証で拒否し、再試行を自動許可しない |",
+      "utf8_sha256": "cad984d67f7c23ba7a70b662a13ecc1426ee232714ea1cf9bfe823636b6b0ab2"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "line": 28,
+      "text": "| `SEC-AC-CAP-009` | `SEC-FR-CAP-005` | postcondition成功、失敗、部分成功、rollback unavailable | 成功主張はpostcondition receiptがある場合だけ。部分成功はRecoveryへ送る |",
+      "utf8_sha256": "a8c18f5a03b37e7be74f390f6ef08fd085c44604376a5acdc397e5a219c61b23"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "line": 29,
+      "text": "| `SEC-AC-CAP-010` | `SEC-FR-CAP-007` | command、token、PII、absolute pathを含む失敗入力 | output、DB、PR、memory、CI logにsecret等が残らない |",
+      "utf8_sha256": "cfedf4904e919bec058d8497bbf85d189d662823b535cfa52b91159661ed4e2e"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "file_sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "file_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "file_sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "file_sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "file_sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-tool-prerequisites-l3-l10-delegated-decision-2026-10-12.md",
+      "file_sha256": "d7c1f27d477b8323cae77cfb4dce8086c6d268826f09a1edcea46e186111878b"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "file_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "selected_line_quotes": [
+        {
+          "line": 55,
+          "text": "| HELIXSECURITY-L1-010 | 人間は、source、依存、package、plugin、MCP、Skill、Agentの定義、Hook、実行環境の設定、Sandboxの方針、モデルとその重み、promptとsystem instruction、Connector、基盤の設定の更新について、出所、digest、依存・権限・network・資格情報・Hookと設定の差分、新しい実行物、既知のfinding、巻き戻しの可否を確かめてから受け入れられる。新しい版であることだけを更新の理由にしない | §11 | 1.0 | 単体 |",
+          "utf8_sha256": "286fd517cb7e5c1b4ac6372f1651e8ac93fe491e6e4fba7049436c6aae45334b"
+        },
+        {
+          "line": 56,
+          "text": "| HELIXSECURITY-L1-011 | 人間は、fileの差分だけでなく、更新による能力の変化（例：読むだけから、書く・shell・networkへ）を検出し、版の差分から能力の差分、securityへの影響を導ける。モデル、Agent、MCP、plugin等にも当てる | §12 | 1.0 | 単体 |",
+          "utf8_sha256": "d5ae49d8580e76adb5a38fb5a62b28f738efd933a07c718192d89398ed40b1f3"
+        },
+        {
+          "line": 57,
+          "text": "| HELIXSECURITY-L1-012 | 人間は、HELIXへ取り込む外部の実行資産（package、container image、GitHub repository、MCP server、plugin、Skill、Agent package、モデル、binary）について、出所、作成者、版、digest、依存、権限、networkの振る舞い、既知のrisk、更新の差分、巻き戻しを辿れる。知らない供給元や実行能力を暗黙に信頼済みへ昇格させない | §13 | 1.0 | 単体 |",
+          "utf8_sha256": "1d30d2175e4641bedf3384f156df1ab2e57a053752333e897e86ba934a56e32e"
+        },
+        {
+          "line": 58,
+          "text": "| HELIXSECURITY-L1-013 | 人間は、code、package、モデル、設定、securityの方針等が、生成から利用まで同じ対象であることを、identity、版、digest、出所、作成者、build、検証で確かめられる。「CIで検証した物」と「実際に配布・実行した物」を食い違わせない | §14 | 1.0 | 単体 |",
+          "utf8_sha256": "66e4a2cf74e50dac267e078c8602834c7c68f91caf72ccbb54f400620dbb5c7d"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "selected_line_quotes": [
+        {
+          "line": 170,
+          "text": "### HELIXSECURITY-L2-011 Capability Drift",
+          "utf8_sha256": "2f8ee97c5f0729367f011fd9a68096da0f5d47b9151b376e6e20ce3ea4367110"
+        },
+        {
+          "line": 171,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 172,
+          "text": "- **受け取るもの**：更新前後の構成とファイル差分、read/write/shell/network等の能力記述。",
+          "utf8_sha256": "bf4c669c11be729aa6ac42b1b3bc1fcf1296d51c377807d7a2f3fb507b986279"
+        },
+        {
+          "line": 173,
+          "text": "- **提供するもの**：version diffからcapability diff、security impactへ辿る比較結果。",
+          "utf8_sha256": "cbbf168127eaa770ac2ce4d5637f558e64c789be4ffbf488e9f8835e6be6d7e5"
+        },
+        {
+          "line": 174,
+          "text": "- **保証すること**：ファイル差分だけで能力変更を見落とさず、model/Agent/MCP/plugin等にも適用する。",
+          "utf8_sha256": "88bf0e22f867bb472c5b5e38f1791687f59992ce749031035bedbdbb87d87d0e"
+        },
+        {
+          "line": 175,
+          "text": "- **単独依存**：L2-004の構成identity、L2-010のcandidate revision。比較不能はunknownとする。",
+          "utf8_sha256": "a71f5223e94d46e74329728eadb8ba67b34098ceb2e9ae2fe831e7db6ee33d75"
+        },
+        {
+          "line": 176,
+          "text": "- **検証範囲／版**：PO §12のread-onlyからread+write+shell+networkへの例と同等の能力変化。1.0。",
+          "utf8_sha256": "b34ecf62667b797870f63424877559e403e091e552cde3957e890e3ca5c3ff87"
+        },
+        {
+          "line": 177,
+          "text": "- **失敗時の戻し先**：能力を分類できない変更は受け入れず、分類意味の不足をL1-011へ戻す。",
+          "utf8_sha256": "9aef779b30d153cca470f419ad4417857a678ff01ebc9779dd03982fd00b6dab"
+        },
+        {
+          "line": 178,
+          "text": "- **束ねる既存条件**：L1-011、PO §12。",
+          "utf8_sha256": "078a0db492fbbe832df0585c0a1fbd36b92963ab5a04ba201516f9b261bf1fe0"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "selected_line_quotes": [
+        {
+          "line": 35,
+          "text": "| HELIXSECURITY-L2-011 | 1.0 | 同じfile変更でもread-only→write+shell+networkの能力差分を検出し、model/Agent/MCP/pluginにも適用される。hash一致/ファイル名だけでcapability不変と結論したら不合格。 |",
+          "utf8_sha256": "71fd675ca2a1eb3738064ebb06a0b1a07c288a0a9fb55e40f63977b8e5fa7542"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/update-admission-materials.json",
+      "file_sha256": "1fc0b510dd6b3635ce4762ee4859bead1a56027b8cdfee13f051a8399992bd06"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "file_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "selected_line_quotes": [
+        {
+          "line": 1,
+          "text": "---",
+          "utf8_sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b"
+        },
+        {
+          "line": 2,
+          "text": "title: \"安全capability broker 要件authority\"",
+          "utf8_sha256": "121543bd3c7624c01e3d7c2324b0bca066d6a04681c69a217428770445b6029f"
+        },
+        {
+          "line": 3,
+          "text": "layer: L3",
+          "utf8_sha256": "2a3031cbbd88c6fe44faf7a15f6178b9fc52613e9a25edf0e432be1109e15521"
+        },
+        {
+          "line": 4,
+          "text": "kind: add-design",
+          "utf8_sha256": "2c55fb60cf03b522174d9896a7618e708dd0e7699db9db86923a21081bb50c46"
+        },
+        {
+          "line": 5,
+          "text": "status: confirmed",
+          "utf8_sha256": "aa7aa9c564b9bfc562ad3025556152bb8fd1b1c69091b1fa3d57cbaff5f75a22"
+        },
+        {
+          "line": 6,
+          "text": "authority_status: current_requirements_v1.3.12",
+          "utf8_sha256": "5f073e8f92cc8ea3842f057e8414bfa502a127a6582f4a6d46b493341f03346f"
+        },
+        {
+          "line": 7,
+          "text": "created: 2026-08-18",
+          "utf8_sha256": "bd0250ba5ccc39a3805f1c7fb30c5f1eee9c77c59605420c657a0c93fe1261c3"
+        },
+        {
+          "line": 8,
+          "text": "updated: 2026-08-19",
+          "utf8_sha256": "24e2df99a7b4d406a8ef018887ee4b539374df5feb076ca54f226e288be6db85"
+        },
+        {
+          "line": 9,
+          "text": "owner: Security / TL",
+          "utf8_sha256": "690ce478fefd393ea6144026dd2cc6501c414465f1d974eef2cb0c84dde8cc97"
+        },
+        {
+          "line": 10,
+          "text": "parent_requirements: docs/governance/helix-harness-requirements_v1.3.md",
+          "utf8_sha256": "6b9d0ea9bdf4fac42a4d442186d292d05f8649887047fd32240267cc446d00b3"
+        },
+        {
+          "line": 11,
+          "text": "pair_artifact: docs/test-design/helix/security-capability-broker-acceptance.md",
+          "utf8_sha256": "72751294e06da49b3be1789c1d51ac37340c26b4d45186926f8ab8cef9c773f5"
+        },
+        {
+          "line": 12,
+          "text": "related_issue: 679",
+          "utf8_sha256": "a9a238d0260a8280d175a9fde8482fb9c8efc82a3b362e14913e05d6b22a5315"
+        },
+        {
+          "line": 13,
+          "text": "---",
+          "utf8_sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b"
+        },
+        {
+          "line": 14,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 15,
+          "text": "# 安全capability broker 要件authority",
+          "utf8_sha256": "f4ddb864e13bd1afa709aae52b06abd8c72a6781c09889a56fd81768238d3637"
+        },
+        {
+          "line": 16,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 17,
+          "text": "## 0. 正本境界",
+          "utf8_sha256": "a095b2698a1496b7b365d0dab8498989d013019af079115c9178cb3415b75779"
+        },
+        {
+          "line": 18,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 19,
+          "text": "本書はIssue #679のL3要件とL10受入条件を対として保持するcurrent authority projectionである。",
+          "utf8_sha256": "7c0f3e2a11339b982f9b2a9f2a56e126858fc0f0d38a411e1482c292acd285e8"
+        },
+        {
+          "line": 20,
+          "text": "`docs/governance/helix-harness-requirements_v1.3.md` v1.3.12へPO確認済みの候補IDを昇格し、",
+          "utf8_sha256": "fe298d7ac535fd78cfaf2973ada9c5c6ec84016a1f95c9775291760574f36ee7"
+        },
+        {
+          "line": 21,
+          "text": "本書はその詳細設計と後続atomic sliceの境界を示す。requirementsを超えてruntime、doctor、DB、",
+          "utf8_sha256": "b56dac329e069c5726c5aefe6d4cf01226ac4f4a19e27c0ace0d256247a13353"
+        },
+        {
+          "line": 22,
+          "text": "PR admissionの未実装能力を完了扱いにはしない。",
+          "utf8_sha256": "8318914ef0d471582deabe5a428d82224d2ca0c2b737ad32d8db180d61d742be"
+        },
+        {
+          "line": 23,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 24,
+          "text": "既存の`PLAN-L7-553-machine-delete-secret-egress-guard`、`machine-safety-guard`、",
+          "utf8_sha256": "7fc5289ee10bb7ee0a6e46ba93ee7c529ced25a0dc86e9d305a486821b70fb8e"
+        },
+        {
+          "line": 25,
+          "text": "`secret-egress-hook`は、既存の限定されたpre-execution guardの実装・観測資産である。本書は",
+          "utf8_sha256": "1715a3c8291b051ac03fc936f875562cc137638f95ef29670136dcd992912e75"
+        },
+        {
+          "line": 26,
+          "text": "それらを包括的安全正本として再利用せず、behavior atomを棚卸ししたうえで後続のatomic sliceへ",
+          "utf8_sha256": "6bd35ad390ccb32720992785631f876eebfaab6333c3b667553061f4529dedf7"
+        },
+        {
+          "line": 27,
+          "text": "接続する。current guardのgreenは、未実装のphysical identity、provenance、sink、sandbox、",
+          "utf8_sha256": "d3b05dcbb07ebb54610f0db9b82bb2d147ccf9a7963c40e8ed768572ee02a000"
+        },
+        {
+          "line": 28,
+          "text": "runtime coverageの失敗を相殺しない。",
+          "utf8_sha256": "3ea0eda97d53b0b763144defcd1a2dc88a639bcb2598da3c287488ab1609f8ea"
+        },
+        {
+          "line": 29,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 30,
+          "text": "## 1. 分類軸を混同しない安全authority",
+          "utf8_sha256": "17b79e01bfc434418d0160d741df5b864915eb4d084e47d0ff34ef2fd9ad2976"
+        },
+        {
+          "line": 31,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 32,
+          "text": "安全判定は一つの`risk` enumへ潰さず、次のtyped tupleを保持する。各軸は独立したschema fieldで",
+          "utf8_sha256": "9812d85e086c9967c4a31a6fe5958607fdf46a9049447e628621dd62cc29694b"
+        },
+        {
+          "line": 33,
+          "text": "あり、欠落・未知・複数候補は推測せず`unresolved`としてfail-closeする。",
+          "utf8_sha256": "583873439d63d0bd164393f9e9a9f9f25c24ec687b09f6ed121402441af5bd4a"
+        },
+        {
+          "line": 34,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 35,
+          "text": "```text",
+          "utf8_sha256": "b4a313791c1fbca2c1410d1d5b1190af4087723ec1b6c1c4ba776298d6dd6228"
+        },
+        {
+          "line": 36,
+          "text": "operation_capability",
+          "utf8_sha256": "97522fde62a7bfd86bdc30b504cf53d22c9367340a2e944fcc46f8cce8756be0"
+        },
+        {
+          "line": 37,
+          "text": "  + target_identity",
+          "utf8_sha256": "efe527e4b41d7bde49a486acde71fb013de0c0a0feb8715e44a9721da51a911d"
+        },
+        {
+          "line": 38,
+          "text": "  + execution_provenance",
+          "utf8_sha256": "0a5254dd07d64fa08bac4f0375691d481201ee2ad971ddc0feee621e64459c1e"
+        },
+        {
+          "line": 39,
+          "text": "  + data_classification",
+          "utf8_sha256": "f8aeadbe6d5122a8f5ad8389964a5fb8d68fb4b43a1446c8ff8aa5559fe7181c"
+        },
+        {
+          "line": 40,
+          "text": "  + sink_authority",
+          "utf8_sha256": "d34418351227340d856a3b9f242f23092d07e9e16da0a45b1351b9d41241f736"
+        },
+        {
+          "line": 41,
+          "text": "  + impact_profile",
+          "utf8_sha256": "51a041342fdf3204967e85088bcd21b7be0b6ebc582435363b9c1ab2989e7419"
+        },
+        {
+          "line": 42,
+          "text": "  + approval_binding",
+          "utf8_sha256": "fd84c2576ab5a44ceae1c279a0d543e85d2e772cb6c5f42729ce691fff3bfa67"
+        },
+        {
+          "line": 43,
+          "text": "  + postcondition / rollback / expiry",
+          "utf8_sha256": "03b2a0c4ff72f3a535b837b669c3c04da73d0eae19d9e8fbb1e33a7359e49b85"
+        },
+        {
+          "line": 44,
+          "text": "```",
+          "utf8_sha256": "f1b901847390b0ed7e374e7c1e464ec17b46a427c487a5ad6cbd2906405083d5"
+        },
+        {
+          "line": 45,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 46,
+          "text": "### 1.1 operation capability（操作能力）",
+          "utf8_sha256": "c769031c5a9d32e371f7a3d7a08ec086e313fcd65dd59f0679e9aade826c2faa"
+        },
+        {
+          "line": 47,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 48,
+          "text": "`operation_capability`は次のclosed setからexactly oneを選ぶ。",
+          "utf8_sha256": "13212f2952ea7524acb40a155c64bc5ce43f0bfbac78bb7ee22d419f985c4394"
+        },
+        {
+          "line": 49,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 50,
+          "text": "| capability | 例 | 初期判定 |",
+          "utf8_sha256": "0f1687a0b7c75e92b245b8a3b2434f7a038f96c8d1a271872df41064f04541df"
+        },
+        {
+          "line": 51,
+          "text": "|---|---|---|",
+          "utf8_sha256": "23cca02b74f386463efa24796c7a9011b0d2c93f0c38b4d15d5d276205b59b43"
+        },
+        {
+          "line": 52,
+          "text": "| `read` | read、build、test、status | bounded inputなら許可候補 |",
+          "utf8_sha256": "29347b6462241e15554aa7343f92f997cddcf4bb8a9c43a864723e662f18c8b3"
+        },
+        {
+          "line": 53,
+          "text": "| `create` | 新規repo内artifactの生成 | targetとscopeを検証 |",
+          "utf8_sha256": "0089241174b5c5de9cea7c11dcbe57c86cd87380eb73ab98c66bea0047d53218"
+        },
+        {
+          "line": 54,
+          "text": "| `modify` | 明示された単一artifactの変更 | physical identityを検証 |",
+          "utf8_sha256": "fb7bff3744e48914c665e3835b559a7f47d3669039c58f37fc67d69d67b8aa78"
+        },
+        {
+          "line": 55,
+          "text": "| `delete` | 明示された単一artifactの削除 | narrow fenceを検証 |",
+          "utf8_sha256": "74bbe07128c3a758414a4e801cb95bf5ad3c7bc3e1a6826ff003085a3db029ad"
+        },
+        {
+          "line": 56,
+          "text": "| `truncate` | file、DB、blobの内容消去 | high以上、既定拒否 |",
+          "utf8_sha256": "8ec2ef84ba139be1a188568d1c325cdaf3596c112d44c56be492abddcb39cde9"
+        },
+        {
+          "line": 57,
+          "text": "| `overwrite_replace` | 既存targetへの上書き・置換 | high以上、既定拒否 |",
+          "utf8_sha256": "54dd95e90d927fb63d617f1ab446561c1edf423b25d532283d06236efd5fe543"
+        },
+        {
+          "line": 58,
+          "text": "| `permission_process_service` | permission、process、service操作 | high以上、既定拒否 |",
+          "utf8_sha256": "7da138b46efd1a2270cebbd6818c5572bde427a8dc99869801ae22d06e729bed"
+        },
+        {
+          "line": 59,
+          "text": "| `container_cloud_repository` | container、cloud、GitHub targetの変更 | typed targetとaction binding必須 |",
+          "utf8_sha256": "b2544f58ebb2923e6c1d83d3ac7c4fc05c51a92c054e423ebd79c09a6219558e"
+        },
+        {
+          "line": 60,
+          "text": "| `network_egress` | 外部network sinkへの送信 | data/sink broker必須 |",
+          "utf8_sha256": "2bbbed5f01b638a1a6f2d3f88b45f80e14ece9effbcdeac87f3739afbc491dfc"
+        },
+        {
+          "line": 61,
+          "text": "| `credential_access` | secret、credential、tokenの取得・利用 | default deny |",
+          "utf8_sha256": "a52dad336668ee44c644aae007c75dc7a1620045366a02e4d84d569b4d87807c"
+        },
+        {
+          "line": 62,
+          "text": "| `unknown` | parse不能、内容不明、分類衝突 | 必ず拒否 |",
+          "utf8_sha256": "9fbfd2fedc329a007a5464db3d8859d9680629986354cd2fe1e266b4aa32c384"
+        },
+        {
+          "line": 63,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 64,
+          "text": "`delete`と`truncate`、`modify`と`overwrite_replace`を同じsafe操作として扱わない。",
+          "utf8_sha256": "0b8c932183d948ed5175ac1d4e8f2ee65c042bd691f7a71ae1d1b6c784eaaa9e"
+        },
+        {
+          "line": 65,
+          "text": "package script、interpreter、nested shell、alias相当の実行も、字面ではなく解決後のcapabilityを",
+          "utf8_sha256": "6fbcfa0ba32d1d187f495e34bf7ca6716d01a4b3bf00e8f2f5f837dcb8023533"
+        },
+        {
+          "line": 66,
+          "text": "判定する。",
+          "utf8_sha256": "4695f419a910ca33f7a070a892ef0f76d8ba6e15e3ff7eb4307f76ddb690542d"
+        },
+        {
+          "line": 67,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 68,
+          "text": "### 1.2 target identity（対象同一性）",
+          "utf8_sha256": "c4c8b6794f720458e58b3e980be5b780f17ab1d5eca1f1bdf4123423d40a947a"
+        },
+        {
+          "line": 69,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 70,
+          "text": "path targetは次の証拠を別々に保持する。",
+          "utf8_sha256": "aeb3dd667612e5637d58413ec19c4fa8e43038d520f6c92bf2f390b2ab02dd5f"
+        },
+        {
+          "line": 71,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 72,
+          "text": "- `lexical_target`: 入力で宣言されたrepo-relative POSIX pathまたはtyped external target。",
+          "utf8_sha256": "f4763751ece8bf67ec37785e4169b98ff2f72717de35b2b92631aa54d1f23c0c"
+        },
+        {
+          "line": 73,
+          "text": "- `physical_target`: realpath（実体パス）、ancestor symlink/junction（祖先リンク/接合）、mount（マウント）、device/inode（デバイス/inode）、file type（ファイル種別）。",
+          "utf8_sha256": "c80cba4d950c05a6d967cf71bbcd2636e12e27a721c6baedc16ba85307a4188e"
+        },
+        {
+          "line": 74,
+          "text": "- `target_set`: exact member list、cardinality、glob・再帰・生成展開の有無。",
+          "utf8_sha256": "89763736c4cf557ea90c08f5232d6aa7f58d580cf620dcd81f5c7066750567d0"
+        },
+        {
+          "line": 75,
+          "text": "- `repository_identity`: repository（リポジトリ）、worktree（作業木）、Git object（Gitオブジェクト）、GitHub owner/name（所有者/名前）、ref（参照）、HEAD（基準点）。",
+          "utf8_sha256": "9c82fc8a914c511784c52e8d4524aef4e8e631ef7f7d87f280a141a6a87c8497"
+        },
+        {
+          "line": 76,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 77,
+          "text": "lexical pathがrepo内でもphysical targetがrepo外、symlink/junctionで境界を越える、mount/bind",
+          "utf8_sha256": "ba810e549d42bd3544cf86995dcc6569d3789d4182ffa5df6c918cb41f303235"
+        },
+        {
+          "line": 78,
+          "text": "またはhardlinkで同一実体が別pathから到達できる、target集合を確定できない場合は拒否する。",
+          "utf8_sha256": "0dc1a98fe91dbc451b62248c931eaaf60d1017806b8e204e0aa42834036f6570"
+        },
+        {
+          "line": 79,
+          "text": "TOCTOUを防ぐため、判定時と実行直前のidentity digestを一致させる。一致しない場合は再実行せず",
+          "utf8_sha256": "6690dfc3281cf140e3a301e244d2f8fe5e57d78d13d191b92844ed1795d13e62"
+        },
+        {
+          "line": 80,
+          "text": "新しいpreflightを要求する。",
+          "utf8_sha256": "bf814761c7de526b5c4d81f5debec42adbc2ee751719f41c5e60b0ff360ffa4c"
+        },
+        {
+          "line": 81,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 82,
+          "text": "### 1.3 execution provenance（実行来歴）",
+          "utf8_sha256": "3c78a84d3158ae98ffb333f4b93286346ae72109e85e9f262145993fa158bb8c"
+        },
+        {
+          "line": 83,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 84,
+          "text": "`execution_provenance`は次のclosed setとする。",
+          "utf8_sha256": "93403a7991f050a723a265ef749e4c200aa0154fdb51433bbc63fcc4b6ba628a"
+        },
+        {
+          "line": 85,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 86,
+          "text": "| provenance | 条件 | 許可境界 |",
+          "utf8_sha256": "b134a1200674dd011dc1b76c8a9cf8847fe6fb84d9170d9924bf27d3b2e06300"
+        },
+        {
+          "line": 87,
+          "text": "|---|---|---|",
+          "utf8_sha256": "23cca02b74f386463efa24796c7a9011b0d2c93f0c38b4d15d5d276205b59b43"
+        },
+        {
+          "line": 88,
+          "text": "| `direct_literal` | literal commandとtargetを完全にparse済み | 他軸の検証後のみ |",
+          "utf8_sha256": "8f06f5f55bd6243e900b63f32d0eafabce7aa18533e23b967f197c2692357dff"
+        },
+        {
+          "line": 89,
+          "text": "| `bounded_wrapper` | allowlist wrapperを再帰上限内で展開済み | 展開後のexact tupleを再検証 |",
+          "utf8_sha256": "dbb9b58c21e61ef9434534c9526f1b87499984aa1140fa3e321867bb74a8b38f"
+        },
+        {
+          "line": 90,
+          "text": "| `inspected_script` | script本文、interpreter、argv、依存入力をdigest束縛済み | sandboxまたはaction binding |",
+          "utf8_sha256": "2b59507725779370d235473ccf3ae4a16caa5a9ee9b45cf355e101d4539709b3"
+        },
+        {
+          "line": 91,
+          "text": "| `generated_indirect` | 変数、glob、find/xargs、動的コードで対象が生成 | host直接実行を拒否 |",
+          "utf8_sha256": "da713dcb921c7f223c3d1e9c9ab6f4bad74d6abe17a0e819cd457f3099c67531"
+        },
+        {
+          "line": 92,
+          "text": "| `unknown` | parse不能、解析深度超過、未登録wrapper | 必ず拒否 |",
+          "utf8_sha256": "8fc3dcc87339a5840cdadadf5b5c718c129d719931583273992d8e136d982615"
+        },
+        {
+          "line": 93,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 94,
+          "text": "`generated_indirect`を`direct_literal`へ昇格させない。解析不能時にhost実行へfallbackせず、",
+          "utf8_sha256": "f2d32f5bf764c55dff83dfd139039f9e28cd8fe5d18106eb08cd8bc89adab96c"
+        },
+        {
+          "line": 95,
+          "text": "credentialなし・network deny・repo外filesystemなしのsandboxへ送るか、実行を拒否する。",
+          "utf8_sha256": "3300ca609894aa3de3714390b11a2ddad912df86e1efe986ac721fbaca221ce2"
+        },
+        {
+          "line": 96,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 97,
+          "text": "### 1.4 data classification と sink authority",
+          "utf8_sha256": "b85055cb857618699751773751c66cb44327c7544286579d0d1985bf9691b98f"
+        },
+        {
+          "line": 98,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 99,
+          "text": "送信元dataと送信先sinkを同じ`network_allowed` booleanへ畳み込まない。",
+          "utf8_sha256": "4b163b1e671aabf014d538aa168c661a4f4554934b7ade19a126ffeb9b33ceb7"
+        },
+        {
+          "line": 100,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 101,
+          "text": "| data classification | 既定扱い |",
+          "utf8_sha256": "e503fbc9f515ad78fce709b9de086bd95a97ad2cbd9e37ccc8c5ea9bef609cd9"
+        },
+        {
+          "line": 102,
+          "text": "|---|---|",
+          "utf8_sha256": "4199ba454d6d3ae83657120c2bb6bd674eefc0dd7d3cd4cc844171dc6725135b"
+        },
+        {
+          "line": 103,
+          "text": "| `public` | 登録済みsinkへ送信候補 |",
+          "utf8_sha256": "765dea54c72efe32d250b33b484714ad186b31c1a7d4ab1807ecd195dab025e0"
+        },
+        {
+          "line": 104,
+          "text": "| `repository_content` | exact artifact、目的、retentionを束縛 |",
+          "utf8_sha256": "84ecdda30e1d4d232f65e8967fa601a31ed79caebbe3fdb892d9fbce8e92f3ea"
+        },
+        {
+          "line": 105,
+          "text": "| `sensitive` / `pii` | broker外送信を拒否、action binding必須 |",
+          "utf8_sha256": "611c11d72b0207193f7a19453e1419ef381c4d4e5523a46c8fd60c570ca8d76b"
+        },
+        {
+          "line": 106,
+          "text": "| `credential` | 外部送信・ログ・command argvへの出力を拒否 |",
+          "utf8_sha256": "3d4686b6311a6f3697416b54d02e293ae2bdd3671cb5abfe5cf1adc04235b43e"
+        },
+        {
+          "line": 107,
+          "text": "| `unknown` | 分類不能として拒否 |",
+          "utf8_sha256": "0a98a221cd5e55f8967d74d6a9fb00c0169d69194a9ce0de19306c5c88a83aa5"
+        },
+        {
+          "line": 108,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 109,
+          "text": "`sink_authority`は`local_workspace`、`git_object`、`github_api`、`network_endpoint`、",
+          "utf8_sha256": "4e74c94d00630f34059cc7808da7201e7cb37a70a92b97e911945efc27a6825b"
+        },
+        {
+          "line": 110,
+          "text": "`cloud_control_plane`、`process_environment`、`unknown`を区別する。sinkがexact target、",
+          "utf8_sha256": "fcb5ba6277f61b865c357e2eab770d08e84a640fbd38d9f52fd89be6ff15cc49"
+        },
+        {
+          "line": 111,
+          "text": "目的、認可範囲、expiry、read-before、dry-run、postcondition、rollback可否を持たない場合は",
+          "utf8_sha256": "fe2bb3126f09fb2c744a05feca4e8303129195e0677ad724dc68c995fda15ae0"
+        },
+        {
+          "line": 112,
+          "text": "`approval_required`ではなく`unresolved`としてfail-closeする。",
+          "utf8_sha256": "833cddc9310ce16a0629dff52c10bc7260be0cdcde8b7738b14d6c068346d661"
+        },
+        {
+          "line": 113,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 114,
+          "text": "## 2. impact、approval、結果契約",
+          "utf8_sha256": "76e7378c48a2428ff2a875574425d563d2d9f0ad125bafb63b216e3fa72ee814"
+        },
+        {
+          "line": 115,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 116,
+          "text": "`impact_profile`はproduction影響、破壊性、credential access、external side effect、blast radius、",
+          "utf8_sha256": "2aa0d1133b96e9527712735f7c6043d237dae029917b04f8b25ee3f0f62b83d6"
+        },
+        {
+          "line": 117,
+          "text": "rollback可否を個別boolean／enumで保持する。これらから導出した`risk_class`は要約値であり、",
+          "utf8_sha256": "fbfb08b192e1acb7d964b3e8b9a6ab881dcfb1a278f33c85ece175a62c331098"
+        },
+        {
+          "line": 118,
+          "text": "入力の代替や承認の根拠として単独利用しない。",
+          "utf8_sha256": "ae4aebe7c6559df2b7bd1e776c656b0ef4fb29260aa0f383f70d21818fcc88c8"
+        },
+        {
+          "line": 119,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 120,
+          "text": "- repo内の明示的な単一file read/build/testは、identityとprovenanceが検証できれば許可候補。",
+          "utf8_sha256": "afcb32188e22f7f3d4f0e7e3fccf93b245bf4b3b83c6cfe4ba11198bb3ee0120"
+        },
+        {
+          "line": 121,
+          "text": "- truncate、overwrite/replace、permission/process/service、host root、container/cloud/GitHubの",
+          "utf8_sha256": "80462363ea4d33aec36ba2cb0734b2443ac0bdaeb484485729073d27fbb70226"
+        },
+        {
+          "line": 122,
+          "text": "  destructive操作は、exact target、dry-run、postcondition、rollback情報がない限り拒否。",
+          "utf8_sha256": "3f4a3b11a1a61e21c97f2e587702b23fca1605293281cb8e6dd6f754231df932"
+        },
+        {
+          "line": 123,
+          "text": "- credential access、credentialを含むdataのegress、repository archiveの外部送信は既定拒否。",
+          "utf8_sha256": "636c75d77ab7004307d4acd93b07e1c82821a91bc1da93389146da913db75723"
+        },
+        {
+          "line": 124,
+          "text": "- irreversible、production、external publish、state cutoverは`human_approval`境界を維持。",
+          "utf8_sha256": "e8e6c485c586076b4fce45cd6a405def8a31d17508081ca4ec9808f65c00b429"
+        },
+        {
+          "line": 125,
+          "text": "- reversibleだが高影響な操作は、同一HEAD・同一target identity・同一policy digestへ束縛した",
+          "utf8_sha256": "9a66b2db09e757f48070f83a5b73f483f84b25d4286aa90fc80c0108875e8770"
+        },
+        {
+          "line": 126,
+          "text": "  `action_binding`を要求する。approval receiptがない状態でcommandを実行しない。",
+          "utf8_sha256": "a35042f3efd1314fefb898552bbd2d23fbc07d74b1971509bbc4fa16a875eb2b"
+        },
+        {
+          "line": 127,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 128,
+          "text": "結果receiptは`decision`を`allow`、`blocked`、`unresolved`、`approval_required`のexact setで返し、",
+          "utf8_sha256": "5d55abf595c93fe5289c648ca72ed81448b6271810e7add28e4963c9faff147e"
+        },
+        {
+          "line": 129,
+          "text": "operation（操作）、target（対象）、provenance（来歴）、data（データ）、sink（送信先）、policy version（ポリシー版）、identity digest（同一性ダイジェスト）、reason code（理由コード）、",
+          "utf8_sha256": "b4c18ad8366d0181239079792814800b0936d362fc93fc2ed747ea20cd3fc8eb"
+        },
+        {
+          "line": 130,
+          "text": "postcondition、rollback、expiryを値非表示で保存する。secret、PII、個人absolute path、raw command、",
+          "utf8_sha256": "aa295d3438d01e5d325d533a5c9b6e27840ff875e4dd0479968f4d6535615161"
+        },
+        {
+          "line": 131,
+          "text": "raw payloadをログ・DB・PRへ出力しない。",
+          "utf8_sha256": "b40df86480500b26a5739916a9b9e7fa4d1645b48c5afecb961a6f394a30864c"
+        },
+        {
+          "line": 132,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 133,
+          "text": "## 3. runtime coverage とAND admission",
+          "utf8_sha256": "50bd90fdcbf9c65ae63252ebecba954978167a704d078f1b034ea2f0bcdef4b3"
+        },
+        {
+          "line": 134,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 135,
+          "text": "Claude Code hook、Codex CLI/IDE hook、Cursor、hosted tool、worker sandboxは別surfaceとして",
+          "utf8_sha256": "46b8b35381cc7efd923f1043939afa1c084c15919c0f9dd714c3f630002a353d"
+        },
+        {
+          "line": 136,
+          "text": "coverage matrixへ登録する。hook非強制surfaceは「hookがある」と扱わず、capability brokerまたは",
+          "utf8_sha256": "e1f71222e5e13ba2ee230ffcad2a8e9c0ce5f7cf752b63c9b0ba27ee94bb02c2"
+        },
+        {
+          "line": 137,
+          "text": "sandboxを唯一の実行境界とする。matcher drift、hook trust drift、coverage unknown、sandbox",
+          "utf8_sha256": "b5065277c2bd71b3c58b9ef8970db691db030aa9bc4299968e0ea6dc73de7294"
+        },
+        {
+          "line": 138,
+          "text": "unavailableはfail-closeする。",
+          "utf8_sha256": "9e3b748346b00c35f69d902f852c9dd2c21b92ff11de04caf9193301f59fd092"
+        },
+        {
+          "line": 139,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 140,
+          "text": "canonical authorityの失敗をlegacy guardや別scannerのgreenで相殺しない。admissionは次のAND条件を",
+          "utf8_sha256": "1c9510918593ca9bc0a6ff8057c822aa7d35c6a54516a49337c1068446e1312d"
+        },
+        {
+          "line": 141,
+          "text": "満たす場合だけ後続実行へ進む。",
+          "utf8_sha256": "7a7f70ea84b8f114c5101dbb3514a62d33a2ea72a6602b6b207b650db83d8c64"
+        },
+        {
+          "line": 142,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 143,
+          "text": "```text",
+          "utf8_sha256": "b4a313791c1fbca2c1410d1d5b1190af4087723ec1b6c1c4ba776298d6dd6228"
+        },
+        {
+          "line": 144,
+          "text": "requirements / policy current",
+          "utf8_sha256": "1418b04ab9b136639e347748656e03b31f67d165aa3044085430a8e1be691809"
+        },
+        {
+          "line": 145,
+          "text": "AND physical target current",
+          "utf8_sha256": "faa456443e4a021b204f07251b619643117a05bc37524909921727f6596d0a73"
+        },
+        {
+          "line": 146,
+          "text": "AND provenance bounded",
+          "utf8_sha256": "60e890e08b4ea653426e92aec4ab84e598be6fd040e61b6e3106baab5e843fa6"
+        },
+        {
+          "line": 147,
+          "text": "AND data-sink policy current",
+          "utf8_sha256": "c7aba430a09eb352bfb524716bac84a05842db91466f17fb7e28f0eb019e014a"
+        },
+        {
+          "line": 148,
+          "text": "AND approval binding current (必要時)",
+          "utf8_sha256": "792349fcaba418af622b59ff16f978b6398e96adf4f186368919077afc90504f"
+        },
+        {
+          "line": 149,
+          "text": "AND runtime surface covered",
+          "utf8_sha256": "bdeb6f0fc7e303cfb6de98706102e00f304b279c849f4aa9d866703960a6717e"
+        },
+        {
+          "line": 150,
+          "text": "AND postcondition / rollback / expiry valid",
+          "utf8_sha256": "9590fcd58c02479a0c62d39975484e722c3a0f48544828846477d7ebd72adcf2"
+        },
+        {
+          "line": 151,
+          "text": "```",
+          "utf8_sha256": "f1b901847390b0ed7e374e7c1e464ec17b46a427c487a5ad6cbd2906405083d5"
+        },
+        {
+          "line": 152,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 153,
+          "text": "## 4. current要件と後続slice",
+          "utf8_sha256": "a16692bcba4ddbcf81df5b84c09aaad2bec7a29c5fcb2a800916d1b4bfbd30ca"
+        },
+        {
+          "line": 154,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 155,
+          "text": "以下のIDはrequirements v1.3.12へ昇格済みのcurrent FR/ACである。runtime実装の完了を意味せず、",
+          "utf8_sha256": "f0c568aeb26038d4293085d247954d8d640fe50e296aca81c9ce5dc9430870da"
+        },
+        {
+          "line": 156,
+          "text": "各sliceは対応する実装・検証・独立review・main read-afterを別途要求する。",
+          "utf8_sha256": "1c5d86e2e513678255d26fcb0c4dacf4e5130a6baac57705364fa9af9fa0e121"
+        },
+        {
+          "line": 157,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 158,
+          "text": "| 要件ID | 要件 | 対応受入 |",
+          "utf8_sha256": "05a1ec992a187f88b25233c96315a48cbc656a65f2c4f3b38f3dc585f959e87e"
+        },
+        {
+          "line": 159,
+          "text": "|---|---|---|",
+          "utf8_sha256": "23cca02b74f386463efa24796c7a9011b0d2c93f0c38b4d15d5d276205b59b43"
+        },
+        {
+          "line": 160,
+          "text": "| `SEC-FR-CAP-001` | operation capabilityとimpactを独立typed fieldで保持し、未知・混同・欠落を拒否する | `SEC-AC-CAP-001` |",
+          "utf8_sha256": "b9e29e09fbf8a5ea0611733684eeb0a0477bc93c57f4803f64a98529013b8c8d"
+        },
+        {
+          "line": 161,
+          "text": "| `SEC-FR-CAP-002` | lexical/physical target、target set、TOCTOU identityを実行直前に検証する | `SEC-AC-CAP-002` |",
+          "utf8_sha256": "0752c04b341049bbbb50e0f3e736268f1b3dd0e0cb3c253e999b2f137dbb9335"
+        },
+        {
+          "line": 162,
+          "text": "| `SEC-FR-CAP-003` | direct/bounded/script/generated/unknown provenanceを区別し、未検証間接実行をhostへ渡さない | `SEC-AC-CAP-003` |",
+          "utf8_sha256": "009a826a859a3e61dbdb638110bdb41ac06226d1ef526a4a9656a6760e5588ef"
+        },
+        {
+          "line": 163,
+          "text": "| `SEC-FR-CAP-004` | data classificationとsink authorityを分離し、credential／PII／archive egressをbroker外で拒否する | `SEC-AC-CAP-004` |",
+          "utf8_sha256": "7a649bfee1e73b7475593a8c616176f9b3d0caa6270e99c285ef0b63200a0be6"
+        },
+        {
+          "line": 164,
+          "text": "| `SEC-FR-CAP-005` | external/destructive actionをexact target、dry-run、postcondition、rollback、expiry、action bindingへ束縛する | `SEC-AC-CAP-005` |",
+          "utf8_sha256": "358eff66693743da37178a6f076773c645be477d7dc5f65fb5d06f6938a30af4"
+        },
+        {
+          "line": 165,
+          "text": "| `SEC-FR-CAP-006` | hook/sandbox coverageをruntime別に検査し、unsupported surfaceをhost実行へfallbackしない | `SEC-AC-CAP-006` |",
+          "utf8_sha256": "4e1298d0df0869352b05e7bcce1e196fcb450c6a999e2a441a0c7742ffe73b85"
+        },
+        {
+          "line": 166,
+          "text": "| `SEC-FR-CAP-007` | canonical safety failureをlegacy greenで相殺せず、値非表示のreceiptへ全reasonを記録する | `SEC-AC-CAP-007` |",
+          "utf8_sha256": "e39adcc6a7e0aef83ee04c813ed28699a293c5161c8f70c31447ea9d81283ea5"
+        },
+        {
+          "line": 167,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 168,
+          "text": "実装は次の別PRへ分割する。",
+          "utf8_sha256": "1a5c9a9d9654065fae9d2d9566197218e9d324c755717246a9d4c0ea7a17b9aa"
+        },
+        {
+          "line": 169,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 170,
+          "text": "1. physical filesystem identity",
+          "utf8_sha256": "f47058f8ad89646d44235a0853d248d9db3f3fbbf456258c982dcf4a1a15a5d5"
+        },
+        {
+          "line": 171,
+          "text": "2. recursive target expansionとexecution provenance",
+          "utf8_sha256": "62b4b1442627e5b3ca035aee6bf5299a50a2186d4827f9283e131cb8c154b4ea"
+        },
+        {
+          "line": 172,
+          "text": "3. credential sinkとGitHub target authority",
+          "utf8_sha256": "d8349aec9a00ac3fb674658bf383a532fc8cc2d95d5ee22e3eedca9c1ac067de"
+        },
+        {
+          "line": 173,
+          "text": "4. network/cloud destructive typed adapter（ネットワーク/クラウド破壊操作の型付きadapter）",
+          "utf8_sha256": "6adc94aaa6cff694e7b1daf14c61c647b71cbcda271e1ccffb4038d8f7e06d90"
+        },
+        {
+          "line": 174,
+          "text": "5. Claude/Codex hook parity（hook同等性）、Cursor/hosted unsupported surface（未対応surface）、doctor（診断）の是正",
+          "utf8_sha256": "3e9cda0569d40fb02b1f1d54a3f13c16084f0cd8297428952ca88ef2f2b892c9"
+        },
+        {
+          "line": 175,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 176,
+          "text": "本書へruntime実装、既存guardの再配線、GitHub設定apply、credential操作、sandbox cutoverを混載しない。",
+          "utf8_sha256": "70f91fa4261f4014ec5cbae989a751c908106853364510c5b28eb1618676245a"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "file_sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "selected_line_quotes": [
+        {
+          "line": 1,
+          "text": "---",
+          "utf8_sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b"
+        },
+        {
+          "line": 2,
+          "text": "title: \"安全capability broker 受入テスト設計\"",
+          "utf8_sha256": "471d8b00f049af7fa27e7d597bf71438438b4653139c17346159b1114e3e85be"
+        },
+        {
+          "line": 3,
+          "text": "layer: L10",
+          "utf8_sha256": "a6c34ec5f8d58bbc3ea7377b696f9eb09e5a9ca8d56d3b1af9c2e3eb103e1616"
+        },
+        {
+          "line": 4,
+          "text": "artifact_type: test_design",
+          "utf8_sha256": "3011887795b24789c9ba6f7c1f431ad041cd47438bd05ce6890b3b47b4a242dd"
+        },
+        {
+          "line": 5,
+          "text": "status: confirmed",
+          "utf8_sha256": "aa7aa9c564b9bfc562ad3025556152bb8fd1b1c69091b1fa3d57cbaff5f75a22"
+        },
+        {
+          "line": 6,
+          "text": "created: 2026-08-18",
+          "utf8_sha256": "bd0250ba5ccc39a3805f1c7fb30c5f1eee9c77c59605420c657a0c93fe1261c3"
+        },
+        {
+          "line": 7,
+          "text": "updated: 2026-08-19",
+          "utf8_sha256": "24e2df99a7b4d406a8ef018887ee4b539374df5feb076ca54f226e288be6db85"
+        },
+        {
+          "line": 8,
+          "text": "owner: QA / Security",
+          "utf8_sha256": "27b96648b0d98ed80fbc8594727c6a7e698603798743bf9660a6781292b5b29d"
+        },
+        {
+          "line": 9,
+          "text": "pair_artifact: docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+          "utf8_sha256": "c58fbafea86e663bbf59f16ec6ad5cf86762179808c359a99cffbebba6a42102"
+        },
+        {
+          "line": 10,
+          "text": "related_issue: 679",
+          "utf8_sha256": "a9a238d0260a8280d175a9fde8482fb9c8efc82a3b362e14913e05d6b22a5315"
+        },
+        {
+          "line": 11,
+          "text": "---",
+          "utf8_sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b"
+        },
+        {
+          "line": 12,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 13,
+          "text": "# 安全capability broker 受入テスト設計",
+          "utf8_sha256": "9f8c8713765b6c1d9012135b23c63842cc656b8ddb4a985b18b9132f1013be18"
+        },
+        {
+          "line": 14,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 15,
+          "text": "本テスト設計は、requirements v1.3.12へ昇格した#679のL3要件をL10で判定可能にする。",
+          "utf8_sha256": "f92cedbd5cb7384f2c7737f6015213515ce9563cb88c4046c0134cd0077673b2"
+        },
+        {
+          "line": 16,
+          "text": "この文書のgreenは各実装sliceの完了を意味せず、current guardのgreenで未実装要件を相殺しない。",
+          "utf8_sha256": "64f0bde5d6bdfd8e6afd5e698c40ae467b0b039b79bdea259057aa231b99a508"
+        },
+        {
+          "line": 17,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 18,
+          "text": "| Test ID | 対応要件 | 入力fixture | 期待結果 |",
+          "utf8_sha256": "592b911693800c017f6bff4f24c39f2eb79042086aa69a477135c68670c0ce68"
+        },
+        {
+          "line": 19,
+          "text": "|---|---|---|---|",
+          "utf8_sha256": "4da1ec6f47782090102dc16bda978efb5655fbf2ddce0f84ecf1faf79a930f2d"
+        },
+        {
+          "line": 20,
+          "text": "| `SEC-AC-CAP-001` | `SEC-FR-CAP-001` | operation、impact、approvalを同一enumへ混在、未知値、欠落、複数候補 | 軸混同・未知・欠落をreason付き`unresolved`で拒否する |",
+          "utf8_sha256": "98448eb22a71fc9d88f39375564d3f1d6287bdb8b80b822a04a876c4e2f38581"
+        },
+        {
+          "line": 21,
+          "text": "| `SEC-AC-CAP-002` | `SEC-FR-CAP-002` | repo内literal、ancestor symlink、junction、bind mount、hardlink、repo外realpath、glob、TOCTOU変更 | exact physical identityとtarget setが一致するliteralだけ許可候補。その他は拒否する |",
+          "utf8_sha256": "de05762055c8c4c1f3bf6aaa8532689fd24f1750dd72b76bb728a7ae054c3472"
+        },
+        {
+          "line": 22,
+          "text": "| `SEC-AC-CAP-003` | `SEC-FR-CAP-003` | direct literal、bounded wrapper、script digest、find/xargs、変数、dynamic interpreter、解析深度超過 | bounded以外の間接実行をhostへ渡さず、sandboxまたは拒否へ送る |",
+          "utf8_sha256": "c6f44b596aa4db74f84f2cc25289226909a9ba2b159aaf11a8fb812d4db86f38"
+        },
+        {
+          "line": 23,
+          "text": "| `SEC-AC-CAP-004` | `SEC-FR-CAP-004` | public/repository/sensitive/PII/credential/unknownとlocal/GitHub/network/cloud sinkの直積 | credential、PII、archive、unknownはbroker外送信を拒否し、ログにも値を出さない |",
+          "utf8_sha256": "261e472e99c7cee3f17fad3975c7dd5652b867f9537b8b50c9f41143cdba1e76"
+        },
+        {
+          "line": 24,
+          "text": "| `SEC-AC-CAP-005` | `SEC-FR-CAP-005` | destructive external actionのtarget、dry-run、rollback、expiry、approval receiptの各欠落・drift | exact tupleが揃うまで`approval_required`または`unresolved`で実行を拒否する |",
+          "utf8_sha256": "84a9a36a88f1fc497249879def26cfddae54846593fd5f976f821d280097f1f4"
+        },
+        {
+          "line": 25,
+          "text": "| `SEC-AC-CAP-006` | `SEC-FR-CAP-006` | Claude、Codex CLI/IDE、Cursor、hosted tool、workerのcovered/unsupported/trust drift/sandbox unavailable | unsupported、drift、sandbox unavailableはhost実行へfallbackせずfail-closeする |",
+          "utf8_sha256": "36887d174c549dd43ae942efc29d2989e605bcf6dc011864758a2df35c4fc6c6"
+        },
+        {
+          "line": 26,
+          "text": "| `SEC-AC-CAP-007` | `SEC-FR-CAP-007` | canonical failure、legacy guard green、別scanner green、値を含むraw error | AND admissionを維持し、legacy/別scannerのgreenで相殺せずredacted receiptだけを残す |",
+          "utf8_sha256": "b604af99e90692849098b2ddeb65364a0f2fc687944fd9e478338411f4141105"
+        },
+        {
+          "line": 27,
+          "text": "| `SEC-AC-CAP-008` | `SEC-FR-CAP-001..007` |同一targetを判定後に置換、permission変更、process停止、container root mount | 実行直前identity／policy再検証で拒否し、再試行を自動許可しない |",
+          "utf8_sha256": "cad984d67f7c23ba7a70b662a13ecc1426ee232714ea1cf9bfe823636b6b0ab2"
+        },
+        {
+          "line": 28,
+          "text": "| `SEC-AC-CAP-009` | `SEC-FR-CAP-005` | postcondition成功、失敗、部分成功、rollback unavailable | 成功主張はpostcondition receiptがある場合だけ。部分成功はRecoveryへ送る |",
+          "utf8_sha256": "a8c18f5a03b37e7be74f390f6ef08fd085c44604376a5acdc397e5a219c61b23"
+        },
+        {
+          "line": 29,
+          "text": "| `SEC-AC-CAP-010` | `SEC-FR-CAP-007` | command、token、PII、absolute pathを含む失敗入力 | output、DB、PR、memory、CI logにsecret等が残らない |",
+          "utf8_sha256": "cfedf4904e919bec058d8497bbf85d189d662823b535cfa52b91159661ed4e2e"
+        },
+        {
+          "line": 30,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 31,
+          "text": "## PLAN-L7-601 physical identityスライスのoracle",
+          "utf8_sha256": "e6ede31fdfff7c765454b7182cdb9ea214acffacb41b62f222f1da9d1781d05a"
+        },
+        {
+          "line": 32,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 33,
+          "text": "| U-ID | 対象 | 反例と期待結果 | test citation |",
+          "utf8_sha256": "43b847e9bcc179736768c913a309517e1df0ebd5027b174ed2bfe10952494d68"
+        },
+        {
+          "line": 34,
+          "text": "|---|---|---|---|",
+          "utf8_sha256": "4da1ec6f47782090102dc16bda978efb5655fbf2ddce0f84ecf1faf79a930f2d"
+        },
+        {
+          "line": 35,
+          "text": "| U-PHYSID-001 | physical identity束縛 | exact literal fileを束縛し、receiptへrepo rootや入力値を出さない | `tests/physical-filesystem-identity.test.ts` |",
+          "utf8_sha256": "4e3d3c70e4e1c382eb12f3152c271b2ee8d6e00409c9ca4ce544ee519ddb0c31"
+        },
+        {
+          "line": 36,
+          "text": "| U-PHYSID-002 | symlink境界 | ancestor/final symlinkを拒否する | `tests/physical-filesystem-identity.test.ts` |",
+          "utf8_sha256": "449b185c0648337a2f8f8bca10d2304f8f66804f31a3272b351800568cad11c9"
+        },
+        {
+          "line": 37,
+          "text": "| U-PHYSID-003 | target集合受入 | absolute、traversal、glob、duplicate、target count不一致を拒否する | `tests/physical-filesystem-identity.test.ts` |",
+          "utf8_sha256": "32838f7df7456f76cee4dfaf28706adbc6e7e1f1c5f724de8684d9f72a347f95"
+        },
+        {
+          "line": 38,
+          "text": "| U-PHYSID-004 | hardlink境界 | hardlinkによる同一実体の曖昧性を拒否する | `tests/physical-filesystem-identity.test.ts` |",
+          "utf8_sha256": "ad082ef282667365b7211a8fcf8f87bde44434fda94c131a43d7fc0c0ba19c5c"
+        },
+        {
+          "line": 39,
+          "text": "| U-PHYSID-005 | TOCTOU再検証 | 判定後のtarget置換をidentity driftとして拒否する | `tests/physical-filesystem-identity.test.ts` |",
+          "utf8_sha256": "94bf4bfbcd0d14273b5e2a3e14bcbee200d795f41c12903aee7466c9cc262a0f"
+        },
+        {
+          "line": 40,
+          "text": "| U-PHYSID-006 | target集合digest | 入力順ではなくexact memberへdigestを束縛する | `tests/physical-filesystem-identity.test.ts` |",
+          "utf8_sha256": "200178155dc2d58cb2e3af8f385ab59a0be24f296cb90dd254a0a56e6b1f8eb8"
+        },
+        {
+          "line": 41,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 42,
+          "text": "## 実機・mutation条件",
+          "utf8_sha256": "fee5f6150e86d8dde03193e04f5fa7bd9d0548c1ee3848115fd5a73a9fcc2ba2"
+        },
+        {
+          "line": 43,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 44,
+          "text": "- lexical pathだけを検証してphysical target検証を削除するmutationは、symlink/junction/mount/",
+          "utf8_sha256": "bfd3a7f2f30a3cbcd21ea73080e695af161636bff06e33fe0e100463bc1dd577"
+        },
+        {
+          "line": 45,
+          "text": "  hardlink fixtureで必ずredになる。",
+          "utf8_sha256": "dfc0cfe4be4694642f1d2211f9e7813400acdde2e15d8e0361f6036626a7ae03"
+        },
+        {
+          "line": 46,
+          "text": "- `generated_indirect`を`direct_literal`へ変換するmutationは、find/xargs、shell variable、",
+          "utf8_sha256": "1d6a52e06adad299aadd5e41db14d2272dbf0c38622fef6953a20d53d205a16a"
+        },
+        {
+          "line": 47,
+          "text": "  interpreter、package scriptのfixtureで必ずredになる。",
+          "utf8_sha256": "f5030990aa811677804ca4afefd294a7fc287d86242c923454477bc2c81b8a4f"
+        },
+        {
+          "line": 48,
+          "text": "- data classificationまたはsink authorityを`network_allowed`へ潰すmutationは、credential、",
+          "utf8_sha256": "279b503497d49e773a2df80b69404813cd0176ebb626d5bd6b5bd2f6d96eadc2"
+        },
+        {
+          "line": 49,
+          "text": "  PII、repository archiveのegress fixtureで必ずredになる。",
+          "utf8_sha256": "b34054b71ccb1315a65296f47f4ec9244a1fe977ad4e405c31451ea8fe772387"
+        },
+        {
+          "line": 50,
+          "text": "- current canonical failureをlegacy guard greenで相殺するmutationはAND admissionでredになる。",
+          "utf8_sha256": "9a45011a33f7a2801e6c5621b9451146eda798d05edd741ebdff4b3a8fcb1bfa"
+        },
+        {
+          "line": 51,
+          "text": "- unsupported runtimeをhost実行へfallbackするmutationは、sandbox unavailable fixtureでredになる。",
+          "utf8_sha256": "0b9a6bb4dd59f854aec12b3d57d48382faf9d904f174739839e678cf67a9c772"
+        },
+        {
+          "line": 52,
+          "text": "- 実機canaryはClaude Code、Codex CLI/IDE、Cursor、hosted toolごとに、covered、unsupported、",
+          "utf8_sha256": "3df4c262338c43450c8a23fc6fb032f561f4dafdcce89c44cd7880b4b4b83396"
+        },
+        {
+          "line": 53,
+          "text": "  trust drift、sandbox unavailableを個別receiptへ記録する。hook非強制surfaceの安全性を宣言しない。",
+          "utf8_sha256": "9df5fa0e4d0d069bdae28abf6d05c6ea070dfea5d9a445306726fd005228e8d1"
+        },
+        {
+          "line": 54,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 55,
+          "text": "## 証跡要件",
+          "utf8_sha256": "e33883b72ff7d21d3b4a2da4acec09b3703064f82dd3bf87aa8859a7a2cccfdd"
+        },
+        {
+          "line": 56,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 57,
+          "text": "各ケースはsource HEAD、requirements/policy version、target identity digest、provenance digest、",
+          "utf8_sha256": "a53f18615c75264cf6fe89546c7cc83280f5a524d73a39afa2712e4f5a30dab7"
+        },
+        {
+          "line": 58,
+          "text": "data/sink classification、decision、reason code、postcondition、rollback、expiry、runtime surfaceを",
+          "utf8_sha256": "daa32cbf7e12a9b9245f0dc085f02c42f11554c60d57abb6582f9b45b5b2297f"
+        },
+        {
+          "line": 59,
+          "text": "保存する。入力値、secret、PII、raw command、個人absolute pathは保存しない。",
+          "utf8_sha256": "1593e1c7a21170f16808030d0822d45e0b7a243b21ab61cc86de6b689de36097"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/runtime-capability-matrix.ts",
+      "file_sha256": "c52e064cb05b3df99ad2c26ceb8d07711f49cb9a749d6dc2b13ce4f025c8ed62",
+      "selected_line_quotes": [
+        {
+          "line": 1,
+          "text": "export const RUNTIME_CAPABILITY_MATRIX_SCHEMA_VERSION = \"runtime-capability-matrix.v1\";",
+          "utf8_sha256": "da527a62d34683a8e80ce8273dd85f459ac0a205019d3f833dfe9b83affd8f08"
+        },
+        {
+          "line": 2,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 3,
+          "text": "export const RUNTIME_CAPABILITIES = [",
+          "utf8_sha256": "608de538d6f225bae8314fe807dfd3c2ed71dc592ae8ea05f48721ca378bc41e"
+        },
+        {
+          "line": 4,
+          "text": "  \"tool_shell\",",
+          "utf8_sha256": "5a4419b55734305ac3dd05298a063041fff7cd6c8ba5ade3e6565563f70426a0"
+        },
+        {
+          "line": 5,
+          "text": "  \"sandbox\",",
+          "utf8_sha256": "031f26d682108a935728d2cff8bb4092111aeb7d06c313809403f93e78e477a9"
+        },
+        {
+          "line": 6,
+          "text": "  \"hooks\",",
+          "utf8_sha256": "2c5c0faec3debc3ed0d5279d980f0d8df86d206923ca5e471b81a20d4b33556f"
+        },
+        {
+          "line": 7,
+          "text": "  \"mcp\",",
+          "utf8_sha256": "4e0e6f9e29de0f5a1dd0e9cbaf0d3f2c6c62b07ab229ac89ada8c7d2efee2897"
+        },
+        {
+          "line": 8,
+          "text": "  \"browser\",",
+          "utf8_sha256": "3b8223c3abea7a42f02f6f246650e659b1f3fcc8e33fb9f42927aec1119d9af2"
+        },
+        {
+          "line": 9,
+          "text": "  \"lsp\",",
+          "utf8_sha256": "bb7cba43b3b5b079905a668f45ede6d5d4c8715891e03fa4a912f0f1516519b8"
+        },
+        {
+          "line": 10,
+          "text": "  \"headless\",",
+          "utf8_sha256": "9f2d42a4f3a3ef4b0815d462b6dfc80b68ec7924f8657513c160c1d6bebd89ca"
+        },
+        {
+          "line": 11,
+          "text": "  \"resume\",",
+          "utf8_sha256": "e023aa76ad952632d52b9e91046900090366d7179f9dd77d82ee134368283676"
+        },
+        {
+          "line": 12,
+          "text": "  \"cost_telemetry\",",
+          "utf8_sha256": "5c4c8d8833aeea25b49a1a4ae4873ac5614d6ac4d5bcb005b9c7720d5ae6b1a6"
+        },
+        {
+          "line": 13,
+          "text": "] as const;",
+          "utf8_sha256": "6e2a9b95d72e9bd57665bbf1d03a82da22310bf7cf51e8f85aeb1ca3ffdd1f46"
+        },
+        {
+          "line": 14,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 15,
+          "text": "export type RuntimeCapability = (typeof RUNTIME_CAPABILITIES)[number];",
+          "utf8_sha256": "1e5b5a723a07f48442a198270f9c31c5432d711e2cd9f345130f1e03bac282aa"
+        },
+        {
+          "line": 16,
+          "text": "export type RuntimeCapabilityStatus = \"supported\" | \"limited\" | \"unsupported\";",
+          "utf8_sha256": "60e12f72d23a147fc13a1a91793060f93ae3b8ea75425638087fa01f1092bc71"
+        },
+        {
+          "line": 17,
+          "text": "export type RuntimeId = \"codex\" | \"claude\" | \"gemini\" | \"opencode\" | \"aider\";",
+          "utf8_sha256": "d10001eb041d07ee5f54aaa867150b859f929fa218bb4b1fce01c20df3d724a7"
+        },
+        {
+          "line": 18,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 19,
+          "text": "export type RuntimeCapabilityEntry = {",
+          "utf8_sha256": "739599097ee94cce476d012c304656c927057ae3f0b7ad49fab895e3e6297aea"
+        },
+        {
+          "line": 20,
+          "text": "  status: RuntimeCapabilityStatus;",
+          "utf8_sha256": "edd2778a511bd734de2675a339051ad1dd2c6bfe183abf5d89096cf00ead98d6"
+        },
+        {
+          "line": 21,
+          "text": "  evidence_path: string;",
+          "utf8_sha256": "60706b253559a97c76e781258bb08e7c9ca72889ebdb5c12142d1b9dc83ee90c"
+        },
+        {
+          "line": 22,
+          "text": "  fallback: \"use\" | \"fallback\" | \"escalate\" | \"no-op\";",
+          "utf8_sha256": "bf0ea5aafbee4599522fa5f7282f20d354d62b488fa7d9f627da3f8a188b9e1a"
+        },
+        {
+          "line": 23,
+          "text": "};",
+          "utf8_sha256": "df3982fd610173599241fca93c7c866683f58f541eced1c2098102145477164c"
+        },
+        {
+          "line": 24,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 25,
+          "text": "export type RuntimeCapabilityRecord = {",
+          "utf8_sha256": "595ee7aa2679a95802b6b6a98f8a09339a7d80d2ee27d0474e57f6089ea6a7bf"
+        },
+        {
+          "line": 26,
+          "text": "  runtime: RuntimeId;",
+          "utf8_sha256": "f4b69ca1236d36af6565600908d744706044c8f94c29d98e0741831e85a88f23"
+        },
+        {
+          "line": 27,
+          "text": "  capabilities: Record<RuntimeCapability, RuntimeCapabilityEntry>;",
+          "utf8_sha256": "92680f902829e6f36f9af527b8ef8ba980eccb9fe182828c4d6ca6379b30f786"
+        },
+        {
+          "line": 28,
+          "text": "};",
+          "utf8_sha256": "df3982fd610173599241fca93c7c866683f58f541eced1c2098102145477164c"
+        },
+        {
+          "line": 29,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 30,
+          "text": "export type RuntimeCapabilityRouteDecision = {",
+          "utf8_sha256": "030b8b5de10b5c6c4747e8a46d02a0a71e0b2bce29a03a796a1365fc9f246d85"
+        },
+        {
+          "line": 31,
+          "text": "  runtime: string;",
+          "utf8_sha256": "0caf4bd45276bf9d66e542fd4e03e3b0d543936510ca1adcc96d7cc2b6ce6e2d"
+        },
+        {
+          "line": 32,
+          "text": "  ok: boolean;",
+          "utf8_sha256": "9798f9bc3080152d382ac1a47f056776ae8e94fb52cd9aa8c5a92ec6bcde4f86"
+        },
+        {
+          "line": 33,
+          "text": "  status: \"supported\" | \"unsupported\";",
+          "utf8_sha256": "5fa184cd0b002c92f8b939c2fdb2101e09bccd1873c4e216170eeb839909cb7b"
+        },
+        {
+          "line": 34,
+          "text": "  required: RuntimeCapability[];",
+          "utf8_sha256": "5f462d61bfe031ae39ba44436f443baf0344952b72bf5c960c2158adcb187330"
+        },
+        {
+          "line": 35,
+          "text": "  missing: RuntimeCapability[];",
+          "utf8_sha256": "8af7a753ed9a0fa2a13bca44d2e1bd1631a3787d1218c7c91dd56567d96c4dd3"
+        },
+        {
+          "line": 36,
+          "text": "  evidence_paths: string[];",
+          "utf8_sha256": "23c00c3751e9bfb265e1495571c41e7a16cf6cb12cb5a1e1c3911fc63d3339ec"
+        },
+        {
+          "line": 37,
+          "text": "  fallback: \"use\" | \"fallback\" | \"escalate\";",
+          "utf8_sha256": "be5b485de3fb3ba5470e04191940ec175b622ea28fa783e0cc9692b14fd30351"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/runtime-capability-matrix.ts",
+      "file_sha256": "c52e064cb05b3df99ad2c26ceb8d07711f49cb9a749d6dc2b13ce4f025c8ed62",
+      "selected_line_quotes": [
+        {
+          "line": 247,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 248,
+          "text": "export function evaluateRuntimeCapabilityRoute(",
+          "utf8_sha256": "c96c3346cb9e96c0407c1e2da1d1b7f01edd67c92b9081670f57b6cf1e96bc31"
+        },
+        {
+          "line": 249,
+          "text": "  runtime: string,",
+          "utf8_sha256": "907ce79347ca3dd406d213f7f22e7689fd48f41f765236c299b671ee7fd8d252"
+        },
+        {
+          "line": 250,
+          "text": "  required: RuntimeCapability[],",
+          "utf8_sha256": "cef630f4e798675e428709cf9bdf08ca969111b99bd7487adb94e494d959138d"
+        },
+        {
+          "line": 251,
+          "text": "): RuntimeCapabilityRouteDecision {",
+          "utf8_sha256": "c970c1691c15654f62af41297030ada62b7e24a828ef805e4003fd7c7c487701"
+        },
+        {
+          "line": 252,
+          "text": "  const record = RUNTIME_CAPABILITY_MATRIX.find((item) => item.runtime === runtime);",
+          "utf8_sha256": "f6b4c794cc53e4953af6fe3bef980fa3476af3b8421d4c17ca45e494171bd88f"
+        },
+        {
+          "line": 253,
+          "text": "  if (!record) {",
+          "utf8_sha256": "e1e3fde0c8f79310edac6da24df0ebe557754b2c2b24fc97104912082d2c245e"
+        },
+        {
+          "line": 254,
+          "text": "    return {",
+          "utf8_sha256": "d0ed3e192847c302ffcc163aff94789b0ab5d6088390ec604daec4c7e8ab898c"
+        },
+        {
+          "line": 255,
+          "text": "      runtime,",
+          "utf8_sha256": "96b2d83f54e1e45a34924ac8a0e0260bab0977d28fb756a0eab5ce2e73361e60"
+        },
+        {
+          "line": 256,
+          "text": "      ok: false,",
+          "utf8_sha256": "aa3b9bac41e993ee36975b017f0f04ae0dc1ab48a4ebfdc8b7cd26a8db1ac2b4"
+        },
+        {
+          "line": 257,
+          "text": "      status: \"unsupported\",",
+          "utf8_sha256": "f39408ea61492bcb2b4f6f57884de6e75e6cc8126cd20cc85e26a1285873d59d"
+        },
+        {
+          "line": 258,
+          "text": "      required,",
+          "utf8_sha256": "4d739dbafa1d3ecf8b89128e1b37b640c7c8a88bca309b1814ec74d15252b5cc"
+        },
+        {
+          "line": 259,
+          "text": "      missing: required,",
+          "utf8_sha256": "d4c3bac1ae05eb5bb257cc3e1ec2e40bc73a323f8cd589943f11f66f9a7b480b"
+        },
+        {
+          "line": 260,
+          "text": "      evidence_paths: [],",
+          "utf8_sha256": "764ef1469d9020a8a774d4eb3be2a27789cb93b5594920c7f1d3805d09b79198"
+        },
+        {
+          "line": 261,
+          "text": "      fallback: \"escalate\",",
+          "utf8_sha256": "bad221ac17cfa3fc749bb1401730f61427b53f70b797473f6ba076203f7419e1"
+        },
+        {
+          "line": 262,
+          "text": "    };",
+          "utf8_sha256": "ede9befdbd87a8cea21015f1acf497959cad3bf8838112193d98a02a47fa6137"
+        },
+        {
+          "line": 263,
+          "text": "  }",
+          "utf8_sha256": "737db166c79ae98e44bbe5ad43e03bf3774f7b3696068842d56a72e863dfeb20"
+        },
+        {
+          "line": 264,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 265,
+          "text": "  const missing = required.filter(",
+          "utf8_sha256": "85af41bb4c65a53f159263737edaf4f095b54fb47fd6f74aa18d5a0f287b8331"
+        },
+        {
+          "line": 266,
+          "text": "    (capability) => record.capabilities[capability].status === \"unsupported\",",
+          "utf8_sha256": "868019661fd03d2c557de6e9a1d9685bbf9bc220c78f2eb09db29f4a1c0b44a9"
+        },
+        {
+          "line": 267,
+          "text": "  );",
+          "utf8_sha256": "3a5d0b9c2fd82493b66bba108059e333b190a7c3f488eab80fbab6a853f4473a"
+        },
+        {
+          "line": 268,
+          "text": "  const evidencePaths = required.map((capability) => record.capabilities[capability].evidence_path);",
+          "utf8_sha256": "2e7274896c1a35b27f8b2d6bb361ac2803b96f4e5e3402204d6405e0d1adde42"
+        },
+        {
+          "line": 269,
+          "text": "  return {",
+          "utf8_sha256": "16766aa3913c819cde85614a0ab8d5eaf4c462b970d03d6d12a35f0d9150827b"
+        },
+        {
+          "line": 270,
+          "text": "    runtime,",
+          "utf8_sha256": "9e73eeed81b8593db2730ca6769adbe6a33755bb4ee668b263072a0402c06640"
+        },
+        {
+          "line": 271,
+          "text": "    ok: missing.length === 0,",
+          "utf8_sha256": "70b89885420d73a8409de37c97615816b10b9c436098ff663fa921916f60655d"
+        },
+        {
+          "line": 272,
+          "text": "    status: missing.length === 0 ? \"supported\" : \"unsupported\",",
+          "utf8_sha256": "f1cefc6b006cb12b62b961069290aec92df04cdbf5be9180cfec035004344992"
+        },
+        {
+          "line": 273,
+          "text": "    required,",
+          "utf8_sha256": "1b4b9f0ab6d15531ac589cd449700fd49cf7c4fb7c9ce4d5ccc939b930ba2bd4"
+        },
+        {
+          "line": 274,
+          "text": "    missing,",
+          "utf8_sha256": "3c720edb05232538ef27d454f6e1a1b402edfea65962f068593e8f44d4e873f2"
+        },
+        {
+          "line": 275,
+          "text": "    evidence_paths: [...new Set(evidencePaths)],",
+          "utf8_sha256": "9623b3e3c6b7fdb1c6771736a3cdcbc68be0065763a2a950e0be854e7ff5910a"
+        },
+        {
+          "line": 276,
+          "text": "    fallback: missing.length === 0 ? \"use\" : \"fallback\",",
+          "utf8_sha256": "5602c36d33a74312340f941b86b6d354be910c51bb630c61c3c38a3a9e90a508"
+        },
+        {
+          "line": 277,
+          "text": "  };",
+          "utf8_sha256": "5c0254acd0251619029b7742ce33ed692f1099571cf182117eb4e87b71bcf031"
+        },
+        {
+          "line": 278,
+          "text": "}",
+          "utf8_sha256": "d10b36aa74a59bcf4a88185837f658afaf3646eff2bb16c3928d0e9335e945d2"
+        },
+        {
+          "line": 279,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 280,
+          "text": "export function buildRuntimeCapabilityMatrixReport(options: {",
+          "utf8_sha256": "c82f196539337aecfc864a25764b8e4dc1449f2e90e7ce675eea781494199e62"
+        },
+        {
+          "line": 281,
+          "text": "  runtime?: string;",
+          "utf8_sha256": "963be520148b89578f39ed9940743fc2d14970e802e9525f441e1076c96ee78e"
+        },
+        {
+          "line": 282,
+          "text": "  required?: RuntimeCapability[];",
+          "utf8_sha256": "6676ef4487a8474d26e8dab29a149fc19bb216e7fe1fc23f523ee5bd3fa79115"
+        },
+        {
+          "line": 283,
+          "text": "  sourceCommand?: string;",
+          "utf8_sha256": "d9ef49ba04606fbbecb8d37bd60cb8d3324cf0a579e8a7c49b0813055ffeaeb6"
+        },
+        {
+          "line": 284,
+          "text": "}): RuntimeCapabilityMatrixReport {",
+          "utf8_sha256": "3d2effff4737cf9581e3804e904bcec6f5efcf3b32157f13575a37f1c37385f8"
+        },
+        {
+          "line": 285,
+          "text": "  const routeDecision = options.runtime",
+          "utf8_sha256": "e054cb4589b83790d7b9eead21e592d50a2803dfabe7e0506734e1790a023512"
+        },
+        {
+          "line": 286,
+          "text": "    ? evaluateRuntimeCapabilityRoute(options.runtime, options.required ?? [])",
+          "utf8_sha256": "bd94ced3c71e086263e2baf740cfc4ee4146b0cd392e5e65d38ced0d6370c58b"
+        },
+        {
+          "line": 287,
+          "text": "    : undefined;",
+          "utf8_sha256": "f14febe59a71b3cbc98c0ae16fa1c3daf14b898502deeaea70a1db98b97ec213"
+        },
+        {
+          "line": 288,
+          "text": "  return {",
+          "utf8_sha256": "16766aa3913c819cde85614a0ab8d5eaf4c462b970d03d6d12a35f0d9150827b"
+        },
+        {
+          "line": 289,
+          "text": "    schema_version: RUNTIME_CAPABILITY_MATRIX_SCHEMA_VERSION,",
+          "utf8_sha256": "fe1a51353f03234b41e4f98432d14f3aa27c9ebbce316da0388ed30f7b07eb8a"
+        },
+        {
+          "line": 290,
+          "text": "    ok: routeDecision ? routeDecision.ok : true,",
+          "utf8_sha256": "90d6be16b0d055c5c9d4c9802e5a6cc49f52627910d33a06fbe23f8d090f5fcf"
+        },
+        {
+          "line": 291,
+          "text": "    runtimes: RUNTIME_CAPABILITY_MATRIX,",
+          "utf8_sha256": "82de0f5327df1ef73d76028ad5971ce0e824eac7ca6ce628b49233b8b9ba156f"
+        },
+        {
+          "line": 292,
+          "text": "    ...(routeDecision ? { route_decision: routeDecision } : {}),",
+          "utf8_sha256": "4b0855b5a227dec2766cb580d56bf1d4f1381986efc56703d3a0d00cdfdb3eed"
+        },
+        {
+          "line": 293,
+          "text": "    source_command: options.sourceCommand ?? \"helix runtime capabilities --json\",",
+          "utf8_sha256": "ee85c24f8cb008046d07857c99329c828a2f275c07f740f3f39729c4500e3def"
+        },
+        {
+          "line": 294,
+          "text": "  };",
+          "utf8_sha256": "5c0254acd0251619029b7742ce33ed692f1099571cf182117eb4e87b71bcf031"
+        },
+        {
+          "line": 295,
+          "text": "}",
+          "utf8_sha256": "d10b36aa74a59bcf4a88185837f658afaf3646eff2bb16c3928d0e9335e945d2"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md",
+      "file_sha256": "dfda22022f1f9ced3f543ccadb91ff7de9335d7a6ea7aaff9efdd1702ecda2a1",
+      "selected_line_quotes": [
+        {
+          "line": 1,
+          "text": "---",
+          "utf8_sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b"
+        },
+        {
+          "line": 2,
+          "text": "title: \"成果生成・commit・公開・独立review provenance分離 要求候補\"",
+          "utf8_sha256": "b8dcb8f7a9feafc34b6b6a8932d20a93f33709be04d5d85de6ea083fe3eeebcb"
+        },
+        {
+          "line": 3,
+          "text": "status: draft_candidate",
+          "utf8_sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73"
+        },
+        {
+          "line": 4,
+          "text": "canonical_layer: L1",
+          "utf8_sha256": "bf78c5504cd357a1d289d0b7994ac567d91624ad7b454717b1a9a1ae7714dbc0"
+        },
+        {
+          "line": 5,
+          "text": "canonical_pair: L12",
+          "utf8_sha256": "a8856af36dd17b9bd5ecbc728fab2e035a62c25cc99ccf4c95c5987c91b74d43"
+        },
+        {
+          "line": 6,
+          "text": "plan: PLAN-L3-1622-producer-provenance-separation",
+          "utf8_sha256": "f1d49971cfae3a455658ca2d6551be0b73087badf03185cd95ce8689f460c513"
+        },
+        {
+          "line": 7,
+          "text": "source_issue: 1622",
+          "utf8_sha256": "d4f7d5bcc51d06dee63fd9d62f5482d2b8a16b54d17819483db00f8f1e39352c"
+        },
+        {
+          "line": 8,
+          "text": "---",
+          "utf8_sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b"
+        },
+        {
+          "line": 9,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 10,
+          "text": "# 成果生成・commit・公開・独立review provenance分離 要求候補",
+          "utf8_sha256": "1140e0bb16bcae6f1d8d7c1a70ba6e86536010e047e5dc54a5b5fb2141de704d"
+        },
+        {
+          "line": 11,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 12,
+          "text": "実provider workerの成果を別runtimeがcommit・公開する場合も、成果内容を生成した主体とGit操作主体を混同せず、",
+          "utf8_sha256": "1db7274bd9a985718dfa1cd775f721cd40224e0450b1f007f7fa9a38a45f294e"
+        },
+        {
+          "line": 13,
+          "text": "独立reviewが成果生成主体から実質的に独立していることを検証できなければならない。",
+          "utf8_sha256": "5af49b6d279b190eab39d569cb2ae385298993c2f73bd79b408138ac88522e57"
+        },
+        {
+          "line": 14,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 15,
+          "text": "| BR ID | 利用者要求 | 分解先 |",
+          "utf8_sha256": "9aef48c0da1568394934fd629c62d82262ff3a5e946f6efb9a349e441cc58ec4"
+        },
+        {
+          "line": 16,
+          "text": "|---|---|---|",
+          "utf8_sha256": "23cca02b74f386463efa24796c7a9011b0d2c93f0c38b4d15d5d276205b59b43"
+        },
+        {
+          "line": 17,
+          "text": "| `PPS-BR-01` | 成果を誰が生成し、誰がcommit・公開したかを別々に追跡できる | `PPS-R-01`, `PPS-R-02` |",
+          "utf8_sha256": "507bc898e8f439c2a3502b84fdbfa37d257ad0391cf2d3ef746d2111b0349534"
+        },
+        {
+          "line": 18,
+          "text": "| `PPS-BR-02` | Git操作主体の違いをreview独立性と誤認しない | `PPS-R-03`, `PPS-R-04` |",
+          "utf8_sha256": "02af22cd7e5af8049cf52a978614225610df6704073f1342b1b190de35964528"
+        },
+        {
+          "line": 19,
+          "text": "| `PPS-BR-03` | assignment・scope・candidate HEADまで一つのprovenance graphとして再生できる | `PPS-R-02`, `PPS-R-05`, `PPS-R-06` |",
+          "utf8_sha256": "c99138a80470d183535b19982fb1242d346307efb9697f4b2707d8d99dc78eea"
+        },
+        {
+          "line": 20,
+          "text": "| `PPS-BR-04` | 過去証拠を捏造せず段階移行できる | `PPS-R-06`, `PPS-R-07` |",
+          "utf8_sha256": "aec49a514037e7860b69e613edc1f9e6f0ccaf66bfc0b5cde04315ea641bf71d"
+        },
+        {
+          "line": 21,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 22,
+          "text": "## 価値境界",
+          "utf8_sha256": "0b90611387cbd60c3800bab8edf32a9b848abb4b06e623539f59514987230cc5"
+        },
+        {
+          "line": 23,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 24,
+          "text": "- `content producer`、`commit executor`、`PR publisher`、`independent reviewer`を別identityとして扱う。",
+          "utf8_sha256": "1af87e40d949e13f27d85c5ad989b8c104349ef1eb675d354a516dfa1eb7b29c"
+        },
+        {
+          "line": 25,
+          "text": "- commit metadataやGitHub actorだけから成果生成主体を推測しない。",
+          "utf8_sha256": "f4c6bc73436ab7e915a8a71ad2f75cc70b12399150f35dbaabc7c849fc1b5d22"
+        },
+        {
+          "line": 26,
+          "text": "- producer不明の旧receiptを、後付け推定でterminal review evidenceへ昇格させない。",
+          "utf8_sha256": "eb0e66e57f41f75e0177a7af561e29dd0957d67c0d539991a00bcfb80ca2e695"
+        },
+        {
+          "line": 27,
+          "text": "- `mixed`はproducer不明を意味しない。既存のdual-receipt admissionで双方の寄与と独立reviewが実測された場合は、正規の受理状態として維持する。",
+          "utf8_sha256": "08085f3b352405928de242f276d917c6ac608a409d146f326025491e7f777a76"
+        },
+        {
+          "line": 28,
+          "text": "- bot等の`external` authorはHELIX workerのproducerへ推測変換せず、既存のexternal境界と独立review規律を維持する。",
+          "utf8_sha256": "d7568cdc806347a4ddadc28ecc8d3cddb7c54d2c0b8dcdd4607f78e5472d1087"
+        },
+        {
+          "line": 29,
+          "text": "- 本候補はGitHub actor、commit署名、resident lane、provider routingを再設計しない。",
+          "utf8_sha256": "6c26cc8e32ce87fbe138efd21b2d56b838fb66b1a195cc15208f61d382e61101"
+        },
+        {
+          "line": 30,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 31,
+          "text": "本候補の直接根拠はPR #1618で、content producerがCodex worker、commit executor／PR publisherがClaude収束レーンであったにもかかわらず、既存のcommit trailer由来author runtimeだけではproducerを一意に表せなかった実測である。",
+          "utf8_sha256": "f17da319a5cb98f4a22f398dfcfaef809dfcb23a487fa361ca0ee629ca8db421"
+        },
+        {
+          "line": 32,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 33,
+          "text": "本書はIssue #1622を要求候補へ整理したものであり、人間承認、canonical promotion、runtime変更を与えない。",
+          "utf8_sha256": "abfe32a4c6df8243e396a116e6f17aefa9684886347981787bd4a327b423c037"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md",
+      "file_sha256": "9f1e268986845f5f209517de24f57f2828e130f971a1429be96d0f88a5e9d59a",
+      "selected_line_quotes": [
+        {
+          "line": 1,
+          "text": "---",
+          "utf8_sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b"
+        },
+        {
+          "line": 2,
+          "text": "title: \"成果生成主体 provenance分離 要件候補\"",
+          "utf8_sha256": "189b0ae1ee461271d385371a088c1c039cc0bcb5f8b7a58d80bdc2d45feb1df3"
+        },
+        {
+          "line": 3,
+          "text": "status: draft_candidate",
+          "utf8_sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73"
+        },
+        {
+          "line": 4,
+          "text": "canonical_layer: L3",
+          "utf8_sha256": "ba64914c792051c6ab060e5f66d23d45aeffe6fdbddea969aeb207f21c692ed2"
+        },
+        {
+          "line": 5,
+          "text": "canonical_pair: L10",
+          "utf8_sha256": "072c3dcb2567a8cc71ae10d2d799c112ff60624fb1cdb0f82095fe5c2d685106"
+        },
+        {
+          "line": 6,
+          "text": "plan: PLAN-L3-1622-producer-provenance-separation",
+          "utf8_sha256": "f1d49971cfae3a455658ca2d6551be0b73087badf03185cd95ce8689f460c513"
+        },
+        {
+          "line": 7,
+          "text": "source_requests: docs/governance/candidates/producer-provenance-separation-requests.md",
+          "utf8_sha256": "833275a187a412d333930b499b2f7ca3ced88a68d80a30beae12c101bdc0aee5"
+        },
+        {
+          "line": 8,
+          "text": "pair_artifact: docs/governance/candidates/producer-provenance-separation-acceptance.md",
+          "utf8_sha256": "ee94a13f270f5bf0df7e64a54eaf4796a5324269a8e688ae3b19b860cebe1bc2"
+        },
+        {
+          "line": 9,
+          "text": "---",
+          "utf8_sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b"
+        },
+        {
+          "line": 10,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 11,
+          "text": "# 成果生成主体 provenance分離 要件候補",
+          "utf8_sha256": "12064bd26e87ac880042eb25f33b1e4c0a0fc1f3cdc60964c4b00b9adf04fe10"
+        },
+        {
+          "line": 12,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 13,
+          "text": "## PPS-R-01 役割identityの分離",
+          "utf8_sha256": "81817bbb63011cbe45c90dab9f5e29cb8dae16142c44189892a93da391dc8a9e"
+        },
+        {
+          "line": 14,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 15,
+          "text": "上流: `PPS-BR-01`。下流: `PPS-AC-001`, `PPS-AC-002`。",
+          "utf8_sha256": "c6a1d2d53f2d6d370043dd6daf4dc88662587c10d3fe259982b1ad233488ece9"
+        },
+        {
+          "line": 16,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 17,
+          "text": "各変更episodeは`content_producer`、`commit_executor`、`pr_publisher`、`independent_reviewer`を別fieldで保持する。",
+          "utf8_sha256": "1946b8d1c7604980c2a4f8335cb68815035248b6dd2877dd154f50a085d23073"
+        },
+        {
+          "line": 18,
+          "text": "各identityはruntime、model、provider session、assignmentを、その役割で実測できる範囲に限って束縛する。",
+          "utf8_sha256": "8af1d1b54b54c21d13fe7c1894830bfbc48d9ea1ac859b87b37fa4aa3a76c743"
+        },
+        {
+          "line": 19,
+          "text": "bot等の`external` authorは既存の外部author境界を保ち、HELIX workerのproducer identityへ暗黙変換しない。",
+          "utf8_sha256": "cd6546f4132bcc4a50e16679551f24f08f2fc9e72d5c1e394c6b398a52a2f238"
+        },
+        {
+          "line": 20,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 21,
+          "text": "## PPS-R-02 成果とassignmentの因果束縛",
+          "utf8_sha256": "ca03dd8aae4d6119b37ca9c1a644e7049972755f23023ac3cf5d958b617df5da"
+        },
+        {
+          "line": 22,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 23,
+          "text": "上流: `PPS-BR-01`, `PPS-BR-03`。下流: `PPS-AC-003`, `PPS-AC-004`。",
+          "utf8_sha256": "26d6210a5c0773929e24bd0bb7e4940c98aadb91584c80966631bebd4d093ead"
+        },
+        {
+          "line": 24,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 25,
+          "text": "content producerはassignment ID、scope authority、許可path、成果digest、candidate HEADへ束縛する。commit executorや",
+          "utf8_sha256": "adc4c6f60fe8e14ed45c0b5ce8bb5d4606eeb93a8f9c9c651a6c0bf75e5ea87e"
+        },
+        {
+          "line": 26,
+          "text": "publisherが変わってもproducer identityを上書きせず、成果digestまたはHEADが変われば新しいgenerationとして扱う。",
+          "utf8_sha256": "5e93fa14390b3c3d8071df331492c1c14866d96010536ce79f5c498b06f79ef0"
+        },
+        {
+          "line": 27,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 28,
+          "text": "## PPS-R-03 独立review判定",
+          "utf8_sha256": "85740dd076e7ceeca8c912e63511e01c40059458ab01fc8ad82ab5c9db926c2d"
+        },
+        {
+          "line": 29,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 30,
+          "text": "上流: `PPS-BR-02`。下流: `PPS-AC-005`, `PPS-AC-006`。",
+          "utf8_sha256": "c9e465cead490ff168475d67f689578f953d32ac7753ada6b7390070dfdea661"
+        },
+        {
+          "line": 31,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 32,
+          "text": "独立性はcontent producerのruntime／provider／model family／sessionとの関係で判定する。commit executorまたは",
+          "utf8_sha256": "94dba0a4ae11fd64ba86cd77ae3fca4cc4d0e72f38f10235212251848e42f0cc"
+        },
+        {
+          "line": 33,
+          "text": "PR publisherがproducerと異なるだけでは独立性を成立させず、同一producer系統のreviewをterminal evidenceにしない。",
+          "utf8_sha256": "0233c05a70ca591eba9844e023d896e2178ed3710866a074e49810fb3d3ebceb"
+        },
+        {
+          "line": 34,
+          "text": "この判定はIssue #539および既存`github-cross-review-admission`のmixed／dual-receipt契約を拡張するものであり、",
+          "utf8_sha256": "68117c0a8e31d372f79f37efb3e3f68856f0fd87385d6f98ad129daa29173b5c"
+        },
+        {
+          "line": 35,
+          "text": "現行の`authorModel`基準の独立性判定と対receipt検証を置換せず、producer roleを追加の検証軸として合成する。",
+          "utf8_sha256": "c8c174a21672d03ad1910ce8bbed5b6cc42dd7f18ca21f75ef007bbb5c0421ed"
+        },
+        {
+          "line": 36,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 37,
+          "text": "## PPS-R-04 GitHub actor・commit metadata境界",
+          "utf8_sha256": "263a4fe3afb5cd76c8d155a87811569baea890b8dd4d6b071f220ceb8e29d888"
+        },
+        {
+          "line": 38,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 39,
+          "text": "上流: `PPS-BR-02`。下流: `PPS-AC-002`, `PPS-AC-007`。",
+          "utf8_sha256": "fc4e0c1e8a7e47a138c77e6f015e7934bd99a19090fc8cdde0374fc1a5e97ce2"
+        },
+        {
+          "line": 40,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 41,
+          "text": "GitHub actor、author/committer metadata、署名、receipt identityは相互参照してよいが代用しない。raw actor spoofing、",
+          "utf8_sha256": "29c49188304f1fa09493795001a4bb72ac5745a1b057816bd13edcf2a9ee27a0"
+        },
+        {
+          "line": 42,
+          "text": "commit executorからproducerへの推測、publisherからreviewerへの推測をfail-closeする。",
+          "utf8_sha256": "9d1018fa003b39c64c86c34b7a6ce580e1edaead9454ac15726235e76588fd6d"
+        },
+        {
+          "line": 43,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 44,
+          "text": "## PPS-R-05 単一provenance graph",
+          "utf8_sha256": "d0c8cf9a6e840c5e478e5604eaf3d76c60a119f580fe4dc1d6f915de6a3f76f1"
+        },
+        {
+          "line": 45,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 46,
+          "text": "上流: `PPS-BR-03`。下流: `PPS-AC-008`, `PPS-AC-009`。",
+          "utf8_sha256": "9237b44f71b8f2e47115330bd973a26166626fa92b2eefc8d54013512d92b95d"
+        },
+        {
+          "line": 47,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 48,
+          "text": "receipt、PLAN、DB projection/replay、GitHub comment、review admission、merge admissionは同一schema versionとgraph digestへ",
+          "utf8_sha256": "d1d957032699194a1958d98fe4d4c78079bc38dbe7174a95eeaaf9e62d565eff"
+        },
+        {
+          "line": 49,
+          "text": "収束する。一面のidentity欠落・改変・wrong HEAD／assignmentを他面の値で補完しない。",
+          "utf8_sha256": "1606393952464b0ffb8856c2af4624a0c6944bc6a9a108cf0ba8d9249d520a43"
+        },
+        {
+          "line": 50,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 51,
+          "text": "## PPS-R-06 欠落・不明の扱い",
+          "utf8_sha256": "97e4e081dfd5b3279ac9e7278bf245ec2d026df14ebd343d5667f04906fc3800"
+        },
+        {
+          "line": 52,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 53,
+          "text": "上流: `PPS-BR-03`, `PPS-BR-04`。下流: `PPS-AC-004`, `PPS-AC-009`。",
+          "utf8_sha256": "5ca38143be21199e65e8ac88aa05d833e062de492fdbf9657555b99152f403bb"
+        },
+        {
+          "line": 54,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 55,
+          "text": "producer provenanceを実測できない場合は`unknown`または`unattested`として保持し、terminal independent reviewへの昇格を",
+          "utf8_sha256": "62e3b906897ce051d476f37111f1c6763196aa0ce852fa006106525636975cd0"
+        },
+        {
+          "line": 56,
+          "text": "拒否する。診断は欠落役割とsourceを示し、暗黙fallbackしない。",
+          "utf8_sha256": "b4bb3c8914a6189c097e3d1043da90e14ae53b7a5eed23f88d7703b1c62046be"
+        },
+        {
+          "line": 57,
+          "text": "既存の`external` authorはunknownと同一視せず、外部authorとして実測できた境界を保持したまま既存admissionへ渡す。",
+          "utf8_sha256": "eb0a2a97d4a72fbd303dfa80582c29bcf256760f944daf1e5a6b3fac8f35baaa"
+        },
+        {
+          "line": 58,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 59,
+          "text": "## PPS-R-07 互換移行",
+          "utf8_sha256": "537f76e1fa27e851da35289e1f8c6d1e0c127bc5fd30a92a4fb4d6bc5ffa5fd4"
+        },
+        {
+          "line": 60,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 61,
+          "text": "上流: `PPS-BR-04`。下流: `PPS-AC-010`。",
+          "utf8_sha256": "887f96c523770c1eb242767d23d8c4a24695f257097cf0cda2339fa6190173b3"
+        },
+        {
+          "line": 62,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 63,
+          "text": "direct author=committerで実測済みの既存経路はversioned compatibility projectionで受理可能とする。旧receiptを履歴として",
+          "utf8_sha256": "2c848b7f855bceac4fdbeff664fbe309c49c9251eaeccd51d61a909910cce7c4"
+        },
+        {
+          "line": 64,
+          "text": "保持し、producerを推測でbackfillせず、新schemaとdual-readした後にcurrent outputを新graphへ一方向移行する。",
+          "utf8_sha256": "e90c3257f2f89ea80463f5b1a5baa5c82044981008caa38afb9a12ef646289b4"
+        },
+        {
+          "line": 65,
+          "text": "`mixed`は両runtimeの寄与と必要な対receiptが揃う既存の正規状態として受理し、producer不明へ縮退させない。",
+          "utf8_sha256": "2b3cddf7a309ca4f9b4731307b947effa13a5b58f0cdbc7d1bf302993e7872e8"
+        },
+        {
+          "line": 66,
+          "text": "`external`も既存のbot author境界を維持し、新graphに専用の観測済みidentityとして投影する。",
+          "utf8_sha256": "ec3aaaf7d370a15dc382d1cea464295057e55747a2dfcf2cf4c54f5877e13ff9"
+        },
+        {
+          "line": 67,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 68,
+          "text": "## 既存責務の再利用",
+          "utf8_sha256": "41ccf1fd0fae747d08acf3b5500bb1dca51a799c942c91df8b6651a41f4efa36"
+        },
+        {
+          "line": 69,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 70,
+          "text": "- #1605のreviewer session/model真正性と既存review receipt admissionを拡張し、別review基盤を作らない。",
+          "utf8_sha256": "ccec58559234904572516ea8f032e0e378d5abc3a91767a4b0cc02a5b93de964"
+        },
+        {
+          "line": 71,
+          "text": "- Issue #539および`docs/design/helix/L5-detail/github-cross-review-admission.md`のmixed dual-receipt／external author境界を再利用する。",
+          "utf8_sha256": "b6e84bd78b80d724b456ec8e9bed0105d5f515dc652eb9b606b8683e19b9fab0"
+        },
+        {
+          "line": 72,
+          "text": "- GitHub actor分離、worker lifecycle receipt、assignment／scope／HEAD identityを再利用する。",
+          "utf8_sha256": "4a2e473573a8a2fb1b2cbb111e3b3d69856dcdc616e951a19fb184113ba91904"
+        },
+        {
+          "line": 73,
+          "text": "- commit署名方式、provider routing、resident lane、Notification Fabricは本候補で変更しない。",
+          "utf8_sha256": "483b4084812ff2386e7fad8ee10f99326f252e8e73e74a35fd7d183bb1b6679f"
+        },
+        {
+          "line": 74,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 75,
+          "text": "本候補は人間承認、canonical promotion、Requirement IR admission前にruntime／schema／DBを変更しない。",
+          "utf8_sha256": "92943eaa9624b2f3b997bf1e57740a09954e49965fe3544e395edb04c462cb87"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-acceptance.md",
+      "file_sha256": "5b89153daa3ea4ea3d51c496b9c255ee881fb5ec9418a0540ac33bd68aef2411",
+      "selected_line_quotes": [
+        {
+          "line": 1,
+          "text": "---",
+          "utf8_sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b"
+        },
+        {
+          "line": 2,
+          "text": "title: \"成果生成主体 provenance分離 L10受入候補\"",
+          "utf8_sha256": "b57ac8c18da81a7933b8c76e1f781b51393cad556f4bbb360585dbf01245d12d"
+        },
+        {
+          "line": 3,
+          "text": "status: draft_candidate",
+          "utf8_sha256": "e2f54e8ccf42197c498223478758d709e4b1617d22ec5c47f374ad01cd3f5d73"
+        },
+        {
+          "line": 4,
+          "text": "canonical_layer: L10",
+          "utf8_sha256": "56e1e4cccf5db48e542a8e148104530b26b9c57bb656f74cdedb93737e87f110"
+        },
+        {
+          "line": 5,
+          "text": "paired_requirement_layer: L3",
+          "utf8_sha256": "0437b3b97a599e3c5860de8135f3282fb9b68de1918b94ff7ae77f384c89aa03"
+        },
+        {
+          "line": 6,
+          "text": "plan: PLAN-L3-1622-producer-provenance-separation",
+          "utf8_sha256": "f1d49971cfae3a455658ca2d6551be0b73087badf03185cd95ce8689f460c513"
+        },
+        {
+          "line": 7,
+          "text": "pair_artifact: docs/governance/candidates/producer-provenance-separation-requirements.md",
+          "utf8_sha256": "2155b1dba4de2b89a673f9893b68c9e1809adad2cd858e438f42488539a62f7d"
+        },
+        {
+          "line": 8,
+          "text": "---",
+          "utf8_sha256": "cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b"
+        },
+        {
+          "line": 9,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 10,
+          "text": "# 成果生成主体 provenance分離 L10受入候補",
+          "utf8_sha256": "6c4a893367068c86e5ddda686157045c1977d594884479072c9311129220cd62"
+        },
+        {
+          "line": 11,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 12,
+          "text": "| AC ID | 対応要件 | fixture／mutation | 合格条件 |",
+          "utf8_sha256": "2a69c6317ca832f0f2d1b5546261c75322db13f88932aec4e220b45d6584039f"
+        },
+        {
+          "line": 13,
+          "text": "|---|---|---|---|",
+          "utf8_sha256": "4da1ec6f47782090102dc16bda978efb5655fbf2ddce0f84ecf1faf79a930f2d"
+        },
+        {
+          "line": 14,
+          "text": "| `PPS-AC-001` | `PPS-R-01` | 4役割を一件ずつ欠落・入替し、external authorをHELIX workerへ偽変換する | 欠落役割を特定し、別役割の値で補完せず拒否する。externalは観測済み外部identityとして保持する |",
+          "utf8_sha256": "30ad6d2fa6bdb3fb60dd3646776dcea19f6686cba004b4ec605927c6f8dd28b6"
+        },
+        {
+          "line": 15,
+          "text": "| `PPS-AC-002` | `PPS-R-01`, `PPS-R-04` | producer A、executor B、publisher Cを実走しactor／commit metadataを入替する | 3役割を別identityとして再生しspoofを拒否する |",
+          "utf8_sha256": "e1cc97ef053b099eb14417372f82a10e977afb3b33a1c22fddbcb7a55ffa8a46"
+        },
+        {
+          "line": 16,
+          "text": "| `PPS-AC-003` | `PPS-R-02` | assignment、scope、成果digest、HEADを一件ずつ改変する | 全mutationを個別に拒否する |",
+          "utf8_sha256": "4a3870e9dd05be9bbd9ea31082e86595f0ac52bcb8dc15abd84c8a5c42464b18"
+        },
+        {
+          "line": 17,
+          "text": "| `PPS-AC-004` | `PPS-R-02`, `PPS-R-06` | producer receipt欠落と成果変更後の旧receipt再利用を注入する | `unknown/unattested`または新generationとなり旧証拠で昇格しない |",
+          "utf8_sha256": "dd1b5263a069e25c21b8b106a9e887e12e1d09e4df20ebd098891a93486ac0c9"
+        },
+        {
+          "line": 18,
+          "text": "| `PPS-AC-005` | `PPS-R-03` | worker A生成→runtime B commit→actor C publish→reviewer Aを実行する | commit/publisher差にかかわらず非独立として拒否する |",
+          "utf8_sha256": "399dbd370b66f967c110aa86de5977063cdb9f9b955a34f19f86e0f884ad7ec1"
+        },
+        {
+          "line": 19,
+          "text": "| `PPS-AC-006` | `PPS-R-03` | worker A生成→runtime B commit→actor C publish→独立reviewer Dを実行する | exact HEADとsession/model照合後だけ受理する |",
+          "utf8_sha256": "b5d3b3bcb06818e2b0e3bc3d89fa51c6a4a8db7217e43c8811fd5245fc9ed8b1"
+        },
+        {
+          "line": 20,
+          "text": "| `PPS-AC-007` | `PPS-R-04` | commit executorまたはGitHub actorをproducerとして偽装する | raw metadata推測を拒否し真正なproducer receiptを要求する |",
+          "utf8_sha256": "6561e2db4ed52612bb4147b6058af30e3c9fc30ae4746d51d86e7e30c10a5331"
+        },
+        {
+          "line": 21,
+          "text": "| `PPS-AC-008` | `PPS-R-05` | receipt／PLAN／DB／GitHub／admissionの一面だけgraph digestを改変する | 全surfaceが不一致を検出する |",
+          "utf8_sha256": "baf6d3be618636a628e29d7e753a7fd016d4e1799802ecb370cca43085642758"
+        },
+        {
+          "line": 22,
+          "text": "| `PPS-AC-009` | `PPS-R-05`, `PPS-R-06` | wrong assignment／HEAD／sessionと欠落projectionを個別注入する | replayを含む全consumerが同じfailureへ収束する |",
+          "utf8_sha256": "2ac4cc79a11b333d1146c86c3bfb7dbe76b9c87c8b8a1baa723dd5d5cfcac1d6"
+        },
+        {
+          "line": 23,
+          "text": "| `PPS-AC-010` | `PPS-R-07` | direct author=committer、mixed dual-receipt、external author、producer不明の旧receiptをdual-readする | direct／mixed／externalは各versioned互換条件で受理し、unknownだけを推測backfillせず履歴保持する |",
+          "utf8_sha256": "f7bfe18bce07526f996466c997b535927694fd7b0e37646cc2b69b7d2d86b438"
+        },
+        {
+          "line": 24,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 25,
+          "text": "## 量閉じ",
+          "utf8_sha256": "0037b8f2159cdbf8cf6a9882c17cc31db2e814f1648a8334284680cde0a680f3"
+        },
+        {
+          "line": 26,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 27,
+          "text": "- business requests: `PPS-BR-01..04` exact 4件。",
+          "utf8_sha256": "b5a5cf2aa04257758a4643ea9eddefc3a405ec070fa29e5f479e150f7e7ff0c4"
+        },
+        {
+          "line": 28,
+          "text": "- supporting requirements: `PPS-R-01..07` exact 7件。",
+          "utf8_sha256": "6519465de7182b2a6716d79e681ec39e729061358c62e85d522ae23cdb4af85b"
+        },
+        {
+          "line": 29,
+          "text": "- acceptance: `PPS-AC-001..010` exact 10件。",
+          "utf8_sha256": "ebc601d67b22e403a5e00a9efabd68432c2fb13ac144df2c21d7aba02cb3615a"
+        },
+        {
+          "line": 30,
+          "text": "- runtime、schema、DB migration、real-provider E2Eはcanonical promotion後の別PLANで検証する。",
+          "utf8_sha256": "03fe6d1c98e68cc8609e359030ae1f54550f421f6c2735db1ca7d4ed96c2b76e"
+        }
+      ]
+    }
+  ],
+  "legacy_comparison": {
+    "disposition": "semantic_rederivation",
+    "keep": "能力とimpact/target/provenance/権限の独立、unknown/未観測/stale非昇格、原source付きstatus、同scope/candidate束縛とproducer来歴を別表面で補完しないこと。",
+    "change": "旧matrixのsupported/limited/unsupported表とfallbackを実観測に移さず、004構成/010candidateへ宣言・観測前後の内容比較を再導出する。旧CAPの特権profile/AND gate/CLI/DB/旧PPS独立系統gateを011へcopyしない。",
+    "reason": "承認110fdb3eの4pairはfile/hash/欄/件数からの能力不変推測を拒否し、明示能力変化・比較不能を同candidateへ返す。旧固定tableは変更前後実能力の証明ではない。",
+    "legacy_assets": [
+      "LEGACY-ASSET-D6685205557CA51A9C36",
+      "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "LEGACY-ASSET-A04F169C5D514C5443D0"
+    ]
+  },
+  "remaining": [
+    "L5/L8で正式before/after構成・candidate・宣言/観測capability・比較/impact型とowner/source資格、digest/expiry/stale、全scope exact bindingを閉じる。参照文字列だけで資格や実観測を生成しない。",
+    "read/write/shell/networkは原受入を具体化するfixture例であり全capability集合ではない。etc・任意追加/欠落能力・任意構成集合・non-applicable根拠・全graph/consumerと全faultの正式catalog/codec/反例は未成立。",
+    "004実構成と010実candidate、各runtime/model/Agent/MCP/plugin等の宣言・実能力source、actual比較とpolicy影響判断、旧scope/新版再評価・再観測・実停止/復旧・008実許可は未成立。",
+    "旧CAP7FR/10ACとphysical target/provenance/data-sink/coverage/postcondition/rollback/expiry全consumer、旧PPSのproducer/executor/publisher/reviewerと全graph consumer、旧matrix全9能力とfallbackの新世代成立は未証明。旧schema/profile/追加gate/runtime/test/CIは移植・実行しない。",
+    "合成未知候補の変換は実blind/heldoutではない。独立母数・source custody・実内容/原証拠を確保する。全92親430対の基本/詳細/L6設計対L7・実装準備・全体整合監査、oracle凍結→実装前Red→Green→Refactor/CI/実L9L10/PO実物L11は未成立。"
+  ],
+  "document_id": "HELIXSECURITY-L4-011-CAPABILITY-DRIFT-COMPARISON",
+  "layer": "L4",
+  "pair": "HELIXSECURITY-L9-011-CAPABILITY-DRIFT-COMPARISON",
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L4-011-B01",
+      "requirement_ref": "HELIXSECURITY-L3-011-B01",
+      "system_oracle_ref": "HELIXSECURITY-L10-011-B01",
+      "oracle_ref": "HELIXSECURITY-L9-011-B01",
+      "title": "file差分と能力差分の分離",
+      "approved_obligation": "更新candidateのfile/version差分とread/write/shell/network等のcapability差分、security impactを別々に保つ。hash一致や同名fileだけで能力不変を決めず、比較結果から自己のauthorityを拡張しない。",
+      "rules": [
+        "R08",
+        "R09",
+        "R10",
+        "R11",
+        "R12"
+      ],
+      "backflow": "004構成と010審査前候補・原宣言/観測sourceへ不足を返す。分類/impact意味不足だけL1-011へ。実許可は008、更新受入は010へ分ける。"
+    },
+    {
+      "id": "HELIXSECURITY-L4-011-F01",
+      "requirement_ref": "HELIXSECURITY-L3-011-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-011-F01",
+      "oracle_ref": "HELIXSECURITY-L9-011-F01",
+      "title": "前後構成と候補の束縛",
+      "approved_obligation": "004の構成identityと010の審査前candidate revisionへ、更新前後のfile/version構成と宣言/観測capabilityを結ぶ。read-onlyからread+write+shell+networkへの変化を含め、model/Agent/MCP/plugin等の対象でも同じ比較契約を使う。",
+      "rules": [
+        "R01",
+        "R02",
+        "R03",
+        "R08",
+        "R09"
+      ],
+      "backflow": "004構成と010審査前候補・原宣言/観測sourceへ不足を返す。分類/impact意味不足だけL1-011へ。実許可は008、更新受入は010へ分ける。"
+    },
+    {
+      "id": "HELIXSECURITY-L4-011-F02",
+      "requirement_ref": "HELIXSECURITY-L3-011-F02",
+      "system_oracle_ref": "HELIXSECURITY-L10-011-F02",
+      "oracle_ref": "HELIXSECURITY-L9-011-F02",
+      "title": "比較不能と受入保留",
+      "approved_obligation": "能力記述欠落、宣言/実能力不一致、比較不能な変更はunknownとし、010へ根拠付き未完材料として返す。能力分類を推測せず、旧scopeの比較結果を新候補の受入へ流用しない。",
+      "rules": [
+        "R04",
+        "R05",
+        "R06",
+        "R07",
+        "R09",
+        "R10"
+      ],
+      "backflow": "004構成と010審査前候補・原宣言/観測sourceへ不足を返す。分類/impact意味不足だけL1-011へ。実許可は008、更新受入は010へ分ける。"
+    },
+    {
+      "id": "HELIXSECURITY-L4-011-N01",
+      "requirement_ref": "HELIXSECURITY-L3-011-N01",
+      "system_oracle_ref": "HELIXSECURITY-L10-011-N01",
+      "oracle_ref": "HELIXSECURITY-L9-011-N01",
+      "title": "未見能力差分の内容証拠",
+      "approved_obligation": "伏せた構成/candidateで能力拡張・縮小・比較不能を内容で確認し、field存在やdiff件数だけを証明にしない。同scopeでもcandidate改訂後は旧比較の有効性を照合する。",
+      "rules": [
+        "R01",
+        "R05",
+        "R06",
+        "R08",
+        "R09",
+        "R12"
+      ],
+      "backflow": "004構成と010審査前候補・原宣言/観測sourceへ不足を返す。分類/impact意味不足だけL1-011へ。実許可は008、更新受入は010へ分ける。"
+    }
+  ],
+  "architecture": {
+    "input": "004構成/010candidateと原宣言/原観測/impactのsource snapshot、独立context参照。",
+    "components": [
+      "前後構成と候補join",
+      "file/version比較",
+      "軸別宣言観測・前後能力比較",
+      "impact対応と意味Backflow"
+    ],
+    "dependency_direction": "immutable producer source→SECURITY011純粋資料比較→004/010/008/L1-011各consumer。比較器はruntime probe/保存/実操作を呼ばない。",
+    "output": "file/versionと各capability差分、局所unknown、impact原値、不足と戻し先。許可と実観測を生成しない。"
+  },
+  "diagnostic_contract": {
+    "binding_fields": [
+      "project_id",
+      "requirement_revision",
+      "authority_revision",
+      "scope",
+      "environment_id",
+      "input_revision",
+      "candidate_id",
+      "candidate_revision",
+      "target_id",
+      "target_revision",
+      "operation",
+      "actor_id",
+      "comparison_id"
+    ],
+    "witness_fields": [
+      "source_ref",
+      "source_revision",
+      "source_digest",
+      "owner_ref"
+    ],
+    "config_fields": [
+      "configuration_id",
+      "configuration_revision",
+      "file_name",
+      "file_digest",
+      "version_id",
+      "project_root_ref",
+      "HEAD_ref",
+      "hook_digest",
+      "policy_digest"
+    ],
+    "capability_fields": [
+      "configuration_ref",
+      "configuration_revision",
+      "declaration_ref",
+      "observation_ref",
+      "capability_catalog_ref"
+    ],
+    "impact_fields": [
+      "comparison_ref",
+      "policy_ref",
+      "basis_ref"
+    ],
+    "candidate_fields": [
+      "candidate_input_ref",
+      "configuration_before_ref",
+      "configuration_after_ref"
+    ],
+    "target_kinds": [
+      "source_code",
+      "dependency",
+      "package",
+      "plugin",
+      "MCP",
+      "Skill",
+      "Agent_definition",
+      "Hook",
+      "runtime_config",
+      "sandbox_policy",
+      "model",
+      "model_weights",
+      "prompt_system_instruction",
+      "Connector",
+      "infrastructure_configuration"
+    ],
+    "target_kinds_source": "SECURITY010 L4のfixture参照。全15種類実運転のgateではなく正式catalog採用でもない。",
+    "axes": [
+      "read",
+      "write",
+      "shell",
+      "network"
+    ],
+    "groups": [
+      "candidate",
+      "before_config",
+      "after_config",
+      "before_capability",
+      "after_capability",
+      "impact"
+    ],
+    "rules": [
+      {
+        "id": "R01",
+        "rule": "共通binding各field、各groupのbinding/witness/固有string_fieldsをactual/contextの非空stringへ比較。不明側field_unknown、両側known差はactual field_conflict。group bindingはcontext同groupとcontext共通bindingの両方へjoin。groupは両側dictを要求し不明側group_missing。両側dictの場合だけ固有field/状態/出力値を評価・採用する。比較に使うsource/owner資格とdigestの正式型は未成立で、参照存在を実証としない。"
+      },
+      {
+        "id": "R02",
+        "rule": "candidate.kindは010の15target kind参照のclosed集合。不明側kind_unknown、known差はactual kind_conflict。target_kindは両側dict時のactual known kindかnull。before/after configのconfiguration_idはcontext candidate.configuration_before_ref/after_refへjoinする。context candidateが非dictなら該当configのgroup_missingにする。file名からkindやidentityを補完しない。"
+      },
+      {
+        "id": "R03",
+        "rule": "before/after capabilityは同stage context configへconfiguration_ref→configuration_id、configuration_revision→configuration_revisionをjoinする。context config非dictは当該capabilityへgroup_missing。declaration_refとobservation_refを分け、同名・同hash・旧candidate/scopeの結果で補完しない。impact.comparison_refはcontext共通comparison_idへjoinする。"
+      },
+      {
+        "id": "R04",
+        "rule": "shared_okは各groupのR01〜R03の診断0だけで決め、axesやmeaning_stateの局所診断を含めない。ただしimpactのmeaning_stateはdefined/unknownを両側比較し、不明側state_unknown、known差state_conflict、各側の明示unknownはmeaning_unknownとしてL1-011へ返す。impact shared_okは返却計算のgateへ使わない。meaning_stateの照合はaxes可否と独立に行う。"
+      },
+      {
+        "id": "R05",
+        "rule": "before/after capabilityとimpactのaxesは両側dictで、fixtureのread/write/shell/network全4keyを要求。不明側set_unknown、集合差は当該側set_conflict（unknown）。これは固定fixture集合の素材不足で、正式全能力catalogの閉包を主張しない。capabilityの片側でaxisが欠落したら当該axisをunknownへ残すが、他axisの局所比較を消さない。impact側axis欠落はcapability差分を失効させない。共通axisだけ評価し、axis非dict側はgroup_missing（capabilityの場合だけ当該axisの診断にも入れる）。"
+      },
+      {
+        "id": "R06",
+        "rule": "capability axisのdeclaration_evidence_ref/observation_evidence_refはR01 string比較し、当該axisの診断へも記録。declared/observedはpresent/absent/unknown。不明側state_unknown、known差state_conflictで各側unknownはcapability_unobserved。両側それぞれdeclared/observedがknown present/absentだが違えばdeclaration_observation_mismatchをobservedへ記録する。このknown不一致も比較不能なのでunknownであり、能力を推測修復しない。R05/R06のaxis診断は両stageで共有し、該当axisの差分だけunknownへする。"
+      },
+      {
+        "id": "R07",
+        "rule": "impact axisのeffect_ref/evidence_refはR01 string比較。stateはchanged_material/unchanged_material/unknown。不明側state_unknown、known差state_conflict、各側明示unknownはimpact_unresolved。impact_statesは両側dict axisの場合のactual known値かnull。impactの診断をcapability axis診断へ混ぜない。effectの意味・判定policyは原sourceへ参照し、一般risk分類/閾値/許可判断を作らない。"
+      },
+      {
+        "id": "R08",
+        "rule": "config_coreは共通binding診断0とcandidate/before_config/after_config shared_ok=true。これが成立した範囲だけactual before/after file_digestの等値でfile_differenceをunchanged/changed、version_idの等値でversion_differenceをunchanged/changedとする。不成立では各null。capability資料やimpact不足から独立して保持する。文字列/digestの素材等値は正式資格や能力不変・互換性を証明しない。"
+      },
+      {
+        "id": "R09",
+        "rule": "capability coreはconfig_coreかつbefore/after capabilityのshared_ok=true。coreが成立して各axisの両stage actual/context比較診断0で、両stageのparsed axisが存在する場合のみactual observed前後を比べる。等値はunchanged、異なりafter presentはadded、それ以外はremoved。その他はunknown。この差分は実capability観測成功でも010受入でもない。共通source/binding不足は全axisをunknownにするが、軸だけの不足で他axisを相殺しない。"
+      },
+      {
+        "id": "R10",
+        "rule": "actual known impact stateがchanged_material/unchanged_materialの場合、当該capability deltaがunknownならimpact_delta_unproven（unknown）を返す。known deltaに対して、unchangedだけunchanged_material、added/removedはchanged_materialが必要で、違えばimpact_delta_conflict（violation）。impact statesは原値を保持し、差分からeffect本文やpolicy意味を補完しない。"
+      },
+      {
+        "id": "R11",
+        "rule": "claimsのtrueはforbidden_claim、false以外はclaim_unknown。hash/名前/欄あり/件数だけの能力不変・比較成立、比較から許可/更新受入、旧revisionの結果流用、unknownを不変、packageだけの契約限定、provider固定、全体完了を、この文書比較を根拠に生成しない。別ownerの既存事実を否定する意味ではない。"
+      },
+      {
+        "id": "R12",
+        "rule": "facetはviolation>unknown>corresponding、全体conditionはcapability_material_violation/capability_material_unknown/capability_material_corresponding。comparison_material_correspondingは全facetの診断0、全4deltaがunknown以外のときだけtrue。各raw actual/referenceをdeepcopyして保全。findingsはcode/pointer/return_ownerで重複除去し同3field辞書順。comparison codeは比較group/binding facet、他codeは固定facetへ記録。return_ownerはfacet-source-owner、meaning_unknownだけL1-011。この診断先は正式資格ではない。actual_capability_observed/actual_update_accepted/actual_authority_extended/actual_execution_permitted/whole_completeは全false、operation_effect none。"
+      }
+    ],
+    "codes": [
+      {
+        "code": "field_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "field_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "group_missing",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "kind_unknown",
+        "facet": "candidate",
+        "disposition": "unknown"
+      },
+      {
+        "code": "kind_conflict",
+        "facet": "candidate",
+        "disposition": "violation"
+      },
+      {
+        "code": "set_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "set_conflict",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "state_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "state_conflict",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "capability_unobserved",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "declaration_observation_mismatch",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "impact_unresolved",
+        "facet": "impact",
+        "disposition": "unknown"
+      },
+      {
+        "code": "impact_delta_conflict",
+        "facet": "impact",
+        "disposition": "violation"
+      },
+      {
+        "code": "impact_delta_unproven",
+        "facet": "impact",
+        "disposition": "unknown"
+      },
+      {
+        "code": "meaning_unknown",
+        "facet": "impact",
+        "disposition": "unknown"
+      },
+      {
+        "code": "forbidden_claim",
+        "facet": "boundary",
+        "disposition": "violation"
+      },
+      {
+        "code": "claim_unknown",
+        "facet": "boundary",
+        "disposition": "unknown"
+      }
+    ],
+    "output_fields": [
+      "condition",
+      "facet_correspondence",
+      "target_kind",
+      "file_difference",
+      "version_difference",
+      "capability_difference",
+      "impact_states",
+      "comparison_material_corresponding",
+      "retained_actual",
+      "retained_reference",
+      "findings",
+      "actual_capability_observed",
+      "actual_update_accepted",
+      "actual_authority_extended",
+      "actual_execution_permitted",
+      "whole_complete",
+      "operation_effect"
+    ],
+    "fixture_domain": "固定keyと4軸のdict資料、欠落はnullまたは既知axis dict集合不足。任意shape/余剰field/追加能力catalog/正式解決は未成立。",
+    "material_limit": "素材対応と変化内容の計算は実能力観測・安全保証・更新受入・操作許可ではない。"
+  }
+}
