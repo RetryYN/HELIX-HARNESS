@@ -533,7 +533,89 @@
         "policy_only_safety_claim"
       ]
     },
-    "scope_note": "論理carrierと比較規則の定義に限る。正式schema/codec、owner資格、信頼性、実policy適用、resource/enforcement成立を定義しない。"
+    "scope_note": "論理carrierと比較規則の定義に限る。正式schema/codec、owner資格、信頼性、実policy適用、resource/enforcement成立を定義しない。",
+    "observation_state_rules": [
+      "ObservationRecordは選択されたslot内の供給objectだけを作り、source_pointerはそのobjectのraw JSON Pointer。slotが未選択ならrecordを作らず、selected member欠落時はunknown/null pointerとして扱う。",
+      "resource.security_005 objectが供給されればknown（policy recordの合成入力として把握した状態）。resource_record/backup/snapshotは各raw objectのstate memberをdomain値として保持し、欠落・domain外はunknown。",
+      "policy_binding_scopeはroot revisionとscopeが両方供給される場合だけknown、片方欠落ならこのtuple observationのみunknown。policy_declarationはsecurity_policy objectの供給値としてknown。infra_resourceはraw stateを使い、worker_enforcement_fixtureはraw observation stateを使う。",
+      "environment_b declaration/applicationはそれぞれのraw stateをそのまま使い、欠落・domain外はunknown。receiptは明示stateがあればそれを保持し、state未記載でroot fixture_only=trueならsynthetic_only、他はunknown。os_work_stateは値が供給されればknown、欠落ならunknown。",
+      "knownは宣言や合成入力を既知として保持する意味に限り、実適用、実観測、owner資格、enforcement成功を証明しない。"
+    ],
+    "finding_return_routes": {
+      "credential_value_exposed": {
+        "recipients": [
+          "INFRASTRUCTURE",
+          "SECURITY"
+        ],
+        "basis": "L9 N01 failure_route.case_routeに基づく。snapshot保存境界はINFRASTRUCTURE、credential方針/許容record不足はSECURITYへ返す。"
+      },
+      "owner_boundary_mismatch": {
+        "by_role": {
+          "policy": [
+            "SECURITY",
+            "INFRASTRUCTURE"
+          ],
+          "resource_state": [
+            "SECURITY",
+            "INFRASTRUCTURE"
+          ],
+          "resource_placement": [
+            "SECURITY",
+            "INFRASTRUCTURE"
+          ],
+          "physical_enforcement": [
+            "SECURITY",
+            "INFRASTRUCTURE",
+            "Worker execution environment"
+          ]
+        },
+        "basis": "L4 B01/F01の責務境界とfailure route、L9 N02/N05/N06のcase_routeに基づく。"
+      },
+      "stage_scope_overclaim": {
+        "recipients": [
+          "SECURITY",
+          "INFRASTRUCTURE"
+        ],
+        "basis": "L4 B01 failure_routeに基づく。"
+      },
+      "policy_resource_binding_mismatch": {
+        "recipients": [
+          "SECURITY"
+        ],
+        "basis": "L4 F01のpolicy意味差のfailure routeに基づく。"
+      },
+      "enforcement_binding_mismatch": {
+        "recipients": [
+          "Worker execution environment"
+        ],
+        "basis": "L4 F01の実適用/強制差のfailure routeに基づく。"
+      },
+      "policy_only_safety_claim": {
+        "recipients": [
+          "SECURITY"
+        ],
+        "basis": "L4 F01のpolicy意味とresource stateの責務分離に基づく。"
+      },
+      "application_unobserved": {
+        "recipients": [
+          "INFRASTRUCTURE",
+          "Worker execution environment"
+        ],
+        "basis": "L4 F01のresource状態/実適用差のfailure routeに基づく。"
+      },
+      "receipt_binding_mismatch": {
+        "recipients": [
+          "INFRASTRUCTURE",
+          "Worker execution environment"
+        ],
+        "basis": "L4 F01の資源/実適用差とL9 N07 case_routeに基づく。"
+      }
+    },
+    "owner_assignment_rules": [
+      "resource packetのownersはpolicy, resource_state, resource_placement, physical_enforcement, evidence_custodyの順に存在memberだけをOwnerAssignmentへ複写する。",
+      "policy packetはsecurity_policy.owner, infra_resource.owner, infra_resource.placement_owner, worker_enforcement.ownerを同じrole順で保持する。欠落memberをnullや期待ownerで補わない。",
+      "evidence_custodyは供給値を説明対象として保持する。L4 B01がcustodyをresource observation側へ結ぶ意味は維持するが、L4/L9の合成値を一般的な実資格や固定文字列へ昇格しない。"
+    ]
   },
   "functions": [
     {
@@ -680,22 +762,38 @@
         "HELIXSECURITY-L3-024-B01",
         "HELIXSECURITY-L3-024-F01"
       ],
-      "pre": "PacketMaterializationは固定source packetの純粋projection。原source値とpointerを保持する。",
+      "pre": "PacketMaterializationは固定source packetの純粋projection。原source値とpointerを保持する。比較規範のhistorical_stage/version_boundaryはfixed_source_readsのsource_main固定L4 bytesから読む。",
       "post": "選択されたraw memberの比較値、presence、出所を返す。選択slotがabsentの対象はout-of-scopeとして空配列にし、unknown観測を追加しない。選択slot内の欠落はunknown/absentとして記録する。実資格・実作用は生成しない。",
       "pure_algorithm": [
         "resource slotが選択済みならresource_record→backup→snapshotの順にcredential_reference/value flag/payload_markerを読む。value flag=trueのみを合成fixture内のexposed=trueとし、marker文字列からflagの意味を上書きしない。markerのmissing/null/value presenceを分ける。resource slotが未選択ならこの観測群は空。",
         "選択済みresourceではsecurity_005 policy、resource_record、backup、snapshotの各原オブジェクトをsource pointer付きObservationRecordへ保持する。fixture sourceの既知revision/state/referenceをunknownへ落とさない。",
-        "policy slotが選択済みならpolicy declaration、infra resource、worker fixture、environment B declaration/application、receiptをその順に別々のObservationRecordとして返す。各recordは実raw pointerを付ける。アプリケーションのstate=unknownはそのまま保持し、known declarationや他fieldをunknownへ落とさない。未選択policy slotはout-of-scopeとして空。",
+        "policy slotが選択済みならpolicy_binding_scopeを最初に置き、次にpolicy declaration、infra resource、worker fixture、environment B declaration/application、receiptの順に別々のObservationRecordとして返す。各recordは実raw pointerを付け、状態は入力値または本関数の明示規則だけから導出する。未選択policy slotはout-of-scopeとして空。",
         "policy root revision/scopeもpolicy_binding_scope observationへ元の2値として保ち、policy declaration値と区別する。",
         "os_work_stateが供給される場合は独立したos_work_state ObservationRecordとして原値を保持し、policy/resource authorityや実適用観測へ混ぜない。",
-        "resource credential findingsの後でowner比較を固定L4 role順: policy=SECURITY, resource_state=INFRASTRUCTURE, resource_placement=INFRASTRUCTURE, physical_enforcement=Worker execution environment。resource_state/placementの不一致はB01 failure routeに基づきSECURITY/INFRASTRUCTUREへ返し、physical owner不一致にはWorker実行環境も含める。stage overclaimはowner比較の後に評価する。",
-        "policy/resource bindingはsourceがある比較だけを実施する。policy root revisionとinfra_resource.revision、security_policy.environmentとinfra_resource.environment、security_policy.environmentとworker.environment、policy root revision/scopeとworker revision/scope、security_policy.idとworker.policy_referenceを別名で比較する。resourceにscopeは無いためresource scopeを補わない。receiptのenvironment/revision/scopeは各raw値と比較し、receipt.policy_referenceは存在しないのでright=absent/null,state=unknownとする。全比較はleft/right presenceとJSON Pointerを出力する。",
+        "owner_separationは供給されたowner memberをpolicy→resource_state→resource_placement→physical_enforcement→evidence_custodyの固定順で原値保持する。resource packetはowners objectの存在member、policy packetはsecurity_policy.owner、infra_resource.owner/placement_owner、worker_enforcement.ownerを読む。evidence_custodyはsource記載値を保持するが、L4に特定の固定custodian literalがないため正規化や追加比較をしない。比較は供給memberについてpolicy=SECURITY、resource_state/placement=INFRASTRUCTURE、physical_enforcement=Worker execution environmentを照合し、欠落を他roleで補わない。owner mismatch findingはroleごとに当該memberのJSON Pointerと{role,value,expected}を保持する。返却先はtype_contract.finding_return_routesに従う。",
+        "policy/resource binding比較はこの固定順: policy root revisionとinfra_resource.revision、security_policy.environmentとinfra_resource.environment、security_policy.environmentとworker.environment、policy root revisionとworker.revision、policy root scopeとworker.scope、security_policy.idとworker.policy_reference、続いてreceipt environment/revision/scope、receipt.policy_reference。resourceにscopeやreceiptにpolicy_referenceは無いので右側はabsent/null,state=unknownとし、値を補わない。全比較はleft/right presenceとJSON Pointerを出力する。",
         "infra_resource.safety_claimがnot_claimed以外ならpolicy_only_safety_claimを作りSECURITYへ返す。これはpolicy意味の問題で、実資源適用の成功/失敗を含意しない。",
         "environment_b.application_observation.state=unknownならapplication_unobservedを作る。finding.environmentはsecurity_policy.environmentのraw value、revision/scopeはそれぞれ宣言rootの同名raw value、source_pointerはapplication_observationを指す。revision/scopeを自由な文字列へ連結しない。返却先はL4 F01 failure_routeに従いINFRASTRUCTUREとWorker execution environment。",
-        "findingの順序は固定する。resource側はcredential exposureをresource_record→backup→snapshot順、owner mismatch、stage overclaimの順。policy側はbinding mismatch、owner mismatch、policy_only_safety_claim、application_unobserved、receipt mismatchの順。重複findingは統合せず各異なるsource fieldを保持する。",
+        "finding/return_targetsの順序は固定する。resource側はcredential exposureをresource_record→backup→snapshot順、owner mismatchをrole順、stage overclaimの順。policy側はpolicy/resource binding mismatch、owner mismatchをpolicy→resource_state→resource_placement→physical_enforcement順、policy_only_safety_claim、application_unobserved、receipt mismatchをenvironment→revision→scope→policy_referenceの順。return_targetsは各findingと同じ順で一対一対応させる。重複findingは統合せず各異なるsource fieldを保持する。",
         "stage_scope.historical_stageは固定L4 /scope/historical_stage の値、scopeは固定L4 /scope/version_boundary の完全値を指す。stage4_scopeとall_stage4_capabilitiesは選択されたresource packetの各raw memberをPresence<JsonValue>で返す。packetが未選択ならabsentでありunknown findingを作らない。all_stage4_capabilitiesがnot_in_scope以外の実値ならstage_scope_overclaimを作りL4 B01 failure routeのSECURITY/INFRASTRUCTUREへ戻す。"
       ],
-      "effect": "none"
+      "effect": "none",
+      "fixed_source_reads": [
+        {
+          "source_path": "docs/helix-security/L4-basic-design/policy-resource-enforcement-boundary.json",
+          "source_revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+          "source_sha256": "b4fc6e2c2fabb77b99c3521fd7310b35a11a2b3189e37fee2fdf9907496a072f",
+          "pointer": "/scope/historical_stage",
+          "return_pointer": "/stage_scope/historical_stage"
+        },
+        {
+          "source_path": "docs/helix-security/L4-basic-design/policy-resource-enforcement-boundary.json",
+          "source_revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
+          "source_sha256": "b4fc6e2c2fabb77b99c3521fd7310b35a11a2b3189e37fee2fdf9907496a072f",
+          "pointer": "/scope/version_boundary",
+          "return_pointer": "/stage_scope/scope"
+        }
+      ]
     }
   ],
   "contracts": [
@@ -760,7 +858,7 @@
     "L11 acceptance、実装と全意味閉包"
   ],
   "source_pin_revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
-  "legacy_comparison_verification": "archive quote bytes must equal the exact source lines at the fixed source_main revision, and whole-file hash must match; quote self-hash alone is insufficient.",
+  "legacy_comparison_verification": "旧source_quoteをsource_main固定revisionの記載line_start..line_end実行とUTF-8完全一致で検査し、source_sha256はarchive全体bytes、quote_sha256は選択引用bytesと照合する。引用自身のhash一致だけでは原文一致としない。",
   "candidate_pair_binding": {
     "paired_document_id": "HELIXSECURITY-L8-024-UNIT-VERIFICATION",
     "candidate_local": true,

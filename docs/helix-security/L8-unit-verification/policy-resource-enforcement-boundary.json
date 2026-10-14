@@ -899,17 +899,17 @@
         },
         "assessment_output_whole_ref": "/cases/0/function_invocations/1/expected_output",
         "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
-        "source_diagnostic_pointer": "/positive_cases/0/then/observation_limit",
+        "source_diagnostic_pointer": "/positive_cases/0/diagnostic",
         "source_defect_clause": null
       },
       "failure_route": {
         "source_field": "failure_observation",
         "source_value": "当該保存/回収不足をSEC/INFRAへ返し、実許可設定を本文から変更しない。"
       },
-      "diagnostic": "known値は各fieldの合成record値として保持する。synthetic-only値を実観測に変換せず、environment Bの宣言はknown、実適用/未適用のいずれもunknownとして保持する。",
+      "diagnostic": "既知のresource値・role・policy referenceは既知として示し、packetが明示する一環境の未観測だけを未観測のまま残す。",
       "execution_state": "not_executed",
       "meaning_completion_effect": "none",
-      "diagnostic_source_pointer": "/positive_cases/0/then/observation_limit"
+      "diagnostic_source_pointer": "/positive_cases/0/diagnostic"
     },
     {
       "id": "SEC024-L8-P02",
@@ -1134,6 +1134,16 @@
                 "state": "equal"
               },
               {
+                "name": "worker_environment",
+                "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
+                "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/environment",
+                "state": "equal"
+              },
+              {
                 "name": "worker_revision",
                 "left": "SYNTH-REV-024-A",
                 "left_presence": "value",
@@ -1151,16 +1161,6 @@
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
                 "right_presence": "value",
                 "right_source_pointer": "/policy/value/worker_enforcement/scope",
-                "state": "equal"
-              },
-              {
-                "name": "worker_environment",
-                "left": "SYNTH-ENV-DEV-A",
-                "left_presence": "value",
-                "left_source_pointer": "/policy/value/security_policy/environment",
-                "right": "SYNTH-ENV-DEV-A",
-                "right_presence": "value",
-                "right_source_pointer": "/policy/value/worker_enforcement/environment",
                 "state": "equal"
               },
               {
@@ -1401,6 +1401,16 @@
             "state": "equal"
           },
           {
+            "name": "worker_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/environment",
+            "state": "equal"
+          },
+          {
             "name": "worker_revision",
             "left": "SYNTH-REV-024-A",
             "left_presence": "value",
@@ -1418,16 +1428,6 @@
             "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
             "right_presence": "value",
             "right_source_pointer": "/policy/value/worker_enforcement/scope",
-            "state": "equal"
-          },
-          {
-            "name": "worker_environment",
-            "left": "SYNTH-ENV-DEV-A",
-            "left_presence": "value",
-            "left_source_pointer": "/policy/value/security_policy/environment",
-            "right": "SYNTH-ENV-DEV-A",
-            "right_presence": "value",
-            "right_source_pointer": "/policy/value/worker_enforcement/environment",
             "state": "equal"
           },
           {
@@ -1810,17 +1810,17 @@
         },
         "assessment_output_whole_ref": "/cases/1/function_invocations/1/expected_output",
         "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
-        "source_diagnostic_pointer": "/positive_cases/1/then/observation_limit",
+        "source_diagnostic_pointer": "/positive_cases/1/diagnostic",
         "source_defect_clause": null
       },
       "failure_route": {
         "source_field": "failure_observation",
         "source_value": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。"
       },
-      "diagnostic": "known値は各fieldの合成record値として保持する。synthetic-only値を実観測に変換せず、environment Bの宣言はknown、実適用/未適用のいずれもunknownとして保持する。",
+      "diagnostic": "既知のresource値・role・policy referenceは既知として示し、packetが明示する一環境の未観測だけを未観測のまま残す。",
       "execution_state": "not_executed",
       "meaning_completion_effect": "none",
-      "diagnostic_source_pointer": "/positive_cases/1/then/observation_limit"
+      "diagnostic_source_pointer": "/positive_cases/1/diagnostic"
     },
     {
       "id": "SEC024-L8-N01",
@@ -2291,7 +2291,7 @@
         },
         "assessment_output_whole_ref": "/cases/2/function_invocations/1/expected_output",
         "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
-        "source_diagnostic_pointer": "/negative_cases/0/failure_route/case_route",
+        "source_diagnostic_pointer": null,
         "source_defect_clause": "通常snapshotにraw値"
       },
       "failure_route": {
@@ -2299,10 +2299,10 @@
         "source_value": "当該保存/回収不足をSEC/INFRAへ返し、実許可設定を本文から変更しない。",
         "case_route": "当該snapshotの保存境界をINFRASTRUCTUREへ、credential方針と許容記録の不足をSECURITYへ戻す。"
       },
-      "diagnostic": "当該snapshotの保存境界をINFRASTRUCTUREへ、credential方針と許容記録の不足をSECURITYへ戻す。",
+      "diagnostic": null,
       "execution_state": "not_executed",
       "meaning_completion_effect": "none",
-      "diagnostic_source_pointer": "/negative_cases/0/failure_route/case_route"
+      "diagnostic_source_pointer": null
     },
     {
       "id": "SEC024-L8-N02",
@@ -2762,7 +2762,7 @@
         },
         "assessment_output_whole_ref": "/cases/3/function_invocations/1/expected_output",
         "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
-        "source_diagnostic_pointer": "/negative_cases/1/failure_route/case_route",
+        "source_diagnostic_pointer": null,
         "source_defect_clause": "OSが資源authority代替"
       },
       "failure_route": {
@@ -2770,10 +2770,10 @@
         "source_value": "当該保存/回収不足をSEC/INFRAへ返し、実許可設定を本文から変更しない。",
         "case_route": "資源authorityをOSへ移さず、resource state ownerのINFRASTRUCTUREへ戻す。"
       },
-      "diagnostic": "資源authorityをOSへ移さず、resource state ownerのINFRASTRUCTUREへ戻す。",
+      "diagnostic": null,
       "execution_state": "not_executed",
       "meaning_completion_effect": "none",
-      "diagnostic_source_pointer": "/negative_cases/1/failure_route/case_route"
+      "diagnostic_source_pointer": null
     },
     {
       "id": "SEC024-L8-N03",
@@ -3225,7 +3225,7 @@
         },
         "assessment_output_whole_ref": "/cases/4/function_invocations/1/expected_output",
         "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
-        "source_diagnostic_pointer": "/negative_cases/2/failure_route/case_route",
+        "source_diagnostic_pointer": null,
         "source_defect_clause": "Stage4全能力前倒し"
       },
       "failure_route": {
@@ -3233,10 +3233,10 @@
         "source_value": "当該保存/回収不足をSEC/INFRAへ返し、実許可設定を本文から変更しない。",
         "case_route": "安全接続の初回必要規範にscopeを戻し、全Stage4能力の成立を主張しない。"
       },
-      "diagnostic": "安全接続の初回必要規範にscopeを戻し、全Stage4能力の成立を主張しない。",
+      "diagnostic": null,
       "execution_state": "not_executed",
       "meaning_completion_effect": "none",
-      "diagnostic_source_pointer": "/negative_cases/2/failure_route/case_route"
+      "diagnostic_source_pointer": null
     },
     {
       "id": "SEC024-L8-N04",
@@ -3486,6 +3486,16 @@
                 "state": "equal"
               },
               {
+                "name": "worker_environment",
+                "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
+                "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/environment",
+                "state": "equal"
+              },
+              {
                 "name": "worker_revision",
                 "left": "SYNTH-REV-024-A",
                 "left_presence": "value",
@@ -3503,16 +3513,6 @@
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
                 "right_presence": "value",
                 "right_source_pointer": "/policy/value/worker_enforcement/scope",
-                "state": "equal"
-              },
-              {
-                "name": "worker_environment",
-                "left": "SYNTH-ENV-DEV-A",
-                "left_presence": "value",
-                "left_source_pointer": "/policy/value/security_policy/environment",
-                "right": "SYNTH-ENV-DEV-A",
-                "right_presence": "value",
-                "right_source_pointer": "/policy/value/worker_enforcement/environment",
                 "state": "equal"
               },
               {
@@ -3771,6 +3771,16 @@
             "state": "equal"
           },
           {
+            "name": "worker_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/environment",
+            "state": "equal"
+          },
+          {
             "name": "worker_revision",
             "left": "SYNTH-REV-024-A",
             "left_presence": "value",
@@ -3788,16 +3798,6 @@
             "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
             "right_presence": "value",
             "right_source_pointer": "/policy/value/worker_enforcement/scope",
-            "state": "equal"
-          },
-          {
-            "name": "worker_environment",
-            "left": "SYNTH-ENV-DEV-A",
-            "left_presence": "value",
-            "left_source_pointer": "/policy/value/security_policy/environment",
-            "right": "SYNTH-ENV-DEV-A",
-            "right_presence": "value",
-            "right_source_pointer": "/policy/value/worker_enforcement/environment",
             "state": "equal"
           },
           {
@@ -4036,7 +4036,7 @@
         },
         "assessment_output_whole_ref": "/cases/5/function_invocations/1/expected_output",
         "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
-        "source_diagnostic_pointer": "/negative_cases/3/failure_route/case_route",
+        "source_diagnostic_pointer": null,
         "source_defect_clause": "policyだけで資源安全"
       },
       "failure_route": {
@@ -4044,10 +4044,10 @@
         "source_value": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。",
         "case_route": "policy意味・安全判定の問題をSECURITYへ返し、実資源適用はINFRASTRUCTUREで別観測のまま保持する。"
       },
-      "diagnostic": "policy意味・安全判定の問題をSECURITYへ返し、実資源適用はINFRASTRUCTUREで別観測のまま保持する。",
+      "diagnostic": null,
       "execution_state": "not_executed",
       "meaning_completion_effect": "none",
-      "diagnostic_source_pointer": "/negative_cases/3/failure_route/case_route"
+      "diagnostic_source_pointer": null
     },
     {
       "id": "SEC024-L8-N05",
@@ -4297,6 +4297,16 @@
                 "state": "equal"
               },
               {
+                "name": "worker_environment",
+                "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
+                "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/environment",
+                "state": "equal"
+              },
+              {
                 "name": "worker_revision",
                 "left": "SYNTH-REV-024-A",
                 "left_presence": "value",
@@ -4314,16 +4324,6 @@
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
                 "right_presence": "value",
                 "right_source_pointer": "/policy/value/worker_enforcement/scope",
-                "state": "equal"
-              },
-              {
-                "name": "worker_environment",
-                "left": "SYNTH-ENV-DEV-A",
-                "left_presence": "value",
-                "left_source_pointer": "/policy/value/security_policy/environment",
-                "right": "SYNTH-ENV-DEV-A",
-                "right_presence": "value",
-                "right_source_pointer": "/policy/value/worker_enforcement/environment",
                 "state": "equal"
               },
               {
@@ -4587,6 +4587,16 @@
             "state": "equal"
           },
           {
+            "name": "worker_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/environment",
+            "state": "equal"
+          },
+          {
             "name": "worker_revision",
             "left": "SYNTH-REV-024-A",
             "left_presence": "value",
@@ -4604,16 +4614,6 @@
             "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
             "right_presence": "value",
             "right_source_pointer": "/policy/value/worker_enforcement/scope",
-            "state": "equal"
-          },
-          {
-            "name": "worker_environment",
-            "left": "SYNTH-ENV-DEV-A",
-            "left_presence": "value",
-            "left_source_pointer": "/policy/value/security_policy/environment",
-            "right": "SYNTH-ENV-DEV-A",
-            "right_presence": "value",
-            "right_source_pointer": "/policy/value/worker_enforcement/environment",
             "state": "equal"
           },
           {
@@ -4857,7 +4857,7 @@
         },
         "assessment_output_whole_ref": "/cases/6/function_invocations/1/expected_output",
         "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
-        "source_diagnostic_pointer": "/negative_cases/4/failure_route/case_route",
+        "source_diagnostic_pointer": null,
         "source_defect_clause": "INFRAがpolicy発行"
       },
       "failure_route": {
@@ -4865,10 +4865,10 @@
         "source_value": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。",
         "case_route": "policy ownerをSECURITYへ戻し、INFRASTRUCTUREが実資源状態を持つ境界を保持する。"
       },
-      "diagnostic": "policy ownerをSECURITYへ戻し、INFRASTRUCTUREが実資源状態を持つ境界を保持する。",
+      "diagnostic": null,
       "execution_state": "not_executed",
       "meaning_completion_effect": "none",
-      "diagnostic_source_pointer": "/negative_cases/4/failure_route/case_route"
+      "diagnostic_source_pointer": null
     },
     {
       "id": "SEC024-L8-N06",
@@ -5118,6 +5118,16 @@
                 "state": "equal"
               },
               {
+                "name": "worker_environment",
+                "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
+                "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/environment",
+                "state": "equal"
+              },
+              {
                 "name": "worker_revision",
                 "left": "SYNTH-REV-024-A",
                 "left_presence": "value",
@@ -5135,16 +5145,6 @@
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
                 "right_presence": "value",
                 "right_source_pointer": "/policy/value/worker_enforcement/scope",
-                "state": "equal"
-              },
-              {
-                "name": "worker_environment",
-                "left": "SYNTH-ENV-DEV-A",
-                "left_presence": "value",
-                "left_source_pointer": "/policy/value/security_policy/environment",
-                "right": "SYNTH-ENV-DEV-A",
-                "right_presence": "value",
-                "right_source_pointer": "/policy/value/worker_enforcement/environment",
                 "state": "equal"
               },
               {
@@ -5301,14 +5301,15 @@
               {
                 "code": "owner_boundary_mismatch",
                 "source": null,
-                "field": "infra_resource.owner_or_placement_owner",
+                "field": "infra_resource.placement_owner",
                 "environment": null,
                 "revision": null,
                 "scope": null,
-                "source_pointer": "/policy/value/infra_resource",
+                "source_pointer": "/policy/value/infra_resource/placement_owner",
                 "observed_value": {
-                  "owner": "INFRASTRUCTURE",
-                  "placement_owner": "SECURITY"
+                  "role": "resource_placement",
+                  "value": "SECURITY",
+                  "expected": "INFRASTRUCTURE"
                 },
                 "left": null,
                 "right": null
@@ -5407,6 +5408,16 @@
             "state": "equal"
           },
           {
+            "name": "worker_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/environment",
+            "state": "equal"
+          },
+          {
             "name": "worker_revision",
             "left": "SYNTH-REV-024-A",
             "left_presence": "value",
@@ -5424,16 +5435,6 @@
             "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
             "right_presence": "value",
             "right_source_pointer": "/policy/value/worker_enforcement/scope",
-            "state": "equal"
-          },
-          {
-            "name": "worker_environment",
-            "left": "SYNTH-ENV-DEV-A",
-            "left_presence": "value",
-            "left_source_pointer": "/policy/value/security_policy/environment",
-            "right": "SYNTH-ENV-DEV-A",
-            "right_presence": "value",
-            "right_source_pointer": "/policy/value/worker_enforcement/environment",
             "state": "equal"
           },
           {
@@ -5590,14 +5591,15 @@
           {
             "code": "owner_boundary_mismatch",
             "source": null,
-            "field": "infra_resource.owner_or_placement_owner",
+            "field": "infra_resource.placement_owner",
             "environment": null,
             "revision": null,
             "scope": null,
-            "source_pointer": "/policy/value/infra_resource",
+            "source_pointer": "/policy/value/infra_resource/placement_owner",
             "observed_value": {
-              "owner": "INFRASTRUCTURE",
-              "placement_owner": "SECURITY"
+              "role": "resource_placement",
+              "value": "SECURITY",
+              "expected": "INFRASTRUCTURE"
             },
             "left": null,
             "right": null
@@ -5676,7 +5678,7 @@
         },
         "assessment_output_whole_ref": "/cases/7/function_invocations/1/expected_output",
         "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
-        "source_diagnostic_pointer": "/negative_cases/5/failure_route/case_route",
+        "source_diagnostic_pointer": null,
         "source_defect_clause": "SECが資源配置"
       },
       "failure_route": {
@@ -5684,10 +5686,10 @@
         "source_value": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。",
         "case_route": "資源配置をINFRASTRUCTUREへ戻し、SECURITYはpolicy/authority ownerに留める。"
       },
-      "diagnostic": "資源配置をINFRASTRUCTUREへ戻し、SECURITYはpolicy/authority ownerに留める。",
+      "diagnostic": null,
       "execution_state": "not_executed",
       "meaning_completion_effect": "none",
-      "diagnostic_source_pointer": "/negative_cases/5/failure_route/case_route"
+      "diagnostic_source_pointer": null
     },
     {
       "id": "SEC024-L8-N07",
@@ -5937,6 +5939,16 @@
                 "state": "equal"
               },
               {
+                "name": "worker_environment",
+                "left": "SYNTH-ENV-DEV-A",
+                "left_presence": "value",
+                "left_source_pointer": "/policy/value/security_policy/environment",
+                "right": "SYNTH-ENV-DEV-A",
+                "right_presence": "value",
+                "right_source_pointer": "/policy/value/worker_enforcement/environment",
+                "state": "equal"
+              },
+              {
                 "name": "worker_revision",
                 "left": "SYNTH-REV-024-A",
                 "left_presence": "value",
@@ -5954,16 +5966,6 @@
                 "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
                 "right_presence": "value",
                 "right_source_pointer": "/policy/value/worker_enforcement/scope",
-                "state": "equal"
-              },
-              {
-                "name": "worker_environment",
-                "left": "SYNTH-ENV-DEV-A",
-                "left_presence": "value",
-                "left_source_pointer": "/policy/value/security_policy/environment",
-                "right": "SYNTH-ENV-DEV-A",
-                "right_presence": "value",
-                "right_source_pointer": "/policy/value/worker_enforcement/environment",
                 "state": "equal"
               },
               {
@@ -6118,18 +6120,6 @@
             ],
             "findings": [
               {
-                "code": "receipt_binding_mismatch",
-                "source": null,
-                "field": "receipt_environment",
-                "environment": null,
-                "revision": null,
-                "scope": null,
-                "source_pointer": "/policy/value/receipt/environment",
-                "observed_value": null,
-                "left": "SYNTH-ENV-DEV-A",
-                "right": "SYNTH-ENV-DEV-B"
-              },
-              {
                 "code": "application_unobserved",
                 "source": null,
                 "field": null,
@@ -6145,18 +6135,30 @@
                 },
                 "left": null,
                 "right": null
+              },
+              {
+                "code": "receipt_binding_mismatch",
+                "source": null,
+                "field": "receipt_environment",
+                "environment": null,
+                "revision": null,
+                "scope": null,
+                "source_pointer": "/policy/value/receipt/environment",
+                "observed_value": null,
+                "left": "SYNTH-ENV-DEV-A",
+                "right": "SYNTH-ENV-DEV-B"
               }
             ],
             "return_targets": [
               {
-                "finding": "receipt_binding_mismatch",
+                "finding": "application_unobserved",
                 "recipients": [
                   "INFRASTRUCTURE",
                   "Worker execution environment"
                 ]
               },
               {
-                "finding": "application_unobserved",
+                "finding": "receipt_binding_mismatch",
                 "recipients": [
                   "INFRASTRUCTURE",
                   "Worker execution environment"
@@ -6223,6 +6225,16 @@
             "state": "equal"
           },
           {
+            "name": "worker_environment",
+            "left": "SYNTH-ENV-DEV-A",
+            "left_presence": "value",
+            "left_source_pointer": "/policy/value/security_policy/environment",
+            "right": "SYNTH-ENV-DEV-A",
+            "right_presence": "value",
+            "right_source_pointer": "/policy/value/worker_enforcement/environment",
+            "state": "equal"
+          },
+          {
             "name": "worker_revision",
             "left": "SYNTH-REV-024-A",
             "left_presence": "value",
@@ -6240,16 +6252,6 @@
             "right": "SYNTH-SCOPE-RESOURCE-CONNECTION",
             "right_presence": "value",
             "right_source_pointer": "/policy/value/worker_enforcement/scope",
-            "state": "equal"
-          },
-          {
-            "name": "worker_environment",
-            "left": "SYNTH-ENV-DEV-A",
-            "left_presence": "value",
-            "left_source_pointer": "/policy/value/security_policy/environment",
-            "right": "SYNTH-ENV-DEV-A",
-            "right_presence": "value",
-            "right_source_pointer": "/policy/value/worker_enforcement/environment",
             "state": "equal"
           },
           {
@@ -6435,14 +6437,14 @@
         ],
         "return_targets": [
           {
-            "finding": "receipt_binding_mismatch",
+            "finding": "application_unobserved",
             "recipients": [
               "INFRASTRUCTURE",
               "Worker execution environment"
             ]
           },
           {
-            "finding": "application_unobserved",
+            "finding": "receipt_binding_mismatch",
             "recipients": [
               "INFRASTRUCTURE",
               "Worker execution environment"
@@ -6489,7 +6491,7 @@
         },
         "assessment_output_whole_ref": "/cases/8/function_invocations/1/expected_output",
         "interpretation": "source expected値は独立保存し、assessment全体も値として保持する。sourceが特定の出力fieldを規定する範囲だけを比較し、説明文を出力値や実qualificationへ変換しない。",
-        "source_diagnostic_pointer": "/negative_cases/6/failure_route/case_route",
+        "source_diagnostic_pointer": null,
         "source_defect_clause": "別環境receipt"
       },
       "failure_route": {
@@ -6497,10 +6499,10 @@
         "source_value": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。",
         "case_route": "環境不一致のreceiptを該当resource/実適用の未成立としてINFRASTRUCTURE/実環境へ戻す。OS作業状態では補完しない。"
       },
-      "diagnostic": "環境不一致のreceiptを該当resource/実適用の未成立としてINFRASTRUCTURE/実環境へ戻す。OS作業状態では補完しない。",
+      "diagnostic": null,
       "execution_state": "not_executed",
       "meaning_completion_effect": "none",
-      "diagnostic_source_pointer": "/negative_cases/6/failure_route/case_route"
+      "diagnostic_source_pointer": null
     }
   ],
   "pair_trace": [
@@ -6598,7 +6600,7 @@
     "実行・CI/TDD・L11・意味全体閉包"
   ],
   "source_pin_revision": "65e8e0180da7901b5c9e405382714a14d4d20002",
-  "legacy_comparison_verification": "archive quote bytes must equal the exact source lines at the fixed source_main revision, and whole-file hash must match; quote self-hash alone is insufficient.",
+  "legacy_comparison_verification": "旧source_quoteをsource_main固定revisionの記載line_start..line_end実行とUTF-8完全一致で検査し、source_sha256はarchive全体bytes、quote_sha256は選択引用bytesと照合する。引用自身のhash一致だけでは原文一致としない。",
   "candidate_pair_binding": {
     "paired_document_id": "HELIXSECURITY-L5-024-DETAIL-DESIGN",
     "candidate_local": true,
