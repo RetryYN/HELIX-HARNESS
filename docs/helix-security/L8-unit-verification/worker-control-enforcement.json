@@ -1,0 +1,3903 @@
+{
+  "parent": "HELIXSECURITY-L2-007",
+  "status": "draft_candidate_static_checks_passed_pending_independent_review",
+  "source_main": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+  "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F01",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F01",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "policy・assignment・実環境の束縛",
+        "obligation": "SECURITYのscope/authority/policy、OS assignment、Worker実環境capabilityを同revision/scopeへ結び、制約ごとの受渡し/実適用/観測/回収を照合する。enforcerは実環境で、SECURITYやWorkerの自己判断で制約を広げない。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F01"
+      },
+      "object_canonical_sha256": "6853e9b0a04e0220ebd9e72840197042aa427a598c081cc1f544ea869cd40279"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F02",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F02",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "write path制御",
+        "obligation": "許可write pathのexact setに実diffを照合する。read-onlyでもwrite禁止の強制と対象scopeの前後状態不変を観測する。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F02"
+      },
+      "object_canonical_sha256": "1f8bf2861dab406265140589ec50e164bd860c57df63671f656faed359778150"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F03",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F03",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "network制御",
+        "obligation": "network制限を実環境へ適用し、同assignmentの許可/拒否と実接続状態を照合する。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F03"
+      },
+      "object_canonical_sha256": "6c2b6494d5eb1cf93b94939a3353ec430c1de74878200e01d630bbad313103d1"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F04",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F04",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "credential制御",
+        "obligation": "credential遮断を適用し、provider/storeへのアクセスを拒否する。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F04"
+      },
+      "object_canonical_sha256": "3e5ca2ae75bd9a9bbe3ab38ee824a86a435625cf07e81f8df027c8392319c788"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F05",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F05",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "environment制御",
+        "obligation": "許可されたenvironment variableだけを渡し、host全体やcredential-bearing変数を継承しない。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F05"
+      },
+      "object_canonical_sha256": "2df61b64fa60ec1c47775e18545f5e7f2822ac7118633a542c14ee23f3245324"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F06",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F06",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "timeout制御",
+        "obligation": "入力descriptorの期限を実適用し、期限内terminal resultと期限到達/中断を分ける。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F06"
+      },
+      "object_canonical_sha256": "942d27f4c2a13063b7b4f49799c7ec459a39a873d8c49b4d2ccf770114a4ddd5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F07",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F07",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "resource制御",
+        "obligation": "入力resource descriptorの制約を実環境へ渡して適用/到達状態を観測する。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F07"
+      },
+      "object_canonical_sha256": "80592c5d10f04f01a2b55a9874adc75ed87e669b153622433cdab49bb3a7ed57"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F08",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F08",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "diff検査制御",
+        "obligation": "before tree digestとexact allowed diffを固定し、実post-stateから差分を検査する。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F08"
+      },
+      "object_canonical_sha256": "1e00eb4403685f89f0a1dc3a80a3d717806141ac35ef7cb7d2c987df597082d4"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F09",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F09",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "rollback制御",
+        "obligation": "適用対象の復旧後状態をbefore digestへ照合し、部分復元/復旧不能/未完を分ける。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F09"
+      },
+      "object_canonical_sha256": "5ce58be9c16c762f43498f5ee5360cd2edccff2fe1b4141091962d5e93f65e8e"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "id": "HELIXSECURITY-L3-007-F10",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-F10",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "result collection制御",
+        "obligation": "各caseのassignment/policy/source revision/status・制約適用/diff/rollback状態を元caseへ結んで回収する。",
+        "oracle_ref": "HELIXSECURITY-L10-007-F10"
+      },
+      "object_canonical_sha256": "b9127fd7ed78b780f8876b0fa7e1f03e9b418c17d59ac042aa7f88a8c2ca0dc8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "0c881ef2e059404f2290f40977546d415a7c85cb932fbef730131a5af8146eaf",
+      "id": "HELIXSECURITY-L3-007-N01",
+      "object": {
+        "id": "HELIXSECURITY-L3-007-N01",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "九制御の個別欠落と未見環境",
+        "obligation": "同scopeで実行前binding・実行時九制御・実行後diff/結果/復旧を照合し、各制御を一つずつ欠落させる。未見assignment/環境で再評価し、未観測を実適用や安全とみなさない。",
+        "oracle_ref": "HELIXSECURITY-L10-007-N01"
+      },
+      "object_canonical_sha256": "61a2fb980cdc9564433cf8df0f17d30f2675931b18f6c1cb5b3a5485d71256a9"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F01",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F01",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "policy・assignment・実環境の束縛",
+        "requirement_ref": "HELIXSECURITY-L3-007-F01",
+        "positive_input": "同assignment/policy/source revisionで実適用証拠と未適用/未観測/unsupportedを比較する。",
+        "expected_observation": "宣言と実適用が別に辿れ、適用不能時hostへfallbackしない。",
+        "negative_input": "設定存在だけで適用、Worker自己拡張、別host/backend fallback。",
+        "failure_observation": "当該実行を停止/unknownにし、policy不足はSEC、実適用はINFRA/実環境へ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "1a34203416602a3542eb3068cec17febf96d3a615ca6f73b238e3350c24aa0ad"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F02",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F02",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "write path制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F02",
+        "positive_input": "合成allow内write、範囲外write、read-only禁止writeと前後treeを別caseにする。",
+        "expected_observation": "許可diffまたはwrite拒否/変更なしを観測する。",
+        "negative_input": "read-onlyラベルだけ、禁止write成功、要求pathだけ記録。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "bedafd8295ac17a50925863e9e78619a2c2245760f49a6f540ec98350d42160b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F03",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F03",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "network制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F03",
+        "positive_input": "deny-allと隔離された合成端点への接続試行を使い、外部通信しない。",
+        "expected_observation": "deny適用と接続未成立が辿れる。",
+        "negative_input": "未適用/unknownで通信、host fallback。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "0da3f28630efd5375f4ba1dd1a0578e91d6dee066e67fbde01781ed3afa43a19"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F04",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F04",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "credential制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F04",
+        "positive_input": "値なしのprovider/store参照要求を使う。",
+        "expected_observation": "遮断適用と参照拒否を観測し、raw値を証跡に置かない。",
+        "negative_input": "host credential fallback、store到達、原値env/log。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "3c9322946bed6706606b4f67599765f1a24f5004a13b4210e21de8f1b004e17e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F05",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F05",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "environment制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F05",
+        "positive_input": "合成allow set TASK_MODE/LANGと値なし未許可HOST_SECRET_REFを使う。",
+        "expected_observation": "allow setのみが渡った事実がpolicyへ辿れる。",
+        "negative_input": "全host env継承、設定宣言だけで適用。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "8cbcfeec1ccd3211de767facfdad225eeff3fbc7a69d655b8ab887280d71122a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F06",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F06",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "timeout制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F06",
+        "positive_input": "fixture限定90sで期限内終了と期限到達を比較する。",
+        "expected_observation": "期限後結果/side effectを成功へ混ぜず、値のfixture由来を残す。",
+        "negative_input": "90sを製品既定値、期限無視、期限後成功。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "6c78bb46d1a38e33a1fa29b15af2d32e3ddc6be6f88ba435ecea1845d679662b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F07",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F07",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "resource制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F07",
+        "positive_input": "fixture限定cpu1/memory256MiBの制約と到達を比較する。",
+        "expected_observation": "受渡しと実適用、到達時状態が対応する。",
+        "negative_input": "自己拡張、設定だけで適用、fixture値を共通limit。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "d938b6b614a9d83cc362909d3be91ad6476e303a3ccb5ea674732798662c8e2b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F08",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F08",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "diff検査制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F08",
+        "positive_input": "許可合成result pathと範囲外path追加を比較する。",
+        "expected_observation": "範囲外差分を隔離/拒否し、内容を通常証跡へ露出しない。",
+        "negative_input": "実状態未照合、範囲外通過、secret含有diff複写。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "7172d352cd30a8eba5d74514d6f8bc7733d17d7e8b69ebbe836abeda518d2cfa"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F09",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F09",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "rollback制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F09",
+        "positive_input": "postcondition failureと復旧、変更なしが証明できるcaseを分ける。",
+        "expected_observation": "復旧実結果を観測し、変更なしを確認できたcaseだけrollback N/A。",
+        "negative_input": "計画だけで復旧済、変更有無unknownでN/A、無関係scope復元。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "36bf30ad3b45cf3831147e30ae0a467f1f37037e681491e25c530b0580687561"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "id": "HELIXSECURITY-L10-007-F10",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-F10",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "result collection制御",
+        "requirement_ref": "HELIXSECURITY-L3-007-F10",
+        "positive_input": "同runと欠落/stale/別run結果、部分rollbackを比較する。",
+        "expected_observation": "欠落は未回収、失敗/部分復旧は成功へ変換しない。",
+        "negative_input": "stdout/自己申告のみで適用、別revision receipt、値入り証跡。",
+        "failure_observation": "当該制御を未成立にし、対象実行を停止/隔離/unknownへ戻す。他制御成功で相殺しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "f67bb7e6388cabc1ab074489d52b7c8dcc791aefefc8f4aa7adfb9e4d66d01dd"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "f76c6b0387e2b98b0f3697b3e9b4fd121b71953a567ab4782a289fa9cffc4617",
+      "id": "HELIXSECURITY-L10-007-N01",
+      "object": {
+        "id": "HELIXSECURITY-L10-007-N01",
+        "parent": "HELIXSECURITY-L2-007",
+        "title": "九制御の個別欠落と未見環境",
+        "requirement_ref": "HELIXSECURITY-L3-007-N01",
+        "positive_input": "正常入力と九制御の独立欠落、伏せた環境を使う。",
+        "expected_observation": "不足制御と発生端、未完/停止を個別に特定する。",
+        "negative_input": "一制御greenやreceipt数で全適用、read-only観測省略、未見環境へ旧結果転用。",
+        "failure_observation": "該当実行の不足を残し、全能力/実安全成立を文書から生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "78116b0b1452742fe2f290831ecbfe271447f67d955be95743717c439c17461c"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "0c881ef2e059404f2290f40977546d415a7c85cb932fbef730131a5af8146eaf"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "whole_file_sha256": "f76c6b0387e2b98b0f3697b3e9b4fd121b71953a567ab4782a289fa9cffc4617"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/worker-control-enforcement.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "85473251be87bfdcc15899fd63398dae616cde7a792a01a83b8addde6018d632",
+      "json_pointer": "/contracts",
+      "source_value": [
+        {
+          "id": "HELIXSECURITY-L4-007-F01",
+          "requirement_ref": "HELIXSECURITY-L3-007-F01",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F01",
+          "oracle_ref": "HELIXSECURITY-L9-007-F01",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "6853e9b0a04e0220ebd9e72840197042aa427a598c081cc1f544ea869cd40279"
+          },
+          "component": "execution_binding_comparer",
+          "input_meaning": "SECURITYのscope/authority/policy、OS assignment、Worker実環境capabilityを同revision/scopeへ結び、制約ごとの受渡し/実適用/観測/回収を照合する。enforcerは実環境で、SECURITYやWorkerの自己判断で制約を広げない。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F02",
+          "requirement_ref": "HELIXSECURITY-L3-007-F02",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F02",
+          "oracle_ref": "HELIXSECURITY-L9-007-F02",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "1f8bf2861dab406265140589ec50e164bd860c57df63671f656faed359778150"
+          },
+          "component": "write_path_comparer",
+          "input_meaning": "許可write pathのexact setに実diffを照合する。read-onlyでもwrite禁止の強制と対象scopeの前後状態不変を観測する。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F03",
+          "requirement_ref": "HELIXSECURITY-L3-007-F03",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F03",
+          "oracle_ref": "HELIXSECURITY-L9-007-F03",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "6c2b6494d5eb1cf93b94939a3353ec430c1de74878200e01d630bbad313103d1"
+          },
+          "component": "network_comparer",
+          "input_meaning": "network制限を実環境へ適用し、同assignmentの許可/拒否と実接続状態を照合する。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F04",
+          "requirement_ref": "HELIXSECURITY-L3-007-F04",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F04",
+          "oracle_ref": "HELIXSECURITY-L9-007-F04",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "3e5ca2ae75bd9a9bbe3ab38ee824a86a435625cf07e81f8df027c8392319c788"
+          },
+          "component": "credential_comparer",
+          "input_meaning": "credential遮断を適用し、provider/storeへのアクセスを拒否する。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F05",
+          "requirement_ref": "HELIXSECURITY-L3-007-F05",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F05",
+          "oracle_ref": "HELIXSECURITY-L9-007-F05",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "2df61b64fa60ec1c47775e18545f5e7f2822ac7118633a542c14ee23f3245324"
+          },
+          "component": "environment_comparer",
+          "input_meaning": "許可されたenvironment variableだけを渡し、host全体やcredential-bearing変数を継承しない。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F06",
+          "requirement_ref": "HELIXSECURITY-L3-007-F06",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F06",
+          "oracle_ref": "HELIXSECURITY-L9-007-F06",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "942d27f4c2a13063b7b4f49799c7ec459a39a873d8c49b4d2ccf770114a4ddd5"
+          },
+          "component": "timeout_comparer",
+          "input_meaning": "入力descriptorの期限を実適用し、期限内terminal resultと期限到達/中断を分ける。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F07",
+          "requirement_ref": "HELIXSECURITY-L3-007-F07",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F07",
+          "oracle_ref": "HELIXSECURITY-L9-007-F07",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "80592c5d10f04f01a2b55a9874adc75ed87e669b153622433cdab49bb3a7ed57"
+          },
+          "component": "resource_comparer",
+          "input_meaning": "入力resource descriptorの制約を実環境へ渡して適用/到達状態を観測する。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F08",
+          "requirement_ref": "HELIXSECURITY-L3-007-F08",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F08",
+          "oracle_ref": "HELIXSECURITY-L9-007-F08",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "1e00eb4403685f89f0a1dc3a80a3d717806141ac35ef7cb7d2c987df597082d4"
+          },
+          "component": "diff_inspection_comparer",
+          "input_meaning": "before tree digestとexact allowed diffを固定し、実post-stateから差分を検査する。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F09",
+          "requirement_ref": "HELIXSECURITY-L3-007-F09",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F09",
+          "oracle_ref": "HELIXSECURITY-L9-007-F09",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "5ce58be9c16c762f43498f5ee5360cd2edccff2fe1b4141091962d5e93f65e8e"
+          },
+          "component": "rollback_comparer",
+          "input_meaning": "適用対象の復旧後状態をbefore digestへ照合し、部分復元/復旧不能/未完を分ける。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-F10",
+          "requirement_ref": "HELIXSECURITY-L3-007-F10",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-F10",
+          "oracle_ref": "HELIXSECURITY-L9-007-F10",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+            "object_canonical_sha256": "b9127fd7ed78b780f8876b0fa7e1f03e9b418c17d59ac042aa7f88a8c2ca0dc8"
+          },
+          "component": "result_collection_comparer",
+          "input_meaning": "各caseのassignment/policy/source revision/status・制約適用/diff/rollback状態を元caseへ結んで回収する。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。 原runtime terminalとcase terminalを分け、timeout/resource停止・失敗からcase successを作らない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        },
+        {
+          "id": "HELIXSECURITY-L4-007-N01",
+          "requirement_ref": "HELIXSECURITY-L3-007-N01",
+          "system_oracle_ref": "HELIXSECURITY-L10-007-N01",
+          "oracle_ref": "HELIXSECURITY-L9-007-N01",
+          "approved_requirement": {
+            "revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+            "source_path": "docs/helix-security/L3-requirements/nfr-grade.json",
+            "object_canonical_sha256": "61a2fb980cdc9564433cf8df0f17d30f2675931b18f6c1cb5b3a5485d71256a9"
+          },
+          "component": "all_control_phase_composer",
+          "input_meaning": "同scopeで実行前binding・実行時九制御・実行後diff/結果/復旧を照合し、各制御を一つずつ欠落させる。未見assignment/環境で再評価し、未観測を実適用や安全とみなさない。",
+          "comparison_boundary": "同revision/scopeの宣言・独立期待素材・原観測reportを分ける。実行前/中/後の適用段を区別し、未使用の未来結果を当該phaseに要求しない。",
+          "output_meaning": "対応/違反/unknown/当該phase未評価と不足元位置。synthetic対応を実適用/安全/実行許可へ昇格しない。",
+          "operation_effect": "none"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/worker-control-enforcement.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "85473251be87bfdcc15899fd63398dae616cde7a792a01a83b8addde6018d632",
+      "json_pointer": "/architecture",
+      "source_value": {
+        "components": [
+          "execution_binding_comparer",
+          "write_path_comparer",
+          "network_comparer",
+          "credential_comparer",
+          "environment_comparer",
+          "timeout_comparer",
+          "resource_comparer",
+          "diff_inspection_comparer",
+          "rollback_comparer",
+          "result_collection_comparer",
+          "all_control_phase_composer"
+        ],
+        "flow": [
+          "SEC policy/authority + OS assignment + INFRA/Worker実環境 → 同revision/scope内容比較",
+          "九制御のhandoff/applied/observed/collectedは別記録。実enforcerはWorker実環境、比較ownerはSEC接続。",
+          "selected phase → 各制御対応/違反/未観測を保持、postだけ全九制御観測の比較。"
+        ],
+        "phase_boundary": "preはbindingとhandoff/appliedの設定適用素材だけ、runは先行六制御の観測、postは全九制御の観測と回収。rollback/result等の将来結果をpreへ要求せず、未評価の将来観測から全適用も生成しない。",
+        "pure_boundary": "metadata比較。実起動/制約適用/許可/環境変数値/network/store/復旧/回収なし。",
+        "authority_boundary": "既決authorityの内容素材を照合するだけ。Worker自己拡張/host fallback拒否、毎回human gate/共通数値limit/旧actor復活なし。"
+      }
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/worker-control-enforcement.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "85473251be87bfdcc15899fd63398dae616cde7a792a01a83b8addde6018d632",
+      "json_pointer": "/diagnostic_contract",
+      "source_value": {
+        "return_owner": "worker-control-owner",
+        "role_note": "007の比較責務ラベル。policy不足はSEC、実enforcementはINFRA/Worker、assignment/回収はOSの正式ownerへL5で振り分ける。",
+        "pointer_base": "given.input root、原metadata実在位置。複合原因は別findingを保持。 他制御から参照するsource fieldがnull/unknownなら、その原field（after_tree/observed/data.state/data.terminal_status）のpointerを返す。制御記録自体がnullの場合だけ /controls/<name> を返す。依存型ごとの例外は設けない。",
+        "sort": "code/pointer/return_owner scalar順のexact三field重複だけ除去。"
+      }
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/worker-control-enforcement.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "f661985740ca5c1402f67ca228188c544d398b6103fec6ea5af5fce7eb73cedc",
+      "json_pointer": "/fixture_contract",
+      "source_value": {
+        "scope": "11要求全部に結ぶ固定shape/合成metadata/単一run。全型/方式/正式receipt/実enforcer資格はL5/L8へ。",
+        "binding_fields": [
+          "scope",
+          "revision",
+          "assignment",
+          "policy",
+          "environment",
+          "backend",
+          "authority"
+        ],
+        "control_names": [
+          "write_path",
+          "network",
+          "credential",
+          "environment",
+          "timeout",
+          "resource",
+          "diff_inspection",
+          "rollback",
+          "result_collection"
+        ],
+        "stages": [
+          "handoff",
+          "applied",
+          "observed",
+          "collected"
+        ],
+        "phase_data_applicability": {
+          "pre": [],
+          "run": [
+            "write_path",
+            "network",
+            "credential",
+            "environment",
+            "timeout",
+            "resource"
+          ],
+          "post": [
+            "write_path",
+            "network",
+            "credential",
+            "environment",
+            "timeout",
+            "resource",
+            "diff_inspection",
+            "rollback",
+            "result_collection"
+          ]
+        },
+        "algorithm": [
+          "固定shapeを対象とする。known bindingは非空文字列、unknownはnull/空。request/policy/assignment/environment各七fieldをindependent context expectedへ比較し、各制御のbindingはrequestへ比較。片側unknownは当該位置unresolved、両側known相反だけconflict。worker自己拡張/host fallbackはtrue違反・非boolean unknown。",
+          "各制御missingはその位置unknown。source_refと独立control_source_refsを同じknown比較。handoff/appliedは全phase、observedはrunの先行六制御とpost全九、collectedはpost全九のみ。state=correspondingは素材対応、violationは違反、それ以外はunknown。pre/runで将来観測を要求しない。",
+          "preはcontrol dataを評価しない。runはwrite/network/credential/environment/timeout/resourceのdataだけ、postは全data。known setは重複のない非空文字列list、treeは非空文字列key/digest値dict（empty tree可）。nullは未観測。diffはbefore/afterのkey和集合の値相反/追加/削除を昇順で再導出。",
+          "write: declared allowed_pathsをcontextの独立exact setへ比較。beforeを独立before treeへ比較。reported_diffを再導出diffへset照合し、diffがallowedを越えたら違反。read_onlyは実観測素材のbefore=afterとwrite_attempt=blockedの両方が必要、succeededは違反・他unknown。writableは許可範囲内diff。",
+          "networkはこのfixtureのdeny_allだけを検証し、connection_established/host_fallback=falseを要求する。credentialはprovider_store_reached/raw_value_exposed/host_credential_fallback=false、environmentはallowed_names/passed_namesを独立allow setと完全一致させhost_all/credential_bearing継承falseを要求。boolean以外はunknown、反対は違反。raw値を扱わない。",
+          "timeout/resourceは独立context descriptorの非負integerとconfigured値を両側既知でexact比較。秒/CPU/メモリ単位は固定fixtureのみ。ended_at>=timeoutならdeadline_reached=trueかつterminal_status=terminated/interrupted、期限前はknown terminalであること。late_side_effect=false。resource limit_reached=trueならterminated/interrupted、falseならknown terminal、未知はunknown。self_expanded=false。90/1/256を共通limitにしない。",
+          "diff: 独立before、write観測afterとの対応、実post treeからのdiffとreported_diff、独立allowed setとの包含を別照合。raw_secret_copied=false。値を証跡へ複写せずdigest素材だけ。 独立allowed setが未観測ならdiff_allow_set_unresolvedを同context位置へ返し、他軸unknownの有無にかかわらずdiff自身をunknownにする。",
+          "rollback: afterをdiff観測afterへ、target_scopeをrequest scopeへ照合。before/after未観測ならunknown。state=not_applicableは観測before=afterだけ、変更ありN/Aは違反。restoredは復旧treeを独立beforeへ比較。partial/unavailableは未完違反、planned/その他はunknown。必要な実復旧条件と実状態は正式bindingで閉じる。",
+          "result: case_refを独立caseへ、reported_terminal_statusを原terminal_statusへ比較。known terminalはsuccess/failed/interrupted/terminated。constraint_states全九を各原observed状態、diff_stateを原diff observed、rollback_stateを原rollback stateへ比較、片側null unknown。raw_value_exposed/stdout_only=false。receipt数/自己申告から全適用を作らない。 resultのruntime_terminal_statusは原timeout/resourceのprocess terminal素材へ両方照合する。実行後postcondition失敗のcase terminal=failedはruntime successと別でよいが、runtime failed/interrupted/terminatedをcase successにしない。runtime未知は未確認を残す。 terminal比較ではsuccess/failed/interrupted/terminatedだけを既知とする。null/unknown/その他enumを推測でknown相反へ変えず、原位置のunknownを保持する。",
+          "各軸はviolation→unknown→corresponding、全体も全軸の同優先順。case binding/scoped controlの不足は当該実行だけへ戻す候補。findingsはgiven.inputの原位置、裸owner・exact三fieldunique昇順。全結果14field比較、actual_worker/enforcement=false、host fallback許可/共通limit追加/未来結果の事前要求=false。対応は選択phaseのsynthetic内容だけ。postのwhole_nine_control_observation_compared=trueも実全適用ではない。 他制御から参照するsource fieldがnull/unknownなら、その原field（after_tree/observed/data.state/data.terminal_status）のpointerを返す。制御記録自体がnullの場合だけ /controls/<name> を返す。依存型ごとの例外は設けない。"
+        ],
+        "result_fields": [
+          "condition",
+          "selected_phase",
+          "binding_correspondence",
+          "control_correspondence",
+          "content_for_selected_phase_corresponding",
+          "whole_nine_control_observation_compared",
+          "future_results_required_before_execution",
+          "affected_revision_scope",
+          "findings",
+          "fixed_resource_or_timeout_limit_added",
+          "host_fallback_allowed",
+          "actual_worker_invoked",
+          "actual_enforcement_verified",
+          "operation_effect"
+        ],
+        "return_owner": "worker-control-owner"
+      }
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "start_line": 52,
+      "end_line": 54,
+      "exact_quote": "| HELIXSECURITY-L1-007 | 人間は、AI Worker、CLI、Agent、Toolを、許可した隔離の実行環境でだけ動かせる。書き込めるpathの限定、networkの制限、資格情報の遮断、環境変数の最小化、timeout、資源の上限、fileの差分の検査、巻き戻し、結果の回収を最低の条件とする。制約とauthorityはSECURITYが決め、Workerの実行環境がその制約を強制する。Workerは制約を自分で広げない（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)、PR #2149） | §8 | 1.0 | 接続（Worker） |\n| HELIXSECURITY-L1-008 | 人間は、操作（読む、書く、実行、network、install、削除、merge、release、deploy、資格情報の使用、securityの変更）ごとにauthorityを分けられる。「このAgentを使える」から包括的な書込みやdeployの権限を生成せず、影響の大きい操作には、actor、対象、操作、revision、環境、範囲、期限を結びつけた個別のauthorityを求める | §9 | 1.0 | 単体 |\n| HELIXSECURITY-L1-009 | 人間は、authorityの失効、範囲の逸脱、不明な外部の副作用、資格情報の漏洩、異常な通信、実行環境の逸脱を検出したときに、失効と隔離を、OS（新しい割当ての停止）、Workerの実行（実行の停止と、途中の成果物の隔離）、CONNECT（通信の停止）、資格情報（使用の停止）、成果物（accessの停止）へ伝えられる。不明な状態を成功として続けない | §10 | 1.0 | 構成体（SECURITY、OS、Worker、CONNECT） |"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "start_line": 130,
+      "end_line": 138,
+      "exact_quote": "### HELIXSECURITY-L2-007 Worker実行環境への制約適用（接続）\n\n- **受け取るもの**：SECURITYが決めたscope/authority制約とOSのassignment identity、Worker実行環境のcapabilities。\n- **提供するもの**：実行前に適用された制約、結果/証拠の回収状態、停止・rollback・再開可否。\n- **保証すること**：許可された隔離環境だけでWorker/CLI/Agent/Toolを動かす。write path限定、network制限、credential遮断、environment variable最小化、timeout、resource limit、file差分検査、rollback、結果回収を検証対象とする。Workerは制約を自分で広げない。具体のenforcerはWorkerの実行環境でありSECURITYではない。\n- **単独依存**：Concept/Worker実行契約、OS assignment、INFRASTRUCTURE実資源、L2-003/005/006/008。旧Runner/Sandbox actorを復活させない。\n- **検証範囲／版**：制約ごとの要求→Worker実行環境への受渡し→適用証拠の対応。適用不能はhostへfallbackしない。1.0。\n- **失敗時の戻し先**：未適用/未観測/unsupportedは実行停止・unknown。SECURITY方針不足はL1-007、物理enforcement欠落はINFRASTRUCTURE接続の候補へ戻す。\n- **束ねる既存条件**：L1-007、PO §8、Worker統一判断。実装が利用可能であるとは主張しない。"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "start_line": 31,
+      "end_line": 31,
+      "exact_quote": "| HELIXSECURITY-L2-007 | 1.0 | 各制約（write path、network、credential、environment、timeout、resource、diff検査、rollback、result collection）がWorker実行環境へ渡り、適用・観測状態を確認できる。いずれか未適用/unknownなのにhost fallbackで実行、制約をWorkerが自己拡張したら不合格。read-onlyでもwrite禁止の適用と操作対象scopeの実行後の変更なし観測を要する。rollbackだけは変更なしを確認できた場合に限り適用対象外とでき、変更有無がunknownなら成功扱いしない。後掲の9制御fixtureで条件を個別に確認する。 |"
+    },
+    {
+      "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+      "json_pointer": "/canonical_meaning",
+      "source_value": {
+        "planning": "L1",
+        "requirement": "L2",
+        "specification": "L3",
+        "basic_design": "L4",
+        "detail_design": "L5",
+        "function_design": "L6",
+        "function_verification": "L7",
+        "unit_verification": "L8",
+        "integration_verification": "L9",
+        "system_verification": "L10",
+        "acceptance": "L11",
+        "operation_evaluation": "L12"
+      }
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+      "json_pointer": "/outside_kinds",
+      "source_value": [
+        "charter",
+        "concept",
+        "implementation"
+      ]
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-604CADBAF8004788EB15",
+      "role": "旧policy/前後tree/値非表示",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-policy.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "152a7a5806001ae1b2e0215d7cd61db14b7c61cbc4b4b501524bda58622716cf",
+        "start_line": 20,
+        "end_line": 45,
+        "exact_quote": "\n`attestWorkerIsolationPolicy`はadapter-private mapが保持するexact wrapper executionだけを受ける。\ntask classificationは`non_secret`だけを許可し、既存`isSecretLike`をwrapper stdin／argvへ追加適用する。\n許可scopeはrelative exact pathまたは末尾`/`のdirectory prefixへ正規化し、empty／absolute／drive path／NUL／`.`／`..`／\n`.git`／`.helix`／`harness.db`を拒否する。egressは`deny_all`だけで、host allowlistは起動前に拒否する。\n\nbrokerはcapability object identityとwrapper `origin_digest`を再検証し、bubblewrapへ`--unshare-net`を必須付与する。\nprocess終了後、input manifestとscratch post-stateのdigest集合を比較する。scope内変更だけを成功とし、違反時はgeneric reasonだけを返す。\n\n## 2. failure完全集合\n\n| reason code | 到達fixture |\n|---|---|\n| `WORKER_ISOLATION_POLICY_UNRESOLVED` | wrapper／policyの複製、またはorigin不一致 |\n| `WORKER_ISOLATION_SECRET_TASK_DENIED` | secret、unknown、実tokenを含むtask |\n| `WORKER_ISOLATION_EGRESS_UNSUPPORTED` | 1件以上のhost allowlist要求 |\n| `WORKER_ISOLATION_SCOPE_INVALID` | absolute、traversal、authority path、曖昧scope |\n| `WORKER_ISOLATION_SCOPE_VIOLATION` | scope外add/modify/delete、symlink、特殊file、oversize |\n\n## 3. resource・security契約\n\npost-stateは1 file 4 MiB、total 16 MiB、entry 4,096件、depth 64を上限とし、regular fileを`O_NOFOLLOW`でopenした同一fdから読む。\nmtimeやprose flagは判定根拠にせず、path、type、size、content digestで比較する。違反resultへpath、content、secretを含めない。\nnetworkはnamespace denyを実行境界とし、dry-run egress reportやCodex `workspace-write`を代替根拠にしない。\n\n## 4. Design Reality Binding契約"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-13362A81144CD6852A5B",
+      "role": "旧broker/authority/capture/環境上限",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-broker.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "e270bff996249360fdeb29ee4f36e3bf9ab6e27e50a013451f6ece153a5d46d4",
+        "start_line": 20,
+        "end_line": 48,
+        "exact_quote": "\n`attestWorkerIsolationAuthority`はharness authority rootの`config/worker-isolation-runtime-catalog.json`に登録された\nbackend/runtime IDとcontent digestをexact照合し、実file digestも一致するときだけmodule-private capabilityを発行する。\ncapabilityはcanonical authority rootとcatalog digestも封印し、`prepare`対象repoのcanonical rootとexact一致を要求するため、別rootでmintした\ncatalog capabilityを転用できない。backend IDは`bubblewrap`のclosed literalである。空catalogは安全側の初期値であり、未登録runtimeを起動しない。\n`prepare`はLinux、sealed authority、immutable wrapper execution、current admitted descriptor、\nrepo外scratch、regular allowlisted inputを順に検査する。成功時だけbounded byte snapshotを作り、module-private `WeakSet`へlaunch objectを封印する。\n`run`は同一object identityだけをbubblewrapへ渡し、spread copyをspawn前に拒否する。\n\n## 2. failure完全集合\n\n| reason code | 到達fixture |\n|---|---|\n| `WORKER_ISOLATION_PLATFORM_UNSUPPORTED` | `platform=win32` |\n| `WORKER_ISOLATION_BACKEND_UNAVAILABLE` | backend欠落／実行不能 |\n| `WORKER_ISOLATION_WRAPPER_UNADMITTED` | spread複製されたwrapper execution |\n| `WORKER_ISOLATION_ADMISSION_STALE` | registry revision drift／拒否済みdecision |\n| `WORKER_ISOLATION_BOUNDARY_INVALID` | scratchがrepo配下または包含 |\n| `WORKER_ISOLATION_SOURCE_REJECTED` | symlink、`.git`、`.helix`、`harness.db`、非regular/oversize |\n| `WORKER_ISOLATION_RUNTIME_INVALID` | provider binary欠落／実行不能 |\n| `WORKER_ISOLATION_LAUNCH_UNSEALED` | spread複製されたbroker launch |\n\n## 3. resource契約\n\nsourceは`O_NOFOLLOW`で一度だけopenし、`/proc/self/fd`の実体がrepo内か再検証した同一fdからsize上限分だけ読む。\nstageとmanifest digestは同じcaptured bytesから生成し、検査後にpathを再読込しない。1 file 4 MiB、total 16 MiB、\nstdout/stderr 8 MiB、timeout 10分を上限とする。child envは`HOME/LANG/PATH/TMPDIR`だけで、\nwrapper supplied envとparent envを渡さない。`/usr`はread-only、provider executableはexact fileだけread-only、scratchだけread-writeである。\nbackend/runtimeもcatalog一致byteをbroker-owned stagingへ固定してopen FDを保持し、runは`/proc/self/fd/3`をexec、fd 4をread-only bindする。"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A3A83F1432DF43D564F0",
+      "role": "旧policy関数境界",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-isolation-policy.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "1c57cd7da89b007a81b3b7477ef9b6fb13cbfb7af8c21286391086473c871990",
+        "start_line": 20,
+        "end_line": 27,
+        "exact_quote": "- `isWorkerIsolationPolicyCapability(value)`: module-private `WeakSet`にある同一objectだけをtrueにする。\n- `auditWorkerIsolationScope(workspacePath, baseline, writablePaths)`: byte／entry count／depthがboundedなpost-stateを読み、add／modify／deleteのexact setをscopeと照合する。\n- `prepareWorkerIsolationLaunch(request)`: policy capabilityとwrapper `origin_digest`を再検証し、failure時spawn 0にする。\n- `runWorkerIsolationLaunch(launch, spawn?)`: `--unshare-net`を含むsealed argvで実行し、post-state違反時はgeneric failureだけを返す。\n\n`allowed_egress_hosts`はemptyだけを許可する。host許可はbroker-owned proxy／namespace firewall authorityが実装されるまで\n`WORKER_ISOLATION_EGRESS_UNSUPPORTED`で拒否する。scopeはglobを受けず、exact pathまたは末尾`/`のdirectory prefixだけとする。\nFR-05/06のoutput schema、proposal再検証、lifecycle receipt、canonical commitは別contractである。"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5EDA0159C475B1445A9B",
+      "role": "旧broker関数/single-use/例外回収",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-isolation-broker.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "797f7f4660a2bc523febd0cb1325f77b7f61eccb5751864e2c92fbb690a0e932",
+        "start_line": 20,
+        "end_line": 36,
+        "exact_quote": "- `prepareWorkerIsolationLaunch(request)`: immutable wrapper、fresh admission、authority、race-resistant fd capture、manifest digest、sealed launch生成。failure時spawn 0。\n- `runWorkerIsolationLaunch(launch, spawn?)`: sealed identity検査、fixed bubblewrap argv/env、bounded synchronous execution。\n- `isWrapperLaunchExecution(value)`: adapter-private capability mapが保持するexecution objectとの同一性だけをtrueにする。\n\npathはrepo-relative、重複なし、NUL/absolute/`..`/`.git`/`.helix`/`harness.db`なしとし、opened fdの実体を再検証する。\nbackendとprovider binaryはabsolute executable fileに加えcatalog digest exact一致を要求し、captured byteをbroker-owned FDへ固定する。\nWCC-FR-04のnetwork/secret policy fieldは公開しない。\n\n## 起動capabilityの寿命と例外回収\n\n`runWorkerIsolationLaunch`は起動前にsealed launchを一度だけ消費する。同じobjectの再入、\n例外後・終了後の再実行は既存の`WORKER_ISOLATION_LAUNCH_UNSEALED`で拒否し、spawnへ進めない。\n引数構築またはspawnが例外を投げても、finallyでbackend/runtime FDを閉鎖する。\n同finallyの内部WeakMap削除は実装上の衛生措置として維持するが、公開APIから削除自体を\n観測するoracleはない。single-use消費と両FD閉鎖の反例成功を、WeakMap回収の実証に流用しない。\n起動例外は成功receiptへ変換せず呼出元へ伝播する。別の再試行はadmissionを再検証するprepareから新しいlaunchを生成する。\nこれはprocess隔離policyの緩和やproduction callerの接続完了を意味しない。"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E9954F654E58B47A08B8",
+      "role": "旧policy consumer",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-worker-isolation-policy-unit-test-design.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "e02ae67bf03317bf0fb8e98971c79589c6850585a5a1c190335f41968ed8870a",
+        "start_line": 20,
+        "end_line": 31,
+        "exact_quote": "| U-ID | 対象 | 反例と期待結果 | test citation |\n|---|---|---|---|\n| U-WIP-001 | policy封印 | exact wrapperへdeny-all／normalized scopeを束縛 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-002 | secret deny | secret／unknown／実token taskはspawn前拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-003 | identity／egress | copied wrapper、non-empty host allowlistを拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-004 | scope構文 | absolute／traversal／git/state/DBを拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-005 | scope内diff | 許可add／modify／deleteのexact setを返す | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-006 | scope外diff | contentを露出せずgeneric failure | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-007 | post-state resource | symlink／特殊file／oversize／4,096件超／depth 64超を拒否 | `tests/worker-isolation-policy.test.ts` |\n| U-WIP-008 | static mutation fence | network／scope enforcement token欠落をRed | `tests/worker-isolation-policy.test.ts` |\n| U-WIB-010 | broker結線 | `--unshare-net`とpost-run audit、copied policy拒否 | `tests/worker-isolation-broker.test.ts` |\n| U-DRB-015 | mutation reachability | policy failure 5分岐の除去をRed | `tests/design-reality-binding.test.ts` |"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7EB315092F6A83BE8555",
+      "role": "旧broker consumer",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-worker-isolation-broker-unit-test-design.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "a384dd6d72f03dfa6a0489621229804962d659fcaf58e25b4f59607c7cddfae4",
+        "start_line": 20,
+        "end_line": 29,
+        "exact_quote": "|---|---|\n| `U-WIB-001` | repo内scratch拒否 |\n| `U-WIB-002` | symlink/git/state/DB拒否 |\n| `U-WIB-003` | platform/backend拒否 |\n| `U-WIB-004` | wrapper execution copy拒否 |\n| `U-WIB-005` | 上限付きregular byte snapshot |\n| `U-WIB-006` | broker launch copy拒否 |\n| `U-WIB-007` | 実processのrepo/state/DB/credential不可視 |\n| `U-WIB-008` | descriptor admission stale拒否 |\n| `U-WIB-009` | filesystem isolation mutationをRed化 |"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "role": "旧coverageと未成立の非相殺",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+        "whole_file_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "start_line": 135,
+        "end_line": 151,
+        "exact_quote": "Claude Code hook、Codex CLI/IDE hook、Cursor、hosted tool、worker sandboxは別surfaceとして\ncoverage matrixへ登録する。hook非強制surfaceは「hookがある」と扱わず、capability brokerまたは\nsandboxを唯一の実行境界とする。matcher drift、hook trust drift、coverage unknown、sandbox\nunavailableはfail-closeする。\n\ncanonical authorityの失敗をlegacy guardや別scannerのgreenで相殺しない。admissionは次のAND条件を\n満たす場合だけ後続実行へ進む。\n\n```text\nrequirements / policy current\nAND physical target current\nAND provenance bounded\nAND data-sink policy current\nAND approval binding current (必要時)\nAND runtime surface covered\nAND postcondition / rollback / expiry valid\n```"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "authority/assignment/環境の独立束縛、未対応/unknownでhost fallbackしない、前後tree/exact diff/値非表示、設定と実強制の区別、後処理/未完の局所返却。",
+      "change": "旧Linux/bubblewrap/catalog/WeakSet/FD/namespace/allow-prefix/secret task分類/固定4MiB等上限/旧CLI・hook・runtimeを採用しない。現行007の九制御と3phaseの素材比較へ再導出し、実enforcerはWorker環境ownerへ残す。",
+      "reason": "批准F01–F10/N01と現L4/L9の固有素材/phase規則に従う。旧backendの実装済みを現世代資格に転用せず、方式/上限/追加gateを推測新設しない。"
+    }
+  ],
+  "failure_basis": {
+    "source": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "whole_file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "start_line": 65,
+      "end_line": 101,
+      "exact_quote": "| ID | severity | 弱点 | 観測根拠 | 要件化 |\n|---|---|---|---|---|\n| UTW-001 | Critical | L0〜L14とBunがsource全体のcurrent authorityとして深く埋め込まれている | Core Reads、README、package、CI、32 active Bun reference files | UTH-FR-002〜004 |\n| UTW-002 | Critical | prose/CURRENT handoverがcontinuation正本で、event-first DB projectionと競合する | AGENTS/CLAUDEのSession Start、`.ut-tdd/handover` | UTH-FR-006 |\n| UTW-003 | Critical | repository hookで覆えないhosted tool surfaceが手続き依存 | 対象AGENTSのscope boundary | UTH-FR-008 |\n| UTW-004 | Critical | live policyと文書policyが乖離し得る | ruleset、branch policy、既存UT-GH-03〜05 | UTH-FR-017 |\n| UTW-005 | Critical | PR trace/review evidenceが最新HEAD・merge-baseへ常時再束縛されない | 既存UT-GH-06/07/12 | UTH-FR-015 |\n| UTW-006 | Critical | GitHub signal→Issue→PLAN→PR→CI→merge→memoryが単一exactly-once episodeで閉じない | execution episode branchがmain未統合、UT-GH-09/10/13 | UTH-FR-018 |\n| UTW-007 | Critical | secret/PII scanの一部がwarn-onlyまたはhook依存で、CI全push blob再検証が不足 | `secret-scan-diff`既定warn、UT-GH-15 | UTH-FR-020 |\n| UTW-008 | High | 素のtest入口と正規snapshot runnerの意味が異なり、37 fail/4 errorsになる | 実測 | UTH-NFR-001、UTH-FR-010 |\n| UTW-009 | High | full regression/doctorが重く、timeoutと長いself-heal loopを生む | 220.54秒、doctor test 214.17秒 | UTH-NFR-002、UTH-FR-011 |\n| UTW-010 | High | Bun runtime/CIがLinux・Windows双方の必須前提 | package engines、workflow | UTH-FR-003、UTH-FR-012 |\n| UTW-011 | High | macOS legがなく、Windowsはfast/toolchain scopeのみ | workflow 2 legs | UTH-FR-012 |\n| UTW-012 | High | tracked runtime stateが207 filesあり、source/evidence/generated state境界が太い | `.ut-tdd` tracked inventory | UTH-FR-007 |\n| UTW-013 | High | fail-open/warn-onlyが安全性、観測性、可用性で統一分類されていない | session log、handover、update、scan、graphの複数方針 | UTH-FR-009 |\n| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n| UTW-015 | High | branch lifecycleが閉じず、main未包含6 heads、最大54 commits aheadが残る | mirror ref inventory | UTH-FR-013、UTH-FR-014 |\n| UTW-016 | High | tag 0でrelease provenanceとsource snapshot authorityが弱い | ref inventory | UTH-FR-027 |\n| UTW-017 | High | Issue Formsのlabel bootstrap/inbound dogfoodが未閉包 | 既存UT-GH-08/09 | UTH-FR-016 |\n| UTW-018 | High | merge後branch/state/memory cleanupがtransactionalでない | UT-GH-02/13/14 | UTH-FR-018、UTH-FR-019 |\n| UTW-019 | High | subagent/agent spawn guardはruntime surface差分に追随し続ける必要がある | 対象rulesの旧「未配線」履歴と現guard test | UTH-FR-008 |\n| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |\n| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |\n| UTW-022 | High | external MCP/tool/pluginの実行、権限、supply-chain検証がprofile設計より後追い | backlog IMP-120〜124 | UTH-FR-024 |\n| UTW-023 | High | improvement backlogにobserved/triaged/verifiedが92件あり、status名と実装実体が一致しない行がある | backlog status集計 | UTH-FR-025 |\n| UTW-024 | High | source全refのatom化・採否・要件traceがcurrent receiptとして閉じていない | HELIX source ledgerのpredecessor-ut BLOCKED | UTH-FR-001、UTH-FR-023 |\n| UTW-025 | Medium | docs 1,045、Markdown 1,311で正本・compatibility・archiveの認識負荷が高い | main inventory | UTH-NFR-003、UTH-FR-005 |\n| UTW-026 | Medium | CLI、doctor、projectionのmonolithが変更影響とtargeted verificationを拡大する | long-running suites、既存refactor carry | UTH-FR-011、UTH-NFR-004 |\n| UTW-027 | Medium | wrapperがcloneを重ね、disk/process/resource予算が明示的でない | snapshot runner実測 | UTH-NFR-002、UTH-FR-026 |\n| UTW-028 | Medium | Node SQLite experimental warningが大量に出てsignal/noiseを悪化させる | 正規test output | UTH-NFR-005 |\n| UTW-029 | Medium | consumer setup、source repo、clean distributionで検証集合が分岐しやすい | source/Pack workflow分離 | UTH-FR-027 |\n| UTW-030 | Medium | update-checkなど外部可用性をfail-openにする機能にfreshness/decision impactの統一receiptがない | update advisory設計 | UTH-FR-028 |\n| UTW-031 | Medium | manual approvalの対象、snapshot binding、expiry、reapproval triggerが機能ごとに不均一 | setup/release/cutover/security docs | UTH-FR-029 |\n| UTW-032 | Medium | self-improvementがfinding数の消化へ寄り、before/after metricと再発率で閉じない | backlog、quality audit surface | UTH-FR-025、UTH-FR-030 |\n| UTW-033 | High | freeze checkpointとreopen impact再検証がmain未統合で、確定済み成果物の再開境界が弱い | `work/freeze-checkpoint-plans`固有PLAN群 | UTH-FR-031 |\n| UTW-034 | Critical | PLAN revisionのCAS、provenance、replay、rollbackを束ねるtransactional authoringがmain未統合 | `work/recovery-plan-revision-authoring`の25固有commit | UTH-FR-032 |\n| UTW-035 | High | specialist agent registryのschema、sync、drift、guard digest、検証team招集が設計branchに残る | `work/l6-81-agent-registry-design` | UTH-FR-033 |"
+    },
+    "ids": [
+      "UTW-013",
+      "UTW-019",
+      "UTW-020",
+      "UTW-021",
+      "UTW-022"
+    ],
+    "meaning": "surface差のguard、partial failureの診断粗さ、自己申告完成、外部実行権限後追いを、制御/元source/phase/局所失敗へ分けて保持する。失敗から新gate/製品要求を生成しない。"
+  },
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430,
+    "meaning_closure": "unproven"
+  },
+  "implementation_readiness": "not_ready",
+  "document_id": "HELIXSECURITY-L8-007",
+  "layer": "L8",
+  "pair": "L5",
+  "verification_scope": "全11pairをdeclared型/phase/局所分岐へ結ぶ独立raw設計素材。原421の全入力/期待を複写せず実TDD/実oracle凍結を主張しない。",
+  "local_rule_basis": [
+    {
+      "id": "S01",
+      "source_pointer": "/fixture_contract/algorithm/0",
+      "source_text": "固定shapeを対象とする。known bindingは非空文字列、unknownはnull/空。request/policy/assignment/environment各七fieldをindependent context expectedへ比較し、各制御のbindingはrequestへ比較。片側unknownは当該位置unresolved、両側known相反だけconflict。worker自己拡張/host fallbackはtrue違反・非boolean unknown。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S02",
+      "source_pointer": "/fixture_contract/algorithm/1",
+      "source_text": "各制御missingはその位置unknown。source_refと独立control_source_refsを同じknown比較。handoff/appliedは全phase、observedはrunの先行六制御とpost全九、collectedはpost全九のみ。state=correspondingは素材対応、violationは違反、それ以外はunknown。pre/runで将来観測を要求しない。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S03",
+      "source_pointer": "/fixture_contract/algorithm/2",
+      "source_text": "preはcontrol dataを評価しない。runはwrite/network/credential/environment/timeout/resourceのdataだけ、postは全data。known setは重複のない非空文字列list、treeは非空文字列key/digest値dict（empty tree可）。nullは未観測。diffはbefore/afterのkey和集合の値相反/追加/削除を昇順で再導出。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S04",
+      "source_pointer": "/fixture_contract/algorithm/3",
+      "source_text": "write: declared allowed_pathsをcontextの独立exact setへ比較。beforeを独立before treeへ比較。reported_diffを再導出diffへset照合し、diffがallowedを越えたら違反。read_onlyは実観測素材のbefore=afterとwrite_attempt=blockedの両方が必要、succeededは違反・他unknown。writableは許可範囲内diff。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S05",
+      "source_pointer": "/fixture_contract/algorithm/4",
+      "source_text": "networkはこのfixtureのdeny_allだけを検証し、connection_established/host_fallback=falseを要求する。credentialはprovider_store_reached/raw_value_exposed/host_credential_fallback=false、environmentはallowed_names/passed_namesを独立allow setと完全一致させhost_all/credential_bearing継承falseを要求。boolean以外はunknown、反対は違反。raw値を扱わない。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S06",
+      "source_pointer": "/fixture_contract/algorithm/5",
+      "source_text": "timeout/resourceは独立context descriptorの非負integerとconfigured値を両側既知でexact比較。秒/CPU/メモリ単位は固定fixtureのみ。ended_at>=timeoutならdeadline_reached=trueかつterminal_status=terminated/interrupted、期限前はknown terminalであること。late_side_effect=false。resource limit_reached=trueならterminated/interrupted、falseならknown terminal、未知はunknown。self_expanded=false。90/1/256を共通limitにしない。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S07",
+      "source_pointer": "/fixture_contract/algorithm/6",
+      "source_text": "diff: 独立before、write観測afterとの対応、実post treeからのdiffとreported_diff、独立allowed setとの包含を別照合。raw_secret_copied=false。値を証跡へ複写せずdigest素材だけ。 独立allowed setが未観測ならdiff_allow_set_unresolvedを同context位置へ返し、他軸unknownの有無にかかわらずdiff自身をunknownにする。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S08",
+      "source_pointer": "/fixture_contract/algorithm/7",
+      "source_text": "rollback: afterをdiff観測afterへ、target_scopeをrequest scopeへ照合。before/after未観測ならunknown。state=not_applicableは観測before=afterだけ、変更ありN/Aは違反。restoredは復旧treeを独立beforeへ比較。partial/unavailableは未完違反、planned/その他はunknown。必要な実復旧条件と実状態は正式bindingで閉じる。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S09",
+      "source_pointer": "/fixture_contract/algorithm/8",
+      "source_text": "result: case_refを独立caseへ、reported_terminal_statusを原terminal_statusへ比較。known terminalはsuccess/failed/interrupted/terminated。constraint_states全九を各原observed状態、diff_stateを原diff observed、rollback_stateを原rollback stateへ比較、片側null unknown。raw_value_exposed/stdout_only=false。receipt数/自己申告から全適用を作らない。 resultのruntime_terminal_statusは原timeout/resourceのprocess terminal素材へ両方照合する。実行後postcondition失敗のcase terminal=failedはruntime successと別でよいが、runtime failed/interrupted/terminatedをcase successにしない。runtime未知は未確認を残す。 terminal比較ではsuccess/failed/interrupted/terminatedだけを既知とする。null/unknown/その他enumを推測でknown相反へ変えず、原位置のunknownを保持する。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    },
+    {
+      "id": "S10",
+      "source_pointer": "/fixture_contract/algorithm/9",
+      "source_text": "各軸はviolation→unknown→corresponding、全体も全軸の同優先順。case binding/scoped controlの不足は当該実行だけへ戻す候補。findingsはgiven.inputの原位置、裸owner・exact三fieldunique昇順。全結果14field比較、actual_worker/enforcement=false、host fallback許可/共通limit追加/未来結果の事前要求=false。対応は選択phaseのsynthetic内容だけ。postのwhole_nine_control_observation_compared=trueも実全適用ではない。 他制御から参照するsource fieldがnull/unknownなら、その原field（after_tree/observed/data.state/data.terminal_status）のpointerを返す。制御記録自体がnullの場合だけ /controls/<name> を返す。依存型ごとの例外は設けない。",
+      "authority": "既存説明への詳細trace名。新規規則ではない。"
+    }
+  ],
+  "cases": [
+    {
+      "id": "SEC007-L8-PHASE-pre",
+      "function_ref": "HELIXSECURITY-L5-007-plan_control_phase",
+      "raw_utf8": "{\"phase\":\"pre\"}",
+      "raw_sha256": "cd4e0ce2aab7b154dd65e03451391b40e9cecf0b0c979a8955885d63278a73db",
+      "expected_material": {
+        "data_controls": [],
+        "observed_controls": [],
+        "collected_controls": [],
+        "future_results_required_before_execution": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S03"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-PHASE-run",
+      "function_ref": "HELIXSECURITY-L5-007-plan_control_phase",
+      "raw_utf8": "{\"phase\":\"run\"}",
+      "raw_sha256": "534cfe152fbe76f1a215491eef3d6b5d6fc067104e26c98dc5d49a37ff69099e",
+      "expected_material": {
+        "data_controls": [
+          "write_path",
+          "network",
+          "credential",
+          "environment",
+          "timeout",
+          "resource"
+        ],
+        "observed_controls": [
+          "write_path",
+          "network",
+          "credential",
+          "environment",
+          "timeout",
+          "resource"
+        ],
+        "collected_controls": [],
+        "future_results_required_before_execution": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S03"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-PHASE-post",
+      "function_ref": "HELIXSECURITY-L5-007-plan_control_phase",
+      "raw_utf8": "{\"phase\":\"post\"}",
+      "raw_sha256": "2b0d06158363b0dae13a330e90afdcc5b2590434d2ff806a9587eb8e58a4b802",
+      "expected_material": {
+        "data_controls": [
+          "write_path",
+          "network",
+          "credential",
+          "environment",
+          "timeout",
+          "resource",
+          "diff_inspection",
+          "rollback",
+          "result_collection"
+        ],
+        "observed_controls": [
+          "write_path",
+          "network",
+          "credential",
+          "environment",
+          "timeout",
+          "resource",
+          "diff_inspection",
+          "rollback",
+          "result_collection"
+        ],
+        "collected_controls": [
+          "write_path",
+          "network",
+          "credential",
+          "environment",
+          "timeout",
+          "resource",
+          "diff_inspection",
+          "rollback",
+          "result_collection"
+        ],
+        "future_results_required_before_execution": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S03"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-MISSING-scope",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"request_binding\":{\"revision\":\"SYN-revision\",\"assignment\":\"SYN-assignment\",\"policy\":\"SYN-policy\",\"environment\":\"SYN-environment\",\"backend\":\"SYN-backend\",\"authority\":\"SYN-authority\"},\"context\":{\"expected_binding\":{\"scope\":\"SYN-scope\",\"revision\":\"SYN-revision\",\"assignment\":\"SYN-assignment\",\"policy\":\"SYN-policy\",\"environment\":\"SYN-environment\",\"backend\":\"SYN-backend\",\"authority\":\"SYN-authority\"}}}",
+      "raw_sha256": "468124570ae36af3cc872b0f3fc6875c9bd1917a1403930fd9c77e6426d367a2",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_unresolved",
+            "pointer": "/request_binding/scope",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "original_presence": "absent"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-CONFLICT-scope",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"axis\":\"scope\",\"actual\":\"SYN-OLD\",\"expected\":\"SYN-NEW\"}",
+      "raw_sha256": "6da46dff206f787d2c9d8312bc9fe97d4f1ccff1e5a99d494a4d5b7bbfda27c7",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_conflict",
+            "pointer": "/request_binding/scope",
+            "return_owner": "worker-control-owner"
+          }
+        ]
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-MISSING-revision",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"request_binding\":{\"scope\":\"SYN-scope\",\"assignment\":\"SYN-assignment\",\"policy\":\"SYN-policy\",\"environment\":\"SYN-environment\",\"backend\":\"SYN-backend\",\"authority\":\"SYN-authority\"},\"context\":{\"expected_binding\":{\"scope\":\"SYN-scope\",\"revision\":\"SYN-revision\",\"assignment\":\"SYN-assignment\",\"policy\":\"SYN-policy\",\"environment\":\"SYN-environment\",\"backend\":\"SYN-backend\",\"authority\":\"SYN-authority\"}}}",
+      "raw_sha256": "77f7bd6f6324150d9bfb0d9c27b9920cee956670c42832acfd4a1d0e713e0a49",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_unresolved",
+            "pointer": "/request_binding/revision",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "original_presence": "absent"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-CONFLICT-revision",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"axis\":\"revision\",\"actual\":\"SYN-OLD\",\"expected\":\"SYN-NEW\"}",
+      "raw_sha256": "1efeda307cb87391a3143155beb65b0dc67959538485bde42db193d4ff065bb3",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_conflict",
+            "pointer": "/request_binding/revision",
+            "return_owner": "worker-control-owner"
+          }
+        ]
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-MISSING-assignment",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"request_binding\":{\"scope\":\"SYN-scope\",\"revision\":\"SYN-revision\",\"policy\":\"SYN-policy\",\"environment\":\"SYN-environment\",\"backend\":\"SYN-backend\",\"authority\":\"SYN-authority\"},\"context\":{\"expected_binding\":{\"scope\":\"SYN-scope\",\"revision\":\"SYN-revision\",\"assignment\":\"SYN-assignment\",\"policy\":\"SYN-policy\",\"environment\":\"SYN-environment\",\"backend\":\"SYN-backend\",\"authority\":\"SYN-authority\"}}}",
+      "raw_sha256": "97e9d048e07ea69af7de6032cafbbe9bbdacf5854acf750aee0c7e04202f09dc",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_unresolved",
+            "pointer": "/request_binding/assignment",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "original_presence": "absent"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-CONFLICT-assignment",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"axis\":\"assignment\",\"actual\":\"SYN-OLD\",\"expected\":\"SYN-NEW\"}",
+      "raw_sha256": "f3ba7a09273886f378ee15d3bff15eecbf0723f9fc85ac6448a95ec100090604",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_conflict",
+            "pointer": "/request_binding/assignment",
+            "return_owner": "worker-control-owner"
+          }
+        ]
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-MISSING-policy",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"request_binding\":{\"scope\":\"SYN-scope\",\"revision\":\"SYN-revision\",\"assignment\":\"SYN-assignment\",\"environment\":\"SYN-environment\",\"backend\":\"SYN-backend\",\"authority\":\"SYN-authority\"},\"context\":{\"expected_binding\":{\"scope\":\"SYN-scope\",\"revision\":\"SYN-revision\",\"assignment\":\"SYN-assignment\",\"policy\":\"SYN-policy\",\"environment\":\"SYN-environment\",\"backend\":\"SYN-backend\",\"authority\":\"SYN-authority\"}}}",
+      "raw_sha256": "68381c49ee3dea1054277efb74159a295a2b5935d8a29b76de47f347d575db04",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_unresolved",
+            "pointer": "/request_binding/policy",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "original_presence": "absent"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-CONFLICT-policy",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"axis\":\"policy\",\"actual\":\"SYN-OLD\",\"expected\":\"SYN-NEW\"}",
+      "raw_sha256": "9ac629dc32373e33e6fef6ce79cbbf77e38ef3cb5628611b59f5290a9dc87363",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_conflict",
+            "pointer": "/request_binding/policy",
+            "return_owner": "worker-control-owner"
+          }
+        ]
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-MISSING-environment",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"request_binding\":{\"scope\":\"SYN-scope\",\"revision\":\"SYN-revision\",\"assignment\":\"SYN-assignment\",\"policy\":\"SYN-policy\",\"backend\":\"SYN-backend\",\"authority\":\"SYN-authority\"},\"context\":{\"expected_binding\":{\"scope\":\"SYN-scope\",\"revision\":\"SYN-revision\",\"assignment\":\"SYN-assignment\",\"policy\":\"SYN-policy\",\"environment\":\"SYN-environment\",\"backend\":\"SYN-backend\",\"authority\":\"SYN-authority\"}}}",
+      "raw_sha256": "80d1c1fcc8deb858ec2fb2972ba548810a85f1e4b7240d457db9368bc5c1a0c7",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_unresolved",
+            "pointer": "/request_binding/environment",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "original_presence": "absent"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-CONFLICT-environment",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"axis\":\"environment\",\"actual\":\"SYN-OLD\",\"expected\":\"SYN-NEW\"}",
+      "raw_sha256": "bb07d51d9270253fcfa81a5fd36414c90ad98f93600f02f649f2231593b8c828",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_conflict",
+            "pointer": "/request_binding/environment",
+            "return_owner": "worker-control-owner"
+          }
+        ]
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-MISSING-backend",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"request_binding\":{\"scope\":\"SYN-scope\",\"revision\":\"SYN-revision\",\"assignment\":\"SYN-assignment\",\"policy\":\"SYN-policy\",\"environment\":\"SYN-environment\",\"authority\":\"SYN-authority\"},\"context\":{\"expected_binding\":{\"scope\":\"SYN-scope\",\"revision\":\"SYN-revision\",\"assignment\":\"SYN-assignment\",\"policy\":\"SYN-policy\",\"environment\":\"SYN-environment\",\"backend\":\"SYN-backend\",\"authority\":\"SYN-authority\"}}}",
+      "raw_sha256": "aa79774a65a6ac955579f7c35894d96ff06c995ea5f592468d1bee7b823bc7b9",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_unresolved",
+            "pointer": "/request_binding/backend",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "original_presence": "absent"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-CONFLICT-backend",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"axis\":\"backend\",\"actual\":\"SYN-OLD\",\"expected\":\"SYN-NEW\"}",
+      "raw_sha256": "4673fe297fa88a4aa166146083b78613027d276676e9df929d1d7a3995042741",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_conflict",
+            "pointer": "/request_binding/backend",
+            "return_owner": "worker-control-owner"
+          }
+        ]
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-MISSING-authority",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"request_binding\":{\"scope\":\"SYN-scope\",\"revision\":\"SYN-revision\",\"assignment\":\"SYN-assignment\",\"policy\":\"SYN-policy\",\"environment\":\"SYN-environment\",\"backend\":\"SYN-backend\"},\"context\":{\"expected_binding\":{\"scope\":\"SYN-scope\",\"revision\":\"SYN-revision\",\"assignment\":\"SYN-assignment\",\"policy\":\"SYN-policy\",\"environment\":\"SYN-environment\",\"backend\":\"SYN-backend\",\"authority\":\"SYN-authority\"}}}",
+      "raw_sha256": "c1835be84427b5695eb715ba7493656ea3b2477291178d8f3adf24c9aeed7403",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_unresolved",
+            "pointer": "/request_binding/authority",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "original_presence": "absent"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-BINDING-CONFLICT-authority",
+      "function_ref": "HELIXSECURITY-L5-007-compare_execution_binding",
+      "raw_utf8": "{\"axis\":\"authority\",\"actual\":\"SYN-OLD\",\"expected\":\"SYN-NEW\"}",
+      "raw_sha256": "13f5ce9e35c0dd91adcacf972da89bd47d46a2bb007312c268798ed9710363e4",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "binding_conflict",
+            "pointer": "/request_binding/authority",
+            "return_owner": "worker-control-owner"
+          }
+        ]
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-CONTROL-MISSING-write_path",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"controls\":{\"network\":{},\"credential\":{},\"environment\":{},\"timeout\":{},\"resource\":{},\"diff_inspection\":{},\"rollback\":{},\"result_collection\":{}}}",
+      "raw_sha256": "eb69d2b2123d636a7041bd23fe47ab2b3f11e9063c1b3beaed90f398cab59e57",
+      "expected_material": {
+        "control": "write_path",
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_missing",
+            "pointer": "/controls/write_path",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "other_controls_invalidated": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F02",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F02",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-STAGE-UNKNOWN-write_path",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"write_path\",\"observed\":null}",
+      "raw_sha256": "7b8ed1508603d79e9648fb5e7cfb4a8e6495e386d262156941029fb22f36208b",
+      "expected_material": {
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_stage_unresolved",
+            "pointer": "/controls/write_path/observed",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F02",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F02",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-CONTROL-MISSING-network",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"controls\":{\"write_path\":{},\"credential\":{},\"environment\":{},\"timeout\":{},\"resource\":{},\"diff_inspection\":{},\"rollback\":{},\"result_collection\":{}}}",
+      "raw_sha256": "e727bd017fc4ef644d659fc21923f4920817af2978e305802bd09261f5d212c0",
+      "expected_material": {
+        "control": "network",
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_missing",
+            "pointer": "/controls/network",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "other_controls_invalidated": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F03",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F03",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-STAGE-UNKNOWN-network",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"network\",\"observed\":null}",
+      "raw_sha256": "88ec117371d844ee120c98a2a9f824cdd2ed31d65b2aaed30fada29d9fec30a6",
+      "expected_material": {
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_stage_unresolved",
+            "pointer": "/controls/network/observed",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F03",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F03",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-CONTROL-MISSING-credential",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"controls\":{\"write_path\":{},\"network\":{},\"environment\":{},\"timeout\":{},\"resource\":{},\"diff_inspection\":{},\"rollback\":{},\"result_collection\":{}}}",
+      "raw_sha256": "40e66dfb5c185710b1fb0843ad1b6b25ad359f801d88eb199be4bcf8d0f486dc",
+      "expected_material": {
+        "control": "credential",
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_missing",
+            "pointer": "/controls/credential",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "other_controls_invalidated": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F04",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F04",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-STAGE-UNKNOWN-credential",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"credential\",\"observed\":null}",
+      "raw_sha256": "e9e766b0c3a714c91fbc913c66017749456c895dc44dcb553dc92e8fcb3b4833",
+      "expected_material": {
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_stage_unresolved",
+            "pointer": "/controls/credential/observed",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F04",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F04",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-CONTROL-MISSING-environment",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"controls\":{\"write_path\":{},\"network\":{},\"credential\":{},\"timeout\":{},\"resource\":{},\"diff_inspection\":{},\"rollback\":{},\"result_collection\":{}}}",
+      "raw_sha256": "8b383273f5a47dcb8a76562d6b7e77775e04657c04da6a3940c49253a95e9f8d",
+      "expected_material": {
+        "control": "environment",
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_missing",
+            "pointer": "/controls/environment",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "other_controls_invalidated": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F05",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F05",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-STAGE-UNKNOWN-environment",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"environment\",\"observed\":null}",
+      "raw_sha256": "78587e78553145b17c3e8123752f2008dd4d2f20ea2fe7ad909c46a530d75bc9",
+      "expected_material": {
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_stage_unresolved",
+            "pointer": "/controls/environment/observed",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F05",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F05",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-CONTROL-MISSING-timeout",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"controls\":{\"write_path\":{},\"network\":{},\"credential\":{},\"environment\":{},\"resource\":{},\"diff_inspection\":{},\"rollback\":{},\"result_collection\":{}}}",
+      "raw_sha256": "80fea0c5ab88a4f3672e48172e8cccb93309f35256c804417de2dd44bbc84667",
+      "expected_material": {
+        "control": "timeout",
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_missing",
+            "pointer": "/controls/timeout",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "other_controls_invalidated": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F06",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F06",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-STAGE-UNKNOWN-timeout",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"timeout\",\"observed\":null}",
+      "raw_sha256": "42d5240b886b586ca3f12616faf00c5b372c6cbb7f93b8079c6a467e2f37d012",
+      "expected_material": {
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_stage_unresolved",
+            "pointer": "/controls/timeout/observed",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F06",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F06",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-CONTROL-MISSING-resource",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"controls\":{\"write_path\":{},\"network\":{},\"credential\":{},\"environment\":{},\"timeout\":{},\"diff_inspection\":{},\"rollback\":{},\"result_collection\":{}}}",
+      "raw_sha256": "bb51dfdb8ecd56d543acd86d2f3ea1003255fcb4bbe79c49bad4e19c37ea7f42",
+      "expected_material": {
+        "control": "resource",
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_missing",
+            "pointer": "/controls/resource",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "other_controls_invalidated": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F07",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F07",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-STAGE-UNKNOWN-resource",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"resource\",\"observed\":null}",
+      "raw_sha256": "64a80e8341a4ba89390aa20d152a008e8f78c5c50d4b14d0b2970c74c10073ef",
+      "expected_material": {
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_stage_unresolved",
+            "pointer": "/controls/resource/observed",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F07",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F07",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-CONTROL-MISSING-diff_inspection",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"controls\":{\"write_path\":{},\"network\":{},\"credential\":{},\"environment\":{},\"timeout\":{},\"resource\":{},\"rollback\":{},\"result_collection\":{}}}",
+      "raw_sha256": "9a4cb927d0fba9b600d03d147b614140fdc745b480a3e42c08808a9a3a3a2d8f",
+      "expected_material": {
+        "control": "diff_inspection",
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_missing",
+            "pointer": "/controls/diff_inspection",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "other_controls_invalidated": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F08",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F08",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-STAGE-UNKNOWN-diff_inspection",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"diff_inspection\",\"observed\":null}",
+      "raw_sha256": "de6d3d0ddb099871bc436ed37d123a4c4f15aa8b3c89222cb93ff75ea7c4a9e7",
+      "expected_material": {
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_stage_unresolved",
+            "pointer": "/controls/diff_inspection/observed",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F08",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F08",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-CONTROL-MISSING-rollback",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"controls\":{\"write_path\":{},\"network\":{},\"credential\":{},\"environment\":{},\"timeout\":{},\"resource\":{},\"diff_inspection\":{},\"result_collection\":{}}}",
+      "raw_sha256": "3521ce139ef9c306460d5fee30872384a361a0dd4da97c07419243776546813d",
+      "expected_material": {
+        "control": "rollback",
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_missing",
+            "pointer": "/controls/rollback",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "other_controls_invalidated": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F09",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F09",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-STAGE-UNKNOWN-rollback",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"rollback\",\"observed\":null}",
+      "raw_sha256": "67fa333de0680af906fac4f739af1e09f0826e7da881cad08b401804c0cd1df9",
+      "expected_material": {
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_stage_unresolved",
+            "pointer": "/controls/rollback/observed",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F09",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F09",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-CONTROL-MISSING-result_collection",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"controls\":{\"write_path\":{},\"network\":{},\"credential\":{},\"environment\":{},\"timeout\":{},\"resource\":{},\"diff_inspection\":{},\"rollback\":{}}}",
+      "raw_sha256": "54ec4126ff309b81ce52300c0902986001cb8208dc9f297042e6e67edc430d0e",
+      "expected_material": {
+        "control": "result_collection",
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_missing",
+            "pointer": "/controls/result_collection",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "other_controls_invalidated": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F10",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F10",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-STAGE-UNKNOWN-result_collection",
+      "function_ref": "HELIXSECURITY-L5-007-compare_control_stages",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"result_collection\",\"observed\":null}",
+      "raw_sha256": "c3acf26b17a64f83397d93ccb56a3ff25d029bee6d27bc1f582a817f6d3b7eef",
+      "expected_material": {
+        "grade": "unknown",
+        "required_findings": [
+          {
+            "code": "control_stage_unresolved",
+            "pointer": "/controls/result_collection/observed",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F10",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F10",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-TREE-DIFF",
+      "function_ref": "HELIXSECURITY-L5-007-derive_tree_diff",
+      "raw_utf8": "{\"before\":{\"A\":\"d1\",\"DELETE\":\"d2\"},\"after\":{\"A\":\"d3\",\"ADD\":\"d4\"}}",
+      "raw_sha256": "7f8325bc586ba5fe18b9cfe57f3181bf8e4c00f7d10a782cd2962556fcd0a1e1",
+      "expected_material": {
+        "computed": true,
+        "changed_keys": [
+          "A",
+          "ADD",
+          "DELETE"
+        ]
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S03"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F02",
+          "HELIXSECURITY-L3-007-F08",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F02",
+          "HELIXSECURITY-L10-007-F08",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-TREE-UNKNOWN",
+      "function_ref": "HELIXSECURITY-L5-007-derive_tree_diff",
+      "raw_utf8": "{\"before\":null,\"after\":{}}",
+      "raw_sha256": "dde4b02cf7bf77bf65388c14ddb1eff96f193ccfd7f4e0d5549bb2a438e356d0",
+      "expected_material": {
+        "computed": false,
+        "changed_keys": null,
+        "unknown_not_empty": true
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S03"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F02",
+          "HELIXSECURITY-L3-007-F08",
+          "HELIXSECURITY-L3-007-F09",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F02",
+          "HELIXSECURITY-L10-007-F08",
+          "HELIXSECURITY-L10-007-F09",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-WRITE-READONLY-NORMAL",
+      "function_ref": "HELIXSECURITY-L5-007-compare_write_path",
+      "raw_utf8": "{\"before\":{\"A\":\"d1\"},\"after\":{\"A\":\"d1\"},\"allowed_paths\":[],\"write_attempt\":\"blocked\",\"mode\":\"read_only\"}",
+      "raw_sha256": "0d6185bd37948d8fd0b273cf26025c4199a5d6821cd06403d1979cffde6fd92f",
+      "expected_material": {
+        "local_write_grade": "corresponding",
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F02"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F02"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-WRITE-READONLY-CHANGED",
+      "function_ref": "HELIXSECURITY-L5-007-compare_write_path",
+      "raw_utf8": "{\"before\":{\"A\":\"d1\"},\"after\":{\"A\":\"d2\"},\"allowed_paths\":[],\"write_attempt\":\"blocked\",\"mode\":\"read_only\"}",
+      "raw_sha256": "2cd4ff7ca29b4344815ac193fb5cea9c3d7a518e90f8600fb907c44699425794",
+      "expected_material": {
+        "required_codes": [
+          "read_only_state_changed",
+          "write_outside_exact_set"
+        ],
+        "local_write_grade": "violation"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F02",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F02",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-WRITE-ATTEMPT-UNKNOWN",
+      "function_ref": "HELIXSECURITY-L5-007-compare_write_path",
+      "raw_utf8": "{\"before\":{},\"after\":{},\"write_attempt\":null,\"mode\":\"read_only\"}",
+      "raw_sha256": "0d0c06e667ed0c5e06dcd0a55aafc15580bf5719208f0a2c371410a348330c92",
+      "expected_material": {
+        "required_codes": [
+          "read_only_write_unresolved"
+        ],
+        "label_alone_sufficient": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F02"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F02"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-NETWORK-FALSE",
+      "function_ref": "HELIXSECURITY-L5-007-compare_network",
+      "raw_utf8": "{\"connection_established\":false}",
+      "raw_sha256": "49850e945d7bf08b3c3433aeb598275a418861956dd32d9fbc90247cc378635a",
+      "expected_material": {
+        "local_boolean_grade": "corresponding",
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F03"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-NETWORK-TRUE",
+      "function_ref": "HELIXSECURITY-L5-007-compare_network",
+      "raw_utf8": "{\"connection_established\":true}",
+      "raw_sha256": "ab141ed34fc89e3ef62bb1b6bc0e05f81400ff6e2b03e39acf8a99f02234d0c2",
+      "expected_material": {
+        "local_boolean_grade": "violation",
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F03",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F03",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-NETWORK-NULL",
+      "function_ref": "HELIXSECURITY-L5-007-compare_network",
+      "raw_utf8": "{\"connection_established\":null}",
+      "raw_sha256": "b46debc75ee797c6d84e542ceb4ed4ad94e0969aaceaaeb9a221a82ae3b3e928",
+      "expected_material": {
+        "local_boolean_grade": "unknown",
+        "original_presence": "supplied(null)"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F03"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-CREDENTIAL-FALSE",
+      "function_ref": "HELIXSECURITY-L5-007-compare_credential",
+      "raw_utf8": "{\"provider_store_reached\":false}",
+      "raw_sha256": "943c97c90fec65d6afe462b0a78832c989b6b12f25d4bea0a16e3d6a17cbf6e4",
+      "expected_material": {
+        "local_boolean_grade": "corresponding",
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F04"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F04"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-CREDENTIAL-TRUE",
+      "function_ref": "HELIXSECURITY-L5-007-compare_credential",
+      "raw_utf8": "{\"provider_store_reached\":true}",
+      "raw_sha256": "3f48c67cc1f3f8c36f845ae20ef06daf659a44746cbfe4e9e97aaeb6362bbc39",
+      "expected_material": {
+        "local_boolean_grade": "violation",
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F04",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F04",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-CREDENTIAL-NULL",
+      "function_ref": "HELIXSECURITY-L5-007-compare_credential",
+      "raw_utf8": "{\"provider_store_reached\":null}",
+      "raw_sha256": "6480ccb7f7b8db6fccf989d49fc6e806742f87466a786c9f116c58b8a0f44f8b",
+      "expected_material": {
+        "local_boolean_grade": "unknown",
+        "original_presence": "supplied(null)"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F04"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F04"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-ENVIRONMENT-FALSE",
+      "function_ref": "HELIXSECURITY-L5-007-compare_environment",
+      "raw_utf8": "{\"host_all_inherited\":false}",
+      "raw_sha256": "6792ef447592c43dd1f018d38245c3c7c29f968caf29043c89ac15aad8daeb64",
+      "expected_material": {
+        "local_boolean_grade": "corresponding",
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F05"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F05"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-ENVIRONMENT-TRUE",
+      "function_ref": "HELIXSECURITY-L5-007-compare_environment",
+      "raw_utf8": "{\"host_all_inherited\":true}",
+      "raw_sha256": "ed3f4ce19561c45b1788c9dc3c10df7f87aa65b7e93e943e2311764cbafde797",
+      "expected_material": {
+        "local_boolean_grade": "violation",
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F05",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F05",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-ENVIRONMENT-NULL",
+      "function_ref": "HELIXSECURITY-L5-007-compare_environment",
+      "raw_utf8": "{\"host_all_inherited\":null}",
+      "raw_sha256": "5ee992cd707fe9ea61ae2f67af6c32011e8553ccd3edefe3538802190cfd9bef",
+      "expected_material": {
+        "local_boolean_grade": "unknown",
+        "original_presence": "supplied(null)"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F05"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F05"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-ENV-SET-CONFLICT",
+      "function_ref": "HELIXSECURITY-L5-007-compare_environment",
+      "raw_utf8": "{\"expected\":[\"TASK_MODE\",\"LANG\"],\"passed_names\":[\"TASK_MODE\",\"LANG\",\"EXTRA\"]}",
+      "raw_sha256": "3e2894a23ff33bed955d0fe98a75b225411d9b78e06fff9eb6fb62f562ce5797",
+      "expected_material": {
+        "required_codes": [
+          "environment_set_conflict"
+        ],
+        "field_values_read": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F05"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F05"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-TIMEOUT-AT-DEADLINE",
+      "function_ref": "HELIXSECURITY-L5-007-compare_timeout",
+      "raw_utf8": "{\"expected_timeout\":47,\"configured_seconds\":47,\"ended_at_seconds\":47,\"deadline_reached\":true,\"terminal_status\":\"terminated\",\"late_side_effect\":false}",
+      "raw_sha256": "13d96e31178fb68e077bc868a1c972783ca8bec90de7ef24d22c392651f9b4a4",
+      "expected_material": {
+        "local_timeout_grade": "corresponding",
+        "global_limit_added": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F06"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F06"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-TIMEOUT-LATE-SUCCESS",
+      "function_ref": "HELIXSECURITY-L5-007-compare_timeout",
+      "raw_utf8": "{\"expected_timeout\":47,\"configured_seconds\":47,\"ended_at_seconds\":48,\"deadline_reached\":true,\"terminal_status\":\"success\",\"late_side_effect\":false}",
+      "raw_sha256": "016806b5c23e433e5ad95b1170d427fa334e87fda3fff96c9d449312363341a7",
+      "expected_material": {
+        "required_codes": [
+          "deadline_terminal_conflict"
+        ],
+        "local_timeout_grade": "violation"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F06",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F06",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-TIME-DESCRIPTOR-BOOL",
+      "function_ref": "HELIXSECURITY-L5-007-compare_timeout",
+      "raw_utf8": "{\"expected_timeout\":47,\"configured_seconds\":false}",
+      "raw_sha256": "8fcd16812db89830ac6c853e42b98958195ffadf468dcb8871b9185fd1832f2a",
+      "expected_material": {
+        "configured_projection_state": "invalid_or_unknown",
+        "unknown_pointer": "/controls/timeout/data/configured_seconds",
+        "boolean_is_integer": false,
+        "local_timeout_grade": "unknown"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F06"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F06"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-RESOURCE-REACHED-STOP",
+      "function_ref": "HELIXSECURITY-L5-007-compare_resource",
+      "raw_utf8": "{\"expected_cpu\":2,\"expected_memory_mib\":128,\"configured_cpu\":2,\"configured_memory_mib\":128,\"limit_reached\":true,\"terminal_status\":\"interrupted\",\"self_expanded\":false}",
+      "raw_sha256": "a4204c50b2d2f18a231dcd44fd6de3e1472466774d30d2aa1b23f1fe53ee68c5",
+      "expected_material": {
+        "local_resource_grade": "corresponding",
+        "global_limit_added": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F07"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F07"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-RESOURCE-REACHED-SUCCESS",
+      "function_ref": "HELIXSECURITY-L5-007-compare_resource",
+      "raw_utf8": "{\"limit_reached\":true,\"terminal_status\":\"success\"}",
+      "raw_sha256": "c15da76c5d74695f7756c8f3bc22c7e865b53d7c7850a5b3b92cee131d2cb9e7",
+      "expected_material": {
+        "required_codes": [
+          "resource_terminal_conflict"
+        ],
+        "local_resource_grade": "violation"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F07",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F07",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-DIFF-ALLOW-UNKNOWN",
+      "function_ref": "HELIXSECURITY-L5-007-compare_diff_inspection",
+      "raw_utf8": "{\"before\":{},\"after\":{},\"reported_diff\":[],\"expected_allowed_paths\":null}",
+      "raw_sha256": "bf07e7446438fbf07162c75445a0cf0aa5bbe152364e4e3206b70cc50b52c2f3",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "diff_allow_set_unresolved",
+            "pointer": "/context/allowed_paths",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "local_diff_grade": "unknown"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S07"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F08",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F08",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-DIFF-WRITE-AFTER-UNKNOWN",
+      "function_ref": "HELIXSECURITY-L5-007-compare_diff_inspection",
+      "raw_utf8": "{\"controls\":{\"write_path\":{\"data\":{\"after_tree\":null}},\"diff_inspection\":{\"data\":{\"after_tree\":{}}}}}",
+      "raw_sha256": "f92398fcd7884a708987cb897e41cca7232df6933eecfaab93e37ee5c52618ad",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "tree_observation_unresolved",
+            "pointer": "/controls/write_path/data/after_tree",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "record_pointer_substituted": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S07",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F08",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F08",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-ROLLBACK-NO-CHANGE-NA",
+      "function_ref": "HELIXSECURITY-L5-007-compare_rollback",
+      "raw_utf8": "{\"before\":{\"A\":\"d1\"},\"after\":{\"A\":\"d1\"},\"state\":\"not_applicable\"}",
+      "raw_sha256": "d820518d2d47a4f2ff3d2edeef56ceb3fd9b8d0311f1f1ec548842e4cc03f417",
+      "expected_material": {
+        "local_rollback_grade": "corresponding",
+        "actual_rollback_executed": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S08"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F09"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F09"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-ROLLBACK-CHANGE-NA",
+      "function_ref": "HELIXSECURITY-L5-007-compare_rollback",
+      "raw_utf8": "{\"before\":{\"A\":\"d1\"},\"after\":{\"A\":\"d2\"},\"state\":\"not_applicable\"}",
+      "raw_sha256": "a9a4b1d533811677c2673f65260b618827e43dfd9e2680a0ccfcd93f164e12ef",
+      "expected_material": {
+        "required_codes": [
+          "rollback_na_with_change"
+        ],
+        "local_rollback_grade": "violation"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S08"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F09",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F09",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-ROLLBACK-RESTORED",
+      "function_ref": "HELIXSECURITY-L5-007-compare_rollback",
+      "raw_utf8": "{\"before\":{\"A\":\"d1\"},\"after\":{\"A\":\"d2\"},\"restored_tree\":{\"A\":\"d1\"},\"state\":\"restored\"}",
+      "raw_sha256": "34528d9ef97b1c81723f7edeb2ae6852639675b417371269d7c344eccf18d657",
+      "expected_material": {
+        "local_rollback_grade": "corresponding",
+        "actual_rollback_executed": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S08"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F09"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F09"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-ROLLBACK-PARTIAL",
+      "function_ref": "HELIXSECURITY-L5-007-compare_rollback",
+      "raw_utf8": "{\"state\":\"partial\"}",
+      "raw_sha256": "187d788f44a2a7c3a602e6d74a65ca8ae37b4404be6a7b0f8da6dc3622d7bc91",
+      "expected_material": {
+        "required_codes": [
+          "rollback_incomplete"
+        ],
+        "local_rollback_grade": "violation"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S08"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F09",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F09",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-ROLLBACK-UNKNOWN-AFTER",
+      "function_ref": "HELIXSECURITY-L5-007-compare_rollback",
+      "raw_utf8": "{\"before\":{},\"after\":null,\"state\":\"not_applicable\"}",
+      "raw_sha256": "417b82a0559fa11a35550fa62d6dc6d582b21b76c480e859365fdaa050cafbee",
+      "expected_material": {
+        "local_rollback_grade": "unknown",
+        "na_from_unknown": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S08"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F09"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F09"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-RESULT-RUNTIME-FAIL-SUCCESS",
+      "function_ref": "HELIXSECURITY-L5-007-compare_result_collection",
+      "raw_utf8": "{\"case_terminal\":\"success\",\"runtime_terminal\":\"failed\"}",
+      "raw_sha256": "18e9c4de55e575f29fa037af1638e08cc15be7c68077cb9742e6d129f8246fdc",
+      "expected_material": {
+        "required_codes": [
+          "failed_runtime_false_success"
+        ],
+        "local_result_grade": "violation"
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S09"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F10",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F10",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-RESULT-POSTFAIL-RUNTIME-SUCCESS",
+      "function_ref": "HELIXSECURITY-L5-007-compare_result_collection",
+      "raw_utf8": "{\"case_terminal\":\"failed\",\"runtime_terminal\":\"success\"}",
+      "raw_sha256": "cb9a4a63244852eed3b6c15d1e4fa84ff91e6f48181ee92a02b0d2b4413a9b61",
+      "expected_material": {
+        "case_runtime_equal_required": false,
+        "case_failure_preserved": true
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S09"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F10"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F10"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-RESULT-DEPENDENCY-NULL",
+      "function_ref": "HELIXSECURITY-L5-007-compare_result_collection",
+      "raw_utf8": "{\"controls\":{\"network\":{\"observed\":null},\"result_collection\":{\"data\":{\"constraint_states\":{\"network\":\"corresponding\"}}}}}",
+      "raw_sha256": "0fabf8401054729a530cc63815c0df69d75fa25066bb2013b19aa2340a0a2bf5",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "control_content_unresolved",
+            "pointer": "/controls/network/observed",
+            "return_owner": "worker-control-owner"
+          }
+        ],
+        "record_pointer_substituted": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S09",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F10",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F10",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-RESULT-TERMINAL-UNKNOWN",
+      "function_ref": "HELIXSECURITY-L5-007-compare_result_collection",
+      "raw_utf8": "{\"runtime_terminal\":null,\"case_terminal\":\"success\"}",
+      "raw_sha256": "f1987de5c837a046110eeb7b8b10d47ac9a9f123d573d9b854180e8b35075572",
+      "expected_material": {
+        "required_codes": [
+          "terminal_status_unresolved"
+        ],
+        "known_conflict_generated_from_unknown": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S09"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F10"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F10"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-SOURCE-UNKNOWN",
+      "function_ref": "HELIXSECURITY-L5-007-retain_source_backflow",
+      "raw_utf8": "{\"policy_ref\":\"SYN-POLICY\",\"assignment_ref\":\"SYN-ASSIGN\",\"backend_ref\":\"SYN-BACKEND\",\"qualification_ref\":null,\"observer_ref\":null,\"consumer_ref\":null}",
+      "raw_sha256": "5e24294ca9aed2a49fd1db1386c5d8837506c50c8979c547fc2e24afb7ce8794",
+      "expected_material": {
+        "actual_enforcement_verified": false,
+        "actual_worker_invoked": false,
+        "source_qualification_state": "unknown",
+        "new_backend_or_gate": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-UNSEEN-ENV-LOCAL",
+      "function_ref": "HELIXSECURITY-L5-007-retain_source_backflow",
+      "raw_utf8": "{\"old_scope\":\"SYN-A\",\"new_scope\":\"SYN-A\",\"old_environment\":\"SYN-OLD\",\"new_environment\":\"SYN-UNSEEN\",\"old_result\":\"corresponding\"}",
+      "raw_sha256": "56b16461891bcc077dfbe831b985cdbd3518c58ec32a728838c9acfb2e9486f4",
+      "expected_material": {
+        "reused_old_comparison_as_new": false,
+        "actual_unseen_environment_verified": false,
+        "unrelated_scope_stopped": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-FAILURE-BACKFLOW",
+      "function_ref": "HELIXSECURITY-L5-007-retain_source_backflow",
+      "raw_utf8": "{\"finding\":\"rollback_incomplete\",\"request_binding\":{\"scope\":\"SYN-S\",\"revision\":\"SYN-R\",\"assignment\":\"SYN-A\"}}",
+      "raw_sha256": "c09e00de56f58953822a87b854d6915c0270e0567ad2b438a8abd07c79e7f7ef",
+      "expected_material": {
+        "existing_owner_role": "INFRA/Worker実環境・OS回収の該当scope",
+        "actual_stop_or_isolation_receipt": false,
+        "global_stop_generated": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F09",
+          "HELIXSECURITY-L3-007-F10",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F09",
+          "HELIXSECURITY-L10-007-F10",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-VIOLATION-OVER-UNKNOWN",
+      "function_ref": "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+      "raw_utf8": "{\"binding_grade\":\"unknown\",\"control_grades\":{\"network\":\"violation\",\"credential\":\"corresponding\"}}",
+      "raw_sha256": "35568501ad2858c053cd3746531cf344dcd26918add93c3dc1e1d593b8c25f9c",
+      "expected_material": {
+        "condition": "worker_control_violation",
+        "both_unknown_and_violation_reasons_preserved": true,
+        "actual_enforcement_verified": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-COMPOSE-NORMAL-pre",
+      "function_ref": "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+      "raw_utf8": "{\"phase\":\"pre\",\"request_binding\":{\"revision\":\"SYN-R\",\"scope\":\"SYN-S\"},\"binding_grade\":\"corresponding\",\"control_grades\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"missing_future_observations_permitted\":true}",
+      "raw_sha256": "6b29b36d2637f4930f04e9e95a6d31e36e9a06e9d258eeedf070d6dd465cf8e5",
+      "expected_material": {
+        "condition": "worker_control_corresponding",
+        "selected_phase": "pre",
+        "binding_correspondence": "corresponding",
+        "control_correspondence": {
+          "write_path": "corresponding",
+          "network": "corresponding",
+          "credential": "corresponding",
+          "environment": "corresponding",
+          "timeout": "corresponding",
+          "resource": "corresponding",
+          "diff_inspection": "corresponding",
+          "rollback": "corresponding",
+          "result_collection": "corresponding"
+        },
+        "content_for_selected_phase_corresponding": true,
+        "whole_nine_control_observation_compared": false,
+        "future_results_required_before_execution": false,
+        "fixed_resource_or_timeout_limit_added": false,
+        "host_fallback_allowed": false,
+        "actual_worker_invoked": false,
+        "actual_enforcement_verified": false,
+        "operation_effect": "none",
+        "affected_revision_scope": {
+          "revision": "SYN-R",
+          "scope": "SYN-S"
+        },
+        "findings": []
+      },
+      "expectation_kind": "full_14_composition_material",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S03",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-COMPOSE-NORMAL-run",
+      "function_ref": "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+      "raw_utf8": "{\"phase\":\"run\",\"request_binding\":{\"revision\":\"SYN-R\",\"scope\":\"SYN-S\"},\"binding_grade\":\"corresponding\",\"control_grades\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"missing_future_observations_permitted\":true}",
+      "raw_sha256": "1f1220c19b34c29f91d24586c1343ac6c44bddb6848206edded508f95fc66ace",
+      "expected_material": {
+        "condition": "worker_control_corresponding",
+        "selected_phase": "run",
+        "binding_correspondence": "corresponding",
+        "control_correspondence": {
+          "write_path": "corresponding",
+          "network": "corresponding",
+          "credential": "corresponding",
+          "environment": "corresponding",
+          "timeout": "corresponding",
+          "resource": "corresponding",
+          "diff_inspection": "corresponding",
+          "rollback": "corresponding",
+          "result_collection": "corresponding"
+        },
+        "content_for_selected_phase_corresponding": true,
+        "whole_nine_control_observation_compared": false,
+        "future_results_required_before_execution": false,
+        "fixed_resource_or_timeout_limit_added": false,
+        "host_fallback_allowed": false,
+        "actual_worker_invoked": false,
+        "actual_enforcement_verified": false,
+        "operation_effect": "none",
+        "affected_revision_scope": {
+          "revision": "SYN-R",
+          "scope": "SYN-S"
+        },
+        "findings": []
+      },
+      "expectation_kind": "full_14_composition_material",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S03",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-COMPOSE-NORMAL-post",
+      "function_ref": "HELIXSECURITY-L5-007-compose_worker_control_analysis",
+      "raw_utf8": "{\"phase\":\"post\",\"request_binding\":{\"revision\":\"SYN-R\",\"scope\":\"SYN-S\"},\"binding_grade\":\"corresponding\",\"control_grades\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"missing_future_observations_permitted\":false}",
+      "raw_sha256": "31a7e2968a738e2ba24359eded8f1e1edda3af29c0541356b06fa07316b24243",
+      "expected_material": {
+        "condition": "worker_control_corresponding",
+        "selected_phase": "post",
+        "binding_correspondence": "corresponding",
+        "control_correspondence": {
+          "write_path": "corresponding",
+          "network": "corresponding",
+          "credential": "corresponding",
+          "environment": "corresponding",
+          "timeout": "corresponding",
+          "resource": "corresponding",
+          "diff_inspection": "corresponding",
+          "rollback": "corresponding",
+          "result_collection": "corresponding"
+        },
+        "content_for_selected_phase_corresponding": true,
+        "whole_nine_control_observation_compared": true,
+        "future_results_required_before_execution": false,
+        "fixed_resource_or_timeout_limit_added": false,
+        "host_fallback_allowed": false,
+        "actual_worker_invoked": false,
+        "actual_enforcement_verified": false,
+        "operation_effect": "none",
+        "affected_revision_scope": {
+          "revision": "SYN-R",
+          "scope": "SYN-S"
+        },
+        "findings": []
+      },
+      "expectation_kind": "full_14_composition_material",
+      "oracle_basis": {
+        "rule_refs": [
+          "S02",
+          "S03",
+          "S10"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "批准22whole→原L4/原fixture説明→旧source/consumer/failureから手起草した設計素材。421/evaluatorの全入力/期待を増幅していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-DATA-NORMAL-write_path",
+      "function_ref": "HELIXSECURITY-L5-007-compare_write_path",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"write_path\",\"data\":{\"mode\":\"read_only\",\"allowed_paths\":[],\"reported_diff\":[],\"write_attempt\":\"blocked\",\"before_tree\":{\"A\":\"SYN-DIGEST\"},\"after_tree\":{\"A\":\"SYN-DIGEST\"}},\"independent_context\":{\"allowed_paths\":[],\"allowed_environment_names\":[\"TASK_MODE\",\"LANG\"],\"before_tree\":{\"A\":\"SYN-DIGEST\"},\"case_ref\":\"SYN-CASE\",\"timeout_seconds\":90,\"cpu\":1,\"memory_mib\":256},\"source_fields\":{\"write_after_tree\":{\"A\":\"SYN-DIGEST\"},\"diff_after_tree\":{\"A\":\"SYN-DIGEST\"},\"original_observed_states\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"original_rollback_state\":\"not_applicable\",\"timeout_terminal\":\"success\",\"resource_terminal\":\"success\"},\"request_scope\":\"SYN-SCOPE\"}",
+      "raw_sha256": "26c79f3f678d25c605566c769e3c726faf7da0879c170b4c7bb0062ebed8ede3",
+      "expected_material": {
+        "data_grade": "corresponding",
+        "data_evaluated": true,
+        "stage_grade": null,
+        "actual_enforcement_verified": false,
+        "no_full_control_grade_claim": true
+      },
+      "expectation_kind": "declared_data_fields_and_independent_source_positive",
+      "oracle_basis": {
+        "rule_refs": [
+          "S03",
+          "S04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F02",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F02",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "九data群の原field/固有規則を先に読み独立context/source fieldsを手起草。421/evaluator全期待をコピーせず、stage/資格まで成功に外挿しない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-DATA-NORMAL-network",
+      "function_ref": "HELIXSECURITY-L5-007-compare_network",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"network\",\"data\":{\"restriction\":\"deny_all\",\"connection_established\":false,\"host_fallback\":false},\"independent_context\":{\"allowed_paths\":[],\"allowed_environment_names\":[\"TASK_MODE\",\"LANG\"],\"before_tree\":{\"A\":\"SYN-DIGEST\"},\"case_ref\":\"SYN-CASE\",\"timeout_seconds\":90,\"cpu\":1,\"memory_mib\":256},\"source_fields\":{\"write_after_tree\":{\"A\":\"SYN-DIGEST\"},\"diff_after_tree\":{\"A\":\"SYN-DIGEST\"},\"original_observed_states\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"original_rollback_state\":\"not_applicable\",\"timeout_terminal\":\"success\",\"resource_terminal\":\"success\"},\"request_scope\":\"SYN-SCOPE\"}",
+      "raw_sha256": "e28857d886305c0dcd4803f6d2f2bf084fe488c53d4abc20c438473a7986b872",
+      "expected_material": {
+        "data_grade": "corresponding",
+        "data_evaluated": true,
+        "stage_grade": null,
+        "actual_enforcement_verified": false,
+        "no_full_control_grade_claim": true
+      },
+      "expectation_kind": "declared_data_fields_and_independent_source_positive",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F03",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F03",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "九data群の原field/固有規則を先に読み独立context/source fieldsを手起草。421/evaluator全期待をコピーせず、stage/資格まで成功に外挿しない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-DATA-NORMAL-credential",
+      "function_ref": "HELIXSECURITY-L5-007-compare_credential",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"credential\",\"data\":{\"provider_store_reached\":false,\"raw_value_exposed\":false,\"host_credential_fallback\":false},\"independent_context\":{\"allowed_paths\":[],\"allowed_environment_names\":[\"TASK_MODE\",\"LANG\"],\"before_tree\":{\"A\":\"SYN-DIGEST\"},\"case_ref\":\"SYN-CASE\",\"timeout_seconds\":90,\"cpu\":1,\"memory_mib\":256},\"source_fields\":{\"write_after_tree\":{\"A\":\"SYN-DIGEST\"},\"diff_after_tree\":{\"A\":\"SYN-DIGEST\"},\"original_observed_states\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"original_rollback_state\":\"not_applicable\",\"timeout_terminal\":\"success\",\"resource_terminal\":\"success\"},\"request_scope\":\"SYN-SCOPE\"}",
+      "raw_sha256": "d549899dbfb8cbb1204912cac3b97aed3da62f66f545d63a470fad0fed1456ea",
+      "expected_material": {
+        "data_grade": "corresponding",
+        "data_evaluated": true,
+        "stage_grade": null,
+        "actual_enforcement_verified": false,
+        "no_full_control_grade_claim": true
+      },
+      "expectation_kind": "declared_data_fields_and_independent_source_positive",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F04",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F04",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "九data群の原field/固有規則を先に読み独立context/source fieldsを手起草。421/evaluator全期待をコピーせず、stage/資格まで成功に外挿しない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-DATA-NORMAL-environment",
+      "function_ref": "HELIXSECURITY-L5-007-compare_environment",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"environment\",\"data\":{\"allowed_names\":[\"LANG\",\"TASK_MODE\"],\"passed_names\":[\"TASK_MODE\",\"LANG\"],\"host_all_inherited\":false,\"credential_bearing_inherited\":false},\"independent_context\":{\"allowed_paths\":[],\"allowed_environment_names\":[\"TASK_MODE\",\"LANG\"],\"before_tree\":{\"A\":\"SYN-DIGEST\"},\"case_ref\":\"SYN-CASE\",\"timeout_seconds\":90,\"cpu\":1,\"memory_mib\":256},\"source_fields\":{\"write_after_tree\":{\"A\":\"SYN-DIGEST\"},\"diff_after_tree\":{\"A\":\"SYN-DIGEST\"},\"original_observed_states\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"original_rollback_state\":\"not_applicable\",\"timeout_terminal\":\"success\",\"resource_terminal\":\"success\"},\"request_scope\":\"SYN-SCOPE\"}",
+      "raw_sha256": "61f02eb4a0eb6c16b699084f00445468903b99703844c5d25b080eb73c7fbf06",
+      "expected_material": {
+        "data_grade": "corresponding",
+        "data_evaluated": true,
+        "stage_grade": null,
+        "actual_enforcement_verified": false,
+        "no_full_control_grade_claim": true
+      },
+      "expectation_kind": "declared_data_fields_and_independent_source_positive",
+      "oracle_basis": {
+        "rule_refs": [
+          "S05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F05",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F05",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "九data群の原field/固有規則を先に読み独立context/source fieldsを手起草。421/evaluator全期待をコピーせず、stage/資格まで成功に外挿しない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-DATA-NORMAL-timeout",
+      "function_ref": "HELIXSECURITY-L5-007-compare_timeout",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"timeout\",\"data\":{\"configured_seconds\":90,\"ended_at_seconds\":89,\"deadline_reached\":false,\"terminal_status\":\"success\",\"late_side_effect\":false},\"independent_context\":{\"allowed_paths\":[],\"allowed_environment_names\":[\"TASK_MODE\",\"LANG\"],\"before_tree\":{\"A\":\"SYN-DIGEST\"},\"case_ref\":\"SYN-CASE\",\"timeout_seconds\":90,\"cpu\":1,\"memory_mib\":256},\"source_fields\":{\"write_after_tree\":{\"A\":\"SYN-DIGEST\"},\"diff_after_tree\":{\"A\":\"SYN-DIGEST\"},\"original_observed_states\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"original_rollback_state\":\"not_applicable\",\"timeout_terminal\":\"success\",\"resource_terminal\":\"success\"},\"request_scope\":\"SYN-SCOPE\"}",
+      "raw_sha256": "3830661a648437f5c5c787c2aafb187ddfbfed2d4482d9355b6af37231c19ce8",
+      "expected_material": {
+        "data_grade": "corresponding",
+        "data_evaluated": true,
+        "stage_grade": null,
+        "actual_enforcement_verified": false,
+        "no_full_control_grade_claim": true
+      },
+      "expectation_kind": "declared_data_fields_and_independent_source_positive",
+      "oracle_basis": {
+        "rule_refs": [
+          "S06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F06",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F06",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "九data群の原field/固有規則を先に読み独立context/source fieldsを手起草。421/evaluator全期待をコピーせず、stage/資格まで成功に外挿しない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-DATA-NORMAL-resource",
+      "function_ref": "HELIXSECURITY-L5-007-compare_resource",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"resource\",\"data\":{\"configured_cpu\":1,\"configured_memory_mib\":256,\"limit_reached\":false,\"terminal_status\":\"success\",\"self_expanded\":false},\"independent_context\":{\"allowed_paths\":[],\"allowed_environment_names\":[\"TASK_MODE\",\"LANG\"],\"before_tree\":{\"A\":\"SYN-DIGEST\"},\"case_ref\":\"SYN-CASE\",\"timeout_seconds\":90,\"cpu\":1,\"memory_mib\":256},\"source_fields\":{\"write_after_tree\":{\"A\":\"SYN-DIGEST\"},\"diff_after_tree\":{\"A\":\"SYN-DIGEST\"},\"original_observed_states\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"original_rollback_state\":\"not_applicable\",\"timeout_terminal\":\"success\",\"resource_terminal\":\"success\"},\"request_scope\":\"SYN-SCOPE\"}",
+      "raw_sha256": "ec67633d67be5d6f0a66ed4fa2337cffed68c8d265f8d5703552f152ea9d8680",
+      "expected_material": {
+        "data_grade": "corresponding",
+        "data_evaluated": true,
+        "stage_grade": null,
+        "actual_enforcement_verified": false,
+        "no_full_control_grade_claim": true
+      },
+      "expectation_kind": "declared_data_fields_and_independent_source_positive",
+      "oracle_basis": {
+        "rule_refs": [
+          "S06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F07",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F07",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "九data群の原field/固有規則を先に読み独立context/source fieldsを手起草。421/evaluator全期待をコピーせず、stage/資格まで成功に外挿しない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-DATA-NORMAL-diff_inspection",
+      "function_ref": "HELIXSECURITY-L5-007-compare_diff_inspection",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"diff_inspection\",\"data\":{\"before_tree\":{\"A\":\"SYN-DIGEST\"},\"after_tree\":{\"A\":\"SYN-DIGEST\"},\"reported_diff\":[],\"raw_secret_copied\":false},\"independent_context\":{\"allowed_paths\":[],\"allowed_environment_names\":[\"TASK_MODE\",\"LANG\"],\"before_tree\":{\"A\":\"SYN-DIGEST\"},\"case_ref\":\"SYN-CASE\",\"timeout_seconds\":90,\"cpu\":1,\"memory_mib\":256},\"source_fields\":{\"write_after_tree\":{\"A\":\"SYN-DIGEST\"},\"diff_after_tree\":{\"A\":\"SYN-DIGEST\"},\"original_observed_states\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"original_rollback_state\":\"not_applicable\",\"timeout_terminal\":\"success\",\"resource_terminal\":\"success\"},\"request_scope\":\"SYN-SCOPE\"}",
+      "raw_sha256": "82474fa4dc80a808d301e06f46ffacd82f8e071a7d0eb4f33e7176856ebefe69",
+      "expected_material": {
+        "data_grade": "corresponding",
+        "data_evaluated": true,
+        "stage_grade": null,
+        "actual_enforcement_verified": false,
+        "no_full_control_grade_claim": true
+      },
+      "expectation_kind": "declared_data_fields_and_independent_source_positive",
+      "oracle_basis": {
+        "rule_refs": [
+          "S07"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F08",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F08",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "九data群の原field/固有規則を先に読み独立context/source fieldsを手起草。421/evaluator全期待をコピーせず、stage/資格まで成功に外挿しない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-DATA-NORMAL-rollback",
+      "function_ref": "HELIXSECURITY-L5-007-compare_rollback",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"rollback\",\"data\":{\"state\":\"not_applicable\",\"after_tree\":{\"A\":\"SYN-DIGEST\"},\"restored_tree\":{\"A\":\"SYN-DIGEST\"},\"target_scope\":\"SYN-SCOPE\"},\"independent_context\":{\"allowed_paths\":[],\"allowed_environment_names\":[\"TASK_MODE\",\"LANG\"],\"before_tree\":{\"A\":\"SYN-DIGEST\"},\"case_ref\":\"SYN-CASE\",\"timeout_seconds\":90,\"cpu\":1,\"memory_mib\":256},\"source_fields\":{\"write_after_tree\":{\"A\":\"SYN-DIGEST\"},\"diff_after_tree\":{\"A\":\"SYN-DIGEST\"},\"original_observed_states\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"original_rollback_state\":\"not_applicable\",\"timeout_terminal\":\"success\",\"resource_terminal\":\"success\"},\"request_scope\":\"SYN-SCOPE\"}",
+      "raw_sha256": "8b580a83e33d33076054c8226fa6af65c356d731e4d460195d471361b407e844",
+      "expected_material": {
+        "data_grade": "corresponding",
+        "data_evaluated": true,
+        "stage_grade": null,
+        "actual_enforcement_verified": false,
+        "no_full_control_grade_claim": true
+      },
+      "expectation_kind": "declared_data_fields_and_independent_source_positive",
+      "oracle_basis": {
+        "rule_refs": [
+          "S08"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F09",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F09",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "九data群の原field/固有規則を先に読み独立context/source fieldsを手起草。421/evaluator全期待をコピーせず、stage/資格まで成功に外挿しない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-DATA-NORMAL-result_collection",
+      "function_ref": "HELIXSECURITY-L5-007-compare_result_collection",
+      "raw_utf8": "{\"phase\":\"post\",\"control\":\"result_collection\",\"data\":{\"case_ref\":\"SYN-CASE\",\"terminal_status\":\"success\",\"reported_terminal_status\":\"success\",\"constraint_states\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"diff_state\":\"corresponding\",\"rollback_state\":\"not_applicable\",\"raw_value_exposed\":false,\"stdout_only\":false,\"runtime_terminal_status\":\"success\"},\"independent_context\":{\"allowed_paths\":[],\"allowed_environment_names\":[\"TASK_MODE\",\"LANG\"],\"before_tree\":{\"A\":\"SYN-DIGEST\"},\"case_ref\":\"SYN-CASE\",\"timeout_seconds\":90,\"cpu\":1,\"memory_mib\":256},\"source_fields\":{\"write_after_tree\":{\"A\":\"SYN-DIGEST\"},\"diff_after_tree\":{\"A\":\"SYN-DIGEST\"},\"original_observed_states\":{\"write_path\":\"corresponding\",\"network\":\"corresponding\",\"credential\":\"corresponding\",\"environment\":\"corresponding\",\"timeout\":\"corresponding\",\"resource\":\"corresponding\",\"diff_inspection\":\"corresponding\",\"rollback\":\"corresponding\",\"result_collection\":\"corresponding\"},\"original_rollback_state\":\"not_applicable\",\"timeout_terminal\":\"success\",\"resource_terminal\":\"success\"},\"request_scope\":\"SYN-SCOPE\"}",
+      "raw_sha256": "485544e71e7b67253b813b90b2055dd39f094d5ceb3d64937a50192fa300e5aa",
+      "expected_material": {
+        "data_grade": "corresponding",
+        "data_evaluated": true,
+        "stage_grade": null,
+        "actual_enforcement_verified": false,
+        "no_full_control_grade_claim": true
+      },
+      "expectation_kind": "declared_data_fields_and_independent_source_positive",
+      "oracle_basis": {
+        "rule_refs": [
+          "S09"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F10",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F10",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "九data群の原field/固有規則を先に読み独立context/source fieldsを手起草。421/evaluator全期待をコピーせず、stage/資格まで成功に外挿しない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-WRITE-WRITABLE-ALLOWED",
+      "function_ref": "HELIXSECURITY-L5-007-compare_write_path",
+      "raw_utf8": "{\"phase\":\"post\",\"mode\":\"writable\",\"before\":{\"A\":\"d1\"},\"after\":{\"A\":\"d2\"},\"allowed_paths\":[\"A\"],\"expected_allowed_paths\":[\"A\"],\"reported_diff\":[\"A\"],\"write_attempt\":\"succeeded\"}",
+      "raw_sha256": "dd236ad432f790ec3e994d40cd32f03a4651c8aa24877681c0183bf6750dac9c",
+      "expected_material": {
+        "local_write_grade": "corresponding",
+        "derived_diff": [
+          "A"
+        ],
+        "actual_enforcement_verified": false,
+        "readonly_branch_applied": false
+      },
+      "expectation_kind": "partial",
+      "oracle_basis": {
+        "rule_refs": [
+          "S03",
+          "S04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F02"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F02"
+        ],
+        "derivation": "承認F02と原S04のwritable分岐の独立exact allow/diff素材。実writeを実行せず、readonly拒否条件をwritableへ転写しない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    }
+  ],
+  "pair_cases": [
+    {
+      "id": "HELIXSECURITY-L8-007-F01",
+      "design_ref": "HELIXSECURITY-L5-007-F01",
+      "requirement_ref": "HELIXSECURITY-L3-007-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F01",
+      "approved_obligation": "SECURITYのscope/authority/policy、OS assignment、Worker実環境capabilityを同revision/scopeへ結び、制約ごとの受渡し/実適用/観測/回収を照合する。enforcerは実環境で、SECURITYやWorkerの自己判断で制約を広げない。",
+      "case_refs": [
+        "SEC007-L8-PHASE-pre",
+        "SEC007-L8-PHASE-run",
+        "SEC007-L8-PHASE-post",
+        "SEC007-L8-BINDING-MISSING-scope",
+        "SEC007-L8-BINDING-CONFLICT-scope",
+        "SEC007-L8-BINDING-MISSING-revision",
+        "SEC007-L8-BINDING-CONFLICT-revision",
+        "SEC007-L8-BINDING-MISSING-assignment",
+        "SEC007-L8-BINDING-CONFLICT-assignment",
+        "SEC007-L8-BINDING-MISSING-policy",
+        "SEC007-L8-BINDING-CONFLICT-policy",
+        "SEC007-L8-BINDING-MISSING-environment",
+        "SEC007-L8-BINDING-CONFLICT-environment",
+        "SEC007-L8-BINDING-MISSING-backend",
+        "SEC007-L8-BINDING-CONFLICT-backend",
+        "SEC007-L8-BINDING-MISSING-authority",
+        "SEC007-L8-BINDING-CONFLICT-authority",
+        "SEC007-L8-SOURCE-UNKNOWN",
+        "SEC007-L8-VIOLATION-OVER-UNKNOWN",
+        "SEC007-L8-COMPOSE-NORMAL-pre",
+        "SEC007-L8-COMPOSE-NORMAL-run",
+        "SEC007-L8-COMPOSE-NORMAL-post"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-007-F02",
+      "design_ref": "HELIXSECURITY-L5-007-F02",
+      "requirement_ref": "HELIXSECURITY-L3-007-F02",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F02",
+      "approved_obligation": "許可write pathのexact setに実diffを照合する。read-onlyでもwrite禁止の強制と対象scopeの前後状態不変を観測する。",
+      "case_refs": [
+        "SEC007-L8-CONTROL-MISSING-write_path",
+        "SEC007-L8-STAGE-UNKNOWN-write_path",
+        "SEC007-L8-TREE-DIFF",
+        "SEC007-L8-TREE-UNKNOWN",
+        "SEC007-L8-WRITE-READONLY-NORMAL",
+        "SEC007-L8-WRITE-READONLY-CHANGED",
+        "SEC007-L8-WRITE-ATTEMPT-UNKNOWN",
+        "SEC007-L8-DATA-NORMAL-write_path",
+        "SEC007-L8-WRITE-WRITABLE-ALLOWED"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-007-F03",
+      "design_ref": "HELIXSECURITY-L5-007-F03",
+      "requirement_ref": "HELIXSECURITY-L3-007-F03",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F03",
+      "approved_obligation": "network制限を実環境へ適用し、同assignmentの許可/拒否と実接続状態を照合する。",
+      "case_refs": [
+        "SEC007-L8-CONTROL-MISSING-network",
+        "SEC007-L8-STAGE-UNKNOWN-network",
+        "SEC007-L8-NETWORK-FALSE",
+        "SEC007-L8-NETWORK-TRUE",
+        "SEC007-L8-NETWORK-NULL",
+        "SEC007-L8-DATA-NORMAL-network"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-007-F04",
+      "design_ref": "HELIXSECURITY-L5-007-F04",
+      "requirement_ref": "HELIXSECURITY-L3-007-F04",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F04",
+      "approved_obligation": "credential遮断を適用し、provider/storeへのアクセスを拒否する。",
+      "case_refs": [
+        "SEC007-L8-CONTROL-MISSING-credential",
+        "SEC007-L8-STAGE-UNKNOWN-credential",
+        "SEC007-L8-CREDENTIAL-FALSE",
+        "SEC007-L8-CREDENTIAL-TRUE",
+        "SEC007-L8-CREDENTIAL-NULL",
+        "SEC007-L8-DATA-NORMAL-credential"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-007-F05",
+      "design_ref": "HELIXSECURITY-L5-007-F05",
+      "requirement_ref": "HELIXSECURITY-L3-007-F05",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F05",
+      "approved_obligation": "許可されたenvironment variableだけを渡し、host全体やcredential-bearing変数を継承しない。",
+      "case_refs": [
+        "SEC007-L8-CONTROL-MISSING-environment",
+        "SEC007-L8-STAGE-UNKNOWN-environment",
+        "SEC007-L8-ENVIRONMENT-FALSE",
+        "SEC007-L8-ENVIRONMENT-TRUE",
+        "SEC007-L8-ENVIRONMENT-NULL",
+        "SEC007-L8-ENV-SET-CONFLICT",
+        "SEC007-L8-DATA-NORMAL-environment"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-007-F06",
+      "design_ref": "HELIXSECURITY-L5-007-F06",
+      "requirement_ref": "HELIXSECURITY-L3-007-F06",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F06",
+      "approved_obligation": "入力descriptorの期限を実適用し、期限内terminal resultと期限到達/中断を分ける。",
+      "case_refs": [
+        "SEC007-L8-CONTROL-MISSING-timeout",
+        "SEC007-L8-STAGE-UNKNOWN-timeout",
+        "SEC007-L8-TIMEOUT-AT-DEADLINE",
+        "SEC007-L8-TIMEOUT-LATE-SUCCESS",
+        "SEC007-L8-TIME-DESCRIPTOR-BOOL",
+        "SEC007-L8-DATA-NORMAL-timeout"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-007-F07",
+      "design_ref": "HELIXSECURITY-L5-007-F07",
+      "requirement_ref": "HELIXSECURITY-L3-007-F07",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F07",
+      "approved_obligation": "入力resource descriptorの制約を実環境へ渡して適用/到達状態を観測する。",
+      "case_refs": [
+        "SEC007-L8-CONTROL-MISSING-resource",
+        "SEC007-L8-STAGE-UNKNOWN-resource",
+        "SEC007-L8-RESOURCE-REACHED-STOP",
+        "SEC007-L8-RESOURCE-REACHED-SUCCESS",
+        "SEC007-L8-DATA-NORMAL-resource"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-007-F08",
+      "design_ref": "HELIXSECURITY-L5-007-F08",
+      "requirement_ref": "HELIXSECURITY-L3-007-F08",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F08",
+      "approved_obligation": "before tree digestとexact allowed diffを固定し、実post-stateから差分を検査する。",
+      "case_refs": [
+        "SEC007-L8-CONTROL-MISSING-diff_inspection",
+        "SEC007-L8-STAGE-UNKNOWN-diff_inspection",
+        "SEC007-L8-TREE-DIFF",
+        "SEC007-L8-TREE-UNKNOWN",
+        "SEC007-L8-DIFF-ALLOW-UNKNOWN",
+        "SEC007-L8-DIFF-WRITE-AFTER-UNKNOWN",
+        "SEC007-L8-DATA-NORMAL-diff_inspection"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-007-F09",
+      "design_ref": "HELIXSECURITY-L5-007-F09",
+      "requirement_ref": "HELIXSECURITY-L3-007-F09",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F09",
+      "approved_obligation": "適用対象の復旧後状態をbefore digestへ照合し、部分復元/復旧不能/未完を分ける。",
+      "case_refs": [
+        "SEC007-L8-CONTROL-MISSING-rollback",
+        "SEC007-L8-STAGE-UNKNOWN-rollback",
+        "SEC007-L8-TREE-UNKNOWN",
+        "SEC007-L8-ROLLBACK-NO-CHANGE-NA",
+        "SEC007-L8-ROLLBACK-CHANGE-NA",
+        "SEC007-L8-ROLLBACK-RESTORED",
+        "SEC007-L8-ROLLBACK-PARTIAL",
+        "SEC007-L8-ROLLBACK-UNKNOWN-AFTER",
+        "SEC007-L8-FAILURE-BACKFLOW",
+        "SEC007-L8-DATA-NORMAL-rollback"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-007-F10",
+      "design_ref": "HELIXSECURITY-L5-007-F10",
+      "requirement_ref": "HELIXSECURITY-L3-007-F10",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-F10",
+      "approved_obligation": "各caseのassignment/policy/source revision/status・制約適用/diff/rollback状態を元caseへ結んで回収する。",
+      "case_refs": [
+        "SEC007-L8-CONTROL-MISSING-result_collection",
+        "SEC007-L8-STAGE-UNKNOWN-result_collection",
+        "SEC007-L8-RESULT-RUNTIME-FAIL-SUCCESS",
+        "SEC007-L8-RESULT-POSTFAIL-RUNTIME-SUCCESS",
+        "SEC007-L8-RESULT-DEPENDENCY-NULL",
+        "SEC007-L8-RESULT-TERMINAL-UNKNOWN",
+        "SEC007-L8-FAILURE-BACKFLOW",
+        "SEC007-L8-DATA-NORMAL-result_collection"
+      ],
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-007-N01",
+      "design_ref": "HELIXSECURITY-L5-007-N01",
+      "requirement_ref": "HELIXSECURITY-L3-007-N01",
+      "system_oracle_ref": "HELIXSECURITY-L10-007-N01",
+      "approved_obligation": "同scopeで実行前binding・実行時九制御・実行後diff/結果/復旧を照合し、各制御を一つずつ欠落させる。未見assignment/環境で再評価し、未観測を実適用や安全とみなさない。",
+      "case_refs": [
+        "SEC007-L8-PHASE-pre",
+        "SEC007-L8-PHASE-run",
+        "SEC007-L8-PHASE-post",
+        "SEC007-L8-BINDING-MISSING-scope",
+        "SEC007-L8-BINDING-CONFLICT-scope",
+        "SEC007-L8-BINDING-MISSING-revision",
+        "SEC007-L8-BINDING-CONFLICT-revision",
+        "SEC007-L8-BINDING-MISSING-assignment",
+        "SEC007-L8-BINDING-CONFLICT-assignment",
+        "SEC007-L8-BINDING-MISSING-policy",
+        "SEC007-L8-BINDING-CONFLICT-policy",
+        "SEC007-L8-BINDING-MISSING-environment",
+        "SEC007-L8-BINDING-CONFLICT-environment",
+        "SEC007-L8-BINDING-MISSING-backend",
+        "SEC007-L8-BINDING-CONFLICT-backend",
+        "SEC007-L8-BINDING-MISSING-authority",
+        "SEC007-L8-BINDING-CONFLICT-authority",
+        "SEC007-L8-CONTROL-MISSING-write_path",
+        "SEC007-L8-STAGE-UNKNOWN-write_path",
+        "SEC007-L8-CONTROL-MISSING-network",
+        "SEC007-L8-STAGE-UNKNOWN-network",
+        "SEC007-L8-CONTROL-MISSING-credential",
+        "SEC007-L8-STAGE-UNKNOWN-credential",
+        "SEC007-L8-CONTROL-MISSING-environment",
+        "SEC007-L8-STAGE-UNKNOWN-environment",
+        "SEC007-L8-CONTROL-MISSING-timeout",
+        "SEC007-L8-STAGE-UNKNOWN-timeout",
+        "SEC007-L8-CONTROL-MISSING-resource",
+        "SEC007-L8-STAGE-UNKNOWN-resource",
+        "SEC007-L8-CONTROL-MISSING-diff_inspection",
+        "SEC007-L8-STAGE-UNKNOWN-diff_inspection",
+        "SEC007-L8-CONTROL-MISSING-rollback",
+        "SEC007-L8-STAGE-UNKNOWN-rollback",
+        "SEC007-L8-CONTROL-MISSING-result_collection",
+        "SEC007-L8-STAGE-UNKNOWN-result_collection",
+        "SEC007-L8-TREE-DIFF",
+        "SEC007-L8-TREE-UNKNOWN",
+        "SEC007-L8-WRITE-READONLY-CHANGED",
+        "SEC007-L8-NETWORK-TRUE",
+        "SEC007-L8-CREDENTIAL-TRUE",
+        "SEC007-L8-ENVIRONMENT-TRUE",
+        "SEC007-L8-TIMEOUT-LATE-SUCCESS",
+        "SEC007-L8-RESOURCE-REACHED-SUCCESS",
+        "SEC007-L8-DIFF-ALLOW-UNKNOWN",
+        "SEC007-L8-DIFF-WRITE-AFTER-UNKNOWN",
+        "SEC007-L8-ROLLBACK-CHANGE-NA",
+        "SEC007-L8-ROLLBACK-PARTIAL",
+        "SEC007-L8-RESULT-RUNTIME-FAIL-SUCCESS",
+        "SEC007-L8-RESULT-DEPENDENCY-NULL",
+        "SEC007-L8-SOURCE-UNKNOWN",
+        "SEC007-L8-UNSEEN-ENV-LOCAL",
+        "SEC007-L8-FAILURE-BACKFLOW",
+        "SEC007-L8-VIOLATION-OVER-UNKNOWN",
+        "SEC007-L8-COMPOSE-NORMAL-pre",
+        "SEC007-L8-COMPOSE-NORMAL-run",
+        "SEC007-L8-COMPOSE-NORMAL-post",
+        "SEC007-L8-DATA-NORMAL-write_path",
+        "SEC007-L8-DATA-NORMAL-network",
+        "SEC007-L8-DATA-NORMAL-credential",
+        "SEC007-L8-DATA-NORMAL-environment",
+        "SEC007-L8-DATA-NORMAL-timeout",
+        "SEC007-L8-DATA-NORMAL-resource",
+        "SEC007-L8-DATA-NORMAL-diff_inspection",
+        "SEC007-L8-DATA-NORMAL-rollback",
+        "SEC007-L8-DATA-NORMAL-result_collection"
+      ],
+      "execution_state": "not_executed"
+    }
+  ],
+  "fixture_contract": {
+    "raw_frames": "function_refで扱う原資料の小型投影frame。省いたcontext/他軸をknownへ補完しない。local期待は明示された比較軸だけで全control成功/finding不存在を意味しない。",
+    "full14": "compositionへの明示binding/control grade材料から原14欄だけを組み立てるunit素材。原scope/revisionはrawへ固定するが、前段のbinding/stage/data比較を実行済みとして補完しない。各実制御の資格/全入力pipeline/実観測oracleではない。",
+    "expectation_source": "批准whole/原L4/固有phase/data規則/旧同役sourceを先に読み手起草した部分期待。製品関数や旧evaluatorを実行しない。",
+    "case_count_is_completion_claim": false,
+    "canonical_cases_sha256": "f591731f4d6f90f16e7f40790b5293411023dda424817f23aa09487fc12d7ad4",
+    "dependency_null": "原source fieldがnullならfield pointer、control本体nullだけrecord pointer。unknown terminalをknown conflictにしない。",
+    "example_limits": "90/1/256と47/2/128は入力素材の例。固定global limitを新設しない。"
+  },
+  "completion": {
+    "status": "unproven_static_checks_passed_pending_independent_review",
+    "raw_cases": 83,
+    "original_L9_cases": 421,
+    "actual_runtime_or_TDD": "not_executed",
+    "implementation_readiness": "not_ready"
+  },
+  "remaining": [
+    "正式SEC policy/008 authority/003005006、OS assignment、INFRA024実環境/Worker backendのsource/root/資格/custody/観測者とresult consumerは未閉包。対応label/同名refで資格を生成しない。",
+    "物理path/symlink/TOCTOU/実bytes/tree codec/CPU・メモリ・時刻単位/実制約適用と未知enum/継続・途中失敗の正式schema全域は未閉包。論理projectionのdeclared型を正式wire/backend採用へしない。",
+    "実readonly write拒否/不変、network/store遮断、環境/timeout/resource適用、実diff/復旧/回収・未知環境での実再評価・停止/隔離/Backflow受領は未成立。",
+    "L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、実L9/L10/PO L11/独立review、全92親430対閉包/実装Readyは未成立。"
+  ]
+}
