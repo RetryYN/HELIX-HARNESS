@@ -590,14 +590,8 @@
       "fixture_patch": [
         {
           "op": "replace",
-          "path": "/sink_context/sink_assessment/basis",
-          "from": null,
-          "value": "classification_value_only"
-        },
-        {
-          "op": "replace",
-          "path": "/sink_context/sink_assessment/outcome",
-          "from": "not_assessed",
+          "path": "/existing_1_0_conditions/L2-006_fixture_egress_decision",
+          "from": "not_evaluated",
           "value": "permitted_from_classification_only"
         }
       ]
@@ -2987,14 +2981,8 @@
         "operations": [
           {
             "op": "replace",
-            "path": "/sink_context/sink_assessment/basis",
-            "from": null,
-            "value": "classification_value_only"
-          },
-          {
-            "op": "replace",
-            "path": "/sink_context/sink_assessment/outcome",
-            "from": "not_assessed",
+            "path": "/existing_1_0_conditions/L2-006_fixture_egress_decision",
+            "from": "not_evaluated",
             "value": "permitted_from_classification_only"
           }
         ]
@@ -3004,8 +2992,8 @@
         "source_path": "docs/helix-security/L10-verification/functional-verification.json",
         "source_field": "failure_observation",
         "source_value": "当該分類をunknown/未成立にし、分類意味はSEC/資産出所はownerへ返す。",
-        "expected_observation": "RAW-BASEのsink_assessmentがoutcome=not_assessed/basis=nullの状態から、分類値だけを根拠に送信許可を付けた独立の誤decisionを検出する。classification_records/0/data_use_permissionはnot_establishedのまま維持する。",
-        "failure_route": "L2-006 egressとL2-019/025 sink capability ownerへ戻す。"
+        "expected_observation": "元egress decision=not_evaluatedを分類値だけでpermitted_from_classification_onlyへ誤変更した値を検出する。分類は送信許可を作らず、sink_assessment=not_assessed/basis=null、data_use_permissionとoperation_authority=not_establishedは原値を保持する。",
+        "failure_route": "分類意味とL2-006 egress判定をSECURITYの各ownerへ返す。sink評価は未観測のまま別に保持する。"
       },
       "requirement_ref": "HELIXSECURITY-L3-016-F01",
       "design_contract_ref": "HELIXSECURITY-L4-016-F01",
@@ -3032,5 +3020,32 @@
     "authority_effect": "none",
     "implementation_readiness": "not_ready",
     "closeout": "SEC016 L4/L9基本設計と固定synthetic packetの静的traceのみ。全92親430対の閉包、実分類、実sink enforcementは主張しない。"
-  }
+  },
+  "pair_trace": [
+    {
+      "design_contract_id": "HELIXSECURITY-L4-016-B01",
+      "requirement_id": "HELIXSECURITY-L3-016-B01",
+      "system_oracle_id": "HELIXSECURITY-L10-016-B01",
+      "verification_contract_id": "HELIXSECURITY-L9-016-B01",
+      "case_ids": [
+        "HELIXSECURITY-L9-016-GWT-B01",
+        "HELIXSECURITY-L9-016-B01-N01",
+        "HELIXSECURITY-L9-016-B01-N02",
+        "HELIXSECURITY-L9-016-B01-N03"
+      ]
+    },
+    {
+      "design_contract_id": "HELIXSECURITY-L4-016-F01",
+      "requirement_id": "HELIXSECURITY-L3-016-F01",
+      "system_oracle_id": "HELIXSECURITY-L10-016-F01",
+      "verification_contract_id": "HELIXSECURITY-L9-016-F01",
+      "case_ids": [
+        "HELIXSECURITY-L9-016-GWT-F01",
+        "HELIXSECURITY-L9-016-F01-N01",
+        "HELIXSECURITY-L9-016-F01-N02",
+        "HELIXSECURITY-L9-016-F01-N03",
+        "HELIXSECURITY-L9-016-F01-N04"
+      ]
+    }
+  ]
 }
