@@ -1,0 +1,1280 @@
+{
+  "document_id": "HELIXLABO-L9-058",
+  "layer": "L9",
+  "pair": "HELIXLABO-L4-058",
+  "verification_obligations": [
+    {
+      "id": "HELIXLABO-L9-058-B01",
+      "l4_ref": "HELIXLABO-L4-058-B01",
+      "requirement_ref": "HELIXLABO-L3-058-B01",
+      "system_oracle_ref": "HELIXLABO-L10-058-B01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-058-B01",
+        "parent": "HELIXLABO-L2-058",
+        "title": "個別呼出しと全能力完成",
+        "obligation": "未選択sourceの完成待ちを必要条件の揃った呼出しへ要求せず、全sourceの1.0完成義務は保持する。全一覧/比較資料は参照のみ、058自身を001実行前提へ再帰依存にしない。",
+        "oracle_ref": "HELIXLABO-L10-058-B01"
+      },
+      "approved_system_oracle": {
+        "id": "HELIXLABO-L10-058-B01",
+        "parent": "HELIXLABO-L2-058",
+        "title": "個別呼出しと全能力完成",
+        "requirement_ref": "HELIXLABO-L3-058-B01",
+        "positive_input": "Worker単独成立と未観測他source、全能力未完を比較する。",
+        "expected_observation": "呼出し成立と全能力未完が分かれる。",
+        "negative_input": "全source完成待ち、個別成功で全完成、1.0能力削除/延期。",
+        "failure_observation": "必要な不足だけsourceへ返し全能力未完を保持する。",
+        "execution_state": "not_executed"
+      },
+      "cases": [
+        {
+          "id": "HELIXLABO-L9-058-B01-WORKER-ONLY",
+          "basis": "HELIXLABO-L10-058-B01 positive_input と L3 obligation の「個別呼出しだけ成立、全能力未完保持」に対応する固定raw入力。 当該節「必要条件の揃った個別呼出しと全能力未完の分離」を示す。",
+          "requirement_ref": "HELIXLABO-L3-058-B01",
+          "system_oracle_ref": "HELIXLABO-L10-058-B01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-B01-WORKER-SUCCESS",
+                "revision": "fixture-labo058-r2",
+                "owner": "fixture-only; actual source owner remains the referenced L2 owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"all_1_0_source_capabilities\":\"incomplete\",\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"authority\":\"HELIX-OS source/result owner\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture-only supplied condition; actual permission unqualified\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W8\",\"revision\":\"WR-8\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"success\"}},\"unselected_sources\":{\"BRAIN-A\":\"not_selected\",\"OS-A\":\"not_selected\",\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"P-B01-WORKER-SUCCESS\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "b457b4e9da509fd0a0d556412c0dfc86e49138424fd219b605cd861e3e695d2d"
+            }
+          ],
+          "given": "WORKER-Aだけが選択され、fixture値はcontract=C-28-r3、receipt=R-W8、revision=WR-8、state=success。OS-A/BRAIN-A/WEB-Aはnot_selectedで、全1.0能力はincomplete。",
+          "when": "明示選択sourceの個別callと全能力状態を分けて照合する。",
+          "then": "WORKER-A callの成立を記録し、他sourceは未観測、全能力はincompleteのまま保持する。",
+          "expected_observation": "個別call成立は全source能力completionを意味しない。",
+          "return_to": [
+            "不足は該当source owner/SECURITYへ具体値付きで返す。",
+            "全能力1.0の未完は能力ownerへ保持して示す。"
+          ],
+          "failure_observation": "合成packetに対する設計期待のみ。実source、実評価、資格成立を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "l10_clause": "必要条件の揃った個別呼出しと全能力未完の分離",
+          "given_raw_values": [
+            {
+              "path": "$.facts.all_1_0_source_capabilities",
+              "value": "incomplete"
+            },
+            {
+              "path": "$.facts.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.sources.WORKER-A.contract",
+              "value": "C-28-r3"
+            },
+            {
+              "path": "$.facts.sources.WORKER-A.receipt",
+              "value": "R-W8"
+            },
+            {
+              "path": "$.facts.sources.WORKER-A.revision",
+              "value": "WR-8"
+            },
+            {
+              "path": "$.facts.sources.WORKER-A.state",
+              "value": "success"
+            },
+            {
+              "path": "$.facts.unselected_sources.BRAIN-A",
+              "value": "not_selected"
+            },
+            {
+              "path": "$.facts.unselected_sources.OS-A",
+              "value": "not_selected"
+            },
+            {
+              "path": "$.facts.unselected_sources.WEB-A",
+              "value": "not_selected"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-B01-WAIT-ALL-COMPLETION",
+          "basis": "HELIXLABO-L10-058-B01 negative_input と HELIXLABO-L3-058-B01 obligation の当該節「未選択sourceの完成待ちを必要条件の揃った呼出しへ要求しない」に対応する固定raw入力。",
+          "l10_clause": "未選択sourceの完成待ちを必要条件の揃った呼出しへ要求しない",
+          "requirement_ref": "HELIXLABO-L3-058-B01",
+          "system_oracle_ref": "HELIXLABO-L10-058-B01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-B01-WAIT-ALL-COMPLETION",
+                "revision": "fixture-labo058-r2",
+                "owner": "fixture-only; actual source owner remains the referenced L2 owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"all_1_0_source_capabilities\":\"incomplete\",\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"block_call_until_all_sources_complete\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"authority\":\"HELIX-OS source/result owner\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture-only supplied condition; actual permission unqualified\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W8\",\"revision\":\"WR-8\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"success\"}},\"unselected_sources\":{\"BRAIN-A\":\"not_selected\",\"OS-A\":\"not_selected\",\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"P-B01-WAIT-ALL-COMPLETION\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "fc4d0f204134e4343ef2f8f78ff8b7594f51d883640b3a9d37c7475f9b11c13f"
+            }
+          ],
+          "given": "WORKER-Aのみ選択されreceipt R-W8があり、OS-A/BRAIN-A/WEB-Aは未選択かつ未完。提案は全source completionまでcallを待たせる。",
+          "when": "選択外sourceの完成待ちを成立条件へ加える提案を照合する。",
+          "then": "WORKER-Aの当該callは必要依存の範囲で評価し、全source完成待ちは採らない。",
+          "expected_observation": "選択外sourceの未完を個別callの依存へ追加しない。",
+          "return_to": [
+            "不足は該当source owner/SECURITYへ具体値付きで返す。",
+            "全能力1.0の未完は能力ownerへ保持して示す。"
+          ],
+          "failure_observation": "合成fixtureの設計期待のみ。実source採択・実接続・資格・評価を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "given_raw_values": [
+            {
+              "path": "$.facts.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.sources.WORKER-A.receipt",
+              "value": "R-W8"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-B01-SUCCESS-ALL-COMPLETE",
+          "basis": "HELIXLABO-L10-058-B01 negative_input と HELIXLABO-L3-058-B01 obligation の当該節「個別成功を全能力完了へ昇格しない」に対応する固定raw入力。",
+          "l10_clause": "個別成功を全能力完了へ昇格しない",
+          "requirement_ref": "HELIXLABO-L3-058-B01",
+          "system_oracle_ref": "HELIXLABO-L10-058-B01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-B01-SUCCESS-ALL-COMPLETE",
+                "revision": "fixture-labo058-r2",
+                "owner": "fixture-only; actual source owner remains the referenced L2 owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"all_1_0_source_capabilities\":\"incomplete\",\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"set_all_capabilities_complete_from_worker_success\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"authority\":\"HELIX-OS source/result owner\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture-only supplied condition; actual permission unqualified\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W8\",\"revision\":\"WR-8\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"success\"}},\"unselected_sources\":{\"BRAIN-A\":\"not_selected\",\"OS-A\":\"not_selected\",\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"P-B01-SUCCESS-ALL-COMPLETE\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "e9703539d5200f51a788e4d5246ad4dc022505d69c3318ed1494f1337ee0fc7b"
+            }
+          ],
+          "given": "WORKER-Aのstate=successだが、OS-A/BRAIN-A/WEB-Aはnot_selectedかつ未完。提案は個別successからall_capabilities=completeを出す。",
+          "when": "個別結果を全能力completionへ昇格する提案を照合する。",
+          "then": "WORKER-Aの結果だけを成立記録にし、all_1_0_source_capabilities=incompleteを保持する。",
+          "expected_observation": "全能力completionへの昇格案を能力ownerへ戻す。",
+          "return_to": [
+            "不足は該当source owner/SECURITYへ具体値付きで返す。",
+            "全能力1.0の未完は能力ownerへ保持して示す。"
+          ],
+          "failure_observation": "合成fixtureの設計期待のみ。実source採択・実接続・資格・評価を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "given_raw_values": [
+            {
+              "path": "$.facts.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.sources.WORKER-A.state",
+              "value": "success"
+            },
+            {
+              "path": "$.facts.unselected_sources.BRAIN-A",
+              "value": "not_selected"
+            },
+            {
+              "path": "$.facts.unselected_sources.OS-A",
+              "value": "not_selected"
+            },
+            {
+              "path": "$.facts.unselected_sources.WEB-A",
+              "value": "not_selected"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-B01-DELETE-DEFER-1.0",
+          "basis": "HELIXLABO-L10-058-B01 negative_input と HELIXLABO-L3-058-B01 obligation の当該節「全sourceの1.0完成義務を保持する」に対応する固定raw入力。",
+          "l10_clause": "全sourceの1.0完成義務を保持する",
+          "requirement_ref": "HELIXLABO-L3-058-B01",
+          "system_oracle_ref": "HELIXLABO-L10-058-B01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-B01-DELETE-DEFER-1.0",
+                "revision": "fixture-labo058-r2",
+                "owner": "fixture-only; actual source owner remains the referenced L2 owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"all_1_0_source_capabilities\":\"incomplete\",\"proposal_under_test\":\"remove_or_defer_incomplete_1_0_source_capability\",\"selected_sources\":[\"WORKER-A\"],\"source_capability_status\":{\"BRAIN-A\":\"incomplete\",\"OS-A\":\"incomplete\",\"WEB-A\":\"incomplete\",\"WORKER-A\":\"success\"}},\"fixture_only\":true,\"packet_id\":\"P-B01-DELETE-DEFER-1.0\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "711ccc7a6792adce334fc603922ec825da74e741410961b37c63557faeadb8c3"
+            }
+          ],
+          "given": "全sourceの1.0能力がincomplete。提案は未完sourceの1.0能力を削除または延期して完了表示する。",
+          "when": "1.0能力削除/延期案を全能力状態へ照合する。",
+          "then": "能力義務を保持し、未完はincompleteのまま示す。",
+          "expected_observation": "能力全体の未完を能力ownerへ戻し、参照資料だけから変更しない。",
+          "return_to": [
+            "全能力1.0の未完は能力ownerへ保持して示す。"
+          ],
+          "failure_observation": "合成fixtureの設計期待のみ。実source採択・実接続・資格・評価を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "given_raw_values": [
+            {
+              "path": "$.facts.all_1_0_source_capabilities",
+              "value": "incomplete"
+            },
+            {
+              "path": "$.facts.source_capability_status.BRAIN-A",
+              "value": "incomplete"
+            },
+            {
+              "path": "$.facts.source_capability_status.OS-A",
+              "value": "incomplete"
+            },
+            {
+              "path": "$.facts.source_capability_status.WEB-A",
+              "value": "incomplete"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-B01-RECURSIVE-001",
+          "basis": "HELIXLABO-L10-058-B01 negative_input と HELIXLABO-L3-058-B01 obligation の当該節「058自身を001実行前提へ再帰依存にしない」に対応する固定raw入力。",
+          "l10_clause": "058自身を001実行前提へ再帰依存にしない",
+          "requirement_ref": "HELIXLABO-L3-058-B01",
+          "system_oracle_ref": "HELIXLABO-L10-058-B01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-B01-RECURSIVE-001",
+                "revision": "fixture-labo058-r2",
+                "owner": "fixture-only; actual source owner remains the referenced L2 owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"dependency_direction\":\"058_requires_001_input\",\"input_source\":\"HELIXLABO-L2-001 observation\",\"proposal_under_test\":\"require_L2-058_completion_before_L2-001_observation\"},\"fixture_only\":true,\"packet_id\":\"P-B01-RECURSIVE-001\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "575bbe3310433c0b395291f47d07832f0a9fb73ac53ea8b81c40e1d89b0cbf6b"
+            }
+          ],
+          "given": "input_source=HELIXLABO-L2-001 observation。dependency_direction=058_requires_001_input。提案proposal_under_test=require_L2-058_completion_before_L2-001_observation。",
+          "when": "依存方向をraw proposalとL2-001入力sourceに沿って確認する。",
+          "then": "058を001の実行前提にせず、001 observationを入力として扱う。",
+          "expected_observation": "循環依存案を要求ownerへ戻す。",
+          "return_to": [
+            "001/058の依存方向を保ち、循環案を要求ownerへ戻す。"
+          ],
+          "failure_observation": "合成fixtureの設計期待のみ。実source採択・実接続・資格・評価を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "given_raw_values": [
+            {
+              "path": "$.facts.dependency_direction",
+              "value": "058_requires_001_input"
+            },
+            {
+              "path": "$.facts.input_source",
+              "value": "HELIXLABO-L2-001 observation"
+            },
+            {
+              "path": "$.facts.proposal_under_test",
+              "value": "require_L2-058_completion_before_L2-001_observation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "HELIXLABO-L9-058-F01",
+      "l4_ref": "HELIXLABO-L4-058-F01",
+      "requirement_ref": "HELIXLABO-L3-058-F01",
+      "system_oracle_ref": "HELIXLABO-L10-058-F01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-058-F01",
+        "parent": "HELIXLABO-L2-058",
+        "title": "選択source別の依存",
+        "obligation": "呼出しscope・選択source identity/操作/契約版/許可を明示し、001のprovenance/revision/state/scope/data-use/authority/版とsource正本非変更を常時保つ。選択021〜030各sourceの入力接続/安全閉包を全部照合し、未選択は未観測に保つ。",
+        "oracle_ref": "HELIXLABO-L10-058-F01"
+      },
+      "approved_system_oracle": {
+        "id": "HELIXLABO-L10-058-F01",
+        "parent": "HELIXLABO-L2-058",
+        "title": "選択source別の依存",
+        "requirement_ref": "HELIXLABO-L3-058-F01",
+        "positive_input": "Workerのみ、Worker+OS、選択条件unknown/一receipt欠落を比較する。",
+        "expected_observation": "選択根拠と未選択、必要閉包/欠落が辿れる。",
+        "negative_input": "選択欠落を未選択化、安全依存を参考、unknownで全部不要。",
+        "failure_observation": "scope owner/source/LABO/SECへ該当不足を返す。",
+        "execution_state": "not_executed"
+      },
+      "cases": [
+        {
+          "id": "HELIXLABO-L9-058-F01-WORKER-OS-FIELDS",
+          "basis": "HELIXLABO-L10-058-F01 positive_input と L3 obligation の全001 field保持に対応する固定raw入力。 当該節「選択sourceごとに001 provenance/revision/state/scope/data-use/authority/版を保持しsource正本を変更しない」を示す。",
+          "requirement_ref": "HELIXLABO-L3-058-F01",
+          "system_oracle_ref": "HELIXLABO-L10-058-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-WORKER-OS-R2",
+                "revision": "fixture-labo058-r1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\",\"OS-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"OS-A\":{\"authority\":\"HELIXLABO-L2-022\",\"contract\":\"C-22-r2\",\"data_use\":\"fixture declared; actual permission unknown\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-022\",\"receipt\":\"R-O4\",\"revision\":\"OS-4\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"unknown\"},\"WORKER-A\":{\"authority\":\"HELIXLABO-L2-028\",\"contract\":\"C-28-r3\",\"data_use\":\"fixture declared; actual permission unknown\",\"permission\":\"allowed_fixture\",\"provenance\":\"HELIXLABO-L2-028\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"failure\"}},\"unselected_sources\":{\"BRAIN-A\":\"not_selected\",\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"fixture_only_note\":\"これらは要件照合用の合成値。実contract adoption、permission、接続資格、providerを示さない。\",\"packet_id\":\"P-WORKER-OS-R2\",\"source_owner_map\":{\"OS-A\":\"HELIX-OS (L2-022)\",\"WORKER-A\":\"Worker via OS assignment/result (L2-028)\"},\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "8061e10735438923bccdfa88b37c7eb89b10e9014c02935669a20509e6539b70"
+            }
+          ],
+          "given": "WORKER-AとOS-Aを選択。両方のprovenance/revision/state/scope/data-use/authority/contract versionを明示しsource_of_truth_mutated=false。permission等はfixture宣言だけで実資格unknown。",
+          "when": "両方のsource閉包へ照合する。",
+          "then": "選択値をsource別に保持し、source正本非変更を記録する。実接続/許可/資格はこのfixtureから成立扱いしない。",
+          "expected_observation": "全001 fieldの追跡性とsource正本read-only境界が値で確認できる。",
+          "return_to": [
+            "identity/revision/scope/data-use/authority/receipt不足は当該L2 ownerへ返す。",
+            "permission/classification不明はSECURITYへ返す。"
+          ],
+          "failure_observation": "合成field値による設計期待のみ。実source adoption・実接続・資格を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "l10_clause": "選択sourceごとに001 provenance/revision/state/scope/data-use/authority/版を保持しsource正本を変更しない",
+          "given_raw_values": [
+            {
+              "path": "$.facts.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.selected_sources[1]",
+              "value": "OS-A"
+            },
+            {
+              "path": "$.facts.sources.OS-A.state",
+              "value": "unknown"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-F01-MISSING-RECEIPT",
+          "basis": "HELIXLABO-L10-058-F01 negative_input と HELIXLABO-L3-058-F01 obligation に対応する固定raw入力。 当該節「選択されたsourceの不足を未選択へ書き換えない」を示す。",
+          "requirement_ref": "HELIXLABO-L3-058-F01",
+          "system_oracle_ref": "HELIXLABO-L10-058-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-N-MISSING-SELECTED",
+                "revision": "fixture-labo058-r1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"missing OS receiptを未選択として完全扱い\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\",\"OS-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"OS-A\":{\"contract\":\"C-22-r2\",\"permission\":\"allowed_fixture\",\"receipt\":null,\"revision\":\"OS-4\",\"state\":\"unknown\"},\"WORKER-A\":{\"contract\":\"C-28-r3\",\"permission\":\"allowed_fixture\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"state\":\"failure\"}},\"unselected_sources\":{\"WEB-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"N-MISSING-SELECTED\",\"source_revision\":\"fixture-labo058-r1\"}",
+              "sha256": "8d9db4759afe9ab4b9e4419b9c23372df8d7f9aa78078a50d8e112e2856da348"
+            }
+          ],
+          "given": "WORKER-AとOS-Aは選択済み。OS-A receipt=nullだがrevision OS-4、contract C-22-r2、permission allowed_fixture。",
+          "when": "OS-Aを未選択に読み替える提案を照合する。",
+          "then": "完全aggregate不成立。OS-Aのreceipt欠落と選択状態を保持し、OS source/LABOへ返す。",
+          "expected_observation": "選択集合を書き換えて不足を隠さない。",
+          "return_to": [
+            "receipt/版/scope/data-use不足: source owner/LABOへ返す。",
+            "許可/classification不明: SECURITYへ該当source/scopeを返す。",
+            "選択集合unknown: scope ownerへ戻す。"
+          ],
+          "failure_observation": "合成packetに対する設計期待のみ。実source、実評価、資格成立を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "l10_clause": "選択されたsourceの不足を未選択へ書き換えない",
+          "given_raw_values": [
+            {
+              "path": "$.facts.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.selected_sources[1]",
+              "value": "OS-A"
+            },
+            {
+              "path": "$.facts.sources.OS-A.contract",
+              "value": "C-22-r2"
+            },
+            {
+              "path": "$.facts.sources.OS-A.permission",
+              "value": "allowed_fixture"
+            },
+            {
+              "path": "$.facts.sources.OS-A.revision",
+              "value": "OS-4"
+            },
+            {
+              "path": "$.facts.sources.WORKER-A.permission",
+              "value": "allowed_fixture"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-F01-UNKNOWN-SELECTION",
+          "basis": "HELIXLABO-L10-058-F01 negative_input と HELIXLABO-L3-058-F01 obligation に対応する固定raw入力。 当該節「選択集合unknownを空集合へ置換しない」を示す。",
+          "requirement_ref": "HELIXLABO-L3-058-F01",
+          "system_oracle_ref": "HELIXLABO-L10-058-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-N-UNKNOWN-SELECTION",
+                "revision": "fixture-labo058-r1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"unknown選択を空集合に置換\",\"scope\":\"PRODUCT-A\",\"selected_sources\":null,\"selection_basis\":null,\"sources\":{\"WORKER-A\":{\"contract\":\"C-28-r3\",\"permission\":\"allowed_fixture\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"state\":\"failure\"}},\"unselected_sources\":{}},\"fixture_only\":true,\"packet_id\":\"N-UNKNOWN-SELECTION\",\"source_revision\":\"fixture-labo058-r1\"}",
+              "sha256": "69730eb9a0f0ae8e404ff440538e65a9b8bb5d84af31a7b06aa43b6ffd236a82"
+            }
+          ],
+          "given": "selected_sources=null、selection_basis=null。WORKER-Aにはreceipt R-W7がある。",
+          "when": "unknown選択を空集合にする提案を照合する。",
+          "then": "callは未確定としてscope ownerへ戻す。WORKER-Aの選択を推測しない。",
+          "expected_observation": "unknownは全接続不要を意味しない。",
+          "return_to": [
+            "receipt/版/scope/data-use不足: source owner/LABOへ返す。",
+            "許可/classification不明: SECURITYへ該当source/scopeを返す。",
+            "選択集合unknown: scope ownerへ戻す。"
+          ],
+          "failure_observation": "合成packetに対する設計期待のみ。実source、実評価、資格成立を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "l10_clause": "選択集合unknownを空集合へ置換しない",
+          "given_raw_values": [
+            {
+              "path": "$.facts.sources.WORKER-A.receipt",
+              "value": "R-W7"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-F01-SAFETY-REFERENCE-ONLY",
+          "basis": "HELIXLABO-L10-058-F01 negative_input と HELIXLABO-L3-058-F01 obligation の当該節「安全依存を参考情報へ格下げせず、選択sourceの閉包へ含める」に対応する固定raw入力。",
+          "l10_clause": "安全依存を参考情報へ格下げせず、選択sourceの閉包へ含める",
+          "requirement_ref": "HELIXLABO-L3-058-F01",
+          "system_oracle_ref": "HELIXLABO-L10-058-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-F01-SAFETY-REFERENCE-ONLY",
+                "revision": "fixture-labo058-r2",
+                "owner": "fixture-only; actual source owner remains the referenced L2 owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"proposal_under_test\":\"treat_safety_dependency_as_reference_and_accept\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"OS-A\"],\"selection_basis\":\"TASK-SAFETY\",\"sources\":{\"OS-A\":{\"authority\":\"HELIX-OS\",\"contract_version\":\"C-22-r2\",\"data_use\":null,\"permission\":\"unknown\",\"provenance\":\"HELIXLABO-L2-022\",\"receipt\":\"R-O4\",\"revision\":\"OS-4\",\"safety_dependency\":\"reference_only\",\"scope\":\"PRODUCT-A\",\"source_of_truth_mutated\":false,\"state\":\"unknown\"}}},\"fixture_only\":true,\"packet_id\":\"P-F01-SAFETY-REFERENCE-ONLY\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "b07248c885bcfbeb5ef25d71b50ea9f92261bd69d47d4f5b3efeb221d9e9aaad"
+            }
+          ],
+          "given": "OS-Aのみを選択。OS-Aのidentity/revision/receiptはあるが、data-use/permission classificationはunknownで安全依存をreference_onlyとして扱う提案。",
+          "when": "安全依存のunknownを参考扱いで通過させる提案を照合する。",
+          "then": "callを完全成立にせず該当scope/sourceと安全不足を保持しSECURITYへ返す。",
+          "expected_observation": "安全条件unknownはSECURITYへ、source値不足はOS ownerへ返す。",
+          "return_to": [
+            "安全条件unknownはSECURITYへ該当scopeを返す。"
+          ],
+          "failure_observation": "合成fixtureの設計期待のみ。実source採択・実接続・資格・評価を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "given_raw_values": [
+            {
+              "path": "$.facts.selected_sources[0]",
+              "value": "OS-A"
+            },
+            {
+              "path": "$.facts.sources.OS-A.permission",
+              "value": "unknown"
+            },
+            {
+              "path": "$.facts.sources.OS-A.safety_dependency",
+              "value": "reference_only"
+            },
+            {
+              "path": "$.facts.sources.OS-A.state",
+              "value": "unknown"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "HELIXLABO-L9-058-F02",
+      "l4_ref": "HELIXLABO-L4-058-F02",
+      "requirement_ref": "HELIXLABO-L3-058-F02",
+      "system_oracle_ref": "HELIXLABO-L10-058-F02",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-058-F02",
+        "parent": "HELIXLABO-L2-058",
+        "title": "操作条件と依存再照合",
+        "obligation": "Web/WEB-OS選択時だけ031/032 source採択/接続/安全条件を照合し、2.0外部取得033を1.0へ追加しない。source追加/削除・操作/scope/版変更時に依存分類と閉包を再照合し前回receiptを無条件継承しない。",
+        "oracle_ref": "HELIXLABO-L10-058-F02"
+      },
+      "approved_system_oracle": {
+        "id": "HELIXLABO-L10-058-F02",
+        "parent": "HELIXLABO-L2-058",
+        "title": "操作条件と依存再照合",
+        "requirement_ref": "HELIXLABO-L3-058-F02",
+        "positive_input": "Web未選択、有効選択、source/scope/版変更を比較する。",
+        "expected_observation": "操作固有の追加条件とstale/再照合が辿れる。",
+        "negative_input": "Web未採択で全1.0停止、古い選択継承、外部取得無断追加。",
+        "failure_observation": "当該source/scope/契約ownerへ未完を返す。",
+        "execution_state": "not_executed"
+      },
+      "cases": [
+        {
+          "id": "HELIXLABO-L9-058-F02-WEB-UNSELECTED",
+          "basis": "HELIXLABO-L10-058-F02 positive_input と HELIXLABO-L3-058-F02 obligation に対応する固定raw入力。 当該節「Web未選択ならWeb依存を個別callへ追加しない」を示す。",
+          "requirement_ref": "HELIXLABO-L3-058-F02",
+          "system_oracle_ref": "HELIXLABO-L10-058-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-WEB-UNSELECTED",
+                "revision": "fixture-labo058-r1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WORKER-A\":{\"contract\":\"C-28-r3\",\"permission\":\"allowed_fixture\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"state\":\"failure\"}},\"unselected_sources\":{\"WEB-A\":\"not_selected\",\"contract_031\":\"not_selected\"},\"version_target\":\"1.0\"},\"fixture_only\":true,\"packet_id\":\"P-WEB-UNSELECTED\",\"source_revision\":\"fixture-labo058-r1\"}",
+              "sha256": "20b90cd05fd2f03b26e4098cc1f1e3d455026773a792275912829f0663751707"
+            }
+          ],
+          "given": "version_target=1.0、選択はWORKER-Aのみ。WEB-Aと031 contractは未選択。",
+          "when": "Worker callと未選択Webを照合する。",
+          "then": "Worker callを評価しWebはnot_selected/not_observed。031/032完成をこのcallの条件にしない。",
+          "expected_observation": "Web実運用の不存在で全1.0を停止しない。",
+          "return_to": [
+            "選択Web契約未採択/receipt不足: source contract owner/scope owner/SECURITYへ返す。",
+            "scope/operation/選択/版変更で照合不能: source/LABOへ未成立で返す。",
+            "1.0へ033を足す提案: 1.0/2.0境界の不一致として要求ownerへ返す。"
+          ],
+          "failure_observation": "合成packetに対する設計期待のみ。実source、実評価、資格成立を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "l10_clause": "Web未選択ならWeb依存を個別callへ追加しない",
+          "given_raw_values": [
+            {
+              "path": "$.facts.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.version_target",
+              "value": "1.0"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-F02-WEB-WEBOS-SELECTED-CONDITIONAL",
+          "basis": "HELIXLABO-L10-058-F02 positive_input と HELIXLABO-L3-058-F02 obligation の当該節「Web/WEB-OS選択時に031/032採択契約・接続・安全条件を照合する」に対応する固定raw入力。",
+          "l10_clause": "Web/WEB-OS選択時に031/032採択契約・接続・安全条件を照合する",
+          "requirement_ref": "HELIXLABO-L3-058-F02",
+          "system_oracle_ref": "HELIXLABO-L10-058-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-F02-WEB-WEBOS-SELECTED-CONDITIONAL",
+                "revision": "fixture-labo058-r2",
+                "owner": "fixture-only; actual source owner remains the referenced L2 owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"actual_contract_adoption\":\"unknown\",\"actual_provider\":\"unknown\",\"actual_qualification\":\"unknown\",\"fixture_premises_only\":true,\"not_a_real_qualification\":\"true\",\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WEB-PRODUCT-FIXTURE\",\"WEB-OS-FIXTURE\"],\"selection_basis\":\"TASK-WEB-OPTIONAL\",\"sources\":{\"WEB-OS-FIXTURE\":{\"authority\":\"WEB-OS\",\"connection_owner\":\"HELIX-CONNECT\",\"connection_receipt\":\"fixture-connect-32\",\"contract_adoption_premise\":\"fixture_only_assumed\",\"contract_version\":\"fixture-contract-032-r1\",\"data_use\":\"fixture-permitted\",\"identity\":\"fixture-web-os-32\",\"owner\":\"WEB-OS\",\"permission\":\"fixture-only\",\"revision\":\"fixture-os-r1\",\"scope\":\"PRODUCT-A\",\"security_dependency\":\"fixture-satisfied\",\"source_ref\":\"HELIXLABO-L2-032\"},\"WEB-PRODUCT-FIXTURE\":{\"authority\":\"Web product source owner\",\"connection_owner\":\"HELIX-CONNECT\",\"connection_receipt\":\"fixture-connect-31\",\"contract_adoption_premise\":\"fixture_only_assumed\",\"contract_version\":\"fixture-contract-031-r1\",\"data_use\":\"fixture-permitted\",\"identity\":\"fixture-web-product-31\",\"owner\":\"Web product source owner\",\"permission\":\"fixture-only\",\"revision\":\"fixture-web-r1\",\"scope\":\"PRODUCT-A\",\"security_dependency\":\"fixture-satisfied\",\"source_ref\":\"HELIXLABO-L2-031\"}},\"version_target\":\"1.0\"},\"fixture_only\":true,\"packet_id\":\"P-F02-WEB-WEBOS-SELECTED-CONDITIONAL\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "e44d08ac27662f870870fa29e4e2656675bbb5befd3ef306f53557c2cd228733"
+            }
+          ],
+          "given": "WEB-PRODUCT-FIXTUREとWEB-OS-FIXTUREを選択。各sourceのL2-031/032 owner、contract adoption/connection/permission/safety premiseをfixture-onlyとして明示する。実provider・実採択・実資格はunknown。",
+          "when": "選択operationの031/032依存閉包を、明記されたfixture premiseに限って照合する。",
+          "then": "この合成入力内では両sourceの条件が揃うときに限りcall closureを成立期待とし、実資格はunknownのまま残す。",
+          "expected_observation": "実source adoption/connection/SECURITY evidenceが無ければ実callを成立扱いしない。",
+          "return_to": [
+            "031 source owner (Web product)・032 source owner (WEB-OS)・HELIX-CONNECT・SECURITYへ実証不足を返す。"
+          ],
+          "failure_observation": "条件充足時の合成期待のみ。L2-031/032の実契約採択、実provider、実接続、実許可はunknownで、資格証明ではない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "given_raw_values": [
+            {
+              "path": "$.facts.actual_contract_adoption",
+              "value": "unknown"
+            },
+            {
+              "path": "$.facts.actual_provider",
+              "value": "unknown"
+            },
+            {
+              "path": "$.facts.actual_qualification",
+              "value": "unknown"
+            },
+            {
+              "path": "$.facts.selected_sources[0]",
+              "value": "WEB-PRODUCT-FIXTURE"
+            },
+            {
+              "path": "$.facts.selected_sources[1]",
+              "value": "WEB-OS-FIXTURE"
+            },
+            {
+              "path": "$.facts.sources.WEB-OS-FIXTURE.authority",
+              "value": "WEB-OS"
+            },
+            {
+              "path": "$.facts.sources.WEB-OS-FIXTURE.owner",
+              "value": "WEB-OS"
+            },
+            {
+              "path": "$.facts.sources.WEB-OS-FIXTURE.permission",
+              "value": "fixture-only"
+            },
+            {
+              "path": "$.facts.sources.WEB-PRODUCT-FIXTURE.permission",
+              "value": "fixture-only"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-F02-WEB-SELECTED-UNADOPTED",
+          "basis": "HELIXLABO-L10-058-F02 negative_input と HELIXLABO-L3-058-F02 obligation に対応する固定raw入力。 当該節「未採択031/032契約を成立済みと推測しない」を示す。",
+          "requirement_ref": "HELIXLABO-L3-058-F02",
+          "system_oracle_ref": "HELIXLABO-L10-058-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-N-WEB-UNADOPTED",
+                "revision": "fixture-labo058-r1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WEB-A\"],\"selection_basis\":\"TASK-A\",\"sources\":{\"WEB-A\":{\"contract_031\":\"candidate_not_adopted\",\"permission\":\"unknown\",\"receipt\":null,\"revision\":null,\"state\":\"not_observed\"}},\"unselected_sources\":{\"WORKER-A\":\"not_selected\"}},\"fixture_only\":true,\"packet_id\":\"N-WEB-UNADOPTED\",\"source_revision\":\"fixture-labo058-r1\"}",
+              "sha256": "0a23061efbe6c95f959521ff994ea2ecc512d49bb08b0e9a0b6253ca689bcce2"
+            }
+          ],
+          "given": "WEB-Aが選択済みだが031はcandidate_not_adopted、revision/receipt=null、permission=unknown。",
+          "when": "Web入力を成立扱いする案を照合する。",
+          "then": "Webを含むcallはunknown/未成立としてscope/source/SECURITY ownerへ不足を返す。",
+          "expected_observation": "候補契約を採択済みと推測しない。",
+          "return_to": [
+            "選択Web契約未採択/receipt不足: source contract owner/scope owner/SECURITYへ返す。",
+            "scope/operation/選択/版変更で照合不能: source/LABOへ未成立で返す。",
+            "1.0へ033を足す提案: 1.0/2.0境界の不一致として要求ownerへ返す。"
+          ],
+          "failure_observation": "合成packetに対する設計期待のみ。実source、実評価、資格成立を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "l10_clause": "未採択031/032契約を成立済みと推測しない",
+          "given_raw_values": [
+            {
+              "path": "$.facts.selected_sources[0]",
+              "value": "WEB-A"
+            },
+            {
+              "path": "$.facts.sources.WEB-A.contract_031",
+              "value": "candidate_not_adopted"
+            },
+            {
+              "path": "$.facts.sources.WEB-A.permission",
+              "value": "unknown"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-F02-CHANGED-SCOPE-VERSION",
+          "basis": "HELIXLABO-L10-058-F02 negative_input と HELIXLABO-L3-058-F02 obligation に対応する固定raw入力。 当該節「scope/契約版変更で前回receiptを無条件継承しない」を示す。",
+          "requirement_ref": "HELIXLABO-L3-058-F02",
+          "system_oracle_ref": "HELIXLABO-L10-058-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-N-STALE-SCOPE",
+                "revision": "fixture-labo058-r1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"new_invocation\":{\"contract_revisions\":{\"OS-A\":\"C-22-r2\",\"WORKER-A\":\"C-28-r4\"},\"receipts\":{\"OS-A\":\"R-O4\",\"WORKER-A\":\"R-W7-old\"},\"scope\":\"PRODUCT-B\",\"selected_sources\":[\"WORKER-A\",\"OS-A\"]},\"prior_receipt\":{\"contract_revision\":\"C-28-r3\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]}},\"fixture_only\":true,\"packet_id\":\"N-STALE-SCOPE\",\"source_revision\":\"fixture-labo058-r1\"}",
+              "sha256": "28c1a351f92be43cb321963144d21fb727abdd54b42b638083567d8e5b9b582c"
+            }
+          ],
+          "given": "前回PRODUCT-A/WORKER-A/C-28-r3/R-W7、今回はPRODUCT-B/WORKER-A+OS-A/C-28-r4とC-22-r2、receiptは異なる。",
+          "when": "旧receiptを無条件継承する提案を照合する。",
+          "then": "旧receiptはstale扱いで再照合し、変更後source closureを評価する。",
+          "expected_observation": "前回選択だけで新scope成立にしない。",
+          "return_to": [
+            "選択Web契約未採択/receipt不足: source contract owner/scope owner/SECURITYへ返す。",
+            "scope/operation/選択/版変更で照合不能: source/LABOへ未成立で返す。",
+            "1.0へ033を足す提案: 1.0/2.0境界の不一致として要求ownerへ返す。"
+          ],
+          "failure_observation": "合成packetに対する設計期待のみ。実source、実評価、資格成立を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "l10_clause": "scope/契約版変更で前回receiptを無条件継承しない",
+          "given_raw_values": [
+            {
+              "path": "$.facts.new_invocation.contract_revisions.OS-A",
+              "value": "C-22-r2"
+            },
+            {
+              "path": "$.facts.new_invocation.contract_revisions.WORKER-A",
+              "value": "C-28-r4"
+            },
+            {
+              "path": "$.facts.new_invocation.scope",
+              "value": "PRODUCT-B"
+            },
+            {
+              "path": "$.facts.new_invocation.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.new_invocation.selected_sources[1]",
+              "value": "OS-A"
+            },
+            {
+              "path": "$.facts.prior_receipt.contract_revision",
+              "value": "C-28-r3"
+            },
+            {
+              "path": "$.facts.prior_receipt.receipt",
+              "value": "R-W7"
+            },
+            {
+              "path": "$.facts.prior_receipt.scope",
+              "value": "PRODUCT-A"
+            },
+            {
+              "path": "$.facts.prior_receipt.selected_sources[0]",
+              "value": "WORKER-A"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-F02-SOURCE-ADDED-RECHECK",
+          "basis": "HELIXLABO-L10-058-F02 negative_input と L3 obligation の当該節「source追加/削除時に依存分類とreceiptを再照合する」に対応する固定raw入力。",
+          "l10_clause": "source追加/削除時に依存分類とreceiptを再照合する",
+          "requirement_ref": "HELIXLABO-L3-058-F02",
+          "system_oracle_ref": "HELIXLABO-L10-058-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-F02-SOURCE-ADDED",
+                "revision": "fixture-labo058-r2",
+                "owner": "fixture-only; actual source owner remains the referenced L2 owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"new_invocation\":{\"operation\":\"AGGREGATE\",\"receipts\":{\"WORKER-A\":\"R-W7\"},\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\",\"OS-A\"]},\"prior_invocation\":{\"operation\":\"AGGREGATE\",\"receipts\":{\"WORKER-A\":\"R-W7\"},\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]},\"proposal_under_test\":\"reuse_prior_worker_only_receipt_after_OS_A_added_without_OS_receipt\"},\"fixture_only\":true,\"packet_id\":\"P-F02-SOURCE-ADDED\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "23e1a04a376d67b8e360733ccd50e7bd9038985e1563d64f7769e039d4ec6343"
+            }
+          ],
+          "given": "前callはWORKER-Aのみ、receipt=R-W7。新callでOS-Aを追加するがreceiptsにOS-A keyが存在しない。提案は旧Worker receiptだけを新source集合へ継承する。",
+          "when": "source追加後にsourceごとの依存・receiptを再照合する。",
+          "then": "source追加後の依存を再照合し、新たに選択されたOS-Aの不足を保持して旧receiptだけで新callを成立させない。",
+          "expected_observation": "追加sourceごとの接続とreceiptが要り、選択を省略して不足を隠さない。",
+          "return_to": [
+            "OS source owner/HELIX-CONNECTへ追加sourceの接続・receipt不足を返す。"
+          ],
+          "failure_observation": "合成fixtureの設計期待のみ。OS実接続・receipt・資格を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "given_raw_values": [
+            {
+              "path": "$.facts.new_invocation.receipts.WORKER-A",
+              "value": "R-W7"
+            },
+            {
+              "path": "$.facts.new_invocation.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.new_invocation.selected_sources[1]",
+              "value": "OS-A"
+            },
+            {
+              "path": "$.facts.prior_invocation.receipts.WORKER-A",
+              "value": "R-W7"
+            },
+            {
+              "path": "$.facts.prior_invocation.selected_sources[0]",
+              "value": "WORKER-A"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-F02-SOURCE-DELETED-RECHECK",
+          "basis": "HELIXLABO-L10-058-F02 negative_input と HELIXLABO-L3-058-F02 obligation の当該節「source追加/削除時に依存分類とreceiptを再照合する」に対応する固定raw入力。",
+          "l10_clause": "source追加/削除時に依存分類とreceiptを再照合する",
+          "requirement_ref": "HELIXLABO-L3-058-F02",
+          "system_oracle_ref": "HELIXLABO-L10-058-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-F02-SOURCE-DELETED-RECHECK",
+                "revision": "fixture-labo058-r2",
+                "owner": "fixture-only; actual source owner remains the referenced L2 owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"new_invocation\":{\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]},\"prior_invocation\":{\"operation\":\"AGGREGATE\",\"receipts\":{\"OS-A\":\"R-O4\",\"WORKER-A\":\"R-W7\"},\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\",\"OS-A\"]},\"proposal_under_test\":\"reuse_prior_two_source_receipt_after_OS_A_deleted\"},\"fixture_only\":true,\"packet_id\":\"P-F02-SOURCE-DELETED-RECHECK\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "f6e983379cae0e559c0f9fde5a023d9342adf26e0da2f2d8f55c6a727a6f2d5b"
+            }
+          ],
+          "given": "前callはWORKER-A+OS-AでR-W7/R-O4。新callからOS-Aが削除されたのに、提案は前の2source receiptを新集合へ引継ぐ。",
+          "when": "source削除後に前call receiptを継承する提案を照合する。",
+          "then": "WORKER-Aのみを新callの選択sourceとして再照合し、OS-A receiptを新callへ適用しない。",
+          "expected_observation": "source selection/receiptの新旧差異をsource/LABOへ返す。",
+          "return_to": [
+            "source owner/LABOへ削除後の新scopeとstale receiptを返す。"
+          ],
+          "failure_observation": "合成fixtureの設計期待のみ。実source採択・実接続・資格・評価を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "given_raw_values": [
+            {
+              "path": "$.facts.new_invocation.receipt",
+              "value": "R-W7"
+            },
+            {
+              "path": "$.facts.new_invocation.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.prior_invocation.receipts.OS-A",
+              "value": "R-O4"
+            },
+            {
+              "path": "$.facts.prior_invocation.receipts.WORKER-A",
+              "value": "R-W7"
+            },
+            {
+              "path": "$.facts.prior_invocation.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.prior_invocation.selected_sources[1]",
+              "value": "OS-A"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-F02-OPERATION-CHANGED-RECHECK",
+          "basis": "HELIXLABO-L10-058-F02 negative_input と HELIXLABO-L3-058-F02 obligation の当該節「operation変更時に依存分類とreceiptを再照合する」に対応する固定raw入力。",
+          "l10_clause": "operation変更時に依存分類とreceiptを再照合する",
+          "requirement_ref": "HELIXLABO-L3-058-F02",
+          "system_oracle_ref": "HELIXLABO-L10-058-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-P-F02-OPERATION-CHANGED-RECHECK",
+                "revision": "fixture-labo058-r2",
+                "owner": "fixture-only; actual source owner remains the referenced L2 owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"new_invocation\":{\"operation\":\"COMPARE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]},\"prior_invocation\":{\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]},\"proposal_under_test\":\"reuse_aggregate_receipt_for_compare_without_recheck\"},\"fixture_only\":true,\"packet_id\":\"P-F02-OPERATION-CHANGED-RECHECK\",\"source_revision\":\"fixture-labo058-r2\"}",
+              "sha256": "c076ef8a3ddb4f77c6181f5a900d7ab628e0ac990c99a4f0cbcfd6bcfa7d541d"
+            }
+          ],
+          "given": "前call operation=AGGREGATE、scope=PRODUCT-A、WORKER-A/R-W7。新operation=COMPAREだが同じreceiptを無条件継承する提案。",
+          "when": "operation差分を確認し前call receiptを再利用する案を照合する。",
+          "then": "COMPARE用依存を再照合し、AGGREGATE receiptだけでは新callの成立を主張しない。",
+          "expected_observation": "operation差分と不足をsource/LABO ownerへ返す。",
+          "return_to": [
+            "operation-specific closure未成立をsource/LABOへ返す。"
+          ],
+          "failure_observation": "合成fixtureの設計期待のみ。実source採択・実接続・資格・評価を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "given_raw_values": [
+            {
+              "path": "$.facts.new_invocation.operation",
+              "value": "COMPARE"
+            },
+            {
+              "path": "$.facts.new_invocation.scope",
+              "value": "PRODUCT-A"
+            },
+            {
+              "path": "$.facts.new_invocation.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.prior_invocation.operation",
+              "value": "AGGREGATE"
+            },
+            {
+              "path": "$.facts.prior_invocation.receipt",
+              "value": "R-W7"
+            },
+            {
+              "path": "$.facts.prior_invocation.scope",
+              "value": "PRODUCT-A"
+            },
+            {
+              "path": "$.facts.prior_invocation.selected_sources[0]",
+              "value": "WORKER-A"
+            }
+          ]
+        },
+        {
+          "id": "HELIXLABO-L9-058-F02-NO-033-IN-1.0",
+          "basis": "HELIXLABO-L10-058-F02 negative_input と HELIXLABO-L3-058-F02 obligation に対応する固定raw入力。 当該節「2.0外部取得033を1.0へ無断追加しない」を示す。",
+          "requirement_ref": "HELIXLABO-L3-058-F02",
+          "system_oracle_ref": "HELIXLABO-L10-058-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYN-LABO058-N-ADD-EXTERNAL-033",
+                "revision": "fixture-labo058-r1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-058",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"facts\":{\"additional_source_proposal\":{\"external_033\":\"include without selected source contract\"},\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"],\"sources\":{\"WORKER-A\":{\"contract\":\"C-28-r3\",\"permission\":\"allowed_fixture\",\"receipt\":\"R-W7\",\"revision\":\"WR-7\",\"state\":\"failure\"}},\"version_target\":\"1.0\"},\"fixture_only\":true,\"packet_id\":\"N-ADD-EXTERNAL-033\",\"source_revision\":\"fixture-labo058-r1\"}",
+              "sha256": "ea368fc1a9d4e4d5e7d560d3dd96b5a58e52d64b2e2c9d4239e98d168c15966c"
+            }
+          ],
+          "given": "version_target=1.0、WORKER-A選択中にcontractなしのexternal_033を追加する提案がある。",
+          "when": "追加案を要求境界へ照合する。",
+          "then": "033を1.0 call依存へ含めず、2.0境界を保持する。",
+          "expected_observation": "要求意味や採択を生成しない。",
+          "return_to": [
+            "選択Web契約未採択/receipt不足: source contract owner/scope owner/SECURITYへ返す。",
+            "scope/operation/選択/版変更で照合不能: source/LABOへ未成立で返す。",
+            "1.0へ033を足す提案: 1.0/2.0境界の不一致として要求ownerへ返す。"
+          ],
+          "failure_observation": "合成packetに対する設計期待のみ。実source、実評価、資格成立を示さない。",
+          "execution_state": "not_executed",
+          "fixture_only": true,
+          "l10_clause": "2.0外部取得033を1.0へ無断追加しない",
+          "given_raw_values": [
+            {
+              "path": "$.facts.selected_sources[0]",
+              "value": "WORKER-A"
+            },
+            {
+              "path": "$.facts.version_target",
+              "value": "1.0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "legacy_rederivation": {
+    "preserve": "FRS-R-06のrequired dependency欠落・暗黙包含拒否、FRS-R-13の依存閉包、FRS-R-14のunknown/stale安全処理の意味。",
+    "change": "旧Bundle/CI固有構造やgateは移植しない。現行LABO選択sourceの依存区分と既存owner戻しへ再導出。",
+    "reason": "L2-058はL2-001のsource別call依存を補う。全source一律依存や新採択条件ではない。"
+  },
+  "parent": "HELIXLABO-L2-058",
+  "source_main": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "Stage 2b",
+    "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+    "boundary": "選択source依存を001へ適用する。未選択sourceの個別call完成を要求せず全能力義務を保持。Webは選択operationのみ条件付き、033は2.0。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17"
+    },
+    {
+      "path": "docs/helix-os/sources/body-reinforcement-po-original-2026-09-27.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "cf45adb7212a35c496e420973be0933ec38d4c00175051811f6a9c0b2c06ac78"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-13.json",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "be15912053ee884e57ff4460e6b656c2727187533fb79895d93934c7d25e2041"
+    }
+  ],
+  "approval_basis": {
+    "record_id": "HDEC-LABO-PREREQUISITE-L3L10-2026-10-12",
+    "record_path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "record_sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19",
+    "admitted_commit": "2f95e20cd9e90dd4ab7d349661476d8c49eff548",
+    "admitted_commit_is_ancestor_of_source_main": true,
+    "exact_approval_scope_quote": "001/002/011/026/028/054/055/056/057/058の10親から導出した26組のexact本文を承認する。全LABO能力・全source接続・実観測/実評価の完成を含まない。draft/not_executedは固定bytesとして保持する。",
+    "approved_l3_file_sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+    "approved_l10_file_sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496",
+    "approval_evidence": "PR #2957 independent no_findings／委任承認記録に束縛された固定bytes。"
+  },
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "read_lines": [
+        91,
+        92
+      ],
+      "quote": "Bundleは`included_slices`と`excluded_slices`をexact setで保持する。excludedとincludedの重複、unknown Slice、required dependency\n欠落、conflict、未指定Sliceの暗黙包含、preview／rc Sliceのstable Bundleへの混入を拒否する。",
+      "selected_lines_sha256": "4adf3707b183f5c1050634fa7a96b1a4b93db5b6f8c41ee7a02629b599a23086",
+      "selected_lines_encoding": "UTF-8 original selected line bytes, LF retained",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+        "disposition": "unresolved",
+        "source_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "必要依存の欠落と暗黙包含の拒否、依存閉包、unknown/staleの安全処理。",
+      "change": "旧Bundle/Release-slice固有構造やCI gateは移植せず、選択source別のLABO観測依存へ意味を再導出。",
+      "reason": "LABO 058は採択001へsourceごとのcall依存を区分し、全source完成義務とは分離する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "read_lines": [
+        136,
+        137
+      ],
+      "quote": "Slice単位のtargeted／mutation／consumer検証を局所最適化しつつ、shared core、authority、cross-slice dependency、release、main\nread-afterはdependent closureとcritical pathへ展開する。検証義務を減らすためにSliceを分割してはならない。",
+      "selected_lines_sha256": "001d47682cb0d976e7aa4ea5846399f6477d4f001c4457ff6db4cf5e4713b999",
+      "selected_lines_encoding": "UTF-8 original selected line bytes, LF retained",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+        "disposition": "unresolved",
+        "source_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "必要依存の欠落と暗黙包含の拒否、依存閉包、unknown/staleの安全処理。",
+      "change": "旧Bundle/Release-slice固有構造やCI gateは移植せず、選択source別のLABO観測依存へ意味を再導出。",
+      "reason": "LABO 058は採択001へsourceごとのcall依存を区分し、全source完成義務とは分離する。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "read_lines": [
+        141,
+        142
+      ],
+      "quote": "影響Module、Slice、Bundle、dependency、profile、channelがunknown、ambiguous、staleの場合、成功扱い、空集合、局所greenへの\nfallbackをしない。full verificationまたはfail-closeへ送る。inventory unionを根拠にしたsilent omissionを禁止する。",
+      "selected_lines_sha256": "3930ff0b8cda043b2b3d03975319e05d59489f53efe06c3e78f268054d24f6b2",
+      "selected_lines_encoding": "UTF-8 original selected line bytes, LF retained",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+        "disposition": "unresolved",
+        "source_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "必要依存の欠落と暗黙包含の拒否、依存閉包、unknown/staleの安全処理。",
+      "change": "旧Bundle/Release-slice固有構造やCI gateは移植せず、選択source別のLABO観測依存へ意味を再導出。",
+      "reason": "LABO 058は採択001へsourceごとのcall依存を区分し、全source完成義務とは分離する。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "承認済みL3/L10固定bytesを入力として参照する。要求採択・source資格・権限を生成しない。",
+  "operation_effect": "合成fixtureの未実行caseを設計するだけで、実source/評価/実行を主張しない。",
+  "remaining": [
+    "正式source identity/契約・owner-qualified許可・source別接続閉包は未成立。",
+    "正式schema/codec/resolver、全選択組合せ、競合/再送/replay、L5/L8対応と詳細oracle凍結は未完。",
+    "実source資格・認可・受領・実L9評価・TDD/CI・PO L11 acceptance、全92/430設計閉包は未成立。synthetic fixtureは証明にならない。"
+  ],
+  "approved_requirements": [
+    {
+      "id": "HELIXLABO-L3-058-B01",
+      "parent": "HELIXLABO-L2-058",
+      "title": "個別呼出しと全能力完成",
+      "obligation": "未選択sourceの完成待ちを必要条件の揃った呼出しへ要求せず、全sourceの1.0完成義務は保持する。全一覧/比較資料は参照のみ、058自身を001実行前提へ再帰依存にしない。",
+      "oracle_ref": "HELIXLABO-L10-058-B01"
+    },
+    {
+      "id": "HELIXLABO-L3-058-F01",
+      "parent": "HELIXLABO-L2-058",
+      "title": "選択source別の依存",
+      "obligation": "呼出しscope・選択source identity/操作/契約版/許可を明示し、001のprovenance/revision/state/scope/data-use/authority/版とsource正本非変更を常時保つ。選択021〜030各sourceの入力接続/安全閉包を全部照合し、未選択は未観測に保つ。",
+      "oracle_ref": "HELIXLABO-L10-058-F01"
+    },
+    {
+      "id": "HELIXLABO-L3-058-F02",
+      "parent": "HELIXLABO-L2-058",
+      "title": "操作条件と依存再照合",
+      "obligation": "Web/WEB-OS選択時だけ031/032 source採択/接続/安全条件を照合し、2.0外部取得033を1.0へ追加しない。source追加/削除・操作/scope/版変更時に依存分類と閉包を再照合し前回receiptを無条件継承しない。",
+      "oracle_ref": "HELIXLABO-L10-058-F02"
+    }
+  ],
+  "approved_object_hashes": [
+    {
+      "id": "HELIXLABO-L3-058-B01",
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "canonical_sha256": "587cfa4fa7afe2ef399229bf432a5ce0f76008a7de731fc68dd1af0ff054c871"
+    },
+    {
+      "id": "HELIXLABO-L3-058-F01",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "2cf397f9e79dbb6c81de5d70c4f89e4aa0b94e53f4a3e7c9251bde54f8a5195b"
+    },
+    {
+      "id": "HELIXLABO-L3-058-F02",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "22d76dcfa62f8a690a51679c1187c52e372f17571af047415396c67b3a5948b7"
+    },
+    {
+      "id": "HELIXLABO-L10-058-B01",
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "canonical_sha256": "865e6f6687a54906c6ef2f809c8acedd4e12b46b17bc2c146a8424151c7a2f5e"
+    },
+    {
+      "id": "HELIXLABO-L10-058-F01",
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "9b6c94cd8935226ece81a93a1c07205f9044523ab276bc6a602937f1879db3b9"
+    },
+    {
+      "id": "HELIXLABO-L10-058-F02",
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "dc423d29b07d488d86e3d1c1cd6431abb4feda97eea1f7a68cb6cfbba3f522ae"
+    }
+  ],
+  "upstream_adoption": {
+    "decision_path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+    "decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "parent_requirement_id": "HELIXLABO-L2-058",
+    "registration_id": "MPR-RC-HELIXLABO-L2-058-001",
+    "adopted_l2_section": {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "start_line": 403,
+      "end_line_exclusive": 416,
+      "encoding": "splitlines(keepends=True)後のUTF-8 bytes、LF保持",
+      "sha256": "b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf",
+      "quote": "### HELIXLABO-L2-058 — 観測集積の入力元ごとの依存条件（単体追補候補、1.0）\n\n- **親L1**：HELIXLABO-L1-001。既存HELIXLABO-L2-001の集積能力に適用する依存区分の追補候補であり、新しい集積エンジンを作らない。現行L1/L2の採択状態は変えない。\n- **起点**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第2点、HARNESS-L2-010／011とその依存区分追補候補HARNESS-L2-023。旧FRS-R-06の必要な依存欠落・暗黙包含拒否、FRS-R-13／14の安全閉包・不明時停止を保持し、対応能力全体と個別呼出しの必須入力を分離する意味の再導出である。旧資産の具体位置・digestはG10依存監査に記録する。旧実装・runtimeは利用しない。\n- **受け取るもの**：集積対象scopeと選択source identity、操作、source/契約版、観測の利用許可、source別入力接続、既存001の観測状態・provenance・最低項目の契約。選択の根拠と未選択sourceも表示する。\n- **提供するもの**：その呼出しに必要なsource別接続と安全・版条件を照合したLABO observation、未観測の入力元、受領失敗・不足の理由。元の001の観測本文・責務・出力項目を変更しない。\n- **常時必須**：LABO001のprovenance、source identity/revision、状態区分、対象scope、適用するdata-use/authority、契約版、source正本を変更しない条件。入力元を選ばないことを、権限不明なデータの取込許可へ変えない。\n- **選択した入力元に応じて必須**：001に列挙されたL2-021〜030は、当該呼出しが受け取る各sourceに対応する接続を要求する。例えばWorker観測のみならL2-028の入力・受領契約とその安全依存を必要とし、入力に含まれないBRAIN等の別source接続の稼働は当該呼出しの成立条件にしない。複数sourceを選べばその全部に対応する接続・許可・依存閉包を要求する。selected sourceの欠落を「未選択」へ変えて成功にしない。\n- **特定操作時のみ必須**：Web/WEB-OS観測を加える操作では、既存L2-031／032に記したsource contractの採択と該当接続・安全条件を満たす。Webを選ばないLABO 1.0の呼出しへWeb実運用を前提にしない。2.0の外部取得入力は既存L2-033の版範囲に従い、1.0へ無断追加しない。\n- **参照のみ**：全sourceに対応する1.0要求範囲の一覧、未選択sourceの契約説明、旧資産の比較資料は、個別呼出しの実行サービス依存ではない。ただし一覧にある1.0対象能力の完成義務は保持し、個別呼出しで不要という理由で削除・延期しない。\n- **保証・失敗時**：未選択または未接続のsourceは未観測を保持し、成功・観測済みへ変換しない。選択sourceのversion/scope/許可/receiptが不足・不一致ならその入力の成立を拒みsource owner／SECURITYへ戻す。選択条件自体がunknownなら全部不要とせず呼出し条件の確認へ戻す。観測集積の成功をBench評価済み、割当許可、全source対応完成にしない。\n- **単独成立の依存**：既存HELIXLABO-L2-001の契約本文、HARNESS-L2-010／011／023の依存区分契約、選択sourceの入力接続とその安全・版条件。この追補自身を001の実行前提に再帰的に要求せず、001の利用条件を補う。実契約版は採択後に入力へ束縛し、`version_target: 1.0`を実装版・採択状態と混同しない。\n\n",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    },
+    "adopted_l11_section": {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "start_line": 156,
+      "end_line_exclusive": 164,
+      "encoding": "splitlines(keepends=True)後のUTF-8 bytes、LF保持",
+      "sha256": "f42d0cdbc001aeb26b91b0c1464f772c381cd7a4334908f24485c6847e802fcd",
+      "quote": "### HELIXLABO-L2-058 観測集積の入力元ごとの依存条件\n\n- **正常例**：選択入力がWorker観測だけの呼出しで、001/028のprovenance・版・scope・許可・状態区分・受領契約と安全依存が揃う。他の未選択入力は未観測を表示したまま、Worker観測を取り込める。全入力元対応の完成を主張しない。\n- **複数入力例**：WorkerとOSの観測を選択した場合は、両方のsource別接続と安全依存を要求する。片方のreceiptが欠落した結果を完全な集積成功にしない。\n- **反例**：未選択sourceの完成待ちで、必要条件を満たすWorker入力を拒む。選択済みsourceが欠けたため未選択へ改変する。安全依存を参照のみと分類する。未選択を観測済みへ変える。Web未採択を理由に全LABO 1.0を不成立にする。個別呼出しの成功を1.0全source対応済みとする。\n- **版・変更**：sourceの追加/削除、操作、scope、契約版が変わった場合に依存分類と閉包を再照合する。前回の選択やreceiptを無条件に継承しない。\n- **不足・戻し先**：選択条件が不明なら要求された呼出しscopeのownerへ、入力契約・版は各sourceとLABOへ、許可/classificationはSECURITYへ戻す。未観測・未完義務を消さず、既存001の出力保証を保つ。\n\n",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    },
+    "l1_sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+    "legacy_source_basis": {
+      "path": "docs/helix-os/sources/body-reinforcement-po-original-2026-09-27.md",
+      "sha256": "cf45adb7212a35c496e420973be0933ec38d4c00175051811f6a9c0b2c06ac78"
+    }
+  },
+  "approved_system_oracles": [
+    {
+      "id": "HELIXLABO-L10-058-B01",
+      "parent": "HELIXLABO-L2-058",
+      "title": "個別呼出しと全能力完成",
+      "requirement_ref": "HELIXLABO-L3-058-B01",
+      "positive_input": "Worker単独成立と未観測他source、全能力未完を比較する。",
+      "expected_observation": "呼出し成立と全能力未完が分かれる。",
+      "negative_input": "全source完成待ち、個別成功で全完成、1.0能力削除/延期。",
+      "failure_observation": "必要な不足だけsourceへ返し全能力未完を保持する。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXLABO-L10-058-F01",
+      "parent": "HELIXLABO-L2-058",
+      "title": "選択source別の依存",
+      "requirement_ref": "HELIXLABO-L3-058-F01",
+      "positive_input": "Workerのみ、Worker+OS、選択条件unknown/一receipt欠落を比較する。",
+      "expected_observation": "選択根拠と未選択、必要閉包/欠落が辿れる。",
+      "negative_input": "選択欠落を未選択化、安全依存を参考、unknownで全部不要。",
+      "failure_observation": "scope owner/source/LABO/SECへ該当不足を返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXLABO-L10-058-F02",
+      "parent": "HELIXLABO-L2-058",
+      "title": "操作条件と依存再照合",
+      "requirement_ref": "HELIXLABO-L3-058-F02",
+      "positive_input": "Web未選択、有効選択、source/scope/版変更を比較する。",
+      "expected_observation": "操作固有の追加条件とstale/再照合が辿れる。",
+      "negative_input": "Web未採択で全1.0停止、古い選択継承、外部取得無断追加。",
+      "failure_observation": "当該source/scope/契約ownerへ未完を返す。",
+      "execution_state": "not_executed"
+    }
+  ]
+}
