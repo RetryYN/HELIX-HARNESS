@@ -1,0 +1,1165 @@
+{
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "parent": "HELIXOS-L2-007",
+  "source_main": "ec3f23ddd0edbc04358ba18a27d7e8777a93089d",
+  "scope": {
+    "approval_revision": "7f1719fb6a89837c1bb9775faa9a634a066df4a3",
+    "requirements": [
+      "HELIXOS-L3-007-F01",
+      "HELIXOS-L3-007-F02",
+      "HELIXOS-L3-007-F03"
+    ],
+    "oracles": [
+      "HELIXOS-L10-007-F01",
+      "HELIXOS-L10-007-F02",
+      "HELIXOS-L10-007-F03"
+    ],
+    "operation": "限定前提の共通記録・feedback・memory責務の文書照合のみ。",
+    "historical_stage": "10/12前提入力としてStage1著述。旧routingは10/3 roster外。",
+    "version_boundary": "007に版指定を追加しない。Concept 1.0土台の参照から007全体の版を生成しない。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "approved_whole_objects": [
+    {
+      "id": "HELIXOS-L3-007-F01",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-007-F01",
+        "parent": "HELIXOS-L2-007",
+        "title": "共通ログと証拠の参照",
+        "obligation": "Worker・判断・操作・検証の原ログと証拠をConcept BASE-01の共通形式で保存し、対象project/要求revisionとsourceへ結ぶ。欠落/重複/staleと、共通形式不足で他機構へ結べない記録を成功証拠から分ける。",
+        "oracle_ref": "HELIXOS-L10-007-F01"
+      },
+      "object_canonical_sha256": "1280924b0fb382037a9ed220690c8f4a42eb4ca16fcf799e698b6987b7f376a8"
+    },
+    {
+      "id": "HELIXOS-L3-007-F02",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-007-F02",
+        "parent": "HELIXOS-L2-007",
+        "title": "feedbackの受領と解決",
+        "obligation": "feedbackのintake/classify/ack/pending/resolutionを別に記録し、未ack findingと元source HEADを保持する。受領や分類だけを解決にせず、projection/通知の消費で原findingを失わない。",
+        "oracle_ref": "HELIXOS-L10-007-F02"
+      },
+      "object_canonical_sha256": "da41491c76069e7f9e9b4cc8236e61876d9a16cc5612df5660c1712da4890f6b"
+    },
+    {
+      "id": "HELIXOS-L3-007-F03",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-007-F03",
+        "parent": "HELIXOS-L2-007",
+        "title": "memoryの責務正本への反映",
+        "obligation": "memory内容を該当責務の正本へ反映してからretireし、古い指示・期限切れ・消費済み指示を再提示しない。provider memoryを要求や継続状態の正本にせず、反映元/反映先revision・retire/利用状態を辿る。",
+        "oracle_ref": "HELIXOS-L10-007-F03"
+      },
+      "object_canonical_sha256": "b552be84b7a2d4d24c9f02e4ef23e032cc0142e8068b4c291098676116ad453e"
+    },
+    {
+      "id": "HELIXOS-L10-007-F01",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-007-F01",
+        "parent": "HELIXOS-L2-007",
+        "title": "共通ログと証拠の参照",
+        "requirement_ref": "HELIXOS-L3-007-F01",
+        "positive_input": "四種の記録と共通形式が不足する記録を同scopeへ入力する。",
+        "expected_observation": "出典/revisionと共通項目を辿れ、不完全な記録と成功証拠を区別する。",
+        "negative_input": "件数だけ、別HEADの証拠、欠落形式の黙示補完、重複を追加成功。",
+        "failure_observation": "不足形式・参照・発生元と未完を保持し、証拠の存在で承認/完了にしない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "203cbed0ca82e72f71656eeeae1ff879b65c77a2ef1e8dff64c3b4202c3372ec"
+    },
+    {
+      "id": "HELIXOS-L10-007-F02",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-007-F02",
+        "parent": "HELIXOS-L2-007",
+        "title": "feedbackの受領と解決",
+        "requirement_ref": "HELIXOS-L3-007-F02",
+        "positive_input": "未ack/ack済未解決/解決根拠ありのfindingを再構築する。",
+        "expected_observation": "段階・source HEAD・解決根拠と未完が区別される。",
+        "negative_input": "未ack finding削除、prose handoverだけで解決、source HEAD不一致、重複配送で二重利用。",
+        "failure_observation": "元findingとsource不一致/未解決を残し、受領を解決へ昇格しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "9dbc63edaa89b34be2895c049b2cd024df2aae3b728c64df4b3ba1fde71a6647"
+    },
+    {
+      "id": "HELIXOS-L10-007-F03",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-007-F03",
+        "parent": "HELIXOS-L2-007",
+        "title": "memoryの責務正本への反映",
+        "requirement_ref": "HELIXOS-L3-007-F03",
+        "positive_input": "未反映memory、反映済retire、期限切れ/消費済みの記録を比較する。",
+        "expected_observation": "反映とretireの順序が確認でき、未反映内容を消失させず古い指示をactive再表示しない。",
+        "negative_input": "未反映のretire、二重deliver/consume、terminal receiptのactive表示、memoryだけから正本判断。",
+        "failure_observation": "未反映義務や二重利用を示し、正本反映/retire/再提示の不成立を別に保持する。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "8cc71ef206f587746aaebee8ea9b79046c2006c187f00f1b7bd16aa797220c06"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "selected_line_quotes": [
+        {
+          "line": 289,
+          "text": "| `HR-FR-HYB-005` | memory v2はwrite/list/surfaceに加え、expiry、takeover、one-shot deliver/consume、長期層のfenced/idempotent retire、compaction fenceを持つ。active harness/project memoryは正本へ追突後にbody-free receiptへretireし、stale instructionを再提示しない | `HR-AC-HYB-005`: retire前の未反映memory、二重deliver、期限切れtakeover、lost update、terminal receiptのactive再表示を拒否する |",
+          "utf8_sha256": "787a77ff8b6b8d378fb2b652c2688523ba64094595e76cdf7634200fcfa21f96"
+        },
+        {
+          "line": 290,
+          "text": "| `HR-FR-HYB-006` | feedback lifecycleはintake、classify、ack、pending、reverse-candidate、resolution、SessionStart surfaceをevent/projectionで管理する | `HR-AC-HYB-006`: 未ack findingの消失、prose handoverだけの解決、source HEAD不一致を拒否する |",
+          "utf8_sha256": "2125ab8a351eea42abeb00975c7ff99a80fed5fe914b5c84a50bf6ca4945b931"
+        }
+      ]
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "file_sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715",
+      "selected_line_quotes": [
+        {
+          "line": 105,
+          "text": "| ログと証拠 | すべての機構が共通の形で記録する。誰が・何を・どの要求と構成の版で・どの能力とモデルの版を使い・どうなったかを、相関IDで結ぶ。要求、判断、変更、検証、手戻り、結果を一つの開発の経過（episode）として辿れるようにする | 1.0の計測と復旧、2.0の推薦の実績、3.0の学習データ、4.0の判断根拠 |",
+          "utf8_sha256": "ef3b3d827c3fc8751ad065bf73dddc1edfbdefedc548161e8624b4b9639c68ce"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "selected_line_quotes": [
+        {
+          "line": 60,
+          "text": "| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |",
+          "utf8_sha256": "d674f0be810bebd44d407d82f5e323119d9add7e61ea558419955fe0e6d16158"
+        },
+        {
+          "line": 295,
+          "text": "| HELIXOS-L2-007 | 作業・判断・検証の原証拠と出典を保持する。feedbackはintake・classify・ack・pending・resolutionを区別し、未ack findingを消さない。memoryの内容を責務正本へ反映してからretireし、古い指示を再提示しない | HBR-P7／P9、v1.3 HR-FR-HYB-005／006 |",
+          "utf8_sha256": "61b3cfdd51ffba2453abf1b98d554a3f85a47c5b6876be6acef706ca1bd8a119"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "selected_line_quotes": [
+        {
+          "line": 27,
+          "text": "| HELIXOS-L2-007 | Worker・判断・操作・検証のログを、Conceptの1.0土台（ログと証拠）の共通形式で要求revisionから辿り、欠落・重複・staleを成功証拠として使わない。共通形式の欠けた記録を、他の機構の記録と結べない不完全な記録として識別する |",
+          "utf8_sha256": "e51cbfb3a6aa87ecf13618eed60a88dba1fc94ef262a71696591c00639984f2f"
+        },
+        {
+          "line": 47,
+          "text": "- HELIXOS-L2-007：未ack finding、未反映memory、重複配送、期限切れ通知を投入し、内容消失・二重利用・古い指示の再提示を拒否する。",
+          "utf8_sha256": "16db6c4ece2aac5a78a9f4852df6a5aac718f863b965faee04faf666fd66599c"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/feedback-lifecycle.md",
+      "file_sha256": "2e0a028fc48c6acc92a5b09ada9fc511ed0389b71af9deee782ec81aa731a655",
+      "selected_line_quotes": [
+        {
+          "line": 9,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 10,
+          "text": "> **L6 contract marker**: feedback lifecycleはsource eventを消さず、canonical source identityと",
+          "utf8_sha256": "e9987b2d4615dabc3b2565dfdaf9dd28360f32b8b1adbdcd1338a5ee9ba4e408"
+        },
+        {
+          "line": 11,
+          "text": "> semantic generationに対するappend-only transitionで表示状態を導出する。同一generationのterminal",
+          "utf8_sha256": "dd0c57c9addf6e682c566e1661817dffc1187240bfb33d5bf3c7c91e6acba762"
+        },
+        {
+          "line": 12,
+          "text": "> 状態は再投影でopenへ戻らず、新generationだけが再openできる。§9のFLIFE-S1..S12とL8の",
+          "utf8_sha256": "50002f2dfc957d9a356dab983bc81e866c6a82050e2285bfb82108db50ca491b"
+        },
+        {
+          "line": 13,
+          "text": "> `U-FLIFE-001..012`を1:1で対にし、後続L7が実装とtest codeへ降下させる。",
+          "utf8_sha256": "e4c47ec556f09f1ae412d617fea067dae96b611c5f686aa0fa854950a85fae00"
+        },
+        {
+          "line": 14,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 15,
+          "text": "# feedback lifecycle — 機能設計",
+          "utf8_sha256": "fcced8667d7a37838a1898f86877c4d2600b5e9fe5521be9cafbdff843d69760"
+        },
+        {
+          "line": 16,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 17,
+          "text": "## §1 目的と正本境界",
+          "utf8_sha256": "e6a55732ce8f591c7cf01aca0176d7650e5942b330e63014734ba5273f104398"
+        },
+        {
+          "line": 18,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 19,
+          "text": "`findings` / `quality_signals` / `feedback_events`のsource事実は削除・改変しない。lifecycleのdata SSoTは",
+          "utf8_sha256": "e9986cd0eaae115a902e5aa1716e6ee4997fbb8b80abb57ef42b97cd1a87e0f7"
+        },
+        {
+          "line": 20,
+          "text": "`.helix/logs/feedback-lifecycle.jsonl`、harness.dbの`feedback_lifecycle`は再構築可能なprojectionとする。",
+          "utf8_sha256": "f4539fcfe28d5be4a936ecf910846dbb7f8a4eb1c92363db5b3b16e91c67acec"
+        },
+        {
+          "line": 21,
+          "text": "SessionStart surfaceと`helix feedback`は同じlifecycle viewを必ず通り、`feedback_events`だけにfilterを",
+          "utf8_sha256": "fe26e63f5c13055f365b95c267522f824ae4b08792849e1eb18fcee799758ec9"
+        },
+        {
+          "line": 22,
+          "text": "掛けてsource直読経路が迂回する実装を禁止する。",
+          "utf8_sha256": "e7709276336244182ea7b37b947b0b4fd112978be4216dbd17d76700591e2cb5"
+        },
+        {
+          "line": 23,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 24,
+          "text": "件数減少だけを品質証明にしない。gate/actionableが残ること、terminal化の根拠、hidden breadcrumb、",
+          "utf8_sha256": "34a0310df36982f511d71b3b882ff2e5923b68fde9d150232e2008a0d8c643c0"
+        },
+        {
+          "line": 75,
+          "text": "| current | action | next | actor / 条件 |",
+          "utf8_sha256": "5f610ca0e04eed9cc4cab21a93276ca17c6c160d74340904209016c3d2905907"
+        },
+        {
+          "line": 76,
+          "text": "|---|---|---|---|",
+          "utf8_sha256": "4da1ec6f47782090102dc16bda978efb5655fbf2ddce0f84ecf1faf79a930f2d"
+        },
+        {
+          "line": 77,
+          "text": "| 未観測 | observed | open | reconciler。firstObservedAtをevent時刻として固定 |",
+          "utf8_sha256": "a9522d5c27b77d38197c4faaf658e4c99d3dd446e6ac411af9fc420f120d7f69"
+        },
+        {
+          "line": 78,
+          "text": "| open | surface | open | session-log receipt。同一sessionの再表示だけ抑止しlifecycle stateは変更しない |",
+          "utf8_sha256": "07e6d76805ff598a75a25cf92804db332749276bd3928c1cca83a6397eecf90f"
+        },
+        {
+          "line": 79,
+          "text": "| open / ack | refresh | 同じstate | 通常payload driftのdigestを更新しack/TTLを無効化しない |",
+          "utf8_sha256": "5ddd82f878b4589c58d66f5020825b2918eafe10b0772cca00f3e00ed16835b7"
+        },
+        {
+          "line": 80,
+          "text": "| open | ack | ack | explicit human、またはtelemetry TTL policy |",
+          "utf8_sha256": "830b595d73ecde19c75440a107884591af597f4e01586697bd8a55c42d61957b"
+        },
+        {
+          "line": 81,
+          "text": "| open / ack | close | closed | full-source reconcileでsource解消を確認したsystem |",
+          "utf8_sha256": "ff171285080910f4c2b7fa461bc7a7608895b9d81b517d3ac3adadd0c35a9839"
+        },
+        {
+          "line": 82,
+          "text": "| open / ack | supersede | superseded | 同identityの新generation観測時のsystem |",
+          "utf8_sha256": "7951ae49c9af78cfa799473302646e0d48ba977bb02253f126ed5b9ccaaddd00"
+        },
+        {
+          "line": 83,
+          "text": "| ack | surface / ack | ack | surfaceは非表示、ack replayは追記ゼロ |",
+          "utf8_sha256": "4799fef1028821c14fc91a75fc6fe059679fd3cc5c00b5898c2d48092346ec32"
+        },
+        {
+          "line": 84,
+          "text": "| closed / superseded | その他 | 不変 | terminal replayは追記ゼロ。不正逆遷移は拒否 |",
+          "utf8_sha256": "5eeab2bad8d9da34fe164facc9290ca5dfc941d34630c7c2bcce0f77f70aade9"
+        },
+        {
+          "line": 85,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 86,
+          "text": "`surface`は解消・ackを意味しない。gate/actionableは1度表示しただけで次sessionから消してはならない。",
+          "utf8_sha256": "078f0ff3e8b2fa9049a7128f09ab1cbc5efa24087a56d979ee423c5155727f25"
+        },
+        {
+          "line": 87,
+          "text": "同一session内だけsurface receiptで再表示を抑え、次sessionではack/closedまで再表示する。",
+          "utf8_sha256": "3756a7f2baa4e8a9abab1e76dcc8dfb5c345b9462697e6be526b42db5c5a65dc"
+        },
+        {
+          "line": 88,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 89,
+          "text": "terminalは`closed|superseded`だけで、ackは未解決だが通常表示から確認済みとして退避した状態である。",
+          "utf8_sha256": "0bb9c3eebe02e9e24c320674f65682a3217bdc8298c74547c7e3a19bf4b99e0d"
+        },
+        {
+          "line": 90,
+          "text": "automationはgate/actionableをackできず、explicit human commandだけがactive generationをackできる。",
+          "utf8_sha256": "4589478b6a41de1c597ac8d5b7c897982f2b426fc9c5a22a6605e64ded2f8317"
+        },
+        {
+          "line": 91,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 92,
+          "text": "同一generationが再投影されてもack/terminal状態を保持する。新generationを観測した場合だけ旧nonterminalを",
+          "utf8_sha256": "5f6f5930ca4918063f7b8b379e1f5ff37f72ef44810e12a84148729a4c082e9c"
+        },
+        {
+          "line": 93,
+          "text": "superseded、新generationをopenにする。closedより古い遅延generation、generation順序を判定できない衝突は",
+          "utf8_sha256": "73401798c970232fd3c274e26b573542f9e786b6f0094c2c727b01f54e3e39e2"
+        },
+        {
+          "line": 94,
+          "text": "open復活させずdiagnosticを出す。source消失によるcloseは`reconcileMode=full`かつsource scan completeness",
+          "utf8_sha256": "21c9580721a7becebb787b877bf94d161bd9d0975075d73629f8b4ea7cd5fe5e"
+        },
+        {
+          "line": 95,
+          "text": "markerがある場合だけ許可し、partial rebuildやread失敗でcloseしない。",
+          "utf8_sha256": "47100b237bc26a68da89d7b3543eed1b9936fef40ebd55c14131ca039713a5ef"
+        },
+        {
+          "line": 96,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 97,
+          "text": "| source table | 有効条件 | 無効条件 | 全走査marker |",
+          "utf8_sha256": "4df35fc02235c471efd4127c2aabe01caf102ef07a4d43cc7657de52bbc5d07e"
+        },
+        {
+          "line": 98,
+          "text": "|---|---|---|---|",
+          "utf8_sha256": "4da1ec6f47782090102dc16bda978efb5655fbf2ddce0f84ecf1faf79a930f2d"
+        },
+        {
+          "line": 99,
+          "text": "| `findings` | `status=open` | `status!=open`またはfull scanで不在 | `findings_complete` |",
+          "utf8_sha256": "02d9751db3bba4d7854eeaeccbea4e6ecd64f28ad741d1cd12f02a14a6873133"
+        },
+        {
+          "line": 100,
+          "text": "| `quality_signals` | `status=warn|fail` | `status=pass`またはfull scanで不在 | `quality_signals_complete` |",
+          "utf8_sha256": "a27e1299bb7fd2f274ba0bc2998956a1f16d642989221a12fa2f0c26a5d0be16"
+        }
+      ],
+      "role": "選択した旧設計/consumerの保持差分。コードブロックは実行しない。全旧能力の採用ではない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/harness-memory-structure.md",
+      "file_sha256": "9350248eb45dfaf2e03401d1f6df36f193d7f6090d64c83936f6c01940b8118d",
+      "selected_line_quotes": [
+        {
+          "line": 15,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 16,
+          "text": "## §1 目的と境界",
+          "utf8_sha256": "041aae877fb544bb70dee7bd15820d04ccaa777470519a6f0ff28fc7353b500d"
+        },
+        {
+          "line": 17,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 18,
+          "text": "handover file を廃止しても情報を失わない受け皿として、現行 memory に type、provenance、lifecycle、",
+          "utf8_sha256": "3749b4c3ced80e038a420f7da30d3d826f8d65468c4e47bdc6dd5cc7934d6936"
+        },
+        {
+          "line": 19,
+          "text": "link、短寿命 `takeover` layer を追加する。機械状態の正本は引き続き harness.db であり、memory は",
+          "utf8_sha256": "5f835886c2c34e41f9551e9f326607b86e1f6278c2f2e008995d5a73b1441e50"
+        },
+        {
+          "line": 20,
+          "text": "判断・制約・申し送りを保持する補助正本である。feedback lifecycle、runtime への注入経路、handover",
+          "utf8_sha256": "7679c7b2aeeb74a5273fc03beaa4ebb0d6a18ac87205c61f41657d94156d9eed"
+        },
+        {
+          "line": 77,
+          "text": "| `compactMemoryV2(input, deps): CompactMemoryV2Result` | layer lock内で再読→temp write→fsync→fenced atomic replaceまで保持し、v2 event fileをactive entry + latest terminal tombstoneへ整理する。前後のnormalized view/lifecycle集計deep equalを検証し、不一致なら置換しない。旧`compactMemory`は変更しない。 |",
+          "utf8_sha256": "092ebd8ae6c74cfd2775ee91de5d87fe211f63abcfa8c610cd3587a24a016b44"
+        },
+        {
+          "line": 78,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 79,
+          "text": "`MemoryDepsV2`は`now/readEvents/appendEvent/writeSessionEvent/writeOutput/replaceEvents`に加え",
+          "utf8_sha256": "11c9489f580096a4499dd157b62fdc6a1aaf9ea40035c742fe489e68d0f17289"
+        },
+        {
+          "line": 80,
+          "text": "`withLayerLock(layer,owner,criticalSection)`を注入する。node実装は`.helix/memory/coordination.sqlite`の",
+          "utf8_sha256": "1bb90dcc5ea0d71bfe745462c948efe21676b14bfc496871fd2fe42870cfd500"
+        },
+        {
+          "line": 81,
+          "text": "`BEGIN IMMEDIATE` transactionをcross-process mutexとして使い、layerごとのmonotonic fencing tokenを同transactionで",
+          "utf8_sha256": "abf3f78ab9ab917f2b0e75424098bc53a715d5175b642da1611030e62b391a21"
+        },
+        {
+          "line": 82,
+          "text": "incrementする。SQLiteはcoordination専用でmemory dataを保持せず、JSONLのdata SSoTを変えない。critical sectionは",
+          "utf8_sha256": "aeb64e45da93c9938f71e0bf38282d9d860c1d9b5b32906a0cd3078ac15476cd"
+        },
+        {
+          "line": 83,
+          "text": "tokenを受け、`appendEvent`/`replaceEvents`はcommit直前にtransaction内のcurrent token一致を検証する。process crash時は",
+          "utf8_sha256": "1e3b6453104dd770a8763231c264128aca4f00260b1db950042832a226831665"
+        },
+        {
+          "line": 84,
+          "text": "SQLiteがtransaction lockを解放し、旧processは再開できない。timeout/busy/stale tokenは副作用ゼロで拒否する。",
+          "utf8_sha256": "f68f4e75be005d3b5e9992f7ebeb440814e824bebd4d49bd6cf8abdb131b43cf"
+        },
+        {
+          "line": 85,
+          "text": "write/consume/expire/compactの全mutatorが同じlayer lockを使い、lock内で必ず再readしてからcheck→append/replaceする。",
+          "utf8_sha256": "f21b975c97cf4090a082e9e868500df524ccf838144f71b536b575beab69a75a"
+        },
+        {
+          "line": 86,
+          "text": "JSONL appendは全byte write loop→file fsyncを完了してから成功とし、short writeを成功扱いしない。",
+          "utf8_sha256": "16a04a8d2c1cf2e365acd8c427671addd1c0090a1389a2974ac99b753542cea4"
+        },
+        {
+          "line": 87,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 88,
+          "text": "- `key` は layer 内の論理系列、`id` は immutable event identity。更新は新 entry が旧 `id` を",
+          "utf8_sha256": "c42305888ca3894812491bfa94665e91d553e7072fcf70384d4b50b4dec1d957"
+        },
+        {
+          "line": 89,
+          "text": "  `supersedes` する append-only 操作であり、in-place update を禁止する。",
+          "utf8_sha256": "b01f3191b84e2f7a5a4ad9580a094fe02a3d750e0d6d97bebfe0f3ae9e7b1048"
+        },
+        {
+          "line": 90,
+          "text": "- `links` は `layer:key` 形式の soft reference。未解決 link は entry を捨てず diagnostics に数える。",
+          "utf8_sha256": "003d201ec28f95a890e20a64b6e8709baff4f0dfc673d378150b7c154eeee4cc"
+        },
+        {
+          "line": 91,
+          "text": "- `expiresAt` は ISO-8601 UTC。期限判定は注入された clock の `now >= expiresAt` とし、期限到達時は",
+          "utf8_sha256": "961bd9aa8566614b1365bdd01fa23f8d1ec371f98a8b8ef8dc0669ba04ef5d3a"
+        },
+        {
+          "line": 107,
+          "text": "| `lifecycle` | `{ state:\"active\", expiresAt:null, consumedAt:null, consumedBy:null }` |",
+          "utf8_sha256": "ed5658993c6c8e360e840668a77dcab34d07065f0b13617f5b9b5b8cbc3c8a0b"
+        },
+        {
+          "line": 108,
+          "text": "| `links` | `[]` |",
+          "utf8_sha256": "6d5a629b1a7021dbf9dc78db89207a395e0fdae19cffb64d4b43ba8c1bf6dfbe"
+        },
+        {
+          "line": 109,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 110,
+          "text": "物理正本は `.helix/memory/{harness,project,takeover}.jsonl` の append-only event file とする。",
+          "utf8_sha256": "f2f734ee4541ad989dd5c955f3026413a69c94d836164995cb6bb780ffa73da2"
+        },
+        {
+          "line": 111,
+          "text": "本 slice では harness.db に memory tableを新設せず、DB rebuildもこのfileを変更しない。statusの機械状態と",
+          "utf8_sha256": "d6fbc9ec1c65bf56451de4ceb7c85cb046476d56d2104f03227282f295c8d31a"
+        },
+        {
+          "line": 112,
+          "text": "memoryが矛盾した場合は§7どおりDBを優先する。新規writeは常にv2とし、schema横断で`id`を解決する。",
+          "utf8_sha256": "676772159200760de4cc5cf4afdda337681b1c437df0fca734a2fe03f0c6a218"
+        },
+        {
+          "line": 113,
+          "text": "旧`compactMemory`はPLAN-L6-56とU-MEMC-001のactive-only契約を維持する。v2 event fileは別関数",
+          "utf8_sha256": "d28646abc8a19d84636a29f31f5b49a7157565f865c049463f295a356b828e16"
+        },
+        {
+          "line": 114,
+          "text": "`compactMemoryV2`だけがactive entry + latest terminal tombstoneへ整理し、前後の`listMemoryV2` /",
+          "utf8_sha256": "a2b25e7ffe80734233e6c883da56d15868a7fc612d298f9523274e595f0a299d"
+        },
+        {
+          "line": 115,
+          "text": "`surfaceMemoryV2` / `findByKeyV2` / lifecycle集計がdeep equalでなければ適用しない。",
+          "utf8_sha256": "6c3a06319817494242246f548e7af25e356a6ff728883c2dcfdf63dac4b12ff2"
+        },
+        {
+          "line": 116,
+          "text": "破損 v2 を v1 として救済してはならず、明示 `schemaVersion=2` の不正行は damaged として隔離する。",
+          "utf8_sha256": "1ca25a4c0a0b3bcea34c138d863c6d2caeab94a0f75e9579c695d23e7faeb67e"
+        },
+        {
+          "line": 117,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 118,
+          "text": "ただし lifecycle terminal event は削除しない。各論理key/target idについてlatestの`consumed|expired`",
+          "utf8_sha256": "fd05422dad5744e5c9ed124603c699f29c78b6174345fc7fde1db31cfcc95f4a"
+        },
+        {
+          "line": 119,
+          "text": "tombstoneを1件保持し、bodyを空文字へredactしてもidentity、target、時刻、consumer、stateは保持する。",
+          "utf8_sha256": "aa53697ed3c0141b50656a50612b55f0f1cdd85de6b5ed4000e0ee0a16f298df"
+        },
+        {
+          "line": 120,
+          "text": "これによりcompaction前後のactive viewだけでなくlifecycle集計もdeep equalになる。audit logは補助証跡であり",
+          "utf8_sha256": "4b66d3258edcd05c41e8cd47822b9a3a3d92b0ceaf317b1f21667d5565d2cdce"
+        },
+        {
+          "line": 121,
+          "text": "read sourceにはせず、JSONL tombstoneを唯一の集計正本とする。",
+          "utf8_sha256": "3206b80510f88796a1f5a43c771a534148bd3a301f55418e4f9b827bfe4c853e"
+        },
+        {
+          "line": 122,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 123,
+          "text": "### §3.1 TypeScript API互換 adapter",
+          "utf8_sha256": "b8a4c2ef54dc931b432e61c928836a9eed603dc3bf64c9dcc1cb4582f73a0eec"
+        },
+        {
+          "line": 124,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 125,
+          "text": "- 既存 `writeMemory(input, deps)` / `listMemory(layer,deps)` / `surfaceMemory(deps,budget)` は存置し、",
+          "utf8_sha256": "904349012f0776591eb0eb8bc373efbd509e09a48c8f3b5b0798ded32683f11f"
+        },
+        {
+          "line": 126,
+          "text": "  v2 coreへのadapterとする。既存2 layer、返値`string[]`、既定`maxEntries=12`、entryごとの",
+          "utf8_sha256": "978b66490e59390b09deee1590bdd15a8788c494a481540ac074aae38f1e18b5"
+        },
+        {
+          "line": 127,
+          "text": "  `maxBodyChars=240`を維持する。",
+          "utf8_sha256": "3c1624f87a612c0ca3e551740e343aade1b6447d34d354c6301eb9a8c3032ba7"
+        },
+        {
+          "line": 128,
+          "text": "- 新契約は `writeMemoryV2` / `listMemoryV2` / `surfaceMemoryV2` と別名で導入する。",
+          "utf8_sha256": "b225a21c9663c85a4901f155de4f4248114b7712b97480a5c5e064dfacf186c7"
+        },
+        {
+          "line": 129,
+          "text": "  旧 `maxBodyChars` はentry body clip、新 `maxChars` はrender全体budgetで同時適用する。",
+          "utf8_sha256": "81198cb862976934012dbe789f2ae5ffc9aa8038b5bd3e46787d8a3b7d26a1a7"
+        },
+        {
+          "line": 130,
+          "text": "  v2 APIに両方がある場合はbodyを`maxBodyChars`でclipした後、全体`maxChars`へ収める。",
+          "utf8_sha256": "f9386eba770f7d6d01edb9360cabe6e9ed308c9e168fb228e2f5cd5ed0fea159"
+        },
+        {
+          "line": 140,
+          "text": "  `state=consumed` entry を append し、次回 surface から除く。",
+          "utf8_sha256": "e1cdd81ba1b775f50f05058466c0d01545f4a6863c8dc9cb458ecb57c6c99620"
+        },
+        {
+          "line": 141,
+          "text": "- JSONL append と stdout を単一 transaction にできないため delivery は **at-least-once** とする。",
+          "utf8_sha256": "1279940e3b8ab5c35b02c747df3d00a0e05aecc2f1d4526541b4d8052256eaae"
+        },
+        {
+          "line": 142,
+          "text": "  append 失敗時は consumed と主張せず、次回再表示する。各表示に immutable `id` を含め、consumer は",
+          "utf8_sha256": "bd87455206fea258a8be15793e9de9d054cabaf14f9ca171bb816d85cc374a0d"
+        },
+        {
+          "line": 143,
+          "text": "  重複排除できる。情報消失を避けるため at-most-once を偽装しない。",
+          "utf8_sha256": "839aa5018e004a0833c32b6d06bbf5cd5f17723b94426414ef9e35fc605b81c3"
+        },
+        {
+          "line": 144,
+          "text": "- `consumeTakeover(ids, consumerId)` は active takeover だけを遷移できる。同じ id の再 consume は",
+          "utf8_sha256": "b4addc91d16aff20f6596179a7660b0944f04998377051e69cfa7081ca2340b6"
+        },
+        {
+          "line": 145,
+          "text": "  idempotent success、未知 id / takeover 外 / expired は結果理由付き no-op とし別 entry を壊さない。",
+          "utf8_sha256": "38bb1aa2eb3bfe6a0d7e272b3b90a69240a7868c3910b520cc808909ef31c4c1"
+        },
+        {
+          "line": 146,
+          "text": "- consumed tombstone id は `takeover-consumed:<target-id>` のstable idとし、`supersedes=target-id`を持つ。",
+          "utf8_sha256": "40f16f737f23a636ade9f525c64a60e182ea7fb021b230da95b8faf485252287"
+        },
+        {
+          "line": 147,
+          "text": "  SQLite coordination transaction内で「再read→既存tombstone確認→append」を行い、別processの同時consumeでも",
+          "utf8_sha256": "624e2cbeaaf0364a4752b3155b8ca39291b77a7c6456a875abc74ab53de50db7"
+        },
+        {
+          "line": 148,
+          "text": "  targetあたり1件だけ残す。lock取得/append失敗は`persist_failed`で、consume済みと主張しない。再consumeは",
+          "utf8_sha256": "0e65e662f51ba502a57ff29b62eee399d7bfecf543907785a2bba373fc51c1d3"
+        },
+        {
+          "line": 149,
+          "text": "  `already_consumed`かつ追記ゼロ。transaction外または旧fencing tokenのappend/replaceは拒否する。",
+          "utf8_sha256": "43468230aa5b60503dfc01cb77d7d61e2533a84697cccfcfb2c85bc8ab77c831"
+        },
+        {
+          "line": 150,
+          "text": "- `retireMemory({layer,ids,consumerId,authorityId})`はharness/projectだけを遷移できる。正本targetと追突台帳が成立し、tracked authority manifestのsource revision／全target digest／authority digestとrepo内realpathが全IDについて機械検証できた後に",
+          "utf8_sha256": "243a019fac6ecf06b2a8380fd13249ea545945e4f684782f06c36477f8a460b3"
+        },
+        {
+          "line": 151,
+          "text": "  callerが明示実行し、`memory-consumed:<target-id>`、body空、`consumedBy`付きreceiptをappendする。",
+          "utf8_sha256": "2d2ce5f7797549a5f8be19d2a2b3680910d06e296c26db4e868c88e56a2b687d"
+        },
+        {
+          "line": 152,
+          "text": "  legacy readerも同receiptをactive entryとして再表示しない。takeover、未反映entry、未知id、別layer、期限切れ、",
+          "utf8_sha256": "11cdc5eb804cab52b54827f159a472de9984d6e598cfc0f6725570bf77ef52a5"
+        },
+        {
+          "line": 153,
+          "text": "  stale fencing tokenは理由付きで拒否し、同じtargetの再retireは`already_consumed`かつ追記ゼロとする。batch途中のappend失敗は先行成功を`consumed`のまま保持し、失敗ID以降だけを`persist_failed`とする。",
+          "utf8_sha256": "e34233d7f25d061d997fbeba43b32e015d4ffdc62b683361d60794bfdc8e5ba7"
+        },
+        {
+          "line": 154,
+          "text": "- expired tombstone idは`memory-expired:<target-id>`、`supersedes=target-id`、body空、state=expired、",
+          "utf8_sha256": "aee956f067cc72821ebbbbe8d8714074fc1db7a75f3f6adbfb7a89047dc55807"
+        },
+        {
+          "line": 155,
+          "text": "  expiresAt=target値とする。`expireMemory`がlayer lock内の再読後に最大1件appendする。read viewは未materializeでも",
+          "utf8_sha256": "cc532cb3944e6bcd8499661ee117e2b84a43dc4d82f7c1ee41235cce6f38384e"
+        },
+        {
+          "line": 156,
+          "text": "  clockからexpiredと判定するが、deliveryと`compactMemoryV2`は先に`expireMemory`を実行して物理状態を収束させる。",
+          "utf8_sha256": "9c2d10675dc87f35510d788f70eb8d031fc1f0d6223b106df18ddedd88ab6f83"
+        },
+        {
+          "line": 157,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 158,
+          "text": "## §5 surface v2",
+          "utf8_sha256": "4827e0621440f552cd10882b4c2141f765e5492c0d8a6ac9b50ace19917cb848"
+        },
+        {
+          "line": 159,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 160,
+          "text": "`surfaceMemory({ layers, maxEntries, maxChars, perTypeMin, now })` は次の固定順で決定する。",
+          "utf8_sha256": "1abda50eb961097756919d49205d98d2e3aa13cb63faf795b4f81b16747452f6"
+        }
+      ],
+      "role": "選択した旧設計/consumerの保持差分。コードブロックは実行しない。全旧能力の採用ではない。"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-management-evidence-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "file_sha256": "1330e3b3c6f3dc3cc8ab394c401cfa03844c337fed4b487308389e48a4d84f9a",
+      "role": "対象参照所在の固定。file全体採択/精読を意味しない。"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "file_sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4",
+      "role": "対象参照所在の固定。file全体採択/精読を意味しない。"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "role": "対象参照所在の固定。file全体採択/精読を意味しない。"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "role": "対象参照所在の固定。file全体採択/精読を意味しない。"
+    }
+  ],
+  "legacy_comparison": {
+    "reuse_class": "semantic_rederivation",
+    "preserve": "原feedback/sourceHEAD・未ack保持、intake/classify/ack/pending/resolution区別、正本反映後retireと一回利用、scope分離、expired/consumed指示非再提示。",
+    "change": "採択OS007の四log共通形/因果・provenanceと責務正本への反映へ意味再導出。旧memoryDB/provider固定/schema/runtime/test合格を移植しない。",
+    "reason": "限定承認の管理証拠と既決Concept共通形式へ整合。原記録や配達ACKで承認/完了を生成しない。",
+    "consumer_boundary": "旧feedback generation/alias/terminal保全、JSONL/DB projection境界、retire/delivery/consume/expiry/compaction各consumerを確認した。旧固定TTL(24h/7日)、旧CLI/DB/path/schema、explicit human ack・固定providerを現行の新たな承認条件にしない。旧generation/alias/fence/compaction/部分write/recovery等の全能力は別consumerへ保持し、ここから成立させない。",
+    "old_current_difference": "旧memoryの補助正本/DB優先・schema v1 fallbackを移植せず、採択済み007の責務正本参照とJSONAUTH・OS015/019/053へ接続する。generation/tombstoneの意味は元sourceとして残し、実保存方式を固定しない。"
+  },
+  "remaining": [
+    "正式BASE-01共通schema/codecと実actor/model/capability/time/source資格、四logの実保存と任意event集合・alias/generation/重複replayをL5/L8で閉じる。",
+    "feedbackの解決十分条件と正式finding型は各meaning owner/検証ownerへ。未ackの実保存・部分走査/破損journal・terminal世代保全は未成立。",
+    "memory反映の実target同一性/耐久成功/順序証拠、expiry clock/fence/takeover/compactionと部分失敗recovery、data-use/secret除去は各consumerへ残す。原内容参照はbodyを再提示する許可ではない。",
+    "ordinalは同episode内の順序を表す合成入力で、実source custody/時刻の証明ではない。successful use countは同entryの論理的成功効果数。physical retryを二重成功へ同一視しない。",
+    "OS015/016/019/053とHARNESS共通証拠意味へのexact binding/全構造閉包、独立oracle凍結・実装前Red→Green→Refactor・実CI/L9/L10/PO L11は未成立。92親430対の全体目標を保持。"
+  ],
+  "document_id": "HELIXOS-L4-007",
+  "layer": "L4",
+  "pair": "HELIXOS-L9-007",
+  "contracts": [
+    {
+      "id": "HELIXOS-L4-007-F01",
+      "requirement_ref": "HELIXOS-L3-007-F01",
+      "oracle_ref": "HELIXOS-L10-007-F01",
+      "contract": "Worker/判断/操作/検証の原logを共通項目で辿り、project/要求revision/構成/能力/モデル/相関/episode/結果とsourceを結ぶ。原ログがあることと正式成功証拠を別にし、欠落形式・重複・stale・別HEADを黙示補完しない。"
+    },
+    {
+      "id": "HELIXOS-L4-007-F02",
+      "requirement_ref": "HELIXOS-L3-007-F02",
+      "oracle_ref": "HELIXOS-L10-007-F02",
+      "contract": "intake/classify/ack/pending/resolutionの記録を別に保持する。未ack findingも元source HEADと原記録を保ち、通知・表示消費で捨てない。ACK/分類/proseの出所だけをresolutionとして採用せず、独立した正本解決sourceに辿る。各段階は記録の照合であり、このpairから新たな承認者/強制工程順を足さない。"
+    },
+    {
+      "id": "HELIXOS-L4-007-F03",
+      "requirement_ref": "HELIXOS-L3-007-F03",
+      "oracle_ref": "HELIXOS-L10-007-F03",
+      "contract": "memory sourceと責務正本反映先のexact revision/digest/ownerを結び、同episodeの反映順序がretireより先であることを照合する。未反映内容を消さずretire/expired/consumed/stale instructionをactive再提示しない。論理成功の二重deliver/consume、delivery成功なしのconsume、provider memoryからのauthority生成を拒否する。"
+    }
+  ],
+  "diagnostic_contract": {
+    "input_domain": "固定四log/三finding/四memoryの文書shape。任意JSON/欠落nodeのvalidationは未設計。contextは独立sourceの合成代理で、権限/実資格を生成しない。",
+    "log_names": [
+      "worker",
+      "decision",
+      "operation",
+      "verification"
+    ],
+    "feedback_names": [
+      "unacked",
+      "acked_pending",
+      "resolved"
+    ],
+    "memory_names": [
+      "pending_reflection",
+      "retired",
+      "expired",
+      "consumed"
+    ],
+    "common_fields": [
+      "project_id",
+      "requirement_id",
+      "requirement_revision",
+      "scope",
+      "record_id",
+      "source_ref",
+      "source_revision",
+      "source_digest",
+      "actor_ref",
+      "observed_at_ref",
+      "configuration_revision",
+      "capability_revision",
+      "model_revision",
+      "causal_id",
+      "episode_ref",
+      "schema_revision",
+      "action_ref",
+      "result_ref"
+    ],
+    "common_meanings": {
+      "actor_ref": "誰が",
+      "action_ref": "何を",
+      "configuration_revision": "構成の版",
+      "capability_revision": "能力の版",
+      "model_revision": "モデルの版/N/A根拠の原ref。人間recordへモデルを捏造しない。正式N/A証拠型は未完。",
+      "result_ref": "どうなったかを表す原結果source",
+      "causal_id": "相関",
+      "episode_ref": "経過"
+    },
+    "feedback_fields": [
+      "finding_id",
+      "project_id",
+      "requirement_revision",
+      "scope",
+      "source_head",
+      "source_ref",
+      "source_digest"
+    ],
+    "stages": [
+      "intake",
+      "classify",
+      "ack",
+      "pending",
+      "resolution"
+    ],
+    "stage_fields": [
+      "record_ref",
+      "source_head",
+      "actor_ref",
+      "observed_at_ref"
+    ],
+    "memory_fields": [
+      "entry_id",
+      "project_id",
+      "requirement_revision",
+      "scope",
+      "source_ref",
+      "source_revision",
+      "source_digest",
+      "responsibility_ref",
+      "original_content_ref",
+      "episode_ref"
+    ],
+    "reflection_fields": [
+      "reflection_ref",
+      "source_entry_id",
+      "source_revision",
+      "source_digest",
+      "target_canonical_ref",
+      "target_revision",
+      "target_content_digest",
+      "responsibility_ref",
+      "episode_ref"
+    ],
+    "log_states": [
+      "current_material",
+      "duplicate_material",
+      "stale_material",
+      "unobserved"
+    ],
+    "resolution_origins": [
+      "canonical_resolution_source",
+      "ack",
+      "classification",
+      "prose",
+      "notification",
+      "memory"
+    ],
+    "memory_states": [
+      "active",
+      "retired",
+      "expired",
+      "consumed"
+    ],
+    "memory_freshness": [
+      "current_material",
+      "stale_material"
+    ],
+    "owner_by_facet": {
+      "logs": "common-log-owner",
+      "feedback": "feedback-source-owner",
+      "memory": "memory-canonical-owner",
+      "boundary": "management-authority-owner"
+    },
+    "codes": [
+      {
+        "code": "field_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "field_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "log_kind_unknown",
+        "facet": "logs",
+        "disposition": "unknown"
+      },
+      {
+        "code": "log_kind_conflict",
+        "facet": "logs",
+        "disposition": "violation"
+      },
+      {
+        "code": "log_state_unknown",
+        "facet": "logs",
+        "disposition": "unknown"
+      },
+      {
+        "code": "log_state_conflict",
+        "facet": "logs",
+        "disposition": "violation"
+      },
+      {
+        "code": "log_duplicate",
+        "facet": "logs",
+        "disposition": "unknown"
+      },
+      {
+        "code": "log_stale",
+        "facet": "logs",
+        "disposition": "unknown"
+      },
+      {
+        "code": "log_success_claim_forbidden",
+        "facet": "logs",
+        "disposition": "violation"
+      },
+      {
+        "code": "boolean_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "boolean_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "finding_missing",
+        "facet": "feedback",
+        "disposition": "unknown"
+      },
+      {
+        "code": "original_finding_changed",
+        "facet": "feedback",
+        "disposition": "violation"
+      },
+      {
+        "code": "stage_unrecorded_ref_present",
+        "facet": "feedback",
+        "disposition": "violation"
+      },
+      {
+        "code": "resolution_origin_unknown",
+        "facet": "feedback",
+        "disposition": "unknown"
+      },
+      {
+        "code": "resolution_origin_forbidden",
+        "facet": "feedback",
+        "disposition": "violation"
+      },
+      {
+        "code": "unresolved_claimed_resolved",
+        "facet": "feedback",
+        "disposition": "violation"
+      },
+      {
+        "code": "memory_state_unknown",
+        "facet": "memory",
+        "disposition": "unknown"
+      },
+      {
+        "code": "memory_state_conflict",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "memory_freshness_unknown",
+        "facet": "memory",
+        "disposition": "unknown"
+      },
+      {
+        "code": "memory_freshness_conflict",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "reflection_unrecorded_ref_present",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "retire_before_reflection",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "terminal_instruction_resurfaced",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "use_count_unknown",
+        "facet": "memory",
+        "disposition": "unknown"
+      },
+      {
+        "code": "use_count_conflict",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "duplicate_successful_use",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "provider_memory_authority_forbidden",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "whole_completion_forbidden",
+        "facet": "boundary",
+        "disposition": "violation"
+      },
+      {
+        "code": "whole_claim_unknown",
+        "facet": "boundary",
+        "disposition": "unknown"
+      },
+      {
+        "code": "finding_discard_forbidden",
+        "facet": "feedback",
+        "disposition": "violation"
+      },
+      {
+        "code": "order_unknown",
+        "facet": "memory",
+        "disposition": "unknown"
+      },
+      {
+        "code": "order_conflict",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "reflection_not_before_retire",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "retirement_basis_unknown",
+        "facet": "memory",
+        "disposition": "unknown"
+      },
+      {
+        "code": "consume_without_delivery",
+        "facet": "memory",
+        "disposition": "violation"
+      },
+      {
+        "code": "use_state_conflict",
+        "facet": "memory",
+        "disposition": "violation"
+      }
+    ],
+    "rules": [
+      {
+        "id": "R01",
+        "rule": "共通string比較はactual/context各々が非空stringかを検査する。片側不明は各pointerにfield_unknown、両側knownで相違はactual pointerにfield_conflict。bool比較はtypeがboolでなければ各pointerにboolean_unknown、両側boolで相違ならactual pointerにboolean_conflict。比較codeは呼出元のlogs/feedback/memory facetに入れる。"
+      },
+      {
+        "id": "R02",
+        "rule": "四logそれぞれcommon_fieldsをcontextへ照合する。kindはlog_namesのclosed値で、未知はlog_kind_unknown、fixture keyのkindと異なるknown kindは両側各pointerにlog_kind_conflict。known actual/context kind差はfield_conflict。stateはlog_statesで未知は両側log_state_unknown、known差はactual log_state_conflict。actual duplicate/staleはlog_duplicate/log_stale、actual unobservedはlog_state_unknown。原recordを捨てない。"
+      },
+      {
+        "id": "R03",
+        "rule": "actual log success_evidence_claim=trueはlog_success_claim_forbidden、非boolはboolean_unknown。log_material_usableはactual state=current_materialかつ当該logでfindingが0のときだけtrue（他log faultとは独立）。これは材料対応で正式成功ではない。"
+      },
+      {
+        "id": "R04",
+        "rule": "feedback original_findingがdictでなければ各側finding_missing。両側dictでcanonical JSON wholeが違えばactual original_finding_changed。その場合もfeedback_fieldsをR01で比較する。discard_original_claim=trueはfinding_discard_forbidden、非boolはboolean_unknown。actual未知でもreference原記録を別枠で保持し、補完してactual既知にしない。"
+      },
+      {
+        "id": "R05",
+        "rule": "全feedback stagesのrecordedをR01 bool比較する。各側recorded=falseでstage_fieldsに非nullがあればstage_unrecorded_ref_present（stage whole pointer）。片側でもrecorded=trueなら全stage_fieldsをstring比較し、actual stage.source_headをcontext original_finding.source_headへjoinする（context findingがdictのとき）。両側未記録なら未来receiptを必須にしない。"
+      },
+      {
+        "id": "R06",
+        "rule": "actual resolution.recorded=trueのときだけresolution_originを評価する。origins未知は各側resolution_origin_unknown、known actual/context差はactual field_conflict。actual known originがcanonical_resolution_source以外ならresolution_origin_forbidden。resolved_claim非boolはboolean_unknown。trueなのにresolution未記録または当該findingで任意findingがあればunresolved_claimed_resolved。通知/projection表示値は判定に使わない。"
+      },
+      {
+        "id": "R07",
+        "rule": "feedback_materialはactual stages recorded全値を保持。resolution_material_correspondingはactual resolution.recorded=true、origin=canonical_resolution_source、当該findingのfinding=0のときtrue。actual_resolvedは常にfalse。元finding、stage source、ACK未解決、解決根拠を別に保持する。"
+      },
+      {
+        "id": "R08",
+        "rule": "memory source各memory_fieldsをR01 string比較。state/freshnessは各closed集合で未知を両側memory_state_unknown/memory_freshness_unknown、known差はactual memory_state_conflict/memory_freshness_conflict。reflection.recordedはR01 bool比較。各側recorded=falseでreflection_fieldsまたはorderに非nullがあればreflection_unrecorded_ref_present。片側でもrecorded=trueならreflection_fieldsを比較し、actual source_entry_id/source_revision/source_digest/responsibility_ref/episode_refをcontext sourceのentry_id/source_revision/source_digest/responsibility_ref/episode_refへjoinする。"
+      },
+      {
+        "id": "R09",
+        "rule": "順序値はboolを含めず正のint。片側でもreflection.recorded=trueならreflection.orderの両側を検査し不明/0/負はorder_unknown、両側正int差はactual order_conflict。actual state=retiredならactual reflection.recorded=falseをretire_before_reflection、bool true以外をretirement_basis_unknown。retire_orderの両側を正int検査し不明はorder_unknown、両側正int差はactual order_conflict。actual reflection.recorded=trueかつactual両orderが正intでreflection.order>=retire_orderならreflection_not_before_retire。順序成立は実writer実行ではない。"
+      },
+      {
+        "id": "R10",
+        "rule": "actual active_instruction_present非boolはboolean_unknown。trueでstate!=activeまたはfreshness!=current_materialならterminal_instruction_resurfaced。deliver/consume_success_countは各側boolを除く非負int、未知はuse_count_unknown、known差はactual use_count_conflict、actual>1はduplicate_successful_use。actual両count knownでconsume>deliverならconsume_without_delivery。actual consume knownで(activeかつconsume>0)または(consumedかつconsume=0)ならuse_state_conflict。actual provider_authority_claim=trueはprovider_memory_authority_forbidden、非boolはboolean_unknown。"
+      },
+      {
+        "id": "R11",
+        "rule": "memory_materialはactual state/freshness/reflection.recordedを保持。active_material_eligibleはactual active/current_materialかつ当該entryでfinding=0のみtrue。actual_retired/delivered/consumedは常にfalse。他entryのfaultで材料対応を取り消さない。"
+      },
+      {
+        "id": "R12",
+        "rule": "whole_completion_claim=trueはwhole_completion_forbidden、false以外はwhole_claim_unknown。facetと全体はviolation>unknown>corresponding。conditionはrecord_material_*。findingはcode/pointer/return_ownerで重複除去して同3field辞書順。return_ownerはowner_by_facetを使う。retained_actual_records(logs/feedback/memory)とretained_reference_records(context)を別々にdeepcopy保持。actual flags/whole_management_completeは全false、operation_effect none。"
+      }
+    ],
+    "output_fields": [
+      "condition",
+      "facet_correspondence",
+      "log_material_usable",
+      "feedback_material",
+      "memory_material",
+      "retained_actual_records",
+      "retained_reference_records",
+      "findings",
+      "actual_log_written",
+      "actual_feedback_resolved",
+      "actual_memory_retired",
+      "whole_management_complete",
+      "operation_effect"
+    ],
+    "limit": "sourceの対応を示す*_material/eligible/usableは正式受入/承認/成功証拠ではない。authorityは既存ownerへ戻し、裸owner名から資格を生成しない。"
+  }
+}
