@@ -127734,5 +127734,2734 @@
     "negative_case_count": 71,
     "full92_430_completion": "unproven",
     "remaining": "型/71変異/資格/shape/合成byte閉包と関数正常oracleの静的確認・独立review。実単体実行/実source/保存/接続/実装oracle凍結は未成立。"
+  },
+  "wire_codec_verification": {
+    "id": "HELIXOS-L8-002-WIRE-CODEC",
+    "design_ref": "HELIXOS-L5-002-WIRE-CODEC",
+    "schema_ref": {
+      "document_id": "HELIXOS-L5-002-PROJECT-TEMPLATE-TRACE",
+      "pointer": "/wire_codec_contract/schema",
+      "canonical_sha256": "4e4bf2c6bfe4f3f30f43d113a5a361884fb01006bda6db27ae8c6a68dac8e7e9"
+    },
+    "fixture_boundary": "合成固定rawのcarrier/Field/原bytes対照。既存normal_fixtures/71変異/14関数case/12追加case/原source期待は変更しない。fixture expectedをowner入力へ混ぜない。",
+    "cases": [
+      {
+        "id": "HELIXOS-L8-002-WIRE-REF-NORMAL",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "62c5a318ef6287f49f4451e83fddf657f9047f7997e212ab18d8351ede930a68",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "identity": "synthetic-os-record",
+            "revision": "synthetic-os-rev",
+            "scope": {
+              "project": "synthetic-P",
+              "tenant": "synthetic-T",
+              "environment": "synthetic-E"
+            },
+            "owner": "synthetic-original-owner"
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "OS Field memberをsupplied(T)で保存。nullable CORE/BRAIN Refへ転用しない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-REF-ABSENT",
+        "entry_type": "Ref",
+        "raw_utf8": "{}",
+        "raw_octets_hex": null,
+        "raw_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "expected": {
+          "stage": "decoded",
+          "value": {},
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "全Fieldはmissing。明示null/空stringを生成しない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "absent"
+          },
+          {
+            "pointer": "/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/owner",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-REF-NULL",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"identity\":null,\"scope\":null}",
+        "raw_octets_hex": null,
+        "raw_sha256": "3f60847aa4bbf9c6f584c7551b8e326d9fb0bf8b26336f102a0488a465c2b91f",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "identity": null,
+            "scope": null
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "supplied(null)と他Field missingを区別。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/scope",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/owner",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-REF-SCOPE-PRESENCE",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"scope\":{\"project\":null}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "1d71be87c367739f794ea8a57cc66a8d0fe2c2c361828a2a62f21062f1c68b43",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "scope": {
+              "project": null
+            }
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "scopeはsupplied(T)、project supplied(null)、tenant/environment missing。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/identity",
+            "state": "absent"
+          },
+          {
+            "pointer": "/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/scope/project",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/scope/tenant",
+            "state": "absent"
+          },
+          {
+            "pointer": "/scope/environment",
+            "state": "absent"
+          },
+          {
+            "pointer": "/owner",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-REF-TYPE",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"identity\":17}",
+        "raw_octets_hex": null,
+        "raw_sha256": "72113366b583486a5e206dea3b8162c8f588b3d7c26d852ef224c4c1a728f6c5",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "供給Field値の型不正。",
+          "input_issue_locator": "/identity"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-REF-EXTENSION",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"future\":{\"unseen\":9007199254740993}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "695009383099f00749fd38c32a07a30d854ff297f5ae606fe76a0beb90885f57",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "Refの定義外keyは該当pointerのInputIssueへ。原rawを保存し、opaque payload keyの受理と分ける。",
+          "input_issue_locator": "/future"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-DUPLICATE",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"identity\":\"A\",\"identity\":\"B\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "058b27d1a60ee61341a7a2f8fc8a8ccdb2c4aea1e65a235c4ecbf64f5a55ed2e",
+        "expected": {
+          "stage": "json_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "decoded object key重複の両出現を保存。",
+          "input_issue_locator": "/identity"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-ESCAPED-DUPLICATE",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"identity\":\"A\",\"\\u0069dentity\":\"B\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "d0252cec4cd448bb518f7cf634f76b83d75c891eb8786c2445a36c19b664dc48",
+        "expected": {
+          "stage": "json_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "escape差を別keyへ推定しない。",
+          "input_issue_locator": "/identity"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-UTF8",
+        "entry_type": "Ref",
+        "raw_utf8": null,
+        "raw_octets_hex": "7b226964656e74697479223a22ff227d",
+        "raw_sha256": "7b5f1ca1f315ef8e6d79f031c71b48866dd2537c174c0fcdb7fd99d26712108f",
+        "expected": {
+          "stage": "utf8_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "invalid UTF-8を置換せずraw offset13を返す。",
+          "input_issue_locator": "",
+          "input_issue_byte_offset": 13,
+          "byte_offset_origin": "zero_based_raw_octets"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-TRAILING",
+        "entry_type": "Ref",
+        "raw_utf8": "{} {}",
+        "raw_octets_hex": null,
+        "raw_sha256": "2cec2bbf1a64ea5249e8a7ab9ecc782fa48be13f0b35ad5f52bdea741841a230",
+        "expected": {
+          "stage": "json_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "末尾別JSONを無視しない。",
+          "input_issue_locator": ""
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-INCOMPLETE",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"identity\":",
+        "raw_octets_hex": null,
+        "raw_sha256": "15f5e5039f80738167e1f5136d7775854f6b4106b20964f684ad3c11c1ef5120",
+        "expected": {
+          "stage": "json_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "EOFをField missingへ変更しない。",
+          "input_issue_locator": ""
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-NAN",
+        "entry_type": "Ref",
+        "raw_utf8": "{\"future\":NaN}",
+        "raw_octets_hex": null,
+        "raw_sha256": "88897969e6a2b6874452381272bf66414af363d300fb32a6ca487dd4e3da6a3c",
+        "expected": {
+          "stage": "json_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "非JSON numberをnullへ補正しない。",
+          "input_issue_locator": ""
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-RECORD-NORMAL",
+        "entry_type": "OwnerRecord",
+        "raw_utf8": "{\"subject_ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"section_key\": \"F02\", \"record_kind\": \"synthetic_original_section\", \"payload\": {\"used_refs\": [], \"used_empty_basis\": \"synthetic original empty\"}, \"owner\": \"synthetic-original-owner\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "83c57f5cd80370b88a39953c17553d78271fe55e669e97a30a414b2fe3f7dfa3",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "subject_ref": {
+              "identity": "synthetic-os-record",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "section_key": "F02",
+            "record_kind": "synthetic_original_section",
+            "payload": {
+              "used_refs": [],
+              "used_empty_basis": "synthetic original empty"
+            },
+            "owner": "synthetic-original-owner"
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "payload selector値を保存。元owner/typed selector resolverなしで意味資格を成立させない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/subject_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/section_key",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/record_kind",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/payload",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-SOURCE-NORMAL",
+        "entry_type": "SourceEnvelope",
+        "raw_utf8": "{\"source_ref\": {\"identity\": \"synthetic-source\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"owner\": \"synthetic-original-owner\", \"source_json_utf8\": \"{\\\"records\\\": [{\\\"subject_ref\\\": {\\\"identity\\\": \\\"synthetic-os-record\\\", \\\"revision\\\": \\\"synthetic-os-rev\\\", \\\"scope\\\": {\\\"project\\\": \\\"synthetic-P\\\", \\\"tenant\\\": \\\"synthetic-T\\\", \\\"environment\\\": \\\"synthetic-E\\\"}, \\\"owner\\\": \\\"synthetic-original-owner\\\"}, \\\"section_key\\\": \\\"F02\\\", \\\"record_kind\\\": \\\"synthetic_original_section\\\", \\\"payload\\\": {\\\"used_refs\\\": [], \\\"used_empty_basis\\\": \\\"synthetic original empty\\\"}, \\\"owner\\\": \\\"synthetic-original-owner\\\"}]}\\n\", \"source_sha256\": \"afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708\", \"decoded_records\": [{\"subject_ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"section_key\": \"F02\", \"record_kind\": \"synthetic_original_section\", \"payload\": {\"used_refs\": [], \"used_empty_basis\": \"synthetic original empty\"}, \"owner\": \"synthetic-original-owner\"}], \"qualification_ref\": {}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "fec281461ea75faddc825910849aafb01f24c89fb6629967cd0881ac70ecfa5f",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "source_ref": {
+              "identity": "synthetic-source",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "owner": "synthetic-original-owner",
+            "source_json_utf8": "{\"records\": [{\"subject_ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"section_key\": \"F02\", \"record_kind\": \"synthetic_original_section\", \"payload\": {\"used_refs\": [], \"used_empty_basis\": \"synthetic original empty\"}, \"owner\": \"synthetic-original-owner\"}]}\n",
+            "source_sha256": "afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708",
+            "decoded_records": [
+              {
+                "subject_ref": {
+                  "identity": "synthetic-os-record",
+                  "revision": "synthetic-os-rev",
+                  "scope": {
+                    "project": "synthetic-P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-E"
+                  },
+                  "owner": "synthetic-original-owner"
+                },
+                "section_key": "F02",
+                "record_kind": "synthetic_original_section",
+                "payload": {
+                  "used_refs": [],
+                  "used_empty_basis": "synthetic original empty"
+                },
+                "owner": "synthetic-original-owner"
+              }
+            ],
+            "qualification_ref": {}
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "元内部textを保持、実資格未成立。",
+          "source_boundary_observation": {
+            "bytes_digest": "match",
+            "body": "match",
+            "qualification": "not_established"
+          }
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/source_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_json_utf8",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/section_key",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/record_kind",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/payload",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_ref/identity",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref/scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref/owner",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-SOURCE-BODY",
+        "entry_type": "SourceEnvelope",
+        "raw_utf8": "{\"source_ref\": {\"identity\": \"synthetic-source\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"owner\": \"synthetic-original-owner\", \"source_json_utf8\": \"{\\\"records\\\": [{\\\"subject_ref\\\": {\\\"identity\\\": \\\"synthetic-os-record\\\", \\\"revision\\\": \\\"synthetic-os-rev\\\", \\\"scope\\\": {\\\"project\\\": \\\"synthetic-P\\\", \\\"tenant\\\": \\\"synthetic-T\\\", \\\"environment\\\": \\\"synthetic-E\\\"}, \\\"owner\\\": \\\"synthetic-original-owner\\\"}, \\\"section_key\\\": \\\"F02\\\", \\\"record_kind\\\": \\\"synthetic_original_section\\\", \\\"payload\\\": {\\\"used_refs\\\": [], \\\"used_empty_basis\\\": \\\"synthetic original empty\\\"}, \\\"owner\\\": \\\"synthetic-original-owner\\\"}]}\\n\", \"source_sha256\": \"afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708\", \"decoded_records\": [{\"subject_ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"section_key\": \"F02\", \"record_kind\": \"changed\", \"payload\": {\"used_refs\": [], \"used_empty_basis\": \"synthetic original empty\"}, \"owner\": \"synthetic-original-owner\"}], \"qualification_ref\": {}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "5068e9cfda1a9ace96c43399f610463f6f64bec96532a6b3993b19b514468ba1",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "source_ref": {
+              "identity": "synthetic-source",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "owner": "synthetic-original-owner",
+            "source_json_utf8": "{\"records\": [{\"subject_ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"section_key\": \"F02\", \"record_kind\": \"synthetic_original_section\", \"payload\": {\"used_refs\": [], \"used_empty_basis\": \"synthetic original empty\"}, \"owner\": \"synthetic-original-owner\"}]}\n",
+            "source_sha256": "afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708",
+            "decoded_records": [
+              {
+                "subject_ref": {
+                  "identity": "synthetic-os-record",
+                  "revision": "synthetic-os-rev",
+                  "scope": {
+                    "project": "synthetic-P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-E"
+                  },
+                  "owner": "synthetic-original-owner"
+                },
+                "section_key": "F02",
+                "record_kind": "changed",
+                "payload": {
+                  "used_refs": [],
+                  "used_empty_basis": "synthetic original empty"
+                },
+                "owner": "synthetic-original-owner"
+              }
+            ],
+            "qualification_ref": {}
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "wire shapeとbody相反を分ける。",
+          "source_boundary_observation": {
+            "bytes_digest": "match",
+            "body": "mismatch",
+            "qualification": "not_established"
+          }
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/source_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_json_utf8",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/section_key",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/record_kind",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/payload",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_ref/identity",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref/scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref/owner",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-SOURCE-BYTES",
+        "entry_type": "SourceEnvelope",
+        "raw_utf8": "{\"source_ref\": {\"identity\": \"synthetic-source\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"owner\": \"synthetic-original-owner\", \"source_json_utf8\": \"{\\\"records\\\": [{\\\"subject_ref\\\": {\\\"identity\\\": \\\"synthetic-os-record\\\", \\\"revision\\\": \\\"synthetic-os-rev\\\", \\\"scope\\\": {\\\"project\\\": \\\"synthetic-P\\\", \\\"tenant\\\": \\\"synthetic-T\\\", \\\"environment\\\": \\\"synthetic-E\\\"}, \\\"owner\\\": \\\"synthetic-original-owner\\\"}, \\\"section_key\\\": \\\"F02\\\", \\\"record_kind\\\": \\\"synthetic_original_section\\\", \\\"payload\\\": {\\\"used_refs\\\": [], \\\"used_empty_basis\\\": \\\"synthetic original empty\\\"}, \\\"owner\\\": \\\"synthetic-original-owner\\\"}]}\", \"source_sha256\": \"afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708\", \"decoded_records\": [{\"subject_ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"section_key\": \"F02\", \"record_kind\": \"synthetic_original_section\", \"payload\": {\"used_refs\": [], \"used_empty_basis\": \"synthetic original empty\"}, \"owner\": \"synthetic-original-owner\"}], \"qualification_ref\": {}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "47ad1f3e08e3db55f613f52e81a1d22227912393957f49bafeef0760fcb351dc",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "source_ref": {
+              "identity": "synthetic-source",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "owner": "synthetic-original-owner",
+            "source_json_utf8": "{\"records\": [{\"subject_ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"section_key\": \"F02\", \"record_kind\": \"synthetic_original_section\", \"payload\": {\"used_refs\": [], \"used_empty_basis\": \"synthetic original empty\"}, \"owner\": \"synthetic-original-owner\"}]}",
+            "source_sha256": "afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708",
+            "decoded_records": [
+              {
+                "subject_ref": {
+                  "identity": "synthetic-os-record",
+                  "revision": "synthetic-os-rev",
+                  "scope": {
+                    "project": "synthetic-P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-E"
+                  },
+                  "owner": "synthetic-original-owner"
+                },
+                "section_key": "F02",
+                "record_kind": "synthetic_original_section",
+                "payload": {
+                  "used_refs": [],
+                  "used_empty_basis": "synthetic original empty"
+                },
+                "owner": "synthetic-original-owner"
+              }
+            ],
+            "qualification_ref": {}
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "body同値/内部LF差の元hash相反を分ける。",
+          "source_boundary_observation": {
+            "bytes_digest": "mismatch",
+            "body": "match",
+            "qualification": "not_established"
+          }
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/source_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_json_utf8",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/subject_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/section_key",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/record_kind",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/payload",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/decoded_records/0/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/qualification_ref/identity",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref/scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref/owner",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-SOURCE-ABSENT",
+        "entry_type": "SourceEnvelope",
+        "raw_utf8": "{\"owner\":\"synthetic-only\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "6dd0440beede87c1b5c41f9efd3aa81bf6934c23f9f5c579542192fd19cfce04",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "owner": "synthetic-only"
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "不足source欄を生成せず元source不成立へ返す。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/source_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_json_utf8",
+            "state": "absent"
+          },
+          {
+            "pointer": "/source_sha256",
+            "state": "absent"
+          },
+          {
+            "pointer": "/decoded_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_ref",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-SOURCE-NULL",
+        "entry_type": "SourceEnvelope",
+        "raw_utf8": "{\"source_json_utf8\":null}",
+        "raw_octets_hex": null,
+        "raw_sha256": "70b97a537377eef2d1c114e1f5c2b873e5848cbc1ce43a555f9f7bbf1e30dc0f",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "plain stringはFieldでない。未供給と不正nullを区別。",
+          "input_issue_locator": "/source_json_utf8"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-QUALIFICATION-NORMAL",
+        "entry_type": "Qualification",
+        "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"root_ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"source_ref\": {\"identity\": \"synthetic-source\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"owner\": \"synthetic-original-owner\", \"subject_refs\": [{\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}], \"source_sha256\": \"afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "9acd6f28102f8b686b3e9dd34ad7fd10c7fc8da7de4ea4c6b4a12159d133c472",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "ref": {
+              "identity": "synthetic-os-record",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "root_ref": {
+              "identity": "synthetic-os-record",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "source_ref": {
+              "identity": "synthetic-source",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "owner": "synthetic-original-owner",
+            "subject_refs": [
+              {
+                "identity": "synthetic-os-record",
+                "revision": "synthetic-os-rev",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-original-owner"
+              }
+            ],
+            "source_sha256": "afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708"
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "OS subject集合/source digestを原値で保存。実root supplier unknown。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/root_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_refs",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_refs/0/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_refs/0/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_refs/0/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_refs/0/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_refs/0/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_refs/0/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/subject_refs/0/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/source_sha256",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-ROOT-NORMAL",
+        "entry_type": "QualificationRoot",
+        "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"owner\": \"synthetic-original-owner\", \"allowed_subject_refs\": [{\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}], \"allowed_source_ref\": {\"identity\": \"synthetic-source\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"allowed_source_sha256\": \"afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "6af7e50870116418a70cb94765b7f376f8ee35b52ffbf8682dc1ef55868e517c",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "ref": {
+              "identity": "synthetic-os-record",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "owner": "synthetic-original-owner",
+            "allowed_subject_refs": [
+              {
+                "identity": "synthetic-os-record",
+                "revision": "synthetic-os-rev",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-original-owner"
+              }
+            ],
+            "allowed_source_ref": {
+              "identity": "synthetic-source",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "allowed_source_sha256": "afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708"
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "許容owner/subject/source/digestは合成入力だけ。origin authentication成功なし。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_sha256",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-ROOT-EMPTY",
+        "entry_type": "QualificationRoot",
+        "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"owner\": \"synthetic-original-owner\", \"allowed_subject_refs\": [], \"allowed_source_ref\": {\"identity\": \"synthetic-source\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"allowed_source_sha256\": \"afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "987e7437c976dedd12532514772ce54853387c24769f059813b0563e4b5d8829",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "ref": {
+              "identity": "synthetic-os-record",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "owner": "synthetic-original-owner",
+            "allowed_subject_refs": [],
+            "allowed_source_ref": {
+              "identity": "synthetic-source",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "allowed_source_sha256": "afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708"
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "原許容subject空集合をsourceから再生成しない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/allowed_source_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_sha256",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-ROOT-OWNER-DIFFERENCE",
+        "entry_type": "QualificationRoot",
+        "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"owner\": \"other-owner\", \"allowed_subject_refs\": [{\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}], \"allowed_source_ref\": {\"identity\": \"synthetic-source\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"allowed_source_sha256\": \"afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708\"}",
+        "raw_octets_hex": null,
+        "raw_sha256": "ca06824aa13f8d710fd570123dc09f72ae98d2d5fd2cb6f98de4f3ac51efb8a5",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "ref": {
+              "identity": "synthetic-os-record",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "owner": "other-owner",
+            "allowed_subject_refs": [
+              {
+                "identity": "synthetic-os-record",
+                "revision": "synthetic-os-rev",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-original-owner"
+              }
+            ],
+            "allowed_source_ref": {
+              "identity": "synthetic-source",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "allowed_source_sha256": "afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708"
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "同digestでもowner相違を原資格比較へ渡す。codec一致でtrustへ変換しない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_subject_refs/0/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/allowed_source_sha256",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-ROOT-NULL",
+        "entry_type": "QualificationRoot",
+        "raw_utf8": "{\"allowed_subject_refs\":null}",
+        "raw_octets_hex": null,
+        "raw_sha256": "2815ee901f2c9d48e52441bb099373ea7db27934fb262a930455dfe4ff26b47a",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "plain Ref[] nullは供給形不正。Field nullと区別。",
+          "input_issue_locator": "/allowed_subject_refs"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-ROOT-REF-ABSENT",
+        "entry_type": "QualificationRoot",
+        "raw_utf8": "{\"ref\":{}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "72fd8cb273dea8d9f8a1493161ba7c09d7d52859c0a5bb27852d8aa76f6a95fa",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "ref": {}
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "root ref内部の欠落Fieldとroot本体の不足memberを保持。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ref/identity",
+            "state": "absent"
+          },
+          {
+            "pointer": "/ref/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/ref/scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/ref/owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/allowed_subject_refs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/allowed_source_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/allowed_source_sha256",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-SETS",
+        "entry_type": "F02RecordInput",
+        "raw_utf8": "{\"proposed_refs\": [{\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}], \"selected_refs\": [], \"used_refs\": null}",
+        "raw_octets_hex": null,
+        "raw_sha256": "15723e5303b2369e165b564cb004baa8226aac693ba7687758e5240ea5278098",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "proposed_refs": [
+              {
+                "identity": "synthetic-os-record",
+                "revision": "synthetic-os-rev",
+                "scope": {
+                  "project": "synthetic-P",
+                  "tenant": "synthetic-T",
+                  "environment": "synthetic-E"
+                },
+                "owner": "synthetic-original-owner"
+              }
+            ],
+            "selected_refs": [],
+            "used_refs": null
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "提案supplied列、selected supplied空列、used supplied(null)、各source missingを区別。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/binding",
+            "state": "absent"
+          },
+          {
+            "pointer": "/proposed_refs",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/proposed_refs/0/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/proposed_refs/0/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/proposed_refs/0/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/proposed_refs/0/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/proposed_refs/0/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/proposed_refs/0/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/proposed_refs/0/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/selected_refs",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/used_refs",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/proposed_source",
+            "state": "absent"
+          },
+          {
+            "pointer": "/selected_source",
+            "state": "absent"
+          },
+          {
+            "pointer": "/used_source",
+            "state": "absent"
+          },
+          {
+            "pointer": "/used_empty_basis",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-SETS-MISSING",
+        "entry_type": "F02RecordInput",
+        "raw_utf8": "{\"proposed_refs\":[]}",
+        "raw_octets_hex": null,
+        "raw_sha256": "b48e4cfcc246cd9448ab26614250336572ecfaee22e22694457d39d3f2ed7cc7",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "proposed_refs": []
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "selected/used missingを提案空集合から供給しない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/binding",
+            "state": "absent"
+          },
+          {
+            "pointer": "/proposed_refs",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/selected_refs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/used_refs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/proposed_source",
+            "state": "absent"
+          },
+          {
+            "pointer": "/selected_source",
+            "state": "absent"
+          },
+          {
+            "pointer": "/used_source",
+            "state": "absent"
+          },
+          {
+            "pointer": "/used_empty_basis",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-SETS-WRONG-SCALAR",
+        "entry_type": "F02RecordInput",
+        "raw_utf8": "{\"used_refs\":true}",
+        "raw_octets_hex": null,
+        "raw_sha256": "bbb3f63f8f38ebf60cb3123a55b4cb510bf7ed5169891816455dd31b4bb0139e",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "Field<Ref[]>供給booleanを空集合にしない。",
+          "input_issue_locator": "/used_refs"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-BACKFLOW",
+        "entry_type": "F05RecordInput",
+        "raw_utf8": "{\"returned_event_ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"ack_event_ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"receiver_acceptance_ref\": null, \"meaning_resolution_ref\": null, \"unfinished_obligation_refs\": []}",
+        "raw_octets_hex": null,
+        "raw_sha256": "476c692121a27e5955ca48acced923f6d9be8d8afb0a3efe8591929d773d4453",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "returned_event_ref": {
+              "identity": "synthetic-os-record",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "ack_event_ref": {
+              "identity": "synthetic-os-record",
+              "revision": "synthetic-os-rev",
+              "scope": {
+                "project": "synthetic-P",
+                "tenant": "synthetic-T",
+                "environment": "synthetic-E"
+              },
+              "owner": "synthetic-original-owner"
+            },
+            "receiver_acceptance_ref": null,
+            "meaning_resolution_ref": null,
+            "unfinished_obligation_refs": []
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "ACK supplied(T)、受理/解決 supplied(null)、原消込missingを独立保存。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/binding",
+            "state": "absent"
+          },
+          {
+            "pointer": "/backflow_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/returned_event_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/returned_event_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/returned_event_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/returned_event_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/returned_event_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/returned_event_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/returned_event_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/returned_event_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ack_event_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ack_event_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ack_event_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ack_event_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ack_event_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ack_event_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ack_event_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/ack_event_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/receiver_acceptance_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/meaning_resolution_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/original_discharge_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/unfinished_obligation_refs",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/receiver_owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/OS023_contract_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/original_return_event",
+            "state": "absent"
+          },
+          {
+            "pointer": "/return_target",
+            "state": "absent"
+          },
+          {
+            "pointer": "/stop_reason",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-BACKFLOW-DISCHARGE-NULL",
+        "entry_type": "F05RecordInput",
+        "raw_utf8": "{\"original_discharge_ref\":null}",
+        "raw_octets_hex": null,
+        "raw_sha256": "d235074e75d4ab31a01c7c0fdc29d0e7bd89c485dc04b356cf39ff36ba4d7396",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "original_discharge_ref": null
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "消込明示nullをmissingと混ぜず未成立の原値に保つ。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/binding",
+            "state": "absent"
+          },
+          {
+            "pointer": "/backflow_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/returned_event_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/ack_event_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/receiver_acceptance_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/meaning_resolution_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/original_discharge_ref",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/unfinished_obligation_refs",
+            "state": "absent"
+          },
+          {
+            "pointer": "/receiver_owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/OS023_contract_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/original_return_event",
+            "state": "absent"
+          },
+          {
+            "pointer": "/return_target",
+            "state": "absent"
+          },
+          {
+            "pointer": "/stop_reason",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-INPUT-CANDIDATE-NULL",
+        "entry_type": "RecordTraceInput",
+        "raw_utf8": "{\"candidate\":null}",
+        "raw_octets_hex": null,
+        "raw_sha256": "af6c7fb881a23139f78554fd9fa58f3e162cd5aa23ee4448386f20d5d6f89a70",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "candidateはplain CaseInput object。root形不正を資格前へ返す。",
+          "input_issue_locator": "/candidate"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-INPUT-CANDIDATE-NUMBER",
+        "entry_type": "RecordTraceInput",
+        "raw_utf8": "{\"candidate\":7}",
+        "raw_octets_hex": null,
+        "raw_sha256": "97e2fe65836ef6aa2c0207fcf67e55718d0842117ae09bdbf464ce358867eee2",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "既存ADD-02の構造境界を保持。",
+          "input_issue_locator": "/candidate"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-INPUT-CARRIER",
+        "entry_type": "RecordTraceInput",
+        "raw_utf8": "{\"candidate\":{\"used_refs\":null},\"qualification_roots\":[]}",
+        "raw_octets_hex": null,
+        "raw_sha256": "ee783b898e6ea53c65ec6e8ba5090a6ca440e10f7f6d68b0bb6c57d82abe56ad",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "candidate": {
+              "used_refs": null
+            },
+            "qualification_roots": []
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "carrier受理のみ。context未供給でF02等のdomain選択/意味比較は未成立。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/context",
+            "state": "absent"
+          },
+          {
+            "pointer": "/candidate",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/claims",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualifications",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_roots",
+            "state": "empty_array"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-ANALYSIS",
+        "entry_type": "RecordTraceAnalysis",
+        "raw_utf8": "{\"sections\": [], \"input_issues\": [], \"effects\": [], \"authority_generated\": false}",
+        "raw_octets_hex": null,
+        "raw_sha256": "7c15809e6e0ab8ade8ea98351f122d9546c14c42db06034c5034d0f7407195fd",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "sections": [],
+            "input_issues": [],
+            "effects": [],
+            "authority_generated": false
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "空比較結果は原authority false。保存/共有/資格/消込成功の証明なし。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/sections",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/input_issues",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/effects",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/authority_generated",
+            "state": "supplied"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-ANALYSIS-MISSING",
+        "entry_type": "RecordTraceAnalysis",
+        "raw_utf8": "{\"sections\": [], \"effects\": [], \"authority_generated\": false}",
+        "raw_octets_hex": null,
+        "raw_sha256": "6e208e5995e2b5cc910cc5f8723db831b9eea34cc8358b45ff45d09d32534038",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "生成plain field欠落を[]で補完しない。",
+          "input_issue_locator": "/input_issues"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-ANALYSIS-SELECTION",
+        "entry_type": "RecordTraceAnalysis",
+        "raw_utf8": "{\"sections\": [], \"input_issues\": [], \"effects\": [], \"authority_generated\": false, \"selected\": true}",
+        "raw_octets_hex": null,
+        "raw_sha256": "483f2e02d985b387a35a6f0fa9aa187bbbee47d45839c68bdb4f2f84d9fcd4e0",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "codecの出力へ独自selected裁定fieldを加えない。",
+          "input_issue_locator": "/selected"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-INPUT-SOURCE-SHAPE-LOCAL",
+        "entry_type": "RecordTraceInput",
+        "raw_utf8": "{\"candidate\": {}, \"sources\": [{\"source_json_utf8\": null}, {\"source_ref\": {\"identity\": \"synthetic-source\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"owner\": \"synthetic-original-owner\", \"source_json_utf8\": \"{\\\"records\\\": [{\\\"subject_ref\\\": {\\\"identity\\\": \\\"synthetic-os-record\\\", \\\"revision\\\": \\\"synthetic-os-rev\\\", \\\"scope\\\": {\\\"project\\\": \\\"synthetic-P\\\", \\\"tenant\\\": \\\"synthetic-T\\\", \\\"environment\\\": \\\"synthetic-E\\\"}, \\\"owner\\\": \\\"synthetic-original-owner\\\"}, \\\"section_key\\\": \\\"F02\\\", \\\"record_kind\\\": \\\"synthetic_original_section\\\", \\\"payload\\\": {\\\"used_refs\\\": [], \\\"used_empty_basis\\\": \\\"synthetic original empty\\\"}, \\\"owner\\\": \\\"synthetic-original-owner\\\"}]}\\n\", \"source_sha256\": \"afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708\", \"decoded_records\": [{\"subject_ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"section_key\": \"F02\", \"record_kind\": \"synthetic_original_section\", \"payload\": {\"used_refs\": [], \"used_empty_basis\": \"synthetic original empty\"}, \"owner\": \"synthetic-original-owner\"}], \"qualification_ref\": {}}]}",
+        "raw_octets_hex": null,
+        "raw_sha256": "570f7451afb8b28644e00c5108621bf601547914230f097a123bdadafa72cd48",
+        "expected": {
+          "stage": "decoded_with_source_issues",
+          "value": {
+            "candidate": {},
+            "sources": [
+              {
+                "source_json_utf8": null
+              },
+              {
+                "source_ref": {
+                  "identity": "synthetic-source",
+                  "revision": "synthetic-os-rev",
+                  "scope": {
+                    "project": "synthetic-P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-E"
+                  },
+                  "owner": "synthetic-original-owner"
+                },
+                "owner": "synthetic-original-owner",
+                "source_json_utf8": "{\"records\": [{\"subject_ref\": {\"identity\": \"synthetic-os-record\", \"revision\": \"synthetic-os-rev\", \"scope\": {\"project\": \"synthetic-P\", \"tenant\": \"synthetic-T\", \"environment\": \"synthetic-E\"}, \"owner\": \"synthetic-original-owner\"}, \"section_key\": \"F02\", \"record_kind\": \"synthetic_original_section\", \"payload\": {\"used_refs\": [], \"used_empty_basis\": \"synthetic original empty\"}, \"owner\": \"synthetic-original-owner\"}]}\n",
+                "source_sha256": "afb172bcd83e41a660e3f383f31be315cc7ef39b10bb8cc29e0b531aa0ee2708",
+                "decoded_records": [
+                  {
+                    "subject_ref": {
+                      "identity": "synthetic-os-record",
+                      "revision": "synthetic-os-rev",
+                      "scope": {
+                        "project": "synthetic-P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-E"
+                      },
+                      "owner": "synthetic-original-owner"
+                    },
+                    "section_key": "F02",
+                    "record_kind": "synthetic_original_section",
+                    "payload": {
+                      "used_refs": [],
+                      "used_empty_basis": "synthetic original empty"
+                    },
+                    "owner": "synthetic-original-owner"
+                  }
+                ],
+                "qualification_ref": {}
+              }
+            ]
+          },
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "source_shape_issue_locators": [
+            "/sources/0/source_json_utf8"
+          ],
+          "observation": "root/candidateはobjectとして保持。個別source型不正と残る元sourceを局所診断に保ち、全input=null/無関係source削除/自動資格成功にしない。"
+        },
+        "expected_presence": [
+          {
+            "pointer": "/context",
+            "state": "absent"
+          },
+          {
+            "pointer": "/candidate",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/claims",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/0/source_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/0/owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/0/source_json_utf8",
+            "state": "explicit_null"
+          },
+          {
+            "pointer": "/sources/0/source_sha256",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/0/decoded_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/0/qualification_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/1/source_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/source_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/source_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/source_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/source_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/source_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/source_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/source_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/source_json_utf8",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/source_sha256",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records/0/subject_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records/0/subject_ref/identity",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records/0/subject_ref/revision",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records/0/subject_ref/scope",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records/0/subject_ref/scope/project",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records/0/subject_ref/scope/tenant",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records/0/subject_ref/scope/environment",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records/0/subject_ref/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records/0/section_key",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records/0/record_kind",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records/0/payload",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/decoded_records/0/owner",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/qualification_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/1/qualification_ref/identity",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/1/qualification_ref/revision",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/1/qualification_ref/scope",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/1/qualification_ref/owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualifications",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_roots",
+            "state": "absent"
+          }
+        ],
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-SCOPE-EXTENSION",
+        "entry_type": "Scope",
+        "raw_utf8": "{\"future\":{\"unseen\":9007199254740993}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "695009383099f00749fd38c32a07a30d854ff297f5ae606fe76a0beb90885f57",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "Scope原project/tenant/environment以外を拒否。Field null/欠落は維持。",
+          "input_issue_locator": "/future"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-RECORD-EXTENSION",
+        "entry_type": "OwnerRecord",
+        "raw_utf8": "{\"future\":{\"unseen\":9007199254740993}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "695009383099f00749fd38c32a07a30d854ff297f5ae606fe76a0beb90885f57",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "OwnerRecord本体の追加keyはpayload mapの任意selectorと分ける。",
+          "input_issue_locator": "/future"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-PAYLOAD-OPAQUE",
+        "entry_type": "OwnerRecord",
+        "raw_utf8": "{\"payload\":{\"future\":{\"unseen\":9007199254740993}}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "42623dc978e8ce4eb6af884cbd59d48e2172b6d97bc95400ec28ac9786cd0643",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "payload": {
+              "future": {
+                "unseen": 9007199254740993
+              }
+            }
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "原payload map keyとSourceSectionValueを保持。futureのdomain selector/資格は未解決、成功を創作しない。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/subject_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/section_key",
+            "state": "absent"
+          },
+          {
+            "pointer": "/record_kind",
+            "state": "absent"
+          },
+          {
+            "pointer": "/payload",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/owner",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-SECTION-EXTENSION",
+        "entry_type": "F02RecordInput",
+        "raw_utf8": "{\"future\":{\"unseen\":9007199254740993}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "695009383099f00749fd38c32a07a30d854ff297f5ae606fe76a0beb90885f57",
+        "expected": {
+          "stage": "shape_failed",
+          "value": null,
+          "wire_shape_accepted": false,
+          "meaning_completion_effect": "none",
+          "observation": "selected F02宣言field集合へclosed。未選択CaseInputと分ける。",
+          "input_issue_locator": "/future"
+        },
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-CANDIDATE-OPAQUE",
+        "entry_type": "RecordTraceInput",
+        "raw_utf8": "{\"candidate\":{\"future\":{\"unseen\":9007199254740993}}}",
+        "raw_octets_hex": null,
+        "raw_sha256": "d0308f8519698a8367778ced3ccae6f3e0f689b720644e0d002f38ecd2523d67",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "candidate": {
+              "future": {
+                "unseen": 9007199254740993
+              }
+            }
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "CaseInput carrier原objectを保持。実selected section/context不足のtyped解決は未成立。"
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/context",
+            "state": "absent"
+          },
+          {
+            "pointer": "/candidate",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/claims",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualifications",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_roots",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-SOURCE-EXTENSION-LOCAL",
+        "entry_type": "RecordTraceInput",
+        "raw_utf8": "{\"candidate\":{},\"sources\":[{\"future\":{\"unseen\":9007199254740993}}]}",
+        "raw_octets_hex": null,
+        "raw_sha256": "b462e6e9c26d3dd3788db7b1e2878f020ca111736e6900b85324fde41d0e6b1e",
+        "expected": {
+          "stage": "decoded_with_source_issues",
+          "value": {
+            "candidate": {},
+            "sources": [
+              {
+                "future": {
+                  "unseen": 9007199254740993
+                }
+              }
+            ]
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "source内定義外keyも原rawと局所source issueへ保持。有資格source成功にしない。",
+          "source_shape_issue_locators": [
+            "/sources/0/future"
+          ]
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/context",
+            "state": "absent"
+          },
+          {
+            "pointer": "/candidate",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/claims",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sources/0/source_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/0/owner",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/0/source_json_utf8",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/0/source_sha256",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/0/decoded_records",
+            "state": "absent"
+          },
+          {
+            "pointer": "/sources/0/qualification_ref",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualifications",
+            "state": "absent"
+          },
+          {
+            "pointer": "/qualification_roots",
+            "state": "absent"
+          }
+        ]
+      },
+      {
+        "id": "HELIXOS-L8-002-WIRE-OBSERVATION-OPAQUE",
+        "entry_type": "RecordTraceAnalysis",
+        "raw_utf8": "{\"sections\":[{\"contract_ref\":\"HELIXOS-L5-002-F02\",\"observation\":{\"future\":{\"unseen\":9007199254740993}},\"findings\":[],\"unresolved_source_refs\":[],\"effect_requests\":[]}],\"input_issues\":[],\"effects\":[],\"authority_generated\":false}",
+        "raw_octets_hex": null,
+        "raw_sha256": "b077ad1d34a09e5168b39ff7064c2230a6abf51e69d020f5ac30373d3fa911cd",
+        "expected": {
+          "stage": "decoded",
+          "value": {
+            "sections": [
+              {
+                "contract_ref": "HELIXOS-L5-002-F02",
+                "observation": {
+                  "future": {
+                    "unseen": 9007199254740993
+                  }
+                },
+                "findings": [],
+                "unresolved_source_refs": [],
+                "effect_requests": []
+              }
+            ],
+            "input_issues": [],
+            "effects": [],
+            "authority_generated": false
+          },
+          "wire_shape_accepted": true,
+          "meaning_completion_effect": "none",
+          "observation": "CaseObservation carrier内opaqueを保持し、selected F02観測型では定義外keyを拒否する。",
+          "selected_section_shape_check": {
+            "section": "F02",
+            "carrier_pointer": "/sections/0/observation",
+            "accepted": false,
+            "input_issue_locator": "/future"
+          }
+        },
+        "execution_state": "not_executed",
+        "expected_presence": [
+          {
+            "pointer": "/sections",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sections/0/contract_ref",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sections/0/observation",
+            "state": "supplied"
+          },
+          {
+            "pointer": "/sections/0/findings",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/sections/0/unresolved_source_refs",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/sections/0/effect_requests",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/input_issues",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/effects",
+            "state": "empty_array"
+          },
+          {
+            "pointer": "/authority_generated",
+            "state": "supplied"
+          }
+        ]
+      }
+    ],
+    "presence_contract": "expected_presenceは宣言memberごとの{pointer,state}列。省略absent/明示null/empty_array/suppliedを原所在で固定し、absent/null内objectやopaque selector宣言を創作しない。元Field<T>宣言を独立に読み、missing/supplied(null)/supplied(T)対応とencode/decode往復presenceを照合する。",
+    "encoder_obligations": [
+      "全decoded原値はencode/decodeでmember集合/省略/null/原配列順/数値/文字列/source_json_utf8を保持。",
+      "shape/UTF8/構文/出力required失敗は所在と元rawを保存。source意味不足をglobal raw形不正や補完正常へ変更しない。",
+      "定義外宣言memberは削除/aliasで成功にせずpointerへ失敗。opaque map正常と宣言carrier失敗を分離し、選択section解決後のshapeも同じclosed集合へ照合する。"
+    ],
+    "completion_limit": "旧sourcehash/quotes/承認objects/既存member/固定raw/schema/declaredpresenceの静的照合のみ。CaseInput/Observation各sectionとselector実binding/root供給元/custodyは未閉包。小数/指数/1e400/encode非JSON値/具体float/resourceは範囲未固定。実codec/library採用/資格/保存/外部作用/旧test/CI、全92親430対閉包と実装Readyは未成立。"
   }
 }
