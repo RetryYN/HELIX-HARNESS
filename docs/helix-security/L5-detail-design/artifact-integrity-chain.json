@@ -1549,11 +1549,7 @@
     "実署名/key authority、trusted registry、scanner、freshness policy/gate、permission/promotion APIを定義しない。",
     "実artifact再build、HARNESS挙動検証、OS authority決定、trust最終認可、L11受入は未実施。",
     "全体設計閉包は未証明。全92 parent/430 L3-L10 pairをこの詳細化の都合で縮小しない。",
-    "論理field/結果値は本書で定義したが、正式JSON schema・codec・canonicalization・digest algorithm/encodingは未決。",
-    "kind owner/source qualification、producer実identity/custody、工程executor qualification、実source/実artifact観測は未成立。",
-    "実署名/key authority、trusted registry、scanner、freshness policy/gate、permission/promotion APIを定義しない。",
-    "実artifact再build、HARNESS挙動検証、OS authority決定、trust最終認可、L11受入は未実施。",
-    "全体設計閉包は未証明。全92 parent/430 L3-L10 pairをこの詳細化の都合で縮小しない。"
+    "論理field/結果値は本書で定義したが、正式JSON schema・codec・canonicalization・digest algorithm/encodingは未決。"
   ],
   "trace_contract": {
     "requirements": [
@@ -1984,6 +1980,32 @@
         "custody_owner": "Observation<OwnerRef>",
         "trust_decision": "NotOwnedBy013"
       }
+    },
+    {
+      "name": "PhaseTimelineEvidence",
+      "field_types": {
+        "phase_name": "FieldPresence<PhaseName>",
+        "available_inputs": "FieldPresence<Sequence<EvidenceRef>>",
+        "validation_receipt_state": "FieldPresence<ReceiptState>",
+        "os_progression_state": "FieldPresence<ProgressionState>",
+        "source_locator": "SourceLocator"
+      },
+      "field_values": {
+        "phase_name": [
+          "build_start",
+          "validation_after_build",
+          "execute_after_validation"
+        ],
+        "validation_receipt_state": [
+          "not_yet_generated",
+          "synthetic_marker_created_after_validation"
+        ],
+        "os_progression_state": [
+          "not_yet_generated",
+          "not_established"
+        ]
+      },
+      "value_semantics": "ここに列挙する値は固定合成phase packetに原文どおり存在するtokenであり、追加enum、実receipt、実OS progressionやauthorityを定義しない。"
     }
   ],
   "logical_type_boundary": {
