@@ -1,0 +1,2193 @@
+{
+  "parent": "HELIXSECURITY-L2-023",
+  "source_main": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+  "approval_record": {
+    "path": "docs/governance/decisions/helix-security-tool-composite-l3-l10-delegated-decision-2026-10-12.md",
+    "reviewed_content_head": "65dd7d8f641456389d16ba983e9bfad11ac44068",
+    "main_admission_commit": "f86754d7985f887e741a2cabb3fa33fab3241686",
+    "effect": "記録がmainへ収録されたとき有効。対象L3/L10 wholeを変更せず下流の承認・実装・実資格は生成しない。"
+  },
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "id": "HELIXSECURITY-L3-023-B01",
+      "object": {
+        "id": "HELIXSECURITY-L3-023-B01",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "審査・実行・検証・昇格の責務",
+        "obligation": "SECURITY admission→Worker隔離実行→HARNESS verification→OS promotionの順序とownerを分ける。SECacceptだけで実行/昇格、HARNESS greenだけでSEC受入を生成せず、OSもunknown条件を昇格しない。初回の必要構成体規範だけ先行し歴史Stage4の全運転を前倒ししない。OS昇格要求/ticketの存在だけで、SEC受入とHARNESS検証の成立なしに昇格しない。",
+        "oracle_ref": "HELIXSECURITY-L10-023-B01"
+      },
+      "object_canonical_sha256": "c9d279248b0f2d79ddcba983154890e16af23c253813c4602c82e3d98784f42f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-023-F01",
+      "object": {
+        "id": "HELIXSECURITY-L3-023-F01",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "段階入力と同候補の束縛",
+        "obligation": "010/011/012/013の候補・provenance/capability delta/審査、007の実隔離適用、Worker結果、HARNESS検証証拠、OS昇格要求を該当段階で同identity/revision/scopeへ結ぶ。初期審査には審査前candidateと材料、実行後には結果、検証後には証拠を照合し、未来結果を初回実行開始の前提にしない。",
+        "oracle_ref": "HELIXSECURITY-L10-023-F01"
+      },
+      "object_canonical_sha256": "0d5c2f6095747c4c833ee5cb3c85919d6fa80ea5c3457bf58360f937f70cd9e2"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-023-F02",
+      "object": {
+        "id": "HELIXSECURITY-L3-023-F02",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "失敗状態と未完義務の受渡し",
+        "obligation": "各段階のinput/output/receiptに失敗・拒否・unknown・未観測・中断と戻し先/未完義務を残す。OS018/019/020/023のassignment/原証拠/検収/handoffと、HARNESS005/022の検証・成立条件を参照する。送信/ACKや一段の成功だけで後段成立にせず、修正後revisionへ旧審査/検証を流用しない。",
+        "oracle_ref": "HELIXSECURITY-L10-023-F02"
+      },
+      "object_canonical_sha256": "46f2f8752237d0be5ad2bccb4c64cc527a2a4f26693cb7547ea74e1a83b093b6"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-023-F03",
+      "object": {
+        "id": "HELIXSECURITY-L3-023-F03",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "初回環境への適用と非選択境界",
+        "obligation": "初回開発で選ぶtool/依存/runtime/config候補の審査・隔離検証・実利用への進行に必要な条件を対象operationへ結ぶ。SEC008のinstall/execute等の操作tuple、INFRA010の更新/復旧、OS001/053の進行/正本原子更新はそれぞれ既存ownerに残す。release/tag/内部デプロイ/配布切替や全plugin/model更新を本規範から発行しない。",
+        "oracle_ref": "HELIXSECURITY-L10-023-F03"
+      },
+      "object_canonical_sha256": "61645da55d5452c256fbdbaffe55f37bec2c9e3b48b7ffc86757cdd5fe1a5f8f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "id": "HELIXSECURITY-L3-023-N01",
+      "object": {
+        "id": "HELIXSECURITY-L3-023-N01",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "構成体固有の負例と部分成功",
+        "obligation": "単体010/011/012/013の成功とは別に、未見candidate/actor/revisionの審査→実行→検証→進行の順序、同一対象、各境界failure、未完保持を検証する。個別norm/field/件数から実構成体/PO Acceptedを生成しない。",
+        "oracle_ref": "HELIXSECURITY-L10-023-N01"
+      },
+      "object_canonical_sha256": "1f48596a71ed5b89126237d3bd9cfebe51dfebb1adc5f28674ab0bb38dd8e4c9"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "id": "HELIXSECURITY-L10-023-B01",
+      "object": {
+        "id": "HELIXSECURITY-L10-023-B01",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "審査・実行・検証・昇格の責務",
+        "requirement_ref": "HELIXSECURITY-L3-023-B01",
+        "positive_input": "四段階の各状態と順序を同候補へ照合する。",
+        "expected_observation": "各ownerと前後状態/未完が別に辿れる。OS ticketの存在とSEC受入/HARNESS検証の成立を別々に追跡する。",
+        "negative_input": "審査だけでpromotion、CIだけでsecurity受入、初回で全Stage4完成。OS ticket/昇格要求だけでSEC受入とHARNESS検証の成立なしにpromotion。",
+        "failure_observation": "意味/審査不足はSEC、実行はWorker/INFRA、検証はHARNESS、進行はOSへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "d478917954046dcb1a58381880842ba3c664c6dfed7feafc92f8fd71637507f7"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-023-F01",
+      "object": {
+        "id": "HELIXSECURITY-L10-023-F01",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "段階入力と同候補の束縛",
+        "requirement_ref": "HELIXSECURITY-L3-023-F01",
+        "positive_input": "候補と審査→隔離run→検証→進行要求の段階入力を比較する。",
+        "expected_observation": "各段階で必要な前入力と後で生成される結果が区別される。",
+        "negative_input": "異candidateのreceipt混在、初回実行前に実行結果必須、007未適用で実行。",
+        "failure_observation": "当該段階の入力/authority/環境を未成立にし発生ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "9913ddf1109f0126833d682bc08462b2c5cc05b78cdb5b6f2b54ffb11738a100"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-023-F02",
+      "object": {
+        "id": "HELIXSECURITY-L10-023-F02",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "失敗状態と未完義務の受渡し",
+        "requirement_ref": "HELIXSECURITY-L3-023-F02",
+        "positive_input": "一境界故障、未知、別revision、受理と解決を比較する。",
+        "expected_observation": "失敗位置と原候補/未完/受領/解消条件が辿れる。",
+        "negative_input": "ACKだけで義務消込、検証失敗をpromotion、改訂後に旧accept継承。",
+        "failure_observation": "該当段階と接続を未完にし既存ownerへ戻す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "845ad2bfe9ef560a38ed4f42d97432aef36eba6f4507d3a21bc91a3c8f1ece04"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-023-F03",
+      "object": {
+        "id": "HELIXSECURITY-L10-023-F03",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "初回環境への適用と非選択境界",
+        "requirement_ref": "HELIXSECURITY-L3-023-F03",
+        "positive_input": "初回開発構成の採用と非選択release/配布operationを分ける。",
+        "expected_observation": "選択操作の必要契約と非選択の停止境界が辿れる。",
+        "negative_input": "構成審査をrelease許可、全plugin運転を必須、OS状態をSECが更新。",
+        "failure_observation": "操作/資源/保存不足を各ownerへ返し、上流意味変更だけ該当L1/L2へ戻す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "5f32d34bbc5712d56c356b6b93dcb0108fbfd213b0d1f31e39cf50a9d6a6cc47"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "id": "HELIXSECURITY-L10-023-N01",
+      "object": {
+        "id": "HELIXSECURITY-L10-023-N01",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "構成体固有の負例と部分成功",
+        "requirement_ref": "HELIXSECURITY-L3-023-N01",
+        "positive_input": "未見candidateと一境界故障を四段階へ照合する。",
+        "expected_observation": "構成体固有の順序/同revision/未完の判定が示される。",
+        "negative_input": "単体全greenで接続故障を相殺、未実行を成功、AI検証をPO受入化。",
+        "failure_observation": "該当構成体を未完にし内容/接続/利用者判断の別条件を保つ。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "b7224a478b356eaae4342d307a730a34649b7439406d787a4fd1119dcbd4c354"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "AGENTS.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7"
+    },
+    {
+      "path": "CLAUDE.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "9a676d8a3d8ef5edb9e1c6c3fb77ce4b6851c7c6c223613bf46307d906eda96c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-environment-promotion-requirements.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "03bdf1060bc0ca9eec468f72f3b2b81328779695b95f95fd014662fd17fc1ab5"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-isolation-broker.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "2ae62269bc67bd926c552fb1a418645a157feb0c701f3833494155cb3dabca26"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "d39b3cdc2e7d9f72ad03d0d3db5571a6b0de579fadf0b147b8a6d4f90dc2ed2c"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05"
+    },
+    {
+      "path": "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-cross-owner-contract-dependencies-2026-10-12.json",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "70e469eabda9ebb58581a6e4c9c62ad233b69bd09fe97841be0df7fc4d4ada13"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-tool-composite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "996d077f0ffe5124561767e99813c95910a2fd1dfe1290bb87311b38249da822"
+    },
+    {
+      "path": "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/candidate-promotion-state-chain.json",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "13a4ff644b10e6cf7f4eee791173a49eae5d98cdc170827ad6d5a50d2a1473c9"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/candidate-promotion-state-chain.json",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "ae249786c92b2a5e7091fc34c4af9aca7c8184ba423f014024e23295de6255c7"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "bb5f5912049d1b86ebdc3d42ce094f24b18b5bd9d9ac3dbb54057f41f766d14a"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-sdop-20260929/README.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "3f2c49633949e8f60a586a7c3fb40e6b70c3c6dfe4e8d9fbade0f79fa8c4cf98"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/README.md",
+      "revision": "0cfb160ca69ea34d6d69906cdaeecfc9ae0666e1",
+      "whole_sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "pairs": 430
+  },
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "implementation_readiness": "not_ready",
+  "legacy_source_review": {
+    "basis": "inventory-first。現行の段階順序・責務分離・失敗/未完保持の意味を再導出する。",
+    "evidence": [
+      {
+        "label": "admission",
+        "asset_id": "LEGACY-ASSET-ADE4AF41DD06DA4F100F",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+        "line_start": 16,
+        "line_end": 22,
+        "quote": "本書はCodex Security、GitHub CodeQL、secret scanning／push protection、Dependabot、dependency review等を\n個別の正本にせず、同一source HEAD／artifact digestへ束縛したsecurity evidenceから、開発slice、merge、\ndeploymentのadmissionをexactly onceで決定する。\n\nscannerの追加そのものではなく、coverage、severity、finding disposition、waiver期限、実行境界を統合する\n`GitHubSecurityAdmission`を単一responsibility ownerとする。各scannerの検出ロジック、脆弱性修正、\ndeployment実行、GitHub settings変更は本責務に含めない。",
+        "quote_sha256": "667e161b788729d150df70885386a767b59a63724b8238403975cabe1547af7b",
+        "whole_source_sha256": "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72"
+      },
+      {
+        "label": "promotion",
+        "asset_id": "LEGACY-ASSET-578A66F54CD01046B7BA",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-environment-promotion-requirements.md",
+        "line_start": 16,
+        "line_end": 30,
+        "quote": "本書は`vps_staging`から`cloud_production`へ同一artifactを昇格する環境境界、GitHub正式操作面、provider非依存contract、\nAWS reference profile、DB migration安全性をL3要件として定義する。実deployment、credential発行、cloud resource作成は行わない。\n\n## 2. 機能要件\n\n### GH-FR-021 staging・production GitHub運用境界\n\n環境を最低限`vps_staging`と`cloud_production`へ分離し、同一artifact digestだけをstagingからproductionへpromotionする。\nGitHub Deployments、Environments、Actionsをeditor非依存の正式操作・監査面とし、`workflow_dispatch`を起動面、HELIX CLIを\n同じworkflowの起動・監視を行う補助面とする。environment concurrencyは同時deploy一件へ制限する。\n\nrepository visibilityとGitHub planに応じてrequired reviewer、self-review禁止、custom protection、environment secret、branch/tag制限が\n利用可能かsetup preflightする。不足時は代替保護を仮定してproductionを開かない。production昇格はstaging検証合格後だけ開始し、\n対象artifact、環境、操作、window、backup、rollback target、health check、monitoringを束縛したユーザー承認receiptと\nGitHub Environment protectionを通す。staging receiptなし、別artifact、承認scope外操作、environment secret混用を拒否する。",
+        "quote_sha256": "6a56e5e3feacf1540db99a321ea71b4ef9481c9ae4088dc03ba8c7dfae97b4f9",
+        "whole_source_sha256": "f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410"
+      },
+      {
+        "label": "isolation_boundary",
+        "asset_id": "LEGACY-ASSET-F67008331E92FA0A5773",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-isolation-broker.md",
+        "line_start": 21,
+        "line_end": 34,
+        "quote": "`WorkerIsolationBroker`はcurrent descriptor admission、immutable wrapper execution、repository-owned runtime catalogが事前承認した\nbackend/runtimeのexact path＋content digest、allowlisted input bytesを受け、repo外scratchへ\nregular fileだけをcopyした後、Linux bubblewrap processを起動する。repo root、`.git`、`.helix`、`harness.db`、parent envはbindしない。\ngit worktreeは`.git`がcommon repository/historyへ接続するため採用しない。\n\n```text\ndescriptor decision + current snapshot + sealed wrapper execution + input allowlist\n  -> validate (spawn 0 on failure)\n  -> bounded byte snapshot outside repo\n  -> bubblewrap: /usr(ro), provider executable(ro), /workspace(rw), fixed env\n  -> worker process result\n```\n\nnetwork deny、secret task classification、egress scope diffはWCC-FR-04、output revalidationとreceiptはWCC-FR-05/06へ委譲する。",
+        "quote_sha256": "f07a6a467aef9f7032a365b60bf4f8ae697df148ee27d811a0cb109f646dd2d5",
+        "whole_source_sha256": "2ae62269bc67bd926c552fb1a418645a157feb0c701f3833494155cb3dabca26"
+      },
+      {
+        "label": "lifecycle_stage",
+        "asset_id": "LEGACY-ASSET-A4EAB5E3345E3C125C77",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
+        "line_start": 20,
+        "line_end": 20,
+        "quote": "worker実行を`requested -> admitted -> sandboxed -> running -> proposal_received -> revalidated -> accepted/rejected/quarantined`として再生し、parent/child exact set、current HEAD、admission、sandbox、diff、egress、output、独立reviewを一つのreceiptへ束縛する。",
+        "quote_sha256": "4279efba07d3ff7de9e820783f251eb84e5d6a7871b9b7585936d88a5a6a8d69",
+        "whole_source_sha256": "d39b3cdc2e7d9f72ad03d0d3db5571a6b0de579fadf0b147b8a6d4f90dc2ed2c"
+      },
+      {
+        "label": "update_lifecycle",
+        "asset_id": "LEGACY-ASSET-57F738ABAF40C5CF11DE",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md",
+        "line_start": 16,
+        "line_end": 17,
+        "quote": "本書は将来改善を表すUpdate Issueを、Feature、Recovery、Incidentから分離して長期backlogとして追跡するlabel、priority、trace、\nactivation、closure契約を定義する。正常なopen Updateをactive blockerや異常放置へ誤算入しない。",
+        "quote_sha256": "7cd56e75b68c89a8c70186a8bf5ab711e43ee184da738266b83b2bcaf6ecb1ec",
+        "whole_source_sha256": "03bdf1060bc0ca9eec468f72f3b2b81328779695b95f95fd014662fd17fc1ab5"
+      }
+    ],
+    "preserved": "同一candidate/artifactに対応する証拠、admission・実行・検証・進行の段階分離、owner境界、部分成功/未完の明示。",
+    "changed": "旧GitHub deployment固有approval、production環境設定、旧isolation実装、receipt schema、Issue lifecycleは現行SECURITY023の意味・実装へ移植しない。選択対象の初回tool構成に必要な境界だけを現行L2/L3/L10へ対応させる。",
+    "reason": "現行承認L3/L10とL1/L2/L11が対象/authorityを定める。旧実装や環境固有の承認機構を資格・実権限として再利用しないため。"
+  },
+  "boundary": "SEC admission/Worker isolation/HARNESS verification/OS promotionの各ownerを保持。実qualification/authority/isolated backend/CI/releaseを新設しない。L6は関数設計、L7は対の関数検証、実装成果は層外。",
+  "remaining": [
+    "正式source/owner資格・custody/provider・SEC008 tupleの実qualified照合・実環境適用/実隔離/receipt/HARNESS検証/OS正本更新は未成立。",
+    "正式schema/codec、float/resource/encode選択・実TDD/CI/L11/全92親430対の意味閉包と実装Readyは未成立。",
+    "本族の未提示/不正shapeや未知claim/複合比較域の一般policyは別閉包。新gateを推測しない。",
+    "FailureFrame candidate.scopeとCompositeFrame各stage.scopeは原sourceに無くField.absentとして保持。stage scopeのactual binding・実接続providerはunknown。comparison incompleteを成功/資格へ昇格しない。"
+  ],
+  "id": "HELIXSECURITY-L5-023",
+  "pair": "HELIXSECURITY-L8-023",
+  "status": "draft_detail_design_for_parent_review",
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L5-023-B01",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-023-B01",
+        "requirement_ref": "HELIXSECURITY-L3-023-B01",
+        "oracle_ref": "HELIXSECURITY-L10-023-B01",
+        "source_obligation_value": "SECURITY admission→Worker隔離実行→HARNESS verification→OS promotionの順序とownerを分ける。SECacceptだけで実行/昇格、HARNESS greenだけでSEC受入を生成せず、OSもunknown条件を昇格しない。初回の必要構成体規範だけ先行し歴史Stage4の全運転を前倒ししない。OS昇格要求/ticketの存在だけで、SEC受入とHARNESS検証の成立なしに昇格しない。",
+        "source_oracle_values": {
+          "positive_input": "四段階の各状態と順序を同候補へ照合する。",
+          "expected_observation": "各ownerと前後状態/未完が別に辿れる。OS ticketの存在とSEC受入/HARNESS検証の成立を別々に追跡する。",
+          "negative_input": "審査だけでpromotion、CIだけでsecurity受入、初回で全Stage4完成。OS ticket/昇格要求だけでSEC受入とHARNESS検証の成立なしにpromotion。",
+          "failure_observation": "意味/審査不足はSEC、実行はWorker/INFRA、検証はHARNESS、進行はOSへ返す。"
+        },
+        "rule": "SECURITY admission→Worker隔離実行→HARNESS verification→OS promotionの順序とownerを別々に保持する。SEC acceptanceだけでは実行/昇格を、HARNESS greenだけではSEC受入を成立させず、OSはunknown条件を昇格しない。初回必要構成体の範囲に留め、歴史Stage4全運転を前倒ししない。OS ticket/昇格要求だけではSEC受入とHARNESS検証が成立しない限り昇格しない。",
+        "inputs": [
+          "HELIXSECURITY-L2-023",
+          "HELIXSECURITY-L2-007",
+          "HELIXSECURITY-L2-008",
+          "HELIXSECURITY-L2-010",
+          "HELIXSECURITY-L2-011",
+          "HELIXSECURITY-L2-012",
+          "HELIXSECURITY-L2-013"
+        ],
+        "source_trace": [
+          "HELIXSECURITY-L3-023-B01",
+          "HELIXSECURITY-L10-023-B01"
+        ],
+        "failure_route": "意味/審査不足はSEC、実行はWorker/INFRA、検証はHARNESS、進行はOSへ返す。"
+      },
+      "source_contract_canonical_sha256": "5698e22b6d6260c8fdd50793b7c4a1959344c4350bb1eaa9b2ebdb40ea46389f",
+      "function_refs": [
+        "F02301",
+        "F02302",
+        "F02307"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-023-F01",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-023-F01",
+        "requirement_ref": "HELIXSECURITY-L3-023-F01",
+        "oracle_ref": "HELIXSECURITY-L10-023-F01",
+        "source_obligation_value": "010/011/012/013の候補・provenance/capability delta/審査、007の実隔離適用、Worker結果、HARNESS検証証拠、OS昇格要求を該当段階で同identity/revision/scopeへ結ぶ。初期審査には審査前candidateと材料、実行後には結果、検証後には証拠を照合し、未来結果を初回実行開始の前提にしない。",
+        "source_oracle_values": {
+          "positive_input": "候補と審査→隔離run→検証→進行要求の段階入力を比較する。",
+          "expected_observation": "各段階で必要な前入力と後で生成される結果が区別される。",
+          "negative_input": "異candidateのreceipt混在、初回実行前に実行結果必須、007未適用で実行。",
+          "failure_observation": "当該段階の入力/authority/環境を未成立にし発生ownerへ返す。"
+        },
+        "rule": "010/011/012/013の候補・provenance/capability delta/審査、007の実隔離適用、Worker結果、HARNESS検証証拠、OS昇格要求を各生成段階で同一identity/revision/scopeへ束ねる。初期審査は審査前candidateと既存材料、実行後は生成結果、検証後は生成証拠を入力として区別し、未来の結果を初回実行開始の前提にしない。",
+        "inputs": [
+          "HELIXSECURITY-L2-023",
+          "HELIXSECURITY-L2-007",
+          "HELIXSECURITY-L2-008",
+          "HELIXSECURITY-L2-010",
+          "HELIXSECURITY-L2-011",
+          "HELIXSECURITY-L2-012",
+          "HELIXSECURITY-L2-013"
+        ],
+        "source_trace": [
+          "HELIXSECURITY-L3-023-F01",
+          "HELIXSECURITY-L10-023-F01"
+        ],
+        "failure_route": "当該段階の入力/authority/環境を未成立にし発生ownerへ返す。"
+      },
+      "source_contract_canonical_sha256": "3371b189acbd90ede1cf4c83b668c24009edb2a56f5bf25b4c5cebdb4ded6fad",
+      "function_refs": [
+        "F02301",
+        "F02303",
+        "F02307"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-023-F02",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-023-F02",
+        "requirement_ref": "HELIXSECURITY-L3-023-F02",
+        "oracle_ref": "HELIXSECURITY-L10-023-F02",
+        "source_obligation_value": "各段階のinput/output/receiptに失敗・拒否・unknown・未観測・中断と戻し先/未完義務を残す。OS018/019/020/023のassignment/原証拠/検収/handoffと、HARNESS005/022の検証・成立条件を参照する。送信/ACKや一段の成功だけで後段成立にせず、修正後revisionへ旧審査/検証を流用しない。",
+        "source_oracle_values": {
+          "positive_input": "一境界故障、未知、別revision、受理と解決を比較する。",
+          "expected_observation": "失敗位置と原候補/未完/受領/解消条件が辿れる。",
+          "negative_input": "ACKだけで義務消込、検証失敗をpromotion、改訂後に旧accept継承。",
+          "failure_observation": "該当段階と接続を未完にし既存ownerへ戻す。"
+        },
+        "rule": "各段階のinput/output/receiptに失敗・拒否・unknown・未観測・中断、戻し先、未完義務を保持する。OS018/019/020/023のassignment/原証拠/検収/handoffとHARNESS005/022の検証・成立条件を参照し、送信/ACKや一段の成功で後段成立を作らず、修正後revisionへ旧審査/検証を流用しない。",
+        "inputs": [
+          "HELIXSECURITY-L2-023",
+          "HELIXSECURITY-L2-007",
+          "HELIXSECURITY-L2-008",
+          "HELIXSECURITY-L2-010",
+          "HELIXSECURITY-L2-011",
+          "HELIXSECURITY-L2-012",
+          "HELIXSECURITY-L2-013"
+        ],
+        "source_trace": [
+          "HELIXSECURITY-L3-023-F02",
+          "HELIXSECURITY-L10-023-F02"
+        ],
+        "failure_route": "該当段階と接続を未完にし既存ownerへ戻す。"
+      },
+      "source_contract_canonical_sha256": "052091b22581a751d953e23ccad45f06c1a8eb71b3992aa33a1384bc3d19188c",
+      "function_refs": [
+        "F02301",
+        "F02304",
+        "F02307"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-023-F03",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-023-F03",
+        "requirement_ref": "HELIXSECURITY-L3-023-F03",
+        "oracle_ref": "HELIXSECURITY-L10-023-F03",
+        "source_obligation_value": "初回開発で選ぶtool/依存/runtime/config候補の審査・隔離検証・実利用への進行に必要な条件を対象operationへ結ぶ。SEC008のinstall/execute等の操作tuple、INFRA010の更新/復旧、OS001/053の進行/正本原子更新はそれぞれ既存ownerに残す。release/tag/内部デプロイ/配布切替や全plugin/model更新を本規範から発行しない。",
+        "source_oracle_values": {
+          "positive_input": "初回開発構成の採用と非選択release/配布operationを分ける。",
+          "expected_observation": "選択操作の必要契約と非選択の停止境界が辿れる。",
+          "negative_input": "構成審査をrelease許可、全plugin運転を必須、OS状態をSECが更新。",
+          "failure_observation": "操作/資源/保存不足を各ownerへ返し、上流意味変更だけ該当L1/L2へ戻す。"
+        },
+        "rule": "初回開発で選ぶtool/依存/runtime/config候補の審査・隔離検証・実利用への進行条件を対象operationへ結ぶ。SEC008のinstall/execute等の操作tuple、INFRA010の更新/復旧、OS001/053の進行/正本原子更新は各ownerに残す。release/tag/内部deploy/配布切替/全plugin・model更新を本規範から発行しない。",
+        "inputs": [
+          "HELIXSECURITY-L2-023",
+          "HELIXSECURITY-L2-007",
+          "HELIXSECURITY-L2-008",
+          "HELIXSECURITY-L2-010",
+          "HELIXSECURITY-L2-011",
+          "HELIXSECURITY-L2-012",
+          "HELIXSECURITY-L2-013"
+        ],
+        "source_trace": [
+          "HELIXSECURITY-L3-023-F03",
+          "HELIXSECURITY-L10-023-F03"
+        ],
+        "failure_route": "操作/資源/保存不足を各ownerへ返し、上流意味変更だけ該当L1/L2へ戻す。"
+      },
+      "source_contract_canonical_sha256": "ab8817d9cc8e859f98fae59482869ce3c78db9230c5ce2557fefb52fa93a8752",
+      "function_refs": [
+        "F02301",
+        "F02305",
+        "F02307"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-023-N01",
+      "source_contract": {
+        "id": "HELIXSECURITY-L4-023-N01",
+        "requirement_ref": "HELIXSECURITY-L3-023-N01",
+        "oracle_ref": "HELIXSECURITY-L10-023-N01",
+        "source_obligation_value": "単体010/011/012/013の成功とは別に、未見candidate/actor/revisionの審査→実行→検証→進行の順序、同一対象、各境界failure、未完保持を検証する。個別norm/field/件数から実構成体/PO Acceptedを生成しない。",
+        "source_oracle_values": {
+          "positive_input": "未見candidateと一境界故障を四段階へ照合する。",
+          "expected_observation": "構成体固有の順序/同revision/未完の判定が示される。",
+          "negative_input": "単体全greenで接続故障を相殺、未実行を成功、AI検証をPO受入化。",
+          "failure_observation": "該当構成体を未完にし内容/接続/利用者判断の別条件を保つ。"
+        },
+        "rule": "単体010/011/012/013の成功と分離し、未見candidate/actor/revisionの審査→実行→検証→進行順序、同一対象、各境界failure、未完保持を観測する。個別norm/field/件数から実構成体成立またはPO Acceptedを生成しない。",
+        "inputs": [
+          "HELIXSECURITY-L2-023",
+          "HELIXSECURITY-L2-007",
+          "HELIXSECURITY-L2-008",
+          "HELIXSECURITY-L2-010",
+          "HELIXSECURITY-L2-011",
+          "HELIXSECURITY-L2-012",
+          "HELIXSECURITY-L2-013"
+        ],
+        "source_trace": [
+          "HELIXSECURITY-L3-023-N01",
+          "HELIXSECURITY-L10-023-N01"
+        ],
+        "failure_route": "該当構成体を未完にし内容/接続/利用者判断の別条件を保つ。"
+      },
+      "source_contract_canonical_sha256": "58be44bb696e43a09fbd68ddc9a83432bd053b5cb0f1ad3bf60bbc86752d37d1",
+      "function_refs": [
+        "F02301",
+        "F02306",
+        "F02307"
+      ]
+    }
+  ],
+  "logical_types": [
+    {
+      "name": "RawValue",
+      "kind": "json",
+      "meaning": "原JSONのopaque値。owner資格/許可の根拠ではない。"
+    },
+    {
+      "name": "Field<T>",
+      "kind": "generic",
+      "variants": [
+        "absent",
+        "null",
+        "empty(value:T)",
+        "supplied(value:T)"
+      ],
+      "meaning": "未提示と明示null、空、値を別tagで保持する。"
+    },
+    {
+      "name": "StageFrame_Candidate",
+      "kind": "record",
+      "fields": {
+        "identity": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原StageFrame_Candidateの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "StageFrame_Composite",
+      "kind": "record",
+      "fields": {
+        "historical_stage4": "Field<string>",
+        "unmet": "Field<string>"
+      },
+      "meaning": "原StageFrame_Compositeの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "StageFrame_Harness",
+      "kind": "record",
+      "fields": {
+        "candidate_identity": "Field<string>",
+        "candidate_revision": "Field<string>",
+        "receipt_ref": "Field<string>",
+        "scope": "Field<string>",
+        "verification": "Field<string>"
+      },
+      "meaning": "原StageFrame_Harnessの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "StageFrame_Os",
+      "kind": "record",
+      "fields": {
+        "candidate_identity": "Field<string>",
+        "candidate_revision": "Field<string>",
+        "promotion": "Field<string>",
+        "promotion_request": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原StageFrame_Osの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "StageFrame_Security",
+      "kind": "record",
+      "fields": {
+        "admission": "Field<string>",
+        "candidate_identity": "Field<string>",
+        "candidate_revision": "Field<string>",
+        "reference": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原StageFrame_Securityの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "StageFrame_Worker",
+      "kind": "record",
+      "fields": {
+        "candidate_identity": "Field<string>",
+        "candidate_revision": "Field<string>",
+        "execution": "Field<string>",
+        "isolation_applied": "Field<string>",
+        "result_ref": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原StageFrame_Workerの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "StageFrame",
+      "kind": "record",
+      "fields": {
+        "candidate": "Field<StageFrame_Candidate>",
+        "composite": "Field<StageFrame_Composite>",
+        "fixture_only": "Field<boolean>",
+        "harness": "Field<StageFrame_Harness>",
+        "os": "Field<StageFrame_Os>",
+        "security": "Field<StageFrame_Security>",
+        "stage_order": "Field<list<string>>",
+        "worker": "Field<StageFrame_Worker>"
+      },
+      "meaning": "原StageFrameの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CandidateFrame_CandidateA",
+      "kind": "record",
+      "fields": {
+        "capability_delta_ref": "Field<string>",
+        "identity": "Field<string>",
+        "provenance_ref": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原CandidateFrame_CandidateAの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CandidateFrame_CandidateB",
+      "kind": "record",
+      "fields": {
+        "identity": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原CandidateFrame_CandidateBの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CandidateFrame_Receipts",
+      "kind": "record",
+      "fields": {
+        "harness_candidate_ref": "Field<string>",
+        "worker_candidate_ref": "Field<string>"
+      },
+      "meaning": "原CandidateFrame_Receiptsの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CandidateFrame_ReviewInput",
+      "kind": "record",
+      "fields": {
+        "candidate_identity": "Field<string>",
+        "candidate_ref": "Field<string>",
+        "candidate_revision": "Field<string>",
+        "candidate_scope": "Field<string>",
+        "capability_delta_ref": "Field<string>",
+        "future_result_ref": "Field<string>",
+        "provenance_ref": "Field<string>"
+      },
+      "meaning": "原CandidateFrame_ReviewInputの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CandidateFrame_StageComparison_Harness",
+      "kind": "record",
+      "fields": {
+        "candidate_ref": "Field<string>",
+        "identity": "Field<string>",
+        "input_result_ref": "Field<string>",
+        "receipt_ref": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>",
+        "verification": "Field<string>"
+      },
+      "meaning": "原CandidateFrame_StageComparison_Harnessの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CandidateFrame_StageComparison_Os",
+      "kind": "record",
+      "fields": {
+        "candidate_ref": "Field<string>",
+        "identity": "Field<string>",
+        "promotion": "Field<string>",
+        "request_ref": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原CandidateFrame_StageComparison_Osの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CandidateFrame_StageComparison_Security",
+      "kind": "record",
+      "fields": {
+        "candidate_ref": "Field<string>",
+        "capability_delta_ref": "Field<string>",
+        "identity": "Field<string>",
+        "provenance_ref": "Field<string>",
+        "review_state": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原CandidateFrame_StageComparison_Securityの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CandidateFrame_StageComparison_WorkerPostExecutionFixture",
+      "kind": "record",
+      "fields": {
+        "candidate_ref": "Field<string>",
+        "execution": "Field<string>",
+        "identity": "Field<string>",
+        "qualification": "Field<string>",
+        "result_ref": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原CandidateFrame_StageComparison_WorkerPostExecutionFixtureの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CandidateFrame_StageComparison_WorkerPreExecution",
+      "kind": "record",
+      "fields": {
+        "candidate_ref": "Field<string>",
+        "execution": "Field<string>",
+        "identity": "Field<string>",
+        "isolation_applied": "Field<boolean>",
+        "result_ref": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原CandidateFrame_StageComparison_WorkerPreExecutionの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CandidateFrame_StageComparison",
+      "kind": "record",
+      "fields": {
+        "harness": "Field<CandidateFrame_StageComparison_Harness>",
+        "os": "Field<CandidateFrame_StageComparison_Os>",
+        "security": "Field<CandidateFrame_StageComparison_Security>",
+        "worker_post_execution_fixture": "Field<CandidateFrame_StageComparison_WorkerPostExecutionFixture>",
+        "worker_pre_execution": "Field<CandidateFrame_StageComparison_WorkerPreExecution>"
+      },
+      "meaning": "原CandidateFrame_StageComparisonの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CandidateFrame_Worker",
+      "kind": "record",
+      "fields": {
+        "execution_started": "Field<boolean>",
+        "isolation_applied": "Field<boolean>",
+        "result_ref": "Field<string>"
+      },
+      "meaning": "原CandidateFrame_Workerの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CandidateFrame",
+      "kind": "record",
+      "fields": {
+        "candidate_a": "Field<CandidateFrame_CandidateA>",
+        "candidate_b": "Field<CandidateFrame_CandidateB>",
+        "fixture_only": "Field<boolean>",
+        "receipts": "Field<CandidateFrame_Receipts>",
+        "review_input": "Field<CandidateFrame_ReviewInput>",
+        "stage_comparison": "Field<CandidateFrame_StageComparison>",
+        "worker": "Field<CandidateFrame_Worker>"
+      },
+      "meaning": "原CandidateFrameの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "FailureFrame_Candidate",
+      "kind": "record",
+      "fields": {
+        "identity": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原FailureFrame_Candidateの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "FailureFrame_FailureBoundary",
+      "kind": "record",
+      "fields": {
+        "failure_ref": "Field<string>",
+        "from_stage": "Field<string>",
+        "state": "Field<string>",
+        "to_stage": "Field<string>"
+      },
+      "meaning": "原FailureFrame_FailureBoundaryの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "FailureFrame_Harness",
+      "kind": "record",
+      "fields": {
+        "receipt_candidate_revision": "Field<string>",
+        "verification": "Field<string>"
+      },
+      "meaning": "原FailureFrame_Harnessの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "FailureFrame_Interruption",
+      "kind": "record",
+      "fields": {
+        "phase": "Field<string>",
+        "resume_candidate_revision": "Field<string>",
+        "state": "Field<string>"
+      },
+      "meaning": "原FailureFrame_Interruptionの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "FailureFrame_Obligation",
+      "kind": "record",
+      "fields": {
+        "acknowledged": "Field<boolean>",
+        "resolved": "Field<boolean>",
+        "state": "Field<string>"
+      },
+      "meaning": "原FailureFrame_Obligationの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "FailureFrame_Os",
+      "kind": "record",
+      "fields": {
+        "promotion": "Field<string>"
+      },
+      "meaning": "原FailureFrame_Osの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "FailureFrame_ReceiptContext",
+      "kind": "record",
+      "fields": {
+        "available_at_phase": "Field<string>",
+        "receipt_candidate_revision": "Field<string>",
+        "receipt_state": "Field<string>"
+      },
+      "meaning": "原FailureFrame_ReceiptContextの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "FailureFrame_Rejection",
+      "kind": "record",
+      "fields": {
+        "phase": "Field<string>",
+        "reason_ref": "Field<string>",
+        "state": "Field<string>"
+      },
+      "meaning": "原FailureFrame_Rejectionの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "FailureFrame_SecurityAccept",
+      "kind": "record",
+      "fields": {
+        "candidate_revision": "Field<string>",
+        "state": "Field<string>"
+      },
+      "meaning": "原FailureFrame_SecurityAcceptの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "FailureFrame",
+      "kind": "record",
+      "fields": {
+        "candidate": "Field<FailureFrame_Candidate>",
+        "failure_boundary": "Field<FailureFrame_FailureBoundary>",
+        "fixture_only": "Field<boolean>",
+        "harness": "Field<FailureFrame_Harness>",
+        "interruption": "Field<FailureFrame_Interruption>",
+        "obligation": "Field<FailureFrame_Obligation>",
+        "os": "Field<FailureFrame_Os>",
+        "qualification": "Field<string>",
+        "receipt_context": "Field<FailureFrame_ReceiptContext>",
+        "rejection": "Field<FailureFrame_Rejection>",
+        "security_accept": "Field<FailureFrame_SecurityAccept>"
+      },
+      "meaning": "原FailureFrameの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "RevisionFrame_CurrentRevision",
+      "kind": "record",
+      "fields": {
+        "harness_receipt": "Field<string>",
+        "revision": "Field<string>",
+        "security_accept": "Field<string>"
+      },
+      "meaning": "原RevisionFrame_CurrentRevisionの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "RevisionFrame_Obligation",
+      "kind": "record",
+      "fields": {
+        "ack_ref": "Field<string>",
+        "ack_state": "Field<string>",
+        "resolution_state": "Field<string>",
+        "resolved": "Field<boolean>"
+      },
+      "meaning": "原RevisionFrame_Obligationの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "RevisionFrame_PriorRevision",
+      "kind": "record",
+      "fields": {
+        "harness_receipt": "Field<string>",
+        "revision": "Field<string>",
+        "security_accept": "Field<string>"
+      },
+      "meaning": "原RevisionFrame_PriorRevisionの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "RevisionFrame_UnknownContext",
+      "kind": "record",
+      "fields": {
+        "field": "Field<string>",
+        "source_ref": "Field<string>",
+        "state": "Field<string>",
+        "value": "Field<RawValue>"
+      },
+      "meaning": "原RevisionFrame_UnknownContextの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "RevisionFrame",
+      "kind": "record",
+      "fields": {
+        "current_revision": "Field<RevisionFrame_CurrentRevision>",
+        "fixture_only": "Field<boolean>",
+        "identity": "Field<string>",
+        "obligation": "Field<RevisionFrame_Obligation>",
+        "prior_revision": "Field<RevisionFrame_PriorRevision>",
+        "qualification": "Field<string>",
+        "unknown_context": "Field<RevisionFrame_UnknownContext>"
+      },
+      "meaning": "原RevisionFrameの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "ScopeFrame_Os",
+      "kind": "record",
+      "fields": {
+        "promotion": "Field<string>",
+        "state_owner": "Field<string>"
+      },
+      "meaning": "原ScopeFrame_Osの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "ScopeFrame_Plugins",
+      "kind": "record",
+      "fields": {
+        "all_required_for_initial_acceptance": "Field<boolean>",
+        "nonselected": "Field<list<string>>",
+        "selected": "Field<list<string>>"
+      },
+      "meaning": "原ScopeFrame_Pluginsの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "ScopeFrame_SecurityReview",
+      "kind": "record",
+      "fields": {
+        "claimed_release_permission": "Field<boolean>",
+        "state": "Field<string>"
+      },
+      "meaning": "原ScopeFrame_SecurityReviewの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "ScopeFrame_SelectedOperation_Tuple",
+      "kind": "record",
+      "fields": {
+        "actor": "Field<string>",
+        "environment": "Field<string>",
+        "expiry": "Field<string>",
+        "operation": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>",
+        "target": "Field<string>"
+      },
+      "meaning": "原ScopeFrame_SelectedOperation_Tupleの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "ScopeFrame_SelectedOperation",
+      "kind": "record",
+      "fields": {
+        "candidate": "Field<string>",
+        "operation": "Field<string>",
+        "tuple": "Field<ScopeFrame_SelectedOperation_Tuple>"
+      },
+      "meaning": "原ScopeFrame_SelectedOperationの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "ScopeFrame",
+      "kind": "record",
+      "fields": {
+        "fixture_only": "Field<boolean>",
+        "nonselected_operation_authority": "Field<string>",
+        "nonselected_operations": "Field<list<string>>",
+        "os": "Field<ScopeFrame_Os>",
+        "plugins": "Field<ScopeFrame_Plugins>",
+        "security_review": "Field<ScopeFrame_SecurityReview>",
+        "selected_operation": "Field<ScopeFrame_SelectedOperation>"
+      },
+      "meaning": "原ScopeFrameの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_Actors",
+      "kind": "record",
+      "fields": {
+        "execution_actor_ref": "Field<string>",
+        "review_actor_ref": "Field<string>"
+      },
+      "meaning": "原CompositeFrame_Actorsの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_Candidate",
+      "kind": "record",
+      "fields": {
+        "identity": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原CompositeFrame_Candidateの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_Composite",
+      "kind": "record",
+      "fields": {
+        "state": "Field<string>"
+      },
+      "meaning": "原CompositeFrame_Compositeの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_Connection",
+      "kind": "record",
+      "fields": {
+        "boundary": "Field<string>",
+        "failure": "Field<string>",
+        "state": "Field<string>"
+      },
+      "meaning": "原CompositeFrame_Connectionの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_Harness",
+      "kind": "record",
+      "fields": {
+        "verification": "Field<string>",
+        "verification_owner": "Field<string>"
+      },
+      "meaning": "原CompositeFrame_Harnessの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_Po",
+      "kind": "record",
+      "fields": {
+        "acceptance": "Field<string>"
+      },
+      "meaning": "原CompositeFrame_Poの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_StageRecords_Harness",
+      "kind": "record",
+      "fields": {
+        "identity": "Field<string>",
+        "revision": "Field<string>",
+        "state": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原CompositeFrame_StageRecords_Harnessの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_StageRecords_Os",
+      "kind": "record",
+      "fields": {
+        "identity": "Field<string>",
+        "promotion": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原CompositeFrame_StageRecords_Osの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_StageRecords_Security",
+      "kind": "record",
+      "fields": {
+        "identity": "Field<string>",
+        "review_actor_ref": "Field<string>",
+        "revision": "Field<string>",
+        "state": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原CompositeFrame_StageRecords_Securityの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_StageRecords_Worker",
+      "kind": "record",
+      "fields": {
+        "execution": "Field<string>",
+        "execution_actor_ref": "Field<string>",
+        "identity": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<string>"
+      },
+      "meaning": "原CompositeFrame_StageRecords_Workerの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_StageRecords",
+      "kind": "record",
+      "fields": {
+        "harness": "Field<CompositeFrame_StageRecords_Harness>",
+        "os": "Field<CompositeFrame_StageRecords_Os>",
+        "security": "Field<CompositeFrame_StageRecords_Security>",
+        "worker": "Field<CompositeFrame_StageRecords_Worker>"
+      },
+      "meaning": "原CompositeFrame_StageRecordsの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_UnitChecks",
+      "kind": "record",
+      "fields": {
+        "010": "Field<string>",
+        "011": "Field<string>",
+        "012": "Field<string>",
+        "013": "Field<string>"
+      },
+      "meaning": "原CompositeFrame_UnitChecksの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame_Worker",
+      "kind": "record",
+      "fields": {
+        "execution": "Field<string>",
+        "isolation": "Field<string>"
+      },
+      "meaning": "原CompositeFrame_Workerの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "CompositeFrame",
+      "kind": "record",
+      "fields": {
+        "actors": "Field<CompositeFrame_Actors>",
+        "candidate": "Field<CompositeFrame_Candidate>",
+        "composite": "Field<CompositeFrame_Composite>",
+        "connection": "Field<CompositeFrame_Connection>",
+        "fixture_only": "Field<boolean>",
+        "harness": "Field<CompositeFrame_Harness>",
+        "po": "Field<CompositeFrame_Po>",
+        "stage_records": "Field<CompositeFrame_StageRecords>",
+        "unit_checks": "Field<CompositeFrame_UnitChecks>",
+        "worker": "Field<CompositeFrame_Worker>"
+      },
+      "meaning": "原CompositeFrameの宣言member。unknown memberは元RawFrame.bodyに残す。"
+    },
+    {
+      "name": "RawFrame",
+      "kind": "record",
+      "fields": {
+        "body": "RawValue",
+        "canonical_sha256": "string"
+      },
+      "meaning": "L9原object又はその明示patch後の固定論理値。canonical hashはfixture照合用で正式wire bytes/digest/qualificationではない。"
+    },
+    {
+      "name": "FrameFamily",
+      "kind": "enum",
+      "values": [
+        "StageFrame",
+        "CandidateFrame",
+        "FailureFrame",
+        "RevisionFrame",
+        "ScopeFrame",
+        "CompositeFrame"
+      ]
+    },
+    {
+      "name": "FrameValue",
+      "kind": "union",
+      "variants": {
+        "StageFrame": "StageFrame",
+        "CandidateFrame": "CandidateFrame",
+        "FailureFrame": "FailureFrame",
+        "RevisionFrame": "RevisionFrame",
+        "ScopeFrame": "ScopeFrame",
+        "CompositeFrame": "CompositeFrame"
+      },
+      "tag": "kind",
+      "value_member": "value"
+    },
+    {
+      "name": "ProjectedFrame",
+      "kind": "record",
+      "fields": {
+        "family": "FrameFamily",
+        "raw": "RawFrame",
+        "declared": "FrameValue"
+      }
+    },
+    {
+      "name": "OwnerContext",
+      "kind": "record",
+      "fields": {
+        "security": "string",
+        "worker_environment": "string",
+        "harness": "string",
+        "os": "string",
+        "user_decision": "string"
+      },
+      "meaning": "既存L4の責務labelを明示供給する。実owner資格/source provider/operation authorityは生成しない。"
+    },
+    {
+      "name": "Comparison",
+      "kind": "record",
+      "fields": {
+        "left_path": "string",
+        "right_path": "string",
+        "left": "Field<RawValue>",
+        "right": "Field<RawValue>",
+        "state": "ComparisonState"
+      }
+    },
+    {
+      "name": "ComparisonState",
+      "kind": "enum",
+      "values": [
+        "equal",
+        "different",
+        "incomplete"
+      ]
+    },
+    {
+      "name": "Issue",
+      "kind": "record",
+      "fields": {
+        "rule": "string",
+        "field": "string",
+        "observed": "Field<RawValue>",
+        "return_owners": "list<string>"
+      }
+    },
+    {
+      "name": "LocalState",
+      "kind": "enum",
+      "values": [
+        "consistent_observation",
+        "inconsistent"
+      ]
+    },
+    {
+      "name": "QualificationState",
+      "kind": "enum",
+      "values": [
+        "not_established"
+      ]
+    },
+    {
+      "name": "StageStateView",
+      "kind": "record",
+      "fields": {
+        "security": "Field<string>",
+        "worker": "Field<string>",
+        "harness": "Field<string>",
+        "os": "Field<string>"
+      }
+    },
+    {
+      "name": "StageAnalysis",
+      "kind": "record",
+      "fields": {
+        "frame": "StageFrame",
+        "order": "Comparison",
+        "candidate_bindings": "list<Comparison>",
+        "states": "StageStateView",
+        "ticket_is_request_only": "boolean",
+        "issues": "list<Issue>",
+        "local_state": "LocalState",
+        "qualification": "QualificationState"
+      }
+    },
+    {
+      "name": "BindingAnalysis",
+      "kind": "record",
+      "fields": {
+        "frame": "CandidateFrame",
+        "bindings": "list<Comparison>",
+        "future_result_required": "boolean",
+        "isolation_applied": "Field<boolean>",
+        "post_result_state": "Field<string>",
+        "issues": "list<Issue>",
+        "local_state": "LocalState",
+        "qualification": "QualificationState"
+      }
+    },
+    {
+      "name": "HandoffAnalysis",
+      "kind": "record",
+      "fields": {
+        "failure": "FailureFrame",
+        "revision": "Field<RevisionFrame>",
+        "accept_revision": "Comparison",
+        "acknowledged": "Field<boolean>",
+        "resolved": "Field<boolean>",
+        "unknown_context": "Field<RevisionFrame_UnknownContext>",
+        "boundary_state": "Field<string>",
+        "issues": "list<Issue>",
+        "local_state": "LocalState",
+        "qualification": "QualificationState"
+      }
+    },
+    {
+      "name": "ScopeAnalysis",
+      "kind": "record",
+      "fields": {
+        "frame": "ScopeFrame",
+        "operation_tuple": "Field<ScopeFrame_SelectedOperation_Tuple>",
+        "nonselected_operations": "Field<list<string>>",
+        "actual_operation_authority": "QualificationState",
+        "issues": "list<Issue>",
+        "local_state": "LocalState",
+        "qualification": "QualificationState"
+      }
+    },
+    {
+      "name": "CompositeAnalysis",
+      "kind": "record",
+      "fields": {
+        "frame": "CompositeFrame",
+        "stage_bindings": "list<Comparison>",
+        "worker_claim": "Comparison",
+        "connection_state": "Field<string>",
+        "unit_success_is_composite_success": "boolean",
+        "po_acceptance_inferred": "boolean",
+        "issues": "list<Issue>",
+        "local_state": "LocalState",
+        "qualification": "QualificationState"
+      }
+    },
+    {
+      "name": "AnalysisBundle",
+      "kind": "record",
+      "fields": {
+        "sequence": "Field<StageAnalysis>",
+        "binding": "Field<BindingAnalysis>",
+        "handoff": "Field<HandoffAnalysis>",
+        "operation": "Field<ScopeAnalysis>",
+        "composite": "Field<CompositeAnalysis>"
+      }
+    },
+    {
+      "name": "ActualEffects",
+      "kind": "record",
+      "fields": {
+        "worker_start": "boolean",
+        "install": "boolean",
+        "network": "boolean",
+        "permission_change": "boolean",
+        "harness_execution": "boolean",
+        "os_update": "boolean",
+        "promotion": "boolean",
+        "release": "boolean",
+        "ci": "boolean",
+        "po_acceptance": "boolean"
+      }
+    },
+    {
+      "name": "ChainObservation",
+      "kind": "record",
+      "fields": {
+        "analyses": "AnalysisBundle",
+        "issues": "list<Issue>",
+        "return_owners": "list<string>",
+        "qualification": "QualificationState",
+        "implementation_ready": "boolean",
+        "actual_effects": "ActualEffects"
+      },
+      "meaning": "選択された局所比較だけを保持し、未選択の他関数や全構成体を完了扱いしない。"
+    }
+  ],
+  "functions": [
+    {
+      "id": "F02301",
+      "name": "project_frame",
+      "signature": "project_frame(raw: RawFrame, family: FrameFamily) -> ProjectedFrame",
+      "arguments": {
+        "raw": "RawFrame",
+        "family": "FrameFamily"
+      },
+      "return_type": "ProjectedFrame",
+      "reads": {
+        "raw": [
+          "body",
+          "canonical_sha256"
+        ],
+        "family": "FrameFamily"
+      },
+      "returns": [
+        "family",
+        "raw",
+        "declared"
+      ],
+      "preconditions": [
+        "宣言shapeの論理値を明示引数から供給する。raw source資格/実認可は本signatureに供給されていない。"
+      ],
+      "algorithm": [
+        "raw.bodyのcanonical digestを照合する。familyはcallerが既存原構造に結ぶ型contextで、packet IDから資格/判定を選ばない。",
+        "familyのdeclared fieldsへ全memberをFieldとして投影。不在/null/empty/suppliedを区別し、未知keyはraw.bodyに保存する。",
+        "family/raw/declared(kind=family,value=族record)の全3rootを返す。正式codecの実装/選定ではない。"
+      ],
+      "postconditions": [
+        "原body/digestを同値保持しqualificationは生成しない。"
+      ],
+      "effects": "none"
+    },
+    {
+      "id": "F02302",
+      "name": "analyze_stage",
+      "signature": "analyze_stage(frame: StageFrame, owners: OwnerContext) -> StageAnalysis",
+      "arguments": {
+        "frame": "StageFrame",
+        "owners": "OwnerContext"
+      },
+      "return_type": "StageAnalysis",
+      "reads": {
+        "frame": [
+          "candidate",
+          "composite",
+          "fixture_only",
+          "harness",
+          "os",
+          "security",
+          "stage_order",
+          "worker"
+        ],
+        "owners": [
+          "security",
+          "security",
+          "security",
+          "worker_environment",
+          "harness",
+          "os",
+          "os"
+        ]
+      },
+      "returns": [
+        "frame",
+        "order",
+        "candidate_bindings",
+        "states",
+        "ticket_is_request_only",
+        "issues",
+        "local_state",
+        "qualification"
+      ],
+      "preconditions": [
+        "宣言shapeの論理値を明示引数から供給する。raw source資格/実認可は本signatureに供給されていない。"
+      ],
+      "algorithm": [
+        "frameは引数同値。orderはstage_orderと固定の四既存owner順を比較。candidate_bindingsは各security/worker/harness/osのcandidate_identity/candidate_revision/scopeとcandidate identity/revision/scopeの12比較。",
+        "statesは各admission/execution/verification/promotionの原Field。ticket_is_request_only=trueは要求とauthorityの型境界で、昇格成否を生成しない。",
+        "decision_rulesの条件は原member内容でAND評価する。全該当所見をissuesへ保持し、issue_fieldの原値をobservedへ、owner_rolesをowners引数からreturn_ownersへ写す。case ID/packet名/完成期待lookupは使わない。",
+        "local_stateはissues非空ならinconsistent、空ならconsistent_observation。後者は文書上の関係整合のみで実段階成功ではない。qualificationはnot_established。"
+      ],
+      "postconditions": [
+        "全原値/独立軸を保持し、未完を成功や全Readyへ補完しない。"
+      ],
+      "effects": "none",
+      "decision_rules": [
+        {
+          "id": "S01",
+          "conditions": [
+            {
+              "path": "os.promotion",
+              "operator": "eq",
+              "operand": "promoted_from_security_only"
+            }
+          ],
+          "issue_field": "os.promotion",
+          "owner_roles": [
+            "security"
+          ],
+          "meaning": "SEC accept単独で実行/検証/昇格を作らない。"
+        },
+        {
+          "id": "S02",
+          "conditions": [
+            {
+              "path": "security.admission",
+              "operator": "eq",
+              "operand": "accepted_from_harness_only"
+            }
+          ],
+          "issue_field": "security.admission",
+          "owner_roles": [
+            "security"
+          ],
+          "meaning": "HARNESS greenからSEC受入を生成しない。"
+        },
+        {
+          "id": "S03",
+          "conditions": [
+            {
+              "path": "composite.historical_stage4",
+              "operator": "eq",
+              "operand": "complete_from_first_run"
+            }
+          ],
+          "issue_field": "composite.historical_stage4",
+          "owner_roles": [
+            "security",
+            "worker_environment",
+            "harness",
+            "os"
+          ],
+          "meaning": "初回必要規範を全Stage4完成へ拡張しない。"
+        },
+        {
+          "id": "S04",
+          "conditions": [
+            {
+              "path": "os.promotion",
+              "operator": "eq",
+              "operand": "promoted_from_ticket_only"
+            }
+          ],
+          "issue_field": "os.promotion",
+          "owner_roles": [
+            "os"
+          ],
+          "meaning": "ticketは要求でありSEC/HARNESS成立の代用ではない。"
+        }
+      ]
+    },
+    {
+      "id": "F02303",
+      "name": "analyze_binding",
+      "signature": "analyze_binding(frame: CandidateFrame, owners: OwnerContext) -> BindingAnalysis",
+      "arguments": {
+        "frame": "CandidateFrame",
+        "owners": "OwnerContext"
+      },
+      "return_type": "BindingAnalysis",
+      "reads": {
+        "frame": [
+          "candidate_a",
+          "candidate_b",
+          "fixture_only",
+          "receipts",
+          "review_input",
+          "stage_comparison",
+          "worker"
+        ],
+        "owners": [
+          "worker_environment",
+          "security",
+          "security",
+          "worker_environment"
+        ]
+      },
+      "returns": [
+        "frame",
+        "bindings",
+        "future_result_required",
+        "isolation_applied",
+        "post_result_state",
+        "issues",
+        "local_state",
+        "qualification"
+      ],
+      "preconditions": [
+        "宣言shapeの論理値を明示引数から供給する。raw source資格/実認可は本signatureに供給されていない。"
+      ],
+      "algorithm": [
+        "frame保持。review_inputのidentity/revision/scope/provenance/capability deltaをcandidate_aへ、両receipt candidate_refをreview_input.candidate_refへ、stage_comparison全5recordのidentity/revision/scopeをcandidate_aへ個別比較する。",
+        "harness.input_result_refとworker_post_execution_fixture.result_refの一致も比較し、preのnull/falseとpostのsynthetic結果を混ぜない。future_result_required=false、isolation_appliedとpost_result_stateは原Field。",
+        "decision_rulesの条件は原member内容でAND評価する。全該当所見をissuesへ保持し、issue_fieldの原値をobservedへ、owner_rolesをowners引数からreturn_ownersへ写す。case ID/packet名/完成期待lookupは使わない。",
+        "local_stateはissues非空ならinconsistent、空ならconsistent_observation。後者は文書上の関係整合のみで実段階成功ではない。qualificationはnot_established。"
+      ],
+      "postconditions": [
+        "全原値/独立軸を保持し、未完を成功や全Readyへ補完しない。"
+      ],
+      "effects": "none",
+      "decision_rules": [
+        {
+          "id": "B01",
+          "conditions": [
+            {
+              "path": "receipts.worker_candidate_ref",
+              "operator": "ne_path",
+              "operand": "review_input.candidate_ref"
+            }
+          ],
+          "issue_field": "receipts.worker_candidate_ref",
+          "owner_roles": [
+            "worker_environment",
+            "security"
+          ],
+          "meaning": "異candidate参照を同一receiptへ読み替えない。"
+        },
+        {
+          "id": "B02",
+          "conditions": [
+            {
+              "path": "review_input.future_result_ref",
+              "operator": "nonnull",
+              "operand": null
+            },
+            {
+              "path": "worker.execution_started",
+              "operator": "eq",
+              "operand": false
+            }
+          ],
+          "issue_field": "review_input.future_result_ref",
+          "owner_roles": [
+            "security"
+          ],
+          "meaning": "未生成の結果を初回審査前提へ入れない。"
+        },
+        {
+          "id": "B03",
+          "conditions": [
+            {
+              "path": "worker.execution_started",
+              "operator": "eq",
+              "operand": true
+            },
+            {
+              "path": "worker.isolation_applied",
+              "operator": "eq",
+              "operand": false
+            }
+          ],
+          "issue_field": "worker.execution_started",
+          "owner_roles": [
+            "worker_environment"
+          ],
+          "meaning": "隔離未適用の実行開始claimを成立させない。"
+        }
+      ]
+    },
+    {
+      "id": "F02304",
+      "name": "analyze_handoff",
+      "signature": "analyze_handoff(frame: FailureFrame, revision: Field<RevisionFrame>, owners: OwnerContext) -> HandoffAnalysis",
+      "arguments": {
+        "frame": "FailureFrame",
+        "revision": "Field<RevisionFrame>",
+        "owners": "OwnerContext"
+      },
+      "return_type": "HandoffAnalysis",
+      "reads": {
+        "frame": [
+          "candidate",
+          "failure_boundary",
+          "fixture_only",
+          "harness",
+          "interruption",
+          "obligation",
+          "os",
+          "qualification",
+          "receipt_context",
+          "rejection",
+          "security_accept"
+        ],
+        "owners": [
+          "os",
+          "harness",
+          "os",
+          "security"
+        ],
+        "revision": [
+          "unknown_context",
+          "prior_revision",
+          "current_revision",
+          "obligation"
+        ]
+      },
+      "returns": [
+        "failure",
+        "revision",
+        "accept_revision",
+        "acknowledged",
+        "resolved",
+        "unknown_context",
+        "boundary_state",
+        "issues",
+        "local_state",
+        "qualification"
+      ],
+      "preconditions": [
+        "宣言shapeの論理値を明示引数から供給する。raw source資格/実認可は本signatureに供給されていない。"
+      ],
+      "algorithm": [
+        "failure/revisionは引数同値。accept_revisionはsecurity_accept.candidate_revisionとcandidate.revisionの内容比較。",
+        "acknowledged/resolved/boundary_stateはfailure原Field。unknown_contextはrevisionが提示された時だけ当該原recordを保持し、未提示ならabsent。ACKでresolvedやobligation.stateを書き換えない。",
+        "decision_rulesの条件は原member内容でAND評価する。全該当所見をissuesへ保持し、issue_fieldの原値をobservedへ、owner_rolesをowners引数からreturn_ownersへ写す。case ID/packet名/完成期待lookupは使わない。",
+        "local_stateはissues非空ならinconsistent、空ならconsistent_observation。後者は文書上の関係整合のみで実段階成功ではない。qualificationはnot_established。"
+      ],
+      "postconditions": [
+        "全原値/独立軸を保持し、未完を成功や全Readyへ補完しない。"
+      ],
+      "effects": "none",
+      "decision_rules": [
+        {
+          "id": "H01",
+          "conditions": [
+            {
+              "path": "obligation.state",
+              "operator": "eq",
+              "operand": "closed_on_ack_only"
+            },
+            {
+              "path": "obligation.resolved",
+              "operator": "eq",
+              "operand": false
+            }
+          ],
+          "issue_field": "obligation.state",
+          "owner_roles": [
+            "worker_environment",
+            "harness",
+            "os"
+          ],
+          "meaning": "ACKとresolvedを分離。原failure_boundaryのWorker→HARNESS段階とOSの未完保存へ返し、実接続providerの資格は未供給のまま。"
+        },
+        {
+          "id": "H02",
+          "conditions": [
+            {
+              "path": "os.promotion",
+              "operator": "eq",
+              "operand": "promoted_despite_harness_failure"
+            },
+            {
+              "path": "harness.verification",
+              "operator": "eq",
+              "operand": "failed"
+            }
+          ],
+          "issue_field": "os.promotion",
+          "owner_roles": [
+            "harness",
+            "os"
+          ],
+          "meaning": "検証失敗を保持し昇格のclaimを成立させない。"
+        },
+        {
+          "id": "H03",
+          "conditions": [
+            {
+              "path": "security_accept.candidate_revision",
+              "operator": "ne_path",
+              "operand": "candidate.revision"
+            }
+          ],
+          "issue_field": "security_accept.candidate_revision",
+          "owner_roles": [
+            "security"
+          ],
+          "meaning": "旧revision acceptを現在revisionへ継承しない。"
+        }
+      ]
+    },
+    {
+      "id": "F02305",
+      "name": "analyze_operation",
+      "signature": "analyze_operation(frame: ScopeFrame, owners: OwnerContext) -> ScopeAnalysis",
+      "arguments": {
+        "frame": "ScopeFrame",
+        "owners": "OwnerContext"
+      },
+      "return_type": "ScopeAnalysis",
+      "reads": {
+        "frame": [
+          "fixture_only",
+          "nonselected_operation_authority",
+          "nonselected_operations",
+          "os",
+          "plugins",
+          "security_review",
+          "selected_operation"
+        ],
+        "owners": [
+          "security",
+          "security",
+          "os"
+        ]
+      },
+      "returns": [
+        "frame",
+        "operation_tuple",
+        "nonselected_operations",
+        "actual_operation_authority",
+        "issues",
+        "local_state",
+        "qualification"
+      ],
+      "preconditions": [
+        "宣言shapeの論理値を明示引数から供給する。raw source資格/実認可は本signatureに供給されていない。"
+      ],
+      "algorithm": [
+        "frame保持。operation_tupleはframe.selected_operation.tuple原Field、nonselected_operationsは原Field。実authorityはnot_established。",
+        "actor/target/operation/revision/environment/scope/expiryは原七memberを保持しSEC008との実qualified照合は未供給。claimからrelease許可を生成せず、選択外pluginを前提にしない。",
+        "decision_rulesの条件は原member内容でAND評価する。全該当所見をissuesへ保持し、issue_fieldの原値をobservedへ、owner_rolesをowners引数からreturn_ownersへ写す。case ID/packet名/完成期待lookupは使わない。",
+        "local_stateはissues非空ならinconsistent、空ならconsistent_observation。後者は文書上の関係整合のみで実段階成功ではない。qualificationはnot_established。"
+      ],
+      "postconditions": [
+        "全原値/独立軸を保持し、未完を成功や全Readyへ補完しない。"
+      ],
+      "effects": "none",
+      "decision_rules": [
+        {
+          "id": "O01",
+          "conditions": [
+            {
+              "path": "security_review.claimed_release_permission",
+              "operator": "eq",
+              "operand": true
+            }
+          ],
+          "issue_field": "security_review.claimed_release_permission",
+          "owner_roles": [
+            "security"
+          ],
+          "meaning": "選択reviewから非選択release authorityを作らない。"
+        },
+        {
+          "id": "O02",
+          "conditions": [
+            {
+              "path": "plugins.all_required_for_initial_acceptance",
+              "operator": "eq",
+              "operand": true
+            },
+            {
+              "path": "plugins.nonselected",
+              "operator": "nonempty",
+              "operand": null
+            }
+          ],
+          "issue_field": "plugins.all_required_for_initial_acceptance",
+          "owner_roles": [
+            "security"
+          ],
+          "meaning": "非選択全pluginを新たなgateにしない。"
+        },
+        {
+          "id": "O03",
+          "conditions": [
+            {
+              "path": "os.state_owner",
+              "operator": "ne",
+              "operand": "OS"
+            }
+          ],
+          "issue_field": "os.state_owner",
+          "owner_roles": [
+            "os"
+          ],
+          "meaning": "OS正本更新ownerをSECへ移転しない。"
+        }
+      ]
+    },
+    {
+      "id": "F02306",
+      "name": "analyze_composite",
+      "signature": "analyze_composite(frame: CompositeFrame, owners: OwnerContext) -> CompositeAnalysis",
+      "arguments": {
+        "frame": "CompositeFrame",
+        "owners": "OwnerContext"
+      },
+      "return_type": "CompositeAnalysis",
+      "reads": {
+        "frame": [
+          "actors",
+          "candidate",
+          "composite",
+          "connection",
+          "fixture_only",
+          "harness",
+          "po",
+          "stage_records",
+          "unit_checks",
+          "worker"
+        ],
+        "owners": [
+          "worker_environment",
+          "harness",
+          "worker_environment",
+          "user_decision"
+        ]
+      },
+      "returns": [
+        "frame",
+        "stage_bindings",
+        "worker_claim",
+        "connection_state",
+        "unit_success_is_composite_success",
+        "po_acceptance_inferred",
+        "issues",
+        "local_state",
+        "qualification"
+      ],
+      "preconditions": [
+        "宣言shapeの論理値を明示引数から供給する。raw source資格/実認可は本signatureに供給されていない。"
+      ],
+      "algorithm": [
+        "frame保持。stage_records全4recordのidentity/revision/scopeをcandidateと個別比較。原stage scopeは未提示なのでabsent/incompleteを返し推測しない。worker_claimはworker.execution対stage_records.worker.execution、connection_stateは原Field。 review/execution actor参照はstage_recordsの各actor refと別供給actorsの対応refで独立比較し、actor文字列の存在を資格へ変換しない。",
+        "unit_success_is_composite_success=falseとpo_acceptance_inferred=falseは推論境界。単体green/AI値から実構成体/PO受入を作らない。",
+        "decision_rulesの条件は原member内容でAND評価する。全該当所見をissuesへ保持し、issue_fieldの原値をobservedへ、owner_rolesをowners引数からreturn_ownersへ写す。case ID/packet名/完成期待lookupは使わない。",
+        "local_stateはissues非空ならinconsistent、空ならconsistent_observation。後者は文書上の関係整合のみで実段階成功ではない。qualificationはnot_established。"
+      ],
+      "postconditions": [
+        "全原値/独立軸を保持し、未完を成功や全Readyへ補完しない。"
+      ],
+      "effects": "none",
+      "decision_rules": [
+        {
+          "id": "C01",
+          "conditions": [
+            {
+              "path": "composite.state",
+              "operator": "eq",
+              "operand": "complete_from_unit_green"
+            },
+            {
+              "path": "connection.state",
+              "operator": "eq",
+              "operand": "failed"
+            }
+          ],
+          "issue_field": "composite.state",
+          "owner_roles": [
+            "worker_environment",
+            "harness"
+          ],
+          "meaning": "単体greenでWorker→HARNESS接続故障を相殺しない。"
+        },
+        {
+          "id": "C02",
+          "conditions": [
+            {
+              "path": "worker.execution",
+              "operator": "eq",
+              "operand": "success"
+            },
+            {
+              "path": "stage_records.worker.execution",
+              "operator": "eq",
+              "operand": "not_executed"
+            }
+          ],
+          "issue_field": "worker.execution",
+          "owner_roles": [
+            "worker_environment"
+          ],
+          "meaning": "未実行原stage記録を成功claimで上書きしない。"
+        },
+        {
+          "id": "C03",
+          "conditions": [
+            {
+              "path": "po.acceptance",
+              "operator": "eq",
+              "operand": "accepted_from_ai_verification"
+            }
+          ],
+          "issue_field": "po.acceptance",
+          "owner_roles": [
+            "user_decision"
+          ],
+          "meaning": "AI verificationから利用者判断を生成しない。"
+        }
+      ]
+    },
+    {
+      "id": "F02307",
+      "name": "retain_chain_observation",
+      "signature": "retain_chain_observation(bundle: AnalysisBundle) -> ChainObservation",
+      "arguments": {
+        "bundle": "AnalysisBundle"
+      },
+      "return_type": "ChainObservation",
+      "reads": {
+        "bundle": [
+          "sequence",
+          "binding",
+          "handoff",
+          "operation",
+          "composite"
+        ]
+      },
+      "returns": [
+        "analyses",
+        "issues",
+        "return_owners",
+        "qualification",
+        "implementation_ready",
+        "actual_effects"
+      ],
+      "preconditions": [
+        "宣言shapeの論理値を明示引数から供給する。raw source資格/実認可は本signatureに供給されていない。"
+      ],
+      "algorithm": [
+        "analysesへbundleを同値保持。提示されたsequence/binding/handoff/operation/compositeのissuesをこの順で連結し、return_ownersを出現順に重複なく返す。",
+        "qualification=not_established、implementation_ready=false、actual_effects全boolean=falseを返す。未提示の別関数/未選択sourceを実行した結果へ補完しない。"
+      ],
+      "postconditions": [
+        "部分比較の正常を全機構/全92親430対の閉包へ外挿しない。"
+      ],
+      "effects": "none"
+    }
+  ],
+  "owner_consumers": {
+    "SECURITY": "010〜013の材料/審査、007制約、008操作authorityを供給。形/digest一致から実資格は生成しない。",
+    "Worker/INFRASTRUCTURE": "隔離適用の実観測と実行結果。実adapter/backend未選定。",
+    "HELIX-HARNESS": "005/022の検証/成立条件・該当pair証拠。合成greenからSEC受入を作らない。",
+    "HELIX-OS": "018assignment/019原証拠/020検収/023handoff、001進行/053正本原子更新。ACK/保存と解消を分離する。"
+  },
+  "representation": "原6frame構造を族別に論理定義。宣言fieldはFieldで保ち、opaque RawValueは原body/未知valueだけ。Boolとstringの隔離観測は族を跨いで無言共通化しない。",
+  "algorithm_limits": "decision_rulesは固定raw中のclaim値と比較関係を表す。既存ownerへの文書所見であり実blocker/gate/権限を発行しない。local_state consistent_observationは未完を正しく保持する関係整合を示し、実処理成功ではない。",
+  "trace": [
+    {
+      "l3": "HELIXSECURITY-L3-023-B01",
+      "l4": "HELIXSECURITY-L4-023-B01",
+      "l5": "HELIXSECURITY-L5-023-B01",
+      "l8": "HELIXSECURITY-L8-023-B01",
+      "l9": "HELIXSECURITY-L9-023-B01",
+      "l10": "HELIXSECURITY-L10-023-B01",
+      "l8_cases": [
+        "HELIXSECURITY-L8-023-P01",
+        "HELIXSECURITY-L8-023-N01",
+        "HELIXSECURITY-L8-023-N02",
+        "HELIXSECURITY-L8-023-N03",
+        "HELIXSECURITY-L8-023-N04"
+      ]
+    },
+    {
+      "l3": "HELIXSECURITY-L3-023-F01",
+      "l4": "HELIXSECURITY-L4-023-F01",
+      "l5": "HELIXSECURITY-L5-023-F01",
+      "l8": "HELIXSECURITY-L8-023-F01",
+      "l9": "HELIXSECURITY-L9-023-F01",
+      "l10": "HELIXSECURITY-L10-023-F01",
+      "l8_cases": [
+        "HELIXSECURITY-L8-023-P02",
+        "HELIXSECURITY-L8-023-N05",
+        "HELIXSECURITY-L8-023-N06",
+        "HELIXSECURITY-L8-023-N07"
+      ]
+    },
+    {
+      "l3": "HELIXSECURITY-L3-023-F02",
+      "l4": "HELIXSECURITY-L4-023-F02",
+      "l5": "HELIXSECURITY-L5-023-F02",
+      "l8": "HELIXSECURITY-L8-023-F02",
+      "l9": "HELIXSECURITY-L9-023-F02",
+      "l10": "HELIXSECURITY-L10-023-F02",
+      "l8_cases": [
+        "HELIXSECURITY-L8-023-P03",
+        "HELIXSECURITY-L8-023-N08",
+        "HELIXSECURITY-L8-023-N09",
+        "HELIXSECURITY-L8-023-N10"
+      ]
+    },
+    {
+      "l3": "HELIXSECURITY-L3-023-F03",
+      "l4": "HELIXSECURITY-L4-023-F03",
+      "l5": "HELIXSECURITY-L5-023-F03",
+      "l8": "HELIXSECURITY-L8-023-F03",
+      "l9": "HELIXSECURITY-L9-023-F03",
+      "l10": "HELIXSECURITY-L10-023-F03",
+      "l8_cases": [
+        "HELIXSECURITY-L8-023-P04",
+        "HELIXSECURITY-L8-023-N11",
+        "HELIXSECURITY-L8-023-N12",
+        "HELIXSECURITY-L8-023-N13"
+      ]
+    },
+    {
+      "l3": "HELIXSECURITY-L3-023-N01",
+      "l4": "HELIXSECURITY-L4-023-N01",
+      "l5": "HELIXSECURITY-L5-023-N01",
+      "l8": "HELIXSECURITY-L8-023-N01",
+      "l9": "HELIXSECURITY-L9-023-N01",
+      "l10": "HELIXSECURITY-L10-023-N01",
+      "l8_cases": [
+        "HELIXSECURITY-L8-023-P05",
+        "HELIXSECURITY-L8-023-N14",
+        "HELIXSECURITY-L8-023-N15",
+        "HELIXSECURITY-L8-023-N16"
+      ]
+    }
+  ],
+  "legacy_failure_consumer_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-ADE4AF41DD06DA4F100F",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "line_start": 73,
+      "line_end": 75,
+      "whole_sha256": "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72",
+      "quote": "| AC | 合格条件 |\n|---|---|\n| `GH-AC-041` | exact HEADのPR diff、candidate deep、deployment artifactを別profileで判定し、coverage partial/unknown、required scanner未設定、Critical/High、期限切れwaiver、HEAD/artifact drift、credential過剰露出、未pin Actionを個別にfail-closeする。report-onlyからenforceへの遷移とGitHub settings applyはversioned policy／action-binding approvalなしに行われない |",
+      "quote_sha256": "7cdf74d68bcd8bf150047ae2281066242350f365a72572d7bdf6ef586668b59b",
+      "preserve_change_reason": "旧partial/unknown、HEAD/artifact drift、report-onlyとenforceの分離を保持する比較資料。旧scanner/閾値/approval/GitHub設定を新たに要求せず、現023の部分成功/別revision/実許可分離へ意味再導出。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A4EAB5E3345E3C125C77",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
+      "line_start": 24,
+      "line_end": 32,
+      "whole_sha256": "d39b3cdc2e7d9f72ad03d0d3db5571a6b0de579fadf0b147b8a6d4f90dc2ed2c",
+      "quote": "- isolation brokerは既存sealed launch/output/observationからrun receiptを生成する。\n- lifecycle projectorはrun receiptとWCC-FR-06 sealed reviewだけを受理し、hash-chain eventとterminal receiptを生成する。\n- Node callerだけがserialization後の永続化を行える。worker、reviewer、Pythonへwrite/commit authorityを与えない。\n\n## 3. 不変条件\n\n- copied/unsealed run receipt、review receipt、別proposal reviewを拒否する。\n- `approve`は`accepted`だけ、`reject`は`rejected|quarantined`だけへ遷移する。\n- terminal後の遷移は存在せず、event sequenceとprevious digestはexact chainとする。",
+      "quote_sha256": "37b3c3b916a6fc69432936c3be40c54e8f1a1f8c783b21e4ecb3f7813c381915",
+      "preserve_change_reason": "旧consumerがsealed input/output/reviewと書込ownerを分けcopied/別proposalを拒む意味を保持。旧receipt schema/Node実装/永続化方式を移植せず、Worker/HARNESS/OSの現責務へ戻す。"
+    }
+  ],
+  "failure_basis": {
+    "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json",
+    "pointer": "/failure_types/42",
+    "whole_sha256": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05",
+    "object_canonical_sha256": "ffd3511480277ebcfafb652288b5ad1431bc89935904e79b2ea98a67883595b0",
+    "quoted_members": {
+      "id": "T43",
+      "failure": "外部MCP／tool／pluginの実行・権限・供給元検証が後追いになる",
+      "historical_source": "前身弱点ledger UTW-022（audit L88）",
+      "scope_assessment": "selected_partial",
+      "runtime_prevention": "not_proven",
+      "next_work": "detailed_design_and_runtime_evidence_for_selected_scope"
+    },
+    "application": "T43/UTW-022のtool/MCP/plugin供給元・実行・権限の後追い失敗へ023の初回必要条件を接続。全MCP/OSSの運転gateや実再発防止完成を生成しない。"
+  }
+}
