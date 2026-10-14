@@ -535,7 +535,8 @@
       "return_owner"
     ],
     "return_owner": "management-handoff-owner",
-    "fixed_shape_limit": "展開後の外側shapeと4edge key集合は固定fixture。formal codec/未知外側shape/全graph/資格を扱う実enforcerではない。source receiptを実操作前に生成しない。"
+    "fixed_shape_limit": "展開後の外側shapeと4edge key集合は固定fixture。formal codec/未知外側shape/全graph/資格を扱う実enforcerではない。source receiptを実操作前に生成しない。",
+    "primary_requirement_ref_semantics": "requirement_refsは親4要求の全体trace。primary_requirement_refsは直接concernで、binding/delivery:F01、units/connection/review:F02、reception/unfinished:F03、coverage・global selection/phase/whole scope:N01。positiveは選択phaseの主題、同入力決定性F01、未見/未選択N01、ACKと受理分離F03。件数や参照列挙から完了を生成しない。"
   },
   "fixture_inputs": {
     "preflight": {
@@ -38809,7 +38810,7 @@
         "HELIXOS-L3-023-N01"
       ],
       "primary_requirement_refs": [
-        "HELIXOS-L3-023-F02"
+        "HELIXOS-L3-023-N01"
       ],
       "given": {
         "input": {
@@ -39056,7 +39057,7 @@
         "HELIXOS-L3-023-N01"
       ],
       "primary_requirement_refs": [
-        "HELIXOS-L3-023-F02"
+        "HELIXOS-L3-023-N01"
       ],
       "given": {
         "input": {
@@ -39192,7 +39193,7 @@
         "HELIXOS-L3-023-N01"
       ],
       "primary_requirement_refs": [
-        "HELIXOS-L3-023-F02"
+        "HELIXOS-L3-023-N01"
       ],
       "given": {
         "input": {
