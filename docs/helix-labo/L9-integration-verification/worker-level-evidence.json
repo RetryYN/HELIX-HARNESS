@@ -445,15 +445,15 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"fixture_only\":true,\"history_id\":\"HIST-055-17\",\"revision\":\"worker-history-r17\",\"task_class\":\"doc-change\",\"model_class\":\"model-class-b\",\"evaluation_state\":\"evaluated_fixture_only\",\"evidence_ref\":\"EVID-17\",\"evaluation_scope\":\"repo-docs\",\"assignment_ref\":{\"owner\":\"OS\",\"id\":\"OS-ASSIGN-17\",\"revision\":\"assign-r4\"},\"experiment_selected\":false}",
-              "sha256": "dd6733586b70600b3c2c116e80d9e99bb712affa23f86bf7cb80c91547193ce7"
+              "raw_utf8": "{\"assignment_ref\":{\"id\":\"OS-ASSIGN-17\",\"owner\":\"OS\",\"revision\":\"assign-r4\"},\"evaluation_scope\":\"repo-docs\",\"evaluation_state\":\"unassessed\",\"experiment_selected\":false,\"fixture_only\":true,\"history_id\":\"HIST-055-17\",\"model_class\":\"model-class-b\",\"revision\":\"worker-history-r17\",\"task_class\":\"doc-change\"}",
+              "sha256": "55abe5a9ae893267a12fb8f1661dd56d18c9c0eb789ac90aea474c7260f06444"
             }
           ],
-          "given": "許可済み履歴sourceにtask/model class別の評価材料と既存OS assignment参照がある。",
+          "given": "許可済み履歴sourceにtask/model class別の未評価水準と既存OS assignment参照があり、実験は未選択である。",
           "when": "水準・assignment・実験未選択を同じ出力範囲で照合する。",
-          "then": "水準と根拠をINTELLIGENCEの配置案検討の材料として返す。Bench自身は配置案を作らず、Worker/model選定・指定・割当て・branch/authorityを変更しない。",
-          "expected_observation": "OS-ASSIGN-17は入力sourceの既存参照のまま保持され、Bench側から新assignmentを出さない。評価実験未選択の通常履歴はL2-006不参加だけを理由に未成立にしない。",
-          "failure_observation": "このfixtureはBenchがassignmentを生成しないことだけを意図したsynthetic inputであり、INTELLIGENCEの配置案・OS assignment・SEC permissionのsource proofを生成する実行証拠ではない。",
+          "then": "未評価水準と既存assignmentを区別して示し、評価実験未選択の通常履歴を全L2-006完了待ちにしない。INTELLIGENCEが配置案を検討する材料を返すが、Bench自身は配置案を生成・変更しない。",
+          "expected_observation": "evaluation_state=unassessedとOS-ASSIGN-17（owner=OS、revision=assign-r4）をそれぞれ保持する。Benchは新規配置案・assignmentを出さず、Worker/model選定・指定・branch/authorityを変更しない。",
+          "failure_observation": "このfixtureは未評価水準と既存assignmentの区別だけを示す。INTELLIGENCEの配置案、OS assignment、SEC permissionのsource proofや実行証拠ではない。",
           "execution_state": "not_executed",
           "fixture_only": true
         }
@@ -465,7 +465,7 @@
           "raw_input_packet": "{\"assignment_ref\":{\"id\":\"BENCH-ASSIGN-NEW\",\"owner\":\"BENCH\"},\"evaluation_state\":\"evaluated_fixture_only\",\"fixture_only\":true,\"history_id\":\"HIST-055-17\",\"model_class\":\"model-class-b\",\"requested_action\":\"place_worker\",\"task_class\":\"doc-change\"}",
           "raw_input_sha256": "222d797039b9f75887f6c3c2f99d5f00c30321a6bff787fe36785efcae6b1e59",
           "expected_observation": "Benchが新規assignmentを生成せず、入力評価材料のみを返す。",
-          "return_to": "INTELLIGENCE（配置案）/OS（assignment）の各owner",
+          "return_to": "INT/OS/SECの元owner境界を保持し、必要時は該当評価ownerへ返す",
           "fixture_only": true,
           "execution_state": "not_executed"
         },
@@ -475,7 +475,7 @@
           "raw_input_packet": "{\"fixture_only\":true,\"history_id\":\"HIST-055-17\",\"requested_action\":\"change_branch_from_score\",\"requested_branch_change\":\"main\",\"score\":\"0.99\"}",
           "raw_input_sha256": "47fed85111c5aac289b111f48a6f88565f2c3a1d2c6ec91e5f04f15ae58ea374",
           "expected_observation": "scoreをbranch変更理由として採択せず、branch/authorityを変更しない。",
-          "return_to": "INTELLIGENCE（配置案）/OS（assignment）の各owner",
+          "return_to": "INT/OS/SECの元owner境界を保持し、必要時は該当評価ownerへ返す",
           "fixture_only": true,
           "execution_state": "not_executed"
         },
@@ -485,7 +485,7 @@
           "raw_input_packet": "{\"experiment_selected\":false,\"fixture_only\":true,\"history_id\":\"HIST-055-17\",\"model_class\":\"model-class-b\",\"proposed_gate\":\"wait_for_all_L2-006\",\"task_class\":\"doc-change\"}",
           "raw_input_sha256": "7b37abbc20971bd837855a8ef35e1ff037fe47fdb3321c5604c1b84ebbc4a04d",
           "expected_observation": "この通常履歴を全L2-006完了待ちに変えず、実験未選択を理由に未成立化しない。",
-          "return_to": "該当評価owner",
+          "return_to": "INT/OS/SECの元owner境界を保持し、必要時は該当評価ownerへ返す",
           "fixture_only": true,
           "execution_state": "not_executed"
         }
@@ -630,15 +630,15 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"fixture_only\":true,\"snapshot_id\":\"WH-R23\",\"source_revision\":\"history-r23\",\"scope\":\"repo-docs\",\"task_class\":\"doc-change\",\"model_class\":\"model-class-b\",\"eligible_source_positions\":[\"RUN-01\",\"RUN-02\",\"RUN-03\"],\"results\":[{\"id\":\"RUN-01\",\"state\":\"success\"},{\"id\":\"RUN-02\",\"state\":\"failure\"},{\"id\":\"RUN-03\",\"state\":\"missing\",\"reason\":\"source receipt has no result\"}],\"metric_rule_revision\":\"METRIC-R2\",\"scorer_oracle_revision\":\"SCORER-R3\",\"fixture_metric_rule\":\"success_count / eligible denominator; failed and missing positions remain in denominator\"}",
-              "sha256": "1d8dc697192df710b04cb73769433de45952d4233061a68122e9d6c67259bbe9"
+              "raw_utf8": "{\"eligible_denominator\":6,\"eligible_source_positions\":[\"RUN-01\",\"RUN-02\",\"RUN-03\",\"RUN-04\",\"RUN-05\",\"RUN-06\"],\"fixture_expected_metric\":{\"confirmed_success_count\":1,\"display\":\"1/6\",\"eligible_denominator\":6},\"fixture_metric_rule\":\"confirmed_success_count / all six eligible source positions in the fixed scope; failure, missing, refused, stopped, and unknown outcomes remain in the denominator and are not counted as confirmed successes; unknown remains unknown, not numeric zero\",\"fixture_only\":true,\"metric_rule_revision\":\"METRIC-R2\",\"model_class\":\"model-class-b\",\"qualitative_assessment\":{\"applicability_condition\":\"task_class=doc-change and model_class=model-class-b within repo-docs\",\"basis\":\"QUAL-23: fixture review notes identify two observed examples and no evidence outside repo-docs\",\"level\":\"限定的\",\"unassessed_portion\":\"other task classes and scopes\"},\"results\":[{\"disposition\":\"count_as_confirmed_success\",\"eligible\":true,\"id\":\"RUN-01\",\"included_in_success_count\":true,\"inclusion_reason\":\"eligible position with confirmed success\",\"state\":\"success\"},{\"disposition\":\"retain_failure_in_denominator\",\"eligible\":true,\"exclusion_reason\":\"eligible position failed; not a success\",\"id\":\"RUN-02\",\"included_in_success_count\":false,\"state\":\"failure\"},{\"disposition\":\"retain_missing_in_denominator_no_numeric_result\",\"eligible\":true,\"exclusion_reason\":\"eligible source receipt has no result; do not substitute zero\",\"id\":\"RUN-03\",\"included_in_success_count\":false,\"state\":\"missing\"},{\"disposition\":\"retain_refusal_in_denominator_no_success\",\"eligible\":true,\"exclusion_reason\":\"eligible position has a refusal record; not a confirmed success\",\"id\":\"RUN-04\",\"included_in_success_count\":false,\"state\":\"refused\"},{\"disposition\":\"retain_stop_in_denominator_no_success\",\"eligible\":true,\"exclusion_reason\":\"eligible position has a stop record; not a confirmed success\",\"id\":\"RUN-05\",\"included_in_success_count\":false,\"state\":\"stopped\"},{\"disposition\":\"retain_unknown_in_denominator_unresolved\",\"eligible\":true,\"exclusion_reason\":\"eligible position outcome is unknown; do not infer success or zero\",\"id\":\"RUN-06\",\"included_in_success_count\":false,\"state\":\"unknown\"}],\"scope\":\"repo-docs\",\"scorer_oracle_revision\":\"SCORER-R3\",\"snapshot_id\":\"WH-R23\",\"source_revision\":\"history-r23\",\"task_class\":\"doc-change\"}",
+              "sha256": "54a1925d61411901b9b9e1f7d619b0ef3dbd3c3fb7ab6a9f61e9b73e90832a14"
             }
           ],
-          "given": "一つの許可済みsnapshotの対象scopeに3つのeligible source positionsがあり、成功・失敗・欠測とmetric/scorer revisionが明示されている。",
+          "given": "一つの固定scope（WH-R23 / repo-docs / doc-change / model-class-b）のeligible集合はRUN-01〜RUN-06の6 positionである。RUN-01=success、RUN-02=failure、RUN-03=missing、RUN-04=refused、RUN-05=stopped、RUN-06=unknown outcomeであり、各状態と成功数への算入理由が記録されている。metric/scorer revisionと定性水準の適用条件・根拠・未評価部分も同じreceiptにある。",
           "when": "eligible denominatorと実算入集合・欠測disposition・metric rule revisionを根拠から再構成する。",
-          "then": "fixture固有のruleで成功1/eligible denominator 3を示し、失敗を保持し、欠測の除外理由と対象snapshot/rule revisionを示す。",
-          "expected_observation": "denominator=3、算入結果=[RUN-01 success,RUN-02 failure]、RUN-03=missing（理由: source receiptにresultが無い）、metric rule=success count / eligible denominator、scorer revision=SCORER-R3として同じsnapshotから辿れる。これはこのfixtureだけのruleで固定thresholdではない。",
-          "failure_observation": "理由不明の除外、missingを0扱い、結果確認後の分母差替え、scorer revision不明なら対象scopeの数値/水準を確定せずmetric/history ownerへ返す。",
+          "then": "このfixture固有のmetric ruleでeligible denominator=6、confirmed success count=1（1/6）を示す。RUN-02〜RUN-06は分母に保持し、成功数には入れず、それぞれの失敗・欠測・拒否・停止・unknown dispositionを保つ。unknownは0に置換しない。定性水準「限定的」は明記scopeとQUAL-23根拠に限り、他task class/scopeは未評価とする。",
+          "expected_observation": "同一WH-R23 receiptからeligible_denominator=6、RUN-01だけがconfirmed success countへ入り1/6を再構成できる。RUN-02 failure、RUN-03 missing、RUN-04 refused、RUN-05 stopped、RUN-06 unknownは各理由とともに分母内に保持され、success countからは除かれる。RUN-06を数値0へ変換しない。metric/scorerはMETRIC-R2/SCORER-R3。定性値「限定的」はrepo-docs内doc-change/model-class-bとQUAL-23に限り、その他は未評価。",
+          "failure_observation": "unknownを0またはsuccessへ置換する、分母から失敗/欠測/拒否/停止/unknownを落とす、結果後に分母を変更する、metric/scorer根拠を欠く、または定性水準を別scopeへ外挿する場合は数値・水準を確定せず評価/metric/history ownerへ返す。",
           "execution_state": "not_executed",
           "fixture_only": true
         }
@@ -726,8 +726,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"fixture_only\":true,\"snapshot_id\":\"WH-R31\",\"task_class\":\"repo-change\",\"model_class\":\"model-class-b\",\"scope\":\"repo-docs\",\"aggregate_metric\":\"0.98 fixture-only\",\"records\":[{\"id\":\"RUN-31\",\"state\":\"success\"},{\"id\":\"RUN-32\",\"state\":\"failure\",\"failure_class\":\"major-scope-failure\"}],\"failure_disposition\":\"preserve; not averaged away\"}",
-              "sha256": "e9eebd7d606e5a42f151620076414a60a51be680801bbd85134681ef1b5a5fd5"
+              "raw_utf8": "{\"calculation\":{\"count\":2,\"label\":\"high_mean_fixture_only\",\"mean\":0.98,\"sum\":1.96},\"eligible_denominator\":2,\"failure_disposition\":\"RUN-32 remains a known major scope failure; mean does not convert it to success\",\"fixture_only\":true,\"metric_rule\":\"arithmetic_mean(score for eligible records RUN-31 and RUN-32); fixture-only display label high_mean=0.98\",\"metric_rule_revision\":\"METRIC-R5\",\"model_class\":\"model-class-b\",\"records\":[{\"id\":\"RUN-31\",\"included\":true,\"inclusion_reason\":\"eligible scored record\",\"score\":0.99,\"state\":\"success\"},{\"failure_class\":\"major-scope-failure\",\"id\":\"RUN-32\",\"included\":true,\"inclusion_reason\":\"eligible scored record; known major failure remains separately reported\",\"score\":0.97,\"state\":\"failure\"}],\"scope\":\"repo-docs\",\"scorer_oracle_revision\":\"SCORER-R6\",\"snapshot_id\":\"WH-R31\",\"task_class\":\"repo-change\"}",
+              "sha256": "d96e148abd5497b1f5af934cdb2ef8ae3b5d85099be97d0234c2483da83d36c7"
             },
             {
               "ref": {
@@ -741,13 +741,26 @@
               },
               "raw_utf8": "{\"fixture_only\":true,\"snapshot_id\":\"WH-R32\",\"task_class\":\"new-policy-class\",\"model_class\":\"model-class-c\",\"source_revision\":\"run-r32\",\"scorer_revision\":\"unknown\",\"result_state\":\"unknown\",\"scope\":\"unknown\"}",
               "sha256": "a9b6c9e9a8b88d3e384cbec888addd3da45af7451c55d0c8085ee0291ea0e8d0"
+            },
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO055-F03-QUAL",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-055",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"applicability_condition\":\"repo-change / model-class-b / repo-docs\",\"basis\":\"QUAL-33: fixture review records evidence only for repo-docs; no evidence for other scopes\",\"evaluation_state\":\"qualitative\",\"fixture_only\":true,\"model_class\":\"model-class-b\",\"qualitative_level\":\"限定的\",\"scope\":\"repo-docs\",\"snapshot_id\":\"WH-R33\",\"task_class\":\"repo-change\",\"unassessed_portion\":\"other task classes and scopes\"}",
+              "sha256": "cc890881f864be78b26447d01fedeb4a30b1143ffe160b92b6ff48b96dd7c9e6"
             }
           ],
-          "given": "平均値が高いscopeに重大quality/scope/security/data-loss failureが一つあり、別task classにはscorer revision unknownとunknown resultがある。",
-          "when": "失敗の非相殺とunknown/new-classへの適用範囲を評価する。",
-          "then": "重大failureを平均値で相殺せず既知失敗として示す。scorer revision unknown/new classは適用不能または未評価の範囲として区別し、旧portfolioや一律thresholdを要求しない。",
-          "expected_observation": "HIGH-AVG-SCOPEは重大failureのため評価成功へ丸めず、UNKNOWN-SCORER/NEW-TASKのscopeはunknown/未評価のまま残る。",
-          "failure_observation": "失敗状態を未評価へ落として隠さず、未評価を成功へ変換せず、異なるclassへ水準を流用しない。failure/scorer ownerへ個別未完を返す。",
+          "given": "snapshot WH-R31のrepo-change/model-class-b/repo-docsには、eligible denominator=2のRUN-31 score=0.99 successとRUN-32 score=0.97 failure（major-scope-failure）があり、METRIC-R5/SCORER-R6は算術平均1.96/2=0.98を返す。WH-R32のnew-policy-class/model-class-cはscorer/scope/result unknown。WH-R33には別の定性値「限定的」とQUAL-33根拠があり、他scopeは未評価である。",
+          "when": "同じpacketのmetric rule・scorer版・対象集合から平均を再構成し、major failure、unknown scope/result、定性値の適用範囲を個別に判定する。",
+          "then": "fixture表示の高平均0.98をRUN-31/RUN-32の値から再構成してもRUN-32のmajor failureはfailureのまま保持し、平均だけで成功としない。WH-R32はunknown/未評価とし、WH-R33の定性値はQUAL-33が示すrepo-docs scopeに限る。全portfolioを一律要求しない。",
+          "expected_observation": "METRIC-R5/SCORER-R6、eligible_denominator=2、RUN-31=0.99、RUN-32=0.97、sum=1.96、mean=0.98からhigh_mean_fixture_onlyを再構成できる。RUN-32 major-scope-failureは別のfailure事実として残る。WH-R32はunknown、WH-R33の「限定的」は適用条件・QUAL-33根拠のscopeだけで有効。",
+          "failure_observation": "平均値で既知major failureをpassへ変換せず、unknown scorer/result/scopeをsuccessへ変換せず、定性根拠を範囲外へ外挿しない。全portfolioを満たすことを一律の受入条件にせず、該当failure/scorer/evaluation ownerへ未完を返す。",
           "execution_state": "not_executed",
           "fixture_only": true
         }
@@ -756,8 +769,8 @@
         {
           "id": "F03-NEG-AVERAGE-OFFSETS-MAJOR-FAILURE",
           "l10_negative_basis": "重大failureを平均値で相殺しない",
-          "raw_input_packet": "{\"aggregate_metric\":\"0.98 fixture-only\",\"fixture_only\":true,\"proposed_evaluation\":\"pass\",\"proposed_failure_disposition\":\"included-in-average-only\",\"records\":[{\"id\":\"RUN-31\",\"state\":\"success\"},{\"failure_class\":\"major-scope-failure\",\"id\":\"RUN-32\",\"state\":\"failure\"}],\"snapshot_id\":\"WH-R31\"}",
-          "raw_input_sha256": "e7f115c0d68e82ef0f482a6ff09c970c90a89448877486b7305a9dcf76ef8863",
+          "raw_input_packet": "{\"aggregate_metric\":\"0.98 fixture-only\",\"calculation\":{\"RUN-31\":0.99,\"RUN-32\":0.97,\"count\":2,\"label\":\"high_mean_fixture_only\",\"mean\":0.98,\"sum\":1.96},\"eligible_denominator\":2,\"fixture_only\":true,\"metric_rule\":\"arithmetic_mean(score for RUN-31 and RUN-32)\",\"metric_rule_revision\":\"METRIC-R5\",\"proposed_evaluation\":\"pass\",\"proposed_failure_disposition\":\"included-in-average-only\",\"records\":[{\"id\":\"RUN-31\",\"included\":true,\"score\":0.99,\"state\":\"success\"},{\"failure_class\":\"major-scope-failure\",\"id\":\"RUN-32\",\"included\":true,\"score\":0.97,\"state\":\"failure\"}],\"scorer_oracle_revision\":\"SCORER-R6\",\"snapshot_id\":\"WH-R31\"}",
+          "raw_input_sha256": "b8a2c54baf6cf1b2b142cbf0ce29ad41b3af4819b33e716b9998b61d11f8e162",
           "expected_observation": "RUN-32の重大failureを既知のfailureとして保持し、平均値だけでpassにしない。",
           "return_to": "該当評価owner",
           "fixture_only": true,

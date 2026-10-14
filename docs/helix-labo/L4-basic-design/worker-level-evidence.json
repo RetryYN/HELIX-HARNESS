@@ -445,11 +445,8 @@
         "execution_state": "not_executed"
       },
       "content_rules": [
-        "この契約の対象はL2-055が明示するtask class/model class別の水準・根拠・評価scopeと評価済み/未評価の区別だけである。水準語彙、閾値、標本数、metricの一律採用を追加しない。",
-        "入力sourceのidentity/revision・評価期間/scope・結果状態を保持し、異なるscope/revisionやunknownを推測で同一母集団へ寄せない。元source/OS/SEC authorityを変更しない。",
-        "評価が成立しない場合は該当範囲の水準を確定せず、失敗事実を失敗のまま、missing/unknownをその状態のまま示し、該当history/評価/metric ownerへ戻す。失敗を未評価へ丸めて消さない。",
-        "L2-006の実験結果・評価実験を使う選択入力に限り、同じexperiment/対象版・評価条件へ参照する。通常のWorker historyだけなら006の全能力完成を待たない。",
-        "出力はINTELLIGENCEが配置案を検討する材料である。Bench/LABOは配置案を生成せず、OSがWorker/model指定・assignmentを行い、各ownerが権限を管理する。L4/L9はこれらを変更しない。"
+        "HELIXLABO-L3-055-B01／HELIXLABO-L10-055-B01に従い、Benchはtask/model class別の水準・評価材料を返し、INTELLIGENCEが配置案を検討する材料にする。Bench自身は配置案、Worker/model選定・指定、assignmentを生成・変更しない。既存OS assignment参照は保持する。",
+        "水準が未評価でも既存assignmentと区別して示す。実験未選択の通常履歴を全L2-006完成待ちにしない。評価実験を選択した場合だけ、その実験の評価可能な実績と条件を参照する。scoreだけでbranch/authorityを変更しない。"
       ]
     },
     {
@@ -476,11 +473,8 @@
         "execution_state": "not_executed"
       },
       "content_rules": [
-        "この契約の対象はL2-055が明示するtask class/model class別の水準・根拠・評価scopeと評価済み/未評価の区別だけである。水準語彙、閾値、標本数、metricの一律採用を追加しない。",
-        "入力sourceのidentity/revision・評価期間/scope・結果状態を保持し、異なるscope/revisionやunknownを推測で同一母集団へ寄せない。元source/OS/SEC authorityを変更しない。",
-        "評価が成立しない場合は該当範囲の水準を確定せず、失敗事実を失敗のまま、missing/unknownをその状態のまま示し、該当history/評価/metric ownerへ戻す。失敗を未評価へ丸めて消さない。",
-        "L2-006の実験結果・評価実験を使う選択入力に限り、同じexperiment/対象版・評価条件へ参照する。通常のWorker historyだけなら006の全能力完成を待たない。",
-        "出力はINTELLIGENCEが配置案を検討する材料である。Bench/LABOは配置案を生成せず、OSがWorker/model指定・assignmentを行い、各ownerが権限を管理する。L4/L9はこれらを変更しない。"
+        "HELIXLABO-L3-055-F01／HELIXLABO-L10-055-F01に従い、適用する水準をtask class、model class、source revision、評価期間、scopeと根拠へ結び、評価済みと未評価を区別する。",
+        "class・revision・scopeが不足または不整合なら水準を確定せず、未評価modelを評価済みへ上げず、未知taskの成功を保証せず、適用scopeを推測しない。該当history／評価ownerへ不足を返す。"
       ]
     },
     {
@@ -507,11 +501,8 @@
         "execution_state": "not_executed"
       },
       "content_rules": [
-        "この契約の対象はL2-055が明示するtask class/model class別の水準・根拠・評価scopeと評価済み/未評価の区別だけである。水準語彙、閾値、標本数、metricの一律採用を追加しない。",
-        "入力sourceのidentity/revision・評価期間/scope・結果状態を保持し、異なるscope/revisionやunknownを推測で同一母集団へ寄せない。元source/OS/SEC authorityを変更しない。",
-        "評価が成立しない場合は該当範囲の水準を確定せず、失敗事実を失敗のまま、missing/unknownをその状態のまま示し、該当history/評価/metric ownerへ戻す。失敗を未評価へ丸めて消さない。",
-        "L2-006の実験結果・評価実験を使う選択入力に限り、同じexperiment/対象版・評価条件へ参照する。通常のWorker historyだけなら006の全能力完成を待たない。",
-        "出力はINTELLIGENCEが配置案を検討する材料である。Bench/LABOは配置案を生成せず、OSがWorker/model指定・assignmentを行い、各ownerが権限を管理する。L4/L9はこれらを変更しない。"
+        "HELIXLABO-L3-055-F02／HELIXLABO-L10-055-F02に従い、数値metricでは同一source receiptからeligible denominator、算入集合、欠測・失敗・拒否・停止・unknownの状態と算入／除外理由、metric規則およびscorer-oracle revisionを再構成可能にする。",
+        "欠測を0に置換せず、失敗を理由なしに除外せず、結果確認後に分母を差し替えず、根拠のない数値を出さない。定性水準は適用条件、判定根拠、未評価部分を明示し、適用外の閾値やmetricを足さない。"
       ]
     },
     {
@@ -538,11 +529,8 @@
         "execution_state": "not_executed"
       },
       "content_rules": [
-        "この契約の対象はL2-055が明示するtask class/model class別の水準・根拠・評価scopeと評価済み/未評価の区別だけである。水準語彙、閾値、標本数、metricの一律採用を追加しない。",
-        "入力sourceのidentity/revision・評価期間/scope・結果状態を保持し、異なるscope/revisionやunknownを推測で同一母集団へ寄せない。元source/OS/SEC authorityを変更しない。",
-        "評価が成立しない場合は該当範囲の水準を確定せず、失敗事実を失敗のまま、missing/unknownをその状態のまま示し、該当history/評価/metric ownerへ戻す。失敗を未評価へ丸めて消さない。",
-        "L2-006の実験結果・評価実験を使う選択入力に限り、同じexperiment/対象版・評価条件へ参照する。通常のWorker historyだけなら006の全能力完成を待たない。",
-        "出力はINTELLIGENCEが配置案を検討する材料である。Bench/LABOは配置案を生成せず、OSがWorker/model指定・assignmentを行い、各ownerが権限を管理する。L4/L9はこれらを変更しない。"
+        "HELIXLABO-L3-055-F03／HELIXLABO-L10-055-F03に従い、既知failureはfailure、missing／unknownはその状態で保持し、重大quality／scope／security／data-loss failureを高い平均値で相殺した成功判定にしない。個々のfailure事実と集約metricを別々に示す。",
+        "根拠はmetricが主張するscopeに限って示す。旧Bench portfolio、反復数、confidence interval、accepted-change正規化を全作業へ一律要求せず、新しいthreshold／sample数も設けない。定性水準は根拠・適用条件・未評価範囲を示す。"
       ]
     }
   ],
@@ -557,11 +545,10 @@
     "全92親430対の設計閉包"
   ],
   "semantic_authoring_rules": [
-    "規範文の各文はtrace_matrixのHELIXLABO-L3-055-B01/F01/F02/F03のいずれかに直接結び、L3 obligation/L10 oracleを超える新しい義務・受入条件を作らない。",
-    "L2/L3/L10/L11の用語と意味を保つ。例示用の値・source packet・GWT名はこの文書のfixture内だけの具体値であり、enum、formal field名、threshold、sample count、policy、schemaの規範へ一般化しない。",
-    "unknown/missing/不整合/未評価を推測で埋めない。failureを未評価へ隠さず、sourceが保証しない値を作らない。",
-    "負例の不成立は該当選択scopeへ局所化し、L10の既存ownerへ戻す。新しい人間承認gate、事前承認、全能力のblanket dependencyを加えない。",
-    "Bench/LABOの出力は水準・根拠・適用範囲・評価状態の材料に留める。INTELLIGENCE/OS/SECURITY/他ownerの責務を代替しない。"
+    "各contractのcontent_rulesは、そのHELIXLABO-L3-055-*要件とHELIXLABO-L10-055-* oracleの範囲に限定し、対応するHELIXLABO-L9-055-* GWTの固定source値で読み取れるよう記す。",
+    "入力値と期待観測を混同しない。raw packetの値をgiven/when/thenと一致させ、fixture内のmetric表示名・数値を新しいenum、threshold、sample-count規範にしない。",
+    "承認済みL3/L10 whole objectを一字も変更せず、hashはapproved_object_hashesの別metadataに置く。",
+    "L2/L3/L10/L11の意味とowner境界を維持する。source資格、実評価、TDD、CI、L11受入をfixtureだけで成立扱いしない。"
   ],
   "approved_object_hashes": [
     {
