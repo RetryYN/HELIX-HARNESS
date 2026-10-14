@@ -545,6 +545,11 @@
     "全92親430対の設計閉包"
   ],
   "semantic_authoring_rules": [
+    "規範文の各文はtrace_matrixのHELIXLABO-L3-055-B01/F01/F02/F03のいずれかに直接結び、L3 obligation/L10 oracleを超える新しい義務・受入条件を作らない。",
+    "L2/L3/L10/L11の用語と意味を保つ。例示用の値・source packet・GWT名はこの文書のfixture内だけの具体値であり、enum、formal field名、threshold、sample count、policy、schemaの規範へ一般化しない。",
+    "unknown/missing/不整合/未評価を推測で埋めない。failureを未評価へ隠さず、sourceが保証しない値を作らない。",
+    "負例の不成立は該当選択scopeへ局所化し、L10の既存ownerへ戻す。新しい人間承認gate、事前承認、全能力のblanket dependencyを加えない。",
+    "Bench/LABOの出力は水準・根拠・適用範囲・評価状態の材料に留める。INTELLIGENCE/OS/SECURITY/他ownerの責務を代替しない。",
     "各contractのcontent_rulesは、そのHELIXLABO-L3-055-*要件とHELIXLABO-L10-055-* oracleの範囲に限定し、対応するHELIXLABO-L9-055-* GWTの固定source値で読み取れるよう記す。",
     "入力値と期待観測を混同しない。raw packetの値をgiven/when/thenと一致させ、fixture内のmetric表示名・数値を新しいenum、threshold、sample-count規範にしない。",
     "承認済みL3/L10 whole objectを一字も変更せず、hashはapproved_object_hashesの別metadataに置く。",
