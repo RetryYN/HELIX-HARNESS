@@ -1,0 +1,1430 @@
+{
+  "status": "draft_detail_design_and_unit_oracles_pending_independent_review",
+  "parent": "HELIXSECURITY-L2-015",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "boundary": "identity/provenanceと分類参照の論理詳細に限定。実owner/source資格、正式schema/codec、実認可、Web/sink保護運用、開示/dump、1.x利用保護は成立させない。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "requirement_refs": [
+    "HELIXSECURITY-L3-015-B01",
+    "HELIXSECURITY-L3-015-F01"
+  ],
+  "oracle_refs": [
+    "HELIXSECURITY-L10-015-B01",
+    "HELIXSECURITY-L10-015-F01"
+  ],
+  "approved_object_pins": [
+    {
+      "id": "HELIXSECURITY-L3-015-B01",
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "object_canonical_sha256": "7b328d78e98424f931a352a93ac0f69615df2f9a8f2b0ad6a0cae17420c3821c"
+    },
+    {
+      "id": "HELIXSECURITY-L3-015-F01",
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "object_canonical_sha256": "b86a514be3ec333b14f401ce09ccee80a8e12b03d5ef7be37298cefccc28a97a"
+    },
+    {
+      "id": "HELIXSECURITY-L10-015-B01",
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "object_canonical_sha256": "e361fa76f7346ab26606d295e69bd77fe484ede6d27e12540aafc338760fd224"
+    },
+    {
+      "id": "HELIXSECURITY-L10-015-F01",
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "object_canonical_sha256": "d2fab10988f67083d4b86db32abfe676648d7b2e1d3a19ffcce4fc4f7253bf05"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/asset-identity-foundation.json",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "1ea213ea4e0466f7f89a8f2ed67c2bd923cbd01c580c3e2a08a99e600d0106cc"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/asset-identity-foundation.json",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "b814df911338a00f903348d2c4f1b5fe70fbc1b431a25431329b016ffbe6aeb4"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "bb5f5912049d1b86ebdc3d42ce094f24b18b5bd9d9ac3dbb54057f41f766d14a"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-sdop-20260929/README.md",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "3f2c49633949e8f60a586a7c3fb40e6b70c3c6dfe4e8d9fbade0f79fa8c4cf98"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/README.md",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "64bdc99eb84a5aded97ba010a0d71ea52b6592ed",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "line": 143,
+      "line_sha256": "03477c17a85c420a3f9fab3ba48d8cc905cbc8dc6bb7160b51d9fd52a5bc9c89",
+      "quote": "| **HIL-FR-53** | Semantic Revision and Asset Identityはpath・名称から独立したimmutable asset IDを保持し、意味変更を新revisionとして保存する。rename、move、split、merge、supersedeは履歴、authority、oracle、typed edgeを失わず処理する。 | asset revision、identity/location history、split/merge disposition、semantic diff |",
+      "preserve": "path/名称から独立するstable identityと、意味変更で新revisionを扱う境界を、L2-015のidentity/provenanceへ再導出する。",
+      "change": "旧schema・runtime・実資格の主張は再利用せず、論理関数と合成値の照合に限定する。",
+      "reason": "現行の承認済みL3/L10とL4/L9が定める範囲へ詳細化するため。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "line": 53,
+      "line_sha256": "07c221a10238a34adac94db53d0bbeb265f7607d5a2d33eef175318f1e19c2db",
+      "quote": "| HR-FR-HIL-19 | HIL-BR-26, HIL-FR-51, HIL-FR-52, HIL-FR-53, HIL-NFR-30, HIL-NFR-31, HIL-NFR-32 | AI AuthoringをProposalとして許可し、意味差分・authority・pair・impactを検査した変更だけを原子的にCanonical化し、asset identityとrevision履歴を維持する | proposal、base revision、policyあり → 自動Admission又は明示decision、部分current 0 | 過剰確認、無権限変更、partial write、stale base、identity/oracle消失 / admission、transaction、revision、rollback receipt | HAC-HIL-19a, HAC-HIL-19b, HAC-HIL-19c |",
+      "preserve": "変更対象のidentity/revisionを保全し、source結果の対応を辿れるようにする。consumerはauthoring proposalからcanonical stateへの旧原子的更新を想定していた。",
+      "change": "旧AI-authoring admission/transaction/rollback runtimeを移植せず、SEC015では資産記録の論理評価とL9由来の固定入力照合までに限定する。",
+      "reason": "現行承認はidentity/provenanceの基盤だけを承認し、実authorityや実行・保存を成立させない。"
+    }
+  ],
+  "fixture_mapping": {
+    "source_record_to_logical_input": [
+      "owner/asset_label/source/revision/digest/stable_asset_identityの各存在する文字列はFieldValue(presence=value,value=原値)として保持する。存在しないidentity_resolution fieldはFieldValue(presence=absent)とし、resolvedを補わない。explicit nullはFieldValue(presence=null,null_marker=explicit_json_null)。",
+      "L9 packetのclassification_reference文字列unknownはClassificationRef(state=unknown, value=absent, source_owner=absent, source_revision=absent)へ投影する。文字列publicはstate=known,value=public,source_owner=absent,source_revision=absentとしてclaim値を保持するが、資格成立にしない。",
+      "PACKET-015-IDENTITY-BASEのcontent_dump_present=falseは、そのpacketのAssetRecordInput各行ではcontent_dump_present value=falseと読む。別入力値を作らない。",
+      "L9のGWT-015-B01-N01 patch値web_protection_state=establishedは、L4-F01の対応する成立claim値ProtectionState=established_claimとしてこの固定論理fixtureへ対応する。L9のpre/post文字列はinput_bindingsに原値で残し、これは当該case限定のL4/L9 crosswalkであり一般alias・codec変換ではない。"
+    ],
+    "non_codec_limit": "この表は固定fixture値の意味上の割当てで、JSON parser/codec/schema実装を定義しない。"
+  },
+  "logical_scope_note": "これはL5/L8の論理型・純関数契約とfixture oracleであり、wire schema・JSON codec・owner/source qualification・authorization gate・実動作ではない。入力レコードの自己申告値と説明表示は適格証明から分離する。",
+  "logical_value_representation": {
+    "record": "宣言field名をkeyとするJSON object。required fieldはすべて含める。",
+    "scalar": "型が直接表すJSON値。NonEmptyTextは文字列、BooleanはJSON boolean。fields[0].name=valueは型宣言上の値slotであり、論理値にvalue wrapperを追加しない。",
+    "enum": "valuesに列挙した文字列tokenそのもの。fields[0].name=valueは型宣言上のscalar slotであり、論理値は{value: token}ではない。",
+    "list": "List<T>はTのJSON array。IdentityListのようなnamed list recordは宣言field itemsを持つobjectで、そのitems値がList<T>。",
+    "tagged_union": "宣言fieldを持つJSON object。FieldValue<T>はpresence=absent/null/valueに従い、absentはvalue無し、nullはnull_marker、valueはTを持つ。",
+    "scope": "この表現は純関数fixtureの論理型でありwire schema/parser/codecではない。raw JSONの型外値はcast・正規化せず、拒否形式は未設計。"
+  },
+  "logical_types": [
+    {
+      "name": "Presence",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "absent",
+        "null",
+        "value"
+      ]
+    },
+    {
+      "name": "NullMarker",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "explicit_json_null"
+      ]
+    },
+    {
+      "name": "NonEmptyText",
+      "kind": "scalar",
+      "fields": [
+        {
+          "name": "value",
+          "type": "UnicodeText",
+          "required": true
+        }
+      ],
+      "rules": [
+        "長さが0でない文字列として論理値を扱う。Unicode/正規化/wire制約は正式codec未定のため別途未閉包。"
+      ]
+    },
+    {
+      "name": "Boolean",
+      "kind": "scalar",
+      "fields": [
+        {
+          "name": "value",
+          "type": "JSONBoolean",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "IdentityState",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "identified_synthetic_or_unqualified",
+        "unknown",
+        "conflict"
+      ]
+    },
+    {
+      "name": "ProvenanceState",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "linked_record_values",
+        "incomplete",
+        "conflict"
+      ]
+    },
+    {
+      "name": "ClassificationState",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "known",
+        "unknown",
+        "conflict"
+      ]
+    },
+    {
+      "name": "IdentityReason",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "identity_absent",
+        "identity_null",
+        "identity_unknown",
+        "owner_absent",
+        "source_incomplete",
+        "revision_incomplete",
+        "digest_incomplete",
+        "classification_unknown",
+        "classification_unqualified",
+        "record_conflict",
+        "owner_null"
+      ],
+      "rules": [
+        "identity_absent/identity_nullとowner_absent/owner_nullを別reasonとして保持する。"
+      ]
+    },
+    {
+      "name": "ClaimFinding",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "inventory_does_not_establish_protection",
+        "identity_does_not_grant_publication",
+        "pattern_completion_not_required_for_1_0",
+        "content_dump_not_required",
+        "unlisted_scope_omitted",
+        "classification_reference_unqualified"
+      ]
+    },
+    {
+      "name": "ProtectionState",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "not_established",
+        "established_claim"
+      ]
+    },
+    {
+      "name": "OperationState",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "not_performed",
+        "performed_claim"
+      ]
+    },
+    {
+      "name": "AuthorizationState",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "not_present",
+        "granted_from_identity_only",
+        "other_claim"
+      ]
+    },
+    {
+      "name": "IdentityBaseState",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "identifiable_without_pattern_completion",
+        "blocked_until_all_pattern_capabilities"
+      ]
+    },
+    {
+      "name": "InventoryScope",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "enumerated_plus_unlisted_assets",
+        "listed_only"
+      ]
+    },
+    {
+      "name": "FieldValue<T>",
+      "kind": "tagged_union",
+      "fields": [
+        {
+          "name": "presence",
+          "type": "Presence",
+          "required": true
+        },
+        {
+          "name": "value",
+          "type": "T",
+          "required_when": "presence=value"
+        },
+        {
+          "name": "null_marker",
+          "type": "NullMarker",
+          "required_when": "presence=null"
+        }
+      ],
+      "variants": {
+        "Presence": [
+          "absent",
+          "null",
+          "value"
+        ],
+        "NullMarker": [
+          "explicit_json_null"
+        ]
+      },
+      "rules": [
+        "absentはkeyがない状態、nullは明示null、valueは型Tの値。相互に置換しない。",
+        "unknownはPresenceではなく、IdentityResolution等の意味値である。null/absentをunknownへ自動変換しない。",
+        "純関数への入力は宣言型の値域とFieldValue形状を満たす論理値に限る。raw JSONが型/値域外またはtag間で矛盾するときはこの関数の入力ではなく、codec境界での扱いは未設計。暗黙cast・補完・正規化をしない。"
+      ]
+    },
+    {
+      "name": "AssetRecordInput",
+      "kind": "record",
+      "fields": [
+        {
+          "name": "owner",
+          "type": "FieldValue<OwnerId>",
+          "required": true
+        },
+        {
+          "name": "asset_label",
+          "type": "FieldValue<NonEmptyText>",
+          "required": true
+        },
+        {
+          "name": "source",
+          "type": "FieldValue<SourceRef>",
+          "required": true
+        },
+        {
+          "name": "revision",
+          "type": "FieldValue<RevisionRef>",
+          "required": true
+        },
+        {
+          "name": "digest",
+          "type": "FieldValue<DigestRef>",
+          "required": true
+        },
+        {
+          "name": "stable_asset_identity",
+          "type": "FieldValue<OpaqueIdentity>",
+          "required": true
+        },
+        {
+          "name": "identity_resolution",
+          "type": "FieldValue<IdentityResolution>",
+          "required": true
+        },
+        {
+          "name": "classification_reference",
+          "type": "FieldValue<ClassificationRef>",
+          "required": true
+        },
+        {
+          "name": "content_dump_present",
+          "type": "FieldValue<Boolean>",
+          "required": true
+        }
+      ],
+      "rules": [
+        "各FieldValue wrapperは論理入力に必須であり、そのpresenceがraw sourceでのabsent/null/valueを表す。",
+        "identity_resolution値はresolved/unknown/conflict。classification_reference値は六分類値、unknown、または参照分類token。SEC016の意味判定はここでは行わない。",
+        "OpaqueIdentityはproducerが独立に渡すtokenであり、owner/label/source/revision/digest/pathから算出しない。",
+        "FieldValue<T>内のSupplied valueはTの宣言値域に属する。型違反、未知enum、欠落tag、矛盾したtagをTへcastしない。raw入力検証を行う正式codec・拒否形式は未設計であり、この関数群の入力域外である。"
+      ]
+    },
+    {
+      "name": "OwnerId",
+      "kind": "scalar",
+      "fields": [
+        {
+          "name": "value",
+          "type": "NonEmptyText",
+          "required": true
+        }
+      ],
+      "rules": [
+        "合成owner識別子または記録されたowner名。値が存在しても資格証明ではない。"
+      ]
+    },
+    {
+      "name": "SourceRef",
+      "kind": "scalar",
+      "fields": [
+        {
+          "name": "value",
+          "type": "NonEmptyText",
+          "required": true
+        }
+      ],
+      "rules": [
+        "L9 fixtureのsource文字列をそのまま保持する参照値。これは真正性やowner資格を示さない。"
+      ]
+    },
+    {
+      "name": "RevisionRef",
+      "kind": "scalar",
+      "fields": [
+        {
+          "name": "value",
+          "type": "NonEmptyText",
+          "required": true
+        }
+      ],
+      "rules": [
+        "意味revision識別子。表示名/path変更と意味変更を同一視しない。"
+      ]
+    },
+    {
+      "name": "DigestRef",
+      "kind": "scalar",
+      "fields": [
+        {
+          "name": "value",
+          "type": "NonEmptyText",
+          "required": true
+        }
+      ],
+      "rules": [
+        "fixtureではsha256:接頭辞の合成文字列。digestの存在はsource資格/真正性の証明ではない。"
+      ]
+    },
+    {
+      "name": "OpaqueIdentity",
+      "kind": "scalar",
+      "fields": [
+        {
+          "name": "value",
+          "type": "NonEmptyText",
+          "required": true
+        }
+      ],
+      "rules": [
+        "producerから渡されたidentity token。owner、label、source、revision、digest、pathを入力に生成しない。実値の資格は未成立。"
+      ]
+    },
+    {
+      "name": "IdentityResolution",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "resolved",
+        "unknown",
+        "conflict"
+      ]
+    },
+    {
+      "name": "ClassificationRef",
+      "kind": "tagged_union",
+      "fields": [
+        {
+          "name": "state",
+          "type": "ClassificationState",
+          "required": true
+        },
+        {
+          "name": "value",
+          "type": "NonEmptyText",
+          "required_when": "state=known"
+        },
+        {
+          "name": "source_owner",
+          "type": "FieldValue<OwnerId>",
+          "required": true
+        },
+        {
+          "name": "source_revision",
+          "type": "FieldValue<RevisionRef>",
+          "required": true
+        }
+      ],
+      "values": [
+        "known",
+        "unknown",
+        "conflict"
+      ],
+      "rules": [
+        "state=unknownは分類unknown値であり、source fieldのabsent/nullとは異なる。",
+        "knownは入力された分類claimの状態を示し、実資格ではない。source_owner/source_revisionのabsent/nullをもって分類値を拒否せず、asset revisionとの一致も要求しない。両fieldは入力tagのまま出力へ保持する。"
+      ]
+    },
+    {
+      "name": "SourceQualification",
+      "kind": "enum",
+      "fields": [
+        {
+          "name": "value",
+          "type": "enum",
+          "required": true
+        }
+      ],
+      "values": [
+        "not_claimed",
+        "self_declared",
+        "qualified_by_external_contract"
+      ],
+      "rules": [
+        "本稿のすべてのfixtureはnot_claimed。self_declaredは文面の申告のみ。qualified_by_external_contractは現行契約から入力可能な表現であり、015はその資格を発行しない。"
+      ]
+    },
+    {
+      "name": "IdentityList",
+      "kind": "list",
+      "fields": [
+        {
+          "name": "items",
+          "type": "List<OpaqueIdentity>",
+          "required": true
+        }
+      ],
+      "rules": [
+        "順序を保持するlogical list。"
+      ]
+    },
+    {
+      "name": "AssetRecordList",
+      "kind": "list",
+      "fields": [
+        {
+          "name": "items",
+          "type": "List<AssetRecordInput>",
+          "required": true
+        }
+      ],
+      "rules": [
+        "順序を保持するlogical list。"
+      ]
+    },
+    {
+      "name": "ScopeComparisonInput",
+      "kind": "record",
+      "fields": [
+        {
+          "name": "listed_asset_identity_values",
+          "type": "FieldValue<IdentityList>",
+          "required": true
+        },
+        {
+          "name": "additional_candidate_records",
+          "type": "FieldValue<AssetRecordList>",
+          "required": true
+        },
+        {
+          "name": "source_packet_ref",
+          "type": "FieldValue<NonEmptyText>",
+          "required": true
+        }
+      ],
+      "rules": [
+        "L9の固定比較context。列挙されたrecord集合と追加候補集合をpacketの構造から分離して渡す。asset_labelやowner文字列からidentityを生成しない。"
+      ]
+    },
+    {
+      "name": "ProtectionContext",
+      "kind": "record",
+      "fields": [
+        {
+          "name": "web_protection_state",
+          "type": "FieldValue<ProtectionState>",
+          "required": true
+        },
+        {
+          "name": "web_operation",
+          "type": "FieldValue<OperationState>",
+          "required": true
+        },
+        {
+          "name": "public_authorization",
+          "type": "FieldValue<AuthorizationState>",
+          "required": true
+        },
+        {
+          "name": "publication_authorization",
+          "type": "FieldValue<AuthorizationState>",
+          "required": true
+        },
+        {
+          "name": "identity_base_state",
+          "type": "FieldValue<IdentityBaseState>",
+          "required": true
+        },
+        {
+          "name": "inventory_scope",
+          "type": "FieldValue<InventoryScope>",
+          "required": true
+        },
+        {
+          "name": "identity_requires_content_dump",
+          "type": "FieldValue<Boolean>",
+          "required": true
+        },
+        {
+          "name": "scope_comparison",
+          "type": "FieldValue<ScopeComparisonInput>",
+          "required": true
+        }
+      ],
+      "values": {
+        "ProtectionState": [
+          "not_established",
+          "established_claim"
+        ],
+        "OperationState": [
+          "not_performed",
+          "performed_claim"
+        ],
+        "AuthorizationState": [
+          "not_present",
+          "granted_from_identity_only",
+          "other_claim"
+        ],
+        "IdentityBaseState": [
+          "identifiable_without_pattern_completion",
+          "blocked_until_all_pattern_capabilities"
+        ],
+        "InventoryScope": [
+          "enumerated_plus_unlisted_assets",
+          "listed_only"
+        ]
+      },
+      "rules": [
+        "これらのclaim値はfixtureの入力事実であり、実保護/実許可を意味しない。"
+      ]
+    },
+    {
+      "name": "IdentityAssessment",
+      "kind": "record",
+      "fields": [
+        {
+          "name": "identity_state",
+          "type": "IdentityState",
+          "required": true
+        },
+        {
+          "name": "identity_value",
+          "type": "FieldValue<OpaqueIdentity>",
+          "required": true
+        },
+        {
+          "name": "identity_resolution_value",
+          "type": "FieldValue<IdentityResolution>",
+          "required": true
+        },
+        {
+          "name": "asset_label_value",
+          "type": "FieldValue<NonEmptyText>",
+          "required": true
+        },
+        {
+          "name": "provenance_state",
+          "type": "ProvenanceState",
+          "required": true
+        },
+        {
+          "name": "owner_value",
+          "type": "FieldValue<OwnerId>",
+          "required": true
+        },
+        {
+          "name": "source_value",
+          "type": "FieldValue<SourceRef>",
+          "required": true
+        },
+        {
+          "name": "revision_value",
+          "type": "FieldValue<RevisionRef>",
+          "required": true
+        },
+        {
+          "name": "digest_value",
+          "type": "FieldValue<DigestRef>",
+          "required": true
+        },
+        {
+          "name": "content_dump_present",
+          "type": "FieldValue<Boolean>",
+          "required": true
+        },
+        {
+          "name": "classification_state",
+          "type": "ClassificationState",
+          "required": true
+        },
+        {
+          "name": "classification_source_owner",
+          "type": "FieldValue<OwnerId>",
+          "required": true
+        },
+        {
+          "name": "classification_source_revision",
+          "type": "FieldValue<RevisionRef>",
+          "required": true
+        },
+        {
+          "name": "classification_claim_value",
+          "type": "FieldValue<NonEmptyText>",
+          "required": true
+        },
+        {
+          "name": "source_qualification",
+          "type": "SourceQualification",
+          "required": true
+        },
+        {
+          "name": "return_owner",
+          "type": "FieldValue<OwnerId>",
+          "required": true
+        },
+        {
+          "name": "reason_codes",
+          "type": "List<IdentityReason>",
+          "required": true
+        }
+      ],
+      "values": {
+        "IdentityState": [
+          "identified_synthetic_or_unqualified",
+          "unknown",
+          "conflict"
+        ],
+        "ProvenanceState": [
+          "linked_record_values",
+          "incomplete",
+          "conflict"
+        ],
+        "ClassificationState": [
+          "known",
+          "unknown",
+          "conflict"
+        ],
+        "IdentityReason": [
+          "identity_absent",
+          "identity_null",
+          "identity_unknown",
+          "owner_absent",
+          "source_incomplete",
+          "revision_incomplete",
+          "digest_incomplete",
+          "classification_unknown",
+          "classification_unqualified",
+          "record_conflict",
+          "owner_null"
+        ]
+      },
+      "rules": [
+        "identified_synthetic_or_unqualifiedは合成/未資格の記録結合を表す。実owner資格・真正sourceを表す値はない。",
+        "return_ownerは不足の返送先候補として入力owner値を保持するだけで送信・権限を実行しない。"
+      ]
+    },
+    {
+      "name": "ClaimAssessment",
+      "kind": "record",
+      "fields": [
+        {
+          "name": "identity_base_state",
+          "type": "FieldValue<IdentityBaseState>",
+          "required": true
+        },
+        {
+          "name": "web_protection_state",
+          "type": "FieldValue<ProtectionState>",
+          "required": true
+        },
+        {
+          "name": "web_operation",
+          "type": "FieldValue<OperationState>",
+          "required": true
+        },
+        {
+          "name": "public_authorization",
+          "type": "FieldValue<AuthorizationState>",
+          "required": true
+        },
+        {
+          "name": "publication_authorization",
+          "type": "FieldValue<AuthorizationState>",
+          "required": true
+        },
+        {
+          "name": "content_dump_required",
+          "type": "FieldValue<Boolean>",
+          "required": true
+        },
+        {
+          "name": "inventory_scope",
+          "type": "FieldValue<InventoryScope>",
+          "required": true
+        },
+        {
+          "name": "scope_comparison",
+          "type": "FieldValue<ScopeComparisonInput>",
+          "required": true
+        },
+        {
+          "name": "return_owner",
+          "type": "FieldValue<OwnerId>",
+          "required": true
+        },
+        {
+          "name": "claim_consistency",
+          "type": "List<ClaimFinding>",
+          "required": true
+        }
+      ],
+      "values": {
+        "ClaimFinding": [
+          "inventory_does_not_establish_protection",
+          "identity_does_not_grant_publication",
+          "pattern_completion_not_required_for_1_0",
+          "content_dump_not_required",
+          "unlisted_scope_omitted",
+          "classification_reference_unqualified"
+        ]
+      },
+      "rules": [
+        "identity_base_stateと各1.x運用値、return_owner、scope_comparisonをそれぞれ独立のfieldとして返す。",
+        "return_ownerはidentity assessmentから渡された不足返送先候補の合成値であり、通知・送信・権限を実行しない。",
+        "scope_comparisonはunlisted_scope_omitted判定に限り参照する。他のclaim比較の前提条件にはしない。"
+      ]
+    },
+    {
+      "name": "IdentityView",
+      "kind": "record",
+      "fields": [
+        {
+          "name": "identity_state_text",
+          "type": "NonEmptyText",
+          "required": true
+        },
+        {
+          "name": "identity_resolution_text",
+          "type": "NonEmptyText",
+          "required": true
+        },
+        {
+          "name": "asset_label_text",
+          "type": "NonEmptyText",
+          "required": true
+        },
+        {
+          "name": "provenance_text",
+          "type": "NonEmptyText",
+          "required": true
+        },
+        {
+          "name": "qualification_text",
+          "type": "NonEmptyText",
+          "required": true
+        },
+        {
+          "name": "classification_text",
+          "type": "NonEmptyText",
+          "required": true
+        },
+        {
+          "name": "protection_text",
+          "type": "NonEmptyText",
+          "required": true
+        },
+        {
+          "name": "return_owner_text",
+          "type": "NonEmptyText",
+          "required": true
+        }
+      ],
+      "rules": [
+        "説明表示はassessmentから生成する。qualified/unqualifiedの主張を生成・昇格せず、各列を混ぜない。"
+      ]
+    }
+  ],
+  "functions": [
+    {
+      "id": "SEC015-FN-01",
+      "name": "assess_identity",
+      "signature": "assess_identity(record: AssetRecordInput, source_qualification: SourceQualification) -> IdentityAssessment",
+      "reads": [
+        "record.owner.presence",
+        "record.owner.value",
+        "record.owner.null_marker",
+        "record.asset_label.presence",
+        "record.asset_label.value",
+        "record.asset_label.null_marker",
+        "record.source.presence",
+        "record.source.value",
+        "record.source.null_marker",
+        "record.revision.presence",
+        "record.revision.value",
+        "record.revision.null_marker",
+        "record.digest.presence",
+        "record.digest.value",
+        "record.digest.null_marker",
+        "record.stable_asset_identity.presence",
+        "record.stable_asset_identity.value",
+        "record.stable_asset_identity.null_marker",
+        "record.identity_resolution.presence",
+        "record.identity_resolution.value",
+        "record.identity_resolution.null_marker",
+        "record.classification_reference.presence",
+        "record.classification_reference.value.state",
+        "record.classification_reference.value.value",
+        "record.classification_reference.value.source_owner.presence",
+        "record.classification_reference.value.source_owner.value",
+        "record.classification_reference.value.source_revision.presence",
+        "record.classification_reference.value.source_revision.value",
+        "record.classification_reference.null_marker",
+        "record.content_dump_present.presence",
+        "record.content_dump_present.value",
+        "record.content_dump_present.null_marker",
+        "source_qualification"
+      ],
+      "returns": [
+        "identity_state",
+        "identity_value",
+        "identity_resolution_value",
+        "asset_label_value",
+        "provenance_state",
+        "owner_value",
+        "source_value",
+        "revision_value",
+        "digest_value",
+        "content_dump_present",
+        "classification_state",
+        "classification_source_owner",
+        "classification_source_revision",
+        "classification_claim_value",
+        "source_qualification",
+        "return_owner",
+        "reason_codes"
+      ],
+      "algorithm": [
+        "1. owner/source/revision/digest/identity/classificationのpresenceタグをそのまま読む。",
+        "2. stable identity resolutionがunknown、stable identityがabsent/null、または必須provenance値（owner/source/revision/digest）がabsent/nullなら、対応するidentity/provenance状態とreasonを記録する。null/absentを値へ補完しない。ownerのabsent/nullはowner_absent/owner_nullで区別する。",
+        "3. identity_resolution=conflictまたは識別項目間の明示的相反をconflictにする。",
+        "4. 1–3以外はidentified_synthetic_or_unqualified / linked_record_values。ただしsource_qualificationを引き上げない。",
+        "5. classification_referenceのstate/valueとsource_owner/source_revisionを対応fieldへそのまま保持する。state=conflictはconflict、state=unknownはunknown。L4 identity_flowの「不足・不整合・分類不能はunknown/unclassifiedのまま保つ」とL10-F01-N01のunknown identityをpublicへしない期待に従い、identity_state=unknownならstate=knownの分類claimもclassification_state=unknownとしてclassification_unqualifiedを記録し、claim値自体は保持して資格に昇格しない。identityがunknownでなく分類state=knownならknown claimとして保持する。source_owner/source_revisionのpresenceやasset revisionとの一致は分類成立・資格条件にしない。",
+        "6. content_dump_presentをpresence/valueごと返す。identity/provenanceの不足・相反があるときはownerの元presence（absent/null/value）をreturn_ownerへ保持し、identity/provenanceの不足・相反がなければreturn_owner=absentとする。どちらも返送先候補の値であり、実送信・権限ではない。"
+      ],
+      "preconditions": [
+        "recordはAssetRecordInputの全FieldValue wrapperを持ち、各supplied valueが宣言型/domain内である。source_qualificationはSourceQualificationの宣言値である。raw JSONのparsing/castingは本関数の責務外。"
+      ]
+    },
+    {
+      "id": "SEC015-FN-02",
+      "name": "assess_claims",
+      "signature": "assess_claims(identity: IdentityAssessment, context: ProtectionContext) -> ClaimAssessment",
+      "reads": [
+        "identity.classification_state",
+        "identity.classification_claim_value",
+        "identity.content_dump_present",
+        "identity.return_owner",
+        "context.web_protection_state",
+        "context.web_operation",
+        "context.public_authorization",
+        "context.publication_authorization",
+        "context.identity_base_state",
+        "context.inventory_scope",
+        "context.identity_requires_content_dump",
+        "context.scope_comparison",
+        "context.scope_comparison.presence",
+        "context.scope_comparison.value.additional_candidate_records.presence",
+        "context.scope_comparison.value.additional_candidate_records.value"
+      ],
+      "returns": [
+        "identity_base_state",
+        "web_protection_state",
+        "web_operation",
+        "public_authorization",
+        "publication_authorization",
+        "content_dump_required",
+        "inventory_scope",
+        "scope_comparison",
+        "return_owner",
+        "claim_consistency"
+      ],
+      "algorithm": [
+        "1. contextの各FieldValue（presence/value/null marker）とidentity.return_ownerを別々に出力へ写す。identity値から保護・運用・許可状態を推定しない。absent/nullは原tagを保ち、unknownへ正規化しない。",
+        "2. contextの各claimはそれぞれ単独に評価する。scope_comparisonのpresence/valueは他のclaimの評価をgateしない。",
+        "3. web_protection_state=established_claim、またはweb_operation=performed_claimならinventory_does_not_establish_protectionを記録する。",
+        "4. public_authorizationまたはpublication_authorizationがgranted_from_identity_onlyならidentity_does_not_grant_publicationを記録する。",
+        "5. identity_base_state=blocked_until_all_pattern_capabilitiesならpattern_completion_not_required_for_1_0を記録する。",
+        "6. inventory_scope=listed_onlyの場合に限ってcontext.scope_comparisonを読む。context.scope_comparison.presence=valueかつcontext.scope_comparison.value.additional_candidate_records.presence=valueで、そのvalue.itemsが1件以上ならunlisted_scope_omittedを記録する。scope comparisonの欠落/null/空はこのfindingを出さない。他claimの比較には影響しない。",
+        "7. identity_requires_content_dump=trueかつidentity.content_dump_present=falseならcontent_dump_not_requiredを記録する。",
+        "8. identity.classification_claim_valueがvalueかつidentity.classification_state=unknownならclassification_reference_unqualifiedを記録する。元のknown identity値は保持し、unknown identityをpublicへ昇格しない。"
+      ],
+      "preconditions": [
+        "identityはIdentityAssessment、contextはProtectionContextの全fieldを持つ型付き論理値である。raw JSON型検査や型外値のcastはこの関数の責務外である。"
+      ]
+    },
+    {
+      "id": "SEC015-FN-03",
+      "name": "render_identity_view",
+      "signature": "render_identity_view(identity: IdentityAssessment, claims: ClaimAssessment) -> IdentityView",
+      "reads": [
+        "identity.identity_state",
+        "identity.identity_value",
+        "identity.identity_resolution_value",
+        "identity.asset_label_value",
+        "identity.provenance_state",
+        "identity.owner_value",
+        "identity.source_value",
+        "identity.revision_value",
+        "identity.digest_value",
+        "identity.classification_state",
+        "identity.classification_source_owner",
+        "identity.classification_source_revision",
+        "identity.classification_claim_value",
+        "identity.content_dump_present",
+        "identity.source_qualification",
+        "identity.return_owner",
+        "identity.reason_codes",
+        "claims.identity_base_state",
+        "claims.web_protection_state",
+        "claims.web_operation",
+        "claims.public_authorization",
+        "claims.publication_authorization",
+        "claims.content_dump_required",
+        "claims.inventory_scope",
+        "claims.claim_consistency"
+      ],
+      "returns": [
+        "identity_state_text",
+        "identity_resolution_text",
+        "asset_label_text",
+        "provenance_text",
+        "qualification_text",
+        "classification_text",
+        "protection_text",
+        "return_owner_text"
+      ],
+      "algorithm": [
+        "identity_state_textはidentity.identity_stateをidentified_synthetic_or_unqualified→「識別: 合成または未資格の記録値」、unknown→「識別: unknown」、conflict→「識別: conflict」へ写す。",
+        "identity_resolution_textとasset_label_textはFieldValueをfield名: absent / field名: null / field名: value=<原値>の形式で表示する。provenance_textはprovenance: <state>; owner/source/revision/digestの各fieldを同形式で並べる。",
+        "qualification_textはsource_qualification enumをnot_claimed→「資格: 未申告」、self_declared→「資格: 自己申告（未検証）」、qualified_by_external_contract→「資格: 外部契約による申告（実資格未確認）」へ写し、識別成立の文言と結合しない。",
+        "classification_textはclassification_stateをknown→「分類claim: known」、unknown→「分類claim: unknown」、conflict→「分類claim: conflict」へ写し、unknownをpublicへ置換しない。",
+        "protection_textはweb_protection_state/web_operation/publication_authorizationを上記FieldValue形式で並べ、末尾にclaim_consistency=[<順序を保ったfinding token列>]を付ける。identity_base_stateから保護や公開を推論しない。",
+        "return_owner_textもFieldValue形式でpresenceを区別して表示する。"
+      ],
+      "preconditions": [
+        "identityはIdentityAssessment、claimsはClaimAssessmentの型付き論理値である。説明表示のためにraw JSONを再解釈しない。"
+      ]
+    }
+  ],
+  "branch_oracles": [
+    {
+      "case_ref": "GWT-015-B01-P01",
+      "branch": "正常",
+      "raw_fields": {
+        "owner": "HELIX-HARNESS-CORE",
+        "source": "fixture-source:core-repo-A",
+        "revision": "fixture-revision:core-r17",
+        "digest": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+        "stable_asset_identity": "fixture-asset-id:015-01",
+        "classification_reference": {
+          "state": "unknown",
+          "source_owner": {
+            "presence": "absent"
+          },
+          "source_revision": {
+            "presence": "absent"
+          }
+        },
+        "web_protection_state": "not_established",
+        "web_operation": "not_performed",
+        "public_authorization": "not_present",
+        "publication_authorization": "not_present",
+        "identity_base_state": "identifiable_without_pattern_completion"
+      },
+      "expected_projection": {
+        "identity_state": "identified_synthetic_or_unqualified",
+        "provenance_state": "linked_record_values",
+        "classification_state": "unknown",
+        "source_qualification": "not_claimed",
+        "web_protection_state": {
+          "presence": "value",
+          "value": "not_established"
+        },
+        "web_operation": {
+          "presence": "value",
+          "value": "not_performed"
+        },
+        "publication_authorization": {
+          "presence": "value",
+          "value": "not_present"
+        }
+      },
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-B01",
+        "HELIXSECURITY-L10-015-B01"
+      ]
+    },
+    {
+      "case_ref": "GWT-015-B01-N01",
+      "branch": "inventoryから保護済みを主張",
+      "raw_delta": {
+        "web_protection_state": [
+          "not_established",
+          "established_claim"
+        ]
+      },
+      "expected_projection": {
+        "identity_base_state": "identifiable_without_pattern_completion",
+        "web_protection_state": "established_claim",
+        "claim_finding": "inventory_does_not_establish_protection",
+        "1_x_actual_state": "not_established"
+      },
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-B01",
+        "HELIXSECURITY-L10-015-B01"
+      ]
+    },
+    {
+      "case_ref": "GWT-015-B01-N02",
+      "branch": "identityから公開許可を主張",
+      "raw_delta": {
+        "publication_authorization": [
+          "not_present",
+          "granted_from_identity_only"
+        ]
+      },
+      "expected_projection": {
+        "identity_state": "identified_synthetic_or_unqualified",
+        "claim_finding": "identity_does_not_grant_publication",
+        "publication_authorization_claim": "granted_from_identity_only",
+        "actual_authorization_effect": "none"
+      },
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-B01",
+        "HELIXSECURITY-L10-015-B01"
+      ]
+    },
+    {
+      "case_ref": "GWT-015-B01-N03",
+      "branch": "全Pattern完成を1.0前提化",
+      "raw_delta": {
+        "identity_base_state": [
+          "identifiable_without_pattern_completion",
+          "blocked_until_all_pattern_capabilities"
+        ]
+      },
+      "expected_projection": {
+        "identity_state": "identified_synthetic_or_unqualified",
+        "claim_finding": "pattern_completion_not_required_for_1_0",
+        "1_x_state": "not_established"
+      },
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-B01",
+        "HELIXSECURITY-L10-015-B01"
+      ]
+    },
+    {
+      "case_ref": "GWT-015-F01-P01",
+      "branch": "六owner群＋列挙外＋改名＋unknown",
+      "raw_fields": {
+        "PACKET-015-IDENTITY-BASE": "六ownerのopaque identity token fixture-asset-id:015-01..06、owner/source/revision/digest各値あり、content_dump_present=false、classification_reference=unknown",
+        "PACKET-015-IDENTITY-EXTENDED": "HELIX-EXTENSION-OWNER / fixture-source:extension-G / fixture-revision:extension-r1 / digest:777…777 / fixture-asset-id:015-07",
+        "scope_comparison": {
+          "listed_asset_identity_values": [
+            "fixture-asset-id:015-01",
+            "fixture-asset-id:015-02",
+            "fixture-asset-id:015-03",
+            "fixture-asset-id:015-04",
+            "fixture-asset-id:015-05",
+            "fixture-asset-id:015-06"
+          ],
+          "additional_candidate_identity_values": [
+            "fixture-asset-id:015-07"
+          ],
+          "source_packet_ref": "PACKET-015-IDENTITY-EXTENDED"
+        },
+        "PACKET-015-IDENTITY-RENAMED-VIEW": "stable_asset_identity=fixture-asset-id:015-01、prior/current labelとpathだけ変更、identity_unchanged=true",
+        "PACKET-015-IDENTITY-UNKNOWN": "HELIX-EXTENSION-OWNER / fixture-source:extension-unknown-H / revision:extension-unknown-r1 / digest:888…888 / identity_resolution=unknown"
+      },
+      "expected_projection": {
+        "six_and_unlisted": "識別値と4元provenanceを各record内で保持",
+        "rename": "015-01 identity維持、label/path差分をidentity差分にしない",
+        "unknown": "identity_state=unknownかつreturn_owner=HELIX-EXTENSION-OWNER",
+        "classification": "unknownを各recordで保持",
+        "dump": "不要",
+        "qualification": "not_claimed"
+      },
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-F01",
+        "HELIXSECURITY-L10-015-F01"
+      ]
+    },
+    {
+      "case_ref": "GWT-015-F01-N01",
+      "branch": "unknown identityをpublic化",
+      "raw_delta": {
+        "PACKET-015-IDENTITY-UNKNOWN.asset_record.classification_reference": [
+          "unknown",
+          "public"
+        ],
+        "classification_source_owner": {
+          "presence": "absent"
+        },
+        "classification_source_revision": {
+          "presence": "absent"
+        }
+      },
+      "expected_projection": {
+        "identity_resolution": "unknown",
+        "classification_claim": "public",
+        "classification_state": "unknown",
+        "identity_state": "unknown",
+        "claim_finding": "classification_reference_unqualified",
+        "return_owner": "HELIX-EXTENSION-OWNER"
+      },
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-F01",
+        "HELIXSECURITY-L10-015-F01"
+      ]
+    },
+    {
+      "case_ref": "GWT-015-F01-N02",
+      "branch": "列挙外scopeを除外",
+      "raw_delta": {
+        "PACKET-015-IDENTITY-BASE.inventory_scope": [
+          "enumerated_plus_unlisted_assets",
+          "listed_only"
+        ]
+      },
+      "expected_projection": {
+        "PACKET-015-IDENTITY-EXTENDED.owner": "HELIX-EXTENSION-OWNER",
+        "claim_finding": "unlisted_scope_omitted",
+        "known_identity": "fixture-asset-id:015-07を保持",
+        "return_owner": "HELIX-EXTENSION-OWNER"
+      },
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-F01",
+        "HELIXSECURITY-L10-015-F01"
+      ]
+    },
+    {
+      "case_ref": "GWT-015-F01-N03",
+      "branch": "dumpを必須化",
+      "raw_delta": {
+        "PACKET-015-IDENTITY-BASE.identity_requires_content_dump": [
+          false,
+          true
+        ]
+      },
+      "expected_projection": {
+        "PACKET-015-IDENTITY-BASE.content_dump_present": false,
+        "claim_finding": "content_dump_not_required",
+        "identity_state": "identified_synthetic_or_unqualified",
+        "content_dump": "取得しない"
+      },
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-F01",
+        "HELIXSECURITY-L10-015-F01"
+      ]
+    }
+  ],
+  "conditional_version_boundary": {
+    "version_1_0": [
+      "stable identity/provenanceの記録結合と分類参照の基盤。資産内容dump不要。全Pattern能力の完成待ちは条件にしない。Web保護/公開/運用/実利用を成立としない。"
+    ],
+    "version_1_x": [
+      "完全なasset protection/Web実利用保護は後続条件であり、本pairから実施・承認・資格を生成しない。"
+    ]
+  },
+  "failure_routes": {
+    "record_material_missing": "identity/source/revision/digestまたはowner不明はunknown/unclassifiedのまま、recordにownerがあればそのownerへ不足を示す値を返す。実送信は行わない。",
+    "scope_meaning_missing": "要求対象集合の意味自体が不足するときだけ既存L2-015の指定どおりL1-015へ戻す。",
+    "identity_vs_classification": "identity unknownとclassification unknownを別fieldで保つ。identity knownかつclassification unknownも許す。",
+    "identity_vs_qualification": "合成identity/provenanceの一致は実owner/source資格を成立させない。"
+  },
+  "remaining": [
+    "正式schema/codec/parser/resolverは未成立。",
+    "owner/source資格、実source真正性、実asset観測、実認可、実保護運用/利用/公開未成立。",
+    "L6関数設計・L7関数検証、実L8/L9/L10、実CI、PO実物L11、全92親430対の設計閉包・実装準備は未成立。",
+    "本稿はidentity結果の説明から公開可否・権限・owner資格を生成しない。"
+  ],
+  "document_id": "HELIXSECURITY-L5-015-DETAIL-DESIGN",
+  "layer": "L5",
+  "layer_id": "HELIXSECURITY-L5",
+  "pair": "L8",
+  "paired_document_id": "HELIXSECURITY-L8-015-UNIT-VERIFICATION",
+  "design_contract": {
+    "purpose": "承認済み015の1.0 identity/provenance基盤をfield単位で照合する論理純関数を定義し、資格・説明・保護運用を分離する。",
+    "input_contract": "AssetRecordInputおよびProtectionContextのFieldValueは原入力presence（absent/null/value）を保持する。値域のunknown/conflictは意味状態でありpresenceではない。",
+    "output_contract": "IdentityAssessment、ClaimAssessment、IdentityViewを別値として返す。qualified status/authority/publication permitの生成fieldは設けない。",
+    "ownership": "SECURITYは識別/分類参照の契約だけを持つ。各asset ownerが記録値の由来を供給する。owner文字列・source locator・digest・signature-like textは資格証明ではない。"
+  }
+}
