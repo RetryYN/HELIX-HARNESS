@@ -1,0 +1,1460 @@
+{
+  "parent": "HELIXLABO-L2-028",
+  "source_main": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+  "source_basic_pair_revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+  "authority_effect": "none",
+  "scope": {
+    "version_target": "1.0",
+    "authoring_stage": "L5/L8 detail and unit design",
+    "boundary": "許可Worker結果の受領とassignment/ticket/source-result contract照合。受領・source qualification・SECURITY permission/data-use・評価状態・L2-006実験linkを別field/ownerで保持。通常履歴にL2-006全能力を要求せず、Worker/OS/SECURITY/LABOのauthorityを動かさない。全92親/430対を維持。"
+  },
+  "upstream_adoption": {
+    "approval": {
+      "record_path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "record_commit": "2f95e20cd9e90dd4ab7d349661476d8c49eff548",
+      "main_admission_commit": "4dd2774e1498bde640a52e94245195f62e750ca6",
+      "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "exact_scope_quote": "001/002/011/026/028/054/055/056/057/058の10親から導出した26組のexact本文を承認する。全LABO能力・全source接続・実観測/実評価の完成を含まない。draft/not_executedは固定bytesとして保持する。",
+      "approval_whole_files": [
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.json",
+          "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "sha256": "1abff25ba108a6e1055c0a811fa67befd44e73469ffda6ae8735b65249b2a441"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.json",
+          "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "sha256": "7719e128e442644224ba2b586f2f3ad0f0f14692847d8678a681abf616896270"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+          "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "sha256": "52966ddf22818f0ee1306c98496975304ce847255cffb243065963958c076844"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+          "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "sha256": "f2ae2897b615a7dde0d06cae6e02af72dfdd60f182e91728d94d3c250bfcaa77"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+          "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "sha256": "3be891bae6d3ed19931d8c9bac1989e1c6eff0cc6868d165d9ca9e1bc6787129"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+          "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "sha256": "d2453f852b93da95605c5780f51a7cd4d585685f673eb6c90393e93164be97dd"
+        }
+      ],
+      "approved_object_hashes": [
+        {
+          "id": "HELIXLABO-L10-028-F01",
+          "path": "docs/helix-labo/L10-verification/functional-verification.json",
+          "canonical_sha256": "2249a5d1ace7ad06f48fb32f9214adbbfc82c6658e97d7bf4ac5c31e5cb9bfb5"
+        },
+        {
+          "id": "HELIXLABO-L10-028-F02",
+          "path": "docs/helix-labo/L10-verification/functional-verification.json",
+          "canonical_sha256": "ac82d41bbf1634b4073a43bfbc2c2e0fca5bb2080bc8f14e90ed44ec9f23dcf9"
+        },
+        {
+          "id": "HELIXLABO-L3-028-F01",
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+          "canonical_sha256": "f1a597d9f868f9e2864cf56e551420ae31859f2770cd8d73b3cd71ac0f1d4d24"
+        },
+        {
+          "id": "HELIXLABO-L3-028-F02",
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+          "canonical_sha256": "c40901551d34f9d5d7a83c0c309a913f8c493276851d8b51a7c678ce767aaf62"
+        }
+      ],
+      "source_object_equality": "L3/L10 object values are copied exactly from approved revision; detached hashes are outside approved objects."
+    },
+    "adoption": {
+      "decision_path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "parent_requirement_id": "HELIXLABO-L2-028",
+      "registration_id": "MPR-RC-HELIXLABO-L2-028-001",
+      "L1_sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "L2_selected_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "L2_lines": [
+        231,
+        234
+      ],
+      "L2_sha256": "672081ff4372f097f39959b294ce961a35da899fb0e21b3d4a2f1cd3278851fd",
+      "L2_bytes": 375,
+      "L2_quote": "### HELIXLABO-L2-028 — Worker → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：許可されたWorker作業結果。出力：task class/assignment/source付きobservation。依存：OS assignmentとWorker result contract。保証：Workerをauthority ownerとせず、未評価結果を評価済みにしない。assignment不明はOSへ戻す。`version_target: 1.0`。\n\n",
+      "L11_selected_source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "L11_lines": [
+        79,
+        79
+      ],
+      "L11_sha256": "208b35f2bdc5a3e2586b819e1e6dc1e1b77930b6dac44dacb79fa6a4e8e99781",
+      "L11_bytes": 327,
+      "L11_quote": "| HELIXLABO-L2-028 | Workerから許可作業結果を受け、責務とOS assignment/ticketへ照合し、実験結果ならL2-006のexperiment・対象版へ同一性を保って渡す | Workerを機構・authority ownerとして扱う、assignmentを推測する、別ticket/experimentの実績を同一比較へ混ぜる |\n",
+      "hash_method": "UTF-8 original source bytes, splitlines(keepends=True), inclusive 1-based line range, preserve all LF; L2 selected section ends in 2 LF bytes, L11 row in 1 LF byte."
+    }
+  },
+  "approved_requirements": [
+    {
+      "id": "HELIXLABO-L3-028-F01",
+      "parent": "HELIXLABO-L2-028",
+      "title": "Worker結果とassignment",
+      "obligation": "許可Worker作業結果をtask class/責務/OS assignment-ticket/source-result contract revisionへ照合し観測を出す。Workerを機構/authority ownerにせず未評価を評価済みにしない。assignment不明では推測しない。",
+      "oracle_ref": "HELIXLABO-L10-028-F01"
+    },
+    {
+      "id": "HELIXLABO-L3-028-F02",
+      "parent": "HELIXLABO-L2-028",
+      "title": "実験結果の条件付き参照",
+      "obligation": "選択入力が実験結果のときだけ006のexperimentと対象版へ同一性を保って渡す。別ticket/experimentを同一比較に混ぜず、通常履歴取込に全実験能力を必須化しない。",
+      "oracle_ref": "HELIXLABO-L10-028-F02"
+    }
+  ],
+  "approved_system_oracles": [
+    {
+      "id": "HELIXLABO-L10-028-F01",
+      "parent": "HELIXLABO-L2-028",
+      "title": "Worker結果とassignment",
+      "requirement_ref": "HELIXLABO-L3-028-F01",
+      "positive_input": "対応assignmentと別ticket/Worker版、参照不明を比較する。",
+      "expected_observation": "結果状態と作業参照、受領条件の不足が辿れる。",
+      "negative_input": "assignment推測、Workerをauthority、受領で評価済み。",
+      "failure_observation": "OS/Worker result source/SEC ownerへ返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXLABO-L10-028-F02",
+      "parent": "HELIXLABO-L2-028",
+      "title": "実験結果の条件付き参照",
+      "requirement_ref": "HELIXLABO-L3-028-F02",
+      "positive_input": "通常結果と二experiment結果を別入力で比較する。",
+      "expected_observation": "通常/実験の区分と当該experiment参照が辿れる。",
+      "negative_input": "別experiment混載、全006稼働待ち、実験ID推測。",
+      "failure_observation": "実験/OS/source ownerへ当該不足を返す。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L4-basic-design/worker-result-observation-connection.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "94efe93dda254fff0227e4bfddd2825869c134b5181cd6fffa7e1fee898c48c8"
+    },
+    {
+      "path": "docs/helix-labo/L9-integration-verification/worker-result-observation-connection.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "e74354b7b7e5f92e58ca17a65a60cfa4506882e73f93775f9d262a0d3df8dbb3"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
+      "revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+      "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
+    }
+  ],
+  "basic_pair_hashes_at_source_main": {
+    "docs/helix-labo/L4-basic-design/worker-result-observation-connection.json": "94efe93dda254fff0227e4bfddd2825869c134b5181cd6fffa7e1fee898c48c8",
+    "docs/helix-labo/L9-integration-verification/worker-result-observation-connection.json": "e74354b7b7e5f92e58ca17a65a60cfa4506882e73f93775f9d262a0d3df8dbb3"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "audit": {
+    "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+    "source_main": "ac655839bcbe986ea75cff464c64ab73ef88130b",
+    "whole_sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
+    "row_parent": "HELIXLABO-L2-028",
+    "row_canonical_sha256": "d28f935f9de28daccbbd62656c613cd686bfb618fd5271da6c2fc5a6594a6dbb",
+    "denominators": {
+      "parents": 92,
+      "requirement_pairs": 430
+    },
+    "design_completion": "unproven",
+    "implementation_readiness": "not_ready"
+  },
+  "implementation_readiness": "not_ready",
+  "qualification_boundary": {
+    "supplier_contract": "unclosed",
+    "actual_source_owner_qualification": "unknown/not asserted by fixtures",
+    "security_authority": "SECURITY retains permission/data-use decisions",
+    "assignment_authority": "OS retains assignment/ticket decisions",
+    "worker_result_authority": "Worker result source owns the raw result and contract revision",
+    "receipt": "receiving/transport evidence only; not evaluation or qualification",
+    "evaluation": "result state stays source-provided; receipt does not promote it"
+  },
+  "pair": "HELIXLABO-L8-028",
+  "status": "draft_detail_design_not_qualified_or_implemented",
+  "contracts": [
+    {
+      "id": "HELIXLABO-L5-028-F01",
+      "requirement_ref": "HELIXLABO-L3-028-F01",
+      "basic_design_ref": "HELIXLABO-L4-028-F01",
+      "unit_verification_ref": "HELIXLABO-L8-028-F01",
+      "system_oracle_ref": "HELIXLABO-L10-028-F01",
+      "detail_design_ref": "HELIXLABO-L5-028-F01",
+      "meaning": "Worker resultをOS assignment/ticket/source contract revisionへ照合し、結果/receipt/evaluation/SECURITY evidenceを別々に保つ。Workerはexecution actorでありauthority ownerではない。 Source qualification, OS assignment authority, SECURITY data-use/permission, receiving receipt, and evaluation state each have distinct input types and gap kinds with the original owner route.",
+      "input_refs": [
+        "HELIXLABO-L2-028",
+        "OS assignment/ticket source",
+        "Worker result/source-result contract source",
+        "SECURITY data-use/permission source when supplied",
+        "receipt source",
+        "evaluation source",
+        "L2-006 only when experiment result selected"
+      ],
+      "output_type": "ObservationResult（Observationとowner別Gapを保持）",
+      "operation_refs": [
+        "resolve_source_map",
+        "match_os_assignment",
+        "retain_result_status",
+        "retain_security_data_use",
+        "classify_result_route",
+        "link_selected_experiment",
+        "build_observation",
+        "retain_source_qualification"
+      ],
+      "invariants": [
+        "source IDs and owner refs remain source-owned; LABO observation ref does not replace them",
+        "permission/data-use, assignment authority, source qualification, receipt, and evaluation are separate evidence axes and separate Gap kinds",
+        "Worker self-claimed assignment does not replace OS assignment source record",
+        "receipt received does not mean evaluated, qualified, or permission granted",
+        "ordinary_history has no experiment link and no global L2-006 dependency",
+        "unknown source classification is local to selected input; no ordinary/experiment inference",
+        "all 006 experiment/target IDs pass unchanged only when the selected result is experiment_result",
+        "mismatch does not globally stop unrelated Worker history",
+        "L2-006 unselected capability is not made a new gate"
+      ]
+    },
+    {
+      "id": "HELIXLABO-L5-028-F02",
+      "requirement_ref": "HELIXLABO-L3-028-F02",
+      "basic_design_ref": "HELIXLABO-L4-028-F02",
+      "unit_verification_ref": "HELIXLABO-L8-028-F02",
+      "system_oracle_ref": "HELIXLABO-L10-028-F02",
+      "detail_design_ref": "HELIXLABO-L5-028-F02",
+      "meaning": "source classificationがordinaryなら通常履歴、experiment resultと明示選択された場合のみ同一experiment/target versionへ参照する。unknownは通常/実験に推測しない。 Source qualification, OS assignment authority, SECURITY data-use/permission, receiving receipt, and evaluation state each have distinct input types and gap kinds with the original owner route.",
+      "input_refs": [
+        "HELIXLABO-L2-028",
+        "OS assignment/ticket source",
+        "Worker result/source-result contract source",
+        "SECURITY data-use/permission source when supplied",
+        "receipt source",
+        "evaluation source",
+        "L2-006 only when experiment result selected"
+      ],
+      "output_type": "ObservationResult（Observationとowner別Gapを保持）",
+      "operation_refs": [
+        "resolve_source_map",
+        "match_os_assignment",
+        "retain_result_status",
+        "retain_security_data_use",
+        "classify_result_route",
+        "link_selected_experiment",
+        "build_observation",
+        "retain_source_qualification"
+      ],
+      "invariants": [
+        "source IDs and owner refs remain source-owned; LABO observation ref does not replace them",
+        "permission/data-use, assignment authority, source qualification, receipt, and evaluation are separate evidence axes and separate Gap kinds",
+        "Worker self-claimed assignment does not replace OS assignment source record",
+        "receipt received does not mean evaluated, qualified, or permission granted",
+        "ordinary_history has no experiment link and no global L2-006 dependency",
+        "unknown source classification is local to selected input; no ordinary/experiment inference",
+        "all 006 experiment/target IDs pass unchanged only when the selected result is experiment_result",
+        "mismatch does not globally stop unrelated Worker history",
+        "L2-006 unselected capability is not made a new gate"
+      ]
+    }
+  ],
+  "logical_type_definitions": {
+    "type_system_note": "論理的な設計名だけを定める。外部wire schema、JSON codec、resolver API、source qualificationを定義しない。",
+    "primitive_aliases": {
+      "SourceRefID": "string",
+      "OwnerRefID": "string",
+      "NodeLocator": "{source_ref_id: SourceRefID, parent_json_pointer: string, member_name: string}"
+    },
+    "FieldValue": {
+      "generic_parameter": "T",
+      "tagged_variants": [
+        {
+          "tag": "provided",
+          "value": "T"
+        },
+        {
+          "tag": "absent"
+        },
+        {
+          "tag": "explicit_null"
+        },
+        {
+          "tag": "empty",
+          "empty_kind": "empty_string | empty_list | empty_object"
+        }
+      ],
+      "common_fields": {
+        "source_ref_id": "SourceRefID",
+        "parent_json_pointer": "string",
+        "member_name": "string"
+      },
+      "rules": [
+        "presenceタグはsource JSONのkey/valueの違いを保持する。",
+        "提供値false/zeroはprovided。emptyはsourceに実際の空string/list/objectがある場合のみ。",
+        "出典metadataはopaque IDとlocatorであり、source record bodyを再帰的に埋め込まない。",
+        "raw shapeだけでowner、qualification、authority、permissionを作らない。"
+      ]
+    },
+    "OwnerRef": {
+      "fields": [
+        {
+          "name": "owner_ref_id",
+          "type": "OwnerRefID"
+        },
+        {
+          "name": "owner_kind",
+          "type": "FieldValue<string>",
+          "allowed_source_names": "OS | Worker result source | SECURITY | HELIX-CONNECT | LABO/L2-006 experiment owner; only when supplied or existing route names the owner"
+        }
+      ]
+    },
+    "SourceRecord": {
+      "fields": [
+        {
+          "name": "source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "owner_ref",
+          "type": "OwnerRef"
+        },
+        {
+          "name": "revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "contract_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "provenance",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_qualification_state",
+          "type": "FieldValue<string>",
+          "rule": "source ownerの資格recordが別途供給されない限りunknown/not_assertedを保持する。"
+        },
+        {
+          "name": "source_node",
+          "type": "NodeLocator"
+        }
+      ]
+    },
+    "SourceMap": {
+      "fields": [
+        {
+          "name": "records",
+          "type": "list<SourceRecord>",
+          "key": "source_ref_id; duplicate keys are unresolved, never last-write-wins"
+        }
+      ]
+    },
+    "WorkerResult": {
+      "fields": [
+        {
+          "name": "result_source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "result_identity",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "result_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "task_class",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "responsibility_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "ticket_identity",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "claimed_assignment_identity",
+          "type": "FieldValue<string>",
+          "rule": "Worker self-claimはclaimのまま保持し、OS authorityの根拠にしない。"
+        },
+        {
+          "name": "worker_version",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_result_contract_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "scope",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "result_kind",
+          "type": "FieldValue<string>",
+          "source": "ordinary_history | experiment_result | unknown only when input explicitly says so"
+        },
+        {
+          "name": "experiment_identity",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "target_version",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "receipt_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "receipt_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "evaluation_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_node",
+          "type": "NodeLocator"
+        }
+      ]
+    },
+    "OSAssignment": {
+      "fields": [
+        {
+          "name": "assignment_source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "assignment_identity",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "ticket_identity",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "task_class",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "responsibility_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "expected_worker_result_contract_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "assigned_worker_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "assignment_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_node",
+          "type": "NodeLocator"
+        }
+      ]
+    },
+    "SecurityDataUseEvidence": {
+      "fields": [
+        {
+          "name": "security_source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "decision_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "data_use_class",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "scope",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "permission_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "decision_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_node",
+          "type": "NodeLocator"
+        }
+      ],
+      "rule": "permission/data-use判断のownerはSECURITY。LABOは供給された根拠を記録し、Worker/assignmentの形からpermissionを導かない。"
+    },
+    "ReceiptEvidence": {
+      "fields": [
+        {
+          "name": "receipt_source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "receipt_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "receipt_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "acknowledged_source_identity",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "acknowledged_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_node",
+          "type": "NodeLocator"
+        }
+      ],
+      "rule": "receiptは受領/transportの根拠であり、評価や資格を示さない。"
+    },
+    "EvaluationEvidence": {
+      "fields": [
+        {
+          "name": "evaluation_source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "evaluation_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "evaluation_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "experiment_identity",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "target_version",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_node",
+          "type": "NodeLocator"
+        }
+      ],
+      "rule": "not_evaluated/unknownをreceipt receivedと区別して保持する。"
+    },
+    "ExperimentLink": {
+      "fields": [
+        {
+          "name": "experiment_identity",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "target_version",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "ticket_identity",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "result_source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "source_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "l2_006_reference_state",
+          "type": "literal selected | not_selected | unresolved"
+        }
+      ],
+      "rule": "供給されたidentity/revisionをそのまま渡し、新しいIDを作らない。"
+    },
+    "Gap": {
+      "fields": [
+        {
+          "name": "gap_kind",
+          "type": "literal source_qualification_unknown | source_contract_unknown | assignment_unknown | assignment_mismatch | data_use_permission_unknown | receipt_missing | evaluation_not_evaluated | evaluation_state_unknown | result_kind_unknown | experiment_identity_missing | target_version_missing | ticket_experiment_mismatch | source_record_missing | duplicate_source_ref"
+        },
+        {
+          "name": "affected_node_locators",
+          "type": "list<NodeLocator>"
+        },
+        {
+          "name": "source_ref_ids",
+          "type": "list<SourceRefID>"
+        },
+        {
+          "name": "return_to_owner_refs",
+          "type": "list<OwnerRef>"
+        },
+        {
+          "name": "scope",
+          "type": "literal selected_input_only | selected_experiment_link_only"
+        },
+        {
+          "name": "observed_presence_states",
+          "type": "list<string>"
+        }
+      ]
+    },
+    "Observation": {
+      "fields": [
+        {
+          "name": "observation_ref",
+          "type": "FieldValue<string>",
+          "rule": "利用可能ならcallerが供給する。この設計ではIDをmintしない。"
+        },
+        {
+          "name": "result_source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "result_identity",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "result_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "task_class",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "responsibility_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "assignment_source_ref_id",
+          "type": "FieldValue<SourceRefID>"
+        },
+        {
+          "name": "assignment_identity",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "ticket_identity",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_result_contract_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "scope",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "receipt",
+          "type": "FieldValue<ReceiptEvidence>"
+        },
+        {
+          "name": "evaluation",
+          "type": "FieldValue<EvaluationEvidence>"
+        },
+        {
+          "name": "experiment_link",
+          "type": "FieldValue<ExperimentLink>"
+        },
+        {
+          "name": "data_use",
+          "type": "FieldValue<SecurityDataUseEvidence>"
+        },
+        {
+          "name": "source_node_refs",
+          "type": "list<NodeLocator>"
+        },
+        {
+          "name": "authority_effect",
+          "type": "literal none"
+        },
+        {
+          "name": "source_qualification",
+          "type": "FieldValue<SourceQualificationEvidence>"
+        }
+      ]
+    },
+    "ObservationResult": {
+      "fields": [
+        {
+          "name": "observations",
+          "type": "list<Observation>"
+        },
+        {
+          "name": "gaps",
+          "type": "list<Gap>"
+        },
+        {
+          "name": "source_map_resolution",
+          "type": "list<SourceRecord>"
+        }
+      ]
+    },
+    "SourceResolution": {
+      "fields": [
+        {
+          "name": "resolved_records",
+          "type": "list<SourceRecord>"
+        },
+        {
+          "name": "gaps",
+          "type": "list<Gap>"
+        }
+      ]
+    },
+    "AssignmentMatch": {
+      "fields": [
+        {
+          "name": "match_state",
+          "type": "literal matched | unknown | mismatch"
+        },
+        {
+          "name": "os_assignment_ref",
+          "type": "FieldValue<SourceRefID>"
+        },
+        {
+          "name": "worker_result_ref",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "compared_fields",
+          "type": "list<string>"
+        },
+        {
+          "name": "gaps",
+          "type": "list<Gap>"
+        },
+        {
+          "name": "assignment_identity",
+          "type": "FieldValue<string>",
+          "rule": "OSAssignmentの供給値のみ。recordが未供給ならそのpresenceを保持しWorker self-claimで補わない。"
+        }
+      ]
+    },
+    "RouteClass": {
+      "fields": [
+        {
+          "name": "kind",
+          "type": "literal ordinary_history | experiment_result | unknown"
+        },
+        {
+          "name": "result_source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "experiment_link",
+          "type": "FieldValue<ExperimentLink>"
+        },
+        {
+          "name": "gaps",
+          "type": "list<Gap>"
+        }
+      ]
+    },
+    "ReceiptEvaluationProjection": {
+      "fields": [
+        {
+          "name": "receipt_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "evaluation_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "gaps",
+          "type": "list<Gap>"
+        },
+        {
+          "name": "receipt",
+          "type": "FieldValue<ReceiptEvidence>"
+        },
+        {
+          "name": "evaluation",
+          "type": "FieldValue<EvaluationEvidence>"
+        }
+      ]
+    },
+    "SourceRefID": {
+      "primitive_alias": "string",
+      "meaning": "source factsを含まないopaque source-map key。"
+    },
+    "OwnerRefID": {
+      "primitive_alias": "string",
+      "meaning": "既存owner boundaryへのopaque参照。"
+    },
+    "NodeLocator": {
+      "fields": [
+        {
+          "name": "source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "parent_json_pointer",
+          "type": "string"
+        },
+        {
+          "name": "member_name",
+          "type": "string"
+        }
+      ],
+      "meaning": "有限なlocator metadata。SourceRecordや別NodeLocatorを内包しない。"
+    },
+    "SourceQualificationEvidence": {
+      "fields": [
+        {
+          "name": "source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "qualification_record_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "qualification_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "contract_adoption_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_node",
+          "type": "NodeLocator"
+        }
+      ],
+      "rule": "qualification/contractの事実はowner供給の別recordで受け取る。根拠が無い場合は型付きgapとして保持しWorker resultの形から推論しない。"
+    },
+    "ObservationBuildInput": {
+      "fields": [
+        {
+          "name": "worker",
+          "type": "WorkerResult"
+        },
+        {
+          "name": "assignment_match",
+          "type": "AssignmentMatch"
+        },
+        {
+          "name": "receipt_evaluation",
+          "type": "ReceiptEvaluationProjection"
+        },
+        {
+          "name": "route",
+          "type": "RouteClass"
+        },
+        {
+          "name": "source_resolution",
+          "type": "SourceResolution"
+        },
+        {
+          "name": "source_qualification",
+          "type": "FieldValue<SourceQualificationEvidence>"
+        },
+        {
+          "name": "source_qualification_gaps",
+          "type": "list<Gap>"
+        },
+        {
+          "name": "security_data_use",
+          "type": "FieldValue<SecurityDataUseEvidence>"
+        },
+        {
+          "name": "security_gaps",
+          "type": "list<Gap>"
+        },
+        {
+          "name": "experiment_link",
+          "type": "FieldValue<ExperimentLink>"
+        },
+        {
+          "name": "experiment_gaps",
+          "type": "list<Gap>"
+        },
+        {
+          "name": "caller_observation_ref",
+          "type": "FieldValue<string>"
+        }
+      ]
+    }
+  },
+  "function_signatures_and_branches": [
+    {
+      "name": "resolve_source_map",
+      "signature": "resolve_source_map(ref_ids: list<SourceRefID>, source_map: SourceMap) -> SourceResolution",
+      "input_shape": "SourceRefID一覧と呼出元が明示したSourceMapを受け取る。",
+      "output_shape": "各IDに対する一意なSourceRecordまたは型付きGapを返し、要求IDを落とさない。",
+      "preconditions": [
+        "参照IDとmap内recordは入力sourceから供給される。",
+        "重複IDは衝突根拠として保持する。"
+      ],
+      "postconditions": [
+        "record field、source owner、qualification、authority、permission、data-useを推論しない。",
+        "各要求IDを一件のSourceRecordか局所gapのどちらかに対応させる。"
+      ],
+      "algorithm": [
+        "各要求IDに対し、source map内の完全一致IDを探す。",
+        "一致なしならそのIDにsource_record_missingを返す。",
+        "一致一件なら供給recordをそのまま返す。",
+        "一致複数ならduplicate_source_refを返し、先勝ち/後勝ちにしない。"
+      ],
+      "branches": [
+        {
+          "given": "一致recordが一件",
+          "result": "供給されたSourceRecord参照を返す。"
+        },
+        {
+          "given": "recordがない",
+          "result": "source_record_missing gapを返す。"
+        },
+        {
+          "given": "source mapに同一IDが複数",
+          "result": "duplicate_source_ref gapを返す。"
+        }
+      ]
+    },
+    {
+      "name": "match_os_assignment",
+      "signature": "match_os_assignment(worker: WorkerResult, assignment: FieldValue<OSAssignment>) -> AssignmentMatch",
+      "input_shape": "WorkerResultと、OS ownerが供給するOSAssignmentまたはabsent/null/emptyを表すFieldValueを受け取る。",
+      "output_shape": "matched/unknown/mismatch、比較field、元参照とowner別gapを返す。",
+      "preconditions": [
+        "assignment source ownerはOSでありWorker sourceと別である。",
+        "Worker result contract revisionをOS側expected revisionと比較する。",
+        "Worker self-claimはassignment根拠にしない。"
+      ],
+      "postconditions": [
+        "ticket/task/responsibility/contract revisionを完全一致比較する。",
+        "unknown/mismatchは選択resultのjoin範囲に限る。",
+        "assignmentを作成・編集しない。",
+        "AssignmentMatch.assignment_identityにはOS recordのassignment_identityを元FieldValueで保持する。OS record不在時はそのabsence/null/emptyを保持しWorker claimへ代替しない。"
+      ],
+      "algorithm": [
+        "assignment引数がprovidedなら、OSのidentity/ticket/task/responsibility/expected revisionとWorker側ticket/task/responsibility/contract revisionをFieldValueで比較する。",
+        "assignment recordまたは比較fieldがabsent/null/empty/unknownならunknownとし、元locator付きOSまたはWorker gapを返す。",
+        "provided値が異なる場合は双方の値とsource refを保つmismatchを返し、L4に従いOS/Worker result source/SECURITYへ返す。",
+        "比較値が一致すればmatchedとし、Worker self-claimはclaimとして別に保持する。"
+      ],
+      "branches": [
+        {
+          "given": "比較fieldがすべてprovidedで一致",
+          "result": "matchedを返し、新しいassignmentは作らない。"
+        },
+        {
+          "given": "assignment recordまたはfieldがabsent/null/empty",
+          "result": "unknownとOS側gapを返す。"
+        },
+        {
+          "given": "ticketまたはcontract revisionが異なる",
+          "result": "双方のsource refを持つ局所mismatch gapを返す。"
+        },
+        {
+          "given": "OS recordが無くWorker self-claimだけが一致",
+          "result": "unknownを返し、claimでauthority根拠を補わない。"
+        }
+      ]
+    },
+    {
+      "name": "retain_result_status",
+      "signature": "retain_result_status(worker: WorkerResult, receipt: FieldValue<ReceiptEvidence>, evaluation: FieldValue<EvaluationEvidence>) -> ReceiptEvaluationProjection",
+      "input_shape": "WorkerResultと、別々のsource IDを持つReceiptEvidence/EvaluationEvidenceおよびそれぞれのpresence FieldValueを受け取る。",
+      "output_shape": "receipt/evaluationの完全recordとstateを別fieldに保持し、各々のgapを返す。",
+      "preconditions": [
+        "receiptとevaluationはそれぞれのsource IDを保つ。",
+        "absent/null/empty/not_evaluated/unknownを区別する。"
+      ],
+      "postconditions": [
+        "receipt受領をevaluatedへ昇格しない。",
+        "Workerは実行者でありauthority ownerではない。",
+        "missing receiptを補完しない。"
+      ],
+      "algorithm": [
+        "provided receipt recordならref/state/acknowledged identity/revisionを同じrecordから保持する。",
+        "provided evaluation recordならstate/ref/experiment/versionを同じrecordから保持する。",
+        "receipt recordまたはreceipt refがabsent/null/emptyならそのtagを保ちreceipt_missingを返す。",
+        "evaluationがnot_evaluated/unknownなら同じstateを保ち、evaluatedを追加しない。"
+      ],
+      "branches": [
+        {
+          "given": "receipt receivedかつevaluation not_evaluated",
+          "result": "receivedとnot_evaluatedの別recordを返す。"
+        },
+        {
+          "given": "receipt recordまたはrefがexplicit null",
+          "result": "explicit_nullとreceipt_missingを返す。"
+        },
+        {
+          "given": "receipt memberがabsent",
+          "result": "absentとreceipt_missingを返しexplicit nullと区別する。"
+        }
+      ]
+    },
+    {
+      "name": "retain_security_data_use",
+      "signature": "retain_security_data_use(worker: WorkerResult, evidence: FieldValue<SecurityDataUseEvidence>) -> FieldValue<SecurityDataUseEvidence> + list<Gap>",
+      "input_shape": "WorkerResultと、SECURITY ownerが供給するSecurityDataUseEvidenceまたはabsent/null/emptyを表すFieldValueを受け取る。",
+      "output_shape": "供給されたSECURITY evidenceのFieldValueと、必要なdata_use_permission_unknown gapを返す。",
+      "preconditions": [
+        "data-use/permission決定のownerはSECURITYである。",
+        "この関数は純粋な記録/整合処理でありauthorization判定ではない。"
+      ],
+      "postconditions": [
+        "unknownをpermittedとして扱わず、SECURITY evidenceはsource ID/revisionとともに保持する。",
+        "qualification/assignment stateをpermission stateで上書きしない。"
+      ],
+      "algorithm": [
+        "evidenceがprovidedならSECURITY source refと値をそのまま保持する。",
+        "evidenceまたはpermission stateがabsent/null/empty/unknownならtagを保持し、対象inputに限るdata_use_permission_unknownをSECURITYへ返す。",
+        "permissionを推論・変更しない。"
+      ],
+      "branches": [
+        {
+          "given": "SECURITY permission evidenceがprovided",
+          "result": "供給recordを記録し、この関数自体はsourceをqualifiedにしない。"
+        },
+        {
+          "given": "SECURITY evidenceがabsent/null/unknown",
+          "result": "SECURITY向けtyped gapを返しpermissionを推論しない。"
+        }
+      ]
+    },
+    {
+      "name": "classify_result_route",
+      "signature": "classify_result_route(worker: WorkerResult) -> RouteClass",
+      "input_shape": "選択されたWorkerResult一件を受け取る。",
+      "output_shape": "ordinary/experiment/unknownのrouteと局所gapを返す。",
+      "preconditions": [
+        "分類値はWorker/source ownerが供給したresult metadataから読む。",
+        "ticket名やexperiment fieldの存在だけからrouteを推定しない。"
+      ],
+      "postconditions": [
+        "ordinary resultにexperiment identityやL2-006依存を追加しない。",
+        "unknown分類をordinary/experimentのどちらにも割り当てない。",
+        "分類gapは選択resultのみに局所化する。"
+      ],
+      "algorithm": [
+        "result_kindがprovided ordinary_historyならordinary_historyを返しExperimentLinkを作らない。",
+        "provided experiment_resultなら条件付きlink解決へ進める。",
+        "result_kindがabsent/null/empty/unknownまたはconflictならresult_kind_unknown gap付きunknownをWorker source/OSへ返しL2-006へ自動routeしない。"
+      ],
+      "branches": [
+        {
+          "given": "result_kindがordinary_history",
+          "result": "ordinary routeを返しL2-006を選択しない。"
+        },
+        {
+          "given": "result_kindがexperiment_result",
+          "result": "正確なidentity/version確認を待つexperiment routeを返す。"
+        },
+        {
+          "given": "分類がunknown",
+          "result": "unknown routeとresult_kind_unknownを返しexperiment linkを推定しない。"
+        }
+      ]
+    },
+    {
+      "name": "link_selected_experiment",
+      "signature": "link_selected_experiment(route: RouteClass, worker: WorkerResult, source_record: FieldValue<SourceRecord>) -> FieldValue<ExperimentLink> + list<Gap>",
+      "input_shape": "明示的にexperiment_resultへ分類されたselected result、WorkerResult、および独立に供給されるsource recordを受け取る。",
+      "output_shape": "exact identity/version/ticket/source revisionを持つlink、または選択resultに局所化したgapを返す。",
+      "preconditions": [
+        "route.kindがexperiment_resultの場合だけlinkを検討する。",
+        "experiment identity、target version、ticketは同じselected WorkerResultから読む。",
+        "source_revisionはsource_ref_idがWorkerResult.result_source_ref_idと一致するSourceRecord.revisionから読む。"
+      ],
+      "postconditions": [
+        "供給されたidentifierはL2-006参照へそのまま渡す。",
+        "ordinary/unknown routeからlinkを作らない。",
+        "異なるticket/experiment/target versionを混ぜない。",
+        "source revisionは一致するsource recordから取得し、Worker契約revisionで代用しない。"
+      ],
+      "algorithm": [
+        "routeがordinary_historyまたはunknownならexperiment linkを出さず、既存gapを保つ。",
+        "experiment_resultでは同じWorkerResultからexperiment identity、target version、ticketを読む。",
+        "いずれかがabsent/null/empty/unknownなら該当fieldのgapを返す。",
+        "source_recordがabsent/null/empty、source_ref_idがWorkerResult.result_source_ref_idと不一致、またはsource_record.revisionが未提供ならsource_record_missing等を返し、source revisionを補わない。",
+        "全値が提供されsource recordが同一sourceを指すときだけexperiment、target version、ticket、source ref、source record revisionをそのままExperimentLinkへ写す。"
+      ],
+      "branches": [
+        {
+          "given": "route.kindがordinary_history",
+          "result": "L2-006 referenceを生成しない。"
+        },
+        {
+          "given": "experiment_resultとexact experiment/version/ticketおよび一致source recordがある",
+          "result": "supplied tupleとsource record revisionをlinkする。"
+        },
+        {
+          "given": "experiment_resultのID/versionまたは一致source recordが不足",
+          "result": "local gapを返し推測linkを生成しない。"
+        }
+      ]
+    },
+    {
+      "name": "build_observation",
+      "signature": "build_observation(input: ObservationBuildInput) -> ObservationResult",
+      "input_shape": "ObservationBuildInputにcaller ref、SourceResolution、資格/SECURITY/experiment gaps、完全なreceipt/evaluation record、selected experiment linkを個別に渡す。",
+      "output_shape": "ObservationResultにObservation、source map解決record、owner別gapsを保持する。",
+      "preconditions": [
+        "各evidenceは有限opaque IDとNodeLocatorでsource-linkedされる。",
+        "caller observation refはFieldValueで渡され、関数はIDをmintしない。",
+        "receipt/evaluation/experiment/qualification/security evidenceと各gap listは呼出元が明示的に渡す。"
+      ],
+      "postconditions": [
+        "source identityはobservation refで置換しない。",
+        "observationはevaluation/permission/assignment authorityではない。",
+        "source map recordsとqualification/SECURITY/receipt/evaluation/experiment owner gapsを保持する。",
+        "gapsは選択result/linkに局所化しowner別の返し先を保つ。"
+      ],
+      "algorithm": [
+        "worker、assignment match、receipt/evaluation full records、route、security evidence、selected experiment link、qualification evidence、source resolutionを個別fieldへ写す。",
+        "Observation.assignment_identityはinput.assignment_match.assignment_identity、assignment_source_ref_idはinput.assignment_match.os_assignment_refから写す。Worker claimed_assignment_identityから作らない。",
+        "caller observation refのFieldValueをそのまま写し、absent/null/emptyを保持する。",
+        "SourceResolution.gaps、qualification gaps、SECURITY gaps、receipt/evaluation gaps、experiment gaps、assignment/route gapsを種類別に併合し、owner区分を潰さない。",
+        "SourceResolution.resolved_recordsをObservationResult.source_map_resolutionへ写す。",
+        "authority_effect=noneを返す。"
+      ],
+      "branches": [
+        {
+          "given": "exact assignment join、ordinary route、および明示されたowner入力",
+          "result": "ordinary observation。experiment linkはnot_selectedのままでcaller ref/source/gapsを保持する。"
+        },
+        {
+          "given": "assignment mismatch/unknownまたはsource record unresolved",
+          "result": "当該resultに局所化したobservationと元owner gapを返す。"
+        },
+        {
+          "given": "selected experiment routeでID/version/source revision不足",
+          "result": "experiment link gapとsource resolutionを保持し、fabricated experimentを作らない。"
+        },
+        {
+          "given": "資格/SECURITY/receipt/evaluationのevidence不足",
+          "result": "個別の型付きgapと各入力FieldValueを保持する。"
+        }
+      ]
+    },
+    {
+      "name": "retain_source_qualification",
+      "signature": "retain_source_qualification(record: SourceRecord, evidence: FieldValue<SourceQualificationEvidence>) -> FieldValue<SourceQualificationEvidence> + list<Gap>",
+      "input_shape": "SourceRecordと独立に供給されたSourceQualificationEvidenceのFieldValueを受け取る。",
+      "output_shape": "資格根拠があれば値を保持し、未供給ならqualification/contractの個別gapを返す。",
+      "preconditions": [
+        "raw result shapeとsource record identityだけではqualificationを成立させない。",
+        "現fixtureにはsource ownerの資格recordが含まれない。"
+      ],
+      "postconditions": [
+        "owner供給evidence無しでunknown/not_assertedから資格を昇格しない。",
+        "contract adoptionとsource qualificationは別fieldのまま保持する。"
+      ],
+      "algorithm": [
+        "evidenceがprovidedならsource_ref_idとrecord値を推論せず保持する。",
+        "evidenceがabsent/null/empty、またはqualification_stateがunknownならtagを保持し既存source/SECURITY ownerへsource_qualification_unknownを返す。",
+        "contract adoption refがabsent/null/emptyならsource_contract_unknownを独立して返しdata-use permissionと混同しない。"
+      ],
+      "branches": [
+        {
+          "given": "source shapeだけでowner qualification recordがない",
+          "result": "source_qualification_unknownを返しqualified statusを作らない。"
+        },
+        {
+          "given": "source qualification recordと明示stateが供給された",
+          "result": "供給record/refだけを保持し追加推論しない。"
+        },
+        {
+          "given": "qualification evidenceはあるがcontract adoption refがない",
+          "result": "別個のsource_contract_unknown gapを返す。"
+        }
+      ]
+    }
+  ],
+  "legacy_rederivation": {
+    "mode": "旧sourceの意味再導出。旧runtime/test/CIは実行・移植しない。",
+    "preserve": [
+      "evidence stateとownerを区別する",
+      "未評価を評価済みへ昇格させない",
+      "Bench/LABOはadvisory observation onlyでassignment/authorityを変更しない",
+      "assignment/ticket/source contract revisionの一致を維持し差異を該当入力へ局所化する",
+      "未評価のclass/effortは推測せずunbenchmarked/unknownを保つ"
+    ],
+    "change": [
+      "旧registry/admission/#188 routingとruntime/test/CIは現行のsource intakeやassignment判断へ移植しない",
+      "source qualificationとpermissionをfixture shapeから作らず、既存ownerへ個別Gapを返す",
+      "L2-006全能力を通常historyへ要求せず、明示選択experiment resultのみ参照する"
+    ],
+    "reason": "採択L2-028/L11-028のWorker/OS/SECURITY/LABO境界と条件付きexperiment参照を保持。旧runtimeがあることを変更理由にしない。",
+    "sources": [
+      {
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "line_range": [
+          349,
+          351
+        ],
+        "whole_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "selected_lines_sha256": "00f21f452e8734c5fb2319dc5ddb953f19c16c772ea80aabc8e0927a99613e6e",
+        "meaning_preserved": "semantic_rederivation_reference_only",
+        "meaning": "### HXB-FR-015 Capability / Routingへの証拠昇格\n\nBenchはobserved/scored/qualified/expired等の証拠状態と改善候補を返す。既存registry/admission ownerが、task/risk/profile/descriptor、標本数、重大failure、鮮度、独立性を検査し、#188が現在capacity等と合わせて配車を決める。適切に委譲済みpolicy内の評価・更新は自動化でき、人間に毎回順序決定を要求しない。Benchから直接model切替・権限拡大を行わない。aliasしか不明な過去結果を現行weightsの保証にしない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "line_range": [
+          663,
+          666
+        ],
+        "whole_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "selected_lines_sha256": "e5491837b6d6df74cc5fbc66e93706c298df1d7520b660f8eb3f128db39a5769",
+        "meaning_preserved": "semantic_rederivation_reference_only",
+        "meaning": "#### RLO-FR-040 HELIX-Bench由来のeffort policy\n\nreasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は\n`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "line_range": [
+          112,
+          113
+        ],
+        "whole_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "selected_lines_sha256": "6122c5d0e49f20e341c024a31feb2338554ca4b42221f4d4ec6ec3d6d9177edc",
+        "meaning_preserved": "semantic_rederivation_reference_only",
+        "meaning": "| HXB-AC-029 | 鮮度/適用task/risk/profile不適合のscoreをregistryのcurrent qualificationに使わない | HXB-FR-015 |\n| HXB-AC-030 | Bench単独で配車・権限を変更せず、委譲済み既存policy内では人間の毎回指示なしに評価/提案を処理する | HXB-FR-015 |"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+        "line_range": [
+          43,
+          43
+        ],
+        "whole_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+        "selected_lines_sha256": "bb2ffab864ed73e12178b85b2245118672d59fce09ab411abce3adf53107ff00",
+        "meaning_preserved": "semantic_rederivation_reference_only",
+        "meaning": "| `RLO-AC-030` | `RLO-FR-040` | HELIX-Bench evidenceが無いtask classのeffortを解決する | `provider_default_unbenchmarked`を記録しauthorityを変更しない | effortを推測しscore単独でscope／branch／assignment／merge authorityを変更したら拒否する |"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-5F709CA13975179DB7CD",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
+        "line_range": [
+          230,
+          230
+        ],
+        "whole_sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d",
+        "selected_lines_sha256": "4f3beb6c3c738dc25d2bc9888cb87bbcbf0af1139cf66be02332641b9808322b",
+        "meaning_preserved": "semantic_rederivation_reference_only",
+        "meaning": "| G | HXT-FR-023/024; HXB-FR-015/020 | #861/#188/#1500/#659、advisoryと配置 |"
+      }
+    ]
+  },
+  "unclosed": [
+    "正式source/source owner qualificationとadopted result contractは未成立",
+    "OS assignment source、Worker result connection/receipt、SECURITY data-use/permission evidenceの実source mappingは未成立",
+    "正式wire schema/codec/resolver、競合/replay/全組合せは未成立",
+    "実Worker観測・実評価・TDD/CI/L11 acceptance・実装readyは未成立",
+    "全92/430対の設計完了はunproven"
+  ],
+  "section_hash_reproducibility": {
+    "method": "exact selected line bytes at revision, 1-based inclusive range, splitlines(keepends=True), UTF-8 with original LF preserved, no trimming",
+    "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "l2_line_range": "231-234",
+    "l2_bytes": 375,
+    "l2_sha256": "672081ff4372f097f39959b294ce961a35da899fb0e21b3d4a2f1cd3278851fd",
+    "l11_line_range": "79-79",
+    "l11_bytes": 327,
+    "l11_sha256": "208b35f2bdc5a3e2586b819e1e6dc1e1b77930b6dac44dacb79fa6a4e8e99781",
+    "current_observed_revision": "c00695600ab1fed30718d89880b92a6358422131",
+    "current_section_bytes_equal_adopted": true
+  },
+  "approved_object_hashes": [
+    {
+      "id": "HELIXLABO-L10-028-F01",
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "2249a5d1ace7ad06f48fb32f9214adbbfc82c6658e97d7bf4ac5c31e5cb9bfb5"
+    },
+    {
+      "id": "HELIXLABO-L10-028-F02",
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "ac82d41bbf1634b4073a43bfbc2c2e0fca5bb2080bc8f14e90ed44ec9f23dcf9"
+    },
+    {
+      "id": "HELIXLABO-L3-028-F01",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "f1a597d9f868f9e2864cf56e551420ae31859f2770cd8d73b3cd71ac0f1d4d24"
+    },
+    {
+      "id": "HELIXLABO-L3-028-F02",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "c40901551d34f9d5d7a83c0c309a913f8c493276851d8b51a7c678ce767aaf62"
+    }
+  ],
+  "approval_basis": {
+    "record_path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "record_sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19",
+    "record_commit": "2f95e20cd9e90dd4ab7d349661476d8c49eff548",
+    "main_admission_commit": "4dd2774e1498bde640a52e94245195f62e750ca6",
+    "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+    "exact_scope_quote": "001/002/011/026/028/054/055/056/057/058の10親から導出した26組のexact本文を承認する。全LABO能力・全source接続・実観測/実評価の完成を含まない。draft/not_executedは固定bytesとして保持する。",
+    "approval_whole_files": [
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.json",
+        "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.md",
+        "sha256": "1abff25ba108a6e1055c0a811fa67befd44e73469ffda6ae8735b65249b2a441"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.json",
+        "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "sha256": "7719e128e442644224ba2b586f2f3ad0f0f14692847d8678a681abf616896270"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+        "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "sha256": "52966ddf22818f0ee1306c98496975304ce847255cffb243065963958c076844"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+        "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+        "sha256": "f2ae2897b615a7dde0d06cae6e02af72dfdd60f182e91728d94d3c250bfcaa77"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+        "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "sha256": "3be891bae6d3ed19931d8c9bac1989e1c6eff0cc6868d165d9ca9e1bc6787129"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+        "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "sha256": "d2453f852b93da95605c5780f51a7cd4d585685f673eb6c90393e93164be97dd"
+      }
+    ],
+    "object_hashes_outside_approved_objects": true
+  },
+  "type_reference_audit": {
+    "undefined_typename_count": 0,
+    "finite_reference_model": "FieldValue metadataはSourceRefID、親参照はNodeLocatorの不透明な葉参照。source mapでbodyを別途解決し、相互埋込みの再帰型としては展開しない。"
+  }
+}
