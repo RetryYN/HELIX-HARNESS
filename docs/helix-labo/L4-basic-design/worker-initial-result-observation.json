@@ -274,10 +274,11 @@
       "case_ids": [
         "HELIXLABO-L9-056-F01-C01-STATUS",
         "HELIXLABO-L9-056-F01-C02-IDENTITY",
-        "HELIXLABO-L9-056-F01-C03-PROMOTION"
+        "HELIXLABO-L9-056-F01-C03-PROMOTION",
+        "HELIXLABO-L9-056-F01-C04-INTERRUPTED-OBSERVED-UNASSESSED"
       ],
-      "forward": "L3要求→L4契約→L9のsource値case→L10の正負oracleへ追跡する。",
-      "reverse": "各L9 caseはこのL3/L10 IDへ結び、異なる義務間でcaseを共有しない。"
+      "forward": "L3要求→L4の固有意味規則→L9のraw source値付きGWT→L10正負oracleへ追跡する。",
+      "reverse": "各GWTのgivenはraw packet identityと該当値を示し、caseは該当L3/L10 IDへ結ぶ。"
     },
     {
       "requirement_id": "HELIXLABO-L3-056-F02",
@@ -287,10 +288,11 @@
       "case_ids": [
         "HELIXLABO-L9-056-F02-C01-APPLIED-ORACLE",
         "HELIXLABO-L9-056-F02-C02-ORACLE-EXISTS",
-        "HELIXLABO-L9-056-F02-C03-SAMPLE"
+        "HELIXLABO-L9-056-F02-C03-SAMPLE",
+        "HELIXLABO-L9-056-F02-C04-COUNTEREXAMPLE-EVIDENCE-MISSING"
       ],
-      "forward": "L3要求→L4契約→L9のsource値case→L10の正負oracleへ追跡する。",
-      "reverse": "各L9 caseはこのL3/L10 IDへ結び、異なる義務間でcaseを共有しない。"
+      "forward": "L3要求→L4の固有意味規則→L9のraw source値付きGWT→L10正負oracleへ追跡する。",
+      "reverse": "各GWTのgivenはraw packet identityと該当値を示し、caseは該当L3/L10 IDへ結ぶ。"
     },
     {
       "requirement_id": "HELIXLABO-L3-056-F03",
@@ -302,8 +304,8 @@
         "HELIXLABO-L9-056-F03-C02-MISMATCH",
         "HELIXLABO-L9-056-F03-C03-NEW-VERSION-EXPIRY"
       ],
-      "forward": "L3要求→L4契約→L9のsource値case→L10の正負oracleへ追跡する。",
-      "reverse": "各L9 caseはこのL3/L10 IDへ結び、異なる義務間でcaseを共有しない。"
+      "forward": "L3要求→L4の固有意味規則→L9のraw source値付きGWT→L10正負oracleへ追跡する。",
+      "reverse": "各GWTのgivenはraw packet identityと該当値を示し、caseは該当L3/L10 IDへ結ぶ。"
     },
     {
       "requirement_id": "HELIXLABO-L3-056-F04",
@@ -317,8 +319,8 @@
         "HELIXLABO-L9-056-F04-C04-SIMPLE-INPUT-GAP",
         "HELIXLABO-L9-056-F04-C05-IMPORT-IS-NOT-EVALUATION"
       ],
-      "forward": "L3要求→L4契約→L9のsource値case→L10の正負oracleへ追跡する。",
-      "reverse": "各L9 caseはこのL3/L10 IDへ結び、異なる義務間でcaseを共有しない。"
+      "forward": "L3要求→L4の固有意味規則→L9のraw source値付きGWT→L10正負oracleへ追跡する。",
+      "reverse": "各GWTのgivenはraw packet identityと該当値を示し、caseは該当L3/L10 IDへ結ぶ。"
     }
   ],
   "approved_requirements": [
@@ -581,7 +583,7 @@
       "id": "HELIXLABO-L4-056-F01",
       "requirement_ref": "HELIXLABO-L3-056-F01",
       "system_oracle_ref": "HELIXLABO-L10-056-F01",
-      "detail_design_ref": "HELIXLABO-L5-056-F01",
+      "detail_design_ref": "HELIXLABO-L9-056-F01",
       "approved_requirement": {
         "id": "HELIXLABO-L3-056-F01",
         "parent": "HELIXLABO-L2-056",
@@ -603,13 +605,18 @@
       "name": "初回結果の観測履歴",
       "input": "OSのticket/assignment/attempt、Worker/model/実行contract、request/source revision/scope、state、budget/deadline、verification、人確認、data-use、receipt。",
       "output": "原state/provenanceを保つ観測候補。",
-      "invariants": "各結果状態は改変しない。identity不足は結合しない。receiptだけでqualification/assignmentを作らない。"
+      "invariants": "各結果状態は改変しない。identity不足は結合しない。receiptだけでqualification/assignmentを作らない。",
+      "semantic_authoring_rules": [
+        "初回resultは履歴ゼロでも、受領可能なOS assignment/ticket/attempt、Worker/modelと実行contract、request/source revision/scope、許可/data-use、receiptへ照合し、source原値を保持してobserved・not_evaluatedとして記録する。",
+        "success/failure/refused/interrupted/unknownは互いに変換しない。interruptedも独立した観測stateであり、verification未実行やreceipt不足を成功へ補わない。",
+        "identityまたは許可条件の不足は該当resultを結合せず、assignment/scopeはOS、許可/data-useはSECURITY、result版/provenanceはsource ownerへ不足を戻す。"
+      ]
     },
     {
       "id": "HELIXLABO-L4-056-F02",
       "requirement_ref": "HELIXLABO-L3-056-F02",
       "system_oracle_ref": "HELIXLABO-L10-056-F02",
-      "detail_design_ref": "HELIXLABO-L5-056-F02",
+      "detail_design_ref": "HELIXLABO-L9-056-F02",
       "approved_requirement": {
         "id": "HELIXLABO-L3-056-F02",
         "parent": "HELIXLABO-L2-056",
@@ -631,13 +638,18 @@
       "name": "評価oracleの実適用",
       "input": "task/model/scope、oracle revision、comparison condition、result ref、failure/counterexample/unknown、application result/evaluator/time/judgment receipt。",
       "output": "一致するscopeだけ評価状態を追跡。",
-      "invariants": "oracle存在だけで評価済みにしない。missing/mismatchは未評価。固定件数/閾値なし。"
+      "invariants": "oracle存在だけで評価済みにしない。missing/mismatchは未評価。固定件数/閾値なし。",
+      "semantic_authoring_rules": [
+        "oracleの存在/版だけでは実績へ適用した証拠にならない。結果source identity・task/model class・scope・oracle/comparison revisionと実適用receiptを対応させる。",
+        "実適用receiptは判定対象result、evaluator、time、judgment receiptを照合する。oracleが列挙するfailure/counterexample/unknownの必要根拠が欠ける/不一致なら該当scopeを未評価のままにする。",
+        "単発successは適用範囲外へ一般化せず、観測済みresultと評価済みscopeを別状態で保持する。sample数/thresholdはこのpairで追加しない。"
+      ]
     },
     {
       "id": "HELIXLABO-L4-056-F03",
       "requirement_ref": "HELIXLABO-L3-056-F03",
       "system_oracle_ref": "HELIXLABO-L10-056-F03",
-      "detail_design_ref": "HELIXLABO-L5-056-F03",
+      "detail_design_ref": "HELIXLABO-L9-056-F03",
       "approved_requirement": {
         "id": "HELIXLABO-L3-056-F03",
         "parent": "HELIXLABO-L2-056",
@@ -665,7 +677,7 @@
       "id": "HELIXLABO-L4-056-F04",
       "requirement_ref": "HELIXLABO-L3-056-F04",
       "system_oracle_ref": "HELIXLABO-L10-056-F04",
-      "detail_design_ref": "HELIXLABO-L5-056-F04",
+      "detail_design_ref": "HELIXLABO-L9-056-F04",
       "approved_requirement": {
         "id": "HELIXLABO-L3-056-F04",
         "parent": "HELIXLABO-L2-056",

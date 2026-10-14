@@ -274,10 +274,11 @@
       "case_ids": [
         "HELIXLABO-L9-056-F01-C01-STATUS",
         "HELIXLABO-L9-056-F01-C02-IDENTITY",
-        "HELIXLABO-L9-056-F01-C03-PROMOTION"
+        "HELIXLABO-L9-056-F01-C03-PROMOTION",
+        "HELIXLABO-L9-056-F01-C04-INTERRUPTED-OBSERVED-UNASSESSED"
       ],
-      "forward": "L3要求→L4契約→L9のsource値case→L10の正負oracleへ追跡する。",
-      "reverse": "各L9 caseはこのL3/L10 IDへ結び、異なる義務間でcaseを共有しない。"
+      "forward": "L3要求→L4の固有意味規則→L9のraw source値付きGWT→L10正負oracleへ追跡する。",
+      "reverse": "各GWTのgivenはraw packet identityと該当値を示し、caseは該当L3/L10 IDへ結ぶ。"
     },
     {
       "requirement_id": "HELIXLABO-L3-056-F02",
@@ -287,10 +288,11 @@
       "case_ids": [
         "HELIXLABO-L9-056-F02-C01-APPLIED-ORACLE",
         "HELIXLABO-L9-056-F02-C02-ORACLE-EXISTS",
-        "HELIXLABO-L9-056-F02-C03-SAMPLE"
+        "HELIXLABO-L9-056-F02-C03-SAMPLE",
+        "HELIXLABO-L9-056-F02-C04-COUNTEREXAMPLE-EVIDENCE-MISSING"
       ],
-      "forward": "L3要求→L4契約→L9のsource値case→L10の正負oracleへ追跡する。",
-      "reverse": "各L9 caseはこのL3/L10 IDへ結び、異なる義務間でcaseを共有しない。"
+      "forward": "L3要求→L4の固有意味規則→L9のraw source値付きGWT→L10正負oracleへ追跡する。",
+      "reverse": "各GWTのgivenはraw packet identityと該当値を示し、caseは該当L3/L10 IDへ結ぶ。"
     },
     {
       "requirement_id": "HELIXLABO-L3-056-F03",
@@ -302,8 +304,8 @@
         "HELIXLABO-L9-056-F03-C02-MISMATCH",
         "HELIXLABO-L9-056-F03-C03-NEW-VERSION-EXPIRY"
       ],
-      "forward": "L3要求→L4契約→L9のsource値case→L10の正負oracleへ追跡する。",
-      "reverse": "各L9 caseはこのL3/L10 IDへ結び、異なる義務間でcaseを共有しない。"
+      "forward": "L3要求→L4の固有意味規則→L9のraw source値付きGWT→L10正負oracleへ追跡する。",
+      "reverse": "各GWTのgivenはraw packet identityと該当値を示し、caseは該当L3/L10 IDへ結ぶ。"
     },
     {
       "requirement_id": "HELIXLABO-L3-056-F04",
@@ -317,8 +319,8 @@
         "HELIXLABO-L9-056-F04-C04-SIMPLE-INPUT-GAP",
         "HELIXLABO-L9-056-F04-C05-IMPORT-IS-NOT-EVALUATION"
       ],
-      "forward": "L3要求→L4契約→L9のsource値case→L10の正負oracleへ追跡する。",
-      "reverse": "各L9 caseはこのL3/L10 IDへ結び、異なる義務間でcaseを共有しない。"
+      "forward": "L3要求→L4の固有意味規則→L9のraw source値付きGWT→L10正負oracleへ追跡する。",
+      "reverse": "各GWTのgivenはraw packet identityと該当値を示し、caseは該当L3/L10 IDへ結ぶ。"
     }
   ],
   "approved_requirements": [
@@ -593,13 +595,13 @@
         {
           "id": "HELIXLABO-L9-056-F01-C01-STATUS",
           "basis": "L10-056-F01のpositive_input",
-          "given": "PKT-056-001/002/003/004にはticket OS-T-056-17、assignment OS-A-056-17、Worker WORKER-07/MODEL-A/model-a-r2、scope repo-alpha/docs/spec.mdがあり、attempt ATT-056-01/02/03/04はそれぞれ異なる。状態は順にsuccess/failure/refused/unknownである。",
+          "given": "PKT-056-001-RAW-b576a6a3/002/003/004にはticket OS-T-056-17、assignment OS-A-056-17、Worker WORKER-07/MODEL-A/model-a-r2、scope repo-alpha/docs/spec.mdがあり、attempt ATT-056-01/02/03/04はそれぞれ異なる。状態は順にsuccess/failure/refused/unknownである。 入力rawの識別子: PKT-056-001-RAW-b576a6a3-RAW-b576a6a3, PKT-056-002, PKT-056-003, PKT-056-004。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "4つのsource packetを初回result観測として渡す。",
           "then": "各状態とreceiptを保ち、すべて観測済み・未評価のままにする。",
           "independent_source_packets": [
             {
               "ref": {
-                "identity": "PKT-056-001",
+                "identity": "PKT-056-001-RAW-b576a6a3",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -607,8 +609,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":\"HUMAN-056-17\",\"state\":\"confirmed\"},\"packet_id\":\"PKT-056-001\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-01\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-01\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
-              "sha256": "b576a6a3868d5519be51f31de2528b67fac216e5417cc83637141874b121ff9f"
+              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":\"HUMAN-056-17\",\"state\":\"confirmed\"},\"packet_id\":\"PKT-056-001-RAW-b576a6a3\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-01\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-01\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
+              "sha256": "ec7874598f4b14965f35b13e7ac0e10e7168f3cfe6ce4d990906681dd1c6935b"
             },
             {
               "ref": {
@@ -654,12 +656,13 @@
           "failure_observation": "合成入力はsource許可や実際のresultを証明しない。",
           "return_to": "OS、SECURITY、Worker/結果sourceの各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F01"
         },
         {
           "id": "HELIXLABO-L9-056-F01-C02-IDENTITY",
           "basis": "L10-056-F01のpositive_inputおよびnegative_input",
-          "given": "PKT-056-005はassignment_id=null、PKT-056-009はticket_id=null、PKT-056-010はworker.identity=null、PKT-056-011はrequest.source_revision=null、PKT-056-012はresult_receipt=nullである。PKT-056-006はOS-T-056-99/OS-A-056-99とATT-056-01を持ち、PKT-056-001はOS-T-056-17/OS-A-056-17を持つ。 この固定例はkeyを持つ明示nullによるidentity不足であり、key自体のabsentを観測した証拠ではない。",
+          "given": "PKT-056-005はassignment_id=null、PKT-056-009はticket_id=null、PKT-056-010はworker.identity=null、PKT-056-011はrequest.source_revision=null、PKT-056-012はresult_receipt=nullである。PKT-056-006はOS-T-056-99/OS-A-056-99とATT-056-01を持ち、PKT-056-001はOS-T-056-17/OS-A-056-17を持つ。 この固定例はkeyを持つ明示nullによるidentity不足であり、key自体のabsentを観測した証拠ではない。 入力rawの識別子: PKT-056-005, PKT-056-009, PKT-056-010-RAW-65cd60e8, PKT-056-011-RAW-d53d5146, PKT-056-012-RAW-51341a8c, PKT-056-006, PKT-056-001-RAW-bef4ff6c。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "identity欠落または不一致を同じattemptへ結合しようとする。",
           "then": "記録を結合せず、assignment欠落はOSへ戻し、source IDを保つ。",
           "independent_source_packets": [
@@ -691,7 +694,7 @@
             },
             {
               "ref": {
-                "identity": "PKT-056-010",
+                "identity": "PKT-056-010-RAW-65cd60e8",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -699,12 +702,12 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"fixture_only\":true,\"packet_id\":\"PKT-056-010\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":null,\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
-              "sha256": "65cd60e8659cea13da0082241129b6f6e1dec08bcc8dcb446e8a0c3d00385cb0"
+              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"fixture_only\":true,\"packet_id\":\"PKT-056-010-RAW-65cd60e8\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":null,\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
+              "sha256": "b181bf5b133d2c9f5b5c678e41171b0c500bb5bde69bf6d4e9e67bd1144484da"
             },
             {
               "ref": {
-                "identity": "PKT-056-011",
+                "identity": "PKT-056-011-RAW-d53d5146",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -712,12 +715,12 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"fixture_only\":true,\"packet_id\":\"PKT-056-011\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":null},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
-              "sha256": "d53d5146557473fba9436ab8baef2493ccb2b13da746f42b7c4e8d4629305a8c"
+              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"fixture_only\":true,\"packet_id\":\"PKT-056-011-RAW-d53d5146\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":null},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
+              "sha256": "79a0ff2d53a33016876a232f853125ab161f0a275fa59fe38e608ee8ca9e9cda"
             },
             {
               "ref": {
-                "identity": "PKT-056-012",
+                "identity": "PKT-056-012-RAW-51341a8c",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -725,8 +728,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"fixture_only\":true,\"packet_id\":\"PKT-056-012\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":null,\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
-              "sha256": "51341a8c7c384b7ba7297201589897651342f5a7edee815b55b167e52bd5e484"
+              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"fixture_only\":true,\"packet_id\":\"PKT-056-012-RAW-51341a8c\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":null,\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
+              "sha256": "a3c80227b3a0b95b9e65006fd2a3405eb68e0f81f0009a45933c1f395982c43c"
             },
             {
               "ref": {
@@ -743,7 +746,7 @@
             },
             {
               "ref": {
-                "identity": "PKT-056-001",
+                "identity": "PKT-056-001-RAW-bef4ff6c",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -751,20 +754,21 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":\"HUMAN-056-17\",\"state\":\"confirmed\"},\"packet_id\":\"PKT-056-001\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-17\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
-              "sha256": "bef4ff6c9f3e751586166844f12c3d46ee159068835f31d2c933caabe185096f"
+              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":\"HUMAN-056-17\",\"state\":\"confirmed\"},\"packet_id\":\"PKT-056-001-RAW-bef4ff6c\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-17\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
+              "sha256": "e028c986d153e447115d304e58389fdfb9be1a674e5ca570870671e8949e526d"
             }
           ],
           "expected_observation": "identity不一致と欠落を見えるまま保持し、qualificationしない。",
           "failure_observation": "不一致をresultなしへ書き換えない。",
           "return_to": "OS、sourceの各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F01"
         },
         {
           "id": "HELIXLABO-L9-056-F01-C03-PROMOTION",
           "basis": "L10-056-F01のnegative_input",
-          "given": "PKT-056-007のsuccessはproposed_status=qualifiedを伴い、PKT-056-008のunknownはproposed_aggregate_state=successを伴う。",
+          "given": "PKT-056-007のsuccessはproposed_status=qualifiedを伴い、PKT-056-008のunknownはproposed_aggregate_state=successを伴う。 入力rawの識別子: PKT-056-007, PKT-056-008。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "提案されたstatusを元のresult receiptへ適用しようとする。",
           "then": "単発successをqualifiedにせず、unknownをsuccessへ集約しない。",
           "independent_source_packets": [
@@ -799,7 +803,41 @@
           "failure_observation": "negative proposalは既存L10の禁止事項だけを示す。",
           "return_to": "Bench/評価の各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F01"
+        },
+        {
+          "id": "HELIXLABO-L9-056-F01-C04-INTERRUPTED-OBSERVED-UNASSESSED",
+          "basis": "HELIXLABO-L10-056-F01 positive_input: 初回result stateを保持する。HELIXLABO-L3-056-F01のobligationは中断を独立stateとして含める。",
+          "requirement_ref": "HELIXLABO-L3-056-F01",
+          "system_oracle_ref": "HELIXLABO-L10-056-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "PKT-056-030-INTERRUPTED",
+                "revision": "fixture-056-r1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-056",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-02\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":null,\"state\":\"not_requested\"},\"packet_id\":\"PKT-056-030-INTERRUPTED\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-30\",\"revision\":\"result-r1\"},\"result_state\":\"interrupted\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-17\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":null,\"state\":\"not_run\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
+              "sha256": "3c6b3ab9019fa3233bc98407cf09368fb327417d706a67ebecccc3bc7d6a3d72"
+            }
+          ],
+          "given": "初回runのsource packet PKT-056-030-INTERRUPTEDはOS ticket OS-T-056-17、assignment OS-A-056-17、attempt ATT-056-02、Worker-07/model-a-r2、scope repo-alpha/docs/spec.md、source-r17、result_state=interrupted、result RESULT-056-30を持ち、verification=not_run。 raw source identities: PKT-056-030-INTERRUPTED.",
+          "when": "初回resultを観測履歴へ結び付ける。",
+          "then": "中断を原stateのまま観測済み・未評価として追記し、成功/失敗/拒否/unknownへ置換しない。",
+          "expected_observation": "source identity/revision/scope、assignment/ticket/attempt、interrupted state、verification未実行と未評価を追跡できる。",
+          "failure_observation": "fixture inputに対する設計期待のみ。実source/資格/実行評価を示さない。",
+          "return_to": [
+            "OSへassignment/ticket/attempt不足を返す。",
+            "source ownerへresult/source revisionとreceipt不足を返す。",
+            "評価状態を変更せず未評価で保持する。"
+          ],
+          "execution_state": "not_executed",
+          "fixture_only": true
         }
       ]
     },
@@ -830,13 +868,13 @@
         {
           "id": "HELIXLABO-L9-056-F02-C01-APPLIED-ORACLE",
           "basis": "L10-056-F02のpositive_input",
-          "given": "PKT-056-001のsuccess/source-r17/model-a-r2/docs-edit/repo-alpha/docs/spec.mdはORACLE-056-A/oracle-r3と一致する。APPLY-056-01はRESULT-056-17、EVALUATOR-02、2026-10-12T10:30:00Z、counterexampleおよびunknownの参照を結び付ける。",
+          "given": "PKT-056-001のsuccess/source-r17/model-a-r2/docs-edit/repo-alpha/docs/spec.mdはORACLE-056-A/oracle-r3と一致する。APPLY-056-01はRESULT-056-17、EVALUATOR-02、2026-10-12T10:30:00Z、counterexampleおよびunknownの参照を結び付ける。 入力rawの識別子: PKT-056-001-RAW-bef4ff6c, ORACLE-056-A-RAW-59977e2c。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "明示された適用receiptを同じresultとscopeに照らして確認する。",
           "then": "一致するoracle/revision/scope/judgmentを示し、その判定を該当scopeに限る。",
           "independent_source_packets": [
             {
               "ref": {
-                "identity": "PKT-056-001",
+                "identity": "PKT-056-001-RAW-bef4ff6c",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -844,12 +882,12 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":\"HUMAN-056-17\",\"state\":\"confirmed\"},\"packet_id\":\"PKT-056-001\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-17\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
-              "sha256": "bef4ff6c9f3e751586166844f12c3d46ee159068835f31d2c933caabe185096f"
+              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":\"HUMAN-056-17\",\"state\":\"confirmed\"},\"packet_id\":\"PKT-056-001-RAW-bef4ff6c\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-17\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
+              "sha256": "e028c986d153e447115d304e58389fdfb9be1a674e5ca570870671e8949e526d"
             },
             {
               "ref": {
-                "identity": "ORACLE-056-A",
+                "identity": "ORACLE-056-A-RAW-59977e2c",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -857,26 +895,27 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"application_receipt\":{\"counterexample_refs\":[\"RESULT-056-19\"],\"evaluator\":\"EVALUATOR-02\",\"id\":\"APPLY-056-01\",\"judgment\":\"pass-within-fixture-scope\",\"judgment_receipt_id\":\"JUDGE-056-01\",\"oracle_revision\":\"oracle-r3\",\"result_ref\":\"RESULT-056-17\",\"time\":\"2026-10-12T10:30:00Z\",\"unknown_refs\":[\"RESULT-056-20\"]},\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\"}",
-              "sha256": "59977e2c11db3595b2d63e15acdf2462ace13db4af1d42f4de5dfacd099d8930"
+              "raw_utf8": "{\"application_receipt\":{\"counterexample_refs\":[\"RESULT-056-19\"],\"evaluator\":\"EVALUATOR-02\",\"id\":\"APPLY-056-01\",\"judgment\":\"pass-within-fixture-scope\",\"judgment_receipt_id\":\"JUDGE-056-01\",\"oracle_revision\":\"oracle-r3\",\"result_ref\":\"RESULT-056-17\",\"time\":\"2026-10-12T10:30:00Z\",\"unknown_refs\":[\"RESULT-056-20\"]},\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"packet_id\":\"ORACLE-056-A-RAW-59977e2c\",\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\"}",
+              "sha256": "f072e87ebfb7111290efa35e1ff61c781a78ed289f25e09e8eb60f332832a033"
             }
           ],
           "expected_observation": "すべてのevidence参照がfixture内の値で解決する。",
           "failure_observation": "これは合成fixtureであり、実際の評価やoracle資格を示さない。",
           "return_to": "Bench/oracleの各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F02"
         },
         {
           "id": "HELIXLABO-L9-056-F02-C02-ORACLE-EXISTS",
           "basis": "L10-056-F02のpositive_inputおよびnegative_input",
-          "given": "PKT-056-010は既存のORACLE-056-A/oracle-r3を参照するがapplication_receipt=nullである。PKT-056-011ではevaluator/time/judgment receiptが欠落している。",
+          "given": "PKT-056-010は既存のORACLE-056-A/oracle-r3を参照するがapplication_receipt=nullである。PKT-056-011ではevaluator/time/judgment receiptが欠落している。 入力rawの識別子: PKT-056-010-RAW-c02d37e5, PKT-056-011-RAW-64356953。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "oracleの存在または不完全なreceiptだけから評価しようとする。",
           "then": "観測済みresultを未評価に保ち、欠けた適用evidenceを特定する。",
           "independent_source_packets": [
             {
               "ref": {
-                "identity": "PKT-056-010",
+                "identity": "PKT-056-010-RAW-c02d37e5",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -884,12 +923,12 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"application_receipt\":null,\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\"}",
-              "sha256": "c02d37e593b9f40b920a0341fb1bf5b0dac974b9419c27448ae44394a85442a3"
+              "raw_utf8": "{\"application_receipt\":null,\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"packet_id\":\"PKT-056-010-RAW-c02d37e5\",\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\"}",
+              "sha256": "6cd41c27eedc6c9158754ccdb780fce419bb062fad538685d851ed7653fa0341"
             },
             {
               "ref": {
-                "identity": "PKT-056-011",
+                "identity": "PKT-056-011-RAW-64356953",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -897,26 +936,27 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"application_receipt\":{\"evaluator\":null,\"id\":\"APPLY-056-11\",\"judgment_receipt\":null,\"judgment_receipt_id\":null,\"oracle_revision\":\"oracle-r3\",\"result_ref\":\"RESULT-056-17\",\"time\":null},\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"evaluator\":null,\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"judgment_receipt\":null,\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\",\"time\":null}",
-              "sha256": "643569531931f1315b16975608e4d8cd534c6a45f14c17aaafa0b47789fcacfb"
+              "raw_utf8": "{\"application_receipt\":{\"evaluator\":null,\"id\":\"APPLY-056-11\",\"judgment_receipt\":null,\"judgment_receipt_id\":null,\"oracle_revision\":\"oracle-r3\",\"result_ref\":\"RESULT-056-17\",\"time\":null},\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"evaluator\":null,\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"judgment_receipt\":null,\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"packet_id\":\"PKT-056-011-RAW-64356953\",\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\",\"time\":null}",
+              "sha256": "871ba246d660dcea37472a45cac99d821c90025d01e7468c84dc645b1230be38"
             }
           ],
           "expected_observation": "oracle参照とresultへの実適用を別に保つ。",
           "failure_observation": "取込や説明だけから評価を成立させない。",
           "return_to": "Bench/oracleの各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F02"
         },
         {
           "id": "HELIXLABO-L9-056-F02-C03-SAMPLE",
           "basis": "L10-056-F02のpositive_inputおよびnegative_input",
-          "given": "PKT-056-012はcomparison/application receiptのない単発successである。PKT-056-013はproposed_required_sample_count=30を提案する。",
+          "given": "PKT-056-012はcomparison/application receiptのない単発successである。PKT-056-013はproposed_required_sample_count=30を提案する。 入力rawの識別子: PKT-056-012-RAW-84b58def, PKT-056-013。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "単発successを一般化する、または30件を新たな最低件数にしようとする。",
           "then": "unknown scopeは未評価のままにし、固定sample countを追加しない。",
           "independent_source_packets": [
             {
               "ref": {
-                "identity": "PKT-056-012",
+                "identity": "PKT-056-012-RAW-84b58def",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -924,8 +964,8 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":\"HUMAN-056-17\",\"state\":\"confirmed\"},\"packet_id\":\"PKT-056-012\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-17\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
-              "sha256": "84b58defe6041d0f76f12f32497a838c66fb19ea930897afe3168d862eef1fc8"
+              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":\"HUMAN-056-17\",\"state\":\"confirmed\"},\"packet_id\":\"PKT-056-012-RAW-84b58def\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-17\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
+              "sha256": "4e743f1f3c60c16b2ca897451dd23f8e21c6531479fd412a91a466a647f741a8"
             },
             {
               "ref": {
@@ -945,7 +985,53 @@
           "failure_observation": "sample-count条件を新設しない。",
           "return_to": "Bench/oracleの各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F02"
+        },
+        {
+          "id": "HELIXLABO-L9-056-F02-C04-COUNTEREXAMPLE-EVIDENCE-MISSING",
+          "basis": "HELIXLABO-L10-056-F02 positive_input: 反例不足の比較。HELIXLABO-L3-056-F02はresult/失敗/反例/unknown根拠を要求。",
+          "requirement_ref": "HELIXLABO-L3-056-F02",
+          "system_oracle_ref": "HELIXLABO-L10-056-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "PKT-056-031-RESULT",
+                "revision": "fixture-056-r1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-056",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"fixture_only\":true,\"packet_id\":\"PKT-056-031-RESULT\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
+              "sha256": "ba8396cc11ca2d805f3145977e9167e4f013c76664e53853344df9a545f08992"
+            },
+            {
+              "ref": {
+                "identity": "ORACLE-056-A-COUNTEREXAMPLE-GAP",
+                "revision": "fixture-056-r1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-056",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"application_receipt\":{\"counterexample_refs\":[],\"evaluator\":\"EVALUATOR-02\",\"id\":\"APPLY-056-31\",\"judgment\":\"pass-within-fixture-scope\",\"judgment_receipt_id\":\"JUDGE-056-31\",\"oracle_revision\":\"oracle-r3\",\"result_ref\":\"RESULT-056-17\",\"time\":\"2026-10-12T10:30:00Z\",\"unknown_refs\":[\"RESULT-056-20\"]},\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"packet_id\":\"ORACLE-056-A-COUNTEREXAMPLE-GAP\",\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\"}",
+              "sha256": "61c9b1817013ba689286d9969576c85870595e4f737d01369482eefa0f69de21"
+            }
+          ],
+          "given": "PKT-056-031-RESULTはRESULT-056-17 success、task docs-edit、model-a-r2、scope repo-alpha/docs/spec.md。ORACLE-056-A-COUNTEREXAMPLE-GAPはoracle-r3で同scope outcomesにfailure RESULT-056-18、counterexample RESULT-056-19、unknown RESULT-056-20を記録する。APPLY-056-31にはevaluator/time/judgment receiptがある一方、counterexample_refs=[]で反例参照が欠ける。 raw source identities: PKT-056-031-RESULT, ORACLE-056-A-COUNTEREXAMPLE-GAP.",
+          "when": "receiptの他項目が揃っていることだけを根拠に評価済みへ変更しようとする。",
+          "then": "このscopeを評価済みにせず、source resultを観測済み・未評価に保ち、反例参照の不足を明示する。",
+          "expected_observation": "実適用receiptは存在するが、oracle outcomesのcounterexample RESULT-056-19を結ぶcounterexample_refsが空のため、該当scopeの評価は未成立/未評価である。",
+          "failure_observation": "合成packetに対する設計期待のみ。実source/資格/実評価を示さない。",
+          "return_to": [
+            "Bench/評価oracle ownerへ不足したcounterexample evidenceを返す。",
+            "result source ownerへ原result/失敗/反例/unknown参照を保つ。"
+          ],
+          "execution_state": "not_executed",
+          "fixture_only": true
         }
       ]
     },
@@ -976,13 +1062,13 @@
         {
           "id": "HELIXLABO-L9-056-F03-C01-MATCH",
           "basis": "L10-056-F03のpositive_input",
-          "given": "PKT-056-001のtask/model/version/contract/source/scopeはORACLE-056-A/oracle-r3の対象fieldと一致する。",
+          "given": "PKT-056-001のtask/model/version/contract/source/scopeはORACLE-056-A/oracle-r3の対象fieldと一致する。 入力rawの識別子: PKT-056-001-RAW-bef4ff6c, ORACLE-056-A-RAW-e4571c5e。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "対象となる各identity/revision/scopeの値を照合する。",
           "then": "一致するtupleを同じfixture scopeへ追跡できる。",
           "independent_source_packets": [
             {
               "ref": {
-                "identity": "PKT-056-001",
+                "identity": "PKT-056-001-RAW-bef4ff6c",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -990,12 +1076,12 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":\"HUMAN-056-17\",\"state\":\"confirmed\"},\"packet_id\":\"PKT-056-001\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-17\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
-              "sha256": "bef4ff6c9f3e751586166844f12c3d46ee159068835f31d2c933caabe185096f"
+              "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":\"HUMAN-056-17\",\"state\":\"confirmed\"},\"packet_id\":\"PKT-056-001-RAW-bef4ff6c\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-17\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
+              "sha256": "e028c986d153e447115d304e58389fdfb9be1a674e5ca570870671e8949e526d"
             },
             {
               "ref": {
-                "identity": "ORACLE-056-A",
+                "identity": "ORACLE-056-A-RAW-e4571c5e",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -1003,20 +1089,21 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"application_receipt\":{\"counterexample_refs\":[\"RESULT-056-19\"],\"evaluator\":\"EVALUATOR-02\",\"id\":\"APPLY-056-01\",\"judgment\":\"pass-within-fixture-scope\",\"oracle_revision\":\"oracle-r3\",\"result_ref\":\"RESULT-056-17\",\"time\":\"2026-10-12T10:30:00Z\",\"unknown_refs\":[\"RESULT-056-20\"]},\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\"}",
-              "sha256": "e4571c5e43ac3d96e5c5375d8f780f97d8fc903419712747df09dee110c8d539"
+              "raw_utf8": "{\"application_receipt\":{\"counterexample_refs\":[\"RESULT-056-19\"],\"evaluator\":\"EVALUATOR-02\",\"id\":\"APPLY-056-01\",\"judgment\":\"pass-within-fixture-scope\",\"oracle_revision\":\"oracle-r3\",\"result_ref\":\"RESULT-056-17\",\"time\":\"2026-10-12T10:30:00Z\",\"unknown_refs\":[\"RESULT-056-20\"]},\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"packet_id\":\"ORACLE-056-A-RAW-e4571c5e\",\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\"}",
+              "sha256": "12dce56294cc314546b02615362370853110ea255b1981d5869e4353ed2b610c"
             }
           ],
           "expected_observation": "classだけからidentityを推定しない。",
           "failure_observation": "実source qualificationを示すfixtureではない。",
           "return_to": "source/oracle/model/scopeの各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F03"
         },
         {
           "id": "HELIXLABO-L9-056-F03-C02-MISMATCH",
           "basis": "L10-056-F03のpositive_inputおよびnegative_input",
-          "given": "ORACLE-056-Aの対象はMODEL-A/model-a-r2/model-class-a、docs-edit、EXEC-C-3、req-r17/source-r17、oracle-r3、repo-alpha/docs/spec.mdである。PKT-056-014はmodel version、015はtask class、016はrequest/source revision、017はscope、027はmodel class、028はexecution contract revisionを変更し、029はoracle-r2を参照する。",
+          "given": "ORACLE-056-Aの対象はMODEL-A/model-a-r2/model-class-a、docs-edit、EXEC-C-3、req-r17/source-r17、oracle-r3、repo-alpha/docs/spec.mdである。PKT-056-014はmodel version、015はtask class、016はrequest/source revision、017はscope、027はmodel class、028はexecution contract revisionを変更し、029はoracle-r2を参照する。 入力rawの識別子: PKT-056-014, PKT-056-015, PKT-056-016, PKT-056-017, PKT-056-027, PKT-056-028, PKT-056-029, ORACLE-056-A-RAW-e4571c5e。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "各tupleの不一致をoracle scopeと照合する。",
           "then": "各result事実を保持し、非互換なevidenceから分離して、個別の未評価理由を記録する。",
           "independent_source_packets": [
@@ -1113,7 +1200,7 @@
             },
             {
               "ref": {
-                "identity": "ORACLE-056-A",
+                "identity": "ORACLE-056-A-RAW-e4571c5e",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -1121,20 +1208,21 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"application_receipt\":{\"counterexample_refs\":[\"RESULT-056-19\"],\"evaluator\":\"EVALUATOR-02\",\"id\":\"APPLY-056-01\",\"judgment\":\"pass-within-fixture-scope\",\"oracle_revision\":\"oracle-r3\",\"result_ref\":\"RESULT-056-17\",\"time\":\"2026-10-12T10:30:00Z\",\"unknown_refs\":[\"RESULT-056-20\"]},\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\"}",
-              "sha256": "e4571c5e43ac3d96e5c5375d8f780f97d8fc903419712747df09dee110c8d539"
+              "raw_utf8": "{\"application_receipt\":{\"counterexample_refs\":[\"RESULT-056-19\"],\"evaluator\":\"EVALUATOR-02\",\"id\":\"APPLY-056-01\",\"judgment\":\"pass-within-fixture-scope\",\"oracle_revision\":\"oracle-r3\",\"result_ref\":\"RESULT-056-17\",\"time\":\"2026-10-12T10:30:00Z\",\"unknown_refs\":[\"RESULT-056-20\"]},\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"packet_id\":\"ORACLE-056-A-RAW-e4571c5e\",\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\"}",
+              "sha256": "12dce56294cc314546b02615362370853110ea255b1981d5869e4353ed2b610c"
             }
           ],
           "expected_observation": "列挙したfieldの各不一致を個別に確認できる。",
           "failure_observation": "不一致をresultなし、または自動互換と呼ばない。",
           "return_to": "source/oracle/model/scopeの各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F03"
         },
         {
           "id": "HELIXLABO-L9-056-F03-C03-NEW-VERSION-EXPIRY",
           "basis": "L10-056-F03のpositive_inputおよびnegative_input",
-          "given": "PKT-056-018はPROVIDER-B/MODEL-B/model-b-r1を持ち、ORACLE-056-Aの比較対象scopeはMODEL-A/model-a-r2である。PKT-056-019はmax_age_days=30を提案する。",
+          "given": "PKT-056-018はPROVIDER-B/MODEL-B/model-b-r1を持ち、ORACLE-056-Aの比較対象scopeはMODEL-A/model-a-r2である。PKT-056-019はmax_age_days=30を提案する。 入力rawの識別子: PKT-056-018, PKT-056-019, ORACLE-056-A-RAW-e4571c5e。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "旧classのevidenceを自動継承する、または任意の30日ruleで期限切れにしようとする。",
           "then": "適用可能性が示されるまで新versionを未評価に保ち、expiryを追加しない。",
           "independent_source_packets": [
@@ -1166,7 +1254,7 @@
             },
             {
               "ref": {
-                "identity": "ORACLE-056-A",
+                "identity": "ORACLE-056-A-RAW-e4571c5e",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -1174,15 +1262,16 @@
                   "fixture_only": true
                 }
               },
-              "raw_utf8": "{\"application_receipt\":{\"counterexample_refs\":[\"RESULT-056-19\"],\"evaluator\":\"EVALUATOR-02\",\"id\":\"APPLY-056-01\",\"judgment\":\"pass-within-fixture-scope\",\"oracle_revision\":\"oracle-r3\",\"result_ref\":\"RESULT-056-17\",\"time\":\"2026-10-12T10:30:00Z\",\"unknown_refs\":[\"RESULT-056-20\"]},\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\"}",
-              "sha256": "e4571c5e43ac3d96e5c5375d8f780f97d8fc903419712747df09dee110c8d539"
+              "raw_utf8": "{\"application_receipt\":{\"counterexample_refs\":[\"RESULT-056-19\"],\"evaluator\":\"EVALUATOR-02\",\"id\":\"APPLY-056-01\",\"judgment\":\"pass-within-fixture-scope\",\"oracle_revision\":\"oracle-r3\",\"result_ref\":\"RESULT-056-17\",\"time\":\"2026-10-12T10:30:00Z\",\"unknown_refs\":[\"RESULT-056-20\"]},\"comparison_condition\":\"same task/model/source/scope under fixture baseline\",\"fixture_only\":true,\"identity\":\"ORACLE-056-A\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\",\"outcomes\":[{\"id\":\"RUN-056-01\",\"result_ref\":\"RESULT-056-17\",\"state\":\"success\"},{\"id\":\"RUN-056-02\",\"result_ref\":\"RESULT-056-18\",\"state\":\"failure\"},{\"id\":\"RUN-056-03\",\"result_ref\":\"RESULT-056-19\",\"state\":\"counterexample\"},{\"id\":\"RUN-056-04\",\"result_ref\":\"RESULT-056-20\",\"state\":\"unknown\"}],\"packet_id\":\"ORACLE-056-A-RAW-e4571c5e\",\"revision\":\"oracle-r3\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"task_class\":\"docs-edit\"}",
+              "sha256": "12dce56294cc314546b02615362370853110ea255b1981d5869e4353ed2b610c"
             }
           ],
           "expected_observation": "30は拒否対象の提案に限り、新versionは別のまま保つ。",
           "failure_observation": "expiry intervalを設定しない。",
           "return_to": "source/oracle/modelの各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F03"
         }
       ]
     },
@@ -1213,7 +1302,7 @@
         {
           "id": "HELIXLABO-L9-056-F04-C01-DUPLICATE",
           "basis": "L10-056-F04のpositive_inputおよびnegative_input",
-          "given": "PKT-056-020はOS-T-056-17/OS-A-056-17/ATT-056-01/RESULT-056-17を持ち、同じpayloadが2回配送される。",
+          "given": "PKT-056-020はOS-T-056-17/OS-A-056-17/ATT-056-01/RESULT-056-17を持ち、同じpayloadが2回配送される。 入力rawの識別子: PKT-056-020, PKT-056-020 (DELIVERY-056-20-B)。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "同じresult identityの配送重複を受け取る。",
           "then": "重複を別resultとして数えず、同じidentityを保つ。",
           "independent_source_packets": [
@@ -1228,11 +1317,12 @@
                 }
               },
               "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":\"HUMAN-056-17\",\"state\":\"confirmed\"},\"packet_id\":\"PKT-056-020\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-17\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
-              "sha256": "c9864e9d8190cad1e8d75668aba24278b04bf7035a9b1d56d81c488086854e4f"
+              "sha256": "c9864e9d8190cad1e8d75668aba24278b04bf7035a9b1d56d81c488086854e4f",
+              "delivery_ref": "DELIVERY-056-20-A"
             },
             {
               "ref": {
-                "identity": "PKT-056-020-redelivery",
+                "identity": "PKT-056-020",
                 "revision": "fixture-v1",
                 "owner": "synthetic-fixture-owner",
                 "scope": {
@@ -1241,19 +1331,21 @@
                 }
               },
               "raw_utf8": "{\"assignment_id\":\"OS-A-056-17\",\"attempt_id\":\"ATT-056-01\",\"budget\":{\"limit\":\"5 fixture-units\",\"spent\":\"2 fixture-units\"},\"data_use\":{\"authorized\":true,\"classification\":\"internal-fixture\",\"receipt_id\":\"DU-056-17\"},\"deadline\":\"2026-10-14T12:00:00Z\",\"fixture_only\":true,\"human_confirmation\":{\"receipt_id\":\"HUMAN-056-17\",\"state\":\"confirmed\"},\"packet_id\":\"PKT-056-020\",\"request\":{\"id\":\"REQ-056-17\",\"revision\":\"req-r17\",\"source_identity\":\"SRC-056-17\",\"source_revision\":\"source-r17\"},\"result_receipt\":{\"id\":\"RESULT-056-17\",\"revision\":\"result-r1\"},\"result_state\":\"success\",\"scope\":{\"path\":\"docs/spec.md\",\"project\":\"repo-alpha\"},\"source_receipt\":{\"id\":\"SRC-RECEIPT-056-17\",\"revision\":\"receipt-r1\"},\"task\":{\"class\":\"docs-edit\",\"id\":\"TASK-056-DOC-17\"},\"ticket_id\":\"OS-T-056-17\",\"verification\":{\"receipt_id\":\"VERIFY-056-17\",\"state\":\"passed\"},\"worker\":{\"execution_contract_revision\":\"EXEC-C-3\",\"identity\":\"WORKER-07\",\"model_class\":\"model-class-a\",\"model_identity\":\"MODEL-A\",\"model_version\":\"model-a-r2\"}}",
-              "sha256": "c9864e9d8190cad1e8d75668aba24278b04bf7035a9b1d56d81c488086854e4f"
+              "sha256": "c9864e9d8190cad1e8d75668aba24278b04bf7035a9b1d56d81c488086854e4f",
+              "delivery_ref": "DELIVERY-056-20-B"
             }
           ],
           "expected_observation": "2回の配送が1つのsource eventを参照する。",
           "failure_observation": "正式なdedupe keyは未選定のままにする。",
           "return_to": "OS/sourceの各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F04"
         },
         {
           "id": "HELIXLABO-L9-056-F04-C02-CONFLICT",
           "basis": "L10-056-F04のpositive_inputおよびnegative_input",
-          "given": "PKT-056-021と022はticket/assignment/attempt/result identityであるRESULT-056-21 revision result-r1を共有するが、successとfailureをそれぞれ主張する。",
+          "given": "PKT-056-021と022はticket/assignment/attempt/result identityであるRESULT-056-21 revision result-r1を共有するが、successとfailureをそれぞれ主張する。 入力rawの識別子: PKT-056-021, PKT-056-022。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "矛盾するreceiptを結合しようとする。",
           "then": "両方のraw recordを保持し、訂正・再照合のためconflictとして戻す。",
           "independent_source_packets": [
@@ -1288,12 +1380,13 @@
           "failure_observation": "conflict解消policyを新設しない。",
           "return_to": "OS/sourceの各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F04"
         },
         {
           "id": "HELIXLABO-L9-056-F04-C03-STALE",
           "basis": "L10-056-F04のpositive_input",
-          "given": "PKT-056-023はrun_contract_revision=EXEC-C-3に対してreceipt execution_contract_revision=EXEC-C-1を記録しており、staleである。",
+          "given": "PKT-056-023はrun_contract_revision=EXEC-C-3に対してreceipt execution_contract_revision=EXEC-C-1を記録しており、staleである。 入力rawの識別子: PKT-056-023。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "stale revisionのresultをcurrent履歴へ受領する。",
           "then": "元の観測をstaleとして保ち、current履歴へ統合せずsource/OSへ訂正照合を返す。",
           "independent_source_packets": [
@@ -1315,12 +1408,13 @@
           "failure_observation": "staleをcurrent evidenceへ混ぜない。",
           "return_to": "OS/sourceの各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F04"
         },
         {
           "id": "HELIXLABO-L9-056-F04-C04-SIMPLE-INPUT-GAP",
           "basis": "L10-056-F04のpositive_input",
-          "given": "PKT-056-024はticket/assignment/result identityを持つが、data_use.authorized=falseかつreceipt_id=nullである。",
+          "given": "PKT-056-024はticket/assignment/result identityを持つが、data_use.authorized=falseかつreceipt_id=nullである。 入力rawの識別子: PKT-056-024。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "単純な許可入力欠落をstale/conflictと区別して照合する。",
           "then": "resultを許可済み取込とせず、missing/denyを明示してSECURITYへ返す。",
           "independent_source_packets": [
@@ -1342,12 +1436,13 @@
           "failure_observation": "権限不明/denyを許可へ読み替えない。",
           "return_to": "SECURITY",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F04"
         },
         {
           "id": "HELIXLABO-L9-056-F04-C05-IMPORT-IS-NOT-EVALUATION",
           "basis": "L10-056-F04のpositive_inputおよびnegative_input",
-          "given": "PKT-056-025にはsuccessful INGEST-056-25があるがoracle_apply_receiptはない。PKT-056-026はsuccess resultからassignment WORKER-09を提案する。",
+          "given": "PKT-056-025にはsuccessful INGEST-056-25があるがoracle_apply_receiptはない。PKT-056-026はsuccess resultからassignment WORKER-09を提案する。 入力rawの識別子: PKT-056-025, PKT-056-026。各識別子のsource値は添付packet本文そのものを指す。",
           "when": "取込成功を評価またはassignmentの成功へ昇格しようとする。",
           "then": "取込が証明するのは観測だけである。未評価に保ち、assignmentはOS ownerへ返す。",
           "independent_source_packets": [
@@ -1382,7 +1477,8 @@
           "failure_observation": "L2/L3の責務境界を再利用するだけである。",
           "return_to": "Bench/評価owner、OSの各owner",
           "fixture_only": true,
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "requirement_ref": "HELIXLABO-L3-056-F04"
         }
       ]
     }
