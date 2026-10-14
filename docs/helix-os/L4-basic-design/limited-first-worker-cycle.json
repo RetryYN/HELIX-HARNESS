@@ -1,0 +1,1625 @@
+{
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "parent": "HELIXOS-L2-027",
+  "source_main": "3c697cd63866ce3acbc4f1f41e49ad8488e4d458",
+  "scope": {
+    "approval_revision": "e0cf203d954a7b82375d46ad6fec2f8e5bcc8818",
+    "requirements": [
+      "HELIXOS-L3-027-F01",
+      "HELIXOS-L3-027-F02",
+      "HELIXOS-L3-027-F03",
+      "HELIXOS-L3-027-F04",
+      "HELIXOS-L3-027-F05",
+      "HELIXOS-L3-027-F06",
+      "HELIXOS-L3-027-F07",
+      "HELIXOS-L3-027-F08",
+      "HELIXOS-L3-027-F09",
+      "HELIXOS-L3-027-F10",
+      "HELIXOS-L3-027-F11",
+      "HELIXOS-L3-027-F12",
+      "HELIXOS-L3-027-N01",
+      "HELIXOS-L3-027-B01"
+    ],
+    "oracles": [
+      "HELIXOS-L10-027-B01",
+      "HELIXOS-L10-027-N01",
+      "HELIXOS-L10-027-F01",
+      "HELIXOS-L10-027-F02",
+      "HELIXOS-L10-027-F03",
+      "HELIXOS-L10-027-F04",
+      "HELIXOS-L10-027-F05",
+      "HELIXOS-L10-027-F06",
+      "HELIXOS-L10-027-F07",
+      "HELIXOS-L10-027-F08",
+      "HELIXOS-L10-027-F09",
+      "HELIXOS-L10-027-F10",
+      "HELIXOS-L10-027-F11",
+      "HELIXOS-L10-027-F12"
+    ],
+    "historical_stage": "Stage 2a",
+    "version_boundary": "1.0の限定初回経路。後続版・固定provider/modelを追加しない。",
+    "operation": "開始→run→検証/人確認→handoff/LABO観測→適用範囲付き評価の文書素材照合。実操作なし。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "approved_whole_objects": [
+    {
+      "id": "HELIXOS-L3-027-F01",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F01",
+        "parent": "HELIXOS-L2-027",
+        "title": "未評価と初回実行許可の分離",
+        "obligation": "開始前に要求/authority exact revision、ticket/task/scope、分類/data-use、操作許可、限定Worker/capability、proposal、LABO水準または明示未評価、予算/期限/停止条件、固定HARNESS oracle/義務、人確認を同attemptへ結ぶ。性能未評価だけで独立に許可された限定runを拒否せず、開始必須条件unknownは実行しない。",
+        "oracle_ref": "HELIXOS-L10-027-F01"
+      },
+      "object_canonical_sha256": "2e8f4bb4db06e5ffeca584067d98fd8c05672ddbbc7811d6dd5bfe6a4ace65a6"
+    },
+    {
+      "id": "HELIXOS-L3-027-F02",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F02",
+        "parent": "HELIXOS-L2-027",
+        "title": "人の配置案代行の同契約照合",
+        "obligation": "人代行案はINT010/066の同入力属性・契約revision・scope、根拠/不確実性/未評価表示を持ち、INT出力と偽装しない。OS受領receiptへsource/actor・入力/契約revision・task/scope・作成時点・根拠・未評価・受領側revisionを結ぶ。OSだけが割当/停止する。",
+        "oracle_ref": "HELIXOS-L10-027-F02"
+      },
+      "object_canonical_sha256": "722e77aaa2aae2589ffd0b0bd4147bb66ce77123bf81e9a598f8cbb86876dd9c"
+    },
+    {
+      "id": "HELIXOS-L3-027-F03",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F03",
+        "parent": "HELIXOS-L2-027",
+        "title": "狭いscope内の有限初回仕事",
+        "obligation": "人が確認した狭いtask/scope、指定Worker、明示budget/期限/停止条件、固定検証義務に限ってOS018が実行を統制する。超過/scope変更/検証欠落は停止し、費用・attempt・部分成果・未完・再開条件を保持する。",
+        "oracle_ref": "HELIXOS-L10-027-F03"
+      },
+      "object_canonical_sha256": "8ceccbdd71798426c04e9851b96b961ff5cb2958c3d2350700f0fee24fce8d2a"
+    },
+    {
+      "id": "HELIXOS-L3-027-F04",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F04",
+        "parent": "HELIXOS-L2-027",
+        "title": "HARNESS検証と独立した人確認",
+        "obligation": "HARNESS022の固定oracle/義務に沿う実検証結果と、作成Workerとは別actorの人確認をOS019へ結ぶ。許容された人の検証分担を明示でき、OS020実装を初回の必須条件にしない。確認対象/結果/actor/対象revision/scope/受領時刻/未完を残す。",
+        "oracle_ref": "HELIXOS-L10-027-F04"
+      },
+      "object_canonical_sha256": "06239f069e1bd09b1bf3efc5d05c317febdd098eec4576eb2362165090350f90"
+    },
+    {
+      "id": "HELIXOS-L3-027-F05",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F05",
+        "parent": "HELIXOS-L2-027",
+        "title": "実行後の観測受渡し",
+        "obligation": "OS018のassignment/attempt結果、019原証拠、023handoffを実行後に同scope/revisionへ結んでLABO観測へ渡す。027は構成candidate provenance参照であり、LABO057の実行依存にしない。026導出器も自分の入力/実行依存にしない。",
+        "oracle_ref": "HELIXOS-L10-027-F05"
+      },
+      "object_canonical_sha256": "326c61d3575fffc9af7ec115a5d8c790b2f2c61dbba1550ef39e6dc6a056d772"
+    },
+    {
+      "id": "HELIXOS-L3-027-F06",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F06",
+        "parent": "HELIXOS-L2-027",
+        "title": "評価済み化の実適用証拠",
+        "obligation": "LABO055/054が対象task/model class・scope・入力revisionについて適用oracle/基準revision、判定/比較条件と実適用結果・失敗/反例/unknownの根拠、評価者/時点/判定receiptを持つときだけ、その範囲の水準を評価済みとして渡す。INT案→OS指定/割当は別判定。Bench score単独でscope・branch・assignment・操作権限を変更しない。",
+        "oracle_ref": "HELIXOS-L10-027-F06"
+      },
+      "object_canonical_sha256": "e963c99115028bfd1074d408542f0198a2e98ec84c86c95a6d34b2deb818b7a4"
+    },
+    {
+      "id": "HELIXOS-L3-027-F07",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F07",
+        "parent": "HELIXOS-L2-027",
+        "title": "全資産の分類と利用区分",
+        "obligation": "SEC015/016の全読込・入力・生成/出力資産identity/owner/source/revision/分類を照合し、unknown/secret/HELIX-restrictedを含めない。公開範囲とdata-use許可/操作authorityを分け、生成予定scope/分類から出力が外れたら受渡しを止める。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+        "oracle_ref": "HELIXOS-L10-027-F07"
+      },
+      "object_canonical_sha256": "1ec19ac87b2b1b05de757395e40387069edd5e2b47bf55ebcdd5c76189f9cf66"
+    },
+    {
+      "id": "HELIXOS-L3-027-F08",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F08",
+        "parent": "HELIXOS-L2-027",
+        "title": "credential不使用と遮断",
+        "obligation": "SEC005/007に従いcredential-useとraw secretの読込/入力/出力を必要とせず、credentialアクセスが遮断されている。credentialを要する仕事は本経路の対象外。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+        "oracle_ref": "HELIXOS-L10-027-F08"
+      },
+      "object_canonical_sha256": "7511e1e89b0b81737b2bf701781e46a33934636fd76e82510b31ad7400835c79"
+    },
+    {
+      "id": "HELIXOS-L3-027-F09",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F09",
+        "parent": "HELIXOS-L2-027",
+        "title": "egress許可の一致",
+        "obligation": "SEC006のdefault denyと明示allowlistにより、通信なし、またはdestination/protocol/path・data分類/量・purpose/authority/expiryに一致する通信だけを使う。未確認宛先へ再送しない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+        "oracle_ref": "HELIXOS-L10-027-F09"
+      },
+      "object_canonical_sha256": "311826594036b5f80ed3e136158cd4165acf2296f86a7ab1db4fee56c0d921bc"
+    },
+    {
+      "id": "HELIXOS-L3-027-F10",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F10",
+        "parent": "HELIXOS-L2-027",
+        "title": "隔離と実制約適用",
+        "obligation": "SEC003のproject/tenant/environment/assignment隔離と007のwrite path/network/credential/env/timeout/resources/差分/rollback/回収制約が実環境へ適用されている。unsupported/未適用/host fallbackを許さない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+        "oracle_ref": "HELIXOS-L10-027-F10"
+      },
+      "object_canonical_sha256": "78df3ad5f18a544d088f34a17ba2682c79f684050fc16107b8431fb12bc4bf8f"
+    },
+    {
+      "id": "HELIXOS-L3-027-F11",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F11",
+        "parent": "HELIXOS-L2-027",
+        "title": "操作別authority",
+        "obligation": "SEC008のactor/target/operation/revision/environment/scope/expiryに一致する有効許可を全操作へ結び、列挙漏れを許さない。性能未評価や人案を許可の代替にしない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+        "oracle_ref": "HELIXOS-L10-027-F11"
+      },
+      "object_canonical_sha256": "51b83037dc4032e6c619b04899a28f0c539b4350ee73994587868376011795f2"
+    },
+    {
+      "id": "HELIXOS-L3-027-F12",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-F12",
+        "parent": "HELIXOS-L2-027",
+        "title": "可逆性と事前復旧",
+        "obligation": "許可scope内で取り消せる変更だけとし、変更前状態・復旧手段/復旧先を事前確認する。不可逆外部作用/release/tag/配布と可逆性unknownは本経路の対象外。人確認で免除しない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+        "oracle_ref": "HELIXOS-L10-027-F12"
+      },
+      "object_canonical_sha256": "df6488fe8c50a75a765a7d74fcd7e6b22a91a77c060f63e521954eeaf8654692"
+    },
+    {
+      "id": "HELIXOS-L3-027-N01",
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "object": {
+        "id": "HELIXOS-L3-027-N01",
+        "parent": "HELIXOS-L2-027",
+        "title": "未見scopeと部分成功の限界",
+        "obligation": "未見task/model/scope/actorと一境界故障を使い、authority/classification/proposal/assignment/実record/検証/人確認/LABO受領を別々に検査する。部分成功で欠落を相殺せず、適用外/未観測/未評価を保持する。",
+        "oracle_ref": "HELIXOS-L10-027-N01"
+      },
+      "object_canonical_sha256": "f7c368c917bddd9558b8d9a4d5ef10ae3e9d6a4753db069307e2e535a65ddb38"
+    },
+    {
+      "id": "HELIXOS-L3-027-B01",
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "object": {
+        "id": "HELIXOS-L3-027-B01",
+        "parent": "HELIXOS-L2-027",
+        "title": "初回経路と責務・許可の境界",
+        "obligation": "本経路は既存六条件の積としての限定適格性で、一般risk分類器やSEC016のtaskリスク出力を新設しない。人の配置案、操作許可、OS assignment、実検証、人確認、LABO観測/評価を別に扱う。全能力/固定provider/後続版/権限拡大を要求しない。",
+        "oracle_ref": "HELIXOS-L10-027-B01"
+      },
+      "object_canonical_sha256": "e8fb184d935ea9090baf6daa50eb3431429fead4bf06954dc69053b855b13f51"
+    },
+    {
+      "id": "HELIXOS-L10-027-B01",
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-B01",
+        "parent": "HELIXOS-L2-027",
+        "title": "初回経路と責務・許可の境界",
+        "requirement_ref": "HELIXOS-L3-027-B01",
+        "positive_input": "各ownerの入力と判定を同scopeで照合する。",
+        "expected_observation": "条件付き開始と不成立を個別に表示し、無関係な機構全体の完成待ちを追加しない。",
+        "negative_input": "新risk分類、候補だけで実許可、単体成功で構成体成功、全機構完成待ち。",
+        "failure_observation": "責務または必要条件の不足を各ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "71ceebbce4a6a212a08e8f1474b9bafef6db6267a7d153a364ddc6fda79af656"
+    },
+    {
+      "id": "HELIXOS-L10-027-N01",
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-N01",
+        "parent": "HELIXOS-L2-027",
+        "title": "未見scopeと部分成功の限界",
+        "requirement_ref": "HELIXOS-L3-027-N01",
+        "positive_input": "既知正常例と伏せた未見例、必要receipt一件欠落を比較する。",
+        "expected_observation": "失敗端/戻し先/未完と再評価条件が辿れ、未知scopeへ成功を外挿しない。",
+        "negative_input": "件数/field存在で全体合格、成功runで他scopeの穴を相殺。",
+        "failure_observation": "該当境界を未成立として記録し、全体成功を主張しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "baf9fc9bca2210b37b4eb4fb921e2f35b5c25c68eefe62c04031147fa90e7a6b"
+    },
+    {
+      "id": "HELIXOS-L10-027-F01",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F01",
+        "parent": "HELIXOS-L2-027",
+        "title": "未評価と初回実行許可の分離",
+        "requirement_ref": "HELIXOS-L3-027-F01",
+        "positive_input": "未評価かつ必要条件が揃うcaseとauthorityまたは必須入力だけ欠けるcaseを比較する。",
+        "expected_observation": "性能状態/適格性/実行許可/案/assignmentを別に保持する。",
+        "negative_input": "未評価をqualified、未評価のみで拒否、文書候補で許可、future receiptを開始条件。",
+        "failure_observation": "不足ownerへ戻し、性能未評価と不許可理由を別に残す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "4daa6baff63453b2f7da1c2cf8b07b1586127c2f1c49b81565d82520676b516f"
+    },
+    {
+      "id": "HELIXOS-L10-027-F02",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F02",
+        "parent": "HELIXOS-L2-027",
+        "title": "人の配置案代行の同契約照合",
+        "requirement_ref": "HELIXOS-L3-027-F02",
+        "positive_input": "INT未利用で同契約の人案を供給し、actor/revision/scopeだけ欠けるcaseを比較する。",
+        "expected_observation": "代行案と受領、OS割当が別に辿れ、実INT能力成立を主張しない。",
+        "negative_input": "人案がOS assignmentを代行、根拠/actor/版欠落、INT実出力へ偽装。",
+        "failure_observation": "案または受領不足をOS/案ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "3626f4a5cbeb46e92c157b8c728b0d25866c8b17b3a383c0736b6c5a9b0e6a46"
+    },
+    {
+      "id": "HELIXOS-L10-027-F03",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F03",
+        "parent": "HELIXOS-L2-027",
+        "title": "狭いscope内の有限初回仕事",
+        "requirement_ref": "HELIXOS-L3-027-F03",
+        "positive_input": "各制約に収まる初回runと一条件だけ超えるrunを比較する。",
+        "expected_observation": "指定と実runが同scopeへ辿れ、限界超過で継続しない。",
+        "negative_input": "無期限retry、budget reset、scope拡大、人確認で安全条件免除。",
+        "failure_observation": "停止までの原記録と再開条件を管理/推進へ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "c2397dfcfa8cab77f439006c963cf709981d2fe3bf5fd066ccc62fc0ae4f4e8f"
+    },
+    {
+      "id": "HELIXOS-L10-027-F04",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F04",
+        "parent": "HELIXOS-L2-027",
+        "title": "HARNESS検証と独立した人確認",
+        "requirement_ref": "HELIXOS-L3-027-F04",
+        "positive_input": "同HEAD/scopeの実検証と別actor確認を、別HEAD/自己確認/未実行と比較する。",
+        "expected_observation": "検証・人確認・CI利用状態を別に受け入れる。",
+        "negative_input": "CI未構築をpass、oracle変更、別HEAD証拠、自己review、暗黙の人分担。",
+        "failure_observation": "検証不足はHARNESS、確認/記録不足は当該ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "f3d3890541f371a886cfa535eea785a8048a707e41ffaf843ad01dd0d96d9ff4"
+    },
+    {
+      "id": "HELIXOS-L10-027-F05",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F05",
+        "parent": "HELIXOS-L2-027",
+        "title": "実行後の観測受渡し",
+        "requirement_ref": "HELIXOS-L3-027-F05",
+        "positive_input": "success/fail/denied/interrupted/unknownと未完を含む実recordを受け渡す。",
+        "expected_observation": "結果とLABO受領を別に辿れ、初回成功は観測済み・未評価のまま。",
+        "negative_input": "成功だけ記録、未受領を観測済み、future結果捏造、026/027自己依存。",
+        "failure_observation": "実record/受渡し不足をOS、観測受領不足をLABOへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "c4e6649a900c2f280f95e60c9c6ab8fbae98d207b7f3eb1382d974d4e197cbd6"
+    },
+    {
+      "id": "HELIXOS-L10-027-F06",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F06",
+        "parent": "HELIXOS-L2-027",
+        "title": "評価済み化の実適用証拠",
+        "requirement_ref": "HELIXOS-L3-027-F06",
+        "positive_input": "実評価receiptのある範囲と単一成功/未適用oracle/別scope/staleを比較する。",
+        "expected_observation": "評価済みは適用範囲付き、他範囲は未評価/評価不能を保持する。",
+        "negative_input": "oracleの存在だけで評価済み、一律件数/閾値新設、全taskへ外挿、LABOが割当、Bench scoreだけでscope/branch/assignment/権限変更。",
+        "failure_observation": "評価不足をLABOへ返し、次の限定仕事は同契約の明示人案を保持する。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "229d4f1ac499a7b60057ee64207f16769130e5949f772459b7c6411470850421"
+    },
+    {
+      "id": "HELIXOS-L10-027-F07",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F07",
+        "parent": "HELIXOS-L2-027",
+        "title": "全資産の分類と利用区分",
+        "requirement_ref": "HELIXOS-L3-027-F07",
+        "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
+        "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
+        "negative_input": "一資産unknown、分類だけで利用許可、生成後逸脱。",
+        "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "ab02927a431474f3fa0d9bc84e5bdf1ffec1c7f4213634f90faef2c532705a7e"
+    },
+    {
+      "id": "HELIXOS-L10-027-F08",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F08",
+        "parent": "HELIXOS-L2-027",
+        "title": "credential不使用と遮断",
+        "requirement_ref": "HELIXOS-L3-027-F08",
+        "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
+        "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
+        "negative_input": "credential必要またはアクセス未遮断。",
+        "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "1d39eb50db160f62cfe259bf03550b804304494be9c145b809e710d5ead1c1db"
+    },
+    {
+      "id": "HELIXOS-L10-027-F09",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F09",
+        "parent": "HELIXOS-L2-027",
+        "title": "egress許可の一致",
+        "requirement_ref": "HELIXOS-L3-027-F09",
+        "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
+        "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
+        "negative_input": "一通信field不一致、未確認宛先へretry。",
+        "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "dc76fe387cf0c4b5da29af5c7137efcb95878bf06fa94d31a778ad5b8a48191a"
+    },
+    {
+      "id": "HELIXOS-L10-027-F10",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F10",
+        "parent": "HELIXOS-L2-027",
+        "title": "隔離と実制約適用",
+        "requirement_ref": "HELIXOS-L3-027-F10",
+        "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
+        "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
+        "negative_input": "一隔離/制約未適用、host fallback。",
+        "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "2df4d5d88a8a168a0a06dc6d3135a329a9d8fa9973a57c7dc32e549e32e41bf1"
+    },
+    {
+      "id": "HELIXOS-L10-027-F11",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F11",
+        "parent": "HELIXOS-L2-027",
+        "title": "操作別authority",
+        "requirement_ref": "HELIXOS-L3-027-F11",
+        "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
+        "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
+        "negative_input": "一操作漏れ/期限切れ/別actor、案を認可へ昇格。",
+        "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "2551faa3bd9f7e4d0a2265f9380fef69b67c0f63eec2a747abb007d840c919d2"
+    },
+    {
+      "id": "HELIXOS-L10-027-F12",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "object": {
+        "id": "HELIXOS-L10-027-F12",
+        "parent": "HELIXOS-L2-027",
+        "title": "可逆性と事前復旧",
+        "requirement_ref": "HELIXOS-L3-027-F12",
+        "positive_input": "六条件が揃う合成入力から本条件の一fieldだけ変える。",
+        "expected_observation": "本条件の不足を個別検出し、一条件欠落では本経路を実行しない。",
+        "negative_input": "復旧不明/不可逆作用、人確認で免除。",
+        "failure_observation": "該当SEC/資源/操作ownerへ返す。本fixtureから実許可や実実行を生成しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "56ab5a75e676ed0cd0a149180998b5b9011f06bdda74c742de4fd044adf3a23e"
+    }
+  ],
+  "legacy_normative_whole_sources": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "id": "HIL-NFR-36",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "object": {
+        "schema_version": "helix-requirement.v1",
+        "requirement_id": "HIL-NFR-36",
+        "revision": 1,
+        "kind": "non_functional",
+        "status": "specified",
+        "definition_status": "frozen",
+        "evidence_origin": "legacy_markdown_migration",
+        "statement": {
+          "text": "model/effort選択はtask、risk、runtime、model、effort、retry、品質、costへ追跡可能にし、既定値からの逸脱と品質問題へのescalation順序をreceipt化する。単価だけ又は単発成功だけで最適構成を主張しない。",
+          "semantic_digest": "sha256:2224ab3bcd6e7974df0e119d9298a784abf86594399cfbe09c6d40b75620f8d3"
+        },
+        "assertion_id": "HIA-NFR-036",
+        "primary_system_contract_id": "HR-FR-HIL-22",
+        "acceptance_ids": [
+          "HAC-HIL-22a",
+          "HAC-HIL-22b",
+          "HAC-HIL-22c"
+        ],
+        "system_test_id": "HAT-HIL-22",
+        "downstream_obligation": {
+          "obligation_id": "DOWNSTREAM-HIL-NFR-36",
+          "owner_id": "HR-FR-HIL-22",
+          "status": "pending_pair_descent",
+          "route_issue_ids": []
+        },
+        "actor_ids": [],
+        "task_ids": [],
+        "surface_ids": [],
+        "design_template_ids": [],
+        "design_obligation_ids": [],
+        "required_design_artifact_kinds": [],
+        "pending_resolution": [
+          "legacy migration has no fabricated question, answer, prototype, actor, task, or surface evidence",
+          "design template selection remains pending until Issue #290 is activated after G1/G3 rebind"
+        ],
+        "source": {
+          "canonical_pointer": "requirements-ir/requirements.json#/HIL-NFR-36",
+          "migration_source_pointer": "docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:216",
+          "authority_id": "RAS-HIL-22"
+        },
+        "semantic_digest": "sha256:1fb7cac9cc0998dab4482d0522bdb00fae74e82238b19dd080c05ab5db25b065"
+      },
+      "object_canonical_sha256": "f2ef202e0fc7e7de9a258b8338620f2a2f89b6981befb33ec86187b31ffd6ee6"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "id": "HR-FR-HIL-22",
+      "file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "object": {
+        "schema_version": "helix-system-contract.v1",
+        "system_contract_id": "HR-FR-HIL-22",
+        "revision": 1,
+        "status": "specified",
+        "requirement_ids": [
+          "HIL-BR-31",
+          "HIL-FR-61",
+          "HIL-FR-62",
+          "HIL-FR-63",
+          "HIL-NFR-35",
+          "HIL-NFR-36"
+        ],
+        "behavior": "候補worker/model/effortを再現可能benchと実task scorecardで比較し、品質・安全・retry込みcostから用途別にadmit又はretireする",
+        "transition_contract": "fixed fixture/rubric/task/riskあり → blind score、実効cost、選択receipt",
+        "failure_and_evidence": "smoke-only採用、重大failure相殺、単価最適化、根拠なしeffort固定 / bench、scorecard、routing、exception receipt",
+        "acceptance_ids": [
+          "HAC-HIL-22a",
+          "HAC-HIL-22b",
+          "HAC-HIL-22c"
+        ],
+        "system_test_id": "HAT-HIL-22",
+        "semantic_digest": "sha256:511f60ac91a154f4a78a46cc69199afcd4bc3051526e5b16f129620939544c6f"
+      },
+      "object_canonical_sha256": "dccc7db6dfe7895688ca8bd048e94c9347ccf547fb402ea1a176c1e163669069"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-22a",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-22a",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-22",
+        "polarity": "positive",
+        "statement": "blind benchと実taskで用途別選択",
+        "system_test_id": "HAT-HIL-22",
+        "semantic_digest": "sha256:26efa95135d70f08721c45268240bda8966702e24efc0295eefed81dd48f6f80"
+      },
+      "object_canonical_sha256": "10cebedcb421979e3a3981414c50f6a084a15bce2fe36a4caa170cb944959def"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-22b",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-22b",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-22",
+        "polarity": "negative",
+        "statement": "重大failure/範囲逸脱を平均で相殺しない",
+        "system_test_id": "HAT-HIL-22",
+        "semantic_digest": "sha256:16d062e7832826adccd36ce9416eca68730232dc0cbbd9ccf2ec5a2cc52d2763"
+      },
+      "object_canonical_sha256": "da1a9fc5c92a97f0e0e2305851edb55677504681060ed7974be365ceb1815844"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-22c",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object": {
+        "schema_version": "helix-acceptance-case.v1",
+        "acceptance_id": "HAC-HIL-22c",
+        "revision": 1,
+        "status": "specified",
+        "system_contract_id": "HR-FR-HIL-22",
+        "polarity": "boundary",
+        "statement": "品質悪化時にmodel/effortを比較再route",
+        "system_test_id": "HAT-HIL-22",
+        "semantic_digest": "sha256:cd59a8b2ac7063fd09eadaf6e6c60cccf5559c80e30cd4a9d0412cce71a354f5"
+      },
+      "object_canonical_sha256": "8b6ee48b269806bdc8f904daa0032eab5e307665972e4fa25454b363e1e4457d"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "id": "HAT-HIL-22",
+      "file_sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "object": {
+        "schema_version": "helix-system-test.v1",
+        "system_test_id": "HAT-HIL-22",
+        "revision": 1,
+        "status": "designed_not_implemented",
+        "system_contract_id": "HR-FR-HIL-22",
+        "acceptance_ids": [
+          "HAC-HIL-22a",
+          "HAC-HIL-22b",
+          "HAC-HIL-22c"
+        ],
+        "supporting_test_ids": [
+          "HOT-HIL-54",
+          "HOT-HIL-55"
+        ],
+        "scenario": "worker bench、実task scorecard、effort routingを検証",
+        "required_evidence": "fixture/rubric、blind score、実効cost、route receipt",
+        "negative_boundary": "smoke-only、重大failure相殺、単価/effort固定",
+        "semantic_digest": "sha256:35ca0ec2e65aee76da3a540729b33b94b44c0d55d850e1da111210fcc51093d8"
+      },
+      "object_canonical_sha256": "01061d2080f831e4202443356e1362db302616d69a0f1ee75e3a8c9d9acb344a"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "file_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "file_sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "file_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "file_sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/governance/decisions/helix-os-worker-first-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "file_sha256": "d0ce49f8e870a396628da2cc366b65db64f33820c2af6a3392debde04b87bddc"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "file_sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json",
+      "file_sha256": "d4d09cf0a2f30c41627d461d2e4aa85632e5c361d3d29aaf0525ffe7ea74d9ab"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "selected_line_quotes": [
+        {
+          "line": 826,
+          "text": "### HELIXOS-L2-027 — 未評価状態からの限定初回実行（構成体候補、1.0）",
+          "utf8_sha256": "69d3220ff63edb0e9bd4bfd4efa873ebf136badf5a4169cb3cd77262910762e8"
+        },
+        {
+          "line": 827,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 828,
+          "text": "- **PO起点**：[補強原文](../sources/body-reinforcement-po-original-2026-09-27.md)の第1点、[判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)。旧要求は`LEGACY-ASSET-50CA1C554747F12266D3`、受入設計は`LEGACY-ASSET-437A6A68F9A9E0AE1B9E`（`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md:43`、SHA-256 `63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707`）で照合した。",
+          "utf8_sha256": "96b0562d1e9cf09091b4e786b92e3a8d3cb265ed2e5066ace862d06bb464ccd8"
+        },
+        {
+          "line": 829,
+          "text": "- **親L1**：自機構のprimary parentはHELIXOS-L1-003、HELIXOS-L1-009。接続先contextはHELIXLABO-L1-011、HELIXINTELLIGENCE-L1-010。各L1は候補状態であり、本節は対象revision確認・採択を生成しない。",
+          "utf8_sha256": "d849d0ef742835d5effc87d6050da87c30ca5cb5e0aa5a799d2e50cbf0f1881d"
+        },
+        {
+          "line": 830,
+          "text": "- **関係・旧根拠**：HELIXOS-L2-018のWorker割当・実行統制、HELIXOS-L2-026の要求からの構成導出を補強する構成体候補。018、LABO-055／054、INTELLIGENCE-010の責務を再定義・置換しない。旧 `LEGACY-ASSET-50CA1C554747F12266D3`（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md`、SHA-256 `17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd`）のRLO-FR-040（663–666行）はtask class別Bench evidence、未評価表示、score単独によるscope/branch/assignment/merge authority変更禁止を示す。対応受入RLO-AC-030（同source 907行）は未評価を推測値にしない条件を確認する。これらは保持するが、初回の許可判定・入力代行・割当・実行・結果受渡しは閉じないため、現行責務間の接続を追加する。",
+          "utf8_sha256": "1386d33f00f5a9824d7d1d923e73a2f62f11fb2b53f75e856fecbc452f99e393"
+        },
+        {
+          "line": 831,
+          "text": "- **開始時入力**：対象要求とauthorityのexact revision、ticket/task identityと狭いscope、SECURITYが提供する資産の公開範囲とdata-use分類、対象操作の許可/拒否条件、OSが確認する有効な操作authority、限定Workerのidentity/capability、INTELLIGENCEの配置案または同じ契約に沿う人の代行案、LABO水準とその未評価状態、予算・期限・停止条件、HARNESS検証義務とoracle、人が担う確認を束縛する。性能評価が未評価であること自体は拒否条件にしない。OS-L2-026の導出結果は対象scope/依存境界を定める参照根拠であり、実行時の成立依存にしない。",
+          "utf8_sha256": "b3abfb55972971385341eda7a29ecfa20d060df819e6ff137fab28ef23664498"
+        },
+        {
+          "line": 832,
+          "text": "- **実行後の受渡し**：OS-L2-018のassignment/attempt結果、OS-L2-019のevidence/continuity記録、OS-L2-023のhandoff receiptを実行後に束ね、同一scope・revisionのままLABOの観測入力へ渡す。HELIXOS-L2-027は当該runで用いた構成candidateのprovenance参照として記録する。",
+          "utf8_sha256": "380f588cc9f49cbf6cd13319a6ba50c923bad1866eea717317587c99600fcec5"
+        },
+        {
+          "line": 833,
+          "text": "- **提供**：未評価を維持したまま許可条件内で初回assignment/attemptを実行し、結果と検証証拠をOSの記録経路からLABOの観測入力へ接続する構成体候補。",
+          "utf8_sha256": "f0227d8b06805483d9840a538d41ba4b962a20312f155bdf033b5302e3e5a99c"
+        },
+        {
+          "line": 834,
+          "text": "- **保証**：性能評価の有無と操作許可を別状態にする。この初回経路の「低リスク」は次項の既存条件がすべて成立する限定適格性を指す。SECURITY-L2-016の資産公開範囲をtaskのリスク区分と読み替えず、SECURITYに未定義の低リスクclassification出力を要求しない。OSは各ownerの証拠を対象revision・scopeへ照合して、この経路への適格性と操作authorityを別々に確認する。authority、安全条件、開始に必須の契約/入力のunknown、missing、conflict、stale、明示拒否、またはauthority不足なら実行しない。Bench水準の明示的な「未評価」はそれ自体では拒否条件でなく、許可判定と分離して保持する。初回仕事は人が確認した限定scope、指定Worker、明示予算・期限・停止条件、および固定されたHARNESS検証義務で実施し、予算・停止条件の超過、scope変更、検証条件の欠落時に停止する。配置案の代行者はINTELLIGENCE-L2-010が要求する入力属性・契約revision・適用scopeを使い、根拠と不確実性を保持した候補を提出する。OSは受領receiptに案のsource/actor、入力と契約のrevision、task/scope、作成時点、根拠、未評価表示、受領側revisionを記録し、案を自身の割当判断と混同しない。OSだけが既存authorityに従ってWorkerを指定・割当・停止する。Worker結果は成功・失敗・拒否・中断・unknownを区別し、検証結果と未完義務を記録してLABOへ渡す。成功した初回runも、LABOの評価が成立するまで未評価のまま扱う。",
+          "utf8_sha256": "c4b3f56102d5f1e0279976e6bd0a2b28541d171010b0a9133786f55f74724cea"
+        },
+        {
+          "line": 835,
+          "text": "- **単独成立の依存**：HELIXOS-L2-015／017／018／019、HELIXSECURITY-L2-003／005／006／007／008／016の隔離・credential遮断・egress制約・Worker制約・authority・資産分類、および各条件を満たすための既存安全依存、INFRASTRUCTUREの該当資源状態、HARNESSの検証契約と固定oracle。HARNESS-L2-022を満たす検証証拠は必要だが、新世代CIを運転するHELIXOS-L2-020の実装を前提にせず、許容された人の検証分担を明示できる。INTELLIGENCE-L2-010のproposal契約、LABO-L2-055／054の水準・受渡し契約は利用する。INTELLIGENCEまたはLABOの実装結果を開始前入力にできない場合は、人が同じ契約に沿ってproposal/evidenceを明示する。候補文書に記載があるだけではauthorityや実行許可にならない。",
+          "utf8_sha256": "4dd32bd086a3f3e82114150694bca61c2137401e9eae5e0465d40692f08b3c22"
+        },
+        {
+          "line": 836,
+          "text": "- **人の分担**：人による配置案代行はINTELLIGENCEの案を同じscopeで暫定的に供給するだけであり、INTELLIGENCE機能・LABO評価・OS assignmentを成立済みとはしない。人は要求された検証oracle/義務を変更せず、独立して結果を確認できる。人の確認対象、確認結果、actor、対象revision、scope、受領時刻、未完義務をOS evidenceへ残す。",
+          "utf8_sha256": "6a59b89a74ec65b339b6deefb3dc77d345807af295a65f9d73fbfe71e48fbafc"
+        },
+        {
+          "line": 837,
+          "text": "- **失敗時の戻し先／未完義務**：authority/classificationは各owner、task属性/案receiptはOSまたはINTELLIGENCE、Bench source/evidenceはLABO、実行資源はINFRASTRUCTURE、oracle/検証不足はHARNESSへ戻す。成功に見える部分結果があっても要件・assignment・検証・receiptの欠落があれば成立を拒み、停止理由と再開条件を保つ。",
+          "utf8_sha256": "7f6482fad9d5275c48a5a2a0ab8b5269af0b0d1cb8541f4564a840526e338c90"
+        },
+        {
+          "line": 838,
+          "text": "- **束ねる既存条件**：HELIXOS-L2-004／009／018／019、HELIXOS-L2-026、HELIXLABO-L2-055／054、HELIXINTELLIGENCE-L2-010。候補は1.0の既存境界内であり、固定model/provider、未知scopeへの適用、権限拡大、後続版機能を追加しない。",
+          "utf8_sha256": "702f8b92d0258c4012c3e5785654697f99d8ae8c7166ae65e3ecd3b5b2f6313e"
+        },
+        {
+          "line": 839,
+          "text": "- **受渡し関係**：OS-L2-018／019／023のassignment、記録、handoff結果を次のLABO観測の入力にする。HELIXOS-L2-027はそのrunで用いた構成候補としてreceiptへ参照記録するだけで、LABO-L2-057の前提・依存にしない。OS-L2-026も要求から構成を導く機能であり、その導出器を自分の入力や実行依存にしない。",
+          "utf8_sha256": "e1c06c0ce3ae9607ce6bf3906649200141c93189a7c19b555b1f66beb5c864c6"
+        },
+        {
+          "line": 840,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 841,
+          "text": "- **初回経路の低リスク適格条件（全条件の積）**：以下を同じtask/attempt・scope・revision・環境へ束縛し、各条件の根拠と確認結果をOSの開始記録へ残す。どれかが不成立、unknown、missing、conflict、staleなら本経路の実行対象にしない。新しい一般的リスク分類やSECURITYの分類語彙は作らず、この限定経路への候補条件として扱う。",
+          "utf8_sha256": "d576c6a3cc8a5b4bd9aede44d63488a1b9cbb54616facad68d6da9d970c3c96c"
+        },
+        {
+          "line": 842,
+          "text": "  1. 読込・入力・生成/出力の全資産についてHELIXSECURITY-L2-015/016のidentity・owner/source/revisionと分類を照合し、unknown・secret・HELIX-restrictedを含まない。その他の分類も公開許可を意味せず、data-useの許可と操作authorityが別に成立すること。生成予定物には事前に分類/出力scopeを指定し、生成後の差分が外れたら受渡しを止める。",
+          "utf8_sha256": "08b69fc751e6cfab47c0684254fc041bfe59e1e016043f35ba490a7566207a9e"
+        },
+        {
+          "line": 843,
+          "text": "  2. HELIXSECURITY-L2-005/007の境界で、当該作業によるcredential-use、raw secretの読込み・入力・出力を必要とせず、credentialへのアクセスが遮断されている。credentialを要する仕事はこの初回経路の対象外とする。",
+          "utf8_sha256": "146f79d32ca1807523539c348a68d82865a7bc2a4529a0a0bb555ad2da3b777b"
+        },
+        {
+          "line": 844,
+          "text": "  3. HELIXSECURITY-L2-006のdefault denyと明示許可一覧に従い、通信なし、または必要なdestination/protocol/path・data分類・量・purpose・authority・expiryが許可範囲と一致する通信だけを使う。許可先外へのegressを含まず、未確認の宛先へ再送しない。",
+          "utf8_sha256": "e52142b2f697a37877af2b66c24d5f3bd462f9b7a5de31a87600715118408cc2"
+        },
+        {
+          "line": 845,
+          "text": "  4. HELIXSECURITY-L2-003のproject/tenant/environment/assignment隔離が確認され、007のwrite path・network・credential・環境変数・timeout・resource limit・差分検査・rollback・結果回収の制約が実行環境へ適用されている。未適用/unsupportedやhostへのfallbackを許さない。",
+          "utf8_sha256": "7c183f7e315c82563ae8e3e84bf873c94820120fe384fa9ebe5ec175d272eb9c"
+        },
+        {
+          "line": 846,
+          "text": "  5. HELIXSECURITY-L2-008のactor/target/operation/revision/environment/scope/expiryに一致する許可が各操作にあり、操作の列挙漏れがない。性能未評価や人の配置案はこの許可を代替しない。",
+          "utf8_sha256": "317e5d8a081db163cc340876eb528d94efc2e80816f2f56bbddeb6118ba35340"
+        },
+        {
+          "line": 847,
+          "text": "  6. 変更は許可範囲内で取り消せ、変更前状態・復旧手段・復旧先を事前に確認できる。不可逆な外部作用、release、tag、配布を含まない。取り消せることが不明な操作も対象外であり、人の確認だけでこの条件を免除しない。",
+          "utf8_sha256": "550dd4cb5210fede80dc159e4759e825164ea6423fc13cd633c0ea3245ffc258"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "selected_line_quotes": [
+        {
+          "line": 442,
+          "text": "### HELIXOS-L2-027 未評価状態からの限定初回実行の受入（構成体候補）",
+          "utf8_sha256": "7ca4b92265fbee761abc2d0ceeb0d1bd1610f4f06240f50a272cf3714eb76e7c"
+        },
+        {
+          "line": 443,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 444,
+          "text": "- **PO起点**：[補強原文](../sources/body-reinforcement-po-original-2026-09-27.md)の第1点、[判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)。旧受入条件RLO-AC-030は`LEGACY-ASSET-437A6A68F9A9E0AE1B9E`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md:43`、SHA-256 `63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707`で確認した。",
+          "utf8_sha256": "e685c3109e9a26932c546d157b3edeb9cb869e7974a087b5a87417fa92736e06"
+        },
+        {
+          "line": 445,
+          "text": "- **入力・版**：開始前には要求/authority revision、ticket/taskとscope、SECURITY classification・許可状態、限定Worker/capability、INTELLIGENCE配置案または同契約の人代行案、LABO水準/明示的未評価状態、予算・期限・停止条件、HARNESS oracle/検証義務、人確認を同一attemptへ束縛する。OS/LABO/INTELLIGENCEの候補revisionと実契約版を区別する。OS-018/019/023の実行結果・record・handoffは開始後の受渡し証拠である。",
+          "utf8_sha256": "37a60b960509a705cc79640fa0d5bda35745028447f6e8811dd5544c593af9b0"
+        },
+        {
+          "line": 446,
+          "text": "- **正常例**：性能履歴がないWorker/modelでも、OS-027の低リスク適格条件6項すべての証拠と対象に有効な操作authorityが揃い、人が狭いtask/scope、Worker、予算、期限、停止条件、検証義務を確認する。配置案代行はINTELLIGENCE-L2-010のproposal契約revisionと必要task属性、evidence/未評価、scopeを持つ案を提出し、OSがsource・actor・入力revision・scopeを含むreceiptを残す。OS-L2-018がassignmentを作り、制約内で一度実行し、HARNESS義務に沿う検証結果と作成Workerとは異なるactorによる人確認をOS-L2-019へ記録する。OS-L2-023の受領結果を同一scopeのLABO観測へ渡し、HELIXOS-L2-027は構成参照としてreceiptに記録する。LABO-L2-055/054が未評価の結果を保持し、既存のINTELLIGENCE-L2-010→OS-L2-018三段経路へ戻す。初回成功だけなら「観測済み・未評価」のまま、適用範囲付きの評価証拠が揃えば当該task/model classだけを評価済みとしてINTELLIGENCE案→OS指定/割当に戻す。",
+          "utf8_sha256": "00f53706c7fd5b5e607124d24a644831a55448f4ab684908882e1d6d1de30e3f"
+        },
+        {
+          "line": 447,
+          "text": "- **評価済み化**：初回の一件が成功しても評価済みにしない。該当task/model classとscopeについて、採用する評価oracle/基準のrevision、判定条件、比較条件、結果・失敗/反例/unknownを含む根拠が特定され、そのoracleがこの範囲を判定できるとLABOが確認した場合に限り、LABO-055はその範囲に評価済み水準を付し、LABO-054で同じscopeのままINTELLIGENCEへ渡す。INTELLIGENCE-L2-010が配置案を返し、OSがauthority・scope・他条件を別途確認して割り当てる。INTELLIGENCE実装が未利用の場合、人の案はL2-010とL2-066の同じ入力/版/scope契約で作り、INTELLIGENCE出力と偽装せずOSへ返す。oracle/基準、適用scope、判定根拠のいずれかが提示されないなら未評価を維持し、新しい一律件数・score閾値は設けない。例として一件の成功しかなくoracleまたは比較根拠がない、task classが異なる、scope外、矛盾、staleなら未評価または評価不能を維持し、次の限定仕事も明示された人の配置案を使う。",
+          "utf8_sha256": "ccbffbc8df3f722cf449c1e018acbdf64d0ae2dbf0f662178f086c339916e3ff"
+        },
+        {
+          "line": 448,
+          "text": "- **反例**：未評価を評価済み/qualifiedへ書き換える。SECURITY classification、authority、安全条件、または開始に必須の入力がunknownなのに低リスクと推測する。性能水準が明示的に未評価というだけで、独立して許可済みの限定初回runを拒否する。評価oracle未提示なのに評価済みと表示する。Bench scoreだけでscope/branch/assignment/権限を変更する。人代行案の入力版・scope・actor・receiptがない。予算・期限・停止条件なしに繰り返す。初回成功を未知task全体へ外挿する。HARNESS検証を飛ばす、別HEAD/evidenceを使う、CI未構築をpassとする。LABOが配置・指定・割当を行う。",
+          "utf8_sha256": "171bc7b397f1de66ba087c50636610db59afd8a0e469471da63c8303888a634f"
+        },
+        {
+          "line": 449,
+          "text": "- **失敗・未完義務**：authority/classification、案receipt、assignment、実行記録、検証、人確認、LABO受領のどれかが欠落/不一致なら成功表示を拒み、所有者へ戻す。停止までの費用・attempt・部分成果・未完義務・再開条件を保持する。",
+          "utf8_sha256": "5103bf209d194069f2c6176112166a531c076faa830da7b72e8b8e0834926e2d"
+        },
+        {
+          "line": 450,
+          "text": "- **状態分離**：実行許可、性能評価状態、配置案、OS assignment、検証、人確認、LABO観測受領、LABOによる適用範囲付き評価を別々に受け入れる。これらの候補記述は要求採択や実実行の許可を生成しない。",
+          "utf8_sha256": "afd508f1a43c75f4b0cadae5190900f95ca3bc290b9715e03cd52480fa7e0a6b"
+        },
+        {
+          "line": 451,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 452,
+          "text": "- **評価の実施証拠**：oracleの存在や判定可能性だけでは評価済みにしない。対象のtask/model class・scope・入力revisionへ実際にoracleを適用した結果と根拠、評価者、評価時点、判定receiptを残し、判定不能・不足なら未評価を維持する。評価済みは当該範囲の水準を評価した状態であり、すべての仕事の適性や成功を保証する状態ではない。",
+          "utf8_sha256": "23ab026acd2e671c7cc0c75626dddb23357379a928503b3c247d6b6446ee90fd"
+        },
+        {
+          "line": 453,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 454,
+          "text": "- **適格条件の正常例とoracle**：初回scopeを、許可された非secret・非HELIX-restrictedの分類済み入力を読み、隔離先の指定pathへ取り消せる成果物を生成する作業に限定する。credentialなし、networkなし（または006で明示許可された通信のみ）、必要制約の適用、操作ごとの有効authority、変更前状態/rollback先の確認を入力証拠とする。確認者はOS-027の6項の各証拠を照合し、全項成立した場合だけ適格と記録できることをoracleとする。単に「low risk」と書いた入力や資産のclass名だけを与えた入力は不十分である。適格でも他の開始条件が欠ければassignmentを出さない。",
+          "utf8_sha256": "d81f9d70a46bbafa6a0652ffa69b3646ff7b9343e6d31fb2668f849d6f01d9df"
+        },
+        {
+          "line": 455,
+          "text": "- **適格条件の独立反例**：正常例から一条件ずつ、未分類資産、secretまたはHELIX-restrictedの入出力、許可のないdata-use、credential利用、許可一覧外の送信/再送、隔離先不一致、未適用のWorker制約、期限切れ/別scopeの操作authority、復旧不能/不明な変更、release/tag/配布へ変える。どの場合も開始を拒否し、失敗した条件・証拠・owner・再開条件を記録する。分類・authority・適用証拠のunknown/missing/conflict/staleも一つずつ同様に確認する。生成物が事前分類/出力scopeを逸脱した場合は受渡しを停止して隔離/復旧し、成功受領にしない。人確認や性能履歴を加えても不成立条件を上書きしない。",
+          "utf8_sha256": "1e53fabfcb601ef4f82d18c1b13cd22ec6974370ece8f260a9e22d634f0c4de6"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_line_quotes": [
+        {
+          "line": 663,
+          "text": "#### RLO-FR-040 HELIX-Bench由来のeffort policy",
+          "utf8_sha256": "87a7d831f25228faa2697ce8734e58b2363c7ad42532db3a786871c20e75a0d0"
+        },
+        {
+          "line": 664,
+          "text": "",
+          "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "line": 665,
+          "text": "reasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は",
+          "utf8_sha256": "5cdc2c246f0959b32ed9d9cadc332e07a1aa00fc3c8964b493ef242a2797fccb"
+        },
+        {
+          "line": 666,
+          "text": "`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。",
+          "utf8_sha256": "d8c13ecdd7772a7e3d9dc99fa588ae54b1aaa60e03b2c79023c1c657b81376ab"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_line_quotes": [
+        {
+          "line": 907,
+          "text": "- **RLO-AC-030** effort未評価を推測値へ変換せず`provider_default_unbenchmarked`として追跡する",
+          "utf8_sha256": "7dc618aed6d60b5785fb52438000da5aea3210b73eaca17a9a53954d2d18ca62"
+        }
+      ]
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "file_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "selected_line_quotes": [
+        {
+          "line": 43,
+          "text": "| `RLO-AC-030` | `RLO-FR-040` | HELIX-Bench evidenceが無いtask classのeffortを解決する | `provider_default_unbenchmarked`を記録しauthorityを変更しない | effortを推測しscore単独でscope／branch／assignment／merge authorityを変更したら拒否する |",
+          "utf8_sha256": "33c38a11d5a1734c4530e0f8c308f4b9b7e96509ffdd8d32dfdb92774e95af1c"
+        }
+      ]
+    }
+  ],
+  "legacy_comparison": {
+    "disposition": "semantic_rederivation",
+    "keep": "旧NFR36/HR/HAC/HAT22全規範とRLO040/AC030の未評価表示、source/選択/cost/retry/品質/escalation trace、単価/単発成功/重大失敗相殺禁止。",
+    "change": "旧provider/effort固定やruntime実装を移さず、承認14pairのOS/INT/LABO/SEC/INFRA/HARNESS各ownerと5phaseへ対応する。",
+    "reason": "限定初回の六適格条件を既存権限・開始資料と結び、案/許可/割当/実結果/人確認/観測/評価を混同しない。旧designed_not_implementedを実証へ格上げしない。"
+  },
+  "remaining": [
+    "L5/L8で正式型・各owner資格・manifest全列挙・任意資産/操作/予定生成物の全関係・effective expiry/stale・実適用scopeの解決と全failureを閉じる。参照文字列やsupported boolだけでは正式bindingは成立しない。",
+    "旧HR-FR-HIL-22の共通consumer HIL-BR-31/FR-61/62/63/NFR-35とHOT-HIL-54/55への全帰着は未証明。旧規範の全objectを保全し、027だけで共通consumer完了にしない。",
+    "予算/期限/停止/再開・回収/隔離/復旧の全状態遷移と実環境への制約適用、実operation許可、独立人確認、実oracle適用/観測/LABO判定receiptは未成立。",
+    "N01の合成identity置換は実heldout検証ではない。凍結した独立未見母数・scope別反例・原記録・実観測を別途確保する。",
+    "全92親430対の設計意味閉包とL5/L8・L6設計/対L7、実装前凍結oracle→実Red→最小Green→Refactorと再検証、製品CI・実L9/L10・PO実物L11受入・実装Readyは未成立。"
+  ],
+  "document_id": "HELIXOS-L4-027-LIMITED-FIRST-WORKER-CYCLE",
+  "layer": "L4",
+  "pair": "HELIXOS-L9-027-LIMITED-FIRST-WORKER-CYCLE",
+  "contracts": [
+    {
+      "id": "HELIXOS-L4-027-F01",
+      "requirement_ref": "HELIXOS-L3-027-F01",
+      "system_oracle_ref": "HELIXOS-L10-027-F01",
+      "oracle_ref": "HELIXOS-L9-027-F01",
+      "title": "未評価と初回実行許可の分離",
+      "approved_obligation": "開始前に要求/authority exact revision、ticket/task/scope、分類/data-use、操作許可、限定Worker/capability、proposal、LABO水準または明示未評価、予算/期限/停止条件、固定HARNESS oracle/義務、人確認を同attemptへ結ぶ。性能未評価だけで独立に許可された限定runを拒否せず、開始必須条件unknownは実行しない。",
+      "rules": [
+        "R01",
+        "R02",
+        "R03",
+        "R16"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F02",
+      "requirement_ref": "HELIXOS-L3-027-F02",
+      "system_oracle_ref": "HELIXOS-L10-027-F02",
+      "oracle_ref": "HELIXOS-L9-027-F02",
+      "title": "人の配置案代行の同契約照合",
+      "approved_obligation": "人代行案はINT010/066の同入力属性・契約revision・scope、根拠/不確実性/未評価表示を持ち、INT出力と偽装しない。OS受領receiptへsource/actor・入力/契約revision・task/scope・作成時点・根拠・未評価・受領側revisionを結ぶ。OSだけが割当/停止する。",
+      "rules": [
+        "R04",
+        "R10",
+        "R15"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F03",
+      "requirement_ref": "HELIXOS-L3-027-F03",
+      "system_oracle_ref": "HELIXOS-L10-027-F03",
+      "oracle_ref": "HELIXOS-L9-027-F03",
+      "title": "狭いscope内の有限初回仕事",
+      "approved_obligation": "人が確認した狭いtask/scope、指定Worker、明示budget/期限/停止条件、固定検証義務に限ってOS018が実行を統制する。超過/scope変更/検証欠落は停止し、費用・attempt・部分成果・未完・再開条件を保持する。",
+      "rules": [
+        "R03",
+        "R11"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F04",
+      "requirement_ref": "HELIXOS-L3-027-F04",
+      "system_oracle_ref": "HELIXOS-L10-027-F04",
+      "oracle_ref": "HELIXOS-L9-027-F04",
+      "title": "HARNESS検証と独立した人確認",
+      "approved_obligation": "HARNESS022の固定oracle/義務に沿う実検証結果と、作成Workerとは別actorの人確認をOS019へ結ぶ。許容された人の検証分担を明示でき、OS020実装を初回の必須条件にしない。確認対象/結果/actor/対象revision/scope/受領時刻/未完を残す。",
+      "rules": [
+        "R12",
+        "R13"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F05",
+      "requirement_ref": "HELIXOS-L3-027-F05",
+      "system_oracle_ref": "HELIXOS-L10-027-F05",
+      "oracle_ref": "HELIXOS-L9-027-F05",
+      "title": "実行後の観測受渡し",
+      "approved_obligation": "OS018のassignment/attempt結果、019原証拠、023handoffを実行後に同scope/revisionへ結んでLABO観測へ渡す。027は構成candidate provenance参照であり、LABO057の実行依存にしない。026導出器も自分の入力/実行依存にしない。",
+      "rules": [
+        "R11",
+        "R12",
+        "R14"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F06",
+      "requirement_ref": "HELIXOS-L3-027-F06",
+      "system_oracle_ref": "HELIXOS-L10-027-F06",
+      "oracle_ref": "HELIXOS-L9-027-F06",
+      "title": "評価済み化の実適用証拠",
+      "approved_obligation": "LABO055/054が対象task/model class・scope・入力revisionについて適用oracle/基準revision、判定/比較条件と実適用結果・失敗/反例/unknownの根拠、評価者/時点/判定receiptを持つときだけ、その範囲の水準を評価済みとして渡す。INT案→OS指定/割当は別判定。Bench score単独でscope・branch・assignment・操作権限を変更しない。",
+      "rules": [
+        "R11",
+        "R14",
+        "R15"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F07",
+      "requirement_ref": "HELIXOS-L3-027-F07",
+      "system_oracle_ref": "HELIXOS-L10-027-F07",
+      "oracle_ref": "HELIXOS-L9-027-F07",
+      "title": "全資産の分類と利用区分",
+      "approved_obligation": "SEC015/016の全読込・入力・生成/出力資産identity/owner/source/revision/分類を照合し、unknown/secret/HELIX-restrictedを含めない。公開範囲とdata-use許可/操作authorityを分け、生成予定scope/分類から出力が外れたら受渡しを止める。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+      "rules": [
+        "R05",
+        "R06"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F08",
+      "requirement_ref": "HELIXOS-L3-027-F08",
+      "system_oracle_ref": "HELIXOS-L10-027-F08",
+      "oracle_ref": "HELIXOS-L9-027-F08",
+      "title": "credential不使用と遮断",
+      "approved_obligation": "SEC005/007に従いcredential-useとraw secretの読込/入力/出力を必要とせず、credentialアクセスが遮断されている。credentialを要する仕事は本経路の対象外。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+      "rules": [
+        "R07"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F09",
+      "requirement_ref": "HELIXOS-L3-027-F09",
+      "system_oracle_ref": "HELIXOS-L10-027-F09",
+      "oracle_ref": "HELIXOS-L9-027-F09",
+      "title": "egress許可の一致",
+      "approved_obligation": "SEC006のdefault denyと明示allowlistにより、通信なし、またはdestination/protocol/path・data分類/量・purpose/authority/expiryに一致する通信だけを使う。未確認宛先へ再送しない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+      "rules": [
+        "R08"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F10",
+      "requirement_ref": "HELIXOS-L3-027-F10",
+      "system_oracle_ref": "HELIXOS-L10-027-F10",
+      "oracle_ref": "HELIXOS-L9-027-F10",
+      "title": "隔離と実制約適用",
+      "approved_obligation": "SEC003のproject/tenant/environment/assignment隔離と007のwrite path/network/credential/env/timeout/resources/差分/rollback/回収制約が実環境へ適用されている。unsupported/未適用/host fallbackを許さない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+      "rules": [
+        "R09"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F11",
+      "requirement_ref": "HELIXOS-L3-027-F11",
+      "system_oracle_ref": "HELIXOS-L10-027-F11",
+      "oracle_ref": "HELIXOS-L9-027-F11",
+      "title": "操作別authority",
+      "approved_obligation": "SEC008のactor/target/operation/revision/environment/scope/expiryに一致する有効許可を全操作へ結び、列挙漏れを許さない。性能未評価や人案を許可の代替にしない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+      "rules": [
+        "R05",
+        "R10"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-F12",
+      "requirement_ref": "HELIXOS-L3-027-F12",
+      "system_oracle_ref": "HELIXOS-L10-027-F12",
+      "oracle_ref": "HELIXOS-L9-027-F12",
+      "title": "可逆性と事前復旧",
+      "approved_obligation": "許可scope内で取り消せる変更だけとし、変更前状態・復旧手段/復旧先を事前確認する。不可逆外部作用/release/tag/配布と可逆性unknownは本経路の対象外。人確認で免除しない。六適格条件の全てを同task/attempt・scope・revision・環境へ結び、根拠と確認結果をOS開始記録へ残す。",
+      "rules": [
+        "R10"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-N01",
+      "requirement_ref": "HELIXOS-L3-027-N01",
+      "system_oracle_ref": "HELIXOS-L10-027-N01",
+      "oracle_ref": "HELIXOS-L9-027-N01",
+      "title": "未見scopeと部分成功の限界",
+      "approved_obligation": "未見task/model/scope/actorと一境界故障を使い、authority/classification/proposal/assignment/実record/検証/人確認/LABO受領を別々に検査する。部分成功で欠落を相殺せず、適用外/未観測/未評価を保持する。",
+      "rules": [
+        "R01",
+        "R02",
+        "R16"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    },
+    {
+      "id": "HELIXOS-L4-027-B01",
+      "requirement_ref": "HELIXOS-L3-027-B01",
+      "system_oracle_ref": "HELIXOS-L10-027-B01",
+      "oracle_ref": "HELIXOS-L9-027-B01",
+      "title": "初回経路と責務・許可の境界",
+      "approved_obligation": "本経路は既存六条件の積としての限定適格性で、一般risk分類器やSEC016のtaskリスク出力を新設しない。人の配置案、操作許可、OS assignment、実検証、人確認、LABO観測/評価を別に扱う。全能力/固定provider/後続版/権限拡大を要求しない。",
+      "rules": [
+        "R02",
+        "R15",
+        "R16"
+      ],
+      "backflow": "該当facetの原資料ownerへ戻す。開始不成立と性能未評価、実行/検証/確認/観測/評価の不足を別に保持する。"
+    }
+  ],
+  "architecture": {
+    "input": "各ownerの独立source/expected参照とactual原資料を同bindingへ結ぶimmutable snapshot。資格は正式owner契約で後続確認する。",
+    "components": [
+      "開始資料と六条件照合",
+      "案/OS指定と有限run照合",
+      "固定oracle/別actor確認照合",
+      "OS原記録→LABO観測照合",
+      "適用範囲付き評価照合"
+    ],
+    "dependency_direction": "owner source snapshot→OS027文書照合→OS018/019/023、HARNESS、LABO/INT/SEC/INFRA各consumer。027照合自体はconsumer生成/保存/実行を呼ばない。",
+    "output": "phase別材料対応、状態原値、不足と戻し先・停止材料。既存authorityや状態を上書きしない。"
+  },
+  "diagnostic_contract": {
+    "binding_fields": [
+      "project_id",
+      "tenant_id",
+      "environment_id",
+      "requirement_revision",
+      "authority_revision",
+      "ticket_id",
+      "task_id",
+      "scope",
+      "attempt_id",
+      "worker_id",
+      "model_class",
+      "input_revision",
+      "target_head",
+      "oracle_ref",
+      "obligation_set_ref"
+    ],
+    "witness_fields": [
+      "source_ref",
+      "source_revision",
+      "source_digest",
+      "owner_ref"
+    ],
+    "string_fields": {
+      "start": [
+        "worker_capability_ref",
+        "budget_ref",
+        "deadline_ref",
+        "stop_conditions_ref",
+        "human_plan_ref",
+        "human_actor_ref",
+        "verification_plan_ref",
+        "verification_division_ref",
+        "resource_applied_ref"
+      ],
+      "proposal": [
+        "actor_ref",
+        "input_attributes_ref",
+        "input_revision",
+        "contract_revision",
+        "task_id",
+        "scope",
+        "created_at_ref",
+        "basis_ref",
+        "uncertainty_ref",
+        "unevaluated_ref",
+        "OS_receipt_ref",
+        "receiver_revision"
+      ],
+      "credential": [
+        "blocked_access_ref"
+      ],
+      "egress": [
+        "default_deny_ref",
+        "allowlist_ref"
+      ],
+      "isolation": [
+        "project_isolation_ref",
+        "tenant_isolation_ref",
+        "environment_isolation_ref",
+        "assignment_isolation_ref",
+        "write_path_ref",
+        "network_ref",
+        "credential_ref",
+        "env_ref",
+        "timeout_ref",
+        "resource_limit_ref",
+        "difference_check_ref",
+        "rollback_ref",
+        "collection_ref"
+      ],
+      "reversibility": [
+        "before_state_ref",
+        "recovery_method_ref",
+        "recovery_target_ref"
+      ],
+      "assignment": [
+        "OS_assignment_ref",
+        "OS_actor_ref",
+        "stop_owner_ref"
+      ],
+      "run": [
+        "attempt_result_ref",
+        "cost_ref",
+        "partial_result_ref",
+        "outstanding_ref",
+        "resume_condition_ref",
+        "stopped_at_ref"
+      ],
+      "verification": [
+        "applied_oracle_ref",
+        "applied_obligation_ref",
+        "verification_result_ref",
+        "verifier_actor_ref",
+        "declared_division_ref",
+        "CI_use_ref"
+      ],
+      "human_result": [
+        "actor_ref",
+        "confirmation_target_ref",
+        "confirmation_result_ref",
+        "received_at_ref",
+        "outstanding_ref"
+      ],
+      "handoff": [
+        "OS018_result_ref",
+        "OS019_evidence_ref",
+        "OS023_handoff_ref",
+        "candidate_provenance_ref"
+      ],
+      "observation": [
+        "LABO_receipt_ref",
+        "scope_ref"
+      ],
+      "evaluation": [
+        "applied_oracle_ref",
+        "standard_revision",
+        "decision_conditions_ref",
+        "comparison_conditions_ref",
+        "application_result_ref",
+        "failure_counterexample_unknown_ref",
+        "evaluator_actor_ref",
+        "evaluated_at_ref",
+        "decision_receipt_ref"
+      ],
+      "selection_trace": [
+        "task_ref",
+        "risk_basis_ref",
+        "runtime_ref",
+        "requested_model_ref",
+        "effective_model_ref",
+        "requested_effort_ref",
+        "effective_effort_ref",
+        "retry_ref",
+        "quality_ref",
+        "cost_ref",
+        "default_deviation_ref",
+        "escalation_order_ref",
+        "receipt_ref"
+      ]
+    },
+    "asset_fields": [
+      "asset_id",
+      "owner_ref",
+      "source_ref",
+      "source_revision",
+      "source_digest",
+      "classification_ref",
+      "classification",
+      "data_use_ref",
+      "planned_output_scope"
+    ],
+    "authority_fields": [
+      "actor_ref",
+      "target_ref",
+      "operation_ref",
+      "target_revision",
+      "environment_id",
+      "scope",
+      "expiry_ref",
+      "permission_ref"
+    ],
+    "network_fields": [
+      "destination_ref",
+      "protocol_ref",
+      "path_ref",
+      "data_class_ref",
+      "amount_ref",
+      "purpose_ref",
+      "authority_ref",
+      "expiry_ref"
+    ],
+    "phases": [
+      "prepare",
+      "run",
+      "verify",
+      "handoff",
+      "evaluate"
+    ],
+    "enabled_groups": {
+      "prepare": [
+        "start",
+        "proposal",
+        "assets",
+        "credential",
+        "egress",
+        "isolation",
+        "authority",
+        "reversibility"
+      ],
+      "run": [
+        "start",
+        "proposal",
+        "assets",
+        "credential",
+        "egress",
+        "isolation",
+        "authority",
+        "reversibility",
+        "assignment",
+        "run",
+        "selection_trace",
+        "output"
+      ],
+      "verify": [
+        "start",
+        "proposal",
+        "assets",
+        "credential",
+        "egress",
+        "isolation",
+        "authority",
+        "reversibility",
+        "assignment",
+        "run",
+        "selection_trace",
+        "output",
+        "verification",
+        "human_result"
+      ],
+      "handoff": [
+        "start",
+        "proposal",
+        "assets",
+        "credential",
+        "egress",
+        "isolation",
+        "authority",
+        "reversibility",
+        "assignment",
+        "run",
+        "selection_trace",
+        "output",
+        "verification",
+        "human_result",
+        "handoff",
+        "observation"
+      ],
+      "evaluate": [
+        "start",
+        "proposal",
+        "assets",
+        "credential",
+        "egress",
+        "isolation",
+        "authority",
+        "reversibility",
+        "assignment",
+        "run",
+        "selection_trace",
+        "output",
+        "verification",
+        "human_result",
+        "handoff",
+        "observation",
+        "evaluation"
+      ]
+    },
+    "rules": [
+      {
+        "id": "R01",
+        "rule": "binding各15fieldはactual/contextの非空stringを比較する。非string/空値は当該側field_unknown、両側knownの差はactual field_conflict。各active groupのbindingはcontext同groupへ比較し、context共通bindingへもjoinする。source witness各4fieldとgroup string_fieldsも同じ比較。supportedは両側trueのみ対応し、falseはrequired_flag_refused、非boolはrequired_flag_unknown。参照stringの存在はowner資格や実環境適用の証明ではない。"
+      },
+      {
+        "id": "R02",
+        "rule": "phaseはprepare/run/verify/handoff/evaluate。両側の集合外はphase_unknown、known差はactual phase_conflict。適用groupはactual known phaseだけから決める。両側dictのgroupだけR01と以後の固有規則を評価し、非dict側はgroup_missing。未来groupは入力を保持するだけで判定しない。outputが片側非dictならstop_material_required=true。成果値の採用も両側dictの場合に限る。"
+      },
+      {
+        "id": "R03",
+        "rule": "start.performance_stateはunevaluated/evaluated_materialのclosed値。不明側performance_unknown、known差performance_conflict。performance_stateは両側dict時のactual known値かnull。unevaluated単独を不足にしない。human_plan_confirmedは両側true、clock_refはstring比較。budget_limit/deadlineは有限・bool以外の正の数を両側に要求し、不正側numeric_unknown、両側正の数の差numeric_conflict。値10/100はfixtureだけで、共通閾値を定めない。"
+      },
+      {
+        "id": "R04",
+        "rule": "proposal.origin/asserted_originはhuman/INTELLIGENCE。不明側の各fieldへorigin_unknown。origin known差はorigin_conflict、actual originとactual asserted_originのknown差はproposal_origin_forged。input_revision/task_id/scopeはcontext共通bindingへjoinする。source/actor/contract/input/根拠/未評価/OS受領を保存し、案からOS assignmentを作らない。"
+      },
+      {
+        "id": "R05",
+        "rule": "assets/outputのrecordsとauthority.permissionsは両側dictを要求。不明側set_unknown、両側dictのkey集合差set_conflict。共通keyのasset_fields/authority_fieldsをstring比較する。資産のclassified/data_use_allowedと許可のallowedは両側trueのみ対応する。空集合同士から全資産・全操作の列挙完全性は証明できず、正式manifest資格・全集合解決は未成立として残す。"
+      },
+      {
+        "id": "R06",
+        "rule": "各資産のclassificationは両側でunknown/null/空値をclassification_unknown、secret/HELIX-restrictedをclassification_forbiddenとする。その他のstringは独立参照との一致とclassified/data_use_allowedを照合し、新しい分類語彙を定めない。actual planned_output_scopeをcontext共通scopeへjoinする。outputのplanned_asset_keyを両側string比較し、actual keyでcontext assets.recordsの予定資産を参照する。参照集合/key不明はoutput set_unknown、解決したclassification/planned_output_scopeへactual生成物をstring比較する。output内の全診断は受渡し停止材料を返す。観測側も同分類へ改変された場合であっても事前予定との差を検出する。任意の複数予定物の正式関係型はL5へ残す。"
+      },
+      {
+        "id": "R07",
+        "rule": "credential_requiredは両側false。trueはcredential_required、非boolはrequired_flag_unknown。blocked_access_refとsource witnessを照合する。参照存在で実遮断を認定せず、実資格/適用/raw secret排除は別の実証を要する。"
+      },
+      {
+        "id": "R08",
+        "rule": "egress.modeはnone/allowlisted。集合外はnetwork_mode_unknown、known差network_mode_conflict。両側dictかつactual allowlistedだけallowlist_refとnetwork_fieldsをstring比較する。noneには通信先やallowlist参照を要求しない。default_deny_refとsource/bindingは両modeで比較。unconfirmed_retryは両側false、trueはrequired_flag_refused、非boolはrequired_flag_unknown。"
+      },
+      {
+        "id": "R09",
+        "rule": "isolation.host_fallbackは両側false。trueはisolation_fallback_forbidden、非boolはrequired_flag_unknown。各隔離/制約参照とsupportedをR01で照合。実適用/unsupported/credential・network・環境・回収等の各実制約の資格はこの素材比較から生成しない。"
+      },
+      {
+        "id": "R10",
+        "rule": "authorityは各列挙操作の全authority_fieldsとallowedをR05照合し、actual environment_id/scopeをcontext共通bindingへjoinする。reversibility.reversibleは両側true、irreversible_external_effectは両側false（trueはrequired_flag_refused、非boolはrequired_flag_unknown）。復旧前状態/手段/先の参照を照合し、実取消成功とはしない。assignment.owner_kindは両側非空stringならOSだけ対応、他known値field_conflict、不明field_unknown。"
+      },
+      {
+        "id": "R11",
+        "rule": "run.stateはsuccess/failed/denied/interrupted/unknown。集合外はrun_state_unknown、known差run_state_conflict。run_stateはactual known値かnull。actual cumulative_cost/observed_timeは有限・bool以外の非負数、不正はnumeric_unknown。actual/context startが両側dictのとき、actual値をcontext startの非負known予算/期限と比較し超過はbudget_exceeded/deadline_exceeded、stop_material_required=true。actual scope_changed/verification_missingはtrueでrun_limit_violationと停止材料、非boolはrequired_flag_unknown。選択traceを各fieldへ照合し、原記録・部分成果・未完・再開条件を保持する。正常結果だけを採用するfilterを置かない。contextのrun使用量/停止flagは独立予定閾値ではなく原参照として保存し、actual使用量をその値に等しいことは要求しない。"
+      },
+      {
+        "id": "R12",
+        "rule": "verification.resultはverified_material/failed_material/unobserved、human_result.resultはconfirmed_material/rejected_material/unobserved、observation.resultはreceived_material/rejected_material/unobserved、evaluation.resultはevaluated_material/unevaluated/inapplicable/unknown。不明側result_unknown、known差result_conflict。各返却値は両側dict時のactual known値かnull。unobserved等の明示状態を未知文字列と混同せず、保存することから実受入や実評価は生成しない。"
+      },
+      {
+        "id": "R13",
+        "rule": "verificationはoracle_applied両側trueを照合し、applied_oracle_ref/applied_obligation_refをcontext共通oracle_ref/obligation_set_refへjoinする。human_result.roleは両側非空stringでhuman以外ならhuman_role_forbidden、不明はhuman_role_unknown。actual actor_refがactual worker_idとknown一致ならself_confirmation_forbidden。確認対象/時刻/未完、分担/CI利用参照を保存する。分担資料からOS020実装成功や実CI成功を作らない。"
+      },
+      {
+        "id": "R14",
+        "rule": "handoff/observationは実行後のOS018/019/023/LABO各参照と同bindingをR01で照合する。027 candidate provenanceと026構成導出を実行依存にしない。evaluationは固有全参照とsource/bindingを照合。actual result=evaluated_materialの場合だけoracle_applied/application_performedを両側true要求し、true以外はevaluation_basis_unproven。scoped_evaluation_materialはactual phase=evaluate、actual known evaluated_material、evaluation/binding/boundaryのfinding=0だけtrue。これは当該評価資料の対応であり、他groupの成功や全循環完了ではない。他groupの不足はfacetへ残し、正式receipt資格と実適用範囲の解決が成立するまで実評価済みへ昇格しない。"
+      },
+      {
+        "id": "R15",
+        "rule": "claimsの各trueはforbidden_claim、false以外はclaim_unknown。既存ownerの事実を否定する意味ではなく、この文書照合を根拠に新しい許可/成立/依存/一般risk分類/全機構完成待ちを生成する主張を拒否する。境界の不足を個別に返す。"
+      },
+      {
+        "id": "R16",
+        "rule": "facetはviolation>unknown>corresponding。binding/boundaryとactive groupはfindingなしならcorresponding、未来groupはnot_applicable。全体conditionはcycle_material_violation/cycle_material_unknown/cycle_material_corresponding。start_material_supportedはactual phase knownかつbinding/boundary/開始8groupのfinding=0だけtrue。後続記録不足から事前の資料対応を取り消さず、未来記録を開始gateにしない。actual/referenceをdeepcopyで保持。findingsはcode/pointer/return_ownerで重複除去して同3fieldの辞書順。return_ownerは固定facet名に-source-ownerを付した戻し先（正式owner資格ではない）。actual_assignment_created/actual_Worker_run/actual_verified/actual_LABO_received/actual_evaluated/whole_cycle_completeは全false、operation_effect=none。stop_material_requiredも実停止操作ではない。"
+      }
+    ],
+    "codes": [
+      {
+        "code": "field_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "field_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "phase_unknown",
+        "facet": "boundary",
+        "disposition": "unknown"
+      },
+      {
+        "code": "phase_conflict",
+        "facet": "boundary",
+        "disposition": "violation"
+      },
+      {
+        "code": "group_missing",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "required_flag_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "required_flag_refused",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "performance_unknown",
+        "facet": "start",
+        "disposition": "unknown"
+      },
+      {
+        "code": "performance_conflict",
+        "facet": "start",
+        "disposition": "violation"
+      },
+      {
+        "code": "origin_unknown",
+        "facet": "proposal",
+        "disposition": "unknown"
+      },
+      {
+        "code": "origin_conflict",
+        "facet": "proposal",
+        "disposition": "violation"
+      },
+      {
+        "code": "proposal_origin_forged",
+        "facet": "proposal",
+        "disposition": "violation"
+      },
+      {
+        "code": "set_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "set_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "classification_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "classification_forbidden",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "credential_required",
+        "facet": "credential",
+        "disposition": "violation"
+      },
+      {
+        "code": "network_mode_unknown",
+        "facet": "egress",
+        "disposition": "unknown"
+      },
+      {
+        "code": "network_mode_conflict",
+        "facet": "egress",
+        "disposition": "violation"
+      },
+      {
+        "code": "isolation_fallback_forbidden",
+        "facet": "isolation",
+        "disposition": "violation"
+      },
+      {
+        "code": "numeric_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "numeric_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "budget_exceeded",
+        "facet": "run",
+        "disposition": "violation"
+      },
+      {
+        "code": "deadline_exceeded",
+        "facet": "run",
+        "disposition": "violation"
+      },
+      {
+        "code": "run_limit_violation",
+        "facet": "run",
+        "disposition": "violation"
+      },
+      {
+        "code": "run_state_unknown",
+        "facet": "run",
+        "disposition": "unknown"
+      },
+      {
+        "code": "run_state_conflict",
+        "facet": "run",
+        "disposition": "violation"
+      },
+      {
+        "code": "result_unknown",
+        "facet": "comparison",
+        "disposition": "unknown"
+      },
+      {
+        "code": "result_conflict",
+        "facet": "comparison",
+        "disposition": "violation"
+      },
+      {
+        "code": "self_confirmation_forbidden",
+        "facet": "human_result",
+        "disposition": "violation"
+      },
+      {
+        "code": "human_role_unknown",
+        "facet": "human_result",
+        "disposition": "unknown"
+      },
+      {
+        "code": "human_role_forbidden",
+        "facet": "human_result",
+        "disposition": "violation"
+      },
+      {
+        "code": "evaluation_basis_unproven",
+        "facet": "evaluation",
+        "disposition": "unknown"
+      },
+      {
+        "code": "forbidden_claim",
+        "facet": "boundary",
+        "disposition": "violation"
+      },
+      {
+        "code": "claim_unknown",
+        "facet": "boundary",
+        "disposition": "unknown"
+      }
+    ],
+    "dynamic_comparison_facet": "comparisonのcodeは比較対象group/bindingのfacetへ返す。固定facet codeはcodesのfacetへ返す。",
+    "output_fields": [
+      "condition",
+      "phase",
+      "facet_correspondence",
+      "start_material_supported",
+      "performance_state",
+      "run_state",
+      "verification_result",
+      "human_result",
+      "observation_result",
+      "evaluation_result",
+      "scoped_evaluation_material",
+      "stop_material_required",
+      "retained_actual",
+      "retained_reference",
+      "findings",
+      "actual_assignment_created",
+      "actual_Worker_run",
+      "actual_verified",
+      "actual_LABO_received",
+      "actual_evaluated",
+      "whole_cycle_complete",
+      "operation_effect"
+    ],
+    "fixture_domain": "既存dict-keyを持つ限定素材fixture。欠落はnullで表す。追加key/任意shape/graph完全性は正式schemaで未成立。",
+    "material_limit": "correspondingは資料対応であり適格性/許可/実適用/成功ではない。独立source資格・実証が未成立なら実装Readyにしない。"
+  }
+}
