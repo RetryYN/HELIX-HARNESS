@@ -1,0 +1,427 @@
+{
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "parent": "HELIXSECURITY-L2-023",
+  "source_main": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+  "scope": {
+    "approval_revision": "65dd7d8f641456389d16ba983e9bfad11ac44068",
+    "historical_stage": "Stage 4",
+    "version_boundary": "1.0。初回の更新candidateからOS昇格までの必要構成体規範。全Stage4運転・全MCP/plugin/model運転・release/deployを追加しない。",
+    "requirements": [
+      "HELIXSECURITY-L3-023-B01",
+      "HELIXSECURITY-L3-023-F01",
+      "HELIXSECURITY-L3-023-F02",
+      "HELIXSECURITY-L3-023-F03",
+      "HELIXSECURITY-L3-023-N01"
+    ],
+    "oracles": [
+      "HELIXSECURITY-L10-023-B01",
+      "HELIXSECURITY-L10-023-F01",
+      "HELIXSECURITY-L10-023-F02",
+      "HELIXSECURITY-L10-023-F03",
+      "HELIXSECURITY-L10-023-N01"
+    ],
+    "operation": "合成fixtureだけで入力・段階・戻し先を文書照合する。実資格、実隔離、実更新、実検証、実昇格を行わない。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "pair_id": "HELIXSECURITY-L4L9-023-CANDIDATE-PROMOTION-STATE-CHAIN",
+  "layer_id": "HELIXSECURITY-L4",
+  "id": "HELIXSECURITY-L4-023-BASIC-DESIGN",
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L4-023-B01",
+      "requirement_ref": "HELIXSECURITY-L3-023-B01",
+      "oracle_ref": "HELIXSECURITY-L10-023-B01",
+      "source_obligation_value": "SECURITY admission→Worker隔離実行→HARNESS verification→OS promotionの順序とownerを分ける。SECacceptだけで実行/昇格、HARNESS greenだけでSEC受入を生成せず、OSもunknown条件を昇格しない。初回の必要構成体規範だけ先行し歴史Stage4の全運転を前倒ししない。OS昇格要求/ticketの存在だけで、SEC受入とHARNESS検証の成立なしに昇格しない。",
+      "source_oracle_values": {
+        "positive_input": "四段階の各状態と順序を同候補へ照合する。",
+        "expected_observation": "各ownerと前後状態/未完が別に辿れる。OS ticketの存在とSEC受入/HARNESS検証の成立を別々に追跡する。",
+        "negative_input": "審査だけでpromotion、CIだけでsecurity受入、初回で全Stage4完成。OS ticket/昇格要求だけでSEC受入とHARNESS検証の成立なしにpromotion。",
+        "failure_observation": "意味/審査不足はSEC、実行はWorker/INFRA、検証はHARNESS、進行はOSへ返す。"
+      },
+      "rule": "SECURITY admission→Worker隔離実行→HARNESS verification→OS promotionの順序とownerを別々に保持する。SEC acceptanceだけでは実行/昇格を、HARNESS greenだけではSEC受入を成立させず、OSはunknown条件を昇格しない。初回必要構成体の範囲に留め、歴史Stage4全運転を前倒ししない。OS ticket/昇格要求だけではSEC受入とHARNESS検証が成立しない限り昇格しない。",
+      "inputs": [
+        "HELIXSECURITY-L2-023",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-010",
+        "HELIXSECURITY-L2-011",
+        "HELIXSECURITY-L2-012",
+        "HELIXSECURITY-L2-013"
+      ],
+      "source_trace": [
+        "HELIXSECURITY-L3-023-B01",
+        "HELIXSECURITY-L10-023-B01"
+      ],
+      "failure_route": "意味/審査不足はSEC、実行はWorker/INFRA、検証はHARNESS、進行はOSへ返す。"
+    },
+    {
+      "id": "HELIXSECURITY-L4-023-F01",
+      "requirement_ref": "HELIXSECURITY-L3-023-F01",
+      "oracle_ref": "HELIXSECURITY-L10-023-F01",
+      "source_obligation_value": "010/011/012/013の候補・provenance/capability delta/審査、007の実隔離適用、Worker結果、HARNESS検証証拠、OS昇格要求を該当段階で同identity/revision/scopeへ結ぶ。初期審査には審査前candidateと材料、実行後には結果、検証後には証拠を照合し、未来結果を初回実行開始の前提にしない。",
+      "source_oracle_values": {
+        "positive_input": "候補と審査→隔離run→検証→進行要求の段階入力を比較する。",
+        "expected_observation": "各段階で必要な前入力と後で生成される結果が区別される。",
+        "negative_input": "異candidateのreceipt混在、初回実行前に実行結果必須、007未適用で実行。",
+        "failure_observation": "当該段階の入力/authority/環境を未成立にし発生ownerへ返す。"
+      },
+      "rule": "010/011/012/013の候補・provenance/capability delta/審査、007の実隔離適用、Worker結果、HARNESS検証証拠、OS昇格要求を各生成段階で同一identity/revision/scopeへ束ねる。初期審査は審査前candidateと既存材料、実行後は生成結果、検証後は生成証拠を入力として区別し、未来の結果を初回実行開始の前提にしない。",
+      "inputs": [
+        "HELIXSECURITY-L2-023",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-010",
+        "HELIXSECURITY-L2-011",
+        "HELIXSECURITY-L2-012",
+        "HELIXSECURITY-L2-013"
+      ],
+      "source_trace": [
+        "HELIXSECURITY-L3-023-F01",
+        "HELIXSECURITY-L10-023-F01"
+      ],
+      "failure_route": "当該段階の入力/authority/環境を未成立にし発生ownerへ返す。"
+    },
+    {
+      "id": "HELIXSECURITY-L4-023-F02",
+      "requirement_ref": "HELIXSECURITY-L3-023-F02",
+      "oracle_ref": "HELIXSECURITY-L10-023-F02",
+      "source_obligation_value": "各段階のinput/output/receiptに失敗・拒否・unknown・未観測・中断と戻し先/未完義務を残す。OS018/019/020/023のassignment/原証拠/検収/handoffと、HARNESS005/022の検証・成立条件を参照する。送信/ACKや一段の成功だけで後段成立にせず、修正後revisionへ旧審査/検証を流用しない。",
+      "source_oracle_values": {
+        "positive_input": "一境界故障、未知、別revision、受理と解決を比較する。",
+        "expected_observation": "失敗位置と原候補/未完/受領/解消条件が辿れる。",
+        "negative_input": "ACKだけで義務消込、検証失敗をpromotion、改訂後に旧accept継承。",
+        "failure_observation": "該当段階と接続を未完にし既存ownerへ戻す。"
+      },
+      "rule": "各段階のinput/output/receiptに失敗・拒否・unknown・未観測・中断、戻し先、未完義務を保持する。OS018/019/020/023のassignment/原証拠/検収/handoffとHARNESS005/022の検証・成立条件を参照し、送信/ACKや一段の成功で後段成立を作らず、修正後revisionへ旧審査/検証を流用しない。",
+      "inputs": [
+        "HELIXSECURITY-L2-023",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-010",
+        "HELIXSECURITY-L2-011",
+        "HELIXSECURITY-L2-012",
+        "HELIXSECURITY-L2-013"
+      ],
+      "source_trace": [
+        "HELIXSECURITY-L3-023-F02",
+        "HELIXSECURITY-L10-023-F02"
+      ],
+      "failure_route": "該当段階と接続を未完にし既存ownerへ戻す。"
+    },
+    {
+      "id": "HELIXSECURITY-L4-023-F03",
+      "requirement_ref": "HELIXSECURITY-L3-023-F03",
+      "oracle_ref": "HELIXSECURITY-L10-023-F03",
+      "source_obligation_value": "初回開発で選ぶtool/依存/runtime/config候補の審査・隔離検証・実利用への進行に必要な条件を対象operationへ結ぶ。SEC008のinstall/execute等の操作tuple、INFRA010の更新/復旧、OS001/053の進行/正本原子更新はそれぞれ既存ownerに残す。release/tag/内部デプロイ/配布切替や全plugin/model更新を本規範から発行しない。",
+      "source_oracle_values": {
+        "positive_input": "初回開発構成の採用と非選択release/配布operationを分ける。",
+        "expected_observation": "選択操作の必要契約と非選択の停止境界が辿れる。",
+        "negative_input": "構成審査をrelease許可、全plugin運転を必須、OS状態をSECが更新。",
+        "failure_observation": "操作/資源/保存不足を各ownerへ返し、上流意味変更だけ該当L1/L2へ戻す。"
+      },
+      "rule": "初回開発で選ぶtool/依存/runtime/config候補の審査・隔離検証・実利用への進行条件を対象operationへ結ぶ。SEC008のinstall/execute等の操作tuple、INFRA010の更新/復旧、OS001/053の進行/正本原子更新は各ownerに残す。release/tag/内部deploy/配布切替/全plugin・model更新を本規範から発行しない。",
+      "inputs": [
+        "HELIXSECURITY-L2-023",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-010",
+        "HELIXSECURITY-L2-011",
+        "HELIXSECURITY-L2-012",
+        "HELIXSECURITY-L2-013"
+      ],
+      "source_trace": [
+        "HELIXSECURITY-L3-023-F03",
+        "HELIXSECURITY-L10-023-F03"
+      ],
+      "failure_route": "操作/資源/保存不足を各ownerへ返し、上流意味変更だけ該当L1/L2へ戻す。"
+    },
+    {
+      "id": "HELIXSECURITY-L4-023-N01",
+      "requirement_ref": "HELIXSECURITY-L3-023-N01",
+      "oracle_ref": "HELIXSECURITY-L10-023-N01",
+      "source_obligation_value": "単体010/011/012/013の成功とは別に、未見candidate/actor/revisionの審査→実行→検証→進行の順序、同一対象、各境界failure、未完保持を検証する。個別norm/field/件数から実構成体/PO Acceptedを生成しない。",
+      "source_oracle_values": {
+        "positive_input": "未見candidateと一境界故障を四段階へ照合する。",
+        "expected_observation": "構成体固有の順序/同revision/未完の判定が示される。",
+        "negative_input": "単体全greenで接続故障を相殺、未実行を成功、AI検証をPO受入化。",
+        "failure_observation": "該当構成体を未完にし内容/接続/利用者判断の別条件を保つ。"
+      },
+      "rule": "単体010/011/012/013の成功と分離し、未見candidate/actor/revisionの審査→実行→検証→進行順序、同一対象、各境界failure、未完保持を観測する。個別norm/field/件数から実構成体成立またはPO Acceptedを生成しない。",
+      "inputs": [
+        "HELIXSECURITY-L2-023",
+        "HELIXSECURITY-L2-007",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-010",
+        "HELIXSECURITY-L2-011",
+        "HELIXSECURITY-L2-012",
+        "HELIXSECURITY-L2-013"
+      ],
+      "source_trace": [
+        "HELIXSECURITY-L3-023-N01",
+        "HELIXSECURITY-L10-023-N01"
+      ],
+      "failure_route": "該当構成体を未完にし内容/接続/利用者判断の別条件を保つ。"
+    }
+  ],
+  "trace_policy": "各L4 contractは固有L3/L10 full IDへ双方向参照する。L9 caseはrequirement_traceにL3/L10 full IDだけを置き、packet参照をgiven.source_packet_refsに分離する。",
+  "approval_record": {
+    "path": "docs/governance/decisions/helix-security-tool-composite-l3-l10-delegated-decision-2026-10-12.md",
+    "reviewed_content_head": "65dd7d8f641456389d16ba983e9bfad11ac44068",
+    "main_admission_commit": "f86754d7985f887e741a2cabb3fa33fab3241686",
+    "effect": "記録がmainへ収録されたとき有効。対象L3/L10 wholeを変更せず下流の承認・実装・実資格は生成しない。"
+  },
+  "audit_basis": {
+    "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+    "audit_id": "LIMITED-V12-DESIGN-GAP-20261014",
+    "denominators": {
+      "parents": 92,
+      "requirement_pairs": 430
+    },
+    "row_parent": "HELIXSECURITY-L2-023",
+    "row_state": "basic_pair_document_presence=false;design_completion=unproven;implementation_readiness=not_ready"
+  },
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "id": "HELIXSECURITY-L3-023-B01",
+      "object": {
+        "id": "HELIXSECURITY-L3-023-B01",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "審査・実行・検証・昇格の責務",
+        "obligation": "SECURITY admission→Worker隔離実行→HARNESS verification→OS promotionの順序とownerを分ける。SECacceptだけで実行/昇格、HARNESS greenだけでSEC受入を生成せず、OSもunknown条件を昇格しない。初回の必要構成体規範だけ先行し歴史Stage4の全運転を前倒ししない。OS昇格要求/ticketの存在だけで、SEC受入とHARNESS検証の成立なしに昇格しない。",
+        "oracle_ref": "HELIXSECURITY-L10-023-B01"
+      },
+      "object_canonical_sha256": "c9d279248b0f2d79ddcba983154890e16af23c253813c4602c82e3d98784f42f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-023-F01",
+      "object": {
+        "id": "HELIXSECURITY-L3-023-F01",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "段階入力と同候補の束縛",
+        "obligation": "010/011/012/013の候補・provenance/capability delta/審査、007の実隔離適用、Worker結果、HARNESS検証証拠、OS昇格要求を該当段階で同identity/revision/scopeへ結ぶ。初期審査には審査前candidateと材料、実行後には結果、検証後には証拠を照合し、未来結果を初回実行開始の前提にしない。",
+        "oracle_ref": "HELIXSECURITY-L10-023-F01"
+      },
+      "object_canonical_sha256": "0d5c2f6095747c4c833ee5cb3c85919d6fa80ea5c3457bf58360f937f70cd9e2"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-023-F02",
+      "object": {
+        "id": "HELIXSECURITY-L3-023-F02",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "失敗状態と未完義務の受渡し",
+        "obligation": "各段階のinput/output/receiptに失敗・拒否・unknown・未観測・中断と戻し先/未完義務を残す。OS018/019/020/023のassignment/原証拠/検収/handoffと、HARNESS005/022の検証・成立条件を参照する。送信/ACKや一段の成功だけで後段成立にせず、修正後revisionへ旧審査/検証を流用しない。",
+        "oracle_ref": "HELIXSECURITY-L10-023-F02"
+      },
+      "object_canonical_sha256": "46f2f8752237d0be5ad2bccb4c64cc527a2a4f26693cb7547ea74e1a83b093b6"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-023-F03",
+      "object": {
+        "id": "HELIXSECURITY-L3-023-F03",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "初回環境への適用と非選択境界",
+        "obligation": "初回開発で選ぶtool/依存/runtime/config候補の審査・隔離検証・実利用への進行に必要な条件を対象operationへ結ぶ。SEC008のinstall/execute等の操作tuple、INFRA010の更新/復旧、OS001/053の進行/正本原子更新はそれぞれ既存ownerに残す。release/tag/内部デプロイ/配布切替や全plugin/model更新を本規範から発行しない。",
+        "oracle_ref": "HELIXSECURITY-L10-023-F03"
+      },
+      "object_canonical_sha256": "61645da55d5452c256fbdbaffe55f37bec2c9e3b48b7ffc86757cdd5fe1a5f8f"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "id": "HELIXSECURITY-L3-023-N01",
+      "object": {
+        "id": "HELIXSECURITY-L3-023-N01",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "構成体固有の負例と部分成功",
+        "obligation": "単体010/011/012/013の成功とは別に、未見candidate/actor/revisionの審査→実行→検証→進行の順序、同一対象、各境界failure、未完保持を検証する。個別norm/field/件数から実構成体/PO Acceptedを生成しない。",
+        "oracle_ref": "HELIXSECURITY-L10-023-N01"
+      },
+      "object_canonical_sha256": "1f48596a71ed5b89126237d3bd9cfebe51dfebb1adc5f28674ab0bb38dd8e4c9"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "id": "HELIXSECURITY-L10-023-B01",
+      "object": {
+        "id": "HELIXSECURITY-L10-023-B01",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "審査・実行・検証・昇格の責務",
+        "requirement_ref": "HELIXSECURITY-L3-023-B01",
+        "positive_input": "四段階の各状態と順序を同候補へ照合する。",
+        "expected_observation": "各ownerと前後状態/未完が別に辿れる。OS ticketの存在とSEC受入/HARNESS検証の成立を別々に追跡する。",
+        "negative_input": "審査だけでpromotion、CIだけでsecurity受入、初回で全Stage4完成。OS ticket/昇格要求だけでSEC受入とHARNESS検証の成立なしにpromotion。",
+        "failure_observation": "意味/審査不足はSEC、実行はWorker/INFRA、検証はHARNESS、進行はOSへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "d478917954046dcb1a58381880842ba3c664c6dfed7feafc92f8fd71637507f7"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-023-F01",
+      "object": {
+        "id": "HELIXSECURITY-L10-023-F01",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "段階入力と同候補の束縛",
+        "requirement_ref": "HELIXSECURITY-L3-023-F01",
+        "positive_input": "候補と審査→隔離run→検証→進行要求の段階入力を比較する。",
+        "expected_observation": "各段階で必要な前入力と後で生成される結果が区別される。",
+        "negative_input": "異candidateのreceipt混在、初回実行前に実行結果必須、007未適用で実行。",
+        "failure_observation": "当該段階の入力/authority/環境を未成立にし発生ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "9913ddf1109f0126833d682bc08462b2c5cc05b78cdb5b6f2b54ffb11738a100"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-023-F02",
+      "object": {
+        "id": "HELIXSECURITY-L10-023-F02",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "失敗状態と未完義務の受渡し",
+        "requirement_ref": "HELIXSECURITY-L3-023-F02",
+        "positive_input": "一境界故障、未知、別revision、受理と解決を比較する。",
+        "expected_observation": "失敗位置と原候補/未完/受領/解消条件が辿れる。",
+        "negative_input": "ACKだけで義務消込、検証失敗をpromotion、改訂後に旧accept継承。",
+        "failure_observation": "該当段階と接続を未完にし既存ownerへ戻す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "845ad2bfe9ef560a38ed4f42d97432aef36eba6f4507d3a21bc91a3c8f1ece04"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-023-F03",
+      "object": {
+        "id": "HELIXSECURITY-L10-023-F03",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "初回環境への適用と非選択境界",
+        "requirement_ref": "HELIXSECURITY-L3-023-F03",
+        "positive_input": "初回開発構成の採用と非選択release/配布operationを分ける。",
+        "expected_observation": "選択操作の必要契約と非選択の停止境界が辿れる。",
+        "negative_input": "構成審査をrelease許可、全plugin運転を必須、OS状態をSECが更新。",
+        "failure_observation": "操作/資源/保存不足を各ownerへ返し、上流意味変更だけ該当L1/L2へ戻す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "5f32d34bbc5712d56c356b6b93dcb0108fbfd213b0d1f31e39cf50a9d6a6cc47"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "id": "HELIXSECURITY-L10-023-N01",
+      "object": {
+        "id": "HELIXSECURITY-L10-023-N01",
+        "parent": "HELIXSECURITY-L2-023",
+        "title": "構成体固有の負例と部分成功",
+        "requirement_ref": "HELIXSECURITY-L3-023-N01",
+        "positive_input": "未見candidateと一境界故障を四段階へ照合する。",
+        "expected_observation": "構成体固有の順序/同revision/未完の判定が示される。",
+        "negative_input": "単体全greenで接続故障を相殺、未実行を成功、AI検証をPO受入化。",
+        "failure_observation": "該当構成体を未完にし内容/接続/利用者判断の別条件を保つ。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "b7224a478b356eaae4342d307a730a34649b7439406d787a4fd1119dcbd4c354"
+    }
+  ],
+  "source_pins": {
+    "AGENTS.md": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7",
+    "CLAUDE.md": "9a676d8a3d8ef5edb9e1c6c3fb77ce4b6851c7c6c223613bf46307d906eda96c",
+    "docs/governance/new-generation-start-here.md": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc",
+    "docs/governance/decisions/helix-security-tool-composite-l3-l10-delegated-decision-2026-10-12.md": "996d077f0ffe5124561767e99813c95910a2fd1dfe1290bb87311b38249da822",
+    "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
+    "docs/governance/legacy-asset-disposition.jsonl": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05",
+    "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392",
+    "docs/helix-security/L1-planning/security-intent.md": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+    "docs/helix-security/L2-requirements/security-requirements.md": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+    "docs/helix-security/L11-acceptance/security-acceptance.md": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+    "docs/concept/helix-concept.md": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715",
+    "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+    "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md": "1c93bf0aadccfdf6b536a32d3923a17fbd00a1fd830850f9369b5b6d6b12efb2",
+    "docs/helix-harness/L2-requirements/product-requirements.md": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+    "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+    "docs/helix-security/L3-requirements/business-requirements.json": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+    "docs/helix-security/L3-requirements/functional-requirements.json": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+    "docs/helix-security/L3-requirements/nfr-grade.json": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66",
+    "docs/helix-security/L10-verification/business-verification.json": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+    "docs/helix-security/L10-verification/functional-verification.json": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+    "docs/helix-security/L10-verification/nfr-verification.json": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md": "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-environment-promotion-requirements.md": "f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md": "03bdf1060bc0ca9eec468f72f3b2b81328779695b95f95fd014662fd17fc1ab5",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-isolation-broker.md": "2ae62269bc67bd926c552fb1a418645a157feb0c701f3833494155cb3dabca26",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md": "d39b3cdc2e7d9f72ad03d0d3db5571a6b0de579fadf0b147b8a6d4f90dc2ed2c"
+  },
+  "design_limits": [
+    "この文書照合fixtureは試験用の説明資料に限り、実operation authorityではない。既存要求にない試験限定許可を推定せず、正式利用は既存SECURITY-L2-008の一致するactor/target/operation/revision/environment/scope/expiry tupleで扱う。",
+    "ここで正式schema/codec/runtime/CIを定義・実装しない。",
+    "自己申告のqualificationやsynthetic fixtureを実資格・実認可へ変換しない。",
+    "既存SEC008 tupleを再掲して新しい承認gateを足さない。",
+    "atomic/CAS/rollbackの新しい仕組みを創作しない。",
+    "既存owner責務を移転しない。"
+  ],
+  "legacy_source_review": {
+    "basis": "inventory-first。現行の段階順序・責務分離・失敗/未完保持の意味を再導出する。",
+    "evidence": [
+      {
+        "label": "admission",
+        "asset_id": "LEGACY-ASSET-ADE4AF41DD06DA4F100F",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+        "line_start": 16,
+        "line_end": 22,
+        "quote": "本書はCodex Security、GitHub CodeQL、secret scanning／push protection、Dependabot、dependency review等を\n個別の正本にせず、同一source HEAD／artifact digestへ束縛したsecurity evidenceから、開発slice、merge、\ndeploymentのadmissionをexactly onceで決定する。\n\nscannerの追加そのものではなく、coverage、severity、finding disposition、waiver期限、実行境界を統合する\n`GitHubSecurityAdmission`を単一responsibility ownerとする。各scannerの検出ロジック、脆弱性修正、\ndeployment実行、GitHub settings変更は本責務に含めない。",
+        "quote_sha256": "667e161b788729d150df70885386a767b59a63724b8238403975cabe1547af7b",
+        "whole_source_sha256": "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72"
+      },
+      {
+        "label": "promotion",
+        "asset_id": "LEGACY-ASSET-578A66F54CD01046B7BA",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-environment-promotion-requirements.md",
+        "line_start": 16,
+        "line_end": 30,
+        "quote": "本書は`vps_staging`から`cloud_production`へ同一artifactを昇格する環境境界、GitHub正式操作面、provider非依存contract、\nAWS reference profile、DB migration安全性をL3要件として定義する。実deployment、credential発行、cloud resource作成は行わない。\n\n## 2. 機能要件\n\n### GH-FR-021 staging・production GitHub運用境界\n\n環境を最低限`vps_staging`と`cloud_production`へ分離し、同一artifact digestだけをstagingからproductionへpromotionする。\nGitHub Deployments、Environments、Actionsをeditor非依存の正式操作・監査面とし、`workflow_dispatch`を起動面、HELIX CLIを\n同じworkflowの起動・監視を行う補助面とする。environment concurrencyは同時deploy一件へ制限する。\n\nrepository visibilityとGitHub planに応じてrequired reviewer、self-review禁止、custom protection、environment secret、branch/tag制限が\n利用可能かsetup preflightする。不足時は代替保護を仮定してproductionを開かない。production昇格はstaging検証合格後だけ開始し、\n対象artifact、環境、操作、window、backup、rollback target、health check、monitoringを束縛したユーザー承認receiptと\nGitHub Environment protectionを通す。staging receiptなし、別artifact、承認scope外操作、environment secret混用を拒否する。",
+        "quote_sha256": "6a56e5e3feacf1540db99a321ea71b4ef9481c9ae4088dc03ba8c7dfae97b4f9",
+        "whole_source_sha256": "f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410"
+      },
+      {
+        "label": "isolation_boundary",
+        "asset_id": "LEGACY-ASSET-F67008331E92FA0A5773",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-isolation-broker.md",
+        "line_start": 21,
+        "line_end": 34,
+        "quote": "`WorkerIsolationBroker`はcurrent descriptor admission、immutable wrapper execution、repository-owned runtime catalogが事前承認した\nbackend/runtimeのexact path＋content digest、allowlisted input bytesを受け、repo外scratchへ\nregular fileだけをcopyした後、Linux bubblewrap processを起動する。repo root、`.git`、`.helix`、`harness.db`、parent envはbindしない。\ngit worktreeは`.git`がcommon repository/historyへ接続するため採用しない。\n\n```text\ndescriptor decision + current snapshot + sealed wrapper execution + input allowlist\n  -> validate (spawn 0 on failure)\n  -> bounded byte snapshot outside repo\n  -> bubblewrap: /usr(ro), provider executable(ro), /workspace(rw), fixed env\n  -> worker process result\n```\n\nnetwork deny、secret task classification、egress scope diffはWCC-FR-04、output revalidationとreceiptはWCC-FR-05/06へ委譲する。",
+        "quote_sha256": "f07a6a467aef9f7032a365b60bf4f8ae697df148ee27d811a0cb109f646dd2d5",
+        "whole_source_sha256": "2ae62269bc67bd926c552fb1a418645a157feb0c701f3833494155cb3dabca26"
+      },
+      {
+        "label": "lifecycle_stage",
+        "asset_id": "LEGACY-ASSET-A4EAB5E3345E3C125C77",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
+        "line_start": 20,
+        "line_end": 20,
+        "quote": "worker実行を`requested -> admitted -> sandboxed -> running -> proposal_received -> revalidated -> accepted/rejected/quarantined`として再生し、parent/child exact set、current HEAD、admission、sandbox、diff、egress、output、独立reviewを一つのreceiptへ束縛する。",
+        "quote_sha256": "4279efba07d3ff7de9e820783f251eb84e5d6a7871b9b7585936d88a5a6a8d69",
+        "whole_source_sha256": "d39b3cdc2e7d9f72ad03d0d3db5571a6b0de579fadf0b147b8a6d4f90dc2ed2c"
+      },
+      {
+        "label": "update_lifecycle",
+        "asset_id": "LEGACY-ASSET-57F738ABAF40C5CF11DE",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-update-lifecycle-requirements.md",
+        "line_start": 16,
+        "line_end": 17,
+        "quote": "本書は将来改善を表すUpdate Issueを、Feature、Recovery、Incidentから分離して長期backlogとして追跡するlabel、priority、trace、\nactivation、closure契約を定義する。正常なopen Updateをactive blockerや異常放置へ誤算入しない。",
+        "quote_sha256": "7cd56e75b68c89a8c70186a8bf5ab711e43ee184da738266b83b2bcaf6ecb1ec",
+        "whole_source_sha256": "03bdf1060bc0ca9eec468f72f3b2b81328779695b95f95fd014662fd17fc1ab5"
+      }
+    ],
+    "preserved": "同一candidate/artifactに対応する証拠、admission・実行・検証・進行の段階分離、owner境界、部分成功/未完の明示。",
+    "changed": "旧GitHub deployment固有approval、production環境設定、旧isolation実装、receipt schema、Issue lifecycleは現行SECURITY023の意味・実装へ移植しない。選択対象の初回tool構成に必要な境界だけを現行L2/L3/L10へ対応させる。",
+    "reason": "現行承認L3/L10とL1/L2/L11が対象/authorityを定める。旧実装や環境固有の承認機構を資格・実権限として再利用しないため。"
+  }
+}
