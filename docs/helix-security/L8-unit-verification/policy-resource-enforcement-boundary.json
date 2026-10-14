@@ -6406,18 +6406,6 @@
         ],
         "findings": [
           {
-            "code": "receipt_binding_mismatch",
-            "source": null,
-            "field": "receipt_environment",
-            "environment": null,
-            "revision": null,
-            "scope": null,
-            "source_pointer": "/policy/value/receipt/environment",
-            "observed_value": null,
-            "left": "SYNTH-ENV-DEV-A",
-            "right": "SYNTH-ENV-DEV-B"
-          },
-          {
             "code": "application_unobserved",
             "source": null,
             "field": null,
@@ -6433,6 +6421,18 @@
             },
             "left": null,
             "right": null
+          },
+          {
+            "code": "receipt_binding_mismatch",
+            "source": null,
+            "field": "receipt_environment",
+            "environment": null,
+            "revision": null,
+            "scope": null,
+            "source_pointer": "/policy/value/receipt/environment",
+            "observed_value": null,
+            "left": "SYNTH-ENV-DEV-A",
+            "right": "SYNTH-ENV-DEV-B"
           }
         ],
         "return_targets": [
