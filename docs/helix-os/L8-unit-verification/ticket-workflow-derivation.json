@@ -111706,5 +111706,10 @@
       "preserved_boundary": "元revision/scope/停止理由/予算/期限/未完を保持し、原event/custodyを作らない。",
       "exact_binding_state": "未成立。これは原contractへの意味接続で、正式consumer wire/member資格の成立を主張しない。"
     }
-  ]
+  ],
+  "diagnostic_policy_scope_note": {
+    "source_snapshot_preserved": true,
+    "fixed_shape_limit_interpretation": "diagnostic_policy.fixed_shape_limitのL5/L8で閉じるは原L4の後続課題を保存した引用。本限定L5/L8で正式codec、全外側shape/全type/実qualified source/全routingが閉じたとは宣言せず、remainingとunclosed_source_supplyに未閉包を保持する。",
+    "finding_normalization": "中間はfacet/disposition/finding全体で一意化しcode→pointer順。最終は全facet集約後にfinding code/pointer/return_ownerだけを一意化する。"
+  }
 }

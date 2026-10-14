@@ -1425,7 +1425,7 @@
       ],
       "return_derivation": {
         "selected_phase": "原phaseが4閉集合に含まれる時だけその値。他はnullとphase_unresolved。",
-        "findings": "inputs/ownership/ticketの原比較値からFacetFinding。source_conflictは双方known相反だけ。"
+        "findings": "inputs/ownership/ticketの原比較値からFacetFinding。source_conflictは双方known相反だけ。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。異なるfacet/dispositionは別所見として集約まで保持する。"
       },
       "preconditions": [
         "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
@@ -1434,8 +1434,9 @@
       ],
       "algorithm": [
         "固定素材shapeに対してphase=candidate/workflow/backflow/resumeだけを選択。不明phaseはphase_unresolved・inputs unknown、selected_phase=null。binding5、management12、roles6を独立context同fieldへ照合。context rolesは固定6ownerへも照合。ticket_graphは独立contextと件数および同indexの8fieldを照合し、parent_revision/scopeをcontext bindingへも照合する。assignment/attempt/measurement/GitHub projectionはticket意味へ含めない。",
-        "比較tableに従う。stringは非空文字列、quantityはbool以外の非負integer、set/orderedは重複なし非空文字列list（list自体は空を許す）、obligationsは非空文字列key→重複なし非空文字列listのdict、edgesは長さ2の非空文字列listのlist。片側不明はその原pointerにsource_unresolved（数量だけquantity_unresolved）、両側不明は両pointer、両側knownで差があるときだけactual pointerへsource_conflict。setはsort比較、ordered/edgesは順序付き比較、obligationsはvalue listだけsort。重複findingはcode/pointer/return_ownerで一意化。",
-        "空graphは各原rootにsource_unresolved。両非空だけ件数相反、同index8fieldとactual親revision/scopeをcontext.bindingへ比較。acceptance=[]は各原fieldに不足。原graphを並べ替えない。"
+        "比較tableに従う。stringは非空文字列、quantityはbool以外の非負integer、set/orderedは重複なし非空文字列list（list自体は空を許す）、obligationsは非空文字列key→重複なし非空文字列listのdict、edgesは長さ2の非空文字列listのlist。片側不明はその原pointerにsource_unresolved（数量だけquantity_unresolved）、両側不明は両pointer、両側knownで差があるときだけactual pointerへsource_conflict。setはsort比較、ordered/edgesは順序付き比較、obligationsはvalue listだけsort。重複はfacet/disposition/finding完全一致のみ一意化し、異facet影響は保持する。",
+        "空graphは各原rootにsource_unresolved。両非空だけ件数相反、同index8fieldとactual親revision/scopeをcontext.bindingへ比較。acceptance=[]は各原fieldに不足。原graphを並べ替えない。",
+        "context.rolesと固定6ownerの照合は通常string比較と同じcodeを使う。不明は/context/roles/<key>にsource_unresolved、既知相反は同pointerにsource_conflict（ownership）。両ticket_graphが非空で件数が相反する場合は/ticket_graphにsource_conflict（ticket）。"
       ],
       "postconditions": [
         "入力不変、effect=none。対応は素材対応であり実workflow/READY/割当/権限/差戻し適用/再開/完了を生成しない。"
@@ -1469,7 +1470,7 @@
         "findings"
       ],
       "return_derivation": {
-        "findings": "workflow/backflow/resumeだけ工程/案の6field、selector、parts語彙/順序/義務包含から所見。candidate/不明phaseでは[]。"
+        "findings": "workflow/backflow/resumeだけ工程/案の6field、selector、parts語彙/順序/義務包含から所見。candidate/不明phaseでは[]。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。異なるfacet/dispositionは別所見として集約まで保持する。"
       },
       "preconditions": [
         "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
@@ -1477,7 +1478,7 @@
         "各比較ではFieldを元presenceへ解釈し、absent/null/不正scalarはknown値へ補完しない。正式wire/schema/codecと全不正外側shapeの結果は未固定。"
       ],
       "algorithm": [
-        "workflow/backflow/resumeだけprocess6fieldを独立contextへ照合。process.partsは語彙set、allowed_edgesはedges、obligationsはobligations、その他はstring。proposal_selectedは両側booleanか照合し、型不明はactual selectorにproposal_selection_unresolved、両側boolean相反はsource_conflict。actual selected=trueの時だけproposalを読む。actual/expected recordがdictでなければそれぞれのrecord rootへproposal_record_unresolved。両dictならsource_ref/revision/scope/reason_ref string、parts ordered、obligationsを同field比較。非提供案を一律requiredにしない。",
+        "workflow/backflow/resumeだけprocess6fieldを独立contextへ照合。process.partsは語彙set、allowed_edgesはedges、obligationsはobligations、その他はstring。proposal_selectedは両側booleanか照合し、型不明はactual selectorにproposal_selection_unresolved、両側boolean相反はsource_conflict。actual selected=trueの時だけproposalを読む。actual/expected recordがdictでなければそれぞれのrecord rootへproposal_record_unresolved。両dictならsource_ref/requirement_revision/scope/reason_ref string、parts ordered、obligationsを同field比較。非提供案を一律requiredにしない。",
         "提供案の各known partを順に扱う。process.partsがknown string listで含まない場合undefined_process_componentを当該parts indexへ。2番目以降はprocess.allowed_edgesがlistで直前part→当該partがない場合process_order_conflictを当該parts indexへ。partに対する両obligation listがknownならrequired process義務がproposalに包含されない場合process_obligation_missingを当該proposal obligation keyへ。unknown sourceを空集合や別工程へ補完しない。OSが独自に変更したprocess sourceは独立contextとのsource_conflictで保持。1.0は定義済み部品だけ、部品外flowは4.0。",
         "process.revisionをcontext.binding.contract_revisionへ、選択されたproposalのrequirement_revision/scopeをcontext.bindingへ別照合。actual/expectedの双方が同じforeign値でも相反を見落とさない。"
       ],
@@ -1520,7 +1521,7 @@
         "findings"
       ],
       "return_derivation": {
-        "findings": "選択phaseだけLABO提供条件/SECURITY authority/INFRA資源/dependency/累積数量の比較所見。案の対応を実認可へ昇格しない。"
+        "findings": "選択phaseだけLABO提供条件/SECURITY authority/INFRA資源/dependency/累積数量の比較所見。案の対応を実認可へ昇格しない。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。異なるfacet/dispositionは別所見として集約まで保持する。"
       },
       "preconditions": [
         "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
@@ -1530,7 +1531,7 @@
       "algorithm": [
         "phaseがworkflow/backflow/resumeの時だけ以下の比較を行う。candidateまたはnullの時はfindings=[]を返し、将来の水準・authority・資源・依存・数量を候補形成の必須gateへしない。",
         "level_selectedは両側boolean照合。不明selectorは原pointer source_unresolved、両known相反はactual selector source_conflict。actual selected=true時だけlevel recordを読む。actual/expectedいずれか非dictなら/level source_unresolved、両dictならstate/source_ref/requirement_revision/scopeの4stringを比較。falseの水準を未来gateへしない。提供された水準の実資格/評価基準はLABO ownerで未成立。",
-        "authority/resource source_refを独立contextのauthority_ref/resource_refへ比較。revoked/denied/stale/failedはworkflow_condition_rejected、その他current（authority）/observed_material（resource）以外はworkflow_condition_unresolvedを各stateへ。dependencyはsource_ref/revision/scopeを独立contextへ比較。state比較のknown閉集合はresolved/missing/failed/conflict/stale/issue_closedで、閉集合外は原位置source_unresolved、known相反だけactual state source_conflict。その上でmissing/failed/conflict/stale/issue_closedはdependency_not_resolved、resolved以外はdependency_unresolvedをactual stateへ併記。Issue closeで解消しない。",
+        "authority/resource source_refを独立contextのauthority_ref/resource_refへ比較。revoked/denied/stale/failedはworkflow_condition_rejected、その他current（authority）/observed_material（resource）以外はworkflow_condition_unresolvedを各stateへ。dependencyはsource_ref/requirement_revision/scopeを独立contextへ比較。state比較のknown閉集合はresolved/missing/failed/conflict/stale/issue_closedで、閉集合外は原位置source_unresolved、known相反だけactual state source_conflict。その上でmissing/failed/conflict/stale/issue_closedはdependency_not_resolved、既知閉集合外だけdependency_unresolvedをactual stateへ付す（dependency_not_resolvedとは排他）。Issue closeで解消しない。",
         "constraintsのbudget_limit/deadline/cost_spent/failures/nowはquantity型だけ自己照合し、budget_limit/deadlineは独立context.expected_*とも比較する。known cost_spent>budget_limitはbudget_exhausted、known now>=deadlineはdeadline_reachedをactual cost/nowへ。100/90などは素材のtick/費用単位で、製品閾値/actual計測ではない。",
         "提供levelとdependencyのrequirement_revision/scopeをcontext.bindingへ別照合。quantityはbool以外の非負integer。不正値はそのまま保持しquantity_unresolved。cost==limitは枯渇とせず、now==deadlineは到達とする。"
       ],
@@ -1563,7 +1564,7 @@
         "findings"
       ],
       "return_derivation": {
-        "findings": "backflow/resumeだけ元対象/原ticket/既定route/結果区分を比較。不足とknown相反を保持。"
+        "findings": "backflow/resumeだけ元対象/原ticket/既定route/結果区分を比較。不足とknown相反を保持。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。異なるfacet/dispositionは別所見として集約まで保持する。"
       },
       "preconditions": [
         "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
@@ -1571,7 +1572,7 @@
         "各比較ではFieldを元presenceへ解釈し、absent/null/不正scalarはknown値へ補完しない。正式wire/schema/codecと全不正外側shapeの結果は未固定。"
       ],
       "algorithm": [
-        "backflow/resumeだけintermediateのrequirement_revision/scopeを独立context.bindingへ、ticket_refをcontext.ticket_graph[0].ticket_refへ、backflow_refをcontext.process.backflow_refへstring比較。stateはfailed/unknown/conflict/scope_violation/unresolved_dependencyだけ既定差戻し素材とし、それ以外はbackflow_result_unresolved。不成立を解消/実適用成功へ昇格しない。複数ticketの実result routingと返し先のqualificationはL5/L8に残る。",
+        "backflow/resumeだけintermediateのrequirement_revision/scopeを独立context.bindingへ、ticket_refをcontext.ticket_graph[0].ticket_refへ、backflow_refをcontext.process.backflow_refへstring比較。stateはfailed/unknown/conflict/scope_violation/unresolved_dependencyだけ既定差戻し素材とし、それ以外はbackflow_result_unresolved。不成立を解消/実適用成功へ昇格しない。複数ticketの実result routingと返し先のqualificationは本限定詳細設計でも未閉包としてremainingへ保持する。",
         "context.ticket_graphが空ならticket_ref照合を捏造せず/context/ticket_graphへbackflow source_unresolved。戻し先materialは単一原ticket[0]との局所照合で、複数ticketの全routingを完了扱いにしない。"
       ],
       "postconditions": [
@@ -1602,7 +1603,7 @@
         "findings"
       ],
       "return_derivation": {
-        "findings": "resumeだけpriorの8fieldと再開の元revision/scope/stop/4quantity/outstanding/self-confirmedを照合。unknown priorを初回やresetへ補完しない。"
+        "findings": "resumeだけpriorの8fieldと再開の元revision/scope/stop/4quantity/outstanding/self-confirmedを照合。unknown priorを初回やresetへ補完しない。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。異なるfacet/dispositionは別所見として集約まで保持する。"
       },
       "preconditions": [
         "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
@@ -1610,7 +1611,8 @@
         "各比較ではFieldを元presenceへ解釈し、absent/null/不正scalarはknown値へ補完しない。正式wire/schema/codecと全不正外側shapeの結果は未固定。"
       ],
       "algorithm": [
-        "resumeだけpriorのrevision/scope/stop_reason_refをstring、budget_limit/deadline/cost_spent/failuresをquantity、outstandingをsetでcontext.prior同fieldへ照合。resumedのrevision/scope/stop_reason_refもcontext.priorへstring比較し、stop reason不明はstop_reason_unresolved併記。resumedの4quantityが不明は原位置quantity_unresolved、双方knownでbudget_limit/deadlineが違う、cost_spent/failuresが減る場合cumulative_constraint_reset。outstandingはstring listでなければsource_unresolved、known prior集合がresumedに包含されなければoutstanding_obligation_lost。意味自己確定trueはmeaning_change_self_confirmed、false以外はsource_unresolved。部分義務解消の実証拠/全履歴は未成立。"
+        "resumeだけpriorのrequirement_revision/scope/stop_reason_refをstring、budget_limit/deadline/cost_spent/failuresをquantity、outstandingをsetでcontext.prior同fieldへ照合。resumedのrequirement_revision/scope/stop_reason_refもcontext.priorへstring比較し、stop reason不明はstop_reason_unresolved併記。resumedの4quantityが不明は原位置quantity_unresolved、双方knownでbudget_limit/deadlineが違う、cost_spent/failuresが減る場合cumulative_constraint_reset。outstandingはstring listでなければsource_unresolved、known prior集合がresumedに包含されなければoutstanding_obligation_lost。意味自己確定trueはmeaning_change_self_confirmed、false以外はsource_unresolved。部分義務解消の実証拠/全履歴は未成立。",
+        "resumedの全比較基準（revision/scope/stop reason、4数量、outstanding）は独立context.priorであり、input.priorではない。input.prior自体もcontext.priorへ別比較し、一方の不一致を他方で相殺しない。"
       ],
       "postconditions": [
         "入力不変、effect=none。対応は素材対応であり実workflow/READY/割当/権限/差戻し適用/再開/完了を生成しない。"
@@ -1634,7 +1636,7 @@
         "findings"
       ],
       "return_derivation": {
-        "findings": "completionの独立claimからscope_limit所見。原projectionは保持のみで意味のauthorityにしない。"
+        "findings": "completionの独立claimからscope_limit所見。原projectionは保持のみで意味のauthorityにしない。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。異なるfacet/dispositionは別所見として集約まで保持する。"
       },
       "preconditions": [
         "原217例のrecord/list/primitive形をField化し、全signature引数を値として供給する。missing/null/empty/suppliedは保存する。",
@@ -2024,5 +2026,10 @@
       "preserved_boundary": "元revision/scope/停止理由/予算/期限/未完を保持し、原event/custodyを作らない。",
       "exact_binding_state": "未成立。これは原contractへの意味接続で、正式consumer wire/member資格の成立を主張しない。"
     }
-  ]
+  ],
+  "diagnostic_policy_scope_note": {
+    "source_snapshot_preserved": true,
+    "fixed_shape_limit_interpretation": "diagnostic_policy.fixed_shape_limitのL5/L8で閉じるは原L4の後続課題を保存した引用。本限定L5/L8で正式codec、全外側shape/全type/実qualified source/全routingが閉じたとは宣言せず、remainingとunclosed_source_supplyに未閉包を保持する。",
+    "finding_normalization": "中間はfacet/disposition/finding全体で一意化しcode→pointer順。最終は全facet集約後にfinding code/pointer/return_ownerだけを一意化する。"
+  }
 }
