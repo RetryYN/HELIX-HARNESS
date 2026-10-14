@@ -2141,10 +2141,10 @@
       "explanation": "すべてのpacketは固定した合成入力であり、実source観測・trust認可・実行結果ではない。"
     },
     "fixture_hash_method": "authoring fixture pinのみ。packet objectからfixture_packet_sha256を除き、UTF-8 JSONをkey sort・compact separatorでserializeしたbytesのSHA-256。正式codec/canonicalizationの決定ではない。",
-    "mutation_method": "各negative caseは同じRAW-BASE packetから独立して開始し、mutation_refが示すJSON Patch形式fixture_patchを1件適用する。適用前後のpacket全体hashをstatic-review証拠に記録する。fixtureは実source/実artifactではなく、実行しない。",
+    "mutation_method": "各negative caseは同じRAW-BASEから独立して開始し、mutation_refの1件のJSON Patch文書を適用する。fixture_patchがobjectなら1 op、配列なら記載した1つ以上のopを順に全て適用する。json_pointerは先頭opのpathを示す代表locatorであり、全変更位置はfixture_patch内の各pathが正本。適用前後のpacket全体hashを静的記録する。合成fixtureであり、実source/実artifact/実行証拠を生成しない。",
     "dimension_separation": "kind集合の縮小はdeclared_kind_set mutationで検出し、工程上のartifact差替え/status欠落はstage_trace mutationで検出する。両者を同じcase差分に混ぜない。",
     "positive_context_method": "GWT positive givenはsource_packet_refsが指す具体的な記録値を参照する。比較packetは実測でなく、qualification未成立のfixture入力である。",
-    "coverage_assertion_note": "F01-N5とN01-N4は承認L10のnegative_inputにある「packageの鎖だけで全対象種一致を主張」と同じ意図を含む。両ケースのfixture_patchはその主張をcoverage_assertion fieldへ実値として追加し、F01-N5は主張単体、N01-N4はkind縮小とwhole_chain_closed主張を別々に観測する。"
+    "coverage_assertion_note": "F01-N5とN01-N4は承認L10のnegative_inputにある「packageの鎖だけで全対象種一致を主張」と同じ意図を含む。両ケースのfixture_patchはその主張をcoverage_assertion fieldへ実値として追加し、F01-N5は主張単体、N01-N4はkind縮小とwhole_chain_closed主張を別々に観測する。 F01-N4とN01-N3は、承認L10-F01のconfig/security policyの対象外化とL10-N01のconfig/policyの対象集合除外を、同じRAW-BASEのdeclared_kind_set縮小で照合する。意図的に同一入力を両oracleへ結び、二つの独立入力または異なる欠陥の追加被覆とは数えない。"
   },
   "source_pin_limit": "承認全source fileのhash一致は意味閉包を示さない。ここでは承認済み013全10 objectsをexact HEADから個別照合した。",
   "layer_id": "HELIXSECURITY-L9-013",
