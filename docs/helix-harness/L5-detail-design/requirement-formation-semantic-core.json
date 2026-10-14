@@ -13284,16 +13284,4434 @@
           }
         },
         "additional_properties": "preserve_unknown_as_json_value"
+      },
+      "SubmittedMutation": {
+        "kind": "record",
+        "fields": {
+          "path": "list<string_or_integer>",
+          "declared_before": "FieldValue<JsonValue>",
+          "declared_after": "FieldValue<JsonValue>"
+        },
+        "meaning": "原mutationのpath/before/afterをpresence付きで保持。before/afterは提出側の追跡情報で、正解の供給元として読まない。"
+      },
+      "CandidateSubmission": {
+        "kind": "record",
+        "fields": {
+          "lane": "FieldValue<string>",
+          "submission": "FieldValue<JsonValue>",
+          "mutation": "FieldValue<SubmittedMutation>"
+        },
+        "meaning": "元L9のmutation_lane/submitted_candidate/mutationを関数引数へ投影する。提出値は不正な型/原値も含むuntrusted JSONなのでAssessment型だと仮定しない。raw input/contextから独立した明示入力。"
+      },
+      "CandidateComparison": {
+        "kind": "record",
+        "fields": {
+          "selected": "boolean",
+          "path": "list<string_or_integer>",
+          "derived_value": "FieldValue<JsonValue>",
+          "submitted_value": "FieldValue<JsonValue>",
+          "conflict": "boolean"
+        },
+        "meaning": "inputから計算したbase Assessmentと提出candidateのpathの存在/型/値を比較。全root返却は値として固定する。"
+      },
+      "BaseAssessment_B01": {
+        "kind": "record",
+        "fields": {
+          "actual_canonicalized": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_learning_permitted": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_operation_authorized": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_operation_executed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_registered": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_requirement_agreed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_requirement_approved": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_ticket_issued": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "boundary_findings": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "meaning_content_preserved": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "fields": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "record",
+                    "fields": {
+                      "actor": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "command_identity": {
+                        "presence_states": [
+                          "null"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "null"
+                          ]
+                        }
+                      }
+                    },
+                    "additional_properties": "preserve_unknown_as_json_value"
+                  }
+                },
+                "impact": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "questions": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "record",
+                      "fields": {
+                        "field": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "value": {
+                            "kind": "union",
+                            "members": [
+                              "string"
+                            ]
+                          }
+                        },
+                        "reason": {
+                          "presence_states": [
+                            "provided"
+                          ],
+                          "value": {
+                            "kind": "union",
+                            "members": [
+                              "string"
+                            ]
+                          }
+                        }
+                      },
+                      "additional_properties": "preserve_unknown_as_json_value"
+                    }
+                  }
+                },
+                "revision": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "scope": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "semantic_diff": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "source_id": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "trace": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "unknown_fields": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "missing_os_event_kinds": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "owner_material_findings": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "agreement": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "application": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "approval": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "knowledge": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "learning_permission": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "meaning": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "operation_authority": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "registration": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "owner_material_results": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "agreement": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "application": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "approval": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "knowledge": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "learning_permission": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "meaning": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "operation_authority": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "registration": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "projection_observations_role": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "return_owner_candidates": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "agreement": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "application": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "approval": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "knowledge": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "learning_permission": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "meaning": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "operation_authority": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "registration": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "unrelated_Q": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          }
+        },
+        "additional_properties": "preserve_unknown_as_json_value",
+        "meaning": "同関数の既存raw比較で生成するcandidate照合前の局所出力。L8の値は独立期待であり実関数が読まない。"
+      },
+      "BaseAssessment_B02": {
+        "kind": "record",
+        "fields": {
+          "actual_completion": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "consumer_results": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "EXT": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "record",
+                    "fields": {
+                      "actual_committed": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "boolean"
+                          ]
+                        }
+                      },
+                      "actual_payload_executed": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "boolean"
+                          ]
+                        }
+                      },
+                      "actual_received": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "boolean"
+                          ]
+                        }
+                      },
+                      "actual_registered": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "boolean"
+                          ]
+                        }
+                      },
+                      "actual_requirement_adopted": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "boolean"
+                          ]
+                        }
+                      },
+                      "authority": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "consumer_revalidation": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "duplicate": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "freshness": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "payload_integrity": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "payload_structure": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "prohibited_payload": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "result": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "schema_version": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "scope": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "target_revision": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "additional_properties": "preserve_unknown_as_json_value"
+                  }
+                },
+                "OS": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "record",
+                    "fields": {
+                      "actual_committed": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "boolean"
+                          ]
+                        }
+                      },
+                      "actual_payload_executed": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "boolean"
+                          ]
+                        }
+                      },
+                      "actual_received": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "boolean"
+                          ]
+                        }
+                      },
+                      "actual_registered": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "boolean"
+                          ]
+                        }
+                      },
+                      "actual_requirement_adopted": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "boolean"
+                          ]
+                        }
+                      },
+                      "authority": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "consumer_revalidation": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "duplicate": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "freshness": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "payload_integrity": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "payload_structure": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "prohibited_payload": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "result": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "schema_version": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "scope": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "target_revision": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "additional_properties": "preserve_unknown_as_json_value"
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "formal_schema_adopted": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "os_required_for_external_consumer": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "unrelated_Q": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          }
+        },
+        "additional_properties": "preserve_unknown_as_json_value",
+        "meaning": "同関数の既存raw比較で生成するcandidate照合前の局所出力。L8の値は独立期待であり実関数が読まない。"
+      },
+      "BaseAssessment_F01": {
+        "kind": "record",
+        "fields": {
+          "actual_registered": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_requirement_agreed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_template_applied": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "binding_results": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "application_contract": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "concept": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "knowledge": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "l1": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "pack": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "directive_source_condition": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "missing_question_basis": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "pattern_selection_established": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "primary_candidate_fields": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "actor": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "record",
+                    "fields": {
+                      "source_ref": {
+                        "presence_states": [
+                          "null",
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "null",
+                            "object"
+                          ]
+                        }
+                      },
+                      "state": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "value": {
+                        "presence_states": [
+                          "null",
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "null",
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "additional_properties": "preserve_unknown_as_json_value"
+                  }
+                },
+                "connection": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "record",
+                    "fields": {
+                      "source_ref": {
+                        "presence_states": [
+                          "null",
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "null",
+                            "object"
+                          ]
+                        }
+                      },
+                      "state": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "value": {
+                        "presence_states": [
+                          "null",
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "null",
+                            "object"
+                          ]
+                        }
+                      }
+                    },
+                    "additional_properties": "preserve_unknown_as_json_value"
+                  }
+                },
+                "constraints": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "record",
+                    "fields": {
+                      "source_ref": {
+                        "presence_states": [
+                          "null",
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "null",
+                            "object"
+                          ]
+                        }
+                      },
+                      "state": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "value": {
+                        "presence_states": [
+                          "null",
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "null",
+                            "object"
+                          ]
+                        }
+                      }
+                    },
+                    "additional_properties": "preserve_unknown_as_json_value"
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "questions": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "record",
+                "fields": {
+                  "application_source": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "field": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "knowledge_source": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "question": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "reason": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "required_input_id": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "additional_properties": "preserve_unknown_as_json_value"
+              }
+            }
+          },
+          "result": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "runtime_decision_owner": {
+            "presence_states": [
+              "null"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "null"
+              ]
+            }
+          },
+          "unrelated_Q": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "unresolved_fields": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          }
+        },
+        "additional_properties": "preserve_unknown_as_json_value",
+        "meaning": "同関数の既存raw比較で生成するcandidate照合前の局所出力。L8の値は独立期待であり実関数が読まない。"
+      },
+      "BaseAssessment_F02": {
+        "kind": "record",
+        "fields": {
+          "active_secondary_fields": {
+            "presence_states": [
+              "null",
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "null",
+                "object"
+              ]
+            }
+          },
+          "actual_candidate_adopted": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_pair_rederived": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_primary_overwritten": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_requirement_agreed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "agreement_condition": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "experiment_conditions": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "poc": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "prototype": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "finding_dispositions": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "F-POC": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "F-PROTOTYPE": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "historical_secondary_fields": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "cancel_message": {
+                  "presence_states": [
+                    "null",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "null",
+                      "string"
+                    ]
+                  }
+                },
+                "retry_limit": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "integer"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "instruction_condition": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "old_candidate_disposition": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "preserved_primary": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "binding": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "fields": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "record",
+                    "fields": {
+                      "cancel_message": {
+                        "presence_states": [
+                          "null"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "null"
+                          ]
+                        }
+                      },
+                      "retry_limit": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "integer"
+                          ]
+                        }
+                      }
+                    },
+                    "additional_properties": "preserve_unknown_as_json_value"
+                  }
+                },
+                "raw_utf8": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "ref": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "record",
+                    "fields": {
+                      "identity": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "owner": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "revision": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "scope": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "additional_properties": "preserve_unknown_as_json_value"
+                  }
+                },
+                "sha256": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "required_redesign_fields": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "retained_finding_ids": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "unrelated_Q": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          }
+        },
+        "additional_properties": "preserve_unknown_as_json_value",
+        "meaning": "同関数の既存raw比較で生成するcandidate照合前の局所出力。L8の値は独立期待であり実関数が読まない。"
+      },
+      "BaseAssessment_F03": {
+        "kind": "record",
+        "fields": {
+          "actual_identity_assigned": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_requirement_agreed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_requirement_changed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "contradictions": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "duplicates": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "human_decision_pending": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "identity_candidates": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "C1": {
+                  "presence_states": [
+                    "null",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "null",
+                      "string"
+                    ]
+                  }
+                },
+                "C2": {
+                  "presence_states": [
+                    "absent",
+                    "null",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "null",
+                      "string"
+                    ]
+                  }
+                },
+                "C3": {
+                  "presence_states": [
+                    "absent",
+                    "null",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "null",
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "missing_condition_fields": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "missing_source_atoms": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "original_requirements_preserved": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "overinterpretations": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "planning_outside_candidates": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "scope_non_goal_violations": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "target_mismatches": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "unknown_candidates": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "unrelated_Q": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "unsupported_additions": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          }
+        },
+        "additional_properties": "preserve_unknown_as_json_value",
+        "meaning": "同関数の既存raw比較で生成するcandidate照合前の局所出力。L8の値は独立期待であり実関数が読まない。"
+      },
+      "BaseAssessment_F04": {
+        "kind": "record",
+        "fields": {
+          "actual_composite_established": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_connection_established": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_identity_assigned": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_requirement_agreed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_unit_verified": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "composite_condition": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "conflicting_composition_fields": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "C-AB": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "conflicting_obligation_fields": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "C-AB": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "connection_condition_results": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "C-AB": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "C-BC": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "duplicate_identity_ids": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "kind_results": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "C-AB": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "C-BC": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "P": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "U-A": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "U-B": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "U-C": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "missing_identity_ids": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "missing_obligation_fields": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "C-AB": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "C-BC": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "missing_relations": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "record",
+                "fields": {
+                  "from": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "kind": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "to": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "additional_properties": "preserve_unknown_as_json_value"
+              }
+            }
+          },
+          "requestion_owner_candidates": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "C-AB": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "C-BC": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "P": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "unit_observation_results": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "U-A": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "U-B": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "U-C": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "unknown_identity_ids": {
+            "presence_states": [
+              "empty"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "json_value",
+                "note": "empty arrays retain empty presence without inventing an element type"
+              }
+            }
+          },
+          "unknown_relations": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "record",
+                "fields": {
+                  "from": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "kind": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "to": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "additional_properties": "preserve_unknown_as_json_value"
+              }
+            }
+          },
+          "unrelated_Q": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "unresolved_relation_endpoints": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "record",
+                "fields": {
+                  "from": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "kind": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "to": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "additional_properties": "preserve_unknown_as_json_value"
+              }
+            }
+          }
+        },
+        "additional_properties": "preserve_unknown_as_json_value",
+        "meaning": "同関数の既存raw比較で生成するcandidate照合前の局所出力。L8の値は独立期待であり実関数が読まない。"
+      },
+      "BaseAssessment_F05": {
+        "kind": "record",
+        "fields": {
+          "actual_accepted": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_requirement_agreed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_whole_verified": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "changed_original_obligations": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "conflicting_whole_oracles": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "consistency": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "end_to_end": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "failure_propagation": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "performance_budget": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "recovery": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "trust_boundary": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "lower_proof_results": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "LOWER-CONNECTION-1": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "LOWER-UNIT-1": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "missing_original_obligations": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "missing_whole_oracles": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "na_findings": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "optional_batch_window": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "purpose": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "obligation_results": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "acceptance": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "consistency": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "end_to_end": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "failure_propagation": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "invariant": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "nonfunctional": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "optional_batch_window": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "performance_budget": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "purpose": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "recovery": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "trust_boundary": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "unexecuted_whole_oracles": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "unrelated_Q": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "unresolved_lower_proof_ids": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "unresolved_obligation_ids": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "whole_scope_condition": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          }
+        },
+        "additional_properties": "preserve_unknown_as_json_value",
+        "meaning": "同関数の既存raw比較で生成するcandidate照合前の局所出力。L8の値は独立期待であり実関数が読まない。"
+      },
+      "BaseAssessment_F06": {
+        "kind": "record",
+        "fields": {
+          "actual_artifact_discarded": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_artifact_reused": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_establishment_changed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_original_kind_changed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_requirement_agreed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "affected_design_verification_candidates": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "C-AB": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "record",
+                    "fields": {
+                      "design": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "verification": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "additional_properties": "preserve_unknown_as_json_value"
+                  }
+                },
+                "P": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "record",
+                    "fields": {
+                      "design": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "verification": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "additional_properties": "preserve_unknown_as_json_value"
+                  }
+                },
+                "U-A": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "record",
+                    "fields": {
+                      "design": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "verification": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "additional_properties": "preserve_unknown_as_json_value"
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "impact_by_identity": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "C-AB": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "P": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "U-A": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "impact_owner_candidates": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "C-AB": {
+                  "presence_states": [
+                    "null",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "null",
+                      "string"
+                    ]
+                  }
+                },
+                "P": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "U-A": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "kind_reformation_candidate": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "finding_id": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "issues": {
+                  "presence_states": [
+                    "empty",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "origin_identity": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "origin_kind": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "proposed_kind": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "state": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "target_revision": {
+                  "presence_states": [
+                    "null",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "null",
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "missing_owner_ids": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "original_finding_preserved": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "content": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "id": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "origin_requirement": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "original_kind": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "proposed_kind": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "revision": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "scope": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "original_requirements_preserved": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "record",
+                "fields": {
+                  "id": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "kind": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "owner": {
+                    "presence_states": [
+                      "null",
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "null",
+                        "string"
+                      ]
+                    }
+                  },
+                  "revision": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "scope": {
+                    "presence_states": [
+                      "provided"
+                    ],
+                    "value": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "additional_properties": "preserve_unknown_as_json_value"
+              }
+            }
+          },
+          "required_reagreement_and_pair_rederivation": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "reuse_candidate": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "issues": {
+                  "presence_states": [
+                    "empty",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "original_evidence": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "record",
+                    "fields": {
+                      "artifact": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "reason": {
+                        "presence_states": [
+                          "null",
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "null",
+                            "string"
+                          ]
+                        }
+                      },
+                      "status": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "target_revision": {
+                        "presence_states": [
+                          "provided"
+                        ],
+                        "value": {
+                          "kind": "union",
+                          "members": [
+                            "string"
+                          ]
+                        }
+                      }
+                    },
+                    "additional_properties": "preserve_unknown_as_json_value"
+                  }
+                },
+                "result": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "unknown_relation_ids": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "unrelated_Q": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          }
+        },
+        "additional_properties": "preserve_unknown_as_json_value",
+        "meaning": "同関数の既存raw比較で生成するcandidate照合前の局所出力。L8の値は独立期待であり実関数が読まない。"
+      },
+      "BaseAssessment_F07": {
+        "kind": "record",
+        "fields": {
+          "actual_current_success": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_engine_executed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_external_write": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_requirement_agreed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "cause_owner_candidates": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "0": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "1": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "evidence": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "evidence_origin_result": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "original_input_preserved": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "pack_rule_findings": {
+            "presence_states": [
+              "empty"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {},
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "run_findings": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "0": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "1": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "same_input_engine_pack_result": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "unrelated_Q": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          }
+        },
+        "additional_properties": "preserve_unknown_as_json_value",
+        "meaning": "同関数の既存raw比較で生成するcandidate照合前の局所出力。L8の値は独立期待であり実関数が読まない。"
+      },
+      "BaseAssessment_N01": {
+        "kind": "record",
+        "fields": {
+          "actual_accepted": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_all_product_quality_guaranteed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_engine_evaluated": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_learning_permitted": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "actual_requirement_agreed": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "boolean"
+              ]
+            }
+          },
+          "awaiting_decisions": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "ORIGINAL-1": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "UNSEEN-1": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "UNSEEN-UNOBSERVED": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "observation_scope": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          },
+          "observed_probe_ids": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "probe_findings": {
+            "presence_states": [
+              "empty",
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "UNSEEN-1": {
+                  "presence_states": [
+                    "absent",
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "probe_results": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "ORIGINAL-1": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "UNSEEN-1": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "UNSEEN-UNOBSERVED": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "reevaluation_conditions": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "ORIGINAL-1": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "UNSEEN-1": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                },
+                "UNSEEN-UNOBSERVED": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "union",
+                    "members": [
+                      "string"
+                    ]
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "unevaluated_probe_ids": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "list",
+              "items": {
+                "kind": "union",
+                "members": [
+                  "string"
+                ]
+              }
+            }
+          },
+          "unknown_fields_preserved": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "record",
+              "fields": {
+                "ORIGINAL-1": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "UNSEEN-1": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                },
+                "UNSEEN-UNOBSERVED": {
+                  "presence_states": [
+                    "provided"
+                  ],
+                  "value": {
+                    "kind": "list",
+                    "items": {
+                      "kind": "union",
+                      "members": [
+                        "string"
+                      ]
+                    }
+                  }
+                }
+              },
+              "additional_properties": "preserve_unknown_as_json_value"
+            }
+          },
+          "unrelated_Q": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "union",
+              "members": [
+                "string"
+              ]
+            }
+          }
+        },
+        "additional_properties": "preserve_unknown_as_json_value",
+        "meaning": "同関数の既存raw比較で生成するcandidate照合前の局所出力。L8の値は独立期待であり実関数が読まない。"
       }
-    }
+    },
+    "candidate_input": "CandidateSubmissionは原L9提出物を明示引数化する。Input_{root}のrawと混ぜず、同じinputでcandidateが違う場合は異なる完全引数となる。contextの追跡IDで結果を選ばない。",
+    "presence_representation": "Input/Assessmentのpresence_statesは親recordの原member不在/null/empty/providedを検査する。FieldValue<T>の明示wrapperは新candidate引数と局所比較だけで用い、元Input/Assessmentへtagを注入しない。"
   },
   "pure_function_signatures": [
     {
       "id": "F-008-B01",
-      "signature": "assess_b01(input: Input_B01, context: FixtureCaseContext) -> Assessment_B01",
+      "signature": "assess_b01(input: Input_B01, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_B01",
       "input_types": [
         "Input_B01",
-        "FixtureCaseContext"
+        "FixtureCaseContext",
+        "CandidateSubmission"
       ],
       "return_type": "Assessment_B01",
       "reads": [
@@ -13335,9 +17753,11 @@
         "actual_operation_executed",
         "actual_learning_permitted",
         "actual_ticket_issued",
-        "unrelated_Q"
+        "unrelated_Q",
+        "candidate_disposition",
+        "candidate_conflicting_path"
       ],
-      "algorithm": "meaning_contentのsource_id/revision/scopeを保持し、meaning・knowledge・applicationのowner contractとrecordをownerごとに照合する。recordがabsentならmissing、必要値が存在してowner/kind/origin/revision/scope/subjectが違えばconflict、比較材料がnull/不足ならunknownとする。agreement/approval/registration/operation_authority/learning_permissionは各独立原recordだけで判定し、route・score・log・Issue/PR/CI/会話から補わない。os_event_kindsの必要eventとduplicate-engine=falseを別に観測する。相談のみのnormalではregistrationを要求せず、unrelated scopeを保つ。",
+      "algorithm": "meaning_contentのsource_id/revision/scopeを保持し、meaning・knowledge・applicationのowner contractとrecordをownerごとに照合する。recordがabsentならmissing、必要値が存在してowner/kind/origin/revision/scope/subjectが違えばconflict、比較材料がnull/不足ならunknownとする。agreement/approval/registration/operation_authority/learning_permissionは各独立原recordだけで判定し、route・score・log・Issue/PR/CI/会話から補わない。os_event_kindsの必要eventとduplicate-engine=falseを別に観測する。相談のみのnormalではregistrationを要求せず、unrelated scopeを保つ。 続いて同candidate_comparison_contractで明示candidate引数と局所base_assessmentを照合し、差がある原pathだけcandidate_*へ保持する。",
       "semantic_rules": [
         {
           "id": "B01-OWNER-BINDING",
@@ -13428,15 +17848,66 @@
         "expected_material_pointerは追跡専用で計算入力として読まない",
         "source所見とL9 expectedを同一視しない",
         "unresolvedを空にするために値を補完しない",
-        "execution_state=not_executed、authority_effect=none"
-      ]
+        "execution_state=not_executed、authority_effect=none",
+        "candidate_*を返す場合は必ず明示candidate入力のpath比較から導出し、他のbase返却memberを上書きしない。"
+      ],
+      "parameters": {
+        "input": "Input_B01",
+        "context": "FixtureCaseContext",
+        "candidate": "CandidateSubmission"
+      },
+      "candidate_reads": [
+        "candidate.lane.state",
+        "candidate.lane.value",
+        "candidate.submission.state",
+        "candidate.submission.value",
+        "candidate.mutation.state",
+        "candidate.mutation.value.path"
+      ],
+      "candidate_not_read_as_truth": [
+        "candidate.mutation.value.declared_before",
+        "candidate.mutation.value.declared_after",
+        "context.case_id",
+        "context.expected_material_pointer",
+        "base_case_ref",
+        "L8 expected_output_projection"
+      ],
+      "candidate_comparison_rule_ref": "/candidate_comparison_contract",
+      "raw_candidate_path_producer": "actual_*は意味処理/実作用分離の既存false境界。projection/event/scoreからtrueを生成しない。",
+      "local_pipeline": [
+        {
+          "id": "base_assessment",
+          "type": "BaseAssessment_B01",
+          "producer": "既存root固有input semantic_rules（candidateを読む前）"
+        },
+        {
+          "id": "candidate_check",
+          "type": "CandidateComparison",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate": "candidate"
+          },
+          "producer": "/candidate_comparison_contract（case ID/oracle lookupなし）"
+        },
+        {
+          "id": "final_assessment",
+          "type": "Assessment_B01",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate_check": "candidate_check"
+          },
+          "producer": "base全rootを保持し、selectedかつconflictの時だけ2candidate_*を追補"
+        }
+      ],
+      "context_usage": "case_id/root_id/source ref/pointer/hash/execution_stateは原fixtureの追跡・出所対応だけ。case_id/expected_material_pointer/source hashから完成結果を選ばない。semantic決定性照合では追跡contextを除いて同じinput/candidateの返却を比較する。"
     },
     {
       "id": "F-008-B02",
-      "signature": "assess_b02(input: Input_B02, context: FixtureCaseContext) -> Assessment_B02",
+      "signature": "assess_b02(input: Input_B02, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_B02",
       "input_types": [
         "Input_B02",
-        "FixtureCaseContext"
+        "FixtureCaseContext",
+        "CandidateSubmission"
       ],
       "return_type": "Assessment_B02",
       "reads": [
@@ -13462,9 +17933,11 @@
         "unrelated_Q",
         "os_required_for_external_consumer",
         "formal_schema_adopted",
-        "actual_completion"
+        "actual_completion",
+        "candidate_disposition",
+        "candidate_conflicting_path"
       ],
-      "algorithm": "OSとEXTを別consumerとして反復する。各consumerについてoutput schema_version、binding、scope、freshness、payload raw_utf8とsha256、prohibited payload、既存authority、再検証材料、seen_outputsを独立照合する。payload bytesとparsed structureを混同せず、nested command/SQL/path/codeを含む実行意図はuntrustedとして拒否所見にし、解析不能ならunknown_payloadとする。同一identityでbytes同一はduplicate no-op候補、異bytesはconflict、履歴欠落はunknown。OS検証不成立をEXTへ伝播せず、EXTへOS導入を要求しない。fixture profileを正式wire schemaや受領/登録/commit実績に昇格しない。",
+      "algorithm": "OSとEXTを別consumerとして反復する。各consumerについてoutput schema_version、binding、scope、freshness、payload raw_utf8とsha256、prohibited payload、既存authority、再検証材料、seen_outputsを独立照合する。payload bytesとparsed structureを混同せず、nested command/SQL/path/codeを含む実行意図はuntrustedとして拒否所見にし、解析不能ならunknown_payloadとする。同一identityでbytes同一はduplicate no-op候補、異bytesはconflict、履歴欠落はunknown。OS検証不成立をEXTへ伝播せず、EXTへOS導入を要求しない。fixture profileを正式wire schemaや受領/登録/commit実績に昇格しない。 続いて同candidate_comparison_contractで明示candidate引数と局所base_assessmentを照合し、差がある原pathだけcandidate_*へ保持する。",
       "semantic_rules": [
         {
           "id": "B02-CONSUMER-REVALIDATION",
@@ -13552,15 +18025,66 @@
         "expected_material_pointerは追跡専用で計算入力として読まない",
         "source所見とL9 expectedを同一視しない",
         "unresolvedを空にするために値を補完しない",
-        "execution_state=not_executed、authority_effect=none"
-      ]
+        "execution_state=not_executed、authority_effect=none",
+        "candidate_*を返す場合は必ず明示candidate入力のpath比較から導出し、他のbase返却memberを上書きしない。"
+      ],
+      "parameters": {
+        "input": "Input_B02",
+        "context": "FixtureCaseContext",
+        "candidate": "CandidateSubmission"
+      },
+      "candidate_reads": [
+        "candidate.lane.state",
+        "candidate.lane.value",
+        "candidate.submission.state",
+        "candidate.submission.value",
+        "candidate.mutation.state",
+        "candidate.mutation.value.path"
+      ],
+      "candidate_not_read_as_truth": [
+        "candidate.mutation.value.declared_before",
+        "candidate.mutation.value.declared_after",
+        "context.case_id",
+        "context.expected_material_pointer",
+        "base_case_ref",
+        "L8 expected_output_projection"
+      ],
+      "candidate_comparison_rule_ref": "/candidate_comparison_contract",
+      "raw_candidate_path_producer": "consumer_results.<id>はraw consumersの同IDへjoinし、freshnessはoutput.freshness、schema_versionはsupported_schema_versions包含、consumer_revalidationは同consumerの原revalidation_materialを比較。actual_*・os_required_for_external_consumer・formal_schema_adoptedは既存false境界。",
+      "local_pipeline": [
+        {
+          "id": "base_assessment",
+          "type": "BaseAssessment_B02",
+          "producer": "既存root固有input semantic_rules（candidateを読む前）"
+        },
+        {
+          "id": "candidate_check",
+          "type": "CandidateComparison",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate": "candidate"
+          },
+          "producer": "/candidate_comparison_contract（case ID/oracle lookupなし）"
+        },
+        {
+          "id": "final_assessment",
+          "type": "Assessment_B02",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate_check": "candidate_check"
+          },
+          "producer": "base全rootを保持し、selectedかつconflictの時だけ2candidate_*を追補"
+        }
+      ],
+      "context_usage": "case_id/root_id/source ref/pointer/hash/execution_stateは原fixtureの追跡・出所対応だけ。case_id/expected_material_pointer/source hashから完成結果を選ばない。semantic決定性照合では追跡contextを除いて同じinput/candidateの返却を比較する。"
     },
     {
       "id": "F-008-F01",
-      "signature": "assess_f01(input: Input_F01, context: FixtureCaseContext) -> Assessment_F01",
+      "signature": "assess_f01(input: Input_F01, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F01",
       "input_types": [
         "Input_F01",
-        "FixtureCaseContext"
+        "FixtureCaseContext",
+        "CandidateSubmission"
       ],
       "return_type": "Assessment_F01",
       "reads": [
@@ -13596,9 +18120,11 @@
         "actual_requirement_agreed",
         "actual_template_applied",
         "actual_registered",
-        "unrelated_Q"
+        "unrelated_Q",
+        "candidate_disposition",
+        "candidate_conflicting_path"
       ],
-      "algorithm": "target scopeとprovided_contextのConcept/L1/pack/knowledge/application_contractをref・scopeごとに照合する。directive.raw_utf8を独立sourceとしてsha256およびfieldsと結び、missing/null/empty/providedを維持する。core_application.required_input_idsとbrain_knowledge.required_input_definitionsをjoinし、指示原値のない必須inputはquestionと理由/sourceへ返す。brain example_valuesやpattern_candidatesでdirectiveを補完しない。知識定義欠落はBRAIN、適用条件の不足はCORE、指示意図はHARNESSへ個別返却。回答前の合意/適用/登録を生成しない。",
+      "algorithm": "target scopeとprovided_contextのConcept/L1/pack/knowledge/application_contractをref・scopeごとに照合する。directive.raw_utf8を独立sourceとしてsha256およびfieldsと結び、missing/null/empty/providedを維持する。core_application.required_input_idsとbrain_knowledge.required_input_definitionsをjoinし、指示原値のない必須inputはquestionと理由/sourceへ返す。brain example_valuesやpattern_candidatesでdirectiveを補完しない。知識定義欠落はBRAIN、適用条件の不足はCORE、指示意図はHARNESSへ個別返却。回答前の合意/適用/登録を生成しない。 続いて同candidate_comparison_contractで明示candidate引数と局所base_assessmentを照合し、差がある原pathだけcandidate_*へ保持する。",
       "semantic_rules": [
         {
           "id": "F01-CONTEXT-BINDING",
@@ -13683,15 +18209,66 @@
         "expected_material_pointerは追跡専用で計算入力として読まない",
         "source所見とL9 expectedを同一視しない",
         "unresolvedを空にするために値を補完しない",
-        "execution_state=not_executed、authority_effect=none"
-      ]
+        "execution_state=not_executed、authority_effect=none",
+        "candidate_*を返す場合は必ず明示candidate入力のpath比較から導出し、他のbase返却memberを上書きしない。"
+      ],
+      "parameters": {
+        "input": "Input_F01",
+        "context": "FixtureCaseContext",
+        "candidate": "CandidateSubmission"
+      },
+      "candidate_reads": [
+        "candidate.lane.state",
+        "candidate.lane.value",
+        "candidate.submission.state",
+        "candidate.submission.value",
+        "candidate.mutation.state",
+        "candidate.mutation.value.path"
+      ],
+      "candidate_not_read_as_truth": [
+        "candidate.mutation.value.declared_before",
+        "candidate.mutation.value.declared_after",
+        "context.case_id",
+        "context.expected_material_pointer",
+        "base_case_ref",
+        "L8 expected_output_projection"
+      ],
+      "candidate_comparison_rule_ref": "/candidate_comparison_contract",
+      "raw_candidate_path_producer": "primary_candidate_fieldsはCORE required_input_idsごとのdirective.fieldsを原ref付き保持。未提供nullはunknown/value=null/source_ref=null。questionsはCOREの順で欠落fieldをBRAIN required_input_definitionsのid/question/reason/sourceとCORE sourceへjoinし、根拠がある項目だけ返す。unresolved_fieldsは元欠落ID列。runtime_decision_ownerは実選定未成立null、actual_*とpattern_selection_establishedはfalse。",
+      "local_pipeline": [
+        {
+          "id": "base_assessment",
+          "type": "BaseAssessment_F01",
+          "producer": "既存root固有input semantic_rules（candidateを読む前）"
+        },
+        {
+          "id": "candidate_check",
+          "type": "CandidateComparison",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate": "candidate"
+          },
+          "producer": "/candidate_comparison_contract（case ID/oracle lookupなし）"
+        },
+        {
+          "id": "final_assessment",
+          "type": "Assessment_F01",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate_check": "candidate_check"
+          },
+          "producer": "base全rootを保持し、selectedかつconflictの時だけ2candidate_*を追補"
+        }
+      ],
+      "context_usage": "case_id/root_id/source ref/pointer/hash/execution_stateは原fixtureの追跡・出所対応だけ。case_id/expected_material_pointer/source hashから完成結果を選ばない。semantic決定性照合では追跡contextを除いて同じinput/candidateの返却を比較する。"
     },
     {
       "id": "F-008-F02",
-      "signature": "assess_f02(input: Input_F02, context: FixtureCaseContext) -> Assessment_F02",
+      "signature": "assess_f02(input: Input_F02, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F02",
       "input_types": [
         "Input_F02",
-        "FixtureCaseContext"
+        "FixtureCaseContext",
+        "CandidateSubmission"
       ],
       "return_type": "Assessment_F02",
       "reads": [
@@ -13729,9 +18306,11 @@
         "actual_primary_overwritten",
         "actual_candidate_adopted",
         "actual_pair_rederived",
-        "unrelated_Q"
+        "unrelated_Q",
+        "candidate_disposition",
+        "candidate_conflicting_path"
       ],
-      "algorithm": "primary.ref identity/revision/scopeとprimary.raw_utf8/sha256/fieldsを結びimmutable原要求として保持する。prototype/PoCごとにbinding/scope/applicability/resultを独立照合し、findingのoriginとbindingが一致する実験結果だけを根拠候補として残す。一次fieldは上書きせず、finding.changeから別のsecondary candidateを作る。instructionのcontinue/cancel/hold/scope-changeは個別分岐し、旧scope candidateの自動採用をしない。agreementがabsentならpending、providedでも対象revision/scope/content/digest不一致ならconflict。実験成功/沈黙/訂正を要求合意、登録、pair再導出へ昇格しない。実験が両方N/Aなら原理由が揃う場合のみ差分なしの観測にできる。",
+      "algorithm": "primary.ref identity/revision/scopeとprimary.raw_utf8/sha256/fieldsを結びimmutable原要求として保持する。prototype/PoCごとにbinding/scope/applicability/resultを独立照合し、findingのoriginとbindingが一致する実験結果だけを根拠候補として残す。一次fieldは上書きせず、finding.changeから別のsecondary candidateを作る。instructionのcontinue/cancel/hold/scope-changeは個別分岐し、旧scope candidateの自動採用をしない。agreementがabsentならpending、providedでも対象revision/scope/content/digest不一致ならconflict。実験成功/沈黙/訂正を要求合意、登録、pair再導出へ昇格しない。実験が両方N/Aなら原理由が揃う場合のみ差分なしの観測にできる。 続いて同candidate_comparison_contractで明示candidate引数と局所base_assessmentを照合し、差がある原pathだけcandidate_*へ保持する。",
       "semantic_rules": [
         {
           "id": "F02-PRIMARY-IMMUTABILITY",
@@ -13823,15 +18402,66 @@
         "expected_material_pointerは追跡専用で計算入力として読まない",
         "source所見とL9 expectedを同一視しない",
         "unresolvedを空にするために値を補完しない",
-        "execution_state=not_executed、authority_effect=none"
-      ]
+        "execution_state=not_executed、authority_effect=none",
+        "candidate_*を返す場合は必ず明示candidate入力のpath比較から導出し、他のbase返却memberを上書きしない。"
+      ],
+      "parameters": {
+        "input": "Input_F02",
+        "context": "FixtureCaseContext",
+        "candidate": "CandidateSubmission"
+      },
+      "candidate_reads": [
+        "candidate.lane.state",
+        "candidate.lane.value",
+        "candidate.submission.state",
+        "candidate.submission.value",
+        "candidate.mutation.state",
+        "candidate.mutation.value.path"
+      ],
+      "candidate_not_read_as_truth": [
+        "candidate.mutation.value.declared_before",
+        "candidate.mutation.value.declared_after",
+        "context.case_id",
+        "context.expected_material_pointer",
+        "base_case_ref",
+        "L8 expected_output_projection"
+      ],
+      "candidate_comparison_rule_ref": "/candidate_comparison_contract",
+      "raw_candidate_path_producer": "preserved_primaryはraw primary同値。retained_finding_idsは元findingsの順序列。active_secondary_fieldsはinstructionと各experiment/finding bindingを比較した局所生成値、cancel/defer/target_changeはinactiveのnullを保持。agreement_conditionは独立agreement原recordから、欠落はmissing。actual_*はfalse。",
+      "local_pipeline": [
+        {
+          "id": "base_assessment",
+          "type": "BaseAssessment_F02",
+          "producer": "既存root固有input semantic_rules（candidateを読む前）"
+        },
+        {
+          "id": "candidate_check",
+          "type": "CandidateComparison",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate": "candidate"
+          },
+          "producer": "/candidate_comparison_contract（case ID/oracle lookupなし）"
+        },
+        {
+          "id": "final_assessment",
+          "type": "Assessment_F02",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate_check": "candidate_check"
+          },
+          "producer": "base全rootを保持し、selectedかつconflictの時だけ2candidate_*を追補"
+        }
+      ],
+      "context_usage": "case_id/root_id/source ref/pointer/hash/execution_stateは原fixtureの追跡・出所対応だけ。case_id/expected_material_pointer/source hashから完成結果を選ばない。semantic決定性照合では追跡contextを除いて同じinput/candidateの返却を比較する。"
     },
     {
       "id": "F-008-F03",
-      "signature": "assess_f03(input: Input_F03, context: FixtureCaseContext) -> Assessment_F03",
+      "signature": "assess_f03(input: Input_F03, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F03",
       "input_types": [
         "Input_F03",
-        "FixtureCaseContext"
+        "FixtureCaseContext",
+        "CandidateSubmission"
       ],
       "return_type": "Assessment_F03",
       "reads": [
@@ -13869,9 +18499,11 @@
         "actual_identity_assigned",
         "actual_requirement_changed",
         "actual_requirement_agreed",
-        "unrelated_Q"
+        "unrelated_Q",
+        "candidate_disposition",
+        "candidate_conflicting_path"
       ],
-      "algorithm": "contextのConcept/planning/directive/previous/proposed/pack/scope/target/allowed_actions/non_goalsをrevision・scope付きで固定する。original_atomsのidentity/source/raw_text/semantic/human_decisionとcandidate_atomsのsource_ids/semanticを突合し、文字列一致ではなくtarget・scope・actor/task/action/object/polarity/constraintの各提供値を比較する。根拠が結べる同義候補だけをidentity_candidatesに返し、欠落source atom/condition、計画外追加、未根拠追加、矛盾、重複、過剰解釈、target mismatch、scope/non-goal逸脱を別々に返す。ambiguous/unknownとhuman_decision_pendingは保持し、candidateをcanonical identity/要求変更/合意へ昇格しない。",
+      "algorithm": "contextのConcept/planning/directive/previous/proposed/pack/scope/target/allowed_actions/non_goalsをrevision・scope付きで固定する。original_atomsのidentity/source/raw_text/semantic/human_decisionとcandidate_atomsのsource_ids/semanticを突合し、文字列一致ではなくtarget・scope・actor/task/action/object/polarity/constraintの各提供値を比較する。根拠が結べる同義候補だけをidentity_candidatesに返し、欠落source atom/condition、計画外追加、未根拠追加、矛盾、重複、過剰解釈、target mismatch、scope/non-goal逸脱を別々に返す。ambiguous/unknownとhuman_decision_pendingは保持し、candidateをcanonical identity/要求変更/合意へ昇格しない。 続いて同candidate_comparison_contractで明示candidate引数と局所base_assessmentを照合し、差がある原pathだけcandidate_*へ保持する。",
       "semantic_rules": [
         {
           "id": "F03-ATOM-PROVENANCE-AND-MEANING",
@@ -13971,15 +18603,66 @@
         "expected_material_pointerは追跡専用で計算入力として読まない",
         "source所見とL9 expectedを同一視しない",
         "unresolvedを空にするために値を補完しない",
-        "execution_state=not_executed、authority_effect=none"
-      ]
+        "execution_state=not_executed、authority_effect=none",
+        "candidate_*を返す場合は必ず明示candidate入力のpath比較から導出し、他のbase返却memberを上書きしない。"
+      ],
+      "parameters": {
+        "input": "Input_F03",
+        "context": "FixtureCaseContext",
+        "candidate": "CandidateSubmission"
+      },
+      "candidate_reads": [
+        "candidate.lane.state",
+        "candidate.lane.value",
+        "candidate.submission.state",
+        "candidate.submission.value",
+        "candidate.mutation.state",
+        "candidate.mutation.value.path"
+      ],
+      "candidate_not_read_as_truth": [
+        "candidate.mutation.value.declared_before",
+        "candidate.mutation.value.declared_after",
+        "context.case_id",
+        "context.expected_material_pointer",
+        "base_case_ref",
+        "L8 expected_output_projection"
+      ],
+      "candidate_comparison_rule_ref": "/candidate_comparison_contract",
+      "raw_candidate_path_producer": "original_requirements_preservedはoriginal_atomsの元requirement_id列。candidate_atoms.source_ids→original_atoms.source_idをjoinしtarget/scope/semantic(actor/action/object/polarity/constraints)同値の一意根拠だけidentity候補へ、unknown/反転/不一致はnull。human_decision_pendingはoriginal_atomsのpending source ID順序列。actual_*はfalse。",
+      "local_pipeline": [
+        {
+          "id": "base_assessment",
+          "type": "BaseAssessment_F03",
+          "producer": "既存root固有input semantic_rules（candidateを読む前）"
+        },
+        {
+          "id": "candidate_check",
+          "type": "CandidateComparison",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate": "candidate"
+          },
+          "producer": "/candidate_comparison_contract（case ID/oracle lookupなし）"
+        },
+        {
+          "id": "final_assessment",
+          "type": "Assessment_F03",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate_check": "candidate_check"
+          },
+          "producer": "base全rootを保持し、selectedかつconflictの時だけ2candidate_*を追補"
+        }
+      ],
+      "context_usage": "case_id/root_id/source ref/pointer/hash/execution_stateは原fixtureの追跡・出所対応だけ。case_id/expected_material_pointer/source hashから完成結果を選ばない。semantic決定性照合では追跡contextを除いて同じinput/candidateの返却を比較する。"
     },
     {
       "id": "F-008-F04",
-      "signature": "assess_f04(input: Input_F04, context: FixtureCaseContext) -> Assessment_F04",
+      "signature": "assess_f04(input: Input_F04, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F04",
       "input_types": [
         "Input_F04",
-        "FixtureCaseContext"
+        "FixtureCaseContext",
+        "CandidateSubmission"
       ],
       "return_type": "Assessment_F04",
       "reads": [
@@ -14025,9 +18708,11 @@
         "actual_requirement_agreed",
         "unrelated_Q",
         "requestion_owner_candidates",
-        "unresolved_relation_endpoints"
+        "unresolved_relation_endpoints",
+        "candidate_disposition",
+        "candidate_conflicting_path"
       ],
-      "algorithm": "original_requirementsとcandidate_requirementsをidentity単位で照合し、kind=unit/connection/compositeごとの必須meaning fieldsを別に検査する。connectionにはdirection/order/data_meaning/timeout/partial_failure/retry/recoveryを含む接続条件を適用する。relationsはfrom/to identityが解決し、包含・接続・依存・制約・検証のrelation kindを保つものだけ認識する。unit_observationsはunitにのみ結び、単体passed_syntheticをconnection/composite成立へ伝播しない。missing/duplicate/unknown identity・obligation・relation endpointは別結果にし、owner candidateへ戻す。",
+      "algorithm": "original_requirementsとcandidate_requirementsをidentity単位で照合し、kind=unit/connection/compositeごとの必須meaning fieldsを別に検査する。connectionにはdirection/order/data_meaning/timeout/partial_failure/retry/recoveryを含む接続条件を適用する。relationsはfrom/to identityが解決し、包含・接続・依存・制約・検証のrelation kindを保つものだけ認識する。unit_observationsはunitにのみ結び、単体passed_syntheticをconnection/composite成立へ伝播しない。missing/duplicate/unknown identity・obligation・relation endpointは別結果にし、owner candidateへ戻す。 続いて同candidate_comparison_contractで明示candidate引数と局所base_assessmentを照合し、差がある原pathだけcandidate_*へ保持する。",
       "semantic_rules": [
         {
           "id": "F04-KIND-OBLIGATIONS",
@@ -14112,15 +18797,66 @@
         "expected_material_pointerは追跡専用で計算入力として読まない",
         "source所見とL9 expectedを同一視しない",
         "unresolvedを空にするために値を補完しない",
-        "execution_state=not_executed、authority_effect=none"
-      ]
+        "execution_state=not_executed、authority_effect=none",
+        "candidate_*を返す場合は必ず明示candidate入力のpath比較から導出し、他のbase返却memberを上書きしない。"
+      ],
+      "parameters": {
+        "input": "Input_F04",
+        "context": "FixtureCaseContext",
+        "candidate": "CandidateSubmission"
+      },
+      "candidate_reads": [
+        "candidate.lane.state",
+        "candidate.lane.value",
+        "candidate.submission.state",
+        "candidate.submission.value",
+        "candidate.mutation.state",
+        "candidate.mutation.value.path"
+      ],
+      "candidate_not_read_as_truth": [
+        "candidate.mutation.value.declared_before",
+        "candidate.mutation.value.declared_after",
+        "context.case_id",
+        "context.expected_material_pointer",
+        "base_case_ref",
+        "L8 expected_output_projection"
+      ],
+      "candidate_comparison_rule_ref": "/candidate_comparison_contract",
+      "raw_candidate_path_producer": "connection_condition_resultsは同identityのcandidate_requirements.obligationsをconnection固有direction/order/data_meaning/timeout/partial_failure/retry/recoveryへ比較し不足ならmissing。actual_*はfalse、単体合成観測から接続/構成体の実成立を生成しない。",
+      "local_pipeline": [
+        {
+          "id": "base_assessment",
+          "type": "BaseAssessment_F04",
+          "producer": "既存root固有input semantic_rules（candidateを読む前）"
+        },
+        {
+          "id": "candidate_check",
+          "type": "CandidateComparison",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate": "candidate"
+          },
+          "producer": "/candidate_comparison_contract（case ID/oracle lookupなし）"
+        },
+        {
+          "id": "final_assessment",
+          "type": "Assessment_F04",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate_check": "candidate_check"
+          },
+          "producer": "base全rootを保持し、selectedかつconflictの時だけ2candidate_*を追補"
+        }
+      ],
+      "context_usage": "case_id/root_id/source ref/pointer/hash/execution_stateは原fixtureの追跡・出所対応だけ。case_id/expected_material_pointer/source hashから完成結果を選ばない。semantic決定性照合では追跡contextを除いて同じinput/candidateの返却を比較する。"
     },
     {
       "id": "F-008-F05",
-      "signature": "assess_f05(input: Input_F05, context: FixtureCaseContext) -> Assessment_F05",
+      "signature": "assess_f05(input: Input_F05, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F05",
       "input_types": [
         "Input_F05",
-        "FixtureCaseContext"
+        "FixtureCaseContext",
+        "CandidateSubmission"
       ],
       "return_type": "Assessment_F05",
       "reads": [
@@ -14161,9 +18897,11 @@
         "actual_requirement_agreed",
         "actual_accepted",
         "unrelated_Q",
-        "unresolved_lower_proof_ids"
+        "unresolved_lower_proof_ids",
+        "candidate_disposition",
+        "candidate_conflicting_path"
       ],
-      "algorithm": "candidate compositeの原義務とoptional obligation IDsをlower_proofsおよびcomposite_oraclesと分離する。各whole obligationについて対象revision/scope・required_difference・実観測stateを照合し、lower proofはpremise_onlyとして保持してwhole oracleの代用にしない。missing original obligation、changed original obligation、missing/unexecuted/conflicting whole oracle、N/A findingを個別に返し、N/Aは原sourceで理由と適用状態を確認できる場合に限る。未評価/unknownを成功にせず、whole scope statusはsynthetic observationに限定し、受入・合意へ昇格しない。",
+      "algorithm": "candidate compositeの原義務とoptional obligation IDsをlower_proofsおよびcomposite_oraclesと分離する。各whole obligationについて対象revision/scope・required_difference・実観測stateを照合し、lower proofはpremise_onlyとして保持してwhole oracleの代用にしない。missing original obligation、changed original obligation、missing/unexecuted/conflicting whole oracle、N/A findingを個別に返し、N/Aは原sourceで理由と適用状態を確認できる場合に限る。未評価/unknownを成功にせず、whole scope statusはsynthetic observationに限定し、受入・合意へ昇格しない。 続いて同candidate_comparison_contractで明示candidate引数と局所base_assessmentを照合し、差がある原pathだけcandidate_*へ保持する。",
       "semantic_rules": [
         {
           "id": "F05-WHOLE-OBLIGATION-ORACLE",
@@ -14252,15 +18990,66 @@
         "expected_material_pointerは追跡専用で計算入力として読まない",
         "source所見とL9 expectedを同一視しない",
         "unresolvedを空にするために値を補完しない",
-        "execution_state=not_executed、authority_effect=none"
-      ]
+        "execution_state=not_executed、authority_effect=none",
+        "candidate_*を返す場合は必ず明示candidate入力のpath比較から導出し、他のbase返却memberを上書きしない。"
+      ],
+      "parameters": {
+        "input": "Input_F05",
+        "context": "FixtureCaseContext",
+        "candidate": "CandidateSubmission"
+      },
+      "candidate_reads": [
+        "candidate.lane.state",
+        "candidate.lane.value",
+        "candidate.submission.state",
+        "candidate.submission.value",
+        "candidate.mutation.state",
+        "candidate.mutation.value.path"
+      ],
+      "candidate_not_read_as_truth": [
+        "candidate.mutation.value.declared_before",
+        "candidate.mutation.value.declared_after",
+        "context.case_id",
+        "context.expected_material_pointer",
+        "base_case_ref",
+        "L8 expected_output_projection"
+      ],
+      "candidate_comparison_rule_ref": "/candidate_comparison_contract",
+      "raw_candidate_path_producer": "obligation_resultsは同whole obligationのcomposite_oracles.existence/revision/scope/executed_synthetic/observedへ照合し、未実行/未観測はunknown。lower_proofをwhole結果へ昇格しない。actual_*はfalse。",
+      "local_pipeline": [
+        {
+          "id": "base_assessment",
+          "type": "BaseAssessment_F05",
+          "producer": "既存root固有input semantic_rules（candidateを読む前）"
+        },
+        {
+          "id": "candidate_check",
+          "type": "CandidateComparison",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate": "candidate"
+          },
+          "producer": "/candidate_comparison_contract（case ID/oracle lookupなし）"
+        },
+        {
+          "id": "final_assessment",
+          "type": "Assessment_F05",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate_check": "candidate_check"
+          },
+          "producer": "base全rootを保持し、selectedかつconflictの時だけ2candidate_*を追補"
+        }
+      ],
+      "context_usage": "case_id/root_id/source ref/pointer/hash/execution_stateは原fixtureの追跡・出所対応だけ。case_id/expected_material_pointer/source hashから完成結果を選ばない。semantic決定性照合では追跡contextを除いて同じinput/candidateの返却を比較する。"
     },
     {
       "id": "F-008-F06",
-      "signature": "assess_f06(input: Input_F06, context: FixtureCaseContext) -> Assessment_F06",
+      "signature": "assess_f06(input: Input_F06, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F06",
       "input_types": [
         "Input_F06",
-        "FixtureCaseContext"
+        "FixtureCaseContext",
+        "CandidateSubmission"
       ],
       "return_type": "Assessment_F06",
       "reads": [
@@ -14301,9 +19090,11 @@
         "actual_artifact_discarded",
         "actual_establishment_changed",
         "actual_requirement_agreed",
-        "unrelated_Q"
+        "unrelated_Q",
+        "candidate_disposition",
+        "candidate_conflicting_path"
       ],
-      "algorithm": "original_revision/target_revision/scopeを固定し、original_requirementsとrelationsのfrom/to端点・state・revision・scopeから対象変更に到達可能なidentityだけをAffected candidateとする。unknown relationやowner欠落はunknownとして別返却する。original_findingのidentity/kind/contentを保持し、proposed_kindはtarget revisionでのbackflow candidateとして保持し、actual kind変更・採用・合意を作らない。affected_artifactsのdesign/verificationを候補traceとして返し、reuse_evidenceはtarget revisionとstatus/reasonを照合し、未再検証をconfirmedにしない。",
+      "algorithm": "original_revision/target_revision/scopeを固定し、original_requirementsとrelationsのfrom/to端点・state・revision・scopeから対象変更に到達可能なidentityだけをAffected candidateとする。unknown relationやowner欠落はunknownとして別返却する。original_findingのidentity/kind/contentを保持し、proposed_kindはtarget revisionでのbackflow candidateとして保持し、actual kind変更・採用・合意を作らない。affected_artifactsのdesign/verificationを候補traceとして返し、reuse_evidenceはtarget revisionとstatus/reasonを照合し、未再検証をconfirmedにしない。 続いて同candidate_comparison_contractで明示candidate引数と局所base_assessmentを照合し、差がある原pathだけcandidate_*へ保持する。",
       "semantic_rules": [
         {
           "id": "F06-IMPACT-TRACE",
@@ -14391,15 +19182,66 @@
         "expected_material_pointerは追跡専用で計算入力として読まない",
         "source所見とL9 expectedを同一視しない",
         "unresolvedを空にするために値を補完しない",
-        "execution_state=not_executed、authority_effect=none"
-      ]
+        "execution_state=not_executed、authority_effect=none",
+        "candidate_*を返す場合は必ず明示candidate入力のpath比較から導出し、他のbase返却memberを上書きしない。"
+      ],
+      "parameters": {
+        "input": "Input_F06",
+        "context": "FixtureCaseContext",
+        "candidate": "CandidateSubmission"
+      },
+      "candidate_reads": [
+        "candidate.lane.state",
+        "candidate.lane.value",
+        "candidate.submission.state",
+        "candidate.submission.value",
+        "candidate.mutation.state",
+        "candidate.mutation.value.path"
+      ],
+      "candidate_not_read_as_truth": [
+        "candidate.mutation.value.declared_before",
+        "candidate.mutation.value.declared_after",
+        "context.case_id",
+        "context.expected_material_pointer",
+        "base_case_ref",
+        "L8 expected_output_projection"
+      ],
+      "candidate_comparison_rule_ref": "/candidate_comparison_contract",
+      "raw_candidate_path_producer": "original_requirements_preservedはid/kind/revision/scope/ownerを保持、original_finding_preservedは原finding同値。change.targetから原relationsの端点/版/scope/stateと双方向traceを比較し、known到達はAffected、unknown経路はUnknownとして無影響へ丸めない。reuse_candidateはtarget revisionに結ぶ原reuse_evidenceを保持。kind_reformation_candidateは原finding.proposed_kindとcontext.target_revisionの候補。影響設計/検証とowner候補は同identityの原affected_artifacts/original_requirementsへ結ぶ。required_reagreement_and_pair_rederivationは既存candidate_only_no_automatic_approval、actual_*はfalse、独立Qを保持。",
+      "local_pipeline": [
+        {
+          "id": "base_assessment",
+          "type": "BaseAssessment_F06",
+          "producer": "既存root固有input semantic_rules（candidateを読む前）"
+        },
+        {
+          "id": "candidate_check",
+          "type": "CandidateComparison",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate": "candidate"
+          },
+          "producer": "/candidate_comparison_contract（case ID/oracle lookupなし）"
+        },
+        {
+          "id": "final_assessment",
+          "type": "Assessment_F06",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate_check": "candidate_check"
+          },
+          "producer": "base全rootを保持し、selectedかつconflictの時だけ2candidate_*を追補"
+        }
+      ],
+      "context_usage": "case_id/root_id/source ref/pointer/hash/execution_stateは原fixtureの追跡・出所対応だけ。case_id/expected_material_pointer/source hashから完成結果を選ばない。semantic決定性照合では追跡contextを除いて同じinput/candidateの返却を比較する。"
     },
     {
       "id": "F-008-F07",
-      "signature": "assess_f07(input: Input_F07, context: FixtureCaseContext) -> Assessment_F07",
+      "signature": "assess_f07(input: Input_F07, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_F07",
       "input_types": [
         "Input_F07",
-        "FixtureCaseContext"
+        "FixtureCaseContext",
+        "CandidateSubmission"
       ],
       "return_type": "Assessment_F07",
       "reads": [
@@ -14432,9 +19274,11 @@
         "actual_external_write",
         "actual_requirement_agreed",
         "actual_current_success",
-        "unrelated_Q"
+        "unrelated_Q",
+        "candidate_disposition",
+        "candidate_conflicting_path"
       ],
-      "algorithm": "各runs.production全record（input、engine_version、pack、provided_capabilities、runtime_stateを含む）を同一run group内で対応付ける。同条件runのcandidate_outputをmeaning fields/questions/unknown/statusまで比較し、相違をrun_findingsとして返す。pack rule違反をpack_rule_findingsへ分ける。required_external_dependencies・observed_external_accesses/writes・core_embedded_product_rulesを別々に観測し、source-origin=current_synthetic_design_materialのみをsynthetic証拠として表示する。旧Python/TS green、actual_engine_executed等のフラグから実engine/外部write/要求合意/現行成功を生成しない。",
+      "algorithm": "各runs.production全record（input、engine_version、pack、provided_capabilities、runtime_stateを含む）を同一run group内で対応付ける。同条件runのcandidate_outputをmeaning fields/questions/unknown/statusまで比較し、相違をrun_findingsとして返す。pack rule違反をpack_rule_findingsへ分ける。required_external_dependencies・observed_external_accesses/writes・core_embedded_product_rulesを別々に観測し、source-origin=current_synthetic_design_materialのみをsynthetic証拠として表示する。旧Python/TS green、actual_engine_executed等のフラグから実engine/外部write/要求合意/現行成功を生成しない。 続いて同candidate_comparison_contractで明示candidate引数と局所base_assessmentを照合し、差がある原pathだけcandidate_*へ保持する。",
       "semantic_rules": [
         {
           "id": "F07-REPEAT-DETERMINISM",
@@ -14526,15 +19370,66 @@
         "expected_material_pointerは追跡専用で計算入力として読まない",
         "source所見とL9 expectedを同一視しない",
         "unresolvedを空にするために値を補完しない",
-        "execution_state=not_executed、authority_effect=none"
-      ]
+        "execution_state=not_executed、authority_effect=none",
+        "candidate_*を返す場合は必ず明示candidate入力のpath比較から導出し、他のbase返却memberを上書きしない。"
+      ],
+      "parameters": {
+        "input": "Input_F07",
+        "context": "FixtureCaseContext",
+        "candidate": "CandidateSubmission"
+      },
+      "candidate_reads": [
+        "candidate.lane.state",
+        "candidate.lane.value",
+        "candidate.submission.state",
+        "candidate.submission.value",
+        "candidate.mutation.state",
+        "candidate.mutation.value.path"
+      ],
+      "candidate_not_read_as_truth": [
+        "candidate.mutation.value.declared_before",
+        "candidate.mutation.value.declared_after",
+        "context.case_id",
+        "context.expected_material_pointer",
+        "base_case_ref",
+        "L8 expected_output_projection"
+      ],
+      "candidate_comparison_rule_ref": "/candidate_comparison_contract",
+      "raw_candidate_path_producer": "actual_*は合成比較と実engine/現在成功/外部write/要求合意を分離する既存false境界。",
+      "local_pipeline": [
+        {
+          "id": "base_assessment",
+          "type": "BaseAssessment_F07",
+          "producer": "既存root固有input semantic_rules（candidateを読む前）"
+        },
+        {
+          "id": "candidate_check",
+          "type": "CandidateComparison",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate": "candidate"
+          },
+          "producer": "/candidate_comparison_contract（case ID/oracle lookupなし）"
+        },
+        {
+          "id": "final_assessment",
+          "type": "Assessment_F07",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate_check": "candidate_check"
+          },
+          "producer": "base全rootを保持し、selectedかつconflictの時だけ2candidate_*を追補"
+        }
+      ],
+      "context_usage": "case_id/root_id/source ref/pointer/hash/execution_stateは原fixtureの追跡・出所対応だけ。case_id/expected_material_pointer/source hashから完成結果を選ばない。semantic決定性照合では追跡contextを除いて同じinput/candidateの返却を比較する。"
     },
     {
       "id": "F-008-N01",
-      "signature": "assess_n01(input: Input_N01, context: FixtureCaseContext) -> Assessment_N01",
+      "signature": "assess_n01(input: Input_N01, context: FixtureCaseContext, candidate: CandidateSubmission) -> Assessment_N01",
       "input_types": [
         "Input_N01",
-        "FixtureCaseContext"
+        "FixtureCaseContext",
+        "CandidateSubmission"
       ],
       "return_type": "Assessment_N01",
       "reads": [
@@ -14569,9 +19464,11 @@
         "actual_requirement_agreed",
         "actual_learning_permitted",
         "actual_accepted",
-        "unrelated_Q"
+        "unrelated_Q",
+        "candidate_disposition",
+        "candidate_conflicting_path"
       ],
-      "algorithm": "context revision/scope/engine_version/pack_versionとprobeごとのproduction_inputを独立expectedから分離する。各probeのraw target/source/semantic atoms・question・unknown・reevaluation conditionを保持し、observed_synthetic=trueのみsynthetic意味所見として分類する。observed=falseまたはprobe_results missingはnot_evaluated/unknownであり、passへ変換しない。hidden_expectedがproduction_inputへ混入するcandidateは別finding。other_scope_packをPへ適用せず、observed_probe_idsとunevaluated_probe_idsのscopeをselected probesに限定する。fixture比較を実engine評価、全製品品質、合意、学習許可、受入へ昇格しない。",
+      "algorithm": "context revision/scope/engine_version/pack_versionとprobeごとのproduction_inputを独立expectedから分離する。各probeのraw target/source/semantic atoms・question・unknown・reevaluation conditionを保持し、observed_synthetic=trueのみsynthetic意味所見として分類する。observed=falseまたはprobe_results missingはnot_evaluated/unknownであり、passへ変換しない。hidden_expectedがproduction_inputへ混入するcandidateは別finding。other_scope_packをPへ適用せず、observed_probe_idsとunevaluated_probe_idsのscopeをselected probesに限定する。fixture比較を実engine評価、全製品品質、合意、学習許可、受入へ昇格しない。 続いて同candidate_comparison_contractで明示candidate引数と局所base_assessmentを照合し、差がある原pathだけcandidate_*へ保持する。",
       "semantic_rules": [
         {
           "id": "N01-OBSERVATION-SCOPE",
@@ -14662,8 +19559,58 @@
         "expected_material_pointerは追跡専用で計算入力として読まない",
         "source所見とL9 expectedを同一視しない",
         "unresolvedを空にするために値を補完しない",
-        "execution_state=not_executed、authority_effect=none"
-      ]
+        "execution_state=not_executed、authority_effect=none",
+        "candidate_*を返す場合は必ず明示candidate入力のpath比較から導出し、他のbase返却memberを上書きしない。"
+      ],
+      "parameters": {
+        "input": "Input_N01",
+        "context": "FixtureCaseContext",
+        "candidate": "CandidateSubmission"
+      },
+      "candidate_reads": [
+        "candidate.lane.state",
+        "candidate.lane.value",
+        "candidate.submission.state",
+        "candidate.submission.value",
+        "candidate.mutation.state",
+        "candidate.mutation.value.path"
+      ],
+      "candidate_not_read_as_truth": [
+        "candidate.mutation.value.declared_before",
+        "candidate.mutation.value.declared_after",
+        "context.case_id",
+        "context.expected_material_pointer",
+        "base_case_ref",
+        "L8 expected_output_projection"
+      ],
+      "candidate_comparison_rule_ref": "/candidate_comparison_contract",
+      "raw_candidate_path_producer": "probe_resultsは同probeのobserved_syntheticとcandidate_output/independent_expectedを隔離して比較し、未観測はnot_evaluated、提供値相反はconflict。awaiting_decisionsとunknown_fields_preservedは同probeの原pending/production_input.unknown_fieldsの順序値を保持。actual_*はfalse。",
+      "local_pipeline": [
+        {
+          "id": "base_assessment",
+          "type": "BaseAssessment_N01",
+          "producer": "既存root固有input semantic_rules（candidateを読む前）"
+        },
+        {
+          "id": "candidate_check",
+          "type": "CandidateComparison",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate": "candidate"
+          },
+          "producer": "/candidate_comparison_contract（case ID/oracle lookupなし）"
+        },
+        {
+          "id": "final_assessment",
+          "type": "Assessment_N01",
+          "inputs": {
+            "base": "base_assessment",
+            "candidate_check": "candidate_check"
+          },
+          "producer": "base全rootを保持し、selectedかつconflictの時だけ2candidate_*を追補"
+        }
+      ],
+      "context_usage": "case_id/root_id/source ref/pointer/hash/execution_stateは原fixtureの追跡・出所対応だけ。case_id/expected_material_pointer/source hashから完成結果を選ばない。semantic決定性照合では追跡contextを除いて同じinput/candidateの返却を比較する。"
     }
   ],
   "contracts": [
@@ -14814,7 +19761,8 @@
             "result": "diagnostic_only; authority未成立",
             "return_to": "OSまたは個別authority owner"
           }
-        ]
+        ],
+        "candidate_input_binding": "CandidateSubmission引数→既存raw由来base_assessment→path比較。原oracle/case ID/declared_before/afterは正解供給にしない。"
       }
     },
     {
@@ -14943,7 +19891,8 @@
             "result": "unknown_payload",
             "return_to": "当該consumer"
           }
-        ]
+        ],
+        "candidate_input_binding": "CandidateSubmission引数→既存raw由来base_assessment→path比較。原oracle/case ID/declared_before/afterは正解供給にしない。"
       }
     },
     {
@@ -15079,7 +20028,8 @@
             "result": "source_conflict",
             "return_to": "HARNESS"
           }
-        ]
+        ],
+        "candidate_input_binding": "CandidateSubmission引数→既存raw由来base_assessment→path比較。原oracle/case ID/declared_before/afterは正解供給にしない。"
       }
     },
     {
@@ -15225,7 +20175,8 @@
             "result": "差分なしの観測候補; acceptanceしない",
             "return_to": "HARNESS"
           }
-        ]
+        ],
+        "candidate_input_binding": "CandidateSubmission引数→既存raw由来base_assessment→path比較。原oracle/case ID/declared_before/afterは正解供給にしない。"
       }
     },
     {
@@ -15379,7 +20330,8 @@
             "result": "個別violation",
             "return_to": "HARNESS-CORE/HARNESS"
           }
-        ]
+        ],
+        "candidate_input_binding": "CandidateSubmission引数→既存raw由来base_assessment→path比較。原oracle/case ID/declared_before/afterは正解供給にしない。"
       }
     },
     {
@@ -15526,7 +20478,8 @@
             "result": "unresolved relation",
             "return_to": "HARNESS"
           }
-        ]
+        ],
+        "candidate_input_binding": "CandidateSubmission引数→既存raw由来base_assessment→path比較。原oracle/case ID/declared_before/afterは正解供給にしない。"
       }
     },
     {
@@ -15671,7 +20624,8 @@
             "result": "whole_scope_incomplete",
             "return_to": "composite owner"
           }
-        ]
+        ],
+        "candidate_input_binding": "CandidateSubmission引数→既存raw由来base_assessment→path比較。原oracle/case ID/declared_before/afterは正解供給にしない。"
       }
     },
     {
@@ -15815,7 +20769,8 @@
             "result": "conflict",
             "return_to": "HARNESS"
           }
-        ]
+        ],
+        "candidate_input_binding": "CandidateSubmission引数→既存raw由来base_assessment→path比較。原oracle/case ID/declared_before/afterは正解供給にしない。"
       }
     },
     {
@@ -15956,7 +20911,8 @@
             "result": "historical only; current successではない",
             "return_to": "HARNESS"
           }
-        ]
+        ],
+        "candidate_input_binding": "CandidateSubmission引数→既存raw由来base_assessment→path比較。原oracle/case ID/declared_before/afterは正解供給にしない。"
       }
     },
     {
@@ -16098,7 +21054,8 @@
             "result": "scope violation",
             "return_to": "HARNESS-CORE"
           }
-        ]
+        ],
+        "candidate_input_binding": "CandidateSubmission引数→既存raw由来base_assessment→path比較。原oracle/case ID/declared_before/afterは正解供給にしない。"
       }
     }
   ],
@@ -16809,5 +21766,52 @@
     "actual_engine_or_semantic_evaluation": "not_run",
     "TDD_CI": "not_run",
     "L11_acceptance": "not_established"
+  },
+  "candidate_comparison_contract": {
+    "reads": [
+      "candidate.lane.state",
+      "candidate.lane.value",
+      "candidate.submission.state",
+      "candidate.submission.value",
+      "candidate.mutation.state",
+      "candidate.mutation.value.path"
+    ],
+    "not_read_as_truth": [
+      "candidate.mutation.value.declared_before",
+      "candidate.mutation.value.declared_after",
+      "context.case_id",
+      "context.expected_material_pointer",
+      "base_case_ref",
+      "L8 expected_output_projection"
+    ],
+    "algorithm": [
+      "既存root固有raw semantic_rulesでbase Assessmentを計算しcandidate_*をまだ加えない。この中間値をbase_assessmentとする。oracle/expected pointerやcase IDで値を選ばない。",
+      "candidate.laneがprovided/candidateでありsubmissionとmutation.pathが提供された局所scopeで、pathをdict memberまたはlist整数indexとして同じbase_assessmentと提出submissionへ解決する。pathの文字列一致は値の同値を意味しない。",
+      "各pathのabsent/null/empty/providedとJSON型/完全値を比較する。boolとnumber、nullとabsentを混同しない。declared_before/afterは比較の正解に使わない。",
+      "差があればcandidate_disposition=conflictとcandidate_conflicting_path=その入力pathを返し、base_assessment全rootを同値保持する。差が無ければcandidate_*は省略し、提出値を実採用/許可/完了へ昇格しない。",
+      "laneがoriginalまたはabsentならcandidate比較は未選択で、candidate_*を省略する。元raw mutationと候補submissionのmutationを混同しない。"
+    ],
+    "limits": "全80原candidate例は単一の定義済pathへ提供されたsubmissionを比較する。未知lane/malformed path/複数衝突の一般返却優先は未閉包として残し、既存原期待を拡張しない。",
+    "raw_producer_by_root": {
+      "B01": "actual_*は意味処理/実作用分離の既存false境界。projection/event/scoreからtrueを生成しない。",
+      "B02": "consumer_results.<id>はraw consumersの同IDへjoinし、freshnessはoutput.freshness、schema_versionはsupported_schema_versions包含、consumer_revalidationは同consumerの原revalidation_materialを比較。actual_*・os_required_for_external_consumer・formal_schema_adoptedは既存false境界。",
+      "F01": "primary_candidate_fieldsはCORE required_input_idsごとのdirective.fieldsを原ref付き保持。未提供nullはunknown/value=null/source_ref=null。questionsはCOREの順で欠落fieldをBRAIN required_input_definitionsのid/question/reason/sourceとCORE sourceへjoinし、根拠がある項目だけ返す。unresolved_fieldsは元欠落ID列。runtime_decision_ownerは実選定未成立null、actual_*とpattern_selection_establishedはfalse。",
+      "F02": "preserved_primaryはraw primary同値。retained_finding_idsは元findingsの順序列。active_secondary_fieldsはinstructionと各experiment/finding bindingを比較した局所生成値、cancel/defer/target_changeはinactiveのnullを保持。agreement_conditionは独立agreement原recordから、欠落はmissing。actual_*はfalse。",
+      "F03": "original_requirements_preservedはoriginal_atomsの元requirement_id列。candidate_atoms.source_ids→original_atoms.source_idをjoinしtarget/scope/semantic(actor/action/object/polarity/constraints)同値の一意根拠だけidentity候補へ、unknown/反転/不一致はnull。human_decision_pendingはoriginal_atomsのpending source ID順序列。actual_*はfalse。",
+      "F04": "connection_condition_resultsは同identityのcandidate_requirements.obligationsをconnection固有direction/order/data_meaning/timeout/partial_failure/retry/recoveryへ比較し不足ならmissing。actual_*はfalse、単体合成観測から接続/構成体の実成立を生成しない。",
+      "F05": "obligation_resultsは同whole obligationのcomposite_oracles.existence/revision/scope/executed_synthetic/observedへ照合し、未実行/未観測はunknown。lower_proofをwhole結果へ昇格しない。actual_*はfalse。",
+      "F06": "original_requirements_preservedはid/kind/revision/scope/ownerを保持、original_finding_preservedは原finding同値。change.targetから原relationsの端点/版/scope/stateと双方向traceを比較し、known到達はAffected、unknown経路はUnknownとして無影響へ丸めない。reuse_candidateはtarget revisionに結ぶ原reuse_evidenceを保持。kind_reformation_candidateは原finding.proposed_kindとcontext.target_revisionの候補。影響設計/検証とowner候補は同identityの原affected_artifacts/original_requirementsへ結ぶ。required_reagreement_and_pair_rederivationは既存candidate_only_no_automatic_approval、actual_*はfalse、独立Qを保持。",
+      "F07": "actual_*は合成比較と実engine/現在成功/外部write/要求合意を分離する既存false境界。",
+      "N01": "probe_resultsは同probeのobserved_syntheticとcandidate_output/independent_expectedを隔離して比較し、未観測はnot_evaluated、提供値相反はconflict。awaiting_decisionsとunknown_fields_preservedは同probeの原pending/production_input.unknown_fieldsの順序値を保持。actual_*はfalse。"
+    },
+    "field_guard": "FieldValueのstateを先に読み、provided/emptyの時だけvalueへ進む。absent/nullへvalue memberを仮定しない。candidate局所scopeはlane provided/candidateかつsubmission/mutation/path提供済みの原80例。",
+    "base_reads": "同じ関数の既存raw比較から得た局所base_assessmentのcandidate.mutation.value.pathだけを、元presence/型/値として解決する。baseは外部oracle引数ではない。"
+  },
+  "review_correction": {
+    "official_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3136#issuecomment-6180693795",
+    "reviewed_head": "c13ba6f5486ad3ccfba52eba472a9004f42dc6e6",
+    "finding": "H08D-01 Major",
+    "correction": "10関数に明示candidate入力と既存raw由来base/候補比較/最終返却の局所値接続を追加。401原raw/full期待不変。",
+    "limits": "321原normal/originalの全raw→全出力の独立再計算はR1 unreviewedであり、今回のcandidate80path再計算と型/値接続検査で済んだと主張しない。実資格/codec/TDD/CI/L11/Ready未成立。"
   }
 }
