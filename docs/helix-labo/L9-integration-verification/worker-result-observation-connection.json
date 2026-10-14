@@ -571,7 +571,33 @@
     "registration_id": "MPR-RC-HELIXLABO-L2-028-001",
     "adopted_l2_section_sha256": "672081ff4372f097f39959b294ce961a35da899fb0e21b3d4a2f1cd3278851fd",
     "adopted_l11_section_sha256": "208b35f2bdc5a3e2586b819e1e6dc1e1b77930b6dac44dacb79fa6a4e8e99781",
-    "l1_sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    "l1_sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+    "section_pins": [
+      {
+        "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "start_line": 231,
+        "end_line_inclusive": 234,
+        "observed_revision": "c00695600ab1fed30718d89880b92a6358422131",
+        "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "raw_section_utf8": "### HELIXLABO-L2-028 — Worker → Aggregate\n\n- 親：HELIXLABO-L1-001。入力：許可されたWorker作業結果。出力：task class/assignment/source付きobservation。依存：OS assignmentとWorker result contract。保証：Workerをauthority ownerとせず、未評価結果を評価済みにしない。assignment不明はOSへ戻す。`version_target: 1.0`。\n\n",
+        "section_byte_count": 375,
+        "sha256": "672081ff4372f097f39959b294ce961a35da899fb0e21b3d4a2f1cd3278851fd",
+        "hash_method": "指定file bytesをsplitlines(keepends=True)し、1-based start_lineからend_line_inclusiveまでをbyte結合する。空行・末尾LFを削らない。L2は終端LF2個、L11表行は終端LF1個。",
+        "current_and_adopted_section_bytes_equal": true
+      },
+      {
+        "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "start_line": 79,
+        "end_line_inclusive": 79,
+        "observed_revision": "c00695600ab1fed30718d89880b92a6358422131",
+        "adopted_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "raw_section_utf8": "| HELIXLABO-L2-028 | Workerから許可作業結果を受け、責務とOS assignment/ticketへ照合し、実験結果ならL2-006のexperiment・対象版へ同一性を保って渡す | Workerを機構・authority ownerとして扱う、assignmentを推測する、別ticket/experimentの実績を同一比較へ混ぜる |\n",
+        "section_byte_count": 327,
+        "sha256": "208b35f2bdc5a3e2586b819e1e6dc1e1b77930b6dac44dacb79fa6a4e8e99781",
+        "hash_method": "指定file bytesをsplitlines(keepends=True)し、1-based start_lineからend_line_inclusiveまでをbyte結合する。空行・末尾LFを削らない。L2は終端LF2個、L11表行は終端LF1個。",
+        "current_and_adopted_section_bytes_equal": true
+      }
+    ]
   },
   "approved_object_hashes": [
     {
