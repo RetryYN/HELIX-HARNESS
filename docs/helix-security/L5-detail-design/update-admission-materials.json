@@ -6924,31 +6924,38 @@
     },
     {
       "path": "docs/helix-security/L10-verification/business-verification.json",
-      "file_sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+      "file_sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "docs/helix-security/L10-verification/functional-verification.json",
-      "file_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+      "file_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "docs/helix-security/L10-verification/nfr-verification.json",
-      "file_sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00"
+      "file_sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "docs/helix-security/L3-requirements/business-requirements.json",
-      "file_sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+      "file_sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "docs/helix-security/L3-requirements/functional-requirements.json",
-      "file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+      "file_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "docs/helix-security/L3-requirements/nfr-grade.json",
-      "file_sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66"
+      "file_sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "docs/governance/decisions/helix-security-tool-prerequisites-l3-l10-delegated-decision-2026-10-12.md",
-      "file_sha256": "d7c1f27d477b8323cae77cfb4dce8086c6d268826f09a1edcea46e186111878b"
+      "file_sha256": "d7c1f27d477b8323cae77cfb4dce8086c6d268826f09a1edcea46e186111878b",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "docs/helix-security/L1-planning/security-intent.md",
@@ -6974,7 +6981,8 @@
           "text": "| HELIXSECURITY-L1-013 | 人間は、code、package、モデル、設定、securityの方針等が、生成から利用まで同じ対象であることを、identity、版、digest、出所、作成者、build、検証で確かめられる。「CIで検証した物」と「実際に配布・実行した物」を食い違わせない | §14 | 1.0 | 単体 |",
           "utf8_sha256": "66e4a2cf74e50dac267e078c8602834c7c68f91caf72ccbb54f400620dbb5c7d"
         }
-      ]
+      ],
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "docs/helix-security/L2-requirements/security-requirements.md",
@@ -7175,7 +7183,8 @@
           "text": "- **束ねる既存条件**：L1-013、PO §14、Conceptの構成版固定。",
           "utf8_sha256": "7419f8ab6656e286735b1a6c7e37d0d2147b8ff8f48573a6fa3f3ff50ad62807"
         }
-      ]
+      ],
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
@@ -7201,19 +7210,23 @@
           "text": "| HELIXSECURITY-L2-013 | 1.0 | build/validation済artifactのidentityと配布/実行artifactのidentity・digest・provenanceが同じ鎖で一致する。異なるartifact、欠けた工程、digest不一致が昇格可能なら不合格。digest一致だけからsource trustやverification passを推定しても不合格。 |",
           "utf8_sha256": "faf90179d239d7d7e8c5012816839fcbe002349fa6bdb07cd821760bec27b2aa"
         }
-      ]
+      ],
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
-      "file_sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447"
+      "file_sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
-      "file_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16"
+      "file_sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-acceptance.md",
-      "file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc"
+      "file_sha256": "c8d332f8d7655ba04ff664aef75f084d33e19b5d8fd0493c7f498fcd97235ffc",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/os-portability-supply-chain.md",
@@ -7484,7 +7497,8 @@
           "text": "生のsecret、credential、PII、未redact scanner出力、依存source本文はbundleへ保存しない。既知failureは次で固定する。",
           "utf8_sha256": "3da5b1a411013d0e7faa20a0c7540f20580174c61566b92a9bfa3d442762061a"
         }
-      ]
+      ],
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/os-portability-supply-chain.md",
@@ -7605,7 +7619,8 @@
           "text": "",
           "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         }
-      ]
+      ],
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-os-portability-supply-chain-integration-test-design.md",
@@ -7776,7 +7791,8 @@
           "text": "## primary atomic assertion台帳",
           "utf8_sha256": "a85b1c595dcbd013b02e25fdf76c19db3fd4f4b2e92cf8d1897320ba9e61ae87"
         }
-      ]
+      ],
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-os-portability-supply-chain-unit-test-design.md",
@@ -7957,7 +7973,8 @@
           "text": "",
           "utf8_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
         }
-      ]
+      ],
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13"
     }
   ],
   "current_requirement_quotes": [
