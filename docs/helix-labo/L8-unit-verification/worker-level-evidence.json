@@ -1,0 +1,1248 @@
+{
+  "parent": "HELIXLABO-L2-055",
+  "pair": "HELIXLABO-L5-055",
+  "source_main": "70b969db432e81e9a6fd4463e743544cfec860a7",
+  "status": "draft_unit_verification_cases_not_executed",
+  "authority_effect": "none",
+  "scope": {
+    "version_target": "1.0",
+    "authoring_scope": "L5論理関数を区別する4 positive・13 negative source値付きfixtureの独立期待を固定する。旧runtime/test/CI/新CIは実行しない。 L5純関数の局所branchを独立fixtureで部分検証するが、全出力合格やruntime実行は主張しない。",
+    "boundary": "source bytes/expected resultの照合のみ。実 qualification、実評価、TDD Red/Green、CI合格、L11実受入を主張しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L4-basic-design/worker-level-evidence.json",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "55a53e9f769cc50e64cd974b01965e69b4959da177dd303eff23da250514a6c6"
+    },
+    {
+      "path": "docs/helix-labo/L9-integration-verification/worker-level-evidence.json",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "6dad6cbdf01472474a4bf2d1fc5c6b9fe6b5d1e50dcf059beecc894bfe7dbf15"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
+      "revision": "70b969db432e81e9a6fd4463e743544cfec860a7",
+      "sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
+    }
+  ],
+  "upstream_adoption": {
+    "approval": {
+      "record_path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "record_sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19",
+      "record_commit": "2f95e20cd9e90dd4ab7d349661476d8c49eff548",
+      "admitted_main_commit": "4dd2774e1498bde640a52e94245195f62e750ca6",
+      "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "approval_whole_files": [
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.json",
+          "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "sha256": "1abff25ba108a6e1055c0a811fa67befd44e73469ffda6ae8735b65249b2a441"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.json",
+          "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "sha256": "7719e128e442644224ba2b586f2f3ad0f0f14692847d8678a681abf616896270"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+          "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "sha256": "52966ddf22818f0ee1306c98496975304ce847255cffb243065963958c076844"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+          "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "sha256": "f2ae2897b615a7dde0d06cae6e02af72dfdd60f182e91728d94d3c250bfcaa77"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+          "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "sha256": "3be891bae6d3ed19931d8c9bac1989e1c6eff0cc6868d165d9ca9e1bc6787129"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+          "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "sha256": "d2453f852b93da95605c5780f51a7cd4d585685f673eb6c90393e93164be97dd"
+        }
+      ],
+      "scope_limit": "2026-10-12委任記録の26 L3/L10 exact本文。L4/L5/L8/L9、source qualification、実評価、実装、受入の承認ではない。"
+    },
+    "adoption": {
+      "decision_path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "parent_requirement_id": "HELIXLABO-L2-055",
+      "registration_id": "MPR-RC-HELIXLABO-L2-055-002",
+      "adopted_l1_sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "adopted_l2_file_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "adopted_l2_section_sha256": "7796690dfd399e1f5d0cccddde8c7aeabb5da5dd2d8ab7edcdd3e71e74e84065",
+      "adopted_l11_file_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "adopted_l11_requirement_row_sha256": "9e169e5f6a6eead24677031a479dba94060fe6916e76f4e3b1508527880f13c5",
+      "adopted_l11_supplemental_case_sha256": "f4ef263d8a969705e15987b60365228be56875b88794a76d5609a799ff7e0779",
+      "l2_quote": "HELIX-Benchは許可されたWorker作業履歴を作業種別・model classごとに集計し、対応可能性の水準、根拠、評価範囲を導く。評価していないmodel classは明示的に「未評価」とする。水準は配置案の材料であり、Benchは配置案を作成せず、Worker/modelの選定・指定・割当ても行わない。",
+      "l11_quote": "| HELIXLABO-L2-055 | Worker作業履歴を作業種別・model classごとに集計し、水準・根拠・評価範囲と評価済み/未評価状態を生成できる。配置案・指定・割当ては生成しない | 未評価modelを評価済みと表示する、履歴だけで未知jobの成功を保証する、LABO/Benchが配置案・指定・割当て・権限変更を行う |",
+      "section_hash_reproducibility": {
+        "method": "SHA-256 over the exact UTF-8 bytes of each quoted source line in the stated revision and inclusive line range.",
+        "newline_processing": "Preserve source LF bytes exactly, including the LF terminator on the final selected line; do not normalize CRLF/LF, strip whitespace, or add/remove line endings. Quote delimiters are excluded from the hash preimage.",
+        "quotes": [
+          {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "line_range": "150-154",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "Preserve source bytes exactly; selected lines include their original LF terminators; no normalization.",
+            "sha256": "7796690dfd399e1f5d0cccddde8c7aeabb5da5dd2d8ab7edcdd3e71e74e84065",
+            "quote": "### HELIXLABO-L2-055 — HELIX-Bench 作業水準生成（1.0）\n\nHELIX-Benchは許可されたWorker作業履歴を作業種別・model classごとに集計し、対応可能性の水準、根拠、評価範囲を導く。評価していないmodel classは明示的に「未評価」とする。水準は配置案の材料であり、Benchは配置案を作成せず、Worker/modelの選定・指定・割当ても行わない。\n\n- 親：HELIXLABO-L1-011。入力：Worker作業履歴、作業種別、model class、評価結果とそのsource revision/範囲。出力：作業種別・model class別水準、根拠、評価期間/適用範囲、評価済み/未評価状態。依存：許可されたLABO observation（L2-001/028）と評価可能な実績（必要に応じL2-006）、Worker historyの作業種別・model class identity。保証：履歴だけで未知作業の成功を保証せず、未評価を評価済みに変換せず、配置・割当て・権限を変更しない。範囲や実績が不足・不整合なら水準を確定せず該当履歴sourceへ戻す。`version_target: 1.0`。\n",
+            "file_sha256_field": "adopted_l2_file_sha256",
+            "section_sha256_field": "adopted_l2_section_sha256"
+          },
+          {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line_range": "56-56",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "Preserve source bytes exactly; selected lines include their original LF terminators; no normalization.",
+            "sha256": "9e169e5f6a6eead24677031a479dba94060fe6916e76f4e3b1508527880f13c5",
+            "quote": "| HELIXLABO-L2-055 | Worker作業履歴を作業種別・model classごとに集計し、水準・根拠・評価範囲と評価済み/未評価状態を生成できる。配置案・指定・割当ては生成しない | 未評価modelを評価済みと表示する、履歴だけで未知jobの成功を保証する、LABO/Benchが配置案・指定・割当て・権限変更を行う |\n",
+            "file_sha256_field": "adopted_l11_file_sha256",
+            "section_sha256_field": "adopted_l11_requirement_row_sha256"
+          },
+          {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "line_range": "191-196",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "Preserve source bytes exactly; selected lines include their original LF terminators; no normalization.",
+            "sha256": "f4ef263d8a969705e15987b60365228be56875b88794a76d5609a799ff7e0779",
+            "quote": "### HELIXLABO-L2-055 — Bench分母・欠測・採点根拠\n\n- **正常例**：一つの許可済みworker-history snapshotから対象task class・model class・評価範囲に該当する実績集合を特定する。数値metricまたは集約水準を出す場合、そのscopeのeligible denominator、実際に算入した結果、欠測/失敗/拒否/停止/unknownの個別dispositionと算入/除外理由、metric計算規則・scorer/oracleのrevisionを記録する。受入者は同じsource receiptから出力根拠を再構成できる。定性的水準の場合も、適用条件・判定根拠・未評価部分を特定できる。\n- **誤りを含む例**：欠測/失敗/unknownを母集団から理由なく落として水準を上げる、欠測費用を0とする、分母や集計対象を結果確認後に変える、判定根拠/metric定義/採点版を示さず数値または水準だけを出す、重大なquality/scope/security/data-loss failureを平均点で相殺する。水準の出力は根拠不足または不成立とし、既知の失敗は失敗のまま、欠測/unknownは欠測/unknownのまま保持する。判定不能なscopeの水準を未評価として残し、失敗の観測事実を未評価へ丸めない。\n- **未見例**：新しいtask class、sourceまたはscorer/oracle版の結果で適用可能性が示されない。過去classの水準を転用せず、その範囲は未評価とする。新しい母数、固定標本数、許容率、閾値は作らない。\n- **境界**：denominatorは出力するmetricと明示scopeごとに定義する。旧Benchのsystem/team test portfolio、反復回数、confidence interval、accepted-change正規化を全作業種別の水準へ一律要求しない。metricがそれらを主張・利用するときだけ該当根拠/欠測処理を受入対象とする。scoreだけで配置案、指定、割当て、authorityは作らない。\n",
+            "file_sha256_field": "adopted_l11_file_sha256",
+            "section_sha256_field": "adopted_l11_supplemental_case_sha256"
+          }
+        ]
+      }
+    }
+  },
+  "audit": {
+    "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+    "whole_sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
+    "row_parent": "HELIXLABO-L2-055",
+    "row_canonical_sha256": "ad3ae2527c6a1e58d1c1fbb899a3c92700decf098d5b07d49916033b7e93fc3e",
+    "denominators": {
+      "parents": 92,
+      "requirement_pairs": 430
+    },
+    "design_completion": "unproven",
+    "implementation_readiness": "not_ready"
+  },
+  "approved_object_hashes": [
+    {
+      "id": "HELIXLABO-L3-055-B01",
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "canonical_sha256": "344eac3c07b75604c0a5ebc85b9e809150eb6ac9cfcd9a2552a0396ebb9d1880"
+    },
+    {
+      "id": "HELIXLABO-L3-055-F01",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "954c0bdea58c6927f5a96fea3694e6cf76a2e63ea8bbf90dd2331b8c18812220"
+    },
+    {
+      "id": "HELIXLABO-L3-055-F02",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "fbd1de908b565f2b44ffae7109a2232634a10313d8875f24064ad751f4dd1c30"
+    },
+    {
+      "id": "HELIXLABO-L3-055-F03",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "9a5507a07ec64586a2d496a3ede552812d6d89638a36407af2ede92b47db3f50"
+    },
+    {
+      "id": "HELIXLABO-L10-055-B01",
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "canonical_sha256": "c167a8364b18c4aa9f4126f4e5374b34ba1f1254d4875f3044573a8f0a0d8f66"
+    },
+    {
+      "id": "HELIXLABO-L10-055-F01",
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "ddbbc254e74a75ef8a2c9a81aa74a40bbce5112f0955c91fe21823e6e2e5a8c8"
+    },
+    {
+      "id": "HELIXLABO-L10-055-F02",
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "533fd52cb17b1f413c29891dbc1d10ebda228af9f814270aa6e2ec75f64f3565"
+    },
+    {
+      "id": "HELIXLABO-L10-055-F03",
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "3111b450ac6de7a03c312f0745d8c072a507a8e37af4c8027f7cd19a6fd42d11"
+    }
+  ],
+  "approval_whole_files": [
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "1abff25ba108a6e1055c0a811fa67befd44e73469ffda6ae8735b65249b2a441"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "7719e128e442644224ba2b586f2f3ad0f0f14692847d8678a681abf616896270"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+      "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "52966ddf22818f0ee1306c98496975304ce847255cffb243065963958c076844"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "f2ae2897b615a7dde0d06cae6e02af72dfdd60f182e91728d94d3c250bfcaa77"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "3be891bae6d3ed19931d8c9bac1989e1c6eff0cc6868d165d9ca9e1bc6787129"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+      "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "d2453f852b93da95605c5780f51a7cd4d585685f673eb6c90393e93164be97dd"
+    }
+  ],
+  "trace_matrix": [
+    {
+      "requirement_ref": "HELIXLABO-L3-055-B01",
+      "basic_design_ref": "HELIXLABO-L4-055-B01",
+      "detail_design_id": "HELIXLABO-L5-055-B01",
+      "component_verification_id": "HELIXLABO-L8-055-B01",
+      "system_oracle_ref": "HELIXLABO-L10-055-B01",
+      "acceptance_anchor": "HELIXLABO-L2-055採択要求、L11 055受入行、L11 分母・欠測・採点根拠補強case",
+      "direction": "L2→L3→L4→L5→L8→L9→L10→L11; 逆方向はL11/L10不成立をL9/L8/L5/L4/L3/L2へ戻す"
+    },
+    {
+      "requirement_ref": "HELIXLABO-L3-055-F01",
+      "basic_design_ref": "HELIXLABO-L4-055-F01",
+      "detail_design_id": "HELIXLABO-L5-055-F01",
+      "component_verification_id": "HELIXLABO-L8-055-F01",
+      "system_oracle_ref": "HELIXLABO-L10-055-F01",
+      "acceptance_anchor": "HELIXLABO-L2-055採択要求、L11 055受入行、L11 分母・欠測・採点根拠補強case",
+      "direction": "L2→L3→L4→L5→L8→L9→L10→L11; 逆方向はL11/L10不成立をL9/L8/L5/L4/L3/L2へ戻す"
+    },
+    {
+      "requirement_ref": "HELIXLABO-L3-055-F02",
+      "basic_design_ref": "HELIXLABO-L4-055-F02",
+      "detail_design_id": "HELIXLABO-L5-055-F02",
+      "component_verification_id": "HELIXLABO-L8-055-F02",
+      "system_oracle_ref": "HELIXLABO-L10-055-F02",
+      "acceptance_anchor": "HELIXLABO-L2-055採択要求、L11 055受入行、L11 分母・欠測・採点根拠補強case",
+      "direction": "L2→L3→L4→L5→L8→L9→L10→L11; 逆方向はL11/L10不成立をL9/L8/L5/L4/L3/L2へ戻す"
+    },
+    {
+      "requirement_ref": "HELIXLABO-L3-055-F03",
+      "basic_design_ref": "HELIXLABO-L4-055-F03",
+      "detail_design_id": "HELIXLABO-L5-055-F03",
+      "component_verification_id": "HELIXLABO-L8-055-F03",
+      "system_oracle_ref": "HELIXLABO-L10-055-F03",
+      "acceptance_anchor": "HELIXLABO-L2-055採択要求、L11 055受入行、L11 分母・欠測・採点根拠補強case",
+      "direction": "L2→L3→L4→L5→L8→L9→L10→L11; 逆方向はL11/L10不成立をL9/L8/L5/L4/L3/L2へ戻す"
+    }
+  ],
+  "unit_contracts": [
+    {
+      "id": "HELIXLABO-L8-055-B01",
+      "l5_ref": "HELIXLABO-L5-055-B01",
+      "l4_ref": "HELIXLABO-L4-055-B01",
+      "requirement_ref": "HELIXLABO-L3-055-B01",
+      "system_oracle_ref": "HELIXLABO-L10-055-B01",
+      "pure_operation": "定義済みの次の純粋関数を対応する明示入力で照合する：partition_by_class(snapshot: HistorySnapshot) -> PartitionResult、bind_evidence(partition: HistoryPartition, source_map: SourceMap) -> BindResult、resolve_applicability(group: HistoryPartition, claims: list<QualitativeClaim>) -> ApplicabilityResult、render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial。各入力のsource/presenceを保持し、実資格・実作用・全unit出力合格を生成しない。",
+      "positive_source_case": "L9正例のraw packet identityを保持する。期待は本書の指定projectionに独立して記述する。",
+      "negative_source_cases": [
+        "B01-NEG-SELF-PLACEMENT",
+        "B01-NEG-SCORE-BRANCH-CHANGE",
+        "B01-NEG-ALL-L2-006-GATE"
+      ],
+      "operation_refs": [
+        "partition_by_class(snapshot: HistorySnapshot) -> PartitionResult",
+        "bind_evidence(partition: HistoryPartition, source_map: SourceMap) -> BindResult",
+        "resolve_applicability(group: HistoryPartition, claims: list<QualitativeClaim>) -> ApplicabilityResult",
+        "render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial"
+      ]
+    },
+    {
+      "id": "HELIXLABO-L8-055-F01",
+      "l5_ref": "HELIXLABO-L5-055-F01",
+      "l4_ref": "HELIXLABO-L4-055-F01",
+      "requirement_ref": "HELIXLABO-L3-055-F01",
+      "system_oracle_ref": "HELIXLABO-L10-055-F01",
+      "pure_operation": "定義済みの次の純粋関数を対応する明示入力で照合する：partition_by_class(snapshot: HistorySnapshot) -> PartitionResult、bind_evidence(partition: HistoryPartition, source_map: SourceMap) -> BindResult、resolve_applicability(group: HistoryPartition, claims: list<QualitativeClaim>) -> ApplicabilityResult。各入力のsource/presenceを保持し、実資格・実作用・全unit出力合格を生成しない。",
+      "positive_source_case": "L9正例のraw packet identityを保持する。期待は本書の指定projectionに独立して記述する。",
+      "negative_source_cases": [
+        "F01-NEG-UNEVALUATED-PROMOTION",
+        "F01-NEG-UNKNOWN-JOB-GUARANTEE",
+        "F01-NEG-SCOPE-INFERENCE"
+      ],
+      "operation_refs": [
+        "partition_by_class(snapshot: HistorySnapshot) -> PartitionResult",
+        "bind_evidence(partition: HistoryPartition, source_map: SourceMap) -> BindResult",
+        "resolve_applicability(group: HistoryPartition, claims: list<QualitativeClaim>) -> ApplicabilityResult"
+      ]
+    },
+    {
+      "id": "HELIXLABO-L8-055-F02",
+      "l5_ref": "HELIXLABO-L5-055-F02",
+      "l4_ref": "HELIXLABO-L4-055-F02",
+      "requirement_ref": "HELIXLABO-L3-055-F02",
+      "system_oracle_ref": "HELIXLABO-L10-055-F02",
+      "pure_operation": "定義済みの次の純粋関数を対応する明示入力で照合する：reconstruct_metric(claim: MetricClaim) -> MetricReconstruction、render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial。各入力のsource/presenceを保持し、実資格・実作用・全unit出力合格を生成しない。",
+      "positive_source_case": "L9正例のraw packet identityを保持する。期待は本書の指定projectionに独立して記述する。",
+      "negative_source_cases": [
+        "F02-NEG-MISSING-AS-ZERO",
+        "F02-NEG-EXCLUDE-FAILURE",
+        "F02-NEG-POST-RESULT-DENOMINATOR-EDIT",
+        "F02-NEG-NUMERIC-WITHOUT-BASIS"
+      ],
+      "operation_refs": [
+        "reconstruct_metric(claim: MetricClaim) -> MetricReconstruction",
+        "render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial"
+      ]
+    },
+    {
+      "id": "HELIXLABO-L8-055-F03",
+      "l5_ref": "HELIXLABO-L5-055-F03",
+      "l4_ref": "HELIXLABO-L4-055-F03",
+      "requirement_ref": "HELIXLABO-L3-055-F03",
+      "system_oracle_ref": "HELIXLABO-L10-055-F03",
+      "pure_operation": "定義済みの次の純粋関数を対応する明示入力で照合する：reconstruct_metric(claim: MetricClaim) -> MetricReconstruction、render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial、classify_unknown(snapshot: HistorySnapshot | MetricClaim) -> list<Unresolved>、render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial。各入力のsource/presenceを保持し、実資格・実作用・全unit出力合格を生成しない。",
+      "positive_source_case": "L9正例のraw packet identityを保持する。期待は本書の指定projectionに独立して記述する。",
+      "negative_source_cases": [
+        "F03-NEG-AVERAGE-OFFSETS-MAJOR-FAILURE",
+        "F03-NEG-ALL-PORTFOLIO-REQUIREMENT",
+        "F03-NEG-UNKNOWN-TO-SUCCESS"
+      ],
+      "operation_refs": [
+        "reconstruct_metric(claim: MetricClaim) -> MetricReconstruction",
+        "render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial",
+        "classify_unknown(snapshot: HistorySnapshot | MetricClaim) -> list<Unresolved>",
+        "render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "UNIT-LABO055-B01-LEVEL-IS-ADVISORY",
+      "basis": "LABO055-B01-LEVEL-IS-ADVISORY",
+      "contract_ref": "HELIXLABO-L4-055-B01",
+      "requirement_ref": "HELIXLABO-L3-055-B01",
+      "system_oracle_ref": "HELIXLABO-L10-055-B01",
+      "raw_input_packets": [
+        {
+          "identity": "SYNTHETIC-LABO055-B01-HISTORY",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"assignment_ref\":{\"id\":\"OS-ASSIGN-17\",\"owner\":\"OS\",\"revision\":\"assign-r4\"},\"evaluation_scope\":\"repo-docs\",\"evaluation_state\":\"unassessed\",\"experiment_selected\":false,\"fixture_only\":true,\"history_id\":\"HIST-055-17\",\"model_class\":\"model-class-b\",\"revision\":\"worker-history-r17\",\"task_class\":\"doc-change\"}",
+          "sha256": "55abe5a9ae893267a12fb8f1661dd56d18c9c0eb789ac90aea474c7260f06444"
+        }
+      ],
+      "expected_result": {
+        "result": "material_only",
+        "evaluation_state": "unassessed",
+        "existing_assignment": {
+          "id": "OS-ASSIGN-17",
+          "owner": "OS",
+          "revision": "assign-r4"
+        },
+        "experiment_selected": false,
+        "new_assignment": "absent",
+        "placement_proposal": "absent",
+        "authority_change": "none",
+        "unresolved_source_proof": "not_claimed"
+      },
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-B01-NEG-SELF-PLACEMENT",
+      "basis": "B01-NEG-SELF-PLACEMENT",
+      "contract_ref": "HELIXLABO-L4-055-B01",
+      "requirement_ref": "HELIXLABO-L3-055-B01",
+      "system_oracle_ref": "HELIXLABO-L10-055-B01",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-B01-NEG-SELF-PLACEMENT",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"assignment_ref\":{\"id\":\"BENCH-ASSIGN-NEW\",\"owner\":\"BENCH\"},\"evaluation_state\":\"evaluated_fixture_only\",\"fixture_only\":true,\"history_id\":\"HIST-055-17\",\"model_class\":\"model-class-b\",\"requested_action\":\"place_worker\",\"task_class\":\"doc-change\"}",
+          "sha256": "222d797039b9f75887f6c3c2f99d5f00c30321a6bff787fe36785efcae6b1e59"
+        }
+      ],
+      "expected_result": {
+        "new_assignment": "absent",
+        "requested_action": "place_worker",
+        "return_to": "INT/OS/SEC owner boundary; evaluation owner if material is insufficient"
+      },
+      "expected_observation": "Benchが新規assignmentを生成せず、入力評価材料のみを返す。",
+      "return_to": "INT/OS/SECの元owner境界を保持し、必要時は該当評価ownerへ返す",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-B01-NEG-SCORE-BRANCH-CHANGE",
+      "basis": "B01-NEG-SCORE-BRANCH-CHANGE",
+      "contract_ref": "HELIXLABO-L4-055-B01",
+      "requirement_ref": "HELIXLABO-L3-055-B01",
+      "system_oracle_ref": "HELIXLABO-L10-055-B01",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-B01-NEG-SCORE-BRANCH-CHANGE",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"fixture_only\":true,\"history_id\":\"HIST-055-17\",\"requested_action\":\"change_branch_from_score\",\"requested_branch_change\":\"main\",\"score\":\"0.99\"}",
+          "sha256": "47fed85111c5aac289b111f48a6f88565f2c3a1d2c6ec91e5f04f15ae58ea374"
+        }
+      ],
+      "expected_result": {
+        "branch_change": "rejected",
+        "authority_change": "none"
+      },
+      "expected_observation": "scoreをbranch変更理由として採択せず、branch/authorityを変更しない。",
+      "return_to": "INT/OS/SECの元owner境界を保持し、必要時は該当評価ownerへ返す",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-B01-NEG-ALL-L2-006-GATE",
+      "basis": "B01-NEG-ALL-L2-006-GATE",
+      "contract_ref": "HELIXLABO-L4-055-B01",
+      "requirement_ref": "HELIXLABO-L3-055-B01",
+      "system_oracle_ref": "HELIXLABO-L10-055-B01",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-B01-NEG-ALL-L2-006-GATE",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"experiment_selected\":false,\"fixture_only\":true,\"history_id\":\"HIST-055-17\",\"model_class\":\"model-class-b\",\"proposed_gate\":\"wait_for_all_L2-006\",\"task_class\":\"doc-change\"}",
+          "sha256": "7b37abbc20971bd837855a8ef35e1ff037fe47fdb3321c5604c1b84ebbc4a04d"
+        }
+      ],
+      "expected_result": {
+        "experiment_selected": false,
+        "global_006_gate": "absent"
+      },
+      "expected_observation": "この通常履歴を全L2-006完了待ちに変えず、実験未選択を理由に未成立化しない。",
+      "return_to": "INT/OS/SECの元owner境界を保持し、必要時は該当評価ownerへ返す",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-LABO055-F01-CLASS-AND-SCOPE-BOUND",
+      "basis": "LABO055-F01-CLASS-AND-SCOPE-BOUND",
+      "contract_ref": "HELIXLABO-L4-055-F01",
+      "requirement_ref": "HELIXLABO-L3-055-F01",
+      "system_oracle_ref": "HELIXLABO-L10-055-F01",
+      "raw_input_packets": [
+        {
+          "identity": "SYNTHETIC-LABO055-F01-KNOWN",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"fixture_only\":true,\"history_snapshot\":\"WH-R17\",\"task_class\":\"doc-change\",\"model_class\":\"model-class-b\",\"source_revision\":\"worker-run-r17\",\"evaluation_ref\":\"EVAL-R17\",\"evaluation_period\":\"2026-10-01/2026-10-07\",\"scope\":\"repo-docs\",\"state\":\"success\"}",
+          "sha256": "ed39f197d64028809fac6dfe3a8d749bb9deb04fb019dd2179346fd9390cd84a"
+        },
+        {
+          "identity": "SYNTHETIC-LABO055-F01-UNSEEN",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"fixture_only\":true,\"history_snapshot\":\"WH-R17\",\"task_class\":\"policy-review\",\"model_class\":\"model-class-b\",\"source_revision\":\"worker-run-r18\",\"evaluation_ref\":null,\"evaluation_period\":null,\"scope\":\"unknown\",\"state\":\"unknown\"}",
+          "sha256": "a42c927cb83617bb6c95482004bdf3a878530a0cfe42ce777d4f750d34fe9f40"
+        }
+      ],
+      "expected_result": {
+        "groups": [
+          {
+            "task_class": "doc-change",
+            "model_class": "model-class-b",
+            "source_revision": "worker-run-r17",
+            "evaluation_ref": "EVAL-R17",
+            "evaluation_period": "2026-10-01/2026-10-07",
+            "scope": "repo-docs",
+            "state": "evaluated"
+          },
+          {
+            "task_class": "policy-review",
+            "model_class": "model-class-b",
+            "source_revision": "worker-run-r18",
+            "evaluation_ref": null,
+            "evaluation_period": null,
+            "scope": "unknown",
+            "state": "unknown"
+          }
+        ],
+        "extrapolation": "none",
+        "unknown_range": "policy-review/model-class-b"
+      },
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-F01-NEG-UNEVALUATED-PROMOTION",
+      "basis": "F01-NEG-UNEVALUATED-PROMOTION",
+      "contract_ref": "HELIXLABO-L4-055-F01",
+      "requirement_ref": "HELIXLABO-L3-055-F01",
+      "system_oracle_ref": "HELIXLABO-L10-055-F01",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-F01-NEG-UNEVALUATED-PROMOTION",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"evaluation_ref\":null,\"fixture_only\":true,\"history_snapshot\":\"WH-R17\",\"model_class\":\"model-class-b\",\"proposed_state\":\"evaluated\",\"source_revision\":\"worker-run-r18\",\"state\":\"unknown\",\"task_class\":\"policy-review\"}",
+          "sha256": "29a30bf747ebcd8261b909fc67ff1c89c6dc8120de594e001ef5588bc7428f9c"
+        }
+      ],
+      "expected_result": {
+        "state": "unknown/unassessed",
+        "promotion": "rejected"
+      },
+      "expected_observation": "根拠のないstate昇格を拒否し、policy-reviewを未評価/unknownのまま保持する。",
+      "return_to": "history/評価owner",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-F01-NEG-UNKNOWN-JOB-GUARANTEE",
+      "basis": "F01-NEG-UNKNOWN-JOB-GUARANTEE",
+      "contract_ref": "HELIXLABO-L4-055-F01",
+      "requirement_ref": "HELIXLABO-L3-055-F01",
+      "system_oracle_ref": "HELIXLABO-L10-055-F01",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-F01-NEG-UNKNOWN-JOB-GUARANTEE",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"evaluation_ref\":null,\"fixture_only\":true,\"history_snapshot\":\"WH-R18\",\"model_class\":\"model-class-b\",\"proposed_guarantee\":\"success\",\"source_revision\":\"worker-run-r18\",\"state\":\"unknown\",\"task_class\":\"unknown-job\"}",
+          "sha256": "70c74ba5f082aa308ce52cb5aede1c483126fefb8612ab9dcec28b7cfa98d179"
+        }
+      ],
+      "expected_result": {
+        "task_class": "unknown-job",
+        "guarantee": "absent",
+        "state": "unknown/unassessed"
+      },
+      "expected_observation": "unknown-jobへの成功保証を出さず、当該classを未評価/unknownで残す。",
+      "return_to": "history/評価owner",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-F01-NEG-SCOPE-INFERENCE",
+      "basis": "F01-NEG-SCOPE-INFERENCE",
+      "contract_ref": "HELIXLABO-L4-055-F01",
+      "requirement_ref": "HELIXLABO-L3-055-F01",
+      "system_oracle_ref": "HELIXLABO-L10-055-F01",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-F01-NEG-SCOPE-INFERENCE",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"evaluation_ref\":null,\"fixture_only\":true,\"history_snapshot\":\"WH-R17\",\"model_class\":\"model-class-b\",\"proposed_scope\":\"all-repositories\",\"scope\":\"unknown\",\"source_revision\":\"worker-run-r18\",\"task_class\":\"policy-review\"}",
+          "sha256": "59914e239523b6ce342311d4a3c42974580efd04dfbe62fcbd65157a9b4b7b1c"
+        }
+      ],
+      "expected_result": {
+        "scope": "unknown",
+        "proposed_scope": "all-repositories",
+        "applicability": "unresolved"
+      },
+      "expected_observation": "scopeを全repositoryへ外挿せず、根拠不足として確定を保留する。",
+      "return_to": "history/評価owner",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-LABO055-F02-DENOMINATOR-AND-REASONS",
+      "basis": "LABO055-F02-DENOMINATOR-AND-REASONS",
+      "contract_ref": "HELIXLABO-L4-055-F02",
+      "requirement_ref": "HELIXLABO-L3-055-F02",
+      "system_oracle_ref": "HELIXLABO-L10-055-F02",
+      "raw_input_packets": [
+        {
+          "identity": "SYNTHETIC-LABO055-F02-SNAPSHOT",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"eligible_denominator\":6,\"eligible_source_positions\":[\"RUN-01\",\"RUN-02\",\"RUN-03\",\"RUN-04\",\"RUN-05\",\"RUN-06\"],\"fixture_expected_metric\":{\"confirmed_success_count\":1,\"display\":\"1/6\",\"eligible_denominator\":6},\"fixture_metric_rule\":\"confirmed_success_count / all six eligible source positions in the fixed scope; failure, missing, refused, stopped, and unknown outcomes remain in the denominator and are not counted as confirmed successes; unknown remains unknown, not numeric zero\",\"fixture_only\":true,\"metric_rule_revision\":\"METRIC-R2\",\"model_class\":\"model-class-b\",\"qualitative_assessment\":{\"applicability_condition\":\"task_class=doc-change and model_class=model-class-b within repo-docs\",\"basis\":\"QUAL-23: fixture review notes identify two observed examples and no evidence outside repo-docs\",\"level\":\"限定的\",\"unassessed_portion\":\"other task classes and scopes\"},\"results\":[{\"disposition\":\"count_as_confirmed_success\",\"eligible\":true,\"id\":\"RUN-01\",\"included_in_success_count\":true,\"inclusion_reason\":\"eligible position with confirmed success\",\"state\":\"success\"},{\"disposition\":\"retain_failure_in_denominator\",\"eligible\":true,\"exclusion_reason\":\"eligible position failed; not a success\",\"id\":\"RUN-02\",\"included_in_success_count\":false,\"state\":\"failure\"},{\"disposition\":\"retain_missing_in_denominator_no_numeric_result\",\"eligible\":true,\"exclusion_reason\":\"eligible source receipt has no result; do not substitute zero\",\"id\":\"RUN-03\",\"included_in_success_count\":false,\"state\":\"missing\"},{\"disposition\":\"retain_refusal_in_denominator_no_success\",\"eligible\":true,\"exclusion_reason\":\"eligible position has a refusal record; not a confirmed success\",\"id\":\"RUN-04\",\"included_in_success_count\":false,\"state\":\"refused\"},{\"disposition\":\"retain_stop_in_denominator_no_success\",\"eligible\":true,\"exclusion_reason\":\"eligible position has a stop record; not a confirmed success\",\"id\":\"RUN-05\",\"included_in_success_count\":false,\"state\":\"stopped\"},{\"disposition\":\"retain_unknown_in_denominator_unresolved\",\"eligible\":true,\"exclusion_reason\":\"eligible position outcome is unknown; do not infer success or zero\",\"id\":\"RUN-06\",\"included_in_success_count\":false,\"state\":\"unknown\"}],\"scope\":\"repo-docs\",\"scorer_oracle_revision\":\"SCORER-R3\",\"snapshot_id\":\"WH-R23\",\"source_revision\":\"history-r23\",\"task_class\":\"doc-change\"}",
+          "sha256": "54a1925d61411901b9b9e1f7d619b0ef3dbd3c3fb7ab6a9f61e9b73e90832a14"
+        }
+      ],
+      "expected_result": {
+        "snapshot_id": "WH-R23",
+        "metric_rule_revision": "METRIC-R2",
+        "scorer_oracle_revision": "SCORER-R3",
+        "eligible_denominator": 6,
+        "confirmed_success_ids": [
+          "RUN-01"
+        ],
+        "display": "1/6",
+        "retained_dispositions": {
+          "RUN-02": "failure",
+          "RUN-03": "missing",
+          "RUN-04": "refused",
+          "RUN-05": "stopped",
+          "RUN-06": "unknown"
+        },
+        "unknown_as_zero": false,
+        "qualitative": {
+          "level": "限定的",
+          "scope": "repo-docs",
+          "task_class": "doc-change",
+          "model_class": "model-class-b",
+          "basis": "QUAL-23",
+          "unassessed_portion": "other task classes and scopes"
+        }
+      },
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-F02-NEG-MISSING-AS-ZERO",
+      "basis": "F02-NEG-MISSING-AS-ZERO",
+      "contract_ref": "HELIXLABO-L4-055-F02",
+      "requirement_ref": "HELIXLABO-L3-055-F02",
+      "system_oracle_ref": "HELIXLABO-L10-055-F02",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-F02-NEG-MISSING-AS-ZERO",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"eligible_source_positions\":[\"RUN-01\",\"RUN-02\",\"RUN-03\"],\"fixture_only\":true,\"proposed_missing_disposition\":\"zero\",\"results\":[{\"id\":\"RUN-01\",\"state\":\"success\"},{\"id\":\"RUN-02\",\"state\":\"failure\"},{\"id\":\"RUN-03\",\"reason\":\"source receipt has no result\",\"state\":\"missing\"}],\"snapshot_id\":\"WH-R23-NEG-3\"}",
+          "sha256": "651f02c937174df8c52109a72c80fae79304141459f7bbe7bf81d7588cff6c44"
+        }
+      ],
+      "expected_result": {
+        "RUN-03": "missing",
+        "numeric_zero_substitution": false
+      },
+      "expected_observation": "RUN-03はmissingと理由を保持し、0へ置換しない。数値/水準は根拠に沿って扱う。",
+      "return_to": "評価/metric/history owner",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-F02-NEG-EXCLUDE-FAILURE",
+      "basis": "F02-NEG-EXCLUDE-FAILURE",
+      "contract_ref": "HELIXLABO-L4-055-F02",
+      "requirement_ref": "HELIXLABO-L3-055-F02",
+      "system_oracle_ref": "HELIXLABO-L10-055-F02",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-F02-NEG-EXCLUDE-FAILURE",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"eligible_source_positions\":[\"RUN-01\",\"RUN-02\",\"RUN-03\"],\"exclusion_reason\":null,\"fixture_only\":true,\"proposed_exclusion\":[\"RUN-02\"],\"results\":[{\"id\":\"RUN-01\",\"state\":\"success\"},{\"id\":\"RUN-02\",\"state\":\"failure\"},{\"id\":\"RUN-03\",\"state\":\"missing\"}],\"snapshot_id\":\"WH-R23-NEG-3\"}",
+          "sha256": "3a79d7051c467f4c1519aee6b4e47ee8b6c0e5c93e86ea557a42fe61eddbb7dd"
+        }
+      ],
+      "expected_result": {
+        "RUN-02": "failure",
+        "reasonless_exclusion": "rejected"
+      },
+      "expected_observation": "RUN-02 failureを分母・結果記録から理由なく除外しない。",
+      "return_to": "評価/metric/history owner",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-F02-NEG-POST-RESULT-DENOMINATOR-EDIT",
+      "basis": "F02-NEG-POST-RESULT-DENOMINATOR-EDIT",
+      "contract_ref": "HELIXLABO-L4-055-F02",
+      "requirement_ref": "HELIXLABO-L3-055-F02",
+      "system_oracle_ref": "HELIXLABO-L10-055-F02",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-F02-NEG-POST-RESULT-DENOMINATOR-EDIT",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"eligible_source_positions_before\":[\"RUN-01\",\"RUN-02\",\"RUN-03\"],\"fixture_only\":true,\"proposed_eligible_source_positions_after\":[\"RUN-01\",\"RUN-03\"],\"results_reviewed\":true,\"snapshot_id\":\"WH-R23-NEG-3\"}",
+          "sha256": "40875bfcfe471ae8006f70c37acaedf46959fa52546803e80317738385d510b5"
+        }
+      ],
+      "expected_result": {
+        "post_result_denominator_change": "rejected",
+        "metric": "unresolved"
+      },
+      "expected_observation": "結果確認後の対象集合/分母差替えを拒否し、変更根拠なしでは数値を確定しない。",
+      "return_to": "評価/metric/history owner",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-F02-NEG-NUMERIC-WITHOUT-BASIS",
+      "basis": "F02-NEG-NUMERIC-WITHOUT-BASIS",
+      "contract_ref": "HELIXLABO-L4-055-F02",
+      "requirement_ref": "HELIXLABO-L3-055-F02",
+      "system_oracle_ref": "HELIXLABO-L10-055-F02",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-F02-NEG-NUMERIC-WITHOUT-BASIS",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"eligible_denominator\":null,\"fixture_only\":true,\"metric_rule_revision\":null,\"reported_metric\":\"0.8\",\"scope\":\"repo-docs\",\"scorer_oracle_revision\":null,\"snapshot_id\":\"WH-R23-NEG-3\"}",
+          "sha256": "c3b917ef78eb5b379bb2610f5452c3add214cf6d1b228d456c7d9a39af9ffeef"
+        }
+      ],
+      "expected_result": {
+        "reported_metric": "0.8",
+        "basis": "missing",
+        "metric": "unresolved"
+      },
+      "expected_observation": "根拠欠落の数値を採択せず、対象scopeを未確定として戻す。",
+      "return_to": "評価/metric/history owner",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-LABO055-F03-FAILURE-UNKNOWN-NO-AVERAGE-OR-EXTRAPOLATION",
+      "basis": "LABO055-F03-FAILURE-UNKNOWN-NO-AVERAGE-OR-EXTRAPOLATION",
+      "contract_ref": "HELIXLABO-L4-055-F03",
+      "requirement_ref": "HELIXLABO-L3-055-F03",
+      "system_oracle_ref": "HELIXLABO-L10-055-F03",
+      "raw_input_packets": [
+        {
+          "identity": "SYNTHETIC-LABO055-F03-MIXED",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"calculation\":{\"count\":2,\"label\":\"high_mean_fixture_only\",\"mean\":0.98,\"sum\":1.96},\"eligible_denominator\":2,\"failure_disposition\":\"RUN-32 remains a known major scope failure; mean does not convert it to success\",\"fixture_only\":true,\"metric_rule\":\"arithmetic_mean(score for eligible records RUN-31 and RUN-32); fixture-only display label high_mean=0.98\",\"metric_rule_revision\":\"METRIC-R5\",\"model_class\":\"model-class-b\",\"records\":[{\"id\":\"RUN-31\",\"included\":true,\"inclusion_reason\":\"eligible scored record\",\"score\":0.99,\"state\":\"success\"},{\"failure_class\":\"major-scope-failure\",\"id\":\"RUN-32\",\"included\":true,\"inclusion_reason\":\"eligible scored record; known major failure remains separately reported\",\"score\":0.97,\"state\":\"failure\"}],\"scope\":\"repo-docs\",\"scorer_oracle_revision\":\"SCORER-R6\",\"snapshot_id\":\"WH-R31\",\"task_class\":\"repo-change\"}",
+          "sha256": "d96e148abd5497b1f5af934cdb2ef8ae3b5d85099be97d0234c2483da83d36c7"
+        },
+        {
+          "identity": "SYNTHETIC-LABO055-F03-UNKNOWN",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"fixture_only\":true,\"snapshot_id\":\"WH-R32\",\"task_class\":\"new-policy-class\",\"model_class\":\"model-class-c\",\"source_revision\":\"run-r32\",\"scorer_revision\":\"unknown\",\"result_state\":\"unknown\",\"scope\":\"unknown\"}",
+          "sha256": "a9b6c9e9a8b88d3e384cbec888addd3da45af7451c55d0c8085ee0291ea0e8d0"
+        },
+        {
+          "identity": "SYNTHETIC-LABO055-F03-QUAL",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"applicability_condition\":\"repo-change / model-class-b / repo-docs\",\"basis\":\"QUAL-33: fixture review records evidence only for repo-docs; no evidence for other scopes\",\"evaluation_state\":\"qualitative\",\"fixture_only\":true,\"model_class\":\"model-class-b\",\"qualitative_level\":\"限定的\",\"scope\":\"repo-docs\",\"snapshot_id\":\"WH-R33\",\"task_class\":\"repo-change\",\"unassessed_portion\":\"other task classes and scopes\"}",
+          "sha256": "cc890881f864be78b26447d01fedeb4a30b1143ffe160b92b6ff48b96dd7c9e6"
+        }
+      ],
+      "expected_result": {
+        "WH-R31": {
+          "metric_rule_revision": "METRIC-R5",
+          "scorer_oracle_revision": "SCORER-R6",
+          "denominator": 2,
+          "scores": {
+            "RUN-31": 0.99,
+            "RUN-32": 0.97
+          },
+          "sum": 1.96,
+          "mean": 0.98,
+          "label": "high_mean_fixture_only",
+          "failure_state": {
+            "RUN-32": "major-scope-failure"
+          },
+          "mean_means_success": false
+        },
+        "WH-R32": {
+          "task_class": "new-policy-class",
+          "model_class": "model-class-c",
+          "scorer": "unknown",
+          "scope": "unknown",
+          "result": "unknown",
+          "classification": "unknown/unassessed"
+        },
+        "WH-R33": {
+          "level": "限定的",
+          "scope": "repo-docs",
+          "basis": "QUAL-33",
+          "unassessed_portion": "other task classes and scopes",
+          "portfolio_gate": "none"
+        }
+      },
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-F03-NEG-AVERAGE-OFFSETS-MAJOR-FAILURE",
+      "basis": "F03-NEG-AVERAGE-OFFSETS-MAJOR-FAILURE",
+      "contract_ref": "HELIXLABO-L4-055-F03",
+      "requirement_ref": "HELIXLABO-L3-055-F03",
+      "system_oracle_ref": "HELIXLABO-L10-055-F03",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-F03-NEG-AVERAGE-OFFSETS-MAJOR-FAILURE",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"aggregate_metric\":\"0.98 fixture-only\",\"calculation\":{\"RUN-31\":0.99,\"RUN-32\":0.97,\"count\":2,\"label\":\"high_mean_fixture_only\",\"mean\":0.98,\"sum\":1.96},\"eligible_denominator\":2,\"fixture_only\":true,\"metric_rule\":\"arithmetic_mean(score for RUN-31 and RUN-32)\",\"metric_rule_revision\":\"METRIC-R5\",\"proposed_evaluation\":\"pass\",\"proposed_failure_disposition\":\"included-in-average-only\",\"records\":[{\"id\":\"RUN-31\",\"included\":true,\"score\":0.99,\"state\":\"success\"},{\"failure_class\":\"major-scope-failure\",\"id\":\"RUN-32\",\"included\":true,\"score\":0.97,\"state\":\"failure\"}],\"scorer_oracle_revision\":\"SCORER-R6\",\"snapshot_id\":\"WH-R31\"}",
+          "sha256": "b8a2c54baf6cf1b2b142cbf0ce29ad41b3af4819b33e716b9998b61d11f8e162"
+        }
+      ],
+      "expected_result": {
+        "RUN-32": "major-scope-failure",
+        "proposed_evaluation": "pass",
+        "pass_from_mean": "rejected"
+      },
+      "expected_observation": "RUN-32の重大failureを既知のfailureとして保持し、平均値だけでpassにしない。",
+      "return_to": "該当評価owner",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-F03-NEG-ALL-PORTFOLIO-REQUIREMENT",
+      "basis": "F03-NEG-ALL-PORTFOLIO-REQUIREMENT",
+      "contract_ref": "HELIXLABO-L4-055-F03",
+      "requirement_ref": "HELIXLABO-L3-055-F03",
+      "system_oracle_ref": "HELIXLABO-L10-055-F03",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-F03-NEG-ALL-PORTFOLIO-REQUIREMENT",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"fixture_only\":true,\"metric_claim\":\"fixture-only\",\"model_class\":\"model-class-b\",\"proposed_required_portfolio\":[\"system\",\"team\",\"every-task-class\"],\"scope\":\"repo-docs\",\"snapshot_id\":\"WH-R31\",\"task_class\":\"repo-change\"}",
+          "sha256": "5b06c6a79aead75f36b32949cd24431815ad322dcda8723dd02652f294cac9b5"
+        }
+      ],
+      "expected_result": {
+        "proposed_required_portfolio": "not adopted",
+        "global_gate": "absent"
+      },
+      "expected_observation": "metricが根拠として使う範囲を超えた一律portfolio要件を採択しない。",
+      "return_to": "該当評価owner",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "UNIT-F03-NEG-UNKNOWN-TO-SUCCESS",
+      "basis": "F03-NEG-UNKNOWN-TO-SUCCESS",
+      "contract_ref": "HELIXLABO-L4-055-F03",
+      "requirement_ref": "HELIXLABO-L3-055-F03",
+      "system_oracle_ref": "HELIXLABO-L10-055-F03",
+      "raw_input_packets": [
+        {
+          "identity": "NEG-F03-NEG-UNKNOWN-TO-SUCCESS",
+          "revision": "fixture-v1",
+          "owner": "synthetic-fixture-owner",
+          "raw_utf8": "{\"fixture_only\":true,\"model_class\":\"model-class-c\",\"proposed_result_state\":\"success\",\"result_state\":\"unknown\",\"scope\":\"unknown\",\"scorer_revision\":\"unknown\",\"snapshot_id\":\"WH-R32\",\"source_basis\":null,\"source_revision\":\"run-r32\",\"task_class\":\"new-policy-class\"}",
+          "sha256": "2fcd7a22608902a514ce96fde0c36765b2c906f8e7b323e1bbad85ca5f2b6158"
+        }
+      ],
+      "expected_result": {
+        "result_state": "unknown",
+        "proposed_result_state": "success",
+        "output_state": "unknown/unassessed"
+      },
+      "expected_observation": "unknown result/scorer/scopeをsuccessへ変換せず、当該範囲をunknown/未評価で残す。",
+      "return_to": "該当failure/scorer owner",
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    }
+  ],
+  "unclosed": [
+    "全case execution_state=not_executed",
+    "実source資格・型/codec・実評価・実TDD/CI/L11受入は未成立",
+    "L5/L8 is not implementation readiness"
+  ],
+  "local_function_cases": [
+    {
+      "id": "LOCAL-PARTITION-PRESENCE-01",
+      "basis": "LOCAL-PURE-FUNCTION-BRANCH:partition_by_class",
+      "contract_ref": "HELIXLABO-L4-055-F01",
+      "requirement_ref": "HELIXLABO-L3-055-F01",
+      "system_oracle_ref": "HELIXLABO-L10-055-F01",
+      "function_ref": "partition_by_class",
+      "raw_input_packets": [
+        {
+          "identity": "LOCAL-LABO055-LOCAL-PARTITION-PRESENCE-01",
+          "revision": "fixture-local-v1",
+          "owner": "fixture-only; no supplier qualification",
+          "raw_utf8": "{\"entries\":[{\"entry_id\":\"E1\",\"evaluation_period\":\"2026-W40\",\"evaluation_ref\":\"E1-R\",\"model_class\":\"model-class-b\",\"scope\":\"repo-docs\",\"source_revision\":\"worker-r17\",\"state\":\"success\",\"task_class\":\"doc-change\"},{\"entry_id\":\"E2\",\"evaluation_period\":null,\"evaluation_ref\":null,\"model_class\":\"model-class-b\",\"scope\":\"unknown\",\"source_revision\":\"worker-r18\",\"state\":\"unknown\",\"task_class\":\"policy-review\"},{\"entry_id\":\"E3\",\"evaluation_period\":\"\",\"evaluation_ref\":\"\",\"model_class\":\"model-class-b\",\"scope\":\"\",\"source_revision\":\"worker-r19\",\"state\":\"unknown\",\"task_class\":\"\"}],\"fixture_only\":true,\"snapshot_id\":\"WH-LOCAL-1\",\"source_revision\":\"fixture-r1\"}",
+          "sha256": "e04fbf66e042e5f39f8c2e33658795ca9de37a7e6b297fc51200c4dec836a853"
+        }
+      ],
+      "branch_input": "provided classはgroupへ入れる。class不足のE3はgroup化せず元entryとしてunpartitioned_entriesへ残す。",
+      "expected_projection": [
+        "partitions[].key.task_class",
+        "partitions[].key.model_class",
+        "unpartitioned_entries[].entry_id",
+        "unresolved[].reason",
+        "entry_input_state.presence"
+      ],
+      "expected_result": {
+        "group_count": 2,
+        "E2_source_revision": "worker-r18",
+        "E3_unpartitioned_entry_id": "E3",
+        "every_entry_retained_once": true
+      },
+      "assertion_scope": "指定された関数出力のprojectionだけを照合する。部分期待であり、関数の全出力・全branch・全契約合格を主張しない。",
+      "not_claimed": [
+        "実source資格",
+        "正式codec/schema",
+        "runtime実行",
+        "全出力一致",
+        "実TDD/CI/L11 acceptance"
+      ],
+      "fixture_only": true,
+      "execution_state": "not_executed",
+      "expected_projection_scope": "group化できない元entryも出力から失われないことのprojection"
+    },
+    {
+      "id": "LOCAL-BIND-SOURCE-REF-02",
+      "basis": "LOCAL-PURE-FUNCTION-BRANCH:bind_evidence",
+      "contract_ref": "HELIXLABO-L4-055-F01",
+      "requirement_ref": "HELIXLABO-L3-055-F01",
+      "system_oracle_ref": "HELIXLABO-L10-055-F01",
+      "function_ref": "bind_evidence",
+      "raw_input_packets": [
+        {
+          "identity": "LOCAL-LABO055-LOCAL-BIND-SOURCE-REF-02",
+          "revision": "fixture-local-v1",
+          "owner": "fixture-only; no supplier qualification",
+          "raw_utf8": "{\"fixture_only\":true,\"node\":{\"entry_id\":\"E1\",\"evaluation_ref\":null,\"scope\":\"repo-docs\",\"state\":\"success\"},\"requested_source_ref_id\":{\"value\":\"HELIXLABO-L2-028\"},\"source_map\":{\"records\":[{\"owner_ref\":\"Worker via OS assignment/result\",\"qualification_state\":\"unknown\",\"receipt_ref\":null,\"revision\":\"worker-r17\",\"source_id\":\"HELIXLABO-L2-028\"}]},\"source_ref\":{\"owner_ref\":\"Worker via OS assignment/result\",\"qualification_state\":\"unknown\",\"receipt_ref\":null,\"revision\":\"worker-r17\",\"source_id\":\"HELIXLABO-L2-028\"}}",
+          "sha256": "76f97121201a7a28bb711df4325d310cb9cf8f3fed605e8b5f0e1c1e347c2991"
+        }
+      ],
+      "branch_input": "入力source_ref_idが第二引数のsource_mapに一意に存在し、explicit-null evaluation refを保持する。資格は合成しない。",
+      "expected_projection": [
+        "bound_entry.source_ref.source_id",
+        "bound_entry.source_ref.qualification_state",
+        "bound_entry.evaluation_ref.presence"
+      ],
+      "expected_result": {
+        "source_id": "HELIXLABO-L2-028",
+        "qualification_state": "unknown",
+        "evaluation_ref": "explicit_null"
+      },
+      "assertion_scope": "指定された関数出力のprojectionだけを照合する。部分期待であり、関数の全出力・全branch・全契約合格を主張しない。",
+      "not_claimed": [
+        "実source資格",
+        "正式codec/schema",
+        "runtime実行",
+        "全出力一致",
+        "実TDD/CI/L11 acceptance"
+      ],
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "LOCAL-APPLICABILITY-UNKNOWN-03",
+      "basis": "LOCAL-PURE-FUNCTION-BRANCH:resolve_applicability",
+      "contract_ref": "HELIXLABO-L4-055-F01",
+      "requirement_ref": "HELIXLABO-L3-055-F01",
+      "system_oracle_ref": "HELIXLABO-L10-055-F01",
+      "function_ref": "resolve_applicability",
+      "raw_input_packets": [
+        {
+          "identity": "LOCAL-LABO055-LOCAL-APPLICABILITY-UNKNOWN-03",
+          "revision": "fixture-local-v1",
+          "owner": "fixture-only; no supplier qualification",
+          "raw_utf8": "{\"claims\":[{\"basis_ref\":\"QUAL-UNKNOWN-R18\",\"evaluation_period\":null,\"evaluation_state\":\"unknown\",\"level\":null,\"model_class\":\"model-class-b\",\"scope\":\"unknown\",\"source_revision\":\"worker-r18\",\"task_class\":\"policy-review\"}],\"entries\":[{\"entry_id\":\"E2\",\"evaluation_ref\":null,\"state\":\"unknown\"}],\"fixture_only\":true,\"partition_key\":{\"evaluation_period\":null,\"model_class\":\"model-class-b\",\"scope\":\"unknown\",\"source_revision\":\"worker-r18\",\"task_class\":\"policy-review\"}}",
+          "sha256": "1cad2b57107a48e783207b0628c33beb677132460220d7d689e5ec525f34e2a1"
+        }
+      ],
+      "branch_input": "group keyに完全一致するclaimがあるがevaluation_stateはunknown、levelは明示null。unknownをevaluated/levelへ推定しない。",
+      "expected_projection": [
+        "assessment.evaluation_state",
+        "assessment.scope",
+        "unresolved.source_node_refs"
+      ],
+      "expected_result": {
+        "evaluation_state": "unknown",
+        "scope": "unknown",
+        "no_level": true
+      },
+      "assertion_scope": "指定された関数出力のprojectionだけを照合する。部分期待であり、関数の全出力・全branch・全契約合格を主張しない。",
+      "not_claimed": [
+        "実source資格",
+        "正式codec/schema",
+        "runtime実行",
+        "全出力一致",
+        "実TDD/CI/L11 acceptance"
+      ],
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "LOCAL-METRIC-ELIGIBLE-SET-04",
+      "basis": "LOCAL-PURE-FUNCTION-BRANCH:reconstruct_metric",
+      "contract_ref": "HELIXLABO-L4-055-F02",
+      "requirement_ref": "HELIXLABO-L3-055-F02",
+      "system_oracle_ref": "HELIXLABO-L10-055-F02",
+      "function_ref": "reconstruct_metric",
+      "raw_input_packets": [
+        {
+          "identity": "LOCAL-LABO055-LOCAL-METRIC-ELIGIBLE-SET-04",
+          "revision": "fixture-local-v1",
+          "owner": "fixture-only; no supplier qualification",
+          "raw_utf8": "{\"calculation_definition\":\"confirmed successes / the supplied eligible positions\",\"eligible_position_ids\":[\"R1\",\"R2\"],\"fixture_only\":true,\"positions\":[{\"disposition\":\"count_as_confirmed_success\",\"eligible\":true,\"inclusion_reason\":\"eligible success\",\"outcome_state\":\"success\",\"position_id\":\"R1\"},{\"disposition\":\"retain_unknown_in_denominator_unresolved\",\"eligible\":true,\"exclusion_reason\":\"outcome unknown; not success\",\"outcome_state\":\"unknown\",\"position_id\":\"R2\"}],\"rule_revision\":\"fixture-rule-r1\",\"scope\":\"repo-docs\",\"scorer_oracle_revision\":\"fixture-scorer-r1\",\"snapshot_id\":\"WH-LOCAL-METRIC\"}",
+          "sha256": "e24e0e2dba2b7668890c04a21a272cfb529c97a5c81f1cf694c9ec47e36ac42c"
+        }
+      ],
+      "branch_input": "eligible IDs exactly match positions; unknown branch remains non-success and uncoerced",
+      "expected_projection": [
+        "eligible_denominator",
+        "position_dispositions[R2]",
+        "calculated_value"
+      ],
+      "expected_result": {
+        "eligible_denominator": 2,
+        "R2": "unknown retained; no numeric zero",
+        "calculated_value": "not asserted by this projection"
+      },
+      "assertion_scope": "指定された関数出力のprojectionだけを照合する。部分期待であり、関数の全出力・全branch・全契約合格を主張しない。",
+      "not_claimed": [
+        "実source資格",
+        "正式codec/schema",
+        "runtime実行",
+        "全出力一致",
+        "実TDD/CI/L11 acceptance"
+      ],
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "LOCAL-RENDER-MEAN-FAILURE-05",
+      "basis": "LOCAL-PURE-FUNCTION-BRANCH:render_metric_and_failures",
+      "contract_ref": "HELIXLABO-L4-055-F03",
+      "requirement_ref": "HELIXLABO-L3-055-F03",
+      "system_oracle_ref": "HELIXLABO-L10-055-F03",
+      "function_ref": "render_metric_and_failures",
+      "raw_input_packets": [
+        {
+          "identity": "LOCAL-LABO055-LOCAL-RENDER-MEAN-FAILURE-05",
+          "revision": "fixture-local-v1",
+          "owner": "fixture-only; no supplier qualification",
+          "raw_utf8": "{\"claim\":{\"display_label\":\"high_mean_fixture_only\",\"existing_assignment_refs\":[\"ASSIGN-R31\"],\"positions\":[{\"id\":\"RUN-31\",\"score\":0.99,\"state\":\"success\"},{\"failure_class\":\"major-scope-failure\",\"id\":\"RUN-32\",\"score\":0.97,\"state\":\"failure\"}],\"scope\":\"repo-docs\",\"snapshot_ref\":\"WH-R31\"},\"fixture_only\":true,\"reconstruction\":{\"calculated_value\":0.98,\"calculation\":{\"count\":2,\"mean\":0.98,\"rule_revision\":\"fixture-mean-r1\",\"scorer_oracle_revision\":\"fixture-score-r1\",\"sum\":1.96},\"eligible_denominator\":2}}",
+          "sha256": "c62deff8b832ea5643552ee6da4e20e767f9ded4c00201001435c4158f37fe4c"
+        }
+      ],
+      "branch_input": "claim.display_labelとassignment refsが明示され、reconstructionに算術値とknown failureがある。label/値/failureを分離して返す。",
+      "expected_projection": [
+        "metric_summaries[].calculated_value",
+        "metric_summaries[].display_label",
+        "metric_summaries[].failure_dispositions",
+        "existing_assignment_refs"
+      ],
+      "expected_result": {
+        "mean": 0.98,
+        "label": "high_mean_fixture_only",
+        "RUN-32": "major-scope-failure remains separately visible",
+        "pass": "not inferred",
+        "existing_assignment_refs": [
+          "ASSIGN-R31"
+        ],
+        "display_label": "high_mean_fixture_only",
+        "failure_ids": [
+          "RUN-32"
+        ]
+      },
+      "assertion_scope": "指定された関数出力のprojectionだけを照合する。部分期待であり、関数の全出力・全branch・全契約合格を主張しない。",
+      "not_claimed": [
+        "実source資格",
+        "正式codec/schema",
+        "runtime実行",
+        "全出力一致",
+        "実TDD/CI/L11 acceptance"
+      ],
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "LOCAL-QUALITATIVE-SCOPE-06",
+      "basis": "LOCAL-PURE-FUNCTION-BRANCH:render_qualitative",
+      "contract_ref": "HELIXLABO-L4-055-F03",
+      "requirement_ref": "HELIXLABO-L3-055-F03",
+      "system_oracle_ref": "HELIXLABO-L10-055-F03",
+      "function_ref": "render_qualitative",
+      "raw_input_packets": [
+        {
+          "identity": "LOCAL-LABO055-LOCAL-QUALITATIVE-SCOPE-06",
+          "revision": "fixture-local-v1",
+          "owner": "fixture-only; no supplier qualification",
+          "raw_utf8": "{\"applicability_condition\":\"task_class=doc-change and model_class=model-class-b within repo-docs\",\"basis_ref\":\"QUAL-23\",\"fixture_only\":true,\"level\":\"限定的\",\"model_class\":\"model-class-b\",\"scope\":\"repo-docs\",\"snapshot_id\":\"WH-LOCAL-QUAL\",\"task_class\":\"doc-change\",\"unassessed_portion\":\"other task classes and scopes\"}",
+          "sha256": "7a44a5ed1f324ee40ae9856f82d67435f3e1cf72d772819acc8916a032cece0e"
+        }
+      ],
+      "branch_input": "supplied qualitative applicability matches; preserve level and bounded scope only",
+      "expected_projection": [
+        "assessment.level",
+        "assessment.scope",
+        "assessment.basis_refs",
+        "assessment.unassessed_portion"
+      ],
+      "expected_result": {
+        "level": "限定的",
+        "scope": "repo-docs",
+        "basis": "QUAL-23",
+        "other scopes": "unassessed"
+      },
+      "assertion_scope": "指定された関数出力のprojectionだけを照合する。部分期待であり、関数の全出力・全branch・全契約合格を主張しない。",
+      "not_claimed": [
+        "実source資格",
+        "正式codec/schema",
+        "runtime実行",
+        "全出力一致",
+        "実TDD/CI/L11 acceptance"
+      ],
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "LOCAL-SOURCE-MAP-UNBOUND-07",
+      "basis": "LOCAL-PURE-FUNCTION-BRANCH:resolve_source_map",
+      "contract_ref": "HELIXLABO-L4-055-F01",
+      "requirement_ref": "HELIXLABO-L3-055-F01",
+      "system_oracle_ref": "HELIXLABO-L10-055-F01",
+      "function_ref": "resolve_source_map",
+      "raw_input_packets": [
+        {
+          "identity": "LOCAL-LABO055-SOURCE-MAP-UNBOUND-07",
+          "revision": "fixture-local-v1",
+          "owner": "fixture-only; no supplier qualification",
+          "raw_utf8": "{\"fixture_only\":true,\"requested_source_ref_id\":{\"value\":\"SRC-MISSING\"},\"source_map\":{\"records\":[{\"source_id\":\"SRC-AVAILABLE\",\"qualification_state\":\"unknown\",\"revision\":\"worker-r17\"}]}}",
+          "sha256": "a38d54e7c78f401fa5137627719ae3c4775f663633d523755b1e9f6866a7aca0"
+        }
+      ],
+      "branch_input": "要求ID SRC-MISSING は明示source mapのSRC-AVAILABLEに存在しない。bodyやqualificationを補わず、参照未解決を返す。",
+      "expected_projection": [
+        "state",
+        "unresolved.reason",
+        "source.qualification_state"
+      ],
+      "expected_result": {
+        "state": "source_reference_unbound",
+        "unresolved_reason": "source_reference_unbound",
+        "source_body_synthesized": false,
+        "qualification_promoted": false
+      },
+      "assertion_scope": "指定された関数出力のprojectionだけを照合する。部分期待であり、関数の全出力・全branch・全契約合格を主張しない。",
+      "not_claimed": [
+        "実source資格",
+        "正式codec/schema",
+        "runtime実行",
+        "全出力一致",
+        "実TDD/CI/L11 acceptance"
+      ],
+      "fixture_only": true,
+      "execution_state": "not_executed"
+    }
+  ]
+}
