@@ -3731,7 +3731,7 @@
           },
           {
             "pointer": "/worker_self_expansion",
-            "presence": "supplied",
+            "presence": "supplied(T)",
             "projection_state": "known"
           }
         ],
@@ -3788,7 +3788,7 @@
         "required_presence_rows": [
           {
             "pointer": "/context/timeout_seconds",
-            "presence": "supplied",
+            "presence": "supplied(raw)",
             "projection_state": "invalid_or_unknown"
           }
         ],
@@ -3847,7 +3847,7 @@
         "required_presence_rows": [
           {
             "pointer": "/context/timeout_seconds",
-            "presence": "supplied",
+            "presence": "supplied(T)",
             "projection_state": "known"
           }
         ],
@@ -4220,7 +4220,7 @@
     "full14": "compositionへの明示binding/control grade材料から原14欄だけを組み立てるunit素材。原scope/revisionはrawへ固定するが、前段のbinding/stage/data比較を実行済みとして補完しない。各実制御の資格/全入力pipeline/実観測oracleではない。",
     "expectation_source": "批准whole/原L4/固有phase/data規則/旧同役sourceを先に読み手起草した部分期待。製品関数や旧evaluatorを実行しない。",
     "case_count_is_completion_claim": false,
-    "canonical_cases_sha256": "71bb53a08ac819f3020d38c8d8997032a955e7d9de66659dbc7fe84607d6279e",
+    "canonical_cases_sha256": "4f4a7f8d7723ca972f38ed8d3018532bd45bf82981d4fed79b9592160eb23e9d",
     "dependency_null": "原source fieldがnullならfield pointer、control本体nullだけrecord pointer。unknown terminalをknown conflictにしない。",
     "example_limits": "90/1/256と47/2/128は入力素材の例。固定global limitを新設しない。"
   },
