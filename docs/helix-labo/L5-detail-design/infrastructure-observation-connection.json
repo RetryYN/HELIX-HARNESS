@@ -1,0 +1,947 @@
+{
+  "parent": "HELIXLABO-L2-026",
+  "pair": "HELIXLABO-L5-026",
+  "source_main": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+  "status": "draft_detail_design_not_independently_reviewed",
+  "authority_effect": "none",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_scope": "承認済みHELIXLABO-L2-026のINFRA資源観測受領契約だけをL5論理設計へ具体化する。全92親430対を保持し、選択されたsource接続だけを対象とする。",
+    "boundary": "論理型、presence保持、純比較・再構成を定義する。formal schema/codec/resolver、実source資格、実permission/data-use、実受領/観測、実評価、TDD/CI、L11 Accepted、全能力成立は含まない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L4-basic-design/infrastructure-observation-connection.json",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "d1f5c01cc11344fc7a0717c879a4e5738ce6168586bbc60aebf2829fc4890b46"
+    },
+    {
+      "path": "docs/helix-labo/L9-integration-verification/infrastructure-observation-connection.json",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "61ec9dc267f013036272a8561e6de3f53088a882104dc7782a4ca6207370e8ee"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-source-prerequisites-2026-10-12.json",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "d12f1e7813c0fba911a3d62969b888017c0d1009aeeb28d2a67ad196c2585020"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-cross-owner-contract-dependencies-2026-10-12.json",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "70e469eabda9ebb58581a6e4c9c62ad233b69bd09fe97841be0df7fc4d4ada13"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-minimum-gap-20261004/README.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "bb5f5912049d1b86ebdc3d42ce094f24b18b5bd9d9ac3dbb54057f41f766d14a"
+    },
+    {
+      "path": "scaffold/research/design-template-seed-sdop-20260929/README.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "3f2c49633949e8f60a586a7c3fb40e6b70c3c6dfe4e8d9fbade0f79fa8c4cf98"
+    },
+    {
+      "path": "scaffold/verification-test-template-seed-20261001/README.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "e754243381921e4a3317a66dc784c03905ef24ab740721bc7767851989162efd"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-safety-observation-recursion-2026-10-12.json",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "7a4c9c7c83faa04628c77b85ea5e235ed79bcb8e63b36df6aeddd34ded8e0b79"
+    },
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "2dfa97ebba7be0f93c4e5fbcb2da13514e029900a2c593e92127ba257ad1fb9b"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "e518b0cfe15ca4b999bd85120b8d74941a18ab0939ff6cda3dc20a8b7611b705"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576"
+    },
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json",
+      "revision": "f491fc8a416aa265e2ee8f79893dc76e38959a13",
+      "sha256": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05"
+    }
+  ],
+  "upstream_adoption": {
+    "approval_record": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "approval_record_id": "HDEC-LABO-PREREQUISITE-L3L10-2026-10-12",
+    "reviewed_content_head": "bc96125742eab851fe35194071087f77bb1f0005",
+    "admitted_merge": "4dd2774e1498bde640a52e94245195f62e750ca6",
+    "admitted_merge_is_origin_main_ancestor": true,
+    "approved_scope": "10親から導出した26組のexact L3/L10本文。LABO026はStage 2b。実観測・実評価・全source接続の完成を含まない。"
+  },
+  "approved_object_hashes": [
+    {
+      "id": "HELIXLABO-L3-026-F01",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json#/requirements/HELIXLABO-L3-026-F01",
+      "canonical_sha256": "747901cf0cc2e35fc91576f7b6a0a4d623fda583dc78326634c580bdee4ee2ca"
+    },
+    {
+      "id": "HELIXLABO-L10-026-F01",
+      "path": "docs/helix-labo/L10-verification/functional-verification.json#/cases/HELIXLABO-L10-026-F01",
+      "canonical_sha256": "c416085b9bb0992ba1d1cbb2df6d77d355bb6afd8c260abf4720997c405f0b44"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HELIXLABO-L5-026-F01",
+      "requirement_ref": "HELIXLABO-L3-026-F01",
+      "system_oracle_ref": "HELIXLABO-L10-026-F01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-026-F01",
+        "parent": "HELIXLABO-L2-026",
+        "title": "INFRA資源観測の受領",
+        "obligation": "許可resource/runtime evidenceを専用connectorで受けsource版/provenance/scopeを保持しINFRA resource authorityを移さない。stale/unknownはcurrentにせず元sourceへ返す。",
+        "oracle_ref": "HELIXLABO-L10-026-F01"
+      },
+      "approved_system_oracle": {
+        "id": "HELIXLABO-L10-026-F01",
+        "parent": "HELIXLABO-L2-026",
+        "title": "INFRA資源観測の受領",
+        "requirement_ref": "HELIXLABO-L3-026-F01",
+        "positive_input": "同資源版の送受領とstale/unknownを比較する。",
+        "expected_observation": "INFRA evidenceとLABO observation、未成立が辿れる。",
+        "negative_input": "資源正本移管、staleをcurrent、別版receipt。",
+        "failure_observation": "INFRA/接続/SEC ownerへ不足と未観測を返す。",
+        "execution_state": "not_executed"
+      },
+      "content_rules": [
+        "INFRAがsource identity/revisionと原resource/runtime evidenceを保持する。LABOはsourceとは別identityのobservationと参照を保持し、resource authorityを引き受けない。",
+        "専用connector・契約identity/revision、provenance、resource/environment scope、SECURITY data-use、両端receiptを原値で比較する。固定case以外の必須項目やpermission resolverは追加しない。",
+        "source fieldの状態とvalue/referenceを個別に保持する。not_observed/null/absent/unknown/staleをcurrentやhealthyに補わない。freshnessはsource contract参照を保持し、TTLを追加しない。",
+        "send/receive receiptは同じ元source/evidence/revision/connector/contract/scopeを指すことをcase oracleに照らす。違い・欠落は当該source/connection/SEC/observation ownerの既決境界へ返し、元値を保持する。",
+        "固定packetで一致しても結果はfixture observation only。実source資格、実data-use、実受領、実observationを成立させない。"
+      ],
+      "l4_rule_trace": [
+        {
+          "l4_rule_index": 0,
+          "l5_rule": 0
+        },
+        {
+          "l4_rule_index": 1,
+          "l5_rule": 1
+        },
+        {
+          "l4_rule_index": 2,
+          "l5_rule": 2
+        },
+        {
+          "l4_rule_index": 3,
+          "l5_rule": 3
+        }
+      ],
+      "representation_limit": "合成参照。fixture declared permission/currentとreceiptを実認可・実観測・実受領へ昇格しない。"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "line": 67,
+      "quote": "| **HIL-BR-15** | 将来のproduct-data sourceをversioned connectorで取り込み、由来・鮮度・schema・authorityを保持した正規projectionとして設計判断、coverage、impact、Issue routing、docgen/detectorへ供給する。 |",
+      "preserve": "versioned connector、source由来・鮮度・schema・authorityを保持する意味。",
+      "change": "旧product-data統合から、承認済み026に従うINFRA source/resource evidenceの専用connectorとLABO observationへ再導出。",
+      "reason": "旧sourceはHIL対象でresource/runtimeの現行sourceではない。026のINFRA source ownerとLABO observation ownerを維持するため。",
+      "consumer": "旧L5 product-data-connector.mdおよびHIL-FR-24/HST-HIL-010、HOT-HIL-21/22は旧product projection consumer/test設計の履歴として読むだけ。",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "880385839788ea49f14544ee9dd0f1ed5037bc84b1707a9ba55f4fa6a267c2f5",
+      "reuse": "semantic_rederivation_reference_only"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-17C4BF78919578FEBB18",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md",
+      "lines": [
+        29,
+        30
+      ],
+      "quote": "Requirement、Definition、Contract、Release、Deploymentの意味authorityはHELIX-HARNESSに置く。runtime observation、log、metric、\ntrace、notification、provider control plane、DevOS、`harness.db`は証拠またはprojectionであり、意味authorityとして手編集しない。",
+      "preserve": "runtime observationと意味authorityを分離する。",
+      "change": "旧HARNESS authority文を新世代へ移植せず、採択026/L4/L9に従いINFRA resource authority、SEC data-use、LABO observationのownerを個別保持。",
+      "reason": "旧資産はunresolved/historicalであり新世代authorityではない。",
+      "consumer": "旧HARNESSのL3/L5/L9 projection・lifecycle consumerは履歴資料として読むだけで、旧runtime/testを実行しない。",
+      "file_sha256": "ed4d21bf9a6ec0a922fda9d5906350cfa4c6a35edc4ecc0fd6d30dc3148dacb0",
+      "selected_lines_sha256": "e277f6a891b50c2662b4f4fea61d172ea9757d108ad870e462cf51aaf5cfe4a3",
+      "reuse": "reference_only"
+    }
+  ],
+  "logical_type_definitions": [
+    {
+      "name": "FieldValue<T>",
+      "kind": "tagged_union",
+      "variants": {
+        "absent": {},
+        "null": {},
+        "empty": {
+          "value": "T"
+        },
+        "provided": {
+          "value": "T"
+        }
+      },
+      "meaning": "JSON memberの不在・明示null・空値・非空値を区別する。absent/nullへ値を補完しない。"
+    },
+    {
+      "name": "JsonValue",
+      "kind": "recursive_union",
+      "variants": [
+        "null",
+        "boolean",
+        "number",
+        "string",
+        "list<JsonValue>",
+        "map<string,JsonValue>"
+      ],
+      "meaning": "原packet内にある任意の値を型を失わず保持する論理JSON値。正式codecの宣言ではない。"
+    },
+    {
+      "name": "ApprovedRequirementContext",
+      "kind": "record",
+      "fields": {
+        "id": "string",
+        "parent": "string",
+        "title": "string",
+        "obligation": "string",
+        "oracle_ref": "string"
+      }
+    },
+    {
+      "name": "ApprovedOracleContext",
+      "kind": "record",
+      "fields": {
+        "id": "string",
+        "parent": "string",
+        "title": "string",
+        "requirement_ref": "string",
+        "positive_input": "string",
+        "expected_observation": "string",
+        "negative_input": "string",
+        "failure_observation": "string",
+        "execution_state": "string"
+      }
+    },
+    {
+      "name": "ScopeFields",
+      "kind": "record",
+      "fields": {
+        "requirement_revision": "FieldValue<string>",
+        "product": "FieldValue<string>",
+        "resource_identity": "FieldValue<string>",
+        "resource_revision": "FieldValue<string>",
+        "environment": "FieldValue<string>"
+      }
+    },
+    {
+      "name": "SourcePacketRef",
+      "kind": "record",
+      "fields": {
+        "identity": "string",
+        "revision": "string",
+        "owner": "string",
+        "scope": "JsonValue"
+      },
+      "meaning": "SOURCE-LABO026-*のpacket識別・revision。INFRA source identityとは別。"
+    },
+    {
+      "name": "RawSourcePacket",
+      "kind": "record",
+      "fields": {
+        "ref": "SourcePacketRef",
+        "raw_utf8": "string",
+        "sha256": "string"
+      },
+      "meaning": "L9の固定raw bytesをそのまま保持する。"
+    },
+    {
+      "name": "ParsedRawSourcePacket",
+      "kind": "record",
+      "fields": {
+        "ref": "SourcePacketRef",
+        "raw_utf8": "string",
+        "sha256": "string",
+        "parsed_json": "JsonValue"
+      },
+      "meaning": "RawSourcePacketの同じbytesから得た論理parse値。"
+    },
+    {
+      "name": "ObservedField",
+      "kind": "record",
+      "fields": {
+        "state": "FieldValue<JsonValue>",
+        "value": "FieldValue<JsonValue>",
+        "source_ref": "FieldValue<string>"
+      }
+    },
+    {
+      "name": "EvidenceProjection",
+      "kind": "record",
+      "fields": {
+        "identity": "FieldValue<string>",
+        "revision": "FieldValue<string>",
+        "owner": "FieldValue<string>",
+        "source_identity": "FieldValue<string>",
+        "source_revision": "FieldValue<string>",
+        "provenance_ref": "FieldValue<string>",
+        "source_contract_ref": "FieldValue<string>",
+        "scope": "FieldValue<ScopeFields>",
+        "freshness_ref": "FieldValue<string>",
+        "state": "FieldValue<string>",
+        "fields": "FieldValue<map<string,ObservedField>>"
+      }
+    },
+    {
+      "name": "ConnectionProjection",
+      "kind": "record",
+      "fields": {
+        "identity": "FieldValue<string>",
+        "revision": "FieldValue<string>",
+        "connector_identity": "FieldValue<string>",
+        "connector_revision": "FieldValue<string>",
+        "contract_identity": "FieldValue<string>",
+        "contract_revision": "FieldValue<string>",
+        "scope": "FieldValue<ScopeFields>"
+      }
+    },
+    {
+      "name": "DataUseProjection",
+      "kind": "record",
+      "fields": {
+        "identity": "FieldValue<string>",
+        "revision": "FieldValue<string>",
+        "owner": "FieldValue<string>",
+        "state": "FieldValue<string>",
+        "source_identity": "FieldValue<string>",
+        "source_revision": "FieldValue<string>",
+        "scope": "FieldValue<ScopeFields>"
+      }
+    },
+    {
+      "name": "ReceiptProjection",
+      "kind": "record",
+      "fields": {
+        "identity": "FieldValue<string>",
+        "revision": "FieldValue<string>",
+        "owner": "FieldValue<string>",
+        "state": "FieldValue<string>",
+        "connection": "FieldValue<ConnectionProjection>",
+        "evidence_identity": "FieldValue<string>",
+        "evidence_revision": "FieldValue<string>",
+        "source_revision": "FieldValue<string>",
+        "scope": "FieldValue<ScopeFields>"
+      }
+    },
+    {
+      "name": "ObservationProjection",
+      "kind": "record",
+      "fields": {
+        "identity": "FieldValue<string>",
+        "revision": "FieldValue<string>",
+        "owner": "FieldValue<string>",
+        "evidence_ref": "FieldValue<string>",
+        "scope": "FieldValue<ScopeFields>"
+      }
+    },
+    {
+      "name": "OwnerBoundaryContext",
+      "kind": "record",
+      "fields": {
+        "resource_authority_owner": "string",
+        "observation_owner": "string"
+      },
+      "meaning": "L4の役割境界を入力する。source packet ownerから推測しない。fixture上のINFRA/LABO値は実権限を証明しない。"
+    },
+    {
+      "name": "InfrastructureObservationInput",
+      "kind": "record",
+      "fields": {
+        "packet": "ParsedRawSourcePacket",
+        "original_evidence": "FieldValue<EvidenceProjection>",
+        "received_evidence": "FieldValue<EvidenceProjection>",
+        "connection": "FieldValue<ConnectionProjection>",
+        "data_use": "FieldValue<DataUseProjection>",
+        "send_receipt": "FieldValue<ReceiptProjection>",
+        "receive_receipt": "FieldValue<ReceiptProjection>",
+        "observation": "FieldValue<ObservationProjection>",
+        "claims": "FieldValue<list<string>>",
+        "source_observation_state": "FieldValue<string>",
+        "owner_boundary": "OwnerBoundaryContext"
+      }
+    },
+    {
+      "name": "ComparisonResult",
+      "kind": "record",
+      "fields": {
+        "resource_authority_owner": "string",
+        "source_observation_state": "FieldValue<string>",
+        "original_evidence_presence": "string",
+        "received_evidence_presence": "string",
+        "received_evidence_vs_original": "string",
+        "connection_presence": "string",
+        "send_receipt_presence": "string",
+        "receive_receipt_presence": "string",
+        "send_receipt_connection_vs_packet": "string",
+        "receive_receipt_connection_vs_packet": "string",
+        "source_scope_vs_connection": "string",
+        "source_scope_vs_data_use": "string",
+        "source_scope_vs_send_receipt": "string",
+        "source_scope_vs_receive_receipt": "string",
+        "observation_scope_vs_source": "string",
+        "data_use_state": "FieldValue<string>",
+        "claims": "FieldValue<list<string>>",
+        "original_evidence_state": "FieldValue<string>",
+        "failure_reasons": "list<FailureReason>",
+        "return_owners": "list<string>",
+        "rejected_claims": "list<string>"
+      }
+    },
+    {
+      "name": "FailureReason",
+      "kind": "record",
+      "fields": {
+        "field": "string",
+        "result": "string",
+        "return_owner": "string"
+      }
+    },
+    {
+      "name": "ActualEffects",
+      "kind": "record",
+      "fields": {
+        "resource_write": "boolean",
+        "source_authority_transfer": "boolean",
+        "permission_change": "boolean",
+        "receipt_write": "boolean",
+        "current_confirmation": "boolean",
+        "evaluation": "boolean",
+        "assignment": "boolean",
+        "acceptance": "boolean",
+        "implementation_ready": "boolean"
+      }
+    },
+    {
+      "name": "ObservationAssessment",
+      "kind": "record",
+      "fields": {
+        "information_state": "string",
+        "retained_inputs": "JsonValue",
+        "resource_authority_owner": "string",
+        "observation_owner": "string",
+        "source_observation_state": "string",
+        "source_missing_fields": "JsonValue",
+        "source_content_preservation": "string",
+        "failure_reasons": "list<FailureReason>",
+        "return_owners": "list<string>",
+        "rejected_claims": "list<string>",
+        "actual_effects": "ActualEffects"
+      }
+    }
+  ],
+  "pure_function_signatures": [
+    {
+      "id": "F-026-01",
+      "name": "project_source_packet",
+      "signature": "project_source_packet(packet: RawSourcePacket, owner_boundary: OwnerBoundaryContext) -> InfrastructureObservationInput",
+      "reads": [
+        "packet.ref identity/revision/owner/scope",
+        "packet.sha256/raw_utf8（parsed_jsonは入力memberではなく、このbytesから得る局所中間値）",
+        "original_evidence",
+        "received_evidence",
+        "connection",
+        "data_use",
+        "send_receipt",
+        "receive_receipt",
+        "observation",
+        "claims",
+        "owner_boundary.resource_authority_owner",
+        "owner_boundary.observation_owner"
+      ],
+      "returns": [
+        "packet",
+        "original_evidence",
+        "received_evidence",
+        "connection",
+        "data_use",
+        "send_receipt",
+        "receive_receipt",
+        "observation",
+        "claims",
+        "source_observation_state",
+        "owner_boundary"
+      ],
+      "preconditions": [
+        "固定fixtureのraw_utf8は論理JSONとしてparse可能でSHA-256がsha256と一致する。RawSourcePacket入力にparsed_jsonは要求しない。正式parser/codecと不正bytesの処理方式は本契約で選定しない。",
+        "owner_boundaryはL4 HELIXLABO-L4-026-F01に明示されたINFRA source ownerとLABO observation ownerの対応である。"
+      ],
+      "branches": [
+        "member absentならFieldValue.absentを返す。",
+        "explicit nullならFieldValue.nullを返す。",
+        "空値ならFieldValue.emptyとして値を保持する。",
+        "提供recordは宣言済memberをFieldValueで投影し、未知memberはraw packetに残す。",
+        "owner boundaryはpacketのresource/observation fieldから導出せず、呼出しcontextの値をそのまま保持する。"
+      ],
+      "algorithm": "packet.raw_utf8から局所parsed_jsonを得る。packet.ref/raw_utf8/sha256を同値保持し、parsed_jsonをParsedRawSourcePacketへ追加する。このparsed_jsonの原member presence/valueから全宣言FieldValueを投影し、L4由来owner_boundaryは別引数の原値で保持する。",
+      "effects": "none",
+      "local_intermediates": {
+        "parsed_json": "packet.raw_utf8と同じbytesを論理parseしたJsonValue。出力ParsedRawSourcePacket.parsed_jsonと宣言member投影の唯一の元値。入力へ暗黙供給しない。"
+      }
+    },
+    {
+      "id": "F-026-02",
+      "name": "compare_infrastructure_transfer",
+      "signature": "compare_infrastructure_transfer(input: InfrastructureObservationInput, requirement: ApprovedRequirementContext, oracle: ApprovedOracleContext) -> ComparisonResult",
+      "reads": [
+        "inputのoriginal/received evidence, connection, data_use, send/receive receipt, observation, claims, owner fields",
+        "requirement.id/obligation/oracle_ref",
+        "oracle.id/requirement_ref/positive_input/expected_observation/negative_input/failure_observation/execution_state",
+        "input.owner_boundary.resource_authority_owner",
+        "input.owner_boundary.observation_owner",
+        "input.packet.parsed_jsonの原record同士の値。case/packet identity/hashはfailure/result/owner選択に使わない。"
+      ],
+      "returns": [
+        "resource_authority_owner",
+        "source_observation_state",
+        "original_evidence_presence",
+        "received_evidence_presence",
+        "received_evidence_vs_original",
+        "connection_presence",
+        "send_receipt_presence",
+        "receive_receipt_presence",
+        "send_receipt_connection_vs_packet",
+        "receive_receipt_connection_vs_packet",
+        "source_scope_vs_connection",
+        "source_scope_vs_data_use",
+        "source_scope_vs_send_receipt",
+        "source_scope_vs_receive_receipt",
+        "observation_scope_vs_source",
+        "data_use_state",
+        "claims",
+        "original_evidence_state",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims"
+      ],
+      "preconditions": [
+        "approved contextは本pairにコピーされたexact L3/L10 wholeである。",
+        "比較は固定入力/宣言済み契約の範囲で行い、実認可や実sourceを呼び出さない。"
+      ],
+      "branches": [
+        "原source state stale/unknownと原field not_observed/nullは観測値として保持する。source_missing_fieldsを必須転送条件の不足へ一律化しない。",
+        "comparison_derivation_contractのsource/received必要field、scope、connection、両端receipt、data-use、owner/observation参照、runtime状態の原値比較から所見候補を作る。完成済みcase期待を入力にしない。",
+        "claimsはraw値のまま独立軸で評価する。原4 claim例ではclaim所見を返却failureへ採り、共存するreceipt nullやsource stateは別の宣言comparison fieldへ残す。claimから権限/current/receiptを生成しない。",
+        "claim無しの原30例は当該raw比較で生じた1種類の所見又は正例の[]を返す。一般の複合違反の優先順は定めない。",
+        "全て一致するfixtureでもactual qualificationは作らない。未知packet ID自体は違反とせず、未定義のshape/値/複合比較域の返却規則は未閉包として残す。"
+      ],
+      "algorithm": "input.packet.parsed_jsonと宣言projectionを同一原値として照合し、comparison_derivation_contract.field_resultsの各観測fieldを生成する。raw_comparison_rulesで実際の比較値からfailure候補とownerを導出し、claims_rulesでclaim軸を別に評価する。fixed_domain_selectionで原34件に該当する局所選択だけを行いfailure_reasons/return_owners/rejected_claimsを返す。case名、packet identity/hash、L9完成期待のlookupで判定しない。",
+      "effects": "none"
+    },
+    {
+      "id": "F-026-03",
+      "name": "assemble_observation_assessment",
+      "signature": "assemble_observation_assessment(input: InfrastructureObservationInput, comparison: ComparisonResult) -> ObservationAssessment",
+      "reads": [
+        "input全member",
+        "comparison全member",
+        "input.owner_boundary.observation_owner"
+      ],
+      "returns": [
+        "information_state",
+        "retained_inputs",
+        "resource_authority_owner",
+        "observation_owner",
+        "source_observation_state",
+        "source_missing_fields",
+        "source_content_preservation",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "actual_effects"
+      ],
+      "preconditions": [
+        "comparisonは同じinput projectionから作られている。"
+      ],
+      "branches": [
+        "stale/unknown/missing/mismatchまたはrejected claimがあればheld_observation_unqualifiedを保持する。",
+        "fixture valuesが整合してもobservation_content_requires_actual_qualificationを保持し、実資格を返さない。",
+        "source_missing_fieldsは原field state/value/referenceから写し、未観測を値で補わない。"
+      ],
+      "algorithm": "原入力群と比較所見をObservationAssessmentへ再構成する。owner fieldsはL4 owner_boundaryから保持し、side-effect flagsはfalseの論理projectionとする。",
+      "effects": "none"
+    }
+  ],
+  "pipeline": [
+    "F-026-01",
+    "F-026-02",
+    "F-026-03"
+  ],
+  "implementation_readiness": "not_ready",
+  "operation_effect": "none",
+  "remaining": [
+    "INFRA source contract/identity/revision/actual resource and environment scope, SECURITY data-use authority, dedicated connector/version, send/receive receipts and LABO observation owner-qualified binding remain unestablished.",
+    "L5/L8 are logical design only; formal schema/codec/resolver, actual qualification/permission, actual observation/receipt and evaluation are not established.",
+    "Actual TDD, runtime, CI and L11 acceptance remain unexecuted; the 92-parent/430-pair program remains open.",
+    "F02602は原34固定rawの比較域を具体化したが、未知shape/claim・複数独立違反・一般routing優先順/正式source資格の意味閉包は未成立。原fixture答えlookupを製品判定に使用しない。"
+  ],
+  "trace": [
+    {
+      "from": "HELIXLABO-L2-026",
+      "to": "HELIXLABO-L3-026-F01",
+      "relation": "L2採択親から承認済みL3義務へ"
+    },
+    {
+      "from": "HELIXLABO-L3-026-F01",
+      "to": "HELIXLABO-L4-026-F01",
+      "relation": "承認済み要件をL4契約へ対応"
+    },
+    {
+      "from": "HELIXLABO-L4-026-F01",
+      "to": "HELIXLABO-L5-026-F01",
+      "relation": "L4規則をL5論理詳細へ具体化"
+    },
+    {
+      "from": "HELIXLABO-L5-026-F01",
+      "to": "HELIXLABO-L8-026-F01",
+      "relation": "L5の型・関数分岐をL8固定caseで照合"
+    },
+    {
+      "from": "HELIXLABO-L8-026-F01",
+      "to": "HELIXLABO-L9-026-F01",
+      "relation": "原L9のraw caseとexpectedを保持"
+    },
+    {
+      "from": "HELIXLABO-L9-026-F01",
+      "to": "HELIXLABO-L10-026-F01",
+      "relation": "L9 caseの範囲を承認済みL10 oracleへ接続"
+    },
+    {
+      "from": "HELIXLABO-L10-026-F01",
+      "to": "HELIXLABO-L2-026",
+      "relation": "L10承認oracleをL11層にあるL2-026採択行と照合（受入成立は主張しない）"
+    }
+  ],
+  "scope_preservation": {
+    "selected_pair_only": "HELIXLABO-L2-026",
+    "total_selected_parent_scope": 92,
+    "total_pair_scope": 430,
+    "scope_effect": "No other parent or pair is edited or reduced; the pair is one scoped contribution.",
+    "source": {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md",
+      "meaning": "92親/430対を記録した全体監査。026 pairはその1組の限定寄与。"
+    }
+  },
+  "actual_state_boundary": {
+    "fixture_observations": "fixed logical test inputs only",
+    "actual_source_qualification": "not_established",
+    "actual_permission": "not_established",
+    "actual_receipts": "not_established",
+    "actual_evaluation": "not_executed",
+    "runtime_codec_tdd_ci": "not_established",
+    "l11_acceptance": "not_established"
+  },
+  "reverse_trace": [
+    {
+      "from": "HELIXLABO-L2-026",
+      "to": "HELIXLABO-L10-026-F01",
+      "relation": "逆参照: L10承認oracleをL11層にあるL2-026採択行と照合（受入成立は主張しない）"
+    },
+    {
+      "from": "HELIXLABO-L10-026-F01",
+      "to": "HELIXLABO-L9-026-F01",
+      "relation": "逆参照: L9 caseの範囲を承認済みL10 oracleへ接続"
+    },
+    {
+      "from": "HELIXLABO-L9-026-F01",
+      "to": "HELIXLABO-L8-026-F01",
+      "relation": "逆参照: 原L9のraw caseとexpectedを保持"
+    },
+    {
+      "from": "HELIXLABO-L8-026-F01",
+      "to": "HELIXLABO-L5-026-F01",
+      "relation": "逆参照: L5の型・関数分岐をL8固定caseで照合"
+    },
+    {
+      "from": "HELIXLABO-L5-026-F01",
+      "to": "HELIXLABO-L4-026-F01",
+      "relation": "逆参照: L4規則をL5論理詳細へ具体化"
+    },
+    {
+      "from": "HELIXLABO-L4-026-F01",
+      "to": "HELIXLABO-L3-026-F01",
+      "relation": "逆参照: 承認済み要件をL4契約へ対応"
+    },
+    {
+      "from": "HELIXLABO-L3-026-F01",
+      "to": "HELIXLABO-L2-026",
+      "relation": "逆参照: L2採択親から承認済みL3義務へ"
+    }
+  ],
+  "identity_boundaries": [
+    {
+      "identity": "RawSourcePacket.ref.identity",
+      "meaning": "L9固定fixture packetの識別子。source identityではない。"
+    },
+    {
+      "identity": "original_evidence.identity",
+      "meaning": "INFRAが所有する元evidence identity。"
+    },
+    {
+      "identity": "original_evidence.source_identity/source_revision",
+      "meaning": "INFRA sourceのidentity/revision。"
+    },
+    {
+      "identity": "observation.identity",
+      "meaning": "LABO側observation identity。INFRA source/evidence identityと混ぜない。"
+    },
+    {
+      "identity": "send_receipt.identity / receive_receipt.identity",
+      "meaning": "両端で別個に発行されたreceipt identity。内容/参照tupleを比較し、同じreceipt IDへの書換を要求しない。"
+    }
+  ],
+  "legacy_consumer_failure_inventory": [
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+      "consumer_refs": [
+        "HST-HIL-010",
+        "HOT-HIL-21",
+        "HOT-HIL-22"
+      ],
+      "finding": "旧product data connectorはversioned source/provenance/freshness/schemaとprojection/drift/tombstone/staleのconsumerを持つ。026ではその旧製品source、registry、write-back、TTL/SLA、runtimeを移植せず、INFRA resource evidence受領の意味だけを新世代L4/L9から再導出する。"
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-infinity-loop-platform-system-test-design.md",
+      "asset_id": "LEGACY-ASSET-8CEC5559B69B216F7CCF",
+      "consumer_refs": [
+        "HST-HIL-010"
+      ],
+      "finding": "旧system testはproduct connector full/incremental/drift/tombstone/staleとlineage/watermark/quarantineを検証した設計資料。旧oracleを再利用せず、現L9の34固定raw packet/expectedを正とする。"
+    },
+    {
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md",
+      "asset_id": "LEGACY-ASSET-AFE91778057B7E76BEEC",
+      "consumer_refs": [
+        "HOT-HIL-21",
+        "HOT-HIL-22"
+      ],
+      "finding": "旧operational testの同watermark再送、schema/delete/watermark逆行は履歴consumer。現行の実運用・CIは起動しない。"
+    }
+  ],
+  "comparison_derivation_contract": {
+    "basis": "HELIXLABO-L4-026-F01の四比較規則と原HELIXLABO-L9-026-F01の34固定raw/独立expected_material。原期待はL8に保持し、L5の完成答えlookup表にはしない。",
+    "input_supply": "全比較値はsignatureのinput（F02601出力）の宣言FieldValue又はinput.packet.parsed_jsonに存在する原値。requirement/oracleは固定L3/L10 contextの照合用で、case固有failureの答えを含まない。owner_boundaryはL4の責務label対応であり実権限ではない。",
+    "domain": "この契約は原34fixtureに現れる値と比較軸の有限な論理設計。原型のpresenceは保持するが、任意不正shape/未知claim/複数独立違反/実source資格を決める一般policyは追加しない。packet IDが既知であることを呼出しの新gateにしない。",
+    "field_results": {
+      "resource_authority_owner": "input.owner_boundary.resource_authority_ownerをそのまま保持する。",
+      "source_observation_state": "input.source_observation_stateをtag/valueごと保持する。",
+      "original_evidence_presence": "input.original_evidence.state（FieldValueのtag）を返す。evidence内部stateと混同しない。",
+      "received_evidence_presence": "input.received_evidence.stateを返す。",
+      "received_evidence_vs_original": "原parsed_json.original_evidenceとreceived_evidenceが共にrecordならJSON全member/valueが等しいとexact、異なるとdifferent。片方がrecordでなければincomplete。fixture label/IDでは比較しない。",
+      "connection_presence": "input.connection.stateを返す。",
+      "send_receipt_presence": "input.send_receipt.stateを返す。",
+      "receive_receipt_presence": "input.receive_receipt.stateを返す。",
+      "send_receipt_connection_vs_packet": "原send_receiptのabsent/nullは同状態、record内connectionのabsent/nullも同状態。提供connectionとpacketの原connectionが等しければexact、不一致ならdifferent、packet connectionが無ければmissing。",
+      "receive_receipt_connection_vs_packet": "send側と同じ手順を原receive_receiptへ独立に適用する。",
+      "source_scope_vs_connection": "原original_evidence.scopeとconnection.scopeが共に非nullならJSON内容一致をexact/不一致をdifferent、それ以外incomplete。",
+      "source_scope_vs_data_use": "同じscope内容比較を原data_use.scopeへ適用する。",
+      "source_scope_vs_send_receipt": "同じscope内容比較を原send_receipt.scopeへ適用する。",
+      "source_scope_vs_receive_receipt": "同じscope内容比較を原receive_receipt.scopeへ適用する。",
+      "observation_scope_vs_source": "原observation.scopeとoriginal_evidence.scopeの内容を同じexact/different/incompleteで比較する。",
+      "data_use_state": "input.data_use内stateのFieldValueを原tag/valueで保持する。record自体が未提示/nullならその不在状態を保持し、許可を補完しない。",
+      "claims": "input.claimsを原FieldValueごと保持する。",
+      "original_evidence_state": "input.original_evidence内stateの原FieldValueを保持し、evidence不在ならabsent。",
+      "failure_reasons": "raw_comparison_rulesとclaims_rulesが導出した候補をfixed_domain_selectionで選んだ元field/result/return_owner三memberのlist。",
+      "return_owners": "選んだfailure_reasonsのreturn_ownerを元の選択順で重複なく列挙する。",
+      "rejected_claims": "claims_rulesに該当したraw claim文字列を保持する。raw claimsが空なら[]。"
+    },
+    "raw_comparison_rules": [
+      {
+        "axis": "source_state",
+        "compare": "original_evidence.stateがstale又はunknown",
+        "field": "original_evidence.state",
+        "result": "当該stale/unknown文字列",
+        "return_owner": "INFRA-source-owner"
+      },
+      {
+        "axis": "received_required",
+        "compare": "received_evidenceのidentity/revision/source_identity/source_revision/provenance_ref/source_contract_ref/freshness_refを原member presenceで確認し、当該memberが未提示又はnull",
+        "field": "received_evidence.<当該member>",
+        "result": "missing",
+        "return_owner": "INFRA-source-owner"
+      },
+      {
+        "axis": "received_scope",
+        "compare": "received_evidence.scopeのrequirement_revision/product/resource_identity/resource_revision/environmentの当該値とoriginal_evidence.scopeの同memberが異なる",
+        "field": "received_evidence.scope.<当該member>",
+        "result": "foreign_scope",
+        "return_owner": "INFRA-source-owner"
+      },
+      {
+        "axis": "connection_required",
+        "compare": "connectionのidentity/revision/connector_identity/connector_revision/contract_identity/contract_revisionの当該memberが未提示又はnull",
+        "field": "connection.<当該member>",
+        "result": "missing",
+        "return_owner": "LABO-connection-owner"
+      },
+      {
+        "axis": "endpoint_receipt_missing",
+        "compare": "send_receipt又はreceive_receiptが未提示/null",
+        "field": "当該send_receipt又はreceive_receipt",
+        "result": "missing_receipt",
+        "return_owner": "LABO-connection-owner"
+      },
+      {
+        "axis": "endpoint_evidence_revision",
+        "compare": "提供された各send_receipt/receive_receiptのevidence_revisionとoriginal_evidence.revisionが異なる。両端は別々に比較する。",
+        "field": "<当該receipt>.evidence_revision",
+        "result": "foreign_revision",
+        "return_owner": "LABO-connection-owner"
+      },
+      {
+        "axis": "data_use_state",
+        "compare": "data_use.stateがunknown",
+        "field": "data_use.state",
+        "result": "unknown",
+        "return_owner": "SEC-data-use-owner"
+      },
+      {
+        "axis": "data_use_scope",
+        "compare": "data_use.scope.environmentとoriginal_evidence.scope.environmentが異なる",
+        "field": "data_use.scope.environment",
+        "result": "foreign_scope",
+        "return_owner": "SEC-data-use-owner"
+      },
+      {
+        "axis": "resource_authority",
+        "compare": "received_evidence.ownerとoriginal_evidence.ownerが異なる。原例はINFRAからLABOへ変更。resource_authority_ownerを変更せず所見にする。",
+        "field": "received_evidence.owner",
+        "result": "authority_transfer",
+        "return_owner": "INFRA-source-owner"
+      },
+      {
+        "axis": "observation_source",
+        "compare": "observation.evidence_refとoriginal_evidence.identity + @ + original_evidence.revisionが異なる。実参照解決ではなく原例の文字列内容比較。",
+        "field": "observation.evidence_ref",
+        "result": "foreign_reference",
+        "return_owner": "LABO-Aggregate-owner"
+      },
+      {
+        "axis": "missing_runtime_preservation",
+        "compare": "原original_evidence.fields.runtime_stateがnot_observed/null value/null source_refなのにreceived_evidence.fields.runtime_stateがhealthy等の値/観測状態を補っている（原両record不一致）。not_observedのままなら所見を加えない。",
+        "field": "received_evidence.fields.runtime_state",
+        "result": "missing_not_healthy",
+        "return_owner": "INFRA-source-owner"
+      }
+    ],
+    "claims_rules": {
+      "field": "claims",
+      "result": "unsupported_current_receipt_or_permission",
+      "raw_claim_to_return_owner": {
+        "stale_is_current": "INFRA-source-owner",
+        "unknown_is_current": "INFRA-source-owner",
+        "engine_green_is_receipt": "LABO-connection-owner",
+        "infra_health_is_permission": "SEC-data-use-owner"
+      },
+      "derivation": "各原claim文字列をそのままrejected_claimsへ保持し、field=claims/result=上記/return_owner=この責務対応から所見を作る。packet/case名で分岐しない。この対応は原四claim例だけの比較規則であり実authority/permissionを認可しない。"
+    },
+    "fixed_domain_selection": [
+      "全原34件で必ず全宣言field_resultsを作り、source stale/unknownやreceipt nullをclaimによって上書きしない。",
+      "原四claim例はrecognized claimが一つ。failure_reasonsには当該claim所見のみを返す。原engine_green_is_receipt例で共存するreceive_receipt=nullはreceive_receipt_presence/connection比較に残し、missing_receiptをfailureへ重複加算しない。原stale/unknown claim例のsource stateも別fieldへ残す。",
+      "claimが空の原30例はraw比較所見が0又は1種類。0ならfailure_reasons/return_owners/rejected_claimsは[]、1ならその比較field/result/ownerを返す。sourceのruntime not_observedは正常な欠測保持でありそれ単独を失敗にしない。",
+      "上記以外の複合所見、未知claim、required record不正形等はこの34件のoracleで優先順を決められない。新しい成功/拒否/承認規則を作らず、一般化の不足をremainingへ残す。"
+    ],
+    "retained_and_changed": "原L4のsource/観測owner分離・専用接続/版/scope・欠測保持・両端receipt比較と原34の全期待を保持。変更はL5完成答えlookupの撤去と原比較値/局所所見選択の明示だけ。旧assetの由来/鮮度/authority保持とprojection非authorityを意味再導出し、旧registry/TTL/runtimeを移植しない。"
+  }
+}
