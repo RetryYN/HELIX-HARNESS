@@ -407,7 +407,7 @@
         "resolve_source_ref(ref: SourceRefID, source_map: SourceMap) -> SourceResolution",
         "reconcile_handoff(input: PayloadTransferInput) -> HandoffObservation"
       ],
-      "failure_return": "LABO-055水準/evidence根拠不足はLABO-055 ownerへ。配置案はINTELLIGENCE、Worker指定/割当てはOS、permissionはSECURITY。connector送受/receiver receiptの不足や期待contextはINTELLIGENCE connector ownerへ戻す。複数責務に跨る場合はそれぞれのowner状態を保持したまま該当範囲へ返す。",
+      "failure_return": "LABO-055水準/evidence根拠不足はLABO-055 ownerへ。配置案はINTELLIGENCE、Worker指定/割当てはOS、permissionはSECURITY。connector送受/receiver receiptの不足や期待contextはINTELLIGENCE connector ownerへ戻す。source revisionの不一致はLABO-055 level ownerへ、期待範囲/receiptの不一致はINTELLIGENCE connector ownerへ、両方が不一致なら両ownerへ返す。複数責務に跨る場合はそれぞれのowner状態を保持したまま該当範囲へ返す。",
       "operation": "resolve_source_ref(ref, source_map)でsource identity参照を照合し、reconcile_handoff(input)が定義済み論理関数として受渡し状態を観測する。関数合成はこのpair内の純粋な論理処理であり、raw codec/実connector/source資格/実配置・権限を実行しない。"
     }
   ],
@@ -1224,9 +1224,9 @@
         "sender receiptがある場合、sent_payload_id/hash/revision/scopeをpayload値と照合する。",
         "receiver receiptのreceived_payload_ids/sent_payload_ids/unreceived_scopeとreceived_fieldsがある場合、payload id/hash/task/model/level/evidence/period/revision/scope/evaluation_stateの一致を比較する。expected_contextがprovidedならrevision/scope/task/modelも比較し、absentなら別contextを作らない。",
         "receiver receiptがない、またはpayload/refが欠落しdelivery receiptしかない場合は当該scopeをunreceivedのまま保持する。",
-        "受領receiptがpartialでreceived_payload_idsとsent_payload_idsに差がある場合、received_scopeとunreceived_scopeのraw文字列をFieldValueとしてそれぞれそのまま返し、全体受領に広げない。",
+        "受領receiptがpartialでreceived_payload_idsとsent_payload_idsに差がある場合、received_scopeとunreceived_scopeのraw文字列をFieldValueとしてそれぞれそのまま返し、全体受領に広げず、未受領部分はINTELLIGENCE connector ownerへ返す。",
         "receiverが同じrevision/scope/stateを受領すればevaluatedはmatched、unassessedはunassessed_preservedとする。known scopeのunassessedだけを理由に拒否しない。",
-        "receiver receiptがあるがexpected revision/scopeと異なる場合はtransport receiptを保持してreceived_but_not_applicableとし、対象payloadだけをLABO-055 level ownerまたはINT connector ownerへ返す。",
+        "receiver receiptがあるがexpected revision/scopeと異なる場合はtransport receiptを保持してreceived_but_not_applicableとし、source revisionの不一致はLABO-055 level ownerへ、期待範囲またはreceiptの不一致はINTELLIGENCE connector ownerへ返す。source revisionと期待範囲/receiptの両方が不一致のときだけ両ownerへ返す。",
         "proposed_changeが未評価昇格/範囲拡大を要求する場合は元値を維持し、change ownerをINTELLIGENCE receiver/connectorまたはLABO-055 ownerへ返す。"
       ],
       "branches": [
@@ -1240,11 +1240,11 @@
         },
         {
           "condition": "receiver receipt.receipt_state=partialでreceived_payload_idsがsent_payload_idsの一部、unreceived_scopeがprovided",
-          "output": "observation_state=unreceivedとし、unreceived_scopeの原文字列、payloadと送信/受領receiptを個別に保持する。"
+          "output": "observation_state=unreceivedとし、unreceived_scopeの原文字列、payloadと送信/受領receiptを個別に保持し、INTELLIGENCE connector ownerへ返す。"
         },
         {
           "condition": "transport receiptはあるがsource revisionまたはscopeがexpected contextと不一致",
-          "output": "received_but_not_applicableとmismatch_fieldsを対象payloadだけに返し、LABO-055 level ownerまたはINT connector ownerへreturn_to。"
+          "output": "received_but_not_applicableとmismatch_fieldsを対象payloadだけに返す。source revision不一致はLABO-055 level ownerへ、期待範囲/receipt不一致はINTELLIGENCE connector ownerへ、両方が不一致なら両ownerへreturn_to。"
         },
         {
           "condition": "proposed_changeがunassessedをevaluated/qualifiedへ昇格させる",
@@ -1490,10 +1490,12 @@
       ],
       "logical_type_fields": [
         "ReceivedPayloadView.source_revision",
-        "ReceivedPayloadView.scope"
+        "ReceivedPayloadView.scope",
+        "ReceiverReceipt.received_scope",
+        "HandoffObservation.received_scope"
       ],
-      "mapping": "received_fieldsがないreceiptでは明示値だけを対応fieldへ置き、他のview fieldはabsentにする。"
+      "mapping": "received_fieldsがないreceiptでは明示値だけを対応fieldへ置き、received_scopeはReceiverReceiptとHandoffObservationにも同じpresence付きで保持し、他のview fieldはabsentにする。"
     }
   ],
-  "source_packet_projection_boundary": "source packet field mappingは上記の2 aliasとExpectedContext expected_* mappingだけを明示する。ReceiverReceiptのreceived_payload_ids/sent_payload_idsはraw配列、unreceived_scopeはraw文字列をpresence付きで保持する。ProposedChange.scoreはraw JSON値（この原negative fixtureでは文字列\"0.99\"）をFieldValue<number|string>として値のまま保持するだけで、権限や資格を導出しない。 原rawの異名キーはsource_packet_field_mappingsに明記した範囲だけを投影する。 rawのreceived_scopeとunreceived_scopeを別FieldValueで保持し、片方を他方から補完しない。"
+  "source_packet_projection_boundary": "source packet field mappingはsource_packet_field_mappingsに列挙した全ての明示mappingとExpectedContext expected_* mappingを明示する。ReceiverReceiptのreceived_payload_ids/sent_payload_idsはraw配列、unreceived_scopeはraw文字列をpresence付きで保持する。ProposedChange.scoreはraw JSON値（この原negative fixtureでは文字列\"0.99\"）をFieldValue<number|string>として値のまま保持するだけで、権限や資格を導出しない。 原rawの異名キーはsource_packet_field_mappingsに明記した範囲だけを投影する。 rawのreceived_scopeとunreceived_scopeを別FieldValueで保持し、片方を他方から補完しない。"
 }

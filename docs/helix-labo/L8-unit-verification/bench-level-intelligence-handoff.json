@@ -475,8 +475,10 @@
                   "owner": "HELIXLABO-L2-055",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-LEVEL-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-LEVEL-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "e9936bc8a84ae8f92a1a15742954f157bbec6cc8957e231330c638ad6999518f"
@@ -487,8 +489,10 @@
                   "owner": "HELIXINTELLIGENCE-L2-010",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-INT-PROPOSAL-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-INT-PROPOSAL-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "e5e53fcde32bc14e455682bcc0b44bddf130f896f3537599524bf668d866599d"
@@ -499,8 +503,10 @@
                   "owner": "HELIXOS",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-OS-ASSIGN-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-OS-ASSIGN-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "8ab1db19ae3fe2575c6a23618dcd7d3915d7a1f87aaf12e791a5022cf5f40798"
@@ -511,8 +517,10 @@
                   "owner": "HELIXSECURITY",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-SEC-PERM-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-SEC-PERM-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "90c852407e3c6474ca0648fd1feba8d6f4afa88de27c3fd6554565cac3f226ae"
@@ -945,8 +953,10 @@
                   "owner": "HELIXLABO-L2-055",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-LEVEL-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-LEVEL-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "e9936bc8a84ae8f92a1a15742954f157bbec6cc8957e231330c638ad6999518f"
@@ -957,8 +967,10 @@
                   "owner": "HELIXINTELLIGENCE-L2-010",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-INT-PROPOSAL-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-INT-PROPOSAL-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "e5e53fcde32bc14e455682bcc0b44bddf130f896f3537599524bf668d866599d"
@@ -969,8 +981,10 @@
                   "owner": "HELIXOS",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-OS-ASSIGN-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-OS-ASSIGN-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "8ab1db19ae3fe2575c6a23618dcd7d3915d7a1f87aaf12e791a5022cf5f40798"
@@ -981,8 +995,10 @@
                   "owner": "HELIXSECURITY",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-SEC-PERM-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-SEC-PERM-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "90c852407e3c6474ca0648fd1feba8d6f4afa88de27c3fd6554565cac3f226ae"
@@ -1565,8 +1581,10 @@
                   "owner": "HELIXLABO-L2-055",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-LEVEL-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-LEVEL-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "e9936bc8a84ae8f92a1a15742954f157bbec6cc8957e231330c638ad6999518f"
@@ -1577,8 +1595,10 @@
                   "owner": "HELIXINTELLIGENCE-L2-010",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-INT-PROPOSAL-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-INT-PROPOSAL-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "e5e53fcde32bc14e455682bcc0b44bddf130f896f3537599524bf668d866599d"
@@ -1589,8 +1609,10 @@
                   "owner": "HELIXOS",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-OS-ASSIGN-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-OS-ASSIGN-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "8ab1db19ae3fe2575c6a23618dcd7d3915d7a1f87aaf12e791a5022cf5f40798"
@@ -1601,8 +1623,10 @@
                   "owner": "HELIXSECURITY",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-SEC-PERM-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-SEC-PERM-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "90c852407e3c6474ca0648fd1feba8d6f4afa88de27c3fd6554565cac3f226ae"
@@ -2183,8 +2207,10 @@
                   "owner": "HELIXLABO-L2-055",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-LEVEL-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-LEVEL-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "e9936bc8a84ae8f92a1a15742954f157bbec6cc8957e231330c638ad6999518f"
@@ -2195,8 +2221,10 @@
                   "owner": "HELIXINTELLIGENCE-L2-010",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-INT-PROPOSAL-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-INT-PROPOSAL-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "e5e53fcde32bc14e455682bcc0b44bddf130f896f3537599524bf668d866599d"
@@ -2207,8 +2235,10 @@
                   "owner": "HELIXOS",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-OS-ASSIGN-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-OS-ASSIGN-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "8ab1db19ae3fe2575c6a23618dcd7d3915d7a1f87aaf12e791a5022cf5f40798"
@@ -2219,8 +2249,10 @@
                   "owner": "HELIXSECURITY",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-SEC-PERM-054-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-SEC-PERM-054-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "90c852407e3c6474ca0648fd1feba8d6f4afa88de27c3fd6554565cac3f226ae"
@@ -2889,8 +2921,10 @@
                   "owner": "HELIXLABO-L2-055",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-PAYLOAD-EVAL-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-PAYLOAD-EVAL-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "3b4efc8be88e20877289b7cc799d294180ecbcbbc784e16d34a5333f2f1e8c3a"
@@ -2901,8 +2935,10 @@
                   "owner": "HELIXINTELLIGENCE-L2-010",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-INT-RECEIPT-EVAL-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-INT-RECEIPT-EVAL-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "982f514c419545d0026d19a470fb94efa64955895e9b36987da9dfbfe91d47ff"
@@ -2913,8 +2949,10 @@
                   "owner": "HELIXLABO-L2-054",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-SEND-PAYLOAD-054-EVAL-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-SEND-PAYLOAD-054-EVAL-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "8b442ab9068cc0be64a8bb1609d2a4f8891e39e35006ef30414033f151c13f02"
@@ -3401,8 +3439,10 @@
                   "owner": "HELIXLABO-L2-055",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-PAYLOAD-UNASSESSED-18",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-PAYLOAD-UNASSESSED-18"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "dc116f9fa28aa2193b94f53d948638d6be732740076b6fbcf006fcd92fd40484"
@@ -3413,8 +3453,10 @@
                   "owner": "HELIXINTELLIGENCE-L2-010",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-INT-RECEIPT-UNASSESSED-18",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-INT-RECEIPT-UNASSESSED-18"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "9fd405989e146e48f23b706560e9687506c44d878e72cd25e238c756bad57ccb"
@@ -3425,8 +3467,10 @@
                   "owner": "HELIXLABO-L2-054",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-SEND-PAYLOAD-054-UNASSESSED-18",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-SEND-PAYLOAD-054-UNASSESSED-18"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "3cc04c19653e453055c76d71b71dd4741a22f1d23d0f495305bafec34911bc46"
@@ -3938,8 +3982,10 @@
                   "owner": "HELIXLABO-L2-055",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-PAYLOAD-PARTIAL-DOCS",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-PAYLOAD-PARTIAL-DOCS"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "797bc7250c8f77ab85864741b1d61cdf5d6e9dd19befdb6071ab605adc04c843"
@@ -3950,8 +3996,10 @@
                   "owner": "HELIXLABO-L2-055",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-PAYLOAD-PARTIAL-TESTS",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-PAYLOAD-PARTIAL-TESTS"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "66bb5439982096c595cab277824bd7486d3d9755f6bf4dc83b10c713e29d177d"
@@ -3962,8 +4010,10 @@
                   "owner": "HELIXINTELLIGENCE-L2-010",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-INT-PARTIAL-RECEIPT",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-INT-PARTIAL-RECEIPT"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "f22ca4d249e13523222bed3ce210d453d22796a78a74de24e78f0a77d7486c5a"
@@ -3974,8 +4024,10 @@
                   "owner": "HELIXLABO-L2-054",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-SEND-PAYLOAD-054-PARTIAL-DOCS",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-SEND-PAYLOAD-054-PARTIAL-DOCS"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "41ab11fbdd9f13f5e448b5ca7e2a2321bcf07aa42ac121bc3991ef4529b1183c"
@@ -3986,8 +4038,10 @@
                   "owner": "HELIXLABO-L2-054",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-SEND-PAYLOAD-054-PARTIAL-TESTS",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-SEND-PAYLOAD-054-PARTIAL-TESTS"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "b984072b52b07d3c88a6337e2ece4501b06adfa1c63a159a4eacf7d7d33d485d"
@@ -4417,7 +4471,10 @@
               "tag": "absent"
             },
             "return_to": {
-              "tag": "absent"
+              "tag": "provided",
+              "value": [
+                "INTELLIGENCE connector owner"
+              ]
             },
             "received_scope": {
               "tag": "provided",
@@ -4513,8 +4570,10 @@
                   "owner": "HELIXLABO-L2-055",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-PAYLOAD-MISMATCH-22",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-PAYLOAD-MISMATCH-22"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "550add7aa7f3f67ae7a8b6c5c122371fea89d744cf9fe9d40d50262b526d64a1"
@@ -4525,8 +4584,10 @@
                   "owner": "HELIXINTELLIGENCE-L2-010",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-INT-EXPECTED-CONTEXT-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-INT-EXPECTED-CONTEXT-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "437b1390e1e923c1b4d232a4282bbdd98a280380aea93a793ab1c3dc2ec22c5f"
@@ -4537,8 +4598,10 @@
                   "owner": "HELIXINTELLIGENCE-L2-010",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-INT-MISMATCH-RECEIPT-22",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-INT-MISMATCH-RECEIPT-22"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "ef5c613e872f797b6bdc7f1ec16f3f5c30f44fc7aca61f5d05834ba4afc2b347"
@@ -4549,8 +4612,10 @@
                   "owner": "HELIXLABO-L2-054",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-SEND-PAYLOAD-054-MISMATCH-22",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-SEND-PAYLOAD-054-MISMATCH-22"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "3b7e8f0a5553cafa3bfac4c397f441eac9df84088b10b845e3cfbc93a3c154c6"
@@ -4802,10 +4867,10 @@
                     "value": "repo-docs"
                   },
                   "task_class": {
-                    "tag": "explicit_null"
+                    "tag": "absent"
                   },
                   "model_class": {
-                    "tag": "explicit_null"
+                    "tag": "absent"
                   }
                 }
               }
@@ -4981,7 +5046,11 @@
               "tag": "absent"
             },
             "return_to": {
-              "tag": "absent"
+              "tag": "provided",
+              "value": [
+                "LABO-055 level owner",
+                "INTELLIGENCE connector owner"
+              ]
             },
             "received_scope": {
               "tag": "provided",
@@ -5020,8 +5089,10 @@
                   "owner": "HELIXLABO-L2-055",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-PAYLOAD-UNASSESSED-18",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-PAYLOAD-UNASSESSED-18"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "dc116f9fa28aa2193b94f53d948638d6be732740076b6fbcf006fcd92fd40484"
@@ -5032,8 +5103,10 @@
                   "owner": "HELIXINTELLIGENCE-L2-010",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-INT-RECEIPT-UNASSESSED-18",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-INT-RECEIPT-UNASSESSED-18"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "9fd405989e146e48f23b706560e9687506c44d878e72cd25e238c756bad57ccb"
@@ -5044,8 +5117,10 @@
                   "owner": "HELIXLABO-L2-054",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-SEND-PAYLOAD-054-UNASSESSED-18",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-SEND-PAYLOAD-054-UNASSESSED-18"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "3cc04c19653e453055c76d71b71dd4741a22f1d23d0f495305bafec34911bc46"
@@ -5620,8 +5695,10 @@
                   "owner": "HELIXLABO-L2-055",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-PAYLOAD-EVAL-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-PAYLOAD-EVAL-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "3b4efc8be88e20877289b7cc799d294180ecbcbbc784e16d34a5333f2f1e8c3a"
@@ -5632,8 +5709,10 @@
                   "owner": "HELIXINTELLIGENCE-L2-010",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-INT-RECEIPT-EVAL-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-INT-RECEIPT-EVAL-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "982f514c419545d0026d19a470fb94efa64955895e9b36987da9dfbfe91d47ff"
@@ -5644,8 +5723,10 @@
                   "owner": "HELIXLABO-L2-054",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-SEND-PAYLOAD-054-EVAL-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-SEND-PAYLOAD-054-EVAL-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "8b442ab9068cc0be64a8bb1609d2a4f8891e39e35006ef30414033f151c13f02"
@@ -6224,8 +6305,10 @@
                   "owner": "HELIXLABO-L2-055",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-PAYLOAD-EVAL-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-PAYLOAD-EVAL-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "3b4efc8be88e20877289b7cc799d294180ecbcbbc784e16d34a5333f2f1e8c3a"
@@ -6236,8 +6319,10 @@
                   "owner": "HELIXINTELLIGENCE-L2-010",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-INT-RECEIPT-EVAL-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-INT-RECEIPT-EVAL-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "982f514c419545d0026d19a470fb94efa64955895e9b36987da9dfbfe91d47ff"
@@ -6248,8 +6333,10 @@
                   "owner": "HELIXLABO-L2-054",
                   "scope_parent": "HELIXLABO-L2-054",
                   "body_locator": {
-                    "source_ref_id": "SYNTH-LABO-SEND-PAYLOAD-054-EVAL-17",
-                    "node_path": "/"
+                    "source_ref_id": {
+                      "value": "SYNTH-LABO-SEND-PAYLOAD-054-EVAL-17"
+                    },
+                    "node_path": "packet-root"
                   },
                   "qualification_state": "unknown",
                   "raw_sha256": "8b442ab9068cc0be64a8bb1609d2a4f8891e39e35006ef30414033f151c13f02"
