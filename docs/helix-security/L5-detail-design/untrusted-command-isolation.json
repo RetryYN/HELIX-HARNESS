@@ -1,0 +1,1030 @@
+{
+  "parent": "HELIXSECURITY-L2-002",
+  "status": "draft_detail_logical_contracts_and_synthetic_vectors_pending_independent_review",
+  "source_main": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "boundary": "002のF01/N01だけ。検出Bot必須/完全検出率/実authority設定・実enforcer・新承認/全SECURITY成立を生成しない。"
+  },
+  "parent_pair_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "61a4788d9ec6e17fb6e9a984e992936325e0e4528294b1cd7df103828880c139"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/untrusted-command-isolation.json",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "37d117364c870c5bd8a3c0f8c324890affbd7f6f3b66fa64a19578fde26f0d87"
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/untrusted-command-isolation.json",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "2c6f2676af71b7cd28d1a5d103c9e38cc18eee309d967ff3add5b72152cd16eb"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/external-input-trust-boundary.json",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "9e1a4fd0f331cee16f120ba5ac99272deaa915f2bb20f456bae2077cd3ac91b3"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/project-scope-isolation.json",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "f8230cd5cfa1911e0209294d4ba78fbc45adb3e7ebdf25eb67dd3ee1634d18eb"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/credential-value-boundary.json",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "2174775ec98f96b4bb4d6bb0a3187311d8d98a45bebb48823577ef0a6e52d4b6"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/network-egress-boundary.json",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "e57359a19c4d3b5c9b8f8e3540185aca33ee607bfbdc3f4f7682349ae5f25efe"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/worker-control-enforcement.json",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "85473251be87bfdcc15899fd63398dae616cde7a792a01a83b8addde6018d632"
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/operation-authority-reuse.json",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "b7ccddc646d070ab2dd7f82feac699a154e3d76cdc9131d8fbdf7b64e4a91086"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "revision": "legacy-generation-2026-09-14",
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "revision": "legacy-generation-2026-09-14",
+      "sha256": "d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "8b36c1ae81775f85df51dc0ac84806a59a40977b",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "selected_line_quotes": [
+        {
+          "line": 186,
+          "text": "| HR-NFR-P8-02 | HNFR-P8 / HBR-P8 | prompt injection / tool injection / data exfiltration 誘導を検出・分類し、外部データ由来の命令を隔離、redaction、human review、deny のいずれかに送る | HAC-N8-02a / HAC-N8-02b |",
+          "utf8_sha256": "4a75b4dc8718d0c5d2ee4d5b53966ce820f8913efaf4ed544b9cf17265eeb199"
+        },
+        {
+          "line": 267,
+          "text": "| HAC-P8-04a | Web/docs/OSS/issue/PR/comment など外部 text を取り込む | security filter が入力を解析 | raw content、source metadata、trusted extraction、model instruction を別 field に分離する |",
+          "utf8_sha256": "3e3090502079bdfed7f356b25298ac477489f0464b14dcd88fd7ff9002207389"
+        },
+        {
+          "line": 268,
+          "text": "| HAC-P8-04b | 外部 text に命令・secret 要求・tool 実行誘導が含まれる | agent が利用しようとする | instruction として採用せず、引用/要約対象または threat finding として扱う |",
+          "utf8_sha256": "20cb7ac273c938080ec02087505a12fcf7ffbb9cde3a84cd254e4dc2e986d2a2"
+        },
+        {
+          "line": 297,
+          "text": "| HAC-N8-02a | prompt injection pattern または data exfiltration 誘導がある | filter policy を評価 | threat class、source、matched rule、decision、redacted span が audit に残る |",
+          "utf8_sha256": "d652629a4db952c4d7aa37bdc12b7d85e252a4f7244c8665971c4b0ee92fb42a"
+        },
+        {
+          "line": 298,
+          "text": "| HAC-N8-02b | filter が high-risk と判定する | downstream tool call を生成 | deny または human review に止め、外部データが tool args / system prompt へ直結しない |",
+          "utf8_sha256": "57dfd152b023e6981a256f0f60c219aad8f206e05ba65375fbf5e5fa3493b2a1"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "外部raw/source metadataとinstructionの分離、外部dataを命令やtool実行へ直結しない。原source・判断と不足を個別に追跡する。",
+      "change": "旧filter/runtime/DBを移植せず、採択002の命令様data非実行と検出/authority遮断の分離へ意味再導出。検出一致/不在/完全検出宣言をoperation許可へしない。",
+      "reason": "002の固定F01/N01を基本設計と対検証へ降ろす。実permission変更・新しい人間approve・検出Bot必須を生成しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B8BBC1D5A8C91E746405",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "file_sha256": "d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56",
+      "selected_line_quotes": [
+        {
+          "line": 145,
+          "text": "- **security filter**: HB-P8 は external text を raw / metadata / instruction に分離し、prompt injection,",
+          "utf8_sha256": "9d5006b76875545b4ef446f3a5f1bb1f09c7a7094e043c2f8ee623b5b17b6fcc"
+        },
+        {
+          "line": 146,
+          "text": "  tool injection, exfiltration, excessive agency を audit event へ送る。",
+          "utf8_sha256": "43e0a9255fd3acf4e93c09ea66a5aea6c4ea7f91d8eaf432a34300cc1cd22667"
+        }
+      ],
+      "reuse_class": "semantic_rederivation",
+      "preserve": "外部raw/source metadataとinstructionの分離、外部dataを命令やtool実行へ直結しない。原source・判断と不足を個別に追跡する。",
+      "change": "旧filter/runtime/DBを移植せず、採択002の命令様data非実行と検出/authority遮断の分離へ意味再導出。検出一致/不在/完全検出宣言をoperation許可へしない。",
+      "reason": "002の固定F01/N01を基本設計と対検証へ降ろす。実permission変更・新しい人間approve・検出Bot必須を生成しない。"
+    }
+  ],
+  "source_authority_and_consumer_boundary": {
+    "approval_record": {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_id": "HDEC-SECURITY-PREREQUISITE-L3L10-2026-10-12",
+      "reviewed_content_head": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "decision_record_revision": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+      "decision_record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+      "main_admission": true,
+      "scope": "SEC001–008/015/016/024及009対象35組、対象exact本文revision。実認可・実環境成立を含まない。"
+    },
+    "upstream_pair": {
+      "L2": "HELIXSECURITY-L2-002",
+      "L11": "HELIXSECURITY-L2-002の1.0受入行",
+      "meaning": "L2の未信頼data＋読むWorker/Tool scopeから、命令様dataをTool/instruction/policy/credential送信へ直結させず、完全検出率を約束しない。"
+    },
+    "supply_and_consumers": [
+      {
+        "member": "source.source_ref.identity/revision/scope/owner + source.raw_text",
+        "supplied_by": "SECURITY-001の未信頼source/original bytesのlogical reference。L9内のsynthetic-source-owner等は合成文字列。",
+        "consumer": "この比較関数だけがsource originを起点にgraph reachabilityを追う。source label/digest/owner stringから資格を判定しない。",
+        "qualification": "実source・issuer・owner資格は未成立。"
+      },
+      {
+        "member": "worker_scope.state/project_scope",
+        "supplied_by": "L9のworker_scope_stateと同case source_ref.scopeの合成scope文脈。実OS assignment/Worker env bindingではない。",
+        "consumer": "path比較はunknownをauthority absenceへ変換せず局所unresolvedに保つ。実assignmentと環境の正式owner bindingはOS/Worker/SECURITY-007へ戻す。",
+        "qualification": "実scopeの資格・適用は未成立。"
+      },
+      {
+        "member": "worker/project/environment identity",
+        "supplied_by": "SECURITY-003 L4がOS assignment、INFRA実環境、CONNECT明示接続の独立owner資料を指す。",
+        "consumer": "002の局所比較はWorker scope unknownを保持する。project/tenant/environmentの正式bindingはSECURITY-003、OS、INFRA、CONNECTへ戻す。",
+        "qualification": "L9 scope_contextはsynthetic値で実identity bindingではない。"
+      },
+      {
+        "member": "graph.source_node/node_roles/edges/graph_evidence_state",
+        "supplied_by": "L4が要求する独立data-flow ownerのnode/role/edge graph。L9の固定graphは合成論理fixture。",
+        "consumer": "F01の到達性比較がgraphに現れる5つのauthority-control role sinkを列挙する。source role labelは信頼度を示さない。",
+        "qualification": "owner-qualified graphとauthority-slot/consumer対応は未成立。"
+      },
+      {
+        "member": "detector.state/observation + detector-use claims",
+        "supplied_by": "補助detector観測と評価claimを別のinput packetとして保持。L9のsynthetic valuesのみ。",
+        "consumer": "N01はdetector reportをpath resultから分離し、検出/no_match/不在をauthority到達の代用にしない。",
+        "qualification": "実detector/実boundary観測は未成立。"
+      },
+      {
+        "member": "authority sinkと対象operation",
+        "supplied_by": "source fixtureのgraph role label。L4はTool authority args、system instruction、privileged operation、policy update、credential egressを列挙する。",
+        "consumer": "既存authority/scopeはSECURITY-008と各sink owner、credential egressはSECURITY-006、Worker制約/環境はSECURITY-007、OS assignmentはOSの責務に残す。",
+        "qualification": "実sink/consumer identityとenforcement receiptは未成立。"
+      },
+      {
+        "member": "credential value and egress",
+        "supplied_by": "SECURITY-005 credential value boundaryとSECURITY-006 network egress boundary。",
+        "consumer": "instruction-like dataがcredential送信authorityへ直結するpathを検出する。実secret判定と実送信tupleは各owner契約で照合する。",
+        "qualification": "合成sink roleからsecret/egress enforcementを主張しない。"
+      },
+      {
+        "member": "operation authority and Worker constraints",
+        "supplied_by": "SECURITY-007 Worker control enforcementおよびSECURITY-008 operation authority reuse。",
+        "consumer": "Tool args/privileged operation/scope expansionをauthority sinkとして分類し、実operationの既決authority/Worker enforcerへ戻す。",
+        "qualification": "本pairがpermission/assignment/controlを発行しない。"
+      }
+    ],
+    "return_route": "L4のdiagnostic ownerはdata-flow-owner。L5もこの出力labelを保持する。source/graph/scope/consumer資料は対象となる返却候補を示すが、資格付きowner identityやauthorityを生成しない。"
+  },
+  "remaining": [
+    "正式source/graph/Worker scope/authority slot/consumer ownerのexact bindingと実資格、実enforcer/receiptは未成立。",
+    "正式wire schema/codec、全不正raw shapeのdecoder contract、physical graph completeness/cycle/未知roleのoracleは未成立。",
+    "実detector・authority遮断の独立観測、実装前Red/Green、実L9/L10、PO実物L11受入は未成立。",
+    "全92親/430対の設計完成・実装準備・全scopeの最終意味閉包は未成立。"
+  ],
+  "document_id": "HELIXSECURITY-L5-002",
+  "layer": "L5",
+  "pair": "L8",
+  "paired_document": "docs/helix-security/L8-unit-verification/untrusted-command-isolation.json",
+  "fixture_source_mapping": {
+    "raw_given_projection": "L9 givenのsource_kind/source_ref/data_text/data_text_utf8_sha256/inputは関数引数へ具体投影する。instruction_family/content_fixture/attempted_worker_scopeはcase annotationとしてraw packet refとL8 unconsumed_case_contextに保持し、動作可能なTool/scope指示として使わない。scope expansionの期待はgraphのprivileged_operation role到達性で判定し、attempted_worker_scopeを実適用しない。",
+    "scope_expansion_cases": "SEC002-DATA-SCOPE-EXPANSIONとSEC002-UNMATCHED-SCOPE-EXPANSIONのraw attempted_worker_scope値をL8 case contextに保持する。"
+  },
+  "requirement_trace": [
+    {
+      "requirement_ref": "HELIXSECURITY-L3-002-F01",
+      "oracle_ref": "HELIXSECURITY-L10-002-F01",
+      "L4_contract_ref": "HELIXSECURITY-L4-002-F01"
+    },
+    {
+      "requirement_ref": "HELIXSECURITY-L3-002-N01",
+      "oracle_ref": "HELIXSECURITY-L10-002-N01",
+      "L4_contract_ref": "HELIXSECURITY-L4-002-N01"
+    }
+  ],
+  "approved_objects": {
+    "requirements": {
+      "HELIXSECURITY-L3-002-F01": {
+        "source_path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "object_canonical_sha256": "37b4a4e59cb8db0d5262f8ab7c405bb2c0e282c0fcd29e32555a079fad33c9db",
+        "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "requirement": {
+          "id": "HELIXSECURITY-L3-002-F01",
+          "parent": "HELIXSECURITY-L2-002",
+          "title": "命令様dataの非実行",
+          "obligation": "未信頼dataに前指示無視/AGENTS書換え/repository削除/memory保存/credential送信のような記述があってもdataのまま扱い、Tool args/system instruction/権限付きoperationへ直接連結しない。",
+          "oracle_ref": "HELIXSECURITY-L10-002-F01"
+        }
+      },
+      "HELIXSECURITY-L3-002-N01": {
+        "source_path": "docs/helix-security/L3-requirements/nfr-grade.json",
+        "object_canonical_sha256": "b8aedd46d745204dbd5c12d1fd74a137c8ac478cb182d0e49a5d9fed0cba1760",
+        "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "requirement": {
+          "id": "HELIXSECURITY-L3-002-N01",
+          "parent": "HELIXSECURITY-L2-002",
+          "title": "検出とauthority遮断の別判定",
+          "obligation": "完全なInjection検出率を保証せず、検出Bot不在だけで境界不成立とはしない。未見の言い換えでも未信頼dataからauthorityへ直接達する経路を作らない。旧検出/分類/監査観点を補助として保持する。",
+          "oracle_ref": "HELIXSECURITY-L10-002-N01"
+        }
+      }
+    },
+    "oracles": {
+      "HELIXSECURITY-L10-002-F01": {
+        "source_path": "docs/helix-security/L10-verification/functional-verification.json",
+        "object_canonical_sha256": "c2e4242fb8b757ebf93b970fe9a9215a3ce3fd8504ab2c39fbcb06164841cdc2",
+        "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "oracle": {
+          "id": "HELIXSECURITY-L10-002-F01",
+          "parent": "HELIXSECURITY-L2-002",
+          "title": "命令様dataの非実行",
+          "requirement_ref": "HELIXSECURITY-L3-002-F01",
+          "positive_input": "各命令様記述を文書/Issue/PR/Web/MCP/Tool responseへ個別に混ぜる。",
+          "expected_observation": "内容を読めても、それを根拠とする権限付き呼出しやinstruction変更は起こらない。",
+          "negative_input": "本文の命令をTool argsへ転記、source判定だけで信頼、dataで許可scope拡張。",
+          "failure_observation": "直結を拒否し、境界不明の該当操作を止めてdata flow ownerへ返す。",
+          "execution_state": "not_executed"
+        }
+      },
+      "HELIXSECURITY-L10-002-N01": {
+        "source_path": "docs/helix-security/L10-verification/nfr-verification.json",
+        "object_canonical_sha256": "ec5859445a998e921392959e2ec1c984384338ec17e8645879db39ff2e26a446",
+        "approved_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+        "oracle": {
+          "id": "HELIXSECURITY-L10-002-N01",
+          "parent": "HELIXSECURITY-L2-002",
+          "title": "検出とauthority遮断の別判定",
+          "requirement_ref": "HELIXSECURITY-L3-002-N01",
+          "positive_input": "既知例と作成側に伏せた言い換え、検出器なしの境界を比較する。",
+          "expected_observation": "検出可否と直接authority経路の遮断を別に示す。",
+          "negative_input": "検出器なしを成功/失敗の唯一根拠、未検出ならtool実行許可、完全検出宣言。",
+          "failure_observation": "当該境界の未確認を保持し、検出結果で権限不足を補わない。",
+          "execution_state": "not_executed"
+        }
+      }
+    }
+  },
+  "logical_value_representation": {
+    "records": "closed_recordの値は宣言memberだけを持つJSON object。requiredはmemberが存在することを示し、record自体を別の値wrapperで包まない。",
+    "scalar_and_enum": "String、Boolean、Sha256Text、JsonPointer、SourceLocatorとenum_aliasは直接のJSON scalar値。{value: ...} wrapperを暗黙に要求しない。",
+    "collections": "List aliasは要素型TのJSON array。Map aliasはkeyごとにTの直接値を持つJSON object。GraphEdgeはobjectで、L9のedge二要素arrayはL8の明示bindingにより{from,to}へ投影する。",
+    "presence": "このpairの論理関数引数は全field必須。rawにないmemberを既定値で埋めて必須値へ変換しない。固定L9 packetが投影対象fieldを供給する。scopeとsource qualificationは合成・未資格のまま。",
+    "raw_boundary": "L9 raw fixture本文とopaque UTF-8 hashは別fieldで保持する。decode/coercion/normalization/classification/trusted extraction/codecの振舞いは定義しない。"
+  },
+  "type_contract": {
+    "types": [
+      {
+        "name": "SourceRef",
+        "kind": "closed_record",
+        "fields": [
+          {
+            "name": "identity",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "revision",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "scope",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "owner",
+            "type": "String",
+            "presence": "required"
+          }
+        ]
+      },
+      {
+        "name": "UntrustedSourceData",
+        "kind": "closed_record",
+        "fields": [
+          {
+            "name": "source_kind",
+            "type": "SourceKind",
+            "presence": "required"
+          },
+          {
+            "name": "source_ref",
+            "type": "SourceRef",
+            "presence": "required"
+          },
+          {
+            "name": "raw_text",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "raw_text_utf8_sha256",
+            "type": "Sha256Text",
+            "presence": "required"
+          }
+        ]
+      },
+      {
+        "name": "WorkerScopeEvidence",
+        "kind": "closed_record",
+        "fields": [
+          {
+            "name": "state",
+            "type": "EvidenceState",
+            "presence": "required"
+          },
+          {
+            "name": "project_scope",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "project_scope_from",
+            "type": "SourceLocator",
+            "presence": "required"
+          }
+        ]
+      },
+      {
+        "name": "GraphEdge",
+        "kind": "closed_record",
+        "fields": [
+          {
+            "name": "from",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "to",
+            "type": "String",
+            "presence": "required"
+          }
+        ]
+      },
+      {
+        "name": "DataFlowGraph",
+        "kind": "closed_record",
+        "fields": [
+          {
+            "name": "source_node",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "node_roles",
+            "type": "NodeRoleMap",
+            "presence": "required"
+          },
+          {
+            "name": "edges",
+            "type": "GraphEdgeList",
+            "presence": "required"
+          },
+          {
+            "name": "evidence_state",
+            "type": "EvidenceState",
+            "presence": "required"
+          }
+        ]
+      },
+      {
+        "name": "DetectorReport",
+        "kind": "closed_record",
+        "fields": [
+          {
+            "name": "state",
+            "type": "DetectorState",
+            "presence": "required"
+          },
+          {
+            "name": "observation",
+            "type": "DetectorObservation",
+            "presence": "required"
+          }
+        ]
+      },
+      {
+        "name": "DetectorUseClaims",
+        "kind": "closed_record",
+        "fields": [
+          {
+            "name": "used_as_authority",
+            "type": "Boolean",
+            "presence": "required"
+          },
+          {
+            "name": "absence_as_sole_boundary_decision",
+            "type": "Boolean",
+            "presence": "required"
+          },
+          {
+            "name": "complete_detection_claim",
+            "type": "Boolean",
+            "presence": "required"
+          }
+        ]
+      },
+      {
+        "name": "Finding",
+        "kind": "closed_record",
+        "fields": [
+          {
+            "name": "code",
+            "type": "FindingCode",
+            "presence": "required"
+          },
+          {
+            "name": "pointer",
+            "type": "JsonPointer",
+            "presence": "required"
+          },
+          {
+            "name": "return_owner",
+            "type": "ReturnOwner",
+            "presence": "required"
+          }
+        ]
+      },
+      {
+        "name": "AuthorityPathAssessment",
+        "kind": "closed_record",
+        "fields": [
+          {
+            "name": "source_kind",
+            "type": "SourceKind",
+            "presence": "required"
+          },
+          {
+            "name": "source_ref",
+            "type": "SourceRef",
+            "presence": "required"
+          },
+          {
+            "name": "source_text_sha256",
+            "type": "Sha256Text",
+            "presence": "required"
+          },
+          {
+            "name": "scope_context",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "condition",
+            "type": "BoundaryCondition",
+            "presence": "required"
+          },
+          {
+            "name": "authority_reachability",
+            "type": "AuthorityReachability",
+            "presence": "required"
+          },
+          {
+            "name": "reachable_authority_nodes",
+            "type": "StringList",
+            "presence": "required"
+          },
+          {
+            "name": "findings",
+            "type": "FindingList",
+            "presence": "required"
+          },
+          {
+            "name": "source_data_retained",
+            "type": "Boolean",
+            "presence": "required"
+          },
+          {
+            "name": "operation_effect",
+            "type": "OperationEffect",
+            "presence": "required"
+          }
+        ]
+      },
+      {
+        "name": "BoundaryAssessment",
+        "kind": "closed_record",
+        "fields": [
+          {
+            "name": "source_kind",
+            "type": "SourceKind",
+            "presence": "required"
+          },
+          {
+            "name": "source_ref",
+            "type": "SourceRef",
+            "presence": "required"
+          },
+          {
+            "name": "source_text_sha256",
+            "type": "Sha256Text",
+            "presence": "required"
+          },
+          {
+            "name": "scope_context",
+            "type": "String",
+            "presence": "required"
+          },
+          {
+            "name": "condition",
+            "type": "BoundaryCondition",
+            "presence": "required"
+          },
+          {
+            "name": "authority_reachability",
+            "type": "AuthorityReachability",
+            "presence": "required"
+          },
+          {
+            "name": "reachable_authority_nodes",
+            "type": "StringList",
+            "presence": "required"
+          },
+          {
+            "name": "detector_report",
+            "type": "DetectorReport",
+            "presence": "required"
+          },
+          {
+            "name": "findings",
+            "type": "FindingList",
+            "presence": "required"
+          },
+          {
+            "name": "source_data_retained",
+            "type": "Boolean",
+            "presence": "required"
+          },
+          {
+            "name": "actual_authority_enforced",
+            "type": "Boolean",
+            "presence": "required"
+          },
+          {
+            "name": "actual_instruction_changed",
+            "type": "Boolean",
+            "presence": "required"
+          },
+          {
+            "name": "actual_tool_invoked",
+            "type": "Boolean",
+            "presence": "required"
+          },
+          {
+            "name": "actual_scope_expanded",
+            "type": "Boolean",
+            "presence": "required"
+          },
+          {
+            "name": "operation_effect",
+            "type": "OperationEffect",
+            "presence": "required"
+          }
+        ]
+      },
+      {
+        "name": "SourceKind",
+        "kind": "enum_alias",
+        "values": [
+          "document",
+          "issue",
+          "pr",
+          "web",
+          "mcp_response",
+          "tool_response"
+        ]
+      },
+      {
+        "name": "EvidenceState",
+        "kind": "enum_alias",
+        "values": [
+          "current",
+          "unknown"
+        ]
+      },
+      {
+        "name": "NodeRole",
+        "kind": "enum_alias",
+        "values": [
+          "untrusted_data",
+          "trusted_data",
+          "official_source",
+          "data_only",
+          "system_instruction",
+          "tool_control_args",
+          "privileged_operation",
+          "policy_update",
+          "credential_egress"
+        ]
+      },
+      {
+        "name": "DetectorState",
+        "kind": "enum_alias",
+        "values": [
+          "absent",
+          "present"
+        ]
+      },
+      {
+        "name": "DetectorObservation",
+        "kind": "enum_alias",
+        "values": [
+          "not_observed",
+          "no_match",
+          "matched"
+        ]
+      },
+      {
+        "name": "BoundaryCondition",
+        "kind": "enum_alias",
+        "values": [
+          "boundary_corresponding",
+          "boundary_violation",
+          "boundary_unresolved"
+        ]
+      },
+      {
+        "name": "AuthorityReachability",
+        "kind": "enum_alias",
+        "values": [
+          "absent",
+          "present",
+          "unknown"
+        ]
+      },
+      {
+        "name": "OperationEffect",
+        "kind": "enum_alias",
+        "values": [
+          "none"
+        ]
+      },
+      {
+        "name": "FindingCode",
+        "kind": "enum_alias",
+        "values": [
+          "untrusted_authority_path",
+          "boundary_evidence_unresolved",
+          "worker_scope_unresolved",
+          "detector_used_as_authority",
+          "detector_absence_as_boundary_decision",
+          "complete_detection_claim"
+        ]
+      },
+      {
+        "name": "ReturnOwner",
+        "kind": "enum_alias",
+        "values": [
+          "data-flow-owner"
+        ]
+      },
+      {
+        "name": "Boolean",
+        "kind": "scalar_alias",
+        "json_kind": "boolean"
+      },
+      {
+        "name": "String",
+        "kind": "scalar_alias",
+        "json_kind": "string"
+      },
+      {
+        "name": "Sha256Text",
+        "kind": "scalar_alias",
+        "json_kind": "string",
+        "constraint": "小文字16進64文字。fixtureのopaque参照であり、信頼性の根拠にしない。"
+      },
+      {
+        "name": "JsonPointer",
+        "kind": "scalar_alias",
+        "json_kind": "string"
+      },
+      {
+        "name": "SourceLocator",
+        "kind": "scalar_alias",
+        "json_kind": "string"
+      },
+      {
+        "name": "NodeRoleMap",
+        "kind": "map_alias",
+        "json_kind": "object",
+        "key_type": "String",
+        "value_type": "NodeRole"
+      },
+      {
+        "name": "StringList",
+        "kind": "list_alias",
+        "json_kind": "array",
+        "item_type": "String"
+      },
+      {
+        "name": "GraphEdgeList",
+        "kind": "list_alias",
+        "json_kind": "array",
+        "item_type": "GraphEdge"
+      },
+      {
+        "name": "FindingList",
+        "kind": "list_alias",
+        "json_kind": "array",
+        "item_type": "Finding"
+      }
+    ],
+    "input_domain_boundary": "論理型が覆うのは固定synthetic L9 sourceと比較field。正式JSON Schema/wire format、owner qualification、runtime graph schema、authority receiptではない。"
+  },
+  "functions": [
+    {
+      "id": "HELIXSECURITY-L5-002-F01",
+      "symbol": "compare_authority_path",
+      "signature": "compare_authority_path(source: UntrustedSourceData, worker_scope: WorkerScopeEvidence, graph: DataFlowGraph) -> AuthorityPathAssessment",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-002-F01"
+      ],
+      "l4_ref": "HELIXSECURITY-L4-002-F01",
+      "l9_oracle_ref": "HELIXSECURITY-L9-002-F01",
+      "effect": "none",
+      "reads": [
+        "source.source_kind",
+        "source.source_ref.identity",
+        "source.source_ref.revision",
+        "source.source_ref.scope",
+        "source.source_ref.owner",
+        "source.raw_text",
+        "source.raw_text_utf8_sha256",
+        "worker_scope.state",
+        "worker_scope.project_scope",
+        "worker_scope.project_scope_from",
+        "graph.source_node",
+        "graph.node_roles",
+        "graph.edges",
+        "graph.evidence_state"
+      ],
+      "returns": [
+        {
+          "name": "source_kind",
+          "type": "SourceKind"
+        },
+        {
+          "name": "source_ref",
+          "type": "SourceRef"
+        },
+        {
+          "name": "source_text_sha256",
+          "type": "Sha256Text"
+        },
+        {
+          "name": "scope_context",
+          "type": "String"
+        },
+        {
+          "name": "condition",
+          "type": "BoundaryCondition"
+        },
+        {
+          "name": "authority_reachability",
+          "type": "AuthorityReachability"
+        },
+        {
+          "name": "reachable_authority_nodes",
+          "type": "StringList"
+        },
+        {
+          "name": "findings",
+          "type": "FindingList"
+        },
+        {
+          "name": "source_data_retained",
+          "type": "Boolean"
+        },
+        {
+          "name": "operation_effect",
+          "type": "OperationEffect"
+        }
+      ],
+      "preconditions": [
+        "各引数は上記logical_value_representationに従う完全closed record。source identity/revision/scope/ownerは合成原値で資格を意味しない。",
+        "source.source_ref.scopeはこのL9 fixtureのproject-scope文脈であり、worker_scope.project_scopeへ投影する根拠はgiven.source_ref.scopeそのもの。独立した実OS assignmentを示さない。source_kind/ref/raw_text/hashはcaseとの対応を保持するために使い、owner資格やauthorityを判定しない。"
+      ],
+      "algorithm": [
+        "graph.evidence_stateまたはworker_scope.stateがcurrentでなければsourceからgraphを走査せずreachability=unknown、condition=boundary_unresolvedとする。各stateがunknownなら対応findingを1件ずつ作る。",
+        "両stateがcurrentならgraph.source_nodeを開始点として、graph.edgesの有向到達閉包を求める。node_roles[source_node]がuntrusted_data/trusted_data/official_sourceのどれでも開始点は変えず、source由来として追跡する。",
+        "到達nodeのうちroleがsystem_instruction/tool_control_args/privileged_operation/policy_update/credential_egressに該当するnodeだけをreachable_authority_nodesへcodepoint順で返す。data_onlyはsinkに数えない。",
+        "sinkごとにfinding {code:untrusted_authority_path,pointer:/node_roles/<RFC6901-escaped-node>,return_owner:data-flow-owner}を作る。1つ以上ならviolation/present、0ならcorresponding/absent。",
+        "source_kind/source_ref/source_text_sha256はsource引数から原値を出力へ保持する。これらの値で資格を判定しない。scope_contextはworker_scope.project_scopeの原値を出力する。これはL9合成packetのscope文脈であり、実assignment証拠ではない。findingはcode,pointer,return_ownerのUnicode code point順に整列し、同じ全fieldの重複だけ除去する。source textは出力findingへ複写せずsource_data_retained=true、operation_effect=none。raw text hashはopaque参照としてcaseとの結び付けに保持し、再計算/信頼判定しない。"
+      ],
+      "postconditions": [
+        "出力はAuthorityPathAssessmentの全10fieldを必ず持つ。reachable_authority_nodesは重複なしの順序付き配列。",
+        "synthetic graph比較は実遮断、actual qualification、Tool非起動、設定不変の観測証拠を生成しない。"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L5-002-N01",
+      "symbol": "assess_detection_boundary",
+      "signature": "assess_detection_boundary(path: AuthorityPathAssessment, detector: DetectorReport, claims: DetectorUseClaims) -> BoundaryAssessment",
+      "requirement_refs": [
+        "HELIXSECURITY-L3-002-N01"
+      ],
+      "l4_ref": "HELIXSECURITY-L4-002-N01",
+      "l9_oracle_ref": "HELIXSECURITY-L9-002-N01",
+      "effect": "none",
+      "reads": [
+        "path.source_kind",
+        "path.source_ref.identity",
+        "path.source_ref.revision",
+        "path.source_ref.scope",
+        "path.source_ref.owner",
+        "path.source_text_sha256",
+        "path.scope_context",
+        "path.condition",
+        "path.authority_reachability",
+        "path.reachable_authority_nodes",
+        "path.findings",
+        "path.source_data_retained",
+        "path.operation_effect",
+        "detector.state",
+        "detector.observation",
+        "claims.used_as_authority",
+        "claims.absence_as_sole_boundary_decision",
+        "claims.complete_detection_claim"
+      ],
+      "returns": [
+        {
+          "name": "source_kind",
+          "type": "SourceKind"
+        },
+        {
+          "name": "source_ref",
+          "type": "SourceRef"
+        },
+        {
+          "name": "source_text_sha256",
+          "type": "Sha256Text"
+        },
+        {
+          "name": "scope_context",
+          "type": "String"
+        },
+        {
+          "name": "condition",
+          "type": "BoundaryCondition"
+        },
+        {
+          "name": "authority_reachability",
+          "type": "AuthorityReachability"
+        },
+        {
+          "name": "reachable_authority_nodes",
+          "type": "StringList"
+        },
+        {
+          "name": "detector_report",
+          "type": "DetectorReport"
+        },
+        {
+          "name": "findings",
+          "type": "FindingList"
+        },
+        {
+          "name": "source_data_retained",
+          "type": "Boolean"
+        },
+        {
+          "name": "actual_authority_enforced",
+          "type": "Boolean"
+        },
+        {
+          "name": "actual_instruction_changed",
+          "type": "Boolean"
+        },
+        {
+          "name": "actual_tool_invoked",
+          "type": "Boolean"
+        },
+        {
+          "name": "actual_scope_expanded",
+          "type": "Boolean"
+        },
+        {
+          "name": "operation_effect",
+          "type": "OperationEffect"
+        }
+      ],
+      "preconditions": [
+        "pathはF01関数の完全なAuthorityPathAssessment。L8では前段F01 callの返却値をそのまま結線する。",
+        "detectorは観測の補助recordだけで、source/graph/scopeを置換しない。claimsはdetectorの使い方に関する独立入力である。"
+      ],
+      "algorithm": [
+        "source_kind/source_ref/source_text_sha256/scope_contextはpathからそのまま引き継ぐ。detector_reportはdetector.state/observationを原値のまま返し、authority_reachabilityとreachable_authority_nodesもpathから引き継ぐ。",
+        "claimsの各trueについて、used_as_authority→detector_used_as_authority、absence_as_sole_boundary_decision→detector_absence_as_boundary_decision、complete_detection_claim→complete_detection_claimのfindingを入力field pointer付きで追加する。detectorのpresent/no_match/matched自体はfindingにしない。",
+        "conditionはpathにauthority pathまたはdetector misuseがあればboundary_violation、そうでなくpath.conditionがboundary_unresolvedならboundary_unresolved、それ以外boundary_corresponding。unknownをdetectorで埋めず、不在/no_matchもboundary failureへしない。",
+        "全findingをcode,pointer,return_owner順で並べ同一3fieldのみ重複除去。source_data_retained=true、actual_authority_enforced=false、actual_instruction_changed=false、actual_tool_invoked=false、actual_scope_expanded=false、operation_effect=noneをsynthetic proposal valueとして返す。"
+      ],
+      "postconditions": [
+        "BoundaryAssessment全15fieldを返す。source origin context/detector_reportは元入力と一致し、reachability/nodesはpath入力と一致する。",
+        "完全検出率、実authority遮断、operation許可、実source資格を主張しない。"
+      ]
+    }
+  ],
+  "diagnostic_contract": {
+    "return_owner": "data-flow-owner",
+    "meaning": "この基本pairの返却先はdata-flow-ownerへ集約する。source/scope/graphの各原ownerやauthority-control slot/consumer ownerへの個別振分け・正式bindingはL5へ残す。SECがauthorityを発行/実行しない。",
+    "locality": "不足は対象source/revision/scopeと該当操作へ限定。",
+    "sort": "code/pointer/return_ownerのUnicode scalar順、完全同値3fieldのみunique。",
+    "pointer_base": "各case given.input（実comparer input snapshot）をJSON Pointerのrootとする。authority pathは/node_roles/<escaped node id>、他causeは元field位置。出力配列にnode idをindexとして挿入しない。~は~0、/は~1へescape。"
+  },
+  "determinism": [
+    "同じ完全なlogical argumentsに対し同値の全root outputを返す純粋比較。input mutation、clock/locale/env/network/filesystem/process/Git/DB依存はない。",
+    "検出状態はpath reachabilityへ影響せず、detector-use claimsだけがN01 findingを作る。",
+    "正規wire decode、正式owner資格、実graph completeness、実consumer/enforcerはこの詳細pairの外。"
+  ],
+  "implementation_preparation": {
+    "module_role": "L4の2比較契約を論理型と純粋関数の引数/返却rootへ具体化する。製品path/module/symbolと正式wire exportは、停止条件解除後のL6関数設計/L7関数検証へ渡す。",
+    "tdd_order": [
+      "L8の全58固定入力と各関数の独立期待をreviewする。",
+      "本体実装前Redの実測/実行をこの文書から生成しない。",
+      "実装・Green・Refactor・実runtime bindingは現在の停止境界により未実施。"
+    ],
+    "entry_status": "not_ready",
+    "no_inference": "論理fixtureの静的対応は本体実装、実資格、CI、実受入、authority変更の証拠ではない。"
+  }
+}
