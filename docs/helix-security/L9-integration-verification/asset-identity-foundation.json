@@ -444,12 +444,30 @@
               "identity_derived_from_label_or_path": false
             },
             "fixture_note": "表示名/pathだけを変えた合成比較。実資産identityを主張しない。"
+          },
+          {
+            "packet_id": "PACKET-015-IDENTITY-UNKNOWN",
+            "synthetic": true,
+            "execution_state": "not_executed",
+            "asset_record": {
+              "owner": "HELIX-EXTENSION-OWNER",
+              "asset_label": "unlisted synthetic asset with unresolved identity",
+              "source": "fixture-source:extension-unknown-H",
+              "revision": "fixture-revision:extension-unknown-r1",
+              "digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+              "stable_asset_identity": "unknown",
+              "identity_resolution": "unknown",
+              "classification_reference": "unknown",
+              "content_dump_present": false
+            },
+            "fixture_note": "owner/source/revision/digestは合成値だが、安定identity解決は明示的にunknown。公開可否や実資格を示さない。"
           }
         ],
         "packet_values_ref": [
           "PACKET-015-IDENTITY-BASE",
           "PACKET-015-IDENTITY-EXTENDED",
-          "PACKET-015-IDENTITY-RENAMED-VIEW"
+          "PACKET-015-IDENTITY-RENAMED-VIEW",
+          "PACKET-015-IDENTITY-UNKNOWN"
         ],
         "condition": "六owner群と列挙外資産の各recordで、stable_asset_identityをowner/source/revision/digestおよびasset_label/pathから独立した値として照合する。改名比較ではidentityが維持されることを確認する。"
       },
@@ -458,7 +476,7 @@
         "source_ref": "HELIXSECURITY-L10-015-F01",
         "source_field": "expected_observation",
         "source_value": "安定identityとprovenance、unknownが各ownerへ辿れる。",
-        "observation": "六owner群と列挙外assetそれぞれのstable_asset_identityがowner/source/revision/digestへ結ばれる。core資産の表示名/pathを変えてもfixture identityは同じであり、そのidentity値は表示名/pathから生成されていない。実行や実owner資格は主張しない。",
+        "observation": "六owner群と列挙外assetそれぞれのstable_asset_identityがowner/source/revision/digestへ結ばれる。core資産の表示名/pathを変えてもfixture identityは同じであり、そのidentity値は表示名/pathから生成されていない。実行や実owner資格は主張しない。 identity_resolution=unknownの資産は識別成立に数えず、owner=HELIX-EXTENSION-OWNERへ不足を辿る。classification_reference=unknownは各owner recordにunknownのまま保持する。",
         "requirement_ref": "HELIXSECURITY-L3-015-F01",
         "source_packet_refs": [
           {
@@ -570,20 +588,35 @@
               "identity_derived_from_label_or_path": false
             },
             "fixture_note": "表示名/pathだけを変えた合成比較。実資産identityを主張しない。"
+          },
+          {
+            "packet_id": "PACKET-015-IDENTITY-UNKNOWN",
+            "synthetic": true,
+            "execution_state": "not_executed",
+            "asset_record": {
+              "owner": "HELIX-EXTENSION-OWNER",
+              "asset_label": "unlisted synthetic asset with unresolved identity",
+              "source": "fixture-source:extension-unknown-H",
+              "revision": "fixture-revision:extension-unknown-r1",
+              "digest": "sha256:8888888888888888888888888888888888888888888888888888888888888888",
+              "stable_asset_identity": "unknown",
+              "identity_resolution": "unknown",
+              "classification_reference": "unknown",
+              "content_dump_present": false
+            },
+            "fixture_note": "owner/source/revision/digestは合成値だが、安定identity解決は明示的にunknown。公開可否や実資格を示さない。"
           }
         ],
         "packet_values_ref": [
           "PACKET-015-IDENTITY-BASE",
           "PACKET-015-IDENTITY-EXTENDED",
-          "PACKET-015-IDENTITY-RENAMED-VIEW"
+          "PACKET-015-IDENTITY-RENAMED-VIEW",
+          "PACKET-015-IDENTITY-UNKNOWN"
         ]
       },
       "requirement_trace": [
         "HELIXSECURITY-L3-015-F01",
-        "HELIXSECURITY-L10-015-F01",
-        "PACKET-015-IDENTITY-BASE",
-        "PACKET-015-IDENTITY-EXTENDED",
-        "PACKET-015-IDENTITY-RENAMED-VIEW"
+        "HELIXSECURITY-L10-015-F01"
       ],
       "execution_state": "not_executed"
     },
@@ -692,7 +725,7 @@
         "source_field": "failure_observation",
         "source_value": "対象の不足だけをownerへ返し、後続版の未成立を保持する。",
         "expected_failure": "asset inventoryだけを根拠にWeb保護済みとする主張を不成立にする。",
-        "route": "unclassified/unknownのまま保留し、資産ownerへ不足を返す。",
+        "route": "1.0のidentity基盤は成立した状態を維持し、1.x保護・運用・利用・公開の未成立を保持する。対象の不足だけを該当ownerへ返す。",
         "requirement_ref": "HELIXSECURITY-L3-015-B01",
         "source_packet_refs": [
           {
@@ -775,8 +808,7 @@
       },
       "requirement_trace": [
         "HELIXSECURITY-L3-015-B01",
-        "HELIXSECURITY-L10-015-B01",
-        "PACKET-015-IDENTITY-BASE"
+        "HELIXSECURITY-L10-015-B01"
       ],
       "execution_state": "not_executed"
     },
@@ -885,7 +917,7 @@
         "source_field": "failure_observation",
         "source_value": "対象の不足だけをownerへ返し、後続版の未成立を保持する。",
         "expected_failure": "identity情報だけを根拠に公開を許可する主張を不成立にする。",
-        "route": "unclassified/unknownのまま保留し、資産ownerへ不足を返す。",
+        "route": "1.0のidentity基盤は成立した状態を維持し、1.x保護・運用・利用・公開の未成立を保持する。対象の不足だけを該当ownerへ返す。",
         "requirement_ref": "HELIXSECURITY-L3-015-B01",
         "source_packet_refs": [
           {
@@ -968,8 +1000,7 @@
       },
       "requirement_trace": [
         "HELIXSECURITY-L3-015-B01",
-        "HELIXSECURITY-L10-015-B01",
-        "PACKET-015-IDENTITY-BASE"
+        "HELIXSECURITY-L10-015-B01"
       ],
       "execution_state": "not_executed"
     },
@@ -1078,7 +1109,7 @@
         "source_field": "failure_observation",
         "source_value": "対象の不足だけをownerへ返し、後続版の未成立を保持する。",
         "expected_failure": "全Pattern能力の完成を1.0 identity基盤の成立条件にする主張を不成立にする。",
-        "route": "unclassified/unknownのまま保留し、資産ownerへ不足を返す。",
+        "route": "1.0のidentity基盤は成立した状態を維持し、1.x保護・運用・利用・公開の未成立を保持する。対象の不足だけを該当ownerへ返す。",
         "requirement_ref": "HELIXSECURITY-L3-015-B01",
         "source_packet_refs": [
           {
@@ -1161,8 +1192,7 @@
       },
       "requirement_trace": [
         "HELIXSECURITY-L3-015-B01",
-        "HELIXSECURITY-L10-015-B01",
-        "PACKET-015-IDENTITY-BASE"
+        "HELIXSECURITY-L10-015-B01"
       ],
       "execution_state": "not_executed"
     },
@@ -1250,8 +1280,7 @@
       },
       "requirement_trace": [
         "HELIXSECURITY-L3-015-F01",
-        "HELIXSECURITY-L10-015-F01",
-        "PACKET-015-IDENTITY-UNKNOWN"
+        "HELIXSECURITY-L10-015-F01"
       ],
       "execution_state": "not_executed"
     },
@@ -1568,8 +1597,7 @@
       },
       "requirement_trace": [
         "HELIXSECURITY-L3-015-F01",
-        "HELIXSECURITY-L10-015-F01",
-        "PACKET-015-IDENTITY-BASE"
+        "HELIXSECURITY-L10-015-F01"
       ],
       "execution_state": "not_executed"
     },
@@ -1761,8 +1789,7 @@
       },
       "requirement_trace": [
         "HELIXSECURITY-L3-015-F01",
-        "HELIXSECURITY-L10-015-F01",
-        "PACKET-015-IDENTITY-BASE"
+        "HELIXSECURITY-L10-015-F01"
       ],
       "execution_state": "not_executed"
     }
