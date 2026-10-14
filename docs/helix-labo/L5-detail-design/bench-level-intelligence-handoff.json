@@ -1,0 +1,1501 @@
+{
+  "parent": "HELIXLABO-L2-054",
+  "pair": "HELIXLABO-L8-054",
+  "source_main": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+  "status": "draft_detail_content_pending_qualification_and_execution",
+  "scope": {
+    "version_target": "1.0",
+    "meaning": "054はL2-055のtask/model class別水準、evidence、評価期間、source revision、scope、評価状態をINTELLIGENCEへ受け渡す専用connection。",
+    "excluded": "水準生成、配置案生成、OS指定/割当て、SECURITY permission、raw JSON codec、実connector/source資格/受領は成立しない。BRAIN向け3.0+ learning material routeはこの1.0 connectionの対象外。",
+    "fixture_boundary": "L9 fixture値は論理関数分岐を照合する有限例であり、型enum/資格/実評価/実受領/実assignment/permissionを確定しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-stage4-l3-l10-po-decision-2026-10-05.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "569d9dfb9be8a843a79fe2a4017dcba83c13651a86417d19f76a17e7a9b8c911"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage4-delegated-decision-pin-2026-10-05.json",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "5cf5481e9f71b80f4ca111252d0eced2e23102a1cc1ed8bc0df2e237980ff801"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-labo/L4-basic-design/bench-level-intelligence-handoff.json",
+      "revision": "6fce7ec9bf3321b47987e7b8c835696fe368a70a",
+      "sha256": "21730f82846f11fd03b9b8da5412409f395b281feff5b4db9f534846a7e91559",
+      "role": "basic pair bytes used for this detail derivation; source_main remains the upstream requirement/design source pin"
+    },
+    {
+      "path": "docs/helix-labo/L9-integration-verification/bench-level-intelligence-handoff.json",
+      "revision": "6fce7ec9bf3321b47987e7b8c835696fe368a70a",
+      "sha256": "96103f6ac0d71123b0e4352b36b8938293cd6381693dfd3049f43ab764a1973b",
+      "role": "basic pair bytes used for this detail derivation; source_main remains the upstream requirement/design source pin"
+    }
+  ],
+  "upstream_adoption": {
+    "approval": {
+      "record_path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "record_sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19",
+      "record_commit": "2f95e20cd9e90dd4ab7d349661476d8c49eff548",
+      "admitted_main_commit": "4dd2774e1498bde640a52e94245195f62e750ca6",
+      "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "delegation_record_sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+      "approval_whole_files": [
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.json",
+          "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "sha256": "1abff25ba108a6e1055c0a811fa67befd44e73469ffda6ae8735b65249b2a441"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.json",
+          "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "sha256": "7719e128e442644224ba2b586f2f3ad0f0f14692847d8678a681abf616896270"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+          "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "sha256": "52966ddf22818f0ee1306c98496975304ce847255cffb243065963958c076844"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+          "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "sha256": "f2ae2897b615a7dde0d06cae6e02af72dfdd60f182e91728d94d3c250bfcaa77"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+          "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "sha256": "3be891bae6d3ed19931d8c9bac1989e1c6eff0cc6868d165d9ca9e1bc6787129"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+          "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "sha256": "d2453f852b93da95605c5780f51a7cd4d585685f673eb6c90393e93164be97dd"
+        }
+      ],
+      "authority_note": "2026-10-12委任記録が承認したbc96125742eab851fe35194071087f77bb1f0005のL3/L10固定wholeに限る。L4/L9草案の承認、実行、実source資格、評価、受領、受入を意味しない。"
+    },
+    "adoption": {
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "labo_l1_sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "labo_l2_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "labo_l11_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "section_hash_reproducibility": {
+        "quotes": [
+          {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "150-154",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "7796690dfd399e1f5d0cccddde8c7aeabb5da5dd2d8ab7edcdd3e71e74e84065",
+            "quote": "### HELIXLABO-L2-055 — HELIX-Bench 作業水準生成（1.0）\n\nHELIX-Benchは許可されたWorker作業履歴を作業種別・model classごとに集計し、対応可能性の水準、根拠、評価範囲を導く。評価していないmodel classは明示的に「未評価」とする。水準は配置案の材料であり、Benchは配置案を作成せず、Worker/modelの選定・指定・割当ても行わない。\n\n- 親：HELIXLABO-L1-011。入力：Worker作業履歴、作業種別、model class、評価結果とそのsource revision/範囲。出力：作業種別・model class別水準、根拠、評価期間/適用範囲、評価済み/未評価状態。依存：許可されたLABO observation（L2-001/028）と評価可能な実績（必要に応じL2-006）、Worker historyの作業種別・model class identity。保証：履歴だけで未知作業の成功を保証せず、未評価を評価済みに変換せず、配置・割当て・権限を変更しない。範囲や実績が不足・不整合なら水準を確定せず該当履歴sourceへ戻す。`version_target: 1.0`。\n"
+          },
+          {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "290-294",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "6afd3f3b015ff2064e35a2dc2840da101ea06cf40d2f255ff49bfaeb51dabc4c",
+            "quote": "### HELIXLABO-L2-054 — HELIX-Bench水準のINTELLIGENCE接続（1.0）\n\nL2-055が生成した作業種別・model class別の水準、根拠、適用範囲、未評価状態をINTELLIGENCEへ渡す専用接続である。水準生成は055、配置案の作成はINTELLIGENCE、指定・割当てはOSが担う。本節は接続・受領範囲を定義し、水準生成を重複定義しない。未評価を実績ありに見せた場合、model変更・scope拡大・権限拡大を直接行った場合は不成立としてLABO/INTELLIGENCE/OSの責務境界へ戻す。\n\n- 親：HELIXLABO-L1-011, HELIXINTELLIGENCE-L1-010。入力：L2-055の水準生成結果。出力：同じ作業種別・model class・評価範囲・根拠・未評価状態を保ったINTELLIGENCE向け受渡し。依存：HELIX-BenchのL2-055、INTELLIGENCE connector。保証：接続は水準を変えず、配置案はINTELLIGENCE、指定・割当てはOSに残す。未評価や範囲不明は水準生成側の再評価へ戻す。`version_target: 1.0`。\n"
+          },
+          {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "94-94",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "325bf15f1535899d2d63c5ce09bb35afe99dcbc9596f0f2e1e5fce195a2dbf74",
+            "quote": "| HELIXLABO-L2-054 | 055の作業種別・model class別水準、根拠、評価範囲、未評価状態を同じscopeのままINTELLIGENCEへ接続し、INTELLIGENCE案とOS指定/割当てを別状態で保つ | 接続中に水準・評価状態・scopeを変える、LABOがworker/modelを割り当てる、過去水準から未知jobの成功を保証する、scoreでscope/branch/merge authorityを変える |\n"
+          },
+          {
+            "path": "docs/helix-labo/L1-planning/labo-intent.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "62-62",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "355eb4a2a73179d379538c8e57edc565a99f17434928b765f6ce373c12ec0cb3",
+            "quote": "| HELIXLABO-L1-011 | 人間は、HELIX-BenchでWorkerの作業履歴を集計し、作業の種類ごとに、どのモデルクラスなら対応できるかの水準を得られる。評価していないモデルには「未評価」の印を付け、評価済みと混同しない。水準は配置の案の材料であり、LABOは割当てを決めない。配置の案はINTELLIGENCE、指定と割当てはOSが行う | [Worker実行モデルの判断記録](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)「レーンとWorkerの定義」、[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md) | 1.0 | 接続（LABOからINTELLIGENCEへ） |\n"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "52-52",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "0c929bdffa1701268ce3d1772fe6ba347394ae8e9f7848e800aeaeda04ca7d51",
+            "quote": "| HELIXINTELLIGENCE-L1-010 | 人間は、作業の内容と実績から、Workerの配置の候補を得られる。判断の軸は、作業の種類、領域、複雑さ、必要なcontextとtool、成功と失敗の履歴、手戻り、遅延、費用、信頼性とする。価格、モデル名、ベンチマークだけで配置を決めず、実際の割当と進行はOSが行う。LABOがHELIX-Benchで出した「どのモデルクラスなら対応できるか」の水準を材料に、ticketごとの配置の案を作り、OSの推進へ渡す。評価していないモデルは「未評価」の印のまま扱う（[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)） | INTELLIGENCE-L1-010 | 1.0 | 単体（OSへは接続） |\n"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "102-106",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "29b05afbff84475d17b9b1f0698762dab2a1be92480313833d9c8fef87d410c1",
+            "quote": "### HELIXINTELLIGENCE-L2-010 — Worker配置候補\n\n入力はtask type/domain/complexity/context/tool requirementとsuccess/failure/rework/latency/cost/reliabilityの実績。出力はtask×Worker capability×observed performanceに基づくplacement proposal。価格、model名、benchmark単独で決めず、割当・進行はOSが行う。未評価のWorker/modelを評価済みに扱わない。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-010。単独成立依存：ticket/task identity、種類/domain/complexity/context/tool requirementとLABO HELIX-Benchのtask-class evidence、Worker実績・未評価状態。検証範囲：根拠付きticket別Worker placement proposal。保証：task属性と観測実績を使い、未評価を未評価と表示し、割当/進行はOSへ残す。失敗時戻し先：task属性不足はOSへ、Bench/evidence/適用scope不足はLABOへ返し、配置案を未確定にする。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "71-71",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "fb8e588559cf58c54fd45b991e4b60f27929e0c8bd2f96bf8b57c7eed161c712",
+            "quote": "| HELIXINTELLIGENCE-L2-010 | task capability・過去実績に応じた配置候補を出し割当はOSへ残す | price/model name/benchmarkだけで決定する、未評価をqualifiedにする | task属性不足はOSへ、Bench/evidence不足はLABOへ戻し配置案保留 |\n"
+          }
+        ]
+      }
+    },
+    "historical_stage4_approval": {
+      "record_path": "docs/governance/decisions/helix-labo-stage4-l3-l10-po-decision-2026-10-05.md",
+      "record_sha256": "569d9dfb9be8a843a79fe2a4017dcba83c13651a86417d19f76a17e7a9b8c911",
+      "record_commit": "007606cc6570afffc5139e174bdb9adee90d19d4",
+      "approved_content_revision": "86e28720610d80756161d3693de67a84354dfb99",
+      "delegation_record_sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+      "approval_whole_files": [
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "sha256": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "sha256": "5abc0f1c0aa8b6ed29ff35dd8b473332d237ae3685673c938184f812e1b78857"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "sha256": "39ecabeaec040cde052db5bb0eb77ac0446fe5951483d3ed4106768512a134ec"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "sha256": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "sha256": "891ae5539580ffe9dcba38c539807e1adc9017021ff010dbd6d8d42cc4c37fa7"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "sha256": "dcbc66854fcbcb7b718e390b515d61fa80d2392e1d199c3c884d5ed0edf3aa52"
+        }
+      ],
+      "authority_note": "旧Stage4承認。AC/CASE形式の当時の固定本文に限る歴史記録であり、現行L3/L10 JSON objectの承認authorityではない。旧AC/CASEと現行HELIXLABO-L3/L10-054-B01/F01の意味対応は監査対象として保持するが、object承認の移転を推定しない。L4/L9草案の承認・実行・受入を意味しない。"
+    }
+  },
+  "audit": {
+    "source_main": "7c553c5c2a4f16e55bdf8e0851409afbd35d3870",
+    "whole_sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
+    "denominators": {
+      "parents": 92,
+      "requirement_pairs": 430
+    },
+    "row_canonical_sha256": "29b1eb14a9341d6420586f9157c34eb5614723e70df26df6f6c2bdc771728b3d",
+    "design_completion": "unproven",
+    "implementation_readiness": "not_ready"
+  },
+  "approved_requirements": [
+    {
+      "id": "HELIXLABO-L3-054-B01",
+      "parent": "HELIXLABO-L2-054",
+      "title": "配置案・指定・権限の分離",
+      "obligation": "水準生成は055、配置案はINTELLIGENCE、Worker指定/割当てはOSに保持する。scoreでmodel/scope/branch/merge authorityを変更せず未知jobの成功を保証しない。",
+      "oracle_ref": "HELIXLABO-L10-054-B01"
+    },
+    {
+      "id": "HELIXLABO-L3-054-F01",
+      "parent": "HELIXLABO-L2-054",
+      "title": "Bench水準のINT受渡し",
+      "obligation": "055のtask/model class別水準・根拠・評価範囲/期間・未評価状態を同じscope/revisionのまま固有connectorでINTELLIGENCEへ渡し、受領結果と未完を保持する。接続中に水準や状態を変えない。",
+      "oracle_ref": "HELIXLABO-L10-054-F01"
+    }
+  ],
+  "approved_system_oracles": [
+    {
+      "id": "HELIXLABO-L10-054-B01",
+      "parent": "HELIXLABO-L2-054",
+      "title": "配置案・指定・権限の分離",
+      "requirement_ref": "HELIXLABO-L3-054-B01",
+      "positive_input": "水準と未決配置案/OS assignment/permissionを別状態で照合する。",
+      "expected_observation": "評価/案/指定/権限の各ownerが分かれる。",
+      "negative_input": "LABOが割当、過去水準で未知成功、scoreで権限拡大。",
+      "failure_observation": "LABO/INT/OS/SECの該当責務へ返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXLABO-L10-054-F01",
+      "parent": "HELIXLABO-L2-054",
+      "title": "Bench水準のINT受渡し",
+      "requirement_ref": "HELIXLABO-L3-054-F01",
+      "positive_input": "評価済み/未評価payloadの送受領と版/scope不一致を比較する。",
+      "expected_observation": "同水準と両端receipt、未受領範囲が辿れる。",
+      "negative_input": "未評価を実績あり、範囲拡大、配送だけ受領成功。",
+      "failure_observation": "水準生成側またはINT/接続ownerへ再照合を返す。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "approved_object_hashes": [
+    {
+      "id": "HELIXLABO-L3-054-B01",
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "canonical_sha256": "5d2ef54251e94625bc890a1b3b76099ae3e3e67fa4fec961f2b07dec3bcff698"
+    },
+    {
+      "id": "HELIXLABO-L3-054-F01",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "e78efbd8e8983c387dd108d95b3d4bd9294e60a323add7cc76f639d1e79065e3"
+    },
+    {
+      "id": "HELIXLABO-L10-054-B01",
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "canonical_sha256": "991ce952ba941a2e29ad55fecd37b22256d57e3cf71b6838d84b39fa5ad1bebb"
+    },
+    {
+      "id": "HELIXLABO-L10-054-F01",
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "1fc685576828e15096d867917b95f3ee61da12b94fccf1331930978cb2625464"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HELIXLABO-L5-054-B01",
+      "l4_ref": "HELIXLABO-L4-054-B01",
+      "l8_ref": "HELIXLABO-L8-054-B01",
+      "requirement_ref": "HELIXLABO-L3-054-B01",
+      "system_oracle_ref": "HELIXLABO-L10-054-B01",
+      "detail_design_ref": "HELIXLABO-L5-054-B01",
+      "unit_verification_ref": "HELIXLABO-L8-054-B01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-054-B01",
+        "parent": "HELIXLABO-L2-054",
+        "title": "配置案・指定・権限の分離",
+        "obligation": "水準生成は055、配置案はINTELLIGENCE、Worker指定/割当てはOSに保持する。scoreでmodel/scope/branch/merge authorityを変更せず未知jobの成功を保証しない。",
+        "oracle_ref": "HELIXLABO-L10-054-B01"
+      },
+      "approved_system_oracle": {
+        "id": "HELIXLABO-L10-054-B01",
+        "parent": "HELIXLABO-L2-054",
+        "title": "配置案・指定・権限の分離",
+        "requirement_ref": "HELIXLABO-L3-054-B01",
+        "positive_input": "水準と未決配置案/OS assignment/permissionを別状態で照合する。",
+        "expected_observation": "評価/案/指定/権限の各ownerが分かれる。",
+        "negative_input": "LABOが割当、過去水準で未知成功、scoreで権限拡大。",
+        "failure_observation": "LABO/INT/OS/SECの該当責務へ返す。",
+        "execution_state": "not_executed"
+      },
+      "meaning": [
+        "L3/L10 054-B01に沿い、Benchは055の水準をsourceとして参照し、水準・根拠/scopeを生成し直さない。",
+        "配置案はINTELLIGENCE、Worker指定/割当てはOS、permissionはSECURITYに残し、owner/stateを別々に保持する。",
+        "過去範囲の水準をunknown jobへ外挿せず、scoreだけでmodel/scope/branch/merge authorityを変えない。"
+      ],
+      "input_type": "OwnerBoundaryInputまたはPayloadTransferInput。source record、SourceMap、expected contextは呼出元が別々に与える。raw packet parse、source資格、transport受領、placement/assignment/permission実行を行わない。",
+      "output_type": "各入力値のFieldValue presenceと元source参照を保持するOwnerBoundaryObservationまたはHandoffObservation。未解決参照と不一致を当該record/scopeに局所化し、値/owner/stateを作らない。",
+      "operation_refs": [
+        "resolve_source_ref(ref: SourceRefID, source_map: SourceMap) -> SourceResolution",
+        "separate_owner_records(input: OwnerBoundaryInput) -> OwnerBoundaryObservation"
+      ],
+      "failure_return": "LABO-055水準/evidence根拠不足はLABO-055 ownerへ。配置案はINTELLIGENCE、Worker指定/割当てはOS、permissionはSECURITY。connector送受/receiver receiptの不足や期待contextはINTELLIGENCE connector ownerへ戻す。複数責務に跨る場合はそれぞれのowner状態を保持したまま該当範囲へ返す。",
+      "operation": "resolve_source_ref(ref, source_map)でsource identity参照を照合し、separate_owner_records(input)が定義済み論理関数としてowner分離/受渡し状態を観測する。関数合成はこのpair内の純粋な論理処理であり、raw codec/実connector/source資格/実配置・権限を実行しない。"
+    },
+    {
+      "id": "HELIXLABO-L5-054-F01",
+      "l4_ref": "HELIXLABO-L4-054-F01",
+      "l8_ref": "HELIXLABO-L8-054-F01",
+      "requirement_ref": "HELIXLABO-L3-054-F01",
+      "system_oracle_ref": "HELIXLABO-L10-054-F01",
+      "detail_design_ref": "HELIXLABO-L5-054-F01",
+      "unit_verification_ref": "HELIXLABO-L8-054-F01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-054-F01",
+        "parent": "HELIXLABO-L2-054",
+        "title": "Bench水準のINT受渡し",
+        "obligation": "055のtask/model class別水準・根拠・評価範囲/期間・未評価状態を同じscope/revisionのまま固有connectorでINTELLIGENCEへ渡し、受領結果と未完を保持する。接続中に水準や状態を変えない。",
+        "oracle_ref": "HELIXLABO-L10-054-F01"
+      },
+      "approved_system_oracle": {
+        "id": "HELIXLABO-L10-054-F01",
+        "parent": "HELIXLABO-L2-054",
+        "title": "Bench水準のINT受渡し",
+        "requirement_ref": "HELIXLABO-L3-054-F01",
+        "positive_input": "評価済み/未評価payloadの送受領と版/scope不一致を比較する。",
+        "expected_observation": "同水準と両端receipt、未受領範囲が辿れる。",
+        "negative_input": "未評価を実績あり、範囲拡大、配送だけ受領成功。",
+        "failure_observation": "水準生成側またはINT/接続ownerへ再照合を返す。",
+        "execution_state": "not_executed"
+      },
+      "meaning": [
+        "L3/L10 054-F01に沿い、055のtask/model class別水準、根拠、評価期間/source revision/scope、評価済み/未評価状態を専用connectorで渡す。",
+        "送信値と受領値/両端receiptを照合し、未受領scopeを個別に記録する。接続中に水準/state/scopeを変えない。",
+        "known scopeの未評価水準も未評価のまま受領できる。不一致は対象payloadだけ不適用とし、source ownerまたはINT connector ownerへ返す。"
+      ],
+      "input_type": "OwnerBoundaryInputまたはPayloadTransferInput。source record、SourceMap、expected contextは呼出元が別々に与える。raw packet parse、source資格、transport受領、placement/assignment/permission実行を行わない。",
+      "output_type": "各入力値のFieldValue presenceと元source参照を保持するOwnerBoundaryObservationまたはHandoffObservation。未解決参照と不一致を当該record/scopeに局所化し、値/owner/stateを作らない。",
+      "operation_refs": [
+        "resolve_source_ref(ref: SourceRefID, source_map: SourceMap) -> SourceResolution",
+        "reconcile_handoff(input: PayloadTransferInput) -> HandoffObservation"
+      ],
+      "failure_return": "LABO-055水準/evidence根拠不足はLABO-055 ownerへ。配置案はINTELLIGENCE、Worker指定/割当てはOS、permissionはSECURITY。connector送受/receiver receiptの不足や期待contextはINTELLIGENCE connector ownerへ戻す。source revisionの不一致はLABO-055 level ownerへ、期待範囲/receiptの不一致はINTELLIGENCE connector ownerへ、両方が不一致なら両ownerへ返す。複数責務に跨る場合はそれぞれのowner状態を保持したまま該当範囲へ返す。",
+      "operation": "resolve_source_ref(ref, source_map)でsource identity参照を照合し、reconcile_handoff(input)が定義済み論理関数として受渡し状態を観測する。関数合成はこのpair内の純粋な論理処理であり、raw codec/実connector/source資格/実配置・権限を実行しない。"
+    }
+  ],
+  "trace_matrix": [
+    {
+      "parent_requirement_id": "HELIXLABO-L2-054",
+      "producer_parent_l1_id": "HELIXLABO-L1-011",
+      "receiver_parent_l1_id": "HELIXINTELLIGENCE-L1-010",
+      "requirement_ref": "HELIXLABO-L3-054-B01",
+      "basic_design_ref": "HELIXLABO-L4-054-B01",
+      "detail_design_ref": "HELIXLABO-L5-054-B01",
+      "component_verification_ref": "HELIXLABO-L8-054-B01",
+      "system_oracle_ref": "HELIXLABO-L10-054-B01",
+      "direction": "順方向 L1/L2→L3→L4→L5→L8→L9→L10、逆方向 L10/L9→L8→L5→L4→L3→L2/L1。055水準生成、INTELLIGENCE配置案、OS指定/割当て、SECURITY権限のownerを保つ。"
+    },
+    {
+      "parent_requirement_id": "HELIXLABO-L2-054",
+      "producer_parent_l1_id": "HELIXLABO-L1-011",
+      "receiver_parent_l1_id": "HELIXINTELLIGENCE-L1-010",
+      "requirement_ref": "HELIXLABO-L3-054-F01",
+      "basic_design_ref": "HELIXLABO-L4-054-F01",
+      "detail_design_ref": "HELIXLABO-L5-054-F01",
+      "component_verification_ref": "HELIXLABO-L8-054-F01",
+      "system_oracle_ref": "HELIXLABO-L10-054-F01",
+      "direction": "順方向 L1/L2→L3→L4→L5→L8→L9→L10、逆方向 L10/L9→L8→L5→L4→L3→L2/L1。055水準生成、INTELLIGENCE配置案、OS指定/割当て、SECURITY権限のownerを保つ。"
+    }
+  ],
+  "architecture": {
+    "components": [
+      "L2-055 source level",
+      "054専用受渡し境界",
+      "INTELLIGENCE receiver/proposal",
+      "OS assignment owner",
+      "SECURITY permission owner"
+    ],
+    "flow": [
+      "L2-055の値とsource identityを参照し、受渡し層で水準を再計算しない。",
+      "送信receipt・receiver receipt・unreceived scopeを別々に照合する。",
+      "known scopeの未評価payloadもその状態で運び、状態やscopeを昇格させない。",
+      "INTELLIGENCE proposal、OS assignment、SECURITY permissionは各ownerの別recordのまま保つ。"
+    ]
+  },
+  "semantic_design_rules": [
+    "approved L3/L10 054の義務・正例・負例を具体的なrecord/状態値へ対応させる。",
+    "SourceMapはopaque IDから呼出元が供給したsource recordだけを解決する。mapからbody/資格/authorityを合成しない。",
+    "FieldValueのprovided/absent/explicit_null/emptyを区別し、nullや欠落を未評価/受領済み等へ変換しない。",
+    "送信・配送・receiver receipt・適用可能性を別状態で扱い、receipt欠落/不一致を対象payload/scopeに局所化する。",
+    "fixture内のowner文字列やscope値を固定policy/schemaへ一般化しない。"
+  ],
+  "logical_type_status": "閉じた有限論理型とpure function素材。formal schema、JSON codec、API、実source資格、transport、実assessmentではない。ReceivedPayloadViewはreceiver receipt内に記録された値を型付けする論理viewで、wire codecではない。",
+  "logical_type_definitions": {
+    "FieldValue": {
+      "kind": "有限tagged union",
+      "variants": [
+        {
+          "tag": "provided",
+          "fields": [
+            "value:T"
+          ]
+        },
+        {
+          "tag": "absent",
+          "fields": []
+        },
+        {
+          "tag": "explicit_null",
+          "fields": []
+        },
+        {
+          "tag": "empty",
+          "fields": [
+            "empty_kind: empty_string | empty_list | empty_object"
+          ]
+        }
+      ],
+      "meaning": "source memberの値と有無状態を区別して保持する。provided以外を値へ補完しない。"
+    },
+    "SourceRefID": {
+      "kind": "不透明な参照ID",
+      "fields": [
+        {
+          "name": "value",
+          "type": "string"
+        }
+      ]
+    },
+    "NodeLocator": {
+      "kind": "有限な不透明location",
+      "fields": [
+        {
+          "name": "source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "node_path",
+          "type": "string"
+        }
+      ]
+    },
+    "SourceRecord": {
+      "fields": [
+        {
+          "name": "identity",
+          "type": "string"
+        },
+        {
+          "name": "revision",
+          "type": "string"
+        },
+        {
+          "name": "owner",
+          "type": "string"
+        },
+        {
+          "name": "scope_parent",
+          "type": "string"
+        },
+        {
+          "name": "body_locator",
+          "type": "NodeLocator"
+        },
+        {
+          "name": "qualification_state",
+          "type": "literal unknown | not_asserted"
+        },
+        {
+          "name": "raw_sha256",
+          "type": "string"
+        }
+      ],
+      "kind": "source recordの固定識別・location metadata。qualification_stateはunknown/not_assertedを維持する。"
+    },
+    "SourceMap": {
+      "fields": [
+        {
+          "name": "records",
+          "type": "list<SourceRecord>"
+        }
+      ],
+      "kind": "呼出元が明示する有限record集合"
+    },
+    "SourceResolution": {
+      "fields": [
+        {
+          "name": "state",
+          "type": "literal resolved | source_reference_unbound | source_reference_ambiguous"
+        },
+        {
+          "name": "record",
+          "type": "FieldValue<SourceRecord>"
+        },
+        {
+          "name": "unresolved_ref",
+          "type": "FieldValue<SourceRefID>"
+        }
+      ]
+    },
+    "LevelPayload": {
+      "fields": [
+        {
+          "name": "source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "payload_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "producer_owner",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "task_class",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "model_class",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "level",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "evidence_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "evaluation_period",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "scope",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "evaluation_state",
+          "type": "FieldValue<literal evaluated | unassessed | unknown>"
+        }
+      ]
+    },
+    "PlacementProposal": {
+      "fields": [
+        {
+          "name": "source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "proposal_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "owner",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "proposal_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "basis_level_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "task_class",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "model_class",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "scope",
+          "type": "FieldValue<string>"
+        }
+      ]
+    },
+    "OSAssignment": {
+      "fields": [
+        {
+          "name": "source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "assignment_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "owner",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "assignment_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "task_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "worker_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "scope",
+          "type": "FieldValue<string>"
+        }
+      ]
+    },
+    "SecurityPermission": {
+      "fields": [
+        {
+          "name": "source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "permission_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "owner",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "permission_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "scope",
+          "type": "FieldValue<string>"
+        }
+      ]
+    },
+    "SenderReceipt": {
+      "fields": [
+        {
+          "name": "source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "sender_receipt_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "sender_owner",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "sent_payload_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "payload_sha256",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "sent_source_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "sent_scope",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "state",
+          "type": "FieldValue<string>"
+        }
+      ]
+    },
+    "ReceiverReceipt": {
+      "fields": [
+        {
+          "name": "source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "receiver_receipt_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "receiver_owner",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "payload_sha256",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "receipt_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "received_fields",
+          "type": "FieldValue<ReceivedPayloadView>"
+        },
+        {
+          "name": "received_payload_ids",
+          "type": "FieldValue<list<string>>"
+        },
+        {
+          "name": "sent_payload_ids",
+          "type": "FieldValue<list<string>>"
+        },
+        {
+          "name": "unreceived_scope",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "received_scope",
+          "type": "FieldValue<string>"
+        }
+      ]
+    },
+    "ExpectedContext": {
+      "fields": [
+        {
+          "name": "source_ref_id",
+          "type": "SourceRefID"
+        },
+        {
+          "name": "source_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "scope",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "task_class",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "model_class",
+          "type": "FieldValue<string>"
+        }
+      ]
+    },
+    "ProposedChange": {
+      "fields": [
+        {
+          "name": "actor",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "requested_action",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "assignment_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "worker_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "task_class",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "proposed_guarantee",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_evidence_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "requested_scope",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "reason",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "score",
+          "type": "FieldValue<number|string>"
+        },
+        {
+          "name": "requested_state",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "qualification_claim",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "claimed_acceptance",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "delivery_receipt_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "receiver_payload_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "receiver_receipt_id",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "permission_ref",
+          "type": "FieldValue<string>"
+        }
+      ]
+    },
+    "OwnerBoundaryInput": {
+      "fields": [
+        {
+          "name": "source_map",
+          "type": "SourceMap"
+        },
+        {
+          "name": "expected_owners",
+          "type": "OwnerRoles"
+        },
+        {
+          "name": "proposed_change",
+          "type": "FieldValue<ProposedChange>"
+        },
+        {
+          "name": "level",
+          "type": "FieldValue<LevelPayload>"
+        },
+        {
+          "name": "proposal",
+          "type": "FieldValue<PlacementProposal>"
+        },
+        {
+          "name": "assignment",
+          "type": "FieldValue<OSAssignment>"
+        },
+        {
+          "name": "permission",
+          "type": "FieldValue<SecurityPermission>"
+        }
+      ]
+    },
+    "OwnerBoundaryObservation": {
+      "fields": [
+        {
+          "name": "level",
+          "type": "FieldValue<LevelPayload>"
+        },
+        {
+          "name": "proposal",
+          "type": "FieldValue<PlacementProposal>"
+        },
+        {
+          "name": "assignment",
+          "type": "FieldValue<OSAssignment>"
+        },
+        {
+          "name": "permission",
+          "type": "FieldValue<SecurityPermission>"
+        },
+        {
+          "name": "owner_separation_state",
+          "type": "literal separated | unresolved"
+        },
+        {
+          "name": "unresolved_refs",
+          "type": "list<SourceRefID>"
+        },
+        {
+          "name": "proposed_change_outcome",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "return_to",
+          "type": "FieldValue<list<string>>"
+        }
+      ]
+    },
+    "PayloadTransferInput": {
+      "fields": [
+        {
+          "name": "proposed_change",
+          "type": "FieldValue<ProposedChange>"
+        },
+        {
+          "name": "payload",
+          "type": "FieldValue<LevelPayload>"
+        },
+        {
+          "name": "sender_receipt",
+          "type": "FieldValue<SenderReceipt>"
+        },
+        {
+          "name": "receiver_receipt",
+          "type": "FieldValue<ReceiverReceipt>"
+        },
+        {
+          "name": "expected_context",
+          "type": "FieldValue<ExpectedContext>"
+        },
+        {
+          "name": "source_map",
+          "type": "SourceMap"
+        }
+      ]
+    },
+    "HandoffObservation": {
+      "fields": [
+        {
+          "name": "payload",
+          "type": "FieldValue<LevelPayload>"
+        },
+        {
+          "name": "sender_receipt",
+          "type": "FieldValue<SenderReceipt>"
+        },
+        {
+          "name": "receiver_receipt",
+          "type": "FieldValue<ReceiverReceipt>"
+        },
+        {
+          "name": "observation_state",
+          "type": "literal matched | unassessed_preserved | unreceived | received_but_not_applicable | unresolved"
+        },
+        {
+          "name": "mismatch_fields",
+          "type": "list<string>"
+        },
+        {
+          "name": "unreceived_scope",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "unresolved_refs",
+          "type": "list<SourceRefID>"
+        },
+        {
+          "name": "proposed_change_outcome",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "return_to",
+          "type": "FieldValue<list<string>>"
+        },
+        {
+          "name": "received_scope",
+          "type": "FieldValue<string>"
+        }
+      ]
+    },
+    "Unresolved": {
+      "fields": [
+        {
+          "name": "reason",
+          "type": "literal source_reference_unbound | source_reference_ambiguous | missing_input | conflicting_value | unknown_applicability"
+        },
+        {
+          "name": "source_ref_id",
+          "type": "FieldValue<SourceRefID>"
+        },
+        {
+          "name": "field_names",
+          "type": "list<string>"
+        }
+      ]
+    },
+    "OwnerRoles": {
+      "fields": [
+        {
+          "name": "level_producer",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "proposal_owner",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "assignment_owner",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "permission_owner",
+          "type": "FieldValue<string>"
+        }
+      ]
+    },
+    "ReceivedPayloadView": {
+      "fields": [
+        {
+          "name": "task_class",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "model_class",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "level",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "evidence_ref",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "evaluation_period",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "source_revision",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "scope",
+          "type": "FieldValue<string>"
+        },
+        {
+          "name": "evaluation_state",
+          "type": "FieldValue<literal evaluated | unassessed | unknown>"
+        }
+      ]
+    }
+  },
+  "function_signatures_and_decisions": [
+    {
+      "name": "resolve_source_ref",
+      "signature": "resolve_source_ref(ref: SourceRefID, source_map: SourceMap) -> SourceResolution",
+      "reads": [
+        "source_map.records[].identity",
+        "source_map.records[].body_locator",
+        "source_map.records[].qualification_state"
+      ],
+      "returns": [
+        "SourceResolution.state",
+        "SourceResolution.record",
+        "SourceResolution.unresolved_ref"
+      ],
+      "preconditions": [
+        "source_mapは呼出元が提供したrecordだけを含む。"
+      ],
+      "postconditions": [
+        "record一意ならその同じrecord参照を返す。資格stateはunknown/not_assertedのまま。"
+      ],
+      "algorithm": [
+        "identity一致recordを数える。",
+        "一件ならresolvedとrecordを返す。",
+        "0件ならsource_reference_unbound、複数ならsource_reference_ambiguousとし、bodyやownerを合成しない。"
+      ],
+      "branches": [
+        {
+          "condition": "identity一致recordがちょうど一件",
+          "output": "resolved record、qualification_state unknown/not_assertedを保持。"
+        },
+        {
+          "condition": "一致recordが0件または複数",
+          "output": "該当unresolved stateと元refを返す。"
+        }
+      ],
+      "result_shape": "一意に見つかったsource record参照、または参照未解決状態を返す。qualification stateはunknown/not_assertedのまま保持する。"
+    },
+    {
+      "name": "separate_owner_records",
+      "signature": "separate_owner_records(input: OwnerBoundaryInput) -> OwnerBoundaryObservation",
+      "reads": [
+        "input.source_map.records[].identity/owner/body_locator/qualification_state",
+        "input.expected_owners.level_producer/proposal_owner/assignment_owner/permission_owner",
+        "input.proposed_change actor/requested_action/task_class/proposed_guarantee/source_evidence_ref/requested_scope/reason/score/permission_ref",
+        "level.source_ref_id/producer_owner/payload_id",
+        "proposal.source_ref_id/owner/proposal_state/basis_level_ref",
+        "assignment.source_ref_id/owner/assignment_id/assignment_state",
+        "permission.source_ref_id/owner/permission_id/permission_state"
+      ],
+      "returns": [
+        "level/proposal/assignment/permission各入力FieldValue",
+        "owner_separation_state",
+        "unresolved_refs",
+        "proposed_change_outcome",
+        "return_to"
+      ],
+      "preconditions": [
+        "4種recordは独立入力で、無いrecordはFieldValueでabsent/nullとして伝える。"
+      ],
+      "postconditions": [
+        "入力record値とpresenceを保持し、proposalをassignment、levelをpermissionへ変換しない。"
+      ],
+      "algorithm": [
+        "input.source_map内でlevel/proposal/assignment/permissionのsource_ref_idをresolve_source_refへ渡す。expected_ownersはL4で定義した比較用OwnerRoles入力として読み、source recordや資格証拠に変換しない。",
+        "OwnerRolesの供給値と4 recordのowner値を別々に比較し、入力record値/state/presenceを変更せず結果へ写す。",
+        "proposed_changeがprovidedならactor/action/対象fieldを読み、採択済みowner境界で受け付けられない変更提案の観測だけを返す。OS assignmentやSECURITY permissionを生成・更新しない。",
+        "LABO assignment要求はOS assignment ownerへ、未知job保証はLABO水準根拠とINT proposal ownerへ、score-only permission拡張はSECURITY permission ownerへ戻す。",
+        "欠落/重複source refまたは期待owner不足はunresolvedとして該当refsを返す。",
+        "raw proposed_scopeはProposedChange.requested_scopeへ対応付け、permission_refはSECURITY permission参照値として保持する。いずれも新しいpermissionを生成しない。"
+      ],
+      "branches": [
+        {
+          "condition": "owner refsが一意に解決し、4 record ownerがOwnerRolesと対応し、proposed_changeがabsent",
+          "output": "4 record値/presenceを分けて保持しowner_separation_state=separated、proposed_change_outcomeとreturn_toはabsent。"
+        },
+        {
+          "condition": "proposed_changeがactor=HELIXLABO、requested_action=assign_worker",
+          "output": "LABO assignment変更を反映せずOS assignment値を保持。proposed_change_outcome=owner_boundary_violation、return_toはOS assignment owner。"
+        },
+        {
+          "condition": "proposed_changeがtask_class=unknown-job、proposed_guarantee=success、source_evidence_ref=null",
+          "output": "未知jobへ水準を外挿せず成功保証を作らない。return_toはLABO level/evidence ownerとINTELLIGENCE proposal owner。"
+        },
+        {
+          "condition": "proposed_changeがreason=score-only、requested_action=expand_permission",
+          "output": "permission/scopeを変更せず、return_toはSECURITY permission owner。"
+        },
+        {
+          "condition": "owner/source refの欠落、曖昧さ、期待roleとの不一致",
+          "output": "供給recordだけを保持しunresolved refsと該当owner境界を返す。"
+        }
+      ],
+      "result_shape": "水準、INTELLIGENCE案、OS assignment、SECURITY permissionを別々のFieldValueとして返し、境界違反提案の観測と既存ownerへの返却先を併記する。"
+    },
+    {
+      "name": "reconcile_handoff",
+      "signature": "reconcile_handoff(input: PayloadTransferInput) -> HandoffObservation",
+      "reads": [
+        "input.proposed_change requested_state/qualification_claim/requested_scope/claimed_acceptance/receiver_payload_id/receiver_receipt_id/delivery_receipt_id",
+        "input.payload payload_id/producer_owner/task_class/model_class/level/evidence_ref/evaluation_period/source_revision/scope/evaluation_state",
+        "input.sender_receipt sent_payload_id/payload_sha256/sent_source_revision/sent_scope/state",
+        "input.receiver_receipt received_payload_ids/sent_payload_ids/payload_sha256/receipt_state/received_fields/received_scope task_class/model_class/level/evidence_ref/evaluation_period/source_revision/scope/evaluation_state/unreceived_scope:string",
+        "input.expected_context source_revision/scope/task_class/model_class",
+        "source_map.records"
+      ],
+      "returns": [
+        "payload/sender_receipt/receiver_receiptのpresence",
+        "observation_state",
+        "mismatch_fields",
+        "unreceived_scope",
+        "unresolved_refs",
+        "proposed_change_outcome",
+        "return_to",
+        "received_scope"
+      ],
+      "preconditions": [
+        "payload、receipt、expected context、source mapは呼出元から別々に渡される。JSON decode/codecは行わない。"
+      ],
+      "postconditions": [
+        "値とscope/revision/evaluation_stateは変更しない。sender receiptとreceiver receiptは別保持。unknown/missingをsuccessへ変換しない。"
+      ],
+      "algorithm": [
+        "input.proposed_change、4 source ref、payload/sender/receiver/expected contextのpresenceを読み、明示SourceMapで各参照を解決する。",
+        "sender receiptがある場合、sent_payload_id/hash/revision/scopeをpayload値と照合する。",
+        "receiver receiptのreceived_payload_ids/sent_payload_ids/unreceived_scopeとreceived_fieldsがある場合、payload id/hash/task/model/level/evidence/period/revision/scope/evaluation_stateの一致を比較する。expected_contextがprovidedならrevision/scope/task/modelも比較し、absentなら別contextを作らない。",
+        "receiver receiptがない、またはpayload/refが欠落しdelivery receiptしかない場合は当該scopeをunreceivedのまま保持する。",
+        "受領receiptがpartialでreceived_payload_idsとsent_payload_idsに差がある場合、received_scopeとunreceived_scopeのraw文字列をFieldValueとしてそれぞれそのまま返し、全体受領に広げず、未受領部分はINTELLIGENCE connector ownerへ返す。",
+        "receiverが同じrevision/scope/stateを受領すればevaluatedはmatched、unassessedはunassessed_preservedとする。known scopeのunassessedだけを理由に拒否しない。",
+        "receiver receiptがあるがexpected revision/scopeと異なる場合はtransport receiptを保持してreceived_but_not_applicableとし、source revisionの不一致はLABO-055 level ownerへ、期待範囲またはreceiptの不一致はINTELLIGENCE connector ownerへ返す。source revisionと期待範囲/receiptの両方が不一致のときだけ両ownerへ返す。",
+        "proposed_changeが未評価昇格/範囲拡大を要求する場合は元値を維持し、change ownerをINTELLIGENCE receiver/connectorまたはLABO-055 ownerへ返す。"
+      ],
+      "branches": [
+        {
+          "condition": "sender/receiver receiptとpayloadが一致し、比較対象のexpected contextにも一致",
+          "output": "evaluatedならmatched、unassessedならunassessed_preserved。payloadと両receiptを別々に保持しreturn_toはabsent。"
+        },
+        {
+          "condition": "receiver receipt absent、receiver payload/ref absent、またはdelivery-only receipt",
+          "output": "対象payload/scopeをunreceivedのまま保持し、INTELLIGENCE connector/receiver ownerへreturn_to。"
+        },
+        {
+          "condition": "receiver receipt.receipt_state=partialでreceived_payload_idsがsent_payload_idsの一部、unreceived_scopeがprovided",
+          "output": "observation_state=unreceivedとし、unreceived_scopeの原文字列、payloadと送信/受領receiptを個別に保持し、INTELLIGENCE connector ownerへ返す。"
+        },
+        {
+          "condition": "transport receiptはあるがsource revisionまたはscopeがexpected contextと不一致",
+          "output": "received_but_not_applicableとmismatch_fieldsを対象payloadだけに返す。source revision不一致はLABO-055 level ownerへ、期待範囲/receipt不一致はINTELLIGENCE connector ownerへ、両方が不一致なら両ownerへreturn_to。"
+        },
+        {
+          "condition": "proposed_changeがunassessedをevaluated/qualifiedへ昇格させる",
+          "output": "unassessedを維持し、受領側変換はINTELLIGENCE receiver、根拠不足はLABO-055 ownerへreturn_to。"
+        },
+        {
+          "condition": "proposed_changeがscopeをall-repositories等へ広げる",
+          "output": "元scopeを維持しLABO-055 level owner/INT connector ownerへreturn_to。"
+        },
+        {
+          "condition": "source map unresolved、record field absent/null/empty/conflict",
+          "output": "該当fieldとrefをunresolvedに残し、unknownを成功状態へ変換しない。"
+        }
+      ],
+      "result_shape": "送信payloadと両receipt、scope別状態、不一致field、未受領範囲、変更提案の観測、既存ownerへの返却先を返す。"
+    }
+  ],
+  "pure_pipeline": [
+    "resolve_source_ref(ref: SourceRefID, source_map: SourceMap) -> SourceResolution",
+    "separate_owner_records(input: OwnerBoundaryInput) -> OwnerBoundaryObservation",
+    "reconcile_handoff(input: PayloadTransferInput) -> HandoffObservation"
+  ],
+  "qualification_boundary": {
+    "source_qualification": "SourceRecord.qualification_stateはunknown/not_assertedのfixture値。構造参照解決はsupplier contractや実source資格を成立させない。",
+    "transport": "raw packetやreceipt fixtureからconnector稼働/受領成立を推論しない。",
+    "authority": "INTELLIGENCE proposal、OS assignment、SECURITY permissionの実行/許可はこの関数の外。"
+  },
+  "completion": "L5/L8の限定draft。L4/L9 source values、approved objects、責務境界へtraceした論理型/branch素材。formal schema/codec/source qualification/実connector/実評価/実TDD・CI/L11 acceptanceは未成立。",
+  "unclosed": [
+    "055 source qualification / authority / data-use",
+    "CONNECT契約版・codec・transport・receipt protocol",
+    "実INT受領とproposal evidence、OS assignment関係",
+    "SECURITY permission enforcement evidence",
+    "source資格を含む実L5/L8/TDD/CI、PO L11 acceptance",
+    "全92親430対設計閉包"
+  ],
+  "legacy_rederivation": {
+    "mode": "意味の再導出",
+    "preserved": [
+      "Benchがevidenceを返しassignmentをしない責務分離。",
+      "evidenceをtask/scope/revisionへ結び、scoreだけで資格/authorityを変更しない。",
+      "worker-admission benchを上位system/team benchmarkと混同しない。"
+    ],
+    "changed": [
+      "旧system/team/profile benchmarkや#188/registry routingを現行実行機構として移植せず、現行L2-054専用handoffへ限定。",
+      "現行はINTELLIGENCEがplacement proposal、OSがassignment、SECURITYがpermissionを所有する。",
+      "送信/受領endpoint receiptと未受領scopeを追跡する。"
+    ],
+    "reason": "採択L1/L2/L11の現行owner境界。旧資産の未完やruntimeの存在は変更理由にしない。",
+    "sources": [
+      {
+        "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "selected_evidence": [
+          {
+            "line_range": "23-33",
+            "selected_lines_sha256": "0b546514388faafeedeff820a8cb78e7a7bf971e1745c7dae649c4f1cd2e7e21",
+            "quote": "HELIX-Benchは、単体modelのcoding能力ではなく、HELIXが管理する**組織編成と実行規律が、\n要求からaccepted changeまでをどれだけ正確、安全、低費用に完遂できるか**を比較する評価契約である。\n\n- behavior contractは`HELIX-BENCH-FR-001`だけとする。\n- 既存`HR-FR-HIL-22`／`WCC-FR-07`〜`WCC-FR-08`はworker admission用の下位benchである。\n  HELIX-Benchはそれを重複実装せず、system／team／harness profile比較の入力receiptとして再利用する。\n- 開発上のdevelopment style、case-driven model、specialist capability、runtime mode、team composition、\n  harness profileを別axisとして保持する。\n- provider名、model名、IDE名を必須enumにせず、version付きrun inputとして記録する。\n- benchmark runner、dataset、dashboard、provider接続、worker admission判断はL4以降で設計し、\n  本L3/L10 pairでは実装しない。\n"
+          },
+          {
+            "line_range": "123-135",
+            "selected_lines_sha256": "f66ac395660aeced85c7c43308f66633380a2488bff1eeef8f5b7e66c76f37eb",
+            "quote": "warmup、repeat count、timeout、retry、CI capacity、cache、parallelismをrun protocol versionへ固定する。\n比較可能なのは同一task snapshot、scoring version、protocol version、hardware classのrunだけとし、\n差がある場合は別cohortとして表示する。manual intervention、tool denial、network access、\ntraining contamination疑義、fixture leakageをrun receiptへ記録する。\n\n#### HELIX-BENCH-R-06 evidenceとscoring\n\nsuccessは自己申告ではなく、artifact、diff、test、negative oracle、independent review、CI、DB、\nlane-ready、merge receiptから算出する。scorerはraw receiptから再計算可能で、metricごとのnumerator、\ndenominator、missing/failure disposition、weight、normalization、confidence intervalを出力する。\n\nscope violation、security finding、data loss、hidden-oracle leakageを平均点で相殺しない。\naccepted changeが0の場合、cost／token reductionを成功値へ変換しない。\n"
+          }
+        ],
+        "meaning": "旧Bench比較責務、同条件入力、重大failureを平均で相殺しない意味。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "selected_evidence": [
+          {
+            "line_range": "41-41",
+            "selected_lines_sha256": "748d79b997383139ee34a71885b04da16c41bb4c90077c86927f2fbc4fd3cfc7",
+            "quote": "| `HELIX-BENCH-AC-014` | §0 | worker admission benchを下位receiptとして参照し、system/team benchと責務分離する | `WCC-FR-07/08`を複製実装する、またはHELIX-Bench scoreだけでworkerをadmitしたらfail |\n"
+          }
+        ],
+        "meaning": "worker admission benchは下位receiptであり、Bench score単独でworkerをadmitしないfailure oracle。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "selected_evidence": [
+          {
+            "line_range": "663-666",
+            "selected_lines_sha256": "e5491837b6d6df74cc5fbc66e93706c298df1d7520b660f8eb3f128db39a5769",
+            "quote": "#### RLO-FR-040 HELIX-Bench由来のeffort policy\n\nreasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は\n`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。\n"
+          }
+        ],
+        "meaning": "task class別Bench evidence、未評価表示、score単独でscope/branch/assignment/merge authorityを変えない。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+        "selected_evidence": [
+          {
+            "line_range": "43-43",
+            "selected_lines_sha256": "bb2ffab864ed73e12178b85b2245118672d59fce09ab411abce3adf53107ff00",
+            "quote": "| `RLO-AC-030` | `RLO-FR-040` | HELIX-Bench evidenceが無いtask classのeffortを解決する | `provider_default_unbenchmarked`を記録しauthorityを変更しない | effortを推測しscore単独でscope／branch／assignment／merge authorityを変更したら拒否する |\n"
+          }
+        ],
+        "meaning": "未評価時の推測でauthorityを変えないfailure oracle。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "selected_evidence": [
+          {
+            "line_range": "349-351",
+            "selected_lines_sha256": "00f21f452e8734c5fb2319dc5ddb953f19c16c772ea80aabc8e0927a99613e6e",
+            "quote": "### HXB-FR-015 Capability / Routingへの証拠昇格\n\nBenchはobserved/scored/qualified/expired等の証拠状態と改善候補を返す。既存registry/admission ownerが、task/risk/profile/descriptor、標本数、重大failure、鮮度、独立性を検査し、#188が現在capacity等と合わせて配車を決める。適切に委譲済みpolicy内の評価・更新は自動化でき、人間に毎回順序決定を要求しない。Benchから直接model切替・権限拡大を行わない。aliasしか不明な過去結果を現行weightsの保証にしない。\n"
+          }
+        ],
+        "meaning": "HXB-FR-015 evidence-to-routing consumer。既存registry/admission ownerと#188がroutingを決める。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "selected_evidence": [
+          {
+            "line_range": "112-113",
+            "selected_lines_sha256": "6122c5d0e49f20e341c024a31feb2338554ca4b42221f4d4ec6ec3d6d9177edc",
+            "quote": "| HXB-AC-029 | 鮮度/適用task/risk/profile不適合のscoreをregistryのcurrent qualificationに使わない | HXB-FR-015 |\n| HXB-AC-030 | Bench単独で配車・権限を変更せず、委譲済み既存policy内では人間の毎回指示なしに評価/提案を処理する | HXB-FR-015 |\n"
+          }
+        ],
+        "meaning": "HXB-AC-029/030のscope不適合資格/Bench単独routing・authority変更防止。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-5F709CA13975179DB7CD",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d",
+        "selected_evidence": [
+          {
+            "line_range": "229-234",
+            "selected_lines_sha256": "e58e2f44542e08bbe69940cff12d578a2e1c7f6b1034ed2eac8e21d969faa47c",
+            "quote": "| F | HXB-FR-011..013,017 | #214/#188/#679、scope認可付きshadow |\n| G | HXT-FR-023/024; HXB-FR-015/020 | #861/#188/#1500/#659、advisoryと配置 |\n| H | HXT-FR-017,019,021,022,025; HXB-FR-018 | #865/#819/#659、段階切替・consumer |\n\nNFRは全sliceに適用し、ACは上記L3のFR対応から導出する。既存IssueをTicket全面完成待ちにする\nblanket dependencyは作らない。version target／Release Sliceは#1500で解決するまで未配置。\n"
+          }
+        ],
+        "meaning": "歴史的consumer #861/#188/#1500/#659。現行owner routingの根拠にはしない。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      }
+    ],
+    "failure_consumer": "HXB-FR-015/AC029/030、RLO-FR-040/AC030と#188等を歴史上のfailure/consumerとして保持し、直接authorityとして継承しない。"
+  },
+  "basic_pair_derivation": {
+    "revision": "6fce7ec9bf3321b47987e7b8c835696fe368a70a",
+    "meaning": "L4/L9 source bytes are pinned at the detail derivation base. source_main continues to identify the upstream/source-design revision; these revisions have separate meanings."
+  },
+  "source_packet_field_mappings": [
+    {
+      "source_packet": "SYNTH-LABO-LEVEL-054-17",
+      "source_field": "level_id",
+      "logical_type": "LevelPayload.payload_id",
+      "mapping": "同じpacket内の明示値LEVEL-054-17を識別子として投影する。別値は補完しない。"
+    },
+    {
+      "source_packet": "SYNTH-LABO-LEVEL-054-17",
+      "source_field": "producer",
+      "logical_type": "LevelPayload.producer_owner",
+      "mapping": "同じpacket内の明示owner HELIXLABO-L2-055を投影する。owner資格の成立を意味しない。"
+    },
+    {
+      "source_packet": "SYNTH-INT-EXPECTED-CONTEXT-17 and SYNTH-INT-MISMATCH-RECEIPT-22",
+      "source_fields": [
+        "expected_source_revision",
+        "expected_scope"
+      ],
+      "logical_type_fields": [
+        "ExpectedContext.source_revision",
+        "ExpectedContext.scope"
+      ],
+      "mapping": "各expected_*値を対応fieldへ投影する。比較対象のpayload値とは別recordのまま保持する。"
+    },
+    {
+      "source_packet": "SYNTH-INT-RECEIPT-EVAL-17 / UNASSESSED-18 / MISMATCH-22",
+      "source_field": "received_payload_id",
+      "logical_type": "ReceiverReceipt.received_payload_ids",
+      "mapping": "rawに単数idが明示された場合だけ、その1値を要素とする配列へ投影する。partial receiptの複数配列はそのまま保持する。"
+    },
+    {
+      "source_packet": "B01-NEG-LABO-ASSIGNMENT raw patch",
+      "source_field": "actor",
+      "logical_type": "ProposedChange.actor",
+      "mapping": "raw actor値があるときだけpresence付きで写す。"
+    },
+    {
+      "source_packet": "B01-NEG-UNKNOWN-JOB-GUARANTEE raw patch",
+      "source_field": "scope",
+      "logical_type": "ProposedChange.requested_scope",
+      "mapping": "raw scope=unknownを提案scope値へ写す。"
+    },
+    {
+      "source_packet": "B01-NEG-SCORE-PERMISSION-EXPANSION raw patch",
+      "source_fields": [
+        "proposed_scope",
+        "permission_ref"
+      ],
+      "logical_type_fields": [
+        "ProposedChange.requested_scope",
+        "ProposedChange.permission_ref"
+      ],
+      "mapping": "明示値のみ写し、scoreからauthorityを推定しない。"
+    },
+    {
+      "source_packet": "F01-NEG-UNASSESSED-AS-EVALUATED raw patch",
+      "source_field": "receiver_state",
+      "logical_type": "ProposedChange.requested_state",
+      "mapping": "明示された昇格要求stateをrequested_stateへ写す。"
+    },
+    {
+      "source_packet": "SYNTH-INT-PARTIAL-RECEIPT",
+      "source_field": "received_scope",
+      "logical_type_fields": [
+        "ReceiverReceipt.received_scope",
+        "HandoffObservation.received_scope"
+      ],
+      "mapping": "明示されたreceived_scopeをそのまま保持し、unreceived_scopeと混ぜない。"
+    },
+    {
+      "source_packet": "SYNTH-INT-MISMATCH-RECEIPT-22",
+      "source_fields": [
+        "received_source_revision",
+        "received_scope"
+      ],
+      "logical_type_fields": [
+        "ReceivedPayloadView.source_revision",
+        "ReceivedPayloadView.scope",
+        "ReceiverReceipt.received_scope",
+        "HandoffObservation.received_scope"
+      ],
+      "mapping": "received_fieldsがないreceiptでは明示値だけを対応fieldへ置き、received_scopeはReceiverReceiptとHandoffObservationにも同じpresence付きで保持し、他のview fieldはabsentにする。"
+    }
+  ],
+  "source_packet_projection_boundary": "source packet field mappingはsource_packet_field_mappingsに列挙した全ての明示mappingとExpectedContext expected_* mappingを明示する。ReceiverReceiptのreceived_payload_ids/sent_payload_idsはraw配列、unreceived_scopeはraw文字列をpresence付きで保持する。ProposedChange.scoreはraw JSON値（この原negative fixtureでは文字列\"0.99\"）をFieldValue<number|string>として値のまま保持するだけで、権限や資格を導出しない。 原rawの異名キーはsource_packet_field_mappingsに明記した範囲だけを投影する。 rawのreceived_scopeとunreceived_scopeを別FieldValueで保持し、片方を他方から補完しない。"
+}
