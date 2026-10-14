@@ -3543,5 +3543,2700 @@
       "Baseline equivalence has only one snapshot and no whole-obligation comparison evidence: not_evaluated with original obligations preserved. Empty differences do not prove semantic equivalence. ADD20 separately evaluates baseline and metadata-only variant, then compares their trace-bound material; domain/risk/scope changes are not metadata.",
       "No output type adds OS selected/used/Accepted/event/permission or an overall completed flag."
     ]
+  },
+  "wire_codec_contract": {
+    "id": "HARNESS-L5-009-WIRE-CODEC",
+    "status": "design_candidate_pending_independent_review",
+    "scope": "CORE009 ownerのwire carrierとcodec境界の設計。実ライブラリ採用/実装/認可/両端接続の成立ではない。",
+    "requirement_refs": [
+      "HARNESS-L3-009-B01",
+      "HARNESS-L3-009-F01",
+      "HARNESS-L3-009-F02",
+      "HARNESS-L3-009-F03",
+      "HARNESS-L3-009-F05",
+      "HARNESS-L3-009-F08",
+      "HARNESS-L3-009-N01"
+    ],
+    "paired_verification_ref": "HARNESS-L8-009-WIRE-CODEC",
+    "source_basis": [
+      {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "88816f81ca26c02c3913eea6b609e16eda0d6b5b4fa59ea69e024268969bc703",
+        "json_pointer": "/type_contract",
+        "source_value": {
+          "kind": "logical_design_not_formal_wire_schema",
+          "types": {
+            "RawValue": {
+              "fields": {
+                "shape": "null | boolean | number | string | RawValue[] | map<string,RawValue>"
+              },
+              "meaning": "未解釈供給値。key欠落/null/明示emptyを分ける。expected code/結果を評価器の入力にしない。"
+            },
+            "Ref": {
+              "fields": {
+                "identity": "string|null",
+                "revision": "string|null",
+                "scope": "RawValue",
+                "owner": "string|null",
+                "source_locator": "string|null",
+                "sha256": "string|null"
+              },
+              "meaning": "opaque ID/版。所在/digest/filenameから意味同一性を生成しない。identity/revision/scope/ownerを原根拠へ解決。"
+            },
+            "ApplicationBinding": {
+              "fields": {
+                "requirement_ref": "Ref",
+                "product_scope": "RawValue",
+                "process_contract_ref": "Ref",
+                "application_contract_ref": "Ref",
+                "template_ref": "Ref|null",
+                "knowledge_ref": "Ref|null",
+                "oracle_ref": "Ref|null"
+              },
+              "meaning": "要求・製品scope・工程/適用contractは常時。template/knowledgeは選択に応じ、oracleは該当検証操作時。各版を代入/併合しない。"
+            },
+            "OperationSelection": {
+              "fields": {
+                "forward_requested": "boolean",
+                "backflow_requested": "boolean",
+                "impact_requested": "boolean",
+                "selected_knowledge_refs": "Ref[]",
+                "unselected_knowledge_refs": "Ref[]"
+              },
+              "meaning": "操作と入力選択の原condition。未来OS完了receipt/全seed採択を追加gateにしない。"
+            },
+            "SourceEnvelope": {
+              "fields": {
+                "ref": "Ref",
+                "body": "RawValue",
+                "content_bytes": "string",
+                "qualification_ref": "Ref|null",
+                "role": "semantic_source | derived_view | explanation | reference_only"
+              },
+              "meaning": "元bytes/body/digestを照合。roleと資格は別。相反sourceをduplicateで削除しない。"
+            },
+            "Qualification": {
+              "fields": {
+                "ref": "Ref",
+                "root_ref": "Ref",
+                "subject_ref": "Ref",
+                "subject_sha256": "string|null",
+                "owner": "string|null",
+                "scope": "RawValue",
+                "body": "RawValue"
+              },
+              "meaning": "独立owner resolver入力rootへ解決する既存資格根拠。自己申告/digest一致だけでは資格成立しない。実trust確立は本unit外。"
+            },
+            "AxisFact": {
+              "fields": {
+                "ref": "Ref",
+                "binding": "ApplicationBinding",
+                "axis": "string",
+                "value": "RawValue",
+                "source_ref": "Ref|null",
+                "reason": "string|null"
+              },
+              "meaning": "原値と欠落理由を保持。value=nullをdefault値/N/A/別sourceで補わない。"
+            },
+            "AxisRequirement": {
+              "fields": {
+                "ref": "Ref",
+                "axis": "string",
+                "operation": "forward | backflow | impact | selected_knowledge | always",
+                "subject_ref": "Ref",
+                "source_ref": "Ref|null",
+                "reason": "string|null"
+              },
+              "meaning": "対象操作の必要axis集合は工程/適用contractから独立に供給。不要操作の専用入力を常時要求しない。"
+            },
+            "CandidateUniverse": {
+              "fields": {
+                "ref": "Ref",
+                "binding": "ApplicationBinding",
+                "members": "Ref[]|null",
+                "boundary_refs": "Ref[]",
+                "source_ref": "Ref|null"
+              },
+              "meaning": "母集合nullと明示emptyを別に保存。memberを黙って追加/削除/dedupしない。比較境界/source未解決を完全集合にしない。"
+            },
+            "TemplateSnapshot": {
+              "fields": {
+                "ref": "Ref",
+                "binding": "ApplicationBinding",
+                "meaning_contract_ref": "Ref|null",
+                "knowledge_ref": "Ref|null",
+                "source_ref": "Ref|null",
+                "usability": "RawValue",
+                "condition_refs": "Ref[]",
+                "required_input_refs": "Ref[]",
+                "obligation_refs": "Ref[]"
+              },
+              "meaning": "BRAINの汎用意味/版/stateを保ちCORE適用と分離。候補/未承認/stale/別製品を任意採択しない。"
+            },
+            "ConditionBinding": {
+              "fields": {
+                "ref": "Ref",
+                "template_ref": "Ref",
+                "axis_fact_ref": "Ref|null",
+                "declared_meaning_ref": "Ref|null",
+                "semantic_comparison_ref": "Ref|null",
+                "source_ref": "Ref|null"
+              },
+              "meaning": "適用contractが求める意味と要求分類axisを結ぶ。旧式木/operatorを復元せず、意味比較根拠へ解決する。条件未供給はunknown。"
+            },
+            "SemanticComparison": {
+              "fields": {
+                "ref": "Ref",
+                "left_ref": "Ref",
+                "right_ref": "Ref",
+                "same_meaning": "boolean|null",
+                "source_ref": "Ref|null",
+                "reason": "string|null"
+              },
+              "meaning": "同subject/revision/scopeのqualified意味比較根拠。文字列一致/AI名/件数/自己expectedを意味等価性にしない。COREはこれと対象bindingの一致を検査する。"
+            },
+            "ApplicationPolicy": {
+              "fields": {
+                "ref": "Ref",
+                "template_ref": "Ref",
+                "binding": "ApplicationBinding",
+                "condition_refs": "Ref[]",
+                "obligation_refs": "Ref[]",
+                "requiredness": "required | conditional | unspecified",
+                "source_ref": "Ref|null",
+                "non_applicable_basis_ref": "Ref|null"
+              },
+              "meaning": "既存ownerが持つ適用/義務の意味を保持。結果判定expectedを入力しない。必要条件対応の不足は未解決、条件付き義務は原条件と未完を保持。 確定不一致が非適用になる意味根拠を元適用contractから参照する。比較false単独/unknownをN/Aにしない。"
+            },
+            "NARecord": {
+              "fields": {
+                "ref": "Ref",
+                "template_ref": "Ref",
+                "binding": "ApplicationBinding",
+                "reason": "string|null",
+                "decider": "string|null",
+                "target_revision": "string|null",
+                "reentry_condition": "RawValue",
+                "source_ref": "Ref|null"
+              },
+              "meaning": "template別N/A4属性とscopeの原判断。根拠だけや他template限定N/Aは当該判断を満たさない。"
+            },
+            "KindObligation": {
+              "fields": {
+                "ref": "Ref",
+                "template_ref": "Ref",
+                "binding": "ApplicationBinding",
+                "kind": "unit | connection | composite",
+                "meaning": "RawValue",
+                "source_ref": "Ref|null",
+                "condition_refs": "Ref[]",
+                "reentry_ref": "Ref|null"
+              },
+              "meaning": "kind固有の内部/辺/全体義務。上位のemptyにも元理由必要。sourceラベル/下位成功では意味を代替しない。"
+            },
+            "TraceEdge": {
+              "fields": {
+                "ref": "Ref",
+                "from_ref": "Ref|null",
+                "to_ref": "Ref|null",
+                "kind": "string|null",
+                "direction": "string|null",
+                "binding": "ApplicationBinding",
+                "source_ref": "Ref|null"
+              },
+              "meaning": "要求/義務/design/pairの各向きと端identity/版/scopeを保存。expected edge集合は元contract/sourceから独立に供給する。"
+            },
+            "FieldInput": {
+              "fields": {
+                "ref": "Ref",
+                "template_ref": "Ref",
+                "binding": "ApplicationBinding",
+                "definition_refs": "Ref[]|null",
+                "value_fact_refs": "Ref[]|null",
+                "source_ref": "Ref|null"
+              },
+              "meaning": "定義missingと案件値unknownを別軸にする。BRAIN受領可能と製品義務未完は併存可能。"
+            },
+            "GapProposal": {
+              "fields": {
+                "ref": "Ref",
+                "subject_ref": "Ref",
+                "binding": "ApplicationBinding",
+                "kind": "question | contradiction | derived_requirement_candidate | na_candidate | unresolved",
+                "reason": "string|null",
+                "source_refs": "Ref[]",
+                "unfinished_obligation_refs": "Ref[]",
+                "backflow_owner": "string|null"
+              },
+              "meaning": "不足材料。分類unknownを補完しない。上流に返す根拠/戻し先を保持しticket発行/合意/義務消込なし。"
+            },
+            "KnowledgeUseRecord": {
+              "fields": {
+                "ref": "Ref",
+                "template_ref": "Ref",
+                "binding": "ApplicationBinding",
+                "source_ref": "Ref|null",
+                "required_field_refs": "Ref[]|null",
+                "operational_state": "RawValue",
+                "authority_ref": "Ref|null",
+                "compatibility_ref": "Ref|null",
+                "limitations": "RawValue"
+              },
+              "meaning": "選択knowledgeだけ全requiredfield/版/条件へ照合。参考/非選択は未観測。operational stateを自動昇格しない。"
+            },
+            "ConsumerSnapshot": {
+              "fields": {
+                "ref": "Ref",
+                "binding": "ApplicationBinding",
+                "used_template_ref": "Ref|null",
+                "obligation_refs": "Ref[]",
+                "artifact_refs": "Ref[]",
+                "pair_refs": "Ref[]",
+                "state": "RawValue",
+                "source_ref": "Ref|null"
+              },
+              "meaning": "OS原使用版/set/state/event/staleとconsumer traceを保存する入力。COREは実使用版を書換えない。"
+            },
+            "MeaningDelta": {
+              "fields": {
+                "ref": "Ref",
+                "old_template_ref": "Ref",
+                "new_template_ref": "Ref",
+                "facet": "applicability | required_field | negative_oracle | completion | view_only",
+                "old_meaning_ref": "Ref|null",
+                "new_meaning_ref": "Ref|null",
+                "comparison_ref": "Ref|null",
+                "source_ref": "Ref|null"
+              },
+              "meaning": "4facetの元意味差とviewだけの変更を分ける。digest/filenameは意味差の根拠ではない。"
+            },
+            "ImpactEvidence": {
+              "fields": {
+                "ref": "Ref",
+                "delta_ref": "Ref",
+                "consumer_ref": "Ref",
+                "binding": "ApplicationBinding",
+                "affected": "boolean|null",
+                "reason": "string|null",
+                "source_ref": "Ref|null"
+              },
+              "meaning": "同consumerの要求/義務/artifact/pairへの原影響根拠。falseはqualified根拠時のみ影響なし。nullはUnknown、別scopeでは代替しない。"
+            },
+            "Claim": {
+              "fields": {
+                "ref": "Ref",
+                "subject_ref": "Ref",
+                "binding": "ApplicationBinding",
+                "actor": "string|null",
+                "kind": "string",
+                "proposed_value": "RawValue",
+                "basis_refs": "Ref[]"
+              },
+              "meaning": "裁定/移管/完了/gateの任意主張を原factsと分離。expected分類を入力に含めない。"
+            },
+            "ApplicationInput": {
+              "fields": {
+                "binding": "ApplicationBinding",
+                "operations": "OperationSelection",
+                "sources": "SourceEnvelope[]",
+                "qualification_roots": "Ref[]",
+                "qualifications": "Qualification[]",
+                "axis_requirements": "AxisRequirement[]",
+                "axis_facts": "AxisFact[]|null",
+                "universes": "CandidateUniverse[]|null",
+                "templates": "TemplateSnapshot[]",
+                "conditions": "ConditionBinding[]",
+                "semantic_comparisons": "SemanticComparison[]",
+                "application_policies": "ApplicationPolicy[]",
+                "na_records": "NARecord[]",
+                "obligations": "KindObligation[]",
+                "required_trace_refs": "Ref[]",
+                "trace_edges": "TraceEdge[]",
+                "field_inputs": "FieldInput[]",
+                "gap_proposals": "GapProposal[]",
+                "knowledge_records": "KnowledgeUseRecord[]",
+                "consumers": "ConsumerSnapshot[]",
+                "meaning_deltas": "MeaningDelta[]",
+                "impact_evidence": "ImpactEvidence[]",
+                "claims": "Claim[]",
+                "nonsemantic_metadata": "RawValue",
+                "semantic_records": "SemanticRecord[]",
+                "trace_requirements": "TraceRequirement[]"
+              },
+              "meaning": "immutable原snapshot。必要集合を現入力から消さない。source resolver/authorityは外部owner境界の供給根拠へ照合し、ここで新設しない。 AI/言語/project表示名はnonsemantic_metadataへ保存し適用理由へ使わない。製品scope/要求kind/domain等の意味をmetadata扱いへ落とさない。"
+            },
+            "InputIssue": {
+              "fields": {
+                "locator": "string",
+                "reason": "string",
+                "source_ref": "Ref|null"
+              },
+              "meaning": "shape/bytes/body/資格/binding不足の所在。raw decode不能と意味欠落を区別。"
+            },
+            "ValidatedApplication": {
+              "fields": {
+                "input": "ApplicationInput|null",
+                "input_issues": "InputIssue[]",
+                "unusable_source_refs": "Ref[]"
+              },
+              "meaning": "decode不能はinput=null、意味null/欠落/相反はinputを保持し判定へ到達。資格不足は当該source依存項目だけ未評価。"
+            },
+            "AxisResult": {
+              "fields": {
+                "subject_ref": "Ref",
+                "binding": "ApplicationBinding",
+                "axis": "string",
+                "state": "string",
+                "original_refs": "Ref[]",
+                "reason": "string",
+                "backflow_owner": "string|null"
+              },
+              "meaning": "original axis結果。missing/unknown/conflict/未観測/非適用/未受領とclaim評価は独立。既知原値をclaimで書換えない。"
+            },
+            "Finding": {
+              "fields": {
+                "code": "string",
+                "rule_ref": "string",
+                "subject_ref": "Ref",
+                "binding": "ApplicationBinding",
+                "axis": "string",
+                "state": "string",
+                "source_refs": "Ref[]",
+                "reason": "string",
+                "backflow_owner": "string|null"
+              },
+              "meaning": "内部判定からcodeを計算する出力。code/状態を入力から転記しない。意味未解決を型チェックだけでknownにしない。"
+            },
+            "Comparison": {
+              "fields": {
+                "producer_symbol": "string",
+                "input_binding": "ApplicationBinding",
+                "original_axes": "AxisResult[]",
+                "findings": "Finding[]",
+                "material": "RawValue"
+              },
+              "meaning": "各pure関数の比較材料。producer/bindingは関数が付ける。callerのcached結果や別scope結果を結合しない。"
+            },
+            "ApplicationAnalysis": {
+              "fields": {
+                "binding": "ApplicationBinding",
+                "candidate_material": "RawValue",
+                "obligations": "KindObligation[]",
+                "gap_material": "RawValue",
+                "impact_material": "RawValue",
+                "comparisons": "Comparison[]",
+                "input_issues": "InputIssue[]",
+                "source_refs": "Ref[]",
+                "side_effect_count": "integer"
+              },
+              "meaning": "候補/義務/質問/局所影響の材料だけ。selected/used/採択/実受領/OS完了/POAcceptedの成立を出力しない。"
+            },
+            "CompareRequiredAxesContext": {
+              "fields": {
+                "validated": "ValidatedApplication"
+              },
+              "meaning": "同immutable入力の指定producer比較結果のみを読む。外部/cached比較結果の自己主張を採用しない。"
+            },
+            "CompareCandidateUniverseContext": {
+              "fields": {
+                "validated": "ValidatedApplication",
+                "compare_required_axes": "Comparison"
+              },
+              "meaning": "同immutable入力の指定producer比較結果のみを読む。外部/cached比較結果の自己主張を採用しない。"
+            },
+            "CompareApplicabilityContext": {
+              "fields": {
+                "validated": "ValidatedApplication",
+                "compare_required_axes": "Comparison",
+                "compare_candidate_universe": "Comparison"
+              },
+              "meaning": "同immutable入力の指定producer比較結果のみを読む。外部/cached比較結果の自己主張を採用しない。"
+            },
+            "CompareKindObligationTraceContext": {
+              "fields": {
+                "validated": "ValidatedApplication",
+                "compare_applicability": "Comparison"
+              },
+              "meaning": "同immutable入力の指定producer比較結果のみを読む。外部/cached比較結果の自己主張を採用しない。"
+            },
+            "CompareRequirementGapsContext": {
+              "fields": {
+                "validated": "ValidatedApplication",
+                "compare_applicability": "Comparison",
+                "compare_kind_obligation_trace": "Comparison"
+              },
+              "meaning": "同immutable入力の指定producer比較結果のみを読む。外部/cached比較結果の自己主張を採用しない。"
+            },
+            "CompareSelectedKnowledgeContext": {
+              "fields": {
+                "validated": "ValidatedApplication",
+                "compare_required_axes": "Comparison"
+              },
+              "meaning": "同immutable入力の指定producer比較結果のみを読む。外部/cached比較結果の自己主張を採用しない。"
+            },
+            "CompareMeaningImpactsContext": {
+              "fields": {
+                "validated": "ValidatedApplication",
+                "compare_required_axes": "Comparison"
+              },
+              "meaning": "同immutable入力の指定producer比較結果のみを読む。外部/cached比較結果の自己主張を採用しない。"
+            },
+            "CompareSemanticEquivalenceContext": {
+              "fields": {
+                "validated": "ValidatedApplication",
+                "compare_candidate_universe": "Comparison",
+                "compare_applicability": "Comparison",
+                "compare_kind_obligation_trace": "Comparison"
+              },
+              "meaning": "同immutable入力の指定producer比較結果のみを読む。外部/cached比較結果の自己主張を採用しない。"
+            },
+            "CheckApplicationClaimsContext": {
+              "fields": {
+                "validated": "ValidatedApplication",
+                "compare_candidate_universe": "Comparison",
+                "compare_applicability": "Comparison",
+                "compare_kind_obligation_trace": "Comparison",
+                "compare_requirement_gaps": "Comparison",
+                "compare_selected_knowledge": "Comparison",
+                "compare_meaning_impacts": "Comparison",
+                "compare_semantic_equivalence": "Comparison"
+              },
+              "meaning": "同immutable入力の指定producer比較結果のみを読む。外部/cached比較結果の自己主張を採用しない。"
+            },
+            "BuildApplicationAnalysisContext": {
+              "fields": {
+                "validated": "ValidatedApplication",
+                "compare_required_axes": "Comparison",
+                "compare_candidate_universe": "Comparison",
+                "compare_applicability": "Comparison",
+                "compare_kind_obligation_trace": "Comparison",
+                "compare_requirement_gaps": "Comparison",
+                "compare_selected_knowledge": "Comparison",
+                "compare_meaning_impacts": "Comparison",
+                "compare_semantic_equivalence": "Comparison",
+                "check_application_claims": "Comparison"
+              },
+              "meaning": "同immutable入力の指定producer比較結果のみを読む。外部/cached比較結果の自己主張を採用しない。"
+            },
+            "SemanticRecord": {
+              "fields": {
+                "ref": "Ref",
+                "binding": "ApplicationBinding",
+                "kind": "string",
+                "meaning": "RawValue",
+                "source_ref": "Ref|null"
+              },
+              "meaning": "個別meaning/field値/authority/compatibility/非適用理由へ解決するlogical原記録。資格付きsource bodyの同ref/payloadへ照合。意味はexpected結果ではない。"
+            },
+            "TraceRequirement": {
+              "fields": {
+                "ref": "Ref",
+                "binding": "ApplicationBinding",
+                "from_ref": "Ref",
+                "to_ref": "Ref",
+                "kind": "string",
+                "direction": "string",
+                "source_ref": "Ref|null"
+              },
+              "meaning": "required trace集合の独立根拠。供給edgeから逆算せず欠落端/向きを照合する。"
+            },
+            "RequiredAxesMaterial": {
+              "fields": {
+                "required_axis_refs": "Ref[]",
+                "facts": "AxisFact[]",
+                "nonselected_operations": "string[]"
+              },
+              "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+            },
+            "CandidateUniverseMaterial": {
+              "fields": {
+                "universe_refs": "Ref[]",
+                "candidate_member_refs": "Ref[]",
+                "missing_member_refs": "Ref[]",
+                "extra_member_refs": "Ref[]"
+              },
+              "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+            },
+            "ApplicabilityMaterial": {
+              "fields": {
+                "template_refs": "Ref[]",
+                "disposition": "string",
+                "original_condition_refs": "Ref[]",
+                "original_condition_values": "RawValue[]",
+                "unfinished_obligation_refs": "Ref[]",
+                "na_candidate_records": "NARecord[]"
+              },
+              "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+            },
+            "KindTraceMaterial": {
+              "fields": {
+                "obligations": "KindObligation[]",
+                "required_trace_refs": "Ref[]",
+                "matched_edge_refs": "Ref[]",
+                "missing_trace_refs": "Ref[]"
+              },
+              "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+            },
+            "FieldCheckMaterial": {
+              "fields": {
+                "field_ref": "Ref",
+                "definition_refs": "Ref[]|null",
+                "value_refs": "Ref[]|null",
+                "definition_state": "string",
+                "value_state": "string"
+              },
+              "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+            },
+            "GapReturnMaterial": {
+              "fields": {
+                "field_checks": "FieldCheckMaterial[]",
+                "candidate_proposals": "GapProposal[]",
+                "unfinished_obligation_refs": "Ref[]"
+              },
+              "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+            },
+            "KnowledgeUseMaterial": {
+              "fields": {
+                "selected_knowledge_refs": "Ref[]",
+                "checked_field_refs": "Ref[]",
+                "usable_candidate_refs": "Ref[]",
+                "unselected_unobserved_refs": "Ref[]"
+              },
+              "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+            },
+            "MeaningImpactMaterial": {
+              "fields": {
+                "operation_selected": "boolean",
+                "delta_refs": "Ref[]",
+                "impact_evidence_refs": "Ref[]",
+                "affected_consumer_refs": "Ref[]",
+                "unaffected_consumer_refs": "Ref[]",
+                "unknown_consumer_refs": "Ref[]",
+                "original_consumers": "ConsumerSnapshot[]"
+              },
+              "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+            },
+            "SemanticEquivalenceMaterial": {
+              "fields": {
+                "comparison_state": "string",
+                "obligation_refs": "Ref[]",
+                "comparison_basis_refs": "Ref[]",
+                "missing_obligation_refs": "Ref[]",
+                "extra_obligation_refs": "Ref[]",
+                "not_evaluated_refs": "Ref[]"
+              },
+              "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+            },
+            "ClaimCheckMaterial": {
+              "fields": {
+                "original_claim_refs": "Ref[]",
+                "rejected_claim_refs": "Ref[]",
+                "unresolved_claim_refs": "Ref[]",
+                "original_consumers": "ConsumerSnapshot[]"
+              },
+              "meaning": "関数のlogical出力材料。原ref/版/scope/ownerと個別状態を保持し、実使用/完了/認可/受入を構成しない。正式wire schema/運用stateの採用ではない。"
+            }
+          },
+          "invariants": [
+            "原axis/値/適用/知識state/影響/OS記録とclaimを別に保持。",
+            "必要集合/期待意味は独立contractへ解決。expected resultを意味処理inputへ入れない。",
+            "旧operator/式木/registry/schema/整数版/lifecycleを自動採用しない。",
+            "原sourceの資格とbytes/digestと意味比較を分離。実root trustは未成立。",
+            "実MSGのfield/oracle/relation未完を保持し合成モデルで採用/修復しない。"
+          ]
+        }
+      },
+      {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "88816f81ca26c02c3913eea6b609e16eda0d6b5b4fa59ea69e024268969bc703",
+        "json_pointer": "/reference_resolution_contract",
+        "source_value": {
+          "identity": "Ref.identity/revision/scope/ownerを元recordへexact解決。所在はidentityでない。参照側digestが供給されていれば元source digestも比較。",
+          "body": "SourceEnvelope body内recordsの同ref/type/payloadへ原意味を照合する。source_ref/digest/資格はenvelope側で検査し自己hashをbodyへ再帰埋込みしない。",
+          "qualification": "qualification_ref→Qualification→root_ref ∈ 独立qualification_roots。同owner/subject/revision/scope/bytes digestを照合。実trust root成立はunit外。",
+          "required_trace": "required_trace_refs→trace_requirementsの同refから要求された端/向き/kind/版/scopeを解決。trace_edgesの実収載だけで必要集合を作らない。",
+          "comparison": "SemanticComparison両端をAxisFact/semantic_recordsへ解決し有資格根拠の同subject/bindingを確認。文字列同名だけでmeaningを決定しない。",
+          "snapshot_binding": "関数contextは入力snapshotの要求/product/process/application契約へ固定。record固有template/knowledge/oracle版は別軸。無関係scopeは原owner qualificationとscopeで保持し対象scopeへ統合しない。"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "88816f81ca26c02c3913eea6b609e16eda0d6b5b4fa59ea69e024268969bc703",
+        "json_pointer": "/functions/0/algorithm",
+        "source_value": [
+          "RawValueをlogical型へdecode。raw形不正はInputIssue/input=null、decode可能意味null/欠落/相反は保持。欠落axis/universeを[]defaultしない。",
+          "source bytes/digest/body一致とqualification_root→owner/subject/revision/scopeの原資格を独立照合。digestだけで資格成立にせず未資格元sourceを保持。",
+          "相反原sourceをduplicateで捨てず意味比較へ渡す。資格不足は依存項目に局所化し無関係な有資格入力を保存。実trust resolver/codec/資源値は別契約。"
+        ]
+      },
+      {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "88816f81ca26c02c3913eea6b609e16eda0d6b5b4fa59ea69e024268969bc703",
+        "json_pointer": "/state_semantics",
+        "source_value": {
+          "original_axes": "原qualified事実の値/定義/適用条件/版/知識state/OS使用/未観測/未受領を別axisで保存。Finding分類で原事実を書き換えない。",
+          "finding_axis": "106原oracleのexpected_axis/stateは不成立分類。claim根拠のunknownと原condition value=falseのknownを分け、消込claimの充足未証明を原条件そのものの未知にしない。",
+          "application_candidates": "required/conditional/N/A/unresolvedは候補dispositionでありOS selected/used/完了stateではない。conditional条件true/false/unknownと未完義務を独立に保存。",
+          "meaning_comparison": "same_meaning=falseは元意味不一致。条件充足/非適用根拠/未完義務への対応は元ApplicationPolicyに従い、falseを一律N/A/全体失敗にしない。"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "08ce9fdaccd78dc6fd9a6d9133f57a54680264a4ae31dbb92286385c3ac3a7ec",
+        "json_pointer": "/fixture_contract/mutation_recipe_contract",
+        "source_value": {
+          "claims": "append claimのlogical shorthand kind/value/basisをClaimのkind/proposed_value/basis_refsへfixture constructorが結ぶ。ref/subject/binding/actorは選択fixtureの明示contextから供給しexpected code/stateは使わない。",
+          "selectors": "[chosen]/[0]/[kind]等は合成fixture参照名。旧field-path/operator DSLではない。",
+          "qualification_mutations": "payload/意味を変えるときはowner source body/bytes/digest/qualificationを同入力で再構成する。bytes不一致の専用負例は意図的に固定する。資格根拠を生成して実trust成立にしない。",
+          "variants": "6正常variant、24追加入力recipe、4補助snapshotを明示。CORE-SUPPORT-Q-VALIDは独立scopeの別評価入力で、Pの影響なし根拠に流用しない。",
+          "preservation": "expected_preservedを観測するため原snapshotと変異入力を別に保持。negative caseのexpected/classificationは意味処理inputへ渡さない。"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "08ce9fdaccd78dc6fd9a6d9133f57a54680264a4ae31dbb92286385c3ac3a7ec",
+        "json_pointer": "/fixture_contract/source_preparation_contract",
+        "source_value": {
+          "id": "CORE-FIXTURE-SOURCE-REBUILD-01",
+          "steps": [
+            "Deep copy base fixture input, replace only explicit input_overrides top-level collections; preserve missing/null/empty.",
+            "Replace sources/qualifications/qualification_roots with explicit source_graph_skeleton.",
+            "For each source, scan input collections in their stored order. Include only records whose source_ref.identity equals envelope identity. Build records entries {collection,ref,payload}, excluding source_ref from payload.",
+            "Serialize source body with UTF-8, ensure_ascii=false, separators comma/colon, without extra whitespace or newline. Store this string as content_bytes and its SHA-256 as source ref sha256.",
+            "Update only matching qualification subject_ref/subject_sha256 from reconstructed envelope. Keep root/owner/scope/body unchanged.",
+            "These are synthetic fixture construction steps, not actual trust establishment or the application evaluation function. Expected observations/classifications are never construction inputs."
+          ],
+          "status": "logical_fixture_preparation_not_runtime_evidence"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "c67edf6f5f2553e79e790ac519a8e7dc335b213fc2ce243cc6881e74fc7ac4b5"
+      },
+      {
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "9822215999bef15208cd30a5b75c0338df5802fdc382d9cd8d643baebab93eae"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "whole_file_sha256": "130daf7415683755a5c035a08c64ce8da06e9a3f534a8c99a40b256264fcba00"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "whole_file_sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1"
+      },
+      {
+        "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "whole_file_sha256": "22a5d47b98e37817b314201b674dfb8cc60b09d2f21c3bab4e6caa8184e8e695"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.json",
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "whole_file_sha256": "702ea0251ced5f41655bd2e8c39ce4ce0f585fd64b920b3e89ff2b421aa0bb5e"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "whole_file_sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c"
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+        "revision": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "whole_file_sha256": "abe71135f549bdc954d687bdea5405fc62edb8556f27ca0ce9863348591a82fa"
+      },
+      {
+        "path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108"
+      },
+      {
+        "path": "docs/governance/decisions/core-template-009-supplement-po-decision-2026-10-10.md",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "789a993751a7fa969ea85cc08a59c5d8d06e8d069d97107a3c60f792439ee13c"
+      },
+      {
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "json_pointer": "/canonical_meaning",
+        "source_value": {
+          "planning": "L1",
+          "requirement": "L2",
+          "specification": "L3",
+          "basic_design": "L4",
+          "detail_design": "L5",
+          "function_design": "L6",
+          "function_verification": "L7",
+          "unit_verification": "L8",
+          "integration_verification": "L9",
+          "system_verification": "L10",
+          "acceptance": "L11",
+          "operation_evaluation": "L12"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "json_pointer": "/outside_kinds",
+        "source_value": [
+          "charter",
+          "concept",
+          "implementation"
+        ]
+      },
+      {
+        "path": "docs/governance/audits/first-cycle-owner-binding-gap-audit-2026-10-15.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "bdbd20c8800513812c668ff0d5b8c62f7d5255273e07e7a6545024c0334e586b",
+        "json_pointer": "/scope",
+        "source_value": {
+          "total_parents": 92,
+          "total_pairs": 430,
+          "audited_parent_count": 3,
+          "audited_documents": 12,
+          "remaining_parents_not_audited_here": 89,
+          "pair_count_limit": "430対全体を監査したものではない。3親の既存L4/L9とL5/L8の6pair・12文書を本文照合。support sourceの参照を別親の全設計監査へ数えない。",
+          "whole_design_closure": "unproven",
+          "implementation_readiness": "not_ready",
+          "parents": [
+            {
+              "parent": "HELIXBRAIN-L2-032",
+              "mechanism": "HELIX-BRAIN",
+              "product_attribute": false,
+              "documents": [
+                {
+                  "document_id": "HELIXBRAIN-L4-032-TEMPLATE-SEMANTIC-SUPPLY",
+                  "source_ref": "docs/helix-brain/L4-basic-design/template-semantic-supply.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HELIXBRAIN-L9-032-TEMPLATE-SEMANTIC-SUPPLY",
+                  "source_ref": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
+                  "source_ref": "docs/helix-brain/L5-detail-design/template-semantic-supply.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
+                  "source_ref": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json@c00695600ab1fed30718d89880b92a6358422131"
+                }
+              ]
+            },
+            {
+              "parent": "HARNESS-L2-009",
+              "mechanism": "HELIX-HARNESS-CORE",
+              "product_attribute": true,
+              "documents": [
+                {
+                  "document_id": "HARNESS-L4-009-PRODUCT-TEMPLATE-APPLICATION",
+                  "source_ref": "docs/helix-harness/L4-basic-design/product-template-application.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HARNESS-L9-009-PRODUCT-TEMPLATE-APPLICATION",
+                  "source_ref": "docs/helix-harness/L9-integration-verification/product-template-application.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HARNESS-L5-009-PRODUCT-TEMPLATE-APPLICATION",
+                  "source_ref": "docs/helix-harness/L5-detail-design/product-template-application.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HARNESS-L8-009-PRODUCT-TEMPLATE-APPLICATION",
+                  "source_ref": "docs/helix-harness/L8-unit-verification/product-template-application.json@c00695600ab1fed30718d89880b92a6358422131"
+                }
+              ]
+            },
+            {
+              "parent": "HELIXOS-L2-002",
+              "mechanism": "HELIX-OS",
+              "product_attribute": false,
+              "documents": [
+                {
+                  "document_id": "HELIXOS-L4-002-PROJECT-TEMPLATE-TRACE",
+                  "source_ref": "docs/helix-os/L4-basic-design/project-template-trace.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HELIXOS-L9-002-PROJECT-TEMPLATE-TRACE",
+                  "source_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HELIXOS-L5-002-PROJECT-TEMPLATE-TRACE",
+                  "source_ref": "docs/helix-os/L5-detail-design/project-template-trace.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HELIXOS-L8-002-PROJECT-TEMPLATE-TRACE",
+                  "source_ref": "docs/helix-os/L8-unit-verification/project-template-trace.json@c00695600ab1fed30718d89880b92a6358422131"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "path": "docs/governance/audits/first-cycle-owner-binding-gap-audit-2026-10-15.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "bdbd20c8800513812c668ff0d5b8c62f7d5255273e07e7a6545024c0334e586b",
+        "json_pointer": "/trace_rows/1",
+        "source_value": {
+          "trace_id": "TRACE-02",
+          "route": "BRAIN SupplyAnalysis→CONNECT選択辺→CORE ApplicationInput",
+          "document_observation": "供給候補と不足/反例/限界/必要inputをCOREへ返す意味境界は存在する。",
+          "closure_state": "unclosed",
+          "unclosed_binding": "SupplyAnalysis.binding/candidate_refs/comparisons/input_issues/source_refs/required_inputs/counterexamples/limitsはApplicationInput.binding/universes/templates/conditions/axis_requirements/semantic_records/trace_requirementsへそのまま代入できない。descriptor/SectionField/OracleBinding等の原sourceを残す正式両端schema・codec・resolverとowner-qualified mapping/互換宣言/receiptをこの12文書は閉じていない。Comparison結果をAxisFactや元意味の資格として転写しない。",
+          "return_owner": [
+            "HELIX-BRAIN提供owner",
+            "HELIX-HARNESS-CORE入力owner",
+            "HELIX-CONNECT選択辺owner"
+          ],
+          "evidence_refs": [
+            "brain.output",
+            "brain.input",
+            "core.input",
+            "core.binding",
+            "core.resolution",
+            "upstream.HELIXBRAIN-L3-032-F09",
+            "upstream.HARNESS-L3-009-F01",
+            "cross.operations",
+            "connect001.remaining",
+            "connect003.remaining"
+          ],
+          "invalid_correspondences": [
+            "候補Ref一覧→有資格TemplateSnapshot母集合",
+            "Comparison success→原sourceの意味資格",
+            "未選択source→不要/解決済み"
+          ]
+        }
+      },
+      {
+        "path": "docs/governance/audits/first-cycle-owner-binding-gap-audit-2026-10-15.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "bdbd20c8800513812c668ff0d5b8c62f7d5255273e07e7a6545024c0334e586b",
+        "json_pointer": "/trace_rows/2",
+        "source_value": {
+          "trace_id": "TRACE-03",
+          "route": "CORE ApplicationAnalysis→OS002のF02/F03/F04/F05/F07 owner sections",
+          "document_observation": "COREは候補/義務/不足/局所影響、OSは原recordの追跡を持つ。",
+          "closure_state": "unclosed",
+          "unclosed_binding": "ApplicationAnalysisのcandidate_material/obligations/gap_material/impact_material/comparisonsはOS OwnerRecord.subject_ref/section_key/record_kind/payload/ownerと同じrecord契約ではない。F02 proposed/selected/usedと各source、F03 event/actor/correlation/義務/artifact/pair、F04原義務state、F05返却/受理/解決/消込、F07実旧新使用版は独立原入力であり、正式section mappingと外部owner binding/原資格が未成立。",
+          "return_owner": [
+            "HELIX-HARNESS-CORE",
+            "HELIX-OS各原record owner",
+            "該当義務/Backflow受信owner"
+          ],
+          "evidence_refs": [
+            "core.output",
+            "core.output_limit",
+            "core.consumer",
+            "os.record",
+            "os.sections",
+            "os.sets",
+            "os.dispositions",
+            "os.backflow",
+            "os.inner_ref_limit",
+            "upstream.HARNESS-L3-009-F02",
+            "upstream.HARNESS-L3-009-F08",
+            "upstream.HELIXOS-L3-002-F02",
+            "upstream.HELIXOS-L3-002-F04"
+          ],
+          "invalid_correspondences": [
+            "CORE候補→OS selected/used",
+            "required/conditional/N/A→義務消込",
+            "局所意味影響候補→実stale/再検証成功"
+          ]
+        }
+      },
+      {
+        "path": "docs/governance/audits/first-cycle-owner-binding-gap-audit-2026-10-15.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "bdbd20c8800513812c668ff0d5b8c62f7d5255273e07e7a6545024c0334e586b",
+        "json_pointer": "/trace_rows/3",
+        "source_value": {
+          "trace_id": "TRACE-04",
+          "route": "各owner原source資格→OS015/019/018 custodyとwrapper内Ref",
+          "document_observation": "bytes/body照合と資格照合を分離し、未資格/相反sourceを局所化する設計は存在する。",
+          "closure_state": "unclosed",
+          "unclosed_binding": "BRAIN/COREのRefはnullable identity/revision/scope/owner/locator/hash、qualification_rootsはRef[]。BRAIN Qualificationはsubject_ref/subject_sha256/applicable_scope/qualification_body、COREはowner/scope/bodyも持つ。OS RefはField<T>でmissing/supplied(null)/supplied値を分離し、Qualification/QualificationRootはowner/subject集合/source_ref/source_sha256許容集合。単純共通化は欠落とnull、subject digestとsource digest、subject単体と集合を失う。実owner資格・custody・root供給根拠は未成立。wrapper資格だけでは内部のtemplate/knowledge/要求/義務/actor/event/ref資格を証明しない。",
+          "return_owner": [
+            "各原owner",
+            "HELIXOS-L2-015",
+            "HELIXOS-L2-019",
+            "HELIXOS-L2-018",
+            "既存authority owner"
+          ],
+          "evidence_refs": [
+            "brain.root_type",
+            "brain.qualification",
+            "core.root_type",
+            "core.qualification",
+            "os.field",
+            "os.ref",
+            "os.qualification",
+            "os.root",
+            "os.trust_limit",
+            "os.inner_ref_limit",
+            "os.fixture_root_limit",
+            "original.HELIXOS-L2-015.L2",
+            "original.HELIXOS-L2-019.L2",
+            "original.HELIXOS-L2-018.L2",
+            "os015.remaining",
+            "os018.remaining"
+          ],
+          "invalid_correspondences": [
+            "同owner名/digest一致→資格root成立",
+            "合成immutable root→origin authentication",
+            "source wrapper資格→内部参照全資格",
+            "assignment→SEC認可/INFRA実資源の正本"
+          ]
+        }
+      },
+      {
+        "path": "docs/governance/audits/first-cycle-owner-binding-gap-audit-2026-10-15.json",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "bdbd20c8800513812c668ff0d5b8c62f7d5255273e07e7a6545024c0334e586b",
+        "json_pointer": "/trust_and_approval_boundary",
+        "source_value": {
+          "observation": "参照した型とsourceは既存owner資格と独立root入力を求めるが、新署名方式/truststore/authority issuerまたは通常作業の毎回人間承認gateを必須とする根拠はこの照合範囲にない。実資格未成立を新制度の設計決定に変換しない。",
+          "evidence_refs": [
+            "brain.qualification",
+            "core.qualification",
+            "os.trust_limit",
+            "os.fixture_root_limit",
+            "original.HELIXCONNECT-L2-002.L2",
+            "original.HELIXSECURITY-L2-008.L2",
+            "authority.no_repeated_gate"
+          ],
+          "limit": "既存authority/scope/access/資格条件を省略する許可ではなく、選択operationで原条件を満たす必要は存続する。"
+        }
+      }
+    ],
+    "legacy_comparison": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "source": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+          "whole_file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+          "start_line": 16,
+          "end_line": 92,
+          "exact_quote": "## §1 目的とauthority境界\n\nRequirement JSONから必要十分な設計成果物を選べるよう、templateの構造的意味をversioned JSONへ\n集約する。文章をJSONへ詰め込むのではなく、機械判断に必要な契約だけをJSON正本とする。\n\n| surface | 責務 | authority |\n|---|---|---|\n| Design Template JSON | template ID/version、layer/pair、適用条件、必須input/section/field、owner、trace、negative oracle、measurement、completion、downstream kind | canonical candidate。pair freeze後にcanonical |\n| Design Instance JSON | 選択済みtemplateとrequirement/obligationを束縛した設計値 | 後続L5 episode |\n| graph JSON | component、state transition、data flow、sequence、V-pair edge | 図の構造的意味 |\n| generated Markdown/HTML/Mermaid | JSONを人間向けに投影 | derived、直接編集禁止 |\n| supplemental Markdown | rationale、alternatives、trade-off、背景 | JSON IDへ束縛する説明。構造的意味の正本ではない |\n| `docs/design/design-catalog.yaml` | 現行成果物の所在と分類 | inventory。template schemaではない |\n\n画像、Markdown、tool node ID、file pathだけをtemplate identityや設計意味の主キーにしない。\n\n## §2 component境界\n\n| component | 入力 | 出力 | 責務 | failure |\n|---|---|---|---|---|\n| `DesignTemplateRegistry` | versioned template JSON | exact template set、registry digest | ID/version/supersessionとschema束縛 | duplicate、unknown version、digest drift |\n| `ApplicabilityEvaluator` | requirement atom、obligation、risk、style/layer、typed predicate | applicable/non-applicable＋理由 | `all`/`any`/`not`のfail-close評価 | unknown operator/field/enum、自由文条件 |\n| `TemplateShadowCompiler` | 既存template/canonical design inventory | shadow template候補、parity finding | 既存意味を新正本候補へ一方向変換 | 未分類、意味欠落、二重authority |\n| `GeneratedViewProjector` | validated template/instance/graph JSON | Markdown/HTML/Mermaid＋source digest | 決定論表示 | source digest不一致、直接編集 |\n| `DesignPortfolioPlanner` | Requirement JSON、Design Obligation Graph、registry | reuse/delta/new/N/A proposal | 最小portfolio提案 | uncovered、duplicate、fabricated ID |\n| `PairGraphBinder` | selected template/instance、V-pair oracle | L4↔L9、L5↔L8 graph | pair exact setとcompletionを束縛 | missing pair、別revision、stale oracle |\n\n本sliceはcomponent契約だけを定義する。schema/runtime、planner algorithm、instance生成、pair graph\nfreezeは後続L5/L6 episodeで実装する。\n\n## §3 主要data flow\n\n```text\nRequirement JSON\n  -> Design Obligation Graph\n  -> DesignPortfolioPlanner\n  -> selected Design Template JSON exact set\n  -> Design Instance JSON\n  -> pair graph / Test Design JSON\n  -> generated Markdown / HTML / Mermaid\n```\n\nback-propagationはfindingまたはproposal eventとしてRequirement Engine／template revisionへ戻す。\ngenerated viewや既存Markdownを読んでJSONを無断更新するreverse flowは禁止する。\n\n## §4 applicabilityとcompletionの型境界\n\n適用条件は自由文booleanでなく、次の閉じた式木を使う。\n\n```json\n{\n  \"all\": [\n    { \"field\": \"layer\", \"op\": \"eq\", \"value\": \"L4\" },\n    {\n      \"any\": [\n        { \"field\": \"risk.security\", \"op\": \"eq\", \"value\": true },\n        { \"field\": \"artifact_kind\", \"op\": \"contains\", \"value\": \"interface\" }\n      ]\n    },\n    { \"not\": { \"field\": \"disposition\", \"op\": \"eq\", \"value\": \"rejected\" } }\n  ]\n}\n```\n\nfield、operator、value type、enumはschema registryのallowlistで閉じる。unknownは`false`へ丸めず\nevaluation errorとしてfail-closeする。N/Aはreason、authority、re-evaluation triggerを必須にする。\n\ntemplate completionは少なくとも次のexact setを持つ。\n\n- 必須section／fieldのcoverage\n- requirement/obligation trace\n- negative oracle\n- measurement/thresholdまたは根拠付きN/A\n- V-pair edge\n- unresolved item 0、またはowner/re-entryを持つ明示defer\n- source/template/instance revision digest一致\n"
+        },
+        "reuse_mode": "semantic_rederivation",
+        "preserve": "JSON正本/説明分離、元source/版/trace、不一致の所在と独立反例、意味unknownとN/Aの分離、typed失敗返却。",
+        "change": "旧のTPL文法/整数版/lifecycle/registry/式木/instance digest/TS/Zod/固定上限と全field必須を移さない。CORE既存型の列挙memberへcarrierをclosedとし、供給memberの元nullable型、未供給memberのabsence、RawValueとnonsemantic_metadataのopaque内容を保持する。",
+        "reason": "現行type_contractのfield集合、validate_application_inputの入力責務、既存正常fixtureを起点とする。初稿の25入力carrierで定義外keyを受理する拡張はこれらに根拠がなく撤回する。旧unknown property失敗は保持し、現行の欠落保存とRawValue内任意mapは別軸として再導出する。旧consumerのactivationや層番号をcodec/実装完了へ転写しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "source": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+          "whole_file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+          "start_line": 16,
+          "end_line": 108,
+          "exact_quote": "## §1 schema familyの構成\n\n同じ意味を複数schemaへ複製せず、次の4 document kindを一つのversioned familyで管理する。\n\n| schema ID | 責務 | 本episode |\n|---|---|---|\n| `helix-design-template.v1` | 再利用可能な設計契約と適用条件 | fieldとvalidationをfreeze |\n| `helix-design-template-registry.v1` | template exact set、supersession、registry digest | fieldとvalidationをfreeze |\n| `helix-design-shadow-report.v1` | 既存artifactとの意味対応と差分 | fieldとparity判定をfreeze |\n| `helix-design-instance.v1` | requirementへ束縛した設計値 | identity/trace接続口だけ。値契約は後続episode |\n\n全objectは`additionalProperties: false`相当で閉じる。schema versionは文書kindごとのmajorを持ち、\nunknown majorを互換推測しない。\n\n## §2 Design Template JSONのfield\n\n```yaml\nrequired:\n  - schema_version\n  - template_id\n  - template_version\n  - status\n  - title\n  - layer\n  - pair_layer\n  - artifact_kind\n  - responsibility_owner\n  - applicability\n  - required_inputs\n  - sections\n  - trace_contract\n  - verification\n  - measurement\n  - completion\n  - downstream_artifact_kinds\n  - semantic_digest\n```\n\n### identityとlifecycle\n\n- `template_id`: `TPL-`で始まるstable ID。pathやtitleをidentityにしない。\n- `template_version`: 1以上の整数。同じID/versionの重複を拒否する。\n- `status`: `candidate | verified | approved | canonical | deprecated`の閉じた集合。\n- `supersedes`: 同じtemplate classの既存ID/versionだけを参照できる。\n- `layer/pair_layer`: current L1–L12 pair exact setだけを許可する。\n\n`candidate -> verified -> approved -> canonical -> deprecated`の順だけを許可する。shadow compilerの\n出力は常にcandidateであり、parity greenだけでapproved/canonicalへ昇格しない。\n\n### sectionとfield\n\n`sections`は`section_id`をtemplate内で一意にし、`required`、`fields`、`completion_rule_ids`を持つ。\nfieldは`field_id`、`value_type`、`cardinality`、`required`、`trace_kind`、`validation_rule_ids`を持つ。\n自由文fieldも意味ownerとtraceを持ち、rationaleだけを構造fieldの代用にしない。\n\n### trace、verification、measurementの契約\n\n- `trace_contract`: requirement、system contract、acceptance、design obligationの必須参照class。\n- `verification`: pair template ID、required oracle class、negative oracle、stale条件。\n- `measurement`: metric ID、unit、threshold/operatorまたはauthority付きN/A。\n- `completion`: required coverage、unresolved policy、independent review、digest一致条件。\n- `downstream_artifact_kinds`: current layer/pairで生成可能な閉じたartifact kind。\n\n## §3 applicability式\n\n式nodeは次のdiscriminated unionとする。\n\n```yaml\npredicate_node:\n  - all: PredicateNode[1..N]\n  - any: PredicateNode[1..N]\n  - not: PredicateNode\n  - comparison:\n      field: allowlisted_field_path\n      op: eq | neq | in | contains | exists | gt | gte | lt | lte\n      value: typed_scalar_or_array\n```\n\n一つのnodeに複数variantを置かない。空`all/any`、過剰depth、循環参照、unknown field/operator、\nfield型とvalue/operatorの不一致をschemaまたはsemantic validationで拒否する。\n\n評価結果は`applicable | not_applicable | evaluation_error`の三値とする。missing fieldやunknown enumを\n`not_applicable`へ丸めない。N/Aは`reason`、`authority`、`reentry_trigger`を持つdispositionであり、\npredicate falseとは別に記録する。\n\n## §4 registryとexact set\n\nregistryは`registry_id`、`registry_version`、`schema_digest`、templateの`id/version/digest/status` exact set、\n生成時刻から独立したlogical digestを持つ。同じclass/layer/pair/applicability equivalence classに\ncanonical normative ownerを原則1件だけ許可する。\n\ntemplate IDの参照はregistry内のexact versionへ解決し、latest暗黙解決をしない。deprecated templateは\nreplacement、consumer exact set、retention、removal triggerが無ければ受理しない。"
+        },
+        "reuse_mode": "semantic_rederivation",
+        "preserve": "JSON正本/説明分離、元source/版/trace、不一致の所在と独立反例、意味unknownとN/Aの分離、typed失敗返却。",
+        "change": "旧のTPL文法/整数版/lifecycle/registry/式木/instance digest/TS/Zod/固定上限と全field必須を移さない。CORE既存型の列挙memberへcarrierをclosedとし、供給memberの元nullable型、未供給memberのabsence、RawValueとnonsemantic_metadataのopaque内容を保持する。",
+        "reason": "現行type_contractのfield集合、validate_application_inputの入力責務、既存正常fixtureを起点とする。初稿の25入力carrierで定義外keyを受理する拡張はこれらに根拠がなく撤回する。旧unknown property失敗は保持し、現行の欠落保存とRawValue内任意mapは別軸として再導出する。旧consumerのactivationや層番号をcodec/実装完了へ転写しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EF18357A994D043719D5",
+        "source": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+          "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+          "whole_file_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+          "start_line": 16,
+          "end_line": 63,
+          "exact_quote": "## §1 module境界\n\n実装候補は`src/design/design-template-authority.ts`の単一moduleとする。まずpure functionだけで成立させ、\nrepository loader、CLI、DB projection、Markdown writerは本sliceへ追加しない。JSON Schema libraryは\n既存dependencyを再利用できる場合だけadapter側で使い、core resultをlibrary固有errorへ束縛しない。\n\n```ts\ntype Finding = {\n  code: DesignTemplateFindingCode;\n  pointer: string;\n  message: string;\n};\n\ntype ValidationResult<T> =\n  | { ok: true; value: T; findings: [] }\n  | { ok: false; findings: Finding[] };\n```\n\nfindingは`code -> pointer -> message`の順でstable sortし、入力順やruntime localeでdigestを変えない。\n\n## §2 `validateDesignTemplate`\n\n```ts\nfunction validateDesignTemplate(\n  input: unknown,\n  context: {\n    schemaVersion: \"helix-design-template.v1\";\n    currentPairs: ReadonlyArray<readonly [string, string]>;\n    allowedFieldPaths: ReadonlySet<string>;\n  },\n): ValidationResult<DesignTemplate>;\n```\n\n### DbC\n\n- pre: inputはuntrustedであり、callerがparse済みと仮定しない。\n- post: `ok=true`ならrequired field、identity、lifecycle、pair、predicate、trace、verification、\n  measurement、completion、semantic digestが全て成立する。\n- invariant: unknown property、unknown enum、unsafe integer、duplicate IDを保持したtyped valueを返さない。\n\n### pseudocode\n\n```text\nparse strict schema\nif parse findings exist -> return stable failure\nvalidate stable identity and lifecycle transition\nvalidate current L1-L12 layer pair\nwalk applicability tree with depth/node limits"
+        },
+        "reuse_mode": "semantic_rederivation",
+        "preserve": "JSON正本/説明分離、元source/版/trace、不一致の所在と独立反例、意味unknownとN/Aの分離、typed失敗返却。",
+        "change": "旧のTPL文法/整数版/lifecycle/registry/式木/instance digest/TS/Zod/固定上限と全field必須を移さない。CORE既存型の列挙memberへcarrierをclosedとし、供給memberの元nullable型、未供給memberのabsence、RawValueとnonsemantic_metadataのopaque内容を保持する。",
+        "reason": "現行type_contractのfield集合、validate_application_inputの入力責務、既存正常fixtureを起点とする。初稿の25入力carrierで定義外keyを受理する拡張はこれらに根拠がなく撤回する。旧unknown property失敗は保持し、現行の欠落保存とRawValue内任意mapは別軸として再導出する。旧consumerのactivationや層番号をcodec/実装完了へ転写しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F68FCEF7D82C4F7FA1EB",
+        "source": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-design-template-json-authority-integration-test-design.md",
+          "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+          "whole_file_sha256": "c3640d846d0cbd27c45d5f267baed76f839b481ad5e748ee2280a418353ca1b4",
+          "start_line": 16,
+          "end_line": 34,
+          "exact_quote": "| oracle | mutation | 合格条件 |\n|---|---|---|\n| IT-DTJ-001 | required fieldまたはunknown propertyを混入 | `schema_invalid`、activation不可 |\n| IT-DTJ-002 | template ID/versionを重複 | `template_identity_duplicate` |\n| IT-DTJ-003 | registry digestとtemplate byteをずらす | `template_digest_mismatch` |\n| IT-DTJ-004 | applicabilityへunknown field/operator、型不一致、空allを入れる | `applicability_invalid`、推測fallback 0 |\n| IT-DTJ-005 | requirement/obligation/system contract traceを一つ欠落 | `trace_incomplete` |\n| IT-DTJ-006 | pair template、negative oracle、pair revisionを一つ欠落 | `pair_incomplete` |\n| IT-DTJ-007 | measurement thresholdとN/A authorityを両方欠落 | `measurement_incomplete` |\n| IT-DTJ-008 | 同値classへcanonical normative ownerを2件設定 | `normative_owner_duplicate` |\n| IT-DTJ-009 | source atomをowner/re-entryなしで未変換にする | `shadow_atom_unmapped` |\n| IT-DTJ-010 | compatibility artifactの値をcurrent defaultへ昇格 | `legacy_authority_promotion` |\n| IT-DTJ-011 | generated viewだけを編集 | `generated_view_drift`、JSON変更0 |\n| IT-DTJ-012 | narrative Markdownを除去して再検証 | template identity、applicability、trace、pair、completionをJSONだけで再現 |\n| IT-DTJ-013 | `explained_delta`へreview/design decisionを付けない | cutover不可 |\n| IT-DTJ-014 | findingを複数順序で入力 | stable順の同一finding setと同一logical digest |\n\nL8はschema validator、registry、applicability evaluator、shadow compiler、generated view digestの結線を\n検証する。各mutationを別oracleとしてkillし、別fieldのgreenやMarkdown説明で相殺しない。"
+        },
+        "reuse_mode": "semantic_rederivation",
+        "preserve": "JSON正本/説明分離、元source/版/trace、不一致の所在と独立反例、意味unknownとN/Aの分離、typed失敗返却。",
+        "change": "旧のTPL文法/整数版/lifecycle/registry/式木/instance digest/TS/Zod/固定上限と全field必須を移さない。CORE既存型の列挙memberへcarrierをclosedとし、供給memberの元nullable型、未供給memberのabsence、RawValueとnonsemantic_metadataのopaque内容を保持する。",
+        "reason": "現行type_contractのfield集合、validate_application_inputの入力責務、既存正常fixtureを起点とする。初稿の25入力carrierで定義外keyを受理する拡張はこれらに根拠がなく撤回する。旧unknown property失敗は保持し、現行の欠落保存とRawValue内任意mapは別軸として再導出する。旧consumerのactivationや層番号をcodec/実装完了へ転写しない。"
+      }
+    ],
+    "failure_basis": {
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "revision": "0b38f97fabc92a42956903fff6baea5ad2cd7ac4",
+        "whole_file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "start_line": 65,
+        "end_line": 101,
+        "exact_quote": "| ID | severity | 弱点 | 観測根拠 | 要件化 |\n|---|---|---|---|---|\n| UTW-001 | Critical | L0〜L14とBunがsource全体のcurrent authorityとして深く埋め込まれている | Core Reads、README、package、CI、32 active Bun reference files | UTH-FR-002〜004 |\n| UTW-002 | Critical | prose/CURRENT handoverがcontinuation正本で、event-first DB projectionと競合する | AGENTS/CLAUDEのSession Start、`.ut-tdd/handover` | UTH-FR-006 |\n| UTW-003 | Critical | repository hookで覆えないhosted tool surfaceが手続き依存 | 対象AGENTSのscope boundary | UTH-FR-008 |\n| UTW-004 | Critical | live policyと文書policyが乖離し得る | ruleset、branch policy、既存UT-GH-03〜05 | UTH-FR-017 |\n| UTW-005 | Critical | PR trace/review evidenceが最新HEAD・merge-baseへ常時再束縛されない | 既存UT-GH-06/07/12 | UTH-FR-015 |\n| UTW-006 | Critical | GitHub signal→Issue→PLAN→PR→CI→merge→memoryが単一exactly-once episodeで閉じない | execution episode branchがmain未統合、UT-GH-09/10/13 | UTH-FR-018 |\n| UTW-007 | Critical | secret/PII scanの一部がwarn-onlyまたはhook依存で、CI全push blob再検証が不足 | `secret-scan-diff`既定warn、UT-GH-15 | UTH-FR-020 |\n| UTW-008 | High | 素のtest入口と正規snapshot runnerの意味が異なり、37 fail/4 errorsになる | 実測 | UTH-NFR-001、UTH-FR-010 |\n| UTW-009 | High | full regression/doctorが重く、timeoutと長いself-heal loopを生む | 220.54秒、doctor test 214.17秒 | UTH-NFR-002、UTH-FR-011 |\n| UTW-010 | High | Bun runtime/CIがLinux・Windows双方の必須前提 | package engines、workflow | UTH-FR-003、UTH-FR-012 |\n| UTW-011 | High | macOS legがなく、Windowsはfast/toolchain scopeのみ | workflow 2 legs | UTH-FR-012 |\n| UTW-012 | High | tracked runtime stateが207 filesあり、source/evidence/generated state境界が太い | `.ut-tdd` tracked inventory | UTH-FR-007 |\n| UTW-013 | High | fail-open/warn-onlyが安全性、観測性、可用性で統一分類されていない | session log、handover、update、scan、graphの複数方針 | UTH-FR-009 |\n| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n| UTW-015 | High | branch lifecycleが閉じず、main未包含6 heads、最大54 commits aheadが残る | mirror ref inventory | UTH-FR-013、UTH-FR-014 |\n| UTW-016 | High | tag 0でrelease provenanceとsource snapshot authorityが弱い | ref inventory | UTH-FR-027 |\n| UTW-017 | High | Issue Formsのlabel bootstrap/inbound dogfoodが未閉包 | 既存UT-GH-08/09 | UTH-FR-016 |\n| UTW-018 | High | merge後branch/state/memory cleanupがtransactionalでない | UT-GH-02/13/14 | UTH-FR-018、UTH-FR-019 |\n| UTW-019 | High | subagent/agent spawn guardはruntime surface差分に追随し続ける必要がある | 対象rulesの旧「未配線」履歴と現guard test | UTH-FR-008 |\n| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |\n| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |\n| UTW-022 | High | external MCP/tool/pluginの実行、権限、supply-chain検証がprofile設計より後追い | backlog IMP-120〜124 | UTH-FR-024 |\n| UTW-023 | High | improvement backlogにobserved/triaged/verifiedが92件あり、status名と実装実体が一致しない行がある | backlog status集計 | UTH-FR-025 |\n| UTW-024 | High | source全refのatom化・採否・要件traceがcurrent receiptとして閉じていない | HELIX source ledgerのpredecessor-ut BLOCKED | UTH-FR-001、UTH-FR-023 |\n| UTW-025 | Medium | docs 1,045、Markdown 1,311で正本・compatibility・archiveの認識負荷が高い | main inventory | UTH-NFR-003、UTH-FR-005 |\n| UTW-026 | Medium | CLI、doctor、projectionのmonolithが変更影響とtargeted verificationを拡大する | long-running suites、既存refactor carry | UTH-FR-011、UTH-NFR-004 |\n| UTW-027 | Medium | wrapperがcloneを重ね、disk/process/resource予算が明示的でない | snapshot runner実測 | UTH-NFR-002、UTH-FR-026 |\n| UTW-028 | Medium | Node SQLite experimental warningが大量に出てsignal/noiseを悪化させる | 正規test output | UTH-NFR-005 |\n| UTW-029 | Medium | consumer setup、source repo、clean distributionで検証集合が分岐しやすい | source/Pack workflow分離 | UTH-FR-027 |\n| UTW-030 | Medium | update-checkなど外部可用性をfail-openにする機能にfreshness/decision impactの統一receiptがない | update advisory設計 | UTH-FR-028 |\n| UTW-031 | Medium | manual approvalの対象、snapshot binding、expiry、reapproval triggerが機能ごとに不均一 | setup/release/cutover/security docs | UTH-FR-029 |\n| UTW-032 | Medium | self-improvementがfinding数の消化へ寄り、before/after metricと再発率で閉じない | backlog、quality audit surface | UTH-FR-025、UTH-FR-030 |\n| UTW-033 | High | freeze checkpointとreopen impact再検証がmain未統合で、確定済み成果物の再開境界が弱い | `work/freeze-checkpoint-plans`固有PLAN群 | UTH-FR-031 |\n| UTW-034 | Critical | PLAN revisionのCAS、provenance、replay、rollbackを束ねるtransactional authoringがmain未統合 | `work/recovery-plan-revision-authoring`の25固有commit | UTH-FR-032 |\n| UTW-035 | High | specialist agent registryのschema、sync、drift、guard digest、検証team招集が設計branchに残る | `work/l6-81-agent-registry-design` | UTH-FR-033 |"
+      },
+      "ids": [
+        "UTW-014",
+        "UTW-020",
+        "UTW-021"
+      ],
+      "meaning": "欠損空集合化、部分不足の集約隠蔽、自己申告/hash完成を防ぐ原要求の照合材料。新gate/閾値の根拠にしない。"
+    },
+    "schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "CORE009 owner JSON wire carrier design candidate",
+      "$defs": {
+        "RawValue": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawValue"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/RawValue"
+              }
+            }
+          ]
+        },
+        "Ref": {
+          "type": "object",
+          "properties": {
+            "identity": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "revision": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "scope": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_locator": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "SourceEnvelope": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "body": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "content_bytes": {
+              "type": "string"
+            },
+            "qualification_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "role": {
+              "type": "string",
+              "enum": [
+                "semantic_source",
+                "derived_view",
+                "explanation",
+                "reference_only"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "Qualification": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "root_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_sha256": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "scope": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "body": {
+              "$ref": "#/$defs/RawValue"
+            }
+          },
+          "additionalProperties": false
+        },
+        "ApplicationInput": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "operations": {
+              "$ref": "#/$defs/OperationSelection"
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SourceEnvelope"
+              }
+            },
+            "qualification_roots": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "qualifications": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Qualification"
+              }
+            },
+            "axis_requirements": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/AxisRequirement"
+              }
+            },
+            "axis_facts": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/AxisFact"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "universes": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/CandidateUniverse"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "templates": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TemplateSnapshot"
+              }
+            },
+            "conditions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ConditionBinding"
+              }
+            },
+            "semantic_comparisons": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SemanticComparison"
+              }
+            },
+            "application_policies": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ApplicationPolicy"
+              }
+            },
+            "na_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/NARecord"
+              }
+            },
+            "obligations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KindObligation"
+              }
+            },
+            "required_trace_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "trace_edges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TraceEdge"
+              }
+            },
+            "field_inputs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FieldInput"
+              }
+            },
+            "gap_proposals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/GapProposal"
+              }
+            },
+            "knowledge_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KnowledgeUseRecord"
+              }
+            },
+            "consumers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ConsumerSnapshot"
+              }
+            },
+            "meaning_deltas": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/MeaningDelta"
+              }
+            },
+            "impact_evidence": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ImpactEvidence"
+              }
+            },
+            "claims": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Claim"
+              }
+            },
+            "nonsemantic_metadata": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "semantic_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SemanticRecord"
+              }
+            },
+            "trace_requirements": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TraceRequirement"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "ApplicationBinding": {
+          "type": "object",
+          "properties": {
+            "requirement_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "product_scope": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "process_contract_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "application_contract_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "template_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "knowledge_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "oracle_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "OperationSelection": {
+          "type": "object",
+          "properties": {
+            "forward_requested": {
+              "type": "boolean"
+            },
+            "backflow_requested": {
+              "type": "boolean"
+            },
+            "impact_requested": {
+              "type": "boolean"
+            },
+            "selected_knowledge_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "unselected_knowledge_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "AxisRequirement": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "axis": {
+              "type": "string"
+            },
+            "operation": {
+              "type": "string",
+              "enum": [
+                "forward",
+                "backflow",
+                "impact",
+                "selected_knowledge",
+                "always"
+              ]
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "AxisFact": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "axis": {
+              "type": "string"
+            },
+            "value": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "CandidateUniverse": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "members": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "boundary_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "TemplateSnapshot": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "meaning_contract_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "knowledge_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "usability": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "condition_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "required_input_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "obligation_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "ConditionBinding": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "template_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "axis_fact_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "declared_meaning_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "semantic_comparison_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "SemanticComparison": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "left_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "right_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "same_meaning": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "ApplicationPolicy": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "template_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "condition_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "obligation_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "requiredness": {
+              "type": "string",
+              "enum": [
+                "required",
+                "conditional",
+                "unspecified"
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "non_applicable_basis_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "NARecord": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "template_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "decider": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "target_revision": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reentry_condition": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "KindObligation": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "template_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "unit",
+                "connection",
+                "composite"
+              ]
+            },
+            "meaning": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "condition_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "reentry_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "TraceEdge": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "from_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "to_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kind": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "direction": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "FieldInput": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "template_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "definition_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "value_fact_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "GapProposal": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "question",
+                "contradiction",
+                "derived_requirement_candidate",
+                "na_candidate",
+                "unresolved"
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "unfinished_obligation_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "backflow_owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "KnowledgeUseRecord": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "template_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required_field_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "operational_state": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "authority_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "compatibility_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "limitations": {
+              "$ref": "#/$defs/RawValue"
+            }
+          },
+          "additionalProperties": false
+        },
+        "ConsumerSnapshot": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "used_template_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "obligation_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "artifact_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "pair_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "state": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "MeaningDelta": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "old_template_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "new_template_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "facet": {
+              "type": "string",
+              "enum": [
+                "applicability",
+                "required_field",
+                "negative_oracle",
+                "completion",
+                "view_only"
+              ]
+            },
+            "old_meaning_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "new_meaning_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "comparison_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "ImpactEvidence": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "delta_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "consumer_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "affected": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "Claim": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "actor": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kind": {
+              "type": "string"
+            },
+            "proposed_value": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "SemanticRecord": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "kind": {
+              "type": "string"
+            },
+            "meaning": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "TraceRequirement": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "from_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "to_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "kind": {
+              "type": "string"
+            },
+            "direction": {
+              "type": "string"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "ApplicationAnalysis": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "candidate_material": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "obligations": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/KindObligation"
+              }
+            },
+            "gap_material": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "impact_material": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "comparisons": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Comparison"
+              }
+            },
+            "input_issues": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/InputIssue"
+              }
+            },
+            "source_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "side_effect_count": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "binding",
+            "candidate_material",
+            "obligations",
+            "gap_material",
+            "impact_material",
+            "comparisons",
+            "input_issues",
+            "source_refs",
+            "side_effect_count"
+          ]
+        },
+        "Comparison": {
+          "type": "object",
+          "properties": {
+            "producer_symbol": {
+              "type": "string"
+            },
+            "input_binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "original_axes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/AxisResult"
+              }
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Finding"
+              }
+            },
+            "material": {
+              "$ref": "#/$defs/RawValue"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "producer_symbol",
+            "input_binding",
+            "original_axes",
+            "findings",
+            "material"
+          ]
+        },
+        "AxisResult": {
+          "type": "object",
+          "properties": {
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "axis": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "original_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "reason": {
+              "type": "string"
+            },
+            "backflow_owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "subject_ref",
+            "binding",
+            "axis",
+            "state",
+            "original_refs",
+            "reason",
+            "backflow_owner"
+          ]
+        },
+        "Finding": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "rule_ref": {
+              "type": "string"
+            },
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "$ref": "#/$defs/ApplicationBinding"
+            },
+            "axis": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "source_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "reason": {
+              "type": "string"
+            },
+            "backflow_owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "rule_ref",
+            "subject_ref",
+            "binding",
+            "axis",
+            "state",
+            "source_refs",
+            "reason",
+            "backflow_owner"
+          ]
+        },
+        "InputIssue": {
+          "type": "object",
+          "properties": {
+            "locator": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "locator",
+            "reason",
+            "source_ref"
+          ]
+        },
+        "QualificationRoots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ref"
+          }
+        }
+      }
+    },
+    "entry_points": {
+      "Ref": "#/$defs/Ref",
+      "SourceEnvelope": "#/$defs/SourceEnvelope",
+      "Qualification": "#/$defs/Qualification",
+      "QualificationRoots": "#/$defs/QualificationRoots",
+      "ApplicationInput": "#/$defs/ApplicationInput",
+      "ApplicationAnalysis": "#/$defs/ApplicationAnalysis"
+    },
+    "schema_dispatch": "ownerの呼出しcontextでentry/schema revisionを固定し、この$defsの選択先を検査する。$defsだけのroot schemaを無条件受理に使わない。payloadの見かけ/role/IDやBRAIN同名型から自動dispatchせず、schema_version等の新wrapperも足さない。",
+    "type_derivation": "既存CORE type_contract/typesのfield型だけから到達するCORE型をschemaへ対応。QualificationRootsは既存ApplicationInput.qualification_roots:Ref[]のwire上の参照名で、新たな論理root型/供給制度ではない。enumは既存field型の明示unionだけを使用する。",
+    "presence": {
+      "absent": "未供給keyは省略のまま別presence材料へabsentを記録。入力carrierのrequired集合をschemaへ新設しない。依存操作に必要な欠落は既存意味担当が不足へ返す。",
+      "explicit_null": "元型がnullを許す供給memberだけ受理し、absenceと混ぜない。axis_facts/universes nullと[]は別原状態。",
+      "empty": "配列順と重複、空配列/空object/空stringを変更せず保存。母集合emptyから完全/非適用を生成しない。",
+      "unknown": "意味unknown/state/理由/根拠は既存owner出力のまま。codec独自unknownタグやN/A/fallbackを作らない。",
+      "opaque_and_extension": "Ref/SourceEnvelope等の入力carrier25型は現行宣言fieldへclosedとする。定義外keyは削除して成功にせず、そのJSON Pointerを持つInputIssueへvalue=nullで返す。宣言されたRawValueのscope/body/material/nonsemantic_metadata等の任意map keyはopaque原値として保持し、未知keyを意味/authorityへaliasしない。carrierの未供給memberは引き続きabsentであり全requiredに変えない。",
+      "output": "ApplicationAnalysis/Comparison/AxisResult/Finding/InputIssueの生成済みfieldは全requiredでclosed。欠落結果をdefaultで生成せず、宣言外のselected/used/Acceptedを結果fieldとして出力しない。Ref/Binding/KindObligationなど原資料carrierのabsenceと宣言RawValue内の任意map保存は維持。",
+      "numbers": "JSON numberの値と原lexemeを暗黙float化/整数化/丸めしない。exact値を表現不能なら成功にせず理由付きcodec失敗へ返す。具体library/言語幅/閾値は未選定。booleanをintegerへcoerceしない。"
+    },
+    "codec_operations": [
+      {
+        "symbol": "decode_core009_wire",
+        "input": "未検査raw UTF-8 octetsと固定entry/schema revision",
+        "output": "元JSON carrier|null、別presence材料、InputIssue[]と原raw診断資料",
+        "effect": "none",
+        "steps": [
+          "UTF-8を置換なしでdecode。失敗はvalue=null/root pointerのInputIssueと元byte位置。原octetsを診断原資料へ残し、logや外部送信の許可にしない。",
+          "単一JSON valueを末尾までparse。途中EOF/末尾別value/非JSON numberはvalue=nullのInputIssueへ返す。object decoded key重複は両出現と所在を原rawへ保持しlast-wins/dedupで成功にしない。配列の同identity record重複/相反とは分ける。",
+          "選択entryの宣言member供給形とclosed carrierを検査。型不正/定義外carrier keyは該当JSON PointerのInputIssueへvalue=nullで返す。未供給member/null/RawValue opaque内容を除去/補完/coerceしない。",
+          "decode可能なら原値/key集合/null/原配列順/重複を保持してpresenceを別材料に返す。原必要集合/selected知識/資格/意味不一致はこのcodecのshape成功で充足しない。"
+        ]
+      },
+      {
+        "symbol": "encode_core009_wire",
+        "input": "固定entry/schema revisionと未検査JSON carrier",
+        "output": "wire UTF-8 octets|null、InputIssue[]",
+        "effect": "none",
+        "steps": [
+          "同じschemaで供給型と出力required/closed fieldを照合。型不正や生成結果欠落をcoercion/defaultで修復しない。非JSON値/表現不能値はcodec失敗へ返す。",
+          "外側key順/空白/escapeを意味digest方式へ昇格せず、元配列順/重複/値/任意map keyを保持して単一JSONへencode。content_bytesの内部textは空白/改行/key順/escapeも一字ずつ保存する。",
+          "decode(encode(value))の原値/key集合/null/配列/数値/文字列とpresence一致を要求する。外側bytes同一性やcanonical digest選択を要求しない。意味比較/builderのdeterminismをencoderが再実装しない。"
+        ]
+      }
+    ],
+    "source_resolution_stages": [
+      "SourceEnvelope.ref/body/content_bytes/qualification_ref/roleをCORE自身の欄で保存する。BRAINのcontent/semantic_jsonやQualification.applicable_scope/qualification_bodyをbody/scopeへ暗黙renameしない。CORE SourceEnvelopeの定義外contentはshape失敗へ返し、bodyへaliasしない。",
+      "content_bytes原textのUTF-8 bytesとsource ref digestを独立照合し、parseしたbody内recordsの内容とbodyを比較する。外側wire hash/再生成body hashを元digestへ代用しない。",
+      "body内recordsのref/type/payloadを元subject/revision/scope/ownerへ解決し、同名文字列/digest/形だけで意味/内部ref資格を証明しない。複数相反recordは別原sourceのまま保持。",
+      "qualification_ref→Qualification→独立qualification_roots Ref[]へ、subject/digest/owner/scope/revisionと原body根拠を照合する。自己資格/bytes一致だけでは資格成立しない。実root供給元/実custody/原owner根拠resolverはunknown/未閉包のまま。新署名/truststore/issuerを作らない。",
+      "source不足/相反はvalidate_application_inputのInputIssue/unusable sourceと依存項目へ局所化し、decode可能snapshotと無関係な有資格内容を保持。未資格をraw形不正で全snapshot消失へ変えない。"
+    ],
+    "application_boundary": "codecは必要axis/候補母集合/trace端集合を現供給値から創作しない。same_meaning=falseは元不一致、nullは未知、conditional未充足は未完のまま。cacheされたComparison decodeは評価器producer根拠でなく、ApplicationAnalysisの候補/義務/不足/影響はOS selected/used/消込/実受領/POAcceptedを構成しない。",
+    "owner_boundary": "同名Refが似ていてもBRAIN/OS型を共有APIへコピーしない。CORE SourceEnvelope/bodyとQualification/owner/scope/body、CORE Comparison.original_axes/materialを原型に対応。正式両端schema/codec/互換/receiptはBRAIN/OS/CONNECTへ残し、毎回承認gate/閾値/実ライブラリ採用/権限変更を追加しない。 BRAIN032同様carrierとRawValueの責務を分けるが、COREの列挙memberはCORE自身の原型に従う。BRAINのcontent/semantic_json/qualification_bodyや型名をコピーしない。初稿のCORE carrier拡張受理に現行根拠があったとは扱わない。",
+    "remaining": [
+      "全Context/Result/opaque body record契約の全量凍結、独立review、具体parserのexact number/Unicode/resource条件は未成立。schema図式の静的照合をライブラリ採用/実codec成立にしない。",
+      "正式root/資格供給元/実source custody/意味比較provider/原owner契約、BRAIN→CORE/CORE→OSの正式bindingとCONNECT版/receiptは未閉包。",
+      "L6は関数設計、L7は関数検証、実装成果は層外。実装前test/oracle凍結→Red→Green→Refactor、実接続/保存/受入、全92親430対閉包と実装Readyは未成立。",
+      "小数/指数(1.0/1e0/0.1)/1e400とencode非JSON値の具体期待stage/条件は未固定。整数対照成功から数値全域やencode固有分岐成立を生成しない。"
+    ]
   }
 }
