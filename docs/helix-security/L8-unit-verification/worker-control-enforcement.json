@@ -3613,6 +3613,288 @@
       },
       "execution_state": "not_executed",
       "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-INSPECT-ROOT-NULL",
+      "function_ref": "HELIXSECURITY-L5-007-inspect_worker_control_input",
+      "raw_utf8": "null",
+      "raw_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "expected_material": {
+        "input": null,
+        "retained_raw": null
+      },
+      "expectation_kind": "partial_input_inspection",
+      "assertion_scope": "InputInspection.input/retained_rawとdeclared_presenceの列挙rowだけの部分期待。未記載fieldの全出力、正式wire受入、全制御対応を主張しない。",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01",
+          "S03",
+          "S06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-F02",
+          "HELIXSECURITY-L3-007-F03",
+          "HELIXSECURITY-L3-007-F04",
+          "HELIXSECURITY-L3-007-F05",
+          "HELIXSECURITY-L3-007-F06",
+          "HELIXSECURITY-L3-007-F07",
+          "HELIXSECURITY-L3-007-F08",
+          "HELIXSECURITY-L3-007-F09",
+          "HELIXSECURITY-L3-007-F10",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-F02",
+          "HELIXSECURITY-L10-007-F03",
+          "HELIXSECURITY-L10-007-F04",
+          "HELIXSECURITY-L10-007-F05",
+          "HELIXSECURITY-L10-007-F06",
+          "HELIXSECURITY-L10-007-F07",
+          "HELIXSECURITY-L10-007-F08",
+          "HELIXSECURITY-L10-007-F09",
+          "HELIXSECURITY-L10-007-F10",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "承認済み全11契約に既に参照されたinspect関数の論理型/presence分岐と既存S01/S03/S06から手起草。root非objectで比較を成功へしない、booleanを非負integerへcastしない。新gate/入力制限/実codecではない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-INSPECT-ROOT-NONDICT",
+      "function_ref": "HELIXSECURITY-L5-007-inspect_worker_control_input",
+      "raw_utf8": "[false]",
+      "raw_sha256": "456e2e3fa05ee1e2f4e529558008ce162bbd388a9dd4a923c79543a4a1dba618",
+      "expected_material": {
+        "input": null,
+        "retained_raw": [
+          false
+        ]
+      },
+      "expectation_kind": "partial_input_inspection",
+      "assertion_scope": "InputInspection.input/retained_rawとdeclared_presenceの列挙rowだけの部分期待。未記載fieldの全出力、正式wire受入、全制御対応を主張しない。",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01",
+          "S03",
+          "S06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-F02",
+          "HELIXSECURITY-L3-007-F03",
+          "HELIXSECURITY-L3-007-F04",
+          "HELIXSECURITY-L3-007-F05",
+          "HELIXSECURITY-L3-007-F06",
+          "HELIXSECURITY-L3-007-F07",
+          "HELIXSECURITY-L3-007-F08",
+          "HELIXSECURITY-L3-007-F09",
+          "HELIXSECURITY-L3-007-F10",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-F02",
+          "HELIXSECURITY-L10-007-F03",
+          "HELIXSECURITY-L10-007-F04",
+          "HELIXSECURITY-L10-007-F05",
+          "HELIXSECURITY-L10-007-F06",
+          "HELIXSECURITY-L10-007-F07",
+          "HELIXSECURITY-L10-007-F08",
+          "HELIXSECURITY-L10-007-F09",
+          "HELIXSECURITY-L10-007-F10",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "承認済み全11契約に既に参照されたinspect関数の論理型/presence分岐と既存S01/S03/S06から手起草。root非objectで比較を成功へしない、booleanを非負integerへcastしない。新gate/入力制限/実codecではない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-INSPECT-MEMBER-PRESENCE",
+      "function_ref": "HELIXSECURITY-L5-007-inspect_worker_control_input",
+      "raw_utf8": "{\"phase\":null,\"worker_self_expansion\":false}",
+      "raw_sha256": "3a73416d82dd853d6dd5e3577164529b851375f2236c16b4fb13e1f18f53bfa8",
+      "expected_material": {
+        "required_presence_rows": [
+          {
+            "pointer": "/phase",
+            "presence": "supplied(null)",
+            "projection_state": "explicit_null"
+          },
+          {
+            "pointer": "/request_binding",
+            "presence": "absent",
+            "projection_state": "missing"
+          },
+          {
+            "pointer": "/worker_self_expansion",
+            "presence": "supplied",
+            "projection_state": "known"
+          }
+        ],
+        "retained_raw": {
+          "phase": null,
+          "worker_self_expansion": false
+        }
+      },
+      "expectation_kind": "partial_input_inspection",
+      "assertion_scope": "InputInspection.input/retained_rawとdeclared_presenceの列挙rowだけの部分期待。未記載fieldの全出力、正式wire受入、全制御対応を主張しない。",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01",
+          "S03",
+          "S06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-F02",
+          "HELIXSECURITY-L3-007-F03",
+          "HELIXSECURITY-L3-007-F04",
+          "HELIXSECURITY-L3-007-F05",
+          "HELIXSECURITY-L3-007-F06",
+          "HELIXSECURITY-L3-007-F07",
+          "HELIXSECURITY-L3-007-F08",
+          "HELIXSECURITY-L3-007-F09",
+          "HELIXSECURITY-L3-007-F10",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-F02",
+          "HELIXSECURITY-L10-007-F03",
+          "HELIXSECURITY-L10-007-F04",
+          "HELIXSECURITY-L10-007-F05",
+          "HELIXSECURITY-L10-007-F06",
+          "HELIXSECURITY-L10-007-F07",
+          "HELIXSECURITY-L10-007-F08",
+          "HELIXSECURITY-L10-007-F09",
+          "HELIXSECURITY-L10-007-F10",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "承認済み全11契約に既に参照されたinspect関数の論理型/presence分岐と既存S01/S03/S06から手起草。root非objectで比較を成功へしない、booleanを非負integerへcastしない。新gate/入力制限/実codecではない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-INSPECT-BOOL-NONINTEGER",
+      "function_ref": "HELIXSECURITY-L5-007-inspect_worker_control_input",
+      "raw_utf8": "{\"context\":{\"timeout_seconds\":true}}",
+      "raw_sha256": "eddb3efbb31a78d15fbe202647759b28965f90238151e1bac3a5966b57cd4dd8",
+      "expected_material": {
+        "required_presence_rows": [
+          {
+            "pointer": "/context/timeout_seconds",
+            "presence": "supplied",
+            "projection_state": "invalid_or_unknown"
+          }
+        ],
+        "retained_raw": {
+          "context": {
+            "timeout_seconds": true
+          }
+        },
+        "boolean_cast_to_integer": false
+      },
+      "expectation_kind": "partial_input_inspection",
+      "assertion_scope": "InputInspection.input/retained_rawとdeclared_presenceの列挙rowだけの部分期待。未記載fieldの全出力、正式wire受入、全制御対応を主張しない。",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01",
+          "S03",
+          "S06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-F02",
+          "HELIXSECURITY-L3-007-F03",
+          "HELIXSECURITY-L3-007-F04",
+          "HELIXSECURITY-L3-007-F05",
+          "HELIXSECURITY-L3-007-F06",
+          "HELIXSECURITY-L3-007-F07",
+          "HELIXSECURITY-L3-007-F08",
+          "HELIXSECURITY-L3-007-F09",
+          "HELIXSECURITY-L3-007-F10",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-F02",
+          "HELIXSECURITY-L10-007-F03",
+          "HELIXSECURITY-L10-007-F04",
+          "HELIXSECURITY-L10-007-F05",
+          "HELIXSECURITY-L10-007-F06",
+          "HELIXSECURITY-L10-007-F07",
+          "HELIXSECURITY-L10-007-F08",
+          "HELIXSECURITY-L10-007-F09",
+          "HELIXSECURITY-L10-007-F10",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "承認済み全11契約に既に参照されたinspect関数の論理型/presence分岐と既存S01/S03/S06から手起草。root非objectで比較を成功へしない、booleanを非負integerへcastしない。新gate/入力制限/実codecではない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC007-L8-INSPECT-ZERO-KNOWN-INTEGER",
+      "function_ref": "HELIXSECURITY-L5-007-inspect_worker_control_input",
+      "raw_utf8": "{\"context\":{\"timeout_seconds\":0}}",
+      "raw_sha256": "7016d2e8cc565affc0a790497443c4e42c5ba47bdafde436729f985b72051d96",
+      "expected_material": {
+        "required_presence_rows": [
+          {
+            "pointer": "/context/timeout_seconds",
+            "presence": "supplied",
+            "projection_state": "known"
+          }
+        ],
+        "retained_raw": {
+          "context": {
+            "timeout_seconds": 0
+          }
+        }
+      },
+      "expectation_kind": "partial_input_inspection",
+      "assertion_scope": "InputInspection.input/retained_rawとdeclared_presenceの列挙rowだけの部分期待。未記載fieldの全出力、正式wire受入、全制御対応を主張しない。",
+      "oracle_basis": {
+        "rule_refs": [
+          "S01",
+          "S03",
+          "S06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-007-F01",
+          "HELIXSECURITY-L3-007-F02",
+          "HELIXSECURITY-L3-007-F03",
+          "HELIXSECURITY-L3-007-F04",
+          "HELIXSECURITY-L3-007-F05",
+          "HELIXSECURITY-L3-007-F06",
+          "HELIXSECURITY-L3-007-F07",
+          "HELIXSECURITY-L3-007-F08",
+          "HELIXSECURITY-L3-007-F09",
+          "HELIXSECURITY-L3-007-F10",
+          "HELIXSECURITY-L3-007-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-007-F01",
+          "HELIXSECURITY-L10-007-F02",
+          "HELIXSECURITY-L10-007-F03",
+          "HELIXSECURITY-L10-007-F04",
+          "HELIXSECURITY-L10-007-F05",
+          "HELIXSECURITY-L10-007-F06",
+          "HELIXSECURITY-L10-007-F07",
+          "HELIXSECURITY-L10-007-F08",
+          "HELIXSECURITY-L10-007-F09",
+          "HELIXSECURITY-L10-007-F10",
+          "HELIXSECURITY-L10-007-N01"
+        ],
+        "derivation": "承認済み全11契約に既に参照されたinspect関数の論理型/presence分岐と既存S01/S03/S06から手起草。root非objectで比較を成功へしない、booleanを非負integerへcastしない。新gate/入力制限/実codecではない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
     }
   ],
   "pair_cases": [
@@ -3644,7 +3926,12 @@
         "SEC007-L8-VIOLATION-OVER-UNKNOWN",
         "SEC007-L8-COMPOSE-NORMAL-pre",
         "SEC007-L8-COMPOSE-NORMAL-run",
-        "SEC007-L8-COMPOSE-NORMAL-post"
+        "SEC007-L8-COMPOSE-NORMAL-post",
+        "SEC007-L8-INSPECT-ROOT-NULL",
+        "SEC007-L8-INSPECT-ROOT-NONDICT",
+        "SEC007-L8-INSPECT-MEMBER-PRESENCE",
+        "SEC007-L8-INSPECT-BOOL-NONINTEGER",
+        "SEC007-L8-INSPECT-ZERO-KNOWN-INTEGER"
       ],
       "execution_state": "not_executed"
     },
@@ -3663,7 +3950,12 @@
         "SEC007-L8-WRITE-READONLY-CHANGED",
         "SEC007-L8-WRITE-ATTEMPT-UNKNOWN",
         "SEC007-L8-DATA-NORMAL-write_path",
-        "SEC007-L8-WRITE-WRITABLE-ALLOWED"
+        "SEC007-L8-WRITE-WRITABLE-ALLOWED",
+        "SEC007-L8-INSPECT-ROOT-NULL",
+        "SEC007-L8-INSPECT-ROOT-NONDICT",
+        "SEC007-L8-INSPECT-MEMBER-PRESENCE",
+        "SEC007-L8-INSPECT-BOOL-NONINTEGER",
+        "SEC007-L8-INSPECT-ZERO-KNOWN-INTEGER"
       ],
       "execution_state": "not_executed"
     },
@@ -3679,7 +3971,12 @@
         "SEC007-L8-NETWORK-FALSE",
         "SEC007-L8-NETWORK-TRUE",
         "SEC007-L8-NETWORK-NULL",
-        "SEC007-L8-DATA-NORMAL-network"
+        "SEC007-L8-DATA-NORMAL-network",
+        "SEC007-L8-INSPECT-ROOT-NULL",
+        "SEC007-L8-INSPECT-ROOT-NONDICT",
+        "SEC007-L8-INSPECT-MEMBER-PRESENCE",
+        "SEC007-L8-INSPECT-BOOL-NONINTEGER",
+        "SEC007-L8-INSPECT-ZERO-KNOWN-INTEGER"
       ],
       "execution_state": "not_executed"
     },
@@ -3695,7 +3992,12 @@
         "SEC007-L8-CREDENTIAL-FALSE",
         "SEC007-L8-CREDENTIAL-TRUE",
         "SEC007-L8-CREDENTIAL-NULL",
-        "SEC007-L8-DATA-NORMAL-credential"
+        "SEC007-L8-DATA-NORMAL-credential",
+        "SEC007-L8-INSPECT-ROOT-NULL",
+        "SEC007-L8-INSPECT-ROOT-NONDICT",
+        "SEC007-L8-INSPECT-MEMBER-PRESENCE",
+        "SEC007-L8-INSPECT-BOOL-NONINTEGER",
+        "SEC007-L8-INSPECT-ZERO-KNOWN-INTEGER"
       ],
       "execution_state": "not_executed"
     },
@@ -3712,7 +4014,12 @@
         "SEC007-L8-ENVIRONMENT-TRUE",
         "SEC007-L8-ENVIRONMENT-NULL",
         "SEC007-L8-ENV-SET-CONFLICT",
-        "SEC007-L8-DATA-NORMAL-environment"
+        "SEC007-L8-DATA-NORMAL-environment",
+        "SEC007-L8-INSPECT-ROOT-NULL",
+        "SEC007-L8-INSPECT-ROOT-NONDICT",
+        "SEC007-L8-INSPECT-MEMBER-PRESENCE",
+        "SEC007-L8-INSPECT-BOOL-NONINTEGER",
+        "SEC007-L8-INSPECT-ZERO-KNOWN-INTEGER"
       ],
       "execution_state": "not_executed"
     },
@@ -3728,7 +4035,12 @@
         "SEC007-L8-TIMEOUT-AT-DEADLINE",
         "SEC007-L8-TIMEOUT-LATE-SUCCESS",
         "SEC007-L8-TIME-DESCRIPTOR-BOOL",
-        "SEC007-L8-DATA-NORMAL-timeout"
+        "SEC007-L8-DATA-NORMAL-timeout",
+        "SEC007-L8-INSPECT-ROOT-NULL",
+        "SEC007-L8-INSPECT-ROOT-NONDICT",
+        "SEC007-L8-INSPECT-MEMBER-PRESENCE",
+        "SEC007-L8-INSPECT-BOOL-NONINTEGER",
+        "SEC007-L8-INSPECT-ZERO-KNOWN-INTEGER"
       ],
       "execution_state": "not_executed"
     },
@@ -3743,7 +4055,12 @@
         "SEC007-L8-STAGE-UNKNOWN-resource",
         "SEC007-L8-RESOURCE-REACHED-STOP",
         "SEC007-L8-RESOURCE-REACHED-SUCCESS",
-        "SEC007-L8-DATA-NORMAL-resource"
+        "SEC007-L8-DATA-NORMAL-resource",
+        "SEC007-L8-INSPECT-ROOT-NULL",
+        "SEC007-L8-INSPECT-ROOT-NONDICT",
+        "SEC007-L8-INSPECT-MEMBER-PRESENCE",
+        "SEC007-L8-INSPECT-BOOL-NONINTEGER",
+        "SEC007-L8-INSPECT-ZERO-KNOWN-INTEGER"
       ],
       "execution_state": "not_executed"
     },
@@ -3760,7 +4077,12 @@
         "SEC007-L8-TREE-UNKNOWN",
         "SEC007-L8-DIFF-ALLOW-UNKNOWN",
         "SEC007-L8-DIFF-WRITE-AFTER-UNKNOWN",
-        "SEC007-L8-DATA-NORMAL-diff_inspection"
+        "SEC007-L8-DATA-NORMAL-diff_inspection",
+        "SEC007-L8-INSPECT-ROOT-NULL",
+        "SEC007-L8-INSPECT-ROOT-NONDICT",
+        "SEC007-L8-INSPECT-MEMBER-PRESENCE",
+        "SEC007-L8-INSPECT-BOOL-NONINTEGER",
+        "SEC007-L8-INSPECT-ZERO-KNOWN-INTEGER"
       ],
       "execution_state": "not_executed"
     },
@@ -3780,7 +4102,12 @@
         "SEC007-L8-ROLLBACK-PARTIAL",
         "SEC007-L8-ROLLBACK-UNKNOWN-AFTER",
         "SEC007-L8-FAILURE-BACKFLOW",
-        "SEC007-L8-DATA-NORMAL-rollback"
+        "SEC007-L8-DATA-NORMAL-rollback",
+        "SEC007-L8-INSPECT-ROOT-NULL",
+        "SEC007-L8-INSPECT-ROOT-NONDICT",
+        "SEC007-L8-INSPECT-MEMBER-PRESENCE",
+        "SEC007-L8-INSPECT-BOOL-NONINTEGER",
+        "SEC007-L8-INSPECT-ZERO-KNOWN-INTEGER"
       ],
       "execution_state": "not_executed"
     },
@@ -3798,7 +4125,12 @@
         "SEC007-L8-RESULT-DEPENDENCY-NULL",
         "SEC007-L8-RESULT-TERMINAL-UNKNOWN",
         "SEC007-L8-FAILURE-BACKFLOW",
-        "SEC007-L8-DATA-NORMAL-result_collection"
+        "SEC007-L8-DATA-NORMAL-result_collection",
+        "SEC007-L8-INSPECT-ROOT-NULL",
+        "SEC007-L8-INSPECT-ROOT-NONDICT",
+        "SEC007-L8-INSPECT-MEMBER-PRESENCE",
+        "SEC007-L8-INSPECT-BOOL-NONINTEGER",
+        "SEC007-L8-INSPECT-ZERO-KNOWN-INTEGER"
       ],
       "execution_state": "not_executed"
     },
@@ -3873,7 +4205,12 @@
         "SEC007-L8-DATA-NORMAL-resource",
         "SEC007-L8-DATA-NORMAL-diff_inspection",
         "SEC007-L8-DATA-NORMAL-rollback",
-        "SEC007-L8-DATA-NORMAL-result_collection"
+        "SEC007-L8-DATA-NORMAL-result_collection",
+        "SEC007-L8-INSPECT-ROOT-NULL",
+        "SEC007-L8-INSPECT-ROOT-NONDICT",
+        "SEC007-L8-INSPECT-MEMBER-PRESENCE",
+        "SEC007-L8-INSPECT-BOOL-NONINTEGER",
+        "SEC007-L8-INSPECT-ZERO-KNOWN-INTEGER"
       ],
       "execution_state": "not_executed"
     }
@@ -3883,13 +4220,13 @@
     "full14": "compositionへの明示binding/control grade材料から原14欄だけを組み立てるunit素材。原scope/revisionはrawへ固定するが、前段のbinding/stage/data比較を実行済みとして補完しない。各実制御の資格/全入力pipeline/実観測oracleではない。",
     "expectation_source": "批准whole/原L4/固有phase/data規則/旧同役sourceを先に読み手起草した部分期待。製品関数や旧evaluatorを実行しない。",
     "case_count_is_completion_claim": false,
-    "canonical_cases_sha256": "f591731f4d6f90f16e7f40790b5293411023dda424817f23aa09487fc12d7ad4",
+    "canonical_cases_sha256": "71bb53a08ac819f3020d38c8d8997032a955e7d9de66659dbc7fe84607d6279e",
     "dependency_null": "原source fieldがnullならfield pointer、control本体nullだけrecord pointer。unknown terminalをknown conflictにしない。",
     "example_limits": "90/1/256と47/2/128は入力素材の例。固定global limitを新設しない。"
   },
   "completion": {
     "status": "unproven_static_checks_passed_pending_independent_review",
-    "raw_cases": 83,
+    "raw_cases": 88,
     "original_L9_cases": 421,
     "actual_runtime_or_TDD": "not_executed",
     "implementation_readiness": "not_ready"

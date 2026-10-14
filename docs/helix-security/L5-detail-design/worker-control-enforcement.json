@@ -2619,7 +2619,8 @@
       },
       "rule_refs": [
         "S01",
-        "S03"
+        "S03",
+        "S06"
       ],
       "pre": "元未検査fixed-domain資料。",
       "post": "全fieldのdeclared型/presence/nullとrawを分けて保持。",
@@ -2693,7 +2694,8 @@
       },
       "rule_refs": [
         "S01",
-        "S02"
+        "S02",
+        "S10"
       ],
       "pre": "選択phase planと原control/source参照。",
       "post": "record不足/必要stage不足/source不足を局所化し、未使用未来stageを失敗にしない。",
@@ -2885,7 +2887,8 @@
       },
       "rule_refs": [
         "S03",
-        "S07"
+        "S07",
+        "S10"
       ],
       "pre": "phase planでこのdataが適用されるときだけ原宣言型へ解決。",
       "post": "対応/違反/unknownと元field所在を保持。未来未評価は対応観測に昇格しない。",
@@ -2935,7 +2938,8 @@
         "output_type": "ControlComparison"
       },
       "rule_refs": [
-        "S09"
+        "S09",
+        "S10"
       ],
       "pre": "phase planでこのdataが適用されるときだけ原宣言型へ解決。",
       "post": "対応/違反/unknownと元field所在を保持。未来未評価は対応観測に昇格しない。",
@@ -2960,7 +2964,9 @@
         "output_type": "WorkerControlAnalysis"
       },
       "rule_refs": [
-        "S10"
+        "S10",
+        "S02",
+        "S03"
       ],
       "pre": "同request/revision/scopeのbinding/stage/data pure材料。",
       "post": "原14欄のgrade/phase/局所failureを保持し、実作用false/none。",
