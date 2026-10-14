@@ -373,12 +373,18 @@
       "l4_ref": "HELIXLABO-L4-055-B01",
       "requirement_ref": "HELIXLABO-L3-055-B01",
       "system_oracle_ref": "HELIXLABO-L10-055-B01",
-      "pure_operation": "summarize_history(snapshot)は観測値をsource revisionとscopeへ結び、水準材料を返す。render_material(assessment, existing_assignment)は別ownerのassignment参照をそのまま表示し、判定・更新しない。experiment_selected=falseなら006依存を追加しない。",
-      "positive_source_case": "L9 positive raw packet identity is preserved; expected result is independently expressed in this file.",
+      "pure_operation": "定義済みの次の純粋関数を対応する明示入力で照合する：partition_by_class(snapshot: HistorySnapshot) -> PartitionResult、bind_evidence(partition: HistoryPartition, source_map: SourceMap) -> BindResult、resolve_applicability(group: HistoryPartition, claims: list<QualitativeClaim>) -> ApplicabilityResult、render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial。各入力のsource/presenceを保持し、実資格・実作用・全unit出力合格を生成しない。",
+      "positive_source_case": "L9正例のraw packet identityを保持する。期待は本書の指定projectionに独立して記述する。",
       "negative_source_cases": [
         "B01-NEG-SELF-PLACEMENT",
         "B01-NEG-SCORE-BRANCH-CHANGE",
         "B01-NEG-ALL-L2-006-GATE"
+      ],
+      "operation_refs": [
+        "partition_by_class(snapshot: HistorySnapshot) -> PartitionResult",
+        "bind_evidence(partition: HistoryPartition, source_map: SourceMap) -> BindResult",
+        "resolve_applicability(group: HistoryPartition, claims: list<QualitativeClaim>) -> ApplicabilityResult",
+        "render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial"
       ]
     },
     {
@@ -387,12 +393,17 @@
       "l4_ref": "HELIXLABO-L4-055-F01",
       "requirement_ref": "HELIXLABO-L3-055-F01",
       "system_oracle_ref": "HELIXLABO-L10-055-F01",
-      "pure_operation": "partition_by_class(snapshot)はtask/model class単位に分割。bind_evidence(partition)はsource revision/period/scope/evaluation refを値のまま束縛。resolve_applicability(group)は完全な一致根拠のある範囲のみ水準候補を返し、未知・未評価を確定へ昇格しない。",
-      "positive_source_case": "L9 positive raw packet identity is preserved; expected result is independently expressed in this file.",
+      "pure_operation": "定義済みの次の純粋関数を対応する明示入力で照合する：partition_by_class(snapshot: HistorySnapshot) -> PartitionResult、bind_evidence(partition: HistoryPartition, source_map: SourceMap) -> BindResult、resolve_applicability(group: HistoryPartition, claims: list<QualitativeClaim>) -> ApplicabilityResult。各入力のsource/presenceを保持し、実資格・実作用・全unit出力合格を生成しない。",
+      "positive_source_case": "L9正例のraw packet identityを保持する。期待は本書の指定projectionに独立して記述する。",
       "negative_source_cases": [
         "F01-NEG-UNEVALUATED-PROMOTION",
         "F01-NEG-UNKNOWN-JOB-GUARANTEE",
         "F01-NEG-SCOPE-INFERENCE"
+      ],
+      "operation_refs": [
+        "partition_by_class(snapshot: HistorySnapshot) -> PartitionResult",
+        "bind_evidence(partition: HistoryPartition, source_map: SourceMap) -> BindResult",
+        "resolve_applicability(group: HistoryPartition, claims: list<QualitativeClaim>) -> ApplicabilityResult"
       ]
     },
     {
@@ -401,13 +412,17 @@
       "l4_ref": "HELIXLABO-L4-055-F02",
       "requirement_ref": "HELIXLABO-L3-055-F02",
       "system_oracle_ref": "HELIXLABO-L10-055-F02",
-      "pure_operation": "reconstruct_metric(receipt)は事前に定められたeligible id集合とreceipt内規則から算入を再現する。denominatorを結果確認後に選び直さず、unknownをnumeric zeroへ変換しない。定性claimは根拠範囲をそのまま返す。",
-      "positive_source_case": "L9 positive raw packet identity is preserved; expected result is independently expressed in this file.",
+      "pure_operation": "定義済みの次の純粋関数を対応する明示入力で照合する：reconstruct_metric(claim: MetricClaim) -> MetricReconstruction、render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial。各入力のsource/presenceを保持し、実資格・実作用・全unit出力合格を生成しない。",
+      "positive_source_case": "L9正例のraw packet identityを保持する。期待は本書の指定projectionに独立して記述する。",
       "negative_source_cases": [
         "F02-NEG-MISSING-AS-ZERO",
         "F02-NEG-EXCLUDE-FAILURE",
         "F02-NEG-POST-RESULT-DENOMINATOR-EDIT",
         "F02-NEG-NUMERIC-WITHOUT-BASIS"
+      ],
+      "operation_refs": [
+        "reconstruct_metric(claim: MetricClaim) -> MetricReconstruction",
+        "render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial"
       ]
     },
     {
@@ -416,12 +431,18 @@
       "l4_ref": "HELIXLABO-L4-055-F03",
       "requirement_ref": "HELIXLABO-L3-055-F03",
       "system_oracle_ref": "HELIXLABO-L10-055-F03",
-      "pure_operation": "render_metric_and_failures(metric)は提供された算術規則だけ再計算し、既知failure一覧と集計値を別々に返す。classify_unknown(snapshot)はunknownを保つ。render_qualitative(claim)は適用条件内の根拠のみ返し、他scopeを未評価とする。",
-      "positive_source_case": "L9 positive raw packet identity is preserved; expected result is independently expressed in this file.",
+      "pure_operation": "定義済みの次の純粋関数を対応する明示入力で照合する：reconstruct_metric(claim: MetricClaim) -> MetricReconstruction、render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial、classify_unknown(snapshot: HistorySnapshot | MetricClaim) -> list<Unresolved>、render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial。各入力のsource/presenceを保持し、実資格・実作用・全unit出力合格を生成しない。",
+      "positive_source_case": "L9正例のraw packet identityを保持する。期待は本書の指定projectionに独立して記述する。",
       "negative_source_cases": [
         "F03-NEG-AVERAGE-OFFSETS-MAJOR-FAILURE",
         "F03-NEG-ALL-PORTFOLIO-REQUIREMENT",
         "F03-NEG-UNKNOWN-TO-SUCCESS"
+      ],
+      "operation_refs": [
+        "reconstruct_metric(claim: MetricClaim) -> MetricReconstruction",
+        "render_metric_and_failures(claim: MetricClaim, reconstruction: MetricReconstruction) -> EvaluationMaterial",
+        "classify_unknown(snapshot: HistorySnapshot | MetricClaim) -> list<Unresolved>",
+        "render_qualitative(claim: QualitativeClaim) -> EvaluationMaterial"
       ]
     }
   ],
