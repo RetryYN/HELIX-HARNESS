@@ -1536,7 +1536,7 @@
       ],
       "return_derivation": {
         "selected_phase": "input.phaseがPhase閉集合に含まれればその値、他はnullとphase_unresolved。",
-        "findings": "ownership/profileの各比較からFacetFinding。code/facet/disposition/pointer/ownerをdiagnostic policyで保持。"
+        "findings": "ownership/profileの各比較からFacetFinding。code/facet/disposition/pointer/ownerをdiagnostic policyで保持。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。同じcode/pointerの異なるfacet/dispositionは別所見として保持し、全関数をまたぐfacet集約前に消さない。"
       },
       "preconditions": [
         "原270素材の宣言record/list/primitive形。全宣言Fieldのabsence/null/empty/valueを保持した論理値を供給する。",
@@ -1578,7 +1578,7 @@
         "findings"
       ],
       "return_derivation": {
-        "findings": "prepare/collect/resume時だけoperation比較の所見。assemble/unknown phaseは[]で未選択phaseを実行したと主張しない。"
+        "findings": "prepare/collect/resume時だけoperation比較の所見。assemble/unknown phaseは[]で未選択phaseを実行したと主張しない。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。同じcode/pointerの異なるfacet/dispositionは別所見として保持し、全関数をまたぐfacet集約前に消さない。"
       },
       "preconditions": [
         "原270素材の宣言record/list/primitive形。全宣言Fieldのabsence/null/empty/valueを保持した論理値を供給する。",
@@ -1615,7 +1615,7 @@
       ],
       "return_derivation": {
         "original_result_outcome": "collect/resumeでactual outcomeが8閉集合の時だけその原値、他はnull。not_executed/unobservedを新しい成功分類にしない。",
-        "findings": "原区分・started/collected・claimの独立比較。片側不明とknown相反を区別する。"
+        "findings": "原区分・started/collected・claimの独立比較。片側不明とknown相反を区別する。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。同じcode/pointerの異なるfacet/dispositionは別所見として保持し、全関数をまたぐfacet集約前に消さない。"
       },
       "preconditions": [
         "原270素材の宣言record/list/primitive形。全宣言Fieldのabsence/null/empty/valueを保持した論理値を供給する。",
@@ -1651,7 +1651,7 @@
         "findings"
       ],
       "return_derivation": {
-        "findings": "resume時だけ元失敗/outstanding/戻し先/再開条件を照合。未完集合を消さず実解消receiptは未供給。"
+        "findings": "resume時だけ元失敗/outstanding/戻し先/再開条件を照合。未完集合を消さず実解消receiptは未供給。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。同じcode/pointerの異なるfacet/dispositionは別所見として保持し、全関数をまたぐfacet集約前に消さない。"
       },
       "preconditions": [
         "原270素材の宣言record/list/primitive形。全宣言Fieldのabsence/null/empty/valueを保持した論理値を供給する。",
@@ -1689,7 +1689,7 @@
       ],
       "return_derivation": {
         "selected": "resumeで旧/current bindingにknown相反が1つ以上の時true。unknownのみで変更を推測しない。",
-        "findings": "unknown旧/current source、必要時だけrevalidationの現在/旧binding/source/state比較。不要時のnullを不足gateにしない。"
+        "findings": "unknown旧/current source、必要時だけrevalidationの現在/旧binding/source/state比較。不要時のnullを不足gateにしない。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。同じcode/pointerの異なるfacet/dispositionは別所見として保持し、全関数をまたぐfacet集約前に消さない。"
       },
       "preconditions": [
         "原270素材の宣言record/list/primitive形。全宣言Fieldのabsence/null/empty/valueを保持した論理値を供給する。",
@@ -1720,7 +1720,7 @@
         "findings"
       ],
       "return_derivation": {
-        "findings": "4claimそれぞれtrueはviolation、false以外はunknown。別ownerの正規判断そのものは入力claimではない。"
+        "findings": "4claimそれぞれtrueはviolation、false以外はunknown。別ownerの正規判断そのものは入力claimではない。 中間findingsは同一facet/disposition/findingの完全一致だけ一意化し、finding.code→finding.pointerの辞書順へ整列する。同じcode/pointerの異なるfacet/dispositionは別所見として保持し、全関数をまたぐfacet集約前に消さない。"
       },
       "preconditions": [
         "原270素材の宣言record/list/primitive形。全宣言Fieldのabsence/null/empty/valueを保持した論理値を供給する。",
