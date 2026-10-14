@@ -699,7 +699,8 @@
         "claim_findings": "map<ClaimCode,FindingRule>",
         "permission_owner": "string",
         "observation_owner": "string",
-        "receipt_owner": "string"
+        "receipt_owner": "string",
+        "diagnostic": "FiniteDiagnosticContract"
       },
       "field_meanings_before_normalization": {
         "scope_keys": "list<string>",
@@ -711,7 +712,7 @@
         "observation_owner": "string LABO",
         "not_observed_owner": "source owner"
       },
-      "normalization_reason": "contract_rulesの全8実memberに一致させる。旧not_observed_ownerは実値に存在せずreceipt_ownerが未宣言だった。observation_ownerはFindingの宛先LABO-observation-owner、観測record.owner=LABOとは異なる値。"
+      "normalization_reason": "元8memberを同値保持し、原L9有限素材の診断選択・定数をdiagnosticに明示。owner資格/許可の供給は含まない。observation_ownerは所見の戻し先、diagnostic.observation_record_ownerは観測record.ownerの比較literal。"
     },
     {
       "name": "OwnerState",
@@ -746,12 +747,12 @@
       "kind": "record",
       "fields": {
         "field": "string",
-        "result": "string",
+        "result": "FindingResult",
         "return_owner": "string"
       },
       "field_meanings_before_normalization": {
         "field": "string path from source rule",
-        "result": "string result code from source case",
+        "result": "原L9の具体result codeをFindingResultに列挙。case ID lookupで値を選ばない。",
         "return_owner": "string owner label from source input/approved failure route"
       }
     },
@@ -851,7 +852,7 @@
       "kind": "tuple",
       "items": [
         "string",
-        "string",
+        "FindingResult",
         "string"
       ],
       "meaning": "既存claim_findingsの[field,result,return_owner]原3値。新規則は追加しない。"
@@ -896,6 +897,40 @@
       "name": "FixtureExecutionState",
       "kind": "literal",
       "value": "not_executed"
+    },
+    {
+      "name": "FindingResult",
+      "kind": "enum",
+      "values": [
+        "missing",
+        "unobserved",
+        "not_observed",
+        "foreign",
+        "not_permitted",
+        "foreign_or_unseen",
+        "unseen_revision",
+        "source_state_loss_or_promotion",
+        "source_observation_conflated",
+        "wrong_owner",
+        "unsupported_imputation_or_permission",
+        "unsupported_extrapolation",
+        "unsupported_authority_or_state_promotion"
+      ],
+      "scope": "原L9有限比較と既存claim_findingsの診断code。新たな許可/実行結果ではない。"
+    },
+    {
+      "name": "FiniteDiagnosticContract",
+      "kind": "record",
+      "fields": {
+        "result_codes": "map<string,FindingResult>",
+        "source_owner_labels": "map<string,string>",
+        "default_source_owner": "string",
+        "allowed_classifications": "list<string>",
+        "observation_record_owner": "string",
+        "observation_loss_owner": "string",
+        "claim_suppression": "map<string,list<string>>"
+      },
+      "scope": "現在の83固定rawを比較する有限契約。各mapの必須key/役割はFN02 algorithmに固定。未見組合せへの一般policyを採用しない。"
     }
   ],
   "function_signatures_and_decisions": [
@@ -951,36 +986,42 @@
         "returns": "FindingSet"
       },
       "reads": [
-        "retained.retained_inputs.original_scope",
-        "original_sources[*] identity/revision/provenance_ref/fields/permission/receipt/scope",
-        "original_observations[*]",
-        "submitted_observations[*]",
-        "assignment",
-        "evaluation",
-        "permission_effect",
-        "claims",
+        "retained.retained_inputs.claims",
+        "retained.retained_inputs.original_scope (contract.scope_keysで選択)",
+        "retained.retained_inputs.original_sources[*].identity/revision/owner/provenance_ref/fields[*].state/permission/receipt",
+        "retained.retained_inputs.original_observations[*].source_identity/state/occurrence",
+        "retained.retained_inputs.submitted_observations[*].source_identity/identity/owner/state/occurrence",
         "contract.scope_keys",
         "contract.required_fields",
         "contract.claim_findings",
         "contract.permission_owner",
-        "contract.observation_owner"
+        "contract.observation_owner",
+        "contract.receipt_owner",
+        "contract.diagnostic.result_codes/source_owner_labels/default_source_owner/allowed_classifications/observation_record_owner/observation_loss_owner/claim_suppression"
       ],
       "preconditions": [
-        "FN01のRetainedPacket。",
-        "contractはL5 contract_rulesから値解決し、unknown claim文字列はraw値としてのみ保持。"
+        "FN01のRetainedPacket。rawを補完・変更しない。contractは同一candidate L5 /contract_rulesから全member値を解決する。",
+        "contract.diagnosticのmap keyは下記algorithmで指定する既存keyを全て供給する。原L9の83固定素材の診断選択に限定し、unknown claimはそのまま保持して意味を推測しない。",
+        "Presenceはkey absence/null/valueを保持する。以下のgetはabsenceにnullを返す比較用観測で、入力値を書き換えない。空文字もidentity/revision/provenanceではmissing比較に含む。scope objectでない値や新しいowner/複合異常について全意味閉包を主張しない。"
       ],
       "postconditions": [
-        "欠落、未観測、scope不一致、receipt/permission欠落、状態・source観測の混同だけをraw値比較でFinding化する。",
-        "claimsはcontract.claim_findingsと照合して拒否claimと個別Findingへ投影する。case IDを参照しない。",
-        "同じownerを重複させず最初のFinding順を維持。"
+        "failure_reasonsは下記の発生順で保持し、重複除去/ソートしない。return_ownersだけfailure_reasonsのreturn_ownerを初出順で一意化する。rejected_claimsは既知/未知を含む入力claims全列と同値。",
+        "claim優先/抑止は原L9有限fixtureのdiagnostic選択でありraw異常を消さない。実permission/安全性/取込資格を免除・成立させず、source全値をFN01/FN03経由で保持する。",
+        "原L4の全field/source_ref/receipt/source scope責務がこの有限比較だけで閉じたとはしない。field recordのsource_ref、receipt.source_identity、assignment/evaluation/permission_effect等は保持されるが新たな比較結果を推測して追加しない。"
       ],
       "algorithm": [
-        "各original_sourceについてidentity/revision/provenance_refのPresenceを調べ、absent/nullならsource ownerへ返す。",
-        "L3-F01必須fieldについてfield record/state/source_refを比較し、raw stateがnot_observedなら値を推測せずsource ownerへ返す。",
-        "permissionが無い/未許可、permission.scopeがoriginal_scopeとcontract.scope_keys全項目不一致ならcontract.permission_ownerへ返す。",
-        "receiptが無い場合はLABO receipt ownerへ返す。receipt.scopeをoriginal_scopeと全scope_keysで比較し、不一致keyをsource ownerへ返す。receipt.source_identity/revisionとsource identity/revisionの相違も保持し、未知revisionをcurrent扱いしない。",
-        "submitted_observations[*].source_identityでsource record slotを照合し、state/occurrence/field/source_refを比較する。identityはsource identityと別でなければならず、ownerはLABOを示す。件数減や不一致はraw findingとして返す。",
-        "claimsはcontract.claim_findings mapをraw値に適用し、raw values由来のfailure reasonsとrejected_claimsを返す。unknown claimは未知のまま保持し、規則を推測しない。"
+        "0. raw=retained.retained_inputs、D=contract.diagnostic、C=D.claim_suppression、R=D.result_codes。findings=[]、claimed_fields=空集合。case ID/packet ID/完成期待表は参照しない。getはmember欠落時null、比較はJSON値のdeep-equal（sources配列も原順）。原素材のsourcesは同じ順のexact setであり、順序だけを変えた集合の一般意味は未証明。",
+        "1. raw.claimsを原順走査し、contract.claim_findingsにkeyがあれば[field,result,return_owner]をそのまま1 Findingとしてappendしfieldをclaimed_fieldsへ追加する。未知claimは所見を推測しない。以下はこの先行診断に対する局所抑止でありraw改変/資格判定ではない。",
+        "2. raw.original_sourcesを原順走査する。s.ownerをD.source_owner_labelsで引き、無ければD.default_source_ownerをwhoとする。labelはs.identityがstringなら最初のハイフン前（OS-P→OS）。stringでなければs.owner、ownerも無ければsource。field prefixはsources.<label>。実owner認証ではなく固定素材の戻し先ラベルである。",
+        "3. identityがabsent/null/空文字かつsources.<label>.identityがclaimed_fieldsに無ければ同field/R.missing/whoをappend。revisionがabsent/null/空文字かつsources.<label>.revisionおよびC.revision_fieldsのどれもclaimed_fieldsに無ければsources.<label>.revision/R.missing/who。provenance_refも同様にexactfieldとC.provenance_fieldsで抑止しR.missing/who。",
+        "4. contract.required_fieldsの原順でs.fields[name]を観測。record absent/nullならsources.<label>.fields.<name>/R.missing/who。存在しstate=not_observedでexactfieldがclaimed_fieldsに無ければ同field/R.not_observed/who。未発生を0/成功へ補完せず、record内source_refは保持のみ（有限素材にない追加診断は作らない）。",
+        "5. s.permissionがabsent/nullならsources.<label>.permission/R.unobserved/contract.permission_owner。存在してpermission.scopeがobjectならcontract.scope_keysを順比較し、どれか1 keyがraw.original_scopeと不一致になった最初の時点でsources.<label>.permission.scope/R.permission_scope/contract.permission_ownerを1件だけappendしpermission scope走査を止める（全key不一致を要求しない）。classificationがD.allowed_classificationsに無くC.classification_fieldsがclaimed_fieldsに無ければsources.<label>.permission.classification/R.classification/contract.permission_owner。",
+        "6. s.receiptがabsent/nullならsources.<label>.receipt/R.unobserved/contract.receipt_owner。存在しreceipt.scopeがobjectならcontract.scope_keysを原順走査し、raw.original_scopeの同keyと不一致ごとにsources.<label>.receipt.scope.<key>/R.receipt_scope/whoをappend。ただし不一致keyがC.receipt_scope_keysに含まれraw.claimsにC.receipt_scope_claimsのいずれかがある場合は、そのkeyをappendせずreceipt scope key走査を終了する。先行する別key所見は保持する。この抑止はforeign scopeの許可ではない。",
+        "7. receipt存在時、s.revisionがabsent/null/空文字ならreceipt revisionとの相反診断を追加しない（step3のmissingを保持）。非空ならreceipt.source_revisionとs.revisionを比較し、不一致かつsources.<label>.revisionがclaimed_fieldsに無ければsources.<label>.revision/R.receipt_revision/who。sourceとreceiptが共に新しい同版ならこの相反は無い。UNSEENという文字列prefixや固定r2/r3を判定条件にしない。",
+        "8. submitted_observationsの件数がoriginal_observationsより少なく、raw.claimsにC.observation_count_claimsのいずれも無ければsubmitted_observations/R.observation_loss/D.observation_loss_ownerをappendする。",
+        "9. submitted_observationsをsource_identityでmap化する（同key複数は最後のrecord、固定素材は一意。多重keyの意味閉包は未成立）。original_observationsの原順で同source_identityのdstを探す。dst無しはこのslot以後を比較せず次slotへ進む。stateまたはoccurrenceが相違しraw.claimsにC.observation_state_claimsのいずれも無ければsubmitted_observations.state/R.observation_loss/D.observation_loss_ownerをappendし、observation走査全体を終了する。抑止時は後続identity/owner比較へ進む。",
+        "10. 同slotのoriginal sourceはs.identity == original_observation.source_identityで最初のrecordを探す。見つからなければsource identityをnullとして扱い、存在しないsource recordから他memberの比較をcascade生成しない。dst.identityがこのsource identityと同値ならsubmitted_observations.identity/R.observation_identity/contract.observation_owner。dst.ownerがD.observation_record_owner（原値LABO）と異なればsubmitted_observations.owner/R.observation_owner/contract.observation_owner。source identityがnullの原例では非nullのdst.identityと同値でなく追加所見にならない。identity/owner以外の未供給join診断は作らない。",
+        "11. findingsをそのままfailure_reasonsとし、return_ownersは初出順一意列、rejected_claimsはraw.claimsのdeep copyとして返す。rawの他memberを成功/資格に変換しない。"
       ],
       "effects": "なし。観測を採用/拒否する実処理・外部routingは行わない。"
     },
@@ -1125,7 +1166,8 @@
     "source owner資格・SECURITYの実data-use許可とconnector資格",
     "正式schema/codec・raw input wire validation・L6/L7設計/検証",
     "実receipt/実取込/実評価/実L11受入・全scope閉包",
-    "全92親/430 pairの設計closureと実装準備"
+    "全92親/430 pairの設計closureと実装準備",
+    "claim優先診断は原L9の有限83素材の期待に対応する局所選択。未見claim＋多重raw欠陥、重複source slot、scope sources順序差、原素材外のPresence/shape/owner組合せの網羅的診断は未閉包。raw全保持と実owner資格/許可/安全性/取込作用は別責務。"
   ],
   "approved_l3_l10_json_files": [
     {
@@ -1298,12 +1340,75 @@
     },
     "permission_owner": "HELIX-SECURITY",
     "observation_owner": "LABO-observation-owner",
-    "receipt_owner": "LABO-receipt-owner"
+    "receipt_owner": "LABO-receipt-owner",
+    "diagnostic": {
+      "result_codes": {
+        "missing": "missing",
+        "unobserved": "unobserved",
+        "not_observed": "not_observed",
+        "permission_scope": "foreign",
+        "classification": "not_permitted",
+        "receipt_scope": "foreign_or_unseen",
+        "receipt_revision": "unseen_revision",
+        "observation_loss": "source_state_loss_or_promotion",
+        "observation_identity": "source_observation_conflated",
+        "observation_owner": "wrong_owner"
+      },
+      "source_owner_labels": {
+        "OS": "OS-source-owner",
+        "INFRA": "INFRA-source-owner",
+        "HARNESS": "HARNESS-source-owner"
+      },
+      "default_source_owner": "source-owner",
+      "allowed_classifications": [
+        "permitted_synthetic_data",
+        "permitted_data"
+      ],
+      "observation_record_owner": "LABO",
+      "observation_loss_owner": "OS-source-owner",
+      "claim_suppression": {
+        "revision_fields": [
+          "source.revision"
+        ],
+        "provenance_fields": [
+          "source.provenance_ref"
+        ],
+        "classification_fields": [
+          "source.classification"
+        ],
+        "receipt_scope_claims": [
+          "foreign_scope_inherits_success"
+        ],
+        "receipt_scope_keys": [
+          "scope"
+        ],
+        "observation_count_claims": [
+          "success_only_filter"
+        ],
+        "observation_state_claims": [
+          "unknown_is_success",
+          "not_observed_is_observed"
+        ]
+      }
+    }
   },
   "logical_value_representation": "Presence<T>はraw memberの不在/null/値を区別する論理記法。retained_inputsは原decode値そのものを保持し、tag wrapperを注入しない。全型のfieldsは再帰検証可能な型名へ正規化し、以前の説明はfield_meanings_before_normalizationに履歴として残す。正式wire/schema/codecの採択ではない。",
   "parent_io_fix_record": {
     "basis": "親検収指摘。原期待の新設ではなく既存raw/oracleの値展開とcandidate参照/型表記の修正。",
     "preserved": "原L4/L9・raw/whole oracle・rawderive_findings・契約規則値・430批准対は不変。",
     "limits": "runtime/TDD/CI/L11/実資格/実装Ready未成立。"
+  },
+  "r1_diagnostic_fix_record": {
+    "official_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3137#issuecomment-6180805044",
+    "reviewed_head": "e9adf829679de4c22b17d0169bad7a5b00f0e9a8",
+    "findings": [
+      "LABO01D01",
+      "LABO01D02",
+      "LABO01D03"
+    ],
+    "preserved": "原83packet/raw/whole期待、元contract_rulesの8member、FN01/FN03、批准全430対を保持。",
+    "changed": "既存scratchのraw比較診断を有限scopeのFN02へ明示し、結果domain/戻し先/抑止定数をtyped contract追加memberへ移す。候補内contract refのhashだけを再結線。",
+    "reason": "独立reviewでL5の一般的記述から原oracleの診断選択と具体codeを再現できなかったため。旧sourceの許可/出所/authority境界は変更せず、claimによる実許可免除を新設しない。",
+    "limits": "実資格/codec/TDD/CI/L11/Ready未成立、未見のclaimと多重欠陥の組合せは未閉包。"
   }
 }
