@@ -77,38 +77,63 @@
   ],
   "upstream_adoption": {
     "approval": {
-      "record_path": "docs/governance/decisions/helix-labo-stage4-l3-l10-po-decision-2026-10-05.md",
-      "record_sha256": "569d9dfb9be8a843a79fe2a4017dcba83c13651a86417d19f76a17e7a9b8c911",
-      "record_commit": "007606cc6570afffc5139e174bdb9adee90d19d4",
-      "approved_content_revision": "86e28720610d80756161d3693de67a84354dfb99",
+      "record_path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "record_sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19",
+      "record_commit": "2f95e20cd9e90dd4ab7d349661476d8c49eff548",
+      "admitted_main_commit": "4dd2774e1498bde640a52e94245195f62e750ca6",
+      "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
       "delegation_record_sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
       "approval_whole_files": [
         {
-          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
-          "sha256": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1"
-        },
-        {
-          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
-          "sha256": "5abc0f1c0aa8b6ed29ff35dd8b473332d237ae3685673c938184f812e1b78857"
-        },
-        {
-          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
-          "sha256": "39ecabeaec040cde052db5bb0eb77ac0446fe5951483d3ed4106768512a134ec"
+          "path": "docs/helix-labo/L10-verification/business-verification.json",
+          "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
         },
         {
           "path": "docs/helix-labo/L10-verification/business-verification.md",
-          "sha256": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908"
+          "sha256": "1abff25ba108a6e1055c0a811fa67befd44e73469ffda6ae8735b65249b2a441"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.json",
+          "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
         },
         {
           "path": "docs/helix-labo/L10-verification/functional-verification.md",
-          "sha256": "891ae5539580ffe9dcba38c539807e1adc9017021ff010dbd6d8d42cc4c37fa7"
+          "sha256": "7719e128e442644224ba2b586f2f3ad0f0f14692847d8678a681abf616896270"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+          "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
         },
         {
           "path": "docs/helix-labo/L10-verification/nfr-verification.md",
-          "sha256": "dcbc66854fcbcb7b718e390b515d61fa80d2392e1d199c3c884d5ed0edf3aa52"
+          "sha256": "52966ddf22818f0ee1306c98496975304ce847255cffb243065963958c076844"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+          "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "sha256": "f2ae2897b615a7dde0d06cae6e02af72dfdd60f182e91728d94d3c250bfcaa77"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+          "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "sha256": "3be891bae6d3ed19931d8c9bac1989e1c6eff0cc6868d165d9ca9e1bc6787129"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+          "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "sha256": "d2453f852b93da95605c5780f51a7cd4d585685f673eb6c90393e93164be97dd"
         }
       ],
-      "authority_note": "当該Stage4固定L3/L10本文への承認。L4/L9草案の承認・実行・受入を意味しない。"
+      "authority_note": "2026-10-12委任記録が承認したbc96125742eab851fe35194071087f77bb1f0005のL3/L10固定wholeに限る。L4/L9草案の承認、実行、実source資格、評価、受領、受入を意味しない。"
     },
     "adoption": {
       "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
@@ -182,6 +207,40 @@
           }
         ]
       }
+    },
+    "historical_stage4_approval": {
+      "record_path": "docs/governance/decisions/helix-labo-stage4-l3-l10-po-decision-2026-10-05.md",
+      "record_sha256": "569d9dfb9be8a843a79fe2a4017dcba83c13651a86417d19f76a17e7a9b8c911",
+      "record_commit": "007606cc6570afffc5139e174bdb9adee90d19d4",
+      "approved_content_revision": "86e28720610d80756161d3693de67a84354dfb99",
+      "delegation_record_sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+      "approval_whole_files": [
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "sha256": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "sha256": "5abc0f1c0aa8b6ed29ff35dd8b473332d237ae3685673c938184f812e1b78857"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "sha256": "39ecabeaec040cde052db5bb0eb77ac0446fe5951483d3ed4106768512a134ec"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "sha256": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "sha256": "891ae5539580ffe9dcba38c539807e1adc9017021ff010dbd6d8d42cc4c37fa7"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "sha256": "dcbc66854fcbcb7b718e390b515d61fa80d2392e1d199c3c884d5ed0edf3aa52"
+        }
+      ],
+      "authority_note": "旧Stage4承認。AC/CASE形式の当時の固定本文に限る歴史記録であり、現行L3/L10 JSON objectの承認authorityではない。旧AC/CASEと現行HELIXLABO-L3/L10-054-B01/F01の意味対応は監査対象として保持するが、object承認の移転を推定しない。L4/L9草案の承認・実行・受入を意味しない。"
     }
   },
   "limited_v12_audit": {
@@ -614,7 +673,7 @@
           "when": "送信payloadと受領receiptのID/hash、task/model class、根拠、期間、revision、scope、evaluation_stateを照合する。",
           "then": "INTELLIGENCEは同水準と範囲を受け取り、両端receiptを保持する。受領は配置決定やOS assignmentを意味しない。",
           "expected_observation": "送信PAYLOAD-054-EVAL-17とINT-RECV-054-EVAL-17のhash・history-r17/repo-docs/evaluated等が一致し追跡できる。 送信receiptのsent_payload_id/source_revision/scope/hashと原payloadを照合し、受領receiptと別に保持する。",
-          "failure_observation": "送受値の不一致だけを当該payloadに局所化し、別scopeの正常受渡しは維持する。該当LABO-055 water-level ownerまたはINT connector ownerへ返す。",
+          "failure_observation": "送受値の不一致だけを当該payloadに局所化し、別scopeの正常受渡しは維持する。該当LABO-055 level（水準）ownerまたはINT connector ownerへ返す。",
           "execution_state": "not_executed",
           "fixture_only": true
         },
@@ -837,15 +896,15 @@
           "raw_input_packet": "{\"base_payload_id\":\"PAYLOAD-054-EVAL-17\",\"base_scope\":\"repo-docs\",\"base_source_revision\":\"history-r17\",\"fixture_only\":true,\"patch\":{\"requested_action\":\"expand_scope\",\"requested_scope\":\"all-repositories\"}}",
           "raw_input_sha256": "98a861d4482ce1d5b6720150cfe8bb590150b678eccee26e257a31a3bee194f3",
           "expected_observation": "repo-docs水準をall-repositoriesへ拡大せず元scopeを保つ。",
-          "return_to": "LABO-055 water-level owner/INTELLIGENCE connector owner",
+          "return_to": "LABO-055 level（水準）owner/INTELLIGENCE connector owner",
           "fixture_only": true,
           "execution_state": "not_executed"
         },
         {
           "id": "F01-NEG-DELIVERY-ONLY-RECEIPT",
           "l10_negative_basis": "配送だけで受領成功",
-          "raw_input_packet": "{\"base_payload_id\":\"PAYLOAD-054-EVAL-17\",\"delivery_receipt_id\":\"CONNECT-DELIVER-054-17\",\"fixture_only\":true,\"patch\":{\"claimed_acceptance\":\"received_success\"},\"receiver_payload_id\":null,\"receiver_receipt_id\":null,\"sender_receipt_id\":\"LABO-SEND-054-EVAL-17\"}",
-          "raw_input_sha256": "16ee13fa62ea72c4e3b272bd3c32361c7221311422375c871806cf694bddba46",
+          "raw_input_packet": "{\"base_payload_id\":\"PAYLOAD-054-EVAL-17\",\"delivery_receipt_id\":\"CONNECT-DELIVER-054-17\",\"fixture_only\":true,\"patch\":{\"claimed_acceptance\":\"received_success\"},\"receiver_payload_id\":null,\"receiver_receipt_id\":null,\"sender_receipt_id\":\"LABO-SEND-PAYLOAD-054-EVAL-17\"}",
+          "raw_input_sha256": "c8da31152a715ed2e10d4c57fd83aa35fbecbe43fa038fe12d7dc4117c442e58",
           "expected_observation": "送信/配送receiptだけでINT受領を成立扱いせず、payloadとreceiver receiptの欠落を未受領のまま示す。",
           "return_to": "INTELLIGENCE connector/receiver owner（未受領scope照合）",
           "fixture_only": true,
