@@ -1,0 +1,703 @@
+{
+  "status": "draft_basic_contracts_and_synthetic_cases_pending_independent_review",
+  "parent": "HELIXSECURITY-L2-013",
+  "source_main": "c00695600ab1fed30718d89880b92a6358422131",
+  "scope": {
+    "approval_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+    "historical_stage": "Stage 1",
+    "version_target": "1.0。選択された初回開発tool/dependency/runtime/config操作の必要規範。非選択の全運転やreleaseを一律必須化しない。",
+    "requirements": [
+      "HELIXSECURITY-L3-013-B01",
+      "HELIXSECURITY-L3-013-F01",
+      "HELIXSECURITY-L3-013-F02",
+      "HELIXSECURITY-L3-013-F03",
+      "HELIXSECURITY-L3-013-N01"
+    ],
+    "oracles": [
+      "HELIXSECURITY-L10-013-B01",
+      "HELIXSECURITY-L10-013-F01",
+      "HELIXSECURITY-L10-013-F02",
+      "HELIXSECURITY-L10-013-F03",
+      "HELIXSECURITY-L10-013-N01"
+    ]
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430,
+    "statement": "本013の準備範囲によって全体scopeを縮めない。全体設計閉包は未証明。"
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "approval_basis": {
+    "decision": "docs/governance/decisions/helix-security-tool-prerequisites-l3-l10-delegated-decision-2026-10-12.md",
+    "record_status": "recorded_pending_final_review_and_main_admission (原記録の状態欄。記録本文bytesをそのままpinし、mainへのrecord統合は別に上記merge commitで確認)",
+    "reviewed_head": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+    "base": "c00695600ab1fed30718d89880b92a6358422131",
+    "approved_head_is_ancestor_of_base": true,
+    "authority_effect": "effective_when_this_record_is_admitted_to_main",
+    "013_F1_resolution": "対象集合(kind)、unknown、config/security policy omissionをF01/N01へ加えた。",
+    "approved_whole_objects_source": "git tree at exact reviewed_content_head; current files are separately hash-compared and are not substituted for approval bytes.",
+    "main_integration_observed": true,
+    "main_integration_basis": "承認内容headの祖先確認とは別に、承認記録commitがPR #2963統合commitの祖先であり、その統合commitは作業baseおよびorigin/mainの祖先であることを確認した。",
+    "record_commit": "3fa2c3ee61b0ee6e47b78c536fa9703b5becb416",
+    "record_sha256": "d7c1f27d477b8323cae77cfb4dce8086c6d268826f09a1edcea46e186111878b",
+    "main_integration_commit": "7b2f7c05ba80830646bb9a1a3c4274fa0c84bccc"
+  },
+  "purpose": "選択された開発tool/dependency/runtime/configについて、選択工程のartifact identityとtraceを照合する基本契約。",
+  "design_rules": [
+    {
+      "id": "R01",
+      "topic": "対象kind",
+      "rule": "code/package/model/config/security policy等をkindごとに追跡し、列挙外・分類不能はunknownのまま保持する。"
+    },
+    {
+      "id": "R02",
+      "topic": "artifact identity",
+      "rule": "各選択artifactのidentity/version/digestを別fieldとして記録し、digestだけからsource/producerを推定しない。"
+    },
+    {
+      "id": "R03",
+      "topic": "sourceとproducer",
+      "rule": "source/provenance、content producer、工程executorを混同せず、対象revision/scopeへ結ぶ。actorやsignatureは代替証拠にしない。"
+    },
+    {
+      "id": "R04",
+      "topic": "工程trace",
+      "rule": "生成/build/validation/選択されたexecuteの各工程でinput/output identityとtraceを同じ対象へ結ぶ。"
+    },
+    {
+      "id": "R05",
+      "topic": "同一性",
+      "rule": "build artifact、HARNESS検証対象、実起動対象をartifact identityで比較し、HEAD一致を同一性の代用にしない。"
+    },
+    {
+      "id": "R06",
+      "topic": "欠落・不一致",
+      "rule": "identity/version/digest/provenance/producer mismatchまたは選択step欠落は未完とし、昇格成立を返さない。"
+    },
+    {
+      "id": "R07",
+      "topic": "工程時相",
+      "rule": "build前にはその時点に存在するinputだけを用いる。HARNESS/OSの将来success receiptをbuild開始の一律前提にしない。"
+    },
+    {
+      "id": "R08",
+      "topic": "非選択工程",
+      "rule": "選択されていないdistribution/release/deployは未発生として保持し、pass/完了へ変換しない。"
+    },
+    {
+      "id": "R09",
+      "topic": "再現性",
+      "rule": "同じmanifest/lock/tool/config/input revisionという再現条件と、実際のoutput artifact identity/digestを別々に比較する。"
+    },
+    {
+      "id": "R10",
+      "topic": "出力責務",
+      "rule": "再現性、artifact同一性、source trust、HARNESS behavior検証、OS authority/progressionは独立出力とし、013が他owner判定を生成しない。停止材料の戻し先は承認済みL2-010/L2-023/OSを保持し、012の来歴資料は補足参照に限る。"
+    },
+    {
+      "id": "R11",
+      "topic": "適用範囲",
+      "rule": "選択された初回開発tool/dependency/runtime/configの前提形成に限定し、全運転・将来releaseを文書配置から推論しない。"
+    },
+    {
+      "id": "R12",
+      "topic": "未決の保持",
+      "rule": "schema/codec、kind owner/source qualification、producer custody、実観測が未定ならunknown/not establishedを保ち、signature/registry/scanner gateを新設しない。"
+    },
+    {
+      "id": "R13",
+      "topic": "未見artifactと後続未観測工程",
+      "rule": "選択stageのartifact参照が未見artifactへ差し替わった場合、差替えstageと別の未観測stageを明示し、artifact producer/environmentのqualification未成立を保つ。未見variantの存在だけでstage差替えや実観測を推定しない。"
+    }
+  ],
+  "conceptual_record_shape": {
+    "kind": "kindが既知なら記録し、未知・分類不能はunknownのまま保持する。",
+    "artifact_identity": "versionおよびdigestとは別の対象識別子。",
+    "version": "観測できた版。未観測ならunknown。",
+    "digest": "digest値。algorithm・encoding・codecは未決。",
+    "source_provenance": "来歴資料への参照。trust最終判断ではない。",
+    "producer": "producer参照。資格確認方法は未決。",
+    "target_binding": "入力revisionと適用scope。",
+    "stage_trace": "選択工程、input/output identity、段階、状態、根拠参照。",
+    "separate_results": [
+      "manifest/lockに基づく再現条件の比較",
+      "生成artifactのidentity一致",
+      "source/provenance資料の照合（trust最終認可と分離）",
+      "HARNESSが所有するbehavior検証結果",
+      "OSが所有するoperation authority/progression結果"
+    ]
+  },
+  "responsibility_boundaries": {
+    "SECURITY013": "artifactのidentity鎖と選択工程の不一致・欠落材料",
+    "SECURITY012": "SECURITY012はsource/provenanceに関する来歴資料を照合し、その材料をSECURITY013へ補足提供する。来歴資料の照合だけでtrust最終認可、承認済みL2-010/L2-023/OSへの停止・戻し、実行authorityを成立・代行させない。",
+    "HELIX_HARNESS": "挙動検証receipt",
+    "HELIX_OS": "進行・昇格record",
+    "producer_owner": "source/producerの事実とcustody。正式ownerは未確定。",
+    "L2-010": "承認済み戻し先。更新受入に必要な不足材料の停止・戻し先として保持する。",
+    "L2-023": "承認済み戻し先。更新→検証→昇格構成体に必要な不足材料の停止・戻し先として保持する。"
+  },
+  "positive_contract": "選択工程のartifact identity/version/digest/provenance/producerとtraceを同一target revision/scopeへ結ぶ。後続receiptは当該工程の後に得た結果として扱う。",
+  "legacy_comparison": {
+    "disposition": "semantic_rederivation",
+    "source_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-E212E913117C5C247DAE",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/os-portability-supply-chain.md",
+        "line": "95-114,124-143",
+        "sha256": "3903ab1b5a1b4d42571120b9d310ad93291daf27c8c88bd2f65abc462246de40",
+        "paraphrase": "direct/transitive依存、artifact digest、source identity、resolver versionを記録していた。",
+        "exact_line_quotes": [
+          {
+            "line": 95,
+            "exact_line_quote": "NodeとPythonはそれぞれ単一のcanonical manifest/lockを持ち、direct/transitive dependency、artifact digest、source identity、",
+            "line_sha256": "7ad638e8fc21008c8660fd05fcc91d5726fcf880164ec1836246f1040f89d6f9"
+          }
+        ]
+      },
+      {
+        "asset_id": "LEGACY-ASSET-9A01A0B72DB343D5859E",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/os-portability-supply-chain.md",
+        "line": "44-50,94-110,122-149",
+        "sha256": "b9976277c2d025b9ab0ae9454be97b679416e44823198d41b9b4aae127ffbc66",
+        "paraphrase": "producer登録とreceipt/anchor/freshnessをjoinする具体型を置いていた。",
+        "exact_line_quotes": [
+          {
+            "line": 50,
+            "exact_line_quote": "| `joinOsSupplyChainProvenance` | `(matrix: OsMatrixReceiptV1, supply: SupplyChainReceiptV1, expectedEnvelopeDigest: string, store: OsSupplyProvenanceAnchorStoreV1, trustedNow: TrustedNowV1) => Promise<ResultV1<JoinedOsSupplyEvidenceV1, OsSupplyChainFailureV1>>` | trusted producer登録、registered receipt、store current anchor、全provenance/freshnessをexact照合 | `U-OSSC-013` |",
+            "line_sha256": "ac8fd45c1419d006919930bf46b6c78cbbae93337d9aec31ab492131c169bd28"
+          }
+        ]
+      },
+      {
+        "asset_id": "LEGACY-ASSET-9B7682EBDEA171005D45",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+        "line": "81-90",
+        "sha256": "c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c",
+        "paraphrase": "distribution stagesのartifact差替えを避ける規範があった。",
+        "exact_line_quotes": [
+          {
+            "line": 83,
+            "exact_line_quote": "同一source HEAD、requirements refinement digest、profile version／digest、package versionのbuildは同一artifact",
+            "line_sha256": "d2d85629b108e55d080b3a612d2c020b6ca0ac03a3dd801e1341a1dad90d4959"
+          },
+          {
+            "line": 84,
+            "exact_line_quote": "digestを返す。canary、preview、stableは同じartifactを一方向promotionし、rebuild差替え、stage skip、手編集manifestを",
+            "line_sha256": "f4298119ce4b5698e5bdb56af1d5f8294147d3ea2cf637bb205fed3e912d0ac6"
+          }
+        ]
+      },
+      {
+        "asset_id": "LEGACY-ASSET-6C9D2BE4E3C77D78F8EB",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md",
+        "line": "38-52",
+        "sha256": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+        "paraphrase": "複数buildとstage間のartifact同一性を照合するtest設計だった。",
+        "exact_line_quotes": [
+          {
+            "line": 41,
+            "exact_line_quote": "| `DIST-LITE-AC-004` | `DIST-LITE-R-03` | 同一authority inputでpackageを2回buildする | tarball、checksum、manifest、artifact digestが一致する | timestamp、entry order、absolute path、別build差替えを拒否する |",
+            "line_sha256": "180292e185414016ff9f167a4a10a2d865a917b84047af1215bfaa5317a528e8"
+          }
+        ]
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A04F169C5D514C5443D0",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md",
+        "line": "17-26,32-57",
+        "sha256": "9f1e268986845f5f209517de24f57f2828e130f971a1429be96d0f88a5e9d59a",
+        "paraphrase": "producer、executor、publisher、reviewerを別roleに分ける候補だった。これは歴史candidateであり正本要求ではない。",
+        "exact_line_quotes": [
+          {
+            "line": 17,
+            "exact_line_quote": "各変更episodeは`content_producer`、`commit_executor`、`pr_publisher`、`independent_reviewer`を別fieldで保持する。",
+            "line_sha256": "1946b8d1c7604980c2a4f8335cb68815035248b6dd2877dd154f50a085d23073"
+          }
+        ]
+      },
+      {
+        "asset_id": "LEGACY-ASSET-7AFB0C65E70ED4C0856E",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-acceptance.md",
+        "line": "14-23",
+        "sha256": "5b89153daa3ea4ea3d51c496b9c255ee881fb5ec9418a0540ac33bd68aef2411",
+        "paraphrase": "役割欠落を他roleで補完しない候補受入を記述していた。これは歴史candidateであり正本要求ではない。",
+        "exact_line_quotes": [
+          {
+            "line": 14,
+            "exact_line_quote": "| `PPS-AC-001` | `PPS-R-01` | 4役割を一件ずつ欠落・入替し、external authorをHELIX workerへ偽変換する | 欠落役割を特定し、別役割の値で補完せず拒否する。externalは観測済み外部identityとして保持する |",
+            "line_sha256": "30ad6d2fa6bdb3fb60dd3646776dcea19f6686cba004b4ec605927c6f8dd28b6"
+          }
+        ]
+      }
+    ],
+    "keep": "選択工程を通じたartifact identity/trace、producerとsource provenanceの区別、再現条件と成果物同一性の区別を保持する。",
+    "change": "旧Supply Chainの固定schema、trusted-producer registry/current-anchor/freshness、scanner gateおよびdistribution/release工程を現行の初回選択経路へ移植しない。producer-provenanceは歴史candidateとして意味参考に限る。",
+    "reason": "承認済みL1/L2/L3とStage 1の選択条件を保持し、未選択distribution/releaseやtrust最終認可を本設計から生成しない。"
+  },
+  "upstream_pins": [
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "lines": "58",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "paraphrase": "生成から利用までの同一対象性と必要な来歴・工程情報を設計へ分解した。",
+      "exact_line_quotes": [
+        {
+          "line": 58,
+          "exact_line_quote": "| HELIXSECURITY-L1-013 | 人間は、code、package、モデル、設定、securityの方針等が、生成から利用まで同じ対象であることを、identity、版、digest、出所、作成者、build、検証で確かめられる。「CIで検証した物」と「実際に配布・実行した物」を食い違わせない | §14 | 1.0 | 単体 |",
+          "line_sha256": "66e4a2cf74e50dac267e078c8602834c7c68f91caf72ccbb54f400620dbb5c7d"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "lines": "192-197",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "paraphrase": "受け渡されたidentity群、工程trace、HARNESS receiptとOS recordへの参照を別契約にした。",
+      "exact_line_quotes": [
+        {
+          "line": 193,
+          "exact_line_quote": "- **提供するもの**：同一artifactであることと各工程のtrace。",
+          "line_sha256": "559b72fa44c9de18fe8faea19595c5009352b0a995521e3a9e13a88346c4322c"
+        },
+        {
+          "line": 194,
+          "exact_line_quote": "- **保証すること**：CIで検証した対象と実際に配布/実行した対象を食い違わせない。digest一致だけでsource authorityや検証合格を推定しない。",
+          "line_sha256": "26968a5365d4e24603c4dfec5d0e5d882f2a7ae84677a6b47fc92a7b9b7ac3fc"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "lines": "37",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "paraphrase": "受入境界を設計根拠に保持。実際のL11受入は未実施。",
+      "acceptance_status": "受入referenceのみ。実L11受入は未成立。",
+      "exact_line_quotes": [
+        {
+          "line": 37,
+          "exact_line_quote": "| HELIXSECURITY-L2-013 | 1.0 | build/validation済artifactのidentityと配布/実行artifactのidentity・digest・provenanceが同じ鎖で一致する。異なるartifact、欠けた工程、digest不一致が昇格可能なら不合格。digest一致だけからsource trustやverification passを推定しても不合格。 |",
+          "line_sha256": "faf90179d239d7d7e8c5012816839fcbe002349fa6bdb07cd821760bec27b2aa"
+        }
+      ]
+    }
+  ],
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "id": "HELIXSECURITY-L3-013-B01",
+      "object": {
+        "id": "HELIXSECURITY-L3-013-B01",
+        "parent": "HELIXSECURITY-L2-013",
+        "title": "artifact一致と検証/trust分離",
+        "obligation": "build/validationされたartifactと配布/実行されるartifactの同一性を確認する。identity/digest一致だけでsource trust、verification pass、実行authorityを生成せず、各工程の別証拠を保持する。",
+        "oracle_ref": "HELIXSECURITY-L10-013-B01"
+      },
+      "source_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "source_sha256": "3c9bbc84d9ad9e81d08fdd0320854fbe1c617eb5cc8ff6f7ee557f3708359b10",
+      "object_canonical_sha256": "df838e58cd23673db1a7366e0c91062af3424bb0f5e8fe9c7275ace5d1f19cf8"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-013-F01",
+      "object": {
+        "id": "HELIXSECURITY-L3-013-F01",
+        "parent": "HELIXSECURITY-L2-013",
+        "title": "工程ごとのidentity chain",
+        "obligation": "code/package/model/config/security policy等のartifact対象種を個別に識別し、列挙外・分類不能な種はunknownに保持する。各種の生成/build/validation/配布/実行の各artifact identity/version/digest/provenance/producerと工程traceを同対象revision/scopeへ結ぶ。選択した実行経路のbuild/検証/実起動artifactが同じ鎖であることを照合し、未選択の配布/release工程は未発生とする。",
+        "oracle_ref": "HELIXSECURITY-L10-013-F01"
+      },
+      "source_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "source_sha256": "84392ce194417297443fb499816580a708d748f73dadbb6f8f5f8947f7455aa7",
+      "object_canonical_sha256": "005e795b67ec15c5c2cbe2cd06725d47cdfd03219904805863aa56971eec686b"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-013-F02",
+      "object": {
+        "id": "HELIXSECURITY-L3-013-F02",
+        "parent": "HELIXSECURITY-L2-013",
+        "title": "不一致・missing stepと昇格停止",
+        "obligation": "identity/version/digest/provenance/producerの不一致または選択工程のmissing stepでは昇格を止める材料を010/023/OSへ返す。013はHARNESS検証receiptとOS進行/昇格記録を参照し、受領前の未来receiptをbuild開始の一律前提にしない。",
+        "oracle_ref": "HELIXSECURITY-L10-013-F02"
+      },
+      "source_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "source_sha256": "84392ce194417297443fb499816580a708d748f73dadbb6f8f5f8947f7455aa7",
+      "object_canonical_sha256": "f972120371dc304666f5b36a3880681ea5bd02b369db06a9a233bf40b7e2a3f0"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-013-F03",
+      "object": {
+        "id": "HELIXSECURITY-L3-013-F03",
+        "parent": "HELIXSECURITY-L2-013",
+        "title": "再構築と実起動の別照合",
+        "obligation": "同じmanifest/lock/tool/設定/入力revisionから再構築したartifactは、実際のidentity/digestと検証/実起動対象への対応を個別に照合する。環境再現、artifact同一性、behavior検証の各成功を別にし、旧CIや別artifactのgreenで代用しない。",
+        "oracle_ref": "HELIXSECURITY-L10-013-F03"
+      },
+      "source_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "source_sha256": "84392ce194417297443fb499816580a708d748f73dadbb6f8f5f8947f7455aa7",
+      "object_canonical_sha256": "69e15f2189aed0d9e22101660fcdfac181cf3cfe2865b963d42e06f44ba6fd47"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "id": "HELIXSECURITY-L3-013-N01",
+      "object": {
+        "id": "HELIXSECURITY-L3-013-N01",
+        "parent": "HELIXSECURITY-L2-013",
+        "title": "未見artifactと鎖の欠落",
+        "obligation": "code/package/model/config/security policy等の対象種集合を縮小し、configやpolicyを鎖の対象外にした欠陥を工程の差替え/欠落とは別に検出する。未見revision/producer/環境のartifactで一段差替え/欠落/別digestを照合し、件数/hash欄の存在だけを全鎖一致にしない。初回の限定build/実行証拠を正式release/配布の成立へ外挿しない。",
+        "oracle_ref": "HELIXSECURITY-L10-013-N01"
+      },
+      "source_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "source_sha256": "eed3e27aec34d76b4979cbbee769fe7fec05f0a694b189426496a068fd9c452e",
+      "object_canonical_sha256": "0620e865d0d026d60260c6eae042354fcfb9c8caab3f02e554e41eba989b7c59"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "id": "HELIXSECURITY-L10-013-B01",
+      "object": {
+        "id": "HELIXSECURITY-L10-013-B01",
+        "parent": "HELIXSECURITY-L2-013",
+        "title": "artifact一致と検証/trust分離",
+        "requirement_ref": "HELIXSECURITY-L3-013-B01",
+        "positive_input": "同じdigestと未検証artifact、検証済み同artifactを分ける。",
+        "expected_observation": "同一性・trust・検証・実行許可を別々に辿れる。",
+        "negative_input": "digest一致でtest pass、build成功でOS昇格。",
+        "failure_observation": "同一性不足は013、trustは012、検証はHARNESS、進行はOSへ返す。",
+        "execution_state": "not_executed"
+      },
+      "source_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "source_sha256": "9f56e951bcc0e3510315362fb8501b9a7860981f2da090751e9fb33a1d160f7c",
+      "object_canonical_sha256": "99dfea759949a74d001681b1ca9f21e181a96df4ebc91b18f69afa3241e2e2b6"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-013-F01",
+      "object": {
+        "id": "HELIXSECURITY-L10-013-F01",
+        "parent": "HELIXSECURITY-L2-013",
+        "title": "工程ごとのidentity chain",
+        "requirement_ref": "HELIXSECURITY-L3-013-F01",
+        "positive_input": "code/package/model/config/security policy等の各対象種と、build→validation→executeの同一鎖と、配布未選択を比較する。",
+        "expected_observation": "対象種ごとの鎖と分類不能な対象を区別し、選択工程の同artifactと未発生工程を区別して辿れる。",
+        "negative_input": "CIと実起動で別artifact、producer/工程欠落、未配布を配布済みにする。config/security policyを鎖の対象外にする、packageの鎖だけで全対象種一致を主張、未分類種を既知種へ補完。",
+        "failure_observation": "不足対象種をunknown/未完に保ち、対象鎖の不足を未完にし該当工程ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "source_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "source_sha256": "256ca8a0229f65dd1694e56e80469b855816ccfe66fb4d01a20cde94f1301de1",
+      "object_canonical_sha256": "9872817e947b724578714a64a14ae276443a9cba3d9e04641377e462d89c312e"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-013-F02",
+      "object": {
+        "id": "HELIXSECURITY-L10-013-F02",
+        "parent": "HELIXSECURITY-L2-013",
+        "title": "不一致・missing stepと昇格停止",
+        "requirement_ref": "HELIXSECURITY-L3-013-F02",
+        "positive_input": "途中工程後に生じる検証/実行receiptと一工程欠落を比較する。",
+        "expected_observation": "各時点に利用可能な材料と後続結果を分けて不足/停止を示せる。",
+        "negative_input": "別HEADのvalidation、未来のOS成功をbuild前要求、receipt欠落で昇格。",
+        "failure_observation": "当該昇格を未成立にしartifact/検証/進行ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "source_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "source_sha256": "256ca8a0229f65dd1694e56e80469b855816ccfe66fb4d01a20cde94f1301de1",
+      "object_canonical_sha256": "ad3c63c5c1d833fc95cc2d5e575c5f8ed795384f63347529605a7280cf78b641"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-013-F03",
+      "object": {
+        "id": "HELIXSECURITY-L10-013-F03",
+        "parent": "HELIXSECURITY-L2-013",
+        "title": "再構築と実起動の別照合",
+        "requirement_ref": "HELIXSECURITY-L3-013-F03",
+        "positive_input": "二つのクリーン環境の実artifactと実起動対象/receiptを比較する。",
+        "expected_observation": "再現条件と実artifact/検証/起動の各対応を示せる。",
+        "negative_input": "lock同じなのでartifact同じ、source test成功だけで配布実体も成功。",
+        "failure_observation": "環境差は対象設計/INFRA、artifact鎖は013、behaviorはHARNESSへ返す。",
+        "execution_state": "not_executed"
+      },
+      "source_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "source_sha256": "256ca8a0229f65dd1694e56e80469b855816ccfe66fb4d01a20cde94f1301de1",
+      "object_canonical_sha256": "a519eff5f0e50c0f16b9fa29c33fbfa6ee8f049209ac26fcd09cb1ea8b485c44"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "id": "HELIXSECURITY-L10-013-N01",
+      "object": {
+        "id": "HELIXSECURITY-L10-013-N01",
+        "parent": "HELIXSECURITY-L2-013",
+        "title": "未見artifactと鎖の欠落",
+        "requirement_ref": "HELIXSECURITY-L3-013-N01",
+        "positive_input": "各artifact対象種を保持した集合と、未見artifactの途中差替えと同artifactを比較する。",
+        "expected_observation": "対象種縮小による欠落と、差替えた工程と未観測工程を示せる。",
+        "negative_input": "別binary実行を同HEAD結果化、未配布をrelease合格。config/policyを対象集合から落とす、package鎖のみで全対象種の一致を主張。",
+        "failure_observation": "欠落対象種と当該鎖を未完に保ち、当該鎖/昇格を未完に保ち影響工程へ戻す。",
+        "execution_state": "not_executed"
+      },
+      "source_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "source_sha256": "d508d02126562a73e662ea11a5bdf9a40eea40cfe874511b26f2d701cd032631",
+      "object_canonical_sha256": "1d127d24f25aa05ae3736ba42ab1b894ee30c8f9f488683353decf193bb4bbf6"
+    }
+  ],
+  "unresolved": [
+    "正式schema、field type/enum/nullability、canonicalization、digest algorithm/encoding/codecは未決。",
+    "kind別正式owner/source qualification、producerの実identity/custody、物理source観測は未確立。未知kindを補完しない。",
+    "署名方式/key authority、trusted registry、scanner、固定freshness gateは未決・非要求。",
+    "未選択distribution/release/deployは未発生。これを初回全scopeの除外または完了判断に使わない。",
+    "実artifact観測、build/validation/launch、trust最終判断、authority決定、L11受入は未実施。"
+  ],
+  "approval_source_files": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "sha256": "3c9bbc84d9ad9e81d08fdd0320854fbe1c617eb5cc8ff6f7ee557f3708359b10",
+      "current_working_copy_sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+      "current_copy_matches_approval": false
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "sha256": "84392ce194417297443fb499816580a708d748f73dadbb6f8f5f8947f7455aa7",
+      "current_working_copy_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+      "current_copy_matches_approval": false
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "sha256": "eed3e27aec34d76b4979cbbee769fe7fec05f0a694b189426496a068fd9c452e",
+      "current_working_copy_sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66",
+      "current_copy_matches_approval": false
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "sha256": "9f56e951bcc0e3510315362fb8501b9a7860981f2da090751e9fb33a1d160f7c",
+      "current_working_copy_sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+      "current_copy_matches_approval": false
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "sha256": "256ca8a0229f65dd1694e56e80469b855816ccfe66fb4d01a20cde94f1301de1",
+      "current_working_copy_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+      "current_copy_matches_approval": false
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "sha256": "d508d02126562a73e662ea11a5bdf9a40eea40cfe874511b26f2d701cd032631",
+      "current_working_copy_sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00",
+      "current_copy_matches_approval": false
+    }
+  ],
+  "layer_handoff": {
+    "L5-detail-design": [
+      "field types/enums/nullabilityとunknown表現",
+      "canonical serializationとdigest algorithm/codec/encoding",
+      "kind owner、source qualification、producer custody/observationの具体責務",
+      "stage relationとtrace binding、selected/unselected工程の状態遷移"
+    ],
+    "L8-test-design": [
+      "L10 oracleに対応した17負例の個別判定観測",
+      "再現条件/artifact同一性/behavior結果の分離",
+      "差替え・欠落・未発生工程をkind coverage欠落と区別するfixture/evidence"
+    ]
+  },
+  "document_id": "HELIXSECURITY-L4-013-ARTIFACT-INTEGRITY-CHAIN",
+  "layer": "L4",
+  "pair": "HELIXSECURITY-L9-013-ARTIFACT-INTEGRITY-CHAIN",
+  "approval_record_pin": {
+    "path": "docs/governance/decisions/helix-security-tool-prerequisites-l3-l10-delegated-decision-2026-10-12.md",
+    "sha256": "d7c1f27d477b8323cae77cfb4dce8086c6d268826f09a1edcea46e186111878b",
+    "exact_record_commit": "3fa2c3ee61b0ee6e47b78c536fa9703b5becb416",
+    "integrating_main_commit": "7b2f7c05ba80830646bb9a1a3c4274fa0c84bccc",
+    "main_commit_subject": "Merge pull request #2963 from RetryYN/codex/security-tool-prerequisites-20261012",
+    "record_commit_is_ancestor_of_integrating_merge": true,
+    "integrating_merge_is_ancestor_of_base_and_origin_main": true,
+    "reviewed_content_head": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+    "reviewed_content_is_ancestor_of_record_commit": true,
+    "recorded_status": "recorded_pending_final_review_and_main_admission (原記録の状態欄を保持。record bytesのmain統合は祖先関係で別確認済み。)"
+  },
+  "verification": "JSONとID/参照/責務境界を静的照合する。実artifactの一致・再現性・挙動を確かめた意味ではない。",
+  "legacy_reuse": "意味の再導出。旧sourceの意味は保持しつつ、旧schema/runtime/test/scanner/registryを移植しない。",
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L4-013-B01",
+      "requirement_ref": "HELIXSECURITY-L3-013-B01",
+      "system_oracle_ref": "HELIXSECURITY-L10-013-B01",
+      "oracle_ref": "HELIXSECURITY-L9-013-B01",
+      "title": "artifact一致と検証/trustの分離",
+      "rules": [
+        "R02",
+        "R03",
+        "R05",
+        "R10"
+      ],
+      "backflow": "identity不足は013、source来歴資料不足は012へ返す。trust最終認可、HARNESS検証、OS進行を代行しない。",
+      "case_refs": [
+        "HELIXSECURITY-L9-013-GWT-B01",
+        "HELIXSECURITY-L9-013-B01-N1",
+        "HELIXSECURITY-L9-013-B01-N2"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L4-013-F01",
+      "requirement_ref": "HELIXSECURITY-L3-013-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-013-F01",
+      "oracle_ref": "HELIXSECURITY-L9-013-F01",
+      "title": "対象kindと工程ごとのidentity chain",
+      "rules": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R08"
+      ],
+      "backflow": "対象kind/chainの欠落はunknown/未完で保ち、該当工程ownerへ返す。",
+      "case_refs": [
+        "HELIXSECURITY-L9-013-GWT-F01",
+        "HELIXSECURITY-L9-013-F01-N1",
+        "HELIXSECURITY-L9-013-F01-N2",
+        "HELIXSECURITY-L9-013-F01-N3",
+        "HELIXSECURITY-L9-013-F01-N4",
+        "HELIXSECURITY-L9-013-F01-N5",
+        "HELIXSECURITY-L9-013-F01-N6"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L4-013-F02",
+      "requirement_ref": "HELIXSECURITY-L3-013-F02",
+      "system_oracle_ref": "HELIXSECURITY-L10-013-F02",
+      "oracle_ref": "HELIXSECURITY-L9-013-F02",
+      "title": "選択工程の不一致・欠落と昇格停止",
+      "rules": [
+        "R04",
+        "R06",
+        "R07",
+        "R10"
+      ],
+      "backflow": "欠落・不一致の停止材料は承認済み戻し先L2-010の更新受入、L2-023の更新→検証→昇格構成体、およびHELIX-OSの進行へ返す。artifact同一性不足は013、source来歴資料不足は012を補足参照として付すが、012は010/023/OSへの停止・戻しを代行しない。検証receiptの責務はHARNESSに残し、未来receiptをbuild前提にしない。",
+      "case_refs": [
+        "HELIXSECURITY-L9-013-GWT-F02",
+        "HELIXSECURITY-L9-013-F02-N1",
+        "HELIXSECURITY-L9-013-F02-N2",
+        "HELIXSECURITY-L9-013-F02-N3"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L4-013-F03",
+      "requirement_ref": "HELIXSECURITY-L3-013-F03",
+      "system_oracle_ref": "HELIXSECURITY-L10-013-F03",
+      "oracle_ref": "HELIXSECURITY-L9-013-F03",
+      "title": "再現条件・artifact同一性・挙動検証の分離",
+      "rules": [
+        "R09",
+        "R10"
+      ],
+      "backflow": "再現性差分は該当tool/environment owner、artifact identityは013、behaviorはHARNESSへ返す。",
+      "case_refs": [
+        "HELIXSECURITY-L9-013-GWT-F03",
+        "HELIXSECURITY-L9-013-F03-N1",
+        "HELIXSECURITY-L9-013-F03-N2"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L4-013-N01",
+      "requirement_ref": "HELIXSECURITY-L3-013-N01",
+      "system_oracle_ref": "HELIXSECURITY-L10-013-N01",
+      "oracle_ref": "HELIXSECURITY-L9-013-N01",
+      "title": "kind集合縮小と工程鎖欠落の個別検出",
+      "rules": [
+        "R01",
+        "R06",
+        "R08",
+        "R11",
+        "R12",
+        "R13"
+      ],
+      "backflow": "kind coverage欠落、stage mismatch、未見artifact差替えを別々に未完とし、差替えstageと未観測stage、producer/environment資格未確定を示して該当工程ownerへ返す。選択範囲を超えて一般化しない。",
+      "case_refs": [
+        "HELIXSECURITY-L9-013-GWT-N01",
+        "HELIXSECURITY-L9-013-N01-N1",
+        "HELIXSECURITY-L9-013-N01-N2",
+        "HELIXSECURITY-L9-013-N01-N3",
+        "HELIXSECURITY-L9-013-N01-N4"
+      ]
+    }
+  ],
+  "pair_trace": [
+    {
+      "design_ref": "HELIXSECURITY-L4-013-B01",
+      "oracle_ref": "HELIXSECURITY-L9-013-B01",
+      "requirement_ref": "HELIXSECURITY-L3-013-B01",
+      "system_oracle_ref": "HELIXSECURITY-L10-013-B01",
+      "case_refs": [
+        "HELIXSECURITY-L9-013-GWT-B01",
+        "HELIXSECURITY-L9-013-B01-N1",
+        "HELIXSECURITY-L9-013-B01-N2"
+      ]
+    },
+    {
+      "design_ref": "HELIXSECURITY-L4-013-F01",
+      "oracle_ref": "HELIXSECURITY-L9-013-F01",
+      "requirement_ref": "HELIXSECURITY-L3-013-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-013-F01",
+      "case_refs": [
+        "HELIXSECURITY-L9-013-GWT-F01",
+        "HELIXSECURITY-L9-013-F01-N1",
+        "HELIXSECURITY-L9-013-F01-N2",
+        "HELIXSECURITY-L9-013-F01-N3",
+        "HELIXSECURITY-L9-013-F01-N4",
+        "HELIXSECURITY-L9-013-F01-N5",
+        "HELIXSECURITY-L9-013-F01-N6"
+      ]
+    },
+    {
+      "design_ref": "HELIXSECURITY-L4-013-F02",
+      "oracle_ref": "HELIXSECURITY-L9-013-F02",
+      "requirement_ref": "HELIXSECURITY-L3-013-F02",
+      "system_oracle_ref": "HELIXSECURITY-L10-013-F02",
+      "case_refs": [
+        "HELIXSECURITY-L9-013-GWT-F02",
+        "HELIXSECURITY-L9-013-F02-N1",
+        "HELIXSECURITY-L9-013-F02-N2",
+        "HELIXSECURITY-L9-013-F02-N3"
+      ]
+    },
+    {
+      "design_ref": "HELIXSECURITY-L4-013-F03",
+      "oracle_ref": "HELIXSECURITY-L9-013-F03",
+      "requirement_ref": "HELIXSECURITY-L3-013-F03",
+      "system_oracle_ref": "HELIXSECURITY-L10-013-F03",
+      "case_refs": [
+        "HELIXSECURITY-L9-013-GWT-F03",
+        "HELIXSECURITY-L9-013-F03-N1",
+        "HELIXSECURITY-L9-013-F03-N2"
+      ]
+    },
+    {
+      "design_ref": "HELIXSECURITY-L4-013-N01",
+      "oracle_ref": "HELIXSECURITY-L9-013-N01",
+      "requirement_ref": "HELIXSECURITY-L3-013-N01",
+      "system_oracle_ref": "HELIXSECURITY-L10-013-N01",
+      "case_refs": [
+        "HELIXSECURITY-L9-013-GWT-N01",
+        "HELIXSECURITY-L9-013-N01-N1",
+        "HELIXSECURITY-L9-013-N01-N2",
+        "HELIXSECURITY-L9-013-N01-N3",
+        "HELIXSECURITY-L9-013-N01-N4"
+      ]
+    }
+  ],
+  "source_pin_limit": "承認全source fileのhash一致は意味閉包を示さない。ここでは承認済み013全10 objectsをexact HEADから個別照合した。",
+  "layer_id": "HELIXSECURITY-L4-013",
+  "pair_id": "HELIXSECURITY-L9-013-ARTIFACT-INTEGRITY-CHAIN",
+  "source_quote_hash_contract": "exact_line_quoteは指定source fileの該当行（UTF-8、改行を除く）のSHA-256と照合する。source全文hashも別に保持する。"
+}
