@@ -2133,11 +2133,11 @@
     },
     {
       "id": "R02",
-      "rule": "rootsは非空string要素・重複なしのlistを有効集合とし、不明側set_unknownをselection facetへ、両側有効で集合差ならactual /rootsへset_conflictを返す。各側closureはroots有効かつedges dictの場合に限り、rootからvisited集合で各nodeを一度だけ辿る。訪問nodeを集合へ入れ、edgesにそのkeyなしならdependency_list_missingをその側/edgesへ、子list不明ならset_unknownをその側/edges/keyのgraphへ、他は子nodeへ進む。edges非dictはset_unknown graph。循環を新規拒否条件にせずvisitedで有限化する。各closureはsortedで出力し、needed_assetsは両closureの和集合sorted。"
+      "rule": "rootsは非空string要素・重複なしのlistを有効集合とし、不明側set_unknownをselection facetへ、両側有効で集合差ならactual /rootsへset_conflictを返す。各側closureはroots有効かつedges dictの場合に限り、rootからvisited集合で各nodeを一度だけ辿る。訪問nodeを集合へ入れ、edgesにそのkeyなしならdependency_list_missingをその側/edgesへ、子list不明ならset_unknownをその側/edges/keyのgraphへ、他は子nodeへ進む。edges非dictはset_unknown graph。循環を新規拒否条件にせずvisitedで有限化する。roots無効またはedges非dictの側は未計算でclosure出力null。計算済みclosureはsorted、needed_assetsは計算済み側のみの和集合sorted。nullを空集合の観測へ補完しない。"
     },
     {
       "id": "R03",
-      "rule": "closure集合差はactual /edgesへdependency_set_conflict。両closure共通nodeで双方子list有効かつ集合差ならactual /edges/keyへ同code。assets非dictはその側/assetsへset_unknown graph。needed nodeが片側assets非dictまたはkey欠落ならその側/assetsへdependency_asset_missing graphと当該asset identityのgroup_missing。keyがあるがasset非dictならその側/assets/keyへgroup_missing identity。asset本体が両側dictの場合のみ以下を比較する。非選択nodeを比較せず、unselected_assetsはactual assets dictのkeyからneededを引いたsorted集合。全9kind実運転gateを作らない。"
+      "rule": "両側closureが計算済みの場合だけ集合差をactual /edgesへdependency_set_conflict。片側未計算では閉包全体差を生成しない。両closure共通nodeで双方子list有効かつ集合差ならactual /edges/keyへ同code。assets非dictはその側/assetsへset_unknown graph。needed nodeが片側assets非dictまたはkey欠落ならその側/assetsへdependency_asset_missing graphと当該asset identityのgroup_missing。keyがあるがasset非dictならその側/assets/keyへgroup_missing identity。asset本体が両側dictの場合のみ以下を比較する。非選択nodeを比較せず、unselected_assetsはactual assets dictのkeyからneededを引いたsorted集合。全9kind実運転gateを作らない。"
     },
     {
       "id": "R04",
@@ -2149,7 +2149,7 @@
     },
     {
       "id": "R06",
-      "rule": "各asset.fieldsは両側dictを要求し、不明側set_unknown provenance、dict key集合が10 provenance_fieldsと異なればその側set_conflict provenance。両側dictの場合だけ共通必須fieldを評価。片側key欠落なら当該field_correspondenceにunknownを残すが追加findingを作らずfield_statesはnull。共通fieldのentryが片側非dictならgroup_missing provenanceと当該fieldへ記録し、両側dictの場合だけ以後のentry比較・状態採用を行う。field不足を別field/kind/assetで相殺しない。"
+      "rule": "各asset.fieldsは両側dictを要求し、不明側set_unknown provenance、dict key集合が10 provenance_fieldsと異なればその側set_conflict provenance。両側dictの場合だけ共通必須fieldを評価。片側key欠落なら当該field_correspondenceにunknownを残すが追加findingを作らずfield_statesはnull。共通fieldのentryが片側非dictならgroup_missing provenanceと当該fieldへ記録し、両側dictの場合だけ以後のentry比較・状態採用を行う。field不足を別field/kind/assetで相殺しない。 資産本体欠落/非dictまたはfields非dictの側がある場合、当該assetの全10 field_correspondenceはunknown（追加findingなし）、field_statesはnullのまま。"
     },
     {
       "id": "R07",
@@ -2165,7 +2165,7 @@
     },
     {
       "id": "R10",
-      "rule": "facet/field gradeはviolation>unknown>corresponding。root_correspondenceはbinding/selection/graph/boundary各facet、asset_correspondenceはneeded nodeのidentity/provenance/artifact各facet、field_correspondenceは各node各10fieldの診断grade。entryに付く診断はprovenance facetと当該fieldの両方へ入れる。conditionはrootとasset gradesにviolationがあればprovenance_material_violation、他にunknownならprovenance_material_unknown、他はprovenance_material_corresponding。field key欠落はprovenance集合診断とfield unknownに分ける。"
+      "rule": "facet/field gradeはviolation>unknown>corresponding。root_correspondenceはbinding/selection/graph/boundary各facet、asset_correspondenceはneeded nodeのidentity/provenance/artifact各facet、field_correspondenceは各node各10fieldの診断grade。entryに付く診断はprovenance facetと当該fieldの両方へ入れる。conditionはrootとasset gradesにviolationがあればprovenance_material_violation、他にunknownならprovenance_material_unknown、他はprovenance_material_corresponding。field key欠落はprovenance集合診断とfield unknownに分ける。 資産/fields群自体が比較不能な場合も全10 field_correspondenceをunknownに保ち、対応済み表示へ丸めない。"
     },
     {
       "id": "R11",

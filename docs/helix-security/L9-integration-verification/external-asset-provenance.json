@@ -88678,7 +88678,7 @@
             "path": [
               "condition"
             ],
-            "value": "provenance_material_violation"
+            "value": "provenance_material_unknown"
           },
           {
             "path": [
@@ -88689,16 +88689,9 @@
           },
           {
             "path": [
-              "root_correspondence",
-              "graph"
-            ],
-            "value": "violation"
-          },
-          {
-            "path": [
               "actual_dependency_closure"
             ],
-            "value": []
+            "value": null
           },
           {
             "path": [
@@ -88726,11 +88719,6 @@
             ],
             "value": [
               {
-                "code": "dependency_set_conflict",
-                "pointer": "/edges",
-                "return_owner": "graph-source-owner"
-              },
-              {
                 "code": "set_unknown",
                 "pointer": "/roots",
                 "return_owner": "selection-source-owner"
@@ -88738,7 +88726,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "43b69226879bbe706064b0ae7c09de2c3a1602a786653662e91ee5b6f5ba33f2"
+        "expanded_output_sha256": "7aba9c2f5debf1287b545690229d60cbfb48d836d6befaef6c7cca9a7e23e2a5"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -88915,16 +88903,16 @@
                 "rollback": "corresponding"
               },
               "not_asset": {
-                "source": "corresponding",
-                "producer": "corresponding",
-                "version": "corresponding",
-                "digest": "corresponding",
-                "dependency": "corresponding",
-                "permission": "corresponding",
-                "network_behavior": "corresponding",
-                "known_risk": "corresponding",
-                "update_delta": "corresponding",
-                "rollback": "corresponding"
+                "source": "unknown",
+                "producer": "unknown",
+                "version": "unknown",
+                "digest": "unknown",
+                "dependency": "unknown",
+                "permission": "unknown",
+                "network_behavior": "unknown",
+                "known_risk": "unknown",
+                "update_delta": "unknown",
+                "rollback": "unknown"
               }
             }
           },
@@ -89061,7 +89049,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "3326bef833a8f1c015f46c93d418a696051cf2482cd24054fdf2d493c3a7e4ff"
+        "expanded_output_sha256": "b3eea8b985c0a139490d5b187d6a22d0e476d041164b9bd7c2ccfe6398e67e42"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -89093,20 +89081,20 @@
             "path": [
               "condition"
             ],
-            "value": "provenance_material_violation"
+            "value": "provenance_material_unknown"
           },
           {
             "path": [
               "root_correspondence",
               "graph"
             ],
-            "value": "violation"
+            "value": "unknown"
           },
           {
             "path": [
               "actual_dependency_closure"
             ],
-            "value": []
+            "value": null
           },
           {
             "path": [
@@ -89134,11 +89122,6 @@
             ],
             "value": [
               {
-                "code": "dependency_set_conflict",
-                "pointer": "/edges",
-                "return_owner": "graph-source-owner"
-              },
-              {
                 "code": "set_unknown",
                 "pointer": "/edges",
                 "return_owner": "graph-source-owner"
@@ -89146,7 +89129,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "7df2dfde73d87cefe41003542a87fdfb4eb35b87ab24801fa2c8acbe82528cd4"
+        "expanded_output_sha256": "3ad1024e38fd927f13c1b24b30fbb0b044737d79d39dbe09de1ddfcbbdfdbafa"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -89192,6 +89175,86 @@
               "asset_correspondence",
               "model",
               "identity"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "source"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "producer"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "version"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "digest"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "dependency"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "permission"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "network_behavior"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "known_risk"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "update_delta"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "rollback"
             ],
             "value": "unknown"
           },
@@ -89332,7 +89395,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "346ae0491bf42374790a60852341fdcd1b951fbc83433e5080dbd526cfff2561"
+        "expanded_output_sha256": "3c84bc14cbb6bd66c56c98330ea10a59cb4a812d7216e6e152369c13ab251885"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -89457,6 +89520,86 @@
           },
           {
             "path": [
+              "field_correspondence",
+              "model",
+              "source"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "producer"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "version"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "digest"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "dependency"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "permission"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "network_behavior"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "known_risk"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "update_delta"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "rollback"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
               "asset_kinds",
               "model"
             ],
@@ -89587,7 +89730,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "5df9f58c02546c9cf1ea08b65a5e14cb053f183f8bf033760c11180d4528dce0"
+        "expanded_output_sha256": "75b8398942802811fe6f280e8ae0d6439b9d73bfd669465afced5c5d19588ba3"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -96222,6 +96365,86 @@
           },
           {
             "path": [
+              "field_correspondence",
+              "model",
+              "source"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "producer"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "version"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "digest"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "dependency"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "permission"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "network_behavior"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "known_risk"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "update_delta"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "rollback"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
               "field_states",
               "model",
               "source"
@@ -96335,7 +96558,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "1b76fbbbebcd3f45bc5b2e73f8f54fe1b39d361dadc30944a84146350b38800c"
+        "expanded_output_sha256": "c47963011ee1921203f4b2f2765fedd738c9d2894cbe4d67b9b670c4c77a4ba7"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -141234,7 +141457,7 @@
             "path": [
               "condition"
             ],
-            "value": "provenance_material_violation"
+            "value": "provenance_material_unknown"
           },
           {
             "path": [
@@ -141245,16 +141468,9 @@
           },
           {
             "path": [
-              "root_correspondence",
-              "graph"
-            ],
-            "value": "violation"
-          },
-          {
-            "path": [
               "reference_dependency_closure"
             ],
-            "value": []
+            "value": null
           },
           {
             "path": [
@@ -141282,11 +141498,6 @@
             ],
             "value": [
               {
-                "code": "dependency_set_conflict",
-                "pointer": "/edges",
-                "return_owner": "graph-source-owner"
-              },
-              {
                 "code": "set_unknown",
                 "pointer": "/context/roots",
                 "return_owner": "selection-source-owner"
@@ -141294,7 +141505,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "9d97dc988cb91cd3b0bcdbec83655f41df2df3cd5a5ac8c6bc7e08357dca647e"
+        "expanded_output_sha256": "747b8ad5c14c7c745d460972656494fbf590147eba174df886b4bb8f4cfb1ce0"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -141473,16 +141684,16 @@
                 "rollback": "corresponding"
               },
               "not_asset": {
-                "source": "corresponding",
-                "producer": "corresponding",
-                "version": "corresponding",
-                "digest": "corresponding",
-                "dependency": "corresponding",
-                "permission": "corresponding",
-                "network_behavior": "corresponding",
-                "known_risk": "corresponding",
-                "update_delta": "corresponding",
-                "rollback": "corresponding"
+                "source": "unknown",
+                "producer": "unknown",
+                "version": "unknown",
+                "digest": "unknown",
+                "dependency": "unknown",
+                "permission": "unknown",
+                "network_behavior": "unknown",
+                "known_risk": "unknown",
+                "update_delta": "unknown",
+                "rollback": "unknown"
               }
             }
           },
@@ -141619,7 +141830,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "1c165055d65045e01569c2f57855af76ecfd0cb582154ef34dbfbdb305909598"
+        "expanded_output_sha256": "7a271cafaf515afcb4cc08aaceef2b3ff7b8ccca455f2e757f798da1d20523e8"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -141652,20 +141863,20 @@
             "path": [
               "condition"
             ],
-            "value": "provenance_material_violation"
+            "value": "provenance_material_unknown"
           },
           {
             "path": [
               "root_correspondence",
               "graph"
             ],
-            "value": "violation"
+            "value": "unknown"
           },
           {
             "path": [
               "reference_dependency_closure"
             ],
-            "value": []
+            "value": null
           },
           {
             "path": [
@@ -141693,11 +141904,6 @@
             ],
             "value": [
               {
-                "code": "dependency_set_conflict",
-                "pointer": "/edges",
-                "return_owner": "graph-source-owner"
-              },
-              {
                 "code": "set_unknown",
                 "pointer": "/context/edges",
                 "return_owner": "graph-source-owner"
@@ -141705,7 +141911,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "9a1e50386b74b9996a09467005a488ed41e3a5a6acf444545d71acb96b504f59"
+        "expanded_output_sha256": "f4e35cd9edd4ae50192810bad32f9b38dc66d39df668c5738785fd77ed29c97c"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -141752,6 +141958,86 @@
               "asset_correspondence",
               "model",
               "identity"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "source"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "producer"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "version"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "digest"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "dependency"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "permission"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "network_behavior"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "known_risk"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "update_delta"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "rollback"
             ],
             "value": "unknown"
           },
@@ -141892,7 +142178,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "6aecfdf7e0faf8afbccb9b08a1e2d2aa8cf4a431c41fa43c37b82a0cddc34c4f"
+        "expanded_output_sha256": "61f79911711580f21d0050608a91edc514e8040f03ff3c3d36949d788418818d"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -142019,6 +142305,86 @@
           },
           {
             "path": [
+              "field_correspondence",
+              "model",
+              "source"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "producer"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "version"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "digest"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "dependency"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "permission"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "network_behavior"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "known_risk"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "update_delta"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "rollback"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
               "asset_kinds",
               "model"
             ],
@@ -142149,7 +142515,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "47fefe5c91aaa40b92a5508a752c4578c007e939a441a75d8b62727f1f888e9e"
+        "expanded_output_sha256": "fea6df7d8395731b51122a0d72417255e58e195cd2e89af1ed44856e90835c70"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -149634,6 +150000,86 @@
           },
           {
             "path": [
+              "field_correspondence",
+              "model",
+              "source"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "producer"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "version"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "digest"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "dependency"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "permission"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "network_behavior"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "known_risk"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "update_delta"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "model",
+              "rollback"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
               "field_states",
               "model",
               "source"
@@ -149747,7 +150193,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "7184b01ed692e87d978f0d508999685b684981e40e7db0ba8b35be6f697c278b"
+        "expanded_output_sha256": "4a89deafd19b288d1711eec26973d950c0d7c3ec269e4712450f7ef60ee29145"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -196238,6 +196684,86 @@
           },
           {
             "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "source"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "producer"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "version"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "digest"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "dependency"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "permission"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "network_behavior"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "known_risk"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "update_delta"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "rollback"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
               "asset_kinds",
               "dep_transitive"
             ],
@@ -196989,7 +197515,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "f4426f0d82857a484e2812b8a6685588e380db9676c565a7ab20954644636941"
+        "expanded_output_sha256": "67725d5306e23869dad8d3a02b3d8213091c62457ab3be9cb8533e854b1479d7"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -198516,6 +199042,86 @@
           },
           {
             "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "source"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "producer"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "version"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "digest"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "dependency"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "permission"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "network_behavior"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "known_risk"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "update_delta"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "field_correspondence",
+              "dep_transitive",
+              "rollback"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
               "asset_kinds",
               "dep_transitive"
             ],
@@ -199267,7 +199873,7 @@
             ]
           }
         ],
-        "expanded_output_sha256": "1066bcd87aa7f71c25b2ff4b66e4d19a4d2fc7e693a3c73bc82e184768d628a9"
+        "expanded_output_sha256": "daeb28567a171493fc5c162e90b7dddc9fb83a19034762ae55f691a1c13ae0df"
       },
       "execution_state": "synthetic_input_static_comparison_only"
     },
@@ -200561,7 +201167,7 @@
         ]
       },
       "dependency_set_conflict": {
-        "case_ref": "SEC012-C0623",
+        "case_ref": "SEC012-C0624",
         "detected_replacements": [
           "unknown",
           "corresponding"
@@ -202469,5 +203075,32 @@
         "SEC012-C1751"
       ]
     }
-  ]
+  ],
+  "review_corrections": {
+    "reviewed_head": "a750fd49dffd0d243c0f5c62747490b2205c3070",
+    "review_comment": 6175438152,
+    "finding_ids": [
+      "OS12-M1",
+      "OS12-m1"
+    ],
+    "changed_case_refs": [
+      "SEC012-C0623",
+      "SEC012-C0625",
+      "SEC012-C0626",
+      "SEC012-C0627",
+      "SEC012-C0629",
+      "SEC012-C0710",
+      "SEC012-C1168",
+      "SEC012-C1170",
+      "SEC012-C1171",
+      "SEC012-C1172",
+      "SEC012-C1174",
+      "SEC012-C1255",
+      "SEC012-C1740",
+      "SEC012-C1745"
+    ],
+    "whole_inputs_unchanged": true,
+    "case_ids_and_pair_trace_unchanged": true,
+    "evidence_limit": "文書設計案のreview修正。凍結製品oracle変更や実TDDではない。"
+  }
 }
