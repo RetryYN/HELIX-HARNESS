@@ -1,0 +1,603 @@
+{
+  "parent": "HELIXLABO-L2-028",
+  "source_main": "c00695600ab1fed30718d89880b92a6358422131",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+    "boundary": "許可Worker結果の選択された受領とsource/assignment/ticketの照合。LABOはobservationを持つが、Worker・OS・sourceのassignment/authorityを持たない。実験結果である入力のみ、同一experimentと対象版への条件付き参照を扱う。全Worker能力・全source接続・全実験能力・実観測/実評価を前提化しない。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-cross-owner-contract-dependencies-2026-10-12.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "70e469eabda9ebb58581a6e4c9c62ad233b69bd09fe97841be0df7fc4d4ada13"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+    },
+    {
+      "path": "docs/governance/audits/first-cycle-source-prerequisites-2026-10-12.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "d12f1e7813c0fba911a3d62969b888017c0d1009aeeb28d2a67ad196c2585020"
+    }
+  ],
+  "approval_basis": {
+    "record_id": "HDEC-LABO-PREREQUISITE-L3L10-2026-10-12",
+    "record_path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "record_sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19",
+    "admitted_commit": "2f95e20cd9e90dd4ab7d349661476d8c49eff548",
+    "admitted_commit_subject": "docs: record delegated LABO prerequisite pair approval",
+    "admitted_commit_is_ancestor_of_source_main": true,
+    "exact_approval_scope_quote": "001/002/011/026/028/054/055/056/057/058の10親から導出した26組のexact本文を承認する。全LABO能力・全source接続・実観測/実評価の完成を含まない。draft/not_executedは固定bytesとして保持する。",
+    "approved_l3_file_sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+    "approved_l10_file_sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496",
+    "approval_evidence": "PR #2957 independent no_findings / delegated approval; fixed bytes are pinned by the decision record. Header pending values are preserved as record metadata; main admission is verified by ancestry."
+  },
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "revision": "legacy-generation-2026-09-14",
+      "read_lines": [
+        349,
+        351
+      ],
+      "quote": "### HXB-FR-015 Capability / Routingへの証拠昇格\n\nBenchはobserved/scored/qualified/expired等の証拠状態と改善候補を返す。既存registry/admission ownerが、task/risk/profile/descriptor、標本数、重大failure、鮮度、独立性を検査し、#188が現在capacity等と合わせて配車を決める。適切に委譲済みpolicy内の評価・更新は自動化でき、人間に毎回順序決定を要求しない。Benchから直接model切替・権限拡大を行わない。aliasしか不明な過去結果を現行weightsの保証にしない。",
+      "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "selected_lines_sha256": "00f21f452e8734c5fb2319dc5ddb953f19c16c772ea80aabc8e0927a99613e6e",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "disposition": "unresolved",
+        "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "selected_lines_encoding": "UTF-8、各選択行をLFで結び、終端LFを1個含める。quote表示は終端LFを除いた同じ本文。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+      "revision": "legacy-generation-2026-09-14",
+      "read_lines": [
+        663,
+        666
+      ],
+      "quote": "#### RLO-FR-040 HELIX-Bench由来のeffort policy\n\nreasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は\n`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。",
+      "file_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+      "selected_lines_sha256": "e5491837b6d6df74cc5fbc66e93706c298df1d7520b660f8eb3f128db39a5769",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "disposition": "unresolved",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "selected_lines_encoding": "UTF-8、各選択行をLFで結び、終端LFを1個含める。quote表示は終端LFを除いた同じ本文。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+      "revision": "legacy-generation-2026-09-14",
+      "read_lines": [
+        112,
+        113
+      ],
+      "quote": "| HXB-AC-029 | 鮮度/適用task/risk/profile不適合のscoreをregistryのcurrent qualificationに使わない | HXB-FR-015 |\n| HXB-AC-030 | Bench単独で配車・権限を変更せず、委譲済み既存policy内では人間の毎回指示なしに評価/提案を処理する | HXB-FR-015 |",
+      "file_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "selected_lines_sha256": "6122c5d0e49f20e341c024a31feb2338554ca4b42221f4d4ec6ec3d6d9177edc",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+        "disposition": "unresolved",
+        "source_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "selected_lines_encoding": "UTF-8、各選択行をLFで結び、終端LFを1個含める。quote表示は終端LFを除いた同じ本文。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+      "revision": "legacy-generation-2026-09-14",
+      "read_lines": [
+        43,
+        43
+      ],
+      "quote": "| `RLO-AC-030` | `RLO-FR-040` | HELIX-Bench evidenceが無いtask classのeffortを解決する | `provider_default_unbenchmarked`を記録しauthorityを変更しない | effortを推測しscore単独でscope／branch／assignment／merge authorityを変更したら拒否する |",
+      "file_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+      "selected_lines_sha256": "bb2ffab864ed73e12178b85b2245118672d59fce09ab411abce3adf53107ff00",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+        "disposition": "unresolved",
+        "source_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "selected_lines_encoding": "UTF-8、各選択行をLFで結び、終端LFを1個含める。quote表示は終端LFを除いた同じ本文。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
+      "revision": "legacy-generation-2026-09-14",
+      "read_lines": [
+        230,
+        230
+      ],
+      "quote": "| G | HXT-FR-023/024; HXB-FR-015/020 | #861/#188/#1500/#659、advisoryと配置 |",
+      "file_sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d",
+      "selected_lines_sha256": "4f3beb6c3c738dc25d2bc9888cb87bbcbf0af1139cf66be02332641b9808322b",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-5F709CA13975179DB7CD",
+        "disposition": "unresolved",
+        "source_sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "selected_lines_encoding": "UTF-8、各選択行をLFで結び、終端LFを1個含める。quote表示は終端LFを除いた同じ本文。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "remaining": [
+    "OS assignment/ticketとWorker result/source contractのowner-qualified exact binding、実source identity/revision/scope、許可/data-use closure、専用connector/契約revision/互換範囲は未成立。",
+    "正式schema/codec、result/assignment/experiment/target-versionのresolver、unknown/欠測とreceipt参照の扱い、競合・再送・replayを含む選択sourceの全組合せ、L5/L8との対応、詳細oracleの凍結は未完。",
+    "実Worker結果source/認可/connector受領/評価・配置/実L9実行/PO L11 acceptanceは未成立。ここでのsynthetic fixturesは実source、実評価、完了または全92親430対の設計閉包を証明しない。"
+  ],
+  "approved_requirements": [
+    {
+      "id": "HELIXLABO-L3-028-F01",
+      "parent": "HELIXLABO-L2-028",
+      "title": "Worker結果とassignment",
+      "obligation": "許可Worker作業結果をtask class/責務/OS assignment-ticket/source-result contract revisionへ照合し観測を出す。Workerを機構/authority ownerにせず未評価を評価済みにしない。assignment不明では推測しない。",
+      "oracle_ref": "HELIXLABO-L10-028-F01"
+    },
+    {
+      "id": "HELIXLABO-L3-028-F02",
+      "parent": "HELIXLABO-L2-028",
+      "title": "実験結果の条件付き参照",
+      "obligation": "選択入力が実験結果のときだけ006のexperimentと対象版へ同一性を保って渡す。別ticket/experimentを同一比較に混ぜず、通常履歴取込に全実験能力を必須化しない。",
+      "oracle_ref": "HELIXLABO-L10-028-F02"
+    }
+  ],
+  "document_id": "HELIXLABO-L9-028",
+  "layer": "L9",
+  "pair": "HELIXLABO-L4-028",
+  "verification_obligations": [
+    {
+      "id": "HELIXLABO-L9-028-F01",
+      "l4_ref": "HELIXLABO-L4-028-F01",
+      "requirement_ref": "HELIXLABO-L3-028-F01",
+      "system_oracle_ref": "HELIXLABO-L10-028-F01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-028-F01",
+        "parent": "HELIXLABO-L2-028",
+        "title": "Worker結果とassignment",
+        "obligation": "許可Worker作業結果をtask class/責務/OS assignment-ticket/source-result contract revisionへ照合し観測を出す。Workerを機構/authority ownerにせず未評価を評価済みにしない。assignment不明では推測しない。",
+        "oracle_ref": "HELIXLABO-L10-028-F01"
+      },
+      "approved_system_oracle": {
+        "id": "HELIXLABO-L10-028-F01",
+        "parent": "HELIXLABO-L2-028",
+        "title": "Worker結果とassignment",
+        "requirement_ref": "HELIXLABO-L3-028-F01",
+        "positive_input": "対応assignmentと別ticket/Worker版、参照不明を比較する。",
+        "expected_observation": "結果状態と作業参照、受領条件の不足が辿れる。",
+        "negative_input": "assignment推測、Workerをauthority、受領で評価済み。",
+        "failure_observation": "OS/Worker result source/SEC ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "cases": [
+        {
+          "id": "LABO028-F01-MATCHED-ASSIGNMENT-AND-DISTINCT-REFERENCES",
+          "basis": "L10-028-F01 positive_input",
+          "requirement_ref": "HELIXLABO-L3-028-F01",
+          "system_oracle_ref": "HELIXLABO-L10-028-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F01-MATCH",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F01-MATCH\",\"facts\":{\"worker_result\":\"RESULT-A\",\"result_state\":\"observed_fixture_only\",\"task_class\":\"TASK-CLASS-A\",\"responsibility\":\"RESP-A\",\"assignment\":\"ASSIGN-A\",\"ticket\":\"TICKET-A\",\"worker_version\":\"WORKER-V1\",\"source_result_contract_revision\":\"SRC-CONTRACT-R1\",\"receipt_ref\":null,\"receipt_state\":\"not_provided_in_fixture\"}}",
+              "sha256": "110585392c2a11c64c5bc8c1c6a5128cd4b353a5195c5b3032cedb51672b3d44"
+            },
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F01-OTHER-TICKET",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F01-OTHER-TICKET\",\"facts\":{\"worker_result\":\"RESULT-B\",\"assignment\":\"ASSIGN-B\",\"ticket\":\"TICKET-B\",\"worker_version\":\"WORKER-V2\",\"source_result_contract_revision\":\"SRC-CONTRACT-R2\"}}",
+              "sha256": "cc4c269b33130d52327bb03a9f2a94d887d8573bd2242a4b39a841b95390cbd6"
+            },
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F01-UNKNOWN-REFERENCE",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F01-UNKNOWN-REFERENCE\",\"facts\":{\"worker_result\":\"RESULT-C\",\"assignment\":null,\"ticket\":null,\"worker_version\":null,\"source_result_contract_revision\":null}}",
+              "sha256": "e74e617151360228c08f6a0e87bbe07931bce82be4cac1d5774be43fc3f352c4"
+            }
+          ],
+          "given": "対応assignmentの結果、別ticket/Worker版の結果、参照不明の結果が別々の選択入力としてある。",
+          "when": "各選択入力をAggregate観測へ照合する。",
+          "then": "各結果のidentityとassignment/ticket/Worker版/source contractの参照、状態を保ち、不明値を不明のまま返す。",
+          "expected_observation": "対応関係を保持した結果状態・作業参照・受領条件不足を個別に辿れる。unknown inputからassignmentを推測しない。receipt参照未提供もmissingとして追跡する。",
+          "failure_observation": "合成caseの想定出力。未成立を実運用のsource/receipt/評価結果として扱わない。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        },
+        {
+          "id": "LABO028-F01-UNKNOWN-ASSIGNMENT-NO-GUESS",
+          "basis": "L10-028-F01 negative_input: assignment推測",
+          "requirement_ref": "HELIXLABO-L3-028-F01",
+          "system_oracle_ref": "HELIXLABO-L10-028-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F01-UNKNOWN-NO-GUESS",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F01-UNKNOWN-NO-GUESS\",\"facts\":{\"worker_result\":\"RESULT-U\",\"result_state\":\"observed_fixture_only\",\"assignment\":null,\"ticket\":\"TICKET-U\",\"task_class\":\"TASK-U\",\"responsibility\":\"RESP-U\"}}",
+              "sha256": "4df825f4d22a81ad32f7333d0e50f20be9fc566cfc965694fd49080817e3f4c3"
+            }
+          ],
+          "given": "選択Worker結果は存在するが、OS assignment identityが入力sourceにない。",
+          "when": "結果をassignmentへ照合しようとする。",
+          "then": "欠けたassignmentを生成せず、その選択結果の照合未成立を返す。",
+          "expected_observation": "assignment unknownが残り、対応するOS／Worker result source／SEC ownerへ不足を返す。",
+          "failure_observation": "LABOはassignmentを推測・発行しない。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        },
+        {
+          "id": "LABO028-F01-RECEIPT-NOT-EVALUATION-OR-AUTHORITY",
+          "basis": "L10-028-F01 negative_input: Workerをauthority／受領で評価済み",
+          "requirement_ref": "HELIXLABO-L3-028-F01",
+          "system_oracle_ref": "HELIXLABO-L10-028-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F01-RECEIVED-UNASSESSED",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F01-RECEIVED-UNASSESSED\",\"facts\":{\"worker_result\":\"RESULT-R\",\"assignment\":\"ASSIGN-R\",\"ticket\":\"TICKET-R\",\"receipt_state\":\"received_fixture_only\",\"evaluation_state\":\"not_evaluated\",\"authority_owner\":\"OS\"}}",
+              "sha256": "d69d508631db04c054eef247214e607589cc0c330f976ae1aa752429a4c46f92"
+            }
+          ],
+          "given": "assignmentに一致したWorker結果を受領したが、source上の評価状態は未評価。",
+          "when": "受領した結果を観測へ反映する。",
+          "then": "受領と評価を別状態として保持し、Workerを機構またはauthority ownerへ昇格しない。",
+          "expected_observation": "結果と受領参照が追跡でき、未評価は未評価として残る。",
+          "failure_observation": "受領成功やWorkerの結果から評価・assignment/authorityを作らない。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        },
+        {
+          "id": "LABO028-F01-OS-ASSIGNMENT-A-WORKER-RESULT-B-MISMATCH",
+          "basis": "L10-028-F01 positive_input comparison plus negative_input assignment guess/Worker authority",
+          "requirement_ref": "HELIXLABO-L3-028-F01",
+          "system_oracle_ref": "HELIXLABO-L10-028-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F01-OS-ASSIGNMENT-A",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F01-OS-ASSIGNMENT-A\",\"facts\":{\"source_owner\":\"OS\",\"assignment_identity\":\"ASSIGN-A\",\"ticket_identity\":\"TICKET-A\",\"expected_worker_result_contract_revision\":\"WRC-R1\",\"source_self_claim_only\":true}}",
+              "sha256": "1d0827daef2536d903c3dc93620fcd513809dce02b734f0695617dc5cbff67dd"
+            },
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F01-WORKER-RESULT-B",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F01-WORKER-RESULT-B\",\"facts\":{\"source_owner\":\"WORKER-RESULT-SOURCE\",\"claimed_assignment_identity\":\"ASSIGN-A\",\"ticket_identity\":\"TICKET-B\",\"worker_result_contract_revision\":\"WRC-R2\",\"result_identity\":\"RESULT-B\",\"result_state\":\"observed_fixture_only\",\"source_self_claim_only\":true}}",
+              "sha256": "1eb0ba74a8c9a0016302857593d1262899a2b894e60da1fa89055ebadae46371"
+            }
+          ],
+          "given": "別々のsynthetic source packetにOS固定assignment AとWorker結果Bがある。Worker結果はassignment Aを自己申告するがticketとWorker result contract revisionがOS固定参照の期待と異なる。",
+          "when": "同じassignment AへのWorker結果として両packetをjoinしようとする。",
+          "then": "ticketとcontract revisionの差異を保持し、このWorker結果だけをjoin未成立にする。自己申告identityの一致はowner-qualified qualification・permission・assignmentの証明として扱わない。",
+          "expected_observation": "OS assignment AとWorker result Bの原参照、ticket/contract revision不一致、当該入力のunknown/not-matched状態を別々に辿れる。OS／Worker result source／SEC ownerへ不足・差異を返し、他の独立履歴は巻き込まない。",
+          "failure_observation": "不一致の両source参照を保ったままOS／Worker result source／SEC ownerへ局所差異を返す。",
+          "qualification_limit": "両側のself-claimが一致した場合でも、その文字列的一致だけではqualificationや権限を成立させない。正式なowner-qualified bindingは未閉包であり、このcaseはその実装・承認を作らない。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        }
+      ]
+    },
+    {
+      "id": "HELIXLABO-L9-028-F02",
+      "l4_ref": "HELIXLABO-L4-028-F02",
+      "requirement_ref": "HELIXLABO-L3-028-F02",
+      "system_oracle_ref": "HELIXLABO-L10-028-F02",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-028-F02",
+        "parent": "HELIXLABO-L2-028",
+        "title": "実験結果の条件付き参照",
+        "obligation": "選択入力が実験結果のときだけ006のexperimentと対象版へ同一性を保って渡す。別ticket/experimentを同一比較に混ぜず、通常履歴取込に全実験能力を必須化しない。",
+        "oracle_ref": "HELIXLABO-L10-028-F02"
+      },
+      "approved_system_oracle": {
+        "id": "HELIXLABO-L10-028-F02",
+        "parent": "HELIXLABO-L2-028",
+        "title": "実験結果の条件付き参照",
+        "requirement_ref": "HELIXLABO-L3-028-F02",
+        "positive_input": "通常結果と二experiment結果を別入力で比較する。",
+        "expected_observation": "通常/実験の区分と当該experiment参照が辿れる。",
+        "negative_input": "別experiment混載、全006稼働待ち、実験ID推測。",
+        "failure_observation": "実験/OS/source ownerへ当該不足を返す。",
+        "execution_state": "not_executed"
+      },
+      "cases": [
+        {
+          "id": "LABO028-F02-NORMAL-AND-TWO-EXPERIMENTS",
+          "basis": "L10-028-F02 positive_input",
+          "requirement_ref": "HELIXLABO-L3-028-F02",
+          "system_oracle_ref": "HELIXLABO-L10-028-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F02-NORMAL",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F02-NORMAL\",\"facts\":{\"result\":\"NORMAL-RESULT\",\"kind\":\"ordinary_history\",\"ticket\":\"TICKET-N\",\"experiment\":null,\"target_version\":\"TARGET-N\"}}",
+              "sha256": "a09f1ed949f66ca6407c82738ef35d361012a8b957f9c0379ab920b742042d1f"
+            },
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F02-EXP-A",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F02-EXP-A\",\"facts\":{\"result\":\"EXPERIMENT-RESULT-A\",\"kind\":\"experiment_result\",\"ticket\":\"TICKET-A\",\"experiment\":\"EXP-A\",\"target_version\":\"TARGET-A\"}}",
+              "sha256": "08e6f3d962c72e238249c1691114703c8dc83389abbd2e30e0a0aac606865a59"
+            },
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F02-EXP-B",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F02-EXP-B\",\"facts\":{\"result\":\"EXPERIMENT-RESULT-B\",\"kind\":\"experiment_result\",\"ticket\":\"TICKET-B\",\"experiment\":\"EXP-B\",\"target_version\":\"TARGET-B\"}}",
+              "sha256": "a86c094b444b2d636fc57298a61b47b67aaccda2e2b282d51fda73d04cd8c142"
+            }
+          ],
+          "given": "通常結果と異なる2件のexperiment結果が独立した入力sourceとしてある。",
+          "when": "通常履歴と比較対象実験の結果を個別に照合する。",
+          "then": "通常/実験の区分および各experimentと対象版の同一性を保持する。",
+          "expected_observation": "通常結果に実験identityを付けず、実験結果は各該当experiment・対象版へ戻れる。",
+          "failure_observation": "experiment identityが不明または入力間で異なる場合は推測・混載をしない。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        },
+        {
+          "id": "LABO028-F02-REJECT-CROSS-EXPERIMENT-MIX",
+          "basis": "L10-028-F02 negative_input: 別experiment混載",
+          "requirement_ref": "HELIXLABO-L3-028-F02",
+          "system_oracle_ref": "HELIXLABO-L10-028-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F02-CROSS-MIX",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F02-CROSS-MIX\",\"facts\":{\"selected_inputs\":[{\"ticket\":\"TICKET-A\",\"experiment\":\"EXP-A\",\"target_version\":\"TARGET-A\"},{\"ticket\":\"TICKET-B\",\"experiment\":\"EXP-B\",\"target_version\":\"TARGET-B\"}],\"requested_comparison\":\"one-experiment-set\"}}",
+              "sha256": "9b2d87c4f822cbf5d6ea197581b1749d1d0c8ff0bc77d8700aa635d35b52679f"
+            }
+          ],
+          "given": "ticket/experiment/target versionが異なる結果が一つの比較集合として渡される。",
+          "when": "同じ比較の入力として統合しようとする。",
+          "then": "別identityを同一experimentの結果へ結合しない。",
+          "expected_observation": "比較未成立と不一致参照を示し、実験／OS／source ownerへ不足を返す。",
+          "failure_observation": "失敗は全履歴取り込み停止を意味せず、該当選択の未成立である。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        },
+        {
+          "id": "LABO028-F02-ORDINARY-DOES-NOT-WAIT-FOR-L2-006",
+          "basis": "L10-028-F02 negative_input: 全006稼働待ち",
+          "requirement_ref": "HELIXLABO-L3-028-F02",
+          "system_oracle_ref": "HELIXLABO-L10-028-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F02-ORDINARY-HISTORY",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F02-ORDINARY-HISTORY\",\"facts\":{\"result\":\"NORMAL-HISTORY\",\"kind\":\"ordinary_history\",\"experiment\":null,\"l2_006_capabilities\":\"not_selected_for_this_input\"}}",
+              "sha256": "5d2f11beffb1905e49389e2133fe9d8a6cbd32dee0d7b439e57dea3f38192881"
+            }
+          ],
+          "given": "入力は通常履歴であり、比較実験結果として選択されていない。",
+          "when": "通常履歴をAggregateへ取り込む。",
+          "then": "この入力に使わない全006 capabilityの稼働を前提条件にしない。",
+          "expected_observation": "通常履歴の区分とsource identityを保った観測が成立し、未選択の実験closureは開いたまま。",
+          "failure_observation": "この合成caseは006の実稼働・実験成功を証明しない。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        },
+        {
+          "id": "LABO028-F02-UNKNOWN-EXPERIMENT-NO-INFERENCE",
+          "basis": "L10-028-F02 negative_input: 実験ID推測",
+          "requirement_ref": "HELIXLABO-L3-028-F02",
+          "system_oracle_ref": "HELIXLABO-L10-028-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F02-UNKNOWN-EXPERIMENT",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F02-UNKNOWN-EXPERIMENT\",\"facts\":{\"result\":\"RESULT-X\",\"kind\":\"experiment_result\",\"experiment\":null,\"target_version\":\"TARGET-X\",\"ticket\":\"TICKET-X\"}}",
+              "sha256": "8b95e4d925f9f2b2f12399b2cb69c1f316d9f91ba13478f0deead576a202f29e"
+            }
+          ],
+          "given": "入力はexperiment resultと示すが、experiment identityが欠けている。",
+          "when": "L2-006 experimentへ結び付けようとする。",
+          "then": "experiment IDを推測せず、当該条件付き参照を未成立とする。",
+          "expected_observation": "experiment参照の不足が追跡でき、実験／OS／source ownerへ不足を返す。",
+          "failure_observation": "unknownは選択された実験結果に局所化し、通常履歴の入口全体へ広げない。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        },
+        {
+          "id": "LABO028-F02-UNKNOWN-SOURCE-CLASS-NO-ROUTE-INFERENCE",
+          "basis": "L10-028-F02 positive_input ordinary/experiment separation and negative_input experiment ID inference",
+          "requirement_ref": "HELIXLABO-L3-028-F02",
+          "system_oracle_ref": "HELIXLABO-L10-028-F02",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTHETIC-LABO028-F02-UNKNOWN-SOURCE-CLASS",
+                "revision": "fixture-v1",
+                "owner": "synthetic-fixture-owner",
+                "scope": {
+                  "parent": "HELIXLABO-L2-028",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"scenario\":\"F02-UNKNOWN-SOURCE-CLASS\",\"facts\":{\"result_identity\":\"RESULT-UNKNOWN\",\"source_classification\":\"unknown\",\"experiment_identity\":null,\"target_version\":null,\"ticket_identity\":\"TICKET-U\"}}",
+              "sha256": "44ef0bf50f340db2740fe0bcc601d87cd19a33291bdf9c9b24fdfab5802ffa65"
+            }
+          ],
+          "given": "選択Worker結果のsource classificationはunknownで、通常履歴かexperiment resultかを確定するsource根拠がない。",
+          "when": "Aggregateの通常履歴経路またはL2-006へのexperiment参照を選ぼうとする。",
+          "then": "分類unknownをそのまま保ち、通常履歴へ丸めず、experiment resultと推定して006へ参照しない。source/OS ownerへ該当分類参照の不足を返す。",
+          "expected_observation": "当該結果だけがclassification unknownとして追跡できる。他の通常履歴取込に全006能力を要求せず、classification確認を新しい事前承認gateにも変えない。",
+          "failure_observation": "Worker source／OS ownerへclassification sourceの不足を返す。これは当該入力の未成立であり、他の選択入力を全体停止しない。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        }
+      ]
+    }
+  ],
+  "completion": "L10の承認済みnormal/negative本文から合成GWTを対応付けた静的なverification design。全caseはsynthetic fixtureでexecution_state=not_executed。実source qualification/connector receipt/実観測・評価・L9 execution/PO L11 acceptanceは証明しない。",
+  "upstream_adoption": {
+    "decision_path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+    "decision_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "parent_requirement_id": "HELIXLABO-L2-028",
+    "registration_id": "MPR-RC-HELIXLABO-L2-028-001",
+    "adopted_l2_section_sha256": "672081ff4372f097f39959b294ce961a35da899fb0e21b3d4a2f1cd3278851fd",
+    "adopted_l11_section_sha256": "208b35f2bdc5a3e2586b819e1e6dc1e1b77930b6dac44dacb79fa6a4e8e99781",
+    "l1_sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+  },
+  "approved_object_hashes": [
+    {
+      "id": "HELIXLABO-L3-028-F01",
+      "source_file": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "f1a597d9f868f9e2864cf56e551420ae31859f2770cd8d73b3cd71ac0f1d4d24"
+    },
+    {
+      "id": "HELIXLABO-L3-028-F02",
+      "source_file": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "c40901551d34f9d5d7a83c0c309a913f8c493276851d8b51a7c678ce767aaf62"
+    },
+    {
+      "id": "HELIXLABO-L10-028-F01",
+      "source_file": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "2249a5d1ace7ad06f48fb32f9214adbbfc82c6658e97d7bf4ac5c31e5cb9bfb5"
+    },
+    {
+      "id": "HELIXLABO-L10-028-F02",
+      "source_file": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "ac82d41bbf1634b4073a43bfbc2c2e0fca5bb2080bc8f14e90ed44ec9f23dcf9"
+    }
+  ],
+  "legacy_rederivation": {
+    "preserve": "旧HXB-FR-015/RLO-FR-040で保持する、Bench evidenceは結果・未評価状態・改善材料を示すこと、scoreやBench単独ではassignment・scope・authorityを変更しない責務境界。",
+    "change": "旧Benchの評価・registry qualification・配車判断の流れを移植せず、現行LABO-028は許可Worker結果を選択してtask class/責務/OS assignment・ticket/source-result contractへ照合するobservation受渡しへ役割を再導出する。評価・Worker選択/配車・assignmentはそれぞれの現行ownerに残る。",
+    "reason": "現行L1-011はLABOの水準をINTELLIGENCEの配置案へ渡し指定・assignmentはOSが行う。採択L2-028と承認済みL3/L10はWorker結果の観測・条件付きexperiment参照だけを定める。旧candidate、registry/runtime、schema、gateをcopyせず、これらの移植や追加承認条件を設計しない。"
+  }
+}
