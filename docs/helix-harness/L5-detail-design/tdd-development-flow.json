@@ -300,7 +300,7 @@
       "supported_when": "全必要入力があり、変更種別に応じたstate・execution・failure・数値差・完全oracle ref一致が真。",
       "contradicted_when": "全必要入力があり、いずれかの意味条件が偽。",
       "not_observed_when": "必要path/memberがabsent/null/誤型、または必要Red observationが存在しない。",
-      "l4_basis": "HARNESS-L4-015.original_l3 / output_contract.red_meaning / failure_conditions environment_error, unexecuted_red, mutation_substitute",
+      "l4_basis": "HARNESS-L4-015-F02.original_l3 / output_contract.red_meaning / failure_conditions environment_error, unexecuted_red, mutation_substitute",
       "fixture_value_only": "このL9 sourceのchange_kind=existing, pre_body.state=unrepaired, defect=duplicate_debit, actual=2, expected=1はraw値。H0等のhead値をpredicateの固定期待値にしない。実実行・実凍結・実資格を主張しない。"
     },
     {
@@ -311,7 +311,7 @@
       "supported_when": "2つの厳密増加比較が真。",
       "contradicted_when": "3数値が揃い、順序条件が偽または同値。",
       "not_observed_when": "必要path/member absent/nullまたは非数値。",
-      "l4_basis": "HARNESS-L4-015.output_contract.red_before_body; L3/L4工程意味「freeze→実装前Red→本体」。",
+      "l4_basis": "HARNESS-L4-015-F02.output_contract.red_before_body; L3/L4工程意味「freeze→実装前Red→本体」。",
       "fixture_value_only": "sequence値は原fixture値。これは実時系列の資格証明ではない。"
     },
     {
