@@ -1130,7 +1130,7 @@
       },
       {
         "id": "R09",
-        "rule": "順序値はboolを含めず正のint。片側でもreflection.recorded=trueならreflection.orderの両側を検査し不明/0/負はorder_unknown、両側正int差はactual order_conflict。actual state=retiredならactual reflection.recorded=falseをretire_before_reflection、bool true以外をretirement_basis_unknown。retire_orderの両側を正int検査し不明はorder_unknown、両側正int差はactual order_conflict。actual reflection.recorded=trueかつactual両orderが正intでreflection.order>=retire_orderならreflection_not_before_retire。順序成立は実writer実行ではない。"
+        "rule": "順序値はboolを含めず正のint。片側でもreflection.recorded=trueならreflection.orderの両側を検査し不明/0/負はorder_unknown、両側正int差はactual order_conflict。actual state=retiredの場合に限り（context側だけretiredでも以下のretire検査は実行しない）、actual reflection.recorded=falseをretire_before_reflection、bool true以外をretirement_basis_unknown。同じactual state=retiredの条件下でretire_orderの両側を正int検査し不明はorder_unknown、両側正int差はactual order_conflict。同じactual state=retiredの条件下でactual reflection.recorded=trueかつactual両orderが正intでreflection.order>=retire_orderならreflection_not_before_retire。順序成立は実writer実行ではない。"
       },
       {
         "id": "R10",
