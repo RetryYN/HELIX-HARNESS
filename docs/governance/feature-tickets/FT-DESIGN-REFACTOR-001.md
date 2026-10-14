@@ -42,6 +42,29 @@
 
 設計者自身の期待だけでGreenにしない。独立reviewで反例の識別力と元要求への対応を確認する。静的設計検証のGreenと製品実装のRed→Green→Refactorを区別し、人間の要求意味判断や受入を代替しない。BRAIN／LABOへ改善材料を渡す場合も、既存の出典・知識昇格・評価境界を保持する。
 
+## 設計から上流への還流とJSON正本の移行点検（追加指示）
+
+2026-10-15の追加PO指示を受け、設計から見えた不足を要件・要求へ還流することと、未JSON化の要求文書を点検することを含める。形式移行と意味の是正は別々に追跡する。
+
+確認基準main `e53935daec9cae2021424fb6c14a7b4e280b4b96`では、本体8機構のL3/L10にJSONが各3文書ずつ計48文書あり、対応する48 Markdownは「生成view・意味正本JSON」と明記されている。L2/L11は各機構1文書ずつ計16 Markdownで、同ディレクトリにJSONはない。L3/L10を未JSON化として再構築しない。この数は限定対象の充足やschema成立を証明しない。
+
+- 設計だけの不足: 既存要件と対oracleを満たすようL4/L9・L5/L8を修正する。
+- 要件の不足・矛盾: 元L2と対L11を確認し、該当L3/L10へ変更候補を戻す。上流・影響先・再検証を記録し、既存の委任承認経路で対象revisionを確認する。
+- 要求の不足・意味変更: 目的・範囲・owner・版・受入条件を変える差分はL2/L11の候補へ戻し、人が持つ上流意味の判断へつなぐ。設計上の都合から要求を後付けしない。
+
+還流候補ごとに、発見した設計revisionと箇所、元要求／要件／対oracle、反例、現状と提案の差、戻し先owner、影響先、処置・未完を記録する。必要な上流修正が未決なら、その意味に依存する下流の完了や実装Readyを主張しない。現在の設計を妨げるblockerの還流は設計完了後まで待たず、今回の設計作業中に扱う。
+
+L2/L11のJSON移行は、16文書全体からIDのある行と本文・表注・適用制限・版・N/A・保留・関係・旧source等の意味を棚卸しする。ID行だけを抽出して周辺条件を失わない。元の採択対象commit/bytes/digestと変更候補の対応を保持し、JSONへ変換しただけで既存承認を新bytesへ継承しない。生成MarkdownとJSONの二重正本を作らず、参照・consumer・既存decisionへの対応と意味同等性を独立照合する。
+
+L3/L10についてもJSONが存在することだけで完了にせず、生成viewのdigest、対ID、要求revision、型／schemaの意味、設計へのtraceを確認する。移行候補の形式検証成功を要求承認や正式なschema/codec成立にしない。
+
+- [ ] 設計発見を設計内修正／L3-L10還流／L2-L11還流へ分類し、未完と戻し先を追跡する。
+- [ ] 8機構のL2/L11計16文書を意味単位で棚卸し、無損失JSON移行と生成viewの候補を作る。
+- [ ] L3/L10の既存48 JSON正本と生成view・参照・対検証の整合を点検する。
+- [ ] 形式移行と意味変更を分離し、旧承認対象と新候補の対応、影響先、独立review結果を確認する。
+
+起点は旧 `docs/design/helix/L4-basic-design/design-template-json-authority.md` §1〜§3（archive root内）。Requirement JSON・構造的意味と生成viewの分離、二重authority拒否、finding/proposalとして上流へ戻す意味を保持する。現行のOS053 JSON正本とHARNESS004 trace/影響、008要求形成の境界へ再導出し、旧schema/runtimeやMarkdownからの無断reverse writeを移植しない。変更理由は今回指示とL2/L11の現物差であり、全層の承認取り直しや新規一律gateを追加するものではない。
+
 ## 旧資産との対応と差分
 
 - `LEGACY-ASSET-603D0E8D8193914F4AC0`: `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md` §0〜§1。意味署名、consumer/oracle、意味保存、見た目だけの共通化拒否を起点とする。
