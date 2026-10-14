@@ -830,11 +830,11 @@
       },
       {
         "id": "R03",
-        "rule": "ownersは重複なし非空string集合で厳密1件。欠落/空/型不明はowner_unknown、2以上はowner_ambiguous、既知actual/context set違いはowner_conflict。単独の責任ownerの対応であり全複数役割を禁止する要求ではない。"
+        "rule": "ownersは重複なし非空string集合で厳密1件。欠落/空/型不明はowner_unknown、2以上はowner_ambiguous、既知actual/context set違いはowner_conflict。単独の責任ownerの対応であり全複数役割を禁止する要求ではない。 空集合は未解決で、相反比較へ入れない。owner_conflictは両側が重複なし非空string集合かつ非空のときだけ。"
       },
       {
         "id": "R04",
-        "rule": "relationsは重複なし非空stringの集合（unit空は正常）。connection/composite空はrelation_unknown。actual/context set相反はrelation_conflict。context同project nodeのtarget_id@target_revisionにない既知endpointはrelation_endpoint_conflict。任意graphの型/辺数/閉包は未完。"
+        "rule": "relationsは重複なし非空stringの集合（unit空は正常）。connection/composite空はrelation_unknown。actual/context set相反はrelation_conflict。context同project nodeのtarget_id@target_revisionにない既知endpointはrelation_endpoint_conflict。任意graphの型/辺数/閉包は未完。 connection/compositeでは両側非空のknown集合だけrelation_conflictへ比較し、片側空はunknownだけ。unit空は正常なので集合比較に入る。"
       },
       {
         "id": "R05",
@@ -842,7 +842,7 @@
       },
       {
         "id": "R06",
-        "rule": "verification/acceptance/provisionは別closed state。未知はresult_unknown、known差はresult_conflictで当該facet。receipt各fieldをcontextと照合し、project/requirement revision/scope/target identity+revision/kindをcontext node sourceへもjoinする。未観測にも原観測記録のsourceを辿るが、未来の成功を必須にしない。"
+        "rule": "verification/acceptance/provisionは別closed state。未知はresult_unknown、known差はresult_conflictで当該facet。receipt各fieldをcontextと照合し、project/requirement revision/scope/target identity+revision/kindをcontext node sourceへもjoinする。未観測にも原観測記録のsourceを辿るが、未来の成功を必須にしない。 result_statesをclosed集合として使う。provision_additional_comparison_fieldsのkanban_ref/record_refもR01と同じactual/context string比較でprovision facetへ返す。"
       },
       {
         "id": "R07",
@@ -878,6 +878,28 @@
       "whole_portfolio_complete",
       "operation_effect"
     ],
-    "state_limit": "*_materialは合成sourceの記述値、正式受入/判断ではない。correspondingは素材対応であり全工程の成功ではない。"
+    "state_limit": "*_materialは合成sourceの記述値、正式受入/判断ではない。correspondingは素材対応であり全工程の成功ではない。",
+    "result_states": {
+      "verification": [
+        "pass_material",
+        "failed_material",
+        "unobserved"
+      ],
+      "acceptance": [
+        "accepted_material",
+        "rejected_material",
+        "unobserved"
+      ],
+      "provision": [
+        "provided_material",
+        "not_provided",
+        "unpresented"
+      ]
+    },
+    "provision_additional_comparison_fields": [
+      "kanban_ref",
+      "record_ref"
+    ],
+    "identity_alias_scope": "actual/context各sideでportfolio全体のnodeを比較する。同じside内のtarget_id重複を両nodeに出す。actualとcontext間の同identityは正常な照合でありaliasにしない。"
   }
 }
