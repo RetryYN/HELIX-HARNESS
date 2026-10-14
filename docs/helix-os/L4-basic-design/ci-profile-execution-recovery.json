@@ -659,6 +659,36 @@
     "return_owner": "ci-operation-owner",
     "fixed_shape_limit": "外側record/list shapeとknown key集合の固定fixture。正式全type/unknown outer record/key、実run custody、全check/依存graph/cycle/qualificationはL5/L8に残す。",
     "case_input_integrity": "入力はcaseごとに独立copy。同じcanonical given groupの全expected_proposalを比較。作者整合は独立oracle/正式TDDの証拠でない。",
-    "primary_requirement_ref_semantics": "不成立facetからownership/decision_boundary:B01、profile:F01、operation/collection:F02、continuity/revalidation:F03へ直接concernを示す。positiveは選択phaseの主題。親全4要求traceと完了は別。"
+    "primary_requirement_ref_semantics": "不成立facetからownership/decision_boundary:B01、profile:F01、operation/collection:F02、continuity/revalidation:F03へ直接concernを示す。positiveは選択phaseの主題。親全4要求traceと完了は別。",
+    "diagnostic_code_dispositions": {
+      "source_unresolved": "unknown",
+      "source_conflict": "violation",
+      "phase_unresolved": "unknown",
+      "profile_items_unresolved": "unknown",
+      "profile_item_set_conflict": "violation",
+      "profile_obligation_set_conflict": "violation",
+      "operation_condition_rejected": "violation",
+      "operation_condition_unresolved": "unknown",
+      "host_fallback_forbidden": "violation",
+      "host_fallback_unresolved": "unknown",
+      "result_outcome_unresolved": "unknown",
+      "result_unobserved": "unknown",
+      "result_start_unresolved": "unknown",
+      "result_start_conflict": "violation",
+      "result_uncollected": "unknown",
+      "result_collection_unresolved": "unknown",
+      "false_success_claim": "violation",
+      "success_claim_unresolved": "unknown",
+      "prior_outcome_unresolved": "unknown",
+      "prior_failure_rewritten": "violation",
+      "outstanding_unresolved": "unknown",
+      "outstanding_obligation_lost": "violation",
+      "resume_source_unresolved": "unknown",
+      "revalidation_missing": "unknown",
+      "revalidation_unresolved": "unknown",
+      "decision_promotion_forbidden": "violation",
+      "decision_promotion_unresolved": "unknown"
+    },
+    "diagnostic_disposition_semantics": "各codeはdiagnostic_code_dispositionsの固定区分を当該facetへ加える。code名や他caseのaggregateから区分を推測しない。source_conflictはknown両側の相反だけviolation、source_unresolvedは不足のunknown。result_uncollected単独はcollection unknownで実検収/成功を成立させず、result_start_conflictは起動事実と原結果のknown矛盾としてcollection violation。再照合不足はunknown、完了や他owner判定の誤生成はviolation。"
   }
 }

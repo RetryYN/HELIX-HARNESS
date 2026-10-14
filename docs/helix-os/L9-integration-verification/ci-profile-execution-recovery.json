@@ -597,7 +597,37 @@
     "return_owner": "ci-operation-owner",
     "fixed_shape_limit": "外側record/list shapeとknown key集合の固定fixture。正式全type/unknown outer record/key、実run custody、全check/依存graph/cycle/qualificationはL5/L8に残す。",
     "case_input_integrity": "入力はcaseごとに独立copy。同じcanonical given groupの全expected_proposalを比較。作者整合は独立oracle/正式TDDの証拠でない。",
-    "primary_requirement_ref_semantics": "不成立facetからownership/decision_boundary:B01、profile:F01、operation/collection:F02、continuity/revalidation:F03へ直接concernを示す。positiveは選択phaseの主題。親全4要求traceと完了は別。"
+    "primary_requirement_ref_semantics": "不成立facetからownership/decision_boundary:B01、profile:F01、operation/collection:F02、continuity/revalidation:F03へ直接concernを示す。positiveは選択phaseの主題。親全4要求traceと完了は別。",
+    "diagnostic_code_dispositions": {
+      "source_unresolved": "unknown",
+      "source_conflict": "violation",
+      "phase_unresolved": "unknown",
+      "profile_items_unresolved": "unknown",
+      "profile_item_set_conflict": "violation",
+      "profile_obligation_set_conflict": "violation",
+      "operation_condition_rejected": "violation",
+      "operation_condition_unresolved": "unknown",
+      "host_fallback_forbidden": "violation",
+      "host_fallback_unresolved": "unknown",
+      "result_outcome_unresolved": "unknown",
+      "result_unobserved": "unknown",
+      "result_start_unresolved": "unknown",
+      "result_start_conflict": "violation",
+      "result_uncollected": "unknown",
+      "result_collection_unresolved": "unknown",
+      "false_success_claim": "violation",
+      "success_claim_unresolved": "unknown",
+      "prior_outcome_unresolved": "unknown",
+      "prior_failure_rewritten": "violation",
+      "outstanding_unresolved": "unknown",
+      "outstanding_obligation_lost": "violation",
+      "resume_source_unresolved": "unknown",
+      "revalidation_missing": "unknown",
+      "revalidation_unresolved": "unknown",
+      "decision_promotion_forbidden": "violation",
+      "decision_promotion_unresolved": "unknown"
+    },
+    "diagnostic_disposition_semantics": "各codeはdiagnostic_code_dispositionsの固定区分を当該facetへ加える。code名や他caseのaggregateから区分を推測しない。source_conflictはknown両側の相反だけviolation、source_unresolvedは不足のunknown。result_uncollected単独はcollection unknownで実検収/成功を成立させず、result_start_conflictは起動事実と原結果のknown矛盾としてcollection violation。再照合不足はunknown、完了や他owner判定の誤生成はviolation。"
   },
   "cases": [
     {
@@ -96778,10 +96808,762 @@
       "purpose": "不足・既知相反を原位置に返し、実CI合格/許可を作らない。",
       "execution_state": "not_executed",
       "actual_observation": "not_observed"
+    },
+    {
+      "id": "OS020-UNCOLLECTED-ONLY",
+      "requirement_refs": [
+        "HELIXOS-L3-020-F01",
+        "HELIXOS-L3-020-F02",
+        "HELIXOS-L3-020-F03",
+        "HELIXOS-L3-020-B01"
+      ],
+      "primary_requirement_refs": [
+        "HELIXOS-L3-020-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "collect",
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+            "head": "SYNTHETIC-HEAD",
+            "base": "SYNTHETIC-BASE",
+            "pair_ref": "SYNTHETIC-PAIR_REF",
+            "oracle_ref": "SYNTHETIC-ORACLE_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION",
+            "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+            "runner_ref": "SYNTHETIC-RUNNER_REF",
+            "run_ref": "SYNTHETIC-RUN_REF",
+            "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+          },
+          "inputs": {
+            "change_ref": "SYNTHETIC-CHANGE_REF",
+            "plan_ref": "SYNTHETIC-PLAN_REF",
+            "connection_ref": "SYNTHETIC-CONNECTION_REF",
+            "evidence_contract_ref": "SYNTHETIC-EVIDENCE_CONTRACT_REF",
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "isolation_ref": "SYNTHETIC-ISOLATION_REF"
+          },
+          "roles": {
+            "obligation": "HARNESS",
+            "plan": "OS",
+            "operation": "OS",
+            "authority": "SECURITY",
+            "resource": "INFRASTRUCTURE"
+          },
+          "profile": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+              "head": "SYNTHETIC-HEAD",
+              "base": "SYNTHETIC-BASE",
+              "pair_ref": "SYNTHETIC-PAIR_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+              "runner_ref": "SYNTHETIC-RUNNER_REF",
+              "run_ref": "SYNTHETIC-RUN_REF",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+            },
+            "source_ref": "SYNTHETIC-PLAN_REF",
+            "changed_targets": [
+              "TARGET-A"
+            ],
+            "obligations": [
+              "OBLIGATION-CHECK-A",
+              "OBLIGATION-CHECK-B"
+            ],
+            "items": [
+              {
+                "id": "CHECK-A",
+                "obligation_ref": "OBLIGATION-CHECK-A",
+                "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                "environment_ref": "SYNTHETIC-ENVIRONMENT_REF"
+              },
+              {
+                "id": "CHECK-B",
+                "obligation_ref": "OBLIGATION-CHECK-B",
+                "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                "environment_ref": "SYNTHETIC-ENVIRONMENT_REF"
+              }
+            ]
+          },
+          "security": {
+            "state": "current",
+            "source_ref": "SYNTHETIC-AUTHORITY_REF"
+          },
+          "resource": {
+            "state": "observed_material",
+            "source_ref": "SYNTHETIC-RESOURCE_REF"
+          },
+          "isolation": {
+            "state": "isolated_material",
+            "source_ref": "SYNTHETIC-ISOLATION_REF",
+            "host_fallback": false
+          },
+          "result": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+              "head": "SYNTHETIC-HEAD",
+              "base": "SYNTHETIC-BASE",
+              "pair_ref": "SYNTHETIC-PAIR_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+              "runner_ref": "SYNTHETIC-RUNNER_REF",
+              "run_ref": "SYNTHETIC-RUN_REF",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+            },
+            "source_ref": "RESULT-A",
+            "outcome": "fail",
+            "started": true,
+            "collected": false,
+            "success_claim": false
+          },
+          "prior": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+              "head": "SYNTHETIC-HEAD",
+              "base": "SYNTHETIC-BASE",
+              "pair_ref": "SYNTHETIC-PAIR_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+              "runner_ref": "SYNTHETIC-RUNNER_REF",
+              "run_ref": "SYNTHETIC-RUN_REF",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+            },
+            "outcome": "fail",
+            "stop_reason_ref": "STOP-A",
+            "return_ref": "HARNESS-RETURN-A",
+            "resume_condition_ref": "RESUME-CONDITION-A",
+            "outstanding": [
+              "OBLIGATION-CHECK-A"
+            ],
+            "failure_ref": "FAILURE-A"
+          },
+          "resume": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+              "head": "SYNTHETIC-HEAD",
+              "base": "SYNTHETIC-BASE",
+              "pair_ref": "SYNTHETIC-PAIR_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+              "runner_ref": "SYNTHETIC-RUNNER_REF",
+              "run_ref": "SYNTHETIC-RUN_REF",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+            },
+            "stop_reason_ref": "STOP-A",
+            "return_ref": "HARNESS-RETURN-A",
+            "resume_condition_ref": "RESUME-CONDITION-A",
+            "outstanding": [
+              "OBLIGATION-CHECK-A"
+            ],
+            "failure_ref": "FAILURE-A"
+          },
+          "revalidation": null,
+          "promotion_claims": {
+            "meaning_review": false,
+            "accepted": false,
+            "merge": false,
+            "release": false
+          },
+          "context": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+              "head": "SYNTHETIC-HEAD",
+              "base": "SYNTHETIC-BASE",
+              "pair_ref": "SYNTHETIC-PAIR_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+              "runner_ref": "SYNTHETIC-RUNNER_REF",
+              "run_ref": "SYNTHETIC-RUN_REF",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+            },
+            "inputs": {
+              "change_ref": "SYNTHETIC-CHANGE_REF",
+              "plan_ref": "SYNTHETIC-PLAN_REF",
+              "connection_ref": "SYNTHETIC-CONNECTION_REF",
+              "evidence_contract_ref": "SYNTHETIC-EVIDENCE_CONTRACT_REF",
+              "resource_ref": "SYNTHETIC-RESOURCE_REF",
+              "isolation_ref": "SYNTHETIC-ISOLATION_REF"
+            },
+            "roles": {
+              "obligation": "HARNESS",
+              "plan": "OS",
+              "operation": "OS",
+              "authority": "SECURITY",
+              "resource": "INFRASTRUCTURE"
+            },
+            "profile": {
+              "binding": {
+                "project": "SYNTHETIC-PROJECT",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+                "head": "SYNTHETIC-HEAD",
+                "base": "SYNTHETIC-BASE",
+                "pair_ref": "SYNTHETIC-PAIR_REF",
+                "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                "harness_version": "SYNTHETIC-HARNESS_VERSION",
+                "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+                "runner_ref": "SYNTHETIC-RUNNER_REF",
+                "run_ref": "SYNTHETIC-RUN_REF",
+                "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+              },
+              "source_ref": "SYNTHETIC-PLAN_REF",
+              "changed_targets": [
+                "TARGET-A"
+              ],
+              "obligations": [
+                "OBLIGATION-CHECK-A",
+                "OBLIGATION-CHECK-B"
+              ],
+              "items": [
+                {
+                  "id": "CHECK-A",
+                  "obligation_ref": "OBLIGATION-CHECK-A",
+                  "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                  "environment_ref": "SYNTHETIC-ENVIRONMENT_REF"
+                },
+                {
+                  "id": "CHECK-B",
+                  "obligation_ref": "OBLIGATION-CHECK-B",
+                  "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                  "environment_ref": "SYNTHETIC-ENVIRONMENT_REF"
+                }
+              ]
+            },
+            "required_obligations": [
+              "OBLIGATION-CHECK-A",
+              "OBLIGATION-CHECK-B"
+            ],
+            "operation_sources": {
+              "security": "SYNTHETIC-AUTHORITY_REF",
+              "resource": "SYNTHETIC-RESOURCE_REF",
+              "isolation": "SYNTHETIC-ISOLATION_REF"
+            },
+            "result": {
+              "binding": {
+                "project": "SYNTHETIC-PROJECT",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+                "head": "SYNTHETIC-HEAD",
+                "base": "SYNTHETIC-BASE",
+                "pair_ref": "SYNTHETIC-PAIR_REF",
+                "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                "harness_version": "SYNTHETIC-HARNESS_VERSION",
+                "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+                "runner_ref": "SYNTHETIC-RUNNER_REF",
+                "run_ref": "SYNTHETIC-RUN_REF",
+                "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+              },
+              "source_ref": "RESULT-A",
+              "outcome": "fail",
+              "started": true,
+              "collected": false,
+              "success_claim": true
+            },
+            "prior": {
+              "binding": {
+                "project": "SYNTHETIC-PROJECT",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+                "head": "SYNTHETIC-HEAD",
+                "base": "SYNTHETIC-BASE",
+                "pair_ref": "SYNTHETIC-PAIR_REF",
+                "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                "harness_version": "SYNTHETIC-HARNESS_VERSION",
+                "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+                "runner_ref": "SYNTHETIC-RUNNER_REF",
+                "run_ref": "SYNTHETIC-RUN_REF",
+                "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+              },
+              "outcome": "fail",
+              "stop_reason_ref": "STOP-A",
+              "return_ref": "HARNESS-RETURN-A",
+              "resume_condition_ref": "RESUME-CONDITION-A",
+              "outstanding": [
+                "OBLIGATION-CHECK-A"
+              ],
+              "failure_ref": "FAILURE-A"
+            },
+            "revalidation_source_ref": "REVALIDATION-A"
+          }
+        }
+      },
+      "expected_proposal": {
+        "condition": "ci_material_unknown",
+        "selected_phase": "collect",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "profile": "corresponding",
+          "operation": "corresponding",
+          "collection": "unknown",
+          "continuity": "corresponding",
+          "revalidation": "corresponding",
+          "decision_boundary": "corresponding"
+        },
+        "profile_material": {
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+            "head": "SYNTHETIC-HEAD",
+            "base": "SYNTHETIC-BASE",
+            "pair_ref": "SYNTHETIC-PAIR_REF",
+            "oracle_ref": "SYNTHETIC-ORACLE_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION",
+            "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+            "runner_ref": "SYNTHETIC-RUNNER_REF",
+            "run_ref": "SYNTHETIC-RUN_REF",
+            "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+          },
+          "source_ref": "SYNTHETIC-PLAN_REF",
+          "changed_targets": [
+            "TARGET-A"
+          ],
+          "obligations": [
+            "OBLIGATION-CHECK-A",
+            "OBLIGATION-CHECK-B"
+          ],
+          "items": [
+            {
+              "id": "CHECK-A",
+              "obligation_ref": "OBLIGATION-CHECK-A",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF"
+            },
+            {
+              "id": "CHECK-B",
+              "obligation_ref": "OBLIGATION-CHECK-B",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF"
+            }
+          ]
+        },
+        "profile_material_digest": "f571765aad23ad69436032bde2bd1206cec560e8e1d6995c3b8fe173f880c431",
+        "original_result_outcome": "fail",
+        "collection_material_corresponding": false,
+        "resume_material_corresponding": false,
+        "findings": [
+          {
+            "code": "result_uncollected",
+            "pointer": "/result/collected",
+            "return_owner": "ci-operation-owner"
+          }
+        ],
+        "actual_ci_started": false,
+        "actual_result_collected": false,
+        "actual_resume_executed": false,
+        "whole_ci_verified": false,
+        "operation_effect": "none"
+      },
+      "purpose": "他violationを併存させず、当該codeのfacet区分とaggregateを固定する。実CI/検収成立は生成しない。",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "OS020-START-CONFLICT-ONLY",
+      "requirement_refs": [
+        "HELIXOS-L3-020-F01",
+        "HELIXOS-L3-020-F02",
+        "HELIXOS-L3-020-F03",
+        "HELIXOS-L3-020-B01"
+      ],
+      "primary_requirement_refs": [
+        "HELIXOS-L3-020-F02"
+      ],
+      "given": {
+        "input": {
+          "phase": "collect",
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+            "head": "SYNTHETIC-HEAD",
+            "base": "SYNTHETIC-BASE",
+            "pair_ref": "SYNTHETIC-PAIR_REF",
+            "oracle_ref": "SYNTHETIC-ORACLE_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION",
+            "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+            "runner_ref": "SYNTHETIC-RUNNER_REF",
+            "run_ref": "SYNTHETIC-RUN_REF",
+            "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+          },
+          "inputs": {
+            "change_ref": "SYNTHETIC-CHANGE_REF",
+            "plan_ref": "SYNTHETIC-PLAN_REF",
+            "connection_ref": "SYNTHETIC-CONNECTION_REF",
+            "evidence_contract_ref": "SYNTHETIC-EVIDENCE_CONTRACT_REF",
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "isolation_ref": "SYNTHETIC-ISOLATION_REF"
+          },
+          "roles": {
+            "obligation": "HARNESS",
+            "plan": "OS",
+            "operation": "OS",
+            "authority": "SECURITY",
+            "resource": "INFRASTRUCTURE"
+          },
+          "profile": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+              "head": "SYNTHETIC-HEAD",
+              "base": "SYNTHETIC-BASE",
+              "pair_ref": "SYNTHETIC-PAIR_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+              "runner_ref": "SYNTHETIC-RUNNER_REF",
+              "run_ref": "SYNTHETIC-RUN_REF",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+            },
+            "source_ref": "SYNTHETIC-PLAN_REF",
+            "changed_targets": [
+              "TARGET-A"
+            ],
+            "obligations": [
+              "OBLIGATION-CHECK-A",
+              "OBLIGATION-CHECK-B"
+            ],
+            "items": [
+              {
+                "id": "CHECK-A",
+                "obligation_ref": "OBLIGATION-CHECK-A",
+                "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                "environment_ref": "SYNTHETIC-ENVIRONMENT_REF"
+              },
+              {
+                "id": "CHECK-B",
+                "obligation_ref": "OBLIGATION-CHECK-B",
+                "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                "environment_ref": "SYNTHETIC-ENVIRONMENT_REF"
+              }
+            ]
+          },
+          "security": {
+            "state": "current",
+            "source_ref": "SYNTHETIC-AUTHORITY_REF"
+          },
+          "resource": {
+            "state": "observed_material",
+            "source_ref": "SYNTHETIC-RESOURCE_REF"
+          },
+          "isolation": {
+            "state": "isolated_material",
+            "source_ref": "SYNTHETIC-ISOLATION_REF",
+            "host_fallback": false
+          },
+          "result": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+              "head": "SYNTHETIC-HEAD",
+              "base": "SYNTHETIC-BASE",
+              "pair_ref": "SYNTHETIC-PAIR_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+              "runner_ref": "SYNTHETIC-RUNNER_REF",
+              "run_ref": "SYNTHETIC-RUN_REF",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+            },
+            "source_ref": "RESULT-A",
+            "outcome": "success",
+            "started": false,
+            "collected": true,
+            "success_claim": false
+          },
+          "prior": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+              "head": "SYNTHETIC-HEAD",
+              "base": "SYNTHETIC-BASE",
+              "pair_ref": "SYNTHETIC-PAIR_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+              "runner_ref": "SYNTHETIC-RUNNER_REF",
+              "run_ref": "SYNTHETIC-RUN_REF",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+            },
+            "outcome": "fail",
+            "stop_reason_ref": "STOP-A",
+            "return_ref": "HARNESS-RETURN-A",
+            "resume_condition_ref": "RESUME-CONDITION-A",
+            "outstanding": [
+              "OBLIGATION-CHECK-A"
+            ],
+            "failure_ref": "FAILURE-A"
+          },
+          "resume": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+              "head": "SYNTHETIC-HEAD",
+              "base": "SYNTHETIC-BASE",
+              "pair_ref": "SYNTHETIC-PAIR_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+              "runner_ref": "SYNTHETIC-RUNNER_REF",
+              "run_ref": "SYNTHETIC-RUN_REF",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+            },
+            "stop_reason_ref": "STOP-A",
+            "return_ref": "HARNESS-RETURN-A",
+            "resume_condition_ref": "RESUME-CONDITION-A",
+            "outstanding": [
+              "OBLIGATION-CHECK-A"
+            ],
+            "failure_ref": "FAILURE-A"
+          },
+          "revalidation": null,
+          "promotion_claims": {
+            "meaning_review": false,
+            "accepted": false,
+            "merge": false,
+            "release": false
+          },
+          "context": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+              "head": "SYNTHETIC-HEAD",
+              "base": "SYNTHETIC-BASE",
+              "pair_ref": "SYNTHETIC-PAIR_REF",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+              "runner_ref": "SYNTHETIC-RUNNER_REF",
+              "run_ref": "SYNTHETIC-RUN_REF",
+              "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+            },
+            "inputs": {
+              "change_ref": "SYNTHETIC-CHANGE_REF",
+              "plan_ref": "SYNTHETIC-PLAN_REF",
+              "connection_ref": "SYNTHETIC-CONNECTION_REF",
+              "evidence_contract_ref": "SYNTHETIC-EVIDENCE_CONTRACT_REF",
+              "resource_ref": "SYNTHETIC-RESOURCE_REF",
+              "isolation_ref": "SYNTHETIC-ISOLATION_REF"
+            },
+            "roles": {
+              "obligation": "HARNESS",
+              "plan": "OS",
+              "operation": "OS",
+              "authority": "SECURITY",
+              "resource": "INFRASTRUCTURE"
+            },
+            "profile": {
+              "binding": {
+                "project": "SYNTHETIC-PROJECT",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+                "head": "SYNTHETIC-HEAD",
+                "base": "SYNTHETIC-BASE",
+                "pair_ref": "SYNTHETIC-PAIR_REF",
+                "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                "harness_version": "SYNTHETIC-HARNESS_VERSION",
+                "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+                "runner_ref": "SYNTHETIC-RUNNER_REF",
+                "run_ref": "SYNTHETIC-RUN_REF",
+                "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+              },
+              "source_ref": "SYNTHETIC-PLAN_REF",
+              "changed_targets": [
+                "TARGET-A"
+              ],
+              "obligations": [
+                "OBLIGATION-CHECK-A",
+                "OBLIGATION-CHECK-B"
+              ],
+              "items": [
+                {
+                  "id": "CHECK-A",
+                  "obligation_ref": "OBLIGATION-CHECK-A",
+                  "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                  "environment_ref": "SYNTHETIC-ENVIRONMENT_REF"
+                },
+                {
+                  "id": "CHECK-B",
+                  "obligation_ref": "OBLIGATION-CHECK-B",
+                  "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                  "environment_ref": "SYNTHETIC-ENVIRONMENT_REF"
+                }
+              ]
+            },
+            "required_obligations": [
+              "OBLIGATION-CHECK-A",
+              "OBLIGATION-CHECK-B"
+            ],
+            "operation_sources": {
+              "security": "SYNTHETIC-AUTHORITY_REF",
+              "resource": "SYNTHETIC-RESOURCE_REF",
+              "isolation": "SYNTHETIC-ISOLATION_REF"
+            },
+            "result": {
+              "binding": {
+                "project": "SYNTHETIC-PROJECT",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+                "head": "SYNTHETIC-HEAD",
+                "base": "SYNTHETIC-BASE",
+                "pair_ref": "SYNTHETIC-PAIR_REF",
+                "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                "harness_version": "SYNTHETIC-HARNESS_VERSION",
+                "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+                "runner_ref": "SYNTHETIC-RUNNER_REF",
+                "run_ref": "SYNTHETIC-RUN_REF",
+                "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+              },
+              "source_ref": "RESULT-A",
+              "outcome": "success",
+              "started": false,
+              "collected": true,
+              "success_claim": true
+            },
+            "prior": {
+              "binding": {
+                "project": "SYNTHETIC-PROJECT",
+                "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+                "head": "SYNTHETIC-HEAD",
+                "base": "SYNTHETIC-BASE",
+                "pair_ref": "SYNTHETIC-PAIR_REF",
+                "oracle_ref": "SYNTHETIC-ORACLE_REF",
+                "harness_version": "SYNTHETIC-HARNESS_VERSION",
+                "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+                "runner_ref": "SYNTHETIC-RUNNER_REF",
+                "run_ref": "SYNTHETIC-RUN_REF",
+                "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+              },
+              "outcome": "fail",
+              "stop_reason_ref": "STOP-A",
+              "return_ref": "HARNESS-RETURN-A",
+              "resume_condition_ref": "RESUME-CONDITION-A",
+              "outstanding": [
+                "OBLIGATION-CHECK-A"
+              ],
+              "failure_ref": "FAILURE-A"
+            },
+            "revalidation_source_ref": "REVALIDATION-A"
+          }
+        }
+      },
+      "expected_proposal": {
+        "condition": "ci_material_violation",
+        "selected_phase": "collect",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "profile": "corresponding",
+          "operation": "corresponding",
+          "collection": "violation",
+          "continuity": "corresponding",
+          "revalidation": "corresponding",
+          "decision_boundary": "corresponding"
+        },
+        "profile_material": {
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "ticket_graph_ref": "SYNTHETIC-TICKET_GRAPH_REF",
+            "head": "SYNTHETIC-HEAD",
+            "base": "SYNTHETIC-BASE",
+            "pair_ref": "SYNTHETIC-PAIR_REF",
+            "oracle_ref": "SYNTHETIC-ORACLE_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION",
+            "environment_ref": "SYNTHETIC-ENVIRONMENT_REF",
+            "runner_ref": "SYNTHETIC-RUNNER_REF",
+            "run_ref": "SYNTHETIC-RUN_REF",
+            "authority_ref": "SYNTHETIC-AUTHORITY_REF"
+          },
+          "source_ref": "SYNTHETIC-PLAN_REF",
+          "changed_targets": [
+            "TARGET-A"
+          ],
+          "obligations": [
+            "OBLIGATION-CHECK-A",
+            "OBLIGATION-CHECK-B"
+          ],
+          "items": [
+            {
+              "id": "CHECK-A",
+              "obligation_ref": "OBLIGATION-CHECK-A",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF"
+            },
+            {
+              "id": "CHECK-B",
+              "obligation_ref": "OBLIGATION-CHECK-B",
+              "oracle_ref": "SYNTHETIC-ORACLE_REF",
+              "environment_ref": "SYNTHETIC-ENVIRONMENT_REF"
+            }
+          ]
+        },
+        "profile_material_digest": "f571765aad23ad69436032bde2bd1206cec560e8e1d6995c3b8fe173f880c431",
+        "original_result_outcome": "success",
+        "collection_material_corresponding": false,
+        "resume_material_corresponding": false,
+        "findings": [
+          {
+            "code": "result_start_conflict",
+            "pointer": "/result/started",
+            "return_owner": "ci-operation-owner"
+          }
+        ],
+        "actual_ci_started": false,
+        "actual_result_collected": false,
+        "actual_resume_executed": false,
+        "whole_ci_verified": false,
+        "operation_effect": "none"
+      },
+      "purpose": "他violationを併存させず、当該codeのfacet区分とaggregateを固定する。実CI/検収成立は生成しない。",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
     }
   ],
   "completion": {
     "status": "unproven",
-    "evidence": "268fixed metadata proposals;実CI/検収/全閉包は未成立。"
+    "evidence": "270fixed metadata proposals;実CI/検収/全閉包は未成立。"
   }
 }
