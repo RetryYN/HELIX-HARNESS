@@ -403,14 +403,12 @@
       "kind": "record",
       "fields": {
         "ref": "SourceRef",
-        "raw_bytes_sha256": "FieldValue<string>",
-        "raw_json": "FieldValue<JsonValue>",
+        "source_record": "FieldValue<SourceRecordProjection>",
         "authority_receipt_ref": "FieldValue<string>",
-        "qualification_evidence_ref": "FieldValue<string>",
-        "raw_packet_locator": "FieldValue<string>"
+        "qualification_evidence_ref": "FieldValue<string>"
       },
       "recursive": false,
-      "meaning": "request由来SourceRef keyと、実packetのlocatorを分ける。raw contentと任意evidenceは別field。"
+      "meaning": "一つのrequest source recordをsource keyへ束ねる。result packet locatorはここへ入れず、各ObservedResult.source_node_refがresultの所在を保持する。record projectionはsource資格や実raw bytesのhashを意味しない。"
     },
     {
       "name": "JsonValue",
@@ -576,7 +574,8 @@
         "retain_conflict_unresolved",
         "retain_stale_unassessed",
         "return_missing_input",
-        "retain_import_not_evaluation"
+        "retain_import_not_evaluation",
+        "retain_evaluated_within_declared_scope"
       ],
       "recursive": false,
       "meaning": "局所表現上のoutcome。新しい承認stateやqualification stateではない。"
@@ -642,13 +641,12 @@
       "fields": {
         "ref": "SourceRef",
         "status": "SourceResolutionState",
-        "raw_bytes_sha256": "FieldValue<string>",
-        "raw_json": "FieldValue<JsonValue>",
+        "source_record": "FieldValue<SourceRecordProjection>",
         "authority_receipt_ref": "FieldValue<string>",
         "qualification_evidence_ref": "FieldValue<string>"
       },
       "recursive": false,
-      "meaning": "供給SourceMapとの構造照合結果。資格判定ではない。"
+      "meaning": "供給SourceMapとの構造照合結果。source record投影、接続、資格を分離し、qualificationを判定しない。"
     },
     {
       "name": "SourceResolutionState",
@@ -656,7 +654,8 @@
       "values": [
         "resolved_raw",
         "missing",
-        "ambiguous"
+        "ambiguous",
+        "unresolved"
       ],
       "recursive": false,
       "meaning": "供給mapに対する参照解決状態。"
@@ -697,6 +696,37 @@
       ],
       "recursive": false,
       "meaning": "oracleが列挙する期待/観測outcomeのstate。runtime結果stateと区別する。"
+    },
+    {
+      "name": "SourceRecordProjection",
+      "kind": "record",
+      "fields": {
+        "request_id": "FieldValue<string>",
+        "request_revision": "FieldValue<string>",
+        "source_identity": "FieldValue<string>",
+        "source_revision": "FieldValue<string>",
+        "data_use_receipt_id": "FieldValue<string>",
+        "provenance_locator": "FieldValue<string>"
+      },
+      "recursive": false,
+      "meaning": "独立source result packet内に明示されたrequest/source/data-use参照の型付きprojection。result packet bytes、権限資格、source qualificationではない。"
+    },
+    {
+      "name": "F03ComparisonTarget",
+      "kind": "record",
+      "fields": {
+        "task_class": "FieldValue<string>",
+        "model_class": "FieldValue<string>",
+        "model_identity": "FieldValue<string>",
+        "model_version": "FieldValue<string>",
+        "execution_contract_revision": "FieldValue<string>",
+        "request_revision": "FieldValue<string>",
+        "source_revision": "FieldValue<string>",
+        "oracle_revision": "FieldValue<string>",
+        "scope": "FieldValue<JsonValue>"
+      },
+      "recursive": false,
+      "meaning": "L9 F03-C02 givenに明示された比較baselineのfixture入力。OracleDefinitionには値を追加せず、実契約・実資格・実評価の根拠にも使わない。"
     }
   ],
   "function_signatures_and_decisions": [
@@ -766,19 +796,22 @@
         "各refは有限のsource identity/revision/data-use receipt/provenance locator値である。"
       ],
       "postconditions": [
-        "各入力refへ入力順で1件のSourceResolutionを返す。",
-        "SourceMapEntry.refの4値を完全一致で比較し、0件はmissing、1件はresolved_raw、複数件はambiguousとする。",
-        "raw_packet_locatorは元packetのlocator保持だけに使い、SourceRef keyの別名一致やqualificationを作らない。"
+        "入力refごとに入力順のSourceResolutionを一件返す。",
+        "同じrequest source recordは一entryで表し、result packetごとのlocatorはObservedResult.source_node_refへ置く。",
+        "SourceMapの重複keyが同一のsource record projectionを表すとき一つのrecordとして扱い、同じkeyに内容の異なるrecordが供給されたときだけambiguousとする。",
+        "raw bytes hash、source record lookup、authority receipt、qualification evidenceを混同しない。"
       ],
       "algorithm": [
-        "SourceRefのsource_identity/source_revision/data_use_receipt_id/provenance_locatorと、各SourceMapEntry.refの同じ4値をpresenceも含め完全一致で比較する。",
-        "一致0件はmissing、1件はresolved_raw、複数件はambiguousとし、入力順にSourceResolutionを返す。",
-        "一致が1件の場合に限りraw hash/JSONと明示authority receipt・qualification evidence参照を返す。data-use receiptは資格へ読み替えない。"
+        "source_identity/source_revision/data_use_receipt_id/provenance_locatorの全必須keyがprovidedでない場合、map lookup前にstatus=unresolvedを返し、source/evidence出力をabsentにする。nullを一致keyとして使わない。",
+        "全必須keyがprovidedの場合だけSourceMapEntry.refとpresence込みで完全一致を照合する。",
+        "一致0件はmissing、一致1件はresolved_raw、異なる複数recordはambiguous。同一key/同一source_recordの重複entryは1 recordとして扱う。",
+        "一致source record projectionと明示authority/qualification referenceだけを返す。result packet locatorはObservedResult.source_node_refへ分離する。"
       ],
       "branches": [
-        "空mapまたは一致0件: status=missing、raw/evidence出力fieldはabsent。",
-        "同じsource keyに一致するmap entryが複数: status=ambiguous、raw/evidence出力fieldはabsent。各entryのraw_packet_locatorは個別に保持する。",
-        "一意一致entryのauthority/qualification refがabsentまたはnull: raw解決だけを返しqualificationは未成立。"
+        "必須keyのいずれかがabsent/null/empty: lookupせずstatus=unresolved、source/evidence outputはabsent。",
+        "空mapまたは完全一致0件: status=missing。",
+        "同じkeyに異なるsource record projectionが複数: status=ambiguous。",
+        "一意一致: source_record projectionを返す。authority/qualification refの未提示はそのまま保持する。"
       ],
       "field_flow": {
         "reads": {
@@ -786,12 +819,11 @@
           "source_map": "source_map:SourceMap"
         },
         "returns": {
-          "ref": "入力refと完全一致したSourceMapEntry。0件/複数件では元ref、status、raw/evidence fieldのabsenceを返す",
-          "status": "入力refと完全一致したSourceMapEntry。0件/複数件では元ref、status、raw/evidence fieldのabsenceを返す",
-          "raw_bytes_sha256": "入力refと完全一致したSourceMapEntry。0件/複数件では元ref、status、raw/evidence fieldのabsenceを返す",
-          "raw_json": "入力refと完全一致したSourceMapEntry。0件/複数件では元ref、status、raw/evidence fieldのabsenceを返す",
-          "authority_receipt_ref": "入力refと完全一致したSourceMapEntry。0件/複数件では元ref、status、raw/evidence fieldのabsenceを返す",
-          "qualification_evidence_ref": "入力refと完全一致したSourceMapEntry。0件/複数件では元ref、status、raw/evidence fieldのabsenceを返す"
+          "ref": "元の入力SourceRef",
+          "status": "完全key一致数とsource_record projection一致に基づくstatus",
+          "source_record": "一意一致したSourceMapEntry.source_record。0件/異なる複数件ではabsent",
+          "authority_receipt_ref": "一致したentryの元field presence",
+          "qualification_evidence_ref": "一致したentryの元field presence"
         }
       }
     },
@@ -807,12 +839,15 @@
         "未解決結果は元observation refとsource refsを保持する。"
       ],
       "algorithm": [
-        "HistorySnapshot.observationsを入力順にすべて保持し、ticket/assignment/attempt/result identityと、対応記録に明示されたexecution contract revisionを照合する。",
-        "同一source eventの同一bytes再配送、同identityの異なるoutcome、明示revision不一致、dimension不一致を分けて記録する。",
-        "比較必須fieldがabsent/null、またはsource mapがmissing/ambiguousなら、元NodeRefとfield pathをUnresolvedへ保持する。",
-        "全observation refを一度だけpartition出力へ置き、統合・破棄・qualificationをしない。"
+        "HistorySnapshot.observationsを入力順で保持し、ticket/assignment/attempt/result identityと対応recordのexecution contract revisionを照合する。",
+        "同一source eventの同一bytes再配送、同identityの異なるoutcome、明示revision不一致、dimension不一致を別区分で記録する。",
+        "source_refのidentity/revision/data-use receipt/provenance locatorがabsent/null/emptyならそのpathと元NodeRefをUnresolvedへ置く。source mapがmissing/ambiguousでも同様に元observationを保持する。",
+        "source_refの必要fieldがprovidedでsource recordが一意に解決されれば、結果状態をqualification/evaluationに変換せずObservedへ置く。resultの所在はsource_node_refから取る。",
+        "全observationを各出力区分へ一度だけ置く。"
       ],
       "branches": [
+        "複数attemptが同じrequest SourceRefを指しても、SourceMapはrequest record一件で解決し、各attemptのsource_node_refと状態をObserved/not_evaluatedとして保持する。",
+        "source_revision等の必須key fieldがexplicit null/absentなら、SourceMapが一意でもUnresolvedに元NodeRefを保持する。",
         "PKT-056-020: 同一bytes/delivery identityをduplicate_deliveryとして保持する。",
         "PKT-056-021/022: tuple一致でsuccess/failureが異なるconflictとして未解決保持する。",
         "PKT-056-023: run EXEC-C-3とreceipt EXEC-C-1の不一致をstale/unassessedで保持する。",
@@ -824,12 +859,12 @@
           "source_map": "source_map:SourceMap"
         },
         "returns": {
-          "observed": "snapshot.observationsのnode/source refを入力順に各出力区分へ一度だけ割り当てる。",
-          "mismatched": "snapshot.observationsのnode/source refを入力順に各出力区分へ一度だけ割り当てる。",
-          "duplicate_deliveries": "snapshot.observationsのnode/source refを入力順に各出力区分へ一度だけ割り当てる。",
-          "conflicts": "snapshot.observationsのnode/source refを入力順に各出力区分へ一度だけ割り当てる。",
-          "stale": "snapshot.observationsのnode/source refを入力順に各出力区分へ一度だけ割り当てる。",
-          "unresolved": "snapshot.observationsのnode/source refを入力順に各出力区分へ一度だけ割り当てる。"
+          "observed": "各元observationのsource_node_refを入力順に一度だけ配置。source keyの必須field欠落/nullはunresolvedに元NodeRefとfield pathを保持。",
+          "mismatched": "各元observationのsource_node_refを入力順に一度だけ配置。source keyの必須field欠落/nullはunresolvedに元NodeRefとfield pathを保持。",
+          "duplicate_deliveries": "各元observationのsource_node_refを入力順に一度だけ配置。source keyの必須field欠落/nullはunresolvedに元NodeRefとfield pathを保持。",
+          "conflicts": "各元observationのsource_node_refを入力順に一度だけ配置。source keyの必須field欠落/nullはunresolvedに元NodeRefとfield pathを保持。",
+          "stale": "各元observationのsource_node_refを入力順に一度だけ配置。source keyの必須field欠落/nullはunresolvedに元NodeRefとfield pathを保持。",
+          "unresolved": "各元observationのsource_node_refを入力順に一度だけ配置。source keyの必須field欠落/nullはunresolvedに元NodeRefとfield pathを保持。"
         }
       }
     },
@@ -867,39 +902,42 @@
     },
     {
       "name": "resolve_applicability",
-      "input": "(observation: ObservedResult, oracle: OracleDefinition)",
+      "input": "(observation: ObservedResult, oracle: OracleDefinition, comparison_target: FieldValue<F03ComparisonTarget>)",
       "output": "Applicability",
       "preconditions": [
-        "observationとOracleDefinitionを独立入力として受け取る。"
+        "observationとOracleDefinitionは別入力で受け取る。F03 comparison_targetはL9 F03-C02 givenが明示する比較baselineをfixture入力として渡す。",
+        "F02ではcomparison_targetをabsentとし、OracleDefinitionに実在する宣言fieldだけを比較する。"
       ],
       "postconditions": [
-        "task_class/model_class/scopeは両側に宣言があるfieldだけをpresence付きで比較する。oracleに無いsource_revision targetを追加必須化しない。",
-        "source_refはopaque参照として元値を保持する。source mapによる解決結果とqualification/evaluationは別契約であり、この関数のmatchedはsource qualificationを意味しない。",
-        "application evidenceはこの関数の入力に含めず、比較一致の根拠に使わない。"
+        "task/model/scope等はOracleDefinitionとobservationの両側に宣言されたdimensionだけを比較する。OracleDefinitionにないsource_revision targetを追加しない。",
+        "comparison_targetがprovidedのときはL3-F03の比較を追加する。OracleDefinitionの一部へtargetを捏造せず、source qualification/evaluationを成立させない。",
+        "source_refsはobservation.source_refの原値を保持する。source map解決とは別の純粋比較である。"
       ],
       "algorithm": [
-        "observation.task_class/model_class/model_identity/model_version/scopeとOracleDefinitionが宣言する同名fieldをpresence付きで比較する。source_ref.value.source_revisionはpresenceを確認し、Applicability.source_refsへ元参照のまま保持する。",
-        "oracleにsource_revision targetがない場合、そのdimensionをoracle比較条件へ追加しない。source map照合は別関数で行い、この関数でresolvedやqualificationへ変換しない。",
-        "宣言済み比較対象に既知不一致があればmismatched、宣言fieldに不足/不明があればunresolved、宣言済みfieldが一致したときmatchedとする。",
-        "Applicability.source_refsはobservation.source_refがprovidedの場合だけ元値を含む。"
+        "OracleDefinitionとobservationの両側にprovidedで存在する同名task/model/scope fieldを比較する。片側だけの値やabsent/null/emptyはunresolvedとして列挙する。",
+        "comparison_targetがprovidedの場合、F03のtask/model identity・class・version、execution contract、request/source revision、oracle revision、scopeを別入力と比較する。oracle revisionの実値はOracleDefinition.oracle_revision、source値はobservation.source_ref、他はobservationの宣言fieldから読む。",
+        "F02ではcomparison_target=absentとし、OracleDefinitionにないsource_revisionを比較対象へ増やさない。source mapのstatusをApplicabilityへ流用しない。",
+        "一つ以上の不一致があればmismatched、そうでなく未解決dimensionがあればunresolved、比較した全dimensionが一致すればmatchedとする。source_refがprovidedならsource_refsへそのまま返す。"
       ],
       "branches": [
-        "PKT-056-001 + ORACLE A r3: task/model identity/class/version/scopeなど宣言済みtargetを照合。source_revision target absentなのでsource compatibilityをmatched_dimensionsに足さず、qualification/evaluationも主張しない。",
-        "PKT-056-014..017/027..029: L8が各raw variantの宣言fieldの実値からmismatch/unresolvedを個別に示す。未宣言targetから値を補わない。",
-        "PKT-056-018: 新provider/modelのcaseは明示された比較fieldだけで判断し、適用範囲外または未解決を保持する。expiryを追加しない。"
+        "F02-C01: comparison_target absent。ORACLE-056-Aが宣言するtask/model/scopeの一致を確認し、source_refは保持するが未宣言source_revision targetを追加しない。",
+        "F03-C01: L9のbaseline値EXEC-C-3/req-r17/source-r17/oracle-r3およびtask/model/scopeを別typed inputとして照合し、一致をfixture範囲に限って示す。",
+        "F03-C02: PKT-056-014/015/016/017/027/028の個別変更値をbaselineと比較する。PKT-056-029のoracle-r2 receiptはassess_applicationがOracleApplicationとOracleDefinitionを照合する。",
+        "F03-C03: PKT-056-018のPROVIDER-B/MODEL-B/model-b-r1をbaselineと照合し、変更値を保持する。PKT-056-019のmax_age_days=30は入力提案のまま扱い、期限規則を追加しない。"
       ],
       "field_flow": {
         "reads": {
           "observation": "observation:ObservedResult",
-          "oracle": "oracle:OracleDefinition"
+          "oracle": "oracle:OracleDefinition",
+          "comparison_target": "comparison_target:FieldValue<F03ComparisonTarget>"
         },
         "returns": {
-          "status": "宣言済みtask/model/scope比較に基づくApplicability出力。source_refsは元参照保持でありsource map資格解決ではない",
-          "reason": "宣言済みtask/model/scope比較に基づくApplicability出力。source_refsは元参照保持でありsource map資格解決ではない",
-          "matched_dimensions": "宣言済みtask/model/scope比較に基づくApplicability出力。source_refsは元参照保持でありsource map資格解決ではない",
-          "unmatched_dimensions": "宣言済みtask/model/scope比較に基づくApplicability出力。source_refsは元参照保持でありsource map資格解決ではない",
-          "unresolved_dimensions": "宣言済みtask/model/scope比較に基づくApplicability出力。source_refsは元参照保持でありsource map資格解決ではない",
-          "source_refs": "宣言済みtask/model/scope比較に基づくApplicability出力。source_refsは元参照保持でありsource map資格解決ではない"
+          "status": "比較済みdimensionの値とpresenceから決めるApplicability.status",
+          "reason": "比較したdimensionと未宣言・不足fieldの説明",
+          "matched_dimensions": "一致したdimension名",
+          "unmatched_dimensions": "異なるdimension名",
+          "unresolved_dimensions": "比較対象の片側がabsent/null/emptyのdimension名",
+          "source_refs": "observation.source_refがprovidedの場合の原SourceRef値。source資格を示さない"
         }
       }
     },
@@ -908,24 +946,25 @@
       "input": "(observation: ObservedResult, applicability: Applicability, application: FieldValue<OracleApplication>, oracle: OracleDefinition, return_to: list<string>)",
       "output": "Assessment",
       "preconditions": [
-        "raw observationを別に保持する。"
+        "同じobservation/oracle/comparison_targetでresolve_applicabilityが返したApplicabilityをそのまま入力する。",
+        "raw observation、OracleApplication、OracleDefinition、return_toは独立して入力し、source qualificationは別状態のまま保持する。"
       ],
       "postconditions": [
-        "実application recordがありtargetがmatchedの場合だけdeclared scope内の評価として扱う。それ以外はnot_evaluated/evaluation_unresolvedを保持する。",
-        "counterexample_refsの空配列を空のまま保ち、不足referenceを満たしたことにしない。"
+        "Applicabilityがmatchedで、同一oracle revision/resultへのapplication receiptおよびoracle宣言のcounterexample/unknown参照が揃う場合に限り、このfixture scopeの評価済み状態を返す。",
+        "それ以外は原観測とreturn_toを保ち、not_evaluatedまたはevaluation_unresolvedにする。実qualification/evaluationは作らない。"
       ],
       "algorithm": [
-        "observation.source_node_refをAssessment.observation_refへFieldValueのまま渡し、source_refがprovidedならsource_refsへ保持する。",
-        "applicationがabsent/null、oracle revision/result/evaluator/time/judgment receiptが不足、またはApplicabilityがmatchedでない場合は、未評価または評価未解決として保持する。",
-        "application.oracle_revisionはOracleDefinition.oracle_revisionと照合し、result_refは明示されたobservation.result_refとのみ照合する。",
-        "counterexample_refs/unknown_refsはrawの配列をそのまま保つ。空配列を未提示や反例成立へ読み替えない。",
-        "Assessment.return_toは呼出元から明示されたreturn_toをそのまま保持する。fixture評価から実資格は作らない。"
+        "observation.source_node_refをAssessment.observation_refへ、Applicabilityをそのまま、providedのsource_refをsource_refsへ渡す。oracle_application_refはapplication.application_idをpresence付きで写す。",
+        "Applicabilityがmatchedであり、applicationがprovidedでoracle id/revisionとresult_refが一致し、evaluator/time/judgment receipt/judgmentがprovidedで、oracleが宣言するcounterexample/unknown参照をapplicationが持つ場合に限りfixture範囲の評価済みを表す。",
+        "application absent/null、比較mismatch、またはcounterexample/unknown参照の不足・空配列は評価未解決を保つ。return_toは入力値をそのまま返し、不足したownerへ届くようにする。",
+        "application.oracle_revisionとOracleDefinition.oracle_revisionが一致しない場合は評価済みにせず、receiptとApplicabilityを保持して評価未解決にする。"
       ],
       "branches": [
-        "ORACLE-056-A-RAW-59977e2c + APPLY-056-01: EVALUATOR-02、2026-10-12T10:30:00Z、JUDGE-056-01、RESULT-056-19/RESULT-056-20のfixture根拠を保持する。",
-        "ORACLE-056-A-COUNTEREXAMPLE-GAP + APPLY-056-31: oracleはRESULT-056-19を列挙するがcounterexample_refs=[]のためevaluation_unresolvedとし、refを補わない。",
-        "PKT-056-010はapplication=null、PKT-056-011はevaluator/time/judgment receiptがnullのため未評価とする。",
-        "PKT-056-013のproposed_required_sample_count=30はpacket内の提案値のまま保持し、承認済み規則・固定sample policyへ変換しない。"
+        "F02-C01: RESULT-056-17、APPLY-056-01、ORACLE-056-A/oracle-r3、EVALUATOR-02、2026-10-12T10:30:00Z、JUDGE-056-01、counterexample RESULT-056-19、unknown RESULT-056-20が一致し、fixture scope内の評価済み状態を返す。",
+        "F02-C04: APPLY-056-31のcounterexample_refs=[]は空のまま保持する。oracle宣言のRESULT-056-19根拠がないためevaluation_unresolved。",
+        "F03-C02 PKT-056-029: application receiptのoracle-r2とORACLE-056-A/oracle-r3の不一致を評価へ進めず保持する。",
+        "PKT-056-010のnull application、PKT-056-011のnull evaluator/time/judgment receiptは未評価のまま返す。PKT-056-013のsample数30は提案値のまま保持する。",
+        "PKT-056-029.oracle_application_receipt: oracle_revision=oracle-r2はORACLE-056-A/oracle-r3と不一致。judgment/counterexample_refs/unknown_refsはabsentのまま、fixture結果はevaluation_unresolvedで保持する。"
       ],
       "field_flow": {
         "reads": {
@@ -991,7 +1030,7 @@
     "project_packet→ObservedResult",
     "resolve_source_map+bind_evidence→BoundEvidence",
     "partition_history→Partition",
-    "resolve_applicability+assess_application→Assessment",
+    "resolve_applicability(observation, oracle, comparison_target) + assess_application→Assessment",
     "render_observation→ObservationView"
   ],
   "contracts": [
@@ -1123,7 +1162,8 @@
         "SourceMap",
         "HistorySnapshot",
         "OracleDefinition",
-        "OracleApplication"
+        "OracleApplication",
+        "F03ComparisonTarget"
       ],
       "output_types": [
         "ObservedResult",
@@ -1372,7 +1412,7 @@
     "runtime/TDD/CI and L8 execution",
     "L11 acceptance",
     "all unrelated members of 92-parent/430-pair scope",
-    "F03固定oracle rawはsource_revision/contract target値を宣言しない。各variantは宣言済み寸法の比較結果とL3-F03 source/contract比較資料不足を分け、未解決を保持する。資格・適用gateを追加しない。"
+    "F03ComparisonTargetは既存L9 givenのfixture比較値を別入力で表す。OracleDefinitionに未宣言targetは追加せず、実source/contract qualificationや実評価は未成立。"
   ],
   "completion": {
     "logical_detail": "draft",
@@ -1407,7 +1447,8 @@
       "SourceResolution",
       "SourceResolutionState",
       "BoundEvidence",
-      "ObservationView"
+      "ObservationView",
+      "F03ComparisonTarget"
     ],
     "primitive_names": [
       "string",
