@@ -1,0 +1,377 @@
+{
+  "document_id": "HELIXSECURITY-L4-016-BASIC-DESIGN",
+  "paired_document_id": "HELIXSECURITY-L9-016-INTEGRATION-VERIFICATION",
+  "layer": "L4",
+  "layer_id": "HELIXSECURITY-L4",
+  "pair": "L9",
+  "pair_id": "HELIXSECURITY-L4L9-016-CLASSIFICATION",
+  "status": "draft_basic_pair_pending_parent_static_review_and_independent_review",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "boundary": "1.0は既存六分類語彙とunknownの記録基盤に限る。sink別1.x enforcementは別受入とし、L2-005 secret非露出およびL2-006一般egressを延期しない。",
+    "deferred_scope": "1.x公開時/sink classification enforcement"
+  },
+  "source_pin_limit": "source/hash pinsはbytesを識別するだけで、意味閉包・資格・実認可・実実装を成立させない。",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "parent": "HELIXSECURITY-L2-016",
+  "source_main": "c00695600ab1fed30718d89880b92a6358422131",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    },
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "2dfa97ebba7be0f93c4e5fbcb2da13514e029900a2c593e92127ba257ad1fb9b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    }
+  ],
+  "approved_whole_objects": [
+    {
+      "id": "HELIXSECURITY-L3-016-B01",
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "source_file_sha256": "7b5f78087ce4506ecc8a23ec2b1bb9a2efb65e210443196bad05166522970041",
+      "object_canonical_sha256": "c573a9cdbe3b0084d2433235798071a648ede2b3a2198fa148174ff1244ff83d",
+      "object": {
+        "id": "HELIXSECURITY-L3-016-B01",
+        "parent": "HELIXSECURITY-L2-016",
+        "title": "分類基盤とsink強制の境界",
+        "obligation": "1.0の分類記録基盤は全Web/API/log/error/stack trace/debug/source map/Tool result/artifact/LLM contextへの1.x強制を完了条件にしない。005の生secret非露出や006一般egress等の既存1.0条件は延期しない。",
+        "oracle_ref": "HELIXSECURITY-L10-016-B01"
+      }
+    },
+    {
+      "id": "HELIXSECURITY-L3-016-F01",
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "source_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "object_canonical_sha256": "44016ce795f6732177685e48a7cfa1ac09adcb66ec47dfbb3440c1673878acf2",
+      "object": {
+        "id": "HELIXSECURITY-L3-016-F01",
+        "parent": "HELIXSECURITY-L2-016",
+        "title": "六分類とunknownの記録",
+        "obligation": "public/customer-owned/service-internal/HELIX-confidential/HELIX-restricted/secretの全六語彙を定義し、015 asset identityへ分類とowner/source/revisionを付与・参照する。未分類はunknownとして保存し、public/allowへ推測しない。",
+        "oracle_ref": "HELIXSECURITY-L10-016-F01"
+      }
+    },
+    {
+      "id": "HELIXSECURITY-L10-016-B01",
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "source_file_sha256": "96876217c635ff31c08f67fc01d5c2321b85c9415baae64c933e704743653084",
+      "object_canonical_sha256": "5c28fa66db829c5278f0eeb9e288673bff8fcb135599b993628b3c151145d8b5",
+      "object": {
+        "id": "HELIXSECURITY-L10-016-B01",
+        "parent": "HELIXSECURITY-L2-016",
+        "title": "分類基盤とsink強制の境界",
+        "requirement_ref": "HELIXSECURITY-L3-016-B01",
+        "positive_input": "1.x sink enforcerなしで分類利用と1.0secret/egress条件を比較する。",
+        "expected_observation": "分類・sink強制・既存送信判定が別に残る。",
+        "negative_input": "1.x未構築で一般egress禁止、分類だけで全sink安全、1.0secret制約延期。",
+        "failure_observation": "該当条件ownerへ戻し、後続sink能力を成功にしない。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXSECURITY-L10-016-F01",
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "source_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "object_canonical_sha256": "c9defb4380a72c71095f9ac21ea8105d697ea1a149e85c778a2f2721590b0f57",
+      "object": {
+        "id": "HELIXSECURITY-L10-016-F01",
+        "parent": "HELIXSECURITY-L2-016",
+        "title": "六分類とunknownの記録",
+        "requirement_ref": "HELIXSECURITY-L3-016-F01",
+        "positive_input": "全六分類と未分類、別asset/revision分類を照合する。",
+        "expected_observation": "分類出所とunknown、不一致が辿れ、公開範囲とdata-use許可/operation authorityを区別する。",
+        "negative_input": "分類不明をpublic、旧revision転用、分類だけで利用/送信許可。",
+        "failure_observation": "当該分類をunknown/未成立にし、分類意味はSEC/資産出所はownerへ返す。",
+        "execution_state": "not_executed"
+      }
+    }
+  ],
+  "approved_scope_row": {
+    "parent": "HELIXSECURITY-L2-016",
+    "requirement_ids": [
+      "HELIXSECURITY-L3-016-B01",
+      "HELIXSECURITY-L3-016-F01"
+    ],
+    "design_completion": "unproven",
+    "implementation_readiness": "not_ready",
+    "denominators": {
+      "parents": 92,
+      "requirement_pairs": 430
+    }
+  },
+  "approval_record_pin": {
+    "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+    "exact_record_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+    "integrating_main_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+    "source_main": "c00695600ab1fed30718d89880b92a6358422131",
+    "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "scope": "SEC016を含む35組のexact L3/L10本文revisionの委任承認。実認可/環境は含まない。"
+  },
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "source_revision": "legacy-generation-2026-09-14",
+      "quotes": [
+        {
+          "line": 113,
+          "line_sha256": "85a92638e7c8e010055e880609ea9c634e205df5c61f0e80bdea3fbc9be68c92",
+          "exact_line_quote": "| **HIL-FR-23** | Product Data Connector Registryはsource種別、connector/schema version、credential reference、classification、read/write方針、sync方式、owner、enabled stateを保持する。credential値は保存しない。 | connector contract、digest、enable/disable receipt |"
+        },
+        {
+          "line": 197,
+          "line_sha256": "186a5b69b53e453fec1351f40e72221a3fea749e727ba0668d842a512a9566f6",
+          "exact_line_quote": "| **HIL-NFR-17** | product dataはclassification、最小取得、redaction、retention、freshness SLAを持ち、PII/secret/raw payloadを通常projectionやagent contextへ複製しない。 |"
+        }
+      ],
+      "comparison": "旧sourceのclassification/最小化を意味再導出し、legacy registry/schema/runtime/testを再利用しない。",
+      "preserve": "旧HIL-FR-23のclassification/owner/source参照とcredential値非保持、HIL-NFR-17の分類・最小取得・非露出の責務を比較根拠として保持する。",
+      "change": "旧Product Data Connector Registryのschema/runtime/運用経路は転用せず、現行SEC016の採択六分類と015 asset identityへの1.0分類参照基盤へ意味再導出する。sink強制は原採択どおり1.x、005/006の既存1.0条件は別ownerに保持する。",
+      "reason": "現行採択L2-016と承認B01/F01の機構責務・版境界へ対応させるため。旧資産の未完やruntimeの有無を変更理由にせず、分類から許可を生成しない。"
+    }
+  ],
+  "failure_source_review": {
+    "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.md",
+    "file_sha256": "2dfa97ebba7be0f93c4e5fbcb2da13514e029900a2c593e92127ba257ad1fb9b",
+    "selected_lines": [
+      {
+        "line": 26,
+        "line_sha256": "69561a6e43c106ea2019c8e41dd981519cd2956ccd8f75d8259ba3b1daf7fbf7",
+        "exact_line": "| 規律が初回scopeから漏れる | HARNESS023-F01〜F04、004-F04、040-F04 | 歴史Stage/版印と初回必要入力を区別。選択operationの必須依存を再帰照合し、未指定版やunknownを非選択に落とさない |"
+      },
+      {
+        "line": 74,
+        "line_sha256": "9e9d20c12eb9cbc855396d9b871e22712260f5276b4c81af13e24236b84c0837",
+        "exact_line": "分母は「見つかったfindingの数」ではなく、記録された失敗型全行、選択inputの全要素、選択operationの必須依存、各domain不変条件、対oracleとする。各要素を保持・理由付き非適用・未解決へ分け、unknownを対象外へ逃がさない。既存HARNESS004/041/040/005の契約を使うもので、新しい全ticket一律gateではない。"
+      }
+    ],
+    "finding": "選択入力/依存の欠落とunknownを照合する一般的失敗知見。SEC016固有の実分類failureはないため、新gateを導かない。"
+  },
+  "consumer_boundaries": {
+    "L2-005": "1.0 raw secret非露出。016は延期/代行しない。",
+    "L2-006": "1.0 destination/purpose/authority条件付き一般egress判断。016は全通信禁止/許可へ置換しない。",
+    "L2-019/025": "1.x sink enforcementのowner。",
+    "L2-015": "stable asset identity/provenanceのowner。",
+    "HELIX_OS": "operation authorityのowner。classificationから権限を作らない。"
+  },
+  "requirement_refs": [
+    "HELIXSECURITY-L3-016-B01",
+    "HELIXSECURITY-L3-016-F01"
+  ],
+  "oracle_refs": [
+    "HELIXSECURITY-L10-016-B01",
+    "HELIXSECURITY-L10-016-F01"
+  ],
+  "unresolved": [
+    "正式schema/codec/source qualification未確立。",
+    "実owner資格、実分類、実sink適用、実authority未成立。",
+    "L5/L8、全92/430設計閉包、実装、CI、L11実受入、1.x enforcement未成立。"
+  ],
+  "purpose": "L3-016-B01/F01の1.0分類基盤と1.x sink enforcementの境界を定める。",
+  "classification_vocabulary": {
+    "existing_values": [
+      "public",
+      "customer-owned",
+      "service-internal",
+      "HELIX-confidential",
+      "HELIX-restricted",
+      "secret"
+    ],
+    "unknown": "未分類状態であり分類enumの追加ではない。"
+  },
+  "design_rules": [
+    {
+      "id": "R01",
+      "rule": "既存六分類語彙public/customer-owned/service-internal/HELIX-confidential/HELIX-restricted/secretを使用する。unknownは未分類状態であり第七分類値ではない。"
+    },
+    {
+      "id": "R02",
+      "rule": "分類recordをL2-015のasset identityとowner/source/revisionへ結ぶ。別asset/revisionのclassificationを流用しない。"
+    },
+    {
+      "id": "R03",
+      "rule": "分類値/分類由来とasset sourceを分け、classification definition owner SECURITYとasset source ownerの責務を混同しない。自己申告は実資格を成立させない。"
+    },
+    {
+      "id": "R04",
+      "rule": "classification/exposure、data-use permission、operation authority、egress decision、sink enforcementを独立状態として扱い、分類だけから利用/送信/公開を許可しない。"
+    },
+    {
+      "id": "R05",
+      "rule": "1.0で語彙定義とasset identityへの分類/unknown記録を行う。1.x sink enforcementを1.0完了条件にしない。L2-005 secret非露出とL2-006一般egressは延期しない。"
+    },
+    {
+      "id": "R06",
+      "rule": "missing/unknown/stale/mismatchはunknownまたは未成立で保持し、public/allowへ推定しない。分類意味の不足はSECURITY、asset source/revision不足は該当ownerへ返す。"
+    }
+  ],
+  "architecture": {
+    "input": "L2-015 identityとowner/source/revisionに結び付くclassification record。",
+    "flow": [
+      "既存六分類値またはunknownを受ける。",
+      "分類値・分類由来・asset identity/source/revisionを対応付けて記録する。",
+      "公開範囲、data-use permission、operation authority、egress decision、sink enforcementを独立して参照する。",
+      "欠落/unknown/mismatchは維持し、該当する分類またはasset source ownerへ戻す。"
+    ],
+    "output": "文書上の分類値/unknownとprovenance参照。正式schema/codecや実sink decisionではない。"
+  },
+  "responsibility_boundaries": {
+    "SECURITY016": "既存六分類語彙と1.0分類record。",
+    "SECURITY015": "stable asset identity/provenance。",
+    "L2-005": "1.0 raw secret非露出。016は延期/代行しない。",
+    "L2-006": "1.0 destination/purpose/authority条件付き一般egress。sink未構築を全通信禁止/許可へ置換しない。",
+    "L2-019/025": "1.x sink enforcementを各々受け入れる。",
+    "HELIX_OS": "operation authorityのowner。分類値から権限を作らない。",
+    "asset_source_owner": "owner/source/revisionの実事実と資格。合成値はその証明ではない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L4-016-B01",
+      "requirement_ref": "HELIXSECURITY-L3-016-B01",
+      "system_oracle_ref": "HELIXSECURITY-L10-016-B01",
+      "oracle_ref": "HELIXSECURITY-L9-016-B01",
+      "title": "1.0分類基盤と1.x sink強制の分離",
+      "rules": [
+        "R04",
+        "R05",
+        "R06"
+      ],
+      "input": "分類利用の合成record、sink enforcer未成立、1.0 secret/egress条件。",
+      "behavior": "1.0分類記録、1.x sink enforcement、L2-005 secret非露出、L2-006一般egressを独立して示す。sink未成立を一律egress禁止やsink安全の根拠にせず、既存1.0条件も延期しない。",
+      "expected_output": "分類参照、sink enforcement状態、既存secret/egress条件を別々に表す。",
+      "failure": "一律egress禁止/分類だけのsink安全/secret条件延期を未成立とし、後続sink能力を成功にしない。既存条件違反は該当ownerへ返す。",
+      "case_refs": [
+        "HELIXSECURITY-L9-016-GWT-B01",
+        "HELIXSECURITY-L9-016-B01-N01",
+        "HELIXSECURITY-L9-016-B01-N02",
+        "HELIXSECURITY-L9-016-B01-N03"
+      ]
+    },
+    {
+      "id": "HELIXSECURITY-L4-016-F01",
+      "requirement_ref": "HELIXSECURITY-L3-016-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-016-F01",
+      "oracle_ref": "HELIXSECURITY-L9-016-F01",
+      "title": "六分類・unknown・revision別provenance",
+      "rules": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R06"
+      ],
+      "input": "六分類値、unknown状態、asset identityとowner/source/revisionを持つ合成record。",
+      "behavior": "分類出所と値をasset identity/source/revisionへ結ぶ。unknownとrecord不一致を保持し、異なるrevisionへ古い分類recordを転用しない。公開範囲をdata-use permissionやoperation authorityと分ける。",
+      "expected_output": "六分類/unknown、分類由来、owner/source/revision、revision間差異を辿る。",
+      "failure": "unknownをpublic、旧revision record転用、分類だけの利用/送信allowを未成立とし、分類意味はSECURITY、asset source/revisionは資産ownerへ返す。",
+      "case_refs": [
+        "HELIXSECURITY-L9-016-GWT-F01",
+        "HELIXSECURITY-L9-016-F01-N01",
+        "HELIXSECURITY-L9-016-F01-N02",
+        "HELIXSECURITY-L9-016-F01-N03",
+        "HELIXSECURITY-L9-016-F01-N04"
+      ]
+    }
+  ],
+  "non_goals": [
+    "正式schema/codec/registry/resolverの確立",
+    "実owner資格、実分類、実authorityの成立",
+    "1.x sink enforcementと公開許可",
+    "L2-005 secret非露出またはL2-006一般egressの延期"
+  ],
+  "pair_trace": [
+    {
+      "design_contract_id": "HELIXSECURITY-L4-016-B01",
+      "requirement_id": "HELIXSECURITY-L3-016-B01",
+      "system_oracle_id": "HELIXSECURITY-L10-016-B01",
+      "verification_contract_id": "HELIXSECURITY-L9-016-B01",
+      "case_ids": [
+        "HELIXSECURITY-L9-016-GWT-B01",
+        "HELIXSECURITY-L9-016-B01-N01",
+        "HELIXSECURITY-L9-016-B01-N02",
+        "HELIXSECURITY-L9-016-B01-N03"
+      ]
+    },
+    {
+      "design_contract_id": "HELIXSECURITY-L4-016-F01",
+      "requirement_id": "HELIXSECURITY-L3-016-F01",
+      "system_oracle_id": "HELIXSECURITY-L10-016-F01",
+      "verification_contract_id": "HELIXSECURITY-L9-016-F01",
+      "case_ids": [
+        "HELIXSECURITY-L9-016-GWT-F01",
+        "HELIXSECURITY-L9-016-F01-N01",
+        "HELIXSECURITY-L9-016-F01-N02",
+        "HELIXSECURITY-L9-016-F01-N03",
+        "HELIXSECURITY-L9-016-F01-N04"
+      ]
+    }
+  ]
+}
