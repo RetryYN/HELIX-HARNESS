@@ -755,7 +755,7 @@
       "field_conflict": "HELIXOS-L9-001-C0008",
       "kind_unknown": "HELIXOS-L9-001-C0855",
       "phase_unknown": "HELIXOS-L9-001-C0859",
-      "selected_project_unknown": "HELIXOS-L9-001-C0147",
+      "selected_project_unknown": "HELIXOS-L9-001-C0879",
       "proposal_missing": "HELIXOS-L9-001-C0159",
       "policy_missing": "HELIXOS-L9-001-C0184",
       "directive_unknown": "HELIXOS-L9-001-C0463",
@@ -771,7 +771,7 @@
       "observation_unobserved": "HELIXOS-L9-001-C0827",
       "source_origin_unknown": "HELIXOS-L9-001-C0457",
       "legacy_source_forbidden": "HELIXOS-L9-001-C0459",
-      "coherence_unknown": "HELIXOS-L9-001-C0453",
+      "coherence_unknown": "HELIXOS-L9-001-C0779",
       "coherence_conflict": "HELIXOS-L9-001-C0456",
       "mixed_current_forbidden": "HELIXOS-L9-001-C0877",
       "partial_current_forbidden": "HELIXOS-L9-001-C0833",
@@ -780,9 +780,132 @@
       "forbidden_boundary_claim": "HELIXOS-L9-001-C0837",
       "kind_conflict": "HELIXOS-L9-001-C0875",
       "phase_conflict": "HELIXOS-L9-001-C0876",
-      "publication_coherence_unproven": "HELIXOS-L9-001-C0453"
+      "publication_coherence_unproven": "HELIXOS-L9-001-C0878"
     },
-    "selected_scope_witness": "HELIXOS-L9-001-C0107"
+    "selected_scope_witness": "HELIXOS-L9-001-C0107",
+    "disposition_sensitivity_by_replacement": {
+      "field_unknown": {
+        "violation": "HELIXOS-L9-001-C0007",
+        "corresponding": "HELIXOS-L9-001-C0007"
+      },
+      "field_conflict": {
+        "unknown": "HELIXOS-L9-001-C0008",
+        "corresponding": "HELIXOS-L9-001-C0008"
+      },
+      "kind_unknown": {
+        "violation": "HELIXOS-L9-001-C0855",
+        "corresponding": "HELIXOS-L9-001-C0855"
+      },
+      "phase_unknown": {
+        "violation": "HELIXOS-L9-001-C0859",
+        "corresponding": "HELIXOS-L9-001-C0859"
+      },
+      "selected_project_unknown": {
+        "violation": "HELIXOS-L9-001-C0147",
+        "corresponding": "HELIXOS-L9-001-C0879"
+      },
+      "proposal_missing": {
+        "violation": "HELIXOS-L9-001-C0159",
+        "corresponding": "HELIXOS-L9-001-C0159"
+      },
+      "policy_missing": {
+        "violation": "HELIXOS-L9-001-C0184",
+        "corresponding": "HELIXOS-L9-001-C0184"
+      },
+      "directive_unknown": {
+        "violation": "HELIXOS-L9-001-C0463",
+        "corresponding": "HELIXOS-L9-001-C0463"
+      },
+      "directive_conflict": {
+        "unknown": "HELIXOS-L9-001-C0465",
+        "corresponding": "HELIXOS-L9-001-C0465"
+      },
+      "condition_missing": {
+        "violation": "HELIXOS-L9-001-C0199",
+        "corresponding": "HELIXOS-L9-001-C0199"
+      },
+      "condition_state_unknown": {
+        "violation": "HELIXOS-L9-001-C0228",
+        "corresponding": "HELIXOS-L9-001-C0228"
+      },
+      "condition_state_conflict": {
+        "unknown": "HELIXOS-L9-001-C0230",
+        "corresponding": "HELIXOS-L9-001-C0230"
+      },
+      "condition_unresolved": {
+        "violation": "HELIXOS-L9-001-C0795",
+        "corresponding": "HELIXOS-L9-001-C0795"
+      },
+      "condition_conflict": {
+        "unknown": "HELIXOS-L9-001-C0797",
+        "corresponding": "HELIXOS-L9-001-C0797"
+      },
+      "observation_missing": {
+        "violation": "HELIXOS-L9-001-C0445",
+        "corresponding": "HELIXOS-L9-001-C0445"
+      },
+      "observation_state_unknown": {
+        "violation": "HELIXOS-L9-001-C0446",
+        "corresponding": "HELIXOS-L9-001-C0446"
+      },
+      "observation_state_conflict": {
+        "unknown": "HELIXOS-L9-001-C0448",
+        "corresponding": "HELIXOS-L9-001-C0448"
+      },
+      "observation_unobserved": {
+        "violation": "HELIXOS-L9-001-C0827",
+        "corresponding": "HELIXOS-L9-001-C0827"
+      },
+      "source_origin_unknown": {
+        "violation": "HELIXOS-L9-001-C0457",
+        "corresponding": "HELIXOS-L9-001-C0457"
+      },
+      "legacy_source_forbidden": {
+        "unknown": "HELIXOS-L9-001-C0459",
+        "corresponding": "HELIXOS-L9-001-C0459"
+      },
+      "coherence_unknown": {
+        "violation": "HELIXOS-L9-001-C0453",
+        "corresponding": "HELIXOS-L9-001-C0779"
+      },
+      "coherence_conflict": {
+        "unknown": "HELIXOS-L9-001-C0456",
+        "corresponding": "HELIXOS-L9-001-C0456"
+      },
+      "mixed_current_forbidden": {
+        "unknown": "HELIXOS-L9-001-C0877",
+        "corresponding": "HELIXOS-L9-001-C0877"
+      },
+      "partial_current_forbidden": {
+        "unknown": "HELIXOS-L9-001-C0833",
+        "corresponding": "HELIXOS-L9-001-C0833"
+      },
+      "boolean_unknown": {
+        "violation": "HELIXOS-L9-001-C0834",
+        "corresponding": "HELIXOS-L9-001-C0834"
+      },
+      "unproven_success_claim": {
+        "unknown": "HELIXOS-L9-001-C0835",
+        "corresponding": "HELIXOS-L9-001-C0835"
+      },
+      "forbidden_boundary_claim": {
+        "unknown": "HELIXOS-L9-001-C0837",
+        "corresponding": "HELIXOS-L9-001-C0837"
+      },
+      "kind_conflict": {
+        "unknown": "HELIXOS-L9-001-C0875",
+        "corresponding": "HELIXOS-L9-001-C0875"
+      },
+      "phase_conflict": {
+        "unknown": "HELIXOS-L9-001-C0876",
+        "corresponding": "HELIXOS-L9-001-C0876"
+      },
+      "publication_coherence_unproven": {
+        "violation": "HELIXOS-L9-001-C0453",
+        "corresponding": "HELIXOS-L9-001-C0878"
+      }
+    },
+    "sensitivity_method": "各codeのdeclared区分を残り二値(unknown/violation/corresponding)へそれぞれ変更し、両変更ともwhole出力差を生む共通caseを記載。正式実装mutation/実TDDではない。"
   },
   "fixture_inputs": {
     "inspect_prepare": {
@@ -74146,10 +74269,234 @@
         "expanded_output_sha256": "18922a8a63429174d232347d880bf2e3f725d3f972192d4d2454368b6af9d17e"
       },
       "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-001-C0879",
+      "title": "OS01-m1 両側同じ未知projectでもregistered sourceへ補完しない",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-001-F01",
+        "oracle_ref": "HELIXOS-L10-001-F01"
+      },
+      "given": {
+        "input": {
+          "base_ref": "inspect_prepare",
+          "replacements": [
+            {
+              "path": [
+                "operation",
+                "binding",
+                "project_id"
+              ],
+              "value": "project_z"
+            },
+            {
+              "path": [
+                "context",
+                "operation",
+                "binding",
+                "project_id"
+              ],
+              "value": "project_z"
+            }
+          ],
+          "expanded_input_sha256": "426222ebe9530b2287dae044060f287f082f615e722e3648fb9f4bb72def9875"
+        }
+      },
+      "expected_proposal": {
+        "base_ref": "inspect_prepare",
+        "replacements": [
+          {
+            "path": [
+              "condition"
+            ],
+            "value": "update_material_unknown"
+          },
+          {
+            "path": [
+              "facet_correspondence",
+              "source"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "selected_project"
+            ],
+            "value": null
+          },
+          {
+            "path": [
+              "retained_actual",
+              "operation",
+              "binding",
+              "project_id"
+            ],
+            "value": "project_z"
+          },
+          {
+            "path": [
+              "retained_reference",
+              "operation",
+              "binding",
+              "project_id"
+            ],
+            "value": "project_z"
+          },
+          {
+            "path": [
+              "findings"
+            ],
+            "value": [
+              {
+                "code": "selected_project_unknown",
+                "pointer": "/operation/binding/project_id",
+                "return_owner": "requirement-source-owner"
+              }
+            ]
+          }
+        ],
+        "expanded_output_sha256": "2f501167a671aa2abc58a83e81f4417d811b352d9bc199dc5cf8724794148e70"
+      },
+      "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-001-C0880",
+      "title": "coherence_unknownをpublication未確認から独立に検出",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-001-F01",
+        "oracle_ref": "HELIXOS-L10-001-F01"
+      },
+      "given": {
+        "input": {
+          "base_ref": "meaning_change_observe",
+          "replacements": [
+            {
+              "path": [
+                "operation",
+                "observation",
+                "state"
+              ],
+              "value": "initial_write_fault"
+            },
+            {
+              "path": [
+                "context",
+                "operation",
+                "observation",
+                "state"
+              ],
+              "value": "initial_write_fault"
+            },
+            {
+              "path": [
+                "operation",
+                "observation",
+                "revision_coherence"
+              ],
+              "value": null
+            },
+            {
+              "path": [
+                "context",
+                "operation",
+                "observation",
+                "revision_coherence"
+              ],
+              "value": null
+            }
+          ],
+          "expanded_input_sha256": "a18abc10fcdc1c0fb8eba65a257c87d165d57c54b8ff4f247c8bc762a13574c5"
+        }
+      },
+      "expected_proposal": {
+        "base_ref": "meaning_change_observe",
+        "replacements": [
+          {
+            "path": [
+              "condition"
+            ],
+            "value": "update_material_unknown"
+          },
+          {
+            "path": [
+              "facet_correspondence",
+              "update_observation"
+            ],
+            "value": "unknown"
+          },
+          {
+            "path": [
+              "update_observed_state"
+            ],
+            "value": "initial_write_fault"
+          },
+          {
+            "path": [
+              "canonicalization_material_corresponding"
+            ],
+            "value": false
+          },
+          {
+            "path": [
+              "retained_actual",
+              "operation",
+              "observation",
+              "state"
+            ],
+            "value": "initial_write_fault"
+          },
+          {
+            "path": [
+              "retained_actual",
+              "operation",
+              "observation",
+              "revision_coherence"
+            ],
+            "value": null
+          },
+          {
+            "path": [
+              "retained_reference",
+              "operation",
+              "observation",
+              "state"
+            ],
+            "value": "initial_write_fault"
+          },
+          {
+            "path": [
+              "retained_reference",
+              "operation",
+              "observation",
+              "revision_coherence"
+            ],
+            "value": null
+          },
+          {
+            "path": [
+              "findings"
+            ],
+            "value": [
+              {
+                "code": "coherence_unknown",
+                "pointer": "/context/operation/observation/revision_coherence",
+                "return_owner": "OS053-store-owner"
+              },
+              {
+                "code": "coherence_unknown",
+                "pointer": "/operation/observation/revision_coherence",
+                "return_owner": "OS053-store-owner"
+              }
+            ]
+          }
+        ],
+        "expanded_output_sha256": "0b54b24e472f9f54c746037a40db48213b2e4d385a77d8b30acbc134d8cba5f5"
+      },
+      "execution_state": "synthetic_document_comparison_only"
     }
   ],
   "completion": {
-    "synthetic_case_count": 877,
+    "synthetic_case_count": 879,
     "independent_review": "pending",
     "formal_closure": "unproven",
     "actual_red_green_refactor": "not_executed"

@@ -1105,7 +1105,7 @@
       },
       {
         "id": "R03",
-        "rule": "actual kind=view_change/meaning_changeのときproposal/policy dictを両側に要求。不明側はproposal_missing/policy_missing。両側dictなら各fieldをR01 string比較。proposal scope/before_revisionをcontext op scope/base_revisionへ、target_requirement_idを選択projectのcontext requirement_idへjoin。policy scope/base_revision/operation_idをcontext op bindingへjoin。directiveは5closed値、不明側directive_unknown、known差はactual directive_conflict。policy_directiveはactual known値かnull。inspectにはこれらをgateにしない。"
+        "rule": "actual kind=view_change/meaning_changeのときproposal/policy dictを両側に要求。不明側はproposal_missing/policy_missing。両側dictなら各fieldをR01 string比較。proposal scope/before_revisionをcontext op scope/base_revisionへ、target_requirement_idを選択projectのcontext requirement_idへjoin。policy scope/base_revision/operation_idをcontext op bindingへjoin。directiveは5closed値、不明側directive_unknown、known差はactual directive_conflict。policy_directiveはactual known値かnull。inspectにはこれらをgateにしない。 directive評価とpolicy_directive採用はpolicy自体がactual/context両側dictの場合に限る。proposalのdict可否とは独立。片側非dictならpolicy_directive=null、両側dictならcontext directive未知/相違でもactual known値を採用する。"
       },
       {
         "id": "R04",
@@ -1113,11 +1113,11 @@
       },
       {
         "id": "R05",
-        "rule": "actual phase=observeかつkind=view_change/meaning_changeのときobservation dictを両側に要求。不明は各側observation_missing。stateはobservation_states、不明側observation_state_unknown、known差はactual observation_state_conflict、actual unobservedはobservation_unobserved。update_observed_stateはactual known stateかnull。prepare/inspectの未来observationは評価しない。"
+        "rule": "actual phase=observeかつkind=view_change/meaning_changeのときobservation dictを両側に要求。不明は各側observation_missing。stateはobservation_states、不明側observation_state_unknown、known差はactual observation_state_conflict、actual unobservedはobservation_unobserved。update_observed_stateはactual known stateかnull。prepare/inspectの未来observationは評価しない。 state評価/update_observed_state採用とR06/R07の全評価は、observationがactual/context両側dictの場合に限る。片側非dictならupdate_observed_state=null。両側dictならcontext state未知/相違でもactual known値を採用する。"
       },
       {
         "id": "R06",
-        "rule": "R05適用内でsource_kindはsource_origins closed、不明側source_origin_unknown、known差はactual field_conflict(update_observation facet)、actual canonical_json以外known originはlegacy_source_forbidden(boundary)。revision_coherenceはcoherence_states closed、不明側coherence_unknown、known差はactual coherence_conflict。actual state=committedでknown mixed_materialならmixed_current_forbidden、それ以外のnoncoherentならpublication_coherence_unproven。unknownをknown mixedへしない。"
+        "rule": "R05適用内でsource_kindはsource_origins closed、不明側source_origin_unknown、known差はactual field_conflict(update_observation facet)、actual canonical_json以外known originはlegacy_source_forbidden(boundary)。revision_coherenceはcoherence_states closed、不明側coherence_unknown、known差はactual coherence_conflict。actual state=committedでknown mixed_materialならmixed_current_forbidden、それ以外のnoncoherentならpublication_coherence_unproven。unknownをknown mixedへしない。 noncoherentはcoherent_material以外の全値（未知/null/未観測を含む）を指す。ただしknown mixed_materialは前段mixed_current_forbiddenで扱い、publication_coherence_unprovenと併記しない。"
       },
       {
         "id": "R07",
