@@ -1,0 +1,1335 @@
+{
+  "id": "HELIXSECURITY-L9-024-INTEGRATION-VERIFICATION",
+  "layer_id": "HELIXSECURITY-L9",
+  "pair_id": "HELIXSECURITY-L4L9-024-POLICY-RESOURCE-ENFORCEMENT",
+  "parent": "HELIXSECURITY-L2-024",
+  "source_main": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+  "approval_record": {
+    "path": "docs/governance/decisions/helix-security-stage4-l3-l10-po-decision-2026-10-06.md",
+    "reviewed_content_revision": "04578d4c17c0c3340bab8dcbf11e8a9050304477",
+    "review_base": "1a7933157fef8327a0e2747348cbe57e596019aa",
+    "main_admission_commit": "776e6b7b533fa35b204746bae5319af4fdf49771",
+    "authority_effect": "このrecordのmain admission時。L3/L10以外の下流設計・実資格・実操作を承認しない。"
+  },
+  "audit_basis": {
+    "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+    "audit_id": "LIMITED-V12-DESIGN-GAP-20261014",
+    "denominators": {
+      "parents": 92,
+      "requirement_pairs": 430
+    },
+    "row_parent": "HELIXSECURITY-L2-024",
+    "row_state": "basic_pair_document_presence=false;design_completion=unproven;implementation_readiness=not_ready"
+  },
+  "status": "draft_synthetic_integration_cases_pending_independent_review",
+  "scope": {
+    "approval_revision": "04578d4c17c0c3340bab8dcbf11e8a9050304477",
+    "historical_stage": "Stage 4",
+    "version_boundary": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
+    "requirements": [
+      "HELIXSECURITY-L3-024-B01",
+      "HELIXSECURITY-L3-024-F01"
+    ],
+    "oracles": [
+      "HELIXSECURITY-L10-024-B01",
+      "HELIXSECURITY-L10-024-F01"
+    ],
+    "operation": "固定合成fixtureの文書照合のみ。実資源操作、実credential、実policy設定・変更、実enforcementを行わない。"
+  },
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "contracts": [
+    {
+      "id": "HELIXSECURITY-L9-024-B01",
+      "requirement_ref": "HELIXSECURITY-L3-024-B01",
+      "oracle_ref": "HELIXSECURITY-L10-024-B01",
+      "design_contract_ref": "HELIXSECURITY-L4-024-B01"
+    },
+    {
+      "id": "HELIXSECURITY-L9-024-F01",
+      "requirement_ref": "HELIXSECURITY-L3-024-F01",
+      "oracle_ref": "HELIXSECURITY-L10-024-F01",
+      "design_contract_ref": "HELIXSECURITY-L4-024-F01"
+    }
+  ],
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "id": "HELIXSECURITY-L3-024-B01",
+      "object": {
+        "id": "HELIXSECURITY-L3-024-B01",
+        "parent": "HELIXSECURITY-L2-024",
+        "title": "資源記録・backupのcredential境界",
+        "obligation": "INFRAの通常資源状態/backup/snapshotへcredential値を無条件保存せず、SECの既存005方針と安全な実資源境界を照合する。024の歴史Stage4を保持し、初回必要な安全接続規範だけ先行著述する。",
+        "oracle_ref": "HELIXSECURITY-L10-024-B01"
+      },
+      "object_canonical_sha256": "37ad06b10e51e2e809cf817161094402c9fdb269ed3a0cfb3410b8f884324649",
+      "source_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "source_file_sha256": "7b5f78087ce4506ecc8a23ec2b1bb9a2efb65e210443196bad05166522970041",
+      "approval_record_path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+      "approval_record_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+      "reviewed_content_head": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "id": "HELIXSECURITY-L10-024-B01",
+      "object": {
+        "id": "HELIXSECURITY-L10-024-B01",
+        "parent": "HELIXSECURITY-L2-024",
+        "title": "資源記録・backupのcredential境界",
+        "requirement_ref": "HELIXSECURITY-L3-024-B01",
+        "positive_input": "通常資源record/backup/snapshotと値非露出の安全境界を合成参照で照合する。",
+        "expected_observation": "policy owner/実資源owner/enforcerと証拠custodyが分かれ、値を通常証跡へ出さない。",
+        "negative_input": "通常snapshotにraw値、OSが資源authority代替、Stage4全能力前倒し。",
+        "failure_observation": "当該保存/回収不足をSEC/INFRAへ返し、実許可設定を本文から変更しない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "0d5bd67727ac95d6718ee26200d28bc0011e2b03ad1059b4a39a692de3746cf2",
+      "source_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "source_file_sha256": "96876217c635ff31c08f67fc01d5c2321b85c9415baae64c933e704743653084",
+      "approval_record_path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+      "approval_record_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+      "reviewed_content_head": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-024-F01",
+      "object": {
+        "id": "HELIXSECURITY-L3-024-F01",
+        "parent": "HELIXSECURITY-L2-024",
+        "title": "policyと実資源・強制の接続",
+        "obligation": "SECのnetwork/credential/environment/project-isolation/operation-authority/update/egress policyと、INFRAの実資源/環境/状態、Workerの実強制を同revision/scopeへ照合する。実施状態・観測・失敗/不明のreceiptをpolicyへ結ぶ。",
+        "oracle_ref": "HELIXSECURITY-L10-024-F01"
+      },
+      "object_canonical_sha256": "2f178ac26ef7138315bb16765d8b881540677f9cde34ee333e26299a588fc42d",
+      "source_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "source_file_sha256": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+      "approval_record_path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+      "approval_record_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+      "reviewed_content_head": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-024-F01",
+      "object": {
+        "id": "HELIXSECURITY-L10-024-F01",
+        "parent": "HELIXSECURITY-L2-024",
+        "title": "policyと実資源・強制の接続",
+        "requirement_ref": "HELIXSECURITY-L3-024-F01",
+        "positive_input": "policy受渡しと実適用状態を照合し、一境界未適用/unknownを与える。",
+        "expected_observation": "宣言と実適用/未観測が別に辿れる。",
+        "negative_input": "policyだけで資源安全、INFRAがpolicy発行、SECが資源配置、別環境receipt。",
+        "failure_observation": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "87c6065a0304f31f8725b94a65716b9b598f000af9c10ad2f986e9eec3a9c0b8",
+      "source_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "source_file_sha256": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc",
+      "approval_record_path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "approval_record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+      "approval_record_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+      "reviewed_content_head": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3"
+    }
+  ],
+  "source_pins": {
+    "AGENTS.md": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7",
+    "CLAUDE.md": "9a676d8a3d8ef5edb9e1c6c3fb77ce4b6851c7c6c223613bf46307d906eda96c",
+    "docs/governance/new-generation-start-here.md": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc",
+    "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
+    "docs/governance/decisions/helix-security-stage4-l3-l10-po-decision-2026-10-06.md": "8db27cd7bfd6d5e9bbf13e41caa02f966c722a21a5e2955803bbebe59717115e",
+    "docs/governance/legacy-asset-disposition.jsonl": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05",
+    "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392",
+    "docs/helix-security/L1-planning/security-intent.md": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+    "docs/helix-security/L2-requirements/security-requirements.md": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+    "docs/helix-security/L11-acceptance/security-acceptance.md": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+    "docs/helix-infrastructure/L1-planning/infrastructure-intent.md": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37",
+    "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+    "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+    "docs/helix-os/L2-requirements/governance-requirements.md": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+    "docs/helix-harness/L2-requirements/product-requirements.md": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+    "docs/helix-security/L3-requirements/business-requirements.md": "a1803d5a4a6ed9137ae8c73e2cb494f4d62c799ca4eeb3c3a4c87871ea68c7fa",
+    "docs/helix-security/L3-requirements/functional-requirements.md": "46c90323df4311b550860f6d997330dbfe2a38b57ad318fd15f0430b498a60f2",
+    "docs/helix-security/L3-requirements/nfr-grade.md": "35ef94bcab32f1fc14423647849ae119a6ef7b4951698abe54980b7b73a9ba84",
+    "docs/helix-security/L10-verification/business-verification.md": "f9705a3cea2513bb4ebca5bcf101d56517a0fcb4b29c818ac05a9676aa4b59fa",
+    "docs/helix-security/L10-verification/functional-verification.md": "ddeaea47ba1092530ac17091618fa5598eed5ab1914bba395ae8b403a7aef3ac",
+    "docs/helix-security/L10-verification/nfr-verification.md": "62c73c49654d04edffeb545f608fc5947f8632a3aa4e5aad4dfc0e54fc3d7a04",
+    "docs/helix-security/L3-requirements/business-requirements.json": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+    "docs/helix-security/L3-requirements/functional-requirements.json": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+    "docs/helix-security/L3-requirements/nfr-grade.json": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66",
+    "docs/helix-security/L10-verification/business-verification.json": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+    "docs/helix-security/L10-verification/functional-verification.json": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+    "docs/helix-security/L10-verification/nfr-verification.json": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-isolation-policy.md": "8ee84f79e82a3f814bef790f98d7ed3333348566f5ae036dd146a82436ae1552",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-context-authority.md": "aca532c939e34f2a4fb6b47f74254ff76a49dfaea1eeb56ff5edd7f3a181acec"
+  },
+  "fixtures": {
+    "PKT-024-RESOURCE-BASE": {
+      "fixture_only": true,
+      "scope": "合成した通常resource record/backup/snapshotの意味確認",
+      "revision": "SYNTH-REV-024-A",
+      "environment": "SYNTH-ENV-DEV-A",
+      "owners": {
+        "policy": "SECURITY",
+        "resource_state": "INFRASTRUCTURE",
+        "physical_enforcement": "Worker execution environment",
+        "evidence_custody": "INFRASTRUCTURE observation reference; SECURITY policy reference"
+      },
+      "security_005": {
+        "credential_policy": "no raw credential in ordinary record",
+        "policy_state": "declared"
+      },
+      "resource_record": {
+        "resource_identity": "SYNTH-RESOURCE-STORE-A",
+        "state": "observed",
+        "credential_reference": "SYNTH-SECRET-HANDLE-A",
+        "credential_value_present": false
+      },
+      "backup": {
+        "source_revision": "SYNTH-REV-024-A",
+        "state": "observed",
+        "credential_reference": "SYNTH-SECRET-HANDLE-A",
+        "contains_credential_value": false,
+        "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+      },
+      "snapshot": {
+        "source_revision": "SYNTH-REV-024-A",
+        "state": "observed",
+        "credential_reference": "SYNTH-SECRET-HANDLE-A",
+        "contains_credential_value": false,
+        "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+      },
+      "stage4_scope": "initial_safe_connection_rule_only",
+      "all_stage4_capabilities": "not_in_scope",
+      "execution_state": "not_executed"
+    },
+    "PKT-024-POLICY-BASE": {
+      "fixture_only": true,
+      "revision": "SYNTH-REV-024-A",
+      "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+      "security_policy": {
+        "id": "SYNTH-SEC-POLICY-024-A",
+        "owner": "SECURITY",
+        "network": "egress_restricted",
+        "credential": "reference_only",
+        "environment": "SYNTH-ENV-DEV-A",
+        "project_isolation": "SYNTH-PROJECT-A",
+        "operation_authority": "not_granted_by_fixture",
+        "update": "candidate_review_only",
+        "egress": "restricted"
+      },
+      "infra_resource": {
+        "owner": "INFRASTRUCTURE",
+        "identity": "SYNTH-RESOURCE-NODE-A",
+        "environment": "SYNTH-ENV-DEV-A",
+        "revision": "SYNTH-REV-024-A",
+        "state": "observed",
+        "network": "egress_restricted",
+        "credential_store": "SYNTH-STORE-REF-A",
+        "credential_value_present": false,
+        "safety_claim": "not_claimed",
+        "placement_owner": "INFRASTRUCTURE"
+      },
+      "worker_enforcement": {
+        "owner": "Worker execution environment",
+        "environment": "SYNTH-ENV-DEV-A",
+        "revision": "SYNTH-REV-024-A",
+        "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+        "policy_reference": "SYNTH-SEC-POLICY-024-A",
+        "network": "egress_restricted",
+        "credential_value_exposure": "blocked_as_synthetic_fixture",
+        "observation": "synthetic_only"
+      },
+      "environment_b": {
+        "declaration": {
+          "state": "known",
+          "policy": "egress_restricted",
+          "revision": "SYNTH-REV-024-A",
+          "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+        },
+        "application_observation": {
+          "state": "unknown",
+          "applied": null,
+          "not_applied": null,
+          "evidence_ref": null
+        }
+      },
+      "receipt": {
+        "environment": "SYNTH-ENV-DEV-A",
+        "revision": "SYNTH-REV-024-A",
+        "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+        "contains_credential_value": false,
+        "value": "policy/resource/enforcer refs only"
+      },
+      "os_work_state": "separate_and_not_a_policy_or_resource_authority",
+      "execution_state": "not_executed"
+    }
+  },
+  "positive_cases": [
+    {
+      "id": "HELIXSECURITY-L9-024-P01",
+      "kind": "positive",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-024-B01",
+        "HELIXSECURITY-L10-024-B01"
+      ],
+      "given": {
+        "source_field": "positive_input",
+        "source_value": "通常資源record/backup/snapshotと値非露出の安全境界を合成参照で照合する。",
+        "source_packet_refs": [
+          "PKT-024-RESOURCE-BASE"
+        ],
+        "packet_values": {
+          "PKT-024-RESOURCE-BASE": {
+            "fixture_only": true,
+            "scope": "合成した通常resource record/backup/snapshotの意味確認",
+            "revision": "SYNTH-REV-024-A",
+            "environment": "SYNTH-ENV-DEV-A",
+            "owners": {
+              "policy": "SECURITY",
+              "resource_state": "INFRASTRUCTURE",
+              "physical_enforcement": "Worker execution environment",
+              "evidence_custody": "INFRASTRUCTURE observation reference; SECURITY policy reference"
+            },
+            "security_005": {
+              "credential_policy": "no raw credential in ordinary record",
+              "policy_state": "declared"
+            },
+            "resource_record": {
+              "resource_identity": "SYNTH-RESOURCE-STORE-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "credential_value_present": false
+            },
+            "backup": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+            },
+            "snapshot": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+            },
+            "stage4_scope": "initial_safe_connection_rule_only",
+            "all_stage4_capabilities": "not_in_scope",
+            "execution_state": "not_executed"
+          }
+        }
+      },
+      "when": "packet内の固定合成値とL4規則を静的に照合する。実資源やWorkerを操作しない。",
+      "then": {
+        "source_field": "expected_observation",
+        "source_value": "policy owner/実資源owner/enforcerと証拠custodyが分かれ、値を通常証跡へ出さない。",
+        "observed_facts": {
+          "owners": {
+            "policy": "SECURITY",
+            "resource_state": "INFRASTRUCTURE",
+            "physical_enforcement": "Worker execution environment",
+            "evidence_custody": "INFRASTRUCTURE observation reference; SECURITY policy reference"
+          },
+          "policy": {
+            "credential_policy": "no raw credential in ordinary record",
+            "policy_state": "declared"
+          },
+          "resource_identity_state_and_credential_reference": {
+            "resource_identity": "SYNTH-RESOURCE-STORE-A",
+            "state": "observed",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "credential_value_present": false
+          },
+          "backup_nonexposure": {
+            "source_revision": "SYNTH-REV-024-A",
+            "state": "observed",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "contains_credential_value": false,
+            "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+          },
+          "snapshot_nonexposure": {
+            "source_revision": "SYNTH-REV-024-A",
+            "state": "observed",
+            "credential_reference": "SYNTH-SECRET-HANDLE-A",
+            "contains_credential_value": false,
+            "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+          },
+          "historical_stage4_scope": "initial_safe_connection_rule_only",
+          "all_stage4_capabilities": "not_in_scope",
+          "execution_state": "not_executed"
+        },
+        "observation_limit": "known値は各fieldの合成record値として保持する。synthetic-only値を実観測に変換せず、environment Bの宣言はknown、実適用/未適用のいずれもunknownとして保持する。"
+      },
+      "failure_route": {
+        "source_field": "failure_observation",
+        "source_value": "当該保存/回収不足をSEC/INFRAへ返し、実許可設定を本文から変更しない。"
+      },
+      "diagnostic": "既知のresource値・role・policy referenceは既知として示し、packetが明示する一環境の未観測だけを未観測のまま残す。"
+    },
+    {
+      "id": "HELIXSECURITY-L9-024-P02",
+      "kind": "positive",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-024-F01",
+        "HELIXSECURITY-L10-024-F01"
+      ],
+      "given": {
+        "source_field": "positive_input",
+        "source_value": "policy受渡しと実適用状態を照合し、一境界未適用/unknownを与える。",
+        "source_packet_refs": [
+          "PKT-024-POLICY-BASE"
+        ],
+        "packet_values": {
+          "PKT-024-POLICY-BASE": {
+            "fixture_only": true,
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "security_policy": {
+              "id": "SYNTH-SEC-POLICY-024-A",
+              "owner": "SECURITY",
+              "network": "egress_restricted",
+              "credential": "reference_only",
+              "environment": "SYNTH-ENV-DEV-A",
+              "project_isolation": "SYNTH-PROJECT-A",
+              "operation_authority": "not_granted_by_fixture",
+              "update": "candidate_review_only",
+              "egress": "restricted"
+            },
+            "infra_resource": {
+              "owner": "INFRASTRUCTURE",
+              "identity": "SYNTH-RESOURCE-NODE-A",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "network": "egress_restricted",
+              "credential_store": "SYNTH-STORE-REF-A",
+              "credential_value_present": false,
+              "safety_claim": "not_claimed",
+              "placement_owner": "INFRASTRUCTURE"
+            },
+            "worker_enforcement": {
+              "owner": "Worker execution environment",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "policy_reference": "SYNTH-SEC-POLICY-024-A",
+              "network": "egress_restricted",
+              "credential_value_exposure": "blocked_as_synthetic_fixture",
+              "observation": "synthetic_only"
+            },
+            "environment_b": {
+              "declaration": {
+                "state": "known",
+                "policy": "egress_restricted",
+                "revision": "SYNTH-REV-024-A",
+                "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+              },
+              "application_observation": {
+                "state": "unknown",
+                "applied": null,
+                "not_applied": null,
+                "evidence_ref": null
+              }
+            },
+            "receipt": {
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "contains_credential_value": false,
+              "value": "policy/resource/enforcer refs only"
+            },
+            "os_work_state": "separate_and_not_a_policy_or_resource_authority",
+            "execution_state": "not_executed"
+          }
+        }
+      },
+      "when": "packet内の固定合成値とL4規則を静的に照合する。実資源やWorkerを操作しない。",
+      "then": {
+        "source_field": "expected_observation",
+        "source_value": "宣言と実適用/未観測が別に辿れる。",
+        "observed_facts": {
+          "known_policy_values": {
+            "id": "SYNTH-SEC-POLICY-024-A",
+            "owner": "SECURITY",
+            "network": "egress_restricted",
+            "credential": "reference_only",
+            "environment": "SYNTH-ENV-DEV-A",
+            "project_isolation": "SYNTH-PROJECT-A",
+            "operation_authority": "not_granted_by_fixture",
+            "update": "candidate_review_only",
+            "egress": "restricted",
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+          },
+          "known_resource_values": {
+            "owner": "INFRASTRUCTURE",
+            "identity": "SYNTH-RESOURCE-NODE-A",
+            "environment": "SYNTH-ENV-DEV-A",
+            "revision": "SYNTH-REV-024-A",
+            "state": "observed",
+            "network": "egress_restricted",
+            "credential_store": "SYNTH-STORE-REF-A",
+            "credential_value_present": false,
+            "safety_claim": "not_claimed",
+            "placement_owner": "INFRASTRUCTURE"
+          },
+          "synthetic_enforcement_fixture_values": {
+            "owner": "Worker execution environment",
+            "environment": "SYNTH-ENV-DEV-A",
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "policy_reference": "SYNTH-SEC-POLICY-024-A",
+            "network": "egress_restricted",
+            "credential_value_exposure": "blocked_as_synthetic_fixture",
+            "observation": "synthetic_only"
+          },
+          "environment_b_known_declaration": {
+            "state": "known",
+            "policy": "egress_restricted",
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+          },
+          "environment_b_application_unknown": {
+            "state": "unknown",
+            "applied": null,
+            "not_applied": null,
+            "evidence_ref": null
+          },
+          "receipt_known_values": {
+            "environment": "SYNTH-ENV-DEV-A",
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "contains_credential_value": false,
+            "value": "policy/resource/enforcer refs only"
+          },
+          "os_work_state": "separate_and_not_a_policy_or_resource_authority"
+        },
+        "observation_limit": "known値は各fieldの合成record値として保持する。synthetic-only値を実観測に変換せず、environment Bの宣言はknown、実適用/未適用のいずれもunknownとして保持する。"
+      },
+      "failure_route": {
+        "source_field": "failure_observation",
+        "source_value": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。"
+      },
+      "diagnostic": "既知のresource値・role・policy referenceは既知として示し、packetが明示する一環境の未観測だけを未観測のまま残す。"
+    }
+  ],
+  "negative_cases": [
+    {
+      "id": "HELIXSECURITY-L9-024-N01",
+      "kind": "negative",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-024-B01",
+        "HELIXSECURITY-L10-024-B01"
+      ],
+      "given": {
+        "source_field": "negative_input",
+        "source_value": "通常snapshotにraw値、OSが資源authority代替、Stage4全能力前倒し。",
+        "source_packet_refs": [
+          "PKT-024-RESOURCE-BASE"
+        ],
+        "packet_values": {
+          "PKT-024-RESOURCE-BASE": {
+            "fixture_only": true,
+            "scope": "合成した通常resource record/backup/snapshotの意味確認",
+            "revision": "SYNTH-REV-024-A",
+            "environment": "SYNTH-ENV-DEV-A",
+            "owners": {
+              "policy": "SECURITY",
+              "resource_state": "INFRASTRUCTURE",
+              "physical_enforcement": "Worker execution environment",
+              "evidence_custody": "INFRASTRUCTURE observation reference; SECURITY policy reference"
+            },
+            "security_005": {
+              "credential_policy": "no raw credential in ordinary record",
+              "policy_state": "declared"
+            },
+            "resource_record": {
+              "resource_identity": "SYNTH-RESOURCE-STORE-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "credential_value_present": false
+            },
+            "backup": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+            },
+            "snapshot": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+            },
+            "stage4_scope": "initial_safe_connection_rule_only",
+            "all_stage4_capabilities": "not_in_scope",
+            "execution_state": "not_executed"
+          }
+        },
+        "defect_clause": "通常snapshotにraw値",
+        "mutated_fields": [
+          {
+            "path": "snapshot.contains_credential_value",
+            "pre_patch_value": false
+          },
+          {
+            "path": "snapshot.payload_marker",
+            "pre_patch_value": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+          }
+        ]
+      },
+      "when": {
+        "patches": [
+          {
+            "path": "snapshot.contains_credential_value",
+            "from": false,
+            "to": true
+          },
+          {
+            "path": "snapshot.payload_marker",
+            "from": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL",
+            "to": "SYNTHETIC-RAW-CREDENTIAL-PLACEHOLDER-NOT-A-CREDENTIAL"
+          }
+        ],
+        "apply_to_packet_ref": "PKT-024-RESOURCE-BASE"
+      },
+      "then": {
+        "source_field": "expected_observation",
+        "source_value": "policy owner/実資源owner/enforcerと証拠custodyが分かれ、値を通常証跡へ出さない。",
+        "observed_post_patch": {
+          "snapshot.contains_credential_value": true,
+          "snapshot.payload_marker": "SYNTHETIC-RAW-CREDENTIAL-PLACEHOLDER-NOT-A-CREDENTIAL"
+        },
+        "diagnostic_in_japanese": "当該snapshotの保存境界をINFRASTRUCTUREへ、credential方針と許容記録の不足をSECURITYへ戻す。"
+      },
+      "failure_route": {
+        "source_field": "failure_observation",
+        "source_value": "当該保存/回収不足をSEC/INFRAへ返し、実許可設定を本文から変更しない。",
+        "case_route": "当該snapshotの保存境界をINFRASTRUCTUREへ、credential方針と許容記録の不足をSECURITYへ戻す。"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L9-024-N02",
+      "kind": "negative",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-024-B01",
+        "HELIXSECURITY-L10-024-B01"
+      ],
+      "given": {
+        "source_field": "negative_input",
+        "source_value": "通常snapshotにraw値、OSが資源authority代替、Stage4全能力前倒し。",
+        "source_packet_refs": [
+          "PKT-024-RESOURCE-BASE"
+        ],
+        "packet_values": {
+          "PKT-024-RESOURCE-BASE": {
+            "fixture_only": true,
+            "scope": "合成した通常resource record/backup/snapshotの意味確認",
+            "revision": "SYNTH-REV-024-A",
+            "environment": "SYNTH-ENV-DEV-A",
+            "owners": {
+              "policy": "SECURITY",
+              "resource_state": "INFRASTRUCTURE",
+              "physical_enforcement": "Worker execution environment",
+              "evidence_custody": "INFRASTRUCTURE observation reference; SECURITY policy reference"
+            },
+            "security_005": {
+              "credential_policy": "no raw credential in ordinary record",
+              "policy_state": "declared"
+            },
+            "resource_record": {
+              "resource_identity": "SYNTH-RESOURCE-STORE-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "credential_value_present": false
+            },
+            "backup": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+            },
+            "snapshot": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+            },
+            "stage4_scope": "initial_safe_connection_rule_only",
+            "all_stage4_capabilities": "not_in_scope",
+            "execution_state": "not_executed"
+          }
+        },
+        "defect_clause": "OSが資源authority代替",
+        "mutated_fields": [
+          {
+            "path": "owners.resource_state",
+            "pre_patch_value": "INFRASTRUCTURE"
+          }
+        ]
+      },
+      "when": {
+        "patches": [
+          {
+            "path": "owners.resource_state",
+            "from": "INFRASTRUCTURE",
+            "to": "OS"
+          }
+        ],
+        "apply_to_packet_ref": "PKT-024-RESOURCE-BASE"
+      },
+      "then": {
+        "source_field": "expected_observation",
+        "source_value": "policy owner/実資源owner/enforcerと証拠custodyが分かれ、値を通常証跡へ出さない。",
+        "observed_post_patch": {
+          "owners.resource_state": "OS"
+        },
+        "diagnostic_in_japanese": "資源authorityをOSへ移さず、resource state ownerのINFRASTRUCTUREへ戻す。"
+      },
+      "failure_route": {
+        "source_field": "failure_observation",
+        "source_value": "当該保存/回収不足をSEC/INFRAへ返し、実許可設定を本文から変更しない。",
+        "case_route": "資源authorityをOSへ移さず、resource state ownerのINFRASTRUCTUREへ戻す。"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L9-024-N03",
+      "kind": "negative",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-024-B01",
+        "HELIXSECURITY-L10-024-B01"
+      ],
+      "given": {
+        "source_field": "negative_input",
+        "source_value": "通常snapshotにraw値、OSが資源authority代替、Stage4全能力前倒し。",
+        "source_packet_refs": [
+          "PKT-024-RESOURCE-BASE"
+        ],
+        "packet_values": {
+          "PKT-024-RESOURCE-BASE": {
+            "fixture_only": true,
+            "scope": "合成した通常resource record/backup/snapshotの意味確認",
+            "revision": "SYNTH-REV-024-A",
+            "environment": "SYNTH-ENV-DEV-A",
+            "owners": {
+              "policy": "SECURITY",
+              "resource_state": "INFRASTRUCTURE",
+              "physical_enforcement": "Worker execution environment",
+              "evidence_custody": "INFRASTRUCTURE observation reference; SECURITY policy reference"
+            },
+            "security_005": {
+              "credential_policy": "no raw credential in ordinary record",
+              "policy_state": "declared"
+            },
+            "resource_record": {
+              "resource_identity": "SYNTH-RESOURCE-STORE-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "credential_value_present": false
+            },
+            "backup": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-METADATA-AND-REFERENCE-ONLY-NOT-A-CREDENTIAL"
+            },
+            "snapshot": {
+              "source_revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "credential_reference": "SYNTH-SECRET-HANDLE-A",
+              "contains_credential_value": false,
+              "payload_marker": "SYNTHETIC-SNAPSHOT-METADATA-ONLY-NOT-A-CREDENTIAL"
+            },
+            "stage4_scope": "initial_safe_connection_rule_only",
+            "all_stage4_capabilities": "not_in_scope",
+            "execution_state": "not_executed"
+          }
+        },
+        "defect_clause": "Stage4全能力前倒し",
+        "mutated_fields": [
+          {
+            "path": "all_stage4_capabilities",
+            "pre_patch_value": "not_in_scope"
+          }
+        ]
+      },
+      "when": {
+        "patches": [
+          {
+            "path": "all_stage4_capabilities",
+            "from": "not_in_scope",
+            "to": "advanced_all_stage4"
+          }
+        ],
+        "apply_to_packet_ref": "PKT-024-RESOURCE-BASE"
+      },
+      "then": {
+        "source_field": "expected_observation",
+        "source_value": "policy owner/実資源owner/enforcerと証拠custodyが分かれ、値を通常証跡へ出さない。",
+        "observed_post_patch": {
+          "all_stage4_capabilities": "advanced_all_stage4"
+        },
+        "diagnostic_in_japanese": "安全接続の初回必要規範にscopeを戻し、全Stage4能力の成立を主張しない。"
+      },
+      "failure_route": {
+        "source_field": "failure_observation",
+        "source_value": "当該保存/回収不足をSEC/INFRAへ返し、実許可設定を本文から変更しない。",
+        "case_route": "安全接続の初回必要規範にscopeを戻し、全Stage4能力の成立を主張しない。"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L9-024-N04",
+      "kind": "negative",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-024-F01",
+        "HELIXSECURITY-L10-024-F01"
+      ],
+      "given": {
+        "source_field": "negative_input",
+        "source_value": "policyだけで資源安全、INFRAがpolicy発行、SECが資源配置、別環境receipt。",
+        "source_packet_refs": [
+          "PKT-024-POLICY-BASE"
+        ],
+        "packet_values": {
+          "PKT-024-POLICY-BASE": {
+            "fixture_only": true,
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "security_policy": {
+              "id": "SYNTH-SEC-POLICY-024-A",
+              "owner": "SECURITY",
+              "network": "egress_restricted",
+              "credential": "reference_only",
+              "environment": "SYNTH-ENV-DEV-A",
+              "project_isolation": "SYNTH-PROJECT-A",
+              "operation_authority": "not_granted_by_fixture",
+              "update": "candidate_review_only",
+              "egress": "restricted"
+            },
+            "infra_resource": {
+              "owner": "INFRASTRUCTURE",
+              "identity": "SYNTH-RESOURCE-NODE-A",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "network": "egress_restricted",
+              "credential_store": "SYNTH-STORE-REF-A",
+              "credential_value_present": false,
+              "safety_claim": "not_claimed",
+              "placement_owner": "INFRASTRUCTURE"
+            },
+            "worker_enforcement": {
+              "owner": "Worker execution environment",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "policy_reference": "SYNTH-SEC-POLICY-024-A",
+              "network": "egress_restricted",
+              "credential_value_exposure": "blocked_as_synthetic_fixture",
+              "observation": "synthetic_only"
+            },
+            "environment_b": {
+              "declaration": {
+                "state": "known",
+                "policy": "egress_restricted",
+                "revision": "SYNTH-REV-024-A",
+                "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+              },
+              "application_observation": {
+                "state": "unknown",
+                "applied": null,
+                "not_applied": null,
+                "evidence_ref": null
+              }
+            },
+            "receipt": {
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "contains_credential_value": false,
+              "value": "policy/resource/enforcer refs only"
+            },
+            "os_work_state": "separate_and_not_a_policy_or_resource_authority",
+            "execution_state": "not_executed"
+          }
+        },
+        "defect_clause": "policyだけで資源安全",
+        "mutated_fields": [
+          {
+            "path": "infra_resource.safety_claim",
+            "pre_patch_value": "not_claimed"
+          }
+        ]
+      },
+      "when": {
+        "patches": [
+          {
+            "path": "infra_resource.safety_claim",
+            "from": "not_claimed",
+            "to": "safe_from_policy_only"
+          }
+        ],
+        "apply_to_packet_ref": "PKT-024-POLICY-BASE"
+      },
+      "then": {
+        "source_field": "expected_observation",
+        "source_value": "宣言と実適用/未観測が別に辿れる。",
+        "observed_post_patch": {
+          "infra_resource.safety_claim": "safe_from_policy_only"
+        },
+        "diagnostic_in_japanese": "policy意味・安全判定の問題をSECURITYへ返し、実資源適用はINFRASTRUCTUREで別観測のまま保持する。"
+      },
+      "failure_route": {
+        "source_field": "failure_observation",
+        "source_value": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。",
+        "case_route": "policy意味・安全判定の問題をSECURITYへ返し、実資源適用はINFRASTRUCTUREで別観測のまま保持する。"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L9-024-N05",
+      "kind": "negative",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-024-F01",
+        "HELIXSECURITY-L10-024-F01"
+      ],
+      "given": {
+        "source_field": "negative_input",
+        "source_value": "policyだけで資源安全、INFRAがpolicy発行、SECが資源配置、別環境receipt。",
+        "source_packet_refs": [
+          "PKT-024-POLICY-BASE"
+        ],
+        "packet_values": {
+          "PKT-024-POLICY-BASE": {
+            "fixture_only": true,
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "security_policy": {
+              "id": "SYNTH-SEC-POLICY-024-A",
+              "owner": "SECURITY",
+              "network": "egress_restricted",
+              "credential": "reference_only",
+              "environment": "SYNTH-ENV-DEV-A",
+              "project_isolation": "SYNTH-PROJECT-A",
+              "operation_authority": "not_granted_by_fixture",
+              "update": "candidate_review_only",
+              "egress": "restricted"
+            },
+            "infra_resource": {
+              "owner": "INFRASTRUCTURE",
+              "identity": "SYNTH-RESOURCE-NODE-A",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "network": "egress_restricted",
+              "credential_store": "SYNTH-STORE-REF-A",
+              "credential_value_present": false,
+              "safety_claim": "not_claimed",
+              "placement_owner": "INFRASTRUCTURE"
+            },
+            "worker_enforcement": {
+              "owner": "Worker execution environment",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "policy_reference": "SYNTH-SEC-POLICY-024-A",
+              "network": "egress_restricted",
+              "credential_value_exposure": "blocked_as_synthetic_fixture",
+              "observation": "synthetic_only"
+            },
+            "environment_b": {
+              "declaration": {
+                "state": "known",
+                "policy": "egress_restricted",
+                "revision": "SYNTH-REV-024-A",
+                "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+              },
+              "application_observation": {
+                "state": "unknown",
+                "applied": null,
+                "not_applied": null,
+                "evidence_ref": null
+              }
+            },
+            "receipt": {
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "contains_credential_value": false,
+              "value": "policy/resource/enforcer refs only"
+            },
+            "os_work_state": "separate_and_not_a_policy_or_resource_authority",
+            "execution_state": "not_executed"
+          }
+        },
+        "defect_clause": "INFRAがpolicy発行",
+        "mutated_fields": [
+          {
+            "path": "security_policy.owner",
+            "pre_patch_value": "SECURITY"
+          }
+        ]
+      },
+      "when": {
+        "patches": [
+          {
+            "path": "security_policy.owner",
+            "from": "SECURITY",
+            "to": "INFRASTRUCTURE"
+          }
+        ],
+        "apply_to_packet_ref": "PKT-024-POLICY-BASE"
+      },
+      "then": {
+        "source_field": "expected_observation",
+        "source_value": "宣言と実適用/未観測が別に辿れる。",
+        "observed_post_patch": {
+          "security_policy.owner": "INFRASTRUCTURE"
+        },
+        "diagnostic_in_japanese": "policy ownerをSECURITYへ戻し、INFRASTRUCTUREが実資源状態を持つ境界を保持する。"
+      },
+      "failure_route": {
+        "source_field": "failure_observation",
+        "source_value": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。",
+        "case_route": "policy ownerをSECURITYへ戻し、INFRASTRUCTUREが実資源状態を持つ境界を保持する。"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L9-024-N06",
+      "kind": "negative",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-024-F01",
+        "HELIXSECURITY-L10-024-F01"
+      ],
+      "given": {
+        "source_field": "negative_input",
+        "source_value": "policyだけで資源安全、INFRAがpolicy発行、SECが資源配置、別環境receipt。",
+        "source_packet_refs": [
+          "PKT-024-POLICY-BASE"
+        ],
+        "packet_values": {
+          "PKT-024-POLICY-BASE": {
+            "fixture_only": true,
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "security_policy": {
+              "id": "SYNTH-SEC-POLICY-024-A",
+              "owner": "SECURITY",
+              "network": "egress_restricted",
+              "credential": "reference_only",
+              "environment": "SYNTH-ENV-DEV-A",
+              "project_isolation": "SYNTH-PROJECT-A",
+              "operation_authority": "not_granted_by_fixture",
+              "update": "candidate_review_only",
+              "egress": "restricted"
+            },
+            "infra_resource": {
+              "owner": "INFRASTRUCTURE",
+              "identity": "SYNTH-RESOURCE-NODE-A",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "network": "egress_restricted",
+              "credential_store": "SYNTH-STORE-REF-A",
+              "credential_value_present": false,
+              "safety_claim": "not_claimed",
+              "placement_owner": "INFRASTRUCTURE"
+            },
+            "worker_enforcement": {
+              "owner": "Worker execution environment",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "policy_reference": "SYNTH-SEC-POLICY-024-A",
+              "network": "egress_restricted",
+              "credential_value_exposure": "blocked_as_synthetic_fixture",
+              "observation": "synthetic_only"
+            },
+            "environment_b": {
+              "declaration": {
+                "state": "known",
+                "policy": "egress_restricted",
+                "revision": "SYNTH-REV-024-A",
+                "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+              },
+              "application_observation": {
+                "state": "unknown",
+                "applied": null,
+                "not_applied": null,
+                "evidence_ref": null
+              }
+            },
+            "receipt": {
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "contains_credential_value": false,
+              "value": "policy/resource/enforcer refs only"
+            },
+            "os_work_state": "separate_and_not_a_policy_or_resource_authority",
+            "execution_state": "not_executed"
+          }
+        },
+        "defect_clause": "SECが資源配置",
+        "mutated_fields": [
+          {
+            "path": "infra_resource.placement_owner",
+            "pre_patch_value": "INFRASTRUCTURE"
+          }
+        ]
+      },
+      "when": {
+        "patches": [
+          {
+            "path": "infra_resource.placement_owner",
+            "from": "INFRASTRUCTURE",
+            "to": "SECURITY"
+          }
+        ],
+        "apply_to_packet_ref": "PKT-024-POLICY-BASE"
+      },
+      "then": {
+        "source_field": "expected_observation",
+        "source_value": "宣言と実適用/未観測が別に辿れる。",
+        "observed_post_patch": {
+          "infra_resource.placement_owner": "SECURITY"
+        },
+        "diagnostic_in_japanese": "資源配置をINFRASTRUCTUREへ戻し、SECURITYはpolicy/authority ownerに留める。"
+      },
+      "failure_route": {
+        "source_field": "failure_observation",
+        "source_value": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。",
+        "case_route": "資源配置をINFRASTRUCTUREへ戻し、SECURITYはpolicy/authority ownerに留める。"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L9-024-N07",
+      "kind": "negative",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-024-F01",
+        "HELIXSECURITY-L10-024-F01"
+      ],
+      "given": {
+        "source_field": "negative_input",
+        "source_value": "policyだけで資源安全、INFRAがpolicy発行、SECが資源配置、別環境receipt。",
+        "source_packet_refs": [
+          "PKT-024-POLICY-BASE"
+        ],
+        "packet_values": {
+          "PKT-024-POLICY-BASE": {
+            "fixture_only": true,
+            "revision": "SYNTH-REV-024-A",
+            "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+            "security_policy": {
+              "id": "SYNTH-SEC-POLICY-024-A",
+              "owner": "SECURITY",
+              "network": "egress_restricted",
+              "credential": "reference_only",
+              "environment": "SYNTH-ENV-DEV-A",
+              "project_isolation": "SYNTH-PROJECT-A",
+              "operation_authority": "not_granted_by_fixture",
+              "update": "candidate_review_only",
+              "egress": "restricted"
+            },
+            "infra_resource": {
+              "owner": "INFRASTRUCTURE",
+              "identity": "SYNTH-RESOURCE-NODE-A",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "state": "observed",
+              "network": "egress_restricted",
+              "credential_store": "SYNTH-STORE-REF-A",
+              "credential_value_present": false,
+              "safety_claim": "not_claimed",
+              "placement_owner": "INFRASTRUCTURE"
+            },
+            "worker_enforcement": {
+              "owner": "Worker execution environment",
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "policy_reference": "SYNTH-SEC-POLICY-024-A",
+              "network": "egress_restricted",
+              "credential_value_exposure": "blocked_as_synthetic_fixture",
+              "observation": "synthetic_only"
+            },
+            "environment_b": {
+              "declaration": {
+                "state": "known",
+                "policy": "egress_restricted",
+                "revision": "SYNTH-REV-024-A",
+                "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION"
+              },
+              "application_observation": {
+                "state": "unknown",
+                "applied": null,
+                "not_applied": null,
+                "evidence_ref": null
+              }
+            },
+            "receipt": {
+              "environment": "SYNTH-ENV-DEV-A",
+              "revision": "SYNTH-REV-024-A",
+              "scope": "SYNTH-SCOPE-RESOURCE-CONNECTION",
+              "contains_credential_value": false,
+              "value": "policy/resource/enforcer refs only"
+            },
+            "os_work_state": "separate_and_not_a_policy_or_resource_authority",
+            "execution_state": "not_executed"
+          }
+        },
+        "defect_clause": "別環境receipt",
+        "mutated_fields": [
+          {
+            "path": "receipt.environment",
+            "pre_patch_value": "SYNTH-ENV-DEV-A"
+          }
+        ]
+      },
+      "when": {
+        "patches": [
+          {
+            "path": "receipt.environment",
+            "from": "SYNTH-ENV-DEV-A",
+            "to": "SYNTH-ENV-DEV-B"
+          }
+        ],
+        "apply_to_packet_ref": "PKT-024-POLICY-BASE"
+      },
+      "then": {
+        "source_field": "expected_observation",
+        "source_value": "宣言と実適用/未観測が別に辿れる。",
+        "observed_post_patch": {
+          "receipt.environment": "SYNTH-ENV-DEV-B"
+        },
+        "diagnostic_in_japanese": "環境不一致のreceiptを該当resource/実適用の未成立としてINFRASTRUCTURE/実環境へ戻す。OS作業状態では補完しない。"
+      },
+      "failure_route": {
+        "source_field": "failure_observation",
+        "source_value": "policy意味差はSEC、資源/実適用差はINFRA/実環境へ返し、OS作業状態へ混ぜない。",
+        "case_route": "環境不一致のreceiptを該当resource/実適用の未成立としてINFRASTRUCTURE/実環境へ戻す。OS作業状態では補完しない。"
+      },
+      "execution_state": "not_executed"
+    }
+  ],
+  "case_counts": {
+    "positive": 2,
+    "negative": 7,
+    "mutations": 7
+  },
+  "execution_state": "not_executed",
+  "test_limits": [
+    "全例を固定synthetic packetへ結び、実credentialや実資源状態を含めない。",
+    "原L10 positive/expected/negative/failure値を変更せずsource_field/valueを一致させる。",
+    "別環境receipt不一致と未観測enforcementを混同しない。"
+  ],
+  "legacy_source_review": {
+    "method": "旧HELIX inventory-first。asset_id/台帳source_pathとarchive本文を照合して意味を比較する。",
+    "evidence": [
+      {
+        "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+        "source_sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+        "line_start": 104,
+        "line_end": 110,
+        "source_quote": "| `repository_content` | exact artifact、目的、retentionを束縛 |\n| `sensitive` / `pii` | broker外送信を拒否、action binding必須 |\n| `credential` | 外部送信・ログ・command argvへの出力を拒否 |\n| `unknown` | 分類不能として拒否 |\n\n`sink_authority`は`local_workspace`、`git_object`、`github_api`、`network_endpoint`、\n`cloud_control_plane`、`process_environment`、`unknown`を区別する。sinkがexact target、",
+        "quote_sha256": "f3fd8d2905d0ff757a120fb5ce20f0a8765c81c8561ec96c16ea0b128fd6671f"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-8D9CC020932FDCDB7ACA",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-isolation-policy.md",
+        "source_sha256": "8ee84f79e82a3f814bef790f98d7ed3333348566f5ae036dd146a82436ae1552",
+        "line_start": 21,
+        "line_end": 24,
+        "source_quote": "`WorkerIsolationPolicy`は、封印済みwrapper identityへtask sensitivity、write scope、egress policyを束縛する。\n`secret`／`unknown` task、実tokenを含むpayload、非empty egress allowlist、曖昧scopeはprocess起動前に拒否する。\n許可済みtaskもLinux network namespaceを必ず分離し、実行後はrepo外scratchのadd／modify／deleteだけを\nexact pathまたは境界付きdirectory prefixと照合する。違反時はstdoutや変更内容を返さず失敗する。",
+        "quote_sha256": "55900ee41b6a12f19def1bdcaf43e2d02e25492967b66ba9daf423e56500783f"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-8DA932B4A1012B9D8F00",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-context-authority.md",
+        "source_sha256": "aca532c939e34f2a4fb6b47f74254ff76a49dfaea1eeb56ff5edd7f3a181acec",
+        "line_start": 39,
+        "line_end": 39,
+        "source_quote": "credential、GitHub token、HELIX DB／state pathはworker contextとして継承しない。",
+        "quote_sha256": "9ab84e890585a26823be43390b297b53ab92f81aa01617730b5e4ffd173dca48"
+      }
+    ],
+    "preserved": "credential値を通常のcontext/resource証跡へ出さないこと、policy/authorityの責務と実適用境界を区別すること、各execution surfaceの適用状態を確認すること。",
+    "changed": "旧typed enum、旧approval/runtime/sandboxの具体設定・実装、旧broker/receipt schemaは移植しない。現行SECURITY-024の承認L3/L10とINFRASTRUCTURE/Worker/OS/HARNESS consumer境界に沿い、固定synthetic値による静的traceへ再導出する。",
+    "reason": "旧機構specificな設定を現行の実資格・実policy・実enforcementと誤認せず、対象revisionで承認された意味と責務を保つため。"
+  },
+  "whole_object_authority_basis": {
+    "exact_l3_l10_whole_object_authority": {
+      "decision_record_id": "HDEC-SECURITY-PREREQUISITE-L3L10-2026-10-12",
+      "decision_record_path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+      "decision_record_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+      "reviewed_content_head": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "review_base": "990ffad297804dd39d4da1474545e90ddc060c7f",
+      "decision_status_as_recorded": "recorded_pending_final_review_and_main_admission",
+      "authority_effect_as_recorded": "effective_when_this_record_is_admitted_to_main",
+      "record_commit_is_ancestor_of_origin_main": true,
+      "reviewed_content_head_is_ancestor_of_record_commit": true,
+      "approved_scope": "SEC001-008/015/016/024, 35 L3/L10 pairs; this exact revision. Record states JSON is semantic source and MD is generated view.",
+      "source_files_at_reviewed_content_head": {
+        "docs/helix-security/L3-requirements/business-requirements.json": "7b5f78087ce4506ecc8a23ec2b1bb9a2efb65e210443196bad05166522970041",
+        "docs/helix-security/L3-requirements/functional-requirements.json": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
+        "docs/helix-security/L10-verification/business-verification.json": "96876217c635ff31c08f67fc01d5c2321b85c9415baae64c933e704743653084",
+        "docs/helix-security/L10-verification/functional-verification.json": "8578548278a9fc9c9da0ed5983a69aff7aef708982c69c0136128def5643fafc"
+      },
+      "approved_whole_object_canonical_sha256": {
+        "HELIXSECURITY-L3-024-B01": "37ad06b10e51e2e809cf817161094402c9fdb269ed3a0cfb3410b8f884324649",
+        "HELIXSECURITY-L10-024-B01": "0d5bd67727ac95d6718ee26200d28bc0011e2b03ad1059b4a39a692de3746cf2",
+        "HELIXSECURITY-L3-024-F01": "2f178ac26ef7138315bb16765d8b881540677f9cde34ee333e26299a588fc42d",
+        "HELIXSECURITY-L10-024-F01": "87c6065a0304f31f8725b94a65716b9b598f000af9c10ad2f986e9eec3a9c0b8"
+      },
+      "interpretation": "This record/revision is the exact source authority for the four L3/L10 whole objects below. The 2026-10-06 Stage4 decision remains the historical parent/Stage decision but its reviewed revision 04578d4 did not contain the JSON paths; do not cite 04578d4 alone as byte-level approval of these JSON whole objects."
+    },
+    "later_preservation_crosscheck": {
+      "decision_record_id": "HDEC-SECURITY-TOOL-PREREQUISITES-L3L10-2026-10-12",
+      "decision_record_path": "docs/governance/decisions/helix-security-tool-prerequisites-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_sha256": "d7c1f27d477b8323cae77cfb4dce8086c6d268826f09a1edcea46e186111878b",
+      "decision_record_commit": "3fa2c3ee61b0ee6e47b78c536fa9703b5becb416",
+      "reviewed_content_head": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "record_commit_is_ancestor_of_origin_main": true,
+      "reviewed_content_head_is_ancestor_of_record_commit": true,
+      "decision_scope": "SECURITY010-013の20 Stage1対を承認し、それ以前の35対を同一項目内容で保持する。",
+      "source_files_at_reviewed_content_head": {
+        "docs/helix-security/L3-requirements/business-requirements.json": "3c9bbc84d9ad9e81d08fdd0320854fbe1c617eb5cc8ff6f7ee557f3708359b10",
+        "docs/helix-security/L3-requirements/functional-requirements.json": "84392ce194417297443fb499816580a708d748f73dadbb6f8f5f8947f7455aa7",
+        "docs/helix-security/L10-verification/business-verification.json": "9f56e951bcc0e3510315362fb8501b9a7860981f2da090751e9fb33a1d160f7c",
+        "docs/helix-security/L10-verification/functional-verification.json": "256ca8a0229f65dd1694e56e80469b855816ccfe66fb4d01a20cde94f1301de1"
+      },
+      "role": "補助的な後続保存確認。024の新規authority sourceとしては数えず、0f9b exact whole-object approvalを差し替えない。"
+    },
+    "earlier_stage4_parent_decision": {
+      "path": "docs/governance/decisions/helix-security-stage4-l3-l10-po-decision-2026-10-06.md",
+      "decision_record_id": "HDEC-SECURITY-STAGE4-L3-L10-DELEGATED-2026-10-06",
+      "reviewed_content_revision": "04578d4c17c0c3340bab8dcbf11e8a9050304477",
+      "main_admission_commit": "776e6b7b533fa35b204746bae5319af4fdf49771",
+      "role": "024 Stage4 parent scope/meaning approval only. At 04578 the JSON source paths did not exist; exact object byte authority comes from the 10/12 record above."
+    },
+    "hash_is_not_authority_statement": "各whole object canonical SHAは内容同一性を確認する補助。authorityはdecision record、approved_content_head、decision recordのmain admission、approved JSON full-file SHAとwhole object exact equalityの連鎖で確定する。"
+  }
+}
