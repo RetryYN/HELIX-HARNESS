@@ -18010,5 +18010,2761 @@
     "list": "List<T>はTのJSON array。IdentityListのようなnamed list recordは宣言field itemsを持つobjectで、そのitems値がList<T>。",
     "tagged_union": "宣言fieldを持つJSON object。FieldValue<T>はpresence=absent/null/valueに従い、absentはvalue無し、nullはnull_marker、valueはTを持つ。",
     "scope": "この表現は純関数fixtureの論理型でありwire schema/parser/codecではない。raw JSONの型外値はcast・正規化せず、拒否形式は未設計。"
-  }
+  },
+  "local_branch_cases": [
+    {
+      "id": "UT-015-13",
+      "case_ref": "logical additional candidate owner absent branch",
+      "function_ref": "SEC015-FN-02",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-F01",
+        "HELIXSECURITY-L10-015-F01"
+      ],
+      "base_source_case_ref": "GWT-015-F01-N02",
+      "base_invocation_ref": "UT-015-07-02-01",
+      "given_typed_input": {
+        "identity": {
+          "identity_state": "identified_synthetic_or_unqualified",
+          "identity_value": {
+            "presence": "value",
+            "value": "fixture-asset-id:015-01"
+          },
+          "identity_resolution_value": {
+            "presence": "absent"
+          },
+          "asset_label_value": {
+            "presence": "value",
+            "value": "HELIX-JSON / Python meaning core / Requirement Engine / internal verification logic"
+          },
+          "provenance_state": "linked_record_values",
+          "owner_value": {
+            "presence": "value",
+            "value": "HELIX-HARNESS-CORE"
+          },
+          "source_value": {
+            "presence": "value",
+            "value": "fixture-source:core-repo-A"
+          },
+          "revision_value": {
+            "presence": "value",
+            "value": "fixture-revision:core-r17"
+          },
+          "digest_value": {
+            "presence": "value",
+            "value": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+          },
+          "content_dump_present": {
+            "presence": "value",
+            "value": false
+          },
+          "classification_state": "unknown",
+          "classification_source_owner": {
+            "presence": "absent"
+          },
+          "classification_source_revision": {
+            "presence": "absent"
+          },
+          "classification_claim_value": {
+            "presence": "absent"
+          },
+          "source_qualification": "not_claimed",
+          "return_owner": {
+            "presence": "absent"
+          },
+          "reason_codes": [
+            "classification_unknown"
+          ]
+        },
+        "context": {
+          "web_protection_state": {
+            "presence": "value",
+            "value": "not_established"
+          },
+          "web_operation": {
+            "presence": "value",
+            "value": "not_performed"
+          },
+          "public_authorization": {
+            "presence": "value",
+            "value": "not_present"
+          },
+          "publication_authorization": {
+            "presence": "value",
+            "value": "not_present"
+          },
+          "identity_base_state": {
+            "presence": "value",
+            "value": "identifiable_without_pattern_completion"
+          },
+          "inventory_scope": {
+            "presence": "value",
+            "value": "listed_only"
+          },
+          "identity_requires_content_dump": {
+            "presence": "value",
+            "value": false
+          },
+          "scope_comparison": {
+            "presence": "value",
+            "value": {
+              "listed_asset_identity_values": {
+                "presence": "value",
+                "value": {
+                  "items": [
+                    "fixture-asset-id:015-01",
+                    "fixture-asset-id:015-02",
+                    "fixture-asset-id:015-03",
+                    "fixture-asset-id:015-04",
+                    "fixture-asset-id:015-05",
+                    "fixture-asset-id:015-06"
+                  ]
+                }
+              },
+              "additional_candidate_records": {
+                "presence": "value",
+                "value": {
+                  "items": [
+                    {
+                      "owner": {
+                        "presence": "absent"
+                      },
+                      "asset_label": {
+                        "presence": "value",
+                        "value": "unlisted synthetic asset"
+                      },
+                      "source": {
+                        "presence": "value",
+                        "value": "fixture-source:extension-G"
+                      },
+                      "revision": {
+                        "presence": "value",
+                        "value": "fixture-revision:extension-r1"
+                      },
+                      "digest": {
+                        "presence": "value",
+                        "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                      },
+                      "stable_asset_identity": {
+                        "presence": "value",
+                        "value": "fixture-asset-id:015-07"
+                      },
+                      "identity_resolution": {
+                        "presence": "absent"
+                      },
+                      "classification_reference": {
+                        "presence": "value",
+                        "value": {
+                          "state": "unknown",
+                          "source_owner": {
+                            "presence": "absent"
+                          },
+                          "source_revision": {
+                            "presence": "absent"
+                          }
+                        }
+                      },
+                      "content_dump_present": {
+                        "presence": "value",
+                        "value": false
+                      }
+                    }
+                  ]
+                }
+              },
+              "source_packet_ref": {
+                "presence": "value",
+                "value": "PACKET-015-IDENTITY-EXTENDED"
+              }
+            }
+          }
+        }
+      },
+      "logical_patch": {
+        "pointer": "/context/scope_comparison/value/additional_candidate_records/value/items",
+        "from": [
+          {
+            "owner": {
+              "presence": "value",
+              "value": "HELIX-EXTENSION-OWNER"
+            },
+            "asset_label": {
+              "presence": "value",
+              "value": "unlisted synthetic asset"
+            },
+            "source": {
+              "presence": "value",
+              "value": "fixture-source:extension-G"
+            },
+            "revision": {
+              "presence": "value",
+              "value": "fixture-revision:extension-r1"
+            },
+            "digest": {
+              "presence": "value",
+              "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+            },
+            "stable_asset_identity": {
+              "presence": "value",
+              "value": "fixture-asset-id:015-07"
+            },
+            "identity_resolution": {
+              "presence": "absent"
+            },
+            "classification_reference": {
+              "presence": "value",
+              "value": {
+                "state": "unknown",
+                "source_owner": {
+                  "presence": "absent"
+                },
+                "source_revision": {
+                  "presence": "absent"
+                }
+              }
+            },
+            "content_dump_present": {
+              "presence": "value",
+              "value": false
+            }
+          }
+        ],
+        "to": [
+          {
+            "owner": {
+              "presence": "absent"
+            },
+            "asset_label": {
+              "presence": "value",
+              "value": "unlisted synthetic asset"
+            },
+            "source": {
+              "presence": "value",
+              "value": "fixture-source:extension-G"
+            },
+            "revision": {
+              "presence": "value",
+              "value": "fixture-revision:extension-r1"
+            },
+            "digest": {
+              "presence": "value",
+              "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+            },
+            "stable_asset_identity": {
+              "presence": "value",
+              "value": "fixture-asset-id:015-07"
+            },
+            "identity_resolution": {
+              "presence": "absent"
+            },
+            "classification_reference": {
+              "presence": "value",
+              "value": {
+                "state": "unknown",
+                "source_owner": {
+                  "presence": "absent"
+                },
+                "source_revision": {
+                  "presence": "absent"
+                }
+              }
+            },
+            "content_dump_present": {
+              "presence": "value",
+              "value": false
+            }
+          }
+        ]
+      },
+      "expected_projection": {
+        "return_owner": {
+          "presence": "absent"
+        },
+        "scope_comparison": {
+          "presence": "value",
+          "value": {
+            "listed_asset_identity_values": {
+              "presence": "value",
+              "value": {
+                "items": [
+                  "fixture-asset-id:015-01",
+                  "fixture-asset-id:015-02",
+                  "fixture-asset-id:015-03",
+                  "fixture-asset-id:015-04",
+                  "fixture-asset-id:015-05",
+                  "fixture-asset-id:015-06"
+                ]
+              }
+            },
+            "additional_candidate_records": {
+              "presence": "value",
+              "value": {
+                "items": [
+                  {
+                    "owner": {
+                      "presence": "absent"
+                    },
+                    "asset_label": {
+                      "presence": "value",
+                      "value": "unlisted synthetic asset"
+                    },
+                    "source": {
+                      "presence": "value",
+                      "value": "fixture-source:extension-G"
+                    },
+                    "revision": {
+                      "presence": "value",
+                      "value": "fixture-revision:extension-r1"
+                    },
+                    "digest": {
+                      "presence": "value",
+                      "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                    },
+                    "stable_asset_identity": {
+                      "presence": "value",
+                      "value": "fixture-asset-id:015-07"
+                    },
+                    "identity_resolution": {
+                      "presence": "absent"
+                    },
+                    "classification_reference": {
+                      "presence": "value",
+                      "value": {
+                        "state": "unknown",
+                        "source_owner": {
+                          "presence": "absent"
+                        },
+                        "source_revision": {
+                          "presence": "absent"
+                        }
+                      }
+                    },
+                    "content_dump_present": {
+                      "presence": "value",
+                      "value": false
+                    }
+                  }
+                ]
+              }
+            },
+            "source_packet_ref": {
+              "presence": "value",
+              "value": "PACKET-015-IDENTITY-EXTENDED"
+            }
+          }
+        },
+        "claim_consistency": [
+          "unlisted_scope_omitted"
+        ]
+      },
+      "typed_function_fixtures": {
+        "shape": "各signatureの全引数と必須memberを型付きで提示し、局所分岐の完全返却rootを期待する。実行済みの結果ではない。",
+        "invocations": [
+          {
+            "invocation_id": "UT-015-13-02-01",
+            "function_ref": "SEC015-FN-02",
+            "signature": "assess_claims(identity: IdentityAssessment, context: ProtectionContext) -> ClaimAssessment",
+            "input_arguments": {
+              "identity": {
+                "identity_state": "identified_synthetic_or_unqualified",
+                "identity_value": {
+                  "presence": "value",
+                  "value": "fixture-asset-id:015-01"
+                },
+                "identity_resolution_value": {
+                  "presence": "absent"
+                },
+                "asset_label_value": {
+                  "presence": "value",
+                  "value": "HELIX-JSON / Python meaning core / Requirement Engine / internal verification logic"
+                },
+                "provenance_state": "linked_record_values",
+                "owner_value": {
+                  "presence": "value",
+                  "value": "HELIX-HARNESS-CORE"
+                },
+                "source_value": {
+                  "presence": "value",
+                  "value": "fixture-source:core-repo-A"
+                },
+                "revision_value": {
+                  "presence": "value",
+                  "value": "fixture-revision:core-r17"
+                },
+                "digest_value": {
+                  "presence": "value",
+                  "value": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "content_dump_present": {
+                  "presence": "value",
+                  "value": false
+                },
+                "classification_state": "unknown",
+                "classification_source_owner": {
+                  "presence": "absent"
+                },
+                "classification_source_revision": {
+                  "presence": "absent"
+                },
+                "classification_claim_value": {
+                  "presence": "absent"
+                },
+                "source_qualification": "not_claimed",
+                "return_owner": {
+                  "presence": "absent"
+                },
+                "reason_codes": [
+                  "classification_unknown"
+                ]
+              },
+              "context": {
+                "web_protection_state": {
+                  "presence": "value",
+                  "value": "not_established"
+                },
+                "web_operation": {
+                  "presence": "value",
+                  "value": "not_performed"
+                },
+                "public_authorization": {
+                  "presence": "value",
+                  "value": "not_present"
+                },
+                "publication_authorization": {
+                  "presence": "value",
+                  "value": "not_present"
+                },
+                "identity_base_state": {
+                  "presence": "value",
+                  "value": "identifiable_without_pattern_completion"
+                },
+                "inventory_scope": {
+                  "presence": "value",
+                  "value": "listed_only"
+                },
+                "identity_requires_content_dump": {
+                  "presence": "value",
+                  "value": false
+                },
+                "scope_comparison": {
+                  "presence": "value",
+                  "value": {
+                    "listed_asset_identity_values": {
+                      "presence": "value",
+                      "value": {
+                        "items": [
+                          "fixture-asset-id:015-01",
+                          "fixture-asset-id:015-02",
+                          "fixture-asset-id:015-03",
+                          "fixture-asset-id:015-04",
+                          "fixture-asset-id:015-05",
+                          "fixture-asset-id:015-06"
+                        ]
+                      }
+                    },
+                    "additional_candidate_records": {
+                      "presence": "value",
+                      "value": {
+                        "items": [
+                          {
+                            "owner": {
+                              "presence": "absent"
+                            },
+                            "asset_label": {
+                              "presence": "value",
+                              "value": "unlisted synthetic asset"
+                            },
+                            "source": {
+                              "presence": "value",
+                              "value": "fixture-source:extension-G"
+                            },
+                            "revision": {
+                              "presence": "value",
+                              "value": "fixture-revision:extension-r1"
+                            },
+                            "digest": {
+                              "presence": "value",
+                              "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                            },
+                            "stable_asset_identity": {
+                              "presence": "value",
+                              "value": "fixture-asset-id:015-07"
+                            },
+                            "identity_resolution": {
+                              "presence": "absent"
+                            },
+                            "classification_reference": {
+                              "presence": "value",
+                              "value": {
+                                "state": "unknown",
+                                "source_owner": {
+                                  "presence": "absent"
+                                },
+                                "source_revision": {
+                                  "presence": "absent"
+                                }
+                              }
+                            },
+                            "content_dump_present": {
+                              "presence": "value",
+                              "value": false
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "source_packet_ref": {
+                      "presence": "value",
+                      "value": "PACKET-015-IDENTITY-EXTENDED"
+                    }
+                  }
+                }
+              }
+            },
+            "input_bindings": [
+              {
+                "argument_path": "identity.identity_state",
+                "source_case_field": "given_typed_input.identity.identity_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.identity_value",
+                "source_case_field": "given_typed_input.identity.identity_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.identity_resolution_value",
+                "source_case_field": "given_typed_input.identity.identity_resolution_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.asset_label_value",
+                "source_case_field": "given_typed_input.identity.asset_label_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.provenance_state",
+                "source_case_field": "given_typed_input.identity.provenance_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.owner_value",
+                "source_case_field": "given_typed_input.identity.owner_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.source_value",
+                "source_case_field": "given_typed_input.identity.source_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.revision_value",
+                "source_case_field": "given_typed_input.identity.revision_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.digest_value",
+                "source_case_field": "given_typed_input.identity.digest_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.content_dump_present",
+                "source_case_field": "given_typed_input.identity.content_dump_present",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.classification_state",
+                "source_case_field": "given_typed_input.identity.classification_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.classification_source_owner",
+                "source_case_field": "given_typed_input.identity.classification_source_owner",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.classification_source_revision",
+                "source_case_field": "given_typed_input.identity.classification_source_revision",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.classification_claim_value",
+                "source_case_field": "given_typed_input.identity.classification_claim_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.source_qualification",
+                "source_case_field": "given_typed_input.identity.source_qualification",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.return_owner",
+                "source_case_field": "given_typed_input.identity.return_owner",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.reason_codes",
+                "source_case_field": "given_typed_input.identity.reason_codes",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.web_protection_state",
+                "source_case_field": "given_typed_input.context.web_protection_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.web_operation",
+                "source_case_field": "given_typed_input.context.web_operation",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.public_authorization",
+                "source_case_field": "given_typed_input.context.public_authorization",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.publication_authorization",
+                "source_case_field": "given_typed_input.context.publication_authorization",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.identity_base_state",
+                "source_case_field": "given_typed_input.context.identity_base_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.inventory_scope",
+                "source_case_field": "given_typed_input.context.inventory_scope",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.identity_requires_content_dump",
+                "source_case_field": "given_typed_input.context.identity_requires_content_dump",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.scope_comparison",
+                "source_case_field": "given_typed_input.context.scope_comparison",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              }
+            ],
+            "expected_output": {
+              "return_type": "ClaimAssessment",
+              "completeness": "full_return",
+              "method": "明示した型付きidentity/context入力にL5 algorithmを適用。期待値は表示文から逆算しない。",
+              "fields": [
+                {
+                  "output_path": "ClaimAssessment.identity_base_state",
+                  "declared_type": "FieldValue<IdentityBaseState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "identifiable_without_pattern_completion"
+                  },
+                  "source_input_paths": [
+                    "context.identity_base_state"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.web_protection_state",
+                  "declared_type": "FieldValue<ProtectionState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "not_established"
+                  },
+                  "source_input_paths": [
+                    "context.web_protection_state"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.web_operation",
+                  "declared_type": "FieldValue<OperationState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "not_performed"
+                  },
+                  "source_input_paths": [
+                    "context.web_operation"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.public_authorization",
+                  "declared_type": "FieldValue<AuthorizationState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "not_present"
+                  },
+                  "source_input_paths": [
+                    "context.public_authorization"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.publication_authorization",
+                  "declared_type": "FieldValue<AuthorizationState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "not_present"
+                  },
+                  "source_input_paths": [
+                    "context.publication_authorization"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.content_dump_required",
+                  "declared_type": "FieldValue<Boolean>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": false
+                  },
+                  "source_input_paths": [
+                    "context.identity_requires_content_dump"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.inventory_scope",
+                  "declared_type": "FieldValue<InventoryScope>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "listed_only"
+                  },
+                  "source_input_paths": [
+                    "context.inventory_scope"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.scope_comparison",
+                  "declared_type": "FieldValue<ScopeComparisonInput>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": {
+                      "listed_asset_identity_values": {
+                        "presence": "value",
+                        "value": {
+                          "items": [
+                            "fixture-asset-id:015-01",
+                            "fixture-asset-id:015-02",
+                            "fixture-asset-id:015-03",
+                            "fixture-asset-id:015-04",
+                            "fixture-asset-id:015-05",
+                            "fixture-asset-id:015-06"
+                          ]
+                        }
+                      },
+                      "additional_candidate_records": {
+                        "presence": "value",
+                        "value": {
+                          "items": [
+                            {
+                              "owner": {
+                                "presence": "absent"
+                              },
+                              "asset_label": {
+                                "presence": "value",
+                                "value": "unlisted synthetic asset"
+                              },
+                              "source": {
+                                "presence": "value",
+                                "value": "fixture-source:extension-G"
+                              },
+                              "revision": {
+                                "presence": "value",
+                                "value": "fixture-revision:extension-r1"
+                              },
+                              "digest": {
+                                "presence": "value",
+                                "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                              },
+                              "stable_asset_identity": {
+                                "presence": "value",
+                                "value": "fixture-asset-id:015-07"
+                              },
+                              "identity_resolution": {
+                                "presence": "absent"
+                              },
+                              "classification_reference": {
+                                "presence": "value",
+                                "value": {
+                                  "state": "unknown",
+                                  "source_owner": {
+                                    "presence": "absent"
+                                  },
+                                  "source_revision": {
+                                    "presence": "absent"
+                                  }
+                                }
+                              },
+                              "content_dump_present": {
+                                "presence": "value",
+                                "value": false
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "source_packet_ref": {
+                        "presence": "value",
+                        "value": "PACKET-015-IDENTITY-EXTENDED"
+                      }
+                    }
+                  },
+                  "source_input_paths": [
+                    "context.scope_comparison"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.return_owner",
+                  "declared_type": "FieldValue<OwnerId>",
+                  "expected_value": {
+                    "presence": "absent"
+                  },
+                  "source_input_paths": [
+                    "context.scope_comparison",
+                    "identity.return_owner"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.claim_consistency",
+                  "declared_type": "List<ClaimFinding>",
+                  "expected_value": [
+                    "unlisted_scope_omitted"
+                  ],
+                  "source_input_paths": [
+                    "context.web_protection_state",
+                    "context.web_operation",
+                    "context.public_authorization",
+                    "context.publication_authorization",
+                    "context.identity_base_state",
+                    "context.inventory_scope",
+                    "context.identity_requires_content_dump",
+                    "context.scope_comparison",
+                    "identity.classification_state",
+                    "identity.classification_claim_value",
+                    "identity.content_dump_present"
+                  ]
+                }
+              ],
+              "unasserted_return_fields": []
+            },
+            "execution_state": "not_executed"
+          }
+        ]
+      },
+      "execution_state": "not_executed",
+      "qualification_state": "synthetic_unqualified",
+      "fixture_note_ja": "単一候補のowner欠落/null、複数候補の先頭非選択を表す局所論理分岐。元L9全8ケース/原packetは変更しない。"
+    },
+    {
+      "id": "UT-015-14",
+      "case_ref": "logical additional candidate owner null branch",
+      "function_ref": "SEC015-FN-02",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-F01",
+        "HELIXSECURITY-L10-015-F01"
+      ],
+      "base_source_case_ref": "GWT-015-F01-N02",
+      "base_invocation_ref": "UT-015-07-02-01",
+      "given_typed_input": {
+        "identity": {
+          "identity_state": "identified_synthetic_or_unqualified",
+          "identity_value": {
+            "presence": "value",
+            "value": "fixture-asset-id:015-01"
+          },
+          "identity_resolution_value": {
+            "presence": "absent"
+          },
+          "asset_label_value": {
+            "presence": "value",
+            "value": "HELIX-JSON / Python meaning core / Requirement Engine / internal verification logic"
+          },
+          "provenance_state": "linked_record_values",
+          "owner_value": {
+            "presence": "value",
+            "value": "HELIX-HARNESS-CORE"
+          },
+          "source_value": {
+            "presence": "value",
+            "value": "fixture-source:core-repo-A"
+          },
+          "revision_value": {
+            "presence": "value",
+            "value": "fixture-revision:core-r17"
+          },
+          "digest_value": {
+            "presence": "value",
+            "value": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+          },
+          "content_dump_present": {
+            "presence": "value",
+            "value": false
+          },
+          "classification_state": "unknown",
+          "classification_source_owner": {
+            "presence": "absent"
+          },
+          "classification_source_revision": {
+            "presence": "absent"
+          },
+          "classification_claim_value": {
+            "presence": "absent"
+          },
+          "source_qualification": "not_claimed",
+          "return_owner": {
+            "presence": "absent"
+          },
+          "reason_codes": [
+            "classification_unknown"
+          ]
+        },
+        "context": {
+          "web_protection_state": {
+            "presence": "value",
+            "value": "not_established"
+          },
+          "web_operation": {
+            "presence": "value",
+            "value": "not_performed"
+          },
+          "public_authorization": {
+            "presence": "value",
+            "value": "not_present"
+          },
+          "publication_authorization": {
+            "presence": "value",
+            "value": "not_present"
+          },
+          "identity_base_state": {
+            "presence": "value",
+            "value": "identifiable_without_pattern_completion"
+          },
+          "inventory_scope": {
+            "presence": "value",
+            "value": "listed_only"
+          },
+          "identity_requires_content_dump": {
+            "presence": "value",
+            "value": false
+          },
+          "scope_comparison": {
+            "presence": "value",
+            "value": {
+              "listed_asset_identity_values": {
+                "presence": "value",
+                "value": {
+                  "items": [
+                    "fixture-asset-id:015-01",
+                    "fixture-asset-id:015-02",
+                    "fixture-asset-id:015-03",
+                    "fixture-asset-id:015-04",
+                    "fixture-asset-id:015-05",
+                    "fixture-asset-id:015-06"
+                  ]
+                }
+              },
+              "additional_candidate_records": {
+                "presence": "value",
+                "value": {
+                  "items": [
+                    {
+                      "owner": {
+                        "presence": "null",
+                        "null_marker": "explicit_json_null"
+                      },
+                      "asset_label": {
+                        "presence": "value",
+                        "value": "unlisted synthetic asset"
+                      },
+                      "source": {
+                        "presence": "value",
+                        "value": "fixture-source:extension-G"
+                      },
+                      "revision": {
+                        "presence": "value",
+                        "value": "fixture-revision:extension-r1"
+                      },
+                      "digest": {
+                        "presence": "value",
+                        "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                      },
+                      "stable_asset_identity": {
+                        "presence": "value",
+                        "value": "fixture-asset-id:015-07"
+                      },
+                      "identity_resolution": {
+                        "presence": "absent"
+                      },
+                      "classification_reference": {
+                        "presence": "value",
+                        "value": {
+                          "state": "unknown",
+                          "source_owner": {
+                            "presence": "absent"
+                          },
+                          "source_revision": {
+                            "presence": "absent"
+                          }
+                        }
+                      },
+                      "content_dump_present": {
+                        "presence": "value",
+                        "value": false
+                      }
+                    }
+                  ]
+                }
+              },
+              "source_packet_ref": {
+                "presence": "value",
+                "value": "PACKET-015-IDENTITY-EXTENDED"
+              }
+            }
+          }
+        }
+      },
+      "logical_patch": {
+        "pointer": "/context/scope_comparison/value/additional_candidate_records/value/items",
+        "from": [
+          {
+            "owner": {
+              "presence": "value",
+              "value": "HELIX-EXTENSION-OWNER"
+            },
+            "asset_label": {
+              "presence": "value",
+              "value": "unlisted synthetic asset"
+            },
+            "source": {
+              "presence": "value",
+              "value": "fixture-source:extension-G"
+            },
+            "revision": {
+              "presence": "value",
+              "value": "fixture-revision:extension-r1"
+            },
+            "digest": {
+              "presence": "value",
+              "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+            },
+            "stable_asset_identity": {
+              "presence": "value",
+              "value": "fixture-asset-id:015-07"
+            },
+            "identity_resolution": {
+              "presence": "absent"
+            },
+            "classification_reference": {
+              "presence": "value",
+              "value": {
+                "state": "unknown",
+                "source_owner": {
+                  "presence": "absent"
+                },
+                "source_revision": {
+                  "presence": "absent"
+                }
+              }
+            },
+            "content_dump_present": {
+              "presence": "value",
+              "value": false
+            }
+          }
+        ],
+        "to": [
+          {
+            "owner": {
+              "presence": "null",
+              "null_marker": "explicit_json_null"
+            },
+            "asset_label": {
+              "presence": "value",
+              "value": "unlisted synthetic asset"
+            },
+            "source": {
+              "presence": "value",
+              "value": "fixture-source:extension-G"
+            },
+            "revision": {
+              "presence": "value",
+              "value": "fixture-revision:extension-r1"
+            },
+            "digest": {
+              "presence": "value",
+              "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+            },
+            "stable_asset_identity": {
+              "presence": "value",
+              "value": "fixture-asset-id:015-07"
+            },
+            "identity_resolution": {
+              "presence": "absent"
+            },
+            "classification_reference": {
+              "presence": "value",
+              "value": {
+                "state": "unknown",
+                "source_owner": {
+                  "presence": "absent"
+                },
+                "source_revision": {
+                  "presence": "absent"
+                }
+              }
+            },
+            "content_dump_present": {
+              "presence": "value",
+              "value": false
+            }
+          }
+        ]
+      },
+      "expected_projection": {
+        "return_owner": {
+          "presence": "null",
+          "null_marker": "explicit_json_null"
+        },
+        "scope_comparison": {
+          "presence": "value",
+          "value": {
+            "listed_asset_identity_values": {
+              "presence": "value",
+              "value": {
+                "items": [
+                  "fixture-asset-id:015-01",
+                  "fixture-asset-id:015-02",
+                  "fixture-asset-id:015-03",
+                  "fixture-asset-id:015-04",
+                  "fixture-asset-id:015-05",
+                  "fixture-asset-id:015-06"
+                ]
+              }
+            },
+            "additional_candidate_records": {
+              "presence": "value",
+              "value": {
+                "items": [
+                  {
+                    "owner": {
+                      "presence": "null",
+                      "null_marker": "explicit_json_null"
+                    },
+                    "asset_label": {
+                      "presence": "value",
+                      "value": "unlisted synthetic asset"
+                    },
+                    "source": {
+                      "presence": "value",
+                      "value": "fixture-source:extension-G"
+                    },
+                    "revision": {
+                      "presence": "value",
+                      "value": "fixture-revision:extension-r1"
+                    },
+                    "digest": {
+                      "presence": "value",
+                      "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                    },
+                    "stable_asset_identity": {
+                      "presence": "value",
+                      "value": "fixture-asset-id:015-07"
+                    },
+                    "identity_resolution": {
+                      "presence": "absent"
+                    },
+                    "classification_reference": {
+                      "presence": "value",
+                      "value": {
+                        "state": "unknown",
+                        "source_owner": {
+                          "presence": "absent"
+                        },
+                        "source_revision": {
+                          "presence": "absent"
+                        }
+                      }
+                    },
+                    "content_dump_present": {
+                      "presence": "value",
+                      "value": false
+                    }
+                  }
+                ]
+              }
+            },
+            "source_packet_ref": {
+              "presence": "value",
+              "value": "PACKET-015-IDENTITY-EXTENDED"
+            }
+          }
+        },
+        "claim_consistency": [
+          "unlisted_scope_omitted"
+        ]
+      },
+      "typed_function_fixtures": {
+        "shape": "各signatureの全引数と必須memberを型付きで提示し、局所分岐の完全返却rootを期待する。実行済みの結果ではない。",
+        "invocations": [
+          {
+            "invocation_id": "UT-015-14-02-01",
+            "function_ref": "SEC015-FN-02",
+            "signature": "assess_claims(identity: IdentityAssessment, context: ProtectionContext) -> ClaimAssessment",
+            "input_arguments": {
+              "identity": {
+                "identity_state": "identified_synthetic_or_unqualified",
+                "identity_value": {
+                  "presence": "value",
+                  "value": "fixture-asset-id:015-01"
+                },
+                "identity_resolution_value": {
+                  "presence": "absent"
+                },
+                "asset_label_value": {
+                  "presence": "value",
+                  "value": "HELIX-JSON / Python meaning core / Requirement Engine / internal verification logic"
+                },
+                "provenance_state": "linked_record_values",
+                "owner_value": {
+                  "presence": "value",
+                  "value": "HELIX-HARNESS-CORE"
+                },
+                "source_value": {
+                  "presence": "value",
+                  "value": "fixture-source:core-repo-A"
+                },
+                "revision_value": {
+                  "presence": "value",
+                  "value": "fixture-revision:core-r17"
+                },
+                "digest_value": {
+                  "presence": "value",
+                  "value": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "content_dump_present": {
+                  "presence": "value",
+                  "value": false
+                },
+                "classification_state": "unknown",
+                "classification_source_owner": {
+                  "presence": "absent"
+                },
+                "classification_source_revision": {
+                  "presence": "absent"
+                },
+                "classification_claim_value": {
+                  "presence": "absent"
+                },
+                "source_qualification": "not_claimed",
+                "return_owner": {
+                  "presence": "absent"
+                },
+                "reason_codes": [
+                  "classification_unknown"
+                ]
+              },
+              "context": {
+                "web_protection_state": {
+                  "presence": "value",
+                  "value": "not_established"
+                },
+                "web_operation": {
+                  "presence": "value",
+                  "value": "not_performed"
+                },
+                "public_authorization": {
+                  "presence": "value",
+                  "value": "not_present"
+                },
+                "publication_authorization": {
+                  "presence": "value",
+                  "value": "not_present"
+                },
+                "identity_base_state": {
+                  "presence": "value",
+                  "value": "identifiable_without_pattern_completion"
+                },
+                "inventory_scope": {
+                  "presence": "value",
+                  "value": "listed_only"
+                },
+                "identity_requires_content_dump": {
+                  "presence": "value",
+                  "value": false
+                },
+                "scope_comparison": {
+                  "presence": "value",
+                  "value": {
+                    "listed_asset_identity_values": {
+                      "presence": "value",
+                      "value": {
+                        "items": [
+                          "fixture-asset-id:015-01",
+                          "fixture-asset-id:015-02",
+                          "fixture-asset-id:015-03",
+                          "fixture-asset-id:015-04",
+                          "fixture-asset-id:015-05",
+                          "fixture-asset-id:015-06"
+                        ]
+                      }
+                    },
+                    "additional_candidate_records": {
+                      "presence": "value",
+                      "value": {
+                        "items": [
+                          {
+                            "owner": {
+                              "presence": "null",
+                              "null_marker": "explicit_json_null"
+                            },
+                            "asset_label": {
+                              "presence": "value",
+                              "value": "unlisted synthetic asset"
+                            },
+                            "source": {
+                              "presence": "value",
+                              "value": "fixture-source:extension-G"
+                            },
+                            "revision": {
+                              "presence": "value",
+                              "value": "fixture-revision:extension-r1"
+                            },
+                            "digest": {
+                              "presence": "value",
+                              "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                            },
+                            "stable_asset_identity": {
+                              "presence": "value",
+                              "value": "fixture-asset-id:015-07"
+                            },
+                            "identity_resolution": {
+                              "presence": "absent"
+                            },
+                            "classification_reference": {
+                              "presence": "value",
+                              "value": {
+                                "state": "unknown",
+                                "source_owner": {
+                                  "presence": "absent"
+                                },
+                                "source_revision": {
+                                  "presence": "absent"
+                                }
+                              }
+                            },
+                            "content_dump_present": {
+                              "presence": "value",
+                              "value": false
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "source_packet_ref": {
+                      "presence": "value",
+                      "value": "PACKET-015-IDENTITY-EXTENDED"
+                    }
+                  }
+                }
+              }
+            },
+            "input_bindings": [
+              {
+                "argument_path": "identity.identity_state",
+                "source_case_field": "given_typed_input.identity.identity_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.identity_value",
+                "source_case_field": "given_typed_input.identity.identity_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.identity_resolution_value",
+                "source_case_field": "given_typed_input.identity.identity_resolution_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.asset_label_value",
+                "source_case_field": "given_typed_input.identity.asset_label_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.provenance_state",
+                "source_case_field": "given_typed_input.identity.provenance_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.owner_value",
+                "source_case_field": "given_typed_input.identity.owner_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.source_value",
+                "source_case_field": "given_typed_input.identity.source_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.revision_value",
+                "source_case_field": "given_typed_input.identity.revision_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.digest_value",
+                "source_case_field": "given_typed_input.identity.digest_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.content_dump_present",
+                "source_case_field": "given_typed_input.identity.content_dump_present",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.classification_state",
+                "source_case_field": "given_typed_input.identity.classification_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.classification_source_owner",
+                "source_case_field": "given_typed_input.identity.classification_source_owner",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.classification_source_revision",
+                "source_case_field": "given_typed_input.identity.classification_source_revision",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.classification_claim_value",
+                "source_case_field": "given_typed_input.identity.classification_claim_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.source_qualification",
+                "source_case_field": "given_typed_input.identity.source_qualification",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.return_owner",
+                "source_case_field": "given_typed_input.identity.return_owner",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.reason_codes",
+                "source_case_field": "given_typed_input.identity.reason_codes",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.web_protection_state",
+                "source_case_field": "given_typed_input.context.web_protection_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.web_operation",
+                "source_case_field": "given_typed_input.context.web_operation",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.public_authorization",
+                "source_case_field": "given_typed_input.context.public_authorization",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.publication_authorization",
+                "source_case_field": "given_typed_input.context.publication_authorization",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.identity_base_state",
+                "source_case_field": "given_typed_input.context.identity_base_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.inventory_scope",
+                "source_case_field": "given_typed_input.context.inventory_scope",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.identity_requires_content_dump",
+                "source_case_field": "given_typed_input.context.identity_requires_content_dump",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.scope_comparison",
+                "source_case_field": "given_typed_input.context.scope_comparison",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              }
+            ],
+            "expected_output": {
+              "return_type": "ClaimAssessment",
+              "completeness": "full_return",
+              "method": "明示した型付きidentity/context入力にL5 algorithmを適用。期待値は表示文から逆算しない。",
+              "fields": [
+                {
+                  "output_path": "ClaimAssessment.identity_base_state",
+                  "declared_type": "FieldValue<IdentityBaseState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "identifiable_without_pattern_completion"
+                  },
+                  "source_input_paths": [
+                    "context.identity_base_state"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.web_protection_state",
+                  "declared_type": "FieldValue<ProtectionState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "not_established"
+                  },
+                  "source_input_paths": [
+                    "context.web_protection_state"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.web_operation",
+                  "declared_type": "FieldValue<OperationState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "not_performed"
+                  },
+                  "source_input_paths": [
+                    "context.web_operation"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.public_authorization",
+                  "declared_type": "FieldValue<AuthorizationState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "not_present"
+                  },
+                  "source_input_paths": [
+                    "context.public_authorization"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.publication_authorization",
+                  "declared_type": "FieldValue<AuthorizationState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "not_present"
+                  },
+                  "source_input_paths": [
+                    "context.publication_authorization"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.content_dump_required",
+                  "declared_type": "FieldValue<Boolean>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": false
+                  },
+                  "source_input_paths": [
+                    "context.identity_requires_content_dump"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.inventory_scope",
+                  "declared_type": "FieldValue<InventoryScope>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "listed_only"
+                  },
+                  "source_input_paths": [
+                    "context.inventory_scope"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.scope_comparison",
+                  "declared_type": "FieldValue<ScopeComparisonInput>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": {
+                      "listed_asset_identity_values": {
+                        "presence": "value",
+                        "value": {
+                          "items": [
+                            "fixture-asset-id:015-01",
+                            "fixture-asset-id:015-02",
+                            "fixture-asset-id:015-03",
+                            "fixture-asset-id:015-04",
+                            "fixture-asset-id:015-05",
+                            "fixture-asset-id:015-06"
+                          ]
+                        }
+                      },
+                      "additional_candidate_records": {
+                        "presence": "value",
+                        "value": {
+                          "items": [
+                            {
+                              "owner": {
+                                "presence": "null",
+                                "null_marker": "explicit_json_null"
+                              },
+                              "asset_label": {
+                                "presence": "value",
+                                "value": "unlisted synthetic asset"
+                              },
+                              "source": {
+                                "presence": "value",
+                                "value": "fixture-source:extension-G"
+                              },
+                              "revision": {
+                                "presence": "value",
+                                "value": "fixture-revision:extension-r1"
+                              },
+                              "digest": {
+                                "presence": "value",
+                                "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                              },
+                              "stable_asset_identity": {
+                                "presence": "value",
+                                "value": "fixture-asset-id:015-07"
+                              },
+                              "identity_resolution": {
+                                "presence": "absent"
+                              },
+                              "classification_reference": {
+                                "presence": "value",
+                                "value": {
+                                  "state": "unknown",
+                                  "source_owner": {
+                                    "presence": "absent"
+                                  },
+                                  "source_revision": {
+                                    "presence": "absent"
+                                  }
+                                }
+                              },
+                              "content_dump_present": {
+                                "presence": "value",
+                                "value": false
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "source_packet_ref": {
+                        "presence": "value",
+                        "value": "PACKET-015-IDENTITY-EXTENDED"
+                      }
+                    }
+                  },
+                  "source_input_paths": [
+                    "context.scope_comparison"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.return_owner",
+                  "declared_type": "FieldValue<OwnerId>",
+                  "expected_value": {
+                    "presence": "null",
+                    "null_marker": "explicit_json_null"
+                  },
+                  "source_input_paths": [
+                    "context.scope_comparison",
+                    "identity.return_owner"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.claim_consistency",
+                  "declared_type": "List<ClaimFinding>",
+                  "expected_value": [
+                    "unlisted_scope_omitted"
+                  ],
+                  "source_input_paths": [
+                    "context.web_protection_state",
+                    "context.web_operation",
+                    "context.public_authorization",
+                    "context.publication_authorization",
+                    "context.identity_base_state",
+                    "context.inventory_scope",
+                    "context.identity_requires_content_dump",
+                    "context.scope_comparison",
+                    "identity.classification_state",
+                    "identity.classification_claim_value",
+                    "identity.content_dump_present"
+                  ]
+                }
+              ],
+              "unasserted_return_fields": []
+            },
+            "execution_state": "not_executed"
+          }
+        ]
+      },
+      "execution_state": "not_executed",
+      "qualification_state": "synthetic_unqualified",
+      "fixture_note_ja": "単一候補のowner欠落/null、複数候補の先頭非選択を表す局所論理分岐。元L9全8ケース/原packetは変更しない。"
+    },
+    {
+      "id": "UT-015-15",
+      "case_ref": "logical additional candidate owner multiple branch",
+      "function_ref": "SEC015-FN-02",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-F01",
+        "HELIXSECURITY-L10-015-F01"
+      ],
+      "base_source_case_ref": "GWT-015-F01-N02",
+      "base_invocation_ref": "UT-015-07-02-01",
+      "given_typed_input": {
+        "identity": {
+          "identity_state": "identified_synthetic_or_unqualified",
+          "identity_value": {
+            "presence": "value",
+            "value": "fixture-asset-id:015-01"
+          },
+          "identity_resolution_value": {
+            "presence": "absent"
+          },
+          "asset_label_value": {
+            "presence": "value",
+            "value": "HELIX-JSON / Python meaning core / Requirement Engine / internal verification logic"
+          },
+          "provenance_state": "linked_record_values",
+          "owner_value": {
+            "presence": "value",
+            "value": "HELIX-HARNESS-CORE"
+          },
+          "source_value": {
+            "presence": "value",
+            "value": "fixture-source:core-repo-A"
+          },
+          "revision_value": {
+            "presence": "value",
+            "value": "fixture-revision:core-r17"
+          },
+          "digest_value": {
+            "presence": "value",
+            "value": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+          },
+          "content_dump_present": {
+            "presence": "value",
+            "value": false
+          },
+          "classification_state": "unknown",
+          "classification_source_owner": {
+            "presence": "absent"
+          },
+          "classification_source_revision": {
+            "presence": "absent"
+          },
+          "classification_claim_value": {
+            "presence": "absent"
+          },
+          "source_qualification": "not_claimed",
+          "return_owner": {
+            "presence": "absent"
+          },
+          "reason_codes": [
+            "classification_unknown"
+          ]
+        },
+        "context": {
+          "web_protection_state": {
+            "presence": "value",
+            "value": "not_established"
+          },
+          "web_operation": {
+            "presence": "value",
+            "value": "not_performed"
+          },
+          "public_authorization": {
+            "presence": "value",
+            "value": "not_present"
+          },
+          "publication_authorization": {
+            "presence": "value",
+            "value": "not_present"
+          },
+          "identity_base_state": {
+            "presence": "value",
+            "value": "identifiable_without_pattern_completion"
+          },
+          "inventory_scope": {
+            "presence": "value",
+            "value": "listed_only"
+          },
+          "identity_requires_content_dump": {
+            "presence": "value",
+            "value": false
+          },
+          "scope_comparison": {
+            "presence": "value",
+            "value": {
+              "listed_asset_identity_values": {
+                "presence": "value",
+                "value": {
+                  "items": [
+                    "fixture-asset-id:015-01",
+                    "fixture-asset-id:015-02",
+                    "fixture-asset-id:015-03",
+                    "fixture-asset-id:015-04",
+                    "fixture-asset-id:015-05",
+                    "fixture-asset-id:015-06"
+                  ]
+                }
+              },
+              "additional_candidate_records": {
+                "presence": "value",
+                "value": {
+                  "items": [
+                    {
+                      "owner": {
+                        "presence": "value",
+                        "value": "HELIX-EXTENSION-OWNER"
+                      },
+                      "asset_label": {
+                        "presence": "value",
+                        "value": "unlisted synthetic asset"
+                      },
+                      "source": {
+                        "presence": "value",
+                        "value": "fixture-source:extension-G"
+                      },
+                      "revision": {
+                        "presence": "value",
+                        "value": "fixture-revision:extension-r1"
+                      },
+                      "digest": {
+                        "presence": "value",
+                        "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                      },
+                      "stable_asset_identity": {
+                        "presence": "value",
+                        "value": "fixture-asset-id:015-07"
+                      },
+                      "identity_resolution": {
+                        "presence": "absent"
+                      },
+                      "classification_reference": {
+                        "presence": "value",
+                        "value": {
+                          "state": "unknown",
+                          "source_owner": {
+                            "presence": "absent"
+                          },
+                          "source_revision": {
+                            "presence": "absent"
+                          }
+                        }
+                      },
+                      "content_dump_present": {
+                        "presence": "value",
+                        "value": false
+                      }
+                    },
+                    {
+                      "owner": {
+                        "presence": "value",
+                        "value": "HELIX-SECOND-EXTENSION-OWNER"
+                      },
+                      "asset_label": {
+                        "presence": "value",
+                        "value": "unlisted synthetic asset"
+                      },
+                      "source": {
+                        "presence": "value",
+                        "value": "fixture-source:extension-G"
+                      },
+                      "revision": {
+                        "presence": "value",
+                        "value": "fixture-revision:extension-r1"
+                      },
+                      "digest": {
+                        "presence": "value",
+                        "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                      },
+                      "stable_asset_identity": {
+                        "presence": "value",
+                        "value": "fixture-asset-id:015-local-08"
+                      },
+                      "identity_resolution": {
+                        "presence": "absent"
+                      },
+                      "classification_reference": {
+                        "presence": "value",
+                        "value": {
+                          "state": "unknown",
+                          "source_owner": {
+                            "presence": "absent"
+                          },
+                          "source_revision": {
+                            "presence": "absent"
+                          }
+                        }
+                      },
+                      "content_dump_present": {
+                        "presence": "value",
+                        "value": false
+                      }
+                    }
+                  ]
+                }
+              },
+              "source_packet_ref": {
+                "presence": "value",
+                "value": "PACKET-015-IDENTITY-EXTENDED"
+              }
+            }
+          }
+        }
+      },
+      "logical_patch": {
+        "pointer": "/context/scope_comparison/value/additional_candidate_records/value/items",
+        "from": [
+          {
+            "owner": {
+              "presence": "value",
+              "value": "HELIX-EXTENSION-OWNER"
+            },
+            "asset_label": {
+              "presence": "value",
+              "value": "unlisted synthetic asset"
+            },
+            "source": {
+              "presence": "value",
+              "value": "fixture-source:extension-G"
+            },
+            "revision": {
+              "presence": "value",
+              "value": "fixture-revision:extension-r1"
+            },
+            "digest": {
+              "presence": "value",
+              "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+            },
+            "stable_asset_identity": {
+              "presence": "value",
+              "value": "fixture-asset-id:015-07"
+            },
+            "identity_resolution": {
+              "presence": "absent"
+            },
+            "classification_reference": {
+              "presence": "value",
+              "value": {
+                "state": "unknown",
+                "source_owner": {
+                  "presence": "absent"
+                },
+                "source_revision": {
+                  "presence": "absent"
+                }
+              }
+            },
+            "content_dump_present": {
+              "presence": "value",
+              "value": false
+            }
+          }
+        ],
+        "to": [
+          {
+            "owner": {
+              "presence": "value",
+              "value": "HELIX-EXTENSION-OWNER"
+            },
+            "asset_label": {
+              "presence": "value",
+              "value": "unlisted synthetic asset"
+            },
+            "source": {
+              "presence": "value",
+              "value": "fixture-source:extension-G"
+            },
+            "revision": {
+              "presence": "value",
+              "value": "fixture-revision:extension-r1"
+            },
+            "digest": {
+              "presence": "value",
+              "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+            },
+            "stable_asset_identity": {
+              "presence": "value",
+              "value": "fixture-asset-id:015-07"
+            },
+            "identity_resolution": {
+              "presence": "absent"
+            },
+            "classification_reference": {
+              "presence": "value",
+              "value": {
+                "state": "unknown",
+                "source_owner": {
+                  "presence": "absent"
+                },
+                "source_revision": {
+                  "presence": "absent"
+                }
+              }
+            },
+            "content_dump_present": {
+              "presence": "value",
+              "value": false
+            }
+          },
+          {
+            "owner": {
+              "presence": "value",
+              "value": "HELIX-SECOND-EXTENSION-OWNER"
+            },
+            "asset_label": {
+              "presence": "value",
+              "value": "unlisted synthetic asset"
+            },
+            "source": {
+              "presence": "value",
+              "value": "fixture-source:extension-G"
+            },
+            "revision": {
+              "presence": "value",
+              "value": "fixture-revision:extension-r1"
+            },
+            "digest": {
+              "presence": "value",
+              "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+            },
+            "stable_asset_identity": {
+              "presence": "value",
+              "value": "fixture-asset-id:015-local-08"
+            },
+            "identity_resolution": {
+              "presence": "absent"
+            },
+            "classification_reference": {
+              "presence": "value",
+              "value": {
+                "state": "unknown",
+                "source_owner": {
+                  "presence": "absent"
+                },
+                "source_revision": {
+                  "presence": "absent"
+                }
+              }
+            },
+            "content_dump_present": {
+              "presence": "value",
+              "value": false
+            }
+          }
+        ]
+      },
+      "expected_projection": {
+        "return_owner": {
+          "presence": "absent"
+        },
+        "scope_comparison": {
+          "presence": "value",
+          "value": {
+            "listed_asset_identity_values": {
+              "presence": "value",
+              "value": {
+                "items": [
+                  "fixture-asset-id:015-01",
+                  "fixture-asset-id:015-02",
+                  "fixture-asset-id:015-03",
+                  "fixture-asset-id:015-04",
+                  "fixture-asset-id:015-05",
+                  "fixture-asset-id:015-06"
+                ]
+              }
+            },
+            "additional_candidate_records": {
+              "presence": "value",
+              "value": {
+                "items": [
+                  {
+                    "owner": {
+                      "presence": "value",
+                      "value": "HELIX-EXTENSION-OWNER"
+                    },
+                    "asset_label": {
+                      "presence": "value",
+                      "value": "unlisted synthetic asset"
+                    },
+                    "source": {
+                      "presence": "value",
+                      "value": "fixture-source:extension-G"
+                    },
+                    "revision": {
+                      "presence": "value",
+                      "value": "fixture-revision:extension-r1"
+                    },
+                    "digest": {
+                      "presence": "value",
+                      "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                    },
+                    "stable_asset_identity": {
+                      "presence": "value",
+                      "value": "fixture-asset-id:015-07"
+                    },
+                    "identity_resolution": {
+                      "presence": "absent"
+                    },
+                    "classification_reference": {
+                      "presence": "value",
+                      "value": {
+                        "state": "unknown",
+                        "source_owner": {
+                          "presence": "absent"
+                        },
+                        "source_revision": {
+                          "presence": "absent"
+                        }
+                      }
+                    },
+                    "content_dump_present": {
+                      "presence": "value",
+                      "value": false
+                    }
+                  },
+                  {
+                    "owner": {
+                      "presence": "value",
+                      "value": "HELIX-SECOND-EXTENSION-OWNER"
+                    },
+                    "asset_label": {
+                      "presence": "value",
+                      "value": "unlisted synthetic asset"
+                    },
+                    "source": {
+                      "presence": "value",
+                      "value": "fixture-source:extension-G"
+                    },
+                    "revision": {
+                      "presence": "value",
+                      "value": "fixture-revision:extension-r1"
+                    },
+                    "digest": {
+                      "presence": "value",
+                      "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                    },
+                    "stable_asset_identity": {
+                      "presence": "value",
+                      "value": "fixture-asset-id:015-local-08"
+                    },
+                    "identity_resolution": {
+                      "presence": "absent"
+                    },
+                    "classification_reference": {
+                      "presence": "value",
+                      "value": {
+                        "state": "unknown",
+                        "source_owner": {
+                          "presence": "absent"
+                        },
+                        "source_revision": {
+                          "presence": "absent"
+                        }
+                      }
+                    },
+                    "content_dump_present": {
+                      "presence": "value",
+                      "value": false
+                    }
+                  }
+                ]
+              }
+            },
+            "source_packet_ref": {
+              "presence": "value",
+              "value": "PACKET-015-IDENTITY-EXTENDED"
+            }
+          }
+        },
+        "claim_consistency": [
+          "unlisted_scope_omitted"
+        ]
+      },
+      "typed_function_fixtures": {
+        "shape": "各signatureの全引数と必須memberを型付きで提示し、局所分岐の完全返却rootを期待する。実行済みの結果ではない。",
+        "invocations": [
+          {
+            "invocation_id": "UT-015-15-02-01",
+            "function_ref": "SEC015-FN-02",
+            "signature": "assess_claims(identity: IdentityAssessment, context: ProtectionContext) -> ClaimAssessment",
+            "input_arguments": {
+              "identity": {
+                "identity_state": "identified_synthetic_or_unqualified",
+                "identity_value": {
+                  "presence": "value",
+                  "value": "fixture-asset-id:015-01"
+                },
+                "identity_resolution_value": {
+                  "presence": "absent"
+                },
+                "asset_label_value": {
+                  "presence": "value",
+                  "value": "HELIX-JSON / Python meaning core / Requirement Engine / internal verification logic"
+                },
+                "provenance_state": "linked_record_values",
+                "owner_value": {
+                  "presence": "value",
+                  "value": "HELIX-HARNESS-CORE"
+                },
+                "source_value": {
+                  "presence": "value",
+                  "value": "fixture-source:core-repo-A"
+                },
+                "revision_value": {
+                  "presence": "value",
+                  "value": "fixture-revision:core-r17"
+                },
+                "digest_value": {
+                  "presence": "value",
+                  "value": "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "content_dump_present": {
+                  "presence": "value",
+                  "value": false
+                },
+                "classification_state": "unknown",
+                "classification_source_owner": {
+                  "presence": "absent"
+                },
+                "classification_source_revision": {
+                  "presence": "absent"
+                },
+                "classification_claim_value": {
+                  "presence": "absent"
+                },
+                "source_qualification": "not_claimed",
+                "return_owner": {
+                  "presence": "absent"
+                },
+                "reason_codes": [
+                  "classification_unknown"
+                ]
+              },
+              "context": {
+                "web_protection_state": {
+                  "presence": "value",
+                  "value": "not_established"
+                },
+                "web_operation": {
+                  "presence": "value",
+                  "value": "not_performed"
+                },
+                "public_authorization": {
+                  "presence": "value",
+                  "value": "not_present"
+                },
+                "publication_authorization": {
+                  "presence": "value",
+                  "value": "not_present"
+                },
+                "identity_base_state": {
+                  "presence": "value",
+                  "value": "identifiable_without_pattern_completion"
+                },
+                "inventory_scope": {
+                  "presence": "value",
+                  "value": "listed_only"
+                },
+                "identity_requires_content_dump": {
+                  "presence": "value",
+                  "value": false
+                },
+                "scope_comparison": {
+                  "presence": "value",
+                  "value": {
+                    "listed_asset_identity_values": {
+                      "presence": "value",
+                      "value": {
+                        "items": [
+                          "fixture-asset-id:015-01",
+                          "fixture-asset-id:015-02",
+                          "fixture-asset-id:015-03",
+                          "fixture-asset-id:015-04",
+                          "fixture-asset-id:015-05",
+                          "fixture-asset-id:015-06"
+                        ]
+                      }
+                    },
+                    "additional_candidate_records": {
+                      "presence": "value",
+                      "value": {
+                        "items": [
+                          {
+                            "owner": {
+                              "presence": "value",
+                              "value": "HELIX-EXTENSION-OWNER"
+                            },
+                            "asset_label": {
+                              "presence": "value",
+                              "value": "unlisted synthetic asset"
+                            },
+                            "source": {
+                              "presence": "value",
+                              "value": "fixture-source:extension-G"
+                            },
+                            "revision": {
+                              "presence": "value",
+                              "value": "fixture-revision:extension-r1"
+                            },
+                            "digest": {
+                              "presence": "value",
+                              "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                            },
+                            "stable_asset_identity": {
+                              "presence": "value",
+                              "value": "fixture-asset-id:015-07"
+                            },
+                            "identity_resolution": {
+                              "presence": "absent"
+                            },
+                            "classification_reference": {
+                              "presence": "value",
+                              "value": {
+                                "state": "unknown",
+                                "source_owner": {
+                                  "presence": "absent"
+                                },
+                                "source_revision": {
+                                  "presence": "absent"
+                                }
+                              }
+                            },
+                            "content_dump_present": {
+                              "presence": "value",
+                              "value": false
+                            }
+                          },
+                          {
+                            "owner": {
+                              "presence": "value",
+                              "value": "HELIX-SECOND-EXTENSION-OWNER"
+                            },
+                            "asset_label": {
+                              "presence": "value",
+                              "value": "unlisted synthetic asset"
+                            },
+                            "source": {
+                              "presence": "value",
+                              "value": "fixture-source:extension-G"
+                            },
+                            "revision": {
+                              "presence": "value",
+                              "value": "fixture-revision:extension-r1"
+                            },
+                            "digest": {
+                              "presence": "value",
+                              "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                            },
+                            "stable_asset_identity": {
+                              "presence": "value",
+                              "value": "fixture-asset-id:015-local-08"
+                            },
+                            "identity_resolution": {
+                              "presence": "absent"
+                            },
+                            "classification_reference": {
+                              "presence": "value",
+                              "value": {
+                                "state": "unknown",
+                                "source_owner": {
+                                  "presence": "absent"
+                                },
+                                "source_revision": {
+                                  "presence": "absent"
+                                }
+                              }
+                            },
+                            "content_dump_present": {
+                              "presence": "value",
+                              "value": false
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "source_packet_ref": {
+                      "presence": "value",
+                      "value": "PACKET-015-IDENTITY-EXTENDED"
+                    }
+                  }
+                }
+              }
+            },
+            "input_bindings": [
+              {
+                "argument_path": "identity.identity_state",
+                "source_case_field": "given_typed_input.identity.identity_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.identity_value",
+                "source_case_field": "given_typed_input.identity.identity_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.identity_resolution_value",
+                "source_case_field": "given_typed_input.identity.identity_resolution_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.asset_label_value",
+                "source_case_field": "given_typed_input.identity.asset_label_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.provenance_state",
+                "source_case_field": "given_typed_input.identity.provenance_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.owner_value",
+                "source_case_field": "given_typed_input.identity.owner_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.source_value",
+                "source_case_field": "given_typed_input.identity.source_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.revision_value",
+                "source_case_field": "given_typed_input.identity.revision_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.digest_value",
+                "source_case_field": "given_typed_input.identity.digest_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.content_dump_present",
+                "source_case_field": "given_typed_input.identity.content_dump_present",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.classification_state",
+                "source_case_field": "given_typed_input.identity.classification_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.classification_source_owner",
+                "source_case_field": "given_typed_input.identity.classification_source_owner",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.classification_source_revision",
+                "source_case_field": "given_typed_input.identity.classification_source_revision",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.classification_claim_value",
+                "source_case_field": "given_typed_input.identity.classification_claim_value",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.source_qualification",
+                "source_case_field": "given_typed_input.identity.source_qualification",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.return_owner",
+                "source_case_field": "given_typed_input.identity.return_owner",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "identity.reason_codes",
+                "source_case_field": "given_typed_input.identity.reason_codes",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.web_protection_state",
+                "source_case_field": "given_typed_input.context.web_protection_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.web_operation",
+                "source_case_field": "given_typed_input.context.web_operation",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.public_authorization",
+                "source_case_field": "given_typed_input.context.public_authorization",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.publication_authorization",
+                "source_case_field": "given_typed_input.context.publication_authorization",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.identity_base_state",
+                "source_case_field": "given_typed_input.context.identity_base_state",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.inventory_scope",
+                "source_case_field": "given_typed_input.context.inventory_scope",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.identity_requires_content_dump",
+                "source_case_field": "given_typed_input.context.identity_requires_content_dump",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              },
+              {
+                "argument_path": "context.scope_comparison",
+                "source_case_field": "given_typed_input.context.scope_comparison",
+                "mapping": "基準UT-015-07の独立論理入力へ、明記した局所差分だけを適用。実資格/原L9の変更ではない。"
+              }
+            ],
+            "expected_output": {
+              "return_type": "ClaimAssessment",
+              "completeness": "full_return",
+              "method": "明示した型付きidentity/context入力にL5 algorithmを適用。期待値は表示文から逆算しない。",
+              "fields": [
+                {
+                  "output_path": "ClaimAssessment.identity_base_state",
+                  "declared_type": "FieldValue<IdentityBaseState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "identifiable_without_pattern_completion"
+                  },
+                  "source_input_paths": [
+                    "context.identity_base_state"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.web_protection_state",
+                  "declared_type": "FieldValue<ProtectionState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "not_established"
+                  },
+                  "source_input_paths": [
+                    "context.web_protection_state"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.web_operation",
+                  "declared_type": "FieldValue<OperationState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "not_performed"
+                  },
+                  "source_input_paths": [
+                    "context.web_operation"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.public_authorization",
+                  "declared_type": "FieldValue<AuthorizationState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "not_present"
+                  },
+                  "source_input_paths": [
+                    "context.public_authorization"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.publication_authorization",
+                  "declared_type": "FieldValue<AuthorizationState>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "not_present"
+                  },
+                  "source_input_paths": [
+                    "context.publication_authorization"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.content_dump_required",
+                  "declared_type": "FieldValue<Boolean>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": false
+                  },
+                  "source_input_paths": [
+                    "context.identity_requires_content_dump"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.inventory_scope",
+                  "declared_type": "FieldValue<InventoryScope>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": "listed_only"
+                  },
+                  "source_input_paths": [
+                    "context.inventory_scope"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.scope_comparison",
+                  "declared_type": "FieldValue<ScopeComparisonInput>",
+                  "expected_value": {
+                    "presence": "value",
+                    "value": {
+                      "listed_asset_identity_values": {
+                        "presence": "value",
+                        "value": {
+                          "items": [
+                            "fixture-asset-id:015-01",
+                            "fixture-asset-id:015-02",
+                            "fixture-asset-id:015-03",
+                            "fixture-asset-id:015-04",
+                            "fixture-asset-id:015-05",
+                            "fixture-asset-id:015-06"
+                          ]
+                        }
+                      },
+                      "additional_candidate_records": {
+                        "presence": "value",
+                        "value": {
+                          "items": [
+                            {
+                              "owner": {
+                                "presence": "value",
+                                "value": "HELIX-EXTENSION-OWNER"
+                              },
+                              "asset_label": {
+                                "presence": "value",
+                                "value": "unlisted synthetic asset"
+                              },
+                              "source": {
+                                "presence": "value",
+                                "value": "fixture-source:extension-G"
+                              },
+                              "revision": {
+                                "presence": "value",
+                                "value": "fixture-revision:extension-r1"
+                              },
+                              "digest": {
+                                "presence": "value",
+                                "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                              },
+                              "stable_asset_identity": {
+                                "presence": "value",
+                                "value": "fixture-asset-id:015-07"
+                              },
+                              "identity_resolution": {
+                                "presence": "absent"
+                              },
+                              "classification_reference": {
+                                "presence": "value",
+                                "value": {
+                                  "state": "unknown",
+                                  "source_owner": {
+                                    "presence": "absent"
+                                  },
+                                  "source_revision": {
+                                    "presence": "absent"
+                                  }
+                                }
+                              },
+                              "content_dump_present": {
+                                "presence": "value",
+                                "value": false
+                              }
+                            },
+                            {
+                              "owner": {
+                                "presence": "value",
+                                "value": "HELIX-SECOND-EXTENSION-OWNER"
+                              },
+                              "asset_label": {
+                                "presence": "value",
+                                "value": "unlisted synthetic asset"
+                              },
+                              "source": {
+                                "presence": "value",
+                                "value": "fixture-source:extension-G"
+                              },
+                              "revision": {
+                                "presence": "value",
+                                "value": "fixture-revision:extension-r1"
+                              },
+                              "digest": {
+                                "presence": "value",
+                                "value": "sha256:7777777777777777777777777777777777777777777777777777777777777777"
+                              },
+                              "stable_asset_identity": {
+                                "presence": "value",
+                                "value": "fixture-asset-id:015-local-08"
+                              },
+                              "identity_resolution": {
+                                "presence": "absent"
+                              },
+                              "classification_reference": {
+                                "presence": "value",
+                                "value": {
+                                  "state": "unknown",
+                                  "source_owner": {
+                                    "presence": "absent"
+                                  },
+                                  "source_revision": {
+                                    "presence": "absent"
+                                  }
+                                }
+                              },
+                              "content_dump_present": {
+                                "presence": "value",
+                                "value": false
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "source_packet_ref": {
+                        "presence": "value",
+                        "value": "PACKET-015-IDENTITY-EXTENDED"
+                      }
+                    }
+                  },
+                  "source_input_paths": [
+                    "context.scope_comparison"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.return_owner",
+                  "declared_type": "FieldValue<OwnerId>",
+                  "expected_value": {
+                    "presence": "absent"
+                  },
+                  "source_input_paths": [
+                    "context.scope_comparison",
+                    "identity.return_owner"
+                  ]
+                },
+                {
+                  "output_path": "ClaimAssessment.claim_consistency",
+                  "declared_type": "List<ClaimFinding>",
+                  "expected_value": [
+                    "unlisted_scope_omitted"
+                  ],
+                  "source_input_paths": [
+                    "context.web_protection_state",
+                    "context.web_operation",
+                    "context.public_authorization",
+                    "context.publication_authorization",
+                    "context.identity_base_state",
+                    "context.inventory_scope",
+                    "context.identity_requires_content_dump",
+                    "context.scope_comparison",
+                    "identity.classification_state",
+                    "identity.classification_claim_value",
+                    "identity.content_dump_present"
+                  ]
+                }
+              ],
+              "unasserted_return_fields": []
+            },
+            "execution_state": "not_executed"
+          }
+        ]
+      },
+      "execution_state": "not_executed",
+      "qualification_state": "synthetic_unqualified",
+      "fixture_note_ja": "単一候補のowner欠落/null、複数候補の先頭非選択を表す局所論理分岐。元L9全8ケース/原packetは変更しない。"
+    }
+  ]
 }
