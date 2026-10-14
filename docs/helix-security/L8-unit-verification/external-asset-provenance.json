@@ -1,0 +1,3076 @@
+{
+  "parent": "HELIXSECURITY-L2-012",
+  "status": "draft_candidate_pending_independent_review",
+  "source_main": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+  "authority_effect": "none・承認012の詳細設計候補",
+  "approved_revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+  "approved_whole_objects": [
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "id": "HELIXSECURITY-L3-012-B01",
+      "object": {
+        "id": "HELIXSECURITY-L3-012-B01",
+        "parent": "HELIXSECURITY-L2-012",
+        "title": "外部資産の出所とtrust分離",
+        "obligation": "外部実行資産のprovenanceを採用/保留の材料として返し、取得済み/人気/最新/公式に見える名前だけでtrustedにしない。SECURITYは知識の採否やOS実進行を代行せず、不明な供給元/実行能力を明示する。",
+        "oracle_ref": "HELIXSECURITY-L10-012-B01"
+      },
+      "object_canonical_sha256": "3c5f87c701c8186f3f05ab0dc6700739b37eecd8503c5ef5f81c11508752c2a2"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-012-F01",
+      "object": {
+        "id": "HELIXSECURITY-L3-012-F01",
+        "parent": "HELIXSECURITY-L2-012",
+        "title": "9資産種別のprovenance",
+        "obligation": "package/container image/GitHub repository/MCP/plugin/Skill/Agent package/model/binaryの9種を個別に識別し、source/producer/version/digest/dependency/permission/network behavior/known risk/update delta/rollbackを元資産identityと010候補revisionへ結ぶ。013のartifact identityを照合し、各必須項目を別々に参照可能にする。",
+        "oracle_ref": "HELIXSECURITY-L10-012-F01"
+      },
+      "object_canonical_sha256": "d4df3fc91ae6f47f11e08e5bb18170576791864387ca51340f3640bab6529a10"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-012-F02",
+      "object": {
+        "id": "HELIXSECURITY-L3-012-F02",
+        "parent": "HELIXSECURITY-L2-012",
+        "title": "未知・不一致と無言fallback拒否",
+        "obligation": "source/producer/version/digest/dependency/permission/network/risk/update/rollbackの欠落・不一致をunknown/reject材料へ結ぶ。latest tag、同名資産、別版のdigestや既存lockだけで未知を補完しない。対象範囲の意味変更はL1-012へ戻す。",
+        "oracle_ref": "HELIXSECURITY-L10-012-F02"
+      },
+      "object_canonical_sha256": "2939d9e7d2860986ce80d6c5bdb12478d77212a5d29c8c06fe77fb67fc04f3a9"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "id": "HELIXSECURITY-L3-012-F03",
+      "object": {
+        "id": "HELIXSECURITY-L3-012-F03",
+        "parent": "HELIXSECURITY-L2-012",
+        "title": "初回tool選択と更新材料",
+        "obligation": "初回に選ぶformatter/lint/型検査/schema/文書監査/test/runtime/依存の外部実行資産について、該当する9種と010/013の材料を対象revision/scopeへ結ぶ。tool名・固定registry/scanner・特定providerを新規必須にせず、比較研究のURL/説明を実資産provenanceの代用にしない。",
+        "oracle_ref": "HELIXSECURITY-L10-012-F03"
+      },
+      "object_canonical_sha256": "39af8a260157072a6672736f8506119780d5746627e8045bee58ed09183972a6"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "id": "HELIXSECURITY-L3-012-N01",
+      "object": {
+        "id": "HELIXSECURITY-L3-012-N01",
+        "parent": "HELIXSECURITY-L2-012",
+        "title": "未見資産と対象集合",
+        "obligation": "未見資産kind/依存/producer/versionで同じ全fieldを照合する。必須fieldの一件欠落と、資産種別/推移依存対象集合の縮小を別に検出し、一toolの成功を全供給網の成立へ外挿しない。",
+        "oracle_ref": "HELIXSECURITY-L10-012-N01"
+      },
+      "object_canonical_sha256": "a4e2eb598256f75418a4dd4f561e830e6c4dcaa233450f37c0cc76f2b08a7787"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "id": "HELIXSECURITY-L10-012-B01",
+      "object": {
+        "id": "HELIXSECURITY-L10-012-B01",
+        "parent": "HELIXSECURITY-L2-012",
+        "title": "外部資産の出所とtrust分離",
+        "requirement_ref": "HELIXSECURITY-L3-012-B01",
+        "positive_input": "取得できる資産と出所不明の資産を分ける。",
+        "expected_observation": "材料提供と採用/実行の判定が別に辿れる。",
+        "negative_input": "download成功でtrusted、tool出力から許可を生成。",
+        "failure_observation": "出所/実行能力の不足を012、採用/進行は各ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "6c0471f5dc4244e7323d63493a62ae306b0b922b7d2dff2a55dd7f5517eeb691"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-012-F01",
+      "object": {
+        "id": "HELIXSECURITY-L10-012-F01",
+        "parent": "HELIXSECURITY-L2-012",
+        "title": "9資産種別のprovenance",
+        "requirement_ref": "HELIXSECURITY-L3-012-F01",
+        "positive_input": "9種と全provenance項目を元資産/候補へ対応付ける。",
+        "expected_observation": "資産種別/項目/source/元revisionが独立に辿れる。",
+        "negative_input": "binary/modelを対象外へ落とす、producer不明、network/risk欄をdigestで代用。",
+        "failure_observation": "不足kind/fieldをunknown/rejectとし012 ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "2626701634492ddb0215f9bd7e3e36a8b62618f0f237d49aca487c39189910d1"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-012-F02",
+      "object": {
+        "id": "HELIXSECURITY-L10-012-F02",
+        "parent": "HELIXSECURITY-L2-012",
+        "title": "未知・不一致と無言fallback拒否",
+        "requirement_ref": "HELIXSECURITY-L3-012-F02",
+        "positive_input": "固定版の資産とlatest/欠落/不一致を比較する。",
+        "expected_observation": "信頼材料の不足箇所と候補/資産の対応を残す。",
+        "negative_input": "image tagのみ固定と主張、別producer/版を受入、missing rollbackを安全化。",
+        "failure_observation": "当該資産の採用材料を不成立にし不足ownerへ戻す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "9cb00865a847232708424e53780389159974a426388d353456dbae4585f6ba6b"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "id": "HELIXSECURITY-L10-012-F03",
+      "object": {
+        "id": "HELIXSECURITY-L10-012-F03",
+        "parent": "HELIXSECURITY-L2-012",
+        "title": "初回tool選択と更新材料",
+        "requirement_ref": "HELIXSECURITY-L3-012-F03",
+        "positive_input": "同じ調査資料から選んだ実tool資産と未選択候補を比較する。",
+        "expected_observation": "選択実資産と必要項目/候補/検証対象が辿れ、未選択は未観測に保つ。",
+        "negative_input": "公式docs URLだけで実binary適格、hostにあるから採用、全MCP/modelを初回必須化。",
+        "failure_observation": "実資産の不足は012、選定/構成不足は対象設計ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "231a12bd9dd13f68bd3859170568b541c60d4ff16880bfccfe41c32480cc0dae"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "id": "HELIXSECURITY-L10-012-N01",
+      "object": {
+        "id": "HELIXSECURITY-L10-012-N01",
+        "parent": "HELIXSECURITY-L2-012",
+        "title": "未見資産と対象集合",
+        "requirement_ref": "HELIXSECURITY-L3-012-N01",
+        "positive_input": "未見kindと別producer/推移依存を加えた集合を比較する。",
+        "expected_observation": "欠けた対象/fieldと元資産を個別に示せる。",
+        "negative_input": "直接依存だけで全依存を確認済み、loop縮小で全9種成功。",
+        "failure_observation": "不足資産/依存を未完と残し適用範囲へ証拠を限定する。",
+        "execution_state": "not_executed"
+      },
+      "object_canonical_sha256": "37f4d4ca3b0ef5ec4e43d90ea731c069137d479dd434b104bbe2d8bc32ac9b67"
+    }
+  ],
+  "legacy_normative_whole_source_refs": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "id": "HIL-FR-34",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "object_canonical_sha256": "bbe04c543b10a4f150bcb3e6b04c6ce45d7f8e12a225b34c49954107c2746918"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "id": "HIL-TR-04",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "object_canonical_sha256": "10f603157ba0bbff0d0dd1755d40b65a365e094efe57b74aa221c4390755d5de"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "id": "HIL-TR-05",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "object_canonical_sha256": "960efc18d33e6b1150abdf416cdf70fb377e374df3411660033f84eab94f5466"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "id": "HIL-TR-06",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "object_canonical_sha256": "02a72d78d067d9bbe101b22e649da3abdfcb4b8d7e7e12be7ffb9b063ad0ecfe"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "id": "HIL-NFR-09",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "object_canonical_sha256": "e8794a871fdc3cb1dbb2f3e97f7d3575ec8689c2b9de9c1d731bf554aaf796e0"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "id": "HIL-NFR-19",
+      "file_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "object_canonical_sha256": "6cd8b36ba0ea608b8afe91cdebaf8318847e25de4bcca408a4dfaa2d1275a042"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_contracts.json",
+      "id": "HR-FR-HIL-14",
+      "file_sha256": "2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab",
+      "object_canonical_sha256": "79ad0d52fe46790b7309d9990609e8ea32e571d83337e6e03ee6b3c7147c0cfa"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-14a",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object_canonical_sha256": "5569256e445df1a675706ea4ae2d2bab682ca5fee50ddacc30149305a6bf193a"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-14b",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object_canonical_sha256": "8485e3d37a7d304e45e4600e6bbfbd13dd6892f051f4d8cb5adfd0683388b510"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/acceptance_cases.json",
+      "id": "HAC-HIL-14c",
+      "file_sha256": "4fabf58db6619ceaa5d0943fd295f5b0ec127be39f245428d203c6a3b366ae19",
+      "object_canonical_sha256": "74e854d7db752d18260039c15be3910253295eb4726e1d021320d4c4b4ba3add"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/system_tests.json",
+      "id": "HAT-HIL-14",
+      "file_sha256": "7ff2a798c120f7622d77dff2aba83992c03fb5a40cfa3b491572b4e8558c191a",
+      "object_canonical_sha256": "5f73d48f06d78b146ec87836173da0c582d7cf7031313a0e02e14962ebb61984"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/helix-security/L4-basic-design/external-asset-provenance.json",
+      "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+      "whole_file_sha256": "5b25d47c58fee686cb5b7397a90d7970245f4309abd6fbfd1d1423b977be5caa",
+      "json_pointer": "/contracts",
+      "source_value": [
+        {
+          "id": "HELIXSECURITY-L4-012-B01",
+          "requirement_ref": "HELIXSECURITY-L3-012-B01",
+          "oracle_ref": "HELIXSECURITY-L9-012-B01",
+          "system_oracle_ref": "HELIXSECURITY-L10-012-B01",
+          "title": "外部資産の出所とtrust分離",
+          "approved_obligation": "外部実行資産のprovenanceを採用/保留の材料として返し、取得済み/人気/最新/公式に見える名前だけでtrustedにしない。SECURITYは知識の採否やOS実進行を代行せず、不明な供給元/実行能力を明示する。",
+          "rules": [
+            "R08",
+            "R09",
+            "R11",
+            "R12"
+          ],
+          "backflow": "provenance field/source/producer/artifact不足は対象資産ownerへ戻す。対象範囲の意味変更はHELIXSECURITY-L1-012へ戻す。採用判断・OS進行・実許可は各ownerへ残す。"
+        },
+        {
+          "id": "HELIXSECURITY-L4-012-F01",
+          "requirement_ref": "HELIXSECURITY-L3-012-F01",
+          "oracle_ref": "HELIXSECURITY-L9-012-F01",
+          "system_oracle_ref": "HELIXSECURITY-L10-012-F01",
+          "title": "9資産種別のprovenance",
+          "approved_obligation": "package/container image/GitHub repository/MCP/plugin/Skill/Agent package/model/binaryの9種を個別に識別し、source/producer/version/digest/dependency/permission/network behavior/known risk/update delta/rollbackを元資産identityと010候補revisionへ結ぶ。013のartifact identityを照合し、各必須項目を別々に参照可能にする。",
+          "rules": [
+            "R01",
+            "R02",
+            "R03",
+            "R04",
+            "R05",
+            "R06",
+            "R07",
+            "R08",
+            "R10",
+            "R11",
+            "R12"
+          ],
+          "backflow": "provenance field/source/producer/artifact不足は対象資産ownerへ戻す。対象範囲の意味変更はHELIXSECURITY-L1-012へ戻す。採用判断・OS進行・実許可は各ownerへ残す。"
+        },
+        {
+          "id": "HELIXSECURITY-L4-012-F02",
+          "requirement_ref": "HELIXSECURITY-L3-012-F02",
+          "oracle_ref": "HELIXSECURITY-L9-012-F02",
+          "system_oracle_ref": "HELIXSECURITY-L10-012-F02",
+          "title": "未知・不一致と無言fallback拒否",
+          "approved_obligation": "source/producer/version/digest/dependency/permission/network/risk/update/rollbackの欠落・不一致をunknown/reject材料へ結ぶ。latest tag、同名資産、別版のdigestや既存lockだけで未知を補完しない。対象範囲の意味変更はL1-012へ戻す。",
+          "rules": [
+            "R01",
+            "R04",
+            "R05",
+            "R06",
+            "R07",
+            "R08",
+            "R09",
+            "R10",
+            "R11"
+          ],
+          "backflow": "provenance field/source/producer/artifact不足は対象資産ownerへ戻す。対象範囲の意味変更はHELIXSECURITY-L1-012へ戻す。採用判断・OS進行・実許可は各ownerへ残す。"
+        },
+        {
+          "id": "HELIXSECURITY-L4-012-F03",
+          "requirement_ref": "HELIXSECURITY-L3-012-F03",
+          "oracle_ref": "HELIXSECURITY-L9-012-F03",
+          "system_oracle_ref": "HELIXSECURITY-L10-012-F03",
+          "title": "初回tool選択と更新材料",
+          "approved_obligation": "初回に選ぶformatter/lint/型検査/schema/文書監査/test/runtime/依存の外部実行資産について、該当する9種と010/013の材料を対象revision/scopeへ結ぶ。tool名・固定registry/scanner・特定providerを新規必須にせず、比較研究のURL/説明を実資産provenanceの代用にしない。",
+          "rules": [
+            "R01",
+            "R02",
+            "R03",
+            "R07",
+            "R08",
+            "R09",
+            "R11",
+            "R12"
+          ],
+          "backflow": "provenance field/source/producer/artifact不足は対象資産ownerへ戻す。対象範囲の意味変更はHELIXSECURITY-L1-012へ戻す。採用判断・OS進行・実許可は各ownerへ残す。"
+        },
+        {
+          "id": "HELIXSECURITY-L4-012-N01",
+          "requirement_ref": "HELIXSECURITY-L3-012-N01",
+          "oracle_ref": "HELIXSECURITY-L9-012-N01",
+          "system_oracle_ref": "HELIXSECURITY-L10-012-N01",
+          "title": "未見資産と対象集合",
+          "approved_obligation": "未見資産kind/依存/producer/versionで同じ全fieldを照合する。必須fieldの一件欠落と、資産種別/推移依存対象集合の縮小を別に検出し、一toolの成功を全供給網の成立へ外挿しない。",
+          "rules": [
+            "R02",
+            "R03",
+            "R04",
+            "R06",
+            "R07",
+            "R10",
+            "R11",
+            "R12"
+          ],
+          "backflow": "provenance field/source/producer/artifact不足は対象資産ownerへ戻す。対象範囲の意味変更はHELIXSECURITY-L1-012へ戻す。採用判断・OS進行・実許可は各ownerへ残す。"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/external-asset-provenance.json",
+      "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+      "whole_file_sha256": "5b25d47c58fee686cb5b7397a90d7970245f4309abd6fbfd1d1423b977be5caa",
+      "json_pointer": "/comparison_rules",
+      "source_value": [
+        {
+          "id": "R01",
+          "rule": "共通string比較は両側の非空stringをknownとする。不明側はfield_unknownをその側pointerへ、両側known差はfield_conflictをactual pointerへ記録。enum比較は各側が指定集合外ならstate_unknown、両側集合内で差があればstate_conflictをactualへ返す。root binding各fieldとselectionのwitness_fields/root_fieldsをactual/contextへstring比較する。selection meaning_stateはdefined/unknownのenum比較に加え、各側の明示unknownへmeaning_unknownを記録する。comparison codeのfacetは比較場所のfacetへ、他codeはcodesの固定facetへ入れる。"
+        },
+        {
+          "id": "R02",
+          "rule": "rootsは非空string要素・重複なしのlistを有効集合とし、不明側set_unknownをselection facetへ、両側有効で集合差ならactual /rootsへset_conflictを返す。各側closureはroots有効かつedges dictの場合に限り、rootからvisited集合で各nodeを一度だけ辿る。訪問nodeを集合へ入れ、edgesにそのkeyなしならdependency_list_missingをその側/edgesへ、子list不明ならset_unknownをその側/edges/keyのgraphへ、他は子nodeへ進む。edges非dictはset_unknown graph。循環を新規拒否条件にせずvisitedで有限化する。roots無効またはedges非dictの側は未計算でclosure出力null。計算済みclosureはsorted、needed_assetsは計算済み側のみの和集合sorted。nullを空集合の観測へ補完しない。"
+        },
+        {
+          "id": "R03",
+          "rule": "両側closureが計算済みの場合だけ集合差をactual /edgesへdependency_set_conflict。片側未計算では閉包全体差を生成しない。両closure共通nodeで双方子list有効かつ集合差ならactual /edges/keyへ同code。assets非dictはその側/assetsへset_unknown graph。needed nodeが片側assets非dictまたはkey欠落ならその側/assetsへdependency_asset_missing graphと当該asset identityのgroup_missing。keyがあるがasset非dictならその側/assets/keyへgroup_missing identity。asset本体が両側dictの場合のみ以下を比較する。非選択nodeを比較せず、unselected_assetsはactual assets dictのkeyからneededを引いたsorted集合。全9kind実運転gateを作らない。"
+        },
+        {
+          "id": "R04",
+          "rule": "各needed nodeのidentity/artifactを両側dict要求。不明側group_missingを該当facetへ記録し、両側dictの場合だけ各group bindingをcontext同groupとcontext共通bindingの両方へstring比較、witness_fieldsと各固有fieldsをcontext同groupへstring比較する。identity.kindは9値のclosed集合で不明側kind_unknown、known差はactual kind_conflict。asset_kindsは両側identity dict時のactual known kindかnull。asset map keyはopaque node IDでkind正本ではなく、複数package/dep_direct等を排除するkey==kind条件を作らない。"
+        },
+        {
+          "id": "R05",
+          "rule": "artifact.asset_ref/asset_revision_refをcontext同assetのidentity.asset_id/asset_revisionへstring比較する。context identity非dictならそのidentity pointerへgroup_missing artifact。artifact stateはidentity_material/unobservedのenum比較を行い、各側明示unobservedへartifact_unobserved。artifact_statesは両側artifact dict時のactual enum内値かnull。これは013の同一性素材であり実validationや010受入receiptを未来gateにしない。"
+        },
+        {
+          "id": "R06",
+          "rule": "各asset.fieldsは両側dictを要求し、不明側set_unknown provenance、dict key集合が10 provenance_fieldsと異なればその側set_conflict provenance。両側dictの場合だけ共通必須fieldを評価。片側key欠落なら当該field_correspondenceにunknownを残すが追加findingを作らずfield_statesはnull。共通fieldのentryが片側非dictならgroup_missing provenanceと当該fieldへ記録し、両側dictの場合だけ以後のentry比較・状態採用を行う。field不足を別field/kind/assetで相殺しない。 資産本体欠落/非dictまたはfields非dictの側がある場合、当該assetの全10 field_correspondenceはunknown（追加findingなし）、field_statesはnullのまま。"
+        },
+        {
+          "id": "R07",
+          "rule": "各entry bindingの共通10fieldとasset_id/asset_revisionをcontext同entryへstring比較し、さらに共通10fieldはcontext共通bindingへ、asset_id/revisionはcontext同asset identityへjoinする。context identity非dictの場合はそのidentity pointerへgroup_missing provenanceと当該fieldへ記録。witness_fieldsとvalue_ref/evidence_ref/reason_refをcontext同entryへ個別string比較する。version/digest/producerのvalue_refはさらにcontext同asset artifactのversion_ref/digest_ref/producer_refへstring比較。context artifact非dictならそのartifact pointerへgroup_missing provenanceと該当fieldへ記録する。"
+        },
+        {
+          "id": "R08",
+          "rule": "entry stateはknown/unknownのenum比較に加え、各側の明示unknownへfield_unresolvedを記録。field_statesは両側entry dict時のactual enum内値かnull。originはasset_evidence/research_reference/unobservedの区別を保ち、集合外側はorigin_unknown、集合内だがasset_evidence以外の側はorigin_forbidden。両側集合内で差があればactual originへfield_conflictも記録する。version欄では各側value_refがliteral latestならfloating_version。これはfixture反例markerであり正式tag parser/codecではない。研究URL/説明/host/lock/同名/別版digestから欠落を補完しない。acquisition_stateはrawへ保持し比較・資格・trustのgateに使わない。"
+        },
+        {
+          "id": "R09",
+          "rule": "claimsの各入力keyは値がtrueならforbidden_claim、false以外ならclaim_unknown、falseなら診断なし。これは本比較からのdownload/popularity/latest/公式名/URL/host/lock/digestによる推測、直接依存だけの完了、固定scanner/registry/provider、全9種実運転gate、知識採否・OS昇格・操作許可・全体完了の新規主張を拒否する。別ownerが既に持つ事実を否定する契約ではない。meaning_unknownだけreturn_ownerはHELIXSECURITY-L1-012、他は診断facet-source-owner。この返却名は正式owner資格ではない。"
+        },
+        {
+          "id": "R10",
+          "rule": "facet/field gradeはviolation>unknown>corresponding。root_correspondenceはbinding/selection/graph/boundary各facet、asset_correspondenceはneeded nodeのidentity/provenance/artifact各facet、field_correspondenceは各node各10fieldの診断grade。entryに付く診断はprovenance facetと当該fieldの両方へ入れる。conditionはrootとasset gradesにviolationがあればprovenance_material_violation、他にunknownならprovenance_material_unknown、他はprovenance_material_corresponding。field key欠落はprovenance集合診断とfield unknownに分ける。 資産/fields群自体が比較不能な場合も全10 field_correspondenceをunknownに保ち、対応済み表示へ丸めない。"
+        },
+        {
+          "id": "R11",
+          "rule": "asset_material_correspondingはroot全facet・当該asset全facet・全fieldの診断が0で、全10field_statesがknown、artifact_statesがidentity_materialのときだけtrue。root graph等の不足はscope内全assetの素材成立へ影響するが、局所field/asset不足で他assetの局所対応を消さない。scope_material_correspondingはneededが非空かつ全asset材料trueの場合だけtrue。空選択を全体成功にしない。raw actualはbinding/selection/roots/edges/assets/claimsをdeepcopyし、raw referenceはcontext全体をdeepcopy。findingsはcode/pointer/return_ownerの同3fieldで重複除去し、そのtuple辞書順で並べる。"
+        },
+        {
+          "id": "R12",
+          "rule": "全23出力は固定fixture資料対応の設計案であり、正式schema/codec/source資格/context custody/producer真正性/current anchor、実資産母集団と全consumerの閉包を成立させない。actual_provenance_qualified/actual_trusted/actual_tool_adopted/actual_operation_permitted/actual_OS_promoted/whole_completeは全false、operation_effectはnone。両面自己申告が一致しても実資格ではない。参照先を原ownerの独立sourceへ解決する正式bindingと型はL5/L8以降で具体化し、署名方式等の新規固定方式を要求しない。"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-security/L4-basic-design/external-asset-provenance.json",
+      "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+      "whole_file_sha256": "5b25d47c58fee686cb5b7397a90d7970245f4309abd6fbfd1d1423b977be5caa",
+      "json_pointer": "/diagnostic_contract",
+      "source_value": {
+        "asset_kinds": [
+          "package",
+          "container_image",
+          "GitHub_repository",
+          "MCP",
+          "plugin",
+          "Skill",
+          "Agent_package",
+          "model",
+          "binary"
+        ],
+        "provenance_fields": [
+          "source",
+          "producer",
+          "version",
+          "digest",
+          "dependency",
+          "permission",
+          "network_behavior",
+          "known_risk",
+          "update_delta",
+          "rollback"
+        ],
+        "root_binding_fields": [
+          "project_id",
+          "requirement_revision",
+          "authority_revision",
+          "scope",
+          "environment_id",
+          "input_revision",
+          "candidate_id",
+          "candidate_revision",
+          "operation",
+          "actor_id"
+        ],
+        "identity_fields": [
+          "asset_id",
+          "asset_revision",
+          "display_name"
+        ],
+        "artifact_fields": [
+          "artifact_id",
+          "artifact_revision",
+          "version_ref",
+          "digest_ref",
+          "producer_ref",
+          "asset_ref",
+          "asset_revision_ref"
+        ],
+        "root_fields": [
+          "selection_ref",
+          "dependency_manifest_ref",
+          "candidate_input_ref"
+        ],
+        "entry_fields": [
+          "value_ref",
+          "evidence_ref",
+          "reason_ref"
+        ],
+        "witness_fields": [
+          "source_ref",
+          "source_revision",
+          "source_digest",
+          "owner_ref"
+        ],
+        "facets": [
+          "binding",
+          "selection",
+          "graph",
+          "boundary"
+        ],
+        "asset_facets": [
+          "identity",
+          "provenance",
+          "artifact"
+        ],
+        "codes": [
+          {
+            "code": "field_unknown",
+            "facet": "comparison",
+            "disposition": "unknown"
+          },
+          {
+            "code": "field_conflict",
+            "facet": "comparison",
+            "disposition": "violation"
+          },
+          {
+            "code": "set_unknown",
+            "facet": "comparison",
+            "disposition": "unknown"
+          },
+          {
+            "code": "set_conflict",
+            "facet": "comparison",
+            "disposition": "violation"
+          },
+          {
+            "code": "group_missing",
+            "facet": "comparison",
+            "disposition": "unknown"
+          },
+          {
+            "code": "kind_unknown",
+            "facet": "identity",
+            "disposition": "unknown"
+          },
+          {
+            "code": "kind_conflict",
+            "facet": "identity",
+            "disposition": "violation"
+          },
+          {
+            "code": "dependency_list_missing",
+            "facet": "graph",
+            "disposition": "unknown"
+          },
+          {
+            "code": "dependency_asset_missing",
+            "facet": "graph",
+            "disposition": "unknown"
+          },
+          {
+            "code": "dependency_set_conflict",
+            "facet": "graph",
+            "disposition": "violation"
+          },
+          {
+            "code": "state_unknown",
+            "facet": "comparison",
+            "disposition": "unknown"
+          },
+          {
+            "code": "state_conflict",
+            "facet": "comparison",
+            "disposition": "violation"
+          },
+          {
+            "code": "field_unresolved",
+            "facet": "provenance",
+            "disposition": "unknown"
+          },
+          {
+            "code": "origin_unknown",
+            "facet": "provenance",
+            "disposition": "unknown"
+          },
+          {
+            "code": "origin_forbidden",
+            "facet": "provenance",
+            "disposition": "violation"
+          },
+          {
+            "code": "artifact_unobserved",
+            "facet": "artifact",
+            "disposition": "unknown"
+          },
+          {
+            "code": "floating_version",
+            "facet": "provenance",
+            "disposition": "violation"
+          },
+          {
+            "code": "meaning_unknown",
+            "facet": "selection",
+            "disposition": "unknown"
+          },
+          {
+            "code": "forbidden_claim",
+            "facet": "boundary",
+            "disposition": "violation"
+          },
+          {
+            "code": "claim_unknown",
+            "facet": "boundary",
+            "disposition": "unknown"
+          }
+        ],
+        "output_fields": [
+          "condition",
+          "root_correspondence",
+          "asset_correspondence",
+          "field_correspondence",
+          "needed_assets",
+          "actual_dependency_closure",
+          "reference_dependency_closure",
+          "unselected_assets",
+          "asset_kinds",
+          "field_states",
+          "artifact_states",
+          "asset_material_corresponding",
+          "scope_material_corresponding",
+          "retained_actual",
+          "retained_reference",
+          "findings",
+          "actual_provenance_qualified",
+          "actual_trusted",
+          "actual_tool_adopted",
+          "actual_operation_permitted",
+          "actual_OS_promoted",
+          "whole_complete",
+          "operation_effect"
+        ],
+        "asset_map_key_semantics": "opaque node ID。identity.kindを代替しない。key==kind制約なし。",
+        "unknown_policy": "欠落・不一致・未知はunknown/reject材料として保持し、同名/latest/URL/lock/digest/downloadで補完しない。",
+        "scope_policy": "実rootとcontext rootからそれぞれ推移閉包を計算して比較する。未選択資産は未観測を維持する。9 kind全ての実運転をgate化しない。",
+        "fixture_domain": "固定root/selection/bindingのdict key shape、null・既知value変異、選択node/edge/fieldsのdict集合欠落を扱う。任意shape/余剰nested key/JSON pointer escape/正式codecは未閉包。"
+      }
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/external-asset-provenance.json",
+      "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+      "whole_file_sha256": "1050ab5d6862090f56fc192c014dcd1fd4dad7f4c1e5991565664e545ec107dd",
+      "json_pointer": "/review_corrections",
+      "source_value": {
+        "reviewed_head": "a750fd49dffd0d243c0f5c62747490b2205c3070",
+        "review_comment": 6175438152,
+        "finding_ids": [
+          "OS12-M1",
+          "OS12-m1"
+        ],
+        "changed_case_refs": [
+          "SEC012-C0623",
+          "SEC012-C0625",
+          "SEC012-C0626",
+          "SEC012-C0627",
+          "SEC012-C0629",
+          "SEC012-C0710",
+          "SEC012-C1168",
+          "SEC012-C1170",
+          "SEC012-C1171",
+          "SEC012-C1172",
+          "SEC012-C1174",
+          "SEC012-C1255",
+          "SEC012-C1740",
+          "SEC012-C1745"
+        ],
+        "whole_inputs_unchanged": true,
+        "case_ids_and_pair_trace_unchanged": true,
+        "evidence_limit": "文書設計案のreview修正。凍結製品oracle変更や実TDDではない。"
+      }
+    },
+    {
+      "path": "docs/helix-security/L9-integration-verification/external-asset-provenance.json",
+      "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+      "whole_file_sha256": "1050ab5d6862090f56fc192c014dcd1fd4dad7f4c1e5991565664e545ec107dd",
+      "json_pointer": "/fixture_contract/coverage_limit",
+      "source_value": "合成fixtureのfield族・9 kind語彙・root/transitive closure・unknown/rejectに限る。実資産母集団、producer qualification、blind heldout、全consumer閉包、実運転の成立を主張しない。"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "whole_file_sha256": "9f56e951bcc0e3510315362fb8501b9a7860981f2da090751e9fb33a1d160f7c"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "whole_file_sha256": "256ca8a0229f65dd1694e56e80469b855816ccfe66fb4d01a20cde94f1301de1"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/nfr-verification.json",
+      "revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "whole_file_sha256": "d508d02126562a73e662ea11a5bdf9a40eea40cfe874511b26f2d701cd032631"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "whole_file_sha256": "3c9bbc84d9ad9e81d08fdd0320854fbe1c617eb5cc8ff6f7ee557f3708359b10"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "whole_file_sha256": "84392ce194417297443fb499816580a708d748f73dadbb6f8f5f8947f7455aa7"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+      "revision": "110fdb3e2b51edc5c8a6188ddb9ecc73e139065d",
+      "whole_file_sha256": "eed3e27aec34d76b4979cbbee769fe7fec05f0a694b189426496a068fd9c452e"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-tool-prerequisites-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+      "whole_file_sha256": "d7c1f27d477b8323cae77cfb4dce8086c6d268826f09a1edcea46e186111878b"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+      "whole_file_sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+      "start_line": 55,
+      "end_line": 59,
+      "exact_quote": "| HELIXSECURITY-L1-010 | 人間は、source、依存、package、plugin、MCP、Skill、Agentの定義、Hook、実行環境の設定、Sandboxの方針、モデルとその重み、promptとsystem instruction、Connector、基盤の設定の更新について、出所、digest、依存・権限・network・資格情報・Hookと設定の差分、新しい実行物、既知のfinding、巻き戻しの可否を確かめてから受け入れられる。新しい版であることだけを更新の理由にしない | §11 | 1.0 | 単体 |\n| HELIXSECURITY-L1-011 | 人間は、fileの差分だけでなく、更新による能力の変化（例：読むだけから、書く・shell・networkへ）を検出し、版の差分から能力の差分、securityへの影響を導ける。モデル、Agent、MCP、plugin等にも当てる | §12 | 1.0 | 単体 |\n| HELIXSECURITY-L1-012 | 人間は、HELIXへ取り込む外部の実行資産（package、container image、GitHub repository、MCP server、plugin、Skill、Agent package、モデル、binary）について、出所、作成者、版、digest、依存、権限、networkの振る舞い、既知のrisk、更新の差分、巻き戻しを辿れる。知らない供給元や実行能力を暗黙に信頼済みへ昇格させない | §13 | 1.0 | 単体 |\n| HELIXSECURITY-L1-013 | 人間は、code、package、モデル、設定、securityの方針等が、生成から利用まで同じ対象であることを、identity、版、digest、出所、作成者、build、検証で確かめられる。「CIで検証した物」と「実際に配布・実行した物」を食い違わせない | §14 | 1.0 | 単体 |\n| HELIXSECURITY-L1-014 | 人間は、外部の情報やAgentの出力を、永続の情報へ無条件に昇格させないことを確かめられる。contextからmemory、episodeから学習データ、製品の知識からBRAINへの昇格の境界を扱い、memoryの汚染、Prompt Injectionの永続化、学習データやBRAINの汚染を防ぐ | §15 | 1.0 | 構成体（SECURITY、LABO、BRAIN、INTELLIGENCE） |"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+      "whole_file_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "start_line": 180,
+      "end_line": 189,
+      "exact_quote": "### HELIXSECURITY-L2-012 Supply Chain provenance\n\n- **受け取るもの**：package/container image/GitHub repository/MCP/plugin/Skill/Agent package/model/binaryのsource、producer、version、digest、dependency、permission、network behavior、known risk、update delta、rollback。\n- **提供するもの**：採用・保留判断へ使う完全なprovenanceと、未知項目の明示。\n- **保証すること**：不明な供給元や実行能力を暗黙にtrustedへ昇格させない。\n- **単独依存**：L2-010更新candidateとL2-013artifact identity。特定scanner/registry/providerを新規必須化しない。\n- **検証範囲／版**：列挙された外部実行資産の各provenance fieldとdependency/risk/rollback。1.0。\n- **失敗時の戻し先**：欠落または不一致はunknown/reject。対象範囲の変更はL1-012へ戻す。\n- **束ねる既存条件**：L1-012、PO §13、旧source provenance、dependency、sink、rollbackの多軸分離。\n"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+      "whole_file_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "start_line": 36,
+      "end_line": 36,
+      "exact_quote": "| HELIXSECURITY-L2-012 | 1.0 | package/container/GitHub repo/MCP/plugin/Skill/Agent/model/binaryでsource、producer、version、digest、dependency、permission、network、known risk、update delta、rollbackを辿れる。不明な供給元/実行能力をtrustedへ昇格したら不合格。 |"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+      "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+      "whole_file_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+      "json_pointer": "/canonical_meaning",
+      "source_value": {
+        "planning": "L1",
+        "requirement": "L2",
+        "specification": "L3",
+        "basic_design": "L4",
+        "detail_design": "L5",
+        "function_design": "L6",
+        "function_verification": "L7",
+        "unit_verification": "L8",
+        "integration_verification": "L9",
+        "system_verification": "L10",
+        "acceptance": "L11",
+        "operation_evaluation": "L12"
+      }
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+      "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+      "whole_file_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+      "json_pointer": "/outside_kinds",
+      "source_value": [
+        "charter",
+        "concept",
+        "implementation"
+      ]
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-E212E913117C5C247DAE",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/os-portability-supply-chain.md",
+        "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+        "whole_file_sha256": "3903ab1b5a1b4d42571120b9d310ad93291daf27c8c88bd2f65abc462246de40",
+        "start_line": 75,
+        "end_line": 176,
+        "exact_quote": "|---|---|---|---|\n| path separator | canonical pathは`/`、absolute/traversal/NULを拒否 | native pathへの変換 | root外escape、separator二重解釈 |\n| case／Unicode | raw pathと表示用NFCを分離しcollisionを検出 | filesystemのcase sensitivity、NFD観測 | case/NFC衝突のsilent merge |\n| symlink | link自体とtargetを識別しscope外targetを追跡しない | junction/reparse point表現 | link経由escape、loop未検出 |\n| permission／executable | 読書実行能力を明示的にprobe | POSIX modeとWindows ACL/executable解決 | permission errorの成功扱い |\n| process／signal | child tree、cancel、期限、終了理由をreceipt化 | signalとprocess tree termination手段 | orphan child、cancel後継続 |\n| atomic file | temp write、flush、rename/replace、失敗時非公開 | rename/replace primitive | partial publish、既存正本破壊 |\n| file lock | owner、lease、fence、stale判定を保持 | advisory/mandatory lock primitive | 二重owner、旧fence write |\n| SQLite contention | busy期限、transaction rollback、再試行上限を固定 | driver/locking mode | timeoutなし待機、partial commit |\n| executable resolution | explicit pathと検証済みPATH lookupだけを許可 | executable suffix、PATH delimiter | shell暗黙dispatch、別binary採用 |\n\nL6 `OsContractFacetV1`のexact allowlistは表順に`path_separator`、`case_unicode`、`symlink`、\n`permission_executable`、`process_signal`、`atomic_file`、`file_lock`、`sqlite_contention`、`executable_resolution`の9値とする。\n表示名からの推測、自由文字列、複数facetのaggregate aliasを禁止する。\n\nLinuxでは全facetを実filesystem・実process・実SQLiteで実行する。macOS/Windowsも同じfixture IDを実行し、\n環境上実行不能なfacetを暗黙skipしない。実行不能はblocking resultとし、scope変更には上位要求の再承認を要する。\n\n## §4 canonical dependencyとoffline再現性\n\nNodeとPythonはそれぞれ単一のcanonical manifest/lockを持ち、direct/transitive dependency、artifact digest、source identity、\nresolver versionを固定する。Nodeの正本はADR-009で確定したnpm＋`package.json`＋`package-lock.json`であり、別manager、別lock、\n`bun.lock`をtarget dependency graphへ混入させない。Pythonのversion、interpreter provenance、package manager、manifest／lock形式、\nwheel／sdist policyはHDS-HIL-12/14 pairと別runtime reviewで未freezeである。これらがexactly-oneへfreezeされる前は\n`HIL_SUPPLY_CHAIN_LOCK_DRIFT`でPython activationとterminal cutoverを拒否する。macOS/WindowsはLinux canonical lockを入力に解決する。\n\nonline installはclean Linuxで取得元、component graph、cache inventory、生成package digestを記録する。offline installはそのcacheを\n唯一の入力とし、network attempt 0、missing cache時fail-close、onlineと同じcomponent identity/version/artifact digestを要求する。\n比較はstdout文字列やdirectory件数ではなくcanonical component graph digestで行う。\n\nlock更新は通常実装に混載せず、独立IssueとUniversal Reverseを先行させる。更新receiptはsource diff、旧新lock digest、\n旧新component graph、SBOM diff、secret/license判定、rollback pointを必須とする。いずれか欠落時は\n`HIL_SUPPLY_CHAIN_LOCK_DRIFT`とし、Forward合流を許可しない。\n\n## §5 SBOM・secret・license契約\n\n統合SBOMはNode、Python、生成packageを同じrun IDへ束ね、各componentにecosystem、name、version、artifact digest、\npackage URL相当のstable identity、direct/transitive区分、source/lock relation、license expressionを持たせる。\nresolved graphの全componentがSBOMへexactly onceで対応し、余剰・欠落・identity conflictをgreenにしない。SBOM形式は\n実装PLANでschema versionを固定し、形式変更は同一component graphからの決定的再生成とschema migration evidenceを要する。\n\nsecret scanはsource、manifest/lock、dependency material、生成package、SBOM/evidenceを対象にする。receiptへ保存するのは\nscanner/policy version、対象digest、finding count、redacted fingerprint、判定だけとし、検出値やcredential本文を保存しない。\nfinding 1件以上は`HIL_SUPPLY_CHAIN_SECRET_FOUND`でfail-closeする。\n\nlicense policyはSPDX相当のexpressionをcomponent単位で正規化し、`allowed / review_required / prohibited / unclassified`を返す。\n`unclassified`と`prohibited`はgreen禁止、`review_required`は承認evidenceが同じcomponent identityとpolicy revisionへbindした場合だけ\n通過できる。承認が認証・配布・ライセンス判断を伴う場合は人へescalateし、AIの自己承認を許可しない。\n\n## §6 evidence bundleとfailure契約\n\n`.helix/evidence/os-supply-chain/<run_id>/`を実装時の候補rootとし、次を同一root digestへbindする。\n\n全artifactは同じtyped `CommonProvenanceEnvelope`を持つ。envelopeはrun/snapshot ID、commit/tree digest、fixture/difference\nrevision、resolver/scanner/schema/tool/package/root/approval digest、created_at/fresh_untilを必須とし、matrixとsupply-chain receiptの\nenvelope digestをexact joinする。runまたはsnapshotが異なる結果の寄せ集め、期限切れ、field欠落、root digestだけ一致する別内容を拒否する。\n\n| artifact | 必須内容 |\n|---|---|\n| `os-matrix.json` | OS、arch、profile、fixture ID、result、failure code、difference manifest revisionを記録 |\n| `environment.json` | Node/Python/SQLite/package manager/scanner version、clean/offline識別 |\n| `dependency-graphs.json` | Node/Python online/offline graph digest、lock digest、component countを記録 |\n| `sbom.json` | schema version、全component identity、root digest |\n| `policy-receipt.json` | secret finding count、license分類count、policy/scanner digest、承認参照 |\n| `package-receipt.json` | Node package、wheel/sdist、artifact digest、再生成比較 |\n| `completion-receipt.json` | command、exit code、stdout/stderr digest、全artifact digest、最終decision |\n\ncompletion gateはOS matrixとsupply-chain receiptを同一run/snapshot/envelopeへjoinしてから判定する。provenance fieldを一つでも\nmutationした場合、matrix単独greenまたはsupply単独greenを再利用せずcompletion 0とする。\n\n生のsecret、credential、PII、未redact scanner出力、依存source本文はbundleへ保存しない。既知failureは次で固定する。\n\n| code | 条件 | 完了への影響 |\n|---|---|---|\n| `HIL_LINUX_COMPLETION_MISSING` | Linux full未実行またはfacet欠落 | 全profile完了を拒否 |\n| `HIL_OS_ADAPTER_LEAK` | adapter外platform分岐 | HAC-HIL-14bを拒否 |\n| `HIL_OS_CONTRACT_DIFFERENCE_UNDECLARED` | manifest外差分 | 対象profileを拒否 |\n| `HIL_OS_PATH_CONTRACT_VIOLATION` | path/case/Unicode/symlink/permission異常 | 対象profileを拒否 |\n| `HIL_OS_PROCESS_CONTRACT_VIOLATION` | cancel/signal/child cleanup異常 | 対象profileを拒否 |\n| `HIL_OS_LOCK_CONTRACT_VIOLATION` | atomic file/lock/SQLite異常 | 対象profileを拒否 |\n| `HIL_SUPPLY_CHAIN_LOCK_DRIFT` | lock/manifest/graph/rollback evidence不整合 | mergeを拒否 |\n| `HIL_SUPPLY_CHAIN_OFFLINE_MISMATCH` | network attemptまたはonline/offline graph差分 | HAC-HIL-14cを拒否 |\n| `HIL_SBOM_COMPONENT_MISSING` | resolved componentのSBOM欠落・重複 | HAC-HIL-14cを拒否 |\n| `HIL_SUPPLY_CHAIN_SECRET_FOUND` | scan findingあり | mergeを拒否 |\n| `HIL_SUPPLY_CHAIN_LICENSE_UNCLASSIFIED` | 未分類licenseあり | mergeを拒否 |\n| `HIL_SUPPLY_CHAIN_LICENSE_PROHIBITED` | 禁止licenseまたは承認欠落 | mergeを拒否 |\n\n上表の詳細failure 12件に加え、HST境界で直接検査する\n`HIL_OS_SYMLINK_ESCAPE`、`HIL_OS_SQLITE_LOCK_TIMEOUT`、`HIL_OS_CONTRACT_VIOLATION`、\n`HIL_OS_PRIORITY_INVALID`、`HIL_SUPPLY_CHAIN_NOT_REPRODUCIBLE`、\n`HIL_ACTION_BINDING_APPROVAL_MISSING`、`HIL_OS_LOGIC_FORK`の7件もclosed failure集合へ含める。\nこの19件に、unexpected OS adapter exceptionを境界変換する`HIL_OS_INTERNAL_ERROR`と、unexpected supply-chain adapter exceptionを境界変換する\n`HIL_SUPPLY_CHAIN_INTERNAL_ERROR`の2件を加える。したがってL6の`OsSupplyChainFailureCodeV1`は合計21値であり、別名や自由文字列への縮退を認めない。\ninternal 2件は既存19 HSTの分母へ追加せず、adapter fault mutationでcause digest付きのexact codeとcurrent増分0を検証する。\n\n## §7 L8 oracleへの双方向trace\n\n| L5境界 | exact L8 oracle |\n|---|---|\n| Linux全OS facetとLinux必須完了 | `IT-OSSC-001` |\n| macOS同一fixtureと期待差分manifest | `IT-OSSC-002` |\n| Windows native同一fixtureと期待差分manifest | `IT-OSSC-003` |"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "direct/transitive graph、producer/版/digest/source/receipt別軸、partial公開回避/旧正本・rollback境界、不明の明示、pure policyと実取得/保存/実許可の分離。",
+      "change": "旧linux completion/OS matrix/lock/install/SBOM/secret/license/13unit分母/registry/current anchor実方式/TS型を移植しない。012の選択provenance資料比較へ限定し、CAS/rollbackは原ownerの収集素材参照として保持する。PPS役割/session/runtime資格をasset producer資格に転用しない。",
+      "reason": "承認012の5契約とR01–R12の責務に従う。旧資産未完成を理由に新方式/gateを作らず、原資料対応と真正性/trust/許可を別に残す。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9A01A0B72DB343D5859E",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/os-portability-supply-chain.md",
+        "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+        "whole_file_sha256": "b9976277c2d025b9ab0ae9454be97b679416e44823198d41b9b4aae127ffbc66",
+        "start_line": 30,
+        "end_line": 165,
+        "exact_quote": "pure policyはplatform API、filesystem、network、process、clockを直接読まず、明示入力だけで決定する。副作用はportへ隔離し、\n既知failureをdiscriminated unionで返す。`process.platform`等のplatform probeはadapter/bootstrapだけに置き、domain/gateから\n直接呼ばない。以下のsignatureはL7実装前のdraftであり、実装済みAPIを主張しない。\n\n## §1 function signatureとexact unit oracle\n\n| API | signature | DbC／failure | 対応するL7 oracle |\n|---|---|---|---|\n| `canonicalizeOsExecutionProfile` | `(raw: unknown, policy: OsProfilePolicyV1) => ResultV1<OsExecutionProfileV1, OsSupplyChainFailureV1>` | `linux-full`、`macos-portable`、`windows-compatibility`だけを受理しscopeを弱化しない | `U-OSSC-001` |\n| `validatePathFilesystemContract` | `(fixture: PathFixtureV1, observation: PathObservationV1, difference: ApprovedDifferenceV1 | null) => ContractResultV1` | separator/case/Unicode/symlink/permission/executableを全件評価し未宣言差分を拒否 | `U-OSSC-002` |\n| `validateProcessContract` | `(fixture: ProcessFixtureV1, observation: ProcessObservationV1) => ContractResultV1` | cancel期限、child tree終了、exit reason、orphan 0を要求 | `U-OSSC-003` |\n| `validateAtomicFileContract` | `(fixture: AtomicFileFixtureV1, journal: AtomicFileObservationV1[]) => ContractResultV1` | temp→flush→replace、failure時partial公開0、旧正本保持を要求 | `U-OSSC-004` |\n| `validateLockAndSqliteContract` | `(fixture: LockSqliteFixtureV1, observation: LockSqliteObservationV1) => ContractResultV1` | owner/lease/fence、busy期限、rollback、retry上限を検証 | `U-OSSC-005` |\n| `detectOsLogicFork` | `(artifacts: SourceArtifactV1[], policy: OsBranchPolicyV1) => OsLogicForkReportV1` | adapter/bootstrapだけをallowし、reason/owner/expiryなしallowlistを拒否 | `U-OSSC-006` |\n| `resolveCanonicalDependencyGraph` | `(node: LockedManifestV1, python: LockedManifestV1, resolver: ResolverIdentityV1) => ResultV1<DependencyGraphV1, OsSupplyChainFailureV1>` | Nodeはnpm＋package.json/package-lock.json固定、Pythonはpair-frozen toolchainだけを受理し、未freeze・direct/transitive欠落・OS lock forkを拒否 | `U-OSSC-007` |\n| `verifyOnlineInstall` | `(expected: DependencyGraphV1, observation: InstallObservationV1) => InstallReceiptV1` | clean環境、lock不変、取得artifactとpackage digestをexpected graphへ結線 | `U-OSSC-008` |\n| `verifyOfflineInstallParity` | `(online: InstallReceiptV1, offline: InstallObservationV1) => InstallParityReceiptV1` | network attempt 0、graph/package digest完全一致、cache miss fail-close | `U-OSSC-009` |\n| `buildUnifiedSbom` | `(graph: DependencyGraphV1, packages: GeneratedPackageV1[], schema: SbomSchemaV1) => ResultV1<UnifiedSbomV1, OsSupplyChainFailureV1>` | graph全component exactly once、Node/Python/package identityとlicense relation必須 | `U-OSSC-010` |\n| `evaluateSupplyChainPolicy` | `(targets: ScanTargetV1[], scan: SecretScanReportV1, licenses: LicenseInventoryV1, policy: SupplyChainPolicyV1) => PolicyReceiptV1` | raw findingを返さず、finding/unclassified/prohibited/承認欠落をfail-close | `U-OSSC-011` |\n| `evaluateOsSupplyChainCompletion` | `(matrix: OsMatrixReceiptV1, supply: SupplyChainReceiptV1, policy: CompletionPolicyV1) => CompletionDecisionV1` | Linux full必須、3 profile同一fixture、domain fork 0、offline/SBOM/policy greenを全て要求 | `U-OSSC-012` |\n| `joinOsSupplyChainProvenance` | `(matrix: OsMatrixReceiptV1, supply: SupplyChainReceiptV1, expectedEnvelopeDigest: string, store: OsSupplyProvenanceAnchorStoreV1, trustedNow: TrustedNowV1) => Promise<ResultV1<JoinedOsSupplyEvidenceV1, OsSupplyChainFailureV1>>` | trusted producer登録、registered receipt、store current anchor、全provenance/freshnessをexact照合 | `U-OSSC-013` |\n\n## §2 schema\n\n```ts\ntype ResultV1<T, E> =\n  | { ok: true; value: T }\n  | { ok: false; error: E };\n\ntype OsProfileIdV1 = \"linux-full\" | \"macos-portable\" | \"windows-compatibility\";\ntype OsContractFacetV1 = \"path_separator\" | \"case_unicode\" | \"symlink\" | \"permission_executable\" | \"process_signal\" | \"atomic_file\" | \"file_lock\" | \"sqlite_contention\" | \"executable_resolution\";\ntype OsSupplyChainFailureCodeV1 =\n  | \"HIL_LINUX_COMPLETION_MISSING\" | \"HIL_OS_ADAPTER_LEAK\" | \"HIL_OS_CONTRACT_DIFFERENCE_UNDECLARED\"\n  | \"HIL_OS_PATH_CONTRACT_VIOLATION\" | \"HIL_OS_PROCESS_CONTRACT_VIOLATION\" | \"HIL_OS_LOCK_CONTRACT_VIOLATION\"\n  | \"HIL_OS_SYMLINK_ESCAPE\" | \"HIL_OS_SQLITE_LOCK_TIMEOUT\" | \"HIL_OS_CONTRACT_VIOLATION\"\n  | \"HIL_OS_PRIORITY_INVALID\" | \"HIL_OS_LOGIC_FORK\"\n  | \"HIL_SUPPLY_CHAIN_LOCK_DRIFT\" | \"HIL_SUPPLY_CHAIN_OFFLINE_MISMATCH\" | \"HIL_SBOM_COMPONENT_MISSING\"\n  | \"HIL_SUPPLY_CHAIN_SECRET_FOUND\" | \"HIL_SUPPLY_CHAIN_LICENSE_UNCLASSIFIED\" | \"HIL_SUPPLY_CHAIN_LICENSE_PROHIBITED\"\n  | \"HIL_SUPPLY_CHAIN_NOT_REPRODUCIBLE\" | \"HIL_ACTION_BINDING_APPROVAL_MISSING\"\n  | \"HIL_OS_INTERNAL_ERROR\" | \"HIL_SUPPLY_CHAIN_INTERNAL_ERROR\";\ninterface OsSupplyChainFailureV1 { schema_version: \"helix-os-supply-chain-failure.v1\"; code: OsSupplyChainFailureCodeV1; facet: OsContractFacetV1 | \"supply_chain\"; profile_id: OsProfileIdV1 | null; evidence_digest: string; cause_digest: string | null; retryable: boolean; snapshot_id: string; run_id: string }\n\ninterface OsProfilePolicyV1 { policy_revision: string; required_profiles: OsProfileIdV1[]; linux_blocking_facets: OsContractFacetV1[]; fixture_revision: string; difference_manifest_revision: string; policy_digest: string }\ninterface OsExecutionProfileV1 {\n  schema_version: \"helix-os-profile.v1\";\n  profile_id: OsProfileIdV1;\n  fixture_revision: string;\n  difference_manifest_revision: string;\n  blocking_facets: OsContractFacetV1[];\n}\n\ninterface PathFixtureV1 { fixture_id: string; profile_id: OsProfileIdV1; facet_ids: OsContractFacetV1[]; canonical_path: string; expected_target_digest: string; expected_capabilities_digest: string; fixture_digest: string }\ninterface PathObservationV1 { fixture_id: string; native_path_digest: string; normalized_path: string; collision_digests: string[]; symlink_target_digest: string | null; permission_digest: string; executable_digest: string; observation_digest: string }\ninterface ApprovedDifferenceV1 { profile_id: OsProfileIdV1; facet_id: OsContractFacetV1; fixture_id: string; expected_digest: string; reason_digest: string; evidence_digest: string; approval_revision: string; expires_at: string | null }\ninterface ContractResultV1 { fixture_id: string; profile_id: OsProfileIdV1; evaluated_facets: OsContractFacetV1[]; failure_codes: OsSupplyChainFailureCodeV1[]; pass: boolean; result_digest: string }\ninterface ProcessFixtureV1 { fixture_id: string; profile_id: OsProfileIdV1; command_digest: string; child_tree_digest: string; cancel_deadline_ms: number; expected_exit_reason: string; fixture_digest: string }\ninterface ProcessObservationV1 { fixture_id: string; started_child_count: number; terminated_child_count: number; orphan_child_count: number; cancel_elapsed_ms: number; exit_reason: string; observation_digest: string }\ninterface AtomicFileFixtureV1 { fixture_id: string; profile_id: OsProfileIdV1; prior_authority_digest: string; candidate_digest: string; required_steps: [\"temp_write\", \"flush\", \"replace\"]; fixture_digest: string }\ninterface AtomicFileObservationV1 { sequence: number; step: \"temp_write\" | \"flush\" | \"replace\" | \"fault\"; published_digest: string | null; prior_authority_preserved: boolean; partial_publish_count: number; observation_digest: string }\ninterface LockSqliteFixtureV1 { fixture_id: string; profile_id: OsProfileIdV1; owner_id: string; lease_id: string; fence_token: string; busy_deadline_ms: number; retry_limit: number; fixture_digest: string }\ninterface LockSqliteObservationV1 { fixture_id: string; observed_owner_ids: string[]; accepted_fence_token: string | null; retry_count: number; elapsed_ms: number; rollback_complete: boolean; partial_commit_count: number; observation_digest: string }\ninterface SourceArtifactV1 { path: string; symbol: string; layer: \"adapter\" | \"bootstrap\" | \"domain\" | \"gate\" | \"state\" | \"policy\" | \"orchestration\"; platform_branch_digest: string; source_digest: string }\ninterface OsBranchPolicyV1 { policy_revision: string; allowed_layers: [\"adapter\", \"bootstrap\"]; allowlist: { symbol: string; reason_digest: string; owner: string; expires_at: string; replacement_design_digest: string }[]; policy_digest: string }\ninterface OsLogicForkReportV1 { scanned_artifact_count: number; finding_count: number; findings: { path: string; symbol: string; layer: string; failure_code: \"HIL_OS_ADAPTER_LEAK\"; evidence_digest: string }[]; allowlist_digest: string; report_digest: string }\ninterface LockedManifestV1 { ecosystem: \"node\" | \"python\"; package_manager: string; manifest_name: string; lock_name: string; toolchain_authority: \"adr_fixed\" | \"pair_frozen\"; toolchain_frozen: true; authority_source_digest: string; manifest_digest: string; lock_digest: string; resolver_version: string; os_variant: null; components: DependencyComponentV1[] }\ninterface ResolverIdentityV1 { resolver_id: string; resolver_version: string; artifact_policy_digest: string; source_policy_digest: string; identity_digest: string }\ninterface DependencyComponentV1 {\n  component_id: string;\n  ecosystem: \"node\" | \"python\";\n  name: string;\n  version: string;\n  artifact_digest: string;\n  source_identity: string;\n  relationship: \"direct\" | \"transitive\" | \"generated-package\";\n  license_expression: string | null;\n}\ninterface DependencyGraphV1 { resolver_identity_digest: string; node_manifest_digest: string; node_lock_digest: string; python_manifest_digest: string; python_lock_digest: string; components: DependencyComponentV1[]; component_count: number; graph_digest: string }\ninterface GeneratedPackageV1 { package_id: string; ecosystem: \"node\" | \"python\"; kind: \"node-package\" | \"wheel\" | \"sdist\"; name: string; version: string; artifact_digest: string; source_graph_digest: string; license_expression: string | null }\ninterface InstallObservationV1 { run_id: string; mode: \"online\" | \"offline\"; clean_environment: boolean; input_lock_digest: string; output_lock_digest: string; installed_components: DependencyComponentV1[]; generated_packages: GeneratedPackageV1[]; network_attempt_count: number; cache_miss_count: number; observation_digest: string }\ninterface InstallReceiptV1 { run_id: string; mode: \"online\"; lock_digest: string; graph_digest: string; package_set_digest: string; cache_inventory_digest: string; network_attempt_count: number; pass: boolean; receipt_digest: string }\ninterface InstallParityReceiptV1 { run_id: string; online_receipt_digest: string; offline_observation_digest: string; online_graph_digest: string; offline_graph_digest: string; online_package_set_digest: string; offline_package_set_digest: string; network_attempt_count: 0; cache_miss_count: 0; pass: boolean; receipt_digest: string }\ninterface SbomSchemaV1 { schema_id: string; schema_version: string; required_component_fields: string[]; relation_policy_digest: string; schema_digest: string }\ninterface UnifiedSbomV1 { schema_id: string; schema_version: string; graph_digest: string; package_set_digest: string; components: DependencyComponentV1[]; component_count: number; relation_digest: string; sbom_digest: string }\ninterface ScanTargetV1 { target_id: string; target_kind: \"source\" | \"manifest-lock\" | \"dependency\" | \"generated-package\" | \"sbom-evidence\"; content_digest: string; classification: string }\ninterface SecretScanReportV1 { scanner_digest: string; policy_revision: string; target_set_digest: string; finding_count: number; redacted_fingerprints: string[]; raw_finding_count: 0; report_digest: string }\ninterface LicenseInventoryV1 { graph_digest: string; entries: { component_id: string; license_expression: string | null; classification: \"allowed\" | \"review_required\" | \"prohibited\" | \"unclassified\"; approval_digest: string | null }[]; inventory_digest: string }\ninterface SupplyChainPolicyV1 { policy_revision: string; scanner_digest: string; allowed_license_expressions: string[]; prohibited_license_expressions: string[]; review_approval_schema_digest: string; policy_digest: string }\ninterface PolicyReceiptV1 { target_set_digest: string; scanner_digest: string; license_inventory_digest: string; policy_digest: string; secret_finding_count: number; license_counts: Record<\"allowed\" | \"review_required\" | \"prohibited\" | \"unclassified\", number>; approval_digests: string[]; failure_codes: OsSupplyChainFailureCodeV1[]; pass: boolean; receipt_digest: string }\ninterface CompletionPolicyV1 { policy_revision: string; required_profiles: OsProfileIdV1[]; required_fixture_revision: string; require_domain_fork_count: 0; require_offline_parity: true; require_complete_sbom: true; require_policy_green: true; max_evidence_age_ms: number; policy_digest: string }\ninterface CompletionDecisionV1 { run_id: string; snapshot_id: string; matrix_digest: string; supply_digest: string; evaluated_profile_ids: OsProfileIdV1[]; failure_codes: OsSupplyChainFailureCodeV1[]; pass: boolean; decision_digest: string }\ninterface TrustedNowV1 { trusted_now: string; clock_receipt_digest: string; max_skew_ms: number }\n\ninterface SupplyChainReceiptV1 {\n  schema_version: \"helix-supply-chain-receipt.v1\";\n  run_id: string;\n  snapshot_id: string;\n  provenance: CommonProvenanceEnvelopeV1;\n  supply_digest: string;\n  node_lock_digest: string;\n  python_lock_digest: string;\n  online_graph_digest: string;\n  offline_graph_digest: string;\n  network_attempt_count: number;\n  sbom_digest: string;\n  secret_finding_count: number;\n  license_counts: Record<\"allowed\" | \"review_required\" | \"prohibited\" | \"unclassified\", number>;\n  policy_digest: string;\n  failure_codes: OsSupplyChainFailureCodeV1[];\n}\n\ninterface CommonProvenanceEnvelopeV1 {\n  schema_version: \"helix-os-supply-provenance.v1\"; run_id: string; snapshot_id: string;\n  commit_digest: string; tree_digest: string; fixture_revision: string; difference_manifest_revision: string;\n  resolver_digest: string; scanner_digest: string; evidence_schema_digest: string; toolchain_digest: string;\n  package_set_digest: string; evidence_root_digest: string; approval_digest: string; created_at: string; fresh_until: string;\n  envelope_digest: string;\n}\ninterface OsMatrixReceiptV1 { run_id: string; snapshot_id: string; provenance: CommonProvenanceEnvelopeV1; profile_ids: OsProfileIdV1[]; fixture_revision: string; difference_manifest_revision: string; domain_fork_count: number; failure_codes: OsSupplyChainFailureCodeV1[]; matrix_digest: string }\ninterface JoinedOsSupplyEvidenceV1 { run_id: string; snapshot_id: string; envelope_digest: string; matrix_digest: string; supply_digest: string }\ninterface OsSupplyProvenanceAnchorStoreV1 { readCurrent(expectedEnvelopeDigest: string): Promise<ResultV1<{ envelope: CommonProvenanceEnvelopeV1; producer_id: string; producer_registration_digest: string; registered_receipt_digest: string; store_head: string }, OsSupplyChainFailureV1>> }\n```\n\n`OsSupplyChainFailureCodeV1`はL5 §6の詳細failure 12件、HST境界failure 7件、adapter境界internal failure 2件を合わせた21 codeを完全列挙し、自由文字列へ縮退させない。`OsContractFacetV1`はL5 §3の9 facet IDと\n順序・集合がexact一致するlocal型である。receiptはraw command、raw scanner出力、\ncredential、PIIを持たず、commandとstdout/stderrはdigest参照だけを持つ。\n\n`LockedManifestV1`のecosystem別制約は、Node=`package_manager:npm`、`manifest_name:package.json`、\n`lock_name:package-lock.json`、`toolchain_authority:adr_fixed`、Python=`toolchain_authority:pair_frozen`である。\nPythonのmanager／manifest／lock／interpreter provenanceが未選定・複数・digest欠落なら`LockedManifestV1`としてdecodeせず、\n`HIL_SUPPLY_CHAIN_LOCK_DRIFT`へfail-closeする。\n\n13 public APIは`U-OSSC-001`〜`013`へ一対一でownerを持つ。各UからL8の少なくとも一つのITへedgeを逆引きし、API/Uの欠落・重複owner、\n未知API、L6/L7/L8のfailure/state差を拒否する。HST primary表で複数caseが同じU/ITを共有する場合もcase ownerの重複ではなく、\n各case ID、pre/expected state、failureを独立joinする。\n\n## §3 実装配置候補とauthority"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "direct/transitive graph、producer/版/digest/source/receipt別軸、partial公開回避/旧正本・rollback境界、不明の明示、pure policyと実取得/保存/実許可の分離。",
+      "change": "旧linux completion/OS matrix/lock/install/SBOM/secret/license/13unit分母/registry/current anchor実方式/TS型を移植しない。012の選択provenance資料比較へ限定し、CAS/rollbackは原ownerの収集素材参照として保持する。PPS役割/session/runtime資格をasset producer資格に転用しない。",
+      "reason": "承認012の5契約とR01–R12の責務に従う。旧資産未完成を理由に新方式/gateを作らず、原資料対応と真正性/trust/許可を別に残す。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A1F623AB6959223426DA",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-os-portability-supply-chain-unit-test-design.md",
+        "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+        "whole_file_sha256": "947ac36e26182e6818db8f8d9f6f83694a00850ee4e1b33018b3fc64c6b7bf67",
+        "start_line": 30,
+        "end_line": 70,
+        "exact_quote": "| `U-OSSC-001` | `canonicalizeOsExecutionProfile` | 3 profileとunknown、facet欠落、scope弱化入力を正規化 | 3 profileだけ決定的に受理し、Linux facet欠落とunknownをcontract failureにする | `tests/os-execution-profile.test.ts` |\n| `U-OSSC-002` | `validatePathFilesystemContract` | separator、case collision、NFC/NFD、symlink escape、permission、executableのpositive/negative observation | 全facet個別判定、未宣言差分は`HIL_OS_CONTRACT_DIFFERENCE_UNDECLARED`、path異常は`HIL_OS_PATH_CONTRACT_VIOLATION` | `tests/os-path-filesystem-contract.test.ts` |\n| `U-OSSC-003` | `validateProcessContract` | normal exit、deadline cancel、child spawn、cancel無視、orphan childを評価 | child tree終了と期限を満たす場合だけgreen、異常は`HIL_OS_PROCESS_CONTRACT_VIOLATION` | `tests/os-process-contract.test.ts` |\n| `U-OSSC-004` | `validateAtomicFileContract` | write/flush/replace各段成功と各段fault journalを評価 | 成功時だけ新正本、fault時partial 0・旧正本保持、違反は`HIL_OS_LOCK_CONTRACT_VIOLATION` | `tests/os-atomic-file-contract.test.ts` |\n| `U-OSSC-005` | `validateLockAndSqliteContract` | lock競合、旧fence、stale owner、SQLite busy/timeout/rollback/retry上限を評価 | 単一owner、旧fence拒否、bounded retry、partial commit 0。違反は`HIL_OS_LOCK_CONTRACT_VIOLATION` | `tests/os-lock-sqlite-contract.test.ts` |\n| `U-OSSC-006` | `detectOsLogicFork` | adapter/bootstrap内branch、domain/gate/state内branch、期限なしallowlistを走査 | 許可境界だけfinding 0、禁止branchと不完全allowlistを`HIL_OS_ADAPTER_LEAK`で列挙 | `tests/os-logic-fork.test.ts` |\n| `U-OSSC-007` | `resolveCanonicalDependencyGraph` | Node npm/package.json/package-lock以外、Bun lock混入、Python toolchain未freeze／複数、direct/transitive欠落、floating version、artifact digest欠落、OS別lockを個別投入 | stable graphを順序非依存生成し、authority不一致・未freeze・欠落・floating・OS forkを`HIL_SUPPLY_CHAIN_LOCK_DRIFT`で拒否 | `tests/supply-chain-dependency-graph.test.ts` |\n| `U-OSSC-008` | `verifyOnlineInstall` | clean install observation、lock mutation、余剰/欠落component、生成packageを比較 | expected graphとpackageを完全結線し、lock/graph差分を`HIL_SUPPLY_CHAIN_LOCK_DRIFT`で拒否 | `tests/supply-chain-install-verifier.test.ts` |\n| `U-OSSC-009` | `verifyOfflineInstallParity` | network 0の同一graph、network attempt、cache miss、1 artifact mutationをonline receiptと比較 | network 0かつgraph/package digest一致だけgreen、反例は`HIL_SUPPLY_CHAIN_OFFLINE_MISMATCH` | `tests/supply-chain-install-verifier.test.ts` |\n| `U-OSSC-010` | `buildUnifiedSbom` | Node/Python direct/transitive、Node package、wheel/sdist、欠落/重複identityを入力 | 全component exactly onceの決定的SBOMを返し、欠落/重複を`HIL_SBOM_COMPONENT_MISSING`で拒否 | `tests/supply-chain-sbom.test.ts` |\n| `U-OSSC-011` | `evaluateSupplyChainPolicy` | clean scan、redacted finding、allowed/review-required/prohibited/unclassified licenseを評価 | cleanまたは有効承認だけgreen。secret、未分類、禁止/承認欠落を各L5 failure codeで拒否し検出値本文を返さない | `tests/supply-chain-policy.test.ts` |\n| `U-OSSC-012` | `evaluateOsSupplyChainCompletion` | 3 profile green、Linux欠落、fixture revision差、domain fork、offline/SBOM/policy failureを集約 | 全条件greenだけPASS。Linux欠落は`HIL_LINUX_COMPLETION_MISSING`、他のfailureを保持してfalse green 0 | `tests/os-supply-chain-completion.test.ts` |\n| `U-OSSC-013` | `joinOsSupplyChainProvenance` | trusted producer registration、registered receipt、store head/expected digest、全provenance/freshnessを一件ずつ改変 | store current anchorだけjoin。caller envelope、未知producer、未登録receipt、stale headはcompletion input 0 | `tests/os-supply-chain-provenance.test.ts` |\n\n## §1 合否と証跡\n\n`U-OSSC-001`、`U-OSSC-002`、`U-OSSC-003`、`U-OSSC-004`、`U-OSSC-005`、`U-OSSC-006`、\n`U-OSSC-007`、`U-OSSC-008`、`U-OSSC-009`、`U-OSSC-010`、`U-OSSC-011`、`U-OSSC-012`、`U-OSSC-013`の13件すべてで\nRed/Green、期待failure code、mutation input、result digestを保存する。host OS依存のtest skipを単体合格へ数えず、pure functionには\n明示observationを注入する。mock call countだけでなく、canonical bytes、component集合、network/process/write count、raw secret非保持を\n直接assertする。\n\npublic API ownerは13 APIと`U-OSSC-001`〜`013`の一対一exact joinとする。各unit fixtureはL6 local\n`OsContractFacetV1`の9値と`OsSupplyChainFailureCodeV1`の21値（L5 §6の詳細failure 12件＋HST境界failure 7件＋adapter境界internal failure 2件）だけを受理し、旧名、自由文字列、L5 allowlistとの集合差を拒否する。\nprimary caseは同じUを共有してもcase ID、pre/expected state、failureを別々に採点し、owner重複へまとめない。\nさらに各public result `*V1`の必須field、closed enum、nested digest、count、authority/freshness fieldを一件ずつmutationし、\n欠落・余剰・旧抽象名・`unknown`への弱化が全てRedになることを型契約oracleとして採点する。\nOS adapterとsupply-chain adapterへunexpected exceptionを一件ずつ注入し、それぞれ`HIL_OS_INTERNAL_ERROR`、\n`HIL_SUPPLY_CHAIN_INTERNAL_ERROR`へcause digest付きで境界変換され、state・receipt・completion current増分が0であることを検証する。\nこの2 mutationは診断境界oracleであり、既存19 HSTの分母へ加算しない。\n\n## primary atomic assertion台帳\n\nLinux-primary、multi-OS、supply-chain provenanceを維持し、supporting caseを混入させず正本primary caseをrangeなしで結線する。\n\n| HST case識別子 | `pre_state` | `expected_state` | 正本failure | 主IT結線 | U結線 |\n|---|---|---|---|---|---|\n| `HST-CASE-014-01` | `queued` | `passed` | `なし（正常系）` | `IT-OSSC-001` | `U-OSSC-012` |\n| `HST-CASE-014-02` | `queued` | `passed` | `なし（正常系）` | `IT-OSSC-002` | `U-OSSC-001` |\n| `HST-CASE-014-03` | `queued` | `passed` | `なし（正常系）` | `IT-OSSC-003` | `U-OSSC-001` |\n| `HST-CASE-014-04` | `verifying` | `failed` | `HIL_OS_ADAPTER_LEAK` | `IT-OSSC-004` | `U-OSSC-006` |"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "direct/transitive graph、producer/版/digest/source/receipt別軸、partial公開回避/旧正本・rollback境界、不明の明示、pure policyと実取得/保存/実許可の分離。",
+      "change": "旧linux completion/OS matrix/lock/install/SBOM/secret/license/13unit分母/registry/current anchor実方式/TS型を移植しない。012の選択provenance資料比較へ限定し、CAS/rollbackは原ownerの収集素材参照として保持する。PPS役割/session/runtime資格をasset producer資格に転用しない。",
+      "reason": "承認012の5契約とR01–R12の責務に従う。旧資産未完成を理由に新方式/gateを作らず、原資料対応と真正性/trust/許可を別に残す。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A04F169C5D514C5443D0",
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requirements.md",
+        "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+        "whole_file_sha256": "9f1e268986845f5f209517de24f57f2828e130f971a1429be96d0f88a5e9d59a",
+        "start_line": 13,
+        "end_line": 63,
+        "exact_quote": "## PPS-R-01 役割identityの分離\n\n上流: `PPS-BR-01`。下流: `PPS-AC-001`, `PPS-AC-002`。\n\n各変更episodeは`content_producer`、`commit_executor`、`pr_publisher`、`independent_reviewer`を別fieldで保持する。\n各identityはruntime、model、provider session、assignmentを、その役割で実測できる範囲に限って束縛する。\nbot等の`external` authorは既存の外部author境界を保ち、HELIX workerのproducer identityへ暗黙変換しない。\n\n## PPS-R-02 成果とassignmentの因果束縛\n\n上流: `PPS-BR-01`, `PPS-BR-03`。下流: `PPS-AC-003`, `PPS-AC-004`。\n\ncontent producerはassignment ID、scope authority、許可path、成果digest、candidate HEADへ束縛する。commit executorや\npublisherが変わってもproducer identityを上書きせず、成果digestまたはHEADが変われば新しいgenerationとして扱う。\n\n## PPS-R-03 独立review判定\n\n上流: `PPS-BR-02`。下流: `PPS-AC-005`, `PPS-AC-006`。\n\n独立性はcontent producerのruntime／provider／model family／sessionとの関係で判定する。commit executorまたは\nPR publisherがproducerと異なるだけでは独立性を成立させず、同一producer系統のreviewをterminal evidenceにしない。\nこの判定はIssue #539および既存`github-cross-review-admission`のmixed／dual-receipt契約を拡張するものであり、\n現行の`authorModel`基準の独立性判定と対receipt検証を置換せず、producer roleを追加の検証軸として合成する。\n\n## PPS-R-04 GitHub actor・commit metadata境界\n\n上流: `PPS-BR-02`。下流: `PPS-AC-002`, `PPS-AC-007`。\n\nGitHub actor、author/committer metadata、署名、receipt identityは相互参照してよいが代用しない。raw actor spoofing、\ncommit executorからproducerへの推測、publisherからreviewerへの推測をfail-closeする。\n\n## PPS-R-05 単一provenance graph\n\n上流: `PPS-BR-03`。下流: `PPS-AC-008`, `PPS-AC-009`。\n\nreceipt、PLAN、DB projection/replay、GitHub comment、review admission、merge admissionは同一schema versionとgraph digestへ\n収束する。一面のidentity欠落・改変・wrong HEAD／assignmentを他面の値で補完しない。\n\n## PPS-R-06 欠落・不明の扱い\n\n上流: `PPS-BR-03`, `PPS-BR-04`。下流: `PPS-AC-004`, `PPS-AC-009`。\n\nproducer provenanceを実測できない場合は`unknown`または`unattested`として保持し、terminal independent reviewへの昇格を\n拒否する。診断は欠落役割とsourceを示し、暗黙fallbackしない。\n既存の`external` authorはunknownと同一視せず、外部authorとして実測できた境界を保持したまま既存admissionへ渡す。\n\n## PPS-R-07 互換移行\n\n上流: `PPS-BR-04`。下流: `PPS-AC-010`。\n\ndirect author=committerで実測済みの既存経路はversioned compatibility projectionで受理可能とする。旧receiptを履歴として"
+      },
+      "reuse_mode": "semantic_rederivation",
+      "preserve": "direct/transitive graph、producer/版/digest/source/receipt別軸、partial公開回避/旧正本・rollback境界、不明の明示、pure policyと実取得/保存/実許可の分離。",
+      "change": "旧linux completion/OS matrix/lock/install/SBOM/secret/license/13unit分母/registry/current anchor実方式/TS型を移植しない。012の選択provenance資料比較へ限定し、CAS/rollbackは原ownerの収集素材参照として保持する。PPS役割/session/runtime資格をasset producer資格に転用しない。",
+      "reason": "承認012の5契約とR01–R12の責務に従う。旧資産未完成を理由に新方式/gateを作らず、原資料対応と真正性/trust/許可を別に残す。"
+    }
+  ],
+  "failure_basis": {
+    "source": {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
+      "whole_file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "start_line": 65,
+      "end_line": 101,
+      "exact_quote": "| ID | severity | 弱点 | 観測根拠 | 要件化 |\n|---|---|---|---|---|\n| UTW-001 | Critical | L0〜L14とBunがsource全体のcurrent authorityとして深く埋め込まれている | Core Reads、README、package、CI、32 active Bun reference files | UTH-FR-002〜004 |\n| UTW-002 | Critical | prose/CURRENT handoverがcontinuation正本で、event-first DB projectionと競合する | AGENTS/CLAUDEのSession Start、`.ut-tdd/handover` | UTH-FR-006 |\n| UTW-003 | Critical | repository hookで覆えないhosted tool surfaceが手続き依存 | 対象AGENTSのscope boundary | UTH-FR-008 |\n| UTW-004 | Critical | live policyと文書policyが乖離し得る | ruleset、branch policy、既存UT-GH-03〜05 | UTH-FR-017 |\n| UTW-005 | Critical | PR trace/review evidenceが最新HEAD・merge-baseへ常時再束縛されない | 既存UT-GH-06/07/12 | UTH-FR-015 |\n| UTW-006 | Critical | GitHub signal→Issue→PLAN→PR→CI→merge→memoryが単一exactly-once episodeで閉じない | execution episode branchがmain未統合、UT-GH-09/10/13 | UTH-FR-018 |\n| UTW-007 | Critical | secret/PII scanの一部がwarn-onlyまたはhook依存で、CI全push blob再検証が不足 | `secret-scan-diff`既定warn、UT-GH-15 | UTH-FR-020 |\n| UTW-008 | High | 素のtest入口と正規snapshot runnerの意味が異なり、37 fail/4 errorsになる | 実測 | UTH-NFR-001、UTH-FR-010 |\n| UTW-009 | High | full regression/doctorが重く、timeoutと長いself-heal loopを生む | 220.54秒、doctor test 214.17秒 | UTH-NFR-002、UTH-FR-011 |\n| UTW-010 | High | Bun runtime/CIがLinux・Windows双方の必須前提 | package engines、workflow | UTH-FR-003、UTH-FR-012 |\n| UTW-011 | High | macOS legがなく、Windowsはfast/toolchain scopeのみ | workflow 2 legs | UTH-FR-012 |\n| UTW-012 | High | tracked runtime stateが207 filesあり、source/evidence/generated state境界が太い | `.ut-tdd` tracked inventory | UTH-FR-007 |\n| UTW-013 | High | fail-open/warn-onlyが安全性、観測性、可用性で統一分類されていない | session log、handover、update、scan、graphの複数方針 | UTH-FR-009 |\n| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n| UTW-015 | High | branch lifecycleが閉じず、main未包含6 heads、最大54 commits aheadが残る | mirror ref inventory | UTH-FR-013、UTH-FR-014 |\n| UTW-016 | High | tag 0でrelease provenanceとsource snapshot authorityが弱い | ref inventory | UTH-FR-027 |\n| UTW-017 | High | Issue Formsのlabel bootstrap/inbound dogfoodが未閉包 | 既存UT-GH-08/09 | UTH-FR-016 |\n| UTW-018 | High | merge後branch/state/memory cleanupがtransactionalでない | UT-GH-02/13/14 | UTH-FR-018、UTH-FR-019 |\n| UTW-019 | High | subagent/agent spawn guardはruntime surface差分に追随し続ける必要がある | 対象rulesの旧「未配線」履歴と現guard test | UTH-FR-008 |\n| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |\n| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |\n| UTW-022 | High | external MCP/tool/pluginの実行、権限、supply-chain検証がprofile設計より後追い | backlog IMP-120〜124 | UTH-FR-024 |\n| UTW-023 | High | improvement backlogにobserved/triaged/verifiedが92件あり、status名と実装実体が一致しない行がある | backlog status集計 | UTH-FR-025 |\n| UTW-024 | High | source全refのatom化・採否・要件traceがcurrent receiptとして閉じていない | HELIX source ledgerのpredecessor-ut BLOCKED | UTH-FR-001、UTH-FR-023 |\n| UTW-025 | Medium | docs 1,045、Markdown 1,311で正本・compatibility・archiveの認識負荷が高い | main inventory | UTH-NFR-003、UTH-FR-005 |\n| UTW-026 | Medium | CLI、doctor、projectionのmonolithが変更影響とtargeted verificationを拡大する | long-running suites、既存refactor carry | UTH-FR-011、UTH-NFR-004 |\n| UTW-027 | Medium | wrapperがcloneを重ね、disk/process/resource予算が明示的でない | snapshot runner実測 | UTH-NFR-002、UTH-FR-026 |\n| UTW-028 | Medium | Node SQLite experimental warningが大量に出てsignal/noiseを悪化させる | 正規test output | UTH-NFR-005 |\n| UTW-029 | Medium | consumer setup、source repo、clean distributionで検証集合が分岐しやすい | source/Pack workflow分離 | UTH-FR-027 |\n| UTW-030 | Medium | update-checkなど外部可用性をfail-openにする機能にfreshness/decision impactの統一receiptがない | update advisory設計 | UTH-FR-028 |\n| UTW-031 | Medium | manual approvalの対象、snapshot binding、expiry、reapproval triggerが機能ごとに不均一 | setup/release/cutover/security docs | UTH-FR-029 |\n| UTW-032 | Medium | self-improvementがfinding数の消化へ寄り、before/after metricと再発率で閉じない | backlog、quality audit surface | UTH-FR-025、UTH-FR-030 |\n| UTW-033 | High | freeze checkpointとreopen impact再検証がmain未統合で、確定済み成果物の再開境界が弱い | `work/freeze-checkpoint-plans`固有PLAN群 | UTH-FR-031 |\n| UTW-034 | Critical | PLAN revisionのCAS、provenance、replay、rollbackを束ねるtransactional authoringがmain未統合 | `work/recovery-plan-revision-authoring`の25固有commit | UTH-FR-032 |\n| UTW-035 | High | specialist agent registryのschema、sync、drift、guard digest、検証team招集が設計branchに残る | `work/l6-81-agent-registry-design` | UTH-FR-033 |"
+    },
+    "ids": [
+      "UTW-014",
+      "UTW-020",
+      "UTW-021"
+    ],
+    "meaning": "欠落空集合化/部分不足集約/自己申告完成を原要求の反例として保持。"
+  },
+  "full_goal_scope_preserved": {
+    "total_parents": 92,
+    "total_pairs": 430,
+    "design_closure": "unproven",
+    "implementation_readiness": "not_ready"
+  },
+  "historical_scope": "旧OS供給網normative wholeは無損失保持するがこの012のみから旧全OS契約/全consumer/実collectorを完成にしない。",
+  "document_id": "HELIXSECURITY-L8-012-EXTERNAL-ASSET-PROVENANCE",
+  "layer": "L8",
+  "paired_document": "HELIXSECURITY-L5-012-EXTERNAL-ASSET-PROVENANCE",
+  "verification_scope": "5契約の独立raw/先に固定したsource由来期待材料。1751既存合成入力を増幅せず実TDD/実oracle凍結を主張しない。",
+  "cases": [
+    {
+      "id": "SEC012-L8-CLOSURE-TRANSITIVE",
+      "function_ref": "HELIXSECURITY-L5-012-compute_dependency_closure",
+      "raw_utf8": "{\"roots\":[\"pkg-a\"],\"edges\":{\"pkg-a\":[\"dep-b\"],\"dep-b\":[\"model-c\"],\"model-c\":[]}}",
+      "raw_sha256": "73f6e686b80059678e19826a08df561c184a0850efe575e760cbb3198265b528",
+      "expected_material": {
+        "computed": true,
+        "nodes": [
+          "dep-b",
+          "model-c",
+          "pkg-a"
+        ],
+        "findings": []
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-CLOSURE-CYCLE",
+      "function_ref": "HELIXSECURITY-L5-012-compute_dependency_closure",
+      "raw_utf8": "{\"roots\":[\"pkg-a\"],\"edges\":{\"pkg-a\":[\"dep-b\"],\"dep-b\":[\"pkg-a\"]}}",
+      "raw_sha256": "636437ac817a3550befa55d350b3851ae2f6ed7dc945f5a84026fe6e3e5e7180",
+      "expected_material": {
+        "computed": true,
+        "nodes": [
+          "dep-b",
+          "pkg-a"
+        ],
+        "findings": [],
+        "cycle_rejected": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-CLOSURE-ROOT-NULL",
+      "function_ref": "HELIXSECURITY-L5-012-compute_dependency_closure",
+      "raw_utf8": "{\"roots\":null,\"edges\":{}}",
+      "raw_sha256": "8c10afd124cee7688e2a00595ccd11604f1f36130b87bdc02972cc50d7420bbd",
+      "expected_material": {
+        "computed": false,
+        "nodes": null,
+        "required_findings": [
+          {
+            "code": "set_unknown",
+            "pointer": "/roots"
+          }
+        ],
+        "forbidden_nodes_value": []
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-CLOSURE-EDGES-NULL",
+      "function_ref": "HELIXSECURITY-L5-012-compute_dependency_closure",
+      "raw_utf8": "{\"roots\":[\"pkg-a\"],\"edges\":null}",
+      "raw_sha256": "fedba3889054b13a645ec7a8ca182dce4b05f21140af762fe5fa642de99345b1",
+      "expected_material": {
+        "computed": false,
+        "nodes": null,
+        "required_findings": [
+          {
+            "code": "set_unknown",
+            "pointer": "/edges"
+          }
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-CLOSURE-EDGE-MISSING",
+      "function_ref": "HELIXSECURITY-L5-012-compute_dependency_closure",
+      "raw_utf8": "{\"roots\":[\"pkg-a\"],\"edges\":{}}",
+      "raw_sha256": "9f99e8f185deaeffaa97da53664d56d596e253af4e216120940ec701bdb95361",
+      "expected_material": {
+        "computed": true,
+        "nodes": [
+          "pkg-a"
+        ],
+        "required_findings": [
+          {
+            "code": "dependency_list_missing",
+            "pointer": "/edges"
+          }
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-CLOSURE-CHILD-NULL",
+      "function_ref": "HELIXSECURITY-L5-012-compute_dependency_closure",
+      "raw_utf8": "{\"roots\":[\"pkg-a\"],\"edges\":{\"pkg-a\":null}}",
+      "raw_sha256": "b0bb1dde0eb346af4693a92c05d1bff8e819e044bb84cd212b631303a7da60ef",
+      "expected_material": {
+        "computed": true,
+        "nodes": [
+          "pkg-a"
+        ],
+        "required_findings": [
+          {
+            "code": "set_unknown",
+            "pointer": "/edges/pkg-a"
+          }
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-CLOSURE-ONE-UNCOMPUTED",
+      "function_ref": "HELIXSECURITY-L5-012-compare_dependency_material",
+      "raw_utf8": "{\"actual\":{\"computed\":false,\"nodes\":null},\"reference\":{\"computed\":true,\"nodes\":[\"pkg-a\",\"dep-b\"]}}",
+      "raw_sha256": "dbd7ed8247b67946853ba62e4f39c45868f8f2617f0ab9e4d55d5bbd6a602918",
+      "expected_material": {
+        "needed_assets": [
+          "dep-b",
+          "pkg-a"
+        ],
+        "dependency_set_conflict": false,
+        "actual_nodes": null
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R03"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-CLOSURE-BOTH-COMPUTED",
+      "function_ref": "HELIXSECURITY-L5-012-compare_dependency_material",
+      "raw_utf8": "{\"actual\":{\"computed\":true,\"nodes\":[\"pkg-a\"]},\"reference\":{\"computed\":true,\"nodes\":[\"pkg-a\",\"dep-b\"]}}",
+      "raw_sha256": "bbf49a69ba6c0bdb1db61f47f155db040a28f2f59024148a8117162a2e04c028",
+      "expected_material": {
+        "needed_assets": [
+          "dep-b",
+          "pkg-a"
+        ],
+        "required_findings": [
+          {
+            "code": "dependency_set_conflict",
+            "pointer": "/edges"
+          }
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R03"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-OPAQUE-NODE-IDS",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual\":{\"kind\":\"package\"},\"reference\":{\"kind\":\"package\"}}",
+      "raw_sha256": "102004a8664089b01f16b887766110e2c942534fa522e787acd399d5a6e9cbcb",
+      "expected_material": {
+        "kind_known": "package",
+        "node_key_kind_constraint": false,
+        "kind_conflict": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-UNSEEN-KIND",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"node_id\":\"new-node\",\"actual\":{\"kind\":\"new-kind\"},\"reference\":{\"kind\":\"package\"}}",
+      "raw_sha256": "51b8f366df92a9654e9f9c6101653027d961c4b733a268f0d712952ef5d0cebf",
+      "expected_material": {
+        "actual_kind": null,
+        "required_findings": [
+          {
+            "code": "kind_unknown",
+            "pointer": "/assets/new-node/identity/kind"
+          }
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-ARTIFACT-PRODUCER-JOIN",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"actual_artifact\":{\"producer_ref\":\"producer-A\"},\"reference_artifact\":{\"producer_ref\":\"producer-B\"}}",
+      "raw_sha256": "ac06a446f0927e589b32eadb00a0ceddae3610c3b8030f3cef454cf00bf6869d",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "field_conflict",
+            "pointer": "/assets/pkg-a/artifact/producer_ref"
+          }
+        ],
+        "actual_provenance_qualified": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R01",
+          "R04",
+          "R05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-ASSET-NONDICT",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_asset\":null,\"reference_asset\":{\"fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}}",
+      "raw_sha256": "7666505e30951c29920d0db53e2e78a7003bcb95642f0fa28a26da1a0659a3a0",
+      "expected_material": {
+        "field_correspondence": {
+          "source": "unknown",
+          "producer": "unknown",
+          "version": "unknown",
+          "digest": "unknown",
+          "dependency": "unknown",
+          "permission": "unknown",
+          "network_behavior": "unknown",
+          "known_risk": "unknown",
+          "update_delta": "unknown",
+          "rollback": "unknown"
+        },
+        "field_states": {
+          "source": null,
+          "producer": null,
+          "version": null,
+          "digest": null,
+          "dependency": null,
+          "permission": null,
+          "network_behavior": null,
+          "known_risk": null,
+          "update_delta": null,
+          "rollback": null
+        },
+        "asset_material_corresponding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06",
+          "R10",
+          "R11"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-FIELDS-NONDICT",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_asset\":{\"fields\":[]},\"reference_asset\":{\"fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}}",
+      "raw_sha256": "a88db9aae3cd88901940609be7ef7117d0ec81fc9178ab3f881349826f6685e8",
+      "expected_material": {
+        "field_correspondence": {
+          "source": "unknown",
+          "producer": "unknown",
+          "version": "unknown",
+          "digest": "unknown",
+          "dependency": "unknown",
+          "permission": "unknown",
+          "network_behavior": "unknown",
+          "known_risk": "unknown",
+          "update_delta": "unknown",
+          "rollback": "unknown"
+        },
+        "field_states": {
+          "source": null,
+          "producer": null,
+          "version": null,
+          "digest": null,
+          "dependency": null,
+          "permission": null,
+          "network_behavior": null,
+          "known_risk": null,
+          "update_delta": null,
+          "rollback": null
+        },
+        "asset_material_corresponding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06",
+          "R10",
+          "R11"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-FIELDS-MISSING",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_asset\":{\"fields\":{}},\"reference_asset\":{\"fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}}",
+      "raw_sha256": "775746059e2ae5372919899e9350a0246f75b6f727258c3a77b9f580020b48de",
+      "expected_material": {
+        "field_correspondence": {
+          "source": "unknown",
+          "producer": "unknown",
+          "version": "unknown",
+          "digest": "unknown",
+          "dependency": "unknown",
+          "permission": "unknown",
+          "network_behavior": "unknown",
+          "known_risk": "unknown",
+          "update_delta": "unknown",
+          "rollback": "unknown"
+        },
+        "field_states": {
+          "source": null,
+          "producer": null,
+          "version": null,
+          "digest": null,
+          "dependency": null,
+          "permission": null,
+          "network_behavior": null,
+          "known_risk": null,
+          "update_delta": null,
+          "rollback": null
+        },
+        "asset_material_corresponding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06",
+          "R10",
+          "R11"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-MISSING-source",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_fields\":{\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}},\"reference_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}",
+      "raw_sha256": "cd295ed35303debf4ec114b99c6b958a81306d09d27c4b74358f374b32805a25",
+      "expected_material": {
+        "missing_field": "source",
+        "missing_field_grade": "unknown",
+        "missing_field_state": null,
+        "required_findings": [
+          {
+            "code": "set_conflict",
+            "pointer": "/assets/pkg-a/fields"
+          }
+        ],
+        "extra_missing_field_finding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-MISSING-producer",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_fields\":{\"source\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}},\"reference_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}",
+      "raw_sha256": "ce4f938826a4cb2b66167df4ef557ae491ab76ece4c8031e84cb4c292eba562e",
+      "expected_material": {
+        "missing_field": "producer",
+        "missing_field_grade": "unknown",
+        "missing_field_state": null,
+        "required_findings": [
+          {
+            "code": "set_conflict",
+            "pointer": "/assets/pkg-a/fields"
+          }
+        ],
+        "extra_missing_field_finding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-MISSING-version",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_fields\":{\"source\":{},\"producer\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}},\"reference_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}",
+      "raw_sha256": "3a7e755f43f1f894a1643a8a0abdeb680069fc704357cb87df64608d2b4765c6",
+      "expected_material": {
+        "missing_field": "version",
+        "missing_field_grade": "unknown",
+        "missing_field_state": null,
+        "required_findings": [
+          {
+            "code": "set_conflict",
+            "pointer": "/assets/pkg-a/fields"
+          }
+        ],
+        "extra_missing_field_finding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-MISSING-digest",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}},\"reference_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}",
+      "raw_sha256": "b7929c55ef581f0d4fb66f6bea39ee18be970b819e3b12f571f60480e164c5ff",
+      "expected_material": {
+        "missing_field": "digest",
+        "missing_field_grade": "unknown",
+        "missing_field_state": null,
+        "required_findings": [
+          {
+            "code": "set_conflict",
+            "pointer": "/assets/pkg-a/fields"
+          }
+        ],
+        "extra_missing_field_finding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-MISSING-dependency",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}},\"reference_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}",
+      "raw_sha256": "8eccb526fd0e7454014bfac749383933d09cf8500f453af888232770e75b83e5",
+      "expected_material": {
+        "missing_field": "dependency",
+        "missing_field_grade": "unknown",
+        "missing_field_state": null,
+        "required_findings": [
+          {
+            "code": "set_conflict",
+            "pointer": "/assets/pkg-a/fields"
+          }
+        ],
+        "extra_missing_field_finding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-MISSING-permission",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}},\"reference_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}",
+      "raw_sha256": "c33e1e6add9ee26c82cf7c51501572456245ce7dc7b5dc916fda4cd26c9eaee4",
+      "expected_material": {
+        "missing_field": "permission",
+        "missing_field_grade": "unknown",
+        "missing_field_state": null,
+        "required_findings": [
+          {
+            "code": "set_conflict",
+            "pointer": "/assets/pkg-a/fields"
+          }
+        ],
+        "extra_missing_field_finding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-MISSING-network_behavior",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}},\"reference_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}",
+      "raw_sha256": "e33cbff585d5a8427eaf417eb2fc2194f76f0f9ffab190fa7bf0d85a716acedf",
+      "expected_material": {
+        "missing_field": "network_behavior",
+        "missing_field_grade": "unknown",
+        "missing_field_state": null,
+        "required_findings": [
+          {
+            "code": "set_conflict",
+            "pointer": "/assets/pkg-a/fields"
+          }
+        ],
+        "extra_missing_field_finding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-MISSING-known_risk",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"update_delta\":{},\"rollback\":{}},\"reference_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}",
+      "raw_sha256": "5718270a860437e40af3886e7133d8536a75d714c3c9bb0c8e65b9e20f5e8c37",
+      "expected_material": {
+        "missing_field": "known_risk",
+        "missing_field_grade": "unknown",
+        "missing_field_state": null,
+        "required_findings": [
+          {
+            "code": "set_conflict",
+            "pointer": "/assets/pkg-a/fields"
+          }
+        ],
+        "extra_missing_field_finding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-MISSING-update_delta",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"rollback\":{}},\"reference_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}",
+      "raw_sha256": "df0e335199953ca0f936808179acd3906b7c8077d0051665f3651a9fb29d78d5",
+      "expected_material": {
+        "missing_field": "update_delta",
+        "missing_field_grade": "unknown",
+        "missing_field_state": null,
+        "required_findings": [
+          {
+            "code": "set_conflict",
+            "pointer": "/assets/pkg-a/fields"
+          }
+        ],
+        "extra_missing_field_finding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-MISSING-rollback",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"node_id\":\"pkg-a\",\"actual_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{}},\"reference_fields\":{\"source\":{},\"producer\":{},\"version\":{},\"digest\":{},\"dependency\":{},\"permission\":{},\"network_behavior\":{},\"known_risk\":{},\"update_delta\":{},\"rollback\":{}}}",
+      "raw_sha256": "0ac9fa966c9a47b3cdfd0269b176f04c9b3ce6b844a354e4a7cba7fea45ad380",
+      "expected_material": {
+        "missing_field": "rollback",
+        "missing_field_grade": "unknown",
+        "missing_field_state": null,
+        "required_findings": [
+          {
+            "code": "set_conflict",
+            "pointer": "/assets/pkg-a/fields"
+          }
+        ],
+        "extra_missing_field_finding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-ORIGIN-RESEARCH",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"field\":\"source\",\"actual_entry\":{\"origin\":\"research_reference\"},\"reference_entry\":{\"origin\":\"asset_evidence\"}}",
+      "raw_sha256": "c5e36c938c2ffd4a0e544cc2bd3c1e248c937df2965bfe4eb47b4fa6f2be04ba",
+      "expected_material": {
+        "required_codes": [
+          "origin_forbidden",
+          "field_conflict"
+        ],
+        "origin_promoted": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R08"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-B01",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-B01",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-VERSION-LATEST",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"field\":\"version\",\"actual_entry\":{\"value_ref\":\"latest\"},\"reference_entry\":{\"value_ref\":\"fixed-version\"}}",
+      "raw_sha256": "82fa0dd3c44662fdbafaa03ad86d12434dc24bc452aa02ed6c3e4577bc0c5a33",
+      "expected_material": {
+        "required_codes": [
+          "floating_version",
+          "field_conflict"
+        ],
+        "version_fixed": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R07",
+          "R08"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F02"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F02"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-ENTRY-UNKNOWN",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"field\":\"producer\",\"actual_entry\":{\"state\":\"unknown\"},\"reference_entry\":{\"state\":\"known\"}}",
+      "raw_sha256": "bbb7e48fab68d222ccca56882ef3d9a496e27585358ff62feb10b311a0cc81ee",
+      "expected_material": {
+        "required_codes": [
+          "field_unresolved",
+          "state_conflict"
+        ],
+        "actual_state": "unknown"
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R08"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-F01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-F01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-CLAIM-DOWNLOAD",
+      "function_ref": "HELIXSECURITY-L5-012-compare_boundary_claims",
+      "raw_utf8": "{\"claims\":{\"download_implies_trust\":true}}",
+      "raw_sha256": "f71c7f2c9f54c73dc4b3a0aefe1426d98c0ccc7a27ebd819bcac3d3d51059645",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "forbidden_claim",
+            "pointer": "/claims/download_implies_trust"
+          }
+        ],
+        "actual_trusted": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R09",
+          "R12"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-B01",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-B01",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-CLAIM-UNKNOWN",
+      "function_ref": "HELIXSECURITY-L5-012-compare_boundary_claims",
+      "raw_utf8": "{\"claims\":{\"operation_permitted\":null}}",
+      "raw_sha256": "8b41a7947c6840ab380f6366e30b887362c2372f59eb53d0b6a9fc4782d91f32",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "claim_unknown",
+            "pointer": "/claims/operation_permitted"
+          }
+        ],
+        "actual_operation_permitted": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R09",
+          "R12"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-B01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-B01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-SOURCE-CUSTODY-UNKNOWN",
+      "function_ref": "HELIXSECURITY-L5-012-retain_source_collection_material",
+      "raw_utf8": "{\"source_bindings\":[{\"role\":\"reference\",\"qualification_ref\":null,\"custody_ref\":null,\"provider_ref\":null,\"consumer_ref\":null}],\"collection_material\":{\"selection_state\":\"unknown\",\"CAS_evidence_ref\":null,\"rollback_evidence_ref\":null}}",
+      "raw_sha256": "225dd0c62bbbc693ac83b29270b1b4dc18ced6c10181eb34d8c883770fe8b69d",
+      "expected_material": {
+        "unresolved_roles": [
+          "reference"
+        ],
+        "actual_provenance_qualified": false,
+        "new_registry_required": false,
+        "operation_effect": "none"
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R12"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-B01",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-B01",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-COLLECTION-NOT-SELECTED",
+      "function_ref": "HELIXSECURITY-L5-012-retain_source_collection_material",
+      "raw_utf8": "{\"collection_material\":{\"selection_state\":\"not_selected\",\"CAS_evidence_ref\":null,\"rollback_evidence_ref\":null}}",
+      "raw_sha256": "6f863a30cf9bced6c630f395684b6c9f6cd6138a6dc8c2bcfa1f60bba0f083c0",
+      "expected_material": {
+        "collection_start_gate_added": false,
+        "actual_CAS_executed": false,
+        "actual_rollback_executed": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R12"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-B01",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-B01",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-COLLECTION-SELECTED-UNPROVEN",
+      "function_ref": "HELIXSECURITY-L5-012-retain_source_collection_material",
+      "raw_utf8": "{\"collection_material\":{\"selection_state\":\"selected\",\"before_revision_ref\":\"before\",\"observed_revision_ref\":\"after\",\"CAS_evidence_ref\":null,\"rollback_evidence_ref\":null}}",
+      "raw_sha256": "dde8aded3d7ddf3ec20f78ba3a550e2ed772145f5d8911944e21c2ecc7fdbf7d",
+      "expected_material": {
+        "retained_before": "before",
+        "retained_observed": "after",
+        "CAS_evidence_state": "unknown",
+        "rollback_evidence_state": "unknown",
+        "operation_effect": "none"
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R12"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-AGGREGATE-UNKNOWN",
+      "function_ref": "HELIXSECURITY-L5-012-build_provenance_analysis",
+      "raw_utf8": "{\"root_grades\":{\"graph\":\"unknown\"},\"asset_grades\":{\"pkg-a\":{\"identity\":\"corresponding\",\"provenance\":\"corresponding\",\"artifact\":\"corresponding\"}},\"field_states\":{\"source\":\"known\",\"producer\":\"known\",\"version\":\"known\",\"digest\":\"known\",\"dependency\":\"known\",\"permission\":\"known\",\"network_behavior\":\"known\",\"known_risk\":\"known\",\"update_delta\":\"known\",\"rollback\":\"known\"}}",
+      "raw_sha256": "6163c48b97e6c9e0a02018a884bc9d086742ff67ff939fb29ffc055417d9be4e",
+      "expected_material": {
+        "condition": "provenance_material_unknown",
+        "asset_material_corresponding": false,
+        "scope_material_corresponding": false,
+        "actual_trusted": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R10",
+          "R11",
+          "R12"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-B01",
+          "HELIXSECURITY-L3-012-N01",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-B01",
+          "HELIXSECURITY-L10-012-N01",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-AGGREGATE-EMPTY",
+      "function_ref": "HELIXSECURITY-L5-012-build_provenance_analysis",
+      "raw_utf8": "{\"needed_assets\":[]}",
+      "raw_sha256": "bf24ae4c8e474d49789c8b415631800858610da59cbf8a9facb5ed6d4a0af1ab",
+      "expected_material": {
+        "scope_material_corresponding": false,
+        "whole_complete": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R11",
+          "R12"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-MEANING-UNKNOWN",
+      "function_ref": "HELIXSECURITY-L5-012-compare_scope_selection",
+      "raw_utf8": "{\"actual_selection\":{\"meaning_state\":\"unknown\"},\"reference_selection\":{\"meaning_state\":\"defined\"}}",
+      "raw_sha256": "05318a52cdf8fc844933c2482d854c4a917c8558c276a326549824069ef09447",
+      "expected_material": {
+        "required_code": "meaning_unknown",
+        "return_owner": "HELIXSECURITY-L1-012"
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R01",
+          "R09"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F02"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F02"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-BINDING-DIFFERENCE",
+      "function_ref": "HELIXSECURITY-L5-012-compare_scope_selection",
+      "raw_utf8": "{\"actual_binding\":{\"candidate_revision\":\"old\"},\"reference_binding\":{\"candidate_revision\":\"new\"}}",
+      "raw_sha256": "ee327101cb833838632930efc7da713b905ecd17ea69269977fce381bd89d006",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "field_conflict",
+            "pointer": "/binding/candidate_revision"
+          }
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-RAW-NULL-PRESERVED",
+      "function_ref": "HELIXSECURITY-L5-012-inspect_provenance_input",
+      "raw_utf8": "{\"roots\":null,\"assets\":null,\"context\":{\"roots\":[],\"assets\":{}}}",
+      "raw_sha256": "7c84012eb35d946b3522a0f8da796aa00dc81f72f29243004070bc62a52a5dbb",
+      "expected_material": {
+        "actual_roots_state": "supplied_null",
+        "actual_assets_state": "supplied_null",
+        "reference_roots_state": "supplied_empty",
+        "reference_assets_state": "supplied_empty",
+        "no_default_from_other_side": true
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R01",
+          "R06",
+          "R12"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F02"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F02"
+        ],
+        "method": "原source文章規則を先に読んだ手起草の期待。1751作成側evaluator/実装返却値を使って生成していない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-KIND-package",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"node_id\":\"opaque-node-0\",\"actual_identity\":{\"kind\":\"package\"},\"reference_identity\":{\"kind\":\"package\"}}",
+      "raw_sha256": "e5c3dd502818aabf672fdfe9b595d16561071637d189f635c0c34ea4b39ae917",
+      "expected_material": {
+        "kind_known": "package",
+        "kind_conflict": false,
+        "node_key_kind_constraint": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-KIND-container_image",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"node_id\":\"opaque-node-1\",\"actual_identity\":{\"kind\":\"container_image\"},\"reference_identity\":{\"kind\":\"container_image\"}}",
+      "raw_sha256": "2fdc0bff2a12cb187c7d71479336cd41ab7a584d4330f2f02ed09e48648d14b6",
+      "expected_material": {
+        "kind_known": "container_image",
+        "kind_conflict": false,
+        "node_key_kind_constraint": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-KIND-GitHub_repository",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"node_id\":\"opaque-node-2\",\"actual_identity\":{\"kind\":\"GitHub_repository\"},\"reference_identity\":{\"kind\":\"GitHub_repository\"}}",
+      "raw_sha256": "014d737d08ac20c59ee330ba472eff1c2bbd29baec3b7848be82367914fd62bd",
+      "expected_material": {
+        "kind_known": "GitHub_repository",
+        "kind_conflict": false,
+        "node_key_kind_constraint": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-KIND-MCP",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"node_id\":\"opaque-node-3\",\"actual_identity\":{\"kind\":\"MCP\"},\"reference_identity\":{\"kind\":\"MCP\"}}",
+      "raw_sha256": "151a067f5f44e53df829c82d12ebea162a8cdf5d2aeb94e422a48de075eb7ac8",
+      "expected_material": {
+        "kind_known": "MCP",
+        "kind_conflict": false,
+        "node_key_kind_constraint": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-KIND-plugin",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"node_id\":\"opaque-node-4\",\"actual_identity\":{\"kind\":\"plugin\"},\"reference_identity\":{\"kind\":\"plugin\"}}",
+      "raw_sha256": "371e0861d56e58f463e33675f52448ce20b6c910919654f9b421cc9f79d6c414",
+      "expected_material": {
+        "kind_known": "plugin",
+        "kind_conflict": false,
+        "node_key_kind_constraint": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-KIND-Skill",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"node_id\":\"opaque-node-5\",\"actual_identity\":{\"kind\":\"Skill\"},\"reference_identity\":{\"kind\":\"Skill\"}}",
+      "raw_sha256": "df66b0bf3b2325f8b2ddff350508e5d2c23209848269ebf8e25e79d17d2cad89",
+      "expected_material": {
+        "kind_known": "Skill",
+        "kind_conflict": false,
+        "node_key_kind_constraint": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-KIND-Agent_package",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"node_id\":\"opaque-node-6\",\"actual_identity\":{\"kind\":\"Agent_package\"},\"reference_identity\":{\"kind\":\"Agent_package\"}}",
+      "raw_sha256": "089ba384ca3d8c9818433b49e42d37f62d2d4fbfb505fab0a34e71b1db6e29a8",
+      "expected_material": {
+        "kind_known": "Agent_package",
+        "kind_conflict": false,
+        "node_key_kind_constraint": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-KIND-model",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"node_id\":\"opaque-node-7\",\"actual_identity\":{\"kind\":\"model\"},\"reference_identity\":{\"kind\":\"model\"}}",
+      "raw_sha256": "6ad10d12a1f165c2c0d5ab164584c08d04393fed882de2339c74c01fa94d2cea",
+      "expected_material": {
+        "kind_known": "model",
+        "kind_conflict": false,
+        "node_key_kind_constraint": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-KIND-binary",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"node_id\":\"opaque-node-8\",\"actual_identity\":{\"kind\":\"binary\"},\"reference_identity\":{\"kind\":\"binary\"}}",
+      "raw_sha256": "4fab3b01b4e5442a6f1a7a387f7f1d077a01b721e703834afd5657a56b703b4d",
+      "expected_material": {
+        "kind_known": "binary",
+        "kind_conflict": false,
+        "node_key_kind_constraint": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-BINDING-NULL",
+      "function_ref": "HELIXSECURITY-L5-012-compare_scope_selection",
+      "raw_utf8": "{\"actual_binding\":{\"candidate_revision\":null},\"reference_binding\":{\"candidate_revision\":\"fixed\"}}",
+      "raw_sha256": "97036f11eadee551838f86dd3e54db1978a5dd120e562466b9549df745b9430b",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "field_unknown",
+            "pointer": "/binding/candidate_revision"
+          }
+        ],
+        "absent_replaced_with_reference": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-MEANING-NONENUM",
+      "function_ref": "HELIXSECURITY-L5-012-compare_scope_selection",
+      "raw_utf8": "{\"actual_selection\":{\"meaning_state\":\"other\"},\"reference_selection\":{\"meaning_state\":\"defined\"}}",
+      "raw_sha256": "ed2b1b64cc7b23c457af72ebd5d2ba430d0a7f32bc5fb8c9d4bb7efa4787137a",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "state_unknown",
+            "pointer": "/selection/meaning_state"
+          }
+        ],
+        "meaning_unknown_for_invalid_enum": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R01"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F02"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F02"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-ROOT-SET-DIFFERENCE",
+      "function_ref": "HELIXSECURITY-L5-012-compare_scope_selection",
+      "raw_utf8": "{\"actual_roots\":[\"a\"],\"reference_roots\":[\"a\",\"b\"]}",
+      "raw_sha256": "a5a89cdbd28bee913ad5c6d2c4af8320e591e9a587ac72630872402b784595f3",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "set_conflict",
+            "pointer": "/roots"
+          }
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R02"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-CLOSURE-EMPTY-ROOT",
+      "function_ref": "HELIXSECURITY-L5-012-compute_dependency_closure",
+      "raw_utf8": "{\"roots\":[],\"edges\":{}}",
+      "raw_sha256": "98bb12eedc93efe2ab9e0cf045f3f12c3489094917389272b78515415af5daee",
+      "expected_material": {
+        "computed": true,
+        "nodes": [],
+        "findings": [],
+        "scope_success_from_empty": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R02",
+          "R11"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-CHILD-SET-DIFFERENCE",
+      "function_ref": "HELIXSECURITY-L5-012-compare_dependency_material",
+      "raw_utf8": "{\"common_node\":\"a\",\"actual_children\":[\"b\"],\"reference_children\":[\"b\",\"c\"],\"both_closures_computed\":true}",
+      "raw_sha256": "cf196af57858c5d8008e65451c947077b9460fa3703831dac5426d72f16a9753",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "dependency_set_conflict",
+            "pointer": "/edges/a"
+          }
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R03"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-N01",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-N01",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-DEPENDENCY-ASSET-MISSING",
+      "function_ref": "HELIXSECURITY-L5-012-compare_dependency_material",
+      "raw_utf8": "{\"needed_assets\":[\"dep-b\"],\"actual_assets\":{},\"reference_assets\":{\"dep-b\":{}}}",
+      "raw_sha256": "94bd4a00155163e37e7d11ef65482569420cb04e4f876ce694cf3865c855829d",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "dependency_asset_missing",
+            "pointer": "/assets"
+          },
+          {
+            "code": "group_missing",
+            "pointer": "/assets"
+          }
+        ],
+        "dependency_asset_created_from_kind": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R03"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-KIND-CONFLICT",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"node_id\":\"opaque\",\"actual_identity\":{\"kind\":\"package\"},\"reference_identity\":{\"kind\":\"binary\"}}",
+      "raw_sha256": "8ffc85eba220c15e7d5ab0dd4127864420aa5e421345776a04bca62a9d9e58eb",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "kind_conflict",
+            "pointer": "/assets/opaque/identity/kind"
+          }
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R04"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-ARTIFACT-ASSET-JOIN",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"artifact\":{\"asset_ref\":\"asset-old\",\"asset_revision_ref\":\"rev-old\"},\"context_identity\":{\"asset_id\":\"asset-new\",\"asset_revision\":\"rev-new\"}}",
+      "raw_sha256": "eb98c423403f64feef5d0e6b4770eb7b1121ad2badb42d225edee65c48f2f850",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "field_conflict",
+            "pointer": "/assets/pkg-a/artifact/asset_ref"
+          },
+          {
+            "code": "field_conflict",
+            "pointer": "/assets/pkg-a/artifact/asset_revision_ref"
+          }
+        ],
+        "actual_provenance_qualified": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R05"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-ARTIFACT-UNOBSERVED",
+      "function_ref": "HELIXSECURITY-L5-012-compare_identity_artifact",
+      "raw_utf8": "{\"actual_artifact\":{\"state\":\"unobserved\"},\"reference_artifact\":{\"state\":\"identity_material\"}}",
+      "raw_sha256": "a29616d558fdb0b9c99ade87d582c0791369c54fed7c312e8a28f21f9bb186c7",
+      "expected_material": {
+        "actual_artifact_state": "unobserved",
+        "required_codes": [
+          "artifact_unobserved",
+          "state_conflict"
+        ],
+        "asset_material_corresponding": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R05",
+          "R11"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F02"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F02"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-ENTRY-NONDICT",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"field\":\"source\",\"actual_entry\":null,\"reference_entry\":{}}",
+      "raw_sha256": "663366a79eb2dd6ccfbc8dabb544ec7c7f609bece77ed1c63bb97e93f9756b38",
+      "expected_material": {
+        "field_grade": "unknown",
+        "field_state": null,
+        "required_findings": [
+          {
+            "code": "group_missing",
+            "pointer": "/assets/pkg-a/fields/source"
+          }
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R06"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-ENTRY-CANDIDATE-JOIN",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"field\":\"permission\",\"actual_entry_binding\":{\"candidate_revision\":\"candidate-old\"},\"context_binding\":{\"candidate_revision\":\"candidate-new\"},\"reference_entry_binding\":{\"candidate_revision\":\"candidate-new\"}}",
+      "raw_sha256": "eba01cafa7bf521fef87c837c24497837f468efb665869f6e9b6881f17435e7e",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "field_conflict",
+            "pointer": "/assets/pkg-a/fields/permission/binding/candidate_revision"
+          }
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R07"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-VERSION-ARTIFACT-JOIN",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"field\":\"version\",\"actual_entry\":{\"value_ref\":\"version-other\"},\"context_artifact\":{\"version_ref\":\"version-fixed\"}}",
+      "raw_sha256": "125933bdf27220a8a69e578c48d87aae6fb197a2f88be69f24c55d37c83bb223",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "field_conflict",
+            "pointer": "/assets/pkg-a/fields/version/value_ref"
+          }
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R07"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-F01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-F01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-ORIGIN-NONENUM",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"field\":\"source\",\"actual_entry\":{\"origin\":\"host-name\"},\"reference_entry\":{\"origin\":\"asset_evidence\"}}",
+      "raw_sha256": "d852445e296f1c2659a4163028e4e6f4f48373bd87105c675194ae600eda0026",
+      "expected_material": {
+        "required_findings": [
+          {
+            "code": "origin_unknown",
+            "pointer": "/assets/pkg-a/fields/source/origin"
+          }
+        ],
+        "origin_promoted": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R08"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-B01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-B01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-ACQUISITION-OPAQUE",
+      "function_ref": "HELIXSECURITY-L5-012-compare_provenance_fields",
+      "raw_utf8": "{\"field\":\"source\",\"actual_entry\":{\"acquisition_state\":{\"downloaded\":true}},\"reference_entry\":{\"acquisition_state\":null}}",
+      "raw_sha256": "fc378997b4caeffeb509dfb7664c56b44a7dfed48b56ea7ece5de8ed6f0e4014",
+      "expected_material": {
+        "retained_acquisition_state": {
+          "downloaded": true
+        },
+        "acquisition_compared": false,
+        "actual_trusted": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R08",
+          "R12"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-B01",
+          "HELIXSECURITY-L3-012-F03"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-B01",
+          "HELIXSECURITY-L10-012-F03"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-CLAIM-FALSE",
+      "function_ref": "HELIXSECURITY-L5-012-compare_boundary_claims",
+      "raw_utf8": "{\"claims\":{\"download_implies_trust\":false}}",
+      "raw_sha256": "60aa2c6dddcea71613e109aea85610c928bb2b3815588c152e121db281764488",
+      "expected_material": {
+        "findings": [],
+        "actual_trusted": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R09",
+          "R12"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-B01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-B01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-AGGREGATE-VIOLATION-FIRST",
+      "function_ref": "HELIXSECURITY-L5-012-build_provenance_analysis",
+      "raw_utf8": "{\"root_grades\":{\"binding\":\"unknown\",\"selection\":\"corresponding\",\"graph\":\"violation\",\"boundary\":\"corresponding\"},\"asset_grades\":{}}",
+      "raw_sha256": "a07511d4d70c01f99508820f6208bbebc3b52659ece8085ac211242a672001c3",
+      "expected_material": {
+        "condition": "provenance_material_violation",
+        "actual_provenance_qualified": false
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R10",
+          "R12"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-B01",
+          "HELIXSECURITY-L3-012-F02",
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-B01",
+          "HELIXSECURITY-L10-012-F02",
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-FINDING-STABLE-DEDUPE",
+      "function_ref": "HELIXSECURITY-L5-012-build_provenance_analysis",
+      "raw_utf8": "{\"findings\":[{\"code\":\"field_unknown\",\"pointer\":\"/z\",\"return_owner\":\"diagnostic-facet-source-owner\"},{\"code\":\"field_conflict\",\"pointer\":\"/a\",\"return_owner\":\"diagnostic-facet-source-owner\"},{\"code\":\"field_unknown\",\"pointer\":\"/z\",\"return_owner\":\"diagnostic-facet-source-owner\"}]}",
+      "raw_sha256": "8c11c3aa2a991c949f34ac0326599733d63f4bd2df650f696c83b1f102b437ec",
+      "expected_material": {
+        "ordered_unique_tuples": [
+          [
+            "field_conflict",
+            "/a",
+            "diagnostic-facet-source-owner"
+          ],
+          [
+            "field_unknown",
+            "/z",
+            "diagnostic-facet-source-owner"
+          ]
+        ]
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R11"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-N01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-N01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    },
+    {
+      "id": "SEC012-L8-SELF-DECLARED-MATCH",
+      "function_ref": "HELIXSECURITY-L5-012-retain_source_collection_material",
+      "raw_utf8": "{\"actual_self_claim\":{\"qualified\":true,\"digest\":\"same\"},\"reference_self_claim\":{\"qualified\":true,\"digest\":\"same\"},\"qualification_ref\":null,\"custody_ref\":null}",
+      "raw_sha256": "b1397ae2a60d7d71d6c32539d15c4f10a994a2ada9af190b01487c3ef40690e4",
+      "expected_material": {
+        "actual_provenance_qualified": false,
+        "new_signature_or_truststore_required": false,
+        "operation_effect": "none"
+      },
+      "oracle_basis": {
+        "rule_refs": [
+          "R12"
+        ],
+        "requirement_refs": [
+          "HELIXSECURITY-L3-012-B01",
+          "HELIXSECURITY-L3-012-F03",
+          "HELIXSECURITY-L3-012-F01"
+        ],
+        "system_oracle_refs": [
+          "HELIXSECURITY-L10-012-B01",
+          "HELIXSECURITY-L10-012-F03",
+          "HELIXSECURITY-L10-012-F01"
+        ],
+        "method": "承認wholeと固有source規則を先に凍結した手起草の部分期待。L9 evaluator/実装出力由来でない。"
+      },
+      "execution_state": "not_executed",
+      "meaning_completion_effect": "none"
+    }
+  ],
+  "pair_cases": [
+    {
+      "id": "HELIXSECURITY-L8-012-B01",
+      "design_ref": "HELIXSECURITY-L5-012-B01",
+      "requirement_ref": "HELIXSECURITY-L3-012-B01",
+      "system_oracle_ref": "HELIXSECURITY-L10-012-B01",
+      "case_refs": [
+        "SEC012-L8-ORIGIN-RESEARCH",
+        "SEC012-L8-CLAIM-DOWNLOAD",
+        "SEC012-L8-CLAIM-UNKNOWN",
+        "SEC012-L8-SOURCE-CUSTODY-UNKNOWN",
+        "SEC012-L8-COLLECTION-NOT-SELECTED",
+        "SEC012-L8-AGGREGATE-UNKNOWN",
+        "SEC012-L8-ORIGIN-NONENUM",
+        "SEC012-L8-ACQUISITION-OPAQUE",
+        "SEC012-L8-CLAIM-FALSE",
+        "SEC012-L8-AGGREGATE-VIOLATION-FIRST",
+        "SEC012-L8-SELF-DECLARED-MATCH"
+      ],
+      "obligation": "外部実行資産のprovenanceを採用/保留の材料として返し、取得済み/人気/最新/公式に見える名前だけでtrustedにしない。SECURITYは知識の採否やOS実進行を代行せず、不明な供給元/実行能力を明示する。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-012-F01",
+      "design_ref": "HELIXSECURITY-L5-012-F01",
+      "requirement_ref": "HELIXSECURITY-L3-012-F01",
+      "system_oracle_ref": "HELIXSECURITY-L10-012-F01",
+      "case_refs": [
+        "SEC012-L8-CLOSURE-TRANSITIVE",
+        "SEC012-L8-OPAQUE-NODE-IDS",
+        "SEC012-L8-UNSEEN-KIND",
+        "SEC012-L8-ARTIFACT-PRODUCER-JOIN",
+        "SEC012-L8-ASSET-NONDICT",
+        "SEC012-L8-FIELDS-NONDICT",
+        "SEC012-L8-FIELDS-MISSING",
+        "SEC012-L8-MISSING-source",
+        "SEC012-L8-MISSING-producer",
+        "SEC012-L8-MISSING-version",
+        "SEC012-L8-MISSING-digest",
+        "SEC012-L8-MISSING-dependency",
+        "SEC012-L8-MISSING-permission",
+        "SEC012-L8-MISSING-network_behavior",
+        "SEC012-L8-MISSING-known_risk",
+        "SEC012-L8-MISSING-update_delta",
+        "SEC012-L8-MISSING-rollback",
+        "SEC012-L8-ENTRY-UNKNOWN",
+        "SEC012-L8-KIND-package",
+        "SEC012-L8-KIND-container_image",
+        "SEC012-L8-KIND-GitHub_repository",
+        "SEC012-L8-KIND-MCP",
+        "SEC012-L8-KIND-plugin",
+        "SEC012-L8-KIND-Skill",
+        "SEC012-L8-KIND-Agent_package",
+        "SEC012-L8-KIND-model",
+        "SEC012-L8-KIND-binary",
+        "SEC012-L8-ROOT-SET-DIFFERENCE",
+        "SEC012-L8-CHILD-SET-DIFFERENCE",
+        "SEC012-L8-KIND-CONFLICT",
+        "SEC012-L8-ARTIFACT-ASSET-JOIN",
+        "SEC012-L8-ENTRY-CANDIDATE-JOIN",
+        "SEC012-L8-VERSION-ARTIFACT-JOIN",
+        "SEC012-L8-SELF-DECLARED-MATCH"
+      ],
+      "obligation": "package/container image/GitHub repository/MCP/plugin/Skill/Agent package/model/binaryの9種を個別に識別し、source/producer/version/digest/dependency/permission/network behavior/known risk/update delta/rollbackを元資産identityと010候補revisionへ結ぶ。013のartifact identityを照合し、各必須項目を別々に参照可能にする。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-012-F02",
+      "design_ref": "HELIXSECURITY-L5-012-F02",
+      "requirement_ref": "HELIXSECURITY-L3-012-F02",
+      "system_oracle_ref": "HELIXSECURITY-L10-012-F02",
+      "case_refs": [
+        "SEC012-L8-CLOSURE-ROOT-NULL",
+        "SEC012-L8-CLOSURE-EDGES-NULL",
+        "SEC012-L8-ARTIFACT-PRODUCER-JOIN",
+        "SEC012-L8-ASSET-NONDICT",
+        "SEC012-L8-FIELDS-NONDICT",
+        "SEC012-L8-FIELDS-MISSING",
+        "SEC012-L8-MISSING-source",
+        "SEC012-L8-MISSING-producer",
+        "SEC012-L8-MISSING-version",
+        "SEC012-L8-MISSING-digest",
+        "SEC012-L8-MISSING-dependency",
+        "SEC012-L8-MISSING-permission",
+        "SEC012-L8-MISSING-network_behavior",
+        "SEC012-L8-MISSING-known_risk",
+        "SEC012-L8-MISSING-update_delta",
+        "SEC012-L8-MISSING-rollback",
+        "SEC012-L8-VERSION-LATEST",
+        "SEC012-L8-ENTRY-UNKNOWN",
+        "SEC012-L8-COLLECTION-SELECTED-UNPROVEN",
+        "SEC012-L8-MEANING-UNKNOWN",
+        "SEC012-L8-RAW-NULL-PRESERVED",
+        "SEC012-L8-BINDING-NULL",
+        "SEC012-L8-MEANING-NONENUM",
+        "SEC012-L8-KIND-CONFLICT",
+        "SEC012-L8-ARTIFACT-ASSET-JOIN",
+        "SEC012-L8-ARTIFACT-UNOBSERVED",
+        "SEC012-L8-ENTRY-NONDICT",
+        "SEC012-L8-VERSION-ARTIFACT-JOIN",
+        "SEC012-L8-ORIGIN-NONENUM",
+        "SEC012-L8-AGGREGATE-VIOLATION-FIRST"
+      ],
+      "obligation": "source/producer/version/digest/dependency/permission/network/risk/update/rollbackの欠落・不一致をunknown/reject材料へ結ぶ。latest tag、同名資産、別版のdigestや既存lockだけで未知を補完しない。対象範囲の意味変更はL1-012へ戻す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-012-F03",
+      "design_ref": "HELIXSECURITY-L5-012-F03",
+      "requirement_ref": "HELIXSECURITY-L3-012-F03",
+      "system_oracle_ref": "HELIXSECURITY-L10-012-F03",
+      "case_refs": [
+        "SEC012-L8-ORIGIN-RESEARCH",
+        "SEC012-L8-CLAIM-DOWNLOAD",
+        "SEC012-L8-SOURCE-CUSTODY-UNKNOWN",
+        "SEC012-L8-COLLECTION-NOT-SELECTED",
+        "SEC012-L8-COLLECTION-SELECTED-UNPROVEN",
+        "SEC012-L8-AGGREGATE-UNKNOWN",
+        "SEC012-L8-BINDING-DIFFERENCE",
+        "SEC012-L8-BINDING-NULL",
+        "SEC012-L8-ROOT-SET-DIFFERENCE",
+        "SEC012-L8-CHILD-SET-DIFFERENCE",
+        "SEC012-L8-ARTIFACT-ASSET-JOIN",
+        "SEC012-L8-ENTRY-CANDIDATE-JOIN",
+        "SEC012-L8-ORIGIN-NONENUM",
+        "SEC012-L8-ACQUISITION-OPAQUE",
+        "SEC012-L8-SELF-DECLARED-MATCH"
+      ],
+      "obligation": "初回に選ぶformatter/lint/型検査/schema/文書監査/test/runtime/依存の外部実行資産について、該当する9種と010/013の材料を対象revision/scopeへ結ぶ。tool名・固定registry/scanner・特定providerを新規必須にせず、比較研究のURL/説明を実資産provenanceの代用にしない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXSECURITY-L8-012-N01",
+      "design_ref": "HELIXSECURITY-L5-012-N01",
+      "requirement_ref": "HELIXSECURITY-L3-012-N01",
+      "system_oracle_ref": "HELIXSECURITY-L10-012-N01",
+      "case_refs": [
+        "SEC012-L8-CLOSURE-TRANSITIVE",
+        "SEC012-L8-CLOSURE-CYCLE",
+        "SEC012-L8-CLOSURE-ROOT-NULL",
+        "SEC012-L8-CLOSURE-EDGES-NULL",
+        "SEC012-L8-CLOSURE-EDGE-MISSING",
+        "SEC012-L8-CLOSURE-CHILD-NULL",
+        "SEC012-L8-CLOSURE-ONE-UNCOMPUTED",
+        "SEC012-L8-CLOSURE-BOTH-COMPUTED",
+        "SEC012-L8-OPAQUE-NODE-IDS",
+        "SEC012-L8-UNSEEN-KIND",
+        "SEC012-L8-ASSET-NONDICT",
+        "SEC012-L8-FIELDS-NONDICT",
+        "SEC012-L8-FIELDS-MISSING",
+        "SEC012-L8-MISSING-source",
+        "SEC012-L8-MISSING-producer",
+        "SEC012-L8-MISSING-version",
+        "SEC012-L8-MISSING-digest",
+        "SEC012-L8-MISSING-dependency",
+        "SEC012-L8-MISSING-permission",
+        "SEC012-L8-MISSING-network_behavior",
+        "SEC012-L8-MISSING-known_risk",
+        "SEC012-L8-MISSING-update_delta",
+        "SEC012-L8-MISSING-rollback",
+        "SEC012-L8-AGGREGATE-UNKNOWN",
+        "SEC012-L8-AGGREGATE-EMPTY",
+        "SEC012-L8-KIND-package",
+        "SEC012-L8-KIND-container_image",
+        "SEC012-L8-KIND-GitHub_repository",
+        "SEC012-L8-KIND-MCP",
+        "SEC012-L8-KIND-plugin",
+        "SEC012-L8-KIND-Skill",
+        "SEC012-L8-KIND-Agent_package",
+        "SEC012-L8-KIND-model",
+        "SEC012-L8-KIND-binary",
+        "SEC012-L8-ROOT-SET-DIFFERENCE",
+        "SEC012-L8-CLOSURE-EMPTY-ROOT",
+        "SEC012-L8-CHILD-SET-DIFFERENCE",
+        "SEC012-L8-DEPENDENCY-ASSET-MISSING",
+        "SEC012-L8-ENTRY-NONDICT",
+        "SEC012-L8-VERSION-ARTIFACT-JOIN",
+        "SEC012-L8-AGGREGATE-VIOLATION-FIRST",
+        "SEC012-L8-FINDING-STABLE-DEDUPE"
+      ],
+      "obligation": "未見資産kind/依存/producer/versionで同じ全fieldを照合する。必須fieldの一件欠落と、資産種別/推移依存対象集合の縮小を別に検出し、一toolの成功を全供給網の成立へ外挿しない。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "review_correction_retained": {
+    "reviewed_head": "a750fd49dffd0d243c0f5c62747490b2205c3070",
+    "review_comment": 6175438152,
+    "finding_ids": [
+      "OS12-M1",
+      "OS12-m1"
+    ],
+    "changed_case_refs": [
+      "SEC012-C0623",
+      "SEC012-C0625",
+      "SEC012-C0626",
+      "SEC012-C0627",
+      "SEC012-C0629",
+      "SEC012-C0710",
+      "SEC012-C1168",
+      "SEC012-C1170",
+      "SEC012-C1171",
+      "SEC012-C1172",
+      "SEC012-C1174",
+      "SEC012-C1255",
+      "SEC012-C1740",
+      "SEC012-C1745"
+    ],
+    "whole_inputs_unchanged": true,
+    "case_ids_and_pair_trace_unchanged": true,
+    "evidence_limit": "文書設計案のreview修正。凍結製品oracle変更や実TDDではない。"
+  },
+  "expectation_freeze": {
+    "basis_order": "承認110fdb3e whole→L4固有R01–R12→旧source/failure/consumer→手起草raw/期待。実装/evaluator返却値から期待を逆算しない。",
+    "kind": "設計材料の固定、実製品test/oracleの凍結ではない。",
+    "raw_cases_canonical_sha256": "85bf09b44b32e6358f82bd3a9af479a75fd31c7bc63831b1dda295562569e780",
+    "L4_1751_material": "元L9 whole bytesとreview修正をpinし、case/expected出力をコピーしない。",
+    "negative_separation": "raw_utf8にexpected/code/outcomeを混ぜない。部分assertionsはoracle_basisとobligationへtraceし、全出力成功に拡張しない。"
+  },
+  "completion": {
+    "state": "draft_candidate_static_checks_passed_pending_independent_review",
+    "runtime_execution": "not_executed",
+    "meaning_coverage": "unproven",
+    "five_contracts": 5,
+    "raw_cases": 64,
+    "remaining": "原資料shape不足/未計算closure/資格unknownは個別に保持。実root/custody/provider/consumer/collectorCAS/rollbackは未閉包。L6/L7と層外実装前test/oracle凍結→Red→Green→Refactor、全92親430対・実装Readyは未成立。"
+  },
+  "raw_fixture_contract": {
+    "shape": "rawはfunction_refで扱う原材料の投影された小型frame。省いたcontext/memberをknownにせず、expected_materialは記載facet/欄だけの部分期待。全ProvenanceContextの実行可能wire、未記載findingの不存在、資格成功、正式testの凍結を主張しない。",
+    "absence_null": "未供給memberはabsent、JSON nullはsupplied(null)、空list/mapは供給emptyとして別材料。別面から補完しない。",
+    "context_independence": "reference/context原資料はactual変異から再生成しない。全5承認wholeと固有Rを先に凍結する。",
+    "forbidden_expectation_inputs": "rawにexpected/outcome/findingを注入しない。ただしbuild関数の入力findings/root_gradesは先行純粋関数の明示材料であり、cached別scope最終判定ではない。",
+    "pointer_scope": "pointerは原R/L9と同じactual側root（/assets,/roots等）とcontext側/contextを使う。論理型wrapper名actual/referenceを先頭へ付けて既存findingの所在を変更しない。省いた文脈から未記載診断不存在を主張しない。"
+  }
+}
