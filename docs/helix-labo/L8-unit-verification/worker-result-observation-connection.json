@@ -1,7 +1,7 @@
 {
   "parent": "HELIXLABO-L2-028",
   "source_main": "ac655839bcbe986ea75cff464c64ab73ef88130b",
-  "source_basic_pair_revision": "c00695600ab1fed30718d89880b92a6358422131",
+  "source_basic_pair_revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
   "authority_effect": "none",
   "scope": {
     "version_target": "1.0",
@@ -748,7 +748,7 @@
     },
     {
       "id": "LOCAL-UNIT-QUALIFICATION-UNKNOWN",
-      "basis": "PURE-FUNCTION-BRANCH:resolve_source_map",
+      "basis": "PURE-FUNCTION-BRANCH:retain_source_qualification",
       "contract_ref": "HELIXLABO-L5-028-F01",
       "requirement_ref": "HELIXLABO-L3-028-F01",
       "system_oracle_ref": "HELIXLABO-L10-028-F01",
@@ -759,11 +759,11 @@
           "identity": "LOCAL-LABO028-SOURCE-UNQUALIFIED",
           "revision": "fixture-local-r1",
           "owner": "fixture only; no actual source owner qualification evidence",
-          "raw_utf8": "{\"contract_revision\":null,\"fixture_only\":true,\"owner_ref_id\":\"Worker result source\",\"qualification_record_ref\":null,\"revision\":\"WR-r1\",\"source_qualification_state\":\"unknown\",\"source_ref_id\":\"WORKER-S1\"}",
-          "sha256": "78323b4c08cc2908efb51902daac10afd71ebb223bc4200866803742b04755f6"
+          "raw_utf8": "{\"contract_revision\":null,\"fixture_only\":true,\"owner_ref_id\":\"Worker result source\",\"revision\":\"WR-r1\",\"source_qualification_evidence\":{\"contract_adoption_ref\":null,\"qualification_record_ref\":null,\"qualification_state\":\"unknown\",\"source_node\":{\"member_name\":\"source_qualification_evidence\",\"parent_json_pointer\":\"/source_qualification_evidence\",\"source_ref_id\":\"WORKER-S1\"},\"source_ref_id\":\"WORKER-S1\"},\"source_ref_id\":\"WORKER-S1\",\"supplier_contract_evidence\":null}",
+          "sha256": "d1e7a5155fb17533376b7393e625e54d3073bda3bec08448c706bba2d90e1679"
         }
       ],
-      "branch_input": "source shape exists, contract_revision=null; no independent source-owner qualification record is supplied",
+      "branch_input": "型付きSourceQualificationEvidenceがsource_ref_id=WORKER-S1、qualification_state=unknown、qualification_record_ref=null、contract_adoption_ref=nullで提供される。独立source-owner qualification/contract adoption evidenceは提供されない。",
       "expected_projection": [
         "qualification_state",
         "gaps[].gap_kind",
@@ -854,7 +854,7 @@
           "sha256": "cad3dd5c140e1d31e90584453b09beb673142aa003f9ea1927d495e0c02cc3a3"
         }
       ],
-      "branch_input": "receipt recordはreceived、別のevaluation recordはnot_evaluated。両recordをFieldValue providedで渡し混同しない。",
+      "branch_input": "receipt record自体はprovidedでstate=received_fixture_onlyだがreceipt_refはexplicit_null。evaluation recordは別source refでprovidedかつnot_evaluated。receipt/refの欠落gapとevaluation stateを別々に返す。",
       "expected_projection": [
         "receipt_state",
         "evaluation_state",
@@ -863,7 +863,10 @@
       "expected_result": {
         "receipt_presence": "explicit_null",
         "evaluation_state": "not_evaluated",
-        "evaluated_by_receipt": false
+        "evaluated_by_receipt": false,
+        "gap_kinds": [
+          "receipt_missing"
+        ]
       },
       "typed_gap_owner_refs": [
         "Worker result source",
@@ -1074,39 +1077,125 @@
       "requirement_ref": "HELIXLABO-L3-028-F02",
       "system_oracle_ref": "HELIXLABO-L10-028-F02",
       "function_ref": "build_observation",
-      "given": "EXP-A/TICKET-A/TARGET-A and EXP-B/TICKET-B/TARGET-B are two distinct input tuples.",
+      "given": "異なるticket/experiment/target versionを持つ2個の完全なObservationBuildInputを個別に渡す。各入力は固有のresult source ref、source record revision、caller observation ref、route、experiment link、owner別gapを含む。",
       "raw_input_packets": [
         {
           "identity": "LOCAL-LABO028-EXP-A-TUPLE",
           "revision": "fixture-local-r1",
           "owner": "fixture only; actual owner evidence not supplied",
-          "raw_utf8": "{\"experiment_identity\":\"EXP-A\",\"fixture_only\":true,\"target_version\":\"TARGET-A\",\"ticket_identity\":\"TICKET-A\"}",
-          "sha256": "b1484b7d2fe3262c764ecfe1738301677ac8ce98eb4f6a65c08f64ed9e47df8a"
+          "source_ref": {
+            "source_owner": "as stated in packet",
+            "source_self_claim_only": false
+          },
+          "raw_utf8": "{\"fixture_only\":true,\"input\":{\"assignment_match\":{\"assignment_identity\":null,\"compared_fields\":[\"ticket_identity\"],\"gaps\":[{\"affected_node_locators\":[],\"gap_kind\":\"assignment_unknown\",\"observed_presence_states\":[\"explicit_null\"],\"return_to_owner_refs\":[{\"owner_kind\":\"OS\",\"owner_ref_id\":\"OWNER-OS\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"LOCAL-LABO028-EXP-A-TUPLE\"]}],\"match_state\":\"unknown\",\"os_assignment_ref\":null,\"worker_result_ref\":\"LOCAL-LABO028-EXP-A-TUPLE\"},\"caller_observation_ref\":\"OBS-A\",\"experiment_gaps\":[],\"experiment_link\":{\"experiment_identity\":\"EXP-A\",\"l2_006_reference_state\":\"selected\",\"result_source_ref_id\":\"LOCAL-LABO028-EXP-A-TUPLE\",\"source_revision\":\"fixture-local-r1\",\"target_version\":\"TARGET-A\",\"ticket_identity\":\"TICKET-A\"},\"receipt_evaluation\":{\"evaluation\":{\"evaluation_ref\":null,\"evaluation_source_ref_id\":\"LABO-EVAL-EXP-A\",\"evaluation_state\":\"not_evaluated\",\"experiment_identity\":\"EXP-A\",\"source_node\":{\"member_name\":\"evaluation\",\"parent_json_pointer\":\"/evaluation\",\"source_ref_id\":\"LABO-EVAL-EXP-A\"},\"target_version\":\"TARGET-A\"},\"evaluation_state\":\"not_evaluated\",\"gaps\":[{\"affected_node_locators\":[],\"gap_kind\":\"receipt_missing\",\"observed_presence_states\":[\"explicit_null\"],\"return_to_owner_refs\":[{\"owner_kind\":\"HELIX-CONNECT\",\"owner_ref_id\":\"OWNER-HELIX-CONNECT\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"LOCAL-LABO028-EXP-A-TUPLE\"]},{\"affected_node_locators\":[],\"gap_kind\":\"evaluation_not_evaluated\",\"observed_presence_states\":[\"not_evaluated\"],\"return_to_owner_refs\":[{\"owner_kind\":\"LABO evaluation owner\",\"owner_ref_id\":\"OWNER-LABO-EVALUATION\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"LOCAL-LABO028-EXP-A-TUPLE\"]}],\"receipt\":null,\"receipt_state\":null},\"route\":{\"experiment_link\":{\"experiment_identity\":\"EXP-A\",\"l2_006_reference_state\":\"selected\",\"result_source_ref_id\":\"LOCAL-LABO028-EXP-A-TUPLE\",\"source_revision\":\"fixture-local-r1\",\"target_version\":\"TARGET-A\",\"ticket_identity\":\"TICKET-A\"},\"gaps\":[],\"kind\":\"experiment_result\",\"result_source_ref_id\":\"LOCAL-LABO028-EXP-A-TUPLE\"},\"security_data_use\":null,\"security_gaps\":[{\"affected_node_locators\":[],\"gap_kind\":\"data_use_permission_unknown\",\"observed_presence_states\":[\"explicit_null\"],\"return_to_owner_refs\":[{\"owner_kind\":\"SECURITY\",\"owner_ref_id\":\"OWNER-SECURITY\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"LOCAL-LABO028-EXP-A-TUPLE\"]}],\"source_qualification\":null,\"source_qualification_gaps\":[{\"affected_node_locators\":[],\"gap_kind\":\"source_qualification_unknown\",\"observed_presence_states\":[\"unknown\"],\"return_to_owner_refs\":[{\"owner_kind\":\"Worker result source\",\"owner_ref_id\":\"OWNER-WORKER-RESULT-SOURCE\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"LOCAL-LABO028-EXP-A-TUPLE\"]},{\"affected_node_locators\":[],\"gap_kind\":\"source_contract_unknown\",\"observed_presence_states\":[\"explicit_null\"],\"return_to_owner_refs\":[{\"owner_kind\":\"Worker result source\",\"owner_ref_id\":\"OWNER-WORKER-RESULT\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"LOCAL-LABO028-EXP-A-TUPLE\"]}],\"source_resolution\":{\"gaps\":[],\"resolved_records\":[{\"contract_revision\":null,\"owner_ref\":{\"owner_kind\":\"fixture only; not actual qualified owner\",\"owner_ref_id\":\"OWNER-FIXTURE-ONLY\"},\"provenance\":\"fixture packet only\",\"revision\":\"fixture-local-r1\",\"source_node\":{\"member_name\":\"result\",\"parent_json_pointer\":\"/result\",\"source_ref_id\":\"LOCAL-LABO028-EXP-A-TUPLE\"},\"source_qualification_state\":\"unknown/not_asserted\",\"source_ref_id\":\"LOCAL-LABO028-EXP-A-TUPLE\"}]},\"worker\":{\"claimed_assignment_identity\":null,\"evaluation_state\":\"not_evaluated\",\"experiment_identity\":\"EXP-A\",\"receipt_ref\":null,\"receipt_state\":null,\"responsibility_ref\":null,\"result_identity\":null,\"result_kind\":\"experiment_result\",\"result_source_ref_id\":\"LOCAL-LABO028-EXP-A-TUPLE\",\"result_state\":\"observed_fixture_only\",\"scope\":null,\"source_node\":{\"member_name\":\"result\",\"parent_json_pointer\":\"/result\",\"source_ref_id\":\"LOCAL-LABO028-EXP-A-TUPLE\"},\"source_result_contract_revision\":null,\"target_version\":\"TARGET-A\",\"task_class\":null,\"ticket_identity\":\"TICKET-A\",\"worker_version\":null}},\"source_tuple\":{\"experiment_identity\":\"EXP-A\",\"target_version\":\"TARGET-A\",\"ticket_identity\":\"TICKET-A\"}}",
+          "sha256": "6458c3b4dbf88489d05a6ef79d9e648e513165bd38bbe9b1e93751e471e34b1b"
         },
         {
           "identity": "LOCAL-LABO028-EXP-B-TUPLE",
           "revision": "fixture-local-r1",
           "owner": "fixture only; actual owner evidence not supplied",
-          "raw_utf8": "{\"experiment_identity\":\"EXP-B\",\"fixture_only\":true,\"target_version\":\"TARGET-B\",\"ticket_identity\":\"TICKET-B\"}",
-          "sha256": "c97bb3fbb1b5890f9340cc92cf9f25d86c6e43d1e44b2d41a5d992e6af753dda"
+          "source_ref": {
+            "source_owner": "as stated in packet",
+            "source_self_claim_only": false
+          },
+          "raw_utf8": "{\"fixture_only\":true,\"input\":{\"assignment_match\":{\"assignment_identity\":null,\"compared_fields\":[\"ticket_identity\"],\"gaps\":[{\"affected_node_locators\":[],\"gap_kind\":\"assignment_unknown\",\"observed_presence_states\":[\"explicit_null\"],\"return_to_owner_refs\":[{\"owner_kind\":\"OS\",\"owner_ref_id\":\"OWNER-OS\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"LOCAL-LABO028-EXP-B-TUPLE\"]}],\"match_state\":\"unknown\",\"os_assignment_ref\":null,\"worker_result_ref\":\"LOCAL-LABO028-EXP-B-TUPLE\"},\"caller_observation_ref\":\"OBS-B\",\"experiment_gaps\":[],\"experiment_link\":{\"experiment_identity\":\"EXP-B\",\"l2_006_reference_state\":\"selected\",\"result_source_ref_id\":\"LOCAL-LABO028-EXP-B-TUPLE\",\"source_revision\":\"fixture-local-r1\",\"target_version\":\"TARGET-B\",\"ticket_identity\":\"TICKET-B\"},\"receipt_evaluation\":{\"evaluation\":{\"evaluation_ref\":null,\"evaluation_source_ref_id\":\"LABO-EVAL-EXP-B\",\"evaluation_state\":\"not_evaluated\",\"experiment_identity\":\"EXP-B\",\"source_node\":{\"member_name\":\"evaluation\",\"parent_json_pointer\":\"/evaluation\",\"source_ref_id\":\"LABO-EVAL-EXP-B\"},\"target_version\":\"TARGET-B\"},\"evaluation_state\":\"not_evaluated\",\"gaps\":[{\"affected_node_locators\":[],\"gap_kind\":\"receipt_missing\",\"observed_presence_states\":[\"explicit_null\"],\"return_to_owner_refs\":[{\"owner_kind\":\"HELIX-CONNECT\",\"owner_ref_id\":\"OWNER-HELIX-CONNECT\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"LOCAL-LABO028-EXP-B-TUPLE\"]},{\"affected_node_locators\":[],\"gap_kind\":\"evaluation_not_evaluated\",\"observed_presence_states\":[\"not_evaluated\"],\"return_to_owner_refs\":[{\"owner_kind\":\"LABO evaluation owner\",\"owner_ref_id\":\"OWNER-LABO-EVALUATION\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"LOCAL-LABO028-EXP-B-TUPLE\"]}],\"receipt\":null,\"receipt_state\":null},\"route\":{\"experiment_link\":{\"experiment_identity\":\"EXP-B\",\"l2_006_reference_state\":\"selected\",\"result_source_ref_id\":\"LOCAL-LABO028-EXP-B-TUPLE\",\"source_revision\":\"fixture-local-r1\",\"target_version\":\"TARGET-B\",\"ticket_identity\":\"TICKET-B\"},\"gaps\":[],\"kind\":\"experiment_result\",\"result_source_ref_id\":\"LOCAL-LABO028-EXP-B-TUPLE\"},\"security_data_use\":null,\"security_gaps\":[{\"affected_node_locators\":[],\"gap_kind\":\"data_use_permission_unknown\",\"observed_presence_states\":[\"explicit_null\"],\"return_to_owner_refs\":[{\"owner_kind\":\"SECURITY\",\"owner_ref_id\":\"OWNER-SECURITY\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"LOCAL-LABO028-EXP-B-TUPLE\"]}],\"source_qualification\":null,\"source_qualification_gaps\":[{\"affected_node_locators\":[],\"gap_kind\":\"source_qualification_unknown\",\"observed_presence_states\":[\"unknown\"],\"return_to_owner_refs\":[{\"owner_kind\":\"Worker result source\",\"owner_ref_id\":\"OWNER-WORKER-RESULT-SOURCE\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"LOCAL-LABO028-EXP-B-TUPLE\"]},{\"affected_node_locators\":[],\"gap_kind\":\"source_contract_unknown\",\"observed_presence_states\":[\"explicit_null\"],\"return_to_owner_refs\":[{\"owner_kind\":\"Worker result source\",\"owner_ref_id\":\"OWNER-WORKER-RESULT\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"LOCAL-LABO028-EXP-B-TUPLE\"]}],\"source_resolution\":{\"gaps\":[],\"resolved_records\":[{\"contract_revision\":null,\"owner_ref\":{\"owner_kind\":\"fixture only; not actual qualified owner\",\"owner_ref_id\":\"OWNER-FIXTURE-ONLY\"},\"provenance\":\"fixture packet only\",\"revision\":\"fixture-local-r1\",\"source_node\":{\"member_name\":\"result\",\"parent_json_pointer\":\"/result\",\"source_ref_id\":\"LOCAL-LABO028-EXP-B-TUPLE\"},\"source_qualification_state\":\"unknown/not_asserted\",\"source_ref_id\":\"LOCAL-LABO028-EXP-B-TUPLE\"}]},\"worker\":{\"claimed_assignment_identity\":null,\"evaluation_state\":\"not_evaluated\",\"experiment_identity\":\"EXP-B\",\"receipt_ref\":null,\"receipt_state\":null,\"responsibility_ref\":null,\"result_identity\":null,\"result_kind\":\"experiment_result\",\"result_source_ref_id\":\"LOCAL-LABO028-EXP-B-TUPLE\",\"result_state\":\"observed_fixture_only\",\"scope\":null,\"source_node\":{\"member_name\":\"result\",\"parent_json_pointer\":\"/result\",\"source_ref_id\":\"LOCAL-LABO028-EXP-B-TUPLE\"},\"source_result_contract_revision\":null,\"target_version\":\"TARGET-B\",\"task_class\":null,\"ticket_identity\":\"TICKET-B\",\"worker_version\":null}},\"source_tuple\":{\"experiment_identity\":\"EXP-B\",\"target_version\":\"TARGET-B\",\"ticket_identity\":\"TICKET-B\"}}",
+          "sha256": "630dc0d7a7d1a7a8c70e44aff3b1e05d6a9d33a12bb271b2517623b3076df591"
         }
       ],
-      "branch_input": "different experiment/ticket/version tuples are kept separate",
+      "branch_input": "build_observation(input: ObservationBuildInput)を2回個別に呼ぶ。1回の関数入力へ異なるexperiment tupleを混在させない。",
       "expected_projection": [
-        "observation.experiment_link",
-        "gaps[].gap_kind"
+        "observation_results[0].observations[].observation_ref",
+        "observation_results[0].observations[].result_source_ref_id",
+        "observation_results[0].observations[].ticket_identity",
+        "observation_results[0].observations[].experiment_link",
+        "observation_results[0].gaps[].gap_kind",
+        "observation_results[0].source_map_resolution[].source_ref_id",
+        "observation_results[1].observations[].experiment_link",
+        "observation_results[1].gaps[].gap_kind",
+        "observation_results[1].source_map_resolution[].source_ref_id"
       ],
       "expected_result": {
-        "combined_experiment_set": "rejected",
-        "both_tuples_preserved": true,
-        "authority_effect": "none"
+        "observation_results": [
+          {
+            "observations": [
+              {
+                "observation_ref": "OBS-A",
+                "result_source_ref_id": "LOCAL-LABO028-EXP-A-TUPLE",
+                "result_identity": null,
+                "ticket_identity": "TICKET-A",
+                "experiment_link": {
+                  "experiment_identity": "EXP-A",
+                  "target_version": "TARGET-A",
+                  "ticket_identity": "TICKET-A",
+                  "result_source_ref_id": "LOCAL-LABO028-EXP-A-TUPLE",
+                  "source_revision": "fixture-local-r1",
+                  "l2_006_reference_state": "selected"
+                },
+                "authority_effect": "none"
+              }
+            ],
+            "gaps": [
+              "assignment_unknown",
+              "receipt_missing",
+              "evaluation_not_evaluated",
+              "source_qualification_unknown",
+              "source_contract_unknown",
+              "data_use_permission_unknown"
+            ],
+            "source_map_resolution": [
+              {
+                "source_ref_id": "LOCAL-LABO028-EXP-A-TUPLE",
+                "revision": "fixture-local-r1",
+                "source_qualification_state": "unknown/not_asserted"
+              }
+            ]
+          },
+          {
+            "observations": [
+              {
+                "observation_ref": "OBS-B",
+                "result_source_ref_id": "LOCAL-LABO028-EXP-B-TUPLE",
+                "result_identity": null,
+                "ticket_identity": "TICKET-B",
+                "experiment_link": {
+                  "experiment_identity": "EXP-B",
+                  "target_version": "TARGET-B",
+                  "ticket_identity": "TICKET-B",
+                  "result_source_ref_id": "LOCAL-LABO028-EXP-B-TUPLE",
+                  "source_revision": "fixture-local-r1",
+                  "l2_006_reference_state": "selected"
+                },
+                "authority_effect": "none"
+              }
+            ],
+            "gaps": [
+              "assignment_unknown",
+              "receipt_missing",
+              "evaluation_not_evaluated",
+              "source_qualification_unknown",
+              "source_contract_unknown",
+              "data_use_permission_unknown"
+            ],
+            "source_map_resolution": [
+              {
+                "source_ref_id": "LOCAL-LABO028-EXP-B-TUPLE",
+                "revision": "fixture-local-r1",
+                "source_qualification_state": "unknown/not_asserted"
+              }
+            ]
+          }
+        ],
+        "distinct_inputs_preserved": true
       },
       "typed_gap_owner_refs": [
-        "LABO/L2-006 experiment owner",
         "OS",
-        "Worker result source"
+        "HELIX-CONNECT",
+        "LABO evaluation owner",
+        "Worker result source",
+        "SECURITY",
+        "LABO/L2-006 experiment owner"
       ],
-      "assertion_scope": "関数出力の指定projectionだけを確認する部分期待。全出力・全branch・全要件合格を主張しない。",
+      "assertion_scope": "関数出力の指定projectionだけを2回の各build_observation結果について確認する。部分期待であり、2結果の混合集合や実評価・資格・権限を主張しない。",
       "not_claimed": [
         "実source qualification",
         "permission/data-use authorization",
@@ -1116,7 +1205,8 @@
         "実TDD/CI/L11 acceptance"
       ],
       "fixture_only": true,
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "invocation_model": "raw_input_packetsの各packet.inputを別々にbuild_observation(input)へ渡す。配列化はfixtureの二呼出し記録であり関数の引数ではない。"
     },
     {
       "id": "LOCAL-UNIT-CONTRACT-UNADOPTED",
@@ -1172,8 +1262,8 @@
           "identity": "LOCAL-LABO028-BUILD-OBSERVATION-FULL-INPUT",
           "revision": "fixture-local-v1",
           "owner": "fixture-only; no supplier qualification",
-          "raw_utf8": "{\"fixture_only\":true,\"input\":{\"assignment_match\":{\"compared_fields\":[\"ticket_identity\",\"task_class\",\"responsibility_ref\",\"source_result_contract_revision\"],\"gaps\":[],\"match_state\":\"matched\",\"os_assignment_ref\":\"SRC-OS-01\",\"worker_result_ref\":\"SRC-W-01\"},\"caller_observation_ref\":\"OBS-01\",\"experiment_gaps\":[],\"experiment_link\":null,\"receipt_evaluation\":{\"evaluation\":{\"evaluation_ref\":null,\"evaluation_source_ref_id\":\"SRC-LABO-01\",\"evaluation_state\":\"not_evaluated\",\"experiment_identity\":null,\"source_node\":{\"member_name\":\"evaluation\",\"parent_json_pointer\":\"/evaluation\",\"source_ref_id\":\"SRC-LABO-01\"},\"target_version\":null},\"evaluation_state\":\"not_evaluated\",\"gaps\":[],\"receipt\":{\"acknowledged_revision\":\"recv-r1\",\"acknowledged_source_identity\":\"RESULT-01\",\"receipt_ref\":\"RECEIPT-01\",\"receipt_source_ref_id\":\"SRC-CONNECT-01\",\"receipt_state\":\"received_fixture_only\",\"source_node\":{\"member_name\":\"receipt\",\"parent_json_pointer\":\"/receipt\",\"source_ref_id\":\"SRC-CONNECT-01\"}},\"receipt_state\":\"received_fixture_only\"},\"route\":{\"experiment_link\":null,\"gaps\":[],\"kind\":\"ordinary_history\",\"result_source_ref_id\":\"SRC-W-01\"},\"security_data_use\":null,\"security_gaps\":[{\"affected_node_locators\":[],\"gap_kind\":\"data_use_permission_unknown\",\"observed_presence_states\":[\"explicit_null\"],\"return_to_owner_refs\":[{\"owner_kind\":\"SECURITY\",\"owner_ref_id\":\"OWNER-SECURITY\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"SRC-SEC-01\"]}],\"source_qualification\":null,\"source_qualification_gaps\":[{\"affected_node_locators\":[],\"gap_kind\":\"source_qualification_unknown\",\"observed_presence_states\":[\"unknown\"],\"return_to_owner_refs\":[{\"owner_kind\":\"Worker result source\",\"owner_ref_id\":\"OWNER-WORKER-RESULT\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"SRC-W-01\"]}],\"source_resolution\":{\"gaps\":[],\"resolved_records\":[{\"contract_revision\":\"WRC-1\",\"owner_ref\":{\"owner_kind\":\"Worker result source\",\"owner_ref_id\":\"OWNER-WORKER-RESULT\"},\"provenance\":\"fixture supplied\",\"revision\":\"worker-r1\",\"source_node\":{\"member_name\":\"result\",\"parent_json_pointer\":\"/result\",\"source_ref_id\":\"SRC-W-01\"},\"source_qualification_state\":\"unknown/not_asserted\",\"source_ref_id\":\"SRC-W-01\"}]},\"worker\":{\"claimed_assignment_identity\":null,\"evaluation_state\":\"not_evaluated\",\"experiment_identity\":null,\"receipt_ref\":\"RECEIPT-01\",\"receipt_state\":\"received_fixture_only\",\"responsibility_ref\":\"RESP-01\",\"result_identity\":\"RESULT-01\",\"result_kind\":\"ordinary_history\",\"result_source_ref_id\":\"SRC-W-01\",\"result_state\":\"observed_fixture_only\",\"scope\":\"repo-docs\",\"source_node\":{\"member_name\":\"result\",\"parent_json_pointer\":\"/result\",\"source_ref_id\":\"SRC-W-01\"},\"source_result_contract_revision\":\"WRC-1\",\"target_version\":null,\"task_class\":\"doc-change\",\"ticket_identity\":\"TICKET-01\",\"worker_version\":\"W-1\"}}}",
-          "sha256": "54c27b2948616be7f3ffaec30494364be1ea290b8c4eb0ec1be7e0112521c76c"
+          "raw_utf8": "{\"fixture_only\":true,\"input\":{\"assignment_match\":{\"assignment_identity\":\"OS-ASSIGN-01\",\"compared_fields\":[\"ticket_identity\",\"task_class\",\"responsibility_ref\",\"source_result_contract_revision\"],\"gaps\":[],\"match_state\":\"matched\",\"os_assignment_ref\":\"SRC-OS-01\",\"worker_result_ref\":\"SRC-W-01\"},\"caller_observation_ref\":\"OBS-01\",\"experiment_gaps\":[],\"experiment_link\":null,\"receipt_evaluation\":{\"evaluation\":{\"evaluation_ref\":null,\"evaluation_source_ref_id\":\"SRC-LABO-01\",\"evaluation_state\":\"not_evaluated\",\"experiment_identity\":null,\"source_node\":{\"member_name\":\"evaluation\",\"parent_json_pointer\":\"/evaluation\",\"source_ref_id\":\"SRC-LABO-01\"},\"target_version\":null},\"evaluation_state\":\"not_evaluated\",\"gaps\":[],\"receipt\":{\"acknowledged_revision\":\"recv-r1\",\"acknowledged_source_identity\":\"RESULT-01\",\"receipt_ref\":\"RECEIPT-01\",\"receipt_source_ref_id\":\"SRC-CONNECT-01\",\"receipt_state\":\"received_fixture_only\",\"source_node\":{\"member_name\":\"receipt\",\"parent_json_pointer\":\"/receipt\",\"source_ref_id\":\"SRC-CONNECT-01\"}},\"receipt_state\":\"received_fixture_only\"},\"route\":{\"experiment_link\":null,\"gaps\":[],\"kind\":\"ordinary_history\",\"result_source_ref_id\":\"SRC-W-01\"},\"security_data_use\":null,\"security_gaps\":[{\"affected_node_locators\":[],\"gap_kind\":\"data_use_permission_unknown\",\"observed_presence_states\":[\"explicit_null\"],\"return_to_owner_refs\":[{\"owner_kind\":\"SECURITY\",\"owner_ref_id\":\"OWNER-SECURITY\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"SRC-SEC-01\"]}],\"source_qualification\":null,\"source_qualification_gaps\":[{\"affected_node_locators\":[],\"gap_kind\":\"source_qualification_unknown\",\"observed_presence_states\":[\"unknown\"],\"return_to_owner_refs\":[{\"owner_kind\":\"Worker result source\",\"owner_ref_id\":\"OWNER-WORKER-RESULT\"}],\"scope\":\"selected_input_only\",\"source_ref_ids\":[\"SRC-W-01\"]}],\"source_resolution\":{\"gaps\":[],\"resolved_records\":[{\"contract_revision\":\"WRC-1\",\"owner_ref\":{\"owner_kind\":\"Worker result source\",\"owner_ref_id\":\"OWNER-WORKER-RESULT\"},\"provenance\":\"fixture supplied\",\"revision\":\"worker-r1\",\"source_node\":{\"member_name\":\"result\",\"parent_json_pointer\":\"/result\",\"source_ref_id\":\"SRC-W-01\"},\"source_qualification_state\":\"unknown/not_asserted\",\"source_ref_id\":\"SRC-W-01\"}]},\"worker\":{\"claimed_assignment_identity\":null,\"evaluation_state\":\"not_evaluated\",\"experiment_identity\":null,\"receipt_ref\":\"RECEIPT-01\",\"receipt_state\":\"received_fixture_only\",\"responsibility_ref\":\"RESP-01\",\"result_identity\":\"RESULT-01\",\"result_kind\":\"ordinary_history\",\"result_source_ref_id\":\"SRC-W-01\",\"result_state\":\"observed_fixture_only\",\"scope\":\"repo-docs\",\"source_node\":{\"member_name\":\"result\",\"parent_json_pointer\":\"/result\",\"source_ref_id\":\"SRC-W-01\"},\"source_result_contract_revision\":\"WRC-1\",\"target_version\":null,\"task_class\":\"doc-change\",\"ticket_identity\":\"TICKET-01\",\"worker_version\":\"W-1\"}}}",
+          "sha256": "26e0e6b66585fcc21957eb092edae855ba2b8b3580f5c11105facfb903a05384"
         }
       ],
       "branch_input": "ObservationBuildInputのcaller ref/source resolution/資格・SECURITY gaps/receipt・evaluation/experiment linkをすべて明示し、owner別入力をそのままObservationResultへ伝える。",
@@ -1205,7 +1295,8 @@
         "実TDD/CI/L11 acceptance"
       ],
       "fixture_only": true,
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "contract_ref": "HELIXLABO-L5-028-F01"
     }
   ],
   "unclosed": [

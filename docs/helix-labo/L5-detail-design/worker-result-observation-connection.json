@@ -1,7 +1,7 @@
 {
   "parent": "HELIXLABO-L2-028",
   "source_main": "ac655839bcbe986ea75cff464c64ab73ef88130b",
-  "source_basic_pair_revision": "c00695600ab1fed30718d89880b92a6358422131",
+  "source_basic_pair_revision": "ac655839bcbe986ea75cff464c64ab73ef88130b",
   "authority_effect": "none",
   "scope": {
     "version_target": "1.0",
