@@ -1,0 +1,641 @@
+{
+  "parent": "HELIXLABO-L2-011",
+  "source_main": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+  "status": "draft_not_authoritative",
+  "scope": {
+    "requirement_ref": "HELIXLABO-L3-011-F01",
+    "l4_ref": "HELIXLABO-L4-011-F01",
+    "l9_ref": "HELIXLABO-L9-011-F01",
+    "oracle_ref": "HELIXLABO-L10-011-F01",
+    "cases": 42,
+    "case_ids": [
+      "LABO011-F01-BOTH-ENDPOINTS-SAME-OBSERVATION",
+      "LABO011-F01-CONNECTION-identity-MISSING",
+      "LABO011-F01-CONNECTION-revision-MISSING",
+      "LABO011-F01-CONNECTION-from_endpoint-MISSING",
+      "LABO011-F01-CONNECTION-to_endpoint-MISSING",
+      "LABO011-F01-CONNECTION-connector_identity-MISSING",
+      "LABO011-F01-CONNECTION-connector_revision-MISSING",
+      "LABO011-F01-CONNECTION-contract_identity-MISSING",
+      "LABO011-F01-CONNECTION-contract_revision-MISSING",
+      "LABO011-F01-CONNECTION-scope-MISSING",
+      "LABO011-F01-send_receipt-MISSING",
+      "LABO011-F01-send_receipt-connection-FOREIGN",
+      "LABO011-F01-send_receipt-observation_identity-FOREIGN",
+      "LABO011-F01-send_receipt-observation_revision-FOREIGN",
+      "LABO011-F01-send_receipt-source-FOREIGN",
+      "LABO011-F01-send_receipt-scope-FOREIGN",
+      "LABO011-F01-send_receipt-NOT-SUCCESS",
+      "LABO011-F01-receive_receipt-MISSING",
+      "LABO011-F01-receive_receipt-connection-FOREIGN",
+      "LABO011-F01-receive_receipt-observation_identity-FOREIGN",
+      "LABO011-F01-receive_receipt-observation_revision-FOREIGN",
+      "LABO011-F01-receive_receipt-source-FOREIGN",
+      "LABO011-F01-receive_receipt-scope-FOREIGN",
+      "LABO011-F01-receive_receipt-NOT-SUCCESS",
+      "LABO011-F01-OBSERVATION-identity-MISSING",
+      "LABO011-F01-OBSERVATION-revision-MISSING",
+      "LABO011-F01-OBSERVATION-source-MISSING",
+      "LABO011-F01-OBSERVATION-scope-MISSING",
+      "LABO011-F01-FIELD-MISSING-SUCCESS-FABRICATED",
+      "LABO011-F01-SOURCE-REVISION-CHANGED",
+      "LABO011-F01-BACKLINK-episode_identity-FOREIGN",
+      "LABO011-F01-BACKLINK-episode_revision-FOREIGN",
+      "LABO011-F01-BACKLINK-observation_identity-FOREIGN",
+      "LABO011-F01-BACKLINK-observation_revision-FOREIGN",
+      "LABO011-F01-BACKLINK-source-FOREIGN",
+      "LABO011-F01-BACKLINK-scope-FOREIGN",
+      "LABO011-F01-BACKLINK-ABSENT",
+      "LABO011-F01-RELATION-VERSION-FOREIGN",
+      "LABO011-F01-REJECT-engine_green_is_connection_success",
+      "LABO011-F01-REJECT-send_only_is_connection_success",
+      "LABO011-F01-REJECT-receipt_hash_is_actual_success",
+      "LABO011-F01-REJECT-correlation_is_cause"
+    ]
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md",
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3f95f09ee86920e0dd6172a9e28f32192c1ee16bd4bfbec72438464bfee9fa16"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        67,
+        67
+      ],
+      "quote": "| **HIL-BR-15** | 将来のproduct-data sourceをversioned connectorで取り込み、由来・鮮度・schema・authorityを保持した正規projectionとして設計判断、coverage、impact、Issue routing、docgen/detectorへ供給する。 |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "880385839788ea49f14544ee9dd0f1ed5037bc84b1707a9ba55f4fa6a267c2f5",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "source由来・schema/connector版・元recordとmappingの参照、join切れを未完として保持する。",
+      "change": "旧product DB/取り込みschemaを移植せず、採択LABO011のAggregate→Correlate固有接続と両端receipt/episode往復参照へ意味を再導出する。",
+      "reason": "L1の2026-09-26 PO差分と採択011/10-12 exact承認による。旧単一DB/製品connectorから内側接続の実成立や自動因果を生成しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md",
+      "read_lines": [
+        554,
+        586
+      ],
+      "quote": "connectorはproduct DBへ直接自由queryする機構ではない。登録時に次を固定する。\n\n- source identity、connector type/version、credential **reference**、data classificationの登録値\n- source schema/version、canonical mapping version、read-only/read-write policyの権限境界\n- snapshot/cursor/event identity、freshness SLA、retention/redactionの更新規則\n- lineage、schema drift policy、quarantine route、replay checkpointの復旧規則\n- detector/docgenへ渡せるfieldと禁止field\n\n既定はread-only snapshotであり、productへのwrite-backは別Issue、Reverse、security review、action-binding approvalを\n要求する。schema drift、credential不在、PII classification不明は取り込みを止め、古いprojectionをcurrentとして返さない。\n\n### §8.1 product-data実装schema\n\n| table | PK | 論理FK・一意制約 | 必須field | 許可status |\n|---|---|---|---|---|\n| `product_sources` | `product_source_id` | source kind＋external identity digestは一意 | owner、classification、read/write policy、freshness SLA、retention、created/updated | `registered`, `enabled`, `disabled`, `quarantined`, `retired` |\n| `product_connector_versions` | `product_connector_version_id` | source→`product_sources`、source＋connector versionは一意、activeはsourceごとに最大1件 | connector/schema/mapping version、credential reference、sync mode、config digest、effective_at | `draft`, `active`, `deprecated`, `revoked` |\n| `product_ingestion_runs` | `product_ingestion_run_id` | connector versionを参照、operation/idempotency keyは一意 | mode、intent digest、cursor start/end、fence token、failure、開始/終了 | `received`, `claimed`, `fetching`, `staged`, `validating`, `committing`, `completed`, `failed`, `quarantined`, `cancelled` |\n| `product_snapshots` | `product_snapshot_id` | source/runを参照、runは一意、source＋cursor＋schema/content digestは一意、supersedesは自己参照、sourceごとの`current`はpartial uniqueで最大1件 | classification、captured/fresh until、lineage/schema/content digest | `staged`, `current`, `stale`, `superseded`, `quarantined`, `purged` |\n| `product_entity_versions` | `product_entity_version_id` | snapshot→`product_snapshots`、snapshot＋canonical entity IDは一意 | entity type、source record key digest、schema version、redacted artifact path/payload digest、tombstone | `staged`, `current`, `superseded`, `tombstoned`, `quarantined` |\n| `product_mapping_edges` | `product_mapping_edge_id` | entity versionを参照、entity＋target kind/ID＋mapping versionは一意 | target kind、evidence digest、created_at | `active`, `stale`, `rejected` |\n| `product_watermarks` | `product_source_id` | source/snapshot/connector versionを参照 | cursor、fence token、updated_at | current projection |\n| `product_quarantine_items` | `product_quarantine_item_id` | source/run/snapshotを参照、source＋fingerprint＋scope digestは一意 | finding code、evidence digest、owner、expiry、release receipt | `open`, `released`, `expired`, `superseded` |\n| `product_ingestion_events` | `product_ingestion_event_id` | run→`product_ingestion_runs`、run＋event sequenceとoperation IDは一意 | from/to state、previous/event digest、failure、occurred_at | append-only |\n\ncredentialはreferenceだけを保存し、raw secret、未redact PII、自由形式raw payloadをprojectionへ保存しない。\nwatermarkはsourceごとの最後の`current` snapshotからcompare-and-swapし、逆行を`HIL_PRODUCT_WATERMARK_REGRESSION`、\nschema driftを`HIL_PRODUCT_SCHEMA_DRIFT`、freshness超過を`HIL_PRODUCT_SNAPSHOT_STALE`として旧entityをcurrentから外す。\n同一idempotency keyの再送は副作用0件とし、異なるdigestなら`HIL_PRODUCT_IDEMPOTENCY_CONFLICT`で停止する。\nentity/mapping insert、旧currentのsupersede、新snapshotのcurrent化、watermark CASは一transactionで行う。\ncrash時は`staged`を再検証し、watermarkだけを進めない。retention receiptなしのpurge、存在しないmapping target、\nclassification不明、未redact payloadをそれぞれfail-closeする。\nwrite-backは本schemaに含めず、別のaction-binding approval付き契約が作られるまでNode/Python双方から拒否する。",
+      "file_sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "selected_lines_sha256": "2e6ac9c0ba4c61644155e66f04a719bc6d911b559ff4af10772b11eef3598457",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462",
+        "disposition": "unresolved",
+        "source_sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "source由来・schema/connector版・元recordとmappingの参照、join切れを未完として保持する。",
+      "change": "旧product DB/取り込みschemaを移植せず、採択LABO011のAggregate→Correlate固有接続と両端receipt/episode往復参照へ意味を再導出する。",
+      "reason": "L1の2026-09-26 PO差分と採択011/10-12 exact承認による。旧単一DB/製品connectorから内側接続の実成立や自動因果を生成しない。"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "approval_whole_files": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6",
+      "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "whole_file": true,
+      "authority_source": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+      "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "whole_file": true,
+      "authority_source": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+      "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5",
+      "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "whole_file": true,
+      "authority_source": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d",
+      "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "whole_file": true,
+      "authority_source": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496",
+      "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "whole_file": true,
+      "authority_source": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+      "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919",
+      "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "whole_file": true,
+      "authority_source": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md"
+    }
+  ],
+  "approval_record": {
+    "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "revision": "2f95e20cd9e90dd4ab7d349661476d8c49eff548",
+    "admitted_main_revision": "4dd2774e1498bde640a52e94245195f62e750ca6",
+    "review_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+    "state": "approved exact L3/L10 F01 only; approval record remains subject to its recorded status; no L3/L10 changes.",
+    "record_sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+  },
+  "legacy_scope_note": "旧HELIX資産の保持・変更・理由はL4由来の記録を維持。旧データベース/connector/runtimeは移植せず、旧runtime・test・CIも実行しない。",
+  "remaining": [
+    "形式schema/codecおよび実source資格は未成立。",
+    "この論理契約は合成packetの静的比較だけで、実接続・実receipts・実authorityを認定しない。",
+    "L11、正式実装・資格・実運用は未成立。"
+  ],
+  "document_id": "HELIXLABO-L5-011",
+  "layer": "L5",
+  "pair": "HELIXLABO-L8-011",
+  "logical_contract": {
+    "basis": "L4-011の設計義務と採択L3/L10 F01のみからの論理的展開。source packetの自己申告は実資格を作らない。",
+    "logical_carrier": "入力carrierは原JSON値をそのまま受ける。欠落memberと明示nullは元rawで区別して保持する。出力のConnectionFieldPresenceだけがpresence/raw_valueへ投影し、FieldComparisonはgetで欠落をnull観測へ写す比較であり元rawを変更しない。正式wire schema/codecではない。",
+    "types": {
+      "JsonValue": {
+        "kind": "JSON value",
+        "meaning": "原packetにあるJSON値を型変換せず保持する。null、scalar、array、objectを含む。"
+      },
+      "Presence<JsonValue>": {
+        "kind": "record",
+        "fields": {
+          "state": "PresenceState",
+          "value": "JsonValue|null",
+          "source_pointer": "JsonPointer|null"
+        },
+        "meaning": "absentはstate=absent,value=null,source_pointer=null。明示nullはstate=null,value=null,pointerあり。valueは値をそのまま保持。"
+      },
+      "PresenceState": {
+        "kind": "enum",
+        "values": [
+          "absent",
+          "null",
+          "value"
+        ]
+      },
+      "JsonPointer": {
+        "kind": "string",
+        "meaning": "source file内JSON Pointer。読み取り位置のみで authority を作らない。"
+      },
+      "FieldComparison": {
+        "kind": "record",
+        "fields": {
+          "left_presence": "PresenceState",
+          "left_value": "JsonValue|null",
+          "right_presence": "PresenceState",
+          "right_value": "JsonValue|null",
+          "comparison": "ComparisonState"
+        }
+      },
+      "ComparisonState": {
+        "kind": "enum",
+        "values": [
+          "equal",
+          "left_null",
+          "right_null",
+          "different"
+        ]
+      },
+      "ConnectionInput": {
+        "kind": "record",
+        "fields": {
+          "identity": "JsonValue",
+          "revision": "JsonValue",
+          "from_endpoint": "JsonValue",
+          "to_endpoint": "JsonValue",
+          "connector_identity": "JsonValue",
+          "connector_revision": "JsonValue",
+          "contract_identity": "JsonValue",
+          "contract_revision": "JsonValue",
+          "scope": "JsonValue"
+        },
+        "optional_fields": [
+          "identity",
+          "revision",
+          "from_endpoint",
+          "to_endpoint",
+          "connector_identity",
+          "connector_revision",
+          "contract_identity",
+          "contract_revision",
+          "scope"
+        ],
+        "meaning": "原raw objectを受けるcarrier。memberはPresence wrapperへ変換せず、欠落/null/原値をそのまま保持する。presence観測は関数内の別出力で行う。"
+      },
+      "ObservationInput": {
+        "kind": "record",
+        "fields": {
+          "identity": "JsonValue",
+          "revision": "JsonValue",
+          "source": "JsonValue",
+          "scope": "JsonValue",
+          "fields": "JsonValue",
+          "owner": "JsonValue"
+        },
+        "optional_fields": [
+          "identity",
+          "revision",
+          "source",
+          "scope",
+          "fields",
+          "owner"
+        ],
+        "meaning": "原raw objectを受けるcarrier。memberはPresence wrapperへ変換せず、欠落/null/原値をそのまま保持する。presence観測は関数内の別出力で行う。"
+      },
+      "ConnectionFieldPresence": {
+        "kind": "record",
+        "fields": {
+          "field_path": "string",
+          "presence": "PresenceState",
+          "raw_value": "JsonValue|null"
+        }
+      },
+      "TransferAssessment": {
+        "kind": "record",
+        "fields": {
+          "connection_field_presence": "list<ConnectionFieldPresence>",
+          "all_required_connection_values_present": "boolean",
+          "observation_field_comparisons": "list<FieldComparisonWithName>",
+          "field_transfer_state": "TransferState",
+          "missing_fields": "JSON object",
+          "original_observation_preserved": "boolean",
+          "preserved_original_observation": "JsonValue",
+          "received_observation_value": "JsonValue"
+        },
+        "meaning": "固定L4接続必須memberと元/受信観測を純比較した結果。資格・実接続の判定ではない。"
+      },
+      "FieldComparisonWithName": {
+        "kind": "record",
+        "fields": {
+          "field": "string",
+          "left_presence": "PresenceState",
+          "left_value": "JsonValue|null",
+          "right_presence": "PresenceState",
+          "right_value": "JsonValue|null",
+          "comparison": "ComparisonState"
+        }
+      },
+      "TransferState": {
+        "kind": "enum",
+        "values": [
+          "corresponding_in_fixture_only",
+          "received_content_conflict"
+        ]
+      },
+      "ReceiptAssessment": {
+        "kind": "record",
+        "fields": {
+          "presence": "ReceiptValueState",
+          "checks": "list<ReceiptFieldCheck>",
+          "matched_fixture_references": "boolean",
+          "raw_receipt": "JsonValue|null"
+        }
+      },
+      "ReceiptFieldCheck": {
+        "kind": "union",
+        "members": [
+          "ReceiptFieldComparison",
+          "ReceiptStateCheck"
+        ],
+        "meaning": "receiptのfixture参照値比較またはstate marker比較。各要素は実出力variantを保持する。"
+      },
+      "EndpointReceiptAssessment": {
+        "kind": "record",
+        "fields": {
+          "send_receipt_assessment": "ReceiptAssessment",
+          "receive_receipt_assessment": "ReceiptAssessment",
+          "both_endpoint_receipts_match_fixture_values": "boolean",
+          "connection_fields_present": "boolean"
+        }
+      },
+      "RelationFieldComparison": {
+        "kind": "record",
+        "fields": {
+          "field": "string",
+          "candidate_value": "JsonValue|null",
+          "backlink_value": "JsonValue|null",
+          "anchor_value": "JsonValue|null",
+          "candidate_matches_anchor": "boolean",
+          "backlink_matches_anchor": "boolean",
+          "pair_equal": "boolean"
+        }
+      },
+      "FailureReason": {
+        "kind": "record",
+        "fields": {
+          "field": "string",
+          "result": "FailureResult",
+          "return_owner": "ReturnOwner"
+        }
+      },
+      "EpisodeRelationAssessment": {
+        "kind": "record",
+        "fields": {
+          "candidate_relations": "JsonValue",
+          "observation_backlinks": "JsonValue",
+          "relation_field_comparisons": "list<RelationFieldComparison>",
+          "relation_state": "RelationState",
+          "causal_state": "string",
+          "failure_reasons": "list<FailureReason>"
+        }
+      },
+      "RelationState": {
+        "kind": "enum",
+        "values": [
+          "corresponding_in_fixture_only",
+          "unqualified"
+        ]
+      },
+      "ConnectionResult": {
+        "kind": "record",
+        "fields": {
+          "information_state": "InformationState",
+          "retained_inputs": "JsonValue",
+          "original_observation_preserved": "boolean",
+          "field_transfer_state": "TransferState",
+          "missing_fields": "JSON object",
+          "receipt_state": "ReceiptState",
+          "relation_state": "RelationState",
+          "causal_state": "string",
+          "failure_reasons": "list<FailureReason>",
+          "return_owners": "list<ReturnOwner>",
+          "rejected_claims": "list<string>",
+          "actual_effects": "EffectVector"
+        }
+      },
+      "InformationState": {
+        "kind": "enum",
+        "values": [
+          "held_connection_unqualified",
+          "connection_content_requires_actual_qualification"
+        ]
+      },
+      "ReceiptState": {
+        "kind": "enum",
+        "values": [
+          "unqualified",
+          "both_receipts_require_actual_qualification"
+        ]
+      },
+      "EffectVector": {
+        "kind": "record",
+        "fields": {
+          "source_overwrite": "false",
+          "receipt_write": "false",
+          "relation_write": "false",
+          "authority_change": "false",
+          "connection_success": "false",
+          "causal_confirmation": "false",
+          "acceptance": "false",
+          "implementation_ready": "false"
+        }
+      },
+      "ReceiptValueState": {
+        "kind": "enum",
+        "values": [
+          "null",
+          "value",
+          "other_json_value"
+        ],
+        "meaning": "receipt raw inputのJSON kind。null、object、object以外を区別する。欠落と明示nullの別判定はraw_receiptのsource presenceに保持し、receipt kindだけで資格を示さない。"
+      },
+      "ReceiptFieldComparison": {
+        "kind": "record",
+        "fields": {
+          "field": "string",
+          "left_presence": "PresenceState",
+          "left_value": "JsonValue|null",
+          "right_presence": "PresenceState",
+          "right_value": "JsonValue|null",
+          "comparison": "ReceiptComparisonState"
+        }
+      },
+      "ReceiptStateCheck": {
+        "kind": "record",
+        "fields": {
+          "field": "string",
+          "expected_value": "JsonValue|null",
+          "actual_value": "JsonValue|null",
+          "comparison": "ReceiptComparisonState"
+        }
+      },
+      "ReceiptComparisonState": {
+        "kind": "enum",
+        "values": [
+          "equal",
+          "left_null",
+          "right_null",
+          "different",
+          "not_observed"
+        ]
+      },
+      "FailureResult": {
+        "kind": "enum",
+        "values": [
+          "missing",
+          "missing_endpoint_receipt",
+          "foreign_reference",
+          "not_observed",
+          "foreign_revision",
+          "missing_not_success",
+          "relation_mismatch",
+          "unsupported_connection_or_cause"
+        ]
+      },
+      "ReturnOwner": {
+        "kind": "enum",
+        "values": [
+          "LABO-connection-owner",
+          "LABO-correlation-owner",
+          "LABO-Aggregate-owner"
+        ]
+      }
+    },
+    "functions": [
+      {
+        "id": "FN-LABO011-01",
+        "name": "接続必須値と観測受渡しの比較",
+        "signature": {
+          "arguments": {
+            "connection": "ConnectionInput",
+            "original_observation": "ObservationInput",
+            "received_observation": "ObservationInput"
+          },
+          "returns": "TransferAssessment"
+        },
+        "reads": [
+          "connectionの9必須memberとscope内4memberのpresence/raw値",
+          "元観測と受信観測のidentity,revision,source,scope,fields"
+        ],
+        "algorithm": [
+          "入力connection/original_observation/received_observationは原raw object。member不存在はgetでnullとして比較するが、原objectを出力にも保持し欠落とnullの情報を消さない。",
+          "connectionのidentity,revision,from_endpoint,to_endpoint,connector_identity,connector_revision,contract_identity,contract_revision,scopeをこの順にConnectionFieldPresenceへ写す。scope直後にscope.requirement_revision,ticket,product,mechanismをこの順に追加する。key欠落はabsent/raw_value=null、明示nullはnull/raw_value=null、それ以外はvalue/原値。all_required_connection_values_presentは13個が全てvalueの時だけtrue。",
+          "観測比較順はidentity,revision,source,scope,fields。各get原値をleft/right_value、値nullならpresence=null、それ以外valueとして出力する。JSON deep-equalならequal、異なる場合left null→left_null、次にright null→right_null、それ以外different。これらの観測presenceはnull-coalescedであり元raw presence判定の代用にしない。",
+          "元fieldsの各recordでstate=not_observedのmemberだけを元key/原値でmissing_fieldsへ保持する。field_transfer_stateは元観測と受信観測のdeep-equalならcorresponding_in_fixture_only、異なればreceived_content_conflict。original_observation_preservedは元値がobjectならtrue。preserved_original_observation/received_observation_valueは原値をそのまま返す。"
+        ]
+      },
+      {
+        "id": "FN-LABO011-02",
+        "name": "両端receiptの参照比較",
+        "signature": {
+          "arguments": {
+            "connection": "ConnectionInput",
+            "original_observation": "ObservationInput",
+            "send_receipt": "JsonValue",
+            "receive_receipt": "JsonValue",
+            "transfer_assessment": "TransferAssessment"
+          },
+          "returns": "EndpointReceiptAssessment"
+        },
+        "algorithm": [
+          "send→receiveの順にそれぞれを評価する。receipt null（getで欠落をnullへ観測した場合も同じkind）はpresence=null/checks=[]/matched=false/raw_receipt=null。それ以外はobjectならpresence=value、その他はother_json_value、raw_receiptは原値。元raw全体はFN04で保持する。",
+          "checksはconnection,observation_identity,observation_revision,source,scopeの順。期待はconnection原全体、元観測identity,revision,source,scope原値。実値はreceiptがobjectなら同名get、その他はreceipt自身。比較はFN01と同じequal/left_null/right_null/different。",
+          "最後にstate checkを追加。sendはsent_in_fixture_only、receiveはreceived_in_fixture_onlyがexpected_value。actual_valueはreceipt.stateのget値、等しければequal、その他not_observed。matched_fixture_referencesは全6checkがequalの時だけtrue。",
+          "both_endpoint_receipts_match_fixture_valuesは両matchedのAND、connection_fields_presentはtransfer_assessment.all_required_connection_values_presentをそのまま引き継ぐ。実接続/実receipt資格を生成しない。"
+        ]
+      },
+      {
+        "id": "FN-LABO011-03",
+        "name": "episodeと元観測backlinkの照合",
+        "signature": {
+          "arguments": {
+            "episode_candidate": "JsonValue",
+            "observation_backlinks": "JsonValue",
+            "original_observation": "ObservationInput",
+            "claims": "list<JsonValue>"
+          },
+          "returns": "EpisodeRelationAssessment"
+        },
+        "algorithm": [
+          "候補episode.relationsとobservation_backlinksをそれぞれraw listとして保持する。listでなければ比較用には[]。この固定42素材は各list最大1 relationで、複数の照合意味は未閉包として保持する。",
+          "backlinksが空ならfield=observation_backlinks/result=missing/return_owner=LABO-correlation-ownerを1件、比較=[]/relation_state=unqualified/causal_state=not_established。",
+          "それ以外は候補とbacklinkの先頭record（無ければ{}）を、identity,revision,episode_identity,episode_revision,observation_identity,observation_revision,source,scope,causal_stateの順に比較。episode identity/revisionはepisode候補、observation identity/revision/source/scopeは元観測、causal_stateはnot_establishedをanchorとする。identity anchorは候補identity、relation revision anchorはbacklink revision。",
+          "各fieldにcandidate_value/backlink_value/anchor_valueと3比較boolean（candidate_matches_anchor/backlink_matches_anchor/pair_equal）を出す。episode/observation/source/scope/causal anchorが異なるときは、backlink相違ならobservation_backlinks.<field>、それ以外はepisode_candidate.relations.<field>。identity/revisionのpair相違はcandidateがanchorと異なればepisode_candidate.relations.<field>、それ以外はobservation_backlinks.<field>。各result=relation_mismatch/owner=LABO-correlation-ownerを順保持。",
+          "比較failureなし、両listが非空、claimsにcorrelation_is_causeなしの全条件ならrelation_state=corresponding_in_fixture_only、その他unqualified。causal_stateは常にnot_established。"
+        ]
+      },
+      {
+        "id": "FN-LABO011-04",
+        "name": "保持と戻し先を含む比較結果の組立て",
+        "signature": {
+          "arguments": {
+            "raw_input": "JsonValue",
+            "transfer_assessment": "TransferAssessment",
+            "receipt_assessment": "EndpointReceiptAssessment",
+            "relation_assessment": "EpisodeRelationAssessment"
+          },
+          "returns": "ConnectionResult"
+        },
+        "algorithm": [
+          "findings=[]。transfer.connection_field_presenceの先頭connection9memberだけを順走査しpresence!=valueをfield_path/missing/LABO-connection-ownerとして保持する。scope内4memberだけの欠落を同じ欠落所見へ重複昇格しない。",
+          "raw claimsが非空なら原順にclaims/unsupported_connection_or_causeを追加し、claim=correlation_is_causeのみLABO-correlation-owner、その他LABO-connection-ownerへ返す。このときreceipt/観測/relation所見は追加せず組立てへ進む。有限fixtureの診断選択であり実許可や欠陥消去を意味しない。",
+          "claimなしでまだ所見がなければsend→receiveの順でreceiptを確認する。nullはmissing_endpoint_receipt、object外はforeign_referenceをreceipt名のfieldに1件。それ以外はFN02のcheck順で最初のcomparison!=equalをreceipt.<check.field>、state差ならnot_observed、その他foreign_referenceとする。ownerはLABO-connection-owner。最初のreceipt所見でこの走査を止める。",
+          "次に元/受信観測がobjectならidentity,revision,source,scope順で受信get値nullをmissing/LABO-Aggregate-ownerとして最初1件。sourceが両方objectでrevisionが異なればreceived_observation.source.revision/foreign_revision/LABO-Aggregate-ownerを最初1件。続いて受信fieldsを原順走査し、元not_observed→受信observed_in_fixture_onlyかつvalue非nullをreceived_observation.fields.<key>/missing_not_success/LABO-Aggregate-ownerとして最初1件。先行の接続/receipt所見があってもこの観測比較は行う。",
+          "ここまで所見なしの場合だけrelation_assessment.failure_reasonsを原順に追加する。findingsは重複除去・sortしない。return_ownersだけ初出順一意化、rejected_claimsはraw claims原列。",
+          "findingsなしならinformation_state=connection_content_requires_actual_qualification、その他held_connection_unqualified。receipt_stateはfindingsなし・両receipt fixture一致・接続必須値presentのANDでboth_receipts_require_actual_qualification、その他unqualified。retained_inputs=原raw、transferの原保持/field_transfer/missing_fieldsとrelation_stateをそのまま複写。causal_state=not_established、EffectVector全8member=false。"
+        ]
+      }
+    ],
+    "source_and_consumer_bindings": [
+      {
+        "source": "L4 contracts connection identity/revision/endpoints/connector+pack identity/revision/scope",
+        "consumer": "FN01 TransferAssessment.connection_field_presence; FN02 receipt comparison",
+        "meaning": "9 connection membersを保持し、present-only source factsを照合する。"
+      },
+      {
+        "source": "L4 source observation identity/revision/source/scope/fields and missingness",
+        "consumer": "FN01 observation comparisons; FN03 relation anchors; FN04 retained_inputs",
+        "meaning": "元観測と欠測を保存し、未観測を推測値にしない。"
+      },
+      {
+        "source": "L4 send/receive receipts bind same connection/content/scope",
+        "consumer": "FN02 EndpointReceiptAssessment",
+        "meaning": "両端各receiptを同じpacket値へ突合。receiptの存在やengine greenは実資格ではない。"
+      },
+      {
+        "source": "L4 episode relation and observation backlink are bidirectional for same identity/revision/scope",
+        "consumer": "FN03 EpisodeRelationAssessment; FN04 failure/return owner",
+        "meaning": "相互参照不一致はcorrelation ownerへ戻す。"
+      },
+      {
+        "source": "L4 no cause inference",
+        "consumer": "FN03 causal_state; FN04 rejected_claims",
+        "meaning": "因果はnot_establishedを保つ。"
+      }
+    ],
+    "unresolved_boundaries": [
+      "正式型、wire format、canonical codec、production source資格、実receipt issuer/rootは未定義。",
+      "接続成功・causality・実権限・acceptance・implementation readinessをこのpairが決定しない。",
+      "固定素材外の複数relation/未知claim+多重欠陥/追加raw shapeの意味閉包は未証明。原値保持と実資格/許可は有限診断の抑止と分離する。"
+    ]
+  },
+  "completion": "論理契約の候補。合成静的照合のみ。",
+  "basic_pair_snapshot": [
+    {
+      "path": "docs/helix-labo/L4-basic-design/aggregate-correlate-connection.json",
+      "revision": "2237fa4692c90f08eeb5ef0a0d410ccda591c1ee",
+      "sha256": "a369b94d22cc0a5e700b6ee2e96178884b8098d3ad2b8f82ae9f9b7c6d623799"
+    },
+    {
+      "path": "docs/helix-labo/L9-integration-verification/aggregate-correlate-connection.json",
+      "revision": "2237fa4692c90f08eeb5ef0a0d410ccda591c1ee",
+      "sha256": "6fa4247de8da611c50b3e8ab587ca60123a30f78b88c2af3e8efa891e22ce55f"
+    }
+  ],
+  "source_main_meaning": "source_mainは既存上流pinの参照時点。今回導出した原L4/L9はbasic_pair_snapshotのexact revision/bytesへ別に束縛し、古いrevisionに存在するとは推定しない。"
+}
