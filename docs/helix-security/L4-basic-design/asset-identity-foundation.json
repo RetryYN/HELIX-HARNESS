@@ -1,0 +1,202 @@
+{
+  "status": "draft_basic_design_and_synthetic_cases_pending_independent_review",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 1",
+    "authoring_stage": "Stage 1",
+    "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "boundary": "資産identity/provenanceと分類参照の基盤に限る。1.xのWeb/sink保護運用、実authority、開示、内容dump、owner資格は成立させない。",
+    "deferred_protection_target": "1.x operational protection"
+  },
+  "source_pin_limit": "fileとexact-objectのpinはsource bytesを特定するだけであり、意味上の閉包、owner資格、source真正性、実行、実装準備を成立させない。",
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "implementation_readiness": "not_ready",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "parent": "HELIXSECURITY-L2-015",
+  "source_main": "c00695600ab1fed30718d89880b92a6358422131",
+  "source_pins": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92"
+    },
+    {
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901"
+    },
+    {
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42"
+    },
+    {
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "c00695600ab1fed30718d89880b92a6358422131",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    }
+  ],
+  "approved_object_pins": [
+    {
+      "id": "HELIXSECURITY-L3-015-B01",
+      "path": "docs/helix-security/L3-requirements/business-requirements.json",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "object_canonical_sha256": "7b328d78e98424f931a352a93ac0f69615df2f9a8f2b0ad6a0cae17420c3821c"
+    },
+    {
+      "id": "HELIXSECURITY-L3-015-F01",
+      "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "object_canonical_sha256": "b86a514be3ec333b14f401ce09ccee80a8e12b03d5ef7be37298cefccc28a97a"
+    },
+    {
+      "id": "HELIXSECURITY-L10-015-B01",
+      "path": "docs/helix-security/L10-verification/business-verification.json",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "object_canonical_sha256": "e361fa76f7346ab26606d295e69bd77fe484ede6d27e12540aafc338760fd224"
+    },
+    {
+      "id": "HELIXSECURITY-L10-015-F01",
+      "path": "docs/helix-security/L10-verification/functional-verification.json",
+      "approved_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+      "object_canonical_sha256": "d2fab10988f67083d4b86db32abfe676648d7b2e1d3a19ffcce4fc4f7253bf05"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "line": 143,
+      "line_sha256": "03477c17a85c420a3f9fab3ba48d8cc905cbc8dc6bb7160b51d9fd52a5bc9c89",
+      "selected_line_quote": "| **HIL-FR-53** | Semantic Revision and Asset Identityはpath・名称から独立したimmutable asset IDを保持し、意味変更を新revisionとして保存する。rename、move、split、merge、supersedeは履歴、authority、oracle、typed edgeを失わず処理する。 | asset revision、identity/location history、split/merge disposition、semantic diff |",
+      "comparison": "保持：path/名称から独立したimmutable asset IDと、意味変更ごとのrevisionを維持する。現行L2-015の安定identity要件をL3/L10の識別・provenanceへ結び、合成packetでpath/名称変更後も同じidentity値を示す。変更・限定：旧schema/runtime/codecや過去authorityは再利用せず、実source・owner資格を成立させない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C7F0C3B79CBAA72960BF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "file_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "line": 53,
+      "line_sha256": "07c221a10238a34adac94db53d0bbeb265f7607d5a2d33eef175318f1e19c2db",
+      "selected_line_quote": "| HR-FR-HIL-19 | HIL-BR-26, HIL-FR-51, HIL-FR-52, HIL-FR-53, HIL-NFR-30, HIL-NFR-31, HIL-NFR-32 | AI AuthoringをProposalとして許可し、意味差分・authority・pair・impactを検査した変更だけを原子的にCanonical化し、asset identityとrevision履歴を維持する | proposal、base revision、policyあり → 自動Admission又は明示decision、部分current 0 | 過剰確認、無権限変更、partial write、stale base、identity/oracle消失 / admission、transaction、revision、rollback receipt | HAC-HIL-19a, HAC-HIL-19b, HAC-HIL-19c |",
+      "comparison": "旧sourceから意味を再導出。旧schema/runtime/codecを再利用せず、旧内容が現行の資産scopeや資格を承認したとは扱わない。"
+    }
+  ],
+  "requirement_refs": [
+    "HELIXSECURITY-L3-015-B01",
+    "HELIXSECURITY-L3-015-F01"
+  ],
+  "oracle_refs": [
+    "HELIXSECURITY-L10-015-B01",
+    "HELIXSECURITY-L10-015-F01"
+  ],
+  "remaining": [
+    "正式schema・codec・resolverとsource/owner資格は未確立。",
+    "実資産・実ownerによる実観測、分類資格、実認可、保護運用は未成立。",
+    "L5/L8、全92親430対の設計閉包・実装準備、PO実物L11受入、CI、release/deployは未成立。",
+    "独立review後も本稿だけで上流意味変更、authority、公開可否を生成しない。"
+  ],
+  "document_id": "HELIXSECURITY-L4-015-BASIC-DESIGN",
+  "layer": "L4",
+  "pair": "L9",
+  "paired_document_id": "HELIXSECURITY-L9-015-INTEGRATION-VERIFICATION",
+  "architecture": {
+    "purpose": "L3-015-B01/F01の1.0 identity/provenance基盤と、1.x保護運用との境界を明示する。",
+    "identity_flow": [
+      "owner/sourceから対象資産の識別材料を受け取る。",
+      "表示名やpathとは独立した安定asset identityをprovenance参照へ結び、表示名/pathの変更と意味revisionを区別する。identity値をowner、表示名、source、revision、digest、pathから生成しない。",
+      "分類参照はSECURITY-016の既定語彙/unknownを参照できるが、公開sinkでの強制や公開許可は行わない。",
+      "不足・不整合・分類不能はunknown/unclassifiedのまま保ち、該当ownerへ不足を返す。"
+    ],
+    "data_minimization": "識別に資産本文のdumpを要求しない。credentialsの値はfixtureやreceiptに含めず、SECURITY資産としての識別対象だけを扱う。",
+    "authority_and_owner_boundary": "SECURITYは分類・identity policyの定義側にある。各資産のownerはidentity/source/revision/digestの資格を供給する責務を持つ。owner名や署名文字列の自己申告だけでは、実owner資格やsource真正性を証明しない。HARNESS/OS/BRAIN/INTELLIGENCE/LABO等の資産内容・実行能力・operation authorityは各owner側に残す。"
+  },
+  "interfaces": {
+    "input": "L2-015で列挙したowner/source/revision/digestと、それらから独立する安定asset identityを持つ対象資産の識別材料を受け取る。実source証明やtyped schemaがない合成材料は資格未成立と明示する。",
+    "output": "assetを識別できるかどうか、provenance参照、classification referenceまたはunknown、およびownerへ返す不足情報を出力する。これは文書上の契約案であり正式codecではない。",
+    "classification_vocabulary_source": "既存L2-016/L11-016のpublic, customer-owned, service-internal, HELIX-confidential, HELIX-restricted, secretを参照する。015は分類sink enforcementを所有しない。",
+    "failure_route": "owner、source、revision、digestまたは分類参照がmissing/unknown/staleなら成功扱いにせず、該当ownerへ不足を返す。分類unknownをpublic/allowへ変換しない。 資産ownerへ個別材料不足を返す経路と分け、要求対象範囲自体の不足は採択L2-015が指定するL1-015へ戻す。"
+  },
+  "contracts": [
+    {
+      "contract_id": "SECURITY015-IDENTITY-PROVENANCE",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-F01",
+        "HELIXSECURITY-L10-015-F01"
+      ],
+      "input": "全六owner群の対象例と、列挙外資産も対象になり得ること。各合成recordにはowner/source/revision/digestと、独立した合成stable_asset_identityを持たせる。identity値はowner、asset_label、source、revision、digest、pathから生成しない。",
+      "behavior": "独立した安定asset identityをprovenance参照へ結ぶ。表示名やpathの変更だけで同じ意味revisionと決めず、意味変更は既存ownerへ返す。",
+      "output": "識別状態、stable asset identityとprovenance参照を示す。正式field名、型、codec、永続化は固定しない。",
+      "failure": "owner/source/revision/digestまたはstable asset identityが不明・不一致ならunknown/unclassifiedとして保留し、不足をasset ownerへ返す。"
+    },
+    {
+      "contract_id": "SECURITY015-CLASSIFICATION-REFERENCE-AND-RELEASE-SEPARATION",
+      "requirement_trace": [
+        "HELIXSECURITY-L3-015-B01",
+        "HELIXSECURITY-L10-015-B01",
+        "HELIXSECURITY-L3-015-F01",
+        "HELIXSECURITY-L10-015-F01"
+      ],
+      "input": "識別可能な未公開/未運用assetと、既存分類参照またはunknown。",
+      "behavior": "1.0 identity基盤の成立状態と1.x保護/利用/公開の成立状態を分ける。identityまたはclassification referenceから公開許可を導出しない。全Pattern能力の完成を1.0基盤の成立条件にしない。",
+      "output": "identity/provenanceと保護運用/利用/公開の独立状態を示す。",
+      "failure": "inventoryだけでWeb保護済みとする、または識別情報を公開許可へ昇格するclaimを不成立として該当範囲へ返す。"
+    }
+  ],
+  "diagnostic_contract": {
+    "outcomes": [
+      "identified_with_provenance_reference",
+      "unknown_or_unclassified",
+      "operational_protection_not_established"
+    ],
+    "owner_response": "asset ownerがsource資格を供給または訂正する。SECURITYは新しい承認gateやauthorityを作らない。",
+    "non_goals": [
+      "実資産inventoryの実行",
+      "Web/API/log等sink enforcement",
+      "資産本文のdump",
+      "source credentialまたは実truststore作成",
+      "所有者の実行能力/権限変更"
+    ]
+  },
+  "layer_id": "HELIXSECURITY-L4",
+  "pair_id": "HELIXSECURITY-L4L9-015-ASSET-IDENTITY"
+}
