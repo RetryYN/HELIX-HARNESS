@@ -499,7 +499,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-B01-VERIFY-PAIR",
                 "source_json_pointer": "/comparison_records",
                 "source_fixture_packet_sha256": "4c7080a7a545ed32376600df46ce3ddb73c7aa4f6eab2987c0e91ebf7ef60185",
-                "source_packet_canonical_sha256": "4c7080a7a545ed32376600df46ce3ddb73c7aa4f6eab2987c0e91ebf7ef60185"
+                "source_packet_canonical_sha256": "4c7080a7a545ed32376600df46ce3ddb73c7aa4f6eab2987c0e91ebf7ef60185",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-B01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/1",
@@ -519,7 +521,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/1",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-B01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -578,7 +582,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-B01-VERIFY-PAIR",
                 "source_json_pointer": "/comparison_assertions",
                 "source_fixture_packet_sha256": "4c7080a7a545ed32376600df46ce3ddb73c7aa4f6eab2987c0e91ebf7ef60185",
-                "source_packet_canonical_sha256": "4c7080a7a545ed32376600df46ce3ddb73c7aa4f6eab2987c0e91ebf7ef60185"
+                "source_packet_canonical_sha256": "4c7080a7a545ed32376600df46ce3ddb73c7aa4f6eab2987c0e91ebf7ef60185",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-B01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/2",
@@ -601,7 +607,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-B01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -632,7 +640,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/source_trust",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-B01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -663,7 +673,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/operation_authority",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-B01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -1169,7 +1181,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/selection/selected_kinds",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0",
@@ -1189,7 +1203,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/5",
@@ -1209,7 +1225,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/5",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -1255,7 +1273,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/1",
@@ -1277,7 +1297,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/1",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/2",
@@ -1300,7 +1322,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/3",
@@ -1322,7 +1346,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/3",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/4",
@@ -1337,7 +1363,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/4",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/5",
@@ -1352,7 +1380,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/5",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -1396,7 +1426,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/1",
@@ -1418,7 +1450,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/1",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/2",
@@ -1441,7 +1475,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/3",
@@ -1463,7 +1499,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/3",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/4",
@@ -1478,7 +1516,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/4",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/5",
@@ -1493,7 +1533,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/5",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -1525,7 +1567,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/artifact_ref",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/artifact_identity",
@@ -1535,7 +1579,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -1566,7 +1612,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/source_trust",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -1916,7 +1964,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F02-PHASE-TIMELINE",
                 "source_json_pointer": "/phase_timeline/0",
                 "source_fixture_packet_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5",
-                "source_packet_canonical_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5"
+                "source_packet_canonical_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F02",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -1954,7 +2004,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F02-PHASE-TIMELINE",
                 "source_json_pointer": "/phase_timeline/0",
                 "source_fixture_packet_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5",
-                "source_packet_canonical_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5"
+                "source_packet_canonical_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F02",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -2014,7 +2066,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F02-PHASE-TIMELINE",
                 "source_json_pointer": "/phase_timeline",
                 "source_fixture_packet_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5",
-                "source_packet_canonical_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5"
+                "source_packet_canonical_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F02",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -2054,7 +2108,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/fixture_receipts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F02",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -2085,7 +2141,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/operation_authority",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F02",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -2561,7 +2619,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON",
                 "source_json_pointer": "/rebuild_records/0/recipe_ref",
                 "source_fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
-                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b"
+                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON#/rebuild_records/1/recipe_ref",
@@ -2572,7 +2632,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON",
                 "source_json_pointer": "/rebuild_records/1/recipe_ref",
                 "source_fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
-                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b"
+                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -2646,7 +2708,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON",
                 "source_json_pointer": "/rebuild_records/0/artifact_identity",
                 "source_fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
-                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b"
+                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON#/rebuild_records/1/artifact_identity",
@@ -2657,7 +2721,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON",
                 "source_json_pointer": "/rebuild_records/1/artifact_identity",
                 "source_fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
-                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b"
+                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -2709,7 +2775,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON",
                 "source_json_pointer": "/rebuild_records/0/artifact_ref",
                 "source_fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
-                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b"
+                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON#/raw_base_stage_comparison/validation_stage/artifact_refs/0",
@@ -2720,7 +2788,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON",
                 "source_json_pointer": "/raw_base_stage_comparison/validation_stage/artifact_refs/0",
                 "source_fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
-                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b"
+                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -2770,7 +2840,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON",
                 "source_json_pointer": "/rebuild_records/1/artifact_ref",
                 "source_fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
-                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b"
+                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON#/raw_base_stage_comparison/validation_stage/artifact_refs/0",
@@ -2781,7 +2853,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON",
                 "source_json_pointer": "/raw_base_stage_comparison/validation_stage/artifact_refs/0",
                 "source_fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
-                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b"
+                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -2833,7 +2907,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON",
                 "source_json_pointer": "/rebuild_records/0/artifact_ref",
                 "source_fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
-                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b"
+                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON#/raw_base_stage_comparison/execute_stage/artifact_refs/0",
@@ -2844,7 +2920,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON",
                 "source_json_pointer": "/raw_base_stage_comparison/execute_stage/artifact_refs/0",
                 "source_fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
-                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b"
+                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -2894,7 +2972,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON",
                 "source_json_pointer": "/rebuild_records/1/artifact_ref",
                 "source_fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
-                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b"
+                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON#/raw_base_stage_comparison/execute_stage/artifact_refs/0",
@@ -2905,7 +2985,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F03-REBUILD-COMPARISON",
                 "source_json_pointer": "/raw_base_stage_comparison/execute_stage/artifact_refs/0",
                 "source_fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
-                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b"
+                "source_packet_canonical_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -2937,7 +3019,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/fixture_receipts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-F03",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -3293,7 +3377,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/selection/selected_kinds",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/5",
@@ -3313,7 +3399,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/5",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -3345,7 +3433,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/selection/unknown_kind_refs",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT#/unseen_variant",
@@ -3374,7 +3464,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT",
                 "source_json_pointer": "/unseen_variant",
                 "source_fixture_packet_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
-                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6"
+                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -3417,7 +3509,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/3",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT#/unseen_variant",
@@ -3446,7 +3540,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT",
                 "source_json_pointer": "/unseen_variant",
                 "source_fixture_packet_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
-                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6"
+                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -3544,7 +3640,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT#/stage_trace",
@@ -3554,7 +3652,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT",
                 "source_json_pointer": "/stage_trace",
                 "source_fixture_packet_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
-                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6"
+                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -3597,7 +3697,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT",
                 "source_json_pointer": "/fixture_producers",
                 "source_fixture_packet_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
-                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6"
+                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT#/fixture_environment",
@@ -3613,7 +3715,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT",
                 "source_json_pointer": "/fixture_environment",
                 "source_fixture_packet_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
-                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6"
+                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -3654,7 +3758,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT",
                 "source_json_pointer": "/fixture_producers",
                 "source_fixture_packet_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
-                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6"
+                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT#/fixture_environment",
@@ -3670,7 +3776,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT",
                 "source_json_pointer": "/fixture_environment",
                 "source_fixture_packet_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
-                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6"
+                "source_packet_canonical_sha256": "910992d55d300916603ba7fd86974829c409ffdd51d70605505337386b1a38b6",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -3702,7 +3810,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/source_trust",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/separate_outcomes/operation_authority",
@@ -3713,7 +3823,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/operation_authority",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -3743,7 +3855,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/source_trust",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/separate_outcomes/operation_authority",
@@ -3754,7 +3868,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/operation_authority",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-GWT-N01",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -4146,7 +4262,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/fixture_receipts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-B01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/2",
@@ -4169,7 +4287,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-B01-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -4201,7 +4321,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-B01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/separate_outcomes/behavior_verification",
@@ -4212,7 +4334,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/behavior_verification",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "58b26768bc2b8ae4d2de62ca10426e5c6dbea71a5282248b983ce654a63c7a32",
+                "source_case_id": "HELIXSECURITY-L9-013-B01-N1",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-B01-N01"
               }
             ],
             "expected_payload": {
@@ -4256,7 +4381,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-B01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0",
@@ -4276,7 +4403,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-B01-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -4671,7 +4800,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/operation_authority",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "020c3ea5ed5a3a3278ccff7307b9b8611859d299df39775b2ea5d92cbd75a39d",
+                "source_case_id": "HELIXSECURITY-L9-013-B01-N2",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-B01-N02"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/1",
@@ -4693,7 +4825,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/1",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-B01-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/3",
@@ -4715,7 +4849,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/3",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-B01-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -4759,7 +4895,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/1",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-B01-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/3",
@@ -4781,7 +4919,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/3",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-B01-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0",
@@ -4801,7 +4941,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-B01-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -5224,7 +5366,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/1",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/2",
@@ -5247,7 +5391,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "4ba080c9f7b36a120093b020cbbbf6a3fad1feb1db9a36202aa6d78b3a1d5510",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N1",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-F01-N01"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/3",
@@ -5269,7 +5416,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/3",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -5351,7 +5500,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/6",
@@ -5371,7 +5522,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -5446,7 +5599,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/target",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/1",
@@ -5468,7 +5623,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/1",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/2",
@@ -5491,7 +5648,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "4ba080c9f7b36a120093b020cbbbf6a3fad1feb1db9a36202aa6d78b3a1d5510",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N1",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-F01-N01"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/3",
@@ -5513,7 +5673,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/3",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -5813,7 +5975,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "aa886b4f5ad119952ad858af4921c2e27c81a65ff8742463fedce8068e248c9f",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N2",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-F01-N02"
               }
             ],
             "expected_payload": {
@@ -5850,7 +6015,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "aa886b4f5ad119952ad858af4921c2e27c81a65ff8742463fedce8068e248c9f",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N2",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-F01-N02"
               }
             ],
             "expected_payload": {
@@ -6043,7 +6211,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/selection/unselected_stages",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N3",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/4",
@@ -6058,7 +6228,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/4",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "875e342146013b4cee66563e4db096518667bc373b791612d60b693f517b6776",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N3",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-F01-N03"
               }
             ],
             "expected_payload": {
@@ -6317,7 +6490,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/selection/selected_kinds",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N4",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/declared_kind_set",
@@ -6332,7 +6507,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/declared_kind_set",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "84ce64bb50d1fe66538102f0afade7b8af8e9bf0b2de31836203d84294b16d3e",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N4",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-F01-N04"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/3",
@@ -6352,7 +6530,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/3",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N4",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/4",
@@ -6372,7 +6552,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/4",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N4",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -6599,7 +6781,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/selection/selected_kinds",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N5",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/declared_kind_set",
@@ -6616,7 +6800,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/declared_kind_set",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N5",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/separate_outcomes/coverage_assertion",
@@ -6633,7 +6819,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/coverage_assertion",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "6e8f7a086aea93ab4133822f27535bbccf94b654bae3ee8d9841c896678021d2",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N5",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-F01-N05"
               }
             ],
             "expected_payload": {
@@ -6853,7 +7042,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/selection/unknown_kind_refs",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N6",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/5",
@@ -6873,7 +7064,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/5",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "2e497ea2f7c86739a3b98b4223e7942dc5c8332a834e7e880219349f9c383bee",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N6",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-F01-N06"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/declared_kind_set",
@@ -6890,7 +7084,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/declared_kind_set",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F01-N6",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -7085,7 +7281,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/target/revision",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F02-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/2",
@@ -7108,7 +7306,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "b4ed22bad2d1d7a29f05e33bfec7a646635618b06e270da85655239eb0ca281a",
+                "source_case_id": "HELIXSECURITY-L9-013-F02-N1",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-F02-N01"
               }
             ],
             "comparison_subject": {
@@ -7376,7 +7577,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F02-PHASE-TIMELINE",
                 "source_json_pointer": "/phase_timeline/0",
                 "source_fixture_packet_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5",
-                "source_packet_canonical_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5"
+                "source_packet_canonical_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5",
+                "source_case_id": "HELIXSECURITY-L9-013-F02-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -7414,7 +7617,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F02-PHASE-TIMELINE",
                 "source_json_pointer": "/phase_timeline/0",
                 "source_fixture_packet_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5",
-                "source_packet_canonical_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5"
+                "source_packet_canonical_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5",
+                "source_case_id": "HELIXSECURITY-L9-013-F02-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -7474,7 +7679,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-POS-F02-PHASE-TIMELINE",
                 "source_json_pointer": "/phase_timeline",
                 "source_fixture_packet_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5",
-                "source_packet_canonical_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5"
+                "source_packet_canonical_sha256": "a8c75272fb8f325775cf8c810061c9e194efe21777d5e4ea172b9b0b74c126d5",
+                "source_case_id": "HELIXSECURITY-L9-013-F02-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -7745,7 +7952,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/target/revision",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F02-N3",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/2",
@@ -7767,7 +7976,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "70d8a6bf91bd6e4adea5bc2c7e6b19672dc2612f99816cce1b789737accc6c3b",
+                "source_case_id": "HELIXSECURITY-L9-013-F02-N3",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-F02-N03"
               }
             ],
             "expected_payload": {
@@ -8119,7 +8331,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/manifest_lock",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0",
@@ -8139,7 +8353,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/6",
@@ -8159,7 +8375,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/1",
@@ -8181,7 +8399,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/1",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "4b642f45af6693183b17aacd38a28bc9baefd316b08914f084245583975a3638",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-F03-N01"
               }
             ],
             "expected_payload": {
@@ -8236,7 +8457,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6/artifact_ref",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/artifact_ref",
@@ -8247,7 +8470,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/artifact_ref",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -8296,7 +8521,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/sha256",
@@ -8307,7 +8534,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -8336,7 +8565,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/artifact_identity",
@@ -8346,7 +8577,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -8420,7 +8653,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6/artifact_ref",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/2/artifact_refs/0",
@@ -8431,7 +8666,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2/artifact_refs/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -8480,7 +8717,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/sha256",
@@ -8491,7 +8730,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -8520,7 +8761,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/artifact_identity",
@@ -8530,7 +8773,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -8604,7 +8849,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6/artifact_ref",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/3/artifact_refs/0",
@@ -8615,7 +8862,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/3/artifact_refs/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -8664,7 +8913,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/sha256",
@@ -8675,7 +8926,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -8704,7 +8957,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/artifact_identity",
@@ -8714,7 +8969,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -8788,7 +9045,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6/artifact_ref",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/2/artifact_refs/0",
@@ -8799,7 +9058,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2/artifact_refs/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -8848,7 +9109,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/sha256",
@@ -8859,7 +9122,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -8888,7 +9153,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/6/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/artifact_identity",
@@ -8898,7 +9165,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -8953,7 +9222,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/fixture_receipts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -9435,7 +9706,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/7/artifact_ref",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/artifact_ref",
@@ -9446,7 +9719,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/artifact_ref",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -9495,7 +9770,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/7/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/sha256",
@@ -9506,7 +9783,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -9535,7 +9814,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/7/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/artifact_identity",
@@ -9545,7 +9826,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -9619,7 +9902,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/7/artifact_ref",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/3/artifact_refs/0",
@@ -9630,7 +9915,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/3/artifact_refs/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -9679,7 +9966,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/7/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/sha256",
@@ -9690,7 +9979,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -9719,7 +10010,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/7/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/artifact_identity",
@@ -9729,7 +10022,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -9803,7 +10098,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/7/artifact_ref",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/artifact_ref",
@@ -9814,7 +10111,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/artifact_ref",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -9863,7 +10162,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/7/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/sha256",
@@ -9874,7 +10175,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/sha256",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload_semantics_ja": "返却record全体ではなく、output_path末端で宣言したfieldの期待値だけを示す値投影。"
@@ -9903,7 +10206,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/7/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/0/artifact_identity",
@@ -9913,7 +10218,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/0/artifact_identity",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -9968,7 +10275,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/fixture_receipts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -10004,7 +10313,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/fixture_receipts/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-F03-N2",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -10491,7 +10802,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "069581d5abe0fc6b9acf37bbd15f4f6b7c2af9e85c3504a6e33a68721523b175",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-N01-N01"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/3",
@@ -10513,7 +10827,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/3",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "069581d5abe0fc6b9acf37bbd15f4f6b7c2af9e85c3504a6e33a68721523b175",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-N01-N01"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/8",
@@ -10538,7 +10855,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/8",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "comparison_subject": {
@@ -10610,7 +10929,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/2",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "069581d5abe0fc6b9acf37bbd15f4f6b7c2af9e85c3504a6e33a68721523b175",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-N01-N01"
               }
             ],
             "expected_payload": {
@@ -10648,7 +10970,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/fixture_producers/3",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/fixture_producers/4",
@@ -10664,7 +10988,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/fixture_producers/4",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/fixture_environments/0",
@@ -10680,7 +11006,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/fixture_environments/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -10716,7 +11044,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/fixture_producers/3",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/fixture_producers/4",
@@ -10732,7 +11062,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/fixture_producers/4",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/fixture_environments/0",
@@ -10748,7 +11080,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/fixture_environments/0",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -10780,7 +11114,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/source_trust",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/separate_outcomes/operation_authority",
@@ -10791,7 +11127,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/operation_authority",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -10821,7 +11159,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/source_trust",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/separate_outcomes/operation_authority",
@@ -10832,7 +11172,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/operation_authority",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N1",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -11127,7 +11469,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/selection/unselected_stages",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N2",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/stage_trace/5",
@@ -11142,7 +11486,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/stage_trace/5",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "85903840464e092c81c6a0900e9d2e87ab1d42421a05be625263fb326f7da8f3",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N2",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-N01-N02"
               }
             ],
             "expected_payload": {
@@ -11401,7 +11748,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/selection/selected_kinds",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N3",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/declared_kind_set",
@@ -11416,7 +11765,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/declared_kind_set",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "84ce64bb50d1fe66538102f0afade7b8af8e9bf0b2de31836203d84294b16d3e",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N3",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-N01-N03"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/3",
@@ -11436,7 +11788,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/3",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N3",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/artifacts/4",
@@ -11456,7 +11810,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/artifacts/4",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N3",
+                "source_packet_state": "source_fixture"
               }
             ],
             "expected_payload": {
@@ -11685,7 +12041,9 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/selection/selected_kinds",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N4",
+                "source_packet_state": "source_fixture"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/declared_kind_set",
@@ -11698,7 +12056,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/declared_kind_set",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "f0172d9eb09b56961a1a275baccb853d534f2e2e3b6100c721020ed85f34916f",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N4",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-N01-N04"
               }
             ],
             "expected_payload": {
@@ -11736,7 +12097,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/separate_outcomes/coverage_assertion",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "f0172d9eb09b56961a1a275baccb853d534f2e2e3b6100c721020ed85f34916f",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N4",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-N01-N04"
               },
               {
                 "source_locator": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE#/declared_kind_set",
@@ -11749,7 +12113,10 @@
                 "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
                 "source_json_pointer": "/declared_kind_set",
                 "source_fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
-                "source_packet_canonical_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb"
+                "source_packet_canonical_sha256": "f0172d9eb09b56961a1a275baccb853d534f2e2e3b6100c721020ed85f34916f",
+                "source_case_id": "HELIXSECURITY-L9-013-N01-N4",
+                "source_packet_state": "post_patch",
+                "mutation_ref": "HELIXSECURITY-L9-013-MUT-N01-N04"
               }
             ],
             "expected_payload": {
@@ -11936,6 +12303,6 @@
   "case_projection_contract": {
     "expected_output_parts_shape": "各channelはdeclared_type、field、expected_value、source_locatorsを持つ出力束。declared_typeとfieldはL5 logical_typesの宣言名・field名、有限値はL5 result_domainsに列挙された値とする。source-preserving fieldは固定packetのlocatorで実値へ結ぶ。",
     "explanation_separation": "未評価・未観測・合成markerのみ・期待を導かない等の説明文はexpected_output_explanation_jaに置き、実出力の値として使わない。",
-    "locator_rule": "source_locatorsは固定packetの実値または対象pointerのAbsent投影を指す。負例はpatch後wholeも照合し、実行成功・資格・権限を生成しない。"
+    "locator_rule": "source_locatorは固定fixture packetのpacket_refとJSON pointerを指す。source_fixture_packet_sha256はpatch前の固定fixture自体を識別し、source_packet_state=source_fixtureではsource_packet_canonical_sha256もそのcanonical wholeを指す。source_packet_state=post_patchではsource_case_idとmutation_refがfixtureへの適用patchを特定し、source_packet_canonical_sha256はそのpatch後canonical wholeを指す。patch後値はこの3点（fixture、case/mutation、patch後whole hash）とpointerの組で一意に読める。負例はpatch前後のwholeを照合し、実行成功・資格・権限を生成しない。"
   }
 }
