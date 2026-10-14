@@ -94,7 +94,7 @@
     {
       "id": "R10",
       "topic": "出力責務",
-      "rule": "再現性、artifact同一性、source trust、HARNESS behavior検証、OS authority/progressionは独立出力とし、013が他owner判定を生成しない。"
+      "rule": "再現性、artifact同一性、source trust、HARNESS behavior検証、OS authority/progressionは独立出力とし、013が他owner判定を生成しない。停止材料の戻し先は承認済みL2-010/L2-023/OSを保持し、012の来歴資料は補足参照に限る。"
     },
     {
       "id": "R11",
@@ -105,6 +105,11 @@
       "id": "R12",
       "topic": "未決の保持",
       "rule": "schema/codec、kind owner/source qualification、producer custody、実観測が未定ならunknown/not establishedを保ち、signature/registry/scanner gateを新設しない。"
+    },
+    {
+      "id": "R13",
+      "topic": "未見artifactと後続未観測工程",
+      "rule": "選択stageのartifact参照が未見artifactへ差し替わった場合、差替えstageと別の未観測stageを明示し、artifact producer/environmentのqualification未成立を保つ。未見variantの存在だけでstage差替えや実観測を推定しない。"
     }
   ],
   "conceptual_record_shape": {
@@ -126,10 +131,12 @@
   },
   "responsibility_boundaries": {
     "SECURITY013": "artifactのidentity鎖と選択工程の不一致・欠落材料",
-    "SECURITY012": "SECURITY012はsource/provenanceに関する来歴資料を照合し、その材料をSECURITY013へ渡す。来歴資料の照合だけでtrust最終認可や実行authorityを成立させない。",
+    "SECURITY012": "SECURITY012はsource/provenanceに関する来歴資料を照合し、その材料をSECURITY013へ補足提供する。来歴資料の照合だけでtrust最終認可、承認済みL2-010/L2-023/OSへの停止・戻し、実行authorityを成立・代行させない。",
     "HELIX_HARNESS": "挙動検証receipt",
     "HELIX_OS": "進行・昇格record",
-    "producer_owner": "source/producerの事実とcustody。正式ownerは未確定。"
+    "producer_owner": "source/producerの事実とcustody。正式ownerは未確定。",
+    "L2-010": "承認済み戻し先。更新受入に必要な不足材料の停止・戻し先として保持する。",
+    "L2-023": "承認済み戻し先。更新→検証→昇格構成体に必要な不足材料の停止・戻し先として保持する。"
   },
   "positive_contract": "選択工程のartifact identity/version/digest/provenance/producerとtraceを同一target revision/scopeへ結ぶ。後続receiptは当該工程の後に得た結果として扱う。",
   "legacy_comparison": {
@@ -576,7 +583,7 @@
         "R07",
         "R10"
       ],
-      "backflow": "artifact材料は013、来歴資料は012、検証はHARNESS、進行はOSへ戻す。未来receiptをbuild条件にしない。",
+      "backflow": "欠落・不一致の停止材料は承認済み戻し先L2-010の更新受入、L2-023の更新→検証→昇格構成体、およびHELIX-OSの進行へ返す。artifact同一性不足は013、source来歴資料不足は012を補足参照として付すが、012は010/023/OSへの停止・戻しを代行しない。検証receiptの責務はHARNESSに残し、未来receiptをbuild前提にしない。",
       "case_refs": [
         "HELIXSECURITY-L9-013-GWT-F02",
         "HELIXSECURITY-L9-013-F02-N1",
@@ -612,9 +619,10 @@
         "R06",
         "R08",
         "R11",
-        "R12"
+        "R12",
+        "R13"
       ],
-      "backflow": "kind coverage欠落とstage mismatchを別々に未完とし、選択範囲を超えて一般化しない。",
+      "backflow": "kind coverage欠落、stage mismatch、未見artifact差替えを別々に未完とし、差替えstageと未観測stage、producer/environment資格未確定を示して該当工程ownerへ返す。選択範囲を超えて一般化しない。",
       "case_refs": [
         "HELIXSECURITY-L9-013-GWT-N01",
         "HELIXSECURITY-L9-013-N01-N1",

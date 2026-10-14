@@ -188,9 +188,9 @@
     {
       "id": "HELIXSECURITY-L9-013-GWT-F03",
       "oracle": "HELIXSECURITY-L10-013-F03",
-      "given": "RAW-BASEの同一manifest/lock/tool/config/source revisionを使い、SYN-013-POS-F03-REBUILD-COMPARISONの二clean-environment recordとART-CODE-A/ART-CODE-Bの各output refを与える。",
+      "given": "RAW-BASEのmanifest/lock/tool/config/source revision、validation/executeのstage artifact_refsとHARNESS-RECEIPT-013-A/EXEC-013-Aを比較contextとして与え、POS-F03の同じrecipeでの二clean-environment output recordを与える。",
       "when": "再現条件、artifact同一性、behaviorを分けて比較",
-      "then": "同じrecipe入力と異なるoutput identity/digestを分け、実behavior検証、trust、authorityを未評価のまま示す。",
+      "then": "同じrecipe入力を確認したうえで、env AのART-CODE-A/digestはRAW-BASEのvalidationとexecute両方のartifact_refに一致し、env BのART-CODE-B/digestは両方に不一致とするstage bindingを別出力で示す。receiptはsynthetic marker、behavior verificationは未評価であり、再現条件・artifact identity・behaviorを混同しない。",
       "negative_case_refs": [
         "HELIXSECURITY-L9-013-F03-N1",
         "HELIXSECURITY-L9-013-F03-N2"
@@ -231,9 +231,9 @@
     {
       "id": "HELIXSECURITY-L9-013-GWT-N01",
       "oracle": "HELIXSECURITY-L10-013-N01",
-      "given": "RAW-BASEの全kind集合と、SYN-013-POS-N01-UNSEEN-VARIANTに記録した未見source revision、未qualified producer、未観測environment、ART-UNSEEN-CODE-Bを与える。",
+      "given": "RAW-BASEの全kind集合と、POS-N01の未見source revision/producer/environmentおよびART-UNSEEN-CODE-B候補を与える。negative mutationは同一HEADのexecute stageをその未見artifactへ実際に差し替え、validation stageを別途未観測化する。",
       "when": "kind集合縮小と工程差替え/欠落を別々に照合",
-      "then": "既知全kindの被覆と未見revision/producer/environmentの未確定性を分け、synthetic variantからqualification/trust/releaseを生成しない。",
+      "then": "kind coverageとは別に、execute差替えstage、validation未観測stage、ART-UNSEEN-CODE-Bのproducer/environment qualification未成立を個別に示す。候補の存在だけから実source観測、trust認可、検証/実行authority、releaseを生成しない。",
       "negative_case_refs": [
         "HELIXSECURITY-L9-013-N01-N1",
         "HELIXSECURITY-L9-013-N01-N2",
@@ -472,8 +472,8 @@
     {
       "id": "HELIXSECURITY-L9-013-F01-N5",
       "oracle": "HELIXSECURITY-L10-013-F01",
-      "input": "package以外のartifactがあるのにpackageだけを照合し、全kind一致と宣言する。",
-      "expected_observation": "declared_kind_setとkind別stage_traceを示し、package以外のkindは未閉包に保つ。",
+      "input": "RAW-BASEのkind集合とstage traceを保ったまま、fixture-only coverage_assertionへpackage証拠だけで全declared kind一致とする誤った主張を追加する。これはkind縮小mutationとは別の主張検査。",
+      "expected_observation": "declared_kind_setは全対象kindのままでも、coverage_assertionのevidence_kinds=packageとclaim=all_declared_kinds_matchの過剰一般化を指摘し、package以外を閉包しない。",
       "execution_state": "not_executed",
       "pair_refs": {
         "document_id": "HELIXSECURITY-L9-013-ARTIFACT-INTEGRITY-CHAIN",
@@ -495,7 +495,7 @@
         "source_field": "negative_input",
         "source_value": "CIと実起動で別artifact、producer/工程欠落、未配布を配布済みにする。config/security policyを鎖の対象外にする、packageの鎖だけで全対象種一致を主張、未分類種を既知種へ補完。"
       },
-      "expected_observation_ref": "declared_kind_setとkindごとのstage_trace。",
+      "expected_observation_ref": "separate_outcomes.coverage_assertion (evidence_kinds=package, claim=all_declared_kinds_match)。",
       "requirement_ref": "HELIXSECURITY-L3-013-F01",
       "design_contract_ref": "HELIXSECURITY-L4-013-F01",
       "verification_contract_ref": "HELIXSECURITY-L9-013-F01",
@@ -696,8 +696,8 @@
     {
       "id": "HELIXSECURITY-L9-013-N01-N1",
       "oracle": "HELIXSECURITY-L10-013-N01",
-      "input": "target revision/HEADとkind集合は同じまま、実起動code artifactをART-CODE-Bへ差し替える。",
-      "expected_observation": "同一HEADの結果へ別artifactが混入した差替えを検出し、artifact identityの不一致として保つ。",
+      "input": "RAW-BASEの同一target revision/HEADのまま、選択execute stageのcode artifactを未見候補ART-UNSEEN-CODE-Bへ実際に差し替える。validation stageはstatus=not_observed、artifact_refs=[]、validation_ref/receipt_revisionなしとし、未見producer/environmentは資格未成立。",
+      "expected_observation": "同一HEADでexecuteがART-CODE-AからART-UNSEEN-CODE-Bへ替わったこと、validationが別stageとして未観測であることを示す。未見artifact producer/environment資格を未成立のまま保ち、trust/検証/実行authorityを生成しない。",
       "execution_state": "not_executed",
       "pair_refs": {
         "document_id": "HELIXSECURITY-L9-013-ARTIFACT-INTEGRITY-CHAIN",
@@ -719,7 +719,7 @@
         "source_field": "negative_input",
         "source_value": "別binary実行を同HEAD結果化、未配布をrelease合格。config/policyを対象集合から落とす、package鎖のみで全対象種の一致を主張。"
       },
-      "expected_observation_ref": "declared_kind_setとstageごとのcode artifact_ref。",
+      "expected_observation_ref": "stage_trace[3] execute artifact差替え、stage_trace[2] validation未観測、ART-UNSEEN-CODE-Bのproducer/environment qualification。",
       "requirement_ref": "HELIXSECURITY-L3-013-N01",
       "design_contract_ref": "HELIXSECURITY-L4-013-N01",
       "verification_contract_ref": "HELIXSECURITY-L9-013-N01",
@@ -792,8 +792,8 @@
     {
       "id": "HELIXSECURITY-L9-013-N01-N4",
       "oracle": "HELIXSECURITY-L10-013-N01",
-      "input": "packageだけを宣言して他kindを未照合のまま全chain closedとする。",
-      "expected_observation": "declared_kind_setと全対象kind inventoryを示し、packageだけの証拠を全kindへ一般化しない。",
+      "input": "RAW-BASEへdeclared_kind_setのpackage縮小と、fixture-only coverage_assertionのevidence_kinds=package/claim=whole_chain_closedを明示して追加する。F01-N5と同じL10-N01負例句を含む重複意図は、kind縮小と全chain閉包主張を一入力で併記して検査する。",
+      "expected_observation": "packageだけへのkind縮小と、package証拠だけでwhole_chain_closedとする明示主張を別々に検出する。重複する全kind一致の意味はF01-N5で独立に主張単体としても検査する。",
       "execution_state": "not_executed",
       "pair_refs": {
         "document_id": "HELIXSECURITY-L9-013-ARTIFACT-INTEGRITY-CHAIN",
@@ -815,7 +815,7 @@
         "source_field": "negative_input",
         "source_value": "別binary実行を同HEAD結果化、未配布をrelease合格。config/policyを対象集合から落とす、package鎖のみで全対象種の一致を主張。"
       },
-      "expected_observation_ref": "declared_kind_setと全対象kind inventory。",
+      "expected_observation_ref": "declared_kind_setとseparate_outcomes.coverage_assertionの両方。",
       "requirement_ref": "HELIXSECURITY-L3-013-N01",
       "design_contract_ref": "HELIXSECURITY-L4-013-N01",
       "verification_contract_ref": "HELIXSECURITY-L9-013-N01",
@@ -1420,6 +1420,21 @@
             "producer_ref": "PRODUCER-SOURCE-013-A",
             "source_ref": "SRC-013-A",
             "fixture_only": true
+          },
+          {
+            "artifact_ref": "ART-UNSEEN-CODE-B",
+            "kind": "code",
+            "version": "fixture-v1",
+            "raw_bytes_utf8": "synthetic unseen code artifact B\n",
+            "sha256": "sha256:d157e2dea61836f8c70eac6d42b9e53d6f25d529b2548d984d97b632be578ba5",
+            "producer_ref": "PRODUCER-BUILD-013-UNSEEN-B",
+            "source_ref": "SRC-013-UNSEEN-B",
+            "source_revision": "synthetic-source-rev-013-UNSEEN-B",
+            "environment_ref": "ENV-013-UNSEEN-B",
+            "producer_qualification": "not_established",
+            "environment_qualification": "not_established",
+            "fixture_only": true,
+            "real_observation": false
           }
         ],
         "declared_kind_set": [
@@ -1514,6 +1529,18 @@
             "role": "合成build producer",
             "fixture_only": true,
             "qualification": "実owner資格ではない"
+          },
+          {
+            "producer_ref": "PRODUCER-SOURCE-013-UNSEEN-B",
+            "role": "合成未見source producer",
+            "fixture_only": true,
+            "qualification": "not_established"
+          },
+          {
+            "producer_ref": "PRODUCER-BUILD-013-UNSEEN-B",
+            "role": "合成未見artifact producer",
+            "fixture_only": true,
+            "qualification": "not_established"
           }
         ],
         "fixture_receipts": [
@@ -1530,7 +1557,15 @@
             "fixture_only": true
           }
         ],
-        "fixture_packet_sha256": "27729737d56c1e0cc4403130bd374f6fb3bd24256efc39f16d30af9a4e962927"
+        "fixture_packet_sha256": "76085fdd2d83e1bc7ce46bb9a1aeebbc7ae1d835f48c17e9b77abca224ca02fb",
+        "fixture_environments": [
+          {
+            "environment_ref": "ENV-013-UNSEEN-B",
+            "fixture_only": true,
+            "real_observation": false,
+            "qualification": "not_established"
+          }
+        ]
       },
       {
         "packet_id": "HELIXSECURITY-L9-013-SYN-013-POS-B01-VERIFY-PAIR",
@@ -1715,7 +1750,53 @@
             "fixture_only": true
           }
         ],
-        "fixture_packet_sha256": "8e9773d5ad823b9e65f9c161231b64839e816b1d1145698ad8e25384dd687829"
+        "fixture_packet_sha256": "3800de0a2e6299956277b900401c485f82d28cb166ac844ff0f994e2ae66580b",
+        "raw_base_stage_comparison": {
+          "source_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
+          "validation_stage": {
+            "stage": "validation",
+            "artifact_refs": [
+              "ART-CODE-A",
+              "ART-PACKAGE-A",
+              "ART-MODEL-A",
+              "ART-CONFIG-A",
+              "ART-POLICY-A"
+            ],
+            "validation_ref": "HARNESS-RECEIPT-013-A",
+            "receipt_is_actual_harness_result": false
+          },
+          "execute_stage": {
+            "stage": "execute",
+            "artifact_refs": [
+              "ART-CODE-A",
+              "ART-PACKAGE-A",
+              "ART-MODEL-A",
+              "ART-CONFIG-A",
+              "ART-POLICY-A"
+            ],
+            "execution_ref": "EXEC-013-A",
+            "receipt_is_actual_execution_result": false
+          },
+          "comparisons": [
+            {
+              "rebuild_record_ref": "F03-REBUILD-ENV-A",
+              "artifact_ref": "ART-CODE-A",
+              "digest": "sha256:8d926b118adb7e26937ea018d5f0ddc87937a039db28962b4171acffbc45790a",
+              "validation_artifact_match": true,
+              "execute_artifact_match": true
+            },
+            {
+              "rebuild_record_ref": "F03-REBUILD-ENV-B",
+              "artifact_ref": "ART-CODE-B",
+              "digest": "sha256:1625e0d7c938e5243d6b77ab67ff48c64dd4fa3b4e114c2702063cf9ce798954",
+              "validation_artifact_match": false,
+              "execute_artifact_match": false
+            }
+          ],
+          "behavior_verification": "別出力。RAW-BASE receiptは合成markerであり、behavior検証結果は未評価。",
+          "fixture_only": true,
+          "real_observation": false
+        }
       },
       {
         "packet_id": "HELIXSECURITY-L9-013-SYN-013-POS-N01-UNSEEN-VARIANT",
@@ -1847,16 +1928,22 @@
       {
         "mutation_id": "HELIXSECURITY-L9-013-MUT-F01-N05",
         "base_packet_ref": "HELIXSECURITY-L9-013-SYN-013-RAW-BASE",
-        "json_pointer": "/declared_kind_set",
+        "json_pointer": "/separate_outcomes/coverage_assertion",
         "mutation_description": "RAW-BASEへこのpatchを個別適用する。",
         "fixture_only": true,
-        "fixture_patch": {
-          "op": "replace",
-          "path": "/declared_kind_set",
-          "value": [
-            "package"
-          ]
-        }
+        "fixture_patch": [
+          {
+            "op": "add",
+            "path": "/separate_outcomes/coverage_assertion",
+            "value": {
+              "evidence_kinds": [
+                "package"
+              ],
+              "claim": "all_declared_kinds_match",
+              "fixture_only": true
+            }
+          }
+        ]
       },
       {
         "mutation_id": "HELIXSECURITY-L9-013-MUT-F01-N06",
@@ -1949,13 +2036,26 @@
         "json_pointer": "/declared_kind_set",
         "mutation_description": "RAW-BASEへこのpatchを個別適用する。",
         "fixture_only": true,
-        "fixture_patch": {
-          "op": "replace",
-          "path": "/declared_kind_set",
-          "value": [
-            "package"
-          ]
-        }
+        "fixture_patch": [
+          {
+            "op": "replace",
+            "path": "/declared_kind_set",
+            "value": [
+              "package"
+            ]
+          },
+          {
+            "op": "add",
+            "path": "/separate_outcomes/coverage_assertion",
+            "value": {
+              "evidence_kinds": [
+                "package"
+              ],
+              "claim": "whole_chain_closed",
+              "fixture_only": true
+            }
+          }
+        ]
       },
       {
         "mutation_id": "HELIXSECURITY-L9-013-MUT-F01-N01",
@@ -1991,11 +2091,31 @@
         "json_pointer": "/stage_trace/3/artifact_refs/0",
         "mutation_description": "RAW-BASEへこのpatchを個別適用する。",
         "fixture_only": true,
-        "fixture_patch": {
-          "op": "replace",
-          "path": "/stage_trace/3/artifact_refs/0",
-          "value": "ART-CODE-B"
-        }
+        "fixture_patch": [
+          {
+            "op": "replace",
+            "path": "/stage_trace/3/artifact_refs/0",
+            "value": "ART-UNSEEN-CODE-B"
+          },
+          {
+            "op": "replace",
+            "path": "/stage_trace/2/status",
+            "value": "not_observed"
+          },
+          {
+            "op": "replace",
+            "path": "/stage_trace/2/artifact_refs",
+            "value": []
+          },
+          {
+            "op": "remove",
+            "path": "/stage_trace/2/validation_ref"
+          },
+          {
+            "op": "remove",
+            "path": "/stage_trace/2/receipt_revision"
+          }
+        ]
       },
       {
         "mutation_id": "HELIXSECURITY-L9-013-MUT-N01-N03",
@@ -2023,7 +2143,8 @@
     "fixture_hash_method": "authoring fixture pinのみ。packet objectからfixture_packet_sha256を除き、UTF-8 JSONをkey sort・compact separatorでserializeしたbytesのSHA-256。正式codec/canonicalizationの決定ではない。",
     "mutation_method": "各negative caseは同じRAW-BASE packetから独立して開始し、mutation_refが示すJSON Patch形式fixture_patchを1件適用する。適用前後のpacket全体hashをstatic-review証拠に記録する。fixtureは実source/実artifactではなく、実行しない。",
     "dimension_separation": "kind集合の縮小はdeclared_kind_set mutationで検出し、工程上のartifact差替え/status欠落はstage_trace mutationで検出する。両者を同じcase差分に混ぜない。",
-    "positive_context_method": "GWT positive givenはsource_packet_refsが指す具体的な記録値を参照する。比較packetは実測でなく、qualification未成立のfixture入力である。"
+    "positive_context_method": "GWT positive givenはsource_packet_refsが指す具体的な記録値を参照する。比較packetは実測でなく、qualification未成立のfixture入力である。",
+    "coverage_assertion_note": "F01-N5とN01-N4は承認L10のnegative_inputにある「packageの鎖だけで全対象種一致を主張」と同じ意図を含む。両ケースのfixture_patchはその主張をcoverage_assertion fieldへ実値として追加し、F01-N5は主張単体、N01-N4はkind縮小とwhole_chain_closed主張を別々に観測する。"
   },
   "source_pin_limit": "承認全source fileのhash一致は意味閉包を示さない。ここでは承認済み013全10 objectsをexact HEADから個別照合した。",
   "layer_id": "HELIXSECURITY-L9-013",
