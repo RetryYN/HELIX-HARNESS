@@ -72212,10 +72212,646 @@
         "expanded_output_sha256": "98765ac3330a0524b0b3eec00a0cab3b215e6a5199bed11305a421bbf2f01b7c"
       },
       "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-007-C0944",
+      "title": "反映済み未retireなら予定順序との前後判定を実行しない",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-007-F03",
+        "oracle_ref": "HELIXOS-L10-007-F03"
+      },
+      "given": {
+        "input": {
+          "base_ref": "records",
+          "replacements": [
+            {
+              "path": [
+                "memory",
+                "pending_reflection",
+                "reflection"
+              ],
+              "value": {
+                "recorded": true,
+                "order": 3,
+                "reflection_ref": "SYN-REFLECTION-retired-reflection_ref",
+                "source_entry_id": "SYN-MEMORY-pending_reflection-entry_id",
+                "source_revision": "SYN-MEMORY-pending_reflection-source_revision",
+                "source_digest": "SYN-MEMORY-pending_reflection-source_digest",
+                "target_canonical_ref": "SYN-REFLECTION-retired-target_canonical_ref",
+                "target_revision": "SYN-REFLECTION-retired-target_revision",
+                "target_content_digest": "SYN-REFLECTION-retired-target_content_digest",
+                "responsibility_ref": "SYN-MEMORY-pending_reflection-responsibility_ref",
+                "episode_ref": "EPISODE-a"
+              }
+            },
+            {
+              "path": [
+                "memory",
+                "pending_reflection",
+                "retire_order"
+              ],
+              "value": 2
+            },
+            {
+              "path": [
+                "context",
+                "memory",
+                "pending_reflection",
+                "reflection"
+              ],
+              "value": {
+                "recorded": true,
+                "order": 3,
+                "reflection_ref": "SYN-REFLECTION-retired-reflection_ref",
+                "source_entry_id": "SYN-MEMORY-pending_reflection-entry_id",
+                "source_revision": "SYN-MEMORY-pending_reflection-source_revision",
+                "source_digest": "SYN-MEMORY-pending_reflection-source_digest",
+                "target_canonical_ref": "SYN-REFLECTION-retired-target_canonical_ref",
+                "target_revision": "SYN-REFLECTION-retired-target_revision",
+                "target_content_digest": "SYN-REFLECTION-retired-target_content_digest",
+                "responsibility_ref": "SYN-MEMORY-pending_reflection-responsibility_ref",
+                "episode_ref": "EPISODE-a"
+              }
+            },
+            {
+              "path": [
+                "context",
+                "memory",
+                "pending_reflection",
+                "retire_order"
+              ],
+              "value": 2
+            }
+          ],
+          "expanded_input_sha256": "e1b6414622b693ca4d4dd1b6bd73dfc6556f51cf50dab1ca35d6adb75a4a9a31"
+        }
+      },
+      "expected_proposal": {
+        "base_ref": "records",
+        "replacements": [
+          {
+            "path": [
+              "memory_material",
+              "pending_reflection",
+              "reflection_recorded"
+            ],
+            "value": true
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "recorded"
+            ],
+            "value": true
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "order"
+            ],
+            "value": 3
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "reflection_ref"
+            ],
+            "value": "SYN-REFLECTION-retired-reflection_ref"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "source_entry_id"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-entry_id"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "source_revision"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-source_revision"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "source_digest"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-source_digest"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "target_canonical_ref"
+            ],
+            "value": "SYN-REFLECTION-retired-target_canonical_ref"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "target_revision"
+            ],
+            "value": "SYN-REFLECTION-retired-target_revision"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "target_content_digest"
+            ],
+            "value": "SYN-REFLECTION-retired-target_content_digest"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "responsibility_ref"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-responsibility_ref"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "episode_ref"
+            ],
+            "value": "EPISODE-a"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "retire_order"
+            ],
+            "value": 2
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "recorded"
+            ],
+            "value": true
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "order"
+            ],
+            "value": 3
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "reflection_ref"
+            ],
+            "value": "SYN-REFLECTION-retired-reflection_ref"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "source_entry_id"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-entry_id"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "source_revision"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-source_revision"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "source_digest"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-source_digest"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "target_canonical_ref"
+            ],
+            "value": "SYN-REFLECTION-retired-target_canonical_ref"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "target_revision"
+            ],
+            "value": "SYN-REFLECTION-retired-target_revision"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "target_content_digest"
+            ],
+            "value": "SYN-REFLECTION-retired-target_content_digest"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "responsibility_ref"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-responsibility_ref"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "episode_ref"
+            ],
+            "value": "EPISODE-a"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "retire_order"
+            ],
+            "value": 2
+          }
+        ],
+        "expanded_output_sha256": "857ad0f33bc5bac9e3e2813d1b726a96e6841874116f6b8d883be45d1d0f32f8"
+      },
+      "execution_state": "synthetic_document_comparison_only"
+    },
+    {
+      "id": "HELIXOS-L9-007-C0945",
+      "title": "反映済み未retireなら未来retire_orderを必須にしない",
+      "primary_trace": {
+        "requirement_ref": "HELIXOS-L3-007-F03",
+        "oracle_ref": "HELIXOS-L10-007-F03"
+      },
+      "given": {
+        "input": {
+          "base_ref": "records",
+          "replacements": [
+            {
+              "path": [
+                "memory",
+                "pending_reflection",
+                "reflection"
+              ],
+              "value": {
+                "recorded": true,
+                "order": 3,
+                "reflection_ref": "SYN-REFLECTION-retired-reflection_ref",
+                "source_entry_id": "SYN-MEMORY-pending_reflection-entry_id",
+                "source_revision": "SYN-MEMORY-pending_reflection-source_revision",
+                "source_digest": "SYN-MEMORY-pending_reflection-source_digest",
+                "target_canonical_ref": "SYN-REFLECTION-retired-target_canonical_ref",
+                "target_revision": "SYN-REFLECTION-retired-target_revision",
+                "target_content_digest": "SYN-REFLECTION-retired-target_content_digest",
+                "responsibility_ref": "SYN-MEMORY-pending_reflection-responsibility_ref",
+                "episode_ref": "EPISODE-a"
+              }
+            },
+            {
+              "path": [
+                "memory",
+                "pending_reflection",
+                "retire_order"
+              ],
+              "value": null
+            },
+            {
+              "path": [
+                "context",
+                "memory",
+                "pending_reflection",
+                "reflection"
+              ],
+              "value": {
+                "recorded": true,
+                "order": 3,
+                "reflection_ref": "SYN-REFLECTION-retired-reflection_ref",
+                "source_entry_id": "SYN-MEMORY-pending_reflection-entry_id",
+                "source_revision": "SYN-MEMORY-pending_reflection-source_revision",
+                "source_digest": "SYN-MEMORY-pending_reflection-source_digest",
+                "target_canonical_ref": "SYN-REFLECTION-retired-target_canonical_ref",
+                "target_revision": "SYN-REFLECTION-retired-target_revision",
+                "target_content_digest": "SYN-REFLECTION-retired-target_content_digest",
+                "responsibility_ref": "SYN-MEMORY-pending_reflection-responsibility_ref",
+                "episode_ref": "EPISODE-a"
+              }
+            },
+            {
+              "path": [
+                "context",
+                "memory",
+                "pending_reflection",
+                "retire_order"
+              ],
+              "value": null
+            }
+          ],
+          "expanded_input_sha256": "3cff844637e37ea8ef1bf8d5434d8af181b59c95541f25d2db208e4bb42e4661"
+        }
+      },
+      "expected_proposal": {
+        "base_ref": "records",
+        "replacements": [
+          {
+            "path": [
+              "memory_material",
+              "pending_reflection",
+              "reflection_recorded"
+            ],
+            "value": true
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "recorded"
+            ],
+            "value": true
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "order"
+            ],
+            "value": 3
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "reflection_ref"
+            ],
+            "value": "SYN-REFLECTION-retired-reflection_ref"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "source_entry_id"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-entry_id"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "source_revision"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-source_revision"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "source_digest"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-source_digest"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "target_canonical_ref"
+            ],
+            "value": "SYN-REFLECTION-retired-target_canonical_ref"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "target_revision"
+            ],
+            "value": "SYN-REFLECTION-retired-target_revision"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "target_content_digest"
+            ],
+            "value": "SYN-REFLECTION-retired-target_content_digest"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "responsibility_ref"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-responsibility_ref"
+          },
+          {
+            "path": [
+              "retained_actual_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "episode_ref"
+            ],
+            "value": "EPISODE-a"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "recorded"
+            ],
+            "value": true
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "order"
+            ],
+            "value": 3
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "reflection_ref"
+            ],
+            "value": "SYN-REFLECTION-retired-reflection_ref"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "source_entry_id"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-entry_id"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "source_revision"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-source_revision"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "source_digest"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-source_digest"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "target_canonical_ref"
+            ],
+            "value": "SYN-REFLECTION-retired-target_canonical_ref"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "target_revision"
+            ],
+            "value": "SYN-REFLECTION-retired-target_revision"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "target_content_digest"
+            ],
+            "value": "SYN-REFLECTION-retired-target_content_digest"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "responsibility_ref"
+            ],
+            "value": "SYN-MEMORY-pending_reflection-responsibility_ref"
+          },
+          {
+            "path": [
+              "retained_reference_records",
+              "memory",
+              "pending_reflection",
+              "reflection",
+              "episode_ref"
+            ],
+            "value": "EPISODE-a"
+          }
+        ],
+        "expanded_output_sha256": "d081d753a29483f953091ca7ce4713907ad39e7926c82734305df4911e98d96c"
+      },
+      "execution_state": "synthetic_document_comparison_only"
     }
   ],
   "completion": {
-    "synthetic_case_count": 943,
+    "synthetic_case_count": 945,
     "independent_review": "pending",
     "formal_closure": "unproven",
     "actual_red_green_refactor": "not_executed"
