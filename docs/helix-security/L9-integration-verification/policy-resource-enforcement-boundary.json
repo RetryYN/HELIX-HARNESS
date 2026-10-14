@@ -1291,7 +1291,7 @@
       "authority_effect_as_recorded": "effective_when_this_record_is_admitted_to_main",
       "record_commit_is_ancestor_of_origin_main": true,
       "reviewed_content_head_is_ancestor_of_record_commit": true,
-      "approved_scope": "SEC001-008/015/016/024, 35 L3/L10 pairs; this exact revision. Record states JSON is semantic source and MD is generated view.",
+      "approved_scope": "SEC001〜008/015/016/024の35 L3/L10対、対象exact revisionに限定。記録はJSONを意味正本、MDを生成viewと定める。",
       "source_files_at_reviewed_content_head": {
         "docs/helix-security/L3-requirements/business-requirements.json": "7b5f78087ce4506ecc8a23ec2b1bb9a2efb65e210443196bad05166522970041",
         "docs/helix-security/L3-requirements/functional-requirements.json": "2b7ff6cb793cde3b30d999498ff7e917e6f5e8bd1b62999f078d022b45b36e9f",
@@ -1304,7 +1304,7 @@
         "HELIXSECURITY-L3-024-F01": "2f178ac26ef7138315bb16765d8b881540677f9cde34ee333e26299a588fc42d",
         "HELIXSECURITY-L10-024-F01": "87c6065a0304f31f8725b94a65716b9b598f000af9c10ad2f986e9eec3a9c0b8"
       },
-      "interpretation": "This record/revision is the exact source authority for the four L3/L10 whole objects below. The 2026-10-06 Stage4 decision remains the historical parent/Stage decision but its reviewed revision 04578d4 did not contain the JSON paths; do not cite 04578d4 alone as byte-level approval of these JSON whole objects."
+      "interpretation": "この記録とrevisionが以下4 L3/L10 whole objectのexact source authorityである。10/06 Stage4記録は歴史的な親とStageの判断として保持するが、批准04578d4にはJSON pathが存在しないため、それ単独で現JSON whole objectのbyte単位の承認としない。"
     },
     "later_preservation_crosscheck": {
       "decision_record_id": "HDEC-SECURITY-TOOL-PREREQUISITES-L3L10-2026-10-12",
@@ -1328,7 +1328,7 @@
       "decision_record_id": "HDEC-SECURITY-STAGE4-L3-L10-DELEGATED-2026-10-06",
       "reviewed_content_revision": "04578d4c17c0c3340bab8dcbf11e8a9050304477",
       "main_admission_commit": "776e6b7b533fa35b204746bae5319af4fdf49771",
-      "role": "024 Stage4 parent scope/meaning approval only. At 04578 the JSON source paths did not exist; exact object byte authority comes from the 10/12 record above."
+      "role": "024のStage4親scopeと意味の判断。04578にはJSON正本pathが存在せず、現4objectのexact承認は上記10/12記録へ結ぶ。"
     },
     "hash_is_not_authority_statement": "各whole object canonical SHAは内容同一性を確認する補助。authorityはdecision record、approved_content_head、decision recordのmain admission、approved JSON full-file SHAとwhole object exact equalityの連鎖で確定する。"
   }
