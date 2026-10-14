@@ -1,0 +1,932 @@
+{
+  "parent": "HELIXLABO-L2-054",
+  "source_main": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+  "status": "draft_basic_content_pending_qualification_and_detail",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 4",
+    "authoring_scope": "L2-054の採択接続意味に沿ったB01/F01のL4/L9草案。",
+    "boundary": "L2-055の水準/根拠/scope/revision/未評価状態を専用connectionでINTELLIGENCEへ渡す。水準生成、配置案、Worker/model指定・割当て、permission付与、実source資格、formal schema/codec、実受領は成立させない。既知scopeの未評価値はそのまま受け渡し、不一致/未受領だけを対象payload/scopeに局所化する。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-stage4-l3-l10-po-decision-2026-10-05.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "569d9dfb9be8a843a79fe2a4017dcba83c13651a86417d19f76a17e7a9b8c911"
+    },
+    {
+      "path": "docs/governance/audits/requirements-stage/l3-l10-labo-stage4-delegated-decision-pin-2026-10-05.json",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "5cf5481e9f71b80f4ca111252d0eced2e23102a1cc1ed8bc0df2e237980ff801"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8"
+    },
+    {
+      "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "592c9efe7a5e68c53d56de696080f286e4c926110775f49e46de979fe232537c"
+    },
+    {
+      "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "98413d69444934e047c1bc6626257aeee95f3892c6ea53fa63b7e854878efe33"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    }
+  ],
+  "upstream_adoption": {
+    "approval": {
+      "record_path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "record_sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19",
+      "record_commit": "2f95e20cd9e90dd4ab7d349661476d8c49eff548",
+      "admitted_main_commit": "4dd2774e1498bde640a52e94245195f62e750ca6",
+      "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "delegation_record_sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+      "approval_whole_files": [
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.json",
+          "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "sha256": "1abff25ba108a6e1055c0a811fa67befd44e73469ffda6ae8735b65249b2a441"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.json",
+          "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "sha256": "7719e128e442644224ba2b586f2f3ad0f0f14692847d8678a681abf616896270"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+          "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "sha256": "52966ddf22818f0ee1306c98496975304ce847255cffb243065963958c076844"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+          "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "sha256": "f2ae2897b615a7dde0d06cae6e02af72dfdd60f182e91728d94d3c250bfcaa77"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+          "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "sha256": "3be891bae6d3ed19931d8c9bac1989e1c6eff0cc6868d165d9ca9e1bc6787129"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+          "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "sha256": "d2453f852b93da95605c5780f51a7cd4d585685f673eb6c90393e93164be97dd"
+        }
+      ],
+      "authority_note": "2026-10-12委任記録が承認したbc96125742eab851fe35194071087f77bb1f0005のL3/L10固定wholeに限る。L4/L9草案の承認、実行、実source資格、評価、受領、受入を意味しない。"
+    },
+    "adoption": {
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "labo_l1_sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+      "labo_l2_sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+      "labo_l11_sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+      "section_hash_reproducibility": {
+        "quotes": [
+          {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "150-154",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "7796690dfd399e1f5d0cccddde8c7aeabb5da5dd2d8ab7edcdd3e71e74e84065",
+            "quote": "### HELIXLABO-L2-055 — HELIX-Bench 作業水準生成（1.0）\n\nHELIX-Benchは許可されたWorker作業履歴を作業種別・model classごとに集計し、対応可能性の水準、根拠、評価範囲を導く。評価していないmodel classは明示的に「未評価」とする。水準は配置案の材料であり、Benchは配置案を作成せず、Worker/modelの選定・指定・割当ても行わない。\n\n- 親：HELIXLABO-L1-011。入力：Worker作業履歴、作業種別、model class、評価結果とそのsource revision/範囲。出力：作業種別・model class別水準、根拠、評価期間/適用範囲、評価済み/未評価状態。依存：許可されたLABO observation（L2-001/028）と評価可能な実績（必要に応じL2-006）、Worker historyの作業種別・model class identity。保証：履歴だけで未知作業の成功を保証せず、未評価を評価済みに変換せず、配置・割当て・権限を変更しない。範囲や実績が不足・不整合なら水準を確定せず該当履歴sourceへ戻す。`version_target: 1.0`。\n"
+          },
+          {
+            "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "290-294",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "6afd3f3b015ff2064e35a2dc2840da101ea06cf40d2f255ff49bfaeb51dabc4c",
+            "quote": "### HELIXLABO-L2-054 — HELIX-Bench水準のINTELLIGENCE接続（1.0）\n\nL2-055が生成した作業種別・model class別の水準、根拠、適用範囲、未評価状態をINTELLIGENCEへ渡す専用接続である。水準生成は055、配置案の作成はINTELLIGENCE、指定・割当てはOSが担う。本節は接続・受領範囲を定義し、水準生成を重複定義しない。未評価を実績ありに見せた場合、model変更・scope拡大・権限拡大を直接行った場合は不成立としてLABO/INTELLIGENCE/OSの責務境界へ戻す。\n\n- 親：HELIXLABO-L1-011, HELIXINTELLIGENCE-L1-010。入力：L2-055の水準生成結果。出力：同じ作業種別・model class・評価範囲・根拠・未評価状態を保ったINTELLIGENCE向け受渡し。依存：HELIX-BenchのL2-055、INTELLIGENCE connector。保証：接続は水準を変えず、配置案はINTELLIGENCE、指定・割当てはOSに残す。未評価や範囲不明は水準生成側の再評価へ戻す。`version_target: 1.0`。\n"
+          },
+          {
+            "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "94-94",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "325bf15f1535899d2d63c5ce09bb35afe99dcbc9596f0f2e1e5fce195a2dbf74",
+            "quote": "| HELIXLABO-L2-054 | 055の作業種別・model class別水準、根拠、評価範囲、未評価状態を同じscopeのままINTELLIGENCEへ接続し、INTELLIGENCE案とOS指定/割当てを別状態で保つ | 接続中に水準・評価状態・scopeを変える、LABOがworker/modelを割り当てる、過去水準から未知jobの成功を保証する、scoreでscope/branch/merge authorityを変える |\n"
+          },
+          {
+            "path": "docs/helix-labo/L1-planning/labo-intent.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "62-62",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "355eb4a2a73179d379538c8e57edc565a99f17434928b765f6ce373c12ec0cb3",
+            "quote": "| HELIXLABO-L1-011 | 人間は、HELIX-BenchでWorkerの作業履歴を集計し、作業の種類ごとに、どのモデルクラスなら対応できるかの水準を得られる。評価していないモデルには「未評価」の印を付け、評価済みと混同しない。水準は配置の案の材料であり、LABOは割当てを決めない。配置の案はINTELLIGENCE、指定と割当てはOSが行う | [Worker実行モデルの判断記録](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)「レーンとWorkerの定義」、[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md) | 1.0 | 接続（LABOからINTELLIGENCEへ） |\n"
+          },
+          {
+            "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "52-52",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "0c929bdffa1701268ce3d1772fe6ba347394ae8e9f7848e800aeaeda04ca7d51",
+            "quote": "| HELIXINTELLIGENCE-L1-010 | 人間は、作業の内容と実績から、Workerの配置の候補を得られる。判断の軸は、作業の種類、領域、複雑さ、必要なcontextとtool、成功と失敗の履歴、手戻り、遅延、費用、信頼性とする。価格、モデル名、ベンチマークだけで配置を決めず、実際の割当と進行はOSが行う。LABOがHELIX-Benchで出した「どのモデルクラスなら対応できるか」の水準を材料に、ticketごとの配置の案を作り、OSの推進へ渡す。評価していないモデルは「未評価」の印のまま扱う（[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)） | INTELLIGENCE-L1-010 | 1.0 | 単体（OSへは接続） |\n"
+          },
+          {
+            "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "102-106",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "29b05afbff84475d17b9b1f0698762dab2a1be92480313833d9c8fef87d410c1",
+            "quote": "### HELIXINTELLIGENCE-L2-010 — Worker配置候補\n\n入力はtask type/domain/complexity/context/tool requirementとsuccess/failure/rework/latency/cost/reliabilityの実績。出力はtask×Worker capability×observed performanceに基づくplacement proposal。価格、model名、benchmark単独で決めず、割当・進行はOSが行う。未評価のWorker/modelを評価済みに扱わない。version_target 1.0。\n\n- 親：HELIXINTELLIGENCE-L1-010。単独成立依存：ticket/task identity、種類/domain/complexity/context/tool requirementとLABO HELIX-Benchのtask-class evidence、Worker実績・未評価状態。検証範囲：根拠付きticket別Worker placement proposal。保証：task属性と観測実績を使い、未評価を未評価と表示し、割当/進行はOSへ残す。失敗時戻し先：task属性不足はOSへ、Bench/evidence/適用scope不足はLABOへ返し、配置案を未確定にする。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。\n"
+          },
+          {
+            "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+            "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "line_range": "71-71",
+            "byte_encoding": "UTF-8",
+            "newline_processing": "原行をsplitlines(keepends=True)で連結し、LFを含む元byteを保持。trim・改行変換なし。",
+            "sha256": "fb8e588559cf58c54fd45b991e4b60f27929e0c8bd2f96bf8b57c7eed161c712",
+            "quote": "| HELIXINTELLIGENCE-L2-010 | task capability・過去実績に応じた配置候補を出し割当はOSへ残す | price/model name/benchmarkだけで決定する、未評価をqualifiedにする | task属性不足はOSへ、Bench/evidence不足はLABOへ戻し配置案保留 |\n"
+          }
+        ]
+      }
+    },
+    "historical_stage4_approval": {
+      "record_path": "docs/governance/decisions/helix-labo-stage4-l3-l10-po-decision-2026-10-05.md",
+      "record_sha256": "569d9dfb9be8a843a79fe2a4017dcba83c13651a86417d19f76a17e7a9b8c911",
+      "record_commit": "007606cc6570afffc5139e174bdb9adee90d19d4",
+      "approved_content_revision": "86e28720610d80756161d3693de67a84354dfb99",
+      "delegation_record_sha256": "9028384fe51660c6785dc55e034bbd887702fd53b00bd9fd16641e7b6d8c2220",
+      "approval_whole_files": [
+        {
+          "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+          "sha256": "12fdf58a66b4108bf45dcccb9845062f23b8cc49f33c800eeb6a23b12db43aa1"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+          "sha256": "5abc0f1c0aa8b6ed29ff35dd8b473332d237ae3685673c938184f812e1b78857"
+        },
+        {
+          "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+          "sha256": "39ecabeaec040cde052db5bb0eb77ac0446fe5951483d3ed4106768512a134ec"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/business-verification.md",
+          "sha256": "0d4dc09046dbe401846dd79241151a55bfc1c46a7514197a00602f209ffb5908"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/functional-verification.md",
+          "sha256": "891ae5539580ffe9dcba38c539807e1adc9017021ff010dbd6d8d42cc4c37fa7"
+        },
+        {
+          "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+          "sha256": "dcbc66854fcbcb7b718e390b515d61fa80d2392e1d199c3c884d5ed0edf3aa52"
+        }
+      ],
+      "authority_note": "旧Stage4承認。AC/CASE形式の当時の固定本文に限る歴史記録であり、現行L3/L10 JSON objectの承認authorityではない。旧AC/CASEと現行HELIXLABO-L3/L10-054-B01/F01の意味対応は監査対象として保持するが、object承認の移転を推定しない。L4/L9草案の承認・実行・受入を意味しない。"
+    }
+  },
+  "limited_v12_audit": {
+    "source_main": "7c553c5c2a4f16e55bdf8e0851409afbd35d3870",
+    "whole_file_sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292",
+    "denominators": {
+      "parents": 92,
+      "requirement_pairs": 430,
+      "main_basic_pair_document_presence": 59,
+      "main_detail_pair_document_presence": 14,
+      "missing_basic_pair_document_presence": 33,
+      "missing_detail_pair_document_presence": 78,
+      "unproven_design_completion_parents": 92
+    },
+    "054_row_canonical_sha256": "29b1eb14a9341d6420586f9157c34eb5614723e70df26df6f6c2bdc771728b3d",
+    "design_completion": "unproven",
+    "implementation_readiness": "not_ready"
+  },
+  "trace_matrix": [
+    {
+      "parent_requirement_id": "HELIXLABO-L2-054",
+      "producer_parent_l1_id": "HELIXLABO-L1-011",
+      "receiver_parent_l1_id": "HELIXINTELLIGENCE-L1-010",
+      "requirement_ref": "HELIXLABO-L3-054-B01",
+      "basic_design_id": "HELIXLABO-L4-054-B01",
+      "detail_verification_id": "HELIXLABO-L9-054-B01",
+      "system_oracle_ref": "HELIXLABO-L10-054-B01",
+      "direction": "順方向 L1/L2→L3→L4→L9→L10、逆方向 L10/L9→L4→L3→L2/L1。055水準生成、INTELLIGENCE配置案、OS指定/割当て、SECURITY権限は各ownerに残す。"
+    },
+    {
+      "parent_requirement_id": "HELIXLABO-L2-054",
+      "producer_parent_l1_id": "HELIXLABO-L1-011",
+      "receiver_parent_l1_id": "HELIXINTELLIGENCE-L1-010",
+      "requirement_ref": "HELIXLABO-L3-054-F01",
+      "basic_design_id": "HELIXLABO-L4-054-F01",
+      "detail_verification_id": "HELIXLABO-L9-054-F01",
+      "system_oracle_ref": "HELIXLABO-L10-054-F01",
+      "direction": "順方向 L1/L2→L3→L4→L9→L10、逆方向 L10/L9→L4→L3→L2/L1。055水準生成、INTELLIGENCE配置案、OS指定/割当て、SECURITY権限は各ownerに残す。"
+    }
+  ],
+  "approved_requirements": [
+    {
+      "id": "HELIXLABO-L3-054-B01",
+      "parent": "HELIXLABO-L2-054",
+      "title": "配置案・指定・権限の分離",
+      "obligation": "水準生成は055、配置案はINTELLIGENCE、Worker指定/割当てはOSに保持する。scoreでmodel/scope/branch/merge authorityを変更せず未知jobの成功を保証しない。",
+      "oracle_ref": "HELIXLABO-L10-054-B01"
+    },
+    {
+      "id": "HELIXLABO-L3-054-F01",
+      "parent": "HELIXLABO-L2-054",
+      "title": "Bench水準のINT受渡し",
+      "obligation": "055のtask/model class別水準・根拠・評価範囲/期間・未評価状態を同じscope/revisionのまま固有connectorでINTELLIGENCEへ渡し、受領結果と未完を保持する。接続中に水準や状態を変えない。",
+      "oracle_ref": "HELIXLABO-L10-054-F01"
+    }
+  ],
+  "approved_system_oracles": [
+    {
+      "id": "HELIXLABO-L10-054-B01",
+      "parent": "HELIXLABO-L2-054",
+      "title": "配置案・指定・権限の分離",
+      "requirement_ref": "HELIXLABO-L3-054-B01",
+      "positive_input": "水準と未決配置案/OS assignment/permissionを別状態で照合する。",
+      "expected_observation": "評価/案/指定/権限の各ownerが分かれる。",
+      "negative_input": "LABOが割当、過去水準で未知成功、scoreで権限拡大。",
+      "failure_observation": "LABO/INT/OS/SECの該当責務へ返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXLABO-L10-054-F01",
+      "parent": "HELIXLABO-L2-054",
+      "title": "Bench水準のINT受渡し",
+      "requirement_ref": "HELIXLABO-L3-054-F01",
+      "positive_input": "評価済み/未評価payloadの送受領と版/scope不一致を比較する。",
+      "expected_observation": "同水準と両端receipt、未受領範囲が辿れる。",
+      "negative_input": "未評価を実績あり、範囲拡大、配送だけ受領成功。",
+      "failure_observation": "水準生成側またはINT/接続ownerへ再照合を返す。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "legacy_rederivation": {
+    "mode": "意味の再導出",
+    "preserved": [
+      "Benchがevidenceを返しassignmentをしない責務分離。",
+      "evidenceをtask/scope/revisionへ結び、scoreだけで資格/authorityを変更しない。",
+      "worker-admission benchを上位system/team benchmarkと混同しない。"
+    ],
+    "changed": [
+      "旧system/team/profile benchmarkや#188/registry routingを現行実行機構として移植せず、現行L2-054専用handoffへ限定。",
+      "現行はINTELLIGENCEがplacement proposal、OSがassignment、SECURITYがpermissionを所有する。",
+      "送信/受領endpoint receiptと未受領scopeを追跡する。"
+    ],
+    "reason": "採択L1/L2/L11の現行owner境界。旧資産の未完やruntimeの存在は変更理由にしない。",
+    "sources": [
+      {
+        "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+        "selected_evidence": [
+          {
+            "line_range": "23-33",
+            "selected_lines_sha256": "0b546514388faafeedeff820a8cb78e7a7bf971e1745c7dae649c4f1cd2e7e21",
+            "quote": "HELIX-Benchは、単体modelのcoding能力ではなく、HELIXが管理する**組織編成と実行規律が、\n要求からaccepted changeまでをどれだけ正確、安全、低費用に完遂できるか**を比較する評価契約である。\n\n- behavior contractは`HELIX-BENCH-FR-001`だけとする。\n- 既存`HR-FR-HIL-22`／`WCC-FR-07`〜`WCC-FR-08`はworker admission用の下位benchである。\n  HELIX-Benchはそれを重複実装せず、system／team／harness profile比較の入力receiptとして再利用する。\n- 開発上のdevelopment style、case-driven model、specialist capability、runtime mode、team composition、\n  harness profileを別axisとして保持する。\n- provider名、model名、IDE名を必須enumにせず、version付きrun inputとして記録する。\n- benchmark runner、dataset、dashboard、provider接続、worker admission判断はL4以降で設計し、\n  本L3/L10 pairでは実装しない。\n"
+          },
+          {
+            "line_range": "123-135",
+            "selected_lines_sha256": "f66ac395660aeced85c7c43308f66633380a2488bff1eeef8f5b7e66c76f37eb",
+            "quote": "warmup、repeat count、timeout、retry、CI capacity、cache、parallelismをrun protocol versionへ固定する。\n比較可能なのは同一task snapshot、scoring version、protocol version、hardware classのrunだけとし、\n差がある場合は別cohortとして表示する。manual intervention、tool denial、network access、\ntraining contamination疑義、fixture leakageをrun receiptへ記録する。\n\n#### HELIX-BENCH-R-06 evidenceとscoring\n\nsuccessは自己申告ではなく、artifact、diff、test、negative oracle、independent review、CI、DB、\nlane-ready、merge receiptから算出する。scorerはraw receiptから再計算可能で、metricごとのnumerator、\ndenominator、missing/failure disposition、weight、normalization、confidence intervalを出力する。\n\nscope violation、security finding、data loss、hidden-oracle leakageを平均点で相殺しない。\naccepted changeが0の場合、cost／token reductionを成功値へ変換しない。\n"
+          }
+        ],
+        "meaning": "旧Bench比較責務、同条件入力、重大failureを平均で相殺しない意味。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+        "selected_evidence": [
+          {
+            "line_range": "41-41",
+            "selected_lines_sha256": "748d79b997383139ee34a71885b04da16c41bb4c90077c86927f2fbc4fd3cfc7",
+            "quote": "| `HELIX-BENCH-AC-014` | §0 | worker admission benchを下位receiptとして参照し、system/team benchと責務分離する | `WCC-FR-07/08`を複製実装する、またはHELIX-Bench scoreだけでworkerをadmitしたらfail |\n"
+          }
+        ],
+        "meaning": "worker admission benchは下位receiptであり、Bench score単独でworkerをadmitしないfailure oracle。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-50CA1C554747F12266D3",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd",
+        "selected_evidence": [
+          {
+            "line_range": "663-666",
+            "selected_lines_sha256": "e5491837b6d6df74cc5fbc66e93706c298df1d7520b660f8eb3f128db39a5769",
+            "quote": "#### RLO-FR-040 HELIX-Bench由来のeffort policy\n\nreasoning effortはHELIX-Benchのtask class別evidenceから導出する。未評価時は\n`provider_default_unbenchmarked`として明示し、score単独でscope、branch、assignment、merge authorityを変更しない。\n"
+          }
+        ],
+        "meaning": "task class別Bench evidence、未評価表示、score単独でscope/branch/assignment/merge authorityを変えない。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-437A6A68F9A9E0AE1B9E",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707",
+        "selected_evidence": [
+          {
+            "line_range": "43-43",
+            "selected_lines_sha256": "bb2ffab864ed73e12178b85b2245118672d59fce09ab411abce3adf53107ff00",
+            "quote": "| `RLO-AC-030` | `RLO-FR-040` | HELIX-Bench evidenceが無いtask classのeffortを解決する | `provider_default_unbenchmarked`を記録しauthorityを変更しない | effortを推測しscore単独でscope／branch／assignment／merge authorityを変更したら拒否する |\n"
+          }
+        ],
+        "meaning": "未評価時の推測でauthorityを変えないfailure oracle。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+        "selected_evidence": [
+          {
+            "line_range": "349-351",
+            "selected_lines_sha256": "00f21f452e8734c5fb2319dc5ddb953f19c16c772ea80aabc8e0927a99613e6e",
+            "quote": "### HXB-FR-015 Capability / Routingへの証拠昇格\n\nBenchはobserved/scored/qualified/expired等の証拠状態と改善候補を返す。既存registry/admission ownerが、task/risk/profile/descriptor、標本数、重大failure、鮮度、独立性を検査し、#188が現在capacity等と合わせて配車を決める。適切に委譲済みpolicy内の評価・更新は自動化でき、人間に毎回順序決定を要求しない。Benchから直接model切替・権限拡大を行わない。aliasしか不明な過去結果を現行weightsの保証にしない。\n"
+          }
+        ],
+        "meaning": "HXB-FR-015 evidence-to-routing consumer。既存registry/admission ownerと#188がroutingを決める。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-BE8B151A0094B754FF20",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-acceptance.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+        "selected_evidence": [
+          {
+            "line_range": "112-113",
+            "selected_lines_sha256": "6122c5d0e49f20e341c024a31feb2338554ca4b42221f4d4ec6ec3d6d9177edc",
+            "quote": "| HXB-AC-029 | 鮮度/適用task/risk/profile不適合のscoreをregistryのcurrent qualificationに使わない | HXB-FR-015 |\n| HXB-AC-030 | Bench単独で配車・権限を変更せず、委譲済み既存policy内では人間の毎回指示なしに評価/提案を処理する | HXB-FR-015 |\n"
+          }
+        ],
+        "meaning": "HXB-AC-029/030のscope不適合資格/Bench単独routing・authority変更防止。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-5F709CA13975179DB7CD",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-trace.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d",
+        "selected_evidence": [
+          {
+            "line_range": "229-234",
+            "selected_lines_sha256": "e58e2f44542e08bbe69940cff12d578a2e1c7f6b1034ed2eac8e21d969faa47c",
+            "quote": "| F | HXB-FR-011..013,017 | #214/#188/#679、scope認可付きshadow |\n| G | HXT-FR-023/024; HXB-FR-015/020 | #861/#188/#1500/#659、advisoryと配置 |\n| H | HXT-FR-017,019,021,022,025; HXB-FR-018 | #865/#819/#659、段階切替・consumer |\n\nNFRは全sliceに適用し、ACは上記L3のFR対応から導出する。既存IssueをTicket全面完成待ちにする\nblanket dependencyは作らない。version target／Release Sliceは#1500で解決するまで未配置。\n"
+          }
+        ],
+        "meaning": "歴史的consumer #861/#188/#1500/#659。現行owner routingの根拠にはしない。",
+        "reuse": "意味再導出のみ。旧source/runtime/test/CIはcopy・実行しない。"
+      }
+    ],
+    "failure_consumer": "HXB-FR-015/AC029/030、RLO-FR-040/AC030と#188等を歴史上のfailure/consumerとして保持し、直接authorityとして継承しない。"
+  },
+  "approved_object_hashes": [
+    {
+      "id": "HELIXLABO-L3-054-B01",
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "canonical_sha256": "5d2ef54251e94625bc890a1b3b76099ae3e3e67fa4fec961f2b07dec3bcff698"
+    },
+    {
+      "id": "HELIXLABO-L3-054-F01",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "e78efbd8e8983c387dd108d95b3d4bd9294e60a323add7cc76f639d1e79065e3"
+    },
+    {
+      "id": "HELIXLABO-L10-054-B01",
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "canonical_sha256": "991ce952ba941a2e29ad55fecd37b22256d57e3cf71b6838d84b39fa5ad1bebb"
+    },
+    {
+      "id": "HELIXLABO-L10-054-F01",
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "1fc685576828e15096d867917b95f3ee61da12b94fccf1331930978cb2625464"
+    }
+  ],
+  "pair": "HELIXLABO-L4-054",
+  "document_id": "HELIXLABO-L9-054",
+  "layer": "L9",
+  "verification_obligations": [
+    {
+      "id": "HELIXLABO-L9-054-B01",
+      "l4_ref": "HELIXLABO-L4-054-B01",
+      "requirement_ref": "HELIXLABO-L3-054-B01",
+      "system_oracle_ref": "HELIXLABO-L10-054-B01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-054-B01",
+        "parent": "HELIXLABO-L2-054",
+        "title": "配置案・指定・権限の分離",
+        "obligation": "水準生成は055、配置案はINTELLIGENCE、Worker指定/割当てはOSに保持する。scoreでmodel/scope/branch/merge authorityを変更せず未知jobの成功を保証しない。",
+        "oracle_ref": "HELIXLABO-L10-054-B01"
+      },
+      "approved_system_oracle": {
+        "id": "HELIXLABO-L10-054-B01",
+        "parent": "HELIXLABO-L2-054",
+        "title": "配置案・指定・権限の分離",
+        "requirement_ref": "HELIXLABO-L3-054-B01",
+        "positive_input": "水準と未決配置案/OS assignment/permissionを別状態で照合する。",
+        "expected_observation": "評価/案/指定/権限の各ownerが分かれる。",
+        "negative_input": "LABOが割当、過去水準で未知成功、scoreで権限拡大。",
+        "failure_observation": "LABO/INT/OS/SECの該当責務へ返す。",
+        "execution_state": "not_executed"
+      },
+      "cases": [
+        {
+          "id": "LABO054-B01-SEPARATE-OWNERS",
+          "basis": "HELIXLABO-L10-054-B01 positive_input/expected_observation; fixed L2-054",
+          "requirement_ref": "HELIXLABO-L3-054-B01",
+          "system_oracle_ref": "HELIXLABO-L10-054-B01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTH-LABO-LEVEL-054-17",
+                "revision": "fixture-v1",
+                "owner": "HELIXLABO-L2-055",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"evaluation_period\":\"2026-10-01/2026-10-07\",\"evaluation_state\":\"evaluated\",\"evidence_ref\":\"EVID-055-17\",\"fixture_only\":true,\"level\":\"capable_within_fixture_scope\",\"level_id\":\"LEVEL-054-17\",\"model_class\":\"model-class-b\",\"producer\":\"HELIXLABO-L2-055\",\"scope\":\"repo-docs\",\"source_revision\":\"history-r17\",\"task_class\":\"doc-change\"}",
+              "sha256": "e9936bc8a84ae8f92a1a15742954f157bbec6cc8957e231330c638ad6999518f"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-INT-PROPOSAL-054-17",
+                "revision": "fixture-v1",
+                "owner": "HELIXINTELLIGENCE-L2-010",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"basis_level_ref\":\"LEVEL-054-17\",\"fixture_only\":true,\"model_class\":\"model-class-b\",\"owner\":\"HELIXINTELLIGENCE-L2-010\",\"proposal_id\":\"INT-PROPOSAL-054-17\",\"proposal_state\":\"proposed_not_committed\",\"scope\":\"repo-docs\",\"source_revision\":\"history-r17\",\"task_class\":\"doc-change\"}",
+              "sha256": "e5e53fcde32bc14e455682bcc0b44bddf130f896f3537599524bf668d866599d"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-OS-ASSIGN-054-17",
+                "revision": "fixture-v1",
+                "owner": "HELIXOS",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"assignment_id\":\"OS-ASSIGN-054-17\",\"assignment_state\":\"assigned\",\"fixture_only\":true,\"owner\":\"HELIXOS\",\"scope\":\"repo-docs\",\"task_id\":\"TASK-054-17\",\"worker_id\":\"WORKER-17\"}",
+              "sha256": "8ab1db19ae3fe2575c6a23618dcd7d3915d7a1f87aaf12e791a5022cf5f40798"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-SEC-PERM-054-17",
+                "revision": "fixture-v1",
+                "owner": "HELIXSECURITY",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"owner\":\"HELIXSECURITY\",\"permission_id\":\"SEC-PERM-054-17\",\"permission_state\":\"granted_for_fixture_scope\",\"scope\":\"repo-docs\"}",
+              "sha256": "90c852407e3c6474ca0648fd1feba8d6f4afa88de27c3fd6554565cac3f226ae"
+            }
+          ],
+          "given": "fixture内のLEVEL-054-17はdoc-change/model-class-b、history-r17、repo-docsの評価済み水準である。INT-PROPOSAL-054-17は同じ根拠の未確定配置案、OS-ASSIGN-054-17はOS所有assignment、SEC-PERM-054-17はSECURITY所有permissionとして別々に提示される。",
+          "when": "水準・配置案・assignment・permissionの各owner参照とstateを照合する。",
+          "then": "水準は055、配置案はINTELLIGENCE、assignmentはOS、permissionはSECURITYの別状態に保ち、LABOから割当てや権限変更を生成しない。",
+          "expected_observation": "LEVEL-054-17 / INT-PROPOSAL-054-17 / OS-ASSIGN-054-17 / SEC-PERM-054-17の所有者、source_revision=history-r17、scope=repo-docs、各stateが別々に維持される。INT案をassignment成功と扱わず、assignment/permissionを水準から推定しない。",
+          "failure_observation": "このfixtureはowner参照と責務境界だけを示し、実source資格・実配置・実assignment・SECURITY実許可を証明しない。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        }
+      ],
+      "negative_variants": [
+        {
+          "id": "B01-NEG-LABO-ASSIGNMENT",
+          "l10_negative_basis": "LABOがworker/modelを割り当てる",
+          "raw_input_packet": "{\"base_level_ref\":\"LEVEL-054-17\",\"fixture_only\":true,\"patch\":{\"actor\":\"HELIXLABO\",\"assignment_id\":\"LABO-ASSIGN-NEW\",\"requested_action\":\"assign_worker\",\"worker_id\":\"WORKER-18\"}}",
+          "raw_input_sha256": "728f10f44e87e1e33a5f8fc7c3d234a6d184c824cb741714b877655b7586fcbf",
+          "expected_observation": "LABOのassignment提案を拒否し、OS-ASSIGN-054-17は変更しない。水準は保持し、実割当ownerはOSのままにする。",
+          "return_to": "HELIXOS assignment owner（INTELLIGENCE提案は未確定のまま）",
+          "fixture_only": true,
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "B01-NEG-UNKNOWN-JOB-GUARANTEE",
+          "l10_negative_basis": "過去水準で未知jobの成功を保証",
+          "raw_input_packet": "{\"base_level_ref\":\"LEVEL-054-17\",\"fixture_only\":true,\"patch\":{\"proposed_guarantee\":\"success\",\"scope\":\"unknown\",\"source_evidence_ref\":null,\"task_class\":\"unknown-job\"}}",
+          "raw_input_sha256": "4f361c735017b31aa11ebe7fdd5b1c06a7e7afdfebed1f18c36ca704f17dbb0a",
+          "expected_observation": "doc-change/repo-docsの水準をunknown-jobへ外挿せず、未知jobは成功保証なしで未評価にする。",
+          "return_to": "LABO水準/evidence owner（根拠不足）およびINTELLIGENCE proposal owner（提案未確定）",
+          "fixture_only": true,
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "B01-NEG-SCORE-PERMISSION-EXPANSION",
+          "l10_negative_basis": "scoreで権限拡大",
+          "raw_input_packet": "{\"base_level_ref\":\"LEVEL-054-17\",\"fixture_only\":true,\"patch\":{\"permission_ref\":\"SEC-PERM-054-17\",\"proposed_scope\":\"all-repositories\",\"reason\":\"score-only\",\"requested_action\":\"expand_permission\"},\"score\":\"0.99\"}",
+          "raw_input_sha256": "521310a4268b6a0780f8e611ddeec09f06b9ae38e2e694de699a80c3330cd610",
+          "expected_observation": "scoreを根拠にpermission/scopeを変更せず、SEC-PERM-054-17のownerとrepo-docs scopeを保つ。",
+          "return_to": "HELIXSECURITY permission owner",
+          "fixture_only": true,
+          "execution_state": "not_executed"
+        }
+      ]
+    },
+    {
+      "id": "HELIXLABO-L9-054-F01",
+      "l4_ref": "HELIXLABO-L4-054-F01",
+      "requirement_ref": "HELIXLABO-L3-054-F01",
+      "system_oracle_ref": "HELIXLABO-L10-054-F01",
+      "approved_requirement": {
+        "id": "HELIXLABO-L3-054-F01",
+        "parent": "HELIXLABO-L2-054",
+        "title": "Bench水準のINT受渡し",
+        "obligation": "055のtask/model class別水準・根拠・評価範囲/期間・未評価状態を同じscope/revisionのまま固有connectorでINTELLIGENCEへ渡し、受領結果と未完を保持する。接続中に水準や状態を変えない。",
+        "oracle_ref": "HELIXLABO-L10-054-F01"
+      },
+      "approved_system_oracle": {
+        "id": "HELIXLABO-L10-054-F01",
+        "parent": "HELIXLABO-L2-054",
+        "title": "Bench水準のINT受渡し",
+        "requirement_ref": "HELIXLABO-L3-054-F01",
+        "positive_input": "評価済み/未評価payloadの送受領と版/scope不一致を比較する。",
+        "expected_observation": "同水準と両端receipt、未受領範囲が辿れる。",
+        "negative_input": "未評価を実績あり、範囲拡大、配送だけ受領成功。",
+        "failure_observation": "水準生成側またはINT/接続ownerへ再照合を返す。",
+        "execution_state": "not_executed"
+      },
+      "cases": [
+        {
+          "id": "LABO054-F01-EVALUATED-RECEIPTS",
+          "basis": "HELIXLABO-L10-054-F01 positive_input evaluated payload",
+          "requirement_ref": "HELIXLABO-L3-054-F01",
+          "system_oracle_ref": "HELIXLABO-L10-054-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTH-LABO-PAYLOAD-EVAL-17",
+                "revision": "fixture-v1",
+                "owner": "HELIXLABO-L2-055",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"connector_owner\":\"HELIXLABO-L2-054\",\"consumer_owner\":\"HELIXINTELLIGENCE-L2-010\",\"evaluation_period\":\"2026-10-01/2026-10-07\",\"evaluation_state\":\"evaluated\",\"evidence_ref\":\"EVID-055-17\",\"fixture_only\":true,\"level\":\"capable_within_fixture_scope\",\"model_class\":\"model-class-b\",\"payload_id\":\"PAYLOAD-054-EVAL-17\",\"producer_owner\":\"HELIXLABO-L2-055\",\"requirement_ref\":\"HELIXLABO-L3-054-F01\",\"scope\":\"repo-docs\",\"source_revision\":\"history-r17\",\"task_class\":\"doc-change\"}",
+              "sha256": "3b4efc8be88e20877289b7cc799d294180ecbcbbc784e16d34a5333f2f1e8c3a"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-INT-RECEIPT-EVAL-17",
+                "revision": "fixture-v1",
+                "owner": "HELIXINTELLIGENCE-L2-010",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"payload_sha256\":\"3b4efc8be88e20877289b7cc799d294180ecbcbbc784e16d34a5333f2f1e8c3a\",\"receipt_state\":\"received\",\"received_fields\":{\"evaluation_period\":\"2026-10-01/2026-10-07\",\"evaluation_state\":\"evaluated\",\"evidence_ref\":\"EVID-055-17\",\"level\":\"capable_within_fixture_scope\",\"model_class\":\"model-class-b\",\"scope\":\"repo-docs\",\"source_revision\":\"history-r17\",\"task_class\":\"doc-change\"},\"received_payload_id\":\"PAYLOAD-054-EVAL-17\",\"receiver_owner\":\"HELIXINTELLIGENCE-L2-010\",\"receiver_receipt_id\":\"INT-RECV-054-EVAL-17\"}",
+              "sha256": "982f514c419545d0026d19a470fb94efa64955895e9b36987da9dfbfe91d47ff"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-LABO-SEND-PAYLOAD-054-EVAL-17",
+                "revision": "fixture-v1",
+                "owner": "HELIXLABO-L2-054",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"payload_sha256\":\"3b4efc8be88e20877289b7cc799d294180ecbcbbc784e16d34a5333f2f1e8c3a\",\"sender_owner\":\"HELIXLABO-L2-054\",\"sender_receipt_id\":\"LABO-SEND-PAYLOAD-054-EVAL-17\",\"sent_payload_id\":\"PAYLOAD-054-EVAL-17\",\"sent_scope\":\"repo-docs\",\"sent_source_revision\":\"history-r17\",\"state\":\"sent\"}",
+              "sha256": "8b442ab9068cc0be64a8bb1609d2a4f8891e39e35006ef30414033f151c13f02"
+            }
+          ],
+          "given": "PAYLOAD-054-EVAL-17（doc-change/model-class-b、level=capable_within_fixture_scope、evidence=EVID-055-17、期間=2026-10-01/2026-10-07、source_revision=history-r17、scope=repo-docs、state=evaluated）を送り、INT-RECV-054-EVAL-17が同hashと値で受領する。 各payloadの送信receipt LABO-SEND-<payload_id>も固定原packetで与える。",
+          "when": "送信payloadと受領receiptのID/hash、task/model class、根拠、期間、revision、scope、evaluation_stateを照合する。",
+          "then": "INTELLIGENCEは同水準と範囲を受け取り、両端receiptを保持する。受領は配置決定やOS assignmentを意味しない。",
+          "expected_observation": "送信PAYLOAD-054-EVAL-17とINT-RECV-054-EVAL-17のhash・history-r17/repo-docs/evaluated等が一致し追跡できる。 送信receiptのsent_payload_id/source_revision/scope/hashと原payloadを照合し、受領receiptと別に保持する。",
+          "failure_observation": "送受値の不一致だけを当該payloadに局所化し、別scopeの正常受渡しは維持する。該当LABO-055 level（水準）ownerまたはINT connector ownerへ返す。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        },
+        {
+          "id": "LABO054-F01-UNASSESSED-PRESERVED",
+          "basis": "HELIXLABO-L10-054-F01 positive_input unassessed payload",
+          "requirement_ref": "HELIXLABO-L3-054-F01",
+          "system_oracle_ref": "HELIXLABO-L10-054-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTH-LABO-PAYLOAD-UNASSESSED-18",
+                "revision": "fixture-v1",
+                "owner": "HELIXLABO-L2-055",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"connector_owner\":\"HELIXLABO-L2-054\",\"consumer_owner\":\"HELIXINTELLIGENCE-L2-010\",\"evaluation_period\":null,\"evaluation_state\":\"unassessed\",\"evidence_ref\":\"EVIDENCE-NOT-AVAILABLE-18\",\"fixture_only\":true,\"level\":\"未評価\",\"model_class\":\"model-class-b\",\"payload_id\":\"PAYLOAD-054-UNASSESSED-18\",\"producer_owner\":\"HELIXLABO-L2-055\",\"requirement_ref\":\"HELIXLABO-L3-054-F01\",\"scope\":\"repo-docs\",\"source_revision\":\"history-r18\",\"task_class\":\"doc-change\"}",
+              "sha256": "dc116f9fa28aa2193b94f53d948638d6be732740076b6fbcf006fcd92fd40484"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-INT-RECEIPT-UNASSESSED-18",
+                "revision": "fixture-v1",
+                "owner": "HELIXINTELLIGENCE-L2-010",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"payload_sha256\":\"dc116f9fa28aa2193b94f53d948638d6be732740076b6fbcf006fcd92fd40484\",\"receipt_state\":\"received\",\"received_fields\":{\"evaluation_period\":null,\"evaluation_state\":\"unassessed\",\"evidence_ref\":\"EVIDENCE-NOT-AVAILABLE-18\",\"level\":\"未評価\",\"model_class\":\"model-class-b\",\"scope\":\"repo-docs\",\"source_revision\":\"history-r18\",\"task_class\":\"doc-change\"},\"received_payload_id\":\"PAYLOAD-054-UNASSESSED-18\",\"receiver_owner\":\"HELIXINTELLIGENCE-L2-010\",\"receiver_receipt_id\":\"INT-RECV-054-UNASSESSED-18\"}",
+              "sha256": "9fd405989e146e48f23b706560e9687506c44d878e72cd25e238c756bad57ccb"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-LABO-SEND-PAYLOAD-054-UNASSESSED-18",
+                "revision": "fixture-v1",
+                "owner": "HELIXLABO-L2-054",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"payload_sha256\":\"dc116f9fa28aa2193b94f53d948638d6be732740076b6fbcf006fcd92fd40484\",\"sender_owner\":\"HELIXLABO-L2-054\",\"sender_receipt_id\":\"LABO-SEND-PAYLOAD-054-UNASSESSED-18\",\"sent_payload_id\":\"PAYLOAD-054-UNASSESSED-18\",\"sent_scope\":\"repo-docs\",\"sent_source_revision\":\"history-r18\",\"state\":\"sent\"}",
+              "sha256": "3cc04c19653e453055c76d71b71dd4741a22f1d23d0f495305bafec34911bc46"
+            }
+          ],
+          "given": "PAYLOAD-054-UNASSESSED-18はknown scope repo-docs/doc-change/model-class-bだがhistory-r18、level=未評価、evaluation_state=unassessedである。INT-RECV-054-UNASSESSED-18は同じrevision/scope/stateを受け取る。 各payloadの送信receipt LABO-SEND-<payload_id>も固定原packetで与える。",
+          "when": "受領値を送信値と比べ、未評価を実績へ昇格させず、known scopeの受渡し自体も拒否しない。",
+          "then": "未評価のままINTELLIGENCEへ届き、配置案では未評価として扱える。",
+          "expected_observation": "payload ID、history-r18、repo-docs、unassessedが両端で一致し、評価済みへ変換されない。 送信receiptのsent_payload_id/source_revision/scope/hashと原payloadを照合し、受領receiptと別に保持する。",
+          "failure_observation": "known scopeの未評価payloadは受領可能。不一致の場合だけ対象caseを戻し、全未評価を一律拒否しない。受領側状態変換はINTELLIGENCE、元根拠不足はLABO-055 ownerへ返す。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        },
+        {
+          "id": "LABO054-F01-UNRECEIVED-SCOPE-TRACE",
+          "basis": "HELIXLABO-L10-054-F01 expected_observation both endpoint receipt and unreceived scope",
+          "requirement_ref": "HELIXLABO-L3-054-F01",
+          "system_oracle_ref": "HELIXLABO-L10-054-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTH-LABO-PAYLOAD-PARTIAL-DOCS",
+                "revision": "fixture-v1",
+                "owner": "HELIXLABO-L2-055",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"evaluation_period\":\"2026-10-01/2026-10-07\",\"evaluation_state\":\"evaluated\",\"evidence_ref\":\"EVID-055-DOCS\",\"fixture_only\":true,\"level\":\"capable_within_fixture_scope\",\"model_class\":\"model-class-b\",\"payload_id\":\"PAYLOAD-054-PARTIAL-DOCS\",\"producer_owner\":\"HELIXLABO-L2-055\",\"scope\":\"repo-docs\",\"source_revision\":\"history-r20\",\"task_class\":\"doc-change\"}",
+              "sha256": "797bc7250c8f77ab85864741b1d61cdf5d6e9dd19befdb6071ab605adc04c843"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-LABO-PAYLOAD-PARTIAL-TESTS",
+                "revision": "fixture-v1",
+                "owner": "HELIXLABO-L2-055",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"evaluation_period\":null,\"evaluation_state\":\"unassessed\",\"evidence_ref\":\"EVIDENCE-NOT-AVAILABLE-TESTS\",\"fixture_only\":true,\"level\":\"未評価\",\"model_class\":\"model-class-b\",\"payload_id\":\"PAYLOAD-054-PARTIAL-TESTS\",\"producer_owner\":\"HELIXLABO-L2-055\",\"scope\":\"repo-tests\",\"source_revision\":\"history-r20\",\"task_class\":\"doc-change\"}",
+              "sha256": "66bb5439982096c595cab277824bd7486d3d9755f6bf4dc83b10c713e29d177d"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-INT-PARTIAL-RECEIPT",
+                "revision": "fixture-v1",
+                "owner": "HELIXINTELLIGENCE-L2-010",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"connector_receipt_id\":\"INT-RECV-054-PARTIAL\",\"fixture_only\":true,\"receipt_state\":\"partial\",\"received_payload_ids\":[\"PAYLOAD-054-PARTIAL-DOCS\"],\"received_scope\":\"repo-docs\",\"receiver_owner\":\"HELIXINTELLIGENCE-L2-010\",\"sent_payload_ids\":[\"PAYLOAD-054-PARTIAL-DOCS\",\"PAYLOAD-054-PARTIAL-TESTS\"],\"unreceived_scope\":\"repo-tests\"}",
+              "sha256": "f22ca4d249e13523222bed3ce210d453d22796a78a74de24e78f0a77d7486c5a"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-LABO-SEND-PAYLOAD-054-PARTIAL-DOCS",
+                "revision": "fixture-v1",
+                "owner": "HELIXLABO-L2-054",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"payload_sha256\":\"797bc7250c8f77ab85864741b1d61cdf5d6e9dd19befdb6071ab605adc04c843\",\"sender_owner\":\"HELIXLABO-L2-054\",\"sender_receipt_id\":\"LABO-SEND-PAYLOAD-054-PARTIAL-DOCS\",\"sent_payload_id\":\"PAYLOAD-054-PARTIAL-DOCS\",\"sent_scope\":\"repo-docs\",\"sent_source_revision\":\"history-r20\",\"state\":\"sent\"}",
+              "sha256": "41ab11fbdd9f13f5e448b5ca7e2a2321bcf07aa42ac121bc3991ef4529b1183c"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-LABO-SEND-PAYLOAD-054-PARTIAL-TESTS",
+                "revision": "fixture-v1",
+                "owner": "HELIXLABO-L2-054",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"payload_sha256\":\"66bb5439982096c595cab277824bd7486d3d9755f6bf4dc83b10c713e29d177d\",\"sender_owner\":\"HELIXLABO-L2-054\",\"sender_receipt_id\":\"LABO-SEND-PAYLOAD-054-PARTIAL-TESTS\",\"sent_payload_id\":\"PAYLOAD-054-PARTIAL-TESTS\",\"sent_scope\":\"repo-tests\",\"sent_source_revision\":\"history-r20\",\"state\":\"sent\"}",
+              "sha256": "b984072b52b07d3c88a6337e2ece4501b06adfa1c63a159a4eacf7d7d33d485d"
+            }
+          ],
+          "given": "LABOはrepo-docs/evaluatedとrepo-tests/unassessedの2 payloadを送る。INT-RECV-054-PARTIALはrepo-docsのみ受領し、repo-testsをunreceived_scopeとして記録する。 各payloadの送信receipt LABO-SEND-<payload_id>も固定原packetで与える。",
+          "when": "各scopeの送信・受領・未受領IDを照合する。",
+          "then": "repo-docs受領は保ち、repo-testsは未受領/未評価のまま個別追跡する。未受領を成功扱いせず、届いたscopeも失敗に丸めない。",
+          "expected_observation": "PAYLOAD-054-PARTIAL-DOCSは受領済み、PAYLOAD-054-PARTIAL-TESTSは送信済みだがunreceived_scope=repo-tests。stateとpartial receiptを保持する。 送信receiptのsent_payload_id/source_revision/scope/hashと原payloadを照合し、受領receiptと別に保持する。",
+          "failure_observation": "未受領を当該scopeに限り、正常な別scopeを保つ。repo-testsの送信欠落はLABO-055、受領receipt欠落はINT connector ownerへ返す。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        },
+        {
+          "id": "LABO054-F01-REVISION-SCOPE-MISMATCH-IDENTIFIED",
+          "basis": "HELIXLABO-L10-054-F01 positive_input version/scope mismatch comparison",
+          "requirement_ref": "HELIXLABO-L3-054-F01",
+          "system_oracle_ref": "HELIXLABO-L10-054-F01",
+          "independent_source_packets": [
+            {
+              "ref": {
+                "identity": "SYNTH-LABO-PAYLOAD-MISMATCH-22",
+                "revision": "fixture-v1",
+                "owner": "HELIXLABO-L2-055",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"connector_owner\":\"HELIXLABO-L2-054\",\"consumer_owner\":\"HELIXINTELLIGENCE-L2-010\",\"evaluation_period\":\"2026-10-01/2026-10-07\",\"evaluation_state\":\"evaluated\",\"evidence_ref\":\"EVID-055-22\",\"fixture_only\":true,\"level\":\"capable_within_fixture_scope\",\"model_class\":\"model-class-b\",\"payload_id\":\"PAYLOAD-054-MISMATCH-22\",\"producer_owner\":\"HELIXLABO-L2-055\",\"requirement_ref\":\"HELIXLABO-L3-054-F01\",\"scope\":\"repo-guides\",\"source_revision\":\"history-r22\",\"task_class\":\"doc-change\"}",
+              "sha256": "550add7aa7f3f67ae7a8b6c5c122371fea89d744cf9fe9d40d50262b526d64a1"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-INT-EXPECTED-CONTEXT-17",
+                "revision": "fixture-v1",
+                "owner": "HELIXINTELLIGENCE-L2-010",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"comparison_state\":\"expected_context_fixture\",\"expected_scope\":\"repo-docs\",\"expected_source_revision\":\"history-r17\",\"fixture_only\":true,\"receiver_contract_id\":\"INT-CONNECTOR-054-01\",\"receiver_owner\":\"HELIXINTELLIGENCE-L2-010\"}",
+              "sha256": "437b1390e1e923c1b4d232a4282bbdd98a280380aea93a793ab1c3dc2ec22c5f"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-INT-MISMATCH-RECEIPT-22",
+                "revision": "fixture-v1",
+                "owner": "HELIXINTELLIGENCE-L2-010",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"expected_scope\":\"repo-docs\",\"expected_source_revision\":\"history-r17\",\"fixture_only\":true,\"mismatch_reason\":\"source revision and scope differ\",\"payload_sha256\":\"550add7aa7f3f67ae7a8b6c5c122371fea89d744cf9fe9d40d50262b526d64a1\",\"receipt_state\":\"received_but_not_applicable\",\"received_payload_id\":\"PAYLOAD-054-MISMATCH-22\",\"received_scope\":\"repo-guides\",\"received_source_revision\":\"history-r22\",\"receiver_owner\":\"HELIXINTELLIGENCE-L2-010\",\"receiver_receipt_id\":\"INT-RECV-054-MISMATCH\"}",
+              "sha256": "ef5c613e872f797b6bdc7f1ec16f3f5c30f44fc7aca61f5d05834ba4afc2b347"
+            },
+            {
+              "ref": {
+                "identity": "SYNTH-LABO-SEND-PAYLOAD-054-MISMATCH-22",
+                "revision": "fixture-v1",
+                "owner": "HELIXLABO-L2-054",
+                "scope": {
+                  "parent": "HELIXLABO-L2-054",
+                  "fixture_only": true
+                }
+              },
+              "raw_utf8": "{\"fixture_only\":true,\"payload_sha256\":\"550add7aa7f3f67ae7a8b6c5c122371fea89d744cf9fe9d40d50262b526d64a1\",\"sender_owner\":\"HELIXLABO-L2-054\",\"sender_receipt_id\":\"LABO-SEND-PAYLOAD-054-MISMATCH-22\",\"sent_payload_id\":\"PAYLOAD-054-MISMATCH-22\",\"sent_scope\":\"repo-guides\",\"sent_source_revision\":\"history-r22\",\"state\":\"sent\"}",
+              "sha256": "3b7e8f0a5553cafa3bfac4c397f441eac9df84088b10b845e3cfbc93a3c154c6"
+            }
+          ],
+          "given": "PAYLOAD-054-MISMATCH-22はhistory-r22/repo-guides、INT-CONNECTOR-054-01の比較対象はhistory-r17/repo-docs。受領receiptは相違をreceived_but_not_applicableとして記録する。 各payloadの送信receipt LABO-SEND-<payload_id>も固定原packetで与える。",
+          "when": "source revisionとscopeを個別比較し、transport受領と適用可能性を分ける。",
+          "then": "不一致を隠さず対象payloadだけ不適用にし、元の水準/scopeを変更しない。",
+          "expected_observation": "INT-RECV-054-MISMATCHは受領payload hashを保持しながらhistory-r22対history-r17、repo-guides対repo-docsの差を記録し、不適用とする。 送信receiptのsent_payload_id/source_revision/scope/hashと原payloadを照合し、受領receiptと別に保持する。",
+          "failure_observation": "不一致は当該payloadだけに局所化し、同一値の別packetを保留しない。source誤りはLABO-055、期待範囲/receipt誤りはINT connector ownerへ返す。",
+          "execution_state": "not_executed",
+          "fixture_only": true
+        }
+      ],
+      "negative_variants": [
+        {
+          "id": "F01-NEG-UNASSESSED-AS-EVALUATED",
+          "l10_negative_basis": "未評価を実績ありにする",
+          "raw_input_packet": "{\"base_evaluation_state\":\"unassessed\",\"base_payload_id\":\"PAYLOAD-054-UNASSESSED-18\",\"base_scope\":\"repo-docs\",\"base_source_revision\":\"history-r18\",\"fixture_only\":true,\"patch\":{\"qualification_claim\":\"qualified\",\"receiver_state\":\"evaluated\"}}",
+          "raw_input_sha256": "bc1aaa974796a98f7fe0e21d0d373bd09af99aef0723c4669dfd6de9373607ba",
+          "expected_observation": "receiverをevaluated/qualifiedへ昇格させずunassessedを保つ。",
+          "return_to": "INTELLIGENCE receiver owner（受領側の変換）/LABO-055 source owner（根拠不足時）",
+          "fixture_only": true,
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "F01-NEG-SCOPE-EXPANSION",
+          "l10_negative_basis": "範囲拡大",
+          "raw_input_packet": "{\"base_payload_id\":\"PAYLOAD-054-EVAL-17\",\"base_scope\":\"repo-docs\",\"base_source_revision\":\"history-r17\",\"fixture_only\":true,\"patch\":{\"requested_action\":\"expand_scope\",\"requested_scope\":\"all-repositories\"}}",
+          "raw_input_sha256": "98a861d4482ce1d5b6720150cfe8bb590150b678eccee26e257a31a3bee194f3",
+          "expected_observation": "repo-docs水準をall-repositoriesへ拡大せず元scopeを保つ。",
+          "return_to": "LABO-055 level（水準）owner/INTELLIGENCE connector owner",
+          "fixture_only": true,
+          "execution_state": "not_executed"
+        },
+        {
+          "id": "F01-NEG-DELIVERY-ONLY-RECEIPT",
+          "l10_negative_basis": "配送だけで受領成功",
+          "raw_input_packet": "{\"base_payload_id\":\"PAYLOAD-054-EVAL-17\",\"delivery_receipt_id\":\"CONNECT-DELIVER-054-17\",\"fixture_only\":true,\"patch\":{\"claimed_acceptance\":\"received_success\"},\"receiver_payload_id\":null,\"receiver_receipt_id\":null,\"sender_receipt_id\":\"LABO-SEND-PAYLOAD-054-EVAL-17\"}",
+          "raw_input_sha256": "c8da31152a715ed2e10d4c57fd83aa35fbecbe43fa038fe12d7dc4117c442e58",
+          "expected_observation": "送信/配送receiptだけでINT受領を成立扱いせず、payloadとreceiver receiptの欠落を未受領のまま示す。",
+          "return_to": "INTELLIGENCE connector/receiver owner（未受領scope照合）",
+          "fixture_only": true,
+          "execution_state": "not_executed"
+        }
+      ]
+    }
+  ],
+  "completion": "L10-054の正例/期待観測/負例/戻し先をsource値付きsynthetic GWTへ結んだ草案。すべてnot_executedであり実source/資格/評価/受領/L11受入を証明しない。",
+  "unclosed": [
+    "実055水準sourceと許可/資格/owner binding",
+    "INTELLIGENCE connectorの正式型/codec/transport/receipt protocol",
+    "実INT受領・proposalとOS assignmentの連動証拠",
+    "SECURITY permission enforcement evidence",
+    "L5/L8詳細設計、実L9、PO L11受入",
+    "全92親430対設計閉包"
+  ],
+  "semantic_authoring_rules": [
+    "各caseはL10-054-B01/F01の特定命題に結び、raw値とgiven/when/then/expectedを一致させる。",
+    "L2-055 source、L2-054 transport、INT receive/proposal、OS assignment、SECURITY permissionは別ownerとして扱う。",
+    "known scopeの未評価値は受け取り保持する。不一致/未受領は対象payloadだけに局所化し該当ownerへ返す。",
+    "負例はraw packetに禁止提案と対象identity/stateを記録し、case名だけで代替しない。全fixtureはnot_executed。",
+    "新gate、承認、資格条件、threshold、schema、source-capability dependencyを追加しない。"
+  ]
+}
