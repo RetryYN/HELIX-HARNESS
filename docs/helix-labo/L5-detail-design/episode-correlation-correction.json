@@ -1,0 +1,1473 @@
+{
+  "parent": "HELIXLABO-L2-002",
+  "pair": "HELIXLABO-L8-002",
+  "source_main": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+  "source_revision_kind": "origin_main_exact_bytes",
+  "document_id": "HELIXLABO-L5-002",
+  "layer": "L5",
+  "status": "draft_detail_design_not_independently_reviewed",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "対象別の現行L2 sequencing label: Stage 2b; 旧世代の層番号とは対応づけない。",
+    "authoring_scope": "採択済みL2-002のF01/F02だけを論理関数と純粋な値比較へ具体化する。全92親・430対の母数を維持し、他親の意味を加えない。",
+    "boundary": "source付observationのepisode段階参照、未観測/未発生の保持、別scope排除、近接と因果の分離、relation訂正の前後値と根拠を純粋に評価する。正式schema/codec/source qualification/owner資格/実観測/実行/更新権限は未成立。"
+  },
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "c97f709448403f15029d1130d1a4e847b3c4b2157bb099426bc7bf417e982292"
+    },
+    {
+      "path": "docs/governance/audits/failure-development-foundation-audit-2026-10-12.json",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "ee62f8040a8f7cdd125a050277c3f09b5f13062a357ec43b04ca5041bed52f05"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/sources/labo-core-engine-po-original-2026-09-26.md",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "3f95f09ee86920e0dd6172a9e28f32192c1ee16bd4bfbec72438464bfee9fa16"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-labo/L4-basic-design/episode-correlation-correction.json",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "ef7e2ef2b08bc2c2ea3585fa63ff41aa5934d7d24e1758ed4557e0e4dfc1c676"
+    },
+    {
+      "path": "docs/helix-labo/L9-integration-verification/episode-correlation-correction.json",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "24ef1f76090557c11b0933be06412a50992c2e8fab13032803129b11e71adf51"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-evaluation.ts",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "d3f5f8b303cd9f568d7695d19c05d0e4b492f7df9caa60c929a749fa2990bbe2"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    }
+  ],
+  "upstream_adoption": {
+    "record_path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "record_revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+    "record_sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19",
+    "record_id": "HDEC-LABO-PREREQUISITE-L3L10-2026-10-12",
+    "record_status": "recorded_pending_final_review_and_main_admission",
+    "decision_record_commit": "2f95e20cd9e90dd4ab7d349661476d8c49eff548",
+    "admitted_main_commit": "4dd2774e1498bde640a52e94245195f62e750ca6",
+    "approved_content_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+    "approved_source_documents": [
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.json",
+        "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d",
+        "bytes": 14455
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.json",
+        "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496",
+        "bytes": 23610
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+        "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919",
+        "bytes": 12101
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+        "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6",
+        "bytes": 13197
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+        "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+        "bytes": 20536
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+        "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5",
+        "bytes": 11612
+      }
+    ],
+    "approved_whole_objects": [
+      {
+        "id": "HELIXLABO-L3-002-F01",
+        "source_path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+        "source_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "json_pointer": "/requirements/2",
+        "canonical_sha256": "2cbe1b825b59cdd1329aeade707651e00d47f3495f368852ce3ea3b5354073f9",
+        "whole_object": {
+          "id": "HELIXLABO-L3-002-F01",
+          "parent": "HELIXLABO-L2-002",
+          "title": "episodeの横断参照",
+          "obligation": "source付きobservationを要求→ticket→Worker→実装→atomic CI→boundary integration→proof CI→release→deployment→runtime→incident→recoveryへ関連付け、要求revision/責務/product/mechanism/worker/provider-model-config/artifact/環境/結果を保持する。未発生段を捏造しない。",
+          "oracle_ref": "HELIXLABO-L10-002-F01"
+        }
+      },
+      {
+        "id": "HELIXLABO-L3-002-F02",
+        "source_path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+        "source_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "json_pointer": "/requirements/3",
+        "canonical_sha256": "ef2f11db43aff0d75d054602790ca4447e993da215dd425ef61aa832454b957b",
+        "whole_object": {
+          "id": "HELIXLABO-L3-002-F02",
+          "parent": "HELIXLABO-L2-002",
+          "title": "相関・因果・訂正",
+          "obligation": "時刻/pathの近さだけで因果を確定せず、相関不能eventを孤立/不明として残す。誤相関は元eventを改変せずrelation訂正として記録する。",
+          "oracle_ref": "HELIXLABO-L10-002-F02"
+        }
+      },
+      {
+        "id": "HELIXLABO-L10-002-F01",
+        "source_path": "docs/helix-labo/L10-verification/functional-verification.json",
+        "source_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "json_pointer": "/cases/2",
+        "canonical_sha256": "70d127192eb96d0a513d9c28ed04f153eb349a546d83cacd81c646acab8fc572",
+        "whole_object": {
+          "id": "HELIXLABO-L10-002-F01",
+          "parent": "HELIXLABO-L2-002",
+          "title": "episodeの横断参照",
+          "requirement_ref": "HELIXLABO-L3-002-F01",
+          "positive_input": "同episodeの段階と孤立event/別ticketを比較する。",
+          "expected_observation": "各段階の元eventと部分episodeの不足・未完が辿れる。",
+          "negative_input": "無関係event混載、欠落段を成功補完。",
+          "failure_observation": "相関/観測source ownerへ不足を返す。",
+          "execution_state": "not_executed"
+        }
+      },
+      {
+        "id": "HELIXLABO-L10-002-F02",
+        "source_path": "docs/helix-labo/L10-verification/functional-verification.json",
+        "source_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+        "json_pointer": "/cases/3",
+        "canonical_sha256": "0395ba89c8f897dea142c499ff2cb50be41366bd0d4db647dcb78225d6fa4ca5",
+        "whole_object": {
+          "id": "HELIXLABO-L10-002-F02",
+          "parent": "HELIXLABO-L2-002",
+          "title": "相関・因果・訂正",
+          "requirement_ref": "HELIXLABO-L3-002-F02",
+          "positive_input": "近接する無関係eventと誤relation訂正を比較する。",
+          "expected_observation": "相関と因果未確定、訂正前後のrelationと元eventが辿れる。",
+          "negative_input": "近接で因果、訂正で元event上書き、孤立削除。",
+          "failure_observation": "元sourceとcorrelation ownerへ訂正根拠/未完を返す。",
+          "execution_state": "not_executed"
+        }
+      }
+    ],
+    "scope_note": "LABO002のL3/L10 F01/F02 exact objectのみをこのpairへ結ぶ。business/NFRの承認JSONは全体bytesを記録するが、L2-002に対応するbusiness/NFR whole objectは当該承認本文に存在しない。承認はL5/L8、資格、実観測、実装、L11受入を認可しない。"
+  },
+  "approved_object_hashes": [
+    {
+      "id": "HELIXLABO-L3-002-F01",
+      "canonical_sha256": "2cbe1b825b59cdd1329aeade707651e00d47f3495f368852ce3ea3b5354073f9"
+    },
+    {
+      "id": "HELIXLABO-L3-002-F02",
+      "canonical_sha256": "ef2f11db43aff0d75d054602790ca4447e993da215dd425ef61aa832454b957b"
+    },
+    {
+      "id": "HELIXLABO-L10-002-F01",
+      "canonical_sha256": "70d127192eb96d0a513d9c28ed04f153eb349a546d83cacd81c646acab8fc572"
+    },
+    {
+      "id": "HELIXLABO-L10-002-F02",
+      "canonical_sha256": "0395ba89c8f897dea142c499ff2cb50be41366bd0d4db647dcb78225d6fa4ca5"
+    }
+  ],
+  "approval_whole_files": [
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d",
+      "bytes": 14455
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496",
+      "bytes": 23610
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+      "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919",
+      "bytes": 12101
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6",
+      "bytes": 13197
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+      "bytes": 20536
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+      "revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5",
+      "bytes": 11612
+    }
+  ],
+  "approved_whole_objects": [
+    {
+      "id": "HELIXLABO-L3-002-F01",
+      "source_path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "source_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "json_pointer": "/requirements/2",
+      "canonical_sha256": "2cbe1b825b59cdd1329aeade707651e00d47f3495f368852ce3ea3b5354073f9",
+      "whole_object": {
+        "id": "HELIXLABO-L3-002-F01",
+        "parent": "HELIXLABO-L2-002",
+        "title": "episodeの横断参照",
+        "obligation": "source付きobservationを要求→ticket→Worker→実装→atomic CI→boundary integration→proof CI→release→deployment→runtime→incident→recoveryへ関連付け、要求revision/責務/product/mechanism/worker/provider-model-config/artifact/環境/結果を保持する。未発生段を捏造しない。",
+        "oracle_ref": "HELIXLABO-L10-002-F01"
+      }
+    },
+    {
+      "id": "HELIXLABO-L3-002-F02",
+      "source_path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "source_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "json_pointer": "/requirements/3",
+      "canonical_sha256": "ef2f11db43aff0d75d054602790ca4447e993da215dd425ef61aa832454b957b",
+      "whole_object": {
+        "id": "HELIXLABO-L3-002-F02",
+        "parent": "HELIXLABO-L2-002",
+        "title": "相関・因果・訂正",
+        "obligation": "時刻/pathの近さだけで因果を確定せず、相関不能eventを孤立/不明として残す。誤相関は元eventを改変せずrelation訂正として記録する。",
+        "oracle_ref": "HELIXLABO-L10-002-F02"
+      }
+    },
+    {
+      "id": "HELIXLABO-L10-002-F01",
+      "source_path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "source_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "json_pointer": "/cases/2",
+      "canonical_sha256": "70d127192eb96d0a513d9c28ed04f153eb349a546d83cacd81c646acab8fc572",
+      "whole_object": {
+        "id": "HELIXLABO-L10-002-F01",
+        "parent": "HELIXLABO-L2-002",
+        "title": "episodeの横断参照",
+        "requirement_ref": "HELIXLABO-L3-002-F01",
+        "positive_input": "同episodeの段階と孤立event/別ticketを比較する。",
+        "expected_observation": "各段階の元eventと部分episodeの不足・未完が辿れる。",
+        "negative_input": "無関係event混載、欠落段を成功補完。",
+        "failure_observation": "相関/観測source ownerへ不足を返す。",
+        "execution_state": "not_executed"
+      }
+    },
+    {
+      "id": "HELIXLABO-L10-002-F02",
+      "source_path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "source_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+      "json_pointer": "/cases/3",
+      "canonical_sha256": "0395ba89c8f897dea142c499ff2cb50be41366bd0d4db647dcb78225d6fa4ca5",
+      "whole_object": {
+        "id": "HELIXLABO-L10-002-F02",
+        "parent": "HELIXLABO-L2-002",
+        "title": "相関・因果・訂正",
+        "requirement_ref": "HELIXLABO-L3-002-F02",
+        "positive_input": "近接する無関係eventと誤relation訂正を比較する。",
+        "expected_observation": "相関と因果未確定、訂正前後のrelationと元eventが辿れる。",
+        "negative_input": "近接で因果、訂正で元event上書き、孤立削除。",
+        "failure_observation": "元sourceとcorrelation ownerへ訂正根拠/未完を返す。",
+        "execution_state": "not_executed"
+      }
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "basic_pair_hashes_at_source_main": {
+    "source_main": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+    "l4_sha256": "ef7e2ef2b08bc2c2ea3585fa63ff41aa5934d7d24e1758ed4557e0e4dfc1c676",
+    "l9_sha256": "24ef1f76090557c11b0933be06412a50992c2e8fab13032803129b11e71adf51"
+  },
+  "audit": {
+    "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
+    "revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+    "row_parent": "HELIXLABO-L2-002",
+    "source_meaning": "F01/F02 trace to the exact approved objects; the audit snapshot records L4/L9 source hashes from its own older evidence revision, so this detail pair pins current L4/L9 bytes independently."
+  },
+  "contracts": [
+    {
+      "id": "HELIXLABO-L5-002-F01",
+      "requirement_ref": "HELIXLABO-L3-002-F01",
+      "basic_ref": "HELIXLABO-L4-002-F01",
+      "oracle_ref": "HELIXLABO-L10-002-F01",
+      "rule": "入力episode.scopeと各original_eventsのstage event.scopeの同名項目を値比較する。eventが無い/未観測/未発生ならそのstageの不足と未完を返す。異なるscopeのoriginal eventはepisodeへ結ばず、元source ownerへ戻す。要求revisionからrecoveryまでの列挙を完了扱いにせず、実際に入力されたeventだけを保持する。"
+    },
+    {
+      "id": "HELIXLABO-L5-002-F02",
+      "requirement_ref": "HELIXLABO-L3-002-F02",
+      "basic_ref": "HELIXLABO-L4-002-F02",
+      "oracle_ref": "HELIXLABO-L10-002-F02",
+      "rule": "近い時刻/pathは因果の根拠にしない。因果stateは入力relationとclaimの原値を保存し、根拠が無い場合not_establishedを維持する。訂正はreason_ref/source_revision/scope/before_relation/after_relation/ownerの値を検査し、after対象eventが入力集合で見つからなければunknown_targetとしてsource/correlation ownerへ戻す。original_eventsは常に不変の比較元として保持する。"
+    }
+  ],
+  "logical_type_status": {
+    "kind": "logical_fixture_contract_only",
+    "formal_schema": "not_established",
+    "codec": "not_established",
+    "qualification": "not_established"
+  },
+  "logical_type_definitions": [
+    {
+      "name": "Text",
+      "shape": "JSON string",
+      "purpose": "JSON文字列。空文字も文字列として保持し、欠落/nullとは区別する。",
+      "json_schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "Boolean",
+      "shape": "JSON boolean",
+      "purpose": "JSON true/false。文字列や数値をbooleanへ変換しない。",
+      "json_schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "Stage",
+      "shape": "閉じた順序付きliteral",
+      "values": [
+        "requirement",
+        "ticket",
+        "Worker",
+        "implementation",
+        "atomic_CI",
+        "boundary_integration",
+        "proof_CI",
+        "release",
+        "deployment",
+        "runtime",
+        "incident",
+        "recovery"
+      ],
+      "purpose": "この有限fixtureの12段階名と走査順。段階値は識別子であり、実行・受入済み状態ではない。",
+      "json_schema": {
+        "type": "string",
+        "enum": [
+          "requirement",
+          "ticket",
+          "Worker",
+          "implementation",
+          "atomic_CI",
+          "boundary_integration",
+          "proof_CI",
+          "release",
+          "deployment",
+          "runtime",
+          "incident",
+          "recovery"
+        ]
+      }
+    },
+    {
+      "name": "JsonValue",
+      "shape": "null | boolean | number | string | JsonValue[] | object(string→JsonValue)",
+      "purpose": "原source packet内に宣言された値をそのまま保持する。wire形式や資格を規定しない。",
+      "json_schema": {
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "array",
+            "items": {
+              "$ref": "JsonValue"
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "JsonValue"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ScopeRecord",
+      "shape": {
+        "artifact": "Text",
+        "environment": "Text",
+        "mechanism": "Text",
+        "product": "Text",
+        "provider_model_configuration": "Text",
+        "requirement_revision": "Text",
+        "responsibility": "Text",
+        "result": "Text",
+        "ticket": "Text",
+        "worker": "Text"
+      },
+      "presence": "10項目すべて必須のJSON string。Absent/null/空文字を同一視しない。",
+      "json_schema": {
+        "type": "object",
+        "required": [
+          "artifact",
+          "environment",
+          "mechanism",
+          "product",
+          "provider_model_configuration",
+          "requirement_revision",
+          "responsibility",
+          "result",
+          "ticket",
+          "worker"
+        ],
+        "properties": {
+          "artifact": {
+            "$ref": "Text"
+          },
+          "environment": {
+            "$ref": "Text"
+          },
+          "mechanism": {
+            "$ref": "Text"
+          },
+          "product": {
+            "$ref": "Text"
+          },
+          "provider_model_configuration": {
+            "$ref": "Text"
+          },
+          "requirement_revision": {
+            "$ref": "Text"
+          },
+          "responsibility": {
+            "$ref": "Text"
+          },
+          "result": {
+            "$ref": "Text"
+          },
+          "ticket": {
+            "$ref": "Text"
+          },
+          "worker": {
+            "$ref": "Text"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "RelationRecord",
+      "shape": {
+        "identity": "Text",
+        "revision": "Text",
+        "from_event": "Text",
+        "to_event": "Text",
+        "basis_ref": "Text",
+        "causal_state": "Text"
+      },
+      "presence": "6項目すべて必須のJSON string。値は根拠参照を含むfixture値で、因果資格を意味しない。",
+      "json_schema": {
+        "type": "object",
+        "required": [
+          "identity",
+          "revision",
+          "from_event",
+          "to_event",
+          "basis_ref",
+          "causal_state"
+        ],
+        "properties": {
+          "identity": {
+            "$ref": "Text"
+          },
+          "revision": {
+            "$ref": "Text"
+          },
+          "from_event": {
+            "$ref": "Text"
+          },
+          "to_event": {
+            "$ref": "Text"
+          },
+          "basis_ref": {
+            "$ref": "Text"
+          },
+          "causal_state": {
+            "$ref": "Text"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "SourceEvent",
+      "shape": {
+        "identity": "Text",
+        "revision": "Text",
+        "state": "Text",
+        "occurrence": "Text",
+        "scope": "ScopeRecord",
+        "source_ref": "Text",
+        "source_owner": "Text",
+        "path_ref": "Text",
+        "time_ref": "Text"
+      },
+      "presence": "event値は明示nullまたは9項目をすべて持つobject。events mapにおけるkey absent、null値、object値を区別する。",
+      "json_schema": {
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "required": [
+              "identity",
+              "revision",
+              "state",
+              "occurrence",
+              "scope",
+              "source_ref",
+              "source_owner",
+              "path_ref",
+              "time_ref"
+            ],
+            "properties": {
+              "identity": {
+                "$ref": "Text"
+              },
+              "revision": {
+                "$ref": "Text"
+              },
+              "state": {
+                "$ref": "Text"
+              },
+              "occurrence": {
+                "$ref": "Text"
+              },
+              "scope": {
+                "$ref": "ScopeRecord"
+              },
+              "source_ref": {
+                "$ref": "Text"
+              },
+              "source_owner": {
+                "$ref": "Text"
+              },
+              "path_ref": {
+                "$ref": "Text"
+              },
+              "time_ref": {
+                "$ref": "Text"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "EpisodeRecord",
+      "shape": {
+        "identity": "Text",
+        "owner": "Text",
+        "revision": "Text",
+        "scope": "ScopeRecord"
+      },
+      "json_schema": {
+        "type": "object",
+        "required": [
+          "identity",
+          "owner",
+          "revision",
+          "scope"
+        ],
+        "properties": {
+          "identity": {
+            "$ref": "Text"
+          },
+          "owner": {
+            "$ref": "Text"
+          },
+          "revision": {
+            "$ref": "Text"
+          },
+          "scope": {
+            "$ref": "ScopeRecord"
+          }
+        },
+        "additionalProperties": false
+      },
+      "presence": "4項目すべて必須。"
+    },
+    {
+      "name": "IsolatedEvent",
+      "shape": {
+        "identity": "Text",
+        "revision": "optional Text",
+        "source_ref": "optional Text",
+        "state": "Text",
+        "ticket": "optional Text",
+        "path_ref": "optional Text",
+        "time_ref": "optional Text"
+      },
+      "presence": "identity/state必須。列挙した任意項目はAbsentまたはText。有限packetの未宣言memberはdomain外。",
+      "json_schema": {
+        "type": "object",
+        "required": [
+          "identity",
+          "state"
+        ],
+        "properties": {
+          "identity": {
+            "$ref": "Text"
+          },
+          "revision": {
+            "$ref": "Text"
+          },
+          "source_ref": {
+            "$ref": "Text"
+          },
+          "state": {
+            "$ref": "Text"
+          },
+          "ticket": {
+            "$ref": "Text"
+          },
+          "path_ref": {
+            "$ref": "Text"
+          },
+          "time_ref": {
+            "$ref": "Text"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "CorrectionRecord",
+      "shape": {
+        "owner": "optional Text",
+        "reason_ref": "optional Text",
+        "source_revision": "optional Text",
+        "scope": "optional ScopeRecord",
+        "before_relation": "optional RelationRecord",
+        "after_relation": "optional RelationRecord"
+      },
+      "presence": "correctionはnullまたは6 member全てを持つobject。object内nullable値とmember欠落は異なり、member欠落は有限domain外。 owner値はretained_inputsに保存するが、その文字列をrouting authority/返却先決定には使わない。",
+      "json_schema": {
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "required": [
+              "owner",
+              "reason_ref",
+              "source_revision",
+              "scope",
+              "before_relation",
+              "after_relation"
+            ],
+            "properties": {
+              "owner": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "Text"
+                  }
+                ]
+              },
+              "reason_ref": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "Text"
+                  }
+                ]
+              },
+              "source_revision": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "Text"
+                  }
+                ]
+              },
+              "scope": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "ScopeRecord"
+                  }
+                ]
+              },
+              "before_relation": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "RelationRecord"
+                  }
+                ]
+              },
+              "after_relation": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "RelationRecord"
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "EpisodeCorrelationInput",
+      "shape": {
+        "original_scope": "ScopeRecord",
+        "original_episode": "EpisodeRecord",
+        "original_events": "PartialRecord<Stage,SourceEvent|null>; absent key is preserved",
+        "submitted_events": "PartialRecord<Stage,SourceEvent|null>; absent key is preserved",
+        "original_relations": "RelationRecord[]",
+        "original_isolated_events": "IsolatedEvent[]",
+        "submitted_isolated_events": "IsolatedEvent[]",
+        "correction": "CorrectionRecord|null",
+        "claims": "Text[]"
+      },
+      "presence": "9 top-level memberを必須とする。events mapのstage key absent/null/objectを区別し、raw subvalueは変更せず保持する。claimsは閉じた6 literalの配列。",
+      "json_schema": {
+        "type": "object",
+        "required": [
+          "original_scope",
+          "original_episode",
+          "original_events",
+          "submitted_events",
+          "original_relations",
+          "original_isolated_events",
+          "submitted_isolated_events",
+          "correction",
+          "claims"
+        ],
+        "properties": {
+          "original_scope": {
+            "$ref": "ScopeRecord"
+          },
+          "original_episode": {
+            "$ref": "EpisodeRecord"
+          },
+          "original_events": {
+            "type": "object",
+            "propertyNames": {
+              "$ref": "Stage"
+            },
+            "additionalProperties": {
+              "$ref": "SourceEvent"
+            }
+          },
+          "submitted_events": {
+            "type": "object",
+            "propertyNames": {
+              "$ref": "Stage"
+            },
+            "additionalProperties": {
+              "$ref": "SourceEvent"
+            }
+          },
+          "original_relations": {
+            "type": "array",
+            "items": {
+              "$ref": "RelationRecord"
+            }
+          },
+          "original_isolated_events": {
+            "type": "array",
+            "items": {
+              "$ref": "IsolatedEvent"
+            }
+          },
+          "submitted_isolated_events": {
+            "type": "array",
+            "items": {
+              "$ref": "IsolatedEvent"
+            }
+          },
+          "correction": {
+            "$ref": "CorrectionRecord"
+          },
+          "claims": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "unrelated_event_mixed",
+                "missing_stage_is_success",
+                "near_time_is_cause",
+                "near_path_is_cause",
+                "correction_overwrites_event",
+                "isolated_event_deleted"
+              ]
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "FailureReason",
+      "shape": {
+        "field": "Text",
+        "result": "unobserved|not_occurred|foreign_scope|unsupported_join_or_completion|missing|unknown_target|unsupported_cause_or_source_loss",
+        "return_owner": "Text"
+      },
+      "json_schema": {
+        "type": "object",
+        "required": [
+          "field",
+          "result",
+          "return_owner"
+        ],
+        "properties": {
+          "field": {
+            "$ref": "Text"
+          },
+          "result": {
+            "type": "string",
+            "enum": [
+              "unobserved",
+              "not_occurred",
+              "foreign_scope",
+              "unsupported_join_or_completion",
+              "missing",
+              "unknown_target",
+              "unsupported_cause_or_source_loss"
+            ]
+          },
+          "return_owner": {
+            "$ref": "Text"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "name": "RetainedInputs",
+      "shape": "EpisodeCorrelationInputの各9 memberを同じ値で保持する。",
+      "json_schema": {
+        "$ref": "EpisodeCorrelationInput"
+      }
+    },
+    {
+      "name": "EpisodeCorrelationOutput",
+      "shape": {
+        "information_state": "held_correlation_unqualified|partial_episode_content_unfinished|correlation_content_requires_actual_qualification",
+        "retained_inputs": "RetainedInputs",
+        "missing_or_not_occurred_stages": "Text[]",
+        "unfinished": "{stage:Text,state:Text}[]",
+        "causal_state": "Text",
+        "event_content_preservation": "Text",
+        "isolated_preservation": "Text",
+        "failure_reasons": "FailureReason[]",
+        "return_owners": "Text[]",
+        "rejected_claims": "Text[]",
+        "actual_effects": "Record<Text,Boolean>"
+      },
+      "presence": "返却root/memberをschemaで閉じる。比較結果のみで元event/authority/work stateへの書込みを表さない。",
+      "json_schema": {
+        "type": "object",
+        "required": [
+          "information_state",
+          "retained_inputs",
+          "missing_or_not_occurred_stages",
+          "unfinished",
+          "causal_state",
+          "event_content_preservation",
+          "isolated_preservation",
+          "failure_reasons",
+          "return_owners",
+          "rejected_claims",
+          "actual_effects"
+        ],
+        "properties": {
+          "information_state": {
+            "type": "string",
+            "enum": [
+              "held_correlation_unqualified",
+              "partial_episode_content_unfinished",
+              "correlation_content_requires_actual_qualification"
+            ]
+          },
+          "retained_inputs": {
+            "$ref": "RetainedInputs"
+          },
+          "missing_or_not_occurred_stages": {
+            "type": "array",
+            "items": {
+              "$ref": "Stage"
+            }
+          },
+          "unfinished": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "stage",
+                "state"
+              ],
+              "properties": {
+                "stage": {
+                  "$ref": "Stage"
+                },
+                "state": {
+                  "type": "string",
+                  "enum": [
+                    "unobserved",
+                    "not_occurred"
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "causal_state": {
+            "type": "string",
+            "enum": [
+              "not_established"
+            ]
+          },
+          "event_content_preservation": {
+            "type": "string",
+            "enum": [
+              "corresponding_in_fixture_only",
+              "submitted_event_conflict"
+            ]
+          },
+          "isolated_preservation": {
+            "type": "string",
+            "enum": [
+              "corresponding_in_fixture_only",
+              "submitted_isolated_conflict"
+            ]
+          },
+          "failure_reasons": {
+            "type": "array",
+            "items": {
+              "$ref": "FailureReason"
+            }
+          },
+          "return_owners": {
+            "type": "array",
+            "items": {
+              "$ref": "Text"
+            }
+          },
+          "rejected_claims": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "unrelated_event_mixed",
+                "missing_stage_is_success",
+                "near_time_is_cause",
+                "near_path_is_cause",
+                "correction_overwrites_event",
+                "isolated_event_deleted"
+              ]
+            }
+          },
+          "actual_effects": {
+            "type": "object",
+            "required": [
+              "event_overwrite",
+              "relation_write",
+              "authority_change",
+              "episode_completion",
+              "acceptance",
+              "implementation_ready"
+            ],
+            "properties": {
+              "event_overwrite": {
+                "$ref": "Boolean"
+              },
+              "relation_write": {
+                "$ref": "Boolean"
+              },
+              "authority_change": {
+                "$ref": "Boolean"
+              },
+              "episode_completion": {
+                "$ref": "Boolean"
+              },
+              "acceptance": {
+                "$ref": "Boolean"
+              },
+              "implementation_ready": {
+                "$ref": "Boolean"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  ],
+  "function_signatures_and_decisions": [
+    {
+      "id": "FN-EPISODE-CORRELATION",
+      "signature": "correlate_episode(input: EpisodeCorrelationInput) -> EpisodeCorrelationOutput",
+      "reads": [
+        "input.original_scope",
+        "input.original_episode",
+        "input.original_events",
+        "input.submitted_events",
+        "input.original_relations",
+        "input.original_isolated_events",
+        "input.submitted_isolated_events",
+        "input.correction",
+        "input.claims"
+      ],
+      "returns": "EpisodeCorrelationOutputのschemaで宣言した全root fieldを返す。retained_inputsは入力9値とdeep-equal。",
+      "preconditions": [
+        "root objectにEpisodeCorrelationInputの9キーがある。",
+        "原sourceのowner/revision資格をこの関数から認定しない。"
+      ],
+      "postconditions": [
+        "stage不足/未発生はoriginal_eventsのstage member presence/null/state/occurrenceからstage_order順に導出し、unfinished.stateも規則どおり選ぶ。",
+        "scope不一致はoriginal_scopeとoriginal_events.<stage>.scopeの同名fieldだけをscope_field_order順に値比較する。submitted_eventsはscope判定に使わない。",
+        "claim拒否は各閉じたclaim literalのraw条件が入力で成立した場合だけ返す。unrelated_event_mixedによるticket差の抑止範囲は当該ticket差分だけ。",
+        "correctionのnull required valuesは宣言順でmissingを返し、after targetはoriginal_eventsのidentity集合だけと比較する。",
+        "failure_reasonsの生成順、information_stateの優先、return_ownersの重複除去順はderivation_rulesに従う。",
+        "全9入力値はretained_inputsに保持し、実副作用は発生しない。"
+      ]
+    }
+  ],
+  "pure_pipeline": [
+    {
+      "step": "P01",
+      "input": "EpisodeCorrelationInput",
+      "operation": "全9 memberのpresenceを記録し、raw値を変更せず返却用recordへ保持する。",
+      "output_fields": [
+        "retained_inputs"
+      ]
+    },
+    {
+      "step": "P02",
+      "input_fields": [
+        "input.original_events"
+      ],
+      "operation": "固定stage順でstage key、state、occurrenceを読む。Absent/null/unobserved/not_occurredを不足/未完に分類する。",
+      "output_fields": [
+        "missing_or_not_occurred_stages",
+        "unfinished"
+      ]
+    },
+    {
+      "step": "P03",
+      "input_fields": [
+        "input.original_scope",
+        "input.original_events"
+      ],
+      "operation": "original_eventsだけをsource側入力として走査し、各event.scopeの同名fieldをoriginal_scopeとscope_field_orderで比較する。submitted_eventsはこの判定に読まず、保存比較とcorrection_overwrites_event claimだけに使う。値が異なるfieldはforeign_scopeとしてevents.<stage>.scope.<field>へ記録し、そのoriginal eventのsource_ownerへ戻す。unrelated_event_mixed claimがticket差を表す場合は当該1差分の通常failureを抑止し、P04のcorrelation-owner failureに置き換える。",
+      "output_fields": [
+        "failure_reasons"
+      ]
+    },
+    {
+      "step": "P04",
+      "input_fields": [
+        "input.claims",
+        "input.original_events",
+        "input.submitted_events",
+        "input.original_relations",
+        "input.original_isolated_events",
+        "input.submitted_isolated_events"
+      ],
+      "operation": "claimsを入力配列順に保持し、定義済みraw条件を満たす claim だけを拒否する。failureは定義済みfailure_append_orderに従い、case IDを読まない。unrelated_event_mixedは通常のticket scope不一致を抑止して相関ownerへ返し、近い時刻/pathを因果とする2 claimは単一failureへまとめる。",
+      "output_fields": [
+        "rejected_claims",
+        "failure_reasons"
+      ]
+    },
+    {
+      "step": "P05",
+      "input_fields": [
+        "input.correction",
+        "input.original_events"
+      ],
+      "operation": "correction member presence/value、before/after relation、after target identityと実event identity集合を比較。必要な根拠memberがabsent/nullならmissing、target値が集合にない場合unknown_targetをfailure_reasonsへ追加する。event payloadは書き換えない。",
+      "output_fields": [
+        "failure_reasons",
+        "return_owners"
+      ]
+    },
+    {
+      "step": "P06",
+      "input_fields": [
+        "retained_inputs",
+        "missing_or_not_occurred_stages",
+        "unfinished",
+        "failure_reasons",
+        "rejected_claims",
+        "input.original_relations",
+        "input.original_events",
+        "input.submitted_events",
+        "input.original_isolated_events",
+        "input.submitted_isolated_events"
+      ],
+      "operation": "計算済みfieldをEpisodeCorrelationOutput recordにまとめる。比較関数なのでevent_overwrite/relation_write/authority_change/episode_completion/acceptance/implementation_readyをすべてfalseで返す。中間結果は独立producer APIではなく関数内のfield計算である。L9 oracleは別にこの返値と照合する。",
+      "output_fields": [
+        "information_state",
+        "retained_inputs",
+        "missing_or_not_occurred_stages",
+        "unfinished",
+        "causal_state",
+        "event_content_preservation",
+        "isolated_preservation",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "actual_effects"
+      ]
+    }
+  ],
+  "comparison_derivation_contract": {
+    "no_case_id_lookup": true,
+    "raw_comparison_inputs": [
+      "original_scope",
+      "original_episode.scope",
+      "original_events",
+      "submitted_events",
+      "original_relations",
+      "original_isolated_events",
+      "submitted_isolated_events",
+      "correction",
+      "claims"
+    ],
+    "independent_oracle": "L9 expected_materialは別sourceとして検証し、関数の分岐入力にしない。",
+    "field_comparisons": [
+      "stage member presence/state/occurrence",
+      "10 scope fields by same-name values",
+      "claim token to factual raw mismatch",
+      "correction member presence/value",
+      "after_relation.to_event against actual source event identities",
+      "original vs submitted raw event values for preservation"
+    ],
+    "output_equations": [
+      "retained_inputs = inputの9 memberを値変更なく複写",
+      "missing_or_not_occurred_stages = original_eventsのAbsent/null/unobserved/not_occurred段",
+      "unfinished = 上記各stageとrawのstate/occurrence",
+      "event_content_preservation = original_eventsとsubmitted_eventsのdeep equality結果",
+      "isolated_preservation = original_isolated_eventsとsubmitted_isolated_eventsのdeep equality結果",
+      "failure_reasons = stage不在/未発生・同名scope不一致・claimの具体矛盾・correction欠落/未知targetのfield locatorとowner",
+      "rejected_claims = raw claimsのうち対応する値矛盾がrawで成立するもの",
+      "return_owners = failure_reasonsのownerを初出順で重複除去",
+      "information_state = unsupported/missing/foreign failureがあればheld_correlation_unqualified、そうでなくmissingありならpartial_episode_content_unfinished、その他はcorrelation_content_requires_actual_qualification",
+      "causal_state = actual causal proofは入力されていないためnot_established",
+      "actual_effects = 全副作用項目false"
+    ]
+  },
+  "legacy_rederivation": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "read_lines": [
+        67,
+        67
+      ],
+      "quote": "| **HIL-BR-15** | 将来のproduct-data sourceをversioned connectorで取り込み、由来・鮮度・schema・authorityを保持した正規projectionとして設計判断、coverage、impact、Issue routing、docgen/detectorへ供給する。 |",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "selected_lines_sha256": "880385839788ea49f14544ee9dd0f1ed5037bc84b1707a9ba55f4fa6a267c2f5",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+        "disposition": "source_snapshot_preservation",
+        "source_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "旧episode参照とsource由来/版/authorityを保持する。",
+      "change": "旧DB/単一causality chain/runtimeを移植せず、採択LABO002の元observation参照と相関・因果未確定・relation訂正へ再導出する。",
+      "reason": "9/26 LABO原文/採択002/10/12承認は時刻/pathからの因果断定や元event上書きを許さない。旧sourceから全改善完了を生成しない。",
+      "source_revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "verified_line_text_sha256": "8422dc66c38ab3989f9cc0246ec9132a80194b1a28af7e6f5ec7917cd8cb86ac",
+      "ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+      "preserve_reason": "旧episode参照とsource由来/版/authorityを保持する。",
+      "change_reason": "9/26 LABO原文/採択002/10/12承認は時刻/pathからの因果断定や元event上書きを許さない。旧sourceから全改善完了を生成しない。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-evaluation.ts",
+      "read_lines": [
+        32,
+        32
+      ],
+      "quote": "      col(\"improvement_episode_id\"),",
+      "file_sha256": "d3f5f8b303cd9f568d7695d19c05d0e4b492f7df9caa60c929a749fa2990bbe2",
+      "selected_lines_sha256": "615a0153e256f32b2cd2ef051b520e3959057fe2fcb87c649d88346d565c62b8",
+      "asset": {
+        "asset_id": "LEGACY-ASSET-D60AE87D9DFA0740F4A8",
+        "disposition": "unresolved",
+        "source_sha256": "d3f5f8b303cd9f568d7695d19c05d0e4b492f7df9caa60c929a749fa2990bbe2"
+      },
+      "reuse": "semantic_rederivation_reference_only",
+      "preserve": "旧episode参照とsource由来/版/authorityを保持する。",
+      "change": "旧DB/単一causality chain/runtimeを移植せず、採択LABO002の元observation参照と相関・因果未確定・relation訂正へ再導出する。",
+      "reason": "9/26 LABO原文/採択002/10/12承認は時刻/pathからの因果断定や元event上書きを許さない。旧sourceから全改善完了を生成しない。",
+      "source_revision": "fac647418f3c8859777c8b3aa2ae66440209ca73",
+      "verified_line_text_sha256": "099031b7246aef41ed69612ef809bf4c1a54d7aa2ddb723debc09a50c1dcd527",
+      "ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+      "preserve_reason": "旧episode参照とsource由来/版/authorityを保持する。",
+      "change_reason": "9/26 LABO原文/採択002/10/12承認は時刻/pathからの因果断定や元event上書きを許さない。旧sourceから全改善完了を生成しない。"
+    }
+  ],
+  "qualification_boundary": {
+    "source_identity": "合成fixtureのsource refはowner/source資格を成立させない。",
+    "correlation": "合成のobserved/not_occurred markerは実環境での発生を証明しない。",
+    "causality": "時刻/path近接は因果証明ではない。",
+    "correction": "比較recordを返すだけで、event mutation/write権限を持たない。",
+    "future_layers": "正式codec、L7検証、L8からL9への統合確認、L11受入は未成立。"
+  },
+  "unclosed": [
+    "正式schema/codec/field normalizationとowner-qualified source issuerは未解決。",
+    "001 observation identityと011 handoff bindingは別責務の依存であり、本pairはそれを代行しない。",
+    "実episode相関、訂正の永続化/atomicity/concurrencyおよびproduction evidenceは未実装・未検証。",
+    "L7検証、L8からL9への統合確認、L11実受入、全92親/430対の設計閉包、実装準備は未完。"
+  ],
+  "completion": {
+    "implementation_readiness": "not_ready",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "status": "draft_detail_design_not_independently_reviewed"
+  },
+  "derivation_rules": {
+    "stage_order": [
+      "requirement",
+      "ticket",
+      "Worker",
+      "implementation",
+      "atomic_CI",
+      "boundary_integration",
+      "proof_CI",
+      "release",
+      "deployment",
+      "runtime",
+      "incident",
+      "recovery"
+    ],
+    "scope_field_order": [
+      "artifact",
+      "environment",
+      "mechanism",
+      "product",
+      "provider_model_configuration",
+      "requirement_revision",
+      "responsibility",
+      "result",
+      "ticket",
+      "worker"
+    ],
+    "claim_literals": [
+      "unrelated_event_mixed",
+      "missing_stage_is_success",
+      "near_time_is_cause",
+      "near_path_is_cause",
+      "correction_overwrites_event",
+      "isolated_event_deleted"
+    ],
+    "event_scope_basis": "original_events only; submitted_events is excluded from scope matching",
+    "submitted_events_role": "保存内容のdeep-equal比較とcorrection_overwrites_eventの根拠だけに使う。scope判定へ混ぜない。",
+    "missing_and_unfinished": "stage_order順に原eventを読む。member absent/null、state=unobserved、occurrence=not_occurredをmissingに保持する。unfinished.stateは存在objectのoccurrence=not_occurredだけnot_occurred、その他はunobserved。",
+    "failure_append_order": [
+      "stage status by stage_order",
+      "original event scope mismatches by original_events member order then scope_field_order",
+      "unrelated_event_mixed join failure",
+      "combined near_time_is_cause/near_path_is_cause failure",
+      "correction_overwrites_event failure",
+      "isolated_event_deleted failure",
+      "correction missing members in correction_required_member_order",
+      "correction unknown target"
+    ],
+    "source_owner_routing": {
+      "selection": "原event objectのsource_ownerを原member順で初出一意化する。",
+      "unobserved_or_not_occurred": "有限fixtureではdistinct source ownerがちょうど1つのときだけそのownerへ返す。0/複数は定義済み入力域外でownerを合成しない。",
+      "foreign_scope": "不一致の原event.source_ownerへ返す。",
+      "claim_or_correction_failure": "LABO-correlation-owner",
+      "correction_owner_field": "correction.ownerは入力値として保持するだけで返却先を決めない。correction診断はLABO-correlation-ownerへ返す。"
+    },
+    "scope_mismatch": "原eventのscope各fieldを同名のoriginal_scopeへ比較する。unrelated_event_mixedでは最初のticket相違だけ通常foreign_scope診断を抑止し、scope走査後に同event位置のunsupported_join_or_completionをLABO-correlation-ownerへ追加する。",
+    "claim_evidence_and_suppression": [
+      {
+        "claim": "unrelated_event_mixed",
+        "required_raw_fact": "原eventにscope.ticketとoriginal_scope.ticketの相違が1件以上ある。",
+        "failure": "最初のticket相違位置へunsupported_join_or_completionを追加し、その位置の通常ticket foreign_scopeだけ抑止する。"
+      },
+      {
+        "claim": "missing_stage_is_success",
+        "required_raw_fact": "missing/unfinished集合が空でない。",
+        "failure": "absent/null/unobserved stageはunobservedの代わりにunsupported_join_or_completionをLABO-correlation-ownerへ返す。not_occurredは保持する。"
+      },
+      {
+        "claim": "near_time_is_cause",
+        "required_raw_fact": "当該claimがあり、原relationにcausal_state=establishedが無い。",
+        "failure": "relations.causal_stateへunsupported_cause_or_source_lossをLABO-correlation-ownerへ1件返す。"
+      },
+      {
+        "claim": "near_path_is_cause",
+        "required_raw_fact": "当該claimがあり、原relationにcausal_state=establishedが無い。",
+        "failure": "near_time_is_causeと共通の因果所見を1件だけ返す。"
+      },
+      {
+        "claim": "correction_overwrites_event",
+        "required_raw_fact": "original_eventsとsubmitted_eventsが異なる。",
+        "failure": "submitted_eventsへunsupported_cause_or_source_lossをLABO-correlation-ownerへ返す。"
+      },
+      {
+        "claim": "isolated_event_deleted",
+        "required_raw_fact": "original_isolated_eventsとsubmitted_isolated_eventsが異なる。",
+        "failure": "submitted_isolated_eventsへunsupported_cause_or_source_lossをLABO-correlation-ownerへ返す。"
+      }
+    ],
+    "claim_handling": "claims原配列をrejected_claimsへ保持する。カテゴリごとのfailure_append_orderで診断を生成し、claim配列順で診断を並べ替えない。各claimは原値によるrequired_raw_factを満たす必要がある。未知tokenまたは根拠なしclaimはこの有限入力域外で、許可や成功へ補完しない。",
+    "correction_required_member_order": [
+      "reason_ref",
+      "source_revision",
+      "before_relation",
+      "after_relation",
+      "scope"
+    ],
+    "correction_missing": "correctionがobjectのときだけcorrection_required_member_orderのnull値ごとにcorrection.<member>/missingをLABO-correlation-ownerへ返す。correction=nullなら追加しない。member自体の欠落は閉じた入力shapeの対象外。",
+    "correction_target": "missing検査後、after_relationが非nullでto_eventが非空stringかつ原event identity集合に無ければcorrection.after_relation.to_event/unknown_targetをLABO-correlation-ownerへ返す。",
+    "information_state_priority": [
+      {
+        "when": "unobserved/not_occurred以外のfailureが1件以上。",
+        "then": "held_correlation_unqualified"
+      },
+      {
+        "when": "それ以外でmissing_or_not_occurred_stagesが非空。",
+        "then": "partial_episode_content_unfinished"
+      },
+      {
+        "when": "それ以外。",
+        "then": "correlation_content_requires_actual_qualification"
+      }
+    ],
+    "output_literals": {
+      "causal_state": "not_established",
+      "event_content_preservation": {
+        "equal": "corresponding_in_fixture_only",
+        "different": "submitted_event_conflict"
+      },
+      "isolated_preservation": {
+        "equal": "corresponding_in_fixture_only",
+        "different": "submitted_isolated_conflict"
+      },
+      "actual_effects": {
+        "event_overwrite": false,
+        "relation_write": false,
+        "authority_change": false,
+        "episode_completion": false,
+        "acceptance": false,
+        "implementation_ready": false
+      }
+    },
+    "return_owners": "failure_reasonsのreturn_ownerを出現順で一意化する。",
+    "iteration_basis": "stageはstage_order、scope fieldsはscope_field_order、claimsは配列順、元eventの相互順はL9が固定したraw_utf8上のoriginal_events member順で処理する。この順序規則は有限fixture再計算のためであり、一般JSON objectの順序規範を追加しない。",
+    "phase_id_note": "failure_append_orderの文字列は検証用の固定phase識別子であり、その順に原条件を比較する。本文説明はpure_pipelineとcomparison_derivation_contractに保持する。"
+  }
+}
