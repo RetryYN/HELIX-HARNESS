@@ -1,0 +1,1273 @@
+{
+  "parent": "HELIXLABO-L2-058",
+  "pair": "HELIXLABO-L5/L8-058",
+  "source_main": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+  "source_basic_pair_revision": "a8d82e6219419a00fd77ba3f3b52397411147018",
+  "source_revision_kind": "basic_pair_exact_commit_plus_approval_exact_commit",
+  "authority_effect": "none",
+  "scope": {
+    "version_target": "1.0",
+    "historical_sequence_stage": "Stage 2b",
+    "authoring_stage": "L5/L8 logical detail only",
+    "boundary": "選択sourceごとのdependency closureを既存001 observationへ適用する。全sourceの1.0能力義務は別に保持する。Web/WEB-OSは選択時だけ031/032を照合し、033 external acquisitionは2.0境界に置く。source資格・実権限・実受領・実評価・正式codec/runtime・TDD/CI・L11 acceptanceは未成立。"
+  },
+  "upstream_adoption": {
+    "approval_record_path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "approval_record_sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19",
+    "approval_record_commit": "2f95e20cd9e90dd4ab7d349661476d8c49eff548",
+    "approved_revision": "bc96125742eab851fe35194071087f77bb1f0005",
+    "admitted_main_commit": "4dd2774e1498bde640a52e94245195f62e750ca6",
+    "scope_quote": "001/002/011/026/028/054/055/056/057/058の10親から導出した26組のexact本文を承認する。全LABO能力・全source接続・実観測/実評価の完成を含まない。draft/not_executedは固定bytesとして保持する。",
+    "approved_whole_files": [
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.json",
+        "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/business-verification.md",
+        "sha256": "1abff25ba108a6e1055c0a811fa67befd44e73469ffda6ae8735b65249b2a441"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.json",
+        "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/functional-verification.md",
+        "sha256": "7719e128e442644224ba2b586f2f3ad0f0f14692847d8678a681abf616896270"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+        "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+      },
+      {
+        "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+        "sha256": "52966ddf22818f0ee1306c98496975304ce847255cffb243065963958c076844"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+        "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+        "sha256": "f2ae2897b615a7dde0d06cae6e02af72dfdd60f182e91728d94d3c250bfcaa77"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+        "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+        "sha256": "3be891bae6d3ed19931d8c9bac1989e1c6eff0cc6868d165d9ca9e1bc6787129"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+        "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+      },
+      {
+        "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+        "sha256": "d2453f852b93da95605c5780f51a7cd4d585685f673eb6c90393e93164be97dd"
+      }
+    ],
+    "approved_l2_section": {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "start_line": 403,
+      "end_line_exclusive": 416,
+      "encoding": "splitlines(keepends=True)後のUTF-8 bytes、LF保持",
+      "sha256": "b2bbcdc2a4687314eef773ecae25517776e548be7df8c23818549eb6841ac9cf",
+      "quote": "### HELIXLABO-L2-058 — 観測集積の入力元ごとの依存条件（単体追補候補、1.0）\n\n- **親L1**：HELIXLABO-L1-001。既存HELIXLABO-L2-001の集積能力に適用する依存区分の追補候補であり、新しい集積エンジンを作らない。現行L1/L2の採択状態は変えない。\n- **起点**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第2点、HARNESS-L2-010／011とその依存区分追補候補HARNESS-L2-023。旧FRS-R-06の必要な依存欠落・暗黙包含拒否、FRS-R-13／14の安全閉包・不明時停止を保持し、対応能力全体と個別呼出しの必須入力を分離する意味の再導出である。旧資産の具体位置・digestはG10依存監査に記録する。旧実装・runtimeは利用しない。\n- **受け取るもの**：集積対象scopeと選択source identity、操作、source/契約版、観測の利用許可、source別入力接続、既存001の観測状態・provenance・最低項目の契約。選択の根拠と未選択sourceも表示する。\n- **提供するもの**：その呼出しに必要なsource別接続と安全・版条件を照合したLABO observation、未観測の入力元、受領失敗・不足の理由。元の001の観測本文・責務・出力項目を変更しない。\n- **常時必須**：LABO001のprovenance、source identity/revision、状態区分、対象scope、適用するdata-use/authority、契約版、source正本を変更しない条件。入力元を選ばないことを、権限不明なデータの取込許可へ変えない。\n- **選択した入力元に応じて必須**：001に列挙されたL2-021〜030は、当該呼出しが受け取る各sourceに対応する接続を要求する。例えばWorker観測のみならL2-028の入力・受領契約とその安全依存を必要とし、入力に含まれないBRAIN等の別source接続の稼働は当該呼出しの成立条件にしない。複数sourceを選べばその全部に対応する接続・許可・依存閉包を要求する。selected sourceの欠落を「未選択」へ変えて成功にしない。\n- **特定操作時のみ必須**：Web/WEB-OS観測を加える操作では、既存L2-031／032に記したsource contractの採択と該当接続・安全条件を満たす。Webを選ばないLABO 1.0の呼出しへWeb実運用を前提にしない。2.0の外部取得入力は既存L2-033の版範囲に従い、1.0へ無断追加しない。\n- **参照のみ**：全sourceに対応する1.0要求範囲の一覧、未選択sourceの契約説明、旧資産の比較資料は、個別呼出しの実行サービス依存ではない。ただし一覧にある1.0対象能力の完成義務は保持し、個別呼出しで不要という理由で削除・延期しない。\n- **保証・失敗時**：未選択または未接続のsourceは未観測を保持し、成功・観測済みへ変換しない。選択sourceのversion/scope/許可/receiptが不足・不一致ならその入力の成立を拒みsource owner／SECURITYへ戻す。選択条件自体がunknownなら全部不要とせず呼出し条件の確認へ戻す。観測集積の成功をBench評価済み、割当許可、全source対応完成にしない。\n- **単独成立の依存**：既存HELIXLABO-L2-001の契約本文、HARNESS-L2-010／011／023の依存区分契約、選択sourceの入力接続とその安全・版条件。この追補自身を001の実行前提に再帰的に要求せず、001の利用条件を補う。実契約版は採択後に入力へ束縛し、`version_target: 1.0`を実装版・採択状態と混同しない。\n\n",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    },
+    "approved_l11_section": {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "start_line": 156,
+      "end_line_exclusive": 164,
+      "encoding": "splitlines(keepends=True)後のUTF-8 bytes、LF保持",
+      "sha256": "f42d0cdbc001aeb26b91b0c1464f772c381cd7a4334908f24485c6847e802fcd",
+      "quote": "### HELIXLABO-L2-058 観測集積の入力元ごとの依存条件\n\n- **正常例**：選択入力がWorker観測だけの呼出しで、001/028のprovenance・版・scope・許可・状態区分・受領契約と安全依存が揃う。他の未選択入力は未観測を表示したまま、Worker観測を取り込める。全入力元対応の完成を主張しない。\n- **複数入力例**：WorkerとOSの観測を選択した場合は、両方のsource別接続と安全依存を要求する。片方のreceiptが欠落した結果を完全な集積成功にしない。\n- **反例**：未選択sourceの完成待ちで、必要条件を満たすWorker入力を拒む。選択済みsourceが欠けたため未選択へ改変する。安全依存を参照のみと分類する。未選択を観測済みへ変える。Web未採択を理由に全LABO 1.0を不成立にする。個別呼出しの成功を1.0全source対応済みとする。\n- **版・変更**：sourceの追加/削除、操作、scope、契約版が変わった場合に依存分類と閉包を再照合する。前回の選択やreceiptを無条件に継承しない。\n- **不足・戻し先**：選択条件が不明なら要求された呼出しscopeのownerへ、入力契約・版は各sourceとLABOへ、許可/classificationはSECURITYへ戻す。未観測・未完義務を消さず、既存001の出力保証を保つ。\n\n",
+      "source_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+    }
+  },
+  "approved_requirements": [
+    {
+      "id": "HELIXLABO-L3-058-B01",
+      "parent": "HELIXLABO-L2-058",
+      "title": "個別呼出しと全能力完成",
+      "obligation": "未選択sourceの完成待ちを必要条件の揃った呼出しへ要求せず、全sourceの1.0完成義務は保持する。全一覧/比較資料は参照のみ、058自身を001実行前提へ再帰依存にしない。",
+      "oracle_ref": "HELIXLABO-L10-058-B01"
+    },
+    {
+      "id": "HELIXLABO-L3-058-F01",
+      "parent": "HELIXLABO-L2-058",
+      "title": "選択source別の依存",
+      "obligation": "呼出しscope・選択source identity/操作/契約版/許可を明示し、001のprovenance/revision/state/scope/data-use/authority/版とsource正本非変更を常時保つ。選択021〜030各sourceの入力接続/安全閉包を全部照合し、未選択は未観測に保つ。",
+      "oracle_ref": "HELIXLABO-L10-058-F01"
+    },
+    {
+      "id": "HELIXLABO-L3-058-F02",
+      "parent": "HELIXLABO-L2-058",
+      "title": "操作条件と依存再照合",
+      "obligation": "Web/WEB-OS選択時だけ031/032 source採択/接続/安全条件を照合し、2.0外部取得033を1.0へ追加しない。source追加/削除・操作/scope/版変更時に依存分類と閉包を再照合し前回receiptを無条件継承しない。",
+      "oracle_ref": "HELIXLABO-L10-058-F02"
+    }
+  ],
+  "approved_system_oracles": [
+    {
+      "id": "HELIXLABO-L10-058-B01",
+      "parent": "HELIXLABO-L2-058",
+      "title": "個別呼出しと全能力完成",
+      "requirement_ref": "HELIXLABO-L3-058-B01",
+      "positive_input": "Worker単独成立と未観測他source、全能力未完を比較する。",
+      "expected_observation": "呼出し成立と全能力未完が分かれる。",
+      "negative_input": "全source完成待ち、個別成功で全完成、1.0能力削除/延期。",
+      "failure_observation": "必要な不足だけsourceへ返し全能力未完を保持する。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXLABO-L10-058-F01",
+      "parent": "HELIXLABO-L2-058",
+      "title": "選択source別の依存",
+      "requirement_ref": "HELIXLABO-L3-058-F01",
+      "positive_input": "Workerのみ、Worker+OS、選択条件unknown/一receipt欠落を比較する。",
+      "expected_observation": "選択根拠と未選択、必要閉包/欠落が辿れる。",
+      "negative_input": "選択欠落を未選択化、安全依存を参考、unknownで全部不要。",
+      "failure_observation": "scope owner/source/LABO/SECへ該当不足を返す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXLABO-L10-058-F02",
+      "parent": "HELIXLABO-L2-058",
+      "title": "操作条件と依存再照合",
+      "requirement_ref": "HELIXLABO-L3-058-F02",
+      "positive_input": "Web未選択、有効選択、source/scope/版変更を比較する。",
+      "expected_observation": "操作固有の追加条件とstale/再照合が辿れる。",
+      "negative_input": "Web未採択で全1.0停止、古い選択継承、外部取得無断追加。",
+      "failure_observation": "当該source/scope/契約ownerへ未完を返す。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "approved_object_hashes": [
+    {
+      "id": "HELIXLABO-L3-058-B01",
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "canonical_sha256": "587cfa4fa7afe2ef399229bf432a5ce0f76008a7de731fc68dd1af0ff054c871"
+    },
+    {
+      "id": "HELIXLABO-L3-058-F01",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "2cf397f9e79dbb6c81de5d70c4f89e4aa0b94e53f4a3e7c9251bde54f8a5195b"
+    },
+    {
+      "id": "HELIXLABO-L3-058-F02",
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "22d76dcfa62f8a690a51679c1187c52e372f17571af047415396c67b3a5948b7"
+    },
+    {
+      "id": "HELIXLABO-L10-058-B01",
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "canonical_sha256": "865e6f6687a54906c6ef2f809c8acedd4e12b46b17bc2c146a8424151c7a2f5e"
+    },
+    {
+      "id": "HELIXLABO-L10-058-F01",
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "9b6c94cd8935226ece81a93a1c07205f9044523ab276bc6a602937f1879db3b9"
+    },
+    {
+      "id": "HELIXLABO-L10-058-F02",
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "canonical_sha256": "dc423d29b07d488d86e3d1c1cd6431abb4feda97eea1f7a68cb6cfbba3f522ae"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "docs/governance/decisions/helix-labo-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "22abd962a80978bc4e6d9dc2fd34a9ae507c0e80bb20c99cfa041f046ec78a19"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-labo/L1-planning/labo-intent.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "39d9ab3605ff6c74fbc4c363ba0125df0461935053e7ef40c50eed1386be882a"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17"
+    },
+    {
+      "path": "docs/helix-os/sources/body-reinforcement-po-original-2026-09-27.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "cf45adb7212a35c496e420973be0933ec38d4c00175051811f6a9c0b2c06ac78"
+    },
+    {
+      "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-13.json",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "be15912053ee884e57ff4460e6b656c2727187533fb79895d93934c7d25e2041"
+    },
+    {
+      "path": "docs/helix-labo/L4-basic-design/selected-source-dependency-closure.json",
+      "revision": "a8d82e6219419a00fd77ba3f3b52397411147018",
+      "sha256": "4742202bacc2875879692f16e430fea3e4025a8a7730f837aa5d930f5bfadd71"
+    },
+    {
+      "path": "docs/helix-labo/L9-integration-verification/selected-source-dependency-closure.json",
+      "revision": "a8d82e6219419a00fd77ba3f3b52397411147018",
+      "sha256": "cf4246fd50e2955cf5dd705f8e982d074e45f782825026bfbe0d6dcdcab6ce1c"
+    },
+    {
+      "path": "docs/governance/audits/g10-pack-dependency-audit.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "9bd9483498e71838011f3c598faea26db0d7016bec9236de40f63d08271e929a"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee"
+    },
+    {
+      "path": "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-001,021-033",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "cae0cf9f564ec607e855fcc98f934801bee1c63be4b9446f9097578748cb70f6"
+    },
+    {
+      "path": "docs/governance/audits/g10-pack-dependency-audit.md#LABO-001/G10",
+      "revision": "3bac0655cd2f9dae4c135347a193fbc769fd07b6",
+      "sha256": "9bd9483498e71838011f3c598faea26db0d7016bec9236de40f63d08271e929a"
+    }
+  ],
+  "full_goal_scope_preserved": {
+    "parents": 92,
+    "l3_l10_pairs": 430
+  },
+  "legacy_rederivation": [
+    {
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md",
+      "file_sha256": "eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17",
+      "source_lines": "91-92, 136-142",
+      "quotes": [
+        "Bundleは`included_slices`と`excluded_slices`をexact setで保持する。excludedとincludedの重複、unknown Slice、required dependency欠落、conflict、未指定Sliceの暗黙包含、preview／rc Sliceのstable Bundleへの混入を拒否する。",
+        "Slice単位のtargeted／mutation／consumer検証を局所最適化しつつ、shared core、authority、cross-slice dependency、release、main read-afterはdependent closureとcritical pathへ展開する。検証義務を減らすためにSliceを分割してはならない。",
+        "影響Module、Slice、Bundle、dependency、profile、channelがunknown、ambiguous、staleの場合、成功扱い、空集合、局所greenへのfallbackをしない。full verificationまたはfail-closeへ送る。inventory unionを根拠にしたsilent omissionを禁止する。"
+      ],
+      "disposition": "unresolved",
+      "consumers": [
+        "docs/governance/audits/g10-pack-dependency-audit.md",
+        "HELIXLABO-L2-001",
+        "HELIXLABO-L2-058",
+        "HELIXLABO-L2-021..033",
+        "HARNESS-L2-010/011/023",
+        "SECURITY source permission/data-use owner",
+        "CONNECT individual connector owner"
+      ],
+      "preserve": "必要依存を省略・暗黙包含せず、unknown/ambiguous/staleを成功や空集合へ丸めない意味。",
+      "change": "旧Slice/Bundle identity、schema、CIやread-after方式を移植せず、001 observationの各呼出しで選択されたsourceの接続・安全・版依存だけを導出する。",
+      "reason": "採択済みL2-058は個別呼出しの依存区分と全source能力義務の保持を分け、source別ownerと現行authorityを維持するため。旧候補自体はunresolvedのまま。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md",
+      "file_sha256": "bf3a5293a919a5b293ed5ac2c2f86a85539abbe7959ed9d66ea764922e868cee",
+      "source_lines": "39, 46-47, 55, 58",
+      "quotes": [
+        "選択された依存閉包を受入対象とし、unknownやstaleを成功扱いしない（AC-006/013/014/022/025）。"
+      ],
+      "disposition": "unresolved",
+      "consumers": [
+        "docs/governance/audits/g10-pack-dependency-audit.md",
+        "HELIXLABO-L2-058"
+      ],
+      "preserve": "closureの不確実性と安全依存を個別に見せ、構成全体を単体成功へ丸めない。",
+      "change": "旧受入方法・実行方式は移植せず、原L10/L9の個別call例へ対応する。",
+      "reason": "旧acceptanceは歴史比較用の候補であり、新runtime/test/CI authorityではない。"
+    }
+  ],
+  "implementation_readiness": "not_ready",
+  "qualification_boundary": {
+    "fixture_packets": "設計fixtureのraw値であり実source ownerの資格・許可・data-use承認・接続receiptを示さない。",
+    "source_qualification": "独立したsource/authority owner evidenceが未供給ならunknownを維持する。packet shape、receipt文字列、permission文字列から実資格を生成しない。",
+    "evaluation": "全GWT not_executed。実source適用、実評価、実TDD/CI、L11受入は行っていない。",
+    "owner_boundary": "LABOは選択依存を観測scopeへ束ねる。source契約/receiptは各source owner、許可/classificationはSECURITY、接続はCONNECT、ticket/assignmentはOS、配置案はINTELLIGENCEの既存ownerへ戻す。"
+  },
+  "audit": {
+    "parents": 92,
+    "l3_l10_pairs": 430,
+    "scope": "全体数を維持し、058の3 obligations/6 requirement-oracle identitiesのみを本pairに具体化する。"
+  },
+  "status": "draft_detail_design_not_independently_reviewed",
+  "logical_type_status": "finite logical model only; no formal wire schema or codec",
+  "contracts": [
+    {
+      "id": "CONTRACT-058-CALL-DEPENDENCY",
+      "name": "選択sourceごとの個別call依存",
+      "input_types": [
+        "InvocationInput",
+        "InvocationInputProjection",
+        "FixtureSelectionBinding",
+        "SourceMapEntry",
+        "SourceQualificationEvidence"
+      ],
+      "output_types": [
+        "InvocationAssessment",
+        "DependencyEdge"
+      ],
+      "rules": [
+        "未選択sourceの実接続を当該callのgateにしない。未観測は保持する。",
+        "全能力の1.0未完義務は個別call成立と別に保持する。",
+        "選択済みsourceの不足をnot_selectedへ変えない。",
+        "Web選択時のみ031/032採択契約・接続・安全条件を照合する。",
+        "033 external source acquisitionは1.0 callへ追加しない。",
+        "001 provenance/revision/state/scope/data-use/authority/versionとsource正本非変更をsource別に保持する。"
+      ]
+    },
+    {
+      "id": "CONTRACT-058-RECHECK",
+      "name": "依存変更の再照合",
+      "input_types": [
+        "prior InvocationSnapshot",
+        "current InvocationSnapshot",
+        "return_to: list<string>"
+      ],
+      "output_types": [
+        "ReconciliationResult"
+      ],
+      "rules": [
+        "source selection/operation/scope/contract versionが変われば前call receiptを無条件継承しない。",
+        "追加・削除sourceは変更後selectionで再計算する。",
+        "前receiptはsource別のretained/staleへ保存する。単数は選択source一意時だけ対応し、retainedから実再利用認可を生成しない。"
+      ]
+    }
+  ],
+  "logical_type_definitions": [
+    {
+      "name": "Field<T>",
+      "kind": "tagged_union",
+      "variants": [
+        "absent",
+        "null",
+        "empty(value:T)",
+        "provided(value:T)"
+      ],
+      "meaning": "JSON memberの未提示/null/空/値ありを区別する。absenceにJSON kindを割り当てない。"
+    },
+    {
+      "name": "JsonValue",
+      "kind": "finite_recursive_tree",
+      "variants": [
+        "null",
+        "boolean",
+        "number",
+        "string",
+        "array<JsonValue>",
+        "object< string, JsonValue >"
+      ],
+      "meaning": "raw JSONを損失なく保持する論理値。資格・採択の根拠ではない。"
+    },
+    {
+      "name": "RawPacket",
+      "kind": "record",
+      "fields": {
+        "identity": "string",
+        "owner": "Field<string>",
+        "revision": "Field<string>",
+        "raw_json": "JsonValue",
+        "sha256": "string",
+        "fixture_only": "boolean",
+        "record_type": "Field<string>"
+      },
+      "meaning": "独立raw JSON bytesとpacket metadataを分けて保持する。JSON body内の未宣言keyもraw_jsonにそのまま残し、source資格は生成しない。"
+    },
+    {
+      "name": "FixtureSelectionBinding",
+      "kind": "record",
+      "fields": {
+        "fixture_source_key": "string",
+        "requirement_ref": "string",
+        "owner_mechanism": "string",
+        "actual_source_identity": "Field<string>",
+        "target_version": "Field<string>",
+        "connection_contract_ref": "Field<string>"
+      },
+      "meaning": "packet内のfixture labelを既存L2 requirement identityへ結ぶ設計上のmapping。実source identity・契約・owner資格を新設しない。"
+    },
+    {
+      "name": "SourceKey",
+      "kind": "record",
+      "fields": {
+        "fixture_source_key": "string",
+        "source_identity": "Field<string>",
+        "revision": "Field<string>",
+        "scope": "Field<JsonValue>",
+        "operation": "Field<string>",
+        "contract_version": "Field<string>",
+        "receipt": "Field<string>",
+        "provenance": "Field<string>",
+        "authority": "Field<string>",
+        "data_use": "Field<JsonValue>",
+        "permission": "Field<JsonValue>",
+        "safety_dependency": "Field<JsonValue>",
+        "source_of_truth_mutated": "Field<boolean>",
+        "state": "Field<string>"
+      },
+      "meaning": "packetが示すsource labelとpresence付きraw factsを保持する。stateは観測値でsource identityのkey比較には使わず、値の存在はqualification evidenceにならない。"
+    },
+    {
+      "name": "SourceQualificationEvidence",
+      "kind": "record",
+      "fields": {
+        "source_identity": "string",
+        "source_revision": "string",
+        "scope": "JsonValue",
+        "data_use_ref": "string",
+        "authority_ref": "string",
+        "qualification_status": "string",
+        "evidence_ref": "string"
+      },
+      "meaning": "source/authority ownerから別途供給されるqualification証拠。fixture packetから合成しない。"
+    },
+    {
+      "name": "SourceMapEntry",
+      "kind": "record",
+      "fields": {
+        "request_key": "SourceKey",
+        "packet_locator": "string",
+        "raw_sha256": "string",
+        "raw_json": "RawPacket",
+        "qualification_ref": "Field<string>",
+        "connection_receipt_ref": "Field<string>"
+      },
+      "meaning": "request keyとsource packet locatorを別fieldで保持する。map entry自体も実資格を意味しない。"
+    },
+    {
+      "name": "InvocationInput",
+      "kind": "record",
+      "fields": {
+        "raw_packet": "RawPacket",
+        "source_index": "list<FixtureSelectionBinding>",
+        "source_map": "list<SourceMapEntry>",
+        "qualification_evidence": "list<SourceQualificationEvidence>",
+        "prior_invocation": "Field<InvocationSnapshot>",
+        "return_to": "list<string>"
+      },
+      "meaning": "評価関数に渡す閉じた入力。source index/map/資格recordはpacket rawと別の供給物として扱う。"
+    },
+    {
+      "name": "DependencyEdge",
+      "kind": "record",
+      "fields": {
+        "fixture_source_key": "string",
+        "actual_source_identity": "Field<string>",
+        "requirement_ref": "Field<string>",
+        "source_requirement_resolution": "SourceRequirementResolution",
+        "dependency_class": "string",
+        "reason": "string",
+        "status": "string"
+      },
+      "meaning": "選択labelと元index解決、raw source facts、適用範囲を保持する。実source identityや資格をfixtureから生成しない。"
+    },
+    {
+      "name": "InvocationAssessment",
+      "kind": "record",
+      "fields": {
+        "disposition": "string",
+        "selected_sources": "Field<list<string>>",
+        "source_selected_requirements": "list<FixtureSelectionBinding>",
+        "dependency_closure": "list<DependencyEdge>",
+        "source_facts": "list<SourceKey>",
+        "unselected_sources": "Field<JsonValue>",
+        "capability_ledger": "Field<JsonValue>",
+        "source_qualification": "string",
+        "permission_state": "string",
+        "source_of_truth_mutation": "Field<boolean>",
+        "return_to": "list<string>",
+        "reason": "string"
+      },
+      "meaning": "個別callの条件・未観測・全能力義務を分離した設計出力。Bench評価、OS割当、権限を含まない。"
+    },
+    {
+      "name": "ReconciliationResult",
+      "kind": "record",
+      "fields": {
+        "changed_dimensions": "list<string>",
+        "retained_prior_receipts": "list<string>",
+        "stale_prior_receipts": "list<string>",
+        "newly_required_sources": "list<string>",
+        "removed_sources": "list<string>",
+        "disposition": "string",
+        "return_to": "list<string>"
+      },
+      "meaning": "prior/current invocationの明示差分。前回receiptを無条件継承しない。 retained/staleはpriorのsource別receipt観測を損失なく分類したlistであり、実再利用認可ではない。異sourceの同文字列を重複排除しない。"
+    },
+    {
+      "name": "InvocationInputProjection",
+      "kind": "record",
+      "fields": {
+        "packet_identity": "string",
+        "source_revision": "string",
+        "fixture_only": "boolean",
+        "operation": "Field<string>",
+        "scope": "Field<JsonValue>",
+        "selected_sources": "Field<list<string>>",
+        "selection_basis": "Field<string>",
+        "source_facts": "list<SourceKey>",
+        "proposal_under_test": "Field<string>",
+        "version_target": "Field<string>",
+        "capability_ledger": "Field<JsonValue>",
+        "unselected_sources": "Field<JsonValue>",
+        "prior_invocation": "Field<InvocationSnapshot>",
+        "new_invocation": "Field<InvocationSnapshot>",
+        "raw_packet": "RawPacket",
+        "additional_source_proposal": "Field<JsonValue>"
+      },
+      "meaning": "個別invocation用raw packetの全宣言fieldをpresence付きで写す論理projection。additional source proposalも入力値のまま保持し、source資格や要求採択を作らない。"
+    },
+    {
+      "name": "InvocationSnapshot",
+      "kind": "record",
+      "fields": {
+        "operation": "Field<string>",
+        "scope": "Field<JsonValue>",
+        "selected_sources": "Field<list<string>>",
+        "contract_revisions": "Field<JsonValue>",
+        "receipts": "Field<JsonValue>",
+        "raw_fields": "JsonValue"
+      },
+      "meaning": "一回のcall値をraw値から投影した比較単位。別呼出しのsource receiptを合成しない。 receiptsは複数key原値のみ。単数receiptはraw_fields.receiptから明示照合し、一意選択source以外へ割当しない。"
+    },
+    {
+      "name": "SourceResolution",
+      "kind": "record",
+      "fields": {
+        "status": "SourceResolutionStatus",
+        "source_key": "SourceKey",
+        "matches": "list<SourceMapEntry>",
+        "matched_entry": "Field<SourceMapEntry>",
+        "raw_sha256": "Field<string>",
+        "raw_json": "Field<JsonValue>",
+        "qualification_ref": "Field<string>",
+        "connection_receipt_ref": "Field<string>",
+        "qualification_state": "string"
+      },
+      "meaning": "SourceMap照合候補を保持する。raw解決、接続receipt、qualificationを区別し、ambiguousでは候補を選ばない。"
+    },
+    {
+      "name": "SourceRequirementResolutionStatus",
+      "kind": "enum",
+      "values": [
+        "missing",
+        "unique",
+        "ambiguous"
+      ],
+      "meaning": "fixture keyのsource index一致件数を表す。資格や実source identityは表さない。"
+    },
+    {
+      "name": "SourceRequirementResolution",
+      "kind": "record",
+      "fields": {
+        "status": "SourceRequirementResolutionStatus",
+        "fixture_source_key": "string",
+        "selected_binding": "Field<FixtureSelectionBinding>",
+        "candidate_bindings": "list<FixtureSelectionBinding>"
+      },
+      "meaning": "0/1/複数一致を表し、複数一致では候補bindingをすべて保持して選択しない。bindingの元値と資格状態は変更しない。"
+    },
+    {
+      "name": "SourceResolutionStatus",
+      "kind": "enum",
+      "values": [
+        "missing",
+        "resolved_raw",
+        "ambiguous"
+      ],
+      "meaning": "SourceMapの0/1/複数一致を表す。資格成立とは別。"
+    }
+  ],
+  "function_signatures_and_decisions": [
+    {
+      "id": "F-058-01",
+      "name": "project_raw_packet",
+      "signature": "project_raw_packet(packet: RawPacket) -> InvocationInputProjection",
+      "preconditions": [
+        "packetは独立raw packetから作られたRawPacket。raw_jsonを変更せず保持する。"
+      ],
+      "postconditions": [
+        "raw_packetには入力packetを同じ値で保持する。",
+        "raw値の未提示/null/empty/providedを区別し、qualification evidenceを作らない。"
+      ],
+      "algorithm": [
+        "RawPacket.raw_jsonを変更せず保持し、factsの明示値からpresenceを区別してfieldへ投影する。",
+        "sources[*].stateをSourceKey.stateへ写す。identityはfixture labelとは別にrawで明示された場合だけsource_identityに写し、fixture_onlyのidentityは実資格を意味しない。",
+        "safety_dependency/security_dependency、contract/contract_version、identity/source_identity、receipt/connection_receiptの原keyを宣言した対応へ写し、存在しない別名を補わない。",
+        "additional_source_proposalはobject等の元JSON型をField<JsonValue>で保ち、proposal_under_testと混同しない。"
+      ],
+      "branches": [
+        "source facts absent/null/empty/providedを別tagで保持し、nested raw valuesも保持する。",
+        "sources[*].stateがrawに無い場合はabsentのままにする。",
+        "fixture labelはfixture_source_keyへ保持し、source identity・qualificationへ昇格しない。",
+        "additional_source_proposalがabsent/null/empty/providedの場合を区別して保持し、L2-033を採択済みsourceへ変換しない。"
+      ],
+      "field_flow": {
+        "reads": {
+          "packet": [
+            "identity",
+            "owner",
+            "revision",
+            "raw_json",
+            "sha256",
+            "fixture_only",
+            "record_type"
+          ],
+          "packet.raw_json.facts": [
+            "operation",
+            "scope",
+            "selected_sources",
+            "selection_basis",
+            "sources[*].identity",
+            "sources[*].revision",
+            "sources[*].state",
+            "sources[*].scope",
+            "sources[*].contract",
+            "sources[*].contract_version",
+            "sources[*].receipt",
+            "sources[*].connection_receipt",
+            "sources[*].provenance",
+            "sources[*].authority",
+            "sources[*].data_use",
+            "sources[*].permission",
+            "sources[*].safety_dependency",
+            "sources[*].security_dependency",
+            "sources[*].source_of_truth_mutated",
+            "proposal_under_test",
+            "version_target",
+            "all_1_0_source_capabilities",
+            "unselected_sources",
+            "prior_invocation",
+            "new_invocation",
+            "additional_source_proposal"
+          ]
+        },
+        "returns": {
+          "InvocationInputProjection": [
+            "packet_identity",
+            "source_revision",
+            "fixture_only",
+            "operation",
+            "scope",
+            "selected_sources",
+            "selection_basis",
+            "source_facts",
+            "proposal_under_test",
+            "version_target",
+            "capability_ledger",
+            "unselected_sources",
+            "prior_invocation",
+            "new_invocation",
+            "raw_packet",
+            "additional_source_proposal"
+          ]
+        }
+      },
+      "output_fields": [
+        "packet_identity",
+        "source_revision",
+        "fixture_only",
+        "operation",
+        "scope",
+        "selected_sources",
+        "selection_basis",
+        "source_facts",
+        "proposal_under_test",
+        "version_target",
+        "capability_ledger",
+        "unselected_sources",
+        "prior_invocation",
+        "new_invocation",
+        "raw_packet",
+        "additional_source_proposal"
+      ]
+    },
+    {
+      "id": "F-058-02",
+      "name": "resolve_source_requirement",
+      "signature": "resolve_source_requirement(fixture_source_key: string, source_index: list<FixtureSelectionBinding>) -> SourceRequirementResolution",
+      "preconditions": [
+        "source_indexはL2本文から定義したfixture-label mappingで入力される。"
+      ],
+      "postconditions": [
+        "一致0/1/複数をstatusで区別し、candidate_bindingsに一致したsource_indexの元bindingを全件保持する。",
+        "uniqueの場合だけselected_bindingに元bindingをそのまま入れ、actual_source_identityやconnection_contract_refのabsent/providedを補正しない。",
+        "fixture label対応は実source identity/契約/qualificationを作らない。"
+      ],
+      "algorithm": [
+        "source_indexをfixture_source_keyの完全一致で絞る。",
+        "一致0ならstatus=missing、selected_binding=absent、候補=[]。一致1ならstatus=unique、selected_binding=元binding、一致候補=[元binding]。一致2件以上ならstatus=ambiguous、selected_binding=absent、候補全件を元順で保持する。"
+      ],
+      "branches": [
+        "一致0件はmissing、一致1件はunique、複数一致はambiguousとして候補全件を返す。",
+        "actual_source_identity、target_version、connection_contract_refをsource_indexの各元値のまま保持し、候補値から実source/契約を推定しない。"
+      ],
+      "field_flow": {
+        "reads": {
+          "fixture_source_key": "string",
+          "source_index": "list<FixtureSelectionBinding>"
+        },
+        "returns": {
+          "status": "完全一致件数でmissing/unique/ambiguous",
+          "fixture_source_key": "入力keyそのまま",
+          "selected_binding": "一件一致した元bindingのみprovided",
+          "candidate_bindings": "一致した元bindingを全件保持"
+        }
+      },
+      "output_fields": [
+        "status",
+        "fixture_source_key",
+        "selected_binding",
+        "candidate_bindings"
+      ]
+    },
+    {
+      "id": "F-058-03",
+      "name": "build_selected_dependency_closure",
+      "signature": "build_selected_dependency_closure(input: InvocationInput, projection: InvocationInputProjection) -> list<DependencyEdge>",
+      "preconditions": [
+        "選択Fieldとsource index/mapは独立入力。unknown/null/absentをemptyへ変換しない。"
+      ],
+      "postconditions": [
+        "選択された各sourceだけをcall closureへ含める。Web/WEB-OS選択時に031/032接続・安全条件を照合する。",
+        "未選択sourceは未観測のまま。全能力の1.0未完は別ledgerへ保持する。",
+        "033はversion_target 2.0なので1.0 call closureへ加えない。"
+      ],
+      "algorithm": [
+        "selected_sourcesの各labelをsource_indexで解決し、そのSourceRequirementResolutionをedgeへそのまま保持する。ambiguous/missingを一つのrequirementへ読み替えない。",
+        "対応するSourceKey.state、receipt等のraw観測と一意raw SourceMap結果を比較し、fixture上の状態と不足fieldをedgeへ記録する。actual_source_identityは元index bindingのfieldだけからコピーし、raw fixture identityを実identityとして扱わない。",
+        "qualification_evidenceと接続receiptを別に調べ、fixture raw factsの解決を実qualificationへ昇格しない。未選択sourceはcall closureへ入れず、全能力ledgerは保持する。",
+        "選択はprojection.selected_sourcesから読む。Absent/Nullでnew_invocationがprovidedなら、そのnew_invocation.selected_sourcesを再照合対象として使い、前回receiptをsource factsへ継承しない。"
+      ],
+      "branches": [
+        "selection absent/nullはempty成功とせずunresolved selection edgeに元Field値を保持する。",
+        "source index missing/ambiguous、raw source map missing/ambiguous、state/receipt/scope/data-use/authority/permission/safety不足を別々のedge reason/statusへ記録する。",
+        "raw mapが一致してもqualification evidenceが無い場合はfixture-only/unqualifiedを保つ。",
+        "not selectedは当callの依存closureへ含めず、global capability stateへ保持する。",
+        "recursive dependency proposalにinvocation selectionがないcaseはclosureを空のまま保つ。これは実callやempty selectionを意味しない。",
+        "projection.selected_sources absent/nullかつnew_invocationもabsentならunresolved selection edge。new_invocationがprovidedなら現在選択sourceごとにraw source未供給をunresolved edgeとして保持。"
+      ],
+      "field_flow": {
+        "reads": {
+          "input": [
+            "source_index",
+            "source_map",
+            "qualification_evidence",
+            "raw_packet"
+          ],
+          "projection": [
+            "selected_sources",
+            "operation",
+            "version_target",
+            "source_facts",
+            "new_invocation"
+          ]
+        },
+        "returns": {
+          "list<DependencyEdge>": [
+            "fixture_source_key",
+            "actual_source_identity",
+            "requirement_ref",
+            "source_requirement_resolution",
+            "dependency_class",
+            "reason",
+            "status"
+          ]
+        }
+      },
+      "output_fields": [
+        "fixture_source_key",
+        "actual_source_identity",
+        "requirement_ref",
+        "source_requirement_resolution",
+        "dependency_class",
+        "reason",
+        "status"
+      ]
+    },
+    {
+      "id": "F-058-04",
+      "name": "resolve_source_map",
+      "signature": "resolve_source_map(source_key: SourceKey, source_map: list<SourceMapEntry>) -> SourceResolution",
+      "preconditions": [
+        "request keyとpacket_locatorは別field。source_mapは独立fixture入力、qualification evidenceは別入力。"
+      ],
+      "postconditions": [
+        "fixture_source_key等の元key fieldが一致したraw packetを0/1/複数で返す。SourceKey.stateは観測値でありkey比較から除外する。",
+        "一意一致はraw resolutionのみ。qualification_ref/connection receiptの元Fieldを保ち、qualified stateを生成しない。",
+        "ambiguousでは候補全件を返し、一件を選択しない。"
+      ],
+      "algorithm": [
+        "SourceKeyのfixture_source_key/source_identity/revision/scope/operation/contract_version/receipt/provenance/authority/data_use/permission/safety_dependency/source_of_truth_mutatedをField tag/value込みでrequest_keyと比較する。stateは比較対象ではなくsource_key出力へ保持する。",
+        "一致0ならmissing、1ならresolved_raw、複数ならambiguous。matchesは一致行全件。",
+        "一致が一件のときだけmatched_entry/raw_sha256/raw_json/qualification_ref/connection_receipt_refを元entryから返す。qualification_stateはqualification_evidenceの別入力がないためunknown。"
+      ],
+      "branches": [
+        "一致0件: missing、matches=[]、derived source fieldsはabsent。",
+        "一致1件: resolved_raw、raw packet位置とbytes/hashを返すがqualification_state=unknown。",
+        "一致複数: ambiguous、候補全件を保持し、どれか一件のpacket/hash/receiptを選ばない。"
+      ],
+      "field_flow": {
+        "reads": {
+          "source_key": [
+            "fixture_source_key",
+            "source_identity",
+            "revision",
+            "scope",
+            "operation",
+            "contract_version",
+            "receipt",
+            "provenance",
+            "authority",
+            "data_use",
+            "permission",
+            "safety_dependency",
+            "source_of_truth_mutated",
+            "state"
+          ],
+          "source_map[*]": [
+            "request_key",
+            "packet_locator",
+            "raw_sha256",
+            "raw_json",
+            "qualification_ref",
+            "connection_receipt_ref"
+          ]
+        },
+        "returns": {
+          "status": "SourceKey state以外の元key fieldとの一致件数",
+          "source_key": "入力SourceKeyをstate込みでそのまま保持",
+          "matches": "一致したentry全件、元順",
+          "matched_entry": "一件一致時のみprovided、それ以外absent",
+          "raw_sha256": "一件一致時のentry raw hash、それ以外absent",
+          "raw_json": "一件一致時のRawPacket.raw_json、それ以外absent",
+          "qualification_ref": "一件一致時のentry元Field、それ以外absent",
+          "connection_receipt_ref": "一件一致時のentry元Field、それ以外absent",
+          "qualification_state": "実qualification evidenceは別owner入力のためunknown"
+        }
+      },
+      "output_fields": [
+        "status",
+        "source_key",
+        "matches",
+        "matched_entry",
+        "raw_sha256",
+        "raw_json",
+        "qualification_ref",
+        "connection_receipt_ref",
+        "qualification_state"
+      ]
+    },
+    {
+      "id": "F-058-05",
+      "name": "assess_invocation",
+      "signature": "assess_invocation(input: InvocationInput, projection: InvocationInputProjection, closure: list<DependencyEdge>) -> InvocationAssessment",
+      "preconditions": [
+        "関数入力を全て明示する。packet bodyから実資格や権限を生成しない。"
+      ],
+      "postconditions": [
+        "選択source facts、失敗/unknown/未観測を個別保持する。",
+        "qualification/permissionは独立したowner-bound evidenceがない限りunknown。",
+        "個別call結果を全1.0能力完了にしない。配置/assignment/Bench evaluationを返さない。"
+      ],
+      "algorithm": [
+        "入力source factsのstate・contract・scope・revision・provenance・data-use・authority・receipt・safetyを、closureとSourceMap raw-resolution projectionに照らして個別に保持する。",
+        "raw state=successはそのfixture packetの観測値として扱う。source mapが一意raw解決してもqualification evidence/実permissionが未提示ならsource_qualification=unknown、permission_state=unknownのままfixture条件の観測に限る。",
+        "state=failure/unknown/not_observed/supplied_fixture_onlyやreceipt/safety/selection不足は元値と理由を保持し、成功へ変換しない。",
+        "未選択sourceは当該callの必須依存にせず未観測を保持し、全能力ledgerは別fieldで保持する。",
+        "return_toはinputのowner境界をそのまま返し、配置/assignment/Bench評価を出力しない。",
+        "new_invocationがprovidedの場合、selected_sourcesはそのsnapshotの原Fieldを返す。source facts/receiptは前回値から補わず、再照合状態を保持する。",
+        "additional_source_proposalの値は提案として保持し、未採択version targetに応じたowner return以外へ承認・requirementを生成しない。"
+      ],
+      "branches": [
+        "選択state=successでも、fixture SourceMap raw resolutionとreceipt条件の観測に限る。qualification evidenceが空ならsource qualification/permissionはunknown。",
+        "選択state=failure/unknown/not_observedはsource stateごと保持し、成功表示にしない。",
+        "selected receipt absent/null/unknown、source map missing/ambiguousは該当source owner/LABOへ返す。",
+        "selection unknownはscope ownerへ戻す。安全条件unknownはSECURITY、接続receiptはCONNECT/source ownerへ返す。",
+        "Worker-only successはcall条件のfixture観測を示せるがevaluation not_evaluated、global incompletionを保持する。",
+        "delete/defer能力提案と058→001循環提案を採用しない。",
+        "L2-033を1.0へ加えるproposalはraw値のまま拒否対象として保持し、2.0/1.0境界の要求ownerへ返す。"
+      ],
+      "field_flow": {
+        "reads": {
+          "input": [
+            "raw_packet",
+            "source_index",
+            "source_map",
+            "qualification_evidence",
+            "prior_invocation",
+            "return_to"
+          ],
+          "projection": [
+            "operation",
+            "scope",
+            "selected_sources",
+            "selection_basis",
+            "source_facts[*].state",
+            "source_facts",
+            "capability_ledger",
+            "unselected_sources",
+            "version_target",
+            "additional_source_proposal",
+            "new_invocation"
+          ],
+          "closure[*]": [
+            "fixture_source_key",
+            "actual_source_identity",
+            "requirement_ref",
+            "dependency_class",
+            "reason",
+            "status"
+          ]
+        },
+        "returns": {
+          "disposition": "明示function inputから返す宣言field",
+          "selected_sources": "明示function inputから返す宣言field",
+          "source_selected_requirements": "明示function inputから返す宣言field",
+          "dependency_closure": "明示function inputから返す宣言field",
+          "source_facts": "明示function inputから返す宣言field",
+          "unselected_sources": "明示function inputから返す宣言field",
+          "capability_ledger": "明示function inputから返す宣言field",
+          "source_qualification": "明示function inputから返す宣言field",
+          "permission_state": "明示function inputから返す宣言field",
+          "source_of_truth_mutation": "明示function inputから返す宣言field",
+          "return_to": "明示function inputから返す宣言field",
+          "reason": "明示function inputから返す宣言field"
+        }
+      },
+      "output_fields": [
+        "disposition",
+        "selected_sources",
+        "source_selected_requirements",
+        "dependency_closure",
+        "source_facts",
+        "unselected_sources",
+        "capability_ledger",
+        "source_qualification",
+        "permission_state",
+        "source_of_truth_mutation",
+        "return_to",
+        "reason"
+      ]
+    },
+    {
+      "id": "F-058-06",
+      "name": "reconcile_invocation_change",
+      "signature": "reconcile_invocation_change(prior: InvocationSnapshot, current: InvocationSnapshot, return_to: list<string>) -> ReconciliationResult",
+      "preconditions": [
+        "prior/current invocation snapshotをraw packet内の別recordから供給する。",
+        "各snapshotの宣言Fieldはraw_fields同名memberの原presence/値と一致する。単数receiptはraw_fields内の原値として残す。"
+      ],
+      "postconditions": [
+        "scope/operation/selection/contract versionが変われば変更次元を列挙する。",
+        "前回receiptの自動引継ぎをしない。",
+        "priorの全nonempty string receipt観測はretained又はstaleへsource別にちょうど一度現れ、削除や未提示で消えない。retainedは実再利用認可を生成しない。"
+      ],
+      "algorithm": [
+        "receipt_reconciliation_rules.raw_supply/receipt_observationsに従い複数mapと単数receiptを別原供給から列挙する。単数は選択source一意の場合だけsource対応する。",
+        "元Fieldと単数receiptのpresence差から変更次元、選択が解決する場合だけ追加/削除sourceを導出する。",
+        "priorの各(source,receipt)を同source/current明示receipt/operation/scope/当該契約版で照合し、対応する観測をretained、その他全てをstaleへ保持する。",
+        "receipt_reconciliation_rules.result_derivationに従い全7返却fieldを作る。currentだけのreceiptをpriorへ混ぜず、return_toを保持する。"
+      ],
+      "branches": [
+        "同sourceの原内容が対応するときだけretainedへ列挙する。全callの成立/許可ではない。",
+        "削除source、操作/scope/当該版変更、current receipt未提示/異値、選択・対応曖昧ではprior receiptをstaleへ残しrecheck_required。",
+        "追加source自身のreceipt不足はrecheck_required。既存sourceのretainedで穴埋めしない。",
+        "単数source不明や複数候補はsourceを選ばずstaleへ保存する。不正形の元値もraw_fields/receiptsに保持する。"
+      ],
+      "field_flow": {
+        "reads": {
+          "prior": [
+            "operation",
+            "scope",
+            "selected_sources",
+            "contract_revisions",
+            "receipts",
+            "raw_fields",
+            "raw_fields.receipt"
+          ],
+          "current": [
+            "operation",
+            "scope",
+            "selected_sources",
+            "contract_revisions",
+            "receipts",
+            "raw_fields",
+            "raw_fields.receipt"
+          ],
+          "return_to": "list<string>"
+        },
+        "returns": {
+          "changed_dimensions": "元Fieldと単数receiptのpresence/値差を固定順で列挙",
+          "retained_prior_receipts": "prior観測順で同source/current明示値/op/scope/当該版が対応するreceipt文字列",
+          "stale_prior_receipts": "prior観測順でretained条件を満たさない全receipt文字列（削除・未提示も保持）",
+          "newly_required_sources": "解決済current selectionからprior selectionを除く（current順）",
+          "removed_sources": "解決済prior selectionからcurrent selectionを除く（prior順）",
+          "disposition": "差分/stale/未解決/不足はrecheck_required、その他はno_explicit_changeという観測",
+          "return_to": "入力return_toを原値で保持"
+        }
+      },
+      "output_fields": [
+        "changed_dimensions",
+        "retained_prior_receipts",
+        "stale_prior_receipts",
+        "newly_required_sources",
+        "removed_sources",
+        "disposition",
+        "return_to"
+      ]
+    }
+  ],
+  "pure_pipeline": [
+    {
+      "step": 1,
+      "function_ref": "F-058-01",
+      "input": "packet: RawPacket",
+      "output": "InvocationInputProjection"
+    },
+    {
+      "step": 2,
+      "function_ref": "F-058-02",
+      "input": "fixture_source_key: string, source_index: list<FixtureSelectionBinding>",
+      "output": "SourceRequirementResolution"
+    },
+    {
+      "step": 3,
+      "function_ref": "F-058-03",
+      "input": "input: InvocationInput, projection: InvocationInputProjection",
+      "output": "list<DependencyEdge>"
+    },
+    {
+      "step": 4,
+      "function_ref": "F-058-04",
+      "input": "source_key: SourceKey, source_map: list<SourceMapEntry>",
+      "output": "SourceResolution"
+    },
+    {
+      "step": 5,
+      "function_ref": "F-058-05",
+      "input": "input: InvocationInput, projection: InvocationInputProjection, closure: list<DependencyEdge>",
+      "output": "InvocationAssessment"
+    },
+    {
+      "step": 6,
+      "function_ref": "F-058-06",
+      "input": "prior: InvocationSnapshot, current: InvocationSnapshot, return_to: list<string>",
+      "output": "ReconciliationResult"
+    }
+  ],
+  "trace_matrix": [
+    {
+      "requirement_ref": "HELIXLABO-L3-058-B01",
+      "oracle_ref": "HELIXLABO-L10-058-B01",
+      "l4_ref": "HELIXLABO-L4-058",
+      "l5_function_refs": [
+        "F-058-01",
+        "F-058-02",
+        "F-058-03",
+        "F-058-04",
+        "F-058-05",
+        "F-058-06"
+      ],
+      "l8_case_refs": [
+        "HELIXLABO-L9-058-B01-WORKER-ONLY",
+        "HELIXLABO-L9-058-B01-WAIT-ALL-COMPLETION",
+        "HELIXLABO-L9-058-B01-SUCCESS-ALL-COMPLETE",
+        "HELIXLABO-L9-058-B01-DELETE-DEFER-1.0",
+        "HELIXLABO-L9-058-B01-RECURSIVE-001"
+      ],
+      "l9_ref": "HELIXLABO-L9-058"
+    },
+    {
+      "requirement_ref": "HELIXLABO-L3-058-F01",
+      "oracle_ref": "HELIXLABO-L10-058-F01",
+      "l4_ref": "HELIXLABO-L4-058",
+      "l5_function_refs": [
+        "F-058-01",
+        "F-058-02",
+        "F-058-03",
+        "F-058-04",
+        "F-058-05",
+        "F-058-06"
+      ],
+      "l8_case_refs": [
+        "HELIXLABO-L9-058-F01-WORKER-ONLY",
+        "HELIXLABO-L9-058-F01-WORKER-OS-FIELDS",
+        "HELIXLABO-L9-058-F01-MISSING-RECEIPT",
+        "HELIXLABO-L9-058-F01-UNKNOWN-SELECTION",
+        "HELIXLABO-L9-058-F01-SAFETY-REFERENCE-ONLY"
+      ],
+      "l9_ref": "HELIXLABO-L9-058"
+    },
+    {
+      "requirement_ref": "HELIXLABO-L3-058-F02",
+      "oracle_ref": "HELIXLABO-L10-058-F02",
+      "l4_ref": "HELIXLABO-L4-058",
+      "l5_function_refs": [
+        "F-058-01",
+        "F-058-02",
+        "F-058-03",
+        "F-058-04",
+        "F-058-05",
+        "F-058-06"
+      ],
+      "l8_case_refs": [
+        "HELIXLABO-L9-058-F02-WEB-UNSELECTED",
+        "HELIXLABO-L9-058-F02-WEB-WEBOS-SELECTED-CONDITIONAL",
+        "HELIXLABO-L9-058-F02-WEB-SELECTED-UNADOPTED",
+        "HELIXLABO-L9-058-F02-CHANGED-SCOPE-VERSION",
+        "HELIXLABO-L9-058-F02-SOURCE-ADDED-RECHECK",
+        "HELIXLABO-L9-058-F02-SOURCE-DELETED-RECHECK",
+        "HELIXLABO-L9-058-F02-OPERATION-CHANGED-RECHECK",
+        "HELIXLABO-L9-058-F02-NO-033-IN-1.0"
+      ],
+      "l9_ref": "HELIXLABO-L9-058"
+    }
+  ],
+  "unclosed": [
+    "正式source identity/owner-qualified qualification・permission・接続・契約版は未供給。",
+    "正式schema/codec、source resolver/runtime、並行・競合・再送/replayの実測は未成立。",
+    "全430対の設計/検証閉包・実TDD/CI・PO L11受入は未成立。"
+  ],
+  "approval_whole_files": [
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.json",
+      "sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/business-verification.md",
+      "sha256": "1abff25ba108a6e1055c0a811fa67befd44e73469ffda6ae8735b65249b2a441"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.json",
+      "sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/functional-verification.md",
+      "sha256": "7719e128e442644224ba2b586f2f3ad0f0f14692847d8678a681abf616896270"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.json",
+      "sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919"
+    },
+    {
+      "path": "docs/helix-labo/L10-verification/nfr-verification.md",
+      "sha256": "52966ddf22818f0ee1306c98496975304ce847255cffb243065963958c076844"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.json",
+      "sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/business-requirements.md",
+      "sha256": "f2ae2897b615a7dde0d06cae6e02af72dfdd60f182e91728d94d3c250bfcaa77"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
+      "sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/functional-requirements.md",
+      "sha256": "3be891bae6d3ed19931d8c9bac1989e1c6eff0cc6868d165d9ca9e1bc6787129"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
+      "sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5"
+    },
+    {
+      "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
+      "sha256": "d2453f852b93da95605c5780f51a7cd4d585685f673eb6c90393e93164be97dd"
+    }
+  ],
+  "receipt_reconciliation_rules": {
+    "basis": [
+      "HELIXLABO-L3-058-F02",
+      "HELIXLABO-L10-058-F02",
+      "HELIXLABO-L4-058-F02"
+    ],
+    "raw_supply": "InvocationSnapshot.receiptsはraw_fields.receiptsだけのpresence付き原値投影を維持する。単数raw_fields.receiptをreceiptsへ補完せず、F-058-06が明示的に読む。operation/scope/selected_sources/contract_revisionsも同名raw memberの投影でありraw_fields全体を保持する。 同sourceとは当該rawのselected_sources/receipts keyのfixture label対応であり、実source identityの同一性・owner-qualified bindingは未供給のまま。",
+    "receipt_observations": [
+      "receiptsがobjectならsource keyの辞書順で各nonempty string値を(source,receipt)観測として列挙する。map keyは同snapshotのselected_sourcesに属する場合だけ同source対応の候補であり、未選択keyも前receipt観測から削除しない。",
+      "単数receiptがnonempty stringの場合、selected_sourcesがprovidedの一要素string listの時だけそのsourceへ対応させる。空/未提示/null/複数/重複選択ではsource未解決のreceiptとして保存する。別sourceへの割当を推測しない。",
+      "mapと単数の両方が同source同値を示すときだけ同一(source,receipt)観測へまとめる。異値なら同sourceの複数候補であり全候補をstaleへ返す。異sourceが同receipt文字列でもsource別観測を併合せず、出力listの重複を残す。",
+      "map以外のreceipts、nonstring/empty/null receipt値は有効receipt候補へ変換しない。原presence/JSON値はraw_fields/receiptsへ残り、未解決は再照合へ返す。空list出力から元receiptが存在しなかったとは推論しない。"
+    ],
+    "correspondence": [
+      "priorの各receipt観測をちょうど一度retained又はstaleへ分類する。retainedにはprior/currentの一意な同source選択、各snapshotで一意な同receipt文字列、providedで等しいoperationとscope、同sourceの契約版Fieldの内容対応が全て必要。currentに明示receiptが無ければpriorから補わない。",
+      "契約版はcontract_revisionsがobjectなら当該source memberだけをField化して比較する。他sourceの版を代用しない。object以外は元Fieldのtag/valueを比較する。原3fixtureの版は両absentであり、これは同じ未提示状態の対応に留まり有効な版の成立ではない。版の未提示/null/emptyを有効版へ補わない。 nonempty string値のmap又は未提示以外の版shapeは未解決でretained条件を満たさずstaleへ残す。",
+      "source削除、operation/scope/当該source契約版の不一致、prior/currentの同source receiptが複数/異値、current receipt未提示、source選択不明はstale。削除source receiptをcurrentへ適用せずstaleへ残す。追加sourceにはそのsource自身の明示receiptが必要であり既存sourceのretainedを新call全体へ拡張しない。",
+      "retainedはsource別の提示内容対応という観測だけであり、実receiptの有効性・owner資格・契約採択・再利用認可・新call成立を表さない。これらの独立owner証拠は本signatureへ供給されずunknownのまま。"
+    ],
+    "result_derivation": [
+      "changed_dimensionsはoperation,scope,selected_sources,contract_revisions,receiptsの順。先の4つは元Field(tag/value)を比較し、receipts次元は複数receipts Field又は単数raw_fields.receiptのFieldの差を比較する。単数/複数表現の差も保持し、対応観測が同じでも差を隠さない。",
+      "newly_required_sources/removed_sourcesは両方がprovidedの重複なしnonempty string list又はempty([])ならcurrent-prior/prior-currentをそれぞれ元selection順に返す。selection未解決では差集合を推測せず[]としdispositionはrecheck_required。",
+      "retained_prior_receipts/stale_prior_receiptsはprior観測順のreceipt文字列を返す。sourceとの対応とraw locatorは入力raw_fieldsで辿る。currentだけの新receiptをprior receipt出力へ混ぜない。",
+      "明示差分、stale、receipt/source/版の不正形、又はcurrent選択sourceに一意receiptが無い場合はdisposition=recheck_required。これらが無い場合だけno_explicit_changeとする。いずれも実資格/許可/呼出し成立の判定ではない。return_toは入力をそのまま返す。"
+    ],
+    "original_case_correction": {
+      "SOURCE-ADDED-RECHECK": {
+        "retained_prior_receipts": [
+          "R-W7"
+        ],
+        "stale_prior_receipts": [],
+        "limit": "WORKER-Aの同内容だけ対応。OS-A不足と新call再照合を保持。"
+      },
+      "SOURCE-DELETED-RECHECK": {
+        "retained_prior_receipts": [
+          "R-W7"
+        ],
+        "stale_prior_receipts": [
+          "R-O4"
+        ],
+        "limit": "current単数receiptは一意選択WORKER-A対応。OS-A削除をstaleへ残す。"
+      },
+      "OPERATION-CHANGED-RECHECK": {
+        "retained_prior_receipts": [],
+        "stale_prior_receipts": [
+          "R-W7"
+        ],
+        "limit": "prior単数receiptをWORKER-Aに対応しoperation差/current未提示でstale。receipts変更次元も返す。"
+      }
+    },
+    "preserved": "批准6objects/12whole、基本L4/L9、原18raw/元GWT期待、InvocationSnapshot全fieldと原presence、他5関数signature/原期待を保持。",
+    "change_reason": "R1 LABO58D-01の原prior receiptを両空listへ落とした設計不足を訂正。旧FRS-R-06/13/14のexact set/dependent closure/unknown・staleを空集合成功にしない保持点を原L3/L10-F02のsource別再照合へ意味再導出する。旧schema/runtime/CI又は新gateは導入しない。"
+  }
+}
