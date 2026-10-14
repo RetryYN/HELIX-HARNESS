@@ -533,7 +533,17 @@
     "detail_pair_files_present_at_declared_source_main": false,
     "detail_pair_files_present_at_authoring_base": false,
     "detail_pair_source_revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
-    "meaning": "L4/L9は既存basic source、今回のL5/L8はそのbasic sourceからの別導出であり、detail本文をbasic source revisionに帰属させない。"
+    "meaning": "L4/L9は既存basic source、今回のL5/L8はそのbasic sourceからの別導出であり、detail本文をbasic source revisionに帰属させない。",
+    "L4_bytes": {
+      "path": "docs/helix-harness/L4-basic-design/verification-measurement-contract.json",
+      "revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "sha256": "1445d725c4636dd8c423217d0b91b82d20fec2ff398dabc7461fc15181f986ca"
+    },
+    "L9_bytes": {
+      "path": "docs/helix-harness/L9-integration-verification/verification-measurement-contract.json",
+      "revision": "baf666ae1e3800323b4451cf8473129e5fa464e1",
+      "sha256": "0f144ebe28435a400759aa485485efa2e439682d14cc3eb85f450aa837f0caf5"
+    }
   },
   "full_goal_scope_preserved": {
     "parents": 92,
@@ -2326,173 +2336,35 @@
         "kind": "record",
         "fields": {
           "domain_results": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "record",
-              "fields": {
-                "accessibility": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "availability": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "compatibility": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "cost_resource": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "data_quality": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "maintainability": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "observability": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "operability": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "performance": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "privacy": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "recoverability": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "reliability": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "security": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                }
-              },
-              "additional_properties": "preserve_unknown_as_json_value"
+            "kind": "map",
+            "key_type": "string",
+            "value_type": {
+              "kind": "enum",
+              "values": [
+                "required_in_fixture",
+                "unknown",
+                "missing_NA_reason",
+                "not_applicable_in_fixture"
+              ]
             }
           },
           "shared_threshold_imposed": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "boolean",
-                "string"
-              ]
-            }
+            "kind": "union",
+            "members": [
+              {
+                "kind": "scalar",
+                "type": "boolean"
+              },
+              {
+                "kind": "enum",
+                "values": [
+                  "rejected"
+                ]
+              }
+            ]
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       },
       "Input_F03": {
         "kind": "record",
@@ -3304,6 +3176,28 @@
               },
               "additional_properties": "preserve_unknown_as_json_value"
             }
+          },
+          "future_measurement_gate_claim": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "enum",
+              "values": [
+                "rejected_candidate_claim",
+                "not_proposed",
+                "unknown"
+              ]
+            }
+          },
+          "requires_future_measurement_to_author": {
+            "presence_states": [
+              "provided"
+            ],
+            "value": {
+              "kind": "scalar",
+              "type": "boolean"
+            }
           }
         },
         "additional_properties": "preserve_unknown_as_json_value"
@@ -3528,76 +3422,53 @@
       "Assessment_F05": {
         "kind": "record",
         "fields": {
-          "new_approval_created": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "boolean"
+          "pending_results": {
+            "kind": "map",
+            "key_type": "string",
+            "value_type": {
+              "kind": "enum",
+              "values": [
+                "retained",
+                "missing_in_handoff",
+                "changed_in_handoff"
               ]
             }
           },
           "pending_retained_from_original": {
-            "presence_states": [
-              "empty",
-              "provided"
-            ],
-            "value": {
+            "kind": "map",
+            "key_type": "string",
+            "value_type": {
               "kind": "record",
               "fields": {
-                "METRIC-P": {
-                  "presence_states": [
-                    "absent",
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "record",
-                    "fields": {
-                      "owner": {
-                        "presence_states": [
-                          "provided"
-                        ],
-                        "value": {
-                          "kind": "union",
-                          "members": [
-                            "string"
-                          ]
-                        }
-                      },
-                      "reason": {
-                        "presence_states": [
-                          "provided"
-                        ],
-                        "value": {
-                          "kind": "union",
-                          "members": [
-                            "string"
-                          ]
-                        }
-                      },
-                      "trigger": {
-                        "presence_states": [
-                          "provided"
-                        ],
-                        "value": {
-                          "kind": "union",
-                          "members": [
-                            "string"
-                          ]
-                        }
-                      }
-                    },
-                    "additional_properties": "preserve_unknown_as_json_value"
-                  }
+                "owner": {
+                  "kind": "scalar",
+                  "type": "string"
+                },
+                "reason": {
+                  "kind": "scalar",
+                  "type": "string"
+                },
+                "trigger": {
+                  "kind": "scalar",
+                  "type": "string"
                 }
               },
-              "additional_properties": "preserve_unknown_as_json_value"
+              "additional_properties": "forbidden"
             }
+          },
+          "change_route": {
+            "kind": "enum",
+            "values": [
+              "003_004_meaning_Backflow",
+              "ordinary_L3_technical_derivation"
+            ]
+          },
+          "new_approval_created": {
+            "kind": "scalar",
+            "type": "boolean"
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       },
       "Input_F06": {
         "kind": "record",
@@ -4455,151 +4326,42 @@
       "Assessment_F08": {
         "kind": "record",
         "fields": {
-          "cause_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
+          "condition_results": {
+            "kind": "map",
+            "key_type": "string",
+            "value_type": {
+              "kind": "enum",
+              "values": [
+                "reasoned_not_applicable",
+                "specified_in_fixture",
+                "missing"
               ]
             }
           },
-          "condition_results": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "record",
-              "fields": {
-                "archive_maintenance": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "busy_timeout_degradation": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "concurrency": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "data_volume": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "lock_wait": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "long_soak": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "projection_p95": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "projection_p99": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "query_p95": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "query_p99": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "rebuild": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                }
+          "cause_result": {
+            "kind": "enum",
+            "values": [
+              "unreproduced_cause_claim_rejected",
+              "unknown"
+            ]
+          },
+          "legacy_DB_forced": {
+            "kind": "union",
+            "members": [
+              {
+                "kind": "scalar",
+                "type": "boolean"
               },
-              "additional_properties": "preserve_unknown_as_json_value"
-            }
+              {
+                "kind": "enum",
+                "values": [
+                  "rejected"
+                ]
+              }
+            ]
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       },
       "Input_F09": {
         "kind": "record",
@@ -5038,128 +4800,58 @@
         "kind": "record",
         "fields": {
           "method_results": {
+            "kind": "map",
+            "key_type": "string",
+            "value_type": {
+              "kind": "enum",
+              "values": [
+                "selected_with_reason",
+                "missing_selection_reason",
+                "not_selected"
+              ]
+            }
+          },
+          "005_unfinished_obligations": {
+            "kind": "list",
+            "items": {
+              "kind": "enum",
+              "values": [
+                "fault_injection",
+                "race",
+                "soak",
+                "crash_recovery",
+                "property_based",
+                "model_based_state_machine",
+                "differential",
+                "mutation",
+                "fuzz",
+                "snapshot_compatibility"
+              ]
+            }
+          },
+          "all_ticket_fixed_CI": {
+            "kind": "scalar",
+            "type": "boolean"
+          },
+          "verification_complete": {
+            "kind": "scalar",
+            "type": "boolean"
+          },
+          "all_ticket_fixed_CI_claim": {
             "presence_states": [
               "provided"
             ],
             "value": {
-              "kind": "record",
-              "fields": {
-                "crash_recovery": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "differential": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "fault_injection": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "fuzz": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "model_based_state_machine": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "mutation": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "property_based": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "race": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "snapshot_compatibility": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "soak": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                }
-              },
-              "additional_properties": "preserve_unknown_as_json_value"
+              "kind": "enum",
+              "values": [
+                "rejected_candidate_claim",
+                "not_proposed",
+                "unknown"
+              ]
             }
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       },
       "Input_F10": {
         "kind": "record",
@@ -5469,63 +5161,50 @@
       "Assessment_F10": {
         "kind": "record",
         "fields": {
-          "causality_claim": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
+          "relation_results": {
+            "kind": "map",
+            "key_type": "string",
+            "value_type": {
+              "kind": "enum",
+              "values": [
+                "missing",
+                "same_relation_in_fixture",
+                "conflict"
               ]
             }
           },
-          "relation_results": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "record",
-              "fields": {
-                "LABO": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "OS": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                }
-              },
-              "additional_properties": "preserve_unknown_as_json_value"
-            }
-          },
           "release_state": {
+            "kind": "enum",
+            "values": [
+              "unobserved"
+            ]
+          },
+          "causality_claim": {
+            "kind": "enum",
+            "values": [
+              "causal_inference_rejected",
+              "source_relation_only"
+            ]
+          },
+          "future_improvement_required_to_author": {
+            "kind": "scalar",
+            "type": "boolean"
+          },
+          "future_improvement_gate_claim": {
             "presence_states": [
               "provided"
             ],
             "value": {
-              "kind": "union",
-              "members": [
-                "string"
+              "kind": "enum",
+              "values": [
+                "rejected_candidate_claim",
+                "not_proposed",
+                "unknown"
               ]
             }
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       },
       "Input_N01": {
         "kind": "record",
@@ -5980,52 +5659,53 @@
       "Assessment_N02": {
         "kind": "record",
         "fields": {
-          "content_validation_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+          "target_result": {
+            "kind": "enum",
+            "values": [
+              "unknown_original_extrapolation_rejected",
+              "unknown"
+            ]
           },
           "representative_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "unknown_original_extrapolation_rejected",
+              "unknown"
+            ]
           },
-          "target_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+          "content_validation_result": {
+            "kind": "enum",
+            "values": [
+              "format_only_pass_rejected",
+              "requires_14_fields_quality_and_four_failure_content"
+            ]
           },
           "universal_claim": {
+            "kind": "enum",
+            "values": [
+              "rejected",
+              "none"
+            ]
+          },
+          "all_ticket_fixed_CI": {
+            "kind": "scalar",
+            "type": "boolean"
+          },
+          "all_ticket_fixed_CI_claim": {
             "presence_states": [
               "provided"
             ],
             "value": {
-              "kind": "union",
-              "members": [
-                "string"
+              "kind": "enum",
+              "values": [
+                "rejected_candidate_claim",
+                "not_proposed",
+                "unknown"
               ]
             }
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       },
       "Input_B01": {
         "kind": "record",
@@ -6185,107 +5865,59 @@
       "Assessment_B01": {
         "kind": "record",
         "fields": {
-          "comparison_authority": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+          "executor_result": {
+            "kind": "enum",
+            "values": [
+              "external_user_CI_selected",
+              "internal_OS_selected"
+            ]
           },
           "dependency_results": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "record",
-              "fields": {
-                "CONNECT": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "SEC_data_use": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "future_INFRA": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "internal_OS": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                },
-                "resource": {
-                  "presence_states": [
-                    "provided"
-                  ],
-                  "value": {
-                    "kind": "union",
-                    "members": [
-                      "string"
-                    ]
-                  }
-                }
-              },
-              "additional_properties": "preserve_unknown_as_json_value"
-            }
-          },
-          "executor_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
+            "kind": "map",
+            "key_type": "string",
+            "value_type": {
+              "kind": "enum",
+              "values": [
+                "not_required_for_this_authoring_operation",
+                "not_selected",
+                "not_required",
+                "reference_only",
+                "missing",
+                "supported_in_fixture"
               ]
             }
           },
           "oracle_result": {
-            "presence_states": [
-              "provided"
-            ],
-            "value": {
-              "kind": "union",
-              "members": [
-                "string"
-              ]
-            }
+            "kind": "enum",
+            "values": [
+              "held",
+              "conflict"
+            ]
+          },
+          "comparison_authority": {
+            "kind": "enum",
+            "values": [
+              "rejected",
+              "none"
+            ]
+          },
+          "internal_OS_forced": {
+            "kind": "union",
+            "members": [
+              {
+                "kind": "scalar",
+                "type": "boolean"
+              },
+              {
+                "kind": "enum",
+                "values": [
+                  "rejected"
+                ]
+              }
+            ]
           }
         },
-        "additional_properties": "preserve_unknown_as_json_value"
+        "additional_properties": "forbidden"
       }
     }
   },
@@ -6390,7 +6022,7 @@
         "domain_results",
         "shared_threshold_imposed"
       ],
-      "algorithm": "13品質domainのapplicability/reason/target sourceを別々に保ち、unknownと理由のないN/Aを判別する。共通閾値を他製品へ押し付けない。 domains各memberのapplicability/reason/target_sourceからrequired/unknown/missing_NA_reasonを別判定する。scope=unboundedまたはperformance.target_source absentならperformanceはunknown。impose_same_threshold=trueはrejectedへ写す。domain集合を製品間で一本化しない。",
+      "algorithm": "domains各memberのapplicability/reason/target_sourceを値とpresenceで比較する。domains.performance.proposed_limitが文字列unboundedならperformance=unknown。target_sourceのabsentと明示nullは入力型で別状態として保持し、どちらもsource未提示としてunknownにする。impose_same_threshold=trueはrejected。other_productのscope/target/environmentをperformanceへ混ぜない。",
       "semantic_rules": [
         {
           "id": "F02-SOURCE-COMPARISON",
@@ -6400,8 +6032,8 @@
             "input.other_product",
             "input.scope"
           ],
-          "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "domains各memberのapplicability/reason/target_sourceからrequired/unknown/missing_NA_reasonを別判定する。scope=unboundedまたはperformance.target_source absentならperformanceはunknown。impose_same_threshold=trueはrejectedへ写す。domain集合を製品間で一本化しない。",
+          "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
+          "comparison": "domains各memberのapplicability/reason/target_sourceを値とpresenceで比較する。domains.performance.proposed_limitが文字列unboundedならperformance=unknown。target_sourceのabsentと明示nullは入力型で別状態として保持し、どちらもsource未提示としてunknownにする。impose_same_threshold=trueはrejected。other_productのscope/target/environmentをperformanceへ混ぜない。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "domain_results",
@@ -6409,7 +6041,8 @@
           ],
           "unknown": "未提示・不一致・未観測を成功へ補完しない。fixture所見は実source qualificationではない。",
           "return_to": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
-          "basis": "HARNESS-L9-034-F02"
+          "basis": "HARNESS-L9-034-F02",
+          "presence": "raw原値についてabsent・explicit null・empty・providedを区別する。nullとabsentが同じsource未提示結果に写る場合も、そのraw状態は型付き入力に残す。"
         }
       ],
       "postconditions": [
@@ -6513,10 +6146,11 @@
         "expected_material_pointer"
       ],
       "returns": [
+        "requires_future_measurement_to_author",
         "stage_meaning_results",
         "stage_results"
       ],
-      "algorithm": "6段階の意味契約をrequired/providedで照合し、観測stageを別に保持する。短い時系列から長期評価/利用受入を作らない。 required_stage_meanings各値をprovided_stage_meaningsと完全比較し、6つのstage_observationsを保持する。local_pass_substituted/instant_sample_onlyはinsufficient_stage_evidenceとして扱い、別stageへの代入をしない。legacy_L7 inferenceはmeaning_conflict。",
+      "algorithm": "6段階の意味契約をrequired/providedで照合し、観測stageを別に保持する。短い時系列から長期評価/利用受入を作らない。 required_stage_meanings各値をprovided_stage_meaningsと完全比較し、6つのstage_observationsを保持する。local_pass_substituted/instant_sample_onlyはinsufficient_stage_evidenceとして扱い、別stageへの代入をしない。legacy_L7 inferenceはmeaning_conflict。 原rawのinput.requires_future_measurement_to_authorがtrueならfuture_measurement_gate_claim=rejected_candidate_claim、falseならnot_proposed、absent/nullならunknownを別の補足returnとして返す。 原L9のrequires_future_measurement_to_authorは、契約起草に未来実測を要件化しない既決規則としてfalseを返す。入力でtrueを提案した事実は別supplemental returnの候補拒否診断に残す。",
       "semantic_rules": [
         {
           "id": "F04-SOURCE-COMPARISON",
@@ -6527,13 +6161,15 @@
             "input.stage_observations"
           ],
           "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "required_stage_meanings各値をprovided_stage_meaningsと完全比較し、6つのstage_observationsを保持する。local_pass_substituted/instant_sample_onlyはinsufficient_stage_evidenceとして扱い、別stageへの代入をしない。legacy_L7 inferenceはmeaning_conflict。",
+          "comparison": "required_stage_meanings各値をprovided_stage_meaningsと完全比較し、6つのstage_observationsを保持する。local_pass_substituted/instant_sample_onlyはinsufficient_stage_evidenceとして扱い、別stageへの代入をしない。legacy_L7 inferenceはmeaning_conflict。 input.requires_future_measurement_to_authorがtrueの候補主張はfuture_measurement_gate_claim=rejected_candidate_claimで明示し、falseはnot_proposed、欠落/nullはunknownとする。このfieldはHARNESS-L9-034-F04.requires_future_measurement_to_authorの原期待に加えず、L4根拠の補足診断として別出力にする。 原L9 projectionのrequires_future_measurement_to_authorはfalseを返す。入力rawのtrue候補そのものは別supplemental findingで拒否し、原L9 expected_materialを変更しない。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
+            "future_measurement_gate_claim",
+            "requires_future_measurement_to_author",
             "stage_meaning_results",
             "stage_results"
           ],
-          "unknown": "未提示・不一致・未観測を成功へ補完しない。fixture所見は実source qualificationではない。",
+          "unknown": "未提示・不一致・未観測を成功へ補完しない。fixture所見は実source qualificationではない。 補足診断のsource fieldがabsent/nullならunknownを返し、肯定/拒否のどちらにも補完しない。",
           "return_to": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
           "basis": "HARNESS-L9-034-F04"
         }
@@ -6541,8 +6177,27 @@
       "postconditions": [
         "返却はAssessment schemaの宣言fieldのみ。contextを結果へ暗黙追加しない。",
         "expected_material_pointerは追跡専用で計算には読まない。",
-        "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。"
-      ]
+        "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。",
+        "supplemental returnはL4根拠の局所候補診断であり、原L9 expected_materialへ挿入しない。"
+      ],
+      "supplemental_returns": [
+        "future_measurement_gate_claim"
+      ],
+      "supplemental_return_scope": "L4由来の候補主張拒否診断。元L9期待のfieldではなく、L9 oracle projectionと混ぜず、L4根拠に対する局所補足として返す。",
+      "supplemental_output_type": {
+        "kind": "record",
+        "fields": {
+          "future_measurement_gate_claim": {
+            "kind": "enum",
+            "values": [
+              "rejected_candidate_claim",
+              "not_proposed",
+              "unknown"
+            ]
+          }
+        },
+        "additional_properties": "forbidden"
+      }
     },
     {
       "id": "F-034-F05",
@@ -6579,10 +6234,12 @@
         "expected_material_pointer"
       ],
       "returns": [
+        "change_route",
         "new_approval_created",
+        "pending_results",
         "pending_retained_from_original"
       ],
-      "algorithm": "measurement pendingをsource変更後もidentity・owner・reason・triggerごとに保持し、probe交換のみから承認や実測を生成しない。 original_pendingの各metric/valueをhandoff_pending同一keyで完全一致比較し、一致する原pendingだけを保持する。probe revision交換やproposed_new_approvalから新承認を作らない。",
+      "algorithm": "original_pendingの全key/valueを無条件にpending_retained_from_originalへ複写する。各keyについてhandoff_pendingに同じkeyと完全一致値があればpending_results=retained、keyが無ければmissing_in_handoff、値が違えばchanged_in_handoff。before_requirement_meaningとafter_requirement_meaningが違えばchange_route=003_004_meaning_Backflow、同じならordinary_L3_technical_derivation。いずれも新承認を作らない。",
       "semantic_rules": [
         {
           "id": "F05-SOURCE-COMPARISON",
@@ -6595,16 +6252,19 @@
             "input.probe_before",
             "input.proposed_new_approval"
           ],
-          "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "original_pendingの各metric/valueをhandoff_pending同一keyで完全一致比較し、一致する原pendingだけを保持する。probe revision交換やproposed_new_approvalから新承認を作らない。",
+          "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
+          "comparison": "original_pendingの全key/valueを無条件にpending_retained_from_originalへ複写する。各keyについてhandoff_pendingに同じkeyと完全一致値があればpending_results=retained、keyが無ければmissing_in_handoff、値が違えばchanged_in_handoff。before_requirement_meaningとafter_requirement_meaningが違えばchange_route=003_004_meaning_Backflow、同じならordinary_L3_technical_derivation。いずれも新承認を作らない。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
+            "change_route",
             "new_approval_created",
+            "pending_results",
             "pending_retained_from_original"
           ],
           "unknown": "未提示・不一致・未観測を成功へ補完しない。fixture所見は実source qualificationではない。",
           "return_to": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
-          "basis": "HARNESS-L9-034-F05"
+          "basis": "HARNESS-L9-034-F05",
+          "presence": "raw原値についてabsent・explicit null・empty・providedを区別する。nullとabsentが同じsource未提示結果に写る場合も、そのraw状態は型付き入力に残す。"
         }
       ],
       "postconditions": [
@@ -6787,9 +6447,10 @@
       ],
       "returns": [
         "cause_result",
-        "condition_results"
+        "condition_results",
+        "legacy_DB_forced"
       ],
-      "algorithm": "storage conditionごとのmethod-specific contentを保持し、cause reproduction・legacy DB選択を独立扱いする。 persistent_selected=falseかつnonpersistent_reasonありの場合に各storage conditionをreasoned_not_applicable、それ以外は値の有無でspecified/missing。cause_claimをcause_reproducedと別比較し、主張があり再現falseならunreproduced_cause_claim_rejected。",
+      "algorithm": "原storage conditionごとにpersistent_selected=falseかつnonpersistent_reasonが非null/非emptyならreasoned_not_applicable、それ以外は値presenceからspecified_in_fixture/missingを返す。cause_claimがnull/unknownならunknown、主張ありかつcause_reproduced=falseならunreproduced_cause_claim_rejected。force_legacy_DB=trueならlegacy_DB_forced=rejected。",
       "semantic_rules": [
         {
           "id": "F08-SOURCE-COMPARISON",
@@ -6802,16 +6463,18 @@
             "input.persistent_selected",
             "input.selected_method"
           ],
-          "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "persistent_selected=falseかつnonpersistent_reasonありの場合に各storage conditionをreasoned_not_applicable、それ以外は値の有無でspecified/missing。cause_claimをcause_reproducedと別比較し、主張があり再現falseならunreproduced_cause_claim_rejected。",
+          "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
+          "comparison": "原storage conditionごとにpersistent_selected=falseかつnonpersistent_reasonが非null/非emptyならreasoned_not_applicable、それ以外は値presenceからspecified_in_fixture/missingを返す。cause_claimがnull/unknownならunknown、主張ありかつcause_reproduced=falseならunreproduced_cause_claim_rejected。force_legacy_DB=trueならlegacy_DB_forced=rejected。 cause_claim=unknownはcause_reproduced=falseでもunknownのまま保持し、未知を因果主張や失敗へ読み替えない。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "cause_result",
-            "condition_results"
+            "condition_results",
+            "legacy_DB_forced"
           ],
           "unknown": "未提示・不一致・未観測を成功へ補完しない。fixture所見は実source qualificationではない。",
           "return_to": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
-          "basis": "HARNESS-L9-034-F08"
+          "basis": "HARNESS-L9-034-F08",
+          "presence": "raw原値についてabsent・explicit null・empty・providedを区別する。nullとabsentが同じsource未提示結果に写る場合も、そのraw状態は型付き入力に残す。"
         }
       ],
       "postconditions": [
@@ -6855,9 +6518,12 @@
         "expected_material_pointer"
       ],
       "returns": [
-        "method_results"
+        "005_unfinished_obligations",
+        "all_ticket_fixed_CI",
+        "method_results",
+        "verification_complete"
       ],
-      "algorithm": "riskに応じた各method selection/reasonを確認し、selection/installationだけでticket completionやverificationを言わない。 methods各keyのselected/reasonからselected_with_reason/missing_selection_reason/not_selectedを決める。選択・導入は実測またはticket fixed CI完了ではない。",
+      "algorithm": "methods各keyでselected=trueかつreasonありをselected_with_reasonへ写す。全methodの選択・installation_onlyはverification完了を意味しない。全ticket固定CIは常にfalseとし、actual_verification_observed=falseまたはmethod_installation_only=trueならverification_complete=false、005の未完義務を原L4記載順で返す。 原rawのinput.all_ticket_fixed_CIがtrueならall_ticket_fixed_CI_claim=rejected_candidate_claim、falseならnot_proposed、absent/nullならunknownを別の補足returnとして返す。",
       "semantic_rules": [
         {
           "id": "F09-SOURCE-COMPARISON",
@@ -6870,22 +6536,46 @@
             "input.selected_boundary",
             "input.ticket"
           ],
-          "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "methods各keyのselected/reasonからselected_with_reason/missing_selection_reason/not_selectedを決める。選択・導入は実測またはticket fixed CI完了ではない。",
+          "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
+          "comparison": "methods各keyでselected=trueかつreasonありをselected_with_reasonへ写す。全methodの選択・installation_onlyはverification完了を意味しない。全ticket固定CIは常にfalseとし、actual_verification_observed=falseまたはmethod_installation_only=trueならverification_complete=false、005の未完義務を原L4記載順で返す。 input.all_ticket_fixed_CIがtrueの候補主張はall_ticket_fixed_CI_claim=rejected_candidate_claimで明示し、falseはnot_proposed、欠落/nullはunknownとする。このfieldはHARNESS-L9-034-F09.all_ticket_fixed_CIの原期待に加えず、L4根拠の補足診断として別出力にする。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
-            "method_results"
+            "005_unfinished_obligations",
+            "all_ticket_fixed_CI",
+            "all_ticket_fixed_CI_claim",
+            "method_results",
+            "verification_complete"
           ],
-          "unknown": "未提示・不一致・未観測を成功へ補完しない。fixture所見は実source qualificationではない。",
+          "unknown": "未提示・不一致・未観測を成功へ補完しない。fixture所見は実source qualificationではない。 補足診断のsource fieldがabsent/nullならunknownを返し、肯定/拒否のどちらにも補完しない。",
           "return_to": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
-          "basis": "HARNESS-L9-034-F09"
+          "basis": "HARNESS-L9-034-F09",
+          "presence": "raw原値についてabsent・explicit null・empty・providedを区別する。nullとabsentが同じsource未提示結果に写る場合も、そのraw状態は型付き入力に残す。"
         }
       ],
       "postconditions": [
         "返却はAssessment schemaの宣言fieldのみ。contextを結果へ暗黙追加しない。",
         "expected_material_pointerは追跡専用で計算には読まない。",
-        "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。"
-      ]
+        "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。",
+        "supplemental returnはL4根拠の局所候補診断であり、原L9 expected_materialへ挿入しない。"
+      ],
+      "supplemental_returns": [
+        "all_ticket_fixed_CI_claim"
+      ],
+      "supplemental_return_scope": "L4由来の候補主張拒否診断。元L9期待のfieldではなく、L9 oracle projectionと混ぜず、L4根拠に対する局所補足として返す。",
+      "supplemental_output_type": {
+        "kind": "record",
+        "fields": {
+          "all_ticket_fixed_CI_claim": {
+            "kind": "enum",
+            "values": [
+              "rejected_candidate_claim",
+              "not_proposed",
+              "unknown"
+            ]
+          }
+        },
+        "additional_properties": "forbidden"
+      }
     },
     {
       "id": "F-034-F10",
@@ -6921,10 +6611,11 @@
       ],
       "returns": [
         "causality_claim",
+        "future_improvement_required_to_author",
         "relation_results",
         "release_state"
       ],
-      "algorithm": "OS/LABO proposalをoriginal relationの各fieldと比較する。時間順だけでcausalityやreleaseを主張しない。 OS_proposal/LABO_proposal各々のepisode/population/regression/requirement/revision/timepointをrequired keyとして照合する。必要key欠落はmissing、original_relation全record一致はsame_relation_in_fixture、それ以外はconflict。causal_basis=time_proximity_onlyは因果推論拒否、release実測は作らない。",
+      "algorithm": "OS_proposalとLABO_proposalのepisode/population/regression/requirement/revision/timepointをoriginal_relationの同一fieldと比較し、必要field欠落はmissing、全field一致はsame_relation_in_fixture、差はconflict。causal_basisがtime_only/time_proximity_onlyでなければ因果はsource_relation_only。release観測を作らず、future_improvement_required_to_authorは常にfalseへ是正する。 原rawのinput.future_improvement_required_to_authorがtrueならfuture_improvement_gate_claim=rejected_candidate_claim、falseならnot_proposed、absent/nullならunknownを別の補足returnとして返す。",
       "semantic_rules": [
         {
           "id": "F10-SOURCE-COMPARISON",
@@ -6935,24 +6626,46 @@
             "input.future_improvement_required_to_author",
             "input.original_relation"
           ],
-          "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "OS_proposal/LABO_proposal各々のepisode/population/regression/requirement/revision/timepointをrequired keyとして照合する。必要key欠落はmissing、original_relation全record一致はsame_relation_in_fixture、それ以外はconflict。causal_basis=time_proximity_onlyは因果推論拒否、release実測は作らない。",
+          "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
+          "comparison": "OS_proposalとLABO_proposalのepisode/population/regression/requirement/revision/timepointをoriginal_relationの同一fieldと比較し、必要field欠落はmissing、全field一致はsame_relation_in_fixture、差はconflict。causal_basisがtime_only/time_proximity_onlyでなければ因果はsource_relation_only。release観測を作らず、future_improvement_required_to_authorは常にfalseへ是正する。 input.future_improvement_required_to_authorがtrueの候補主張はfuture_improvement_gate_claim=rejected_candidate_claimで明示し、falseはnot_proposed、欠落/nullはunknownとする。このfieldはHARNESS-L9-034-F10.future_improvement_required_to_author=falseという既存期待に対する追加診断であり、原期待へ新fieldを加えず、L4根拠の補足診断として別出力にする。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "causality_claim",
+            "future_improvement_gate_claim",
+            "future_improvement_required_to_author",
             "relation_results",
             "release_state"
           ],
-          "unknown": "未提示・不一致・未観測を成功へ補完しない。fixture所見は実source qualificationではない。",
+          "unknown": "未提示・不一致・未観測を成功へ補完しない。fixture所見は実source qualificationではない。 補足診断のsource fieldがabsent/nullならunknownを返し、肯定/拒否のどちらにも補完しない。",
           "return_to": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
-          "basis": "HARNESS-L9-034-F10"
+          "basis": "HARNESS-L9-034-F10",
+          "presence": "raw原値についてabsent・explicit null・empty・providedを区別する。nullとabsentが同じsource未提示結果に写る場合も、そのraw状態は型付き入力に残す。"
         }
       ],
       "postconditions": [
         "返却はAssessment schemaの宣言fieldのみ。contextを結果へ暗黙追加しない。",
         "expected_material_pointerは追跡専用で計算には読まない。",
-        "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。"
-      ]
+        "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。",
+        "supplemental returnはL4根拠の局所候補診断であり、原L9 expected_materialへ挿入しない。"
+      ],
+      "supplemental_returns": [
+        "future_improvement_gate_claim"
+      ],
+      "supplemental_return_scope": "L4の未発生改善を作らない境界と、L9固定期待future_improvement_required_to_author=falseから導く候補拒否診断。元L9期待を変更せず、oracle projectionと分離する。",
+      "supplemental_output_type": {
+        "kind": "record",
+        "fields": {
+          "future_improvement_gate_claim": {
+            "kind": "enum",
+            "values": [
+              "rejected_candidate_claim",
+              "not_proposed",
+              "unknown"
+            ]
+          }
+        },
+        "additional_properties": "forbidden"
+      }
     },
     {
       "id": "F-034-N01",
@@ -7072,12 +6785,13 @@
         "expected_material_pointer"
       ],
       "returns": [
+        "all_ticket_fixed_CI",
         "content_validation_result",
         "representative_result",
         "target_result",
         "universal_claim"
       ],
-      "algorithm": "heldout contextでtarget/representativeとvalidation evidenceを分ける。format-only/old fixture/one CIを全称保証へ上げない。 proposed_target/proposed_representativeを原target/representativeと別々に比較し、旧fixture値の流用はunknown_original_extrapolation_rejected。format_only_passだけではcontent validationを通さず、universal_claimの値がnull/none以外ならrejected。全対象保証を示す主張も有限fixtureから成立させない。",
+      "algorithm": "proposed_target/proposed_representativeを原値と別々に比較する。原値がnullかつ提案値providedならunknown_original_extrapolation_rejected、双方nullならunknown。format_only_pass=trueは拒否、それ以外も14 fields/quality/four failure contentを要する。universal_claimはnull/none以外rejected。有限fixtureから全ticket fixed CIを認定せずfalse。 原rawのinput.all_ticket_fixed_CIがtrueならall_ticket_fixed_CI_claim=rejected_candidate_claim、falseならnot_proposed、absent/nullならunknownを別の補足returnとして返す。",
       "semantic_rules": [
         {
           "id": "N02-SOURCE-COMPARISON",
@@ -7092,25 +6806,47 @@
             "input.reuse_old_fixture_value",
             "input.universal_claim"
           ],
-          "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "proposed_target/proposed_representativeを原target/representativeと別々に比較し、旧fixture値の流用はunknown_original_extrapolation_rejected。format_only_passだけではcontent validationを通さず、universal_claimの値がnull/none以外ならrejected。全対象保証を示す主張も有限fixtureから成立させない。",
+          "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
+          "comparison": "proposed_target/proposed_representativeを原値と別々に比較する。原値がnullかつ提案値providedならunknown_original_extrapolation_rejected、双方nullならunknown。format_only_pass=trueは拒否、それ以外も14 fields/quality/four failure contentを要する。universal_claimはnull/none以外rejected。有限fixtureから全ticket fixed CIを認定せずfalse。 H034-N02-OLD-FIXTURE-AS-TARGETではoriginal_target=nullかつproposed_target=20なのでtarget_result=unknown_original_extrapolation_rejected。 input.all_ticket_fixed_CIがtrueの候補主張はall_ticket_fixed_CI_claim=rejected_candidate_claimで明示し、falseはnot_proposed、欠落/nullはunknownとする。このfieldはHARNESS-L9-034-N02.all_ticket_fixed_CIの原期待に加えず、L4根拠の補足診断として別出力にする。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
+            "all_ticket_fixed_CI",
+            "all_ticket_fixed_CI_claim",
             "content_validation_result",
             "representative_result",
             "target_result",
             "universal_claim"
           ],
-          "unknown": "未提示・不一致・未観測を成功へ補完しない。fixture所見は実source qualificationではない。",
+          "unknown": "未提示・不一致・未観測を成功へ補完しない。fixture所見は実source qualificationではない。 補足診断のsource fieldがabsent/nullならunknownを返し、肯定/拒否のどちらにも補完しない。",
           "return_to": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
-          "basis": "HARNESS-L9-034-N02"
+          "basis": "HARNESS-L9-034-N02",
+          "presence": "raw原値についてabsent・explicit null・empty・providedを区別する。nullとabsentが同じsource未提示結果に写る場合も、そのraw状態は型付き入力に残す。"
         }
       ],
       "postconditions": [
         "返却はAssessment schemaの宣言fieldのみ。contextを結果へ暗黙追加しない。",
         "expected_material_pointerは追跡専用で計算には読まない。",
-        "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。"
-      ]
+        "not_executedとfixture-only qualificationを維持し、実測/authority/acceptanceを作らない。",
+        "supplemental returnはL4根拠の局所候補診断であり、原L9 expected_materialへ挿入しない。"
+      ],
+      "supplemental_returns": [
+        "all_ticket_fixed_CI_claim"
+      ],
+      "supplemental_return_scope": "L4由来の候補主張拒否診断。元L9期待のfieldではなく、L9 oracle projectionと混ぜず、L4根拠に対する局所補足として返す。",
+      "supplemental_output_type": {
+        "kind": "record",
+        "fields": {
+          "all_ticket_fixed_CI_claim": {
+            "kind": "enum",
+            "values": [
+              "rejected_candidate_claim",
+              "not_proposed",
+              "unknown"
+            ]
+          }
+        },
+        "additional_properties": "forbidden"
+      }
     },
     {
       "id": "F-034-B01",
@@ -7151,9 +6887,10 @@
         "comparison_authority",
         "dependency_results",
         "executor_result",
+        "internal_OS_forced",
         "oracle_result"
       ],
-      "algorithm": "operationとselected executor/dependency/authority claimを照合し、計測実行主体とowner境界を維持する。 operation=author_contractでは外部user CIを選択し、このauthoring operationに不要な依存をnot_required/not_selected/reference_onlyで区別する。operation=measureでは指定executorと各dependencyを独立照合。original/proposed oracle不一致はconflict、comparison_claims_authority=trueはauthority claim rejected。",
+      "algorithm": "operation=author_contractではexternal user CIを選択し、依存をauthoring operation固有にnot_required/not_selected/reference_onlyとする。force_internal_OS=trueはinternal_OS_forced=rejected。operation=measure時はselected executor/依存を独立表示する。oracle差はconflict、comparison_claims_authority=trueはrejected。",
       "semantic_rules": [
         {
           "id": "B01-SOURCE-COMPARISON",
@@ -7167,18 +6904,20 @@
             "input.proposed_oracle",
             "input.selected_executor"
           ],
-          "required_presence": "原rawの各fieldについてabsent/null/empty/providedを保持し、比較対象fieldが欠ければunknown/missing。",
-          "comparison": "operation=author_contractでは外部user CIを選択し、このauthoring operationに不要な依存をnot_required/not_selected/reference_onlyで区別する。operation=measureでは指定executorと各dependencyを独立照合。original/proposed oracle不一致はconflict、comparison_claims_authority=trueはauthority claim rejected。",
+          "required_presence": "入力schemaがpresence_statesに宣言するabsent/null/empty/providedを保持する。必須比較値がabsentまたは明示nullなら成功値へ補完せずunknown/missingを返す。",
+          "comparison": "operation=author_contractではexternal user CIを選択し、依存をauthoring operation固有にnot_required/not_selected/reference_onlyとする。force_internal_OS=trueはinternal_OS_forced=rejected。operation=measure時はselected executor/依存を独立表示する。oracle差はconflict、comparison_claims_authority=trueはrejected。 author_contractではdependencies.internal_OSがexplicit nullでもnot_required、future_INFRAはreference_only、CONNECTはこのauthoring operationではnot_selected。measureではcommunicate_between_mechanisms=trueの原raw時にCONNECT値を別評価し、nullならmissing。",
           "priority": "原L4の14項目/domain/stage/metric/owner優先関係を維持し、同一scope内の不一致を上位のgreen/平均/他fieldで相殺しない。",
           "outputs": [
             "comparison_authority",
             "dependency_results",
             "executor_result",
+            "internal_OS_forced",
             "oracle_result"
           ],
           "unknown": "未提示・不一致・未観測を成功へ補完しない。fixture所見は実source qualificationではない。",
           "return_to": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
-          "basis": "HARNESS-L9-034-B01"
+          "basis": "HARNESS-L9-034-B01",
+          "presence": "raw原値についてabsent・explicit null・empty・providedを区別する。nullとabsentが同じsource未提示結果に写る場合も、そのraw状態は型付き入力に残す。"
         }
       ],
       "postconditions": [
@@ -7317,7 +7056,7 @@
         "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
         "operation_effect": "none"
       },
-      "semantic_rule": "6段階の意味契約をrequired/providedで照合し、観測stageを別に保持する。短い時系列から長期評価/利用受入を作らない。",
+      "semantic_rule": "6段階の意味契約をrequired/providedで照合し、観測stageを別に保持する。短い時系列から長期評価/利用受入を作らない。 原rawのinput.requires_future_measurement_to_authorによる候補主張は、L4の内容比較に基づく補足診断future_measurement_gate_claimで拒否/非提示/unknownを区別し、原L9 expected_materialは変更しない。",
       "failure_return": "source不一致/欠落/unknownは基本設計のowner_connectionとfailure returnへ、原値を保持して局所返却する。"
     },
     {
@@ -7485,7 +7224,7 @@
         "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
         "operation_effect": "none"
       },
-      "semantic_rule": "riskに応じた各method selection/reasonを確認し、selection/installationだけでticket completionやverificationを言わない。",
+      "semantic_rule": "riskに応じた各method selection/reasonを確認し、selection/installationだけでticket completionやverificationを言わない。 原rawのinput.all_ticket_fixed_CIによる候補主張は、L4の内容比較に基づく補足診断all_ticket_fixed_CI_claimで拒否/非提示/unknownを区別し、原L9 expected_materialは変更しない。",
       "failure_return": "source不一致/欠落/unknownは基本設計のowner_connectionとfailure returnへ、原値を保持して局所返却する。"
     },
     {
@@ -7518,7 +7257,7 @@
         "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
         "operation_effect": "none"
       },
-      "semantic_rule": "OS/LABO proposalをoriginal relationの各fieldと比較する。時間順だけでcausalityやreleaseを主張しない。",
+      "semantic_rule": "OS/LABO proposalをoriginal relationの各fieldと比較する。時間順だけでcausalityやreleaseを主張しない。 原rawのinput.future_improvement_required_to_authorによる候補主張は、L4の未発生改善を作らない境界と、L9固定期待future_improvement_required_to_author=falseに基づく補足診断future_improvement_gate_claimで拒否/非提示/unknownを区別し、原L9 expected_materialは変更しない。",
       "failure_return": "source不一致/欠落/unknownは基本設計のowner_connectionとfailure returnへ、原値を保持して局所返却する。"
     },
     {
@@ -7585,7 +7324,7 @@
         "qualification_rule": "原identity/revision/scope/owner/適用契約/必要集合を独立比較。未成立は当該field/metric/対象へ局所保持。実資格と正式表現は未binding。",
         "operation_effect": "none"
       },
-      "semantic_rule": "heldout contextでtarget/representativeとvalidation evidenceを分ける。format-only/old fixture/one CIを全称保証へ上げない。",
+      "semantic_rule": "heldout contextでtarget/representativeとvalidation evidenceを分ける。format-only/old fixture/one CIを全称保証へ上げない。 原rawのinput.all_ticket_fixed_CIによる候補主張は、L4の内容比較に基づく補足診断all_ticket_fixed_CI_claimで拒否/非提示/unknownを区別し、原L9 expected_materialは変更しない。",
       "failure_return": "source不一致/欠落/unknownは基本設計のowner_connectionとfailure returnへ、原値を保持して局所返却する。"
     },
     {
@@ -8384,6 +8123,10 @@
   "unassessed_original_oracle_fields": {
     "meaning": "原L9期待を保存しているが、この限定関数の比較対象へまだ導出していないfield。記録の存在を検証済み/完了と数えない。",
     "by_root": {
+      "HARNESS-L9-034-B01": [
+        "effects",
+        "unaffected_Q"
+      ],
       "HARNESS-L9-034-F01": [
         "contract_supported_in_fixture",
         "effects",
@@ -8403,13 +8146,10 @@
       ],
       "HARNESS-L9-034-F04": [
         "effects",
-        "requires_future_measurement_to_author",
         "unaffected_Q"
       ],
       "HARNESS-L9-034-F05": [
-        "change_route",
         "effects",
-        "pending_results",
         "unaffected_Q"
       ],
       "HARNESS-L9-034-F06": [
@@ -8423,19 +8163,14 @@
       ],
       "HARNESS-L9-034-F08": [
         "effects",
-        "legacy_DB_forced",
         "unaffected_Q"
       ],
       "HARNESS-L9-034-F09": [
-        "005_unfinished_obligations",
-        "all_ticket_fixed_CI",
         "effects",
-        "unaffected_Q",
-        "verification_complete"
+        "unaffected_Q"
       ],
       "HARNESS-L9-034-F10": [
         "effects",
-        "future_improvement_required_to_author",
         "unaffected_Q"
       ],
       "HARNESS-L9-034-N01": [
@@ -8443,16 +8178,11 @@
         "unaffected_Q"
       ],
       "HARNESS-L9-034-N02": [
-        "all_ticket_fixed_CI",
         "effects",
-        "unaffected_Q"
-      ],
-      "HARNESS-L9-034-B01": [
-        "effects",
-        "internal_OS_forced",
         "unaffected_Q"
       ]
     },
     "closure": "unproven"
-  }
+  },
+  "document_id": "HARNESS-L5-034"
 }
