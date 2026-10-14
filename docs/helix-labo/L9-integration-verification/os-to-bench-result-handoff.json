@@ -1018,8 +1018,8 @@
               "identity": "CONNECT-RECEIPT-057-22",
               "owner": "HELIXCONNECT-L2-001/002",
               "revision": "fixture-r1",
-              "raw_json": "{\"ack_id\":\"ACK-057-22\",\"duplicate_observation_count\":1,\"fixture_contract_reference\":\"fixture-only-not-an-adopted-live-contract\",\"fixture_only\":true,\"human_receipt_id\":null,\"idempotency_key\":\"IDEMP-057-22\",\"mode\":\"CONNECT\",\"receive_state\":\"received\",\"same_id_retry\":\"same-source-identity\",\"schema_contract_version\":\"1.0-fixture\",\"scope\":\"repo-docs\",\"source_identity\":\"OS-RESULT-057-22\",\"source_revision\":\"os-run-r17\",\"stale\":false,\"trace_id\":\"TRACE-057-22\",\"unfinished_obligations\":[]}",
-              "sha256": "4ff26713494b6c5975d65c067bffc39a0e202630cb46aa05055018aa860a19a1",
+              "raw_json": "{\"ack_id\":\"ACK-057-22\",\"duplicate_observation_count\":1,\"fixture_contract_reference\":\"fixture-only-not-an-adopted-live-contract\",\"fixture_only\":true,\"human_receipt_id\":null,\"idempotency_key\":\"IDEMP-057-22\",\"mode\":\"CONNECT\",\"receive_state\":\"received\",\"same_id_retry\":\"same-source-identity\",\"schema_contract_version\":\"1.0-fixture\",\"scope\":\"repo-docs\",\"source_identity\":\"OS-RESULT-057-22\",\"source_revision\":\"os-run-r17\",\"stale\":false,\"trace_id\":\"TRACE-057-22\",\"unfinished_obligations\":[\"Bench evaluation pending\"]}",
+              "sha256": "fb2e5888c6be76b032e530e508fcbc8575ff2e64c45ee1ff2af682b09e656771",
               "fixture_only": true
             },
             {
@@ -1034,7 +1034,7 @@
           "given": "CONNECT選択例： OS-RESULT-057-22/os-run-r17/schema-contract=1.0-fixture/repo-docs。ACK-057-22、TRACE-057-22、IDEMP-057-22、stale=false、同一ID再送、重複観測1件。契約はsynthetic fixture referenceであり、実際の採択済み契約ではない。 送信元OS resultも独立固定packetとして与える。",
           "when": "source identity/revision/schema version/scopeと受領義務証拠を照合する。",
           "then": "fixtureのCONNECT経路でも全receipt義務を照合対象として保持する。",
-          "expected_observation": "受領状態と義務一覧が辿れ、実CONNECT契約が採択・稼働済みとは主張しない。 OS-RESULT-057-22のsource identity/os-run-r17/schema 1.0-fixture/repo-docsをreceipt/traceの同fieldへ照合して同値を保持する。",
+          "expected_observation": "受領状態と義務一覧が辿れ、実CONNECT契約が採択・稼働済みとは主張しない。 OS-RESULT-057-22のsource identity/os-run-r17/schema 1.0-fixture/repo-docsをreceipt/traceの同fieldへ照合して同値を保持する。 sourceとreceipt/traceのunfinished_obligations=Bench evaluation pendingが一致し、受領/再送を評価完了へ転写しない。",
           "failure_observation": "契約identity/revision/ACK問題はCONNECT/OS ownerへ。受領scope/classificationはLABO/SECURITYへ。",
           "execution_state": "not_executed",
           "fixture_only": true
@@ -1047,8 +1047,8 @@
               "identity": "HUMAN-RECEIPT-057-23",
               "owner": "HELIXOS/LABO explicit human receipt",
               "revision": "fixture-r1",
-              "raw_json": "{\"ack_id\":\"HUMAN-ACK-057-23\",\"duplicate_observation_count\":1,\"fixture_contract_reference\":null,\"fixture_only\":true,\"human_receipt_id\":\"HUMAN-ACK-057-23\",\"idempotency_key\":\"IDEMP-057-23\",\"mode\":\"human_receipt\",\"receive_state\":\"received\",\"same_id_retry\":\"same-source-identity\",\"schema_contract_version\":\"1.0-fixture\",\"scope\":\"repo-docs\",\"source_identity\":\"OS-RESULT-057-23\",\"source_revision\":\"os-run-r17\",\"stale\":false,\"trace_id\":\"HUMAN-TRACE-057-23\",\"unfinished_obligations\":[]}",
-              "sha256": "22d678cf9a5bf4e8ae40bd1d7ee1d4ea86b009ddda72cdc4efc930244524e028",
+              "raw_json": "{\"ack_id\":\"HUMAN-ACK-057-23\",\"duplicate_observation_count\":1,\"fixture_contract_reference\":null,\"fixture_only\":true,\"human_receipt_id\":\"HUMAN-ACK-057-23\",\"idempotency_key\":\"IDEMP-057-23\",\"mode\":\"human_receipt\",\"receive_state\":\"received\",\"same_id_retry\":\"same-source-identity\",\"schema_contract_version\":\"1.0-fixture\",\"scope\":\"repo-docs\",\"source_identity\":\"OS-RESULT-057-23\",\"source_revision\":\"os-run-r17\",\"stale\":false,\"trace_id\":\"HUMAN-TRACE-057-23\",\"unfinished_obligations\":[\"Bench evaluation pending\"]}",
+              "sha256": "53022d18fd9bc16c8d8ec05dc75a335766712f992977a15e2f46d95bf83cc078",
               "fixture_only": true
             },
             {
@@ -1060,10 +1060,10 @@
               "fixture_only": true
             }
           ],
-          "given": "人手経路： OS-RESULT-057-23/os-run-r17/schema-contract=1.0-fixture/repo-docs。HUMAN-ACK-057-23、HUMAN-TRACE-057-23、IDEMP-057-23、stale=false、同一ID再送、重複観測1件、未完なし。 送信元OS resultも独立固定packetとして与える。",
+          "given": "人手経路： OS-RESULT-057-23/os-run-r17/schema-contract=1.0-fixture/repo-docs。HUMAN-ACK-057-23、HUMAN-TRACE-057-23、IDEMP-057-23、stale=false、同一ID再送、重複観測1件、未完義務Bench evaluation pendingを保持。 送信元OS resultも独立固定packetとして与える。",
           "when": "CONNECTと同じsource identity/revision/schema/scope/ACK/trace/dedupe/stale/retry/uncompleted dutiesを確認する。",
           "then": "明示人手receiptにもCONNECT経路と同じ義務がある。",
-          "expected_observation": "必要証拠が具体に存在し、CONNECT契約の実在・採択は主張しない。 OS-RESULT-057-23のsource identity/os-run-r17/schema 1.0-fixture/repo-docsをreceipt/traceの同fieldへ照合して同値を保持する。",
+          "expected_observation": "必要証拠が具体に存在し、CONNECT契約の実在・採択は主張しない。 OS-RESULT-057-23のsource identity/os-run-r17/schema 1.0-fixture/repo-docsをreceipt/traceの同fieldへ照合して同値を保持する。 sourceとreceipt/traceのunfinished_obligations=Bench evaluation pendingが一致し、受領/再送を評価完了へ転写しない。",
           "failure_observation": "source/assignment/送達はOS ownerへ、data-use/classificationはSECURITYへ。",
           "execution_state": "not_executed",
           "fixture_only": true
@@ -1076,8 +1076,8 @@
               "identity": "RETRY-TRACE-057-24",
               "owner": "HELIXOS/CONNECT/LABO",
               "revision": "fixture-r1",
-              "raw_json": "{\"ack_id\":\"ACK-057-24\",\"attempts\":[\"SEND-057-24-A\",\"SEND-057-24-B\"],\"duplicate_detected\":true,\"fixture_only\":true,\"idempotency_key\":\"IDEMP-057-24\",\"observed_source_id_count\":1,\"revision\":\"os-run-r17\",\"schema_contract_version\":\"1.0-fixture\",\"scope\":\"repo-docs\",\"second_delivery_is_new_observation\":false,\"source_identity\":\"OS-RESULT-057-24\",\"trace_id\":\"TRACE-057-24\",\"unfinished_obligations\":[]}",
-              "sha256": "e75f0dfcf888dfe8e92702f9ddd8501659ac405df735dac7a303f38eca481df5",
+              "raw_json": "{\"ack_id\":\"ACK-057-24\",\"attempts\":[\"SEND-057-24-A\",\"SEND-057-24-B\"],\"duplicate_detected\":true,\"fixture_only\":true,\"idempotency_key\":\"IDEMP-057-24\",\"observed_source_id_count\":1,\"revision\":\"os-run-r17\",\"schema_contract_version\":\"1.0-fixture\",\"scope\":\"repo-docs\",\"second_delivery_is_new_observation\":false,\"source_identity\":\"OS-RESULT-057-24\",\"trace_id\":\"TRACE-057-24\",\"unfinished_obligations\":[\"Bench evaluation pending\"]}",
+              "sha256": "150ef94deb77eed8491c2b4b456d4888dc89718c8809e4839277174ed1f19a70",
               "fixture_only": true
             },
             {
@@ -1092,7 +1092,7 @@
           "given": "同一OS-RESULT-057-24をSEND-057-24-A/Bで再送。両方IDEMP-057-24、ACK/traceが同identityに結び、observed_source_id_count=1、duplicate_detected=true。 送信元OS resultも独立固定packetとして与える。",
           "when": "再送attemptと新規result identityを照合する。",
           "then": "2回送達を2件のWorker観測へ増やさず、重複検出traceを保持する。",
-          "expected_observation": "1 source identity / 1 observation。duplicate detected。再送は同一identityで追跡可能。 OS-RESULT-057-24のsource identity/os-run-r17/schema 1.0-fixture/repo-docsをreceipt/traceの同fieldへ照合して同値を保持する。",
+          "expected_observation": "1 source identity / 1 observation。duplicate detected。再送は同一identityで追跡可能。 OS-RESULT-057-24のsource identity/os-run-r17/schema 1.0-fixture/repo-docsをreceipt/traceの同fieldへ照合して同値を保持する。 sourceとreceipt/traceのunfinished_obligations=Bench evaluation pendingが一致し、受領/再送を評価完了へ転写しない。",
           "failure_observation": "重複抑止/traceはCONNECT/OS owner、LABO側観測重複はLABO ownerへ。",
           "execution_state": "not_executed",
           "fixture_only": true
