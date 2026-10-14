@@ -2660,5 +2660,5405 @@
     "原source bytes/body/資格root未成立は当該source_issueと依存項目unresolvedを返し、意味成立を推測しない。",
     "原sourceが有資格なら要求された意味key/端/版/scopeを比較。相手refが未登録でも、原targetと異なることが内容上明白ならconflictを残し、そのref未解決も併記する。",
     "原属性missing、unknown、conflictを他field/集合/義務から補償しない。複数局所findingはcode/対象ref/pathで安定整列し、同codeの別対象を捨てない。"
-  ]
+  ],
+  "wire_codec_contract": {
+    "id": "HELIXOS-L5-002-WIRE-CODEC",
+    "status": "design_candidate_pending_independent_review",
+    "scope": "OS002固有carrier/Field/bytes/root境界の設計。実parser/実保存/権限/資格/両端接続を成立させない。",
+    "requirement_refs": [
+      "HELIXOS-L3-002-B01",
+      "HELIXOS-L3-002-B02",
+      "HELIXOS-L3-002-F01",
+      "HELIXOS-L3-002-F02",
+      "HELIXOS-L3-002-F03",
+      "HELIXOS-L3-002-F04",
+      "HELIXOS-L3-002-F05",
+      "HELIXOS-L3-002-F06",
+      "HELIXOS-L3-002-F07",
+      "HELIXOS-L3-002-F08",
+      "HELIXOS-L3-002-F09",
+      "HELIXOS-L3-002-N01",
+      "HELIXOS-L3-002-N02"
+    ],
+    "paired_verification_ref": "HELIXOS-L8-002-WIRE-CODEC",
+    "source_basis": [
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "be5052acb26625928207a4d8538a2c9db342c223b2c699c660b5735ad86a360b",
+        "json_pointer": "/type_contract",
+        "source_value": {
+          "syntax": "logical object/Field/union記法。正式wire JSON Schema/codec/transport/runtimeではない。",
+          "types": {
+            "RawValue": {
+              "shape": "null|boolean|number|string|RawValue[]|map<string,RawValue>",
+              "meaning": "未解釈のwire形だけ。これをdomain意味比較の代用にしない。"
+            },
+            "Field": {
+              "generic": "Field<T>",
+              "variants": "missing | supplied(T) | supplied(null)",
+              "meaning": "key欠落、原明示null/unknown、空集合を別に保持。"
+            },
+            "Scope": {
+              "fields": {
+                "project": "Field<string>",
+                "tenant": "Field<string>",
+                "environment": "Field<string>"
+              },
+              "meaning": "合成fixtureのscope軸。実scope規格を生成しない。"
+            },
+            "Ref": {
+              "fields": {
+                "identity": "Field<string>",
+                "revision": "Field<string>",
+                "scope": "Field<Scope>",
+                "owner": "Field<string>"
+              },
+              "meaning": "opaque identity/revision。文字列grammar/latest/digest/pathから意味・資格を生成しない。"
+            },
+            "B01RecordInputowneroutputsItem": {
+              "fields": {
+                "ref": "Field<Ref>",
+                "kind": "Field<string>",
+                "state": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "B01RecordInputrecordreceipt": {
+              "fields": {
+                "ref": "Field<Ref>",
+                "operation": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "B01RecordInput": {
+              "fields": {
+                "owner_outputs": "Field<(B01RecordInputowneroutputsItem)[]>",
+                "record_receipt": "Field<B01RecordInputrecordreceipt>",
+                "actual_connection_evidence": "Field<Ref | null>",
+                "PO_acceptance_evidence": "Field<Ref | null>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "B02RecordInputbinding": {
+              "fields": {
+                "project_scope": "Field<Scope>",
+                "requirement_ref": "Field<Ref>",
+                "HARNESS_contract_ref": "Field<Ref>",
+                "template_ref": "Field<Ref>",
+                "semantic_contract_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "B02RecordInputQworkstate": {
+              "fields": {
+                "binding": "Field<B02RecordInputbinding>",
+                "state": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "B02RecordInput": {
+              "fields": {
+                "binding": "Field<B02RecordInputbinding>",
+                "operation": "Field<string>",
+                "source_event_ref": "Field<Ref>",
+                "OS001_contract_ref": "Field<Ref>",
+                "result_state": "Field<string>",
+                "receipt_state": "Field<string>",
+                "evaluation_selected": "Field<boolean>",
+                "Q_work_state": "Field<B02RecordInputQworkstate>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F01RecordInputprojectstatesItem": {
+              "fields": {
+                "binding": "Field<B02RecordInputbinding>",
+                "implementation": "Field<string>",
+                "verification": "Field<string>",
+                "release_kanban": "Field<F01RecordInputprojectstatesItemreleasekanban>",
+                "source_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F01RecordInputprojectstatesItemreleasekanban": {
+              "fields": {
+                "state": "Field<string>",
+                "source_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F01RecordInput": {
+              "fields": {
+                "project_states": "Field<(F01RecordInputprojectstatesItem)[]>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F02RecordInput": {
+              "fields": {
+                "binding": "Field<B02RecordInputbinding>",
+                "proposed_refs": "Field<(Ref)[]>",
+                "selected_refs": "Field<(Ref)[]>",
+                "used_refs": "Field<Ref[]>",
+                "proposed_source": "Field<Ref>",
+                "selected_source": "Field<Ref>",
+                "used_source": "Field<Ref>",
+                "used_empty_basis": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F03RecordInputeventsItem": {
+              "fields": {
+                "event_ref": "Field<Ref>",
+                "record_kind": "Field<string>",
+                "binding": "Field<B02RecordInputbinding>",
+                "actor_ref": "Field<Ref>",
+                "source_ref": "Field<Ref>",
+                "correlation_ref": "Field<Ref>",
+                "obligation_ref": "Field<Ref>",
+                "artifact_ref": "Field<Ref | null>",
+                "pair_ref": "Field<Ref | null>",
+                "nonrelated_basis": "Field<F03RecordInputeventsItemnonrelatedbasis>",
+                "original_state": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F03RecordInputeventsItemnonrelatedbasis": {
+              "fields": {
+                "source_ref": "Field<Ref>",
+                "reason": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F03RecordInputkindobligationsItem": {
+              "fields": {
+                "ref": "Field<Ref>",
+                "kind": "Field<string>",
+                "artifact_ref": "Field<Ref>",
+                "pair_ref": "Field<Ref>",
+                "state": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F03RecordInput": {
+              "fields": {
+                "events": "Field<(F03RecordInputeventsItem)[]>",
+                "kind_obligations": "Field<(F03RecordInputkindobligationsItem)[]>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F04RecordInputcoreoutputsItem": {
+              "fields": {
+                "output_ref": "Field<Ref>",
+                "binding": "Field<B02RecordInputbinding>",
+                "template_ref": "Field<Ref>",
+                "disposition": "Field<string>",
+                "reason": "Field<string>",
+                "decider": "Field<string>",
+                "target_revision": "Field<string>",
+                "reentry": "Field<string>",
+                "original_condition": "Field<boolean | null>",
+                "unfinished_obligation_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F04RecordInputobligationoriginalstatesItem": {
+              "fields": {
+                "ref": "Field<Ref>",
+                "state": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F04RecordInput": {
+              "fields": {
+                "core_outputs": "Field<(F04RecordInputcoreoutputsItem)[]>",
+                "obligation_original_states": "Field<(F04RecordInputobligationoriginalstatesItem)[]>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F05RecordInputoriginalreturneventreturntarget": {
+              "fields": {
+                "owner": "Field<string>",
+                "target_scope": "Field<Scope>",
+                "requirement_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F05RecordInputoriginalreturneventstopreason": {
+              "fields": {
+                "code": "Field<string>",
+                "unfinished_obligation_refs": "Field<(Ref)[]>",
+                "detail": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F05RecordInputoriginalreturnevent": {
+              "fields": {
+                "event_ref": "Field<Ref>",
+                "binding": "Field<B02RecordInputbinding>",
+                "backflow_ref": "Field<Ref>",
+                "return_target": "Field<F05RecordInputoriginalreturneventreturntarget>",
+                "stop_reason": "Field<F05RecordInputoriginalreturneventstopreason>",
+                "source_ref": "Field<Ref>",
+                "correlation_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F05RecordInput": {
+              "fields": {
+                "binding": "Field<B02RecordInputbinding>",
+                "backflow_ref": "Field<Ref>",
+                "returned_event_ref": "Field<Ref>",
+                "ack_event_ref": "Field<Ref>",
+                "receiver_acceptance_ref": "Field<Ref | null>",
+                "meaning_resolution_ref": "Field<Ref | null>",
+                "original_discharge_ref": "Field<Ref | null>",
+                "unfinished_obligation_refs": "Field<(Ref)[]>",
+                "receiver_owner": "Field<string>",
+                "OS023_contract_ref": "Field<Ref>",
+                "original_return_event": "Field<F05RecordInputoriginalreturnevent>",
+                "return_target": "Field<F05RecordInputoriginalreturneventreturntarget>",
+                "stop_reason": "Field<F05RecordInputoriginalreturneventstopreason>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F06RecordInputoriginalevent": {
+              "fields": {
+                "event_ref": "Field<Ref>",
+                "binding": "Field<B02RecordInputbinding>",
+                "actor_ref": "Field<Ref>",
+                "source_ref": "Field<Ref>",
+                "correlation_ref": "Field<Ref>",
+                "outcome": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F06RecordInputoldprojectionstalebasisenginechange": {
+              "fields": {
+                "from": "Field<Ref>",
+                "to": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F06RecordInputoldprojectionstalebasis": {
+              "fields": {
+                "correction_ref": "Field<Ref>",
+                "replacement_projection_ref": "Field<Ref>",
+                "engine_change": "Field<F06RecordInputoldprojectionstalebasisenginechange>",
+                "schema_change": "Field<F06RecordInputoldprojectionstalebasisenginechange>",
+                "source_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F06RecordInputoldprojection": {
+              "fields": {
+                "ref": "Field<Ref>",
+                "original_event_ref": "Field<Ref>",
+                "engine_ref": "Field<Ref>",
+                "schema_ref": "Field<Ref>",
+                "classification": "Field<string>",
+                "currency_state": "Field<string>",
+                "stale_basis": "Field<F06RecordInputoldprojectionstalebasis>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F06RecordInputcorrection": {
+              "fields": {
+                "event_ref": "Field<Ref>",
+                "corrects_projection_ref": "Field<Ref>",
+                "original_event_ref": "Field<Ref>",
+                "source_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F06RecordInputnewprojection": {
+              "fields": {
+                "ref": "Field<Ref>",
+                "original_event_ref": "Field<Ref>",
+                "correction_ref": "Field<Ref>",
+                "engine_ref": "Field<Ref>",
+                "schema_ref": "Field<Ref>",
+                "classification": "Field<string>",
+                "currency_state": "Field<string>",
+                "supersedes_projection_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F06RecordInput": {
+              "fields": {
+                "original_event": "Field<F06RecordInputoriginalevent>",
+                "old_projection": "Field<F06RecordInputoldprojection>",
+                "correction": "Field<F06RecordInputcorrection>",
+                "new_projection": "Field<F06RecordInputnewprojection>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F07RecordInputCOREimpactsItem": {
+              "fields": {
+                "CORE_output_ref": "Field<Ref>",
+                "binding": "Field<B02RecordInputbinding>",
+                "target_obligation_ref": "Field<Ref>",
+                "state": "Field<string>",
+                "reason": "Field<string>",
+                "old_used_ref": "Field<Ref>",
+                "new_candidate_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F07RecordInputviewonlysource": {
+              "fields": {
+                "CORE_output_ref": "Field<Ref>",
+                "semantic_difference": "Field<boolean>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F07RecordInput": {
+              "fields": {
+                "binding": "Field<B02RecordInputbinding>",
+                "used_ref": "Field<Ref>",
+                "candidate_ref": "Field<Ref>",
+                "CORE_impacts": "Field<(F07RecordInputCOREimpactsItem)[]>",
+                "view_only_source": "Field<F07RecordInputviewonlysource>",
+                "migration_receipt": "Field<Ref | null>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F08RecordInputLABOscope": {
+              "fields": {
+                "ref": "Field<Ref>",
+                "binding": "Field<B02RecordInputbinding>",
+                "period": "Field<string>",
+                "required_record_refs": "Field<(Ref)[]>",
+                "required_set_source_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F08RecordInputoriginalrecordsItem": {
+              "fields": {
+                "event_ref": "Field<Ref>",
+                "binding": "Field<B02RecordInputbinding>",
+                "period": "Field<string>",
+                "source_ref": "Field<Ref>",
+                "retry_of": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F08RecordInput": {
+              "fields": {
+                "LABO_scope": "Field<F08RecordInputLABOscope>",
+                "original_records": "Field<(F08RecordInputoriginalrecordsItem)[]>",
+                "extraction_source_ref": "Field<Ref>",
+                "connection_evidence": "Field<Ref | null>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F09RecordInputfindingcandidatesItem": {
+              "fields": {
+                "candidate_ref": "Field<Ref>",
+                "kind": "Field<string>",
+                "binding": "Field<B02RecordInputbinding>",
+                "origin_event_ref": "Field<Ref>",
+                "obligation_ref": "Field<Ref>",
+                "used_template_ref": "Field<Ref>",
+                "rework_event_ref": "Field<Ref>",
+                "acceptance_event_ref": "Field<Ref>",
+                "operation_result_ref": "Field<Ref>",
+                "causal_basis_ref": "Field<Ref | null>",
+                "unresolved_reason": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F09RecordInputcausalevidenceItem": {
+              "fields": {
+                "ref": "Field<Ref>",
+                "origin_event_ref": "Field<Ref>",
+                "target_ref": "Field<Ref>",
+                "source_ref": "Field<Ref>",
+                "meaning": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F09RecordInput": {
+              "fields": {
+                "finding_candidates": "Field<(F09RecordInputfindingcandidatesItem)[]>",
+                "causal_evidence": "Field<(F09RecordInputcausalevidenceItem)[]>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "N01RecordInputexistingpermissionoutput": {
+              "fields": {
+                "ref": "Field<Ref>",
+                "source_owner": "Field<string>",
+                "source_operation_ref": "Field<Ref>",
+                "data_class": "Field<string>",
+                "scope": "Field<Scope>",
+                "recipient_ref": "Field<Ref>",
+                "meaning": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "N01RecordInput": {
+              "fields": {
+                "binding": "Field<B02RecordInputbinding>",
+                "source_operation_ref": "Field<Ref>",
+                "permission_output_ref": "Field<Ref>",
+                "data_class": "Field<string>",
+                "permission_scope": "Field<Scope>",
+                "target_scope": "Field<Scope>",
+                "recipient_ref": "Field<Ref>",
+                "existing_permission_output": "Field<N01RecordInputexistingpermissionoutput>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "N02RecordInput": {
+              "fields": {
+                "binding": "Field<B02RecordInputbinding>",
+                "source_selected": "Field<boolean>",
+                "source_ref": "Field<Ref>",
+                "future_result_state": "Field<string>",
+                "period_observation_state": "Field<string>",
+                "held_out_input": "Field<string>",
+                "runtime_evidence": "Field<Ref | null>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "B01RecordObservation": {
+              "fields": {
+                "record_receipt_only": "Field<boolean>",
+                "owner_states": "Field<(string)[]>",
+                "connection": "Field<string>",
+                "PO_Accepted": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "B02RecordObservation": {
+              "fields": {
+                "initial_record_input": "Field<string>",
+                "result": "Field<string>",
+                "receipt": "Field<string>",
+                "evaluation": "Field<string>",
+                "Q_work": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F01RecordObservationP": {
+              "fields": {
+                "implementation": "Field<string>",
+                "verification": "Field<string>",
+                "kanban": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F01RecordObservationQ": {
+              "fields": {
+                "implementation": "Field<string>",
+                "verification": "Field<string>",
+                "kanban": "Field<string>",
+                "kanban_source_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F01RecordObservation": {
+              "fields": {
+                "P": "Field<F01RecordObservationP>",
+                "Q": "Field<F01RecordObservationQ>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F02RecordObservation": {
+              "fields": {
+                "proposed_refs": "Field<(Ref)[]>",
+                "selected_refs": "Field<(Ref)[]>",
+                "used_refs": "Field<Ref[]>",
+                "provenance_refs": "Field<(Ref)[]>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F03RecordObservation": {
+              "fields": {
+                "record_count": "Field<number>",
+                "event_trace": "Field<(F03RecordInputeventsItem)[]>",
+                "kind_obligations": "Field<(F03RecordInputkindobligationsItem)[]>",
+                "completion_generated": "Field<boolean>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F04RecordObservation": {
+              "fields": {
+                "conditional_original_value": "Field<boolean>",
+                "OS_new_judgment_count": "Field<number>",
+                "core_disposition_records": "Field<(F04RecordInputcoreoutputsItem)[]>",
+                "unfinished_obligation_records": "Field<(F04RecordInputobligationoriginalstatesItem)[]>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F05RecordObservationreturnsourcebinding": {
+              "fields": {
+                "event_ref": "Field<Ref>",
+                "binding": "Field<B02RecordInputbinding>",
+                "backflow_ref": "Field<Ref>",
+                "source_ref": "Field<Ref>",
+                "correlation_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F05RecordObservation": {
+              "fields": {
+                "known_stage_refs": "Field<(Ref)[]>",
+                "unresolved_stages": "Field<(string)[]>",
+                "unfinished_obligation_refs": "Field<(Ref)[]>",
+                "return_target": "Field<F05RecordInputoriginalreturneventreturntarget>",
+                "stop_reason": "Field<F05RecordInputoriginalreturneventstopreason>",
+                "return_source_binding": "Field<F05RecordObservationreturnsourcebinding>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F06RecordObservation": {
+              "fields": {
+                "original_event": "Field<F06RecordInputoriginalevent>",
+                "old_projection_ref": "Field<Ref>",
+                "correction_ref": "Field<Ref>",
+                "new_projection_ref": "Field<Ref>",
+                "old_failure_preserved": "Field<boolean>",
+                "old_projection": "Field<F06RecordInputoldprojection>",
+                "new_projection": "Field<F06RecordInputnewprojection>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F07RecordObservation": {
+              "fields": {
+                "used_ref": "Field<Ref>",
+                "migration": "Field<string>",
+                "affected_refs": "Field<(Ref)[]>",
+                "unknown_refs": "Field<(Ref)[]>",
+                "unaffected_preserved_refs": "Field<(Ref)[]>",
+                "view_semantic_difference": "Field<boolean>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F08RecordObservationretrymappingItem": {
+              "fields": {
+                "retry_ref": "Field<Ref>",
+                "original_ref": "Field<Ref>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F08RecordObservationexcludedItem": {
+              "fields": {
+                "ref": "Field<Ref>",
+                "reason": "Field<string>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F08RecordObservation": {
+              "fields": {
+                "included_original_refs": "Field<(Ref)[]>",
+                "retry_mapping": "Field<(F08RecordObservationretrymappingItem)[]>",
+                "missing_refs": "Field<(Ref)[]>",
+                "excluded": "Field<(F08RecordObservationexcludedItem)[]>",
+                "complete": "Field<boolean>",
+                "connection": "Field<string>",
+                "OS_evaluation_generated": "Field<boolean>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "F09RecordObservation": {
+              "fields": {
+                "candidate_refs": "Field<(Ref)[]>",
+                "grounded_causal_refs": "Field<(Ref)[]>",
+                "unresolved_candidate_refs": "Field<(Ref)[]>",
+                "LABO_evaluation_generated": "Field<boolean>",
+                "BRAIN_promotion_generated": "Field<boolean>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "N01RecordObservation": {
+              "fields": {
+                "sharing_scope": "Field<Scope>",
+                "permission_basis_ref": "Field<Ref>",
+                "data_class": "Field<string>",
+                "new_permission_generated": "Field<boolean>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "N02RecordObservation": {
+              "fields": {
+                "source": "Field<string>",
+                "future_result": "Field<string>",
+                "period": "Field<string>",
+                "held_out_execution": "Field<string>",
+                "runtime_evidence": "Field<string>",
+                "defect_zero_generated": "Field<boolean>"
+              },
+              "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
+            },
+            "TraceContext": {
+              "fields": {
+                "operation": "string",
+                "contract_ref": "Ref",
+                "binding": "Field<Scope>",
+                "selected_sections": "string[]",
+                "project_binding": "B02RecordInputbinding"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "OwnerRecord": {
+              "fields": {
+                "subject_ref": "Ref",
+                "section_key": "string",
+                "record_kind": "string",
+                "payload": "map<string,SourceSectionValue>",
+                "owner": "string"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "SourceEnvelope": {
+              "fields": {
+                "source_ref": "Ref",
+                "owner": "string",
+                "source_json_utf8": "string",
+                "source_sha256": "string",
+                "decoded_records": "OwnerRecord[]",
+                "qualification_ref": "Ref"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "Qualification": {
+              "fields": {
+                "ref": "Ref",
+                "root_ref": "Ref",
+                "source_ref": "Ref",
+                "owner": "string",
+                "subject_refs": "Ref[]",
+                "source_sha256": "string"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "QualificationRoot": {
+              "fields": {
+                "ref": "Ref",
+                "owner": "string",
+                "allowed_subject_refs": "Ref[]",
+                "allowed_source_ref": "Ref",
+                "allowed_source_sha256": "string"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "CaseInput": {
+              "fields": {
+                "variant": "B01RecordInput|B02RecordInput|F01RecordInput|F02RecordInput|F03RecordInput|F04RecordInput|F05RecordInput|F06RecordInput|F07RecordInput|F08RecordInput|F09RecordInput|N01RecordInput|N02RecordInput"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "CaseObservation": {
+              "fields": {
+                "variant": "B01RecordObservation|B02RecordObservation|F01RecordObservation|F02RecordObservation|F03RecordObservation|F04RecordObservation|F05RecordObservation|F06RecordObservation|F07RecordObservation|F08RecordObservation|F09RecordObservation|N01RecordObservation|N02RecordObservation"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "TraceClaim": {
+              "fields": {
+                "name": "string",
+                "target_ref": "Field<Ref>",
+                "value": "RawValue",
+                "basis_refs": "Ref[]"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "RecordTraceInput": {
+              "fields": {
+                "context": "TraceContext",
+                "candidate": "CaseInput",
+                "claims": "TraceClaim[]",
+                "sources": "SourceEnvelope[]",
+                "qualifications": "Qualification[]",
+                "qualification_roots": "QualificationRoot[]"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "InputIssue": {
+              "fields": {
+                "path": "string",
+                "state": "string",
+                "detail": "string",
+                "backflow_owner": "string",
+                "axis": "string",
+                "source_ref": "Field<Ref>",
+                "related_source_refs": "Ref[]"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "ValidatedRecordTrace": {
+              "fields": {
+                "input": "Field<RecordTraceInput>",
+                "input_issues": "InputIssue[]",
+                "qualified_records": "OwnerRecord[]",
+                "source_issues": "InputIssue[]",
+                "qualified_source_refs": "Ref[]",
+                "unqualified_source_refs": "Ref[]",
+                "conflicting_source_refs": "Ref[]",
+                "unresolved_source_refs": "Ref[]",
+                "unresolved_sections": "string[]"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "TraceFinding": {
+              "fields": {
+                "code": "string",
+                "contract_ref": "string",
+                "axis": "string",
+                "state": "string",
+                "target_path": "string",
+                "source_refs": "Ref[]",
+                "backflow_owner": "string",
+                "preserved_observation": "CaseObservation"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "TraceSectionResult": {
+              "fields": {
+                "contract_ref": "string",
+                "observation": "CaseObservation",
+                "findings": "TraceFinding[]",
+                "unresolved_source_refs": "Ref[]",
+                "effect_requests": "RawValue[]"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "RecordTraceAnalysis": {
+              "fields": {
+                "sections": "TraceSectionResult[]",
+                "input_issues": "InputIssue[]",
+                "effects": "RawValue[]",
+                "authority_generated": "boolean"
+              },
+              "meaning": "局所比較のlogical型。実認可/保存/評価/受入を成立させない。"
+            },
+            "SourceSection": {
+              "fields": {
+                "selector": "string",
+                "value": "CaseInput | RawValue"
+              },
+              "meaning": "selectorは凍結原入力内の明示field path。valueはその原領域のtyped子値。mapのkeyはselectorで、pathをidentityにせず原subject/refへ結合する。"
+            },
+            "SourceSectionValue": {
+              "variant": "CaseInput child fields (typed scalar/Ref/Scope/nested domain record/array/null)",
+              "meaning": "input_types_by_contractのselector先の型へdecodeする。任意RawValueのまま意味比較しない。unknown/null/missingはFieldで保持。"
+            }
+          },
+          "input_types_by_contract": {
+            "B01": "B01RecordInput",
+            "B02": "B02RecordInput",
+            "F01": "F01RecordInput",
+            "F02": "F02RecordInput",
+            "F03": "F03RecordInput",
+            "F04": "F04RecordInput",
+            "F05": "F05RecordInput",
+            "F06": "F06RecordInput",
+            "F07": "F07RecordInput",
+            "F08": "F08RecordInput",
+            "F09": "F09RecordInput",
+            "N01": "N01RecordInput",
+            "N02": "N02RecordInput"
+          },
+          "observation_types_by_contract": {
+            "B01": "B01RecordObservation",
+            "B02": "B02RecordObservation",
+            "F01": "F01RecordObservation",
+            "F02": "F02RecordObservation",
+            "F03": "F03RecordObservation",
+            "F04": "F04RecordObservation",
+            "F05": "F05RecordObservation",
+            "F06": "F06RecordObservation",
+            "F07": "F07RecordObservation",
+            "F08": "F08RecordObservation",
+            "F09": "F09RecordObservation",
+            "N01": "N01RecordObservation",
+            "N02": "N02RecordObservation"
+          },
+          "invariants": [
+            "原owner出力とcandidateは別入力。candidateを変更してもsources/資格rootを再生成しない。",
+            "missing/null/empty/not_occurred/unobserved/unknown/failed/staleを別に保持。unknownをfalse/NA/empty/successへ変換しない。",
+            "各原refはidentity/revision/scope/ownerと元record内容へ解決。sourceはbyte一致だけでなく独立資格rootのowner/subject/ref/digest制約に照合する。",
+            "scope/project/要求版/template版/義務kindの別成功を互いの補償に使わない。",
+            "戻すobservationは有資格原sourceから再構築し、candidateの欠落/越境claimを採用しない。原source自体がmissing/conflictなら当該観測をunknownとして返す。"
+          ]
+        }
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "be5052acb26625928207a4d8538a2c9db342c223b2c699c660b5735ad86a360b",
+        "json_pointer": "/reference_resolution_contract",
+        "source_value": {
+          "records": "context.contract_refから選択sectionを固定。SourceEnvelope.decoded_records.subject_refの同identity/revision/scope/ownerをexact解決し、record_kind/section_key/payloadの内容を比較。複数相反recordは捨てずsource_conflict。",
+          "bytes": "source_json_utf8のUTF-8 bytesをhashしsource_sha256一致を検査し、parse結果recordsとdecoded_recordsを全内容比較。資格・digestはbodyへ自己再帰させない。",
+          "qualification": "Qualification.root_refは独立供給qualification_rootsへ解決。owner/subject集合/source_ref/source_sha256をroot許容集合へ照合し、同owner名だけでtrustしない。fixture rootは合成入力の前提に限り、実trust authorityを成立させない。",
+          "locality": "root/candidate shapeがdecode不能ならinput_issuesへinvalid_shape、input=null、qualified_records/各source分類ref空を返しsource資格照合前に停止する。decode可能時はsourceごとにbytes/body/資格を照合し、未資格sourceはsource_issues/unqualified_source_refs/unresolved_source_refsと依存sectionへ局所化する。有資格だが同subject/sectionに相反payloadがあればsource_issues/conflicting_source_refs/unresolved_source_refsへ両sourceを記録し、双方をqualified_recordsから外す。他の有資格OS/Qのsourceはqualified_records/qualified_source_refsで保持する。",
+          "section_resolution": "有資格原recordのsection_key/selectorからinput_types_by_contractの原入力領域を再構築する。同selectorを複数ownerが相反内容で供給したらsource_conflict。各領域内のrefは原recordの明示refへ内容・版・scope・ownerを結び、所在やsubject wrapperだけで内側refの意味資格を証明しない。外部ownerの原契約自体が未供給なら該当意味の未解決として保持し、原record追跡の成立を外部機構成立にしない。"
+        }
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "be5052acb26625928207a4d8538a2c9db342c223b2c699c660b5735ad86a360b",
+        "json_pointer": "/functions/0/algorithm",
+        "source_value": [
+          "RawValueのroot/candidate構造を先にdecode。形不正はinput_issuesのinvalid_shape、input=null、qualified_records/各source分類ref=[]。候補の必要意味key missing/nullはFieldとして保持し後続比較へ渡す。",
+          "decode可能時はSourceEnvelopeのbytes/parse/body/独立資格root/owner/subject/ref/hashを個別照合。未資格sourceはsource_issues、unqualified_source_refs/unresolved_source_refsと依存sectionへ結ぶ。",
+          "有資格原record同士が同subject/sectionで相反する場合は双方のsourceをconflicting_source_refs/unresolved_source_refsへ記録し、双方をqualified_recordsから外す。原payloadを捨てずissue evidenceに保持し、片方を正しい元として採用しない。",
+          "残る有資格sourceだけqualified_source_refs/qualified_recordsへ保持する。CORE不足で無関係なOS/Qの記録を失効させない。"
+        ]
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "be5052acb26625928207a4d8538a2c9db342c223b2c699c660b5735ad86a360b",
+        "json_pointer": "/state_semantics",
+        "source_value": {
+          "classifications": "missingは必要原入力未供給、unknownは元判断/観測未決、conflictは原内容との相反、staleは元ownerが宣言した旧分類状態。未選択/未発生は不足と別。",
+          "normal_incomplete": "正常比較結果にnot_proven/not_supplied/unknown/未完が残ってよい。finding無しを記録/接続/全体完了として使用しない。",
+          "input_shape": "invalid_shapeはRawValueのroot/candidate構造がlogical input型へdecodeできない状態。必要意味fieldのmissingやunknownとは別で、input=null、qualified_records/qualified_source_refs=[]を返して資格照合/意味比較を実行しない。",
+          "source_locality": "source未資格ではunqualified_source_refsとunresolved_source_refsへ原refを保持し、依存sectionをunresolved_sectionsへ結ぶ。有資格原sourceのみqualified_records/qualified_source_refsへ渡す。両方有資格だが同subject/sectionが相反ならconflicting_source_refsへ両元refを保持し、双方を有効意味入力から外す（片方を黙示採用しない）。"
+        }
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "be5052acb26625928207a4d8538a2c9db342c223b2c699c660b5735ad86a360b",
+        "json_pointer": "/fixture_source_construction",
+        "source_value": {
+          "body": "For each fixed owner section, body contains records:[{subject_ref,section_key,record_kind,payload:{selector:original value},owner}]. qualification/root fields match frozen bytes and role/subject. L8 normal_fixtures.input contains the complete built result.",
+          "envelope": "source_json_utf8 encodes {records:[{subject_ref,section_key,record_kind,payload:source_snapshot,owner}]}. source_sha256 is SHA256 bytes. decoded_records is parsed records. qualification_ref points to separate Qualification.",
+          "roots": "Root is separate immutable fixture basis {owner,allowed_subject_refs:[subject],allowed_source_ref:source,allowed_source_sha256:hash}. This tests root/ref/body/byte closure, not origin authentication. It is never rebuilt after mutation.",
+          "domain_comparison": "Resolve each owner section from qualified records and reconstruct complete original input sections. Candidate values are compared to the corresponding original fields and operation contract. Comparison findings are returned with original materials, not replacing unknown source by normal expected values. context.project_bindingの要求/HARNESS/template/意味版は原選択から独立供給し、candidateから再作成しない。各record固有ref/版は別軸で辿る。"
+        }
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "be5052acb26625928207a4d8538a2c9db342c223b2c699c660b5735ad86a360b",
+        "json_pointer": "/storage_boundary",
+        "source_value": {
+          "consumer": "OS053 atomic-canonicalization L5のwriter/reader/CAS/rollbackは別契約。",
+          "input": "RecordTraceAnalysisは原ref/内容/不足を束縛した比較材料だけ。実保存には対象operation/authority/隔離/資源/source/revisionとOS053原証拠が別に要る。",
+          "effects": "本14関数のeffectはnone。DB/Git/GitHub write・許可発行・割当/lease・運転・評価・knowledge採否・PO Acceptedを発行しない。"
+        }
+      },
+      {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "fba8ecba614e09d862bf0ff1fbace9ca1e70d67a7aef563f512c1e6cd583a823",
+        "json_pointer": "/fixture_contract",
+        "source_value": {
+          "kind": "synthetic logical source/input/expected, not executed",
+          "source_freeze": "以下normal_fixtureのoriginal_inputはreview済basic正常入力の固定copy。source_builderはこれから一度だけowner原record/bytes/rootを作り、candidateの各変異時は再生成しない。",
+          "ownership": "原snapshotはsection ownerのtrace材料。BRAIN/CORE/LABO/SECURITYの元出力部分はsource_sectionsのownerへ分け、OS記録ownerを他ownerの意味裁定authorityにしない。",
+          "byte_format": "合成source bodyだけのJSON sort_keys=True/ensure_ascii=False/separators=(comma,colon) UTF-8、LFなし。正式wire規格の採用ではない。",
+          "expected_is_not_input": "expected material/codes/preservationを関数の入力に渡さず、source_builderはoriginal_inputとsource_sectionsだけを参照する。"
+        }
+      },
+      {
+        "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "ffb07668c14daba5d20154bbf395b1e41b81bbb8430200c74298ffcc23d75742"
+      },
+      {
+        "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "30be7c06aa9e116bf2c88a4c3a927e0dbabcada20c8960c7aa6d762967857468"
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/business-requirements.json",
+        "revision": "a2f6961068619e550dd0467898927b6bc8451c75",
+        "whole_file_sha256": "41ae51c87fede622fbf95307fa4d2ca17309e73c2068142323df77686e1da197"
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+        "revision": "a2f6961068619e550dd0467898927b6bc8451c75",
+        "whole_file_sha256": "747a6c939d1eafe851561e774728b8b410e7c2f2375ede613427c873735701a8"
+      },
+      {
+        "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+        "revision": "a2f6961068619e550dd0467898927b6bc8451c75",
+        "whole_file_sha256": "3b8e7c7d55442fa175c867a5eb0159ed6e7b9c4505bf20211eb8dfc4ac56884c"
+      },
+      {
+        "path": "docs/helix-os/L10-verification/business-verification.json",
+        "revision": "a2f6961068619e550dd0467898927b6bc8451c75",
+        "whole_file_sha256": "44c68f910a74a16335d2f15a45d6e3df7e0049c71d3ad8faa46e107d323fe771"
+      },
+      {
+        "path": "docs/helix-os/L10-verification/functional-verification.json",
+        "revision": "a2f6961068619e550dd0467898927b6bc8451c75",
+        "whole_file_sha256": "951bd0ae98d71bb56046628c3a8bc8e79b45ae082f2f1e80b18f9c72411faf1c"
+      },
+      {
+        "path": "docs/helix-os/L10-verification/nfr-verification.json",
+        "revision": "a2f6961068619e550dd0467898927b6bc8451c75",
+        "whole_file_sha256": "1538dd5a3b702971f897067c87724b8a75b3e7a630790bb6294029fdc702e498"
+      },
+      {
+        "path": "docs/governance/decisions/helix-os-template002-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "bc43990ff996350a96ca53284c0bd8b102f7b224daf755a5b890257a9390d7f0"
+      },
+      {
+        "path": "docs/governance/decisions/os-template-trace-002-supplement-po-decision-2026-10-10.md",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "8b5aab228027e791dde4b66cdee2978f9f1cc25c125ed8f3eaf405c76dc45c36"
+      },
+      {
+        "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "cd22661c06fd93795986ba3f34563911a355a92e9766553f72629199eb988de1",
+        "json_pointer": "/remaining",
+        "source_value": [
+          "正式record schema/codec、digest算出・identity/actor/時刻の実資格と参照解決、writerの原子性・耐久性・不変性は未成立。",
+          "共有HIL-NFR-32等の全consumerを本pairへ自動採用しない。OS016/019、OS053との正式bindingと全構造閉包を詳細設計で確かめる。",
+          "独立oracle凍結、実装前Red→最小Green→Refactor、実製品CI、PO実物L11受入は未成立。",
+          "92親430対の残設計と全体整合性監査を継続する。"
+        ]
+      },
+      {
+        "path": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "a69db9b9b13622528b96712afb6aa8f72a208629f18dc13694e96ec5b760b5b8",
+        "json_pointer": "/remaining",
+        "source_value": [
+          "正式BASE-01共通schema/codecと実actor/model/capability/time/source資格、四logの実保存と任意event集合・alias/generation/重複replayをL5/L8で閉じる。",
+          "feedbackの解決十分条件と正式finding型は各meaning owner/検証ownerへ。未ackの実保存・部分走査/破損journal・terminal世代保全は未成立。",
+          "memory反映の実target同一性/耐久成功/順序証拠、expiry clock/fence/takeover/compactionと部分失敗recovery、data-use/secret除去は各consumerへ残す。原内容参照はbodyを再提示する許可ではない。",
+          "ordinalは同episode内の順序を表す合成入力で、実source custody/時刻の証明ではない。successful use countは同entryの論理的成功効果数。physical retryを二重成功へ同一視しない。",
+          "OS015/016/019/053とHARNESS共通証拠意味へのexact binding/全構造閉包、独立oracle凍結・実装前Red→Green→Refactor・実CI/L9/L10/PO L11は未成立。92親430対の全体目標を保持。"
+        ]
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/atomic-canonicalization.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "30fb55d761550e9407ba818a048b8e1bde89d6671f5044a32fe5217ed86486ea",
+        "json_pointer": "/remaining",
+        "source_value": [
+          "対象ごとの実OwnerInput/closure/SEC/INFRA binding、外部必須writeのadapter対設計は未成立。各未閉包scopeを保持し、全体の実装準備完了へ読み替えない。",
+          "L6/L7のfixed SQL/function/module/test-oracleコード、実toolchain exact SQLite/compile/OS-VFS設定の凍結、実装前Red、最小Green、実L9/L10とPO受入は後続。",
+          "HARNESS052の意味正規化algorithm/正式wire schemaは別ownerの設計。ここでOSが意味コアやテンプレート意味を再実装しない。"
+        ]
+      },
+      {
+        "path": "docs/governance/audits/first-cycle-owner-binding-gap-audit-2026-10-15.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "bdbd20c8800513812c668ff0d5b8c62f7d5255273e07e7a6545024c0334e586b",
+        "json_pointer": "/scope",
+        "source_value": {
+          "total_parents": 92,
+          "total_pairs": 430,
+          "audited_parent_count": 3,
+          "audited_documents": 12,
+          "remaining_parents_not_audited_here": 89,
+          "pair_count_limit": "430対全体を監査したものではない。3親の既存L4/L9とL5/L8の6pair・12文書を本文照合。support sourceの参照を別親の全設計監査へ数えない。",
+          "whole_design_closure": "unproven",
+          "implementation_readiness": "not_ready",
+          "parents": [
+            {
+              "parent": "HELIXBRAIN-L2-032",
+              "mechanism": "HELIX-BRAIN",
+              "product_attribute": false,
+              "documents": [
+                {
+                  "document_id": "HELIXBRAIN-L4-032-TEMPLATE-SEMANTIC-SUPPLY",
+                  "source_ref": "docs/helix-brain/L4-basic-design/template-semantic-supply.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HELIXBRAIN-L9-032-TEMPLATE-SEMANTIC-SUPPLY",
+                  "source_ref": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
+                  "source_ref": "docs/helix-brain/L5-detail-design/template-semantic-supply.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
+                  "source_ref": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json@c00695600ab1fed30718d89880b92a6358422131"
+                }
+              ]
+            },
+            {
+              "parent": "HARNESS-L2-009",
+              "mechanism": "HELIX-HARNESS-CORE",
+              "product_attribute": true,
+              "documents": [
+                {
+                  "document_id": "HARNESS-L4-009-PRODUCT-TEMPLATE-APPLICATION",
+                  "source_ref": "docs/helix-harness/L4-basic-design/product-template-application.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HARNESS-L9-009-PRODUCT-TEMPLATE-APPLICATION",
+                  "source_ref": "docs/helix-harness/L9-integration-verification/product-template-application.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HARNESS-L5-009-PRODUCT-TEMPLATE-APPLICATION",
+                  "source_ref": "docs/helix-harness/L5-detail-design/product-template-application.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HARNESS-L8-009-PRODUCT-TEMPLATE-APPLICATION",
+                  "source_ref": "docs/helix-harness/L8-unit-verification/product-template-application.json@c00695600ab1fed30718d89880b92a6358422131"
+                }
+              ]
+            },
+            {
+              "parent": "HELIXOS-L2-002",
+              "mechanism": "HELIX-OS",
+              "product_attribute": false,
+              "documents": [
+                {
+                  "document_id": "HELIXOS-L4-002-PROJECT-TEMPLATE-TRACE",
+                  "source_ref": "docs/helix-os/L4-basic-design/project-template-trace.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HELIXOS-L9-002-PROJECT-TEMPLATE-TRACE",
+                  "source_ref": "docs/helix-os/L9-integration-verification/project-template-trace.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HELIXOS-L5-002-PROJECT-TEMPLATE-TRACE",
+                  "source_ref": "docs/helix-os/L5-detail-design/project-template-trace.json@c00695600ab1fed30718d89880b92a6358422131"
+                },
+                {
+                  "document_id": "HELIXOS-L8-002-PROJECT-TEMPLATE-TRACE",
+                  "source_ref": "docs/helix-os/L8-unit-verification/project-template-trace.json@c00695600ab1fed30718d89880b92a6358422131"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "path": "docs/governance/audits/first-cycle-owner-binding-gap-audit-2026-10-15.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "bdbd20c8800513812c668ff0d5b8c62f7d5255273e07e7a6545024c0334e586b",
+        "json_pointer": "/trace_rows/2",
+        "source_value": {
+          "trace_id": "TRACE-03",
+          "route": "CORE ApplicationAnalysis→OS002のF02/F03/F04/F05/F07 owner sections",
+          "document_observation": "COREは候補/義務/不足/局所影響、OSは原recordの追跡を持つ。",
+          "closure_state": "unclosed",
+          "unclosed_binding": "ApplicationAnalysisのcandidate_material/obligations/gap_material/impact_material/comparisonsはOS OwnerRecord.subject_ref/section_key/record_kind/payload/ownerと同じrecord契約ではない。F02 proposed/selected/usedと各source、F03 event/actor/correlation/義務/artifact/pair、F04原義務state、F05返却/受理/解決/消込、F07実旧新使用版は独立原入力であり、正式section mappingと外部owner binding/原資格が未成立。",
+          "return_owner": [
+            "HELIX-HARNESS-CORE",
+            "HELIX-OS各原record owner",
+            "該当義務/Backflow受信owner"
+          ],
+          "evidence_refs": [
+            "core.output",
+            "core.output_limit",
+            "core.consumer",
+            "os.record",
+            "os.sections",
+            "os.sets",
+            "os.dispositions",
+            "os.backflow",
+            "os.inner_ref_limit",
+            "upstream.HARNESS-L3-009-F02",
+            "upstream.HARNESS-L3-009-F08",
+            "upstream.HELIXOS-L3-002-F02",
+            "upstream.HELIXOS-L3-002-F04"
+          ],
+          "invalid_correspondences": [
+            "CORE候補→OS selected/used",
+            "required/conditional/N/A→義務消込",
+            "局所意味影響候補→実stale/再検証成功"
+          ]
+        }
+      },
+      {
+        "path": "docs/governance/audits/first-cycle-owner-binding-gap-audit-2026-10-15.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "bdbd20c8800513812c668ff0d5b8c62f7d5255273e07e7a6545024c0334e586b",
+        "json_pointer": "/trace_rows/3",
+        "source_value": {
+          "trace_id": "TRACE-04",
+          "route": "各owner原source資格→OS015/019/018 custodyとwrapper内Ref",
+          "document_observation": "bytes/body照合と資格照合を分離し、未資格/相反sourceを局所化する設計は存在する。",
+          "closure_state": "unclosed",
+          "unclosed_binding": "BRAIN/COREのRefはnullable identity/revision/scope/owner/locator/hash、qualification_rootsはRef[]。BRAIN Qualificationはsubject_ref/subject_sha256/applicable_scope/qualification_body、COREはowner/scope/bodyも持つ。OS RefはField<T>でmissing/supplied(null)/supplied値を分離し、Qualification/QualificationRootはowner/subject集合/source_ref/source_sha256許容集合。単純共通化は欠落とnull、subject digestとsource digest、subject単体と集合を失う。実owner資格・custody・root供給根拠は未成立。wrapper資格だけでは内部のtemplate/knowledge/要求/義務/actor/event/ref資格を証明しない。",
+          "return_owner": [
+            "各原owner",
+            "HELIXOS-L2-015",
+            "HELIXOS-L2-019",
+            "HELIXOS-L2-018",
+            "既存authority owner"
+          ],
+          "evidence_refs": [
+            "brain.root_type",
+            "brain.qualification",
+            "core.root_type",
+            "core.qualification",
+            "os.field",
+            "os.ref",
+            "os.qualification",
+            "os.root",
+            "os.trust_limit",
+            "os.inner_ref_limit",
+            "os.fixture_root_limit",
+            "original.HELIXOS-L2-015.L2",
+            "original.HELIXOS-L2-019.L2",
+            "original.HELIXOS-L2-018.L2",
+            "os015.remaining",
+            "os018.remaining"
+          ],
+          "invalid_correspondences": [
+            "同owner名/digest一致→資格root成立",
+            "合成immutable root→origin authentication",
+            "source wrapper資格→内部参照全資格",
+            "assignment→SEC認可/INFRA実資源の正本"
+          ]
+        }
+      },
+      {
+        "path": "docs/governance/audits/first-cycle-owner-binding-gap-audit-2026-10-15.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "bdbd20c8800513812c668ff0d5b8c62f7d5255273e07e7a6545024c0334e586b",
+        "json_pointer": "/trace_rows/5",
+        "source_value": {
+          "trace_id": "TRACE-06",
+          "route": "OS002 RecordTraceAnalysis→OS053保存/OS019 continuity/OS023 Backflow受渡し",
+          "document_observation": "OS002はeffect noneの比較材料。OS053のwriter/reader/CAS/rollbackは別契約。",
+          "closure_state": "unclosed",
+          "unclosed_binding": "RecordTraceAnalysisから対象operation/authority/隔離/資源/source/revisionを持つOS053実OwnerInputへの正式bindingと実保存証拠は未成立。OS019原event/失敗/訂正/未完/再開情報、OS023受信側の未完義務受理、意味ownerの対象revision/scope解決、元義務の消込は別証拠。OS002 F05はnullの受理/解決/消込を未供給に保ち、OS053残件も実OwnerInput/closure/SEC/INFRA binding未成立を明示する。",
+          "return_owner": [
+            "HELIXOS-L2-053",
+            "HELIXOS-L2-019",
+            "HELIXOS-L2-023",
+            "元義務owner/受信meaning owner"
+          ],
+          "evidence_refs": [
+            "os.storage",
+            "os.backflow",
+            "os.backflow_behavior",
+            "os.function.compare_backflow_evidence",
+            "os053.remaining",
+            "os007.remaining",
+            "original.HELIXOS-L2-019.L2",
+            "original.HELIXOS-L2-023.L2",
+            "upstream.HELIXOS-L3-002-F05"
+          ],
+          "invalid_correspondences": [
+            "静的source byte閉包→実保存耐久成功",
+            "保存/ACK→意味解決",
+            "受理→元義務消込",
+            "元ticket完了→受信側未完義務受理の省略"
+          ]
+        }
+      },
+      {
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "json_pointer": "/canonical_meaning",
+        "source_value": {
+          "planning": "L1",
+          "requirement": "L2",
+          "specification": "L3",
+          "basic_design": "L4",
+          "detail_design": "L5",
+          "function_design": "L6",
+          "function_verification": "L7",
+          "unit_verification": "L8",
+          "integration_verification": "L9",
+          "system_verification": "L10",
+          "acceptance": "L11",
+          "operation_evaluation": "L12"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "711d29008485d79d5ea9b59229f6b2a680266db83988f91a1d985c7c9133c4dc",
+        "json_pointer": "/outside_kinds",
+        "source_value": [
+          "charter",
+          "concept",
+          "implementation"
+        ]
+      }
+    ],
+    "legacy_comparison": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "source": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+          "whole_file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+          "start_line": 16,
+          "end_line": 92,
+          "exact_quote": "## §1 目的とauthority境界\n\nRequirement JSONから必要十分な設計成果物を選べるよう、templateの構造的意味をversioned JSONへ\n集約する。文章をJSONへ詰め込むのではなく、機械判断に必要な契約だけをJSON正本とする。\n\n| surface | 責務 | authority |\n|---|---|---|\n| Design Template JSON | template ID/version、layer/pair、適用条件、必須input/section/field、owner、trace、negative oracle、measurement、completion、downstream kind | canonical candidate。pair freeze後にcanonical |\n| Design Instance JSON | 選択済みtemplateとrequirement/obligationを束縛した設計値 | 後続L5 episode |\n| graph JSON | component、state transition、data flow、sequence、V-pair edge | 図の構造的意味 |\n| generated Markdown/HTML/Mermaid | JSONを人間向けに投影 | derived、直接編集禁止 |\n| supplemental Markdown | rationale、alternatives、trade-off、背景 | JSON IDへ束縛する説明。構造的意味の正本ではない |\n| `docs/design/design-catalog.yaml` | 現行成果物の所在と分類 | inventory。template schemaではない |\n\n画像、Markdown、tool node ID、file pathだけをtemplate identityや設計意味の主キーにしない。\n\n## §2 component境界\n\n| component | 入力 | 出力 | 責務 | failure |\n|---|---|---|---|---|\n| `DesignTemplateRegistry` | versioned template JSON | exact template set、registry digest | ID/version/supersessionとschema束縛 | duplicate、unknown version、digest drift |\n| `ApplicabilityEvaluator` | requirement atom、obligation、risk、style/layer、typed predicate | applicable/non-applicable＋理由 | `all`/`any`/`not`のfail-close評価 | unknown operator/field/enum、自由文条件 |\n| `TemplateShadowCompiler` | 既存template/canonical design inventory | shadow template候補、parity finding | 既存意味を新正本候補へ一方向変換 | 未分類、意味欠落、二重authority |\n| `GeneratedViewProjector` | validated template/instance/graph JSON | Markdown/HTML/Mermaid＋source digest | 決定論表示 | source digest不一致、直接編集 |\n| `DesignPortfolioPlanner` | Requirement JSON、Design Obligation Graph、registry | reuse/delta/new/N/A proposal | 最小portfolio提案 | uncovered、duplicate、fabricated ID |\n| `PairGraphBinder` | selected template/instance、V-pair oracle | L4↔L9、L5↔L8 graph | pair exact setとcompletionを束縛 | missing pair、別revision、stale oracle |\n\n本sliceはcomponent契約だけを定義する。schema/runtime、planner algorithm、instance生成、pair graph\nfreezeは後続L5/L6 episodeで実装する。\n\n## §3 主要data flow\n\n```text\nRequirement JSON\n  -> Design Obligation Graph\n  -> DesignPortfolioPlanner\n  -> selected Design Template JSON exact set\n  -> Design Instance JSON\n  -> pair graph / Test Design JSON\n  -> generated Markdown / HTML / Mermaid\n```\n\nback-propagationはfindingまたはproposal eventとしてRequirement Engine／template revisionへ戻す。\ngenerated viewや既存Markdownを読んでJSONを無断更新するreverse flowは禁止する。\n\n## §4 applicabilityとcompletionの型境界\n\n適用条件は自由文booleanでなく、次の閉じた式木を使う。\n\n```json\n{\n  \"all\": [\n    { \"field\": \"layer\", \"op\": \"eq\", \"value\": \"L4\" },\n    {\n      \"any\": [\n        { \"field\": \"risk.security\", \"op\": \"eq\", \"value\": true },\n        { \"field\": \"artifact_kind\", \"op\": \"contains\", \"value\": \"interface\" }\n      ]\n    },\n    { \"not\": { \"field\": \"disposition\", \"op\": \"eq\", \"value\": \"rejected\" } }\n  ]\n}\n```\n\nfield、operator、value type、enumはschema registryのallowlistで閉じる。unknownは`false`へ丸めず\nevaluation errorとしてfail-closeする。N/Aはreason、authority、re-evaluation triggerを必須にする。\n\ntemplate completionは少なくとも次のexact setを持つ。\n\n- 必須section／fieldのcoverage\n- requirement/obligation trace\n- negative oracle\n- measurement/thresholdまたは根拠付きN/A\n- V-pair edge\n- unresolved item 0、またはowner/re-entryを持つ明示defer\n- source/template/instance revision digest一致\n"
+        },
+        "reuse_mode": "semantic_rederivation",
+        "preserve": "JSON正本/原版/source/trace、未知とN/Aの分離、typed失敗所在、反例と独立ownerの責務を保持。",
+        "change": "旧TPL/整数版/lifecycle/式木/registry/digest gate/TS/Zod/固定上限/activationを採用しない。宣言objectはOS原field集合へclosed、原Field<T>は省略/null/原供給値を保持。OwnerRecord.payloadと原RawValue領域への全unknown property拒否は転写しない。原facet保留を維持。",
+        "reason": "承認OS002の13対・原型/validate/正常fixtureに従う。初稿の宣言object追加key受理に現行根拠はなく撤回する。原selector mapと未選択CaseInput/CaseObservationの内容保持はselected宣言子型の拡張許可ではない。codec受理と保存/資格/意味裁定/消込を分ける。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "source": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+          "whole_file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+          "start_line": 16,
+          "end_line": 108,
+          "exact_quote": "## §1 schema familyの構成\n\n同じ意味を複数schemaへ複製せず、次の4 document kindを一つのversioned familyで管理する。\n\n| schema ID | 責務 | 本episode |\n|---|---|---|\n| `helix-design-template.v1` | 再利用可能な設計契約と適用条件 | fieldとvalidationをfreeze |\n| `helix-design-template-registry.v1` | template exact set、supersession、registry digest | fieldとvalidationをfreeze |\n| `helix-design-shadow-report.v1` | 既存artifactとの意味対応と差分 | fieldとparity判定をfreeze |\n| `helix-design-instance.v1` | requirementへ束縛した設計値 | identity/trace接続口だけ。値契約は後続episode |\n\n全objectは`additionalProperties: false`相当で閉じる。schema versionは文書kindごとのmajorを持ち、\nunknown majorを互換推測しない。\n\n## §2 Design Template JSONのfield\n\n```yaml\nrequired:\n  - schema_version\n  - template_id\n  - template_version\n  - status\n  - title\n  - layer\n  - pair_layer\n  - artifact_kind\n  - responsibility_owner\n  - applicability\n  - required_inputs\n  - sections\n  - trace_contract\n  - verification\n  - measurement\n  - completion\n  - downstream_artifact_kinds\n  - semantic_digest\n```\n\n### identityとlifecycle\n\n- `template_id`: `TPL-`で始まるstable ID。pathやtitleをidentityにしない。\n- `template_version`: 1以上の整数。同じID/versionの重複を拒否する。\n- `status`: `candidate | verified | approved | canonical | deprecated`の閉じた集合。\n- `supersedes`: 同じtemplate classの既存ID/versionだけを参照できる。\n- `layer/pair_layer`: current L1–L12 pair exact setだけを許可する。\n\n`candidate -> verified -> approved -> canonical -> deprecated`の順だけを許可する。shadow compilerの\n出力は常にcandidateであり、parity greenだけでapproved/canonicalへ昇格しない。\n\n### sectionとfield\n\n`sections`は`section_id`をtemplate内で一意にし、`required`、`fields`、`completion_rule_ids`を持つ。\nfieldは`field_id`、`value_type`、`cardinality`、`required`、`trace_kind`、`validation_rule_ids`を持つ。\n自由文fieldも意味ownerとtraceを持ち、rationaleだけを構造fieldの代用にしない。\n\n### trace、verification、measurementの契約\n\n- `trace_contract`: requirement、system contract、acceptance、design obligationの必須参照class。\n- `verification`: pair template ID、required oracle class、negative oracle、stale条件。\n- `measurement`: metric ID、unit、threshold/operatorまたはauthority付きN/A。\n- `completion`: required coverage、unresolved policy、independent review、digest一致条件。\n- `downstream_artifact_kinds`: current layer/pairで生成可能な閉じたartifact kind。\n\n## §3 applicability式\n\n式nodeは次のdiscriminated unionとする。\n\n```yaml\npredicate_node:\n  - all: PredicateNode[1..N]\n  - any: PredicateNode[1..N]\n  - not: PredicateNode\n  - comparison:\n      field: allowlisted_field_path\n      op: eq | neq | in | contains | exists | gt | gte | lt | lte\n      value: typed_scalar_or_array\n```\n\n一つのnodeに複数variantを置かない。空`all/any`、過剰depth、循環参照、unknown field/operator、\nfield型とvalue/operatorの不一致をschemaまたはsemantic validationで拒否する。\n\n評価結果は`applicable | not_applicable | evaluation_error`の三値とする。missing fieldやunknown enumを\n`not_applicable`へ丸めない。N/Aは`reason`、`authority`、`reentry_trigger`を持つdispositionであり、\npredicate falseとは別に記録する。\n\n## §4 registryとexact set\n\nregistryは`registry_id`、`registry_version`、`schema_digest`、templateの`id/version/digest/status` exact set、\n生成時刻から独立したlogical digestを持つ。同じclass/layer/pair/applicability equivalence classに\ncanonical normative ownerを原則1件だけ許可する。\n\ntemplate IDの参照はregistry内のexact versionへ解決し、latest暗黙解決をしない。deprecated templateは\nreplacement、consumer exact set、retention、removal triggerが無ければ受理しない。"
+        },
+        "reuse_mode": "semantic_rederivation",
+        "preserve": "JSON正本/原版/source/trace、未知とN/Aの分離、typed失敗所在、反例と独立ownerの責務を保持。",
+        "change": "旧TPL/整数版/lifecycle/式木/registry/digest gate/TS/Zod/固定上限/activationを採用しない。宣言objectはOS原field集合へclosed、原Field<T>は省略/null/原供給値を保持。OwnerRecord.payloadと原RawValue領域への全unknown property拒否は転写しない。原facet保留を維持。",
+        "reason": "承認OS002の13対・原型/validate/正常fixtureに従う。初稿の宣言object追加key受理に現行根拠はなく撤回する。原selector mapと未選択CaseInput/CaseObservationの内容保持はselected宣言子型の拡張許可ではない。codec受理と保存/資格/意味裁定/消込を分ける。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EF18357A994D043719D5",
+        "source": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+          "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+          "whole_file_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+          "start_line": 16,
+          "end_line": 63,
+          "exact_quote": "## §1 module境界\n\n実装候補は`src/design/design-template-authority.ts`の単一moduleとする。まずpure functionだけで成立させ、\nrepository loader、CLI、DB projection、Markdown writerは本sliceへ追加しない。JSON Schema libraryは\n既存dependencyを再利用できる場合だけadapter側で使い、core resultをlibrary固有errorへ束縛しない。\n\n```ts\ntype Finding = {\n  code: DesignTemplateFindingCode;\n  pointer: string;\n  message: string;\n};\n\ntype ValidationResult<T> =\n  | { ok: true; value: T; findings: [] }\n  | { ok: false; findings: Finding[] };\n```\n\nfindingは`code -> pointer -> message`の順でstable sortし、入力順やruntime localeでdigestを変えない。\n\n## §2 `validateDesignTemplate`\n\n```ts\nfunction validateDesignTemplate(\n  input: unknown,\n  context: {\n    schemaVersion: \"helix-design-template.v1\";\n    currentPairs: ReadonlyArray<readonly [string, string]>;\n    allowedFieldPaths: ReadonlySet<string>;\n  },\n): ValidationResult<DesignTemplate>;\n```\n\n### DbC\n\n- pre: inputはuntrustedであり、callerがparse済みと仮定しない。\n- post: `ok=true`ならrequired field、identity、lifecycle、pair、predicate、trace、verification、\n  measurement、completion、semantic digestが全て成立する。\n- invariant: unknown property、unknown enum、unsafe integer、duplicate IDを保持したtyped valueを返さない。\n\n### pseudocode\n\n```text\nparse strict schema\nif parse findings exist -> return stable failure\nvalidate stable identity and lifecycle transition\nvalidate current L1-L12 layer pair\nwalk applicability tree with depth/node limits"
+        },
+        "reuse_mode": "semantic_rederivation",
+        "preserve": "JSON正本/原版/source/trace、未知とN/Aの分離、typed失敗所在、反例と独立ownerの責務を保持。",
+        "change": "旧TPL/整数版/lifecycle/式木/registry/digest gate/TS/Zod/固定上限/activationを採用しない。宣言objectはOS原field集合へclosed、原Field<T>は省略/null/原供給値を保持。OwnerRecord.payloadと原RawValue領域への全unknown property拒否は転写しない。原facet保留を維持。",
+        "reason": "承認OS002の13対・原型/validate/正常fixtureに従う。初稿の宣言object追加key受理に現行根拠はなく撤回する。原selector mapと未選択CaseInput/CaseObservationの内容保持はselected宣言子型の拡張許可ではない。codec受理と保存/資格/意味裁定/消込を分ける。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F68FCEF7D82C4F7FA1EB",
+        "source": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-design-template-json-authority-integration-test-design.md",
+          "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+          "whole_file_sha256": "c3640d846d0cbd27c45d5f267baed76f839b481ad5e748ee2280a418353ca1b4",
+          "start_line": 16,
+          "end_line": 34,
+          "exact_quote": "| oracle | mutation | 合格条件 |\n|---|---|---|\n| IT-DTJ-001 | required fieldまたはunknown propertyを混入 | `schema_invalid`、activation不可 |\n| IT-DTJ-002 | template ID/versionを重複 | `template_identity_duplicate` |\n| IT-DTJ-003 | registry digestとtemplate byteをずらす | `template_digest_mismatch` |\n| IT-DTJ-004 | applicabilityへunknown field/operator、型不一致、空allを入れる | `applicability_invalid`、推測fallback 0 |\n| IT-DTJ-005 | requirement/obligation/system contract traceを一つ欠落 | `trace_incomplete` |\n| IT-DTJ-006 | pair template、negative oracle、pair revisionを一つ欠落 | `pair_incomplete` |\n| IT-DTJ-007 | measurement thresholdとN/A authorityを両方欠落 | `measurement_incomplete` |\n| IT-DTJ-008 | 同値classへcanonical normative ownerを2件設定 | `normative_owner_duplicate` |\n| IT-DTJ-009 | source atomをowner/re-entryなしで未変換にする | `shadow_atom_unmapped` |\n| IT-DTJ-010 | compatibility artifactの値をcurrent defaultへ昇格 | `legacy_authority_promotion` |\n| IT-DTJ-011 | generated viewだけを編集 | `generated_view_drift`、JSON変更0 |\n| IT-DTJ-012 | narrative Markdownを除去して再検証 | template identity、applicability、trace、pair、completionをJSONだけで再現 |\n| IT-DTJ-013 | `explained_delta`へreview/design decisionを付けない | cutover不可 |\n| IT-DTJ-014 | findingを複数順序で入力 | stable順の同一finding setと同一logical digest |\n\nL8はschema validator、registry、applicability evaluator、shadow compiler、generated view digestの結線を\n検証する。各mutationを別oracleとしてkillし、別fieldのgreenやMarkdown説明で相殺しない。"
+        },
+        "reuse_mode": "semantic_rederivation",
+        "preserve": "JSON正本/原版/source/trace、未知とN/Aの分離、typed失敗所在、反例と独立ownerの責務を保持。",
+        "change": "旧TPL/整数版/lifecycle/式木/registry/digest gate/TS/Zod/固定上限/activationを採用しない。宣言objectはOS原field集合へclosed、原Field<T>は省略/null/原供給値を保持。OwnerRecord.payloadと原RawValue領域への全unknown property拒否は転写しない。原facet保留を維持。",
+        "reason": "承認OS002の13対・原型/validate/正常fixtureに従う。初稿の宣言object追加key受理に現行根拠はなく撤回する。原selector mapと未選択CaseInput/CaseObservationの内容保持はselected宣言子型の拡張許可ではない。codec受理と保存/資格/意味裁定/消込を分ける。"
+      }
+    ],
+    "failure_basis": {
+      "source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "start_line": 65,
+        "end_line": 101,
+        "exact_quote": "| ID | severity | 弱点 | 観測根拠 | 要件化 |\n|---|---|---|---|---|\n| UTW-001 | Critical | L0〜L14とBunがsource全体のcurrent authorityとして深く埋め込まれている | Core Reads、README、package、CI、32 active Bun reference files | UTH-FR-002〜004 |\n| UTW-002 | Critical | prose/CURRENT handoverがcontinuation正本で、event-first DB projectionと競合する | AGENTS/CLAUDEのSession Start、`.ut-tdd/handover` | UTH-FR-006 |\n| UTW-003 | Critical | repository hookで覆えないhosted tool surfaceが手続き依存 | 対象AGENTSのscope boundary | UTH-FR-008 |\n| UTW-004 | Critical | live policyと文書policyが乖離し得る | ruleset、branch policy、既存UT-GH-03〜05 | UTH-FR-017 |\n| UTW-005 | Critical | PR trace/review evidenceが最新HEAD・merge-baseへ常時再束縛されない | 既存UT-GH-06/07/12 | UTH-FR-015 |\n| UTW-006 | Critical | GitHub signal→Issue→PLAN→PR→CI→merge→memoryが単一exactly-once episodeで閉じない | execution episode branchがmain未統合、UT-GH-09/10/13 | UTH-FR-018 |\n| UTW-007 | Critical | secret/PII scanの一部がwarn-onlyまたはhook依存で、CI全push blob再検証が不足 | `secret-scan-diff`既定warn、UT-GH-15 | UTH-FR-020 |\n| UTW-008 | High | 素のtest入口と正規snapshot runnerの意味が異なり、37 fail/4 errorsになる | 実測 | UTH-NFR-001、UTH-FR-010 |\n| UTW-009 | High | full regression/doctorが重く、timeoutと長いself-heal loopを生む | 220.54秒、doctor test 214.17秒 | UTH-NFR-002、UTH-FR-011 |\n| UTW-010 | High | Bun runtime/CIがLinux・Windows双方の必須前提 | package engines、workflow | UTH-FR-003、UTH-FR-012 |\n| UTW-011 | High | macOS legがなく、Windowsはfast/toolchain scopeのみ | workflow 2 legs | UTH-FR-012 |\n| UTW-012 | High | tracked runtime stateが207 filesあり、source/evidence/generated state境界が太い | `.ut-tdd` tracked inventory | UTH-FR-007 |\n| UTW-013 | High | fail-open/warn-onlyが安全性、観測性、可用性で統一分類されていない | session log、handover、update、scan、graphの複数方針 | UTH-FR-009 |\n| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |\n| UTW-015 | High | branch lifecycleが閉じず、main未包含6 heads、最大54 commits aheadが残る | mirror ref inventory | UTH-FR-013、UTH-FR-014 |\n| UTW-016 | High | tag 0でrelease provenanceとsource snapshot authorityが弱い | ref inventory | UTH-FR-027 |\n| UTW-017 | High | Issue Formsのlabel bootstrap/inbound dogfoodが未閉包 | 既存UT-GH-08/09 | UTH-FR-016 |\n| UTW-018 | High | merge後branch/state/memory cleanupがtransactionalでない | UT-GH-02/13/14 | UTH-FR-018、UTH-FR-019 |\n| UTW-019 | High | subagent/agent spawn guardはruntime surface差分に追随し続ける必要がある | 対象rulesの旧「未配線」履歴と現guard test | UTH-FR-008 |\n| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |\n| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |\n| UTW-022 | High | external MCP/tool/pluginの実行、権限、supply-chain検証がprofile設計より後追い | backlog IMP-120〜124 | UTH-FR-024 |\n| UTW-023 | High | improvement backlogにobserved/triaged/verifiedが92件あり、status名と実装実体が一致しない行がある | backlog status集計 | UTH-FR-025 |\n| UTW-024 | High | source全refのatom化・採否・要件traceがcurrent receiptとして閉じていない | HELIX source ledgerのpredecessor-ut BLOCKED | UTH-FR-001、UTH-FR-023 |\n| UTW-025 | Medium | docs 1,045、Markdown 1,311で正本・compatibility・archiveの認識負荷が高い | main inventory | UTH-NFR-003、UTH-FR-005 |\n| UTW-026 | Medium | CLI、doctor、projectionのmonolithが変更影響とtargeted verificationを拡大する | long-running suites、既存refactor carry | UTH-FR-011、UTH-NFR-004 |\n| UTW-027 | Medium | wrapperがcloneを重ね、disk/process/resource予算が明示的でない | snapshot runner実測 | UTH-NFR-002、UTH-FR-026 |\n| UTW-028 | Medium | Node SQLite experimental warningが大量に出てsignal/noiseを悪化させる | 正規test output | UTH-NFR-005 |\n| UTW-029 | Medium | consumer setup、source repo、clean distributionで検証集合が分岐しやすい | source/Pack workflow分離 | UTH-FR-027 |\n| UTW-030 | Medium | update-checkなど外部可用性をfail-openにする機能にfreshness/decision impactの統一receiptがない | update advisory設計 | UTH-FR-028 |\n| UTW-031 | Medium | manual approvalの対象、snapshot binding、expiry、reapproval triggerが機能ごとに不均一 | setup/release/cutover/security docs | UTH-FR-029 |\n| UTW-032 | Medium | self-improvementがfinding数の消化へ寄り、before/after metricと再発率で閉じない | backlog、quality audit surface | UTH-FR-025、UTH-FR-030 |\n| UTW-033 | High | freeze checkpointとreopen impact再検証がmain未統合で、確定済み成果物の再開境界が弱い | `work/freeze-checkpoint-plans`固有PLAN群 | UTH-FR-031 |\n| UTW-034 | Critical | PLAN revisionのCAS、provenance、replay、rollbackを束ねるtransactional authoringがmain未統合 | `work/recovery-plan-revision-authoring`の25固有commit | UTH-FR-032 |\n| UTW-035 | High | specialist agent registryのschema、sync、drift、guard digest、検証team招集が設計branchに残る | `work/l6-81-agent-registry-design` | UTH-FR-033 |"
+      },
+      "ids": [
+        "UTW-002",
+        "UTW-005",
+        "UTW-014",
+        "UTW-020",
+        "UTW-021"
+      ],
+      "meaning": "正本/projection/revision/欠落空集合化/集約隠蔽/自己申告完成の原要求反例。新gate/閾値を生成しない。"
+    },
+    "schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "OS002 owner JSON carrier design candidate",
+      "$defs": {
+        "RawValue": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawValue"
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/RawValue"
+              }
+            }
+          ]
+        },
+        "Ref": {
+          "type": "object",
+          "properties": {
+            "identity": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "revision": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "scope": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Scope"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "Scope": {
+          "type": "object",
+          "properties": {
+            "project": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "tenant": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "environment": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "OwnerRecord": {
+          "type": "object",
+          "properties": {
+            "subject_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "section_key": {
+              "type": "string"
+            },
+            "record_kind": {
+              "type": "string"
+            },
+            "payload": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/SourceSectionValue"
+              }
+            },
+            "owner": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "SourceSectionValue": {
+          "$ref": "#/$defs/RawValue"
+        },
+        "SourceEnvelope": {
+          "type": "object",
+          "properties": {
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "owner": {
+              "type": "string"
+            },
+            "source_json_utf8": {
+              "type": "string"
+            },
+            "source_sha256": {
+              "type": "string"
+            },
+            "decoded_records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/OwnerRecord"
+              }
+            },
+            "qualification_ref": {
+              "$ref": "#/$defs/Ref"
+            }
+          },
+          "additionalProperties": false
+        },
+        "Qualification": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "root_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "owner": {
+              "type": "string"
+            },
+            "subject_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "source_sha256": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "QualificationRoot": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "owner": {
+              "type": "string"
+            },
+            "allowed_subject_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "allowed_source_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "allowed_source_sha256": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "RecordTraceInput": {
+          "type": "object",
+          "properties": {
+            "context": {
+              "$ref": "#/$defs/TraceContext"
+            },
+            "candidate": {
+              "$ref": "#/$defs/CaseInput"
+            },
+            "claims": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TraceClaim"
+              }
+            },
+            "sources": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/SourceEnvelope"
+              }
+            },
+            "qualifications": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Qualification"
+              }
+            },
+            "qualification_roots": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/QualificationRoot"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "TraceContext": {
+          "type": "object",
+          "properties": {
+            "operation": {
+              "type": "string"
+            },
+            "contract_ref": {
+              "$ref": "#/$defs/Ref"
+            },
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Scope"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selected_sections": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "project_binding": {
+              "$ref": "#/$defs/B02RecordInputbinding"
+            }
+          },
+          "additionalProperties": false
+        },
+        "B02RecordInputbinding": {
+          "type": "object",
+          "properties": {
+            "project_scope": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Scope"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "requirement_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "HARNESS_contract_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "template_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "semantic_contract_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "CaseInput": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/RawValue"
+          }
+        },
+        "TraceClaim": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "target_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "value": {
+              "$ref": "#/$defs/RawValue"
+            },
+            "basis_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "RecordTraceAnalysis": {
+          "type": "object",
+          "properties": {
+            "sections": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TraceSectionResult"
+              }
+            },
+            "input_issues": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/InputIssue"
+              }
+            },
+            "effects": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawValue"
+              }
+            },
+            "authority_generated": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "sections",
+            "input_issues",
+            "effects",
+            "authority_generated"
+          ]
+        },
+        "TraceSectionResult": {
+          "type": "object",
+          "properties": {
+            "contract_ref": {
+              "type": "string"
+            },
+            "observation": {
+              "$ref": "#/$defs/CaseObservation"
+            },
+            "findings": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TraceFinding"
+              }
+            },
+            "unresolved_source_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "effect_requests": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RawValue"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "contract_ref",
+            "observation",
+            "findings",
+            "unresolved_source_refs",
+            "effect_requests"
+          ]
+        },
+        "CaseObservation": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/RawValue"
+          }
+        },
+        "TraceFinding": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "contract_ref": {
+              "type": "string"
+            },
+            "axis": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "target_path": {
+              "type": "string"
+            },
+            "source_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            },
+            "backflow_owner": {
+              "type": "string"
+            },
+            "preserved_observation": {
+              "$ref": "#/$defs/CaseObservation"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "contract_ref",
+            "axis",
+            "state",
+            "target_path",
+            "source_refs",
+            "backflow_owner",
+            "preserved_observation"
+          ]
+        },
+        "InputIssue": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "detail": {
+              "type": "string"
+            },
+            "backflow_owner": {
+              "type": "string"
+            },
+            "axis": {
+              "type": "string"
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "related_source_refs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Ref"
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "state",
+            "detail",
+            "backflow_owner",
+            "axis",
+            "related_source_refs"
+          ]
+        },
+        "F02RecordInput": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "proposed_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selected_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "used_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "proposed_source": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selected_source": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "used_source": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "used_empty_basis": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F05RecordInput": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "backflow_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "returned_event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ack_event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "receiver_acceptance_ref": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Ref"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meaning_resolution_ref": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Ref"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "original_discharge_ref": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Ref"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unfinished_obligation_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "receiver_owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "OS023_contract_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "original_return_event": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F05RecordInputoriginalreturnevent"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "return_target": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F05RecordInputoriginalreturneventreturntarget"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "stop_reason": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F05RecordInputoriginalreturneventstopreason"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F05RecordInputoriginalreturnevent": {
+          "type": "object",
+          "properties": {
+            "event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "backflow_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "return_target": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F05RecordInputoriginalreturneventreturntarget"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "stop_reason": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F05RecordInputoriginalreturneventstopreason"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "correlation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F05RecordInputoriginalreturneventreturntarget": {
+          "type": "object",
+          "properties": {
+            "owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "target_scope": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Scope"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "requirement_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F05RecordInputoriginalreturneventstopreason": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unfinished_obligation_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "detail": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "B01RecordInput": {
+          "type": "object",
+          "properties": {
+            "owner_outputs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/B01RecordInputowneroutputsItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "record_receipt": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B01RecordInputrecordreceipt"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "actual_connection_evidence": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Ref"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "PO_acceptance_evidence": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Ref"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "B01RecordInputowneroutputsItem": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kind": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "B01RecordInputrecordreceipt": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "operation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "B02RecordInput": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "operation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "OS001_contract_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "result_state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "receipt_state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evaluation_selected": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "Q_work_state": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputQworkstate"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "B02RecordInputQworkstate": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F01RecordInput": {
+          "type": "object",
+          "properties": {
+            "project_states": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F01RecordInputprojectstatesItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F01RecordInputprojectstatesItem": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "implementation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "verification": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "release_kanban": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F01RecordInputprojectstatesItemreleasekanban"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F01RecordInputprojectstatesItemreleasekanban": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F03RecordInput": {
+          "type": "object",
+          "properties": {
+            "events": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F03RecordInputeventsItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kind_obligations": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F03RecordInputkindobligationsItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F03RecordInputeventsItem": {
+          "type": "object",
+          "properties": {
+            "event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "record_kind": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "actor_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "correlation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "obligation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "artifact_ref": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Ref"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "pair_ref": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Ref"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "nonrelated_basis": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F03RecordInputeventsItemnonrelatedbasis"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "original_state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F03RecordInputeventsItemnonrelatedbasis": {
+          "type": "object",
+          "properties": {
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F03RecordInputkindobligationsItem": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kind": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "artifact_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "pair_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F04RecordInput": {
+          "type": "object",
+          "properties": {
+            "core_outputs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F04RecordInputcoreoutputsItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "obligation_original_states": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F04RecordInputobligationoriginalstatesItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F04RecordInputcoreoutputsItem": {
+          "type": "object",
+          "properties": {
+            "output_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "template_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "disposition": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "decider": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "target_revision": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reentry": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "original_condition": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unfinished_obligation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F04RecordInputobligationoriginalstatesItem": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F06RecordInput": {
+          "type": "object",
+          "properties": {
+            "original_event": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F06RecordInputoriginalevent"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "old_projection": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F06RecordInputoldprojection"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "correction": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F06RecordInputcorrection"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "new_projection": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F06RecordInputnewprojection"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F06RecordInputoriginalevent": {
+          "type": "object",
+          "properties": {
+            "event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "actor_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "correlation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "outcome": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F06RecordInputoldprojection": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "original_event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "engine_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "schema_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "classification": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "currency_state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "stale_basis": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F06RecordInputoldprojectionstalebasis"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F06RecordInputoldprojectionstalebasis": {
+          "type": "object",
+          "properties": {
+            "correction_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "replacement_projection_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "engine_change": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F06RecordInputoldprojectionstalebasisenginechange"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "schema_change": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F06RecordInputoldprojectionstalebasisenginechange"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F06RecordInputoldprojectionstalebasisenginechange": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "to": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F06RecordInputcorrection": {
+          "type": "object",
+          "properties": {
+            "event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "corrects_projection_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "original_event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F06RecordInputnewprojection": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "original_event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "correction_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "engine_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "schema_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "classification": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "currency_state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "supersedes_projection_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F07RecordInput": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "used_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "candidate_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "CORE_impacts": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F07RecordInputCOREimpactsItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "view_only_source": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F07RecordInputviewonlysource"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "migration_receipt": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Ref"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F07RecordInputCOREimpactsItem": {
+          "type": "object",
+          "properties": {
+            "CORE_output_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "target_obligation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "old_used_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "new_candidate_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F07RecordInputviewonlysource": {
+          "type": "object",
+          "properties": {
+            "CORE_output_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "semantic_difference": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F08RecordInput": {
+          "type": "object",
+          "properties": {
+            "LABO_scope": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F08RecordInputLABOscope"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "original_records": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F08RecordInputoriginalrecordsItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "extraction_source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "connection_evidence": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Ref"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F08RecordInputLABOscope": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "period": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required_record_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "required_set_source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F08RecordInputoriginalrecordsItem": {
+          "type": "object",
+          "properties": {
+            "event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "period": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "retry_of": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F09RecordInput": {
+          "type": "object",
+          "properties": {
+            "finding_candidates": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F09RecordInputfindingcandidatesItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "causal_evidence": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F09RecordInputcausalevidenceItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F09RecordInputfindingcandidatesItem": {
+          "type": "object",
+          "properties": {
+            "candidate_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kind": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "origin_event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "obligation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "used_template_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "rework_event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "acceptance_event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "operation_result_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "causal_basis_ref": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Ref"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unresolved_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F09RecordInputcausalevidenceItem": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "origin_event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "target_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meaning": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "N01RecordInput": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_operation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "permission_output_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "data_class": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "permission_scope": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Scope"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "target_scope": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Scope"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "recipient_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "existing_permission_output": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/N01RecordInputexistingpermissionoutput"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "N01RecordInputexistingpermissionoutput": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_owner": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_operation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "data_class": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "scope": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Scope"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "recipient_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meaning": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "N02RecordInput": {
+          "type": "object",
+          "properties": {
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_selected": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "future_result_state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "period_observation_state": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "held_out_input": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "runtime_evidence": {
+              "anyOf": [
+                {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/Ref"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "B01RecordObservation": {
+          "type": "object",
+          "properties": {
+            "record_receipt_only": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "owner_states": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "connection": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "PO_Accepted": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "B02RecordObservation": {
+          "type": "object",
+          "properties": {
+            "initial_record_input": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "result": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "receipt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "evaluation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "Q_work": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F01RecordObservation": {
+          "type": "object",
+          "properties": {
+            "P": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F01RecordObservationP"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "Q": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F01RecordObservationQ"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F01RecordObservationP": {
+          "type": "object",
+          "properties": {
+            "implementation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "verification": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kanban": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F01RecordObservationQ": {
+          "type": "object",
+          "properties": {
+            "implementation": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "verification": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kanban": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kanban_source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F02RecordObservation": {
+          "type": "object",
+          "properties": {
+            "proposed_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selected_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "used_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "provenance_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F03RecordObservation": {
+          "type": "object",
+          "properties": {
+            "record_count": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "event_trace": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F03RecordInputeventsItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "kind_obligations": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F03RecordInputkindobligationsItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "completion_generated": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F04RecordObservation": {
+          "type": "object",
+          "properties": {
+            "conditional_original_value": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "OS_new_judgment_count": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "core_disposition_records": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F04RecordInputcoreoutputsItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unfinished_obligation_records": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F04RecordInputobligationoriginalstatesItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F05RecordObservation": {
+          "type": "object",
+          "properties": {
+            "known_stage_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unresolved_stages": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unfinished_obligation_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "return_target": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F05RecordInputoriginalreturneventreturntarget"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "stop_reason": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F05RecordInputoriginalreturneventstopreason"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "return_source_binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F05RecordObservationreturnsourcebinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F05RecordObservationreturnsourcebinding": {
+          "type": "object",
+          "properties": {
+            "event_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "binding": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/B02RecordInputbinding"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "backflow_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "source_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "correlation_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F06RecordObservation": {
+          "type": "object",
+          "properties": {
+            "original_event": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F06RecordInputoriginalevent"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "old_projection_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "correction_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "new_projection_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "old_failure_preserved": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "old_projection": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F06RecordInputoldprojection"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "new_projection": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/F06RecordInputnewprojection"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F07RecordObservation": {
+          "type": "object",
+          "properties": {
+            "used_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "migration": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "affected_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unknown_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unaffected_preserved_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "view_semantic_difference": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F08RecordObservation": {
+          "type": "object",
+          "properties": {
+            "included_original_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "retry_mapping": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F08RecordObservationretrymappingItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "missing_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "excluded": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/F08RecordObservationexcludedItem"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "complete": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "connection": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "OS_evaluation_generated": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F08RecordObservationretrymappingItem": {
+          "type": "object",
+          "properties": {
+            "retry_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "original_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F08RecordObservationexcludedItem": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "F09RecordObservation": {
+          "type": "object",
+          "properties": {
+            "candidate_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "grounded_causal_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unresolved_candidate_refs": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/Ref"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "LABO_evaluation_generated": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "BRAIN_promotion_generated": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "N01RecordObservation": {
+          "type": "object",
+          "properties": {
+            "sharing_scope": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Scope"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "permission_basis_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "data_class": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "new_permission_generated": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "N02RecordObservation": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "future_result": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "period": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "held_out_execution": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "runtime_evidence": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "defect_zero_generated": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "entry_points": {
+      "Ref": "#/$defs/Ref",
+      "Scope": "#/$defs/Scope",
+      "OwnerRecord": "#/$defs/OwnerRecord",
+      "SourceEnvelope": "#/$defs/SourceEnvelope",
+      "Qualification": "#/$defs/Qualification",
+      "QualificationRoot": "#/$defs/QualificationRoot",
+      "RecordTraceInput": "#/$defs/RecordTraceInput",
+      "RecordTraceAnalysis": "#/$defs/RecordTraceAnalysis",
+      "F02RecordInput": "#/$defs/F02RecordInput",
+      "F05RecordInput": "#/$defs/F05RecordInput"
+    },
+    "section_input_entry_points": {
+      "B01": "#/$defs/B01RecordInput",
+      "B02": "#/$defs/B02RecordInput",
+      "F01": "#/$defs/F01RecordInput",
+      "F02": "#/$defs/F02RecordInput",
+      "F03": "#/$defs/F03RecordInput",
+      "F04": "#/$defs/F04RecordInput",
+      "F05": "#/$defs/F05RecordInput",
+      "F06": "#/$defs/F06RecordInput",
+      "F07": "#/$defs/F07RecordInput",
+      "F08": "#/$defs/F08RecordInput",
+      "F09": "#/$defs/F09RecordInput",
+      "N01": "#/$defs/N01RecordInput",
+      "N02": "#/$defs/N02RecordInput"
+    },
+    "section_observation_entry_points": {
+      "B01": "#/$defs/B01RecordObservation",
+      "B02": "#/$defs/B02RecordObservation",
+      "F01": "#/$defs/F01RecordObservation",
+      "F02": "#/$defs/F02RecordObservation",
+      "F03": "#/$defs/F03RecordObservation",
+      "F04": "#/$defs/F04RecordObservation",
+      "F05": "#/$defs/F05RecordObservation",
+      "F06": "#/$defs/F06RecordObservation",
+      "F07": "#/$defs/F07RecordObservation",
+      "F08": "#/$defs/F08RecordObservation",
+      "F09": "#/$defs/F09RecordObservation",
+      "N01": "#/$defs/N01RecordObservation",
+      "N02": "#/$defs/N02RecordObservation"
+    },
+    "field_encoding": {
+      "missing": "JSON memberを省略し、presenceのabsentとして別に診断する。nullや空集合を追加しない。",
+      "supplied_null": "member:nullを元Field<T>のsupplied(null)として保持。inner Tが非nullableでもFieldの元variantは明示nullを保存する。",
+      "supplied_value": "memberの元値/原配列順/重複をそのままsupplied(T)として保持。空配列/空object/空stringも供給値である。",
+      "no_wrapper": "既存normal_fixtures.inputと同じ通常JSON memberを使う。{state,value}や共通Observed/CORE nullable wrapperを新設しない。"
+    },
+    "schema_dispatch": "固定owner呼出しcontextのentry/schema revisionを選択して$defsへ束縛する。$defsだけのroot schemaを無条件受理に使わず、object形のanyOf試行で13variantを推定しない。CaseInput/CaseObservationはcarrierがobjectである範囲だけ。実domain childは独立context.contract_ref/固定selected sectionからsection_entryを選択してそのschemaへ解決する。context欠落/未資格/section unknownは該当typed比較未成立として残す。",
+    "selector_resolution": "OwnerRecord.payloadのmapは元selector文字列と子値を失わずwireへ保存する。SourceSectionValueのRawValue schemaはwire形のみに限り、domain decode成功ではない。section_key/subject/contract/selectorを原input_types_by_contractと原owner契約へ解決し、selector先のField<T>/子型へ追加照合してから意味比較する。内側契約未供給なら元値と未解決を返す。任意RawValueのまま有資格意味入力へ流さず、selector grammar/許可範囲/実resolverの未閉包を残す。",
+    "presence_and_output": "宣言objectの供給member型とclosed field集合を照合し、定義外keyは削除/aliasして成功にせずpointer付きInputIssueへ返す。既知Fieldのmissing/supplied(null)/原値、scope不足と明示null、plain型の不正nullは別に保持。RawValue/OwnerRecord.payload/SourceSectionValueと未解決CaseInput/CaseObservationの原mapだけはobject_closure_contractに従って保持する。選択sectionの宣言objectはclosed。生成4結果型のplain memberは従来のrequired/closed、Field memberは元absence保持。codec独自unknown/N/A/selected/used/dischargeを出力しない。",
+    "codec_operations": [
+      {
+        "symbol": "decode_os002_wire",
+        "input": "未検査raw UTF-8 octetsと固定entry/schema/選択section context",
+        "output": "元carrier|null、宣言memberpresence/Field variantの別材料、InputIssue材料と元raw診断資料",
+        "effect": "none",
+        "steps": [
+          "UTF-8を置換なしでdecode。失敗はroot空pointer、zero-based raw byte位置、元octetsを診断資料へ保持し成功にしない。原資料の公開/log/送信許可を生成しない。",
+          "単一JSON valueを末尾までparse。EOF/末尾別value/非JSON number/decoded object key重複はvalue=nullと失敗所在へ返す。配列record重複/相反とは別でlast-wins/dedupしない。",
+          "固定entryの宣言member供給型とclosed field集合を照合。誤型/定義外keyは該当JSON Pointerへ返す。root/candidateがobjectでないなら原validateのinvalid_shapeへ結びinput=null、資格照合前に停止。意味member欠落/nullは原Fieldと別presenceへ保持。source配列内の局所形不正はsource_shape_localityへ従う。",
+          "carrierがdecode可能なら元値/key集合/配列順を保存。任意map保持は原opaque領域だけ。選択section/selectorの宣言子型はclosedへ追加照合し、未供給contextを推定しない。bytes/資格/owner意味/消込はcarrier受理で成立させない。"
+        ]
+      },
+      {
+        "symbol": "encode_os002_wire",
+        "input": "固定entry/schema/section contextと未検査JSON carrier",
+        "output": "wire UTF-8 octets|null、失敗所在/理由のInputIssue材料",
+        "effect": "none",
+        "steps": [
+          "同じschemaで宣言供給型/closed field集合/出力plain requiredを検査。定義外key/非JSON値/表現不能値/出力欠落を削除/default/coercionで補正せず所在付き失敗材料へ返す。",
+          "元member省略/null/配列順/重複/数値/文字列を保つ。source_json_utf8内部の空白/LF/key順/escapeも保存し、再正規化hashで元bytesを上書きしない。",
+          "decode(encode(value))で原値と宣言presence/Field variantを一致させる。外側bytes完全一致や新canonical digest方式は選ばず、原意味のdeterminism/資格をcodecへ移さない。"
+        ]
+      }
+    ],
+    "source_qualification_stages": [
+      "source_json_utf8の元UTF-8 bytes→source_sha256照合、strict parseしたrecords→decoded_records全内容一致を独立に確かめる。外側wire hashや再生成body hashを元digestへ代用しない。",
+      "Qualification.root_refを独立qualification_rootsへ解決し、owner/subject_refs/source_ref/source_sha256とQualificationRootのowner/allowed_subject_refs/allowed_source_ref/allowed_source_sha256へ照合する。各Refのidentity/revision/scope/ownerは原値のまま別軸。",
+      "byte/body一致とroot許容集合一致はそれぞれ合成比較の条件。正式資格供給元/実custody/実origin authentication/root原owner契約は未成立。rootをsourceから再生成、同owner名でtrust、digest一致で資格済みを作らない。",
+      "source未資格/相反はsource_issues/unqualified/conflicting/unresolved refsと依存sectionへ局所化し、無関係な有資格OS/Q sourceを保持する。source問題をglobal raw invalid_shapeへ読み替えない。",
+      "wrapper資格だけでpayload内部Refの意味資格を証明せず、全原owner契約へ解決する。CORE/BRAINのRef[] root/QualificationをOS root型に読み替えない。"
+    ],
+    "set_and_backflow_boundary": "F02 proposed/selected/usedと各source、F05 returned/ACK/receiver acceptance/meaning resolution/original dischargeと未完義務を独立保存。null/absent/空集合/候補/未受領を相互転写しない。RecordTraceAnalysisはeffect noneの比較材料でありOS053実保存/OS019continuity/OS023受理/意味owner解決/元義務消込を自動生成しない。",
+    "unfixed_numeric_and_encode_range": [
+      {
+        "range": "decimal_and_exponent",
+        "raw_examples": [
+          "{\"payload\":{\"future\":1.0}}",
+          "{\"payload\":{\"future\":1e0}}",
+          "{\"payload\":{\"future\":0.1}}"
+        ],
+        "expected_stage": "not_fixed",
+        "reason": "exact number/lexeme保存規則は保持。具体parser/host数値carrier未選定。"
+      },
+      {
+        "range": "large_exponent",
+        "raw_examples": [
+          "{\"payload\":{\"future\":1e400}}"
+        ],
+        "expected_stage": "not_fixed",
+        "reason": "JSON syntaxとhost表現幅を分離。infinity/nullへ丸めないが具体成功/表現不能失敗の条件は未固定。"
+      },
+      {
+        "range": "encode_non_json_value",
+        "input_description": "JSON carrier外の値/非表現可能数値・文字列",
+        "expected_stage": "not_fixed",
+        "reason": "具体host値型/encode入口/失敗分岐未凍結。decode/shape反例でencode固有分岐を検証済みにしない。"
+      }
+    ],
+    "remaining": [
+      "13sectionのcarrier/子型はschemaへ対応したが、CaseInput/CaseObservation各実context/selector/原owner body契約と正式実resolverの閉包は未成立。carrier root受理を全section意味decode完了にしない。",
+      "実資格root供給元/実source custody/原source許容集合契約、BRAIN/CORE/OS/CONNECT両端schema/互換/receipt、OS053保存/023Backflow実証は未閉包。新署名/truststore/承認gate/資源閾値/実ライブラリを新設しない。",
+      "小数/指数/1e400/encode非JSON値と具体float/Unicode/resource挙動は範囲未固定。L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、独立review/実受入、全92親430対閉包と実装Readyは未成立。"
+    ],
+    "source_shape_locality": "RecordTraceInputのroot/candidateが構造decode不能ならvalue=nullの構造失敗。root/candidateが読めてもsources/qualifications/qualification_roots配列内の個別source member型だけが不正なら、原root raw carrierと失敗source原内容/所在を保持してsource_shape_issues材料へ局所化する。これはdecode可能だがsource未解決の診断であり、有資格 typed sourceや意味比較の成功ではない。source型を修復せず、無関係なsource原資料を捨てず、source資格/依存section比較は既存validate_record_trace_inputへ返す。wire fixture stage decoded_with_source_issuesはこの診断段階だけを表し新しいowner stateではない。",
+    "object_closure_contract": {
+      "basis": "OS002自身の既存type_contract.types.<name>.fields列挙とvalidate_record_trace_inputの型/不足責務を起点とする。初稿の宣言object追加key受理はこれらに根拠がなく撤回し、定義外keyをpointer付きInputIssueへ返す。Field欠落/null保持や原selector値の保存を追加key受理の根拠にしない。",
+      "closed_types": [
+        "Ref",
+        "Scope",
+        "OwnerRecord",
+        "SourceEnvelope",
+        "Qualification",
+        "QualificationRoot",
+        "RecordTraceInput",
+        "TraceContext",
+        "B02RecordInputbinding",
+        "TraceClaim",
+        "RecordTraceAnalysis",
+        "TraceSectionResult",
+        "TraceFinding",
+        "InputIssue",
+        "F02RecordInput",
+        "F05RecordInput",
+        "F05RecordInputoriginalreturnevent",
+        "F05RecordInputoriginalreturneventreturntarget",
+        "F05RecordInputoriginalreturneventstopreason",
+        "B01RecordInput",
+        "B01RecordInputowneroutputsItem",
+        "B01RecordInputrecordreceipt",
+        "B02RecordInput",
+        "B02RecordInputQworkstate",
+        "F01RecordInput",
+        "F01RecordInputprojectstatesItem",
+        "F01RecordInputprojectstatesItemreleasekanban",
+        "F03RecordInput",
+        "F03RecordInputeventsItem",
+        "F03RecordInputeventsItemnonrelatedbasis",
+        "F03RecordInputkindobligationsItem",
+        "F04RecordInput",
+        "F04RecordInputcoreoutputsItem",
+        "F04RecordInputobligationoriginalstatesItem",
+        "F06RecordInput",
+        "F06RecordInputoriginalevent",
+        "F06RecordInputoldprojection",
+        "F06RecordInputoldprojectionstalebasis",
+        "F06RecordInputoldprojectionstalebasisenginechange",
+        "F06RecordInputcorrection",
+        "F06RecordInputnewprojection",
+        "F07RecordInput",
+        "F07RecordInputCOREimpactsItem",
+        "F07RecordInputviewonlysource",
+        "F08RecordInput",
+        "F08RecordInputLABOscope",
+        "F08RecordInputoriginalrecordsItem",
+        "F09RecordInput",
+        "F09RecordInputfindingcandidatesItem",
+        "F09RecordInputcausalevidenceItem",
+        "N01RecordInput",
+        "N01RecordInputexistingpermissionoutput",
+        "N02RecordInput",
+        "B01RecordObservation",
+        "B02RecordObservation",
+        "F01RecordObservation",
+        "F01RecordObservationP",
+        "F01RecordObservationQ",
+        "F02RecordObservation",
+        "F03RecordObservation",
+        "F04RecordObservation",
+        "F05RecordObservation",
+        "F05RecordObservationreturnsourcebinding",
+        "F06RecordObservation",
+        "F07RecordObservation",
+        "F08RecordObservation",
+        "F08RecordObservationretrymappingItem",
+        "F08RecordObservationexcludedItem",
+        "F09RecordObservation",
+        "N01RecordObservation",
+        "N02RecordObservation"
+      ],
+      "declared_field_pointer_root": "/type_contract/types",
+      "required_rule": "原Field<T>は省略/supplied(null)/原供給値を保持。入力plain member欠落も既存意味不足へ渡し、全requiredを新設しない。既存生成結果4型のplain requiredを保持。",
+      "opaque_paths": [
+        {
+          "path": "RawValue",
+          "source_pointer": "/type_contract/types/RawValue/shape",
+          "rule": "map<string,RawValue>の任意JSON keyを保持。"
+        },
+        {
+          "path": "OwnerRecord.payload",
+          "source_pointer": "/type_contract/types/OwnerRecord/fields/payload",
+          "rule": "selector文字列→SourceSectionValue mapはopen。OwnerRecord本体の定義外key受理とは分ける。値は原selector/owner contextへ追加解決し、未知selectorを資格済み子型へしない。"
+        },
+        {
+          "path": "SourceSectionValue",
+          "source_pointer": "/type_contract/types/SourceSectionValue",
+          "rule": "原子値と不足/未解決を保持するwire領域。selector解決後の宣言子型の余剰keyを受理する根拠ではない。"
+        },
+        {
+          "path": "CaseInput/CaseObservation",
+          "source_pointer": "/type_contract/types/CaseInput/fields/variant",
+          "additional_source_pointer": "/type_contract/types/CaseObservation/fields/variant",
+          "rule": "固定owner contextがsectionを選ぶ前はobject/RawValue原carrierを保存。variant名のJSON fieldを創作せず、各selected sectionの宣言型へ解決後はclosed schema。carrier受理だけでtyped domain成功を主張しない。"
+        }
+      ],
+      "qualification_effect": "none。CORE/BRAINとの共通型や追加authorityにしない。実root/資格供給元/custody/selector resolverは未閉包。"
+    }
+  }
 }
