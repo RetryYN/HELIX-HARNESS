@@ -1,0 +1,4138 @@
+{
+  "parent": "HARNESS-L2-015",
+  "status": "draft_limited_prerequisite_not_independently_reviewed",
+  "authority_effect": "none",
+  "source_main": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "738a76b4753a8c51d1c684ae2ffa18d91b7bdbc2794961cde66a47c585aa299b"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "512746cb3096f9d7dd1c58bfdee12b3161e38946d3d8f810ba84f798963df303"
+    },
+    {
+      "path": "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "1df0aa1bdb1b5fcbe2beba5e202601fa0d27fdeb5419e58d8db5cc3691d927fb"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/verification-discipline.json",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "f5aaccff49e5e6d0584169af009e15aaf59d963018f8f8cceb230d45de321ebb"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/verification-discipline.json",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "19498cf4c9cc07d7335592cda45bfdfbaea51cba08ec39c5118ac83b4e8e0221"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "edca02e8ccabbf560058baab322928e23b419d9f4e37d68b35e3cabfb3ff9ae4"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "d4d09cf0a2f30c41627d461d2e4aa85632e5c361d3d29aaf0525ffe7ea74d9ab"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/function.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "64874fd460f00d97cf195fd6c997164a09c333982a2fbc0f29af7e8877cafe35"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/internal-processing.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "048755e3729a7deaaedc8259f3334859d408f0d99487e7459f9d1ed93b4e8072"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/module-decomposition.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "da787dcfd95b0b4011dc1979df1b6652e990f75ffb71750c6ff9c24a2a24739a"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-pillar-integration-test-design.md",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "0bf20d470daba6a63b515ebd0d53509ee24c64df2c9e6bd6235e7874af23a8f5"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/tests/ddd-tdd-rules.test.ts",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "9fb5ee73677072e34b305cf78aeb9f6437f5c20f0b920d801914ac8cf7a5f31e"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/tests/vmodel-pair.test.ts",
+      "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+      "sha256": "a54a6b8687a5618ea62d4c6638b0eb7aaaa1a1d9024366869d0a17515cf95555"
+    }
+  ],
+  "authority_boundary": {
+    "delegated_decision_ref": "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "reviewed_content_head": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+    "decision_record_sha256": "1df0aa1bdb1b5fcbe2beba5e202601fa0d27fdeb5419e58d8db5cc3691d927fb",
+    "main_ancestor_check": "a715e777bd59291b26f09c0c1c5481273c6eba2e is ancestor of source_main",
+    "delegated_authoring_scope": "015の承認された5組だけのStage 1限定前提著述。Stage 2b / 1.0 capability marker retained.",
+    "approved_wholes_source_revision": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+    "implementation_authorization": "not_granted",
+    "actual_runtime_ci_qualification": "not_established"
+  },
+  "approved_object_hashes": [
+    {
+      "id": "HARNESS-L3-015-B01",
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "canonical_sha256": "9fff23f4d422ea65245f21dd2e7ac8276977c2216926dc27b2fe1b142ecf8d43"
+    },
+    {
+      "id": "HARNESS-L10-015-B01",
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "canonical_sha256": "f725d5f140291596015f190f18eb8a6579787c4cdba387402632c72a250b94b1"
+    },
+    {
+      "id": "HARNESS-L3-015-F01",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "984bca30459724f7f57f6a4fe7a4b64474fe83897cb4950b3bd2f883e6bf5cce"
+    },
+    {
+      "id": "HARNESS-L3-015-F02",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "da99e2659deb7be88eb678194cc3635f4243ac7b0b27772706ec91b250ec75fb"
+    },
+    {
+      "id": "HARNESS-L3-015-F03",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "b641eb43bd5164ab55101bac10aaa0fbf0fb24a55d4429ad0f013af9594cd6ce"
+    },
+    {
+      "id": "HARNESS-L3-015-F04",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "canonical_sha256": "5a32b65268770bc0f6dd8fdfc592533ff939363d7b7b41547d692fe916bf846f"
+    },
+    {
+      "id": "HARNESS-L10-015-F01",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "canonical_sha256": "bde3a0c96ff87bfc04c48fcfa0b2ac895f0075943458e5ffc16840c416ea0a99"
+    },
+    {
+      "id": "HARNESS-L10-015-F02",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "canonical_sha256": "f89222329a040859e9630b7613e3a2555ef76cf240b252c65942fd37cb292030"
+    },
+    {
+      "id": "HARNESS-L10-015-F03",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "canonical_sha256": "c41bc44981b5cdd6abe939405535a44c163d9714374e168dfe589dac4ce7cd7a"
+    },
+    {
+      "id": "HARNESS-L10-015-F04",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "canonical_sha256": "868127e5b2bd65ff6f133539ae2e582d5f7864b2ff2bea02dc4cd07de6f475a5"
+    }
+  ],
+  "semantic_predicate_catalog": [
+    {
+      "id": "supported_ci_operator",
+      "condition": "source packetがL4で示されたuser_ciまたはos_ciのどちらかを、同一のci_contract_refとともに記録している",
+      "required_presence": "ci_operator.kindが文字列、ci_operator.refとci_contract_refが完全SourceRefとしてprovided。",
+      "operation": "kindがuser_ciまたはos_ciであり、operator refとcontract refがidentity/revision/scope(project,tenant,environment)/ownerを持つrecordならfixture上の契約選択を支持する。user_ciとos_ci間で同じcontract refを使うことはB01の2 normal packetを横断して別途照合する。kindから運転実績、資格、権限は推定しない。",
+      "supported_when": "kindがuser_ciまたはos_ciで、両refが完全。",
+      "contradicted_when": "必要値が揃い、kindが別の文字列。",
+      "not_observed_when": "path/memberがabsent/null、refが不完全、またはkindが文字列でない。",
+      "l4_basis": "HARNESS-L4-015-B01.output_contract.operator_contract; HARNESS-L4-015-B01 behavior「OSのCI運転または利用者CIへ契約を渡して利用できる」",
+      "fixture_value_only": "fixture上のoperator種別と契約参照だけを確認する。実CI資格・実運転・両経路の実成功を意味しない。"
+    },
+    {
+      "id": "quality_met",
+      "condition": "qualityのstateがsynthetic_metで、要求動作と観測動作、およびexpected/observed.receiver_debitsがそれぞれ一致する",
+      "required_presence": "指定5 pathがすべてprovided。",
+      "operation": "state == synthetic_met AND required_behavior == observed_behavior AND expected.receiver_debits == observed.receiver_debits。",
+      "supported_when": "全比較が真。",
+      "contradicted_when": "必要値が揃い、いずれかの比較が偽。",
+      "not_observed_when": "path/memberがabsentまたはnull。",
+      "l4_basis": "HARNESS-L4-015-B01.output_contract.quality",
+      "fixture_value_only": "synthetic_metは原fixture状態。実測品質の資格ではない。"
+    },
+    {
+      "id": "omission_refs_preserved",
+      "condition": "L4が指定する未回収参照集合をraw source上で保持する",
+      "required_presence": "入力pathは指定predicateごとに提供され、list・recordのshapeが正しい。",
+      "operation": "B01ではrequired_refsとunrecovered_refsの配列を順序付き完全一致で比較。F03では各ci_omissions.records[i].duty_identityがci_omissions.unrecovered_refsの要素であることを確認（配列とscalarの直接比較はしない）。",
+      "supported_when": "該当する集合/record関係が成立。",
+      "contradicted_when": "必要shapeが揃い、集合/record関係が不成立。",
+      "not_observed_when": "必要pathがabsent/nullまたは期待shapeでない。",
+      "l4_basis": "HARNESS-L4-015-B01.output_contract.unrecovered_refs; HARNESS-L4-015-F03.output_contract.unrecovered_refs",
+      "fixture_value_only": "source所見と候補outputのL4値一致を別々に計算する。"
+    },
+    {
+      "id": "measurement_improves",
+      "condition": "合成fixtureのcostとtimeが両方改善している",
+      "required_presence": "before_cost, after_cost, before_time, after_timeが有限数値。",
+      "operation": "after_cost < before_cost AND after_time < before_time。時刻timestampやsequenceを比較根拠にしない。",
+      "supported_when": "2つの数値比較がともに真。",
+      "contradicted_when": "必要数値が揃い、いずれかが改善していない。",
+      "not_observed_when": "path/memberがabsent/nullまたは数値でない。",
+      "l4_basis": "HARNESS-L4-015-B01.output_contract.cost_time_material",
+      "fixture_value_only": "synthetic_unitsの数値に限る。"
+    },
+    {
+      "id": "no_materialized_value",
+      "condition": "指定source memberに値がmaterializeされていない",
+      "required_presence": "root source payloadがprovided record。指定memberは各々absentまたはnullであることを区別して観測する。",
+      "operation": "全指定memberの状態がabsentまたはnullならfixture上no_materialized_value。provided/emptyは値の型によらずmaterializedとして偽。member/path traversal自体が不可能な不正rootはnot_observed。",
+      "supported_when": "全memberがabsent/null。",
+      "contradicted_when": "1つ以上がprovided/empty。",
+      "not_observed_when": "source rootを解決できないか、path traversalが不正。",
+      "l4_basis": "各contractのoutput_contractにあるnot_generated/missingまたは「上位値を作らない」表現。",
+      "fixture_value_only": "fixtureでの不在所見。実システムに値が存在しないという資格主張ではない。"
+    },
+    {
+      "id": "pair_refs_match_binding",
+      "condition": "design/test/oracle pairの参照がbindingとfreeze recordに同じ完全refで結ばれる",
+      "required_presence": "binding, design_pair, freezeと各比較memberがprovided record/ref。",
+      "operation": "freeze.target_ref == binding AND pair.l5_ref == freeze.design_ref AND pair.l6_ref == freeze.l6_ref AND pair.paired_test_ref == freeze.test_ref AND pair.oracle_ref == freeze.oracle_ref。ref比較はidentity/revision/scope/ownerの全memberで行う。",
+      "supported_when": "全5つの完全ref比較が真。",
+      "contradicted_when": "全必要値があり、1つ以上が不一致。",
+      "not_observed_when": "必要path absent/nullまたは非record。",
+      "l4_basis": "HARNESS-L4-015-F01.output_contract.pair_binding",
+      "fixture_value_only": "L9 fixture上の値関係。実freeze/owner資格ではない。"
+    },
+    {
+      "id": "freeze_sequence_before_body",
+      "condition": "原freeze sequenceがbody change sequenceより小さい",
+      "required_presence": "両sequenceが有限数値。",
+      "operation": "freeze.sequence < body_change.sequence。timestamp/created_atだけでは順序を認定しない。",
+      "supported_when": "数値順序が真。",
+      "contradicted_when": "値が揃い順序が偽または同値。",
+      "not_observed_when": "path/member absent/nullまたは数値でない。",
+      "l4_basis": "HARNESS-L4-015-F01.output_contract.freeze_before_body",
+      "fixture_value_only": "sequence値はL9 fixtureの原値。実freezeの証明ではない。"
+    },
+    {
+      "id": "no_red_observation",
+      "condition": "F01のrawに実装前Red witnessが存在しない記録状態",
+      "required_presence": "red memberのpresenceを保持する。",
+      "operation": "redが明示nullならfixture上no Red record。redがprovidedならRed record存在。member absentは未記録。",
+      "supported_when": "redが明示null。",
+      "contradicted_when": "redがprovided record。",
+      "not_observed_when": "red memberがabsentまたはrootを解決不能。",
+      "l4_basis": "HARNESS-L4-015-F01.output_contract.pre_body_red = missing",
+      "fixture_value_only": "Red不在recordを観測。TDD不成立の全実測判定を一般化しない。"
+    },
+    {
+      "id": "red_uses_pre_body_head",
+      "condition": "pre-body state、Red観測対象、body changeのfrom headが同じheadである",
+      "required_presence": "3 pathすべてprovided string。",
+      "operation": "pre_body.head == red.head AND red.head == body_change.from_head。固定文字列H0を規則値にしない。",
+      "supported_when": "3値が同一。",
+      "contradicted_when": "必要3値が揃い、値が不一致。",
+      "not_observed_when": "path/member absent/nullまたは非文字列。",
+      "l4_basis": "HARNESS-L4-015-F02.output_contract.pre_body_head",
+      "fixture_value_only": "このfixtureの実値H0はsource値で、固定規範ではない。"
+    },
+    {
+      "id": "intended_defect_observed",
+      "condition": "変更種別に対応する未実装/未修正source state上で、凍結oracleを参照した実行Redが意図したbehavior mismatchを観測する",
+      "required_presence": "change_kind string; pre_body.state string; red.executed boolean; red.failure_kind string; red.actual.receiver_debits/frozen_oracle.expected.receiver_debits finite number; red.oracle_ref/frozen_oracle.ref complete SourceRef。",
+      "operation": "(change_kind==existing AND pre_body.state==unrepaired) OR (change_kind==new AND pre_body.state==unimplemented); AND red.executed is true; AND red.failure_kind==intended_behavior_mismatch; AND red.actual.receiver_debits!=frozen_oracle.expected.receiver_debits; AND red.oracle_ref==frozen_oracle.ref（identity/revision/scope/ownerの全値一致）。凍結oracle recordにはtest_refがあるが、raw Red側にtest_refが無いため、実行Redとtest identityを直接結ぶ比較は未閉包。",
+      "supported_when": "全必要入力があり、変更種別に応じたstate・execution・failure・数値差・完全oracle ref一致が真。",
+      "contradicted_when": "全必要入力があり、いずれかの意味条件が偽。",
+      "not_observed_when": "必要path/memberがabsent/null/誤型、または必要Red observationが存在しない。",
+      "l4_basis": "HARNESS-L4-015-F02.original_l3 / output_contract.red_meaning / failure_conditions environment_error, unexecuted_red, mutation_substitute",
+      "fixture_value_only": "このL9 sourceのchange_kind=existing, pre_body.state=unrepaired, defect=duplicate_debit, actual=2, expected=1はraw値。H0等のhead値をpredicateの固定期待値にしない。実実行・実凍結・実資格を主張しない。"
+    },
+    {
+      "id": "red_sequence_before_body",
+      "condition": "frozen oracle freeze sequence、Red sequence、本体変更 sequenceの順序を確認する",
+      "required_presence": "3 sequenceがfinite number。",
+      "operation": "frozen_oracle.freeze_sequence < red.sequence AND red.sequence < body_change.sequence。timestamp/created_atやfixture labelだけでは順序を認定しない。",
+      "supported_when": "2つの厳密増加比較が真。",
+      "contradicted_when": "3数値が揃い、順序条件が偽または同値。",
+      "not_observed_when": "必要path/member absent/nullまたは非数値。",
+      "l4_basis": "HARNESS-L4-015-F02.output_contract.red_before_body; L3/L4工程意味「freeze→実装前Red→本体」。",
+      "fixture_value_only": "sequence値は原fixture値。これは実時系列の資格証明ではない。"
+    },
+    {
+      "id": "post_mutation_separate",
+      "condition": "post mutationがoracle-strength-onlyとして区別されている",
+      "required_presence": "post_mutation.roleがprovided string。",
+      "operation": "post_mutation.role == oracle_strength_only。",
+      "supported_when": "完全一致。",
+      "contradicted_when": "別のprovided文字列。",
+      "not_observed_when": "path/member absent/null/誤型。",
+      "l4_basis": "HARNESS-L4-015-F02.output_contract.post_mutation_role",
+      "fixture_value_only": "role値は原fixture値。実mutation実施の証拠ではない。"
+    },
+    {
+      "id": "pipeline_ordered",
+      "condition": "6つの工程kindがL4記載順に並び、各隣接sequenceが厳密増加する",
+      "required_presence": "stepsは6件のrecord配列、各kind stringとsequence有限数値。",
+      "operation": "kind配列が[freeze, pre_body_red, minimal_body, green, local_refactor, atomic_ci]と完全一致し、各iでsteps[i].sequence < steps[i+1].sequence。連番や特定数値は要求しない。",
+      "supported_when": "kind順と全隣接数値順が真。",
+      "contradicted_when": "配列shape/valueが揃い順序条件が偽。",
+      "not_observed_when": "steps/member absent/null、6件でない、または必要field不在。",
+      "l4_basis": "HARNESS-L4-015-F03.output_contract.order",
+      "fixture_value_only": "工程名は契約の段階名。sequenceはL9に記録された順序値。"
+    },
+    {
+      "id": "refactor_meaning_preserved",
+      "condition": "local refactor前後でpublic contract, requirement, architecture, stateの各値が保持される",
+      "required_presence": "before/afterの8 pathすべてprovided。",
+      "operation": "public_contract_before == public_contract_after AND requirement_before == requirement_after AND architecture_before == architecture_after AND state_before == state_after。",
+      "supported_when": "4組すべて一致。",
+      "contradicted_when": "必要値が揃い1組以上不一致。",
+      "not_observed_when": "path/member absent/null。",
+      "l4_basis": "HARNESS-L4-015-F03.output_contract.local_meaning",
+      "fixture_value_only": "値の同一性を示す。実Refactor実施を意味しない。"
+    },
+    {
+      "id": "minimal_scope_preserved",
+      "condition": "minimal_bodyのcontract scopeがL4で定義した限定挙動に一致する",
+      "required_presence": "steps.2.contract_scopeがprovided string。",
+      "operation": "完全一致 one_command_duplicate_debit。",
+      "supported_when": "一致。",
+      "contradicted_when": "別のprovided string。",
+      "not_observed_when": "absent/null/誤型。",
+      "l4_basis": "HARNESS-L4-015-F03.output_contract.minimal_body_scope",
+      "fixture_value_only": "値はL4の対象限定そのもの。"
+    },
+    {
+      "id": "green_matches_oracle",
+      "condition": "Greenのactual receiver_debitsがoracle expected receiver_debitsに一致する",
+      "required_presence": "両値が有限数値。",
+      "operation": "steps.3.actual.receiver_debits == oracle.expected.receiver_debits。",
+      "supported_when": "一致。",
+      "contradicted_when": "必要値が揃い不一致。",
+      "not_observed_when": "path/member absent/null/数値でない。",
+      "l4_basis": "HARNESS-L4-015-F03.output_contract.green_behavior",
+      "fixture_value_only": "L9内expected/actualの値比較であり実Greenではない。"
+    },
+    {
+      "id": "same_frozen_oracle",
+      "condition": "freeze/red/body/green/refactor/CIの各oracle refが同一完全refを指す",
+      "required_presence": "oracle.refと5 step oracle_refがprovided record。",
+      "operation": "各step oracle_refをoracle.refとidentity/revision/scope/owner全memberで比較。",
+      "supported_when": "全refが完全一致。",
+      "contradicted_when": "必要recordがあり、1つ以上のmemberが異なる。",
+      "not_observed_when": "path/member absent/null/非record。",
+      "l4_basis": "HARNESS-L4-015-F03.output_contract.oracle_binding",
+      "fixture_value_only": "L9に明示された参照関係。実凍結/実実行の証明ではない。"
+    },
+    {
+      "id": "trace_bidirectional_same_revision",
+      "condition": "design, implementation, verification_design, verification_codeの4 artifactが一意に存在し、指定4辺が両方向に同じrefで接続し、共通revision/scopeを持つ",
+      "required_presence": "artifactsは4件record配列。各refは完全SourceRef。identity一意。全refにrevision/scope(project,tenant,environment)、各out_refs配列がある。",
+      "operation": "kind集合が4種を各1件含む。4 refのrevisionとscope.project/tenant/environmentがそれぞれ全件同じ。design↔implementation, design↔verification_design, implementation↔verification_code, verification_design↔verification_codeの各方向out_refが相手の完全refと一致。追加out_refも4件中の完全refへ解決し、逆辺を持つ。ownerはartifact間で一致させず完全refの一部として辺一致に含める。",
+      "supported_when": "4 artifact/必要辺/追加辺の内部解決・相互性/revision/scope条件すべて真。",
+      "contradicted_when": "必要shapeが揃い、いずれかの意味条件が偽。",
+      "not_observed_when": "root/path/memberがabsent/null、型不正、または必要ref member不在。",
+      "l4_basis": "HARNESS-L3-015-F04 obligation; HARNESS-L4-015-F04.output_contract.trace; failure_conditions reverse_trace_missing / foreign_trace_revision",
+      "fixture_value_only": "評価対象は原L9の4 artifactとそのout_refs値。実artifact存在/owner qualificationは未成立。022との実結合、accepted/releaseは未評価。L4の全trace統治を一般化せず、この4型と列挙辺以外の成果物closureは未評価。期待材料やpacket identityによるlookupは行わない。"
+    },
+    {
+      "id": "frontier_not_advanced",
+      "condition": "022 upper contractとconsumer acceptanceにmaterialized valueがないことをfixture上確認する",
+      "required_presence": "両memberのpresence stateを保持。",
+      "operation": "両memberがabsentまたはnullならfixture上未materialize。provided/emptyはcontradiction。source root/path解決不能はunknown。",
+      "supported_when": "両memberがabsent/null。",
+      "contradicted_when": "1つ以上provided/empty。",
+      "not_observed_when": "source root/path traversal不可能。",
+      "l4_basis": "HARNESS-L3-015-F04 obligation; HARNESS-L4-015-F04.output_contract.state_ceiling / failure_conditions development_as_integrated",
+      "fixture_value_only": "022側の実状態・受入は未観測で、Provisionalを超えない。"
+    }
+  ],
+  "semantic_candidate_comparison": {
+    "source_and_candidate_are_independent": "source predicateは固定L9 raw payloadだけを読み、candidate比較はcandidate_valueとL4 output_contract値だけを読む。L9 expected_material/expected_partial_materialは別oracleとして保持し、F-015-04は参照しない。",
+    "equals_l4_value": {
+      "candidate_state": "providedまたはemptyのrecord",
+      "field_absent": "field_not_proposed",
+      "field_present_and_deep_equal_to_L4_literal": "matches_l4_contract",
+      "field_present_and_not_equal": "contradicts_l4_contract",
+      "candidate_field_type_not_record": "not_record",
+      "candidate_wrapper_absent": "not_proposed"
+    },
+    "must_be_absent": {
+      "field_absent": "matches_l4_contract",
+      "field_present_including_null": "contradicts_l4_contract",
+      "candidate_field_type_not_record": "not_record",
+      "candidate_wrapper_absent": "not_proposed"
+    },
+    "evaluation_order": "全ruleをL4 output_contractの宣言順に独立評価し、source_statusとcandidate_statusを別々に返す。先行違反で短絡せず、L4 expected値はsource所見の代用にしない。",
+    "scope": "この静的比較の所見はfixture comparison only。実評価、資格、Red/Green成立、受入状態ではない。"
+  },
+  "approved_requirements": [
+    {
+      "id": "HARNESS-L3-015-B01",
+      "parent": "HARNESS-L2-015",
+      "title": "単独利用とquality-first境界",
+      "obligation": "④はコア工程/検証契約を使い、OSのCI運転または利用者CIへ契約を渡して利用できる。PR前CIは005のticket関係/省略回収を参照する。quality-firstのoracle結果と省略検査を明示し、費用/時間改善だけで必要quality未達runを改善成功にしない。",
+      "oracle_ref": "HARNESS-L10-015-B01"
+    },
+    {
+      "id": "HARNESS-L3-015-F01",
+      "parent": "HARNESS-L2-015",
+      "title": "凍結済み対契約を入力",
+      "obligation": "L6契約/L5詳細設計と対test/oracleを実装前に定義・凍結し、対象identity/revision/scopeへ結ぶ。test後付け/定義凍結だけを実Redにせず、コアの工程/検証契約を参照する。",
+      "oracle_ref": "HARNESS-L10-015-F01"
+    },
+    {
+      "id": "HARNESS-L3-015-F02",
+      "parent": "HARNESS-L2-015",
+      "title": "本体変更前のRed実観測",
+      "obligation": "新規実装では対象behaviorが未実装、既存改修では本体変更前の未修正revisionに対し、凍結testが意図した不足/欠陥を検出する実装前Redを実観測する。環境/構文障害など無関係な失敗をRedにしない。実装後のmutation検出は005のoracle強度の別証拠として保持する。",
+      "oracle_ref": "HARNESS-L10-015-F02"
+    },
+    {
+      "id": "HARNESS-L3-015-F03",
+      "parent": "HARNESS-L2-015",
+      "title": "最小Greenと局所Refactor",
+      "obligation": "実装前Redの後に最小本体実装で同じ凍結oracleを満たすGreen証拠を得て、局所Refactorと原子CIまでを閉じる。局所Refactorはpublic contract/要求/architecture意味/state意味を変えず、変更が必要ならBackflowする。",
+      "oracle_ref": "HARNESS-L10-015-F03"
+    },
+    {
+      "id": "HARNESS-L3-015-F04",
+      "parent": "HARNESS-L2-015",
+      "title": "双方向traceとProvisional上限",
+      "obligation": "コードと設計/testの双方向traceを同じ対象revisionへ結び、④開発単独の出力をProvisionalとする。Integrated以降はコア検証/受入022との組合せを必要とし、原子CI greenを品質/システム/利用者受入/Releaseの成立にしない。",
+      "oracle_ref": "HARNESS-L10-015-F04"
+    }
+  ],
+  "approved_system_oracles": [
+    {
+      "id": "HARNESS-L10-015-B01",
+      "parent": "HARNESS-L2-015",
+      "title": "単独利用とquality-first境界",
+      "requirement_ref": "HARNESS-L3-015-B01",
+      "positive_input": "利用者CI/OS運転へ同契約を渡す条件と、quality達成/未達の結果候補を分ける。",
+      "expected_observation": "同契約の評価と必要quality/省略検査を辿り、単独利用の出力上限を維持する。",
+      "negative_input": "OS運転無しを一律利用不能、時間/費用だけで品質適合/effect success/Accepted。",
+      "failure_observation": "未達quality/未回収検査を保持し、利用形態や計測改善から受入を生成しない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-015-F01",
+      "parent": "HARNESS-L2-015",
+      "title": "凍結済み対契約を入力",
+      "requirement_ref": "HARNESS-L3-015-F01",
+      "positive_input": "凍結した設計/test/oracleと対象revisionを照合して未実装/未修正状態からの順序を確認する。",
+      "expected_observation": "凍結とRed観測を区別し、設計/対oracleの版と対象へ辿る。",
+      "negative_input": "実装後oracle後付け、凍結無し、別revision oracle、作成時刻のみ。",
+      "failure_observation": "対契約/凍結不足を保持し、実装成立やTDD成功を生成しない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-015-F02",
+      "parent": "HARNESS-L2-015",
+      "title": "本体変更前のRed実観測",
+      "requirement_ref": "HARNESS-L3-015-F02",
+      "positive_input": "新規と既存改修の各caseで、本体実装/修正前の対象revisionに対する意図した不成立を照合する。",
+      "expected_observation": "未実装/未修正revision、対象欠陥、凍結oracleと実Redが一つの証拠へ結ばれる。",
+      "negative_input": "実装/修正後Redだけ、mutationで代替、環境/構文障害、観測無しをRed。",
+      "failure_observation": "時点/対象不一致と不足を明示し、後付け証拠で実装前Redを成立させない。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-015-F03",
+      "parent": "HARNESS-L2-015",
+      "title": "最小Greenと局所Refactor",
+      "requirement_ref": "HARNESS-L3-015-F03",
+      "positive_input": "実装前Red→最小本体実装→同oracle Green→意味保存Refactor→原子CIの証拠を照合する。",
+      "expected_observation": "対象/oracleと順序、局所Refactorの意味保存、必要CI/省略記録を辿る。",
+      "negative_input": "oracleを実装に合わせて緩和、順序逆転、Refactorでpublic contract/要求/state意味変更。",
+      "failure_observation": "oracle/意味/順序違反を保持し、該当上流へ戻す。",
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L10-015-F04",
+      "parent": "HARNESS-L2-015",
+      "title": "双方向traceとProvisional上限",
+      "requirement_ref": "HARNESS-L3-015-F04",
+      "positive_input": "設計↔コード↔testの双方向参照と④単独出力、022組合せ前の状態を照合する。",
+      "expected_observation": "相互に同revisionへ辿れ、Provisionalと上位状態/受入を区別する。",
+      "negative_input": "片方向/別revision trace、④だけでIntegrated以上、原子CIで品質/Accepted/Release成立。",
+      "failure_observation": "不足traceと未成立の上位義務を保持し、別工程の成功で埋めない。",
+      "execution_state": "not_executed"
+    }
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "archive_disposition": "source_snapshot_preservation",
+      "asset_authority_status": "confirmed",
+      "source_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "line_quotes": [
+        {
+          "line": 33,
+          "text": "| **FR-L1-02** | TDD 強制フロー (テストファースト順序厳守・実装先行禁止) | L7-implementation | L6 機能設計 (関数仕様 / クラス設計 / エッジケース) | テストコード (red) → 本体実装 (green) | P0 | PM-02 (L7 工程) / HM-07 |"
+        },
+        {
+          "line": 81,
+          "text": "| **FR-L1-50** | DDD/TDD 厳格化 automation (domain boundary / invariant trace / Red-first evidence / oracle strength / integration GWT) | PO directed 2026-06-09 / IMP-097..101 | DDD/TDD rule SSoT、PLAN evidence、source/test docs、L7/L8 test-design | doctor lint findings、workflow anchor、L7 oracle、L8 GWT compliance | P1 | HM-07 / PM-04 |"
+        }
+      ],
+      "preserve": "Redは実欠陥を意図したoracleが検出する証拠、最小Greenと同oracle/局所意味保存Refactor、設計と検証設計の双方向traceを残す。",
+      "change": "旧層番号、旧CLI/runner/test/runtime/CI/DB、旧timing-only Red-first、全開発styleへの一律適用を移植しない。",
+      "reason": "対象015の承認済みL3/L10、現L2/L4/L9とStage 1限定前提へ意味を再導出する。",
+      "consumer_status": "historical_read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "archive_disposition": "unresolved",
+      "asset_authority_status": "historical",
+      "source_sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "line_quotes": [
+        {
+          "line": 23,
+          "text": "4. **TDDは検証契約**: Redは「testを書いた時刻」ではなく、意図した欠陥を実際に検出する証拠である。"
+        },
+        {
+          "line": 24,
+          "text": "   Greenは最小実装、Refactorは同じoracleがgreenのまま構造を単純化した証拠で閉じる。"
+        },
+        {
+          "line": 117,
+          "text": "- CIはPRでtargeted oracleとcritical gateを実行し、省略分をpost-merge fullとnightlyで回収する。"
+        },
+        {
+          "line": 118,
+          "text": "  targeted greenをfull greenと偽らず、unknown impactはfullへfail-closeする。"
+        },
+        {
+          "line": 119,
+          "text": "- refactorは公開behaviorを変えない。新behavior、schema、migration、failure semanticsの変更を検出したら"
+        },
+        {
+          "line": 135,
+          "text": "- id: DDD-INV-001 oracle: U-DDDTDD-001 - Governance/domain module は acyclic を保ち、下位 contract は上位 runtime orchestration に依存しない。"
+        },
+        {
+          "line": 136,
+          "text": "- id: DDD-INV-002 oracle: U-DDDTDD-002 - Domain invariant declaration は、L7 test-design artifact が明示的な U-* oracle を持つ場合にのみ受理される。"
+        },
+        {
+          "line": 137,
+          "text": "- id: DDD-INV-003 oracle: U-DDDTDD-003 - TDD implementation evidence は Red-first である: TDD evidence を要求する confirmed plan では `red_at <= green_at` を満たす。"
+        },
+        {
+          "line": 138,
+          "text": "- id: DDD-INV-004 oracle: U-DDDTDD-004 - Unit test は assertion なしの実行や truthiness check だけでなく、具体的な oracle を露出する。"
+        },
+        {
+          "line": 139,
+          "text": "- id: DDD-INV-005 oracle: U-DDDTDD-005 - Integration test は Given/When/Then 粒度で confirm 可能である。"
+        },
+        {
+          "line": 140,
+          "text": "- id: DDD-INV-006 oracle: U-DDDTDD-011 - TDD PLAN の test oracle は、seeded defect を fail / kill する mutation oracle evidence によって検算可能である。"
+        },
+        {
+          "line": 144,
+          "text": "- G3: FR/NFR/ACとL10 oracleに加え、no-code-firstの採否、変更対象の責務owner、"
+        },
+        {
+          "line": 145,
+          "text": "  許容するcomplexity budgetをdiscipline baselineとしてfreezeする。"
+        },
+        {
+          "line": 146,
+          "text": "- L4/L9: bounded context、Aggregate/Port/Adapter境界とsystem/integration oracleを対で固定する。"
+        },
+        {
+          "line": 147,
+          "text": "  object modelが不要なら`none`または`pure_function`と理由を残す。"
+        },
+        {
+          "line": 148,
+          "text": "- L5/L8: precondition、postcondition、invariant、failure/rollback、edge caseと単体・結合oracleを対で固定する。"
+        },
+        {
+          "line": 149,
+          "text": "- Forward L6: L7 implementation が始まる前に、domain boundary、invariant、rule ID を定義または更新する。"
+        },
+        {
+          "line": 150,
+          "text": "- L6/L7: Red → 最小Green → behavior-preserving Refactorの順で閉じ、契約外コードを追加しない。"
+        },
+        {
+          "line": 152,
+          "text": "- L7 Red: TDD を要求する `add-impl` plan は、review evidence を freeze-ready と扱う前に Red-first evidence と mutation oracle evidence を記録しなければならない。"
+        },
+        {
+          "line": 153,
+          "text": "- L9 integration: すべての IT-* 行は Given/When/Then を使わなければならない。placeholder integration 行は carry のみであり、confirmable として数えてはならない。"
+        }
+      ],
+      "preserve": "Redは実欠陥を意図したoracleが検出する証拠、最小Greenと同oracle/局所意味保存Refactor、設計と検証設計の双方向traceを残す。",
+      "change": "旧層番号、旧CLI/runner/test/runtime/CI/DB、旧timing-only Red-first、全開発styleへの一律適用を移植しない。",
+      "reason": "対象015の承認済みL3/L10、現L2/L4/L9とStage 1限定前提へ意味を再導出する。",
+      "consumer_status": "historical_read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+      "archive_disposition": "unresolved",
+      "asset_authority_status": "historical",
+      "source_sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262",
+      "line_quotes": [
+        {
+          "line": 124,
+          "text": "4 artifact は**別物として別ディレクトリ**に置き、双方向 trace で結ぶ（混在禁止）。"
+        },
+        {
+          "line": 128,
+          "text": "| ① 設計 (文書) | `docs/design/` |"
+        },
+        {
+          "line": 129,
+          "text": "| ② 実装コード | `src/` |"
+        },
+        {
+          "line": 130,
+          "text": "| ③ テスト設計 (文書) | `docs/test-design/` |"
+        },
+        {
+          "line": 131,
+          "text": "| ④ テストコード | `tests/` |"
+        }
+      ],
+      "preserve": "Redは実欠陥を意図したoracleが検出する証拠、最小Greenと同oracle/局所意味保存Refactor、設計と検証設計の双方向traceを残す。",
+      "change": "旧層番号、旧CLI/runner/test/runtime/CI/DB、旧timing-only Red-first、全開発styleへの一律適用を移植しない。",
+      "reason": "対象015の承認済みL3/L10、現L2/L4/L9とStage 1限定前提へ意味を再導出する。",
+      "consumer_status": "historical_read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "archive_disposition": "unresolved",
+      "asset_authority_status": "historical",
+      "source_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+      "line_quotes": [
+        {
+          "line": 71,
+          "text": "| UTW-005 | Critical | PR trace/review evidenceが最新HEAD・merge-baseへ常時再束縛されない | 既存UT-GH-06/07/12 | UTH-FR-015 |"
+        },
+        {
+          "line": 75,
+          "text": "| UTW-009 | High | full regression/doctorが重く、timeoutと長いself-heal loopを生む | 220.54秒、doctor test 214.17秒 | UTH-NFR-002、UTH-FR-011 |"
+        },
+        {
+          "line": 80,
+          "text": "| UTW-014 | High | source loaderが欠損時に空集合へ縮退する箇所がありabsence blindnessを作る | graph designのfail-open記述等 | UTH-FR-009、UTH-FR-023 |"
+        },
+        {
+          "line": 86,
+          "text": "| UTW-020 | High | DB rebuild、projection、test evidenceが巨大aggregateへ集中し、partial failureの診断単位が粗い | projection/doctor実測 | UTH-FR-011、UTH-FR-021 |"
+        },
+        {
+          "line": 87,
+          "text": "| UTW-021 | High | completion evidenceが時刻・prose・自己申告へ戻る余地がある | legacy evidence grandfather、review schemaの段階強制 | UTH-FR-022 |"
+        },
+        {
+          "line": 95,
+          "text": "| UTW-029 | Medium | consumer setup、source repo、clean distributionで検証集合が分岐しやすい | source/Pack workflow分離 | UTH-FR-027 |"
+        }
+      ],
+      "preserve": "旧consumer/failureは失敗境界とtrace対象の資料として保持。",
+      "change": "旧層番号、旧CLI/runner/test/runtime/CI/DB、旧timing-only Red-first、全開発styleへの一律適用を移植しない。",
+      "reason": "対象015の承認済みL3/L10、現L2/L4/L9とStage 1限定前提へ意味を再導出する。",
+      "consumer_status": "historical_read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "archive_disposition": "unresolved",
+      "asset_authority_status": "historical",
+      "source_sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "line_quotes": [
+        {
+          "line": 95,
+          "text": "### FR-02: TDD 強制フロー (テストファースト順序)"
+        },
+        {
+          "line": 97,
+          "text": "- **L1 上流**: FR-L1-02"
+        },
+        {
+          "line": 98,
+          "text": "- **入力**: L6 機能設計 (関数仕様 / クラス設計 / エッジケース)"
+        },
+        {
+          "line": 99,
+          "text": "- **出力**: テストコード (Red 状態) → 本体実装 (Green) → refactor の 3 段階記録"
+        },
+        {
+          "line": 100,
+          "text": "- **振る舞い**: `helix sprint start` で L7 実装入り → Red テスト未存在で本体実装試行 → fail-close で block"
+        },
+        {
+          "line": 102,
+          "text": "#### AC-FR-02-01 (正常系)"
+        },
+        {
+          "line": 103,
+          "text": "- **前提**: L6 機能設計確定 + Red テスト先行作成 (test ファイルあり、コミット済)"
+        },
+        {
+          "line": 104,
+          "text": "- **操作**: 本体実装ファイル commit"
+        },
+        {
+          "line": 105,
+          "text": "- **期待結果**: `helix sprint check` が Red→Green 順序を確認 / TDD trace に Red commit ID → Green commit ID 記録 / pass"
+        },
+        {
+          "line": 107,
+          "text": "#### AC-FR-02-02 (異常系)"
+        },
+        {
+          "line": 108,
+          "text": "- **前提**: 本体実装ファイルだけ存在、対応 test ファイル無し"
+        },
+        {
+          "line": 109,
+          "text": "- **操作**: `helix gate G7` 実行"
+        },
+        {
+          "line": 110,
+          "text": "- **期待結果**: fail-close `Error: 本体実装 src/X.ts に対応する Red テストが見つからない (TDD 違反、FR-02 / FR-L1-02)` / next_action: `tests/X.test.ts を Red 状態で先行作成してください` / 終了コード 1"
+        },
+        {
+          "line": 112,
+          "text": "#### AC-FR-02-03 (境界系)"
+        },
+        {
+          "line": 113,
+          "text": "- **前提**: Red テスト存在、本体実装空 (関数 stub のみ)、テスト pass 可能 (assertion 緩い)"
+        },
+        {
+          "line": 114,
+          "text": "- **操作**: `helix sprint check`"
+        },
+        {
+          "line": 115,
+          "text": "- **期待結果**: warn `Warning: Red テストが緑のままです (assertion 不十分の可能性、AC 観点抜け確認)` / fail-close せず継続可 / 修正は人間判断"
+        }
+      ],
+      "preserve": "旧consumer/failureは失敗境界とtrace対象の資料として保持。",
+      "change": "旧層番号、旧CLI/runner/test/runtime/CI/DB、旧timing-only Red-first、全開発styleへの一律適用を移植しない。",
+      "reason": "対象015の承認済みL3/L10、現L2/L4/L9とStage 1限定前提へ意味を再導出する。",
+      "consumer_status": "historical_read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-295B373ABCF388FDB10A",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/function.md",
+      "archive_disposition": "unresolved",
+      "asset_authority_status": "historical",
+      "source_sha256": "64874fd460f00d97cf195fd6c997164a09c333982a2fbc0f29af7e8877cafe35",
+      "line_quotes": [
+        {
+          "line": 102,
+          "text": "| `helix sprint start/check` | FR-02 | 未 | TDD 強制 (Red→Green→refactor 順序、本体実装前 Red 必須 fail-close) |"
+        },
+        {
+          "line": 162,
+          "text": "> **Refactor brush-up extension (2026-06-23)**: Refactor の Green は「テストが通った」だけではなく、`assertRefactorInvariant` が before/after behavior 一致、regression exit_code=0、linked `test_id` ありを満たすこと。`harness.db` の `findings` / `quality_signals` / `feedback_events` / `impact_results` / `artifact_progress` は Refactor 発火元として使えるが、DB は projection であり authoring source ではない。relation-graph の required action (sibling test、L6 contract review、paired design update、DB rebuild check) が残る間は Red として扱い、Yellow は PLAN 登録済みかつ regression fence 未完了/依存確認中、Green は test-ID-linked evidence と impact closure 済みを意味する。"
+        },
+        {
+          "line": 244,
+          "text": "全workflowを同じ強度でTDD化しない。Redを失敗testだけに狭めず、設計欠落・依存impact・DB projectionの未解消signalもRedとして扱う。YellowはPLAN／対象登録済みだが保護網や依存確認が未完了、Greenはtest/design/review evidenceが該当V-pairへ束縛されgateが通った状態とする。"
+        },
+        {
+          "line": 246,
+          "text": "| 対象 | TDD適性 | Red 発火点 | Green 条件 |"
+        }
+      ],
+      "preserve": "旧consumer/failureは失敗境界とtrace対象の資料として保持。",
+      "change": "旧層番号、旧CLI/runner/test/runtime/CI/DB、旧timing-only Red-first、全開発styleへの一律適用を移植しない。",
+      "reason": "対象015の承認済みL3/L10、現L2/L4/L9とStage 1限定前提へ意味を再導出する。",
+      "consumer_status": "historical_read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7873E44594456A8F925A",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/internal-processing.md",
+      "archive_disposition": "unresolved",
+      "asset_authority_status": "historical",
+      "source_sha256": "048755e3729a7deaaedc8259f3334859d408f0d99487e7459f9d1ed93b4e8072",
+      "line_quotes": [
+        {
+          "line": 33,
+          "text": "| `sprint check` | (workflow) | FR-02 | 未 (carry: TDD Red→Green enforcement command。現状は build/test skill + review-evidence 順序 gate で代替) |"
+        },
+        {
+          "line": 78,
+          "text": "| `sprint check` | TDD trace 記録 (Red commit→Green commit) ∧ Red-first 順序確認 ∧ exit 0(pass)/1(TDD 違反) |"
+        }
+      ],
+      "preserve": "旧consumer/failureは失敗境界とtrace対象の資料として保持。",
+      "change": "旧層番号、旧CLI/runner/test/runtime/CI/DB、旧timing-only Red-first、全開発styleへの一律適用を移植しない。",
+      "reason": "対象015の承認済みL3/L10、現L2/L4/L9とStage 1限定前提へ意味を再導出する。",
+      "consumer_status": "historical_read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-67B016392E3F7D58B053",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L5-detailed-design/module-decomposition.md",
+      "archive_disposition": "unresolved",
+      "asset_authority_status": "historical",
+      "source_sha256": "da787dcfd95b0b4011dc1979df1b6652e990f75ffb71750c6ff9c24a2a24739a",
+      "line_quotes": [
+        {
+          "line": 208,
+          "text": "| FR-L1-01 / FR-L1-02 / FR-L1-04 / FR-L1-05 / FR-L1-06 / FR-L1-07 / FR-L1-09 / FR-L1-10 / FR-L1-11 / FR-L1-13 / FR-L1-14 / FR-L1-15 / FR-L1-16 / FR-L1-17 / FR-L1-18 | CLI、schema、lint、runtime、doctor、workflow、guard、recovery の module IF boundaries |"
+        },
+        {
+          "line": 209,
+          "text": "| FR-L1-23 / FR-L1-24 / FR-L1-25 / FR-L1-26 / FR-L1-27 / FR-L1-29 / FR-L1-30 | scrum/fullback、add-feature、refactor、retrofit、research、screen、frontend workflow の module boundaries |"
+        },
+        {
+          "line": 210,
+          "text": "| FR-L1-36 / FR-L1-38 / FR-L1-43 / FR-L1-45 / FR-L1-50 | evaluation、model/PoC measurement、doc-review、DDD/TDD strictness の module boundaries |"
+        }
+      ],
+      "preserve": "旧consumer/failureは失敗境界とtrace対象の資料として保持。",
+      "change": "旧層番号、旧CLI/runner/test/runtime/CI/DB、旧timing-only Red-first、全開発styleへの一律適用を移植しない。",
+      "reason": "対象015の承認済みL3/L10、現L2/L4/L9とStage 1限定前提へ意味を再導出する。",
+      "consumer_status": "historical_read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B7E240E4CE0263FDBDF6",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-pillar-integration-test-design.md",
+      "archive_disposition": "unresolved",
+      "asset_authority_status": "historical",
+      "source_sha256": "0bf20d470daba6a63b515ebd0d53509ee24c64df2c9e6bd6235e7874af23a8f5",
+      "line_quotes": [
+        {
+          "line": 18,
+          "text": "> L5 detail design `pillar-detail-design.md` の L8 integration test design（結合テスト設計）。"
+        },
+        {
+          "line": 19,
+          "text": "> 実装済みテストの存在ではなく、L5 contract（L5 契約）を結合境界として観測する GWT を定義する。"
+        },
+        {
+          "line": 21,
+          "text": "## §0 量閉じ"
+        },
+        {
+          "line": 24,
+          "text": "- integration test（結合テスト）観測: `LIT-*` 46 件。"
+        },
+        {
+          "line": 37,
+          "text": "## §1 結合テスト trace"
+        },
+        {
+          "line": 39,
+          "text": "| LIT-ID | 対応 L3 | 対応 L5 contract（L5 契約） | GWT |"
+        },
+        {
+          "line": 77,
+          "text": "| LIT-N3-04 | HR-NFR-P3-04 | HC-P3 | 前提: AI implementation / 操作: TDD evidence を確認 / 期待: Red/oracle/Green/refactor または substitute oracle が存在する |"
+        }
+      ],
+      "preserve": "旧consumer/failureは失敗境界とtrace対象の資料として保持。",
+      "change": "旧層番号、旧CLI/runner/test/runtime/CI/DB、旧timing-only Red-first、全開発styleへの一律適用を移植しない。",
+      "reason": "対象015の承認済みL3/L10、現L2/L4/L9とStage 1限定前提へ意味を再導出する。",
+      "consumer_status": "historical_read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6F37D968AEA9C2C2A6BE",
+      "path": "archive/legacy-generation-2026-09-14/root/tests/ddd-tdd-rules.test.ts",
+      "archive_disposition": "unresolved",
+      "asset_authority_status": "historical",
+      "source_sha256": "9fb5ee73677072e34b305cf78aeb9f6437f5c20f0b920d801914ac8cf7a5f31e",
+      "line_quotes": [
+        {
+          "line": 73,
+          "text": "describe(\"U-DDDTDD DDD/TDD strictness lint\", () => {"
+        },
+        {
+          "line": 74,
+          "text": "  it(\"detects SSoT policy drift\", () => {"
+        },
+        {
+          "line": 84,
+          "text": "    expect(result.ok).toBe(false);"
+        },
+        {
+          "line": 89,
+          "text": "  it(\"detects missing workflow placement\", () => {"
+        },
+        {
+          "line": 116,
+          "text": "  it(\"U-DDDTDD-010: applies the same canonical source-boundary matrix as module-boundary\", () => {"
+        },
+        {
+          "line": 138,
+          "text": "  it(\"U-DDDTDD-011: owner-crossing compositionは専用moduleだけに置く\", () => {"
+        },
+        {
+          "line": 161,
+          "text": "  it(\"detects invariant rows without L7 oracle trace\", () => {"
+        },
+        {
+          "line": 167,
+          "text": "  it(\"detects confirmed TDD plans without red-first evidence or with inverted evidence\", () => {"
+        }
+      ],
+      "preserve": "旧consumer/failureは失敗境界とtrace対象の資料として保持。",
+      "change": "旧層番号、旧CLI/runner/test/runtime/CI/DB、旧timing-only Red-first、全開発styleへの一律適用を移植しない。",
+      "reason": "対象015の承認済みL3/L10、現L2/L4/L9とStage 1限定前提へ意味を再導出する。",
+      "consumer_status": "historical_read_only_not_executed"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-330DCC777CF2F7C5331E",
+      "path": "archive/legacy-generation-2026-09-14/root/tests/vmodel-pair.test.ts",
+      "archive_disposition": "unresolved",
+      "asset_authority_status": "historical",
+      "source_sha256": "a54a6b8687a5618ea62d4c6638b0eb7aaaa1a1d9024366869d0a17515cf95555",
+      "line_quotes": [
+        {
+          "line": 3,
+          "text": " * vmodel pair-freeze lint test (IMP-067、PLAN-L7-11)。"
+        },
+        {
+          "line": 4,
+          "text": " * design doc ⇔ test-design doc の pair_artifact 双方向整合・孤児0 (設計層 pair freeze、G1-G6)。"
+        },
+        {
+          "line": 5,
+          "text": " * L7-unit-test-design §1.13 U-VPAIR-001〜006 を被覆 + 実 repo 完全性ガード。"
+        },
+        {
+          "line": 75,
+          "text": "describe(\"vmodel pair-freeze lint (U-VPAIR)\", () => {"
+        },
+        {
+          "line": 109,
+          "text": "  it(\"U-VPAIR-002: pair-missing / ref-unresolved を検出\", () => {"
+        },
+        {
+          "line": 118,
+          "text": "    const r = analyzePairFreeze(docs);"
+        }
+      ],
+      "preserve": "旧consumer/failureは失敗境界とtrace対象の資料として保持。",
+      "change": "旧層番号、旧CLI/runner/test/runtime/CI/DB、旧timing-only Red-first、全開発styleへの一律適用を移植しない。",
+      "reason": "対象015の承認済みL3/L10、現L2/L4/L9とStage 1限定前提へ意味を再導出する。",
+      "consumer_status": "historical_read_only_not_executed"
+    }
+  ],
+  "document_id": "HARNESS-L5-015-TDD-DEVELOPMENT",
+  "layer": "L5",
+  "paired_document": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+  "purpose": "HARNESS-L2-015の凍結・実装前Red・最小Green・局所Refactor・原子CI・trace・Provisional範囲について、L4契約を入力・型・関数の論理設計へ分解する。",
+  "trace": [
+    {
+      "from": "HARNESS-L2-015",
+      "to": "HARNESS-L3-015-B01"
+    },
+    {
+      "from": "HARNESS-L3-015-B01",
+      "to": "HARNESS-L4-015-B01"
+    },
+    {
+      "from": "HARNESS-L4-015-B01",
+      "to": "HARNESS-L5-015-B01"
+    },
+    {
+      "from": "HARNESS-L5-015-B01",
+      "to": "HARNESS-L8-015-B01"
+    },
+    {
+      "from": "HARNESS-L8-015-B01",
+      "to": "HARNESS-L9-015-B01"
+    },
+    {
+      "from": "HARNESS-L9-015-B01",
+      "to": "HARNESS-L10-015-B01"
+    },
+    {
+      "from": "HARNESS-L10-015-B01",
+      "to": "HARNESS-L2-015@L11-acceptance"
+    },
+    {
+      "from": "HARNESS-L2-015",
+      "to": "HARNESS-L3-015-F01"
+    },
+    {
+      "from": "HARNESS-L3-015-F01",
+      "to": "HARNESS-L4-015-F01"
+    },
+    {
+      "from": "HARNESS-L4-015-F01",
+      "to": "HARNESS-L5-015-F01"
+    },
+    {
+      "from": "HARNESS-L5-015-F01",
+      "to": "HARNESS-L8-015-F01"
+    },
+    {
+      "from": "HARNESS-L8-015-F01",
+      "to": "HARNESS-L9-015-F01"
+    },
+    {
+      "from": "HARNESS-L9-015-F01",
+      "to": "HARNESS-L10-015-F01"
+    },
+    {
+      "from": "HARNESS-L10-015-F01",
+      "to": "HARNESS-L2-015@L11-acceptance"
+    },
+    {
+      "from": "HARNESS-L2-015",
+      "to": "HARNESS-L3-015-F02"
+    },
+    {
+      "from": "HARNESS-L3-015-F02",
+      "to": "HARNESS-L4-015-F02"
+    },
+    {
+      "from": "HARNESS-L4-015-F02",
+      "to": "HARNESS-L5-015-F02"
+    },
+    {
+      "from": "HARNESS-L5-015-F02",
+      "to": "HARNESS-L8-015-F02"
+    },
+    {
+      "from": "HARNESS-L8-015-F02",
+      "to": "HARNESS-L9-015-F02"
+    },
+    {
+      "from": "HARNESS-L9-015-F02",
+      "to": "HARNESS-L10-015-F02"
+    },
+    {
+      "from": "HARNESS-L10-015-F02",
+      "to": "HARNESS-L2-015@L11-acceptance"
+    },
+    {
+      "from": "HARNESS-L2-015",
+      "to": "HARNESS-L3-015-F03"
+    },
+    {
+      "from": "HARNESS-L3-015-F03",
+      "to": "HARNESS-L4-015-F03"
+    },
+    {
+      "from": "HARNESS-L4-015-F03",
+      "to": "HARNESS-L5-015-F03"
+    },
+    {
+      "from": "HARNESS-L5-015-F03",
+      "to": "HARNESS-L8-015-F03"
+    },
+    {
+      "from": "HARNESS-L8-015-F03",
+      "to": "HARNESS-L9-015-F03"
+    },
+    {
+      "from": "HARNESS-L9-015-F03",
+      "to": "HARNESS-L10-015-F03"
+    },
+    {
+      "from": "HARNESS-L10-015-F03",
+      "to": "HARNESS-L2-015@L11-acceptance"
+    },
+    {
+      "from": "HARNESS-L2-015",
+      "to": "HARNESS-L3-015-F04"
+    },
+    {
+      "from": "HARNESS-L3-015-F04",
+      "to": "HARNESS-L4-015-F04"
+    },
+    {
+      "from": "HARNESS-L4-015-F04",
+      "to": "HARNESS-L5-015-F04"
+    },
+    {
+      "from": "HARNESS-L5-015-F04",
+      "to": "HARNESS-L8-015-F04"
+    },
+    {
+      "from": "HARNESS-L8-015-F04",
+      "to": "HARNESS-L9-015-F04"
+    },
+    {
+      "from": "HARNESS-L9-015-F04",
+      "to": "HARNESS-L10-015-F04"
+    },
+    {
+      "from": "HARNESS-L10-015-F04",
+      "to": "HARNESS-L2-015@L11-acceptance"
+    }
+  ],
+  "reverse_trace": [
+    {
+      "from": "HARNESS-L2-015@L11-acceptance",
+      "to": "HARNESS-L10-015-B01"
+    },
+    {
+      "from": "HARNESS-L10-015-B01",
+      "to": "HARNESS-L9-015-B01"
+    },
+    {
+      "from": "HARNESS-L9-015-B01",
+      "to": "HARNESS-L8-015-B01"
+    },
+    {
+      "from": "HARNESS-L8-015-B01",
+      "to": "HARNESS-L5-015-B01"
+    },
+    {
+      "from": "HARNESS-L5-015-B01",
+      "to": "HARNESS-L4-015-B01"
+    },
+    {
+      "from": "HARNESS-L4-015-B01",
+      "to": "HARNESS-L3-015-B01"
+    },
+    {
+      "from": "HARNESS-L3-015-B01",
+      "to": "HARNESS-L2-015"
+    },
+    {
+      "from": "HARNESS-L2-015@L11-acceptance",
+      "to": "HARNESS-L10-015-F01"
+    },
+    {
+      "from": "HARNESS-L10-015-F01",
+      "to": "HARNESS-L9-015-F01"
+    },
+    {
+      "from": "HARNESS-L9-015-F01",
+      "to": "HARNESS-L8-015-F01"
+    },
+    {
+      "from": "HARNESS-L8-015-F01",
+      "to": "HARNESS-L5-015-F01"
+    },
+    {
+      "from": "HARNESS-L5-015-F01",
+      "to": "HARNESS-L4-015-F01"
+    },
+    {
+      "from": "HARNESS-L4-015-F01",
+      "to": "HARNESS-L3-015-F01"
+    },
+    {
+      "from": "HARNESS-L3-015-F01",
+      "to": "HARNESS-L2-015"
+    },
+    {
+      "from": "HARNESS-L2-015@L11-acceptance",
+      "to": "HARNESS-L10-015-F02"
+    },
+    {
+      "from": "HARNESS-L10-015-F02",
+      "to": "HARNESS-L9-015-F02"
+    },
+    {
+      "from": "HARNESS-L9-015-F02",
+      "to": "HARNESS-L8-015-F02"
+    },
+    {
+      "from": "HARNESS-L8-015-F02",
+      "to": "HARNESS-L5-015-F02"
+    },
+    {
+      "from": "HARNESS-L5-015-F02",
+      "to": "HARNESS-L4-015-F02"
+    },
+    {
+      "from": "HARNESS-L4-015-F02",
+      "to": "HARNESS-L3-015-F02"
+    },
+    {
+      "from": "HARNESS-L3-015-F02",
+      "to": "HARNESS-L2-015"
+    },
+    {
+      "from": "HARNESS-L2-015@L11-acceptance",
+      "to": "HARNESS-L10-015-F03"
+    },
+    {
+      "from": "HARNESS-L10-015-F03",
+      "to": "HARNESS-L9-015-F03"
+    },
+    {
+      "from": "HARNESS-L9-015-F03",
+      "to": "HARNESS-L8-015-F03"
+    },
+    {
+      "from": "HARNESS-L8-015-F03",
+      "to": "HARNESS-L5-015-F03"
+    },
+    {
+      "from": "HARNESS-L5-015-F03",
+      "to": "HARNESS-L4-015-F03"
+    },
+    {
+      "from": "HARNESS-L4-015-F03",
+      "to": "HARNESS-L3-015-F03"
+    },
+    {
+      "from": "HARNESS-L3-015-F03",
+      "to": "HARNESS-L2-015"
+    },
+    {
+      "from": "HARNESS-L2-015@L11-acceptance",
+      "to": "HARNESS-L10-015-F04"
+    },
+    {
+      "from": "HARNESS-L10-015-F04",
+      "to": "HARNESS-L9-015-F04"
+    },
+    {
+      "from": "HARNESS-L9-015-F04",
+      "to": "HARNESS-L8-015-F04"
+    },
+    {
+      "from": "HARNESS-L8-015-F04",
+      "to": "HARNESS-L5-015-F04"
+    },
+    {
+      "from": "HARNESS-L5-015-F04",
+      "to": "HARNESS-L4-015-F04"
+    },
+    {
+      "from": "HARNESS-L4-015-F04",
+      "to": "HARNESS-L3-015-F04"
+    },
+    {
+      "from": "HARNESS-L3-015-F04",
+      "to": "HARNESS-L2-015"
+    }
+  ],
+  "scope_preservation": {
+    "total_parent_scope": 92,
+    "total_pair_scope": 430,
+    "selected_parent": "HARNESS-L2-015",
+    "selected_contracts": 5,
+    "claim": "本草稿は既存92親/430対の集合を変更せず、015のL5/L8専用pairを限定起草する。"
+  },
+  "responsibility_boundary": {
+    "HARNESS": "開発単体の工程/検証契約とProvisional投影を定義",
+    "L6": "関数仕様・実装前対象・oracle・edge caseを別artifactで確定する。未作成/未承認なら未充足のまま。",
+    "L7": "実装・test code・実Red/Green/Refactor/CIを実施する層だが本pairは実行せず、実成果を生成しない。",
+    "OS_or_user": "実CI運転/作業workerはそれぞれのownerが担う。HARNESSは運転事実/permissionを合成しない。",
+    "005": "ticket関係からPR前CIを選び、省略検査を回収する契約を参照。005 L5/L8が本source approvalから認定されるわけではない。",
+    "022": "Integrated以降はcore verification/acceptance pairと組み合わせる。015だけで上位stateを生成しない。"
+  },
+  "architecture": {
+    "components": [
+      {
+        "id": "ContractFreezeJoin",
+        "responsibility": "L6/L5とpaired test/oracleのexact target identity/revision/scopeを結ぶ。凍結のfixture存在と実凍結を区別する。"
+      },
+      {
+        "id": "PreBodyRedJoin",
+        "responsibility": "未実装/未修正対象、凍結oracle、意図欠陥の実Red witnessを別値として対応付ける。環境障害や未実行はRedにしない。"
+      },
+      {
+        "id": "MinimalGreenRefactorJoin",
+        "responsibility": "最小本体変更後の同oracle Green、局所意味不変、原子CI、省略検査を別結果として束ねる。"
+      },
+      {
+        "id": "TraceFrontierProjection",
+        "responsibility": "4 artifactの双方向同revision traceとProvisional上限を記録し、022以降の状態を創作しない。"
+      }
+    ],
+    "flow": [
+      "固定入力のowner source/ref/hashを識別",
+      "candidate source changeとcandidate mutationを別recordとして関係付ける",
+      "L3/L10/L9の固定case whole expectationをIDでjoinする",
+      "期待projectionを出し、全case execution_state=not_executedを維持する"
+    ],
+    "owner_boundary": "L5はowner証拠のsource/contentを保持・照合する論理契約。実資格、実Worker、権限、runtime、CI、受入を所有・発行しない。"
+  },
+  "type_contract": {
+    "presence_model": "FieldValue<T> は absent/null/empty/provided を区別する。JSON absent memberへ値を補完しない。",
+    "json_value_boundary": "JsonValueはcandidate patchのbefore/afterや可変候補payloadだけに使い、sourceのroot payloadとexpected wholeはroot別の閉じたrecord型で投影する。",
+    "root_payload_types": {
+      "B01": {
+        "name": "PayloadB01",
+        "kind": "record",
+        "fields": {
+          "binding": "FieldValue<PayloadB01_binding>",
+          "ci_contract_ref": "FieldValue<PayloadB01_ci_contract_ref>",
+          "ci_operator": "FieldValue<PayloadB01_ci_operator>",
+          "measurement": "FieldValue<PayloadB01_measurement>",
+          "non_target": "FieldValue<PayloadB01_non_target>",
+          "omissions": "FieldValue<PayloadB01_omissions>",
+          "quality": "FieldValue<PayloadB01_quality>",
+          "source_assumption": "FieldValue<string>"
+        }
+      },
+      "F01": {
+        "name": "PayloadF01",
+        "kind": "record",
+        "fields": {
+          "binding": "FieldValue<PayloadF01_binding>",
+          "body_change": "FieldValue<PayloadF01_body_change>",
+          "design_pair": "FieldValue<PayloadF01_design_pair>",
+          "freeze": "FieldValue<PayloadF01_freeze>",
+          "non_target": "FieldValue<PayloadF01_non_target>",
+          "red": "FieldValue<null>",
+          "source_assumption": "FieldValue<string>"
+        }
+      },
+      "F02": {
+        "name": "PayloadF02",
+        "kind": "record",
+        "fields": {
+          "binding": "FieldValue<PayloadF02_binding>",
+          "body_change": "FieldValue<PayloadF02_body_change>",
+          "change_kind": "FieldValue<string>",
+          "frozen_oracle": "FieldValue<PayloadF02_frozen_oracle>",
+          "non_target": "FieldValue<PayloadF02_non_target>",
+          "post_mutation": "FieldValue<PayloadF02_post_mutation>",
+          "pre_body": "FieldValue<PayloadF02_pre_body>",
+          "red": "FieldValue<PayloadF02_red>",
+          "source_assumption": "FieldValue<string>"
+        }
+      },
+      "F03": {
+        "name": "PayloadF03",
+        "kind": "record",
+        "fields": {
+          "binding": "FieldValue<PayloadF03_binding>",
+          "ci_omissions": "FieldValue<PayloadF03_ci_omissions>",
+          "non_target": "FieldValue<PayloadF03_non_target>",
+          "oracle": "FieldValue<PayloadF03_oracle>",
+          "refactor_meaning": "FieldValue<PayloadF03_refactor_meaning>",
+          "source_assumption": "FieldValue<string>",
+          "steps": "FieldValue<list<PayloadF03_steps_item>>"
+        }
+      },
+      "F04": {
+        "name": "PayloadF04",
+        "kind": "record",
+        "fields": {
+          "artifacts": "FieldValue<list<PayloadF04_artifacts_item>>",
+          "atomic_ci": "FieldValue<PayloadF04_atomic_ci>",
+          "binding": "FieldValue<PayloadF04_binding>",
+          "consumer_acceptance": "FieldValue<null>",
+          "non_target": "FieldValue<PayloadF04_non_target>",
+          "service_kind": "FieldValue<string>",
+          "source_assumption": "FieldValue<string>",
+          "upper_contract_022": "FieldValue<null>"
+        }
+      }
+    },
+    "expected_material_types": {
+      "B01_normal": {
+        "name": "ExpectedB01Normal",
+        "kind": "record",
+        "fields": {
+          "cost_time_material": "FieldValue<string>",
+          "improvement_success": "FieldValue<string>",
+          "operator_contract": "FieldValue<string>",
+          "quality": "FieldValue<string>",
+          "state_ceiling": "FieldValue<string>",
+          "unrecovered_refs": "FieldValue<list<string>>"
+        }
+      },
+      "F01_normal": {
+        "name": "ExpectedF01Normal",
+        "kind": "record",
+        "fields": {
+          "freeze_before_body": "FieldValue<string>",
+          "implementation_success": "FieldValue<string>",
+          "pair_binding": "FieldValue<string>",
+          "pre_body_red": "FieldValue<string>"
+        }
+      },
+      "F02_normal": {
+        "name": "ExpectedF02Normal",
+        "kind": "record",
+        "fields": {
+          "actual_tdd_success": "FieldValue<string>",
+          "post_mutation_role": "FieldValue<string>",
+          "pre_body_head": "FieldValue<string>",
+          "red_before_body": "FieldValue<string>",
+          "red_meaning": "FieldValue<string>"
+        }
+      },
+      "F03_normal": {
+        "name": "ExpectedF03Normal",
+        "kind": "record",
+        "fields": {
+          "actual_tdd_success": "FieldValue<string>",
+          "green_behavior": "FieldValue<string>",
+          "local_meaning": "FieldValue<string>",
+          "minimal_body_scope": "FieldValue<string>",
+          "oracle_binding": "FieldValue<string>",
+          "order": "FieldValue<string>",
+          "state_ceiling": "FieldValue<string>",
+          "unrecovered_refs": "FieldValue<list<string>>"
+        }
+      },
+      "F04_normal": {
+        "name": "ExpectedF04Normal",
+        "kind": "record",
+        "fields": {
+          "accepted": "FieldValue<string>",
+          "integrated": "FieldValue<string>",
+          "release": "FieldValue<string>",
+          "state_ceiling": "FieldValue<string>",
+          "trace": "FieldValue<string>"
+        }
+      },
+      "negative": {
+        "name": "ExpectedNegativePartial",
+        "kind": "record",
+        "fields": {
+          "binding": "FieldValue<ExpectedNegativePartial_binding>",
+          "field": "FieldValue<string>",
+          "no_actual_completion": "FieldValue<boolean>",
+          "preservation_semantics": "FieldValue<string>",
+          "preserved_base_material": "FieldValue<ExpectedNegativePartial_preserved_base_material>",
+          "reason": "FieldValue<string>",
+          "state": "FieldValue<string>"
+        }
+      }
+    },
+    "other_types": [
+      {
+        "name": "PayloadB01_binding_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadB01_binding",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadB01_binding_scope>"
+        }
+      },
+      {
+        "name": "PayloadB01_ci_contract_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadB01_ci_contract_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadB01_ci_contract_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadB01_ci_operator_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadB01_ci_operator_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadB01_ci_operator_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadB01_ci_operator",
+        "kind": "record",
+        "fields": {
+          "kind": "FieldValue<string>",
+          "ref": "FieldValue<PayloadB01_ci_operator_ref>"
+        }
+      },
+      {
+        "name": "PayloadB01_measurement",
+        "kind": "record",
+        "fields": {
+          "after_cost": "FieldValue<number>",
+          "after_time": "FieldValue<number>",
+          "before_cost": "FieldValue<number>",
+          "before_time": "FieldValue<number>",
+          "unit": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadB01_non_target_binding_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadB01_non_target_binding",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadB01_non_target_binding_scope>"
+        }
+      },
+      {
+        "name": "PayloadB01_non_target",
+        "kind": "record",
+        "fields": {
+          "binding": "FieldValue<PayloadB01_non_target_binding>",
+          "state": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadB01_omissions_records_item_joining_ticket_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadB01_omissions_records_item_joining_ticket_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadB01_omissions_records_item_joining_ticket_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadB01_omissions_records_item",
+        "kind": "record",
+        "fields": {
+          "duty_identity": "FieldValue<string>",
+          "joining_ticket_ref": "FieldValue<PayloadB01_omissions_records_item_joining_ticket_ref>",
+          "reason": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadB01_omissions",
+        "kind": "record",
+        "fields": {
+          "records": "FieldValue<list<PayloadB01_omissions_records_item>>",
+          "required_refs": "FieldValue<list<string>>",
+          "unrecovered_refs": "FieldValue<list<string>>"
+        }
+      },
+      {
+        "name": "PayloadB01_quality_expected",
+        "kind": "record",
+        "fields": {
+          "receiver_debits": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadB01_quality_input",
+        "kind": "record",
+        "fields": {
+          "command": "FieldValue<string>",
+          "deliveries": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadB01_quality_observed",
+        "kind": "record",
+        "fields": {
+          "receiver_debits": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadB01_quality_oracle_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadB01_quality_oracle_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadB01_quality_oracle_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadB01_quality",
+        "kind": "record",
+        "fields": {
+          "expected": "FieldValue<PayloadB01_quality_expected>",
+          "input": "FieldValue<PayloadB01_quality_input>",
+          "observed": "FieldValue<PayloadB01_quality_observed>",
+          "observed_behavior": "FieldValue<string>",
+          "oracle_ref": "FieldValue<PayloadB01_quality_oracle_ref>",
+          "required_behavior": "FieldValue<string>",
+          "state": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_binding_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_binding",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF01_binding_scope>"
+        }
+      },
+      {
+        "name": "PayloadF01_body_change",
+        "kind": "record",
+        "fields": {
+          "created_at": "FieldValue<string>",
+          "from_head": "FieldValue<string>",
+          "sequence": "FieldValue<number>",
+          "to_head": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_design_pair_expected",
+        "kind": "record",
+        "fields": {
+          "receiver_debits": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF01_design_pair_l5_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_design_pair_l5_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF01_design_pair_l5_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF01_design_pair_l6_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_design_pair_l6_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF01_design_pair_l6_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF01_design_pair_oracle_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_design_pair_oracle_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF01_design_pair_oracle_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF01_design_pair_paired_test_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_design_pair_paired_test_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF01_design_pair_paired_test_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF01_design_pair",
+        "kind": "record",
+        "fields": {
+          "expected": "FieldValue<PayloadF01_design_pair_expected>",
+          "l5_ref": "FieldValue<PayloadF01_design_pair_l5_ref>",
+          "l6_ref": "FieldValue<PayloadF01_design_pair_l6_ref>",
+          "oracle_ref": "FieldValue<PayloadF01_design_pair_oracle_ref>",
+          "paired_test_ref": "FieldValue<PayloadF01_design_pair_paired_test_ref>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_design_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_design_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF01_freeze_design_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_expected",
+        "kind": "record",
+        "fields": {
+          "receiver_debits": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_l6_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_l6_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF01_freeze_l6_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_oracle_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_oracle_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF01_freeze_oracle_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF01_freeze_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_target_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_target_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF01_freeze_target_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_test_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze_test_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF01_freeze_test_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF01_freeze",
+        "kind": "record",
+        "fields": {
+          "created_at": "FieldValue<string>",
+          "design_ref": "FieldValue<PayloadF01_freeze_design_ref>",
+          "expected": "FieldValue<PayloadF01_freeze_expected>",
+          "l6_ref": "FieldValue<PayloadF01_freeze_l6_ref>",
+          "oracle_ref": "FieldValue<PayloadF01_freeze_oracle_ref>",
+          "ref": "FieldValue<PayloadF01_freeze_ref>",
+          "sequence": "FieldValue<number>",
+          "target_ref": "FieldValue<PayloadF01_freeze_target_ref>",
+          "test_ref": "FieldValue<PayloadF01_freeze_test_ref>"
+        }
+      },
+      {
+        "name": "PayloadF01_non_target_binding_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF01_non_target_binding",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF01_non_target_binding_scope>"
+        }
+      },
+      {
+        "name": "PayloadF01_non_target",
+        "kind": "record",
+        "fields": {
+          "binding": "FieldValue<PayloadF01_non_target_binding>",
+          "state": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF02_binding_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF02_binding",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF02_binding_scope>"
+        }
+      },
+      {
+        "name": "PayloadF02_body_change",
+        "kind": "record",
+        "fields": {
+          "from_head": "FieldValue<string>",
+          "sequence": "FieldValue<number>",
+          "to_head": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF02_frozen_oracle_expected",
+        "kind": "record",
+        "fields": {
+          "receiver_debits": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF02_frozen_oracle_input",
+        "kind": "record",
+        "fields": {
+          "command": "FieldValue<string>",
+          "deliveries": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF02_frozen_oracle_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF02_frozen_oracle_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF02_frozen_oracle_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF02_frozen_oracle_test_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF02_frozen_oracle_test_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF02_frozen_oracle_test_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF02_frozen_oracle",
+        "kind": "record",
+        "fields": {
+          "expected": "FieldValue<PayloadF02_frozen_oracle_expected>",
+          "freeze_sequence": "FieldValue<number>",
+          "input": "FieldValue<PayloadF02_frozen_oracle_input>",
+          "ref": "FieldValue<PayloadF02_frozen_oracle_ref>",
+          "test_ref": "FieldValue<PayloadF02_frozen_oracle_test_ref>"
+        }
+      },
+      {
+        "name": "PayloadF02_non_target_binding_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF02_non_target_binding",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF02_non_target_binding_scope>"
+        }
+      },
+      {
+        "name": "PayloadF02_non_target",
+        "kind": "record",
+        "fields": {
+          "binding": "FieldValue<PayloadF02_non_target_binding>",
+          "state": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF02_post_mutation_actual",
+        "kind": "record",
+        "fields": {
+          "receiver_debits": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF02_post_mutation_expected",
+        "kind": "record",
+        "fields": {
+          "receiver_debits": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF02_post_mutation_input",
+        "kind": "record",
+        "fields": {
+          "command": "FieldValue<string>",
+          "deliveries": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF02_post_mutation_oracle_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF02_post_mutation_oracle_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF02_post_mutation_oracle_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF02_post_mutation_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF02_post_mutation_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF02_post_mutation_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF02_post_mutation",
+        "kind": "record",
+        "fields": {
+          "actual": "FieldValue<PayloadF02_post_mutation_actual>",
+          "executed": "FieldValue<boolean>",
+          "expected": "FieldValue<PayloadF02_post_mutation_expected>",
+          "head": "FieldValue<string>",
+          "input": "FieldValue<PayloadF02_post_mutation_input>",
+          "oracle_ref": "FieldValue<PayloadF02_post_mutation_oracle_ref>",
+          "ref": "FieldValue<PayloadF02_post_mutation_ref>",
+          "role": "FieldValue<string>",
+          "seeded_defect": "FieldValue<string>",
+          "sequence": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF02_pre_body",
+        "kind": "record",
+        "fields": {
+          "defect": "FieldValue<string>",
+          "head": "FieldValue<string>",
+          "state": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF02_red_actual",
+        "kind": "record",
+        "fields": {
+          "behavior_observation": "FieldValue<string>",
+          "exception": "FieldValue<string>",
+          "receiver_debits": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF02_red_oracle_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF02_red_oracle_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF02_red_oracle_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF02_red_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF02_red_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF02_red_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF02_red",
+        "kind": "record",
+        "fields": {
+          "actual": "FieldValue<PayloadF02_red_actual>",
+          "executed": "FieldValue<boolean>",
+          "failure_kind": "FieldValue<string>",
+          "head": "FieldValue<string>",
+          "oracle_ref": "FieldValue<PayloadF02_red_oracle_ref>",
+          "ref": "FieldValue<PayloadF02_red_ref>",
+          "sequence": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF03_binding_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF03_binding",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF03_binding_scope>"
+        }
+      },
+      {
+        "name": "PayloadF03_ci_omissions_records_item_joining_ticket_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF03_ci_omissions_records_item_joining_ticket_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF03_ci_omissions_records_item_joining_ticket_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF03_ci_omissions_records_item",
+        "kind": "record",
+        "fields": {
+          "duty_identity": "FieldValue<string>",
+          "joining_ticket_ref": "FieldValue<PayloadF03_ci_omissions_records_item_joining_ticket_ref>",
+          "reason": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF03_ci_omissions",
+        "kind": "record",
+        "fields": {
+          "records": "FieldValue<list<PayloadF03_ci_omissions_records_item>>",
+          "unrecovered_refs": "FieldValue<list<string>>"
+        }
+      },
+      {
+        "name": "PayloadF03_non_target_binding_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF03_non_target_binding",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF03_non_target_binding_scope>"
+        }
+      },
+      {
+        "name": "PayloadF03_non_target",
+        "kind": "record",
+        "fields": {
+          "binding": "FieldValue<PayloadF03_non_target_binding>",
+          "state": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF03_oracle_expected",
+        "kind": "record",
+        "fields": {
+          "receiver_debits": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF03_oracle_input",
+        "kind": "record",
+        "fields": {
+          "command": "FieldValue<string>",
+          "deliveries": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF03_oracle_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF03_oracle_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF03_oracle_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF03_oracle",
+        "kind": "record",
+        "fields": {
+          "expected": "FieldValue<PayloadF03_oracle_expected>",
+          "input": "FieldValue<PayloadF03_oracle_input>",
+          "ref": "FieldValue<PayloadF03_oracle_ref>"
+        }
+      },
+      {
+        "name": "PayloadF03_refactor_meaning",
+        "kind": "record",
+        "fields": {
+          "architecture_after": "FieldValue<string>",
+          "architecture_before": "FieldValue<string>",
+          "public_contract_after": "FieldValue<string>",
+          "public_contract_before": "FieldValue<string>",
+          "requirement_after": "FieldValue<string>",
+          "requirement_before": "FieldValue<string>",
+          "state_after": "FieldValue<string>",
+          "state_before": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF03_steps_item_actual",
+        "kind": "record",
+        "fields": {
+          "receiver_debits": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "PayloadF03_steps_item_oracle_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF03_steps_item_oracle_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF03_steps_item_oracle_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF03_steps_item",
+        "kind": "record",
+        "fields": {
+          "actual": "FieldValue<PayloadF03_steps_item_actual>",
+          "contract_scope": "FieldValue<string>",
+          "from_head": "FieldValue<string>",
+          "head": "FieldValue<string>",
+          "kind": "FieldValue<string>",
+          "oracle_ref": "FieldValue<PayloadF03_steps_item_oracle_ref>",
+          "sequence": "FieldValue<number>",
+          "to_head": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF04_artifacts_item_out_refs_item_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF04_artifacts_item_out_refs_item",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF04_artifacts_item_out_refs_item_scope>"
+        }
+      },
+      {
+        "name": "PayloadF04_artifacts_item_ref_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF04_artifacts_item_ref",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF04_artifacts_item_ref_scope>"
+        }
+      },
+      {
+        "name": "PayloadF04_artifacts_item",
+        "kind": "record",
+        "fields": {
+          "kind": "FieldValue<string>",
+          "out_refs": "FieldValue<list<PayloadF04_artifacts_item_out_refs_item>>",
+          "ref": "FieldValue<PayloadF04_artifacts_item_ref>"
+        }
+      },
+      {
+        "name": "PayloadF04_atomic_ci",
+        "kind": "record",
+        "fields": {
+          "state": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF04_binding_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF04_binding",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF04_binding_scope>"
+        }
+      },
+      {
+        "name": "PayloadF04_non_target_binding_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "PayloadF04_non_target_binding",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<PayloadF04_non_target_binding_scope>"
+        }
+      },
+      {
+        "name": "PayloadF04_non_target",
+        "kind": "record",
+        "fields": {
+          "binding": "FieldValue<PayloadF04_non_target_binding>",
+          "state": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "ExpectedNegativePartial_binding_scope",
+        "kind": "record",
+        "fields": {
+          "environment": "FieldValue<string>",
+          "project": "FieldValue<string>",
+          "tenant": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "ExpectedNegativePartial_binding",
+        "kind": "record",
+        "fields": {
+          "identity": "FieldValue<string>",
+          "owner": "FieldValue<string>",
+          "revision": "FieldValue<string>",
+          "scope": "FieldValue<ExpectedNegativePartial_binding_scope>"
+        }
+      },
+      {
+        "name": "ExpectedNegativePartial_preserved_base_material",
+        "kind": "record",
+        "fields": {
+          "accepted": "FieldValue<string>",
+          "actual_tdd_success": "FieldValue<string>",
+          "cost_time_material": "FieldValue<string>",
+          "freeze_before_body": "FieldValue<string>",
+          "green_behavior": "FieldValue<string>",
+          "implementation_success": "FieldValue<string>",
+          "improvement_success": "FieldValue<string>",
+          "integrated": "FieldValue<string>",
+          "local_meaning": "FieldValue<string>",
+          "minimal_body_scope": "FieldValue<string>",
+          "operator_contract": "FieldValue<string>",
+          "oracle_binding": "FieldValue<string>",
+          "order": "FieldValue<string>",
+          "pair_binding": "FieldValue<string>",
+          "post_mutation_role": "FieldValue<string>",
+          "pre_body_head": "FieldValue<string>",
+          "pre_body_red": "FieldValue<string>",
+          "quality": "FieldValue<string>",
+          "red_before_body": "FieldValue<string>",
+          "red_meaning": "FieldValue<string>",
+          "release": "FieldValue<string>",
+          "state_ceiling": "FieldValue<string>",
+          "trace": "FieldValue<string>",
+          "unrecovered_refs": "FieldValue<list<string>>"
+        }
+      },
+      {
+        "name": "ScopeRef",
+        "kind": "record",
+        "fields": {
+          "project": "string",
+          "tenant": "string",
+          "environment": "string"
+        }
+      },
+      {
+        "name": "SourceRef",
+        "kind": "record",
+        "fields": {
+          "identity": "string",
+          "revision": "string",
+          "scope": "ScopeRef",
+          "owner": "string"
+        }
+      },
+      {
+        "name": "SourceMutation",
+        "kind": "record",
+        "fields": {
+          "lane": "string",
+          "operation": "string",
+          "field_path": "string",
+          "before": "JsonValue",
+          "after": "JsonValue"
+        }
+      },
+      {
+        "name": "SourcePayload",
+        "kind": "tagged_union",
+        "variants": {
+          "B01": "PayloadB01",
+          "F01": "PayloadF01",
+          "F02": "PayloadF02",
+          "F03": "PayloadF03",
+          "F04": "PayloadF04"
+        }
+      },
+      {
+        "name": "ExpectedMaterial",
+        "kind": "tagged_union",
+        "variants": {
+          "B01_normal": "ExpectedB01Normal",
+          "F01_normal": "ExpectedF01Normal",
+          "F02_normal": "ExpectedF02Normal",
+          "F03_normal": "ExpectedF03Normal",
+          "F04_normal": "ExpectedF04Normal",
+          "negative": "ExpectedNegativePartial"
+        }
+      },
+      {
+        "name": "NonTargetRecord",
+        "kind": "record",
+        "fields": {
+          "binding": "FieldValue<SourceRef>",
+          "state": "FieldValue<string>"
+        }
+      },
+      {
+        "name": "SourcePacketInput",
+        "kind": "record",
+        "fields": {
+          "case_identity": "string",
+          "root_id": "string",
+          "source_ref": "SourceRef",
+          "canonical_owner_ref": "SourceRef",
+          "packet_source_pointer": "string",
+          "payload_source_pointer": "string",
+          "byte_sha256": "string",
+          "raw_byte_length": "number",
+          "payload_type": "string",
+          "source_change": "FieldValue<SourceMutation>",
+          "qualification_kind": "string",
+          "authority_effect": "string"
+        }
+      },
+      {
+        "name": "CandidateProposalInput",
+        "kind": "record",
+        "fields": {
+          "scenario_kind": "string",
+          "mutation": "FieldValue<SourceMutation>",
+          "candidate_value": "FieldValue<JsonValue>",
+          "original_payload_canonical_sha256": "string",
+          "non_target_preserved": "FieldValue<NonTargetRecord>",
+          "expected_side_effect_count": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "BoundSourcePacket",
+        "kind": "record",
+        "fields": {
+          "case_identity": "string",
+          "root_id": "string",
+          "source_packet_ref": "SourceRef",
+          "source_packet_byte_sha256": "string",
+          "packet_source_pointer": "string",
+          "payload_source_pointer": "string",
+          "payload_type": "string",
+          "canonical_owner_ref": "SourceRef",
+          "canonical_owner_byte_sha256": "string",
+          "source_change": "FieldValue<SourceMutation>",
+          "qualification_kind": "string",
+          "authority_effect": "string"
+        }
+      },
+      {
+        "name": "CandidateProjection",
+        "kind": "record",
+        "fields": {
+          "case_identity": "string",
+          "root_id": "string",
+          "source_packet_ref": "SourceRef",
+          "source_packet_byte_sha256": "string",
+          "packet_source_pointer": "string",
+          "payload_source_pointer": "string",
+          "payload_type": "string",
+          "canonical_owner_ref": "SourceRef",
+          "canonical_owner_byte_sha256": "string",
+          "source_change": "FieldValue<SourceMutation>",
+          "candidate_mutation": "FieldValue<SourceMutation>",
+          "candidate_value": "FieldValue<JsonValue>",
+          "original_payload_canonical_sha256": "string",
+          "non_target_preserved": "FieldValue<NonTargetRecord>",
+          "expected_side_effect_count": "FieldValue<number>"
+        }
+      },
+      {
+        "name": "OracleContext",
+        "kind": "record",
+        "fields": {
+          "scenario_kind": "string",
+          "requirement_ref": "string",
+          "system_oracle_ref": "string",
+          "l9_case_ref": "string",
+          "expected_source_pointer": "string",
+          "expected_material_sha256": "string",
+          "expected_material_kind": "string",
+          "expected_issue": "FieldValue<string>",
+          "non_target_preserved": "FieldValue<NonTargetRecord>",
+          "expected_side_effect_count": "FieldValue<number>",
+          "execution_state": "string"
+        }
+      },
+      {
+        "name": "CaseExpectation",
+        "kind": "record",
+        "fields": {
+          "case_identity": "string",
+          "root_id": "string",
+          "requirement_ref": "string",
+          "system_oracle_ref": "string",
+          "source_packet_ref": "SourceRef",
+          "source_packet_byte_sha256": "string",
+          "canonical_owner_ref": "SourceRef",
+          "canonical_owner_byte_sha256": "string",
+          "scenario_kind": "string",
+          "candidate_mutation": "FieldValue<SourceMutation>",
+          "candidate_value": "FieldValue<JsonValue>",
+          "expected_source_pointer": "string",
+          "expected_material_sha256": "string",
+          "expected_material_kind": "string",
+          "expected_issue": "FieldValue<string>",
+          "non_target_preserved": "FieldValue<NonTargetRecord>",
+          "expected_side_effect_count": "FieldValue<number>",
+          "execution_state": "string"
+        }
+      },
+      {
+        "name": "FunctionCallExample",
+        "kind": "record",
+        "fields": {
+          "function_ref": "string",
+          "typed_input": "JsonValue",
+          "expected_output_projection": "JsonValue"
+        }
+      },
+      {
+        "name": "CaseFixture",
+        "kind": "record",
+        "fields": {
+          "case_identity": "string",
+          "root_id": "string",
+          "scenario_kind": "string",
+          "source_packet_pointer": "string",
+          "source_packet_ref": "SourceRef",
+          "source_packet_byte_sha256": "string",
+          "canonical_owner_ref": "SourceRef",
+          "canonical_owner_byte_sha256": "string",
+          "payload_source_pointer": "string",
+          "payload_type": "string",
+          "source_change_ref": "FieldValue<SourceMutation>",
+          "candidate_mutation_ref": "FieldValue<SourceMutation>",
+          "candidate_value_ref": "FieldValue<JsonValue>",
+          "original_payload_canonical_sha256": "string",
+          "non_target_preserved_ref": "FieldValue<NonTargetRecord>",
+          "expected_side_effect_count_ref": "FieldValue<number>",
+          "expected_source_pointer": "string",
+          "expected_material_sha256": "string",
+          "expected_material_kind": "string",
+          "execution_state": "string",
+          "function_calls": "list<FunctionCallExample>"
+        }
+      },
+      {
+        "name": "SemanticRule",
+        "kind": "record",
+        "fields": {
+          "rule_id": "string",
+          "l4_contract_ref": "string",
+          "l4_failure_code": "FieldValue<string>",
+          "output_field": "string",
+          "source_predicate": "string",
+          "source_paths": "list<string>",
+          "candidate_field": "string",
+          "candidate_operator": "string",
+          "expected_l4_value": "JsonValue",
+          "return_to_owner_paths": "list<string>"
+        }
+      },
+      {
+        "name": "SemanticRuleSet",
+        "kind": "record",
+        "fields": {
+          "root_id": "string",
+          "l4_contract_ref": "string",
+          "l4_contract_canonical_sha256": "string",
+          "rules": "list<SemanticRule>"
+        }
+      },
+      {
+        "name": "SemanticEvaluationInput",
+        "kind": "record",
+        "fields": {
+          "case_identity": "string",
+          "root_id": "string",
+          "source_packet_pointer": "string",
+          "source_packet_ref": "SourceRef",
+          "source_packet_byte_sha256": "string",
+          "payload_source_pointer": "string",
+          "payload_type": "string",
+          "source_payload": "SourcePayload",
+          "candidate_value": "FieldValue<JsonValue>"
+        }
+      },
+      {
+        "name": "SemanticFinding",
+        "kind": "record",
+        "fields": {
+          "rule_id": "string",
+          "source_status": "string",
+          "candidate_status": "string",
+          "source_field_paths": "list<string>",
+          "candidate_field_path": "string",
+          "source_observation_sha256": "string",
+          "candidate_observation_sha256": "FieldValue<string>",
+          "l4_expected_value_sha256": "string",
+          "return_to_owners": "list<string>"
+        }
+      },
+      {
+        "name": "SemanticEvaluation",
+        "kind": "record",
+        "fields": {
+          "case_identity": "string",
+          "root_id": "string",
+          "source_packet_pointer": "string",
+          "source_packet_ref": "SourceRef",
+          "source_packet_byte_sha256": "string",
+          "semantic_state": "string",
+          "findings": "list<SemanticFinding>"
+        }
+      }
+    ],
+    "source_authority_note": "資格表示はsource_packet.qualification_kindの値として保持し、正本ownerによる実資格の証拠とは解釈しない。",
+    "source_map_binding": "raw UTF-8 bytesとowner_materialはL9の固定source mapに一度だけ保持する。L8はexact source pointer+identity+byte hashを入力へ渡し、source-coupled verifierが参照先bytesをroot別の閉じたrecord型へ投影してcanonical hashで結ぶ。各caseは型名・source pointer・型付きprojection hashを持ち、payload本体を複製しない。期待wholeも別pointer+canonical hashで解決し、raw入力と混ぜない。論理projectionは実codecやruntimeの成立を示さない。",
+    "source_change_limit": "L9のsource_changeは原metadataとして保持する。raw bytesとの値比較は静的照合結果として別記録し、一致しないときにafterや改変内容を補完しない。metadataだけをraw改変の完全な証拠、資格、実変更として扱わない。"
+  },
+  "pure_function_signatures": [
+    {
+      "id": "F-015-01",
+      "name": "project_source_packet",
+      "signature": "project_source_packet(packet: SourcePacketInput, canonical_owner_byte_sha256: string) -> BoundSourcePacket",
+      "reads": [
+        "packet.case_identity",
+        "packet.root_id",
+        "packet.source_ref.identity/revision/scope.project/scope.tenant/scope.environment/owner",
+        "packet.canonical_owner_ref.identity/revision/scope.project/scope.tenant/scope.environment/owner",
+        "packet.packet_source_pointer",
+        "packet.payload_source_pointer",
+        "packet.byte_sha256",
+        "packet.raw_byte_length",
+        "packet.payload_type",
+        "packet.source_change",
+        "packet.qualification_kind",
+        "packet.authority_effect",
+        "canonical_owner_byte_sha256"
+      ],
+      "returns": [
+        "case_identity",
+        "root_id",
+        "source_packet_ref",
+        "source_packet_byte_sha256",
+        "packet_source_pointer",
+        "payload_source_pointer",
+        "payload_type",
+        "canonical_owner_ref",
+        "canonical_owner_byte_sha256",
+        "source_change",
+        "qualification_kind",
+        "authority_effect"
+      ],
+      "preconditions": [
+        "L9 source packet pointer・source_ref・byte_sha256は同じroot/case内のexact memberを指す。",
+        "payload_source_pointerはそのpacketのowner_materialを指し、source-coupled静的照合でsource bytesのparse結果と一致する。",
+        "canonical owner reference/hashはsource packet自身または同じrootの正規owner packetに結ぶ。"
+      ],
+      "branches": [
+        "packet identity/hashが一意ならSourceRef全体とsource hashを保持してsource bindingを返す。",
+        "source_changeのpresence stateはそのまま保ち、candidate_mutationへ混ぜない。",
+        "qualification_kindとauthority_effectは原metadataとして保持し実資格を生成しない。"
+      ],
+      "algorithm": "固定L9 source map上のexact packet reference/hashとcanonical owner reference/hashを別々に結び、payloadのroot型名とsource pointerを束縛する。raw content自体はL9 source mapに一度だけ置き、静的検証器が閉じたrecord型への論理projection hashを確かめる。",
+      "effects": "none",
+      "field_flow": {
+        "inputs_read": {
+          "packet": [
+            "case_identity",
+            "root_id",
+            "source_ref",
+            "canonical_owner_ref",
+            "packet_source_pointer",
+            "payload_source_pointer",
+            "byte_sha256",
+            "raw_byte_length",
+            "payload_type",
+            "source_change",
+            "qualification_kind",
+            "authority_effect"
+          ],
+          "canonical_owner_byte_sha256": [
+            "$value"
+          ]
+        },
+        "returns_from": {
+          "case_identity": "packet.case_identity",
+          "root_id": "packet.root_id",
+          "source_packet_ref": "packet.source_ref",
+          "source_packet_byte_sha256": "packet.byte_sha256",
+          "packet_source_pointer": "packet.packet_source_pointer",
+          "payload_source_pointer": "packet.payload_source_pointer",
+          "payload_type": "packet.payload_type",
+          "canonical_owner_ref": "packet.canonical_owner_ref",
+          "canonical_owner_byte_sha256": "canonical_owner_byte_sha256",
+          "source_change": "packet.source_change",
+          "qualification_kind": "packet.qualification_kind",
+          "authority_effect": "packet.authority_effect"
+        }
+      }
+    },
+    {
+      "id": "F-015-02",
+      "name": "bind_candidate_proposal",
+      "signature": "bind_candidate_proposal(source: BoundSourcePacket, proposal: CandidateProposalInput) -> CandidateProjection",
+      "reads": [
+        "source.case_identity",
+        "source.root_id",
+        "source.source_packet_ref.identity/revision/scope.project/scope.tenant/scope.environment/owner",
+        "source.source_packet_byte_sha256",
+        "source.packet_source_pointer",
+        "source.payload_source_pointer",
+        "source.payload_type",
+        "source.canonical_owner_ref.identity/revision/scope.project/scope.tenant/scope.environment/owner",
+        "source.canonical_owner_byte_sha256",
+        "source.source_change",
+        "source.qualification_kind",
+        "source.authority_effect",
+        "proposal.scenario_kind",
+        "proposal.mutation",
+        "proposal.candidate_value",
+        "proposal.original_payload_canonical_sha256",
+        "proposal.non_target_preserved",
+        "proposal.expected_side_effect_count"
+      ],
+      "returns": [
+        "case_identity",
+        "root_id",
+        "source_packet_ref",
+        "source_packet_byte_sha256",
+        "packet_source_pointer",
+        "payload_source_pointer",
+        "payload_type",
+        "canonical_owner_ref",
+        "canonical_owner_byte_sha256",
+        "source_change",
+        "candidate_mutation",
+        "candidate_value",
+        "original_payload_canonical_sha256",
+        "non_target_preserved",
+        "expected_side_effect_count"
+      ],
+      "preconditions": [
+        "proposalは同じL9 case idのnegative mutation/candidate、またはnormal caseのabsent値から作るprojectionである。",
+        "source_changeはL9 owner source metadata、proposal.mutationは別に保持した候補提案値である。"
+      ],
+      "branches": [
+        "source_changeがprovidedでもcanonical owner bytesとcase packet bytesの差を示すのはidentity/hashまでとし、before/afterをrawの完全な改変証拠にしない。",
+        "source_change metadataがraw値と一致しないときも両方を別々に保持し、値を補完しない。",
+        "source_changeがabsentならowner source差分を推定せず、source ref/hashとcandidate proposalだけを保持する。",
+        "non_target_preservedとside-effect expectationはL9値を保持し、side effectを実行しない。"
+      ],
+      "algorithm": "case packet metadataとcandidate proposalを結び、SourceRef全体、source_change metadata、owner source hash、candidate proposalを別fieldとして維持する。payloadはL9 source mapへの固定pointerで参照する。",
+      "effects": "none",
+      "field_flow": {
+        "inputs_read": {
+          "source": [
+            "case_identity",
+            "root_id",
+            "source_packet_ref",
+            "source_packet_byte_sha256",
+            "packet_source_pointer",
+            "payload_source_pointer",
+            "payload_type",
+            "canonical_owner_ref",
+            "canonical_owner_byte_sha256",
+            "source_change",
+            "qualification_kind",
+            "authority_effect"
+          ],
+          "proposal": [
+            "scenario_kind",
+            "mutation",
+            "candidate_value",
+            "original_payload_canonical_sha256",
+            "non_target_preserved",
+            "expected_side_effect_count"
+          ]
+        },
+        "returns_from": {
+          "case_identity": "source.case_identity",
+          "root_id": "source.root_id",
+          "source_packet_ref": "source.source_packet_ref",
+          "source_packet_byte_sha256": "source.source_packet_byte_sha256",
+          "packet_source_pointer": "source.packet_source_pointer",
+          "payload_source_pointer": "source.payload_source_pointer",
+          "payload_type": "source.payload_type",
+          "canonical_owner_ref": "source.canonical_owner_ref",
+          "canonical_owner_byte_sha256": "source.canonical_owner_byte_sha256",
+          "source_change": "source.source_change",
+          "candidate_mutation": "proposal.mutation",
+          "candidate_value": "proposal.candidate_value",
+          "original_payload_canonical_sha256": "proposal.original_payload_canonical_sha256",
+          "non_target_preserved": "proposal.non_target_preserved",
+          "expected_side_effect_count": "proposal.expected_side_effect_count"
+        }
+      }
+    },
+    {
+      "id": "F-015-03",
+      "name": "bind_case_expectation",
+      "signature": "bind_case_expectation(projection: CandidateProjection, oracle: OracleContext) -> CaseExpectation",
+      "reads": [
+        "projection.case_identity",
+        "projection.root_id",
+        "projection.source_packet_ref.identity/revision/scope.project/scope.tenant/scope.environment/owner",
+        "projection.source_packet_byte_sha256",
+        "projection.packet_source_pointer",
+        "projection.payload_source_pointer",
+        "projection.payload_type",
+        "projection.canonical_owner_ref.identity/revision/scope.project/scope.tenant/scope.environment/owner",
+        "projection.canonical_owner_byte_sha256",
+        "projection.source_change",
+        "projection.candidate_mutation",
+        "projection.candidate_value",
+        "projection.original_payload_canonical_sha256",
+        "projection.non_target_preserved",
+        "projection.expected_side_effect_count",
+        "oracle.scenario_kind",
+        "oracle.requirement_ref",
+        "oracle.system_oracle_ref",
+        "oracle.l9_case_ref",
+        "oracle.expected_source_pointer",
+        "oracle.expected_material_sha256",
+        "oracle.expected_material_kind",
+        "oracle.expected_issue",
+        "oracle.non_target_preserved",
+        "oracle.expected_side_effect_count",
+        "oracle.execution_state"
+      ],
+      "returns": [
+        "case_identity",
+        "root_id",
+        "requirement_ref",
+        "system_oracle_ref",
+        "source_packet_ref",
+        "source_packet_byte_sha256",
+        "canonical_owner_ref",
+        "canonical_owner_byte_sha256",
+        "scenario_kind",
+        "candidate_mutation",
+        "candidate_value",
+        "expected_source_pointer",
+        "expected_material_sha256",
+        "expected_material_kind",
+        "expected_issue",
+        "non_target_preserved",
+        "expected_side_effect_count",
+        "execution_state"
+      ],
+      "preconditions": [
+        "oracle expected pointer/hashはL9のexact expected_materialまたはexpected_partial_material memberから作り、source packet hashとは別に固定する。"
+      ],
+      "branches": [
+        "normal/normal_variantはexpected_materialを参照し、negativeはexpected_partial_materialを参照する。",
+        "side-effect expectationが0でもexecution_state=not_executedを保持し、実実行の無副作用を主張しない。",
+        "全caseは実TDD結果を生成せずnot_executedで返す。"
+      ],
+      "algorithm": "同一case idのsource/proposalをL3/L10 refおよびL9 exact expected pointer/hashへ結び、独立に再照合可能な期待projectionを作る。",
+      "effects": "none",
+      "field_flow": {
+        "inputs_read": {
+          "projection": [
+            "case_identity",
+            "root_id",
+            "source_packet_ref",
+            "source_packet_byte_sha256",
+            "packet_source_pointer",
+            "payload_source_pointer",
+            "payload_type",
+            "canonical_owner_ref",
+            "canonical_owner_byte_sha256",
+            "source_change",
+            "candidate_mutation",
+            "candidate_value",
+            "original_payload_canonical_sha256",
+            "non_target_preserved",
+            "expected_side_effect_count"
+          ],
+          "oracle": [
+            "scenario_kind",
+            "requirement_ref",
+            "system_oracle_ref",
+            "l9_case_ref",
+            "expected_source_pointer",
+            "expected_material_sha256",
+            "expected_material_kind",
+            "expected_issue",
+            "non_target_preserved",
+            "expected_side_effect_count",
+            "execution_state"
+          ]
+        },
+        "returns_from": {
+          "case_identity": "projection.case_identity",
+          "root_id": "projection.root_id",
+          "requirement_ref": "oracle.requirement_ref",
+          "system_oracle_ref": "oracle.system_oracle_ref",
+          "source_packet_ref": "projection.source_packet_ref",
+          "source_packet_byte_sha256": "projection.source_packet_byte_sha256",
+          "canonical_owner_ref": "projection.canonical_owner_ref",
+          "canonical_owner_byte_sha256": "projection.canonical_owner_byte_sha256",
+          "scenario_kind": "oracle.scenario_kind",
+          "candidate_mutation": "projection.candidate_mutation",
+          "candidate_value": "projection.candidate_value",
+          "expected_source_pointer": "oracle.expected_source_pointer",
+          "expected_material_sha256": "oracle.expected_material_sha256",
+          "expected_material_kind": "oracle.expected_material_kind",
+          "expected_issue": "oracle.expected_issue",
+          "non_target_preserved": "oracle.non_target_preserved",
+          "expected_side_effect_count": "oracle.expected_side_effect_count",
+          "execution_state": "oracle.execution_state"
+        }
+      }
+    },
+    {
+      "id": "F-015-04",
+      "name": "evaluate_contract_semantics",
+      "signature": "evaluate_contract_semantics(input: SemanticEvaluationInput, rules: SemanticRuleSet) -> SemanticEvaluation",
+      "reads": [
+        "input.case_identity",
+        "input.root_id",
+        "input.source_packet_pointer",
+        "input.source_packet_ref",
+        "input.source_packet_byte_sha256",
+        "input.payload_source_pointer",
+        "input.payload_type",
+        "input.source_payload.tag/valueのroot別declared field",
+        "input.candidate_value",
+        "rules.root_id",
+        "rules.l4_contract_ref",
+        "rules.l4_contract_canonical_sha256",
+        "rules.rules[].rule_id/l4_contract_ref/output_field/source_predicate/source_paths/candidate_field/expected_l4_value/return_to_owner_paths"
+      ],
+      "returns": [
+        "case_identity",
+        "root_id",
+        "source_packet_pointer",
+        "source_packet_ref",
+        "source_packet_byte_sha256",
+        "semantic_state",
+        "findings"
+      ],
+      "preconditions": [
+        "input.source_payloadはL9 owner_materialをroot別閉型へ投影した論理fixtureで、固定source pointer/hashは別途検証済み。",
+        "rulesは対応するL4 contractから固定導出し、L9 expected_material/expected_partial_materialを判定の入力にしない。",
+        "candidate_valueは提案値のFieldValue。未提示/欠落/nullをそれぞれ保持し、raw owner sourceの代用にしない。"
+      ],
+      "branches": [
+        "source_predicateが真の固定fixture所見をsupported_by_fixture、偽をcontradicted_by_fixture、必須sourceが欠落/nullならnot_observedとして返す。",
+        "candidate_valueが非recordまたはcandidate_fieldが無ければnot_record/field_not_proposedで返し、候補の欠落をsource所見へ流用しない。",
+        "candidate fieldがL4のexpected_l4_valueと一致するときだけmatches_l4_contract、違えばcontradicts_l4_contractとする。これは実評価/成功ではない。",
+        "return_to_ownersは指定されたraw source ref ownerだけを抽出し、owner不明なら空のまま保つ。"
+      ],
+      "algorithm": "root tagで有限fixture用の比較枝を選び、凍結対の参照一致と順序、実装前Redの意図behavior、Greenの同oracle結果、Refactor意味保存、CI/omission、traceの相互参照を指定pathから比較する。各所見はsource/candidateの値hashとpathで説明し、候補はL4出力契約だけと照合する。L9 expected wholeは独立oracleとして参照せず、所見と別に保持する。",
+      "effects": "none",
+      "field_flow": {
+        "inputs_read": {
+          "input": [
+            "case_identity",
+            "root_id",
+            "source_packet_pointer",
+            "source_packet_ref",
+            "source_packet_byte_sha256",
+            "payload_source_pointer",
+            "payload_type",
+            "source_payload",
+            "candidate_value"
+          ],
+          "rules": [
+            "root_id",
+            "l4_contract_ref",
+            "l4_contract_canonical_sha256",
+            "rules"
+          ]
+        },
+        "returns_from": {
+          "case_identity": "input.case_identity",
+          "root_id": "input.root_id",
+          "source_packet_pointer": "input.source_packet_pointer",
+          "source_packet_ref": "input.source_packet_ref",
+          "source_packet_byte_sha256": "input.source_packet_byte_sha256",
+          "semantic_state": "$literal:fixture_comparison_only_not_execution",
+          "findings": "$derived:rules+input"
+        }
+      }
+    }
+  ],
+  "contracts": [
+    {
+      "id": "HARNESS-L5-015-B01",
+      "parent": "HARNESS-L2-015",
+      "l3_ref": "HARNESS-L3-015-B01",
+      "l4_ref": "HARNESS-L4-015-B01",
+      "l8_ref": "HARNESS-L8-015-B01",
+      "l9_ref": "HARNESS-L9-015-B01",
+      "l10_ref": "HARNESS-L10-015-B01",
+      "approved_l3_ref": "HARNESS-L3-015-B01",
+      "approved_l10_ref": "HARNESS-L10-015-B01",
+      "design_rule": "④はコア工程/検証契約を使い、OSのCI運転または利用者CIへ契約を渡して利用できる。PR前CIは005のticket関係/省略回収を参照する。quality-firstのoracle結果と省略検査を明示し、費用/時間改善だけで必要quality未達runを改善成功にしない。",
+      "expected_output_contract": {
+        "operator_contract": "same_contract_user_ci_supported",
+        "quality": "synthetic_met",
+        "unrecovered_refs": [
+          "C1"
+        ],
+        "cost_time_material": "synthetic_improvement_only",
+        "improvement_success": "not_generated",
+        "state_ceiling": "Provisional"
+      },
+      "failure_conditions": [
+        {
+          "code": "os_only",
+          "meaning": "利用者CIへ同契約を渡す単独利用を保持。"
+        },
+        {
+          "code": "cheap_quality_failure",
+          "meaning": "品質未達を費用/時間改善で相殺しない。"
+        },
+        {
+          "code": "omission_erased",
+          "meaning": "C1未回収を保持。"
+        },
+        {
+          "code": "metric_as_accepted",
+          "meaning": "計測改善から受入を生成しない。"
+        }
+      ],
+      "effect": "normative_design_only_no_execution",
+      "semantic_rule_set": {
+        "root_id": "HARNESS-L9-015-B01",
+        "l4_contract_ref": "HARNESS-L4-015-B01",
+        "l4_contract_canonical_sha256": "0407bd9182d849b729fd601f200087970555b9e7f6866783c18c05b58db37a0d",
+        "rules": [
+          {
+            "rule_id": "HARNESS-L4-015-B01:operator_contract",
+            "l4_contract_ref": "HARNESS-L4-015-B01",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "operator_contract",
+            "source_predicate": "supported_ci_operator",
+            "source_paths": [
+              "ci_operator.kind",
+              "ci_operator.ref",
+              "ci_contract_ref"
+            ],
+            "candidate_field": "operator_contract",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "same_contract_user_ci_supported",
+            "return_to_owner_paths": [
+              "ci_operator.ref.owner",
+              "quality.oracle_ref.owner",
+              "omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-B01:quality",
+            "l4_contract_ref": "HARNESS-L4-015-B01",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "quality",
+            "source_predicate": "quality_met",
+            "source_paths": [
+              "quality.state",
+              "quality.required_behavior",
+              "quality.observed_behavior",
+              "quality.expected.receiver_debits",
+              "quality.observed.receiver_debits"
+            ],
+            "candidate_field": "quality",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "synthetic_met",
+            "return_to_owner_paths": [
+              "ci_operator.ref.owner",
+              "quality.oracle_ref.owner",
+              "omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-B01:unrecovered_refs",
+            "l4_contract_ref": "HARNESS-L4-015-B01",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "unrecovered_refs",
+            "source_predicate": "omission_refs_preserved",
+            "source_paths": [
+              "omissions.required_refs",
+              "omissions.unrecovered_refs"
+            ],
+            "candidate_field": "unrecovered_refs",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": [
+              "C1"
+            ],
+            "return_to_owner_paths": [
+              "ci_operator.ref.owner",
+              "quality.oracle_ref.owner",
+              "omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-B01:cost_time_material",
+            "l4_contract_ref": "HARNESS-L4-015-B01",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "cost_time_material",
+            "source_predicate": "measurement_improves",
+            "source_paths": [
+              "measurement.before_cost",
+              "measurement.after_cost",
+              "measurement.before_time",
+              "measurement.after_time"
+            ],
+            "candidate_field": "cost_time_material",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "synthetic_improvement_only",
+            "return_to_owner_paths": [
+              "ci_operator.ref.owner",
+              "quality.oracle_ref.owner",
+              "omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-B01:improvement_success",
+            "l4_contract_ref": "HARNESS-L4-015-B01",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "improvement_success",
+            "source_predicate": "no_materialized_value",
+            "source_paths": [
+              "improvement_success"
+            ],
+            "candidate_field": "improvement_success",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "not_generated",
+            "return_to_owner_paths": [
+              "ci_operator.ref.owner",
+              "quality.oracle_ref.owner",
+              "omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-B01:state_ceiling",
+            "l4_contract_ref": "HARNESS-L4-015-B01",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "state_ceiling",
+            "source_predicate": "no_materialized_value",
+            "source_paths": [
+              "state_ceiling"
+            ],
+            "candidate_field": "state_ceiling",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "Provisional",
+            "return_to_owner_paths": [
+              "ci_operator.ref.owner",
+              "quality.oracle_ref.owner",
+              "omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-B01:failure:metric_as_accepted",
+            "l4_contract_ref": "HARNESS-L4-015-B01",
+            "l4_failure_code": {
+              "state": "provided",
+              "value": "metric_as_accepted"
+            },
+            "output_field": "accepted",
+            "source_predicate": "no_materialized_value",
+            "source_paths": [
+              "accepted"
+            ],
+            "candidate_field": "accepted",
+            "candidate_operator": "must_be_absent",
+            "expected_l4_value": null,
+            "return_to_owner_paths": [
+              "ci_operator.ref.owner",
+              "quality.oracle_ref.owner",
+              "omissions.records.0.joining_ticket_ref.owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "HARNESS-L5-015-F01",
+      "parent": "HARNESS-L2-015",
+      "l3_ref": "HARNESS-L3-015-F01",
+      "l4_ref": "HARNESS-L4-015-F01",
+      "l8_ref": "HARNESS-L8-015-F01",
+      "l9_ref": "HARNESS-L9-015-F01",
+      "l10_ref": "HARNESS-L10-015-F01",
+      "approved_l3_ref": "HARNESS-L3-015-F01",
+      "approved_l10_ref": "HARNESS-L10-015-F01",
+      "design_rule": "L6契約/L5詳細設計と対test/oracleを実装前に定義・凍結し、対象identity/revision/scopeへ結ぶ。test後付け/定義凍結だけを実Redにせず、コアの工程/検証契約を参照する。",
+      "expected_output_contract": {
+        "pair_binding": "synthetic_match",
+        "freeze_before_body": "synthetic_order_supported",
+        "pre_body_red": "missing",
+        "implementation_success": "not_generated"
+      },
+      "failure_conditions": [
+        {
+          "code": "freeze_missing",
+          "meaning": "凍結不足を保持。"
+        },
+        {
+          "code": "test_after_body",
+          "meaning": "本体sequence3の後付け凍結を拒否。"
+        },
+        {
+          "code": "foreign_oracle_revision",
+          "meaning": "対oracle版不一致を保持。"
+        },
+        {
+          "code": "freeze_as_red",
+          "meaning": "定義凍結は実Redではない。"
+        },
+        {
+          "code": "freeze_timestamp_only",
+          "meaning": "作成時刻だけが本体変更より前でも対象revision/設計/test/oracle/期待結果/凍結順序の原記録なし。凍結不成立を当該条件に保持。"
+        }
+      ],
+      "effect": "normative_design_only_no_execution",
+      "semantic_rule_set": {
+        "root_id": "HARNESS-L9-015-F01",
+        "l4_contract_ref": "HARNESS-L4-015-F01",
+        "l4_contract_canonical_sha256": "4a3f7b87c0c219d9fb755e222bfd0f0ef6aea6451bda297263a2182e3d78e53b",
+        "rules": [
+          {
+            "rule_id": "HARNESS-L4-015-F01:pair_binding",
+            "l4_contract_ref": "HARNESS-L4-015-F01",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "pair_binding",
+            "source_predicate": "pair_refs_match_binding",
+            "source_paths": [
+              "binding",
+              "design_pair",
+              "freeze"
+            ],
+            "candidate_field": "pair_binding",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "synthetic_match",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "design_pair.l5_ref.owner",
+              "design_pair.l6_ref.owner",
+              "design_pair.paired_test_ref.owner",
+              "design_pair.oracle_ref.owner",
+              "freeze.ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F01:freeze_before_body",
+            "l4_contract_ref": "HARNESS-L4-015-F01",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "freeze_before_body",
+            "source_predicate": "freeze_sequence_before_body",
+            "source_paths": [
+              "freeze.sequence",
+              "body_change.sequence"
+            ],
+            "candidate_field": "freeze_before_body",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "synthetic_order_supported",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "design_pair.l5_ref.owner",
+              "design_pair.l6_ref.owner",
+              "design_pair.paired_test_ref.owner",
+              "design_pair.oracle_ref.owner",
+              "freeze.ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F01:pre_body_red",
+            "l4_contract_ref": "HARNESS-L4-015-F01",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "pre_body_red",
+            "source_predicate": "no_red_observation",
+            "source_paths": [
+              "red"
+            ],
+            "candidate_field": "pre_body_red",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "missing",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "design_pair.l5_ref.owner",
+              "design_pair.l6_ref.owner",
+              "design_pair.paired_test_ref.owner",
+              "design_pair.oracle_ref.owner",
+              "freeze.ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F01:implementation_success",
+            "l4_contract_ref": "HARNESS-L4-015-F01",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "implementation_success",
+            "source_predicate": "no_materialized_value",
+            "source_paths": [
+              "implementation_success"
+            ],
+            "candidate_field": "implementation_success",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "not_generated",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "design_pair.l5_ref.owner",
+              "design_pair.l6_ref.owner",
+              "design_pair.paired_test_ref.owner",
+              "design_pair.oracle_ref.owner",
+              "freeze.ref.owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "HARNESS-L5-015-F02",
+      "parent": "HARNESS-L2-015",
+      "l3_ref": "HARNESS-L3-015-F02",
+      "l4_ref": "HARNESS-L4-015-F02",
+      "l8_ref": "HARNESS-L8-015-F02",
+      "l9_ref": "HARNESS-L9-015-F02",
+      "l10_ref": "HARNESS-L10-015-F02",
+      "approved_l3_ref": "HARNESS-L3-015-F02",
+      "approved_l10_ref": "HARNESS-L10-015-F02",
+      "design_rule": "新規実装では対象behaviorが未実装、既存改修では本体変更前の未修正revisionに対し、凍結testが意図した不足/欠陥を検出する実装前Redを実観測する。環境/構文障害など無関係な失敗をRedにしない。実装後のmutation検出は005のoracle強度の別証拠として保持する。",
+      "expected_output_contract": {
+        "pre_body_head": "H0",
+        "red_meaning": "intended_duplicate_debit_detected",
+        "red_before_body": "synthetic_order_supported",
+        "post_mutation_role": "oracle_strength_only",
+        "actual_tdd_success": "not_generated"
+      },
+      "failure_conditions": [
+        {
+          "code": "after_body_red",
+          "meaning": "本体前Redの順序不足を保持。"
+        },
+        {
+          "code": "foreign_pre_body_head",
+          "meaning": "本体前H0を要求。"
+        },
+        {
+          "code": "environment_error",
+          "meaning": "環境障害でbehavior未観測。oracleが意図したduplicate_debitを検出した実装前Redへ数えない。"
+        },
+        {
+          "code": "unexecuted_red",
+          "meaning": "観測無しはRedではない。"
+        },
+        {
+          "code": "mutation_substitute",
+          "meaning": "本体前Red欠落を保持。実装後H1の具体mutation検出はoracle強度の別証拠であり、実装前H0の観測を生成しない。"
+        }
+      ],
+      "effect": "normative_design_only_no_execution",
+      "semantic_rule_set": {
+        "root_id": "HARNESS-L9-015-F02",
+        "l4_contract_ref": "HARNESS-L4-015-F02",
+        "l4_contract_canonical_sha256": "cc375441be3b7dcf1b1babae50de4fa5671b5d379b131598d7061bc6907d4380",
+        "rules": [
+          {
+            "rule_id": "HARNESS-L4-015-F02:pre_body_head",
+            "l4_contract_ref": "HARNESS-L4-015-F02",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "pre_body_head",
+            "source_predicate": "red_uses_pre_body_head",
+            "source_paths": [
+              "pre_body.head",
+              "red.head",
+              "body_change.from_head"
+            ],
+            "candidate_field": "pre_body_head",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "H0",
+            "return_to_owner_paths": [
+              "red.ref.owner",
+              "red.oracle_ref.owner",
+              "frozen_oracle.ref.owner",
+              "frozen_oracle.test_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F02:red_meaning",
+            "l4_contract_ref": "HARNESS-L4-015-F02",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "red_meaning",
+            "source_predicate": "intended_defect_observed",
+            "source_paths": [
+              "change_kind",
+              "pre_body.state",
+              "red.executed",
+              "red.failure_kind",
+              "red.actual.receiver_debits",
+              "frozen_oracle.expected.receiver_debits",
+              "red.oracle_ref",
+              "frozen_oracle.ref"
+            ],
+            "candidate_field": "red_meaning",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "intended_duplicate_debit_detected",
+            "return_to_owner_paths": [
+              "red.ref.owner",
+              "red.oracle_ref.owner",
+              "frozen_oracle.ref.owner",
+              "frozen_oracle.test_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F02:red_before_body",
+            "l4_contract_ref": "HARNESS-L4-015-F02",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "red_before_body",
+            "source_predicate": "red_sequence_before_body",
+            "source_paths": [
+              "frozen_oracle.freeze_sequence",
+              "red.sequence",
+              "body_change.sequence"
+            ],
+            "candidate_field": "red_before_body",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "synthetic_order_supported",
+            "return_to_owner_paths": [
+              "red.ref.owner",
+              "red.oracle_ref.owner",
+              "frozen_oracle.ref.owner",
+              "frozen_oracle.test_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F02:post_mutation_role",
+            "l4_contract_ref": "HARNESS-L4-015-F02",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "post_mutation_role",
+            "source_predicate": "post_mutation_separate",
+            "source_paths": [
+              "post_mutation.role"
+            ],
+            "candidate_field": "post_mutation_role",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "oracle_strength_only",
+            "return_to_owner_paths": [
+              "red.ref.owner",
+              "red.oracle_ref.owner",
+              "frozen_oracle.ref.owner",
+              "frozen_oracle.test_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F02:actual_tdd_success",
+            "l4_contract_ref": "HARNESS-L4-015-F02",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "actual_tdd_success",
+            "source_predicate": "no_materialized_value",
+            "source_paths": [
+              "actual_tdd_success"
+            ],
+            "candidate_field": "actual_tdd_success",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "not_generated",
+            "return_to_owner_paths": [
+              "red.ref.owner",
+              "red.oracle_ref.owner",
+              "frozen_oracle.ref.owner",
+              "frozen_oracle.test_ref.owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "HARNESS-L5-015-F03",
+      "parent": "HARNESS-L2-015",
+      "l3_ref": "HARNESS-L3-015-F03",
+      "l4_ref": "HARNESS-L4-015-F03",
+      "l8_ref": "HARNESS-L8-015-F03",
+      "l9_ref": "HARNESS-L9-015-F03",
+      "l10_ref": "HARNESS-L10-015-F03",
+      "approved_l3_ref": "HARNESS-L3-015-F03",
+      "approved_l10_ref": "HARNESS-L10-015-F03",
+      "design_rule": "実装前Redの後に最小本体実装で同じ凍結oracleを満たすGreen証拠を得て、局所Refactorと原子CIまでを閉じる。局所Refactorはpublic contract/要求/architecture意味/state意味を変えず、変更が必要ならBackflowする。",
+      "expected_output_contract": {
+        "order": "synthetic_same_oracle_red_body_green_refactor_atomic_ci",
+        "local_meaning": "preserved",
+        "unrecovered_refs": [
+          "C1"
+        ],
+        "state_ceiling": "Provisional",
+        "actual_tdd_success": "not_generated",
+        "minimal_body_scope": "one_command_duplicate_debit",
+        "green_behavior": "synthetic_expected_receiver_debits1",
+        "oracle_binding": "synthetic_same_frozen_oracle"
+      },
+      "failure_conditions": [
+        {
+          "code": "oracle_relaxed",
+          "meaning": "Greenのoracle入替を拒否。"
+        },
+        {
+          "code": "body_before_red",
+          "meaning": "freeze/Red/本体の因果順序を保持。"
+        },
+        {
+          "code": "public_change",
+          "meaning": "public意味はBackflow。"
+        },
+        {
+          "code": "architecture_change",
+          "meaning": "architecture意味はL4へBackflow。"
+        },
+        {
+          "code": "state_change",
+          "meaning": "state意味は対設計へBackflow。"
+        },
+        {
+          "code": "ci_as_quality",
+          "meaning": "原子CIで品質/受入を生成しない。"
+        },
+        {
+          "code": "requirement_change",
+          "meaning": "要求意味の変更は局所Refactorにせず該当上流へBackflow。"
+        },
+        {
+          "code": "minimal_body_scope_expansion",
+          "meaning": "最小本体の契約外behavior追加を保持し、成功Greenで相殺しない。"
+        },
+        {
+          "code": "green_wrong_behavior",
+          "meaning": "同oracle期待1に対してGreenの観測2を成功として数えない。"
+        }
+      ],
+      "effect": "normative_design_only_no_execution",
+      "semantic_rule_set": {
+        "root_id": "HARNESS-L9-015-F03",
+        "l4_contract_ref": "HARNESS-L4-015-F03",
+        "l4_contract_canonical_sha256": "e9d1285ef360f491921cb2a6b414ca3e8380be6172feb791121b6e6d03e10366",
+        "rules": [
+          {
+            "rule_id": "HARNESS-L4-015-F03:order",
+            "l4_contract_ref": "HARNESS-L4-015-F03",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "order",
+            "source_predicate": "pipeline_ordered",
+            "source_paths": [
+              "steps"
+            ],
+            "candidate_field": "order",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "synthetic_same_oracle_red_body_green_refactor_atomic_ci",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "oracle.ref.owner",
+              "steps.1.oracle_ref.owner",
+              "ci_omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F03:local_meaning",
+            "l4_contract_ref": "HARNESS-L4-015-F03",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "local_meaning",
+            "source_predicate": "refactor_meaning_preserved",
+            "source_paths": [
+              "refactor_meaning.public_contract_before",
+              "refactor_meaning.public_contract_after",
+              "refactor_meaning.requirement_before",
+              "refactor_meaning.requirement_after",
+              "refactor_meaning.architecture_before",
+              "refactor_meaning.architecture_after",
+              "refactor_meaning.state_before",
+              "refactor_meaning.state_after"
+            ],
+            "candidate_field": "local_meaning",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "preserved",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "oracle.ref.owner",
+              "steps.1.oracle_ref.owner",
+              "ci_omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F03:unrecovered_refs",
+            "l4_contract_ref": "HARNESS-L4-015-F03",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "unrecovered_refs",
+            "source_predicate": "omission_refs_preserved",
+            "source_paths": [
+              "ci_omissions.unrecovered_refs",
+              "ci_omissions.records"
+            ],
+            "candidate_field": "unrecovered_refs",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": [
+              "C1"
+            ],
+            "return_to_owner_paths": [
+              "binding.owner",
+              "oracle.ref.owner",
+              "steps.1.oracle_ref.owner",
+              "ci_omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F03:state_ceiling",
+            "l4_contract_ref": "HARNESS-L4-015-F03",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "state_ceiling",
+            "source_predicate": "no_materialized_value",
+            "source_paths": [
+              "state_ceiling"
+            ],
+            "candidate_field": "state_ceiling",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "Provisional",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "oracle.ref.owner",
+              "steps.1.oracle_ref.owner",
+              "ci_omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F03:actual_tdd_success",
+            "l4_contract_ref": "HARNESS-L4-015-F03",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "actual_tdd_success",
+            "source_predicate": "no_materialized_value",
+            "source_paths": [
+              "actual_tdd_success"
+            ],
+            "candidate_field": "actual_tdd_success",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "not_generated",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "oracle.ref.owner",
+              "steps.1.oracle_ref.owner",
+              "ci_omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F03:minimal_body_scope",
+            "l4_contract_ref": "HARNESS-L4-015-F03",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "minimal_body_scope",
+            "source_predicate": "minimal_scope_preserved",
+            "source_paths": [
+              "steps.2.contract_scope"
+            ],
+            "candidate_field": "minimal_body_scope",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "one_command_duplicate_debit",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "oracle.ref.owner",
+              "steps.1.oracle_ref.owner",
+              "ci_omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F03:green_behavior",
+            "l4_contract_ref": "HARNESS-L4-015-F03",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "green_behavior",
+            "source_predicate": "green_matches_oracle",
+            "source_paths": [
+              "oracle.expected.receiver_debits",
+              "steps.3.actual.receiver_debits"
+            ],
+            "candidate_field": "green_behavior",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "synthetic_expected_receiver_debits1",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "oracle.ref.owner",
+              "steps.1.oracle_ref.owner",
+              "ci_omissions.records.0.joining_ticket_ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F03:oracle_binding",
+            "l4_contract_ref": "HARNESS-L4-015-F03",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "oracle_binding",
+            "source_predicate": "same_frozen_oracle",
+            "source_paths": [
+              "oracle.ref",
+              "steps.1.oracle_ref",
+              "steps.2.oracle_ref",
+              "steps.3.oracle_ref",
+              "steps.4.oracle_ref",
+              "steps.5.oracle_ref"
+            ],
+            "candidate_field": "oracle_binding",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "synthetic_same_frozen_oracle",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "oracle.ref.owner",
+              "steps.1.oracle_ref.owner",
+              "ci_omissions.records.0.joining_ticket_ref.owner"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "HARNESS-L5-015-F04",
+      "parent": "HARNESS-L2-015",
+      "l3_ref": "HARNESS-L3-015-F04",
+      "l4_ref": "HARNESS-L4-015-F04",
+      "l8_ref": "HARNESS-L8-015-F04",
+      "l9_ref": "HARNESS-L9-015-F04",
+      "l10_ref": "HARNESS-L10-015-F04",
+      "approved_l3_ref": "HARNESS-L3-015-F04",
+      "approved_l10_ref": "HARNESS-L10-015-F04",
+      "design_rule": "コードと設計/testの双方向traceを同じ対象revisionへ結び、④開発単独の出力をProvisionalとする。Integrated以降はコア検証/受入022との組合せを必要とし、原子CI greenを品質/システム/利用者受入/Releaseの成立にしない。",
+      "expected_output_contract": {
+        "trace": "synthetic_bidirectional_same_revision",
+        "state_ceiling": "Provisional",
+        "integrated": "not_generated",
+        "accepted": "not_generated",
+        "release": "not_generated"
+      },
+      "failure_conditions": [
+        {
+          "code": "reverse_trace_missing",
+          "meaning": "code→design欠落を保持。"
+        },
+        {
+          "code": "foreign_trace_revision",
+          "meaning": "同revision trace不成立。"
+        },
+        {
+          "code": "development_as_integrated",
+          "meaning": "015単独でIntegrated以上を生成しない。"
+        },
+        {
+          "code": "ci_as_accepted",
+          "meaning": "原子greenを利用者受入にしない。"
+        },
+        {
+          "code": "ci_as_release",
+          "meaning": "原子greenをRelease成立にしない。"
+        }
+      ],
+      "effect": "normative_design_only_no_execution",
+      "semantic_rule_set": {
+        "root_id": "HARNESS-L9-015-F04",
+        "l4_contract_ref": "HARNESS-L4-015-F04",
+        "l4_contract_canonical_sha256": "dd3a62d5c1743a11e849817788e2d6d3cb4e56931787e9c47eadf295eb46771e",
+        "rules": [
+          {
+            "rule_id": "HARNESS-L4-015-F04:trace",
+            "l4_contract_ref": "HARNESS-L4-015-F04",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "trace",
+            "source_predicate": "trace_bidirectional_same_revision",
+            "source_paths": [
+              "artifacts"
+            ],
+            "candidate_field": "trace",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "synthetic_bidirectional_same_revision",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "artifacts.0.ref.owner",
+              "artifacts.1.ref.owner",
+              "artifacts.2.ref.owner",
+              "artifacts.3.ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F04:state_ceiling",
+            "l4_contract_ref": "HARNESS-L4-015-F04",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "state_ceiling",
+            "source_predicate": "frontier_not_advanced",
+            "source_paths": [
+              "upper_contract_022",
+              "consumer_acceptance"
+            ],
+            "candidate_field": "state_ceiling",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "Provisional",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "artifacts.0.ref.owner",
+              "artifacts.1.ref.owner",
+              "artifacts.2.ref.owner",
+              "artifacts.3.ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F04:integrated",
+            "l4_contract_ref": "HARNESS-L4-015-F04",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "integrated",
+            "source_predicate": "no_materialized_value",
+            "source_paths": [
+              "integrated"
+            ],
+            "candidate_field": "integrated",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "not_generated",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "artifacts.0.ref.owner",
+              "artifacts.1.ref.owner",
+              "artifacts.2.ref.owner",
+              "artifacts.3.ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F04:accepted",
+            "l4_contract_ref": "HARNESS-L4-015-F04",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "accepted",
+            "source_predicate": "no_materialized_value",
+            "source_paths": [
+              "accepted"
+            ],
+            "candidate_field": "accepted",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "not_generated",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "artifacts.0.ref.owner",
+              "artifacts.1.ref.owner",
+              "artifacts.2.ref.owner",
+              "artifacts.3.ref.owner"
+            ]
+          },
+          {
+            "rule_id": "HARNESS-L4-015-F04:release",
+            "l4_contract_ref": "HARNESS-L4-015-F04",
+            "l4_failure_code": {
+              "state": "absent"
+            },
+            "output_field": "release",
+            "source_predicate": "no_materialized_value",
+            "source_paths": [
+              "release"
+            ],
+            "candidate_field": "release",
+            "candidate_operator": "equals_l4_value",
+            "expected_l4_value": "not_generated",
+            "return_to_owner_paths": [
+              "binding.owner",
+              "artifacts.0.ref.owner",
+              "artifacts.1.ref.owner",
+              "artifacts.2.ref.owner",
+              "artifacts.3.ref.owner"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "workflow_order": {
+    "steps": [
+      "L6/L5 contract/test/oracleの定義・freeze",
+      "同一対象の実装前Red観測",
+      "最小本体実装",
+      "同じoracleによるGreen",
+      "意味保存の局所Refactor",
+      "原子CI・ticket関係/省略検査の保持",
+      "4 artifact traceとProvisional出力"
+    ],
+    "semantics": "順序、対象、同oracle、実観測、局所変更と上位stateを別々に記録する。sequence番号/作成時刻/fixtureのlabelのみでRed/Green/凍結/受入を成立させない。",
+    "no_execution": "本設計の例はsource値を持つlogical fixtureで、実TDD/CI結果ではない。"
+  },
+  "acceptance_trace_evidence": {
+    "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+    "revision": "286695409fcea78e2441d5aa85b008f7a8ad2e1f",
+    "line": 211,
+    "file_sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+    "quote": "| HARNESS-L2-015 | ④だけを導入した環境で、実装前に凍結した設計と対のtest／oracleから、本体の実装/修正前revisionで意図した不足・欠陥を観測するRed→最小本体実装→凍結したoracleを満たしたGreenの証拠→局所のRefactor→原子CIまでが閉じ、成果物がProvisionalになり、設計・テストとの双方向traceと省いた検査の記録が残る | 本体実装/修正後のRedだけを実装前Redとする／testの作成時刻や凍結だけをRed観測とする／環境・構文障害など対象契約と無関係な失敗をRedとする／実装後のmutation検出を実装前Redの代用にする／実装後にtest／oracleを後付けして成立とする／意図した欠陥を検出したRedの証拠がないままTDD成立とする／④だけの出力をIntegrated以上の状態とする／原子CIの合格を品質の証明・システムの成立・受入・Releaseの成立とする／局所のRefactorでpublic contractや要求の意味を変える／HELIX-OSのCI運転がないと使えない |",
+    "quote_bytes_sha256": "3d30f23fa073f246abc27bba7dc6bc43ca0ede0233fc7774092642a5a00338f9",
+    "line_ending": "LF"
+  },
+  "upstream_pair_snapshot": {
+    "L4_source_main_declared": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+    "L9_source_main_declared": "337eb623d4a4d6aaa51b430964eb8f6c2e175202",
+    "L4_bytes_at_authoring_main_sha256": "738a76b4753a8c51d1c684ae2ffa18d91b7bdbc2794961cde66a47c585aa299b",
+    "L9_bytes_at_authoring_main_sha256": "512746cb3096f9d7dd1c58bfdee12b3161e38946d3d8f810ba84f798963df303",
+    "note": "L4/L9の現在bytesはsource_main宣言のhistorical pinとは別に、authoring source_mainの286695409fcea78e2441d5aa85b008f7a8ad2e1fでpinした。"
+  }
+}
