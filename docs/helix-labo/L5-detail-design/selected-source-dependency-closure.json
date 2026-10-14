@@ -367,7 +367,8 @@
       ],
       "rules": [
         "source selection/operation/scope/contract versionが変われば前call receiptを無条件継承しない。",
-        "追加・削除sourceは変更後selectionで再計算する。"
+        "追加・削除sourceは変更後selectionで再計算する。",
+        "前receiptはsource別のretained/staleへ保存する。単数は選択source一意時だけ対応し、retainedから実再利用認可を生成しない。"
       ]
     }
   ],
@@ -529,7 +530,7 @@
         "disposition": "string",
         "return_to": "list<string>"
       },
-      "meaning": "prior/current invocationの明示差分。前回receiptを無条件継承しない。"
+      "meaning": "prior/current invocationの明示差分。前回receiptを無条件継承しない。 retained/staleはpriorのsource別receipt観測を損失なく分類したlistであり、実再利用認可ではない。異sourceの同文字列を重複排除しない。"
     },
     {
       "name": "InvocationInputProjection",
@@ -565,7 +566,7 @@
         "receipts": "Field<JsonValue>",
         "raw_fields": "JsonValue"
       },
-      "meaning": "一回のcall値をraw値から投影した比較単位。別呼出しのsource receiptを合成しない。"
+      "meaning": "一回のcall値をraw値から投影した比較単位。別呼出しのsource receiptを合成しない。 receiptsは複数key原値のみ。単数receiptはraw_fields.receiptから明示照合し、一意選択source以外へ割当しない。"
     },
     {
       "name": "SourceResolution",
@@ -992,19 +993,25 @@
       "name": "reconcile_invocation_change",
       "signature": "reconcile_invocation_change(prior: InvocationSnapshot, current: InvocationSnapshot, return_to: list<string>) -> ReconciliationResult",
       "preconditions": [
-        "prior/current invocation snapshotをraw packet内の別recordから供給する。"
+        "prior/current invocation snapshotをraw packet内の別recordから供給する。",
+        "各snapshotの宣言Fieldはraw_fields同名memberの原presence/値と一致する。単数receiptはraw_fields内の原値として残す。"
       ],
       "postconditions": [
         "scope/operation/selection/contract versionが変われば変更次元を列挙する。",
-        "前回receiptの自動引継ぎをしない。"
+        "前回receiptの自動引継ぎをしない。",
+        "priorの全nonempty string receipt観測はretained又はstaleへsource別にちょうど一度現れ、削除や未提示で消えない。retainedは実再利用認可を生成しない。"
       ],
       "algorithm": [
-        "prior/currentの明示値とpresenceを比較し、追加/削除/operation/scope/version変更を列挙する。"
+        "receipt_reconciliation_rules.raw_supply/receipt_observationsに従い複数mapと単数receiptを別原供給から列挙する。単数は選択source一意の場合だけsource対応する。",
+        "元Fieldと単数receiptのpresence差から変更次元、選択が解決する場合だけ追加/削除sourceを導出する。",
+        "priorの各(source,receipt)を同source/current明示receipt/operation/scope/当該契約版で照合し、対応する観測をretained、その他全てをstaleへ保持する。",
+        "receipt_reconciliation_rules.result_derivationに従い全7返却fieldを作る。currentだけのreceiptをpriorへ混ぜず、return_toを保持する。"
       ],
       "branches": [
-        "変更なしは保持可能な同source receiptだけを列挙する。",
-        "追加sourceにreceiptが無い場合はunresolved。削除sourceのreceiptは新callから除外。",
-        "operation/scope/version変更は再照合へ返す。"
+        "同sourceの原内容が対応するときだけretainedへ列挙する。全callの成立/許可ではない。",
+        "削除source、操作/scope/当該版変更、current receipt未提示/異値、選択・対応曖昧ではprior receiptをstaleへ残しrecheck_required。",
+        "追加source自身のreceipt不足はrecheck_required。既存sourceのretainedで穴埋めしない。",
+        "単数source不明や複数候補はsourceを選ばずstaleへ保存する。不正形の元値もraw_fields/receiptsに保持する。"
       ],
       "field_flow": {
         "reads": {
@@ -1014,7 +1021,8 @@
             "selected_sources",
             "contract_revisions",
             "receipts",
-            "raw_fields"
+            "raw_fields",
+            "raw_fields.receipt"
           ],
           "current": [
             "operation",
@@ -1022,18 +1030,19 @@
             "selected_sources",
             "contract_revisions",
             "receipts",
-            "raw_fields"
+            "raw_fields",
+            "raw_fields.receipt"
           ],
           "return_to": "list<string>"
         },
         "returns": {
-          "changed_dimensions": "明示function inputから返す宣言field",
-          "retained_prior_receipts": "明示function inputから返す宣言field",
-          "stale_prior_receipts": "明示function inputから返す宣言field",
-          "newly_required_sources": "明示function inputから返す宣言field",
-          "removed_sources": "明示function inputから返す宣言field",
-          "disposition": "明示function inputから返す宣言field",
-          "return_to": "明示function inputから返す宣言field"
+          "changed_dimensions": "元Fieldと単数receiptのpresence/値差を固定順で列挙",
+          "retained_prior_receipts": "prior観測順で同source/current明示値/op/scope/当該版が対応するreceipt文字列",
+          "stale_prior_receipts": "prior観測順でretained条件を満たさない全receipt文字列（削除・未提示も保持）",
+          "newly_required_sources": "解決済current selectionからprior selectionを除く（current順）",
+          "removed_sources": "解決済prior selectionからcurrent selectionを除く（prior順）",
+          "disposition": "差分/stale/未解決/不足はrecheck_required、その他はno_explicit_changeという観測",
+          "return_to": "入力return_toを原値で保持"
         }
       },
       "output_fields": [
@@ -1207,5 +1216,58 @@
       "path": "docs/helix-labo/L3-requirements/nfr-grade.md",
       "sha256": "d2453f852b93da95605c5780f51a7cd4d585685f673eb6c90393e93164be97dd"
     }
-  ]
+  ],
+  "receipt_reconciliation_rules": {
+    "basis": [
+      "HELIXLABO-L3-058-F02",
+      "HELIXLABO-L10-058-F02",
+      "HELIXLABO-L4-058-F02"
+    ],
+    "raw_supply": "InvocationSnapshot.receiptsはraw_fields.receiptsだけのpresence付き原値投影を維持する。単数raw_fields.receiptをreceiptsへ補完せず、F-058-06が明示的に読む。operation/scope/selected_sources/contract_revisionsも同名raw memberの投影でありraw_fields全体を保持する。 同sourceとは当該rawのselected_sources/receipts keyのfixture label対応であり、実source identityの同一性・owner-qualified bindingは未供給のまま。",
+    "receipt_observations": [
+      "receiptsがobjectならsource keyの辞書順で各nonempty string値を(source,receipt)観測として列挙する。map keyは同snapshotのselected_sourcesに属する場合だけ同source対応の候補であり、未選択keyも前receipt観測から削除しない。",
+      "単数receiptがnonempty stringの場合、selected_sourcesがprovidedの一要素string listの時だけそのsourceへ対応させる。空/未提示/null/複数/重複選択ではsource未解決のreceiptとして保存する。別sourceへの割当を推測しない。",
+      "mapと単数の両方が同source同値を示すときだけ同一(source,receipt)観測へまとめる。異値なら同sourceの複数候補であり全候補をstaleへ返す。異sourceが同receipt文字列でもsource別観測を併合せず、出力listの重複を残す。",
+      "map以外のreceipts、nonstring/empty/null receipt値は有効receipt候補へ変換しない。原presence/JSON値はraw_fields/receiptsへ残り、未解決は再照合へ返す。空list出力から元receiptが存在しなかったとは推論しない。"
+    ],
+    "correspondence": [
+      "priorの各receipt観測をちょうど一度retained又はstaleへ分類する。retainedにはprior/currentの一意な同source選択、各snapshotで一意な同receipt文字列、providedで等しいoperationとscope、同sourceの契約版Fieldの内容対応が全て必要。currentに明示receiptが無ければpriorから補わない。",
+      "契約版はcontract_revisionsがobjectなら当該source memberだけをField化して比較する。他sourceの版を代用しない。object以外は元Fieldのtag/valueを比較する。原3fixtureの版は両absentであり、これは同じ未提示状態の対応に留まり有効な版の成立ではない。版の未提示/null/emptyを有効版へ補わない。 nonempty string値のmap又は未提示以外の版shapeは未解決でretained条件を満たさずstaleへ残す。",
+      "source削除、operation/scope/当該source契約版の不一致、prior/currentの同source receiptが複数/異値、current receipt未提示、source選択不明はstale。削除source receiptをcurrentへ適用せずstaleへ残す。追加sourceにはそのsource自身の明示receiptが必要であり既存sourceのretainedを新call全体へ拡張しない。",
+      "retainedはsource別の提示内容対応という観測だけであり、実receiptの有効性・owner資格・契約採択・再利用認可・新call成立を表さない。これらの独立owner証拠は本signatureへ供給されずunknownのまま。"
+    ],
+    "result_derivation": [
+      "changed_dimensionsはoperation,scope,selected_sources,contract_revisions,receiptsの順。先の4つは元Field(tag/value)を比較し、receipts次元は複数receipts Field又は単数raw_fields.receiptのFieldの差を比較する。単数/複数表現の差も保持し、対応観測が同じでも差を隠さない。",
+      "newly_required_sources/removed_sourcesは両方がprovidedの重複なしnonempty string list又はempty([])ならcurrent-prior/prior-currentをそれぞれ元selection順に返す。selection未解決では差集合を推測せず[]としdispositionはrecheck_required。",
+      "retained_prior_receipts/stale_prior_receiptsはprior観測順のreceipt文字列を返す。sourceとの対応とraw locatorは入力raw_fieldsで辿る。currentだけの新receiptをprior receipt出力へ混ぜない。",
+      "明示差分、stale、receipt/source/版の不正形、又はcurrent選択sourceに一意receiptが無い場合はdisposition=recheck_required。これらが無い場合だけno_explicit_changeとする。いずれも実資格/許可/呼出し成立の判定ではない。return_toは入力をそのまま返す。"
+    ],
+    "original_case_correction": {
+      "SOURCE-ADDED-RECHECK": {
+        "retained_prior_receipts": [
+          "R-W7"
+        ],
+        "stale_prior_receipts": [],
+        "limit": "WORKER-Aの同内容だけ対応。OS-A不足と新call再照合を保持。"
+      },
+      "SOURCE-DELETED-RECHECK": {
+        "retained_prior_receipts": [
+          "R-W7"
+        ],
+        "stale_prior_receipts": [
+          "R-O4"
+        ],
+        "limit": "current単数receiptは一意選択WORKER-A対応。OS-A削除をstaleへ残す。"
+      },
+      "OPERATION-CHANGED-RECHECK": {
+        "retained_prior_receipts": [],
+        "stale_prior_receipts": [
+          "R-W7"
+        ],
+        "limit": "prior単数receiptをWORKER-Aに対応しoperation差/current未提示でstale。receipts変更次元も返す。"
+      }
+    },
+    "preserved": "批准6objects/12whole、基本L4/L9、原18raw/元GWT期待、InvocationSnapshot全fieldと原presence、他5関数signature/原期待を保持。",
+    "change_reason": "R1 LABO58D-01の原prior receiptを両空listへ落とした設計不足を訂正。旧FRS-R-06/13/14のexact set/dependent closure/unknown・staleを空集合成功にしない保持点を原L3/L10-F02のsource別再照合へ意味再導出する。旧schema/runtime/CI又は新gateは導入しない。"
+  }
 }

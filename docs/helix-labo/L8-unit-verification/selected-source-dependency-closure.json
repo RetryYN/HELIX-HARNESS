@@ -394,6 +394,11 @@
       "id": "L8-058-UNQUALIFIED",
       "name": "qualification boundary",
       "rule": "fixture条件が揃う例でも実qualification/permission/evaluationをunknown/not_executedのまま保持する。"
+    },
+    {
+      "id": "L8-058-RECEIPT-CONSERVATION",
+      "name": "前receiptのsource別保存",
+      "rule": "原3reconcileと追加局所8例で原map/単数供給・presence・source対応・retained/stale全観測保存を固定する。source別内容対応を実再利用認可へ昇格しない。"
     }
   ],
   "cases": [
@@ -38325,7 +38330,9 @@
               "changed_dimensions": [
                 "selected_sources"
               ],
-              "retained_prior_receipts": [],
+              "retained_prior_receipts": [
+                "R-W7"
+              ],
               "stale_prior_receipts": [],
               "newly_required_sources": [
                 "OS-A"
@@ -38338,7 +38345,8 @@
             },
             "omitted_fields": []
           },
-          "not_executed": true
+          "not_executed": true,
+          "receipt_correspondence_scope": "WORKER-Aの同内容だけ対応。OS-A不足と新call再照合を保持。 実再利用/qualification/許可は未成立。"
         }
       ],
       "operation_refs": [
@@ -39997,8 +40005,12 @@
                 "selected_sources",
                 "receipts"
               ],
-              "retained_prior_receipts": [],
-              "stale_prior_receipts": [],
+              "retained_prior_receipts": [
+                "R-W7"
+              ],
+              "stale_prior_receipts": [
+                "R-O4"
+              ],
               "newly_required_sources": [],
               "removed_sources": [
                 "OS-A"
@@ -40010,7 +40022,8 @@
             },
             "omitted_fields": []
           },
-          "not_executed": true
+          "not_executed": true,
+          "receipt_correspondence_scope": "current単数receiptは一意選択WORKER-A対応。OS-A削除をstaleへ残す。 実再利用/qualification/許可は未成立。"
         }
       ],
       "operation_refs": [
@@ -41553,10 +41566,13 @@
             "coverage": "complete",
             "asserted_fields": {
               "changed_dimensions": [
-                "operation"
+                "operation",
+                "receipts"
               ],
               "retained_prior_receipts": [],
-              "stale_prior_receipts": [],
+              "stale_prior_receipts": [
+                "R-W7"
+              ],
               "newly_required_sources": [],
               "removed_sources": [],
               "disposition": "recheck_required",
@@ -41566,7 +41582,8 @@
             },
             "omitted_fields": []
           },
-          "not_executed": true
+          "not_executed": true,
+          "receipt_correspondence_scope": "prior単数receiptをWORKER-Aに対応しoperation差/current未提示でstale。receipts変更次元も返す。 実再利用/qualification/許可は未成立。"
         }
       ],
       "operation_refs": [
@@ -44230,6 +44247,926 @@
     "raw_packet_count": 18,
     "function_io_count": 84,
     "input_expected_separation": "raw packet・projection・function input・expected outputを別fieldへ保持。SourceMapは各source原factと同一の固定raw packet参照を持ち、qualification evidenceは空入力のまま実資格unknownを保持する。",
-    "not_executed": true
-  }
+    "not_executed": true,
+    "receipt_reconciliation_local_case_count": 8
+  },
+  "receipt_reconciliation_rules": {
+    "basis": [
+      "HELIXLABO-L3-058-F02",
+      "HELIXLABO-L10-058-F02",
+      "HELIXLABO-L4-058-F02"
+    ],
+    "raw_supply": "InvocationSnapshot.receiptsはraw_fields.receiptsだけのpresence付き原値投影を維持する。単数raw_fields.receiptをreceiptsへ補完せず、F-058-06が明示的に読む。operation/scope/selected_sources/contract_revisionsも同名raw memberの投影でありraw_fields全体を保持する。 同sourceとは当該rawのselected_sources/receipts keyのfixture label対応であり、実source identityの同一性・owner-qualified bindingは未供給のまま。",
+    "receipt_observations": [
+      "receiptsがobjectならsource keyの辞書順で各nonempty string値を(source,receipt)観測として列挙する。map keyは同snapshotのselected_sourcesに属する場合だけ同source対応の候補であり、未選択keyも前receipt観測から削除しない。",
+      "単数receiptがnonempty stringの場合、selected_sourcesがprovidedの一要素string listの時だけそのsourceへ対応させる。空/未提示/null/複数/重複選択ではsource未解決のreceiptとして保存する。別sourceへの割当を推測しない。",
+      "mapと単数の両方が同source同値を示すときだけ同一(source,receipt)観測へまとめる。異値なら同sourceの複数候補であり全候補をstaleへ返す。異sourceが同receipt文字列でもsource別観測を併合せず、出力listの重複を残す。",
+      "map以外のreceipts、nonstring/empty/null receipt値は有効receipt候補へ変換しない。原presence/JSON値はraw_fields/receiptsへ残り、未解決は再照合へ返す。空list出力から元receiptが存在しなかったとは推論しない。"
+    ],
+    "correspondence": [
+      "priorの各receipt観測をちょうど一度retained又はstaleへ分類する。retainedにはprior/currentの一意な同source選択、各snapshotで一意な同receipt文字列、providedで等しいoperationとscope、同sourceの契約版Fieldの内容対応が全て必要。currentに明示receiptが無ければpriorから補わない。",
+      "契約版はcontract_revisionsがobjectなら当該source memberだけをField化して比較する。他sourceの版を代用しない。object以外は元Fieldのtag/valueを比較する。原3fixtureの版は両absentであり、これは同じ未提示状態の対応に留まり有効な版の成立ではない。版の未提示/null/emptyを有効版へ補わない。 nonempty string値のmap又は未提示以外の版shapeは未解決でretained条件を満たさずstaleへ残す。",
+      "source削除、operation/scope/当該source契約版の不一致、prior/currentの同source receiptが複数/異値、current receipt未提示、source選択不明はstale。削除source receiptをcurrentへ適用せずstaleへ残す。追加sourceにはそのsource自身の明示receiptが必要であり既存sourceのretainedを新call全体へ拡張しない。",
+      "retainedはsource別の提示内容対応という観測だけであり、実receiptの有効性・owner資格・契約採択・再利用認可・新call成立を表さない。これらの独立owner証拠は本signatureへ供給されずunknownのまま。"
+    ],
+    "result_derivation": [
+      "changed_dimensionsはoperation,scope,selected_sources,contract_revisions,receiptsの順。先の4つは元Field(tag/value)を比較し、receipts次元は複数receipts Field又は単数raw_fields.receiptのFieldの差を比較する。単数/複数表現の差も保持し、対応観測が同じでも差を隠さない。",
+      "newly_required_sources/removed_sourcesは両方がprovidedの重複なしnonempty string list又はempty([])ならcurrent-prior/prior-currentをそれぞれ元selection順に返す。selection未解決では差集合を推測せず[]としdispositionはrecheck_required。",
+      "retained_prior_receipts/stale_prior_receiptsはprior観測順のreceipt文字列を返す。sourceとの対応とraw locatorは入力raw_fieldsで辿る。currentだけの新receiptをprior receipt出力へ混ぜない。",
+      "明示差分、stale、receipt/source/版の不正形、又はcurrent選択sourceに一意receiptが無い場合はdisposition=recheck_required。これらが無い場合だけno_explicit_changeとする。いずれも実資格/許可/呼出し成立の判定ではない。return_toは入力をそのまま返す。"
+    ],
+    "original_case_correction": {
+      "SOURCE-ADDED-RECHECK": {
+        "retained_prior_receipts": [
+          "R-W7"
+        ],
+        "stale_prior_receipts": [],
+        "limit": "WORKER-Aの同内容だけ対応。OS-A不足と新call再照合を保持。"
+      },
+      "SOURCE-DELETED-RECHECK": {
+        "retained_prior_receipts": [
+          "R-W7"
+        ],
+        "stale_prior_receipts": [
+          "R-O4"
+        ],
+        "limit": "current単数receiptは一意選択WORKER-A対応。OS-A削除をstaleへ残す。"
+      },
+      "OPERATION-CHANGED-RECHECK": {
+        "retained_prior_receipts": [],
+        "stale_prior_receipts": [
+          "R-W7"
+        ],
+        "limit": "prior単数receiptをWORKER-Aに対応しoperation差/current未提示でstale。receipts変更次元も返す。"
+      }
+    },
+    "preserved": "批准6objects/12whole、基本L4/L9、原18raw/元GWT期待、InvocationSnapshot全fieldと原presence、他5関数signature/原期待を保持。",
+    "change_reason": "R1 LABO58D-01の原prior receiptを両空listへ落とした設計不足を訂正。旧FRS-R-06/13/14のexact set/dependent closure/unknown・staleを空集合成功にしない保持点を原L3/L10-F02のsource別再照合へ意味再導出する。旧schema/runtime/CI又は新gateは導入しない。"
+  },
+  "receipt_reconciliation_local_cases": [
+    {
+      "id": "L8-058-RECEIPT-SCOPE-CHANGED",
+      "basis": "L3/L10-058-F02のsource別receipt再照合に対する追加局所論理fixture。原L9 case/packetへ混ぜない。",
+      "raw_utf8": "{\"current\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-B\",\"selected_sources\":[\"WORKER-A\"]},\"prior\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]}}",
+      "sha256": "0e06a0b49c2ad661977d6f53b913708cb0e257d87ed60e4b7cb66431012c5493",
+      "function_ref": "reconcile_invocation_change",
+      "typed_input": {
+        "prior": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            },
+            "receipt": "R-W7"
+          }
+        },
+        "current": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-B"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-B",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            },
+            "receipt": "R-W7"
+          }
+        },
+        "return_to": [
+          "source/LABO ownerへ原source別の変更・不足を返す。"
+        ]
+      },
+      "expected_output_projection": {
+        "output_type": "ReconciliationResult",
+        "coverage": "complete",
+        "asserted_fields": {
+          "changed_dimensions": [
+            "scope"
+          ],
+          "retained_prior_receipts": [],
+          "stale_prior_receipts": [
+            "R-W7"
+          ],
+          "newly_required_sources": [],
+          "removed_sources": [],
+          "disposition": "recheck_required",
+          "return_to": [
+            "source/LABO ownerへ原source別の変更・不足を返す。"
+          ]
+        },
+        "omitted_fields": []
+      },
+      "fixture_only": true,
+      "not_executed": true,
+      "qualification_scope": "retainedは提示内容対応のみ。実source資格/契約有効性/権限/再利用認可は未成立。"
+    },
+    {
+      "id": "L8-058-RECEIPT-VERSION-CHANGED",
+      "basis": "L3/L10-058-F02のsource別receipt再照合に対する追加局所論理fixture。原L9 case/packetへ混ぜない。",
+      "raw_utf8": "{\"current\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r4\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]},\"prior\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]}}",
+      "sha256": "025740693bcba5f9ac481eab93c39f0d1609e0b51f6507060c1a84c49cce2837",
+      "function_ref": "reconcile_invocation_change",
+      "typed_input": {
+        "prior": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            },
+            "receipt": "R-W7"
+          }
+        },
+        "current": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r4"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r4"
+            },
+            "receipt": "R-W7"
+          }
+        },
+        "return_to": [
+          "source/LABO ownerへ原source別の変更・不足を返す。"
+        ]
+      },
+      "expected_output_projection": {
+        "output_type": "ReconciliationResult",
+        "coverage": "complete",
+        "asserted_fields": {
+          "changed_dimensions": [
+            "contract_revisions"
+          ],
+          "retained_prior_receipts": [],
+          "stale_prior_receipts": [
+            "R-W7"
+          ],
+          "newly_required_sources": [],
+          "removed_sources": [],
+          "disposition": "recheck_required",
+          "return_to": [
+            "source/LABO ownerへ原source別の変更・不足を返す。"
+          ]
+        },
+        "omitted_fields": []
+      },
+      "fixture_only": true,
+      "not_executed": true,
+      "qualification_scope": "retainedは提示内容対応のみ。実source資格/契約有効性/権限/再利用認可は未成立。"
+    },
+    {
+      "id": "L8-058-RECEIPT-CURRENT-RECEIPT-MISMATCH",
+      "basis": "L3/L10-058-F02のsource別receipt再照合に対する追加局所論理fixture。原L9 case/packetへ混ぜない。",
+      "raw_utf8": "{\"current\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W8\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]},\"prior\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]}}",
+      "sha256": "6264e8bd14a1425bef6d0473677ba235c8030575bd9155b292c337195ed0a2f7",
+      "function_ref": "reconcile_invocation_change",
+      "typed_input": {
+        "prior": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            },
+            "receipt": "R-W7"
+          }
+        },
+        "current": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            },
+            "receipt": "R-W8"
+          }
+        },
+        "return_to": [
+          "source/LABO ownerへ原source別の変更・不足を返す。"
+        ]
+      },
+      "expected_output_projection": {
+        "output_type": "ReconciliationResult",
+        "coverage": "complete",
+        "asserted_fields": {
+          "changed_dimensions": [
+            "receipts"
+          ],
+          "retained_prior_receipts": [],
+          "stale_prior_receipts": [
+            "R-W7"
+          ],
+          "newly_required_sources": [],
+          "removed_sources": [],
+          "disposition": "recheck_required",
+          "return_to": [
+            "source/LABO ownerへ原source別の変更・不足を返す。"
+          ]
+        },
+        "omitted_fields": []
+      },
+      "fixture_only": true,
+      "not_executed": true,
+      "qualification_scope": "retainedは提示内容対応のみ。実source資格/契約有効性/権限/再利用認可は未成立。"
+    },
+    {
+      "id": "L8-058-RECEIPT-CURRENT-RECEIPT-ABSENT",
+      "basis": "L3/L10-058-F02のsource別receipt再照合に対する追加局所論理fixture。原L9 case/packetへ混ぜない。",
+      "raw_utf8": "{\"current\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]},\"prior\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]}}",
+      "sha256": "abc6350edcb724137006c3b81507b0cc726e16b195431ab654ad9782e86e1163",
+      "function_ref": "reconcile_invocation_change",
+      "typed_input": {
+        "prior": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            },
+            "receipt": "R-W7"
+          }
+        },
+        "current": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            }
+          }
+        },
+        "return_to": [
+          "source/LABO ownerへ原source別の変更・不足を返す。"
+        ]
+      },
+      "expected_output_projection": {
+        "output_type": "ReconciliationResult",
+        "coverage": "complete",
+        "asserted_fields": {
+          "changed_dimensions": [
+            "receipts"
+          ],
+          "retained_prior_receipts": [],
+          "stale_prior_receipts": [
+            "R-W7"
+          ],
+          "newly_required_sources": [],
+          "removed_sources": [],
+          "disposition": "recheck_required",
+          "return_to": [
+            "source/LABO ownerへ原source別の変更・不足を返す。"
+          ]
+        },
+        "omitted_fields": []
+      },
+      "fixture_only": true,
+      "not_executed": true,
+      "qualification_scope": "retainedは提示内容対応のみ。実source資格/契約有効性/権限/再利用認可は未成立。"
+    },
+    {
+      "id": "L8-058-RECEIPT-SINGULAR-SOURCE-AMBIGUOUS",
+      "basis": "L3/L10-058-F02のsource別receipt再照合に対する追加局所論理fixture。原L9 case/packetへ混ぜない。",
+      "raw_utf8": "{\"current\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\",\"OS-A\"]},\"prior\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\",\"OS-A\"]}}",
+      "sha256": "fbe47aff0d039018ed2ac9cd4044ee52d3927c25a97b07acca504851127ad95d",
+      "function_ref": "reconcile_invocation_change",
+      "typed_input": {
+        "prior": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A",
+              "OS-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A",
+              "OS-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            },
+            "receipt": "R-W7"
+          }
+        },
+        "current": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A",
+              "OS-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A",
+              "OS-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            },
+            "receipt": "R-W7"
+          }
+        },
+        "return_to": [
+          "source/LABO ownerへ原source別の変更・不足を返す。"
+        ]
+      },
+      "expected_output_projection": {
+        "output_type": "ReconciliationResult",
+        "coverage": "complete",
+        "asserted_fields": {
+          "changed_dimensions": [],
+          "retained_prior_receipts": [],
+          "stale_prior_receipts": [
+            "R-W7"
+          ],
+          "newly_required_sources": [],
+          "removed_sources": [],
+          "disposition": "recheck_required",
+          "return_to": [
+            "source/LABO ownerへ原source別の変更・不足を返す。"
+          ]
+        },
+        "omitted_fields": []
+      },
+      "fixture_only": true,
+      "not_executed": true,
+      "qualification_scope": "retainedは提示内容対応のみ。実source資格/契約有効性/権限/再利用認可は未成立。"
+    },
+    {
+      "id": "L8-058-RECEIPT-UNCHANGED-EXPLICIT",
+      "basis": "L3/L10-058-F02のsource別receipt再照合に対する追加局所論理fixture。原L9 case/packetへ混ぜない。",
+      "raw_utf8": "{\"current\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]},\"prior\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]}}",
+      "sha256": "257bb254b3494660d0cfa1b02ca114a35eddec0a6ab9a2002dce6c780fc9c79a",
+      "function_ref": "reconcile_invocation_change",
+      "typed_input": {
+        "prior": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            },
+            "receipt": "R-W7"
+          }
+        },
+        "current": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            },
+            "receipt": "R-W7"
+          }
+        },
+        "return_to": [
+          "source/LABO ownerへ原source別の変更・不足を返す。"
+        ]
+      },
+      "expected_output_projection": {
+        "output_type": "ReconciliationResult",
+        "coverage": "complete",
+        "asserted_fields": {
+          "changed_dimensions": [],
+          "retained_prior_receipts": [
+            "R-W7"
+          ],
+          "stale_prior_receipts": [],
+          "newly_required_sources": [],
+          "removed_sources": [],
+          "disposition": "no_explicit_change",
+          "return_to": [
+            "source/LABO ownerへ原source別の変更・不足を返す。"
+          ]
+        },
+        "omitted_fields": []
+      },
+      "fixture_only": true,
+      "not_executed": true,
+      "qualification_scope": "retainedは提示内容対応のみ。実source資格/契約有効性/権限/再利用認可は未成立。"
+    },
+    {
+      "id": "L8-058-RECEIPT-MAP-SINGULAR-CONFLICT",
+      "basis": "L3/L10-058-F02のsource別receipt再照合に対する追加局所論理fixture。原L9 case/packetへ混ぜない。",
+      "raw_utf8": "{\"current\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]},\"prior\":{\"contract_revisions\":{\"WORKER-A\":\"C-28-r3\"},\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"receipts\":{\"WORKER-A\":\"R-W8\"},\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]}}",
+      "sha256": "319602c1e1242e34a854d56a7cd8279d54edb5f1ccf58b8c380c00890e7e785d",
+      "function_ref": "reconcile_invocation_change",
+      "typed_input": {
+        "prior": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "R-W8"
+            }
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            },
+            "receipt": "R-W7",
+            "receipts": {
+              "WORKER-A": "R-W8"
+            }
+          }
+        },
+        "current": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "provided",
+            "value": {
+              "WORKER-A": "C-28-r3"
+            }
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "contract_revisions": {
+              "WORKER-A": "C-28-r3"
+            },
+            "receipt": "R-W7"
+          }
+        },
+        "return_to": [
+          "source/LABO ownerへ原source別の変更・不足を返す。"
+        ]
+      },
+      "expected_output_projection": {
+        "output_type": "ReconciliationResult",
+        "coverage": "complete",
+        "asserted_fields": {
+          "changed_dimensions": [
+            "receipts"
+          ],
+          "retained_prior_receipts": [],
+          "stale_prior_receipts": [
+            "R-W8",
+            "R-W7"
+          ],
+          "newly_required_sources": [],
+          "removed_sources": [],
+          "disposition": "recheck_required",
+          "return_to": [
+            "source/LABO ownerへ原source別の変更・不足を返す。"
+          ]
+        },
+        "omitted_fields": []
+      },
+      "fixture_only": true,
+      "not_executed": true,
+      "qualification_scope": "retainedは提示内容対応のみ。実source資格/契約有効性/権限/再利用認可は未成立。"
+    },
+    {
+      "id": "L8-058-RECEIPT-SAME-TEXT-DIFFERENT-SOURCES",
+      "basis": "L3/L10-058-F02のsource別receipt再照合に対する追加局所論理fixture。原L9 case/packetへ混ぜない。",
+      "raw_utf8": "{\"current\":{\"operation\":\"AGGREGATE\",\"receipt\":\"R-W7\",\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\"]},\"prior\":{\"operation\":\"AGGREGATE\",\"receipts\":{\"OS-A\":\"R-W7\",\"WORKER-A\":\"R-W7\"},\"scope\":\"PRODUCT-A\",\"selected_sources\":[\"WORKER-A\",\"OS-A\"]}}",
+      "sha256": "3100d8472b9314b9de00cad5b70c9e680fb5ee0ebd94bea59b02cb7e48197f32",
+      "function_ref": "reconcile_invocation_change",
+      "typed_input": {
+        "prior": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A",
+              "OS-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "absent"
+          },
+          "receipts": {
+            "tag": "provided",
+            "value": {
+              "OS-A": "R-W7",
+              "WORKER-A": "R-W7"
+            }
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A",
+              "OS-A"
+            ],
+            "receipts": {
+              "OS-A": "R-W7",
+              "WORKER-A": "R-W7"
+            }
+          }
+        },
+        "current": {
+          "operation": {
+            "tag": "provided",
+            "value": "AGGREGATE"
+          },
+          "scope": {
+            "tag": "provided",
+            "value": "PRODUCT-A"
+          },
+          "selected_sources": {
+            "tag": "provided",
+            "value": [
+              "WORKER-A"
+            ]
+          },
+          "contract_revisions": {
+            "tag": "absent"
+          },
+          "receipts": {
+            "tag": "absent"
+          },
+          "raw_fields": {
+            "operation": "AGGREGATE",
+            "scope": "PRODUCT-A",
+            "selected_sources": [
+              "WORKER-A"
+            ],
+            "receipt": "R-W7"
+          }
+        },
+        "return_to": [
+          "source/LABO ownerへ原source別の変更・不足を返す。"
+        ]
+      },
+      "expected_output_projection": {
+        "output_type": "ReconciliationResult",
+        "coverage": "complete",
+        "asserted_fields": {
+          "changed_dimensions": [
+            "selected_sources",
+            "receipts"
+          ],
+          "retained_prior_receipts": [
+            "R-W7"
+          ],
+          "stale_prior_receipts": [
+            "R-W7"
+          ],
+          "newly_required_sources": [],
+          "removed_sources": [
+            "OS-A"
+          ],
+          "disposition": "recheck_required",
+          "return_to": [
+            "source/LABO ownerへ原source別の変更・不足を返す。"
+          ]
+        },
+        "omitted_fields": []
+      },
+      "fixture_only": true,
+      "not_executed": true,
+      "qualification_scope": "retainedは提示内容対応のみ。実source資格/契約有効性/権限/再利用認可は未成立。"
+    }
+  ]
 }
