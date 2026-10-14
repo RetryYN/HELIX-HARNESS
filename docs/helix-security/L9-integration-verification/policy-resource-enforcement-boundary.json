@@ -5,11 +5,12 @@
   "parent": "HELIXSECURITY-L2-024",
   "source_main": "ce68d00467fbeff1840dcfe1d823f6caf0ca31ee",
   "approval_record": {
-    "path": "docs/governance/decisions/helix-security-stage4-l3-l10-po-decision-2026-10-06.md",
-    "reviewed_content_revision": "04578d4c17c0c3340bab8dcbf11e8a9050304477",
-    "review_base": "1a7933157fef8327a0e2747348cbe57e596019aa",
-    "main_admission_commit": "776e6b7b533fa35b204746bae5319af4fdf49771",
-    "authority_effect": "このrecordのmain admission時。L3/L10以外の下流設計・実資格・実操作を承認しない。"
+    "path": "docs/governance/decisions/helix-security-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "reviewed_content_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
+    "review_base": "990ffad297804dd39d4da1474545e90ddc060c7f",
+    "main_admission_commit": "f628570ada53ba46dbcb4c4c26613cd364808e6a",
+    "record_sha256": "ec7f54991b540a5afd7ffeb49fd2dc63479fd0907ca93c9e49e2f34fe72bed92",
+    "authority_effect": "このrecordのmain admissionにより対象L3/L10 exact revisionに有効。下流の実資格・実操作の承認ではない。"
   },
   "audit_basis": {
     "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-14.json",
@@ -23,7 +24,7 @@
   },
   "status": "draft_synthetic_integration_cases_pending_independent_review",
   "scope": {
-    "approval_revision": "04578d4c17c0c3340bab8dcbf11e8a9050304477",
+    "approval_revision": "0f9b1a0ec7554cd5a2ec85a3002a897a649383d3",
     "historical_stage": "Stage 4",
     "version_boundary": "1.0。SECURITY policy/authority、INFRASTRUCTURE実資源・観測、Worker物理強制の初回安全接続規範。全Stage4能力を前倒ししない。",
     "requirements": [
