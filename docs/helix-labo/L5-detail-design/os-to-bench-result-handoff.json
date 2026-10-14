@@ -624,7 +624,6 @@
         "received",
         "not_received_mismatch",
         "unfinished",
-        "unknown_unreceived",
         "unknown/unreceived"
       ],
       "recursive": false,
@@ -795,12 +794,12 @@
       ],
       "postconditions": [
         "source mismatchをnot_received_mismatchとする。",
-        "failed/unacknowledged deliveryをunknown_unreceived/unfinishedとして保つ。",
+        "failed/unacknowledged deliveryをunknown/unreceived/unfinishedとして保つ。",
         "receivedは一致する供給receiptがある場合に限る。"
       ],
       "algorithm": [
         "relationsにsource/receiver間の不一致があればnot_received_mismatchを返す。",
-        "delivery failed、またはreceipt absent/nullならunknown_unreceivedを返す。",
+        "delivery failed、またはreceipt absent/nullならunknown/unreceivedを返す。",
         "receiptがprovidedでもACK/trace/source relationが不足ならunfinishedを返す。",
         "明示されたfixture receiptとrelationsが整合する場合に限りreceivedを返し、未評価/evidence gapは別fieldとして残す。"
       ],

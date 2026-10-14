@@ -16777,7 +16777,7 @@
           "expected_output_projection": {
             "output_type": "ReceiveState",
             "coverage": "complete",
-            "asserted_value": "unknown_unreceived"
+            "asserted_value": "unknown/unreceived"
           },
           "not_executed": true,
           "source_packet_refs": [
@@ -37739,7 +37739,7 @@
           "expected_output_projection": {
             "output_type": "ReceiveState",
             "coverage": "complete",
-            "asserted_value": "unknown_unreceived"
+            "asserted_value": "unknown/unreceived"
           },
           "not_executed": true,
           "source_packet_refs": [
@@ -40968,7 +40968,7 @@
           "expected_output_projection": {
             "output_type": "ReceiveState",
             "coverage": "complete",
-            "asserted_value": "unknown_unreceived"
+            "asserted_value": "unknown/unreceived"
           },
           "not_executed": true,
           "source_packet_refs": [
@@ -41596,7 +41596,7 @@
           "expected_output_projection": {
             "output_type": "ReceiveState",
             "coverage": "complete",
-            "asserted_value": "unknown_unreceived"
+            "asserted_value": "unknown/unreceived"
           },
           "not_executed": true,
           "source_packet_refs": [
@@ -42199,7 +42199,7 @@
           "expected_output_projection": {
             "output_type": "ReceiveState",
             "coverage": "complete",
-            "asserted_value": "unknown_unreceived"
+            "asserted_value": "unknown/unreceived"
           },
           "not_executed": true,
           "source_packet_refs": [
@@ -42820,7 +42820,7 @@
           "expected_output_projection": {
             "output_type": "ReceiveState",
             "coverage": "complete",
-            "asserted_value": "unknown_unreceived"
+            "asserted_value": "unknown/unreceived"
           },
           "not_executed": true,
           "source_packet_refs": [
@@ -43464,7 +43464,7 @@
           "expected_output_projection": {
             "output_type": "ReceiveState",
             "coverage": "complete",
-            "asserted_value": "unknown_unreceived"
+            "asserted_value": "unknown/unreceived"
           },
           "not_executed": true,
           "source_packet_refs": [
@@ -44266,7 +44266,7 @@
           "expected_output_projection": {
             "output_type": "ReceiveState",
             "coverage": "complete",
-            "asserted_value": "unknown_unreceived"
+            "asserted_value": "unknown/unreceived"
           },
           "not_executed": true,
           "source_packet_refs": [
@@ -45089,7 +45089,7 @@
           "expected_output_projection": {
             "output_type": "ReceiveState",
             "coverage": "complete",
-            "asserted_value": "unknown_unreceived"
+            "asserted_value": "unknown/unreceived"
           },
           "not_executed": true,
           "source_packet_refs": [
