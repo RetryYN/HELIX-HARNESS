@@ -351,12 +351,12 @@
     ],
     "algorithm": [
       "固定shapeでinspect/replay/handoff/useを分ける。join5fieldをcontext expectedへknown非空文字列で比較し、片側unknownは原位置source_unresolved、両側known相反だけsource_conflict。canonical_sourceはoriginal_eventsのみ。このfixtureのprovider memory/summaryは正本にも成功根拠にも使わない。whole_scope_success_claim=trueはwhole_scope_claim_unproven、非booleanはunresolved。 canonical_source非空文字列でない場合はcanonical_source_unresolved、既知のoriginal_events以外だけcanonical_source_not_original。",
-      "原eventsを順序どおり処理し、known event_idごとに最初のwhole objectを保持。same id再送はduplicateに分類し、whole objectが異なればduplicate_event_content_conflict。独立expected_eventsに一意にあるidだけを各11scalar fieldと非負integer sequenceへ照合する。missing/複数/余分source idはsource set不足/相反。episodeをrootへ別照合し、kind/statusは閉集合外をunknown。全statusを原値で数え、failed/refused/not_executed/unobserved/not_occurred/uncollected/staleをsucceededへ合算しない。sequenceは一意eventだけで厳密増加。 kind/statusの独立比較は各閉集合内の両側known時だけ相反、片側不明はsource_unresolved。expected idが不明なため一意sourceを特定できない場合、その原expected id位置のsource_unresolvedで保持し、既知余分eventとして相反にしない。 original_status_countsはknown IDの一意な提供eventから既知statusだけを数える。ID/状態unknown・未回収/原record欠落はfindingで別保持し、件数0を未観測の実績へ補完しない。",
+      "原eventsを順序どおり処理し、known event_idごとに最初のwhole objectを保持。same id再送はduplicateに分類し、whole objectが異なればduplicate_event_content_conflict。独立expected_eventsに一意にあるidだけを各11scalar fieldと非負integer sequenceへ照合する。missing/複数/余分source idはsource set不足/相反。episodeをrootへ別照合し、kind/statusは閉集合外をunknown。全statusを原値で数え、failed/refused/not_executed/unobserved/not_occurred/uncollected/staleをsucceededへ合算しない。sequenceは一意eventだけで厳密増加。 kind/statusの独立比較は各閉集合内の両側known時だけ相反、片側不明はsource_unresolved。expected idが不明なため一意sourceを特定できない場合、その原expected id位置のsource_unresolvedで保持し、既知余分eventとして相反にしない。 original_status_countsはknown IDの一意な提供eventから既知statusだけを数える。ID/状態unknown・未回収/原record欠落はfindingで別保持し、件数0を未観測の実績へ補完しない。 順序比較は直前known一意recordとの比較、checkpoint末尾は最後の一意原recordのsequenceで別保持する。末尾recordのid/sequenceが不明なら末尾unknown。同id重複は末尾を動かさず、直前knownを末尾へ補完しない。",
       "replay/handoffだけeffect_recordsをunique原eventへ結び、state=recordedと独立expected_effect_refsを照合。非負integer execution_count>1はduplicate_side_effect_execution、0はeffect_execution_not_observed。record nullは原record位置unresolved、expected ref key自体欠落はexpected map rootのeffect_source_unresolved。projection join/generation/stateとordered unique event_idsを原保持集合へ比較し、summary件数を成功へしない。 effect id key自体が存在しない場合だけ/effect_recordsのmap rootを不足位置にし、keyが存在してrecord=nullならそのrecord位置。型ごとのpointer例外を曖昧にしない。",
       "replay/handoffだけwrite/projection/replay stageを別に照合。failedは既知違反、recorded以外はunknown。checkpoint generation→projectionとlast_sequence→原末尾を比較し、published=trueなのにepisode/effects/projection/checkpointのいずれか不足ならcheckpoint_published_before_boundary。published=falseは未公開として保持するが元失敗は消さない。inspectに未来のreplay/use結果を要求しない。",
       "handoffだけprior/successorをroot episode/revision/scope/assignment/attemptへ結ぶ。synthetic budget/cost/deadline/failuresは非負integer、cost/failure非減少、budget/deadline同値、stop reason同値、未完list包含を比較。unknownを0/初回へ補完せず、未完解消proof・全累積履歴・許可された制約変更・別attempt再束縛の正式方式はL5へ。 このprior/successor bindingは元episode/assignment/attemptへのprovenance anchorであり、新attempt identityを同一に固定する要求ではない。実旧新fence/新actor/sourceは018と正式bindingへ結ぶ。",
       "useだけ既存policy state=currentとrequest→policy→independent expectedのscope/purpose/data_use_class/authority_ref/retention_untilを比較する。retentionはsynthetic非負tickでowner now>=untilを拒否。要求scopeはepisode scope、要求data classは各原event分類へ別比較。公開classificationだけで利用を許可しない。historical_useのrefused/unobserved/not_executed/succeededは既知区分として同値保持し、後の許可でprojected_stateを成功へ書換えない。 asset_exposure_class（公開等）はこの利用許可の代理にしない補助metadata。data-use class/purpose/authority/retention/scopeは別。",
-      "全diagnosticはcode_classesの明示classで各facet/overallをviolation→unknown→correspondingへ集約。selected_phaseは閉集合かnull、unknown raw値は原finding位置に保持。retained_event_ids/duplicate_ids/statuscountsは固定素材分類だけ。use_materialは該当data_useまたはepisode不足ならwithheld、非useはnot_evaluated。checkpoint_material_publishableはreplay/handoffで関連四facet不足なしの場合だけで実公開許可でない。",
+      "全diagnosticはcode_classesの明示classで各facet/overallをviolation→unknown→correspondingへ集約。selected_phaseは閉集合かnull、unknown raw値は原finding位置に保持。retained_event_ids/duplicate_ids/statuscountsは固定素材分類だけ。use_materialは該当data_useまたはepisode不足ならwithheld、非useはnot_evaluated。checkpoint_material_publishableはreplay/handoffで関連四facet不足なしの場合だけで実公開許可でない。 facet名はfacet_names、固定codeの振分けはfixed_code_facets、汎用code/数量比較はcomparison_facets、発生位置/併記はcode_emissionに従う。L4/L9で同じ表を保持。",
       "原revision/scopeをnull含め保持し、raw payloadをmessageへ複写しない。全17field whole照合。裸owner・原pointer（record nullだけroot）・exact三fieldunique scalar順。実event write/replay/checkpoint公開/data use許可/全episode verifiedとprovider正本化は全false。実source資格・全shape/閉包・未見独立実証は別で、素材一致を実受入にしない。"
     ],
     "diagnostic_code_classes": {
@@ -420,7 +420,119 @@
       "operation_effect"
     ],
     "return_owner": "episode-continuity-owner",
-    "effect_count_meaning": "execution_countは原eventに結ぶ副作用/result receiptの合成回数。このcountでprovider invocationやevent.statusのsucceededを生成しない。拒否/未実行にも記録receiptがありうる。"
+    "effect_count_meaning": "execution_countは原eventに結ぶ副作用/result receiptの合成回数。このcountでprovider invocationやevent.statusのsucceededを生成しない。拒否/未実行にも記録receiptがありうる。",
+    "facet_names": [
+      "episode",
+      "effects",
+      "projection",
+      "checkpoint",
+      "continuity",
+      "data_use",
+      "scope_limit"
+    ],
+    "fixed_code_facets": {
+      "canonical_source_not_original": "episode",
+      "canonical_source_unresolved": "episode",
+      "event_identity_unresolved": "episode",
+      "event_source_set_conflict": "episode",
+      "event_sequence_conflict": "episode",
+      "event_kind_unresolved": "episode",
+      "event_status_unresolved": "episode",
+      "event_sequence_order_conflict": "episode",
+      "original_event_missing": "episode",
+      "phase_unresolved": "episode",
+      "duplicate_event_content_conflict": "effects",
+      "effect_record_unresolved": "effects",
+      "effect_source_unresolved": "effects",
+      "duplicate_side_effect_execution": "effects",
+      "effect_execution_not_observed": "effects",
+      "projection_rebuild_unresolved": "projection",
+      "projection_event_set_unresolved": "projection",
+      "projection_event_set_conflict": "projection",
+      "persistence_stage_failed": "checkpoint",
+      "persistence_stage_unresolved": "checkpoint",
+      "checkpoint_boundary_unresolved": "checkpoint",
+      "checkpoint_boundary_conflict": "checkpoint",
+      "checkpoint_publication_unresolved": "checkpoint",
+      "checkpoint_published_before_boundary": "checkpoint",
+      "cumulative_constraint_reset": "continuity",
+      "outstanding_unresolved": "continuity",
+      "outstanding_obligation_lost": "continuity",
+      "data_use_permission_rejected": "data_use",
+      "data_use_permission_unresolved": "data_use",
+      "data_use_scope_conflict": "data_use",
+      "data_use_source_conflict": "data_use",
+      "retention_window_expired": "data_use",
+      "historical_use_unresolved": "data_use",
+      "historical_use_rewritten": "data_use",
+      "whole_scope_claim_unproven": "scope_limit",
+      "whole_scope_claim_unresolved": "scope_limit"
+    },
+    "comparison_facets": [
+      {
+        "facet": "episode",
+        "comparisons": [
+          "root binding→expected_binding",
+          "event scalar→expected_events",
+          "event.episode→root episode",
+          "kind/status/identity/sequence原情報"
+        ]
+      },
+      {
+        "facet": "effects",
+        "comparisons": [
+          "same idのwhole content比較",
+          "effect record/source ref/execution_count"
+        ]
+      },
+      {
+        "facet": "projection",
+        "comparisons": [
+          "projection join/generation/state/event_ids"
+        ]
+      },
+      {
+        "facet": "checkpoint",
+        "comparisons": [
+          "write/projection/replay stage",
+          "checkpoint generation→projection generation",
+          "last_sequence→原unique末尾",
+          "published flagと関連四facet"
+        ]
+      },
+      {
+        "facet": "continuity",
+        "comparisons": [
+          "prior/successor join",
+          "累積非負数と非reset",
+          "stop_reasonとoutstanding包含"
+        ]
+      },
+      {
+        "facet": "data_use",
+        "comparisons": [
+          "use_request→use_policy→expected_policy",
+          "use scope→root scope",
+          "use class→各event class",
+          "retention_until/context.now",
+          "historical_use original→projected"
+        ]
+      },
+      {
+        "facet": "scope_limit",
+        "comparisons": [
+          "whole_scope_success_claim"
+        ]
+      }
+    ],
+    "code_emission": {
+      "source_unresolved/source_conflict": "全非retention文字列比較は非空文字列knownで汎用code。unknownは各原field、両側known相反は比較左側原field。facetはcomparison_facetsで指定。checkpoint generation相反もsource_conflictでcheckpoint facet。",
+      "quantity_unresolved": "event sequenceはepisode、checkpoint.last_sequenceはcheckpoint、prior/successorの累積数値はcontinuity、use retention_until/context.nowはdata_use。非負integerでない各原fieldに出す。",
+      "kind/status": "actual閉集合外は先のsource_unresolvedと、event_kind_unresolved/event_status_unresolvedを同原fieldへ併記。expected閉集合外はsource_unresolvedだけ。両側閉集合内相反はsource_conflict。actual event_id不明はevent_identity_unresolvedだけで当該eventを集約しない。",
+      "retention_until": "request→policyの両側known非負整数相反はdata_use_scope_conflict /use_request/retention_until。policy→expectedはdata_use_source_conflict /use_policy/tuple/retention_until。不明は各原位置quantity_unresolved。文字列scope/purpose/class/authorityは汎用codeと混同しない。",
+      "retention_window_expired": "context.nowとpolicy.retention_untilが両側knownでnow>=untilの場合だけ/context/nowのdata_use facet。",
+      "checkpoint_boundary": "checkpoint.last_sequenceの型不明はquantity_unresolvedのみ。型既知でも原unique末尾sequenceが不明/なしならcheckpoint_boundary_unresolved /checkpoint/last_sequence。両側known相反だけcheckpoint_boundary_conflict。同id重複は末尾を動かさず、末尾unknownを直前既知値へ補完しない。"
+    }
   },
   "cases": [
     {
@@ -79113,7 +79225,7 @@
         },
         "findings": [
           {
-            "code": "checkpoint_boundary_conflict",
+            "code": "checkpoint_boundary_unresolved",
             "pointer": "/checkpoint/last_sequence",
             "return_owner": "episode-continuity-owner"
           },
@@ -88799,7 +88911,7 @@
         },
         "findings": [
           {
-            "code": "checkpoint_boundary_conflict",
+            "code": "checkpoint_boundary_unresolved",
             "pointer": "/checkpoint/last_sequence",
             "return_owner": "episode-continuity-owner"
           },
@@ -139998,11 +140110,1791 @@
       },
       "execution_state": "not_executed",
       "actual_observation": "not_observed"
+    },
+    {
+      "id": "OS019-TAIL-SEQUENCE-UNKNOWN-PUBLISHED-TRUE",
+      "requirement_refs": [
+        "HELIXOS-L3-019-F01",
+        "HELIXOS-L3-019-F02",
+        "HELIXOS-L3-019-F03",
+        "HELIXOS-L3-019-F04",
+        "HELIXOS-L3-019-N01",
+        "HELIXOS-L3-019-N02"
+      ],
+      "given": {
+        "input": {
+          "phase": "replay",
+          "binding": {
+            "episode": "EPISODE-A",
+            "requirement_revision": "REQ-r1",
+            "scope": "PROJECT-A",
+            "assignment": "ASSIGNMENT-A",
+            "attempt": "ATTEMPT-A"
+          },
+          "canonical_source": "original_events",
+          "events": [
+            {
+              "event_id": "EVENT-0",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-0",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "requirement",
+              "status": "succeeded",
+              "result_ref": "RESULT-0",
+              "correction_ref": "CORRECTION-0",
+              "sequence": 0
+            },
+            {
+              "event_id": "EVENT-1",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-1",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "decision",
+              "status": "succeeded",
+              "result_ref": "RESULT-1",
+              "correction_ref": "CORRECTION-1",
+              "sequence": 1
+            },
+            {
+              "event_id": "EVENT-2",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-2",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "change",
+              "status": "succeeded",
+              "result_ref": "RESULT-2",
+              "correction_ref": "CORRECTION-2",
+              "sequence": 2
+            },
+            {
+              "event_id": "EVENT-3",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-3",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "execution",
+              "status": "succeeded",
+              "result_ref": "RESULT-3",
+              "correction_ref": "CORRECTION-3",
+              "sequence": 3
+            },
+            {
+              "event_id": "EVENT-4",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-4",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "verification",
+              "status": "succeeded",
+              "result_ref": "RESULT-4",
+              "correction_ref": "CORRECTION-4",
+              "sequence": 4
+            },
+            {
+              "event_id": "EVENT-5",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-5",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "backflow",
+              "status": "failed",
+              "result_ref": "RESULT-5",
+              "correction_ref": "CORRECTION-5",
+              "sequence": 5
+            },
+            {
+              "event_id": "EVENT-6",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-6",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "operation_result",
+              "status": "succeeded",
+              "result_ref": "RESULT-6",
+              "correction_ref": "CORRECTION-6",
+              "sequence": null
+            }
+          ],
+          "effect_records": {
+            "EVENT-0": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-0",
+              "execution_count": 1
+            },
+            "EVENT-1": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-1",
+              "execution_count": 1
+            },
+            "EVENT-2": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-2",
+              "execution_count": 1
+            },
+            "EVENT-3": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-3",
+              "execution_count": 1
+            },
+            "EVENT-4": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-4",
+              "execution_count": 1
+            },
+            "EVENT-5": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-5",
+              "execution_count": 1
+            },
+            "EVENT-6": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-6",
+              "execution_count": 1
+            }
+          },
+          "projection": {
+            "binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "generation": "PROJECTION-g1",
+            "state": "rebuilt",
+            "event_ids": [
+              "EVENT-0",
+              "EVENT-1",
+              "EVENT-2",
+              "EVENT-3",
+              "EVENT-4",
+              "EVENT-5",
+              "EVENT-6"
+            ]
+          },
+          "stages": {
+            "write": "recorded",
+            "projection": "recorded",
+            "replay": "recorded"
+          },
+          "checkpoint": {
+            "published": true,
+            "generation": "PROJECTION-g1",
+            "last_sequence": 6
+          },
+          "prior": {
+            "binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "budget_limit": 100,
+            "cost_spent": 4,
+            "deadline": 100,
+            "failures": 1,
+            "stop_reason_ref": "STOP-A",
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "successor": {
+            "binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "budget_limit": 100,
+            "cost_spent": 7,
+            "deadline": 100,
+            "failures": 2,
+            "stop_reason_ref": "STOP-A",
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ]
+          },
+          "use_request": {
+            "scope": "PROJECT-A",
+            "purpose": "OPERATIONS-PURPOSE",
+            "data_use_class": "OPERATIONS-CLASS",
+            "authority_ref": "AUTHORITY-REF",
+            "retention_until": 100
+          },
+          "use_policy": {
+            "state": "current",
+            "tuple": {
+              "scope": "PROJECT-A",
+              "purpose": "OPERATIONS-PURPOSE",
+              "data_use_class": "OPERATIONS-CLASS",
+              "authority_ref": "AUTHORITY-REF",
+              "retention_until": 100
+            }
+          },
+          "historical_use": {
+            "original_state": "refused",
+            "projected_state": "refused"
+          },
+          "context": {
+            "expected_binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "expected_events": [
+              {
+                "event_id": "EVENT-0",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-0",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "requirement",
+                "status": "succeeded",
+                "result_ref": "RESULT-0",
+                "correction_ref": "CORRECTION-0",
+                "sequence": 0
+              },
+              {
+                "event_id": "EVENT-1",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-1",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "decision",
+                "status": "succeeded",
+                "result_ref": "RESULT-1",
+                "correction_ref": "CORRECTION-1",
+                "sequence": 1
+              },
+              {
+                "event_id": "EVENT-2",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-2",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "change",
+                "status": "succeeded",
+                "result_ref": "RESULT-2",
+                "correction_ref": "CORRECTION-2",
+                "sequence": 2
+              },
+              {
+                "event_id": "EVENT-3",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-3",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "execution",
+                "status": "succeeded",
+                "result_ref": "RESULT-3",
+                "correction_ref": "CORRECTION-3",
+                "sequence": 3
+              },
+              {
+                "event_id": "EVENT-4",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-4",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "verification",
+                "status": "succeeded",
+                "result_ref": "RESULT-4",
+                "correction_ref": "CORRECTION-4",
+                "sequence": 4
+              },
+              {
+                "event_id": "EVENT-5",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-5",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "backflow",
+                "status": "failed",
+                "result_ref": "RESULT-5",
+                "correction_ref": "CORRECTION-5",
+                "sequence": 5
+              },
+              {
+                "event_id": "EVENT-6",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-6",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "operation_result",
+                "status": "succeeded",
+                "result_ref": "RESULT-6",
+                "correction_ref": "CORRECTION-6",
+                "sequence": 6
+              }
+            ],
+            "expected_effect_refs": {
+              "EVENT-0": "EFFECT-EVENT-0",
+              "EVENT-1": "EFFECT-EVENT-1",
+              "EVENT-2": "EFFECT-EVENT-2",
+              "EVENT-3": "EFFECT-EVENT-3",
+              "EVENT-4": "EFFECT-EVENT-4",
+              "EVENT-5": "EFFECT-EVENT-5",
+              "EVENT-6": "EFFECT-EVENT-6"
+            },
+            "expected_policy": {
+              "scope": "PROJECT-A",
+              "purpose": "OPERATIONS-PURPOSE",
+              "data_use_class": "OPERATIONS-CLASS",
+              "authority_ref": "AUTHORITY-REF",
+              "retention_until": 100
+            },
+            "now": 90,
+            "expected_projection_generation": "PROJECTION-g1"
+          },
+          "provider_summary_claim": "success",
+          "whole_scope_success_claim": false
+        },
+        "evidence_limit": "固定event/source/ref/stateだけ。state/件数/原情報対応は実保存/実再構築/許可を証明しない。100/90はsynthetic tick。"
+      },
+      "when": "原event・projection・累積・保存境界・利用条件の素材比較。実I/O/replay/share/学習なし。",
+      "expected_proposal": {
+        "condition": "continuity_material_violation",
+        "selected_phase": "replay",
+        "facet_correspondence": {
+          "episode": "unknown",
+          "effects": "corresponding",
+          "projection": "corresponding",
+          "checkpoint": "violation",
+          "continuity": "corresponding",
+          "data_use": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "retained_event_ids": [
+          "EVENT-0",
+          "EVENT-1",
+          "EVENT-2",
+          "EVENT-3",
+          "EVENT-4",
+          "EVENT-5",
+          "EVENT-6"
+        ],
+        "duplicate_event_ids": [],
+        "original_status_counts": {
+          "succeeded": 6,
+          "failed": 1,
+          "refused": 0,
+          "not_executed": 0,
+          "unobserved": 0,
+          "not_occurred": 0,
+          "uncollected": 0,
+          "stale": 0
+        },
+        "use_material": "not_evaluated",
+        "checkpoint_material_publishable": false,
+        "affected_revision_scope": {
+          "revision": "REQ-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "checkpoint_boundary_unresolved",
+            "pointer": "/checkpoint/last_sequence",
+            "return_owner": "episode-continuity-owner"
+          },
+          {
+            "code": "checkpoint_published_before_boundary",
+            "pointer": "/checkpoint/published",
+            "return_owner": "episode-continuity-owner"
+          },
+          {
+            "code": "quantity_unresolved",
+            "pointer": "/events/6/sequence",
+            "return_owner": "episode-continuity-owner"
+          }
+        ],
+        "provider_memory_used_as_canonical": false,
+        "actual_event_written": false,
+        "actual_replay_executed": false,
+        "actual_checkpoint_published": false,
+        "actual_data_use_authorized": false,
+        "whole_episode_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "OS019-TAIL-SEQUENCE-UNKNOWN-PUBLISHED-FALSE",
+      "requirement_refs": [
+        "HELIXOS-L3-019-F01",
+        "HELIXOS-L3-019-F02",
+        "HELIXOS-L3-019-F03",
+        "HELIXOS-L3-019-F04",
+        "HELIXOS-L3-019-N01",
+        "HELIXOS-L3-019-N02"
+      ],
+      "given": {
+        "input": {
+          "phase": "replay",
+          "binding": {
+            "episode": "EPISODE-A",
+            "requirement_revision": "REQ-r1",
+            "scope": "PROJECT-A",
+            "assignment": "ASSIGNMENT-A",
+            "attempt": "ATTEMPT-A"
+          },
+          "canonical_source": "original_events",
+          "events": [
+            {
+              "event_id": "EVENT-0",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-0",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "requirement",
+              "status": "succeeded",
+              "result_ref": "RESULT-0",
+              "correction_ref": "CORRECTION-0",
+              "sequence": 0
+            },
+            {
+              "event_id": "EVENT-1",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-1",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "decision",
+              "status": "succeeded",
+              "result_ref": "RESULT-1",
+              "correction_ref": "CORRECTION-1",
+              "sequence": 1
+            },
+            {
+              "event_id": "EVENT-2",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-2",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "change",
+              "status": "succeeded",
+              "result_ref": "RESULT-2",
+              "correction_ref": "CORRECTION-2",
+              "sequence": 2
+            },
+            {
+              "event_id": "EVENT-3",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-3",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "execution",
+              "status": "succeeded",
+              "result_ref": "RESULT-3",
+              "correction_ref": "CORRECTION-3",
+              "sequence": 3
+            },
+            {
+              "event_id": "EVENT-4",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-4",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "verification",
+              "status": "succeeded",
+              "result_ref": "RESULT-4",
+              "correction_ref": "CORRECTION-4",
+              "sequence": 4
+            },
+            {
+              "event_id": "EVENT-5",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-5",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "backflow",
+              "status": "failed",
+              "result_ref": "RESULT-5",
+              "correction_ref": "CORRECTION-5",
+              "sequence": 5
+            },
+            {
+              "event_id": "EVENT-6",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-6",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "operation_result",
+              "status": "succeeded",
+              "result_ref": "RESULT-6",
+              "correction_ref": "CORRECTION-6",
+              "sequence": null
+            }
+          ],
+          "effect_records": {
+            "EVENT-0": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-0",
+              "execution_count": 1
+            },
+            "EVENT-1": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-1",
+              "execution_count": 1
+            },
+            "EVENT-2": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-2",
+              "execution_count": 1
+            },
+            "EVENT-3": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-3",
+              "execution_count": 1
+            },
+            "EVENT-4": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-4",
+              "execution_count": 1
+            },
+            "EVENT-5": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-5",
+              "execution_count": 1
+            },
+            "EVENT-6": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-6",
+              "execution_count": 1
+            }
+          },
+          "projection": {
+            "binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "generation": "PROJECTION-g1",
+            "state": "rebuilt",
+            "event_ids": [
+              "EVENT-0",
+              "EVENT-1",
+              "EVENT-2",
+              "EVENT-3",
+              "EVENT-4",
+              "EVENT-5",
+              "EVENT-6"
+            ]
+          },
+          "stages": {
+            "write": "recorded",
+            "projection": "recorded",
+            "replay": "recorded"
+          },
+          "checkpoint": {
+            "published": false,
+            "generation": "PROJECTION-g1",
+            "last_sequence": 6
+          },
+          "prior": {
+            "binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "budget_limit": 100,
+            "cost_spent": 4,
+            "deadline": 100,
+            "failures": 1,
+            "stop_reason_ref": "STOP-A",
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "successor": {
+            "binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "budget_limit": 100,
+            "cost_spent": 7,
+            "deadline": 100,
+            "failures": 2,
+            "stop_reason_ref": "STOP-A",
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ]
+          },
+          "use_request": {
+            "scope": "PROJECT-A",
+            "purpose": "OPERATIONS-PURPOSE",
+            "data_use_class": "OPERATIONS-CLASS",
+            "authority_ref": "AUTHORITY-REF",
+            "retention_until": 100
+          },
+          "use_policy": {
+            "state": "current",
+            "tuple": {
+              "scope": "PROJECT-A",
+              "purpose": "OPERATIONS-PURPOSE",
+              "data_use_class": "OPERATIONS-CLASS",
+              "authority_ref": "AUTHORITY-REF",
+              "retention_until": 100
+            }
+          },
+          "historical_use": {
+            "original_state": "refused",
+            "projected_state": "refused"
+          },
+          "context": {
+            "expected_binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "expected_events": [
+              {
+                "event_id": "EVENT-0",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-0",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "requirement",
+                "status": "succeeded",
+                "result_ref": "RESULT-0",
+                "correction_ref": "CORRECTION-0",
+                "sequence": 0
+              },
+              {
+                "event_id": "EVENT-1",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-1",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "decision",
+                "status": "succeeded",
+                "result_ref": "RESULT-1",
+                "correction_ref": "CORRECTION-1",
+                "sequence": 1
+              },
+              {
+                "event_id": "EVENT-2",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-2",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "change",
+                "status": "succeeded",
+                "result_ref": "RESULT-2",
+                "correction_ref": "CORRECTION-2",
+                "sequence": 2
+              },
+              {
+                "event_id": "EVENT-3",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-3",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "execution",
+                "status": "succeeded",
+                "result_ref": "RESULT-3",
+                "correction_ref": "CORRECTION-3",
+                "sequence": 3
+              },
+              {
+                "event_id": "EVENT-4",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-4",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "verification",
+                "status": "succeeded",
+                "result_ref": "RESULT-4",
+                "correction_ref": "CORRECTION-4",
+                "sequence": 4
+              },
+              {
+                "event_id": "EVENT-5",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-5",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "backflow",
+                "status": "failed",
+                "result_ref": "RESULT-5",
+                "correction_ref": "CORRECTION-5",
+                "sequence": 5
+              },
+              {
+                "event_id": "EVENT-6",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-6",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "operation_result",
+                "status": "succeeded",
+                "result_ref": "RESULT-6",
+                "correction_ref": "CORRECTION-6",
+                "sequence": 6
+              }
+            ],
+            "expected_effect_refs": {
+              "EVENT-0": "EFFECT-EVENT-0",
+              "EVENT-1": "EFFECT-EVENT-1",
+              "EVENT-2": "EFFECT-EVENT-2",
+              "EVENT-3": "EFFECT-EVENT-3",
+              "EVENT-4": "EFFECT-EVENT-4",
+              "EVENT-5": "EFFECT-EVENT-5",
+              "EVENT-6": "EFFECT-EVENT-6"
+            },
+            "expected_policy": {
+              "scope": "PROJECT-A",
+              "purpose": "OPERATIONS-PURPOSE",
+              "data_use_class": "OPERATIONS-CLASS",
+              "authority_ref": "AUTHORITY-REF",
+              "retention_until": 100
+            },
+            "now": 90,
+            "expected_projection_generation": "PROJECTION-g1"
+          },
+          "provider_summary_claim": "success",
+          "whole_scope_success_claim": false
+        },
+        "evidence_limit": "固定event/source/ref/stateだけ。state/件数/原情報対応は実保存/実再構築/許可を証明しない。100/90はsynthetic tick。"
+      },
+      "when": "原event・projection・累積・保存境界・利用条件の素材比較。実I/O/replay/share/学習なし。",
+      "expected_proposal": {
+        "condition": "continuity_material_unknown",
+        "selected_phase": "replay",
+        "facet_correspondence": {
+          "episode": "unknown",
+          "effects": "corresponding",
+          "projection": "corresponding",
+          "checkpoint": "unknown",
+          "continuity": "corresponding",
+          "data_use": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "retained_event_ids": [
+          "EVENT-0",
+          "EVENT-1",
+          "EVENT-2",
+          "EVENT-3",
+          "EVENT-4",
+          "EVENT-5",
+          "EVENT-6"
+        ],
+        "duplicate_event_ids": [],
+        "original_status_counts": {
+          "succeeded": 6,
+          "failed": 1,
+          "refused": 0,
+          "not_executed": 0,
+          "unobserved": 0,
+          "not_occurred": 0,
+          "uncollected": 0,
+          "stale": 0
+        },
+        "use_material": "not_evaluated",
+        "checkpoint_material_publishable": false,
+        "affected_revision_scope": {
+          "revision": "REQ-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "checkpoint_boundary_unresolved",
+            "pointer": "/checkpoint/last_sequence",
+            "return_owner": "episode-continuity-owner"
+          },
+          {
+            "code": "quantity_unresolved",
+            "pointer": "/events/6/sequence",
+            "return_owner": "episode-continuity-owner"
+          }
+        ],
+        "provider_memory_used_as_canonical": false,
+        "actual_event_written": false,
+        "actual_replay_executed": false,
+        "actual_checkpoint_published": false,
+        "actual_data_use_authorized": false,
+        "whole_episode_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "OS019-TAIL-EVENT_ID-UNKNOWN-PUBLISHED-TRUE",
+      "requirement_refs": [
+        "HELIXOS-L3-019-F01",
+        "HELIXOS-L3-019-F02",
+        "HELIXOS-L3-019-F03",
+        "HELIXOS-L3-019-F04",
+        "HELIXOS-L3-019-N01",
+        "HELIXOS-L3-019-N02"
+      ],
+      "given": {
+        "input": {
+          "phase": "replay",
+          "binding": {
+            "episode": "EPISODE-A",
+            "requirement_revision": "REQ-r1",
+            "scope": "PROJECT-A",
+            "assignment": "ASSIGNMENT-A",
+            "attempt": "ATTEMPT-A"
+          },
+          "canonical_source": "original_events",
+          "events": [
+            {
+              "event_id": "EVENT-0",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-0",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "requirement",
+              "status": "succeeded",
+              "result_ref": "RESULT-0",
+              "correction_ref": "CORRECTION-0",
+              "sequence": 0
+            },
+            {
+              "event_id": "EVENT-1",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-1",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "decision",
+              "status": "succeeded",
+              "result_ref": "RESULT-1",
+              "correction_ref": "CORRECTION-1",
+              "sequence": 1
+            },
+            {
+              "event_id": "EVENT-2",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-2",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "change",
+              "status": "succeeded",
+              "result_ref": "RESULT-2",
+              "correction_ref": "CORRECTION-2",
+              "sequence": 2
+            },
+            {
+              "event_id": "EVENT-3",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-3",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "execution",
+              "status": "succeeded",
+              "result_ref": "RESULT-3",
+              "correction_ref": "CORRECTION-3",
+              "sequence": 3
+            },
+            {
+              "event_id": "EVENT-4",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-4",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "verification",
+              "status": "succeeded",
+              "result_ref": "RESULT-4",
+              "correction_ref": "CORRECTION-4",
+              "sequence": 4
+            },
+            {
+              "event_id": "EVENT-5",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-5",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "backflow",
+              "status": "failed",
+              "result_ref": "RESULT-5",
+              "correction_ref": "CORRECTION-5",
+              "sequence": 5
+            },
+            {
+              "event_id": null,
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-6",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "operation_result",
+              "status": "succeeded",
+              "result_ref": "RESULT-6",
+              "correction_ref": "CORRECTION-6",
+              "sequence": 6
+            }
+          ],
+          "effect_records": {
+            "EVENT-0": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-0",
+              "execution_count": 1
+            },
+            "EVENT-1": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-1",
+              "execution_count": 1
+            },
+            "EVENT-2": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-2",
+              "execution_count": 1
+            },
+            "EVENT-3": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-3",
+              "execution_count": 1
+            },
+            "EVENT-4": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-4",
+              "execution_count": 1
+            },
+            "EVENT-5": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-5",
+              "execution_count": 1
+            },
+            "EVENT-6": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-6",
+              "execution_count": 1
+            }
+          },
+          "projection": {
+            "binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "generation": "PROJECTION-g1",
+            "state": "rebuilt",
+            "event_ids": [
+              "EVENT-0",
+              "EVENT-1",
+              "EVENT-2",
+              "EVENT-3",
+              "EVENT-4",
+              "EVENT-5",
+              "EVENT-6"
+            ]
+          },
+          "stages": {
+            "write": "recorded",
+            "projection": "recorded",
+            "replay": "recorded"
+          },
+          "checkpoint": {
+            "published": true,
+            "generation": "PROJECTION-g1",
+            "last_sequence": 6
+          },
+          "prior": {
+            "binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "budget_limit": 100,
+            "cost_spent": 4,
+            "deadline": 100,
+            "failures": 1,
+            "stop_reason_ref": "STOP-A",
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "successor": {
+            "binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "budget_limit": 100,
+            "cost_spent": 7,
+            "deadline": 100,
+            "failures": 2,
+            "stop_reason_ref": "STOP-A",
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ]
+          },
+          "use_request": {
+            "scope": "PROJECT-A",
+            "purpose": "OPERATIONS-PURPOSE",
+            "data_use_class": "OPERATIONS-CLASS",
+            "authority_ref": "AUTHORITY-REF",
+            "retention_until": 100
+          },
+          "use_policy": {
+            "state": "current",
+            "tuple": {
+              "scope": "PROJECT-A",
+              "purpose": "OPERATIONS-PURPOSE",
+              "data_use_class": "OPERATIONS-CLASS",
+              "authority_ref": "AUTHORITY-REF",
+              "retention_until": 100
+            }
+          },
+          "historical_use": {
+            "original_state": "refused",
+            "projected_state": "refused"
+          },
+          "context": {
+            "expected_binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "expected_events": [
+              {
+                "event_id": "EVENT-0",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-0",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "requirement",
+                "status": "succeeded",
+                "result_ref": "RESULT-0",
+                "correction_ref": "CORRECTION-0",
+                "sequence": 0
+              },
+              {
+                "event_id": "EVENT-1",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-1",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "decision",
+                "status": "succeeded",
+                "result_ref": "RESULT-1",
+                "correction_ref": "CORRECTION-1",
+                "sequence": 1
+              },
+              {
+                "event_id": "EVENT-2",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-2",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "change",
+                "status": "succeeded",
+                "result_ref": "RESULT-2",
+                "correction_ref": "CORRECTION-2",
+                "sequence": 2
+              },
+              {
+                "event_id": "EVENT-3",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-3",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "execution",
+                "status": "succeeded",
+                "result_ref": "RESULT-3",
+                "correction_ref": "CORRECTION-3",
+                "sequence": 3
+              },
+              {
+                "event_id": "EVENT-4",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-4",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "verification",
+                "status": "succeeded",
+                "result_ref": "RESULT-4",
+                "correction_ref": "CORRECTION-4",
+                "sequence": 4
+              },
+              {
+                "event_id": "EVENT-5",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-5",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "backflow",
+                "status": "failed",
+                "result_ref": "RESULT-5",
+                "correction_ref": "CORRECTION-5",
+                "sequence": 5
+              },
+              {
+                "event_id": "EVENT-6",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-6",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "operation_result",
+                "status": "succeeded",
+                "result_ref": "RESULT-6",
+                "correction_ref": "CORRECTION-6",
+                "sequence": 6
+              }
+            ],
+            "expected_effect_refs": {
+              "EVENT-0": "EFFECT-EVENT-0",
+              "EVENT-1": "EFFECT-EVENT-1",
+              "EVENT-2": "EFFECT-EVENT-2",
+              "EVENT-3": "EFFECT-EVENT-3",
+              "EVENT-4": "EFFECT-EVENT-4",
+              "EVENT-5": "EFFECT-EVENT-5",
+              "EVENT-6": "EFFECT-EVENT-6"
+            },
+            "expected_policy": {
+              "scope": "PROJECT-A",
+              "purpose": "OPERATIONS-PURPOSE",
+              "data_use_class": "OPERATIONS-CLASS",
+              "authority_ref": "AUTHORITY-REF",
+              "retention_until": 100
+            },
+            "now": 90,
+            "expected_projection_generation": "PROJECTION-g1"
+          },
+          "provider_summary_claim": "success",
+          "whole_scope_success_claim": false
+        },
+        "evidence_limit": "固定event/source/ref/stateだけ。state/件数/原情報対応は実保存/実再構築/許可を証明しない。100/90はsynthetic tick。"
+      },
+      "when": "原event・projection・累積・保存境界・利用条件の素材比較。実I/O/replay/share/学習なし。",
+      "expected_proposal": {
+        "condition": "continuity_material_violation",
+        "selected_phase": "replay",
+        "facet_correspondence": {
+          "episode": "unknown",
+          "effects": "corresponding",
+          "projection": "violation",
+          "checkpoint": "violation",
+          "continuity": "corresponding",
+          "data_use": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "retained_event_ids": [
+          "EVENT-0",
+          "EVENT-1",
+          "EVENT-2",
+          "EVENT-3",
+          "EVENT-4",
+          "EVENT-5"
+        ],
+        "duplicate_event_ids": [],
+        "original_status_counts": {
+          "succeeded": 5,
+          "failed": 1,
+          "refused": 0,
+          "not_executed": 0,
+          "unobserved": 0,
+          "not_occurred": 0,
+          "uncollected": 0,
+          "stale": 0
+        },
+        "use_material": "not_evaluated",
+        "checkpoint_material_publishable": false,
+        "affected_revision_scope": {
+          "revision": "REQ-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "checkpoint_boundary_unresolved",
+            "pointer": "/checkpoint/last_sequence",
+            "return_owner": "episode-continuity-owner"
+          },
+          {
+            "code": "checkpoint_published_before_boundary",
+            "pointer": "/checkpoint/published",
+            "return_owner": "episode-continuity-owner"
+          },
+          {
+            "code": "event_identity_unresolved",
+            "pointer": "/events/6/event_id",
+            "return_owner": "episode-continuity-owner"
+          },
+          {
+            "code": "original_event_missing",
+            "pointer": "/context/expected_events/6/event_id",
+            "return_owner": "episode-continuity-owner"
+          },
+          {
+            "code": "projection_event_set_conflict",
+            "pointer": "/projection/event_ids",
+            "return_owner": "episode-continuity-owner"
+          }
+        ],
+        "provider_memory_used_as_canonical": false,
+        "actual_event_written": false,
+        "actual_replay_executed": false,
+        "actual_checkpoint_published": false,
+        "actual_data_use_authorized": false,
+        "whole_episode_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
+    },
+    {
+      "id": "OS019-TAIL-EVENT_ID-UNKNOWN-PUBLISHED-FALSE",
+      "requirement_refs": [
+        "HELIXOS-L3-019-F01",
+        "HELIXOS-L3-019-F02",
+        "HELIXOS-L3-019-F03",
+        "HELIXOS-L3-019-F04",
+        "HELIXOS-L3-019-N01",
+        "HELIXOS-L3-019-N02"
+      ],
+      "given": {
+        "input": {
+          "phase": "replay",
+          "binding": {
+            "episode": "EPISODE-A",
+            "requirement_revision": "REQ-r1",
+            "scope": "PROJECT-A",
+            "assignment": "ASSIGNMENT-A",
+            "attempt": "ATTEMPT-A"
+          },
+          "canonical_source": "original_events",
+          "events": [
+            {
+              "event_id": "EVENT-0",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-0",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "requirement",
+              "status": "succeeded",
+              "result_ref": "RESULT-0",
+              "correction_ref": "CORRECTION-0",
+              "sequence": 0
+            },
+            {
+              "event_id": "EVENT-1",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-1",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "decision",
+              "status": "succeeded",
+              "result_ref": "RESULT-1",
+              "correction_ref": "CORRECTION-1",
+              "sequence": 1
+            },
+            {
+              "event_id": "EVENT-2",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-2",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "change",
+              "status": "succeeded",
+              "result_ref": "RESULT-2",
+              "correction_ref": "CORRECTION-2",
+              "sequence": 2
+            },
+            {
+              "event_id": "EVENT-3",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-3",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "execution",
+              "status": "succeeded",
+              "result_ref": "RESULT-3",
+              "correction_ref": "CORRECTION-3",
+              "sequence": 3
+            },
+            {
+              "event_id": "EVENT-4",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-4",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "verification",
+              "status": "succeeded",
+              "result_ref": "RESULT-4",
+              "correction_ref": "CORRECTION-4",
+              "sequence": 4
+            },
+            {
+              "event_id": "EVENT-5",
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-5",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "backflow",
+              "status": "failed",
+              "result_ref": "RESULT-5",
+              "correction_ref": "CORRECTION-5",
+              "sequence": 5
+            },
+            {
+              "event_id": null,
+              "episode": "EPISODE-A",
+              "source_ref": "SOURCE-6",
+              "source_revision": "SRC-r1",
+              "correlation": "CORRELATION-A",
+              "actor": "ACTOR-A",
+              "data_use_class": "OPERATIONS-CLASS",
+              "kind": "operation_result",
+              "status": "succeeded",
+              "result_ref": "RESULT-6",
+              "correction_ref": "CORRECTION-6",
+              "sequence": 6
+            }
+          ],
+          "effect_records": {
+            "EVENT-0": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-0",
+              "execution_count": 1
+            },
+            "EVENT-1": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-1",
+              "execution_count": 1
+            },
+            "EVENT-2": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-2",
+              "execution_count": 1
+            },
+            "EVENT-3": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-3",
+              "execution_count": 1
+            },
+            "EVENT-4": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-4",
+              "execution_count": 1
+            },
+            "EVENT-5": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-5",
+              "execution_count": 1
+            },
+            "EVENT-6": {
+              "state": "recorded",
+              "effect_ref": "EFFECT-EVENT-6",
+              "execution_count": 1
+            }
+          },
+          "projection": {
+            "binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "generation": "PROJECTION-g1",
+            "state": "rebuilt",
+            "event_ids": [
+              "EVENT-0",
+              "EVENT-1",
+              "EVENT-2",
+              "EVENT-3",
+              "EVENT-4",
+              "EVENT-5",
+              "EVENT-6"
+            ]
+          },
+          "stages": {
+            "write": "recorded",
+            "projection": "recorded",
+            "replay": "recorded"
+          },
+          "checkpoint": {
+            "published": false,
+            "generation": "PROJECTION-g1",
+            "last_sequence": 6
+          },
+          "prior": {
+            "binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "budget_limit": 100,
+            "cost_spent": 4,
+            "deadline": 100,
+            "failures": 1,
+            "stop_reason_ref": "STOP-A",
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "successor": {
+            "binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "budget_limit": 100,
+            "cost_spent": 7,
+            "deadline": 100,
+            "failures": 2,
+            "stop_reason_ref": "STOP-A",
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ]
+          },
+          "use_request": {
+            "scope": "PROJECT-A",
+            "purpose": "OPERATIONS-PURPOSE",
+            "data_use_class": "OPERATIONS-CLASS",
+            "authority_ref": "AUTHORITY-REF",
+            "retention_until": 100
+          },
+          "use_policy": {
+            "state": "current",
+            "tuple": {
+              "scope": "PROJECT-A",
+              "purpose": "OPERATIONS-PURPOSE",
+              "data_use_class": "OPERATIONS-CLASS",
+              "authority_ref": "AUTHORITY-REF",
+              "retention_until": 100
+            }
+          },
+          "historical_use": {
+            "original_state": "refused",
+            "projected_state": "refused"
+          },
+          "context": {
+            "expected_binding": {
+              "episode": "EPISODE-A",
+              "requirement_revision": "REQ-r1",
+              "scope": "PROJECT-A",
+              "assignment": "ASSIGNMENT-A",
+              "attempt": "ATTEMPT-A"
+            },
+            "expected_events": [
+              {
+                "event_id": "EVENT-0",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-0",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "requirement",
+                "status": "succeeded",
+                "result_ref": "RESULT-0",
+                "correction_ref": "CORRECTION-0",
+                "sequence": 0
+              },
+              {
+                "event_id": "EVENT-1",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-1",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "decision",
+                "status": "succeeded",
+                "result_ref": "RESULT-1",
+                "correction_ref": "CORRECTION-1",
+                "sequence": 1
+              },
+              {
+                "event_id": "EVENT-2",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-2",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "change",
+                "status": "succeeded",
+                "result_ref": "RESULT-2",
+                "correction_ref": "CORRECTION-2",
+                "sequence": 2
+              },
+              {
+                "event_id": "EVENT-3",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-3",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "execution",
+                "status": "succeeded",
+                "result_ref": "RESULT-3",
+                "correction_ref": "CORRECTION-3",
+                "sequence": 3
+              },
+              {
+                "event_id": "EVENT-4",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-4",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "verification",
+                "status": "succeeded",
+                "result_ref": "RESULT-4",
+                "correction_ref": "CORRECTION-4",
+                "sequence": 4
+              },
+              {
+                "event_id": "EVENT-5",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-5",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "backflow",
+                "status": "failed",
+                "result_ref": "RESULT-5",
+                "correction_ref": "CORRECTION-5",
+                "sequence": 5
+              },
+              {
+                "event_id": "EVENT-6",
+                "episode": "EPISODE-A",
+                "source_ref": "SOURCE-6",
+                "source_revision": "SRC-r1",
+                "correlation": "CORRELATION-A",
+                "actor": "ACTOR-A",
+                "data_use_class": "OPERATIONS-CLASS",
+                "kind": "operation_result",
+                "status": "succeeded",
+                "result_ref": "RESULT-6",
+                "correction_ref": "CORRECTION-6",
+                "sequence": 6
+              }
+            ],
+            "expected_effect_refs": {
+              "EVENT-0": "EFFECT-EVENT-0",
+              "EVENT-1": "EFFECT-EVENT-1",
+              "EVENT-2": "EFFECT-EVENT-2",
+              "EVENT-3": "EFFECT-EVENT-3",
+              "EVENT-4": "EFFECT-EVENT-4",
+              "EVENT-5": "EFFECT-EVENT-5",
+              "EVENT-6": "EFFECT-EVENT-6"
+            },
+            "expected_policy": {
+              "scope": "PROJECT-A",
+              "purpose": "OPERATIONS-PURPOSE",
+              "data_use_class": "OPERATIONS-CLASS",
+              "authority_ref": "AUTHORITY-REF",
+              "retention_until": 100
+            },
+            "now": 90,
+            "expected_projection_generation": "PROJECTION-g1"
+          },
+          "provider_summary_claim": "success",
+          "whole_scope_success_claim": false
+        },
+        "evidence_limit": "固定event/source/ref/stateだけ。state/件数/原情報対応は実保存/実再構築/許可を証明しない。100/90はsynthetic tick。"
+      },
+      "when": "原event・projection・累積・保存境界・利用条件の素材比較。実I/O/replay/share/学習なし。",
+      "expected_proposal": {
+        "condition": "continuity_material_violation",
+        "selected_phase": "replay",
+        "facet_correspondence": {
+          "episode": "unknown",
+          "effects": "corresponding",
+          "projection": "violation",
+          "checkpoint": "unknown",
+          "continuity": "corresponding",
+          "data_use": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "retained_event_ids": [
+          "EVENT-0",
+          "EVENT-1",
+          "EVENT-2",
+          "EVENT-3",
+          "EVENT-4",
+          "EVENT-5"
+        ],
+        "duplicate_event_ids": [],
+        "original_status_counts": {
+          "succeeded": 5,
+          "failed": 1,
+          "refused": 0,
+          "not_executed": 0,
+          "unobserved": 0,
+          "not_occurred": 0,
+          "uncollected": 0,
+          "stale": 0
+        },
+        "use_material": "not_evaluated",
+        "checkpoint_material_publishable": false,
+        "affected_revision_scope": {
+          "revision": "REQ-r1",
+          "scope": "PROJECT-A"
+        },
+        "findings": [
+          {
+            "code": "checkpoint_boundary_unresolved",
+            "pointer": "/checkpoint/last_sequence",
+            "return_owner": "episode-continuity-owner"
+          },
+          {
+            "code": "event_identity_unresolved",
+            "pointer": "/events/6/event_id",
+            "return_owner": "episode-continuity-owner"
+          },
+          {
+            "code": "original_event_missing",
+            "pointer": "/context/expected_events/6/event_id",
+            "return_owner": "episode-continuity-owner"
+          },
+          {
+            "code": "projection_event_set_conflict",
+            "pointer": "/projection/event_ids",
+            "return_owner": "episode-continuity-owner"
+          }
+        ],
+        "provider_memory_used_as_canonical": false,
+        "actual_event_written": false,
+        "actual_replay_executed": false,
+        "actual_checkpoint_published": false,
+        "actual_data_use_authorized": false,
+        "whole_episode_verified": false,
+        "operation_effect": "none"
+      },
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed"
     }
   ],
   "completion": {
     "status": "unproven",
-    "evidence": "319fixed metadata proposals。実episode/継続/共有/再構築/全閉包は未成立。"
+    "evidence": "323fixed metadata proposals。実episode/継続/共有/再構築/全閉包は未成立。"
   },
   "legacy_normative_objects": [
     {

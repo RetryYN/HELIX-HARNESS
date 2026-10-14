@@ -451,7 +451,119 @@
       "whole_scope_claim_unproven": "violation",
       "whole_scope_claim_unresolved": "unknown"
     },
-    "sort": "code/pointer/return_owner scalar順のexact三fieldunique。"
+    "sort": "code/pointer/return_owner scalar順のexact三fieldunique。",
+    "facet_names": [
+      "episode",
+      "effects",
+      "projection",
+      "checkpoint",
+      "continuity",
+      "data_use",
+      "scope_limit"
+    ],
+    "fixed_code_facets": {
+      "canonical_source_not_original": "episode",
+      "canonical_source_unresolved": "episode",
+      "event_identity_unresolved": "episode",
+      "event_source_set_conflict": "episode",
+      "event_sequence_conflict": "episode",
+      "event_kind_unresolved": "episode",
+      "event_status_unresolved": "episode",
+      "event_sequence_order_conflict": "episode",
+      "original_event_missing": "episode",
+      "phase_unresolved": "episode",
+      "duplicate_event_content_conflict": "effects",
+      "effect_record_unresolved": "effects",
+      "effect_source_unresolved": "effects",
+      "duplicate_side_effect_execution": "effects",
+      "effect_execution_not_observed": "effects",
+      "projection_rebuild_unresolved": "projection",
+      "projection_event_set_unresolved": "projection",
+      "projection_event_set_conflict": "projection",
+      "persistence_stage_failed": "checkpoint",
+      "persistence_stage_unresolved": "checkpoint",
+      "checkpoint_boundary_unresolved": "checkpoint",
+      "checkpoint_boundary_conflict": "checkpoint",
+      "checkpoint_publication_unresolved": "checkpoint",
+      "checkpoint_published_before_boundary": "checkpoint",
+      "cumulative_constraint_reset": "continuity",
+      "outstanding_unresolved": "continuity",
+      "outstanding_obligation_lost": "continuity",
+      "data_use_permission_rejected": "data_use",
+      "data_use_permission_unresolved": "data_use",
+      "data_use_scope_conflict": "data_use",
+      "data_use_source_conflict": "data_use",
+      "retention_window_expired": "data_use",
+      "historical_use_unresolved": "data_use",
+      "historical_use_rewritten": "data_use",
+      "whole_scope_claim_unproven": "scope_limit",
+      "whole_scope_claim_unresolved": "scope_limit"
+    },
+    "comparison_facets": [
+      {
+        "facet": "episode",
+        "comparisons": [
+          "root binding→expected_binding",
+          "event scalar→expected_events",
+          "event.episode→root episode",
+          "kind/status/identity/sequence原情報"
+        ]
+      },
+      {
+        "facet": "effects",
+        "comparisons": [
+          "same idのwhole content比較",
+          "effect record/source ref/execution_count"
+        ]
+      },
+      {
+        "facet": "projection",
+        "comparisons": [
+          "projection join/generation/state/event_ids"
+        ]
+      },
+      {
+        "facet": "checkpoint",
+        "comparisons": [
+          "write/projection/replay stage",
+          "checkpoint generation→projection generation",
+          "last_sequence→原unique末尾",
+          "published flagと関連四facet"
+        ]
+      },
+      {
+        "facet": "continuity",
+        "comparisons": [
+          "prior/successor join",
+          "累積非負数と非reset",
+          "stop_reasonとoutstanding包含"
+        ]
+      },
+      {
+        "facet": "data_use",
+        "comparisons": [
+          "use_request→use_policy→expected_policy",
+          "use scope→root scope",
+          "use class→各event class",
+          "retention_until/context.now",
+          "historical_use original→projected"
+        ]
+      },
+      {
+        "facet": "scope_limit",
+        "comparisons": [
+          "whole_scope_success_claim"
+        ]
+      }
+    ],
+    "code_emission": {
+      "source_unresolved/source_conflict": "全非retention文字列比較は非空文字列knownで汎用code。unknownは各原field、両側known相反は比較左側原field。facetはcomparison_facetsで指定。checkpoint generation相反もsource_conflictでcheckpoint facet。",
+      "quantity_unresolved": "event sequenceはepisode、checkpoint.last_sequenceはcheckpoint、prior/successorの累積数値はcontinuity、use retention_until/context.nowはdata_use。非負integerでない各原fieldに出す。",
+      "kind/status": "actual閉集合外は先のsource_unresolvedと、event_kind_unresolved/event_status_unresolvedを同原fieldへ併記。expected閉集合外はsource_unresolvedだけ。両側閉集合内相反はsource_conflict。actual event_id不明はevent_identity_unresolvedだけで当該eventを集約しない。",
+      "retention_until": "request→policyの両側known非負整数相反はdata_use_scope_conflict /use_request/retention_until。policy→expectedはdata_use_source_conflict /use_policy/tuple/retention_until。不明は各原位置quantity_unresolved。文字列scope/purpose/class/authorityは汎用codeと混同しない。",
+      "retention_window_expired": "context.nowとpolicy.retention_untilが両側knownでnow>=untilの場合だけ/context/nowのdata_use facet。",
+      "checkpoint_boundary": "checkpoint.last_sequenceの型不明はquantity_unresolvedのみ。型既知でも原unique末尾sequenceが不明/なしならcheckpoint_boundary_unresolved /checkpoint/last_sequence。両側known相反だけcheckpoint_boundary_conflict。同id重複は末尾を動かさず、末尾unknownを直前既知値へ補完しない。"
+    }
   },
   "legacy_normative_objects": [
     {
