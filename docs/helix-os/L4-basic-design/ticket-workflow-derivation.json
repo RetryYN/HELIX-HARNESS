@@ -568,6 +568,14 @@
       "whole_workflow_verified",
       "operation_effect"
     ],
-    "fixed_shape_limit": "外側record/dict/list shapeは固定metadata入力。正式codec、全type/typed finding、missing outer record/non-list graphはL5/L8で閉じる。unknown scalar sourceをknown conflictや空/falseへ補完しない。"
+    "fixed_shape_limit": "外側record/dict/list shapeは固定metadata入力。正式codec、全type/typed finding、missing outer record/non-list graphはL5/L8で閉じる。unknown scalar sourceをknown conflictや空/falseへ補完しない。",
+    "condition_names": [
+      "workflow_material_corresponding",
+      "workflow_material_unknown",
+      "workflow_material_violation"
+    ],
+    "condition_semantics": "conditionは選択phaseで適用した7facetの集約。violationが1つでもあればworkflow_material_violation、違反なしでunknownがあればworkflow_material_unknown、それ以外workflow_material_corresponding。workflow実適格性や実完了を意味しない。boolean workflow_material_correspondingは別の素材flagで、candidate phaseでは必ずfalse。candidate phaseのconditionがworkflow_material_correspondingでもworkflow instanceの成立を示さない。",
+    "case_input_integrity": "givenの値をcaseごとに独立保持する。全caseをcanonical givenでgroup化し、同一入力ならexpected_proposal全field同値を静的に照合する。これは同入力決定性の文書整合証拠で、正式codec/実装oracle凍結を成立させない。",
+    "primary_requirement_ref_semantics": "requirement_refsは親4要求の全体trace、primary_requirement_refsはcaseの直接検証concern。negativeは不成立facet→ownership/scope_limit:B01、inputs/ticket:F01、workflow:F02、backflow/continuity:F03。positiveは選択phaseの主目的、projectionと決定性/対象差はその直接concernを明示。絞込参照は全4要求の完了宣言ではない。"
   }
 }

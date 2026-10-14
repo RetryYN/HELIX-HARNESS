@@ -506,7 +506,15 @@
       "whole_workflow_verified",
       "operation_effect"
     ],
-    "fixed_shape_limit": "外側record/dict/list shapeは固定metadata入力。正式codec、全type/typed finding、missing outer record/non-list graphはL5/L8で閉じる。unknown scalar sourceをknown conflictや空/falseへ補完しない。"
+    "fixed_shape_limit": "外側record/dict/list shapeは固定metadata入力。正式codec、全type/typed finding、missing outer record/non-list graphはL5/L8で閉じる。unknown scalar sourceをknown conflictや空/falseへ補完しない。",
+    "condition_names": [
+      "workflow_material_corresponding",
+      "workflow_material_unknown",
+      "workflow_material_violation"
+    ],
+    "condition_semantics": "conditionは選択phaseで適用した7facetの集約。violationが1つでもあればworkflow_material_violation、違反なしでunknownがあればworkflow_material_unknown、それ以外workflow_material_corresponding。workflow実適格性や実完了を意味しない。boolean workflow_material_correspondingは別の素材flagで、candidate phaseでは必ずfalse。candidate phaseのconditionがworkflow_material_correspondingでもworkflow instanceの成立を示さない。",
+    "case_input_integrity": "givenの値をcaseごとに独立保持する。全caseをcanonical givenでgroup化し、同一入力ならexpected_proposal全field同値を静的に照合する。これは同入力決定性の文書整合証拠で、正式codec/実装oracle凍結を成立させない。",
+    "primary_requirement_ref_semantics": "requirement_refsは親4要求の全体trace、primary_requirement_refsはcaseの直接検証concern。negativeは不成立facet→ownership/scope_limit:B01、inputs/ticket:F01、workflow:F02、backflow/continuity:F03。positiveは選択phaseの主目的、projectionと決定性/対象差はその直接concernを明示。絞込参照は全4要求の完了宣言ではない。"
   },
   "cases": [
     {
@@ -847,7 +855,10 @@
       },
       "purpose": "phaseの素材だけを比較。実operationは全false。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-NORMAL-WORKFLOW",
@@ -1187,7 +1198,10 @@
       },
       "purpose": "phaseの素材だけを比較。実operationは全false。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-NORMAL-BACKFLOW",
@@ -1527,7 +1541,10 @@
       },
       "purpose": "phaseの素材だけを比較。実operationは全false。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-NORMAL-RESUME",
@@ -1867,7 +1884,10 @@
       },
       "purpose": "phaseの素材だけを比較。実operationは全false。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-SAME-INPUT-REPEAT",
@@ -2207,7 +2227,11 @@
       },
       "purpose": "同一入力を再照合して同じ候補/digest。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BINDING-PROJECT-UNKNOWN",
@@ -2518,7 +2542,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-BINDING-PROJECT-CONFLICT",
@@ -2829,7 +2856,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-BINDING-REQUIREMENT_REVISION-UNKNOWN",
@@ -3140,7 +3170,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-BINDING-REQUIREMENT_REVISION-CONFLICT",
@@ -3451,7 +3484,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-BINDING-SCOPE-UNKNOWN",
@@ -3762,7 +3798,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-BINDING-SCOPE-CONFLICT",
@@ -4073,7 +4112,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-BINDING-PLAN_REVISION-UNKNOWN",
@@ -4384,7 +4426,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-BINDING-PLAN_REVISION-CONFLICT",
@@ -4695,7 +4740,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-BINDING-CONTRACT_REVISION-UNKNOWN",
@@ -5006,7 +5054,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-BINDING-CONTRACT_REVISION-CONFLICT",
@@ -5317,7 +5368,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-PURPOSE_REF-UNKNOWN",
@@ -5628,7 +5682,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-PURPOSE_REF-CONFLICT",
@@ -5939,7 +5996,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-REQUEST_REF-UNKNOWN",
@@ -6250,7 +6310,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-REQUEST_REF-CONFLICT",
@@ -6561,7 +6624,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-CONSTRAINT_REF-UNKNOWN",
@@ -6872,7 +6938,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-CONSTRAINT_REF-CONFLICT",
@@ -7183,7 +7252,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-PERMISSION_REF-UNKNOWN",
@@ -7494,7 +7566,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-PERMISSION_REF-CONFLICT",
@@ -7805,7 +7880,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-PRIORITY_REF-UNKNOWN",
@@ -8116,7 +8194,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-PRIORITY_REF-CONFLICT",
@@ -8427,7 +8508,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-DEPENDENCY_REF-UNKNOWN",
@@ -8738,7 +8822,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-DEPENDENCY_REF-CONFLICT",
@@ -9049,7 +9136,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-RESOURCE_REF-UNKNOWN",
@@ -9360,7 +9450,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-RESOURCE_REF-CONFLICT",
@@ -9671,7 +9764,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-BUDGET_REF-UNKNOWN",
@@ -9982,7 +10078,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-BUDGET_REF-CONFLICT",
@@ -10293,7 +10392,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-DEADLINE_REF-UNKNOWN",
@@ -10604,7 +10706,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-DEADLINE_REF-CONFLICT",
@@ -10915,7 +11020,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-STOP_CONDITION_REF-UNKNOWN",
@@ -11226,7 +11334,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-STOP_CONDITION_REF-CONFLICT",
@@ -11537,7 +11648,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-HARNESS_VERSION-UNKNOWN",
@@ -11848,7 +11962,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-HARNESS_VERSION-CONFLICT",
@@ -12159,7 +12276,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-CONNECTION_REF-UNKNOWN",
@@ -12470,7 +12590,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-MANAGEMENT-CONNECTION_REF-CONFLICT",
@@ -12781,7 +12904,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-ROLES-PROMOTION-UNKNOWN",
@@ -13092,7 +13218,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-ROLES-PROMOTION-CONFLICT",
@@ -13403,7 +13532,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-ROLES-PROCESS-UNKNOWN",
@@ -13714,7 +13846,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-ROLES-PROCESS-CONFLICT",
@@ -14025,7 +14160,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-ROLES-PROPOSAL-UNKNOWN",
@@ -14336,7 +14474,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-ROLES-PROPOSAL-CONFLICT",
@@ -14647,7 +14788,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-ROLES-LEVEL-UNKNOWN",
@@ -14958,7 +15102,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-ROLES-LEVEL-CONFLICT",
@@ -15269,7 +15416,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-ROLES-AUTHORITY-UNKNOWN",
@@ -15580,7 +15730,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-ROLES-AUTHORITY-CONFLICT",
@@ -15891,7 +16044,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-ROLES-RESOURCE-UNKNOWN",
@@ -16202,7 +16358,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-ROLES-RESOURCE-CONFLICT",
@@ -16513,7 +16672,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-AUTHORITY-SOURCE_REF-UNKNOWN",
@@ -16859,7 +17021,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-AUTHORITY-SOURCE_REF-CONFLICT",
@@ -17205,7 +17370,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-RESOURCE-SOURCE_REF-UNKNOWN",
@@ -17551,7 +17719,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-RESOURCE-SOURCE_REF-CONFLICT",
@@ -17897,7 +18068,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-STATE-UNKNOWN",
@@ -18248,7 +18422,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-STATE-CONFLICT",
@@ -18599,7 +18776,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-SOURCE_REF-UNKNOWN",
@@ -18945,7 +19125,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-SOURCE_REF-CONFLICT",
@@ -19291,7 +19474,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-REQUIREMENT_REVISION-UNKNOWN",
@@ -19637,7 +19823,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-REQUIREMENT_REVISION-CONFLICT",
@@ -19983,7 +20172,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-SCOPE-UNKNOWN",
@@ -20329,7 +20521,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-SCOPE-CONFLICT",
@@ -20675,7 +20870,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-SOURCE_REF-UNKNOWN",
@@ -21021,7 +21219,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-SOURCE_REF-CONFLICT",
@@ -21367,7 +21568,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-REVISION-UNKNOWN",
@@ -21713,7 +21917,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-REVISION-CONFLICT",
@@ -22059,7 +22266,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-PARTS-UNKNOWN",
@@ -22402,7 +22612,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-PARTS-CONFLICT",
@@ -22757,7 +22970,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-ALLOWED_EDGES-UNKNOWN",
@@ -23098,7 +23314,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-ALLOWED_EDGES-CONFLICT",
@@ -23449,7 +23668,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-OBLIGATIONS-UNKNOWN",
@@ -23788,7 +24010,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-OBLIGATIONS-CONFLICT",
@@ -24144,7 +24369,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-BACKFLOW_REF-UNKNOWN",
@@ -24490,7 +24718,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-BACKFLOW_REF-CONFLICT",
@@ -24836,7 +25067,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-TICKET-TICKET_REF-UNKNOWN",
@@ -25147,7 +25381,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-TICKET_REF-CONFLICT",
@@ -25458,7 +25695,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-TARGET-UNKNOWN",
@@ -25769,7 +26009,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-TARGET-CONFLICT",
@@ -26080,7 +26323,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-KIND-UNKNOWN",
@@ -26391,7 +26637,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-KIND-CONFLICT",
@@ -26702,7 +26951,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-PARENT_REVISION-UNKNOWN",
@@ -27013,7 +27265,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-PARENT_REVISION-CONFLICT",
@@ -27324,7 +27579,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-SCOPE-UNKNOWN",
@@ -27635,7 +27893,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-SCOPE-CONFLICT",
@@ -27946,7 +28207,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-DEPENDENCIES-UNKNOWN",
@@ -28255,7 +28519,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-DEPENDENCIES-CONFLICT",
@@ -28566,7 +28833,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-ACCEPTANCE-UNKNOWN",
@@ -28875,7 +29145,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-ACCEPTANCE-CONFLICT",
@@ -29186,7 +29459,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-BACKFLOW_REF-UNKNOWN",
@@ -29497,7 +29773,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TICKET-BACKFLOW_REF-CONFLICT",
@@ -29808,7 +30087,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-BINDING-PROJECT-UNKNOWN",
@@ -30119,7 +30401,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-BINDING-REQUIREMENT_REVISION-UNKNOWN",
@@ -30430,7 +30715,12 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F02",
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-EXPECTED-BINDING-SCOPE-UNKNOWN",
@@ -30741,7 +31031,12 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F02",
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-EXPECTED-BINDING-PLAN_REVISION-UNKNOWN",
@@ -31052,7 +31347,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-BINDING-CONTRACT_REVISION-UNKNOWN",
@@ -31363,7 +31661,11 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-EXPECTED-MANAGEMENT-PURPOSE_REF-UNKNOWN",
@@ -31674,7 +31976,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-MANAGEMENT-REQUEST_REF-UNKNOWN",
@@ -31985,7 +32290,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-MANAGEMENT-CONSTRAINT_REF-UNKNOWN",
@@ -32296,7 +32604,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-MANAGEMENT-PERMISSION_REF-UNKNOWN",
@@ -32607,7 +32918,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-MANAGEMENT-PRIORITY_REF-UNKNOWN",
@@ -32918,7 +33232,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-MANAGEMENT-DEPENDENCY_REF-UNKNOWN",
@@ -33229,7 +33546,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-MANAGEMENT-RESOURCE_REF-UNKNOWN",
@@ -33540,7 +33860,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-MANAGEMENT-BUDGET_REF-UNKNOWN",
@@ -33851,7 +34174,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-MANAGEMENT-DEADLINE_REF-UNKNOWN",
@@ -34162,7 +34488,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-MANAGEMENT-STOP_CONDITION_REF-UNKNOWN",
@@ -34473,7 +34802,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-MANAGEMENT-HARNESS_VERSION-UNKNOWN",
@@ -34784,7 +35116,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-MANAGEMENT-CONNECTION_REF-UNKNOWN",
@@ -35095,7 +35430,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EXPECTED-DEPENDENCY-STATE-UNKNOWN",
@@ -35441,7 +35779,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-EXPECTED-DEPENDENCY-SOURCE_REF-UNKNOWN",
@@ -35787,7 +36128,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-EXPECTED-DEPENDENCY-REQUIREMENT_REVISION-UNKNOWN",
@@ -36133,7 +36477,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-EXPECTED-DEPENDENCY-SCOPE-UNKNOWN",
@@ -36479,7 +36826,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-SOURCE_REF-UNKNOWN",
@@ -36825,7 +37175,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-REQUIREMENT_REVISION-UNKNOWN",
@@ -37171,7 +37524,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-SCOPE-UNKNOWN",
@@ -37517,7 +37873,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-REASON_REF-UNKNOWN",
@@ -37863,7 +38222,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-PARTS-UNKNOWN",
@@ -38206,7 +38568,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-OBLIGATIONS-UNKNOWN",
@@ -38545,7 +38910,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-OUTSIDE-PARTS",
@@ -38901,7 +39269,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-ORDER-REVERSED",
@@ -39252,7 +39623,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-OBLIGATION-LOST",
@@ -39601,7 +39975,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-MISSING",
@@ -39930,7 +40307,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-SELECTION-UNKNOWN",
@@ -40276,7 +40656,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-SELECTION-SILENT-DOWNGRADE",
@@ -40622,7 +41005,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-OPTIONAL-PROPOSAL-NOT-PROVIDED",
@@ -40928,7 +41314,10 @@
       },
       "purpose": "INT案の非提供を一律欠損/全停止にしない。提供時にだけ当該案を照合。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-OPTIONAL-LEVEL-PROVIDED",
@@ -41033,7 +41422,7 @@
             "state": "resolved",
             "source_ref": "DEP-RECEIPT-A",
             "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
-            "scope": "OTHER-SCOPE"
+            "scope": "SYNTHETIC-SCOPE"
           },
           "authority": {
             "state": "current",
@@ -41278,7 +41667,10 @@
       },
       "purpose": "提供されたLABO水準素材の同source/revision/scopeを照合。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-LEVEL-PROVIDED-WRONG-SCOPE",
@@ -41634,7 +42026,10 @@
       },
       "purpose": "別scope水準を当該workflow適格性に流用しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-LEVEL-SELECTION-UNKNOWN",
@@ -41980,7 +42375,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-AUTHORITY-REVOKED",
@@ -42326,7 +42724,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-AUTHORITY-STALE",
@@ -42672,7 +43073,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-AUTHORITY-DENIED",
@@ -43018,7 +43422,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-AUTHORITY-FAILED",
@@ -43364,7 +43771,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-AUTHORITY-UNKNOWN",
@@ -43710,7 +44120,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-RESOURCE-REVOKED",
@@ -44056,7 +44469,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-RESOURCE-STALE",
@@ -44402,7 +44818,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-RESOURCE-DENIED",
@@ -44748,7 +45167,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-RESOURCE-FAILED",
@@ -45094,7 +45516,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-RESOURCE-UNKNOWN",
@@ -45440,7 +45865,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-MISSING",
@@ -45791,7 +46219,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-FAILED",
@@ -46142,7 +46573,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-CONFLICT",
@@ -46493,7 +46927,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-STALE",
@@ -46844,7 +47281,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-ISSUE_CLOSED",
@@ -47195,7 +47635,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-UNKNOWN",
@@ -47546,7 +47989,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-BUDGET_LIMIT-NONE",
@@ -47892,7 +48338,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-BUDGET_LIMIT--1",
@@ -48238,7 +48687,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-BUDGET_LIMIT-UNKNOWN",
@@ -48584,7 +49036,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-DEADLINE-NONE",
@@ -48930,7 +49385,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-DEADLINE--1",
@@ -49276,7 +49734,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-DEADLINE-UNKNOWN",
@@ -49622,7 +50083,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-COST_SPENT-NONE",
@@ -49968,7 +50432,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-COST_SPENT--1",
@@ -50314,7 +50781,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-COST_SPENT-UNKNOWN",
@@ -50660,7 +51130,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-FAILURES-NONE",
@@ -51006,7 +51479,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-FAILURES--1",
@@ -51352,7 +51828,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-FAILURES-UNKNOWN",
@@ -51698,7 +52177,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-NOW-NONE",
@@ -52044,7 +52526,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-NOW--1",
@@ -52390,7 +52875,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-QUANTITY-NOW-UNKNOWN",
@@ -52736,7 +53224,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-BUDGET-EXHAUSTED",
@@ -53082,7 +53573,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEADLINE-REACHED",
@@ -53428,7 +53922,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-REQUIREMENT_REVISION-CONFLICT",
@@ -53774,7 +54271,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-REQUIREMENT_REVISION-UNKNOWN",
@@ -54120,7 +54620,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-SCOPE-CONFLICT",
@@ -54466,7 +54969,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-SCOPE-UNKNOWN",
@@ -54812,7 +55318,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-TICKET_REF-CONFLICT",
@@ -55158,7 +55667,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-TICKET_REF-UNKNOWN",
@@ -55504,7 +56016,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-BACKFLOW_REF-CONFLICT",
@@ -55850,7 +56365,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-BACKFLOW_REF-UNKNOWN",
@@ -56196,7 +56714,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-UNKNOWN",
@@ -56536,7 +57057,10 @@
       },
       "purpose": "途中不成立は既定戻し先の素材であり、成功/解決とは別。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-CONFLICT",
@@ -56876,7 +57400,10 @@
       },
       "purpose": "途中不成立は既定戻し先の素材であり、成功/解決とは別。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-SCOPE_VIOLATION",
@@ -57216,7 +57743,10 @@
       },
       "purpose": "途中不成立は既定戻し先の素材であり、成功/解決とは別。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-UNRESOLVED_DEPENDENCY",
@@ -57556,7 +58086,10 @@
       },
       "purpose": "途中不成立は既定戻し先の素材であり、成功/解決とは別。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-BACKFLOW-RESULT-MISSING",
@@ -57902,7 +58435,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-REQUIREMENT_REVISION-UNKNOWN",
@@ -58248,7 +58784,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-REQUIREMENT_REVISION-CONFLICT",
@@ -58594,7 +59133,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-SCOPE-UNKNOWN",
@@ -58940,7 +59482,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-SCOPE-CONFLICT",
@@ -59286,7 +59831,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-STOP_REASON_REF-UNKNOWN",
@@ -59637,7 +60185,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-STOP_REASON_REF-CONFLICT",
@@ -59983,7 +60534,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-BUDGET_LIMIT-UNKNOWN",
@@ -60329,7 +60883,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-BUDGET_LIMIT-RESET",
@@ -60675,7 +61232,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-DEADLINE-UNKNOWN",
@@ -61021,7 +61581,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-DEADLINE-RESET",
@@ -61367,7 +61930,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-COST_SPENT-UNKNOWN",
@@ -61713,7 +62279,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-COST_SPENT-RESET",
@@ -62059,7 +62628,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-FAILURES-UNKNOWN",
@@ -62405,7 +62977,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-FAILURES-RESET",
@@ -62751,7 +63326,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-OUTSTANDING-LOST",
@@ -63094,7 +63672,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-OUTSTANDING-UNKNOWN",
@@ -63437,7 +64018,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-MEANING-SELF-CONFIRMED",
@@ -63783,7 +64367,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-RESUME-MEANING-CONFIRMATION-UNKNOWN",
@@ -64129,7 +64716,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-COMPLETION-CLAIM-TRUE",
@@ -64475,7 +65065,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-COMPLETION-CLAIM-NONE",
@@ -64821,7 +65414,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-PHASE-UNKNOWN",
@@ -65132,7 +65728,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-CANDIDATE-NO-FUTURE-GATE",
@@ -65431,7 +66030,10 @@
       },
       "purpose": "左側候補形成に未来の実認可/実資源/receiptを一律要求しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-PROJECTION-DONE-NO-ACTUAL-COMPLETION",
@@ -65771,7 +66373,10 @@
       },
       "purpose": "close/merge/labelは実workflow完了の証拠にしない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-B01"
+      ]
     },
     {
       "id": "OS017-PRIORITY-REBIND-NO-TICKET-REVISION",
@@ -66111,7 +66716,11 @@
       },
       "purpose": "現在priorityは外部bindingで、ticket意味候補/digestを改めない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-DIFFERENT-TARGET",
@@ -66451,7 +67060,10 @@
       },
       "purpose": "対象変更を候補/digestへ保持し、固定全案件列へ縮退しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-DIFFERENT-DEPENDENCY",
@@ -66791,7 +67403,10 @@
       },
       "purpose": "必要依存の差を候補/digestへ保持。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-TWO-TICKET-GRAPH",
@@ -67173,7 +67788,10 @@
       },
       "purpose": "案件によってgraphの対象/件数が変わる。ここから固定階層/分解数を定めない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EMPTY-ACTUAL-TICKET-GRAPH",
@@ -67469,7 +68087,10 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-EMPTY-EXPECTED-TICKET-GRAPH",
@@ -67765,7 +68386,11 @@
       },
       "purpose": "元sourceとの不足/相反を区別し、実READYへ昇格しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F03"
+      ]
     },
     {
       "id": "OS017-EMPTY-BOTH-ACCEPTANCE",
@@ -68077,7 +68702,10 @@
       },
       "purpose": "空受入を充足へしない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-REQUIREMENT_REVISION-BOTH-FOREIGN",
@@ -68423,7 +69051,10 @@
       },
       "purpose": "提供record間で一致していても元bindingへの結合を欠かさない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROPOSAL-SCOPE-BOTH-FOREIGN",
@@ -68769,7 +69400,10 @@
       },
       "purpose": "提供record間で一致していても元bindingへの結合を欠かさない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-REQUIREMENT_REVISION-BOTH-FOREIGN",
@@ -69115,7 +69749,10 @@
       },
       "purpose": "提供record間で一致していても元bindingへの結合を欠かさない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-DEPENDENCY-SCOPE-BOTH-FOREIGN",
@@ -69461,7 +70098,10 @@
       },
       "purpose": "提供record間で一致していても元bindingへの結合を欠かさない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     },
     {
       "id": "OS017-PROCESS-BOTH-FOREIGN-REVISION",
@@ -69807,11 +70447,2775 @@
       },
       "purpose": "工程sourceと元contract bindingを混同しない。",
       "execution_state": "not_executed",
-      "actual_observation": "not_observed"
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
+    },
+    {
+      "id": "OS017-BACKFLOW-PHASE-WRONG-ROUTE",
+      "requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F02",
+        "HELIXOS-L3-017-F03",
+        "HELIXOS-L3-017-B01"
+      ],
+      "given": {
+        "input": {
+          "phase": "backflow",
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "priority_ref": "SYNTHETIC-PRIORITY_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION",
+            "connection_ref": "SYNTHETIC-CONNECTION_REF"
+          },
+          "roles": {
+            "promotion": "OS",
+            "process": "HARNESS",
+            "proposal": "INTELLIGENCE",
+            "level": "LABO",
+            "authority": "SECURITY",
+            "resource": "INFRASTRUCTURE"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ],
+          "process": {
+            "source_ref": "HARNESS-PROCESS-A",
+            "revision": "SYNTHETIC-CONTRACT_REVISION",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "allowed_edges": [
+              [
+                "PART-A",
+                "PART-B"
+              ]
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            },
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "proposal_selected": true,
+          "proposal": {
+            "source_ref": "INT-PROPOSAL-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "reason_ref": "INT-REASON-A",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            }
+          },
+          "level_selected": false,
+          "level": null,
+          "authority": {
+            "state": "current",
+            "source_ref": "SYNTHETIC-PERMISSION_REF"
+          },
+          "resource": {
+            "state": "observed_material",
+            "source_ref": "SYNTHETIC-RESOURCE_REF"
+          },
+          "dependency": {
+            "state": "resolved",
+            "source_ref": "DEP-RECEIPT-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE"
+          },
+          "constraints": {
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "now": 90
+          },
+          "intermediate": {
+            "state": "failed",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "ticket_ref": "TICKET-A",
+            "backflow_ref": "OTHER-ROUTE"
+          },
+          "prior": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 4,
+            "failures": 1,
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "resumed": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "meaning_change_self_confirmed": false
+          },
+          "completion_claim": false,
+          "projection": {
+            "issue_closed": false,
+            "pr_merged": false,
+            "label": "OPEN"
+          },
+          "context": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "plan_revision": "SYNTHETIC-PLAN_REVISION",
+              "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+            },
+            "management": {
+              "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+              "request_ref": "SYNTHETIC-REQUEST_REF",
+              "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+              "permission_ref": "SYNTHETIC-PERMISSION_REF",
+              "priority_ref": "SYNTHETIC-PRIORITY_REF",
+              "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+              "resource_ref": "SYNTHETIC-RESOURCE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "connection_ref": "SYNTHETIC-CONNECTION_REF"
+            },
+            "roles": {
+              "promotion": "OS",
+              "process": "HARNESS",
+              "proposal": "INTELLIGENCE",
+              "level": "LABO",
+              "authority": "SECURITY",
+              "resource": "INFRASTRUCTURE"
+            },
+            "ticket_graph": [
+              {
+                "ticket_ref": "TICKET-A",
+                "target": "TARGET-A",
+                "kind": "development",
+                "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "dependencies": [
+                  "DEP-A"
+                ],
+                "acceptance": [
+                  "OBLIGATION-A"
+                ],
+                "backflow_ref": "BACKFLOW-A"
+              }
+            ],
+            "process": {
+              "source_ref": "HARNESS-PROCESS-A",
+              "revision": "SYNTHETIC-CONTRACT_REVISION",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "allowed_edges": [
+                [
+                  "PART-A",
+                  "PART-B"
+                ]
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              },
+              "backflow_ref": "BACKFLOW-A"
+            },
+            "proposal_selected": true,
+            "proposal": {
+              "source_ref": "INT-PROPOSAL-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "reason_ref": "INT-REASON-A",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              }
+            },
+            "dependency": {
+              "state": "resolved",
+              "source_ref": "DEP-RECEIPT-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "level_selected": false,
+            "level": null,
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "authority_ref": "SYNTHETIC-PERMISSION_REF",
+            "expected_budget_limit": 100,
+            "expected_deadline": 100,
+            "prior": {
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "stop_reason_ref": "STOP-A",
+              "budget_limit": 100,
+              "deadline": 100,
+              "cost_spent": 4,
+              "failures": 1,
+              "outstanding": [
+                "OBLIGATION-A"
+              ]
+            }
+          }
+        }
+      },
+      "expected_proposal": {
+        "condition": "workflow_material_violation",
+        "selected_phase": "backflow",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "corresponding",
+          "backflow": "violation",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "candidate_material": {
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management_refs": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ]
+        },
+        "candidate_material_digest": "9bb8623d52d0a7e6dce8fbe1f310ad78b7fe1072ad884bd5bf34c851680bc16c",
+        "workflow_material_corresponding": true,
+        "backflow_material_ref": null,
+        "resume_material_corresponding": false,
+        "findings": [
+          {
+            "code": "source_conflict",
+            "pointer": "/intermediate/backflow_ref",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "actual_ticket_written": false,
+        "actual_workflow_started": false,
+        "actual_assignment_issued": false,
+        "actual_backflow_applied": false,
+        "actual_resume_executed": false,
+        "whole_workflow_verified": false,
+        "operation_effect": "none"
+      },
+      "purpose": "差戻しphaseで不足/相反/運転制約を個別保持し、素材routeを実適用へしない。",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
+    },
+    {
+      "id": "OS017-BACKFLOW-PHASE-WRONG-SCOPE",
+      "requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F02",
+        "HELIXOS-L3-017-F03",
+        "HELIXOS-L3-017-B01"
+      ],
+      "given": {
+        "input": {
+          "phase": "backflow",
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "priority_ref": "SYNTHETIC-PRIORITY_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION",
+            "connection_ref": "SYNTHETIC-CONNECTION_REF"
+          },
+          "roles": {
+            "promotion": "OS",
+            "process": "HARNESS",
+            "proposal": "INTELLIGENCE",
+            "level": "LABO",
+            "authority": "SECURITY",
+            "resource": "INFRASTRUCTURE"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ],
+          "process": {
+            "source_ref": "HARNESS-PROCESS-A",
+            "revision": "SYNTHETIC-CONTRACT_REVISION",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "allowed_edges": [
+              [
+                "PART-A",
+                "PART-B"
+              ]
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            },
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "proposal_selected": true,
+          "proposal": {
+            "source_ref": "INT-PROPOSAL-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "reason_ref": "INT-REASON-A",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            }
+          },
+          "level_selected": false,
+          "level": null,
+          "authority": {
+            "state": "current",
+            "source_ref": "SYNTHETIC-PERMISSION_REF"
+          },
+          "resource": {
+            "state": "observed_material",
+            "source_ref": "SYNTHETIC-RESOURCE_REF"
+          },
+          "dependency": {
+            "state": "resolved",
+            "source_ref": "DEP-RECEIPT-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE"
+          },
+          "constraints": {
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "now": 90
+          },
+          "intermediate": {
+            "state": "failed",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "OTHER-SCOPE",
+            "ticket_ref": "TICKET-A",
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "prior": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 4,
+            "failures": 1,
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "resumed": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "meaning_change_self_confirmed": false
+          },
+          "completion_claim": false,
+          "projection": {
+            "issue_closed": false,
+            "pr_merged": false,
+            "label": "OPEN"
+          },
+          "context": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "plan_revision": "SYNTHETIC-PLAN_REVISION",
+              "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+            },
+            "management": {
+              "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+              "request_ref": "SYNTHETIC-REQUEST_REF",
+              "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+              "permission_ref": "SYNTHETIC-PERMISSION_REF",
+              "priority_ref": "SYNTHETIC-PRIORITY_REF",
+              "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+              "resource_ref": "SYNTHETIC-RESOURCE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "connection_ref": "SYNTHETIC-CONNECTION_REF"
+            },
+            "roles": {
+              "promotion": "OS",
+              "process": "HARNESS",
+              "proposal": "INTELLIGENCE",
+              "level": "LABO",
+              "authority": "SECURITY",
+              "resource": "INFRASTRUCTURE"
+            },
+            "ticket_graph": [
+              {
+                "ticket_ref": "TICKET-A",
+                "target": "TARGET-A",
+                "kind": "development",
+                "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "dependencies": [
+                  "DEP-A"
+                ],
+                "acceptance": [
+                  "OBLIGATION-A"
+                ],
+                "backflow_ref": "BACKFLOW-A"
+              }
+            ],
+            "process": {
+              "source_ref": "HARNESS-PROCESS-A",
+              "revision": "SYNTHETIC-CONTRACT_REVISION",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "allowed_edges": [
+                [
+                  "PART-A",
+                  "PART-B"
+                ]
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              },
+              "backflow_ref": "BACKFLOW-A"
+            },
+            "proposal_selected": true,
+            "proposal": {
+              "source_ref": "INT-PROPOSAL-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "reason_ref": "INT-REASON-A",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              }
+            },
+            "dependency": {
+              "state": "resolved",
+              "source_ref": "DEP-RECEIPT-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "level_selected": false,
+            "level": null,
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "authority_ref": "SYNTHETIC-PERMISSION_REF",
+            "expected_budget_limit": 100,
+            "expected_deadline": 100,
+            "prior": {
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "stop_reason_ref": "STOP-A",
+              "budget_limit": 100,
+              "deadline": 100,
+              "cost_spent": 4,
+              "failures": 1,
+              "outstanding": [
+                "OBLIGATION-A"
+              ]
+            }
+          }
+        }
+      },
+      "expected_proposal": {
+        "condition": "workflow_material_violation",
+        "selected_phase": "backflow",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "corresponding",
+          "backflow": "violation",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "candidate_material": {
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management_refs": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ]
+        },
+        "candidate_material_digest": "9bb8623d52d0a7e6dce8fbe1f310ad78b7fe1072ad884bd5bf34c851680bc16c",
+        "workflow_material_corresponding": true,
+        "backflow_material_ref": null,
+        "resume_material_corresponding": false,
+        "findings": [
+          {
+            "code": "source_conflict",
+            "pointer": "/intermediate/scope",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "actual_ticket_written": false,
+        "actual_workflow_started": false,
+        "actual_assignment_issued": false,
+        "actual_backflow_applied": false,
+        "actual_resume_executed": false,
+        "whole_workflow_verified": false,
+        "operation_effect": "none"
+      },
+      "purpose": "差戻しphaseで不足/相反/運転制約を個別保持し、素材routeを実適用へしない。",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
+    },
+    {
+      "id": "OS017-BACKFLOW-PHASE-UNKNOWN-ROUTE",
+      "requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F02",
+        "HELIXOS-L3-017-F03",
+        "HELIXOS-L3-017-B01"
+      ],
+      "given": {
+        "input": {
+          "phase": "backflow",
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "priority_ref": "SYNTHETIC-PRIORITY_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION",
+            "connection_ref": "SYNTHETIC-CONNECTION_REF"
+          },
+          "roles": {
+            "promotion": "OS",
+            "process": "HARNESS",
+            "proposal": "INTELLIGENCE",
+            "level": "LABO",
+            "authority": "SECURITY",
+            "resource": "INFRASTRUCTURE"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ],
+          "process": {
+            "source_ref": "HARNESS-PROCESS-A",
+            "revision": "SYNTHETIC-CONTRACT_REVISION",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "allowed_edges": [
+              [
+                "PART-A",
+                "PART-B"
+              ]
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            },
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "proposal_selected": true,
+          "proposal": {
+            "source_ref": "INT-PROPOSAL-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "reason_ref": "INT-REASON-A",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            }
+          },
+          "level_selected": false,
+          "level": null,
+          "authority": {
+            "state": "current",
+            "source_ref": "SYNTHETIC-PERMISSION_REF"
+          },
+          "resource": {
+            "state": "observed_material",
+            "source_ref": "SYNTHETIC-RESOURCE_REF"
+          },
+          "dependency": {
+            "state": "resolved",
+            "source_ref": "DEP-RECEIPT-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE"
+          },
+          "constraints": {
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "now": 90
+          },
+          "intermediate": {
+            "state": "failed",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "ticket_ref": "TICKET-A",
+            "backflow_ref": null
+          },
+          "prior": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 4,
+            "failures": 1,
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "resumed": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "meaning_change_self_confirmed": false
+          },
+          "completion_claim": false,
+          "projection": {
+            "issue_closed": false,
+            "pr_merged": false,
+            "label": "OPEN"
+          },
+          "context": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "plan_revision": "SYNTHETIC-PLAN_REVISION",
+              "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+            },
+            "management": {
+              "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+              "request_ref": "SYNTHETIC-REQUEST_REF",
+              "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+              "permission_ref": "SYNTHETIC-PERMISSION_REF",
+              "priority_ref": "SYNTHETIC-PRIORITY_REF",
+              "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+              "resource_ref": "SYNTHETIC-RESOURCE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "connection_ref": "SYNTHETIC-CONNECTION_REF"
+            },
+            "roles": {
+              "promotion": "OS",
+              "process": "HARNESS",
+              "proposal": "INTELLIGENCE",
+              "level": "LABO",
+              "authority": "SECURITY",
+              "resource": "INFRASTRUCTURE"
+            },
+            "ticket_graph": [
+              {
+                "ticket_ref": "TICKET-A",
+                "target": "TARGET-A",
+                "kind": "development",
+                "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "dependencies": [
+                  "DEP-A"
+                ],
+                "acceptance": [
+                  "OBLIGATION-A"
+                ],
+                "backflow_ref": "BACKFLOW-A"
+              }
+            ],
+            "process": {
+              "source_ref": "HARNESS-PROCESS-A",
+              "revision": "SYNTHETIC-CONTRACT_REVISION",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "allowed_edges": [
+                [
+                  "PART-A",
+                  "PART-B"
+                ]
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              },
+              "backflow_ref": "BACKFLOW-A"
+            },
+            "proposal_selected": true,
+            "proposal": {
+              "source_ref": "INT-PROPOSAL-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "reason_ref": "INT-REASON-A",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              }
+            },
+            "dependency": {
+              "state": "resolved",
+              "source_ref": "DEP-RECEIPT-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "level_selected": false,
+            "level": null,
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "authority_ref": "SYNTHETIC-PERMISSION_REF",
+            "expected_budget_limit": 100,
+            "expected_deadline": 100,
+            "prior": {
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "stop_reason_ref": "STOP-A",
+              "budget_limit": 100,
+              "deadline": 100,
+              "cost_spent": 4,
+              "failures": 1,
+              "outstanding": [
+                "OBLIGATION-A"
+              ]
+            }
+          }
+        }
+      },
+      "expected_proposal": {
+        "condition": "workflow_material_unknown",
+        "selected_phase": "backflow",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "corresponding",
+          "backflow": "unknown",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "candidate_material": {
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management_refs": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ]
+        },
+        "candidate_material_digest": "9bb8623d52d0a7e6dce8fbe1f310ad78b7fe1072ad884bd5bf34c851680bc16c",
+        "workflow_material_corresponding": true,
+        "backflow_material_ref": null,
+        "resume_material_corresponding": false,
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/intermediate/backflow_ref",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "actual_ticket_written": false,
+        "actual_workflow_started": false,
+        "actual_assignment_issued": false,
+        "actual_backflow_applied": false,
+        "actual_resume_executed": false,
+        "whole_workflow_verified": false,
+        "operation_effect": "none"
+      },
+      "purpose": "差戻しphaseで不足/相反/運転制約を個別保持し、素材routeを実適用へしない。",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
+    },
+    {
+      "id": "OS017-BACKFLOW-PHASE-UNKNOWN-RESULT",
+      "requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F02",
+        "HELIXOS-L3-017-F03",
+        "HELIXOS-L3-017-B01"
+      ],
+      "given": {
+        "input": {
+          "phase": "backflow",
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "priority_ref": "SYNTHETIC-PRIORITY_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION",
+            "connection_ref": "SYNTHETIC-CONNECTION_REF"
+          },
+          "roles": {
+            "promotion": "OS",
+            "process": "HARNESS",
+            "proposal": "INTELLIGENCE",
+            "level": "LABO",
+            "authority": "SECURITY",
+            "resource": "INFRASTRUCTURE"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ],
+          "process": {
+            "source_ref": "HARNESS-PROCESS-A",
+            "revision": "SYNTHETIC-CONTRACT_REVISION",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "allowed_edges": [
+              [
+                "PART-A",
+                "PART-B"
+              ]
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            },
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "proposal_selected": true,
+          "proposal": {
+            "source_ref": "INT-PROPOSAL-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "reason_ref": "INT-REASON-A",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            }
+          },
+          "level_selected": false,
+          "level": null,
+          "authority": {
+            "state": "current",
+            "source_ref": "SYNTHETIC-PERMISSION_REF"
+          },
+          "resource": {
+            "state": "observed_material",
+            "source_ref": "SYNTHETIC-RESOURCE_REF"
+          },
+          "dependency": {
+            "state": "resolved",
+            "source_ref": "DEP-RECEIPT-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE"
+          },
+          "constraints": {
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "now": 90
+          },
+          "intermediate": {
+            "state": null,
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "ticket_ref": "TICKET-A",
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "prior": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 4,
+            "failures": 1,
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "resumed": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "meaning_change_self_confirmed": false
+          },
+          "completion_claim": false,
+          "projection": {
+            "issue_closed": false,
+            "pr_merged": false,
+            "label": "OPEN"
+          },
+          "context": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "plan_revision": "SYNTHETIC-PLAN_REVISION",
+              "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+            },
+            "management": {
+              "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+              "request_ref": "SYNTHETIC-REQUEST_REF",
+              "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+              "permission_ref": "SYNTHETIC-PERMISSION_REF",
+              "priority_ref": "SYNTHETIC-PRIORITY_REF",
+              "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+              "resource_ref": "SYNTHETIC-RESOURCE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "connection_ref": "SYNTHETIC-CONNECTION_REF"
+            },
+            "roles": {
+              "promotion": "OS",
+              "process": "HARNESS",
+              "proposal": "INTELLIGENCE",
+              "level": "LABO",
+              "authority": "SECURITY",
+              "resource": "INFRASTRUCTURE"
+            },
+            "ticket_graph": [
+              {
+                "ticket_ref": "TICKET-A",
+                "target": "TARGET-A",
+                "kind": "development",
+                "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "dependencies": [
+                  "DEP-A"
+                ],
+                "acceptance": [
+                  "OBLIGATION-A"
+                ],
+                "backflow_ref": "BACKFLOW-A"
+              }
+            ],
+            "process": {
+              "source_ref": "HARNESS-PROCESS-A",
+              "revision": "SYNTHETIC-CONTRACT_REVISION",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "allowed_edges": [
+                [
+                  "PART-A",
+                  "PART-B"
+                ]
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              },
+              "backflow_ref": "BACKFLOW-A"
+            },
+            "proposal_selected": true,
+            "proposal": {
+              "source_ref": "INT-PROPOSAL-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "reason_ref": "INT-REASON-A",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              }
+            },
+            "dependency": {
+              "state": "resolved",
+              "source_ref": "DEP-RECEIPT-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "level_selected": false,
+            "level": null,
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "authority_ref": "SYNTHETIC-PERMISSION_REF",
+            "expected_budget_limit": 100,
+            "expected_deadline": 100,
+            "prior": {
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "stop_reason_ref": "STOP-A",
+              "budget_limit": 100,
+              "deadline": 100,
+              "cost_spent": 4,
+              "failures": 1,
+              "outstanding": [
+                "OBLIGATION-A"
+              ]
+            }
+          }
+        }
+      },
+      "expected_proposal": {
+        "condition": "workflow_material_unknown",
+        "selected_phase": "backflow",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "corresponding",
+          "backflow": "unknown",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "candidate_material": {
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management_refs": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ]
+        },
+        "candidate_material_digest": "9bb8623d52d0a7e6dce8fbe1f310ad78b7fe1072ad884bd5bf34c851680bc16c",
+        "workflow_material_corresponding": true,
+        "backflow_material_ref": null,
+        "resume_material_corresponding": false,
+        "findings": [
+          {
+            "code": "backflow_result_unresolved",
+            "pointer": "/intermediate/state",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "actual_ticket_written": false,
+        "actual_workflow_started": false,
+        "actual_assignment_issued": false,
+        "actual_backflow_applied": false,
+        "actual_resume_executed": false,
+        "whole_workflow_verified": false,
+        "operation_effect": "none"
+      },
+      "purpose": "差戻しphaseで不足/相反/運転制約を個別保持し、素材routeを実適用へしない。",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F03"
+      ]
+    },
+    {
+      "id": "OS017-BACKFLOW-PHASE-AUTHORITY-REVOKED",
+      "requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F02",
+        "HELIXOS-L3-017-F03",
+        "HELIXOS-L3-017-B01"
+      ],
+      "given": {
+        "input": {
+          "phase": "backflow",
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "priority_ref": "SYNTHETIC-PRIORITY_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION",
+            "connection_ref": "SYNTHETIC-CONNECTION_REF"
+          },
+          "roles": {
+            "promotion": "OS",
+            "process": "HARNESS",
+            "proposal": "INTELLIGENCE",
+            "level": "LABO",
+            "authority": "SECURITY",
+            "resource": "INFRASTRUCTURE"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ],
+          "process": {
+            "source_ref": "HARNESS-PROCESS-A",
+            "revision": "SYNTHETIC-CONTRACT_REVISION",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "allowed_edges": [
+              [
+                "PART-A",
+                "PART-B"
+              ]
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            },
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "proposal_selected": true,
+          "proposal": {
+            "source_ref": "INT-PROPOSAL-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "reason_ref": "INT-REASON-A",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            }
+          },
+          "level_selected": false,
+          "level": null,
+          "authority": {
+            "state": "revoked",
+            "source_ref": "SYNTHETIC-PERMISSION_REF"
+          },
+          "resource": {
+            "state": "observed_material",
+            "source_ref": "SYNTHETIC-RESOURCE_REF"
+          },
+          "dependency": {
+            "state": "resolved",
+            "source_ref": "DEP-RECEIPT-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE"
+          },
+          "constraints": {
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "now": 90
+          },
+          "intermediate": {
+            "state": "failed",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "ticket_ref": "TICKET-A",
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "prior": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 4,
+            "failures": 1,
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "resumed": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "meaning_change_self_confirmed": false
+          },
+          "completion_claim": false,
+          "projection": {
+            "issue_closed": false,
+            "pr_merged": false,
+            "label": "OPEN"
+          },
+          "context": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "plan_revision": "SYNTHETIC-PLAN_REVISION",
+              "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+            },
+            "management": {
+              "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+              "request_ref": "SYNTHETIC-REQUEST_REF",
+              "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+              "permission_ref": "SYNTHETIC-PERMISSION_REF",
+              "priority_ref": "SYNTHETIC-PRIORITY_REF",
+              "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+              "resource_ref": "SYNTHETIC-RESOURCE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "connection_ref": "SYNTHETIC-CONNECTION_REF"
+            },
+            "roles": {
+              "promotion": "OS",
+              "process": "HARNESS",
+              "proposal": "INTELLIGENCE",
+              "level": "LABO",
+              "authority": "SECURITY",
+              "resource": "INFRASTRUCTURE"
+            },
+            "ticket_graph": [
+              {
+                "ticket_ref": "TICKET-A",
+                "target": "TARGET-A",
+                "kind": "development",
+                "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "dependencies": [
+                  "DEP-A"
+                ],
+                "acceptance": [
+                  "OBLIGATION-A"
+                ],
+                "backflow_ref": "BACKFLOW-A"
+              }
+            ],
+            "process": {
+              "source_ref": "HARNESS-PROCESS-A",
+              "revision": "SYNTHETIC-CONTRACT_REVISION",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "allowed_edges": [
+                [
+                  "PART-A",
+                  "PART-B"
+                ]
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              },
+              "backflow_ref": "BACKFLOW-A"
+            },
+            "proposal_selected": true,
+            "proposal": {
+              "source_ref": "INT-PROPOSAL-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "reason_ref": "INT-REASON-A",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              }
+            },
+            "dependency": {
+              "state": "resolved",
+              "source_ref": "DEP-RECEIPT-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "level_selected": false,
+            "level": null,
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "authority_ref": "SYNTHETIC-PERMISSION_REF",
+            "expected_budget_limit": 100,
+            "expected_deadline": 100,
+            "prior": {
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "stop_reason_ref": "STOP-A",
+              "budget_limit": 100,
+              "deadline": 100,
+              "cost_spent": 4,
+              "failures": 1,
+              "outstanding": [
+                "OBLIGATION-A"
+              ]
+            }
+          }
+        }
+      },
+      "expected_proposal": {
+        "condition": "workflow_material_violation",
+        "selected_phase": "backflow",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "violation",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "candidate_material": {
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management_refs": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ]
+        },
+        "candidate_material_digest": "9bb8623d52d0a7e6dce8fbe1f310ad78b7fe1072ad884bd5bf34c851680bc16c",
+        "workflow_material_corresponding": false,
+        "backflow_material_ref": "BACKFLOW-A",
+        "resume_material_corresponding": false,
+        "findings": [
+          {
+            "code": "workflow_condition_rejected",
+            "pointer": "/authority/state",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "actual_ticket_written": false,
+        "actual_workflow_started": false,
+        "actual_assignment_issued": false,
+        "actual_backflow_applied": false,
+        "actual_resume_executed": false,
+        "whole_workflow_verified": false,
+        "operation_effect": "none"
+      },
+      "purpose": "差戻しphaseで不足/相反/運転制約を個別保持し、素材routeを実適用へしない。",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
+    },
+    {
+      "id": "OS017-BACKFLOW-PHASE-DEPENDENCY-UNRESOLVED",
+      "requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F02",
+        "HELIXOS-L3-017-F03",
+        "HELIXOS-L3-017-B01"
+      ],
+      "given": {
+        "input": {
+          "phase": "backflow",
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "priority_ref": "SYNTHETIC-PRIORITY_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION",
+            "connection_ref": "SYNTHETIC-CONNECTION_REF"
+          },
+          "roles": {
+            "promotion": "OS",
+            "process": "HARNESS",
+            "proposal": "INTELLIGENCE",
+            "level": "LABO",
+            "authority": "SECURITY",
+            "resource": "INFRASTRUCTURE"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ],
+          "process": {
+            "source_ref": "HARNESS-PROCESS-A",
+            "revision": "SYNTHETIC-CONTRACT_REVISION",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "allowed_edges": [
+              [
+                "PART-A",
+                "PART-B"
+              ]
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            },
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "proposal_selected": true,
+          "proposal": {
+            "source_ref": "INT-PROPOSAL-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "reason_ref": "INT-REASON-A",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            }
+          },
+          "level_selected": false,
+          "level": null,
+          "authority": {
+            "state": "current",
+            "source_ref": "SYNTHETIC-PERMISSION_REF"
+          },
+          "resource": {
+            "state": "observed_material",
+            "source_ref": "SYNTHETIC-RESOURCE_REF"
+          },
+          "dependency": {
+            "state": "unknown",
+            "source_ref": "DEP-RECEIPT-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE"
+          },
+          "constraints": {
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "now": 90
+          },
+          "intermediate": {
+            "state": "failed",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "ticket_ref": "TICKET-A",
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "prior": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 4,
+            "failures": 1,
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "resumed": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "meaning_change_self_confirmed": false
+          },
+          "completion_claim": false,
+          "projection": {
+            "issue_closed": false,
+            "pr_merged": false,
+            "label": "OPEN"
+          },
+          "context": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "plan_revision": "SYNTHETIC-PLAN_REVISION",
+              "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+            },
+            "management": {
+              "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+              "request_ref": "SYNTHETIC-REQUEST_REF",
+              "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+              "permission_ref": "SYNTHETIC-PERMISSION_REF",
+              "priority_ref": "SYNTHETIC-PRIORITY_REF",
+              "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+              "resource_ref": "SYNTHETIC-RESOURCE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "connection_ref": "SYNTHETIC-CONNECTION_REF"
+            },
+            "roles": {
+              "promotion": "OS",
+              "process": "HARNESS",
+              "proposal": "INTELLIGENCE",
+              "level": "LABO",
+              "authority": "SECURITY",
+              "resource": "INFRASTRUCTURE"
+            },
+            "ticket_graph": [
+              {
+                "ticket_ref": "TICKET-A",
+                "target": "TARGET-A",
+                "kind": "development",
+                "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "dependencies": [
+                  "DEP-A"
+                ],
+                "acceptance": [
+                  "OBLIGATION-A"
+                ],
+                "backflow_ref": "BACKFLOW-A"
+              }
+            ],
+            "process": {
+              "source_ref": "HARNESS-PROCESS-A",
+              "revision": "SYNTHETIC-CONTRACT_REVISION",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "allowed_edges": [
+                [
+                  "PART-A",
+                  "PART-B"
+                ]
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              },
+              "backflow_ref": "BACKFLOW-A"
+            },
+            "proposal_selected": true,
+            "proposal": {
+              "source_ref": "INT-PROPOSAL-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "reason_ref": "INT-REASON-A",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              }
+            },
+            "dependency": {
+              "state": "resolved",
+              "source_ref": "DEP-RECEIPT-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "level_selected": false,
+            "level": null,
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "authority_ref": "SYNTHETIC-PERMISSION_REF",
+            "expected_budget_limit": 100,
+            "expected_deadline": 100,
+            "prior": {
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "stop_reason_ref": "STOP-A",
+              "budget_limit": 100,
+              "deadline": 100,
+              "cost_spent": 4,
+              "failures": 1,
+              "outstanding": [
+                "OBLIGATION-A"
+              ]
+            }
+          }
+        }
+      },
+      "expected_proposal": {
+        "condition": "workflow_material_unknown",
+        "selected_phase": "backflow",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "unknown",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "candidate_material": {
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management_refs": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ]
+        },
+        "candidate_material_digest": "9bb8623d52d0a7e6dce8fbe1f310ad78b7fe1072ad884bd5bf34c851680bc16c",
+        "workflow_material_corresponding": false,
+        "backflow_material_ref": "BACKFLOW-A",
+        "resume_material_corresponding": false,
+        "findings": [
+          {
+            "code": "dependency_unresolved",
+            "pointer": "/dependency/state",
+            "return_owner": "ticket-workflow-owner"
+          },
+          {
+            "code": "source_unresolved",
+            "pointer": "/dependency/state",
+            "return_owner": "ticket-workflow-owner"
+          }
+        ],
+        "actual_ticket_written": false,
+        "actual_workflow_started": false,
+        "actual_assignment_issued": false,
+        "actual_backflow_applied": false,
+        "actual_resume_executed": false,
+        "whole_workflow_verified": false,
+        "operation_effect": "none"
+      },
+      "purpose": "差戻しphaseで不足/相反/運転制約を個別保持し、素材routeを実適用へしない。",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
+    },
+    {
+      "id": "OS017-CANDIDATE-DOES-NOT-ADMIT-AUTHORITY",
+      "requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F02",
+        "HELIXOS-L3-017-F03",
+        "HELIXOS-L3-017-B01"
+      ],
+      "given": {
+        "input": {
+          "phase": "candidate",
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "priority_ref": "SYNTHETIC-PRIORITY_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION",
+            "connection_ref": "SYNTHETIC-CONNECTION_REF"
+          },
+          "roles": {
+            "promotion": "OS",
+            "process": "HARNESS",
+            "proposal": "INTELLIGENCE",
+            "level": "LABO",
+            "authority": "SECURITY",
+            "resource": "INFRASTRUCTURE"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ],
+          "process": {
+            "source_ref": "HARNESS-PROCESS-A",
+            "revision": "SYNTHETIC-CONTRACT_REVISION",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "allowed_edges": [
+              [
+                "PART-A",
+                "PART-B"
+              ]
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            },
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "proposal_selected": true,
+          "proposal": {
+            "source_ref": "INT-PROPOSAL-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "reason_ref": "INT-REASON-A",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            }
+          },
+          "level_selected": false,
+          "level": null,
+          "authority": {
+            "state": "revoked",
+            "source_ref": "SYNTHETIC-PERMISSION_REF"
+          },
+          "resource": {
+            "state": "observed_material",
+            "source_ref": "SYNTHETIC-RESOURCE_REF"
+          },
+          "dependency": {
+            "state": "resolved",
+            "source_ref": "DEP-RECEIPT-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE"
+          },
+          "constraints": {
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "now": 90
+          },
+          "intermediate": {
+            "state": "failed",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "ticket_ref": "TICKET-A",
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "prior": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 4,
+            "failures": 1,
+            "outstanding": [
+              "OBLIGATION-A"
+            ]
+          },
+          "resumed": {
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "stop_reason_ref": "STOP-A",
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "outstanding": [
+              "OBLIGATION-A",
+              "OBLIGATION-B"
+            ],
+            "meaning_change_self_confirmed": false
+          },
+          "completion_claim": false,
+          "projection": {
+            "issue_closed": false,
+            "pr_merged": false,
+            "label": "OPEN"
+          },
+          "context": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "plan_revision": "SYNTHETIC-PLAN_REVISION",
+              "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+            },
+            "management": {
+              "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+              "request_ref": "SYNTHETIC-REQUEST_REF",
+              "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+              "permission_ref": "SYNTHETIC-PERMISSION_REF",
+              "priority_ref": "SYNTHETIC-PRIORITY_REF",
+              "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+              "resource_ref": "SYNTHETIC-RESOURCE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "connection_ref": "SYNTHETIC-CONNECTION_REF"
+            },
+            "roles": {
+              "promotion": "OS",
+              "process": "HARNESS",
+              "proposal": "INTELLIGENCE",
+              "level": "LABO",
+              "authority": "SECURITY",
+              "resource": "INFRASTRUCTURE"
+            },
+            "ticket_graph": [
+              {
+                "ticket_ref": "TICKET-A",
+                "target": "TARGET-A",
+                "kind": "development",
+                "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "dependencies": [
+                  "DEP-A"
+                ],
+                "acceptance": [
+                  "OBLIGATION-A"
+                ],
+                "backflow_ref": "BACKFLOW-A"
+              }
+            ],
+            "process": {
+              "source_ref": "HARNESS-PROCESS-A",
+              "revision": "SYNTHETIC-CONTRACT_REVISION",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "allowed_edges": [
+                [
+                  "PART-A",
+                  "PART-B"
+                ]
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              },
+              "backflow_ref": "BACKFLOW-A"
+            },
+            "proposal_selected": true,
+            "proposal": {
+              "source_ref": "INT-PROPOSAL-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "reason_ref": "INT-REASON-A",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              }
+            },
+            "dependency": {
+              "state": "resolved",
+              "source_ref": "DEP-RECEIPT-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "level_selected": false,
+            "level": null,
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "authority_ref": "SYNTHETIC-PERMISSION_REF",
+            "expected_budget_limit": 100,
+            "expected_deadline": 100,
+            "prior": {
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "stop_reason_ref": "STOP-A",
+              "budget_limit": 100,
+              "deadline": 100,
+              "cost_spent": 4,
+              "failures": 1,
+              "outstanding": [
+                "OBLIGATION-A"
+              ]
+            }
+          }
+        }
+      },
+      "expected_proposal": {
+        "condition": "workflow_material_corresponding",
+        "selected_phase": "candidate",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "corresponding",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "candidate_material": {
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management_refs": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ]
+        },
+        "candidate_material_digest": "9bb8623d52d0a7e6dce8fbe1f310ad78b7fe1072ad884bd5bf34c851680bc16c",
+        "workflow_material_corresponding": false,
+        "backflow_material_ref": null,
+        "resume_material_corresponding": false,
+        "findings": [],
+        "actual_ticket_written": false,
+        "actual_workflow_started": false,
+        "actual_assignment_issued": false,
+        "actual_backflow_applied": false,
+        "actual_resume_executed": false,
+        "whole_workflow_verified": false,
+        "operation_effect": "none"
+      },
+      "purpose": "左側素材生成が運転前の権限成立を主張しない。",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F01"
+      ]
+    },
+    {
+      "id": "OS017-WORKFLOW-NO-FUTURE-RESUME-GATE",
+      "requirement_refs": [
+        "HELIXOS-L3-017-F01",
+        "HELIXOS-L3-017-F02",
+        "HELIXOS-L3-017-F03",
+        "HELIXOS-L3-017-B01"
+      ],
+      "given": {
+        "input": {
+          "phase": "workflow",
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "priority_ref": "SYNTHETIC-PRIORITY_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION",
+            "connection_ref": "SYNTHETIC-CONNECTION_REF"
+          },
+          "roles": {
+            "promotion": "OS",
+            "process": "HARNESS",
+            "proposal": "INTELLIGENCE",
+            "level": "LABO",
+            "authority": "SECURITY",
+            "resource": "INFRASTRUCTURE"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ],
+          "process": {
+            "source_ref": "HARNESS-PROCESS-A",
+            "revision": "SYNTHETIC-CONTRACT_REVISION",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "allowed_edges": [
+              [
+                "PART-A",
+                "PART-B"
+              ]
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            },
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "proposal_selected": true,
+          "proposal": {
+            "source_ref": "INT-PROPOSAL-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "reason_ref": "INT-REASON-A",
+            "parts": [
+              "PART-A",
+              "PART-B"
+            ],
+            "obligations": {
+              "PART-A": [
+                "ORACLE-A"
+              ],
+              "PART-B": [
+                "ORACLE-B"
+              ]
+            }
+          },
+          "level_selected": false,
+          "level": null,
+          "authority": {
+            "state": "current",
+            "source_ref": "SYNTHETIC-PERMISSION_REF"
+          },
+          "resource": {
+            "state": "observed_material",
+            "source_ref": "SYNTHETIC-RESOURCE_REF"
+          },
+          "dependency": {
+            "state": "resolved",
+            "source_ref": "DEP-RECEIPT-A",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE"
+          },
+          "constraints": {
+            "budget_limit": 100,
+            "deadline": 100,
+            "cost_spent": 7,
+            "failures": 2,
+            "now": 90
+          },
+          "intermediate": {
+            "state": "failed",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "ticket_ref": "TICKET-A",
+            "backflow_ref": "BACKFLOW-A"
+          },
+          "prior": null,
+          "resumed": null,
+          "completion_claim": false,
+          "projection": {
+            "issue_closed": false,
+            "pr_merged": false,
+            "label": "OPEN"
+          },
+          "context": {
+            "binding": {
+              "project": "SYNTHETIC-PROJECT",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "plan_revision": "SYNTHETIC-PLAN_REVISION",
+              "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+            },
+            "management": {
+              "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+              "request_ref": "SYNTHETIC-REQUEST_REF",
+              "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+              "permission_ref": "SYNTHETIC-PERMISSION_REF",
+              "priority_ref": "SYNTHETIC-PRIORITY_REF",
+              "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+              "resource_ref": "SYNTHETIC-RESOURCE_REF",
+              "budget_ref": "SYNTHETIC-BUDGET_REF",
+              "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+              "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+              "harness_version": "SYNTHETIC-HARNESS_VERSION",
+              "connection_ref": "SYNTHETIC-CONNECTION_REF"
+            },
+            "roles": {
+              "promotion": "OS",
+              "process": "HARNESS",
+              "proposal": "INTELLIGENCE",
+              "level": "LABO",
+              "authority": "SECURITY",
+              "resource": "INFRASTRUCTURE"
+            },
+            "ticket_graph": [
+              {
+                "ticket_ref": "TICKET-A",
+                "target": "TARGET-A",
+                "kind": "development",
+                "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+                "scope": "SYNTHETIC-SCOPE",
+                "dependencies": [
+                  "DEP-A"
+                ],
+                "acceptance": [
+                  "OBLIGATION-A"
+                ],
+                "backflow_ref": "BACKFLOW-A"
+              }
+            ],
+            "process": {
+              "source_ref": "HARNESS-PROCESS-A",
+              "revision": "SYNTHETIC-CONTRACT_REVISION",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "allowed_edges": [
+                [
+                  "PART-A",
+                  "PART-B"
+                ]
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              },
+              "backflow_ref": "BACKFLOW-A"
+            },
+            "proposal_selected": true,
+            "proposal": {
+              "source_ref": "INT-PROPOSAL-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "reason_ref": "INT-REASON-A",
+              "parts": [
+                "PART-A",
+                "PART-B"
+              ],
+              "obligations": {
+                "PART-A": [
+                  "ORACLE-A"
+                ],
+                "PART-B": [
+                  "ORACLE-B"
+                ]
+              }
+            },
+            "dependency": {
+              "state": "resolved",
+              "source_ref": "DEP-RECEIPT-A",
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE"
+            },
+            "level_selected": false,
+            "level": null,
+            "resource_ref": "SYNTHETIC-RESOURCE_REF",
+            "authority_ref": "SYNTHETIC-PERMISSION_REF",
+            "expected_budget_limit": 100,
+            "expected_deadline": 100,
+            "prior": {
+              "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "stop_reason_ref": "STOP-A",
+              "budget_limit": 100,
+              "deadline": 100,
+              "cost_spent": 4,
+              "failures": 1,
+              "outstanding": [
+                "OBLIGATION-A"
+              ]
+            }
+          }
+        }
+      },
+      "expected_proposal": {
+        "condition": "workflow_material_corresponding",
+        "selected_phase": "workflow",
+        "facet_correspondence": {
+          "ownership": "corresponding",
+          "inputs": "corresponding",
+          "ticket": "corresponding",
+          "workflow": "corresponding",
+          "backflow": "corresponding",
+          "continuity": "corresponding",
+          "scope_limit": "corresponding"
+        },
+        "candidate_material": {
+          "binding": {
+            "project": "SYNTHETIC-PROJECT",
+            "requirement_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+            "scope": "SYNTHETIC-SCOPE",
+            "plan_revision": "SYNTHETIC-PLAN_REVISION",
+            "contract_revision": "SYNTHETIC-CONTRACT_REVISION"
+          },
+          "management_refs": {
+            "purpose_ref": "SYNTHETIC-PURPOSE_REF",
+            "request_ref": "SYNTHETIC-REQUEST_REF",
+            "constraint_ref": "SYNTHETIC-CONSTRAINT_REF",
+            "permission_ref": "SYNTHETIC-PERMISSION_REF",
+            "dependency_ref": "SYNTHETIC-DEPENDENCY_REF",
+            "budget_ref": "SYNTHETIC-BUDGET_REF",
+            "deadline_ref": "SYNTHETIC-DEADLINE_REF",
+            "stop_condition_ref": "SYNTHETIC-STOP_CONDITION_REF",
+            "harness_version": "SYNTHETIC-HARNESS_VERSION"
+          },
+          "ticket_graph": [
+            {
+              "ticket_ref": "TICKET-A",
+              "target": "TARGET-A",
+              "kind": "development",
+              "parent_revision": "SYNTHETIC-REQUIREMENT_REVISION",
+              "scope": "SYNTHETIC-SCOPE",
+              "dependencies": [
+                "DEP-A"
+              ],
+              "acceptance": [
+                "OBLIGATION-A"
+              ],
+              "backflow_ref": "BACKFLOW-A"
+            }
+          ]
+        },
+        "candidate_material_digest": "9bb8623d52d0a7e6dce8fbe1f310ad78b7fe1072ad884bd5bf34c851680bc16c",
+        "workflow_material_corresponding": true,
+        "backflow_material_ref": null,
+        "resume_material_corresponding": false,
+        "findings": [],
+        "actual_ticket_written": false,
+        "actual_workflow_started": false,
+        "actual_assignment_issued": false,
+        "actual_backflow_applied": false,
+        "actual_resume_executed": false,
+        "whole_workflow_verified": false,
+        "operation_effect": "none"
+      },
+      "purpose": "workflowで未選択の未来resume結果を読まない。",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "primary_requirement_refs": [
+        "HELIXOS-L3-017-F02"
+      ]
     }
   ],
   "completion": {
     "status": "unproven",
-    "evidence": "209固定metadata proposal。作者整合だけでは独立review/正式workflow/全閉包を証明しない。"
+    "evidence": "217固定metadata proposal。作者整合だけでは独立review/正式workflow/全閉包を証明しない。"
   }
 }
