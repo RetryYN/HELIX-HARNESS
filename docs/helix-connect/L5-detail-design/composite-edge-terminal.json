@@ -7312,7 +7312,7 @@
       "identity_map": "schema/引数でidentityと宣言されたmap keyはdict.get(identity, MISSING)で文字列全体を引く。get(obj,path)は明示した構造field path専用であり、identity値へ流用しない。dotを禁止しない。",
       "downstream_count": "suffix.statusが対応のときだけ各literal edge keyを引く。未記録はmissing、null/非回数/負数はunknown、整数値0は対応、正の回数は内容衝突。明示衝突のときだけattempt_without_predecessor_conditionを出し、欠落を実attemptへ補完しない。",
       "owner_display": "F01は宣言route区分順。他F02/N01/B01は所見の最初の出現順に非null/非Absent ownerを重複除去。診断表示順であり実recipient資格や作用優先ではない。",
-      "json_number_kind": "type(x) in (int,float)はJSON number kindのcarrier判別で、boolean/null/string/array/objectを含めない。すべての数値carrierは宣言型により有限。負数/非整数のattempt観測はunknownを保持し、正整数のみ後続attemptの比較へ進む。固定幅・float rangeを数値域へ導入しない。"
+      "json_number_kind": "type(x) in (int,float)はJSON number kindのcarrier判別で、boolean/null/string/array/objectを含めない。すべての数値carrierは宣言型により有限。負数/非整数のattempt観測はunknownを保持し、非負整数のみ後続attemptの比較へ進む。固定幅・float rangeを数値域へ導入しない。"
     },
     "definitions": {
       "get": {

@@ -3892,7 +3892,7 @@
   "candidate_design_binding": {
     "document_id": "HELIXCONNECT-L5-007",
     "path": "docs/helix-connect/L5-detail-design/composite-edge-terminal.json",
-    "sha256_of_saved_file_bytes": "aa59e2ad4b22ef594531dac6fa5dfec5d6175d918fcb592ee9dcfa17021a7486",
+    "sha256_of_saved_file_bytes": "0f672d5d2a8abc906a0c61139359ac41f1725635b2d2a43aef8fa3b08e2f85cd",
     "candidate_source_main": "977eb43dd597f0e483960221d2ee3d72d0c88619",
     "pair_id": "HELIXCONNECT-L8-007",
     "meaning": "保存済みL5候補の同一作業tree file bytesを指す局所参照。Git revision pinではなく、承認source pinとも区別する。"
