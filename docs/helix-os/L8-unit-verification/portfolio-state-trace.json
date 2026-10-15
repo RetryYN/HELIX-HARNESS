@@ -14371,7 +14371,7 @@
   "actual_state_updated": false,
   "normative_calculation_binding": {
     "L5_path": "docs/helix-os/L5-detail-design/portfolio-state-trace.json",
-    "L5_sha256": "a9cb34125532165bd8cb5e9d1f64d40212d190779141cbfb3d18156f303df176",
+    "L5_sha256": "97a7ebdb8a39609ab4a2b985533ceb9b7ed3873ad26d262418154bdf7eb58c3e",
     "program_sha256": "8ddeaf088ffbecd210656df5fd8f63e9e1f4e127ad693b22f9b7b20e0df32cc1",
     "entrypoints": [
       "expand_case",
@@ -27364,7 +27364,7 @@
     },
     "file_count_pointer": "/source_pins",
     "requirement_ids_pointer": "/rows/*/requirements/*/id",
-    "boundary_pointer": "L8#/independent_boundary_projections/cases",
+    "boundary_pointer": "L8#/independent_boundary_projections",
     "boundary_canonical_sha256": "cae06f87945f35a3feac0ceb99b7509faaaf7751cc182c833dc556be8838aa84"
   },
   "template_application": {

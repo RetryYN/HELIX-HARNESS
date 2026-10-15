@@ -2134,7 +2134,7 @@
     },
     "file_count_pointer": "/source_pins",
     "requirement_ids_pointer": "/rows/*/requirements/*/id",
-    "boundary_pointer": "L8#/independent_boundary_projections/cases",
+    "boundary_pointer": "L8#/independent_boundary_projections",
     "boundary_canonical_sha256": "cae06f87945f35a3feac0ceb99b7509faaaf7751cc182c833dc556be8838aa84"
   },
   "template_application": {
