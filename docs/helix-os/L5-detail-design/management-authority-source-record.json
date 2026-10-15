@@ -411,7 +411,7 @@
     }
   ],
   "legacy_comparison": {
-    "disposition": "意味の再導出",
+    "disposition": "semantic_rederive",
     "preserve": "要求意味/authority/sourceとregistry・projection別責務、canonical event不変、原feedback/未ack/訂正前/競合とsource HEAD保全、派生viewで正本判断を変えない。",
     "change": "9/28採択OS015の対象/source/actor/時点/分類/訂正・局所conflictへ意味再導出。JSONAUTH既決を保持し、旧DB/CLI/記録schema・MD正本や旧test合格を移植しない。",
     "reason": "10/12限定承認の管理記録・JSON正本/派生view責務と対象revisionauthorityを保持。新しい人間承認手続きは作らない。"
@@ -1309,6 +1309,91 @@
         "failure_resolution_candidates": {
           "kind": "array",
           "items": "ResolutionCandidate"
+        },
+        "retained_new_classifications": {
+          "kind": "record",
+          "fields": {
+            "target_a": "JsonValue",
+            "target_b": "JsonValue"
+          },
+          "additional_members": "reject"
+        },
+        "classification_material_states": {
+          "kind": "record",
+          "fields": {
+            "target_a": "ClassificationMaterialState",
+            "target_b": "ClassificationMaterialState"
+          },
+          "additional_members": "reject"
+        },
+        "retained_correction_references": {
+          "kind": "record",
+          "fields": {
+            "target_a": "CorrectionReferences",
+            "target_b": "CorrectionReferences"
+          },
+          "additional_members": "reject"
+        }
+      },
+      "additional_members": "reject"
+    },
+    "ClassificationMaterialState": {
+      "kind": "record",
+      "fields": {
+        "original": {
+          "kind": "enum",
+          "values": [
+            "not_evaluated",
+            "unclassified_material",
+            "stale_material",
+            "retained_material"
+          ]
+        },
+        "new": {
+          "kind": "enum",
+          "values": [
+            "not_evaluated",
+            "current_material",
+            "unresolved_material"
+          ]
+        }
+      },
+      "additional_members": "reject"
+    },
+    "CorrectionReferences": {
+      "kind": "record",
+      "fields": {
+        "reason_ref": "ReferencePresence",
+        "authority_delta_ref": "ReferencePresence"
+      },
+      "additional_members": "reject"
+    },
+    "ClassificationRetention": {
+      "kind": "record",
+      "fields": {
+        "retained_new_classifications": {
+          "kind": "record",
+          "fields": {
+            "target_a": "JsonValue",
+            "target_b": "JsonValue"
+          },
+          "additional_members": "reject"
+        },
+        "classification_material_states": {
+          "kind": "record",
+          "fields": {
+            "target_a": "ClassificationMaterialState",
+            "target_b": "ClassificationMaterialState"
+          },
+          "additional_members": "reject"
+        },
+        "retained_correction_references": {
+          "kind": "record",
+          "fields": {
+            "target_a": "CorrectionReferences",
+            "target_b": "CorrectionReferences"
+          },
+          "additional_members": "reject"
         }
       },
       "additional_members": "reject"
@@ -1363,7 +1448,8 @@
       "unread_fields": [
         "material.findings以外のmaterial member",
         "source三参照以外のraw memberの意味"
-      ]
+      ],
+      "precondition": "materialは同一inputへFN-OS015-01を適用した返却値。独立の所見集合を任意の別sourceへ結び替えない。L8はproducer_call_index=0と全値hashで同一inputを照合する。"
     },
     {
       "id": "FN-OS015-03",
@@ -1375,8 +1461,36 @@
         }
       ],
       "return_type": "PublicAssessment",
-      "reads": "FN01の全返却とFN02の候補値。元16rootを保持して候補rootだけを追補。",
+      "reads": "FN01全返却・FN02候補値・FN04分類保持3root。既存16root/返却先候補を上書きせず互いに別rootとして合成。",
       "effects": "none"
+    },
+    {
+      "id": "FN-OS015-04",
+      "name": "retain_classification_material",
+      "arguments": [
+        {
+          "name": "input",
+          "type": "MaterialInput"
+        },
+        {
+          "name": "material",
+          "type": "MaterialAssessment"
+        }
+      ],
+      "return_type": "ClassificationRetention",
+      "source_obligations": [
+        "HELIXOS-L4-015-F02",
+        "HELIXOS-L3-015-F02",
+        "HELIXOS-L10-015-F02"
+      ],
+      "reads": "actual両targetの原分類/new_classification全原値、material.selected_phase/target_correspondence全facet。reason_ref/authority_delta_refはpresenceを保持。source/canonical資格やcontextの新分類内容から資格を生成しない。",
+      "unread_fields": [
+        "source値の意味",
+        "実source資格/issuer/recipient資格",
+        "projectionの表示値"
+      ],
+      "effects": "none",
+      "precondition": "materialは同一inputへFN-OS015-01を適用した返却値。独立の所見集合を任意の別sourceへ結び替えない。L8はproducer_call_index=0と全値hashで同一inputを照合する。"
     }
   ],
   "formal_reference": {
@@ -1565,13 +1679,15 @@
       },
       "FN-OS015-03": {
         "definition": "public_assessment"
+      },
+      "FN-OS015-04": {
+        "definition": "classification_retention"
       }
     },
     "syntax_node_tags": [
       "Add",
       "And",
       "AnnAssign",
-      "Assert",
       "Assign",
       "Attribute",
       "BinOp",
@@ -1609,7 +1725,6 @@
       "NotIn",
       "Or",
       "Pass",
-      "Raise",
       "Return",
       "Set",
       "SetComp",
@@ -1621,8 +1736,6 @@
       "UAdd",
       "USub",
       "UnaryOp",
-      "Yield",
-      "YieldFrom",
       "arg",
       "arguments",
       "comprehension",
@@ -3461,50 +3574,59 @@
               {
                 "node": "If",
                 "test": {
-                  "node": "Compare",
-                  "left": {
-                    "node": "Subscript",
-                    "value": {
+                  "node": "UnaryOp",
+                  "op": {
+                    "node": "Not"
+                  },
+                  "operand": {
+                    "node": "Call",
+                    "func": {
                       "node": "Name",
-                      "id": "r",
+                      "id": "equal",
                       "ctx": {
                         "node": "Load"
                       }
                     },
-                    "slice": {
-                      "node": "Constant",
-                      "value": "original_event",
-                      "kind": null
-                    },
-                    "ctx": {
-                      "node": "Load"
-                    }
-                  },
-                  "ops": [
-                    {
-                      "node": "NotEq"
-                    }
-                  ],
-                  "comparators": [
-                    {
-                      "node": "Subscript",
-                      "value": {
-                        "node": "Name",
-                        "id": "e",
+                    "args": [
+                      {
+                        "node": "Subscript",
+                        "value": {
+                          "node": "Name",
+                          "id": "r",
+                          "ctx": {
+                            "node": "Load"
+                          }
+                        },
+                        "slice": {
+                          "node": "Constant",
+                          "value": "original_event",
+                          "kind": null
+                        },
                         "ctx": {
                           "node": "Load"
                         }
                       },
-                      "slice": {
-                        "node": "Constant",
-                        "value": "original_event",
-                        "kind": null
-                      },
-                      "ctx": {
-                        "node": "Load"
+                      {
+                        "node": "Subscript",
+                        "value": {
+                          "node": "Name",
+                          "id": "e",
+                          "ctx": {
+                            "node": "Load"
+                          }
+                        },
+                        "slice": {
+                          "node": "Constant",
+                          "value": "original_event",
+                          "kind": null
+                        },
+                        "ctx": {
+                          "node": "Load"
+                        }
                       }
-                    }
-                  ]
+                    ],
+                    "keywords": []
+                  }
                 },
                 "body": [
                   {
@@ -4939,28 +5061,37 @@
               {
                 "node": "If",
                 "test": {
-                  "node": "Compare",
-                  "left": {
-                    "node": "Name",
-                    "id": "old",
-                    "ctx": {
-                      "node": "Load"
-                    }
+                  "node": "UnaryOp",
+                  "op": {
+                    "node": "Not"
                   },
-                  "ops": [
-                    {
-                      "node": "NotEq"
-                    }
-                  ],
-                  "comparators": [
-                    {
+                  "operand": {
+                    "node": "Call",
+                    "func": {
                       "node": "Name",
-                      "id": "eo",
+                      "id": "equal",
                       "ctx": {
                         "node": "Load"
                       }
-                    }
-                  ]
+                    },
+                    "args": [
+                      {
+                        "node": "Name",
+                        "id": "old",
+                        "ctx": {
+                          "node": "Load"
+                        }
+                      },
+                      {
+                        "node": "Name",
+                        "id": "eo",
+                        "ctx": {
+                          "node": "Load"
+                        }
+                      }
+                    ],
+                    "keywords": []
+                  }
                 },
                 "body": [
                   {
@@ -7021,24 +7152,31 @@
                                               }
                                             },
                                             {
-                                              "node": "Subscript",
-                                              "value": {
-                                                "node": "Name",
-                                                "id": "eo",
+                                              "node": "Call",
+                                              "func": {
+                                                "node": "Attribute",
+                                                "value": {
+                                                  "node": "Name",
+                                                  "id": "eo",
+                                                  "ctx": {
+                                                    "node": "Load"
+                                                  }
+                                                },
+                                                "attr": "get",
                                                 "ctx": {
                                                   "node": "Load"
                                                 }
                                               },
-                                              "slice": {
-                                                "node": "Name",
-                                                "id": "k",
-                                                "ctx": {
-                                                  "node": "Load"
+                                              "args": [
+                                                {
+                                                  "node": "Name",
+                                                  "id": "k",
+                                                  "ctx": {
+                                                    "node": "Load"
+                                                  }
                                                 }
-                                              },
-                                              "ctx": {
-                                                "node": "Load"
-                                              }
+                                              ],
+                                              "keywords": []
                                             },
                                             {
                                               "node": "BinOp",
@@ -7172,22 +7310,29 @@
                                           },
                                           "args": [
                                             {
-                                              "node": "Subscript",
-                                              "value": {
-                                                "node": "Name",
-                                                "id": "eo",
+                                              "node": "Call",
+                                              "func": {
+                                                "node": "Attribute",
+                                                "value": {
+                                                  "node": "Name",
+                                                  "id": "eo",
+                                                  "ctx": {
+                                                    "node": "Load"
+                                                  }
+                                                },
+                                                "attr": "get",
                                                 "ctx": {
                                                   "node": "Load"
                                                 }
                                               },
-                                              "slice": {
-                                                "node": "Constant",
-                                                "value": "classification_revision",
-                                                "kind": null
-                                              },
-                                              "ctx": {
-                                                "node": "Load"
-                                              }
+                                              "args": [
+                                                {
+                                                  "node": "Constant",
+                                                  "value": "classification_revision",
+                                                  "kind": null
+                                                }
+                                              ],
+                                              "keywords": []
                                             }
                                           ],
                                           "keywords": []
@@ -7219,22 +7364,29 @@
                                           ],
                                           "comparators": [
                                             {
-                                              "node": "Subscript",
-                                              "value": {
-                                                "node": "Name",
-                                                "id": "eo",
+                                              "node": "Call",
+                                              "func": {
+                                                "node": "Attribute",
+                                                "value": {
+                                                  "node": "Name",
+                                                  "id": "eo",
+                                                  "ctx": {
+                                                    "node": "Load"
+                                                  }
+                                                },
+                                                "attr": "get",
                                                 "ctx": {
                                                   "node": "Load"
                                                 }
                                               },
-                                              "slice": {
-                                                "node": "Constant",
-                                                "value": "classification_revision",
-                                                "kind": null
-                                              },
-                                              "ctx": {
-                                                "node": "Load"
-                                              }
+                                              "args": [
+                                                {
+                                                  "node": "Constant",
+                                                  "value": "classification_revision",
+                                                  "kind": null
+                                                }
+                                              ],
+                                              "keywords": []
                                             }
                                           ]
                                         }
@@ -11208,6 +11360,973 @@
             "type_comment": null
           },
           {
+            "node": "Expr",
+            "value": {
+              "node": "Call",
+              "func": {
+                "node": "Attribute",
+                "value": {
+                  "node": "Name",
+                  "id": "result",
+                  "ctx": {
+                    "node": "Load"
+                  }
+                },
+                "attr": "update",
+                "ctx": {
+                  "node": "Load"
+                }
+              },
+              "args": [
+                {
+                  "node": "Call",
+                  "func": {
+                    "node": "Name",
+                    "id": "classification_retention",
+                    "ctx": {
+                      "node": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "node": "Name",
+                      "id": "z",
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    },
+                    {
+                      "node": "Name",
+                      "id": "material",
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                }
+              ],
+              "keywords": []
+            }
+          },
+          {
+            "node": "Return",
+            "value": {
+              "node": "Name",
+              "id": "result",
+              "ctx": {
+                "node": "Load"
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": null,
+        "type_comment": null,
+        "type_params": []
+      },
+      "classification_retention": {
+        "node": "FunctionDef",
+        "name": "classification_retention",
+        "args": {
+          "node": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "node": "arg",
+              "arg": "z",
+              "annotation": null,
+              "type_comment": null
+            },
+            {
+              "node": "arg",
+              "arg": "material",
+              "annotation": null,
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "node": "Assign",
+            "targets": [
+              {
+                "node": "Name",
+                "id": "result",
+                "ctx": {
+                  "node": "Store"
+                }
+              }
+            ],
+            "value": {
+              "node": "Dict",
+              "keys": [
+                {
+                  "node": "Constant",
+                  "value": "retained_new_classifications",
+                  "kind": null
+                },
+                {
+                  "node": "Constant",
+                  "value": "classification_material_states",
+                  "kind": null
+                },
+                {
+                  "node": "Constant",
+                  "value": "retained_correction_references",
+                  "kind": null
+                }
+              ],
+              "values": [
+                {
+                  "node": "Dict",
+                  "keys": [],
+                  "values": []
+                },
+                {
+                  "node": "Dict",
+                  "keys": [],
+                  "values": []
+                },
+                {
+                  "node": "Dict",
+                  "keys": [],
+                  "values": []
+                }
+              ]
+            },
+            "type_comment": null
+          },
+          {
+            "node": "Assign",
+            "targets": [
+              {
+                "node": "Name",
+                "id": "phase",
+                "ctx": {
+                  "node": "Store"
+                }
+              }
+            ],
+            "value": {
+              "node": "Subscript",
+              "value": {
+                "node": "Name",
+                "id": "material",
+                "ctx": {
+                  "node": "Load"
+                }
+              },
+              "slice": {
+                "node": "Constant",
+                "value": "selected_phase",
+                "kind": null
+              },
+              "ctx": {
+                "node": "Load"
+              }
+            },
+            "type_comment": null
+          },
+          {
+            "node": "For",
+            "target": {
+              "node": "Name",
+              "id": "n",
+              "ctx": {
+                "node": "Store"
+              }
+            },
+            "iter": {
+              "node": "Name",
+              "id": "names",
+              "ctx": {
+                "node": "Load"
+              }
+            },
+            "body": [
+              {
+                "node": "Assign",
+                "targets": [
+                  {
+                    "node": "Name",
+                    "id": "r",
+                    "ctx": {
+                      "node": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "node": "Subscript",
+                  "value": {
+                    "node": "Subscript",
+                    "value": {
+                      "node": "Name",
+                      "id": "z",
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    },
+                    "slice": {
+                      "node": "Constant",
+                      "value": "records",
+                      "kind": null
+                    },
+                    "ctx": {
+                      "node": "Load"
+                    }
+                  },
+                  "slice": {
+                    "node": "Name",
+                    "id": "n",
+                    "ctx": {
+                      "node": "Load"
+                    }
+                  },
+                  "ctx": {
+                    "node": "Load"
+                  }
+                },
+                "type_comment": null
+              },
+              {
+                "node": "Assign",
+                "targets": [
+                  {
+                    "node": "Name",
+                    "id": "old",
+                    "ctx": {
+                      "node": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "node": "Subscript",
+                  "value": {
+                    "node": "Name",
+                    "id": "r",
+                    "ctx": {
+                      "node": "Load"
+                    }
+                  },
+                  "slice": {
+                    "node": "Constant",
+                    "value": "original_classification",
+                    "kind": null
+                  },
+                  "ctx": {
+                    "node": "Load"
+                  }
+                },
+                "type_comment": null
+              },
+              {
+                "node": "Assign",
+                "targets": [
+                  {
+                    "node": "Name",
+                    "id": "a",
+                    "ctx": {
+                      "node": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "node": "Subscript",
+                  "value": {
+                    "node": "Name",
+                    "id": "r",
+                    "ctx": {
+                      "node": "Load"
+                    }
+                  },
+                  "slice": {
+                    "node": "Constant",
+                    "value": "new_classification",
+                    "kind": null
+                  },
+                  "ctx": {
+                    "node": "Load"
+                  }
+                },
+                "type_comment": null
+              },
+              {
+                "node": "Assign",
+                "targets": [
+                  {
+                    "node": "Name",
+                    "id": "active",
+                    "ctx": {
+                      "node": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "node": "Compare",
+                  "left": {
+                    "node": "Name",
+                    "id": "phase",
+                    "ctx": {
+                      "node": "Load"
+                    }
+                  },
+                  "ops": [
+                    {
+                      "node": "In"
+                    }
+                  ],
+                  "comparators": [
+                    {
+                      "node": "List",
+                      "elts": [
+                        {
+                          "node": "Constant",
+                          "value": "classify",
+                          "kind": null
+                        },
+                        {
+                          "node": "Constant",
+                          "value": "correct",
+                          "kind": null
+                        }
+                      ],
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    }
+                  ]
+                },
+                "type_comment": null
+              },
+              {
+                "node": "Assign",
+                "targets": [
+                  {
+                    "node": "Name",
+                    "id": "consistent",
+                    "ctx": {
+                      "node": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "node": "BoolOp",
+                  "op": {
+                    "node": "And"
+                  },
+                  "values": [
+                    {
+                      "node": "Name",
+                      "id": "active",
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    },
+                    {
+                      "node": "Call",
+                      "func": {
+                        "node": "Name",
+                        "id": "all",
+                        "ctx": {
+                          "node": "Load"
+                        }
+                      },
+                      "args": [
+                        {
+                          "node": "GeneratorExp",
+                          "elt": {
+                            "node": "Compare",
+                            "left": {
+                              "node": "Name",
+                              "id": "v",
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            },
+                            "ops": [
+                              {
+                                "node": "Eq"
+                              }
+                            ],
+                            "comparators": [
+                              {
+                                "node": "Constant",
+                                "value": "corresponding",
+                                "kind": null
+                              }
+                            ]
+                          },
+                          "generators": [
+                            {
+                              "node": "comprehension",
+                              "target": {
+                                "node": "Name",
+                                "id": "v",
+                                "ctx": {
+                                  "node": "Store"
+                                }
+                              },
+                              "iter": {
+                                "node": "Call",
+                                "func": {
+                                  "node": "Attribute",
+                                  "value": {
+                                    "node": "Subscript",
+                                    "value": {
+                                      "node": "Subscript",
+                                      "value": {
+                                        "node": "Name",
+                                        "id": "material",
+                                        "ctx": {
+                                          "node": "Load"
+                                        }
+                                      },
+                                      "slice": {
+                                        "node": "Constant",
+                                        "value": "target_correspondence",
+                                        "kind": null
+                                      },
+                                      "ctx": {
+                                        "node": "Load"
+                                      }
+                                    },
+                                    "slice": {
+                                      "node": "Name",
+                                      "id": "n",
+                                      "ctx": {
+                                        "node": "Load"
+                                      }
+                                    },
+                                    "ctx": {
+                                      "node": "Load"
+                                    }
+                                  },
+                                  "attr": "values",
+                                  "ctx": {
+                                    "node": "Load"
+                                  }
+                                },
+                                "args": [],
+                                "keywords": []
+                              },
+                              "ifs": [],
+                              "is_async": 0
+                            }
+                          ]
+                        }
+                      ],
+                      "keywords": []
+                    }
+                  ]
+                },
+                "type_comment": null
+              },
+              {
+                "node": "If",
+                "test": {
+                  "node": "UnaryOp",
+                  "op": {
+                    "node": "Not"
+                  },
+                  "operand": {
+                    "node": "Name",
+                    "id": "active",
+                    "ctx": {
+                      "node": "Load"
+                    }
+                  }
+                },
+                "body": [
+                  {
+                    "node": "Assign",
+                    "targets": [
+                      {
+                        "node": "Name",
+                        "id": "original",
+                        "ctx": {
+                          "node": "Store"
+                        }
+                      }
+                    ],
+                    "value": {
+                      "node": "Constant",
+                      "value": "not_evaluated",
+                      "kind": null
+                    },
+                    "type_comment": null
+                  }
+                ],
+                "orelse": [
+                  {
+                    "node": "If",
+                    "test": {
+                      "node": "BoolOp",
+                      "op": {
+                        "node": "And"
+                      },
+                      "values": [
+                        {
+                          "node": "Compare",
+                          "left": {
+                            "node": "Name",
+                            "id": "phase",
+                            "ctx": {
+                              "node": "Load"
+                            }
+                          },
+                          "ops": [
+                            {
+                              "node": "Eq"
+                            }
+                          ],
+                          "comparators": [
+                            {
+                              "node": "Constant",
+                              "value": "classify",
+                              "kind": null
+                            }
+                          ]
+                        },
+                        {
+                          "node": "Compare",
+                          "left": {
+                            "node": "Name",
+                            "id": "old",
+                            "ctx": {
+                              "node": "Load"
+                            }
+                          },
+                          "ops": [
+                            {
+                              "node": "Is"
+                            }
+                          ],
+                          "comparators": [
+                            {
+                              "node": "Constant",
+                              "value": null,
+                              "kind": null
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "body": [
+                      {
+                        "node": "Assign",
+                        "targets": [
+                          {
+                            "node": "Name",
+                            "id": "original",
+                            "ctx": {
+                              "node": "Store"
+                            }
+                          }
+                        ],
+                        "value": {
+                          "node": "Constant",
+                          "value": "unclassified_material",
+                          "kind": null
+                        },
+                        "type_comment": null
+                      }
+                    ],
+                    "orelse": [
+                      {
+                        "node": "If",
+                        "test": {
+                          "node": "BoolOp",
+                          "op": {
+                            "node": "And"
+                          },
+                          "values": [
+                            {
+                              "node": "Compare",
+                              "left": {
+                                "node": "Name",
+                                "id": "phase",
+                                "ctx": {
+                                  "node": "Load"
+                                }
+                              },
+                              "ops": [
+                                {
+                                  "node": "Eq"
+                                }
+                              ],
+                              "comparators": [
+                                {
+                                  "node": "Constant",
+                                  "value": "correct",
+                                  "kind": null
+                                }
+                              ]
+                            },
+                            {
+                              "node": "Name",
+                              "id": "consistent",
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            }
+                          ]
+                        },
+                        "body": [
+                          {
+                            "node": "Assign",
+                            "targets": [
+                              {
+                                "node": "Name",
+                                "id": "original",
+                                "ctx": {
+                                  "node": "Store"
+                                }
+                              }
+                            ],
+                            "value": {
+                              "node": "Constant",
+                              "value": "stale_material",
+                              "kind": null
+                            },
+                            "type_comment": null
+                          }
+                        ],
+                        "orelse": [
+                          {
+                            "node": "Assign",
+                            "targets": [
+                              {
+                                "node": "Name",
+                                "id": "original",
+                                "ctx": {
+                                  "node": "Store"
+                                }
+                              }
+                            ],
+                            "value": {
+                              "node": "Constant",
+                              "value": "retained_material",
+                              "kind": null
+                            },
+                            "type_comment": null
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "node": "Assign",
+                "targets": [
+                  {
+                    "node": "Subscript",
+                    "value": {
+                      "node": "Subscript",
+                      "value": {
+                        "node": "Name",
+                        "id": "result",
+                        "ctx": {
+                          "node": "Load"
+                        }
+                      },
+                      "slice": {
+                        "node": "Constant",
+                        "value": "retained_new_classifications",
+                        "kind": null
+                      },
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    },
+                    "slice": {
+                      "node": "Name",
+                      "id": "n",
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    },
+                    "ctx": {
+                      "node": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "node": "Call",
+                  "func": {
+                    "node": "Name",
+                    "id": "json_copy",
+                    "ctx": {
+                      "node": "Load"
+                    }
+                  },
+                  "args": [
+                    {
+                      "node": "Name",
+                      "id": "a",
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    }
+                  ],
+                  "keywords": []
+                },
+                "type_comment": null
+              },
+              {
+                "node": "Assign",
+                "targets": [
+                  {
+                    "node": "Subscript",
+                    "value": {
+                      "node": "Subscript",
+                      "value": {
+                        "node": "Name",
+                        "id": "result",
+                        "ctx": {
+                          "node": "Load"
+                        }
+                      },
+                      "slice": {
+                        "node": "Constant",
+                        "value": "classification_material_states",
+                        "kind": null
+                      },
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    },
+                    "slice": {
+                      "node": "Name",
+                      "id": "n",
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    },
+                    "ctx": {
+                      "node": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "node": "Dict",
+                  "keys": [
+                    {
+                      "node": "Constant",
+                      "value": "original",
+                      "kind": null
+                    },
+                    {
+                      "node": "Constant",
+                      "value": "new",
+                      "kind": null
+                    }
+                  ],
+                  "values": [
+                    {
+                      "node": "Name",
+                      "id": "original",
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    },
+                    {
+                      "node": "IfExp",
+                      "test": {
+                        "node": "UnaryOp",
+                        "op": {
+                          "node": "Not"
+                        },
+                        "operand": {
+                          "node": "Name",
+                          "id": "active",
+                          "ctx": {
+                            "node": "Load"
+                          }
+                        }
+                      },
+                      "body": {
+                        "node": "Constant",
+                        "value": "not_evaluated",
+                        "kind": null
+                      },
+                      "orelse": {
+                        "node": "IfExp",
+                        "test": {
+                          "node": "Name",
+                          "id": "consistent",
+                          "ctx": {
+                            "node": "Load"
+                          }
+                        },
+                        "body": {
+                          "node": "Constant",
+                          "value": "current_material",
+                          "kind": null
+                        },
+                        "orelse": {
+                          "node": "Constant",
+                          "value": "unresolved_material",
+                          "kind": null
+                        }
+                      }
+                    }
+                  ]
+                },
+                "type_comment": null
+              },
+              {
+                "node": "Assign",
+                "targets": [
+                  {
+                    "node": "Subscript",
+                    "value": {
+                      "node": "Subscript",
+                      "value": {
+                        "node": "Name",
+                        "id": "result",
+                        "ctx": {
+                          "node": "Load"
+                        }
+                      },
+                      "slice": {
+                        "node": "Constant",
+                        "value": "retained_correction_references",
+                        "kind": null
+                      },
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    },
+                    "slice": {
+                      "node": "Name",
+                      "id": "n",
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    },
+                    "ctx": {
+                      "node": "Store"
+                    }
+                  }
+                ],
+                "value": {
+                  "node": "DictComp",
+                  "key": {
+                    "node": "Name",
+                    "id": "field",
+                    "ctx": {
+                      "node": "Load"
+                    }
+                  },
+                  "value": {
+                    "node": "Call",
+                    "func": {
+                      "node": "Name",
+                      "id": "presence",
+                      "ctx": {
+                        "node": "Load"
+                      }
+                    },
+                    "args": [
+                      {
+                        "node": "IfExp",
+                        "test": {
+                          "node": "Call",
+                          "func": {
+                            "node": "Name",
+                            "id": "isinstance",
+                            "ctx": {
+                              "node": "Load"
+                            }
+                          },
+                          "args": [
+                            {
+                              "node": "Name",
+                              "id": "a",
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            },
+                            {
+                              "node": "Name",
+                              "id": "dict",
+                              "ctx": {
+                                "node": "Load"
+                              }
+                            }
+                          ],
+                          "keywords": []
+                        },
+                        "body": {
+                          "node": "Name",
+                          "id": "a",
+                          "ctx": {
+                            "node": "Load"
+                          }
+                        },
+                        "orelse": {
+                          "node": "Constant",
+                          "value": null,
+                          "kind": null
+                        }
+                      },
+                      {
+                        "node": "Name",
+                        "id": "field",
+                        "ctx": {
+                          "node": "Load"
+                        }
+                      }
+                    ],
+                    "keywords": []
+                  },
+                  "generators": [
+                    {
+                      "node": "comprehension",
+                      "target": {
+                        "node": "Name",
+                        "id": "field",
+                        "ctx": {
+                          "node": "Store"
+                        }
+                      },
+                      "iter": {
+                        "node": "List",
+                        "elts": [
+                          {
+                            "node": "Constant",
+                            "value": "reason_ref",
+                            "kind": null
+                          },
+                          {
+                            "node": "Constant",
+                            "value": "authority_delta_ref",
+                            "kind": null
+                          }
+                        ],
+                        "ctx": {
+                          "node": "Load"
+                        }
+                      },
+                      "ifs": [],
+                      "is_async": 0
+                    }
+                  ]
+                },
+                "type_comment": null
+              }
+            ],
+            "orelse": [],
+            "type_comment": null
+          },
+          {
             "node": "Return",
             "value": {
               "node": "Name",
@@ -11229,24 +12348,25 @@
       "json_copy": "JSON値の独立コピー。JSONに無い値を生成しない。",
       "control": "標準pure ASTの短絡and/or、truthiness、If/IfExp、source順For、局所変数/関数、代入、Continue、Return。notは空文字/list/map・0・nullをfalseとして反転する。",
       "membership": "In/NotInは宣言list/keyの所属。setはknown nonempty string配列の重複/包含確認に限る。",
-      "comparison": "文字列の等値・count/index比較とset包含。L4文書式のwhole !=は入力JSONのhost値比較を保持しており、bool対numberのwhole差別は未確定所見として別記録する。正式JSON等値成立の証明には用いない。",
+      "comparison": "文字列/数値/count/indexの比較とknown string集合の包含。原event/原分類wholeの変更は必ずnot equalで評価し、boolとnumberを区別する。JSON numberの1と1.0は同値。hostの!=をwhole JSON差の規範にしない。",
       "assembly": "List/Dictとcomprehensionは宣言順。sortedは(code,pointer,return_owner)の辞書順、同一三tupleを重複除去。reference候補順はこのfinding順。",
       "methods": "get/append/extend/update/items/keys/values/split/startswith/removeprefix/removesuffix/replace/fromkeysのみ。Subscriptは宣言shapeのmember/indexを読む。MISSINGとnullは別だが、固定carrier欠落は本関数の入力域外。",
-      "effects": "純ASTのimport/I/O/network/実writer/署名/権限設定は禁止構文。生成された各actual flagはfalseのみ。"
+      "effects": "純ASTのimport/I/O/network/実writer/署名/権限設定は禁止構文。生成された各actual flagはfalseのみ。",
+      "kind": "JSON kindはnull、boolean、number、string、array、object。isinstance(x,dict/list/str)は対応kind確認、type(x)is boolはbooleanのみ、is/is not Noneはnull同一性。MISSINGはJSON値ではないmember欠落sentinelでnullと別。boolをnumberへ昇格しない。"
     },
     "source_equation_binding": {
       "document": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
       "revision": "2bc4d9385b3d1c6a1245c11bd391463539da82bc",
       "pointer": "/diagnostic_contract/algorithm_python_document_text",
       "value_utf8_sha256": "1db123ea37259742eda71073ad3d9634a6e60a2e5044e5fc176d7ae914cbc957",
-      "difference": "標準copy.deepcopyの表記を汎用json_copyへ置換し、全所見にsource参照候補を結ぶ副作用無し関数を追補。sourceの意味/定数/順序は変更しない。"
+      "difference": "原L4文書式からcopy.deepcopyをjson_copyへ表記置換。whole改変2箇所をL4 mutation_ruleと同文書equalの型付きJSON等値へ整合し、correctの旧分類member不足を.getのnull読取りからunknownへ返す。原583期待不変。別の純関数でsource返却先候補と分類保持3rootを追補。"
     }
   },
   "input_boundary": {
     "carrier": "L4固定二対象carrier。MaterialInputに列挙した必須memberとkindを満たす。carrier欠落/余剰shapeは本論理関数の入力域外であり、新しい製品validation/codecを定義しない。",
-    "correct_prior": "phase=correctで原分類がobjectならactual/contextともclassification_refとclassification_revisionのmemberを持つ。値は任意JSONでknown不足を診断する。inspect/classifyの空map・非object原分類は保持対象。",
+    "correct_prior": "original_classificationは全phaseでJsonValue。correctのcontext旧分類がobjectでもmemberは必須と推定しない。classification_ref/revisionの未供給は.getによりnullとして比較へ渡しunknown所見へ残す。rawの欠落memberそのものはretained_original_classifications内に保持。",
     "new_classification": "objectのnew_classificationはcf全memberを持つ固定carrier。それ以外のJSON kindは未観測として診断。空map/部分mapの一般validationは未設計で型外。",
-    "value": "SourceRecord/OriginalEventとclaim値はJSON valueを保持する。null/非文字列/空文字はknown stringを満たさずunknown。文字列TBD等の不透明表記を新しい一般禁止policyにしない。",
+    "value": "SourceRecord/OriginalEventとclaim値はJSON valueを保持する。null/非文字列/空文字はknown stringを満たさずunknown。wholeは型付きJSON等値で比較し、bool対numberは不一致、number1対1.0は同値。TBD等の自由文字列へ新しい一般禁止policyを推測しない。",
     "qualification": "context一致・digest文字列・分類状態は実source/actor/時刻/owner資格を成立させない。"
   },
   "resolution_contract": {
@@ -11256,9 +12376,8 @@
     "consumers": "OS016/019/053等へ返す設計素材であり、当該正式consumer binding/資格/耐久保存は未閉包。"
   },
   "unclosed": [
-    "L4文書whole比較のbool/number区別と、正式JSON型としての改変意味はレビュー質問として保全。元583例から未見全域を合格にしない。",
     "実source/custody/issuer/owner/actor/時刻資格、正式schema/codec/参照解決、writer原子性・耐久性、OS016/019/053正式consumer bindingは未成立。",
-    "source元L9期待は著述補助式由来の固定素材であり、全根拠の独立review前に独立oracle成立としない。",
+    "固定carrierと有限raw/期待での照合であり、任意JSON一般域・全複合・全非等価変異の意味網羅は未成立。元L9の16root期待は現正本として保持し、新しい3保持rootと返却先候補は入力と批准義務を根拠に独立固定する。",
     "TDD/実装/CI/L11/全92親430対閉包/実装Ready未成立。L6関数設計・L7対検証、実装は層外。"
   ],
   "legacy_asset_bindings": [
@@ -11267,21 +12386,63 @@
       "source_path": "docs/governance/candidates/execution-ticket-requirements.md",
       "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
       "ledger_row_canonical_sha256": "43fbd813dc6cc2e7749b3e9ce99e498de18de0d1b8c160ddc94c1e59e615b7b4",
-      "reuse": "意味の再導出。旧runtime/DB/schema/CLIを移植・起動しない。"
+      "reuse": "semantic_rederive",
+      "parent_requirement": "HELIXOS-L2-015",
+      "pairs": [
+        "L4/L9",
+        "L5/L8"
+      ],
+      "replacement": {
+        "paths": [
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "docs/helix-os/L8-unit-verification/management-authority-source-record.json"
+        ],
+        "scope": "同じ要求意味を設計へ再導出。旧資産bytesのcopyはしない。candidate L5 bytesはL8で結線。"
+      },
+      "consumer_transition": "旧runtime/CLI/DB consumerは切り替えず隔離を保持。新しい論理consumerはFN01→FN02/FN04→FN03。OS016/019/053の正式consumerは未束縛。",
+      "ledger_authority": "台帳の採否revisionを書き換えず、当該候補設計における参照方法の記録。"
     },
     {
       "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
       "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
       "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
       "ledger_row_canonical_sha256": "fa8b0ec66189232008c6b44ee3ad61d08e196c2cc51b69eb5a66dff506b7d792",
-      "reuse": "意味の再導出。旧runtime/DB/schema/CLIを移植・起動しない。"
+      "reuse": "semantic_rederive",
+      "parent_requirement": "HELIXOS-L2-015",
+      "pairs": [
+        "L4/L9",
+        "L5/L8"
+      ],
+      "replacement": {
+        "paths": [
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "docs/helix-os/L8-unit-verification/management-authority-source-record.json"
+        ],
+        "scope": "同じ要求意味を設計へ再導出。旧資産bytesのcopyはしない。candidate L5 bytesはL8で結線。"
+      },
+      "consumer_transition": "旧runtime/CLI/DB consumerは切り替えず隔離を保持。新しい論理consumerはFN01→FN02/FN04→FN03。OS016/019/053の正式consumerは未束縛。",
+      "ledger_authority": "台帳の採否revisionを書き換えず、当該候補設計における参照方法の記録。"
     },
     {
       "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
       "source_path": "docs/design/helix/L4-basic-design/design-template-json-authority.md",
       "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
       "ledger_row_canonical_sha256": "d18dce573bfb30687997216442f072e4143f084f6027cbd68ab540cc723b3234",
-      "reuse": "意味の再導出。旧runtime/DB/schema/CLIを移植・起動しない。"
+      "reuse": "semantic_rederive",
+      "parent_requirement": "HELIXOS-L2-015",
+      "pairs": [
+        "L4/L9",
+        "L5/L8"
+      ],
+      "replacement": {
+        "paths": [
+          "docs/helix-os/L5-detail-design/management-authority-source-record.json",
+          "docs/helix-os/L8-unit-verification/management-authority-source-record.json"
+        ],
+        "scope": "同じ要求意味を設計へ再導出。旧資産bytesのcopyはしない。candidate L5 bytesはL8で結線。"
+      },
+      "consumer_transition": "旧runtime/CLI/DB consumerは切り替えず隔離を保持。新しい論理consumerはFN01→FN02/FN04→FN03。OS016/019/053の正式consumerは未束縛。",
+      "ledger_authority": "台帳の採否revisionを書き換えず、当該候補設計における参照方法の記録。"
     }
   ],
   "approval_admission": {
@@ -11294,8 +12455,102 @@
   "detail_derivation": {
     "source": "現L4の文書式と批准8whole、L9 raw/value、旧ticket/HYB/JSON authorityの対応から導出。",
     "preserve": "二対象・phase・独立context・全原event/旧分類/未解決履歴・所見の重複除去/順序・原source期待583を保持。",
-    "change": "機械可読純AST・閉じた論理型と全署名・当該source参照候補root・値まで解決可能な全L8 IOを追補。",
+    "change": "型付きJSON whole等値・correct部分旧分類objectの不足診断を整合。機械可読純AST・閉じた論理型と全署名、当該source参照候補、分類原値/材料状態/訂正根拠の保持root、値まで解決可能なL8 IOを具体化。",
     "reason": "散文/外部helperへ隠れた比較やowner判断を残さず、照合labelを具体解消先/資格と混同しないため。上流意味や実運用を変更しない。",
-    "pending": "bool/numberのwhole改変意味は源泉レビュー質問であり、host等値をJSON型資格や一般meaning正解に昇格しない。設計リファクタリング時へ所見を保全。"
+    "pending": "実source資格・参照解決・writer/consumerの実binding、任意JSON一般域の意味網羅は未成立。材料照合の成功をauthorityへ昇格しない。"
+  },
+  "classification_retention_contract": {
+    "source_basis": [
+      "HELIXOS-L4-015-F02",
+      "HELIXOS-L3-015-F02",
+      "HELIXOS-L10-015-F02"
+    ],
+    "roots": [
+      "retained_new_classifications",
+      "classification_material_states",
+      "retained_correction_references"
+    ],
+    "values": "retained_new_classificationsはinspectを含めactual新分類全原値をcopyし、retained_original_classifications/原event/未解決履歴と並存。訂正理由/authority差分は新分類の対応member原値とAbsent/null/valueを保持し、参照内容/資格を推測しない。",
+    "state_priority": "selected_phaseがclassify/correct以外なら両材料状態not_evaluated。選択phaseでは当該target全facetがcorrespondingの場合にのみ新分類current_material。correctの旧分類は同条件でstale_material、それ以外はretained_material。classifyの旧nullはunclassified_material。新分類が不一致/不足ならunresolved_material。",
+    "scope": "stale/currentは当該訂正材料の文書上の対応表示。実authority失効/採用/保存/操作許可を発生させず、原wholeのsource材料対応や別targetを上書きしない。",
+    "consumer_binding": "FN04の3rootをFN03 PublicAssessmentの同名rootへdisjoint合成。旧event/分類・原source参照候補を同target keyで辿る。OS016/019/053等への実binding/送達/耐久保存は未成立。"
+  },
+  "literal_provenance": {
+    "inherited": "状態/code/phase/owner label/field順は現L4 diagnostic_contract/原583case。型付きJSON equalはformal_reference.primitive_semantics。",
+    "classification_materials": {
+      "stale_material": "L4 contracts[2]の旧分類/staleと批准L3/L10-F02の別revision訂正。",
+      "current_material": "L4 contracts[2]の新分類/current_material。ただし当該target全facet対応時の材料表示のみ。",
+      "unclassified_material": "元original_classification_stateとclassify phaseの旧null。",
+      "not_evaluated": "inspect/phase未確定で未来分類の成功を生成しないための局所表示。",
+      "retained_material": "correct/classify保留時にも原分類を保持しstale認定を生成しない局所表示。",
+      "unresolved_material": "既存unknown/violation所見がある分類材料をcurrentへ補完しない局所表示。"
+    },
+    "scope": "新表示値は資格・採用・実作用状態を追加しない。"
+  },
+  "return_root_trace": {
+    "FN-OS015-01": {
+      "roots": [
+        "condition",
+        "selected_phase",
+        "target_correspondence",
+        "current_source_material",
+        "original_classification_state",
+        "original_authority_state",
+        "retained_original_events",
+        "retained_original_classifications",
+        "retained_unresolved_history",
+        "retained_classification_lineage",
+        "findings",
+        "actual_management_record_written",
+        "actual_event_rewritten",
+        "actual_authority_generated",
+        "whole_registry_verified",
+        "operation_effect"
+      ],
+      "source": "L4 diagnostic_contract.result_fieldsおよび原583 expected_proposalの同名root。whole型比較はmutation_ruleへ整合。"
+    },
+    "FN-OS015-02": {
+      "value_type": "array<ResolutionCandidate>",
+      "source": "L4 diagnostic_contract.return_ownerと批准L10-F01/F03。finding pointerの同一target source三参照の候補と材料対応。"
+    },
+    "FN-OS015-03": {
+      "roots": [
+        "condition",
+        "selected_phase",
+        "target_correspondence",
+        "current_source_material",
+        "original_classification_state",
+        "original_authority_state",
+        "retained_original_events",
+        "retained_original_classifications",
+        "retained_unresolved_history",
+        "retained_classification_lineage",
+        "findings",
+        "actual_management_record_written",
+        "actual_event_rewritten",
+        "actual_authority_generated",
+        "whole_registry_verified",
+        "operation_effect",
+        "failure_resolution_candidates",
+        "retained_new_classifications",
+        "classification_material_states",
+        "retained_correction_references"
+      ],
+      "producers": [
+        "FN-OS015-01全16root",
+        "FN-OS015-02→failure_resolution_candidates",
+        "FN-OS015-04全3root"
+      ],
+      "source": "各producerと同targetを維持するdisjoint合成。新rootで既存rootを上書きしない。"
+    },
+    "FN-OS015-04": {
+      "roots": [
+        "retained_new_classifications",
+        "classification_material_states",
+        "retained_correction_references"
+      ],
+      "source": "L4 contracts[2]、批准L3/L10-F02の旧event/分類と新revision/訂正根拠の保持。",
+      "inputs": "input.recordsの分類原値と同inputからのmaterial.selected_phase/target_correspondence。"
+    }
   }
 }
