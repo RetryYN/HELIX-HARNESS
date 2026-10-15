@@ -2066,19 +2066,8 @@
             },
             "basis_state_not_sufficient": {
               "source": "context/basis_state",
-              "operator": "any",
-              "conditions": [
-                {
-                  "source": "context/basis_state",
-                  "operator": "equals",
-                  "value": "name_similarity_only"
-                },
-                {
-                  "source": "context/basis_state",
-                  "operator": "equals",
-                  "value": "correlation_only_unverified_causality"
-                }
-              ]
+              "operator": "not_equal",
+              "value": "independent_meaning_in_fixture"
             }
           },
           "otherwise": "candidate_relation_in_fixture_only",
@@ -2115,10 +2104,10 @@
             "source": "context/field_results"
           },
           "source_endpoint": {
-            "source": "endpoint_states/provided/source"
+            "source": "context/endpoint_states/provided/source"
           },
           "target_endpoint": {
-            "source": "endpoint_states/provided/target"
+            "source": "context/endpoint_states/provided/target"
           },
           "relation_state": {
             "source": "context/relation_state"
@@ -2142,8 +2131,15 @@
             "name_similarity_only",
             "correlation_only_unverified_causality"
           ],
-          "effect": "当該値のいずれかならrelation_stateをheldにする。対応claim flagのtrue/falseとは独立に評価し、claimがfalseでも根拠状態の不足を保つ。",
-          "unknown_values_not_enumerated": "固定sourceには上記2値とindependent_meaning_in_fixtureのみが観測された。それ以外の文字列は新たな意味を割り当てず、一般域は未観測。"
+          "effect": "この有限fixtureの十分markerだけを認める。他の全string値はclaim flagと独立にrelation_stateをheldへし、BRAINの意味owner候補へ返す。marker一致自体は実根拠資格の証明ではない。",
+          "unknown_values_not_enumerated": "列挙された2不足値に限らず、十分marker以外の文字列は未知/不足としてheldへ残す。",
+          "sufficient_value": "independent_meaning_in_fixture"
+        },
+        "context_bindings": {
+          "basis_state": {
+            "input_path": "/basis_state",
+            "projection": "入力のstring値を変換せずcontext.basis_stateへ置く。"
+          }
         }
       },
       "BRAIN005-F02": {
@@ -2511,7 +2507,8 @@
       "any": "conditionsのboolean結果を論理和する。空conditionsはfalse。",
       "any_item_equals": "source配列の要素のうちvalueとJSON型区別の完全値比較で一致するものが1つ以上ならtrue。空配列はfalse。",
       "left_length_equals_right_length_plus": "leftとrightが配列であることを型で検証し、length(left)==length(right)+plusのときtrue。",
-      "exact_json_value_equality": "null、boolean、number、string、array、objectのJSON型を区別する。objectのmember順は無視し、array順序と長さを保持して再帰比較する。Absentは別状態であり、比較定義が明示する場合にだけmissingへ射影する。"
+      "exact_json_value_equality": "null、boolean、number、string、array、objectのJSON型を区別する。objectのmember順は無視し、array順序と長さを保持して再帰比較する。Absentは別状態であり、比較定義が明示する場合にだけmissingへ射影する。",
+      "recursive_whole_record_json_equality": "exact_json_value_equalityと同じ演算子。全recordのmember集合と値を再帰比較し、boolean/number、Absent/nullを区別する。部分fieldの一致ではない。"
     }
   },
   "finite_fixture_literals": {
@@ -2626,7 +2623,7 @@
       "function": "BRAIN005-F02",
       "branch": "unknown_owner_route_without_other_failure",
       "status": "not_observed",
-      "limit": "unknown_endpoint_auto_complete claim単独によるBRAIN routeは原wholeにあるが、chain unknownを単独にした入力枝は限定的。"
+      "limit": "原L9のunknown_endpoint_auto_complete例にはAUTH-UX chainのheldも共存するためclaim単独のBRAIN経路は未観測。当該claim経路だけを外す変異は現corpusでは独立識別しない。"
     },
     {
       "function": "BRAIN005-F02",
@@ -2657,6 +2654,30 @@
       "branch": "original_endpoint_absent_while_provided_endpoint_resolves",
       "status": "not_observed",
       "limit": "局所probeは原node集合だけを欠落させたunresolvedを確認する。原edge endpoint memberのAbsentと提出側resolvedを組み合わせた単独例は未観測。"
+    },
+    {
+      "function": "BRAIN005-F02",
+      "branch": "request_revision_binding_side_and_component_isolation",
+      "status": "not_observed",
+      "limit": "局所revision probeは原/提出の全node・edge・endpointを同時に変更する。node照合の原側のみ化、edge照合の本体のみ化/原側のみ化、連続性のrevision検査削除を独立には識別しない。"
+    },
+    {
+      "function": "BRAIN005-F01",
+      "branch": "null_field_comparison",
+      "status": "not_observed",
+      "limit": "F01の比較fieldへnullを置く独立例は未観測。F02のnull反例でF01の分岐まで検証したとはしない。"
+    },
+    {
+      "function": "BRAIN005-F01",
+      "branch": "original_nonendpoint_field_absent",
+      "status": "not_observed",
+      "limit": "F01原側の端点以外の比較fieldをAbsentにする独立例は未観測。"
+    },
+    {
+      "function": "BRAIN005-F01",
+      "branch": "duplicate_identity_endpoint_resolution",
+      "status": "not_observed",
+      "limit": "F01端点のidentity一致nodeが重複する場合の一意性違反を独立に検査する例は未観測。"
     }
   ]
 }
