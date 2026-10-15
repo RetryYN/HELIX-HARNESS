@@ -59290,6 +59290,11 @@
             "code": "source_conflict",
             "pointer": "/profile/obligations",
             "return_owner": "ci-operation-owner"
+          },
+          {
+            "code": "profile_required_obligation_missing",
+            "pointer": "/profile/obligations",
+            "return_owner": "ci-operation-owner"
           }
         ],
         "actual_ci_started": false,
@@ -97565,5 +97570,1099 @@
   "completion": {
     "status": "unproven",
     "evidence": "270fixed metadata proposals;実CI/検収/全閉包は未成立。"
-  }
+  },
+  "upstream_source_basis": {
+    "meaning": "HARNESS F01 full-required duties and F03 phase selection/minimum/omitted are distinct source axes supplied to OS. This locator records interpretation source bytes; it does not grant authority to HARNESS L5/L9 as a separate approved object.",
+    "source_revision": "13e457cca6c58b2fdbb75c8da64a6970541695ac",
+    "sources": [
+      {
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+        "objects": {
+          "HARNESS-L3-005-F01": "6d14a1e59c9b76086d3df99ec46f30ddf178f938fee213f94415dc48b5810877",
+          "HARNESS-L3-005-F03": "1978a86e33bbcc7918a7fa83ee9f4bb54f628f0b00503b217fd8bbd0987743f3"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+        "objects": {
+          "HARNESS-L10-005-F01": "04075610392e6af5976182ee251dd95fa6fa173bcb5404f8b6385db2faa00f60",
+          "HARNESS-L10-005-F03": "a011f06d872a700e152da2e888617516b32289991c4ffdb45ac4867c2c3bde6d"
+        }
+      },
+      {
+        "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+        "file_sha256": "b9eaf77960864eda52e51f0eac84971636f3156c99e985d719a3aa6228ecf59e",
+        "locator": "#/ticket_verification_detail/comparison_steps and /independent_fixtures/selection_rules",
+        "status": "source-derived interpretation only; not a separate authority grant"
+      },
+      {
+        "path": "docs/helix-harness/L9-integration-verification/verification-discipline.json",
+        "file_sha256": "19498cf4c9cc07d7335592cda45bfdfbaea51cba08ec39c5118ac83b4e8e0221",
+        "locator": "#/cases/3/normal_variants",
+        "status": "original normal cases; no selected-extra variant in source baseline"
+      }
+    ],
+    "legacy_basis": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+        "asset_id": "LEGACY-ASSET-DA012A9B04D5BE9419CE",
+        "lines": [
+          82,
+          94,
+          111
+        ],
+        "meaning": "旧required obligation不変、計画とschedulerの分離、全量fallbackとexactly-once回収。現行では固定段数やnightly defaultを再利用せず、ticket選択・省略回収へ意味を再導出。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md",
+        "lines": [
+          28,
+          34,
+          94,
+          98,
+          112
+        ],
+        "meaning": "versioned verification inventory、wrong source HEADはstale、空receiptと未観測を区別、origin/source evidenceを保持。旧DB/runner/runtimeは実行しない。",
+        "asset_id": "LEGACY-ASSET-D888FB040D52499EE09E"
+      }
+    ],
+    "probe_contract": "Six local probes are bounded projections of the L4 profile-selection relation. They do not claim an OS020 whole integration execution or source qualification.",
+    "approval_context": {
+      "decision_path": "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+      "decision_record_id": "HDEC-HARNESS-VERIFICATION-PREREQUISITE-L3L10-2026-10-12",
+      "reviewed_content_head": "a715e777bd59291b26f09c0c1c5481273c6eba2e",
+      "scope": "decision text states 005 has 12 approved pairs; this source basis uses its F01/F03 L3 and L10 objects as source obligations. The local selection probes do not expand that approved scope.",
+      "approval_comment": 6113131428,
+      "admission_audit_path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "admitted_pr": 2943,
+      "merge_commit": "28739e940176b0128c49b4646615674ba33b6771",
+      "decision_sha256": "1df0aa1bdb1b5fcbe2beba5e202601fa0d27fdeb5419e58d8db5cc3691d927fb",
+      "admitted_head": "229d51162b295c1e589f4b7486a6d0173648cf03",
+      "admission_scope": "The audit row binds approved content head a715e777bd59291b26f09c0c1c5481273c6eba2e and this decision. The decision explicitly approves 12 pairs for 005; this OS projection consumes the cited F01/F03 source duties only."
+    },
+    "selection_axis_note": "HARNESS F03 selected/omittedはticket-planning source軸、OS plan_selection_source/profile obligationsはOS内の選択実行計画軸として別々に保持する。両source間の同一phase/scope/版を示すbindingはこの局所fixtureにないため、OS profileはHARNESS F03 minimumを満たすか比較するが、HARNESS selectedとの集合一致を要求しない。OS内では独立plan_selection_sourceとcontext.profileを照合し、そのprojectionとactual profile/itemsの整合を確認する。"
+  },
+  "profile_selection_probes": [
+    {
+      "id": "OS020-SET-VALID-SELECTED-EXTRA",
+      "l4_projection": "profile_selection_contract",
+      "given": {
+        "harness_f01_full_required_refs": [
+          "OBL-U1",
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "harness_f03": {
+          "inventory_refs": [
+            "OBL-U1",
+            "OBL-C1",
+            "OBL-X1"
+          ],
+          "pre_pr_required_refs": [
+            "OBL-U1"
+          ],
+          "selected_refs": [
+            "OBL-U1",
+            "OBL-C1"
+          ],
+          "omitted_refs": [
+            "OBL-X1"
+          ],
+          "recovered_refs": [],
+          "unrecovered_refs": [
+            "OBL-X1"
+          ]
+        },
+        "profile": {
+          "binding": {
+            "project": "PROJECT-P",
+            "requirement_revision": "OS-REQ-r1",
+            "scope": "SCOPE-P1",
+            "ticket_graph_ref": "TICKET-GRAPH-P1",
+            "head": "HEAD-1",
+            "base": "BASE-1",
+            "pair_ref": "PAIR-020",
+            "oracle_ref": "ORACLE-020",
+            "harness_version": "HARNESS-V1",
+            "environment_ref": "ENV-1",
+            "runner_ref": "RUNNER-1",
+            "run_ref": "RUN-1",
+            "authority_ref": "AUTH-1"
+          },
+          "source_ref": "PLAN-1",
+          "changed_targets": [
+            "CHANGE-A"
+          ],
+          "obligations": [
+            "OBL-U1",
+            "OBL-C1"
+          ],
+          "items": [
+            {
+              "id": "CHECK-OBL-U1",
+              "obligation_ref": "OBL-U1",
+              "oracle_ref": "ORACLE-020",
+              "environment_ref": "ENV-1"
+            },
+            {
+              "id": "CHECK-OBL-C1",
+              "obligation_ref": "OBL-C1",
+              "oracle_ref": "ORACLE-020",
+              "environment_ref": "ENV-1"
+            }
+          ]
+        },
+        "context": {
+          "required_obligations": [
+            "OBL-U1"
+          ],
+          "profile": {
+            "binding": {
+              "project": "PROJECT-P",
+              "requirement_revision": "OS-REQ-r1",
+              "scope": "SCOPE-P1",
+              "ticket_graph_ref": "TICKET-GRAPH-P1",
+              "head": "HEAD-1",
+              "base": "BASE-1",
+              "pair_ref": "PAIR-020",
+              "oracle_ref": "ORACLE-020",
+              "harness_version": "HARNESS-V1",
+              "environment_ref": "ENV-1",
+              "runner_ref": "RUNNER-1",
+              "run_ref": "RUN-1",
+              "authority_ref": "AUTH-1"
+            },
+            "source_ref": "PLAN-1",
+            "changed_targets": [
+              "CHANGE-A"
+            ],
+            "obligations": [
+              "OBL-U1",
+              "OBL-C1"
+            ],
+            "items": [
+              {
+                "id": "CHECK-OBL-U1",
+                "obligation_ref": "OBL-U1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              },
+              {
+                "id": "CHECK-OBL-C1",
+                "obligation_ref": "OBL-C1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              }
+            ]
+          },
+          "plan_selection_source": {
+            "plan_ref": "PLAN-1",
+            "binding": {
+              "project": "PROJECT-P",
+              "requirement_revision": "OS-REQ-r1",
+              "scope": "SCOPE-P1",
+              "ticket_graph_ref": "TICKET-GRAPH-P1"
+            },
+            "selected_obligation_refs": [
+              "OBL-U1",
+              "OBL-C1"
+            ],
+            "items": [
+              {
+                "id": "CHECK-OBL-U1",
+                "obligation_ref": "OBL-U1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              },
+              {
+                "id": "CHECK-OBL-C1",
+                "obligation_ref": "OBL-C1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              }
+            ]
+          }
+        }
+      },
+      "expected_observation": {
+        "classification": "corresponding",
+        "f01_full_required_refs": [
+          "OBL-U1",
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "f03_minimum_refs": [
+          "OBL-U1"
+        ],
+        "f03_selected_refs": [
+          "OBL-U1",
+          "OBL-C1"
+        ],
+        "f03_omitted_refs": [
+          "OBL-X1"
+        ],
+        "profile_selected_refs": [
+          "OBL-U1",
+          "OBL-C1"
+        ],
+        "profile_item_obligation_refs": [
+          "OBL-U1",
+          "OBL-C1"
+        ],
+        "minimum_missing_refs": [],
+        "plan_selection_state": "corresponding",
+        "profile_selection_state": "corresponding",
+        "items_selection_state": "corresponding",
+        "profile_items_self_consistent": true,
+        "findings": []
+      },
+      "execution_state": "not_executed",
+      "basis": "L3/L10の義務とH005のsource規則を根拠に、source-firstでrawとexpectedをこのpair編集より前に固定した。"
+    },
+    {
+      "id": "OS020-SET-MISSING-MINIMUM",
+      "l4_projection": "profile_selection_contract",
+      "given": {
+        "harness_f01_full_required_refs": [
+          "OBL-U1",
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "harness_f03": {
+          "inventory_refs": [
+            "OBL-U1",
+            "OBL-C1",
+            "OBL-X1"
+          ],
+          "pre_pr_required_refs": [
+            "OBL-U1",
+            "OBL-C1"
+          ],
+          "selected_refs": [
+            "OBL-U1"
+          ],
+          "omitted_refs": [
+            "OBL-C1",
+            "OBL-X1"
+          ],
+          "recovered_refs": [],
+          "unrecovered_refs": [
+            "OBL-C1",
+            "OBL-X1"
+          ]
+        },
+        "profile": {
+          "binding": {
+            "project": "PROJECT-P",
+            "requirement_revision": "OS-REQ-r1",
+            "scope": "SCOPE-P1",
+            "ticket_graph_ref": "TICKET-GRAPH-P1",
+            "head": "HEAD-1",
+            "base": "BASE-1",
+            "pair_ref": "PAIR-020",
+            "oracle_ref": "ORACLE-020",
+            "harness_version": "HARNESS-V1",
+            "environment_ref": "ENV-1",
+            "runner_ref": "RUNNER-1",
+            "run_ref": "RUN-1",
+            "authority_ref": "AUTH-1"
+          },
+          "source_ref": "PLAN-1",
+          "changed_targets": [
+            "CHANGE-A"
+          ],
+          "obligations": [
+            "OBL-U1"
+          ],
+          "items": [
+            {
+              "id": "CHECK-OBL-U1",
+              "obligation_ref": "OBL-U1",
+              "oracle_ref": "ORACLE-020",
+              "environment_ref": "ENV-1"
+            }
+          ]
+        },
+        "context": {
+          "required_obligations": [
+            "OBL-U1",
+            "OBL-C1"
+          ],
+          "profile": {
+            "binding": {
+              "project": "PROJECT-P",
+              "requirement_revision": "OS-REQ-r1",
+              "scope": "SCOPE-P1",
+              "ticket_graph_ref": "TICKET-GRAPH-P1",
+              "head": "HEAD-1",
+              "base": "BASE-1",
+              "pair_ref": "PAIR-020",
+              "oracle_ref": "ORACLE-020",
+              "harness_version": "HARNESS-V1",
+              "environment_ref": "ENV-1",
+              "runner_ref": "RUNNER-1",
+              "run_ref": "RUN-1",
+              "authority_ref": "AUTH-1"
+            },
+            "source_ref": "PLAN-1",
+            "changed_targets": [
+              "CHANGE-A"
+            ],
+            "obligations": [
+              "OBL-U1"
+            ],
+            "items": [
+              {
+                "id": "CHECK-OBL-U1",
+                "obligation_ref": "OBL-U1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              }
+            ]
+          },
+          "plan_selection_source": {
+            "plan_ref": "PLAN-1",
+            "binding": {
+              "project": "PROJECT-P",
+              "requirement_revision": "OS-REQ-r1",
+              "scope": "SCOPE-P1",
+              "ticket_graph_ref": "TICKET-GRAPH-P1"
+            },
+            "selected_obligation_refs": [
+              "OBL-U1"
+            ],
+            "items": [
+              {
+                "id": "CHECK-OBL-U1",
+                "obligation_ref": "OBL-U1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              }
+            ]
+          }
+        }
+      },
+      "expected_observation": {
+        "classification": "violation",
+        "f01_full_required_refs": [
+          "OBL-U1",
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "f03_minimum_refs": [
+          "OBL-U1",
+          "OBL-C1"
+        ],
+        "f03_selected_refs": [
+          "OBL-U1"
+        ],
+        "f03_omitted_refs": [
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "profile_selected_refs": [
+          "OBL-U1"
+        ],
+        "profile_item_obligation_refs": [
+          "OBL-U1"
+        ],
+        "minimum_missing_refs": [
+          "OBL-C1"
+        ],
+        "plan_selection_state": "corresponding",
+        "profile_selection_state": "corresponding",
+        "items_selection_state": "corresponding",
+        "profile_items_self_consistent": true,
+        "findings": [
+          {
+            "code": "profile_required_obligation_missing",
+            "pointer": "/profile/obligations",
+            "return_owner": "ci-operation-owner"
+          }
+        ]
+      },
+      "execution_state": "not_executed",
+      "basis": "L3/L10の義務とH005のsource規則を根拠に、source-firstでrawとexpectedをこのpair編集より前に固定した。"
+    },
+    {
+      "id": "OS020-SET-ACTUAL-SELECTION-DEVIATES",
+      "l4_projection": "profile_selection_contract",
+      "given": {
+        "harness_f01_full_required_refs": [
+          "OBL-U1",
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "harness_f03": {
+          "inventory_refs": [
+            "OBL-U1",
+            "OBL-C1",
+            "OBL-X1"
+          ],
+          "pre_pr_required_refs": [
+            "OBL-U1"
+          ],
+          "selected_refs": [
+            "OBL-U1"
+          ],
+          "omitted_refs": [
+            "OBL-C1",
+            "OBL-X1"
+          ],
+          "recovered_refs": [],
+          "unrecovered_refs": [
+            "OBL-C1",
+            "OBL-X1"
+          ]
+        },
+        "profile": {
+          "binding": {
+            "project": "PROJECT-P",
+            "requirement_revision": "OS-REQ-r1",
+            "scope": "SCOPE-P1",
+            "ticket_graph_ref": "TICKET-GRAPH-P1",
+            "head": "HEAD-1",
+            "base": "BASE-1",
+            "pair_ref": "PAIR-020",
+            "oracle_ref": "ORACLE-020",
+            "harness_version": "HARNESS-V1",
+            "environment_ref": "ENV-1",
+            "runner_ref": "RUNNER-1",
+            "run_ref": "RUN-1",
+            "authority_ref": "AUTH-1"
+          },
+          "source_ref": "PLAN-1",
+          "changed_targets": [
+            "CHANGE-A"
+          ],
+          "obligations": [
+            "OBL-U1"
+          ],
+          "items": [
+            {
+              "id": "CHECK-OBL-U1",
+              "obligation_ref": "OBL-U1",
+              "oracle_ref": "ORACLE-020",
+              "environment_ref": "ENV-1"
+            }
+          ]
+        },
+        "context": {
+          "required_obligations": [
+            "OBL-U1"
+          ],
+          "profile": {
+            "binding": {
+              "project": "PROJECT-P",
+              "requirement_revision": "OS-REQ-r1",
+              "scope": "SCOPE-P1",
+              "ticket_graph_ref": "TICKET-GRAPH-P1",
+              "head": "HEAD-1",
+              "base": "BASE-1",
+              "pair_ref": "PAIR-020",
+              "oracle_ref": "ORACLE-020",
+              "harness_version": "HARNESS-V1",
+              "environment_ref": "ENV-1",
+              "runner_ref": "RUNNER-1",
+              "run_ref": "RUN-1",
+              "authority_ref": "AUTH-1"
+            },
+            "source_ref": "PLAN-1",
+            "changed_targets": [
+              "CHANGE-A"
+            ],
+            "obligations": [
+              "OBL-U1",
+              "OBL-C1"
+            ],
+            "items": [
+              {
+                "id": "CHECK-OBL-U1",
+                "obligation_ref": "OBL-U1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              },
+              {
+                "id": "CHECK-OBL-C1",
+                "obligation_ref": "OBL-C1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              }
+            ]
+          },
+          "plan_selection_source": {
+            "plan_ref": "PLAN-1",
+            "binding": {
+              "project": "PROJECT-P",
+              "requirement_revision": "OS-REQ-r1",
+              "scope": "SCOPE-P1",
+              "ticket_graph_ref": "TICKET-GRAPH-P1"
+            },
+            "selected_obligation_refs": [
+              "OBL-U1",
+              "OBL-C1"
+            ],
+            "items": [
+              {
+                "id": "CHECK-OBL-U1",
+                "obligation_ref": "OBL-U1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              },
+              {
+                "id": "CHECK-OBL-C1",
+                "obligation_ref": "OBL-C1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              }
+            ]
+          }
+        }
+      },
+      "expected_observation": {
+        "classification": "violation",
+        "f01_full_required_refs": [
+          "OBL-U1",
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "f03_minimum_refs": [
+          "OBL-U1"
+        ],
+        "f03_selected_refs": [
+          "OBL-U1"
+        ],
+        "f03_omitted_refs": [
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "profile_selected_refs": [
+          "OBL-U1"
+        ],
+        "profile_item_obligation_refs": [
+          "OBL-U1"
+        ],
+        "minimum_missing_refs": [],
+        "plan_selection_state": "corresponding",
+        "profile_selection_state": "conflict",
+        "items_selection_state": "corresponding",
+        "profile_items_self_consistent": true,
+        "findings": [
+          {
+            "code": "profile_selection_source_conflict",
+            "pointer": "/profile/obligations",
+            "return_owner": "ci-operation-owner"
+          },
+          {
+            "code": "profile_item_set_conflict",
+            "pointer": "/profile/items",
+            "return_owner": "ci-operation-owner"
+          }
+        ]
+      },
+      "execution_state": "not_executed",
+      "basis": "L3/L10の義務とH005のsource規則を根拠に、source-firstでrawとexpectedをこのpair編集より前に固定した。"
+    },
+    {
+      "id": "OS020-SET-EXPECTED-COPIED-FROM-ACTUAL",
+      "l4_projection": "profile_selection_contract",
+      "given": {
+        "harness_f01_full_required_refs": [
+          "OBL-U1",
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "harness_f03": {
+          "inventory_refs": [
+            "OBL-U1",
+            "OBL-C1",
+            "OBL-X1"
+          ],
+          "pre_pr_required_refs": [
+            "OBL-U1"
+          ],
+          "selected_refs": [
+            "OBL-U1",
+            "OBL-C1"
+          ],
+          "omitted_refs": [
+            "OBL-X1"
+          ],
+          "recovered_refs": [],
+          "unrecovered_refs": [
+            "OBL-X1"
+          ]
+        },
+        "profile": {
+          "binding": {
+            "project": "PROJECT-P",
+            "requirement_revision": "OS-REQ-r1",
+            "scope": "SCOPE-P1",
+            "ticket_graph_ref": "TICKET-GRAPH-P1",
+            "head": "HEAD-1",
+            "base": "BASE-1",
+            "pair_ref": "PAIR-020",
+            "oracle_ref": "ORACLE-020",
+            "harness_version": "HARNESS-V1",
+            "environment_ref": "ENV-1",
+            "runner_ref": "RUNNER-1",
+            "run_ref": "RUN-1",
+            "authority_ref": "AUTH-1"
+          },
+          "source_ref": "PLAN-1",
+          "changed_targets": [
+            "CHANGE-A"
+          ],
+          "obligations": [
+            "OBL-U1",
+            "OBL-C1"
+          ],
+          "items": [
+            {
+              "id": "CHECK-OBL-U1",
+              "obligation_ref": "OBL-U1",
+              "oracle_ref": "ORACLE-020",
+              "environment_ref": "ENV-1"
+            },
+            {
+              "id": "CHECK-OBL-C1",
+              "obligation_ref": "OBL-C1",
+              "oracle_ref": "ORACLE-020",
+              "environment_ref": "ENV-1"
+            }
+          ]
+        },
+        "context": {
+          "required_obligations": [
+            "OBL-U1"
+          ],
+          "profile": {
+            "binding": {
+              "project": "PROJECT-P",
+              "requirement_revision": "OS-REQ-r1",
+              "scope": "SCOPE-P1",
+              "ticket_graph_ref": "TICKET-GRAPH-P1",
+              "head": "HEAD-1",
+              "base": "BASE-1",
+              "pair_ref": "PAIR-020",
+              "oracle_ref": "ORACLE-020",
+              "harness_version": "HARNESS-V1",
+              "environment_ref": "ENV-1",
+              "runner_ref": "RUNNER-1",
+              "run_ref": "RUN-1",
+              "authority_ref": "AUTH-1"
+            },
+            "source_ref": "PLAN-1",
+            "changed_targets": [
+              "CHANGE-A"
+            ],
+            "obligations": [
+              "OBL-U1",
+              "OBL-C1"
+            ],
+            "items": [
+              {
+                "id": "CHECK-OBL-U1",
+                "obligation_ref": "OBL-U1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              },
+              {
+                "id": "CHECK-OBL-C1",
+                "obligation_ref": "OBL-C1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              }
+            ]
+          },
+          "plan_selection_source": {
+            "plan_ref": "PLAN-1",
+            "binding": {
+              "project": "PROJECT-P",
+              "requirement_revision": "OS-REQ-r1",
+              "scope": "SCOPE-P1",
+              "ticket_graph_ref": "TICKET-GRAPH-P1"
+            },
+            "selected_obligation_refs": [
+              "OBL-U1"
+            ],
+            "items": [
+              {
+                "id": "CHECK-OBL-U1",
+                "obligation_ref": "OBL-U1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              }
+            ]
+          }
+        }
+      },
+      "expected_observation": {
+        "classification": "violation",
+        "f01_full_required_refs": [
+          "OBL-U1",
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "f03_minimum_refs": [
+          "OBL-U1"
+        ],
+        "f03_selected_refs": [
+          "OBL-U1",
+          "OBL-C1"
+        ],
+        "f03_omitted_refs": [
+          "OBL-X1"
+        ],
+        "profile_selected_refs": [
+          "OBL-U1",
+          "OBL-C1"
+        ],
+        "profile_item_obligation_refs": [
+          "OBL-U1",
+          "OBL-C1"
+        ],
+        "minimum_missing_refs": [],
+        "plan_selection_state": "conflict",
+        "profile_selection_state": "conflict",
+        "items_selection_state": "corresponding",
+        "profile_items_self_consistent": true,
+        "findings": [
+          {
+            "code": "profile_selection_source_conflict",
+            "pointer": "/context/profile/obligations",
+            "return_owner": "ci-operation-owner"
+          }
+        ]
+      },
+      "execution_state": "not_executed",
+      "basis": "L3/L10の義務とH005のsource規則を根拠に、source-firstでrawとexpectedをこのpair編集より前に固定した。"
+    },
+    {
+      "id": "OS020-SET-SOURCE-INCOMPLETE",
+      "l4_projection": "profile_selection_contract",
+      "given": {
+        "harness_f01_full_required_refs": [
+          "OBL-U1",
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "harness_f03": {
+          "inventory_refs": [
+            "OBL-U1",
+            "OBL-C1",
+            "OBL-X1"
+          ],
+          "pre_pr_required_refs": [
+            "OBL-U1"
+          ],
+          "selected_refs": [
+            "OBL-U1"
+          ],
+          "omitted_refs": [
+            "OBL-C1",
+            "OBL-X1"
+          ],
+          "recovered_refs": [],
+          "unrecovered_refs": [
+            "OBL-C1",
+            "OBL-X1"
+          ]
+        },
+        "profile": {
+          "binding": {
+            "project": "PROJECT-P",
+            "requirement_revision": "OS-REQ-r1",
+            "scope": "SCOPE-P1",
+            "ticket_graph_ref": "TICKET-GRAPH-P1",
+            "head": "HEAD-1",
+            "base": "BASE-1",
+            "pair_ref": "PAIR-020",
+            "oracle_ref": "ORACLE-020",
+            "harness_version": "HARNESS-V1",
+            "environment_ref": "ENV-1",
+            "runner_ref": "RUNNER-1",
+            "run_ref": "RUN-1",
+            "authority_ref": "AUTH-1"
+          },
+          "source_ref": "PLAN-1",
+          "changed_targets": [
+            "CHANGE-A"
+          ],
+          "obligations": [
+            "OBL-U1"
+          ],
+          "items": [
+            {
+              "id": "CHECK-OBL-U1",
+              "obligation_ref": "OBL-U1",
+              "oracle_ref": "ORACLE-020",
+              "environment_ref": "ENV-1"
+            }
+          ]
+        },
+        "context": {
+          "required_obligations": [
+            "OBL-U1"
+          ],
+          "profile": {
+            "binding": {
+              "project": "PROJECT-P",
+              "requirement_revision": "OS-REQ-r1",
+              "scope": "SCOPE-P1",
+              "ticket_graph_ref": "TICKET-GRAPH-P1",
+              "head": "HEAD-1",
+              "base": "BASE-1",
+              "pair_ref": "PAIR-020",
+              "oracle_ref": "ORACLE-020",
+              "harness_version": "HARNESS-V1",
+              "environment_ref": "ENV-1",
+              "runner_ref": "RUNNER-1",
+              "run_ref": "RUN-1",
+              "authority_ref": "AUTH-1"
+            },
+            "source_ref": "PLAN-1",
+            "changed_targets": [
+              "CHANGE-A"
+            ],
+            "obligations": [
+              "OBL-U1"
+            ],
+            "items": [
+              {
+                "id": "CHECK-OBL-U1",
+                "obligation_ref": "OBL-U1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              }
+            ]
+          },
+          "plan_selection_source": {
+            "binding": {
+              "project": "PROJECT-P",
+              "requirement_revision": "OS-REQ-r1",
+              "scope": "SCOPE-P1",
+              "ticket_graph_ref": "TICKET-GRAPH-P1",
+              "head": "HEAD-1",
+              "base": "BASE-1",
+              "pair_ref": "PAIR-020",
+              "oracle_ref": "ORACLE-020",
+              "harness_version": "HARNESS-V1",
+              "environment_ref": "ENV-1",
+              "runner_ref": "RUNNER-1",
+              "run_ref": "RUN-1",
+              "authority_ref": "AUTH-1"
+            },
+            "plan_ref": "PLAN-1",
+            "selected_obligation_refs": null
+          }
+        }
+      },
+      "expected_observation": {
+        "classification": "unknown",
+        "f01_full_required_refs": [
+          "OBL-U1",
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "f03_minimum_refs": [
+          "OBL-U1"
+        ],
+        "f03_selected_refs": [
+          "OBL-U1"
+        ],
+        "f03_omitted_refs": [
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "profile_selected_refs": [
+          "OBL-U1"
+        ],
+        "profile_item_obligation_refs": [
+          "OBL-U1"
+        ],
+        "minimum_missing_refs": [],
+        "plan_selection_state": "unknown",
+        "profile_selection_state": "unknown",
+        "items_selection_state": "corresponding",
+        "profile_items_self_consistent": true,
+        "findings": [
+          {
+            "code": "source_unresolved",
+            "pointer": "/context/plan_selection_source/selected_obligation_refs",
+            "return_owner": "ci-operation-owner"
+          }
+        ]
+      },
+      "execution_state": "not_executed",
+      "basis": "L3/L10の義務とH005のsource規則を根拠に、source-firstでrawとexpectedをこのpair編集より前に固定した。"
+    },
+    {
+      "id": "OS020-SET-SOURCE-REVISION-SCOPE-CONFLICT",
+      "l4_projection": "profile_selection_contract",
+      "given": {
+        "harness_f01_full_required_refs": [
+          "OBL-U1",
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "harness_f03": {
+          "inventory_refs": [
+            "OBL-U1",
+            "OBL-C1",
+            "OBL-X1"
+          ],
+          "pre_pr_required_refs": [
+            "OBL-U1"
+          ],
+          "selected_refs": [
+            "OBL-U1"
+          ],
+          "omitted_refs": [
+            "OBL-C1",
+            "OBL-X1"
+          ],
+          "recovered_refs": [],
+          "unrecovered_refs": [
+            "OBL-C1",
+            "OBL-X1"
+          ]
+        },
+        "profile": {
+          "binding": {
+            "project": "PROJECT-P",
+            "requirement_revision": "OS-REQ-r1",
+            "scope": "SCOPE-P1",
+            "ticket_graph_ref": "TICKET-GRAPH-P1",
+            "head": "HEAD-1",
+            "base": "BASE-1",
+            "pair_ref": "PAIR-020",
+            "oracle_ref": "ORACLE-020",
+            "harness_version": "HARNESS-V1",
+            "environment_ref": "ENV-1",
+            "runner_ref": "RUNNER-1",
+            "run_ref": "RUN-1",
+            "authority_ref": "AUTH-1"
+          },
+          "source_ref": "PLAN-1",
+          "changed_targets": [
+            "CHANGE-A"
+          ],
+          "obligations": [
+            "OBL-U1"
+          ],
+          "items": [
+            {
+              "id": "CHECK-OBL-U1",
+              "obligation_ref": "OBL-U1",
+              "oracle_ref": "ORACLE-020",
+              "environment_ref": "ENV-1"
+            }
+          ]
+        },
+        "context": {
+          "required_obligations": [
+            "OBL-U1"
+          ],
+          "profile": {
+            "binding": {
+              "project": "PROJECT-P",
+              "requirement_revision": "OS-REQ-r1",
+              "scope": "SCOPE-P1",
+              "ticket_graph_ref": "TICKET-GRAPH-P1",
+              "head": "HEAD-1",
+              "base": "BASE-1",
+              "pair_ref": "PAIR-020",
+              "oracle_ref": "ORACLE-020",
+              "harness_version": "HARNESS-V1",
+              "environment_ref": "ENV-1",
+              "runner_ref": "RUNNER-1",
+              "run_ref": "RUN-1",
+              "authority_ref": "AUTH-1"
+            },
+            "source_ref": "PLAN-1",
+            "changed_targets": [
+              "CHANGE-A"
+            ],
+            "obligations": [
+              "OBL-U1"
+            ],
+            "items": [
+              {
+                "id": "CHECK-OBL-U1",
+                "obligation_ref": "OBL-U1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              }
+            ]
+          },
+          "plan_selection_source": {
+            "plan_ref": "PLAN-1",
+            "binding": {
+              "project": "PROJECT-P",
+              "requirement_revision": "OS-REQ-r2",
+              "scope": "SCOPE-P2",
+              "ticket_graph_ref": "TICKET-GRAPH-P1"
+            },
+            "selected_obligation_refs": [
+              "OBL-U1"
+            ],
+            "items": [
+              {
+                "id": "CHECK-OBL-U1",
+                "obligation_ref": "OBL-U1",
+                "oracle_ref": "ORACLE-020",
+                "environment_ref": "ENV-1"
+              }
+            ]
+          }
+        }
+      },
+      "expected_observation": {
+        "classification": "violation",
+        "f01_full_required_refs": [
+          "OBL-U1",
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "f03_minimum_refs": [
+          "OBL-U1"
+        ],
+        "f03_selected_refs": [
+          "OBL-U1"
+        ],
+        "f03_omitted_refs": [
+          "OBL-C1",
+          "OBL-X1"
+        ],
+        "profile_selected_refs": [
+          "OBL-U1"
+        ],
+        "profile_item_obligation_refs": [
+          "OBL-U1"
+        ],
+        "minimum_missing_refs": [],
+        "plan_selection_state": "conflict",
+        "profile_selection_state": "conflict",
+        "items_selection_state": "corresponding",
+        "profile_items_self_consistent": true,
+        "findings": [
+          {
+            "code": "profile_selection_source_conflict",
+            "pointer": "/context/profile/binding/requirement_revision",
+            "return_owner": "ci-operation-owner"
+          },
+          {
+            "code": "profile_selection_source_conflict",
+            "pointer": "/context/profile/binding/scope",
+            "return_owner": "ci-operation-owner"
+          }
+        ]
+      },
+      "execution_state": "not_executed",
+      "basis": "L3/L10の義務とH005のsource規則を根拠に、source-firstでrawとexpectedをこのpair編集より前に固定した。"
+    }
+  ]
 }
