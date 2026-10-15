@@ -911,22 +911,22 @@
         ],
         "ref_rule": "各snapshotの参照を同じ側の指定参照へ照合する。CORE側RefとOS側Refの同値を要求せず、6軸CORE Refから4軸OS Refへのcastをしない。snapshot_refはこの明示入力の識別子で、payload内のpolicy/ref/result_ref claimの代用ではない。",
         "endpoint_order": [
-          "要求endpointのsnapshot_ref/pointer/expected_valueを確認する。Ref必須軸の欠落/nullはunresolved。空string identity/revision/ownerも未解決。scopeは非null objectでなければunresolved。",
-          "snapshot集合のpresence/shapeを確認する。Absent/null/非arrayはunresolved、既知[]はmissing。",
-          "原snapshot occurrenceを保持して同じidentityを選ぶ。identityの欠落/null/空/非文字列などで候補所属を決められないoccurrenceはunresolvedとし、元値を返す。既知異identityは候補外。未知selectorがなければ0件はmissing、複数はambiguous。一意で残るRef軸不足ならunresolved。",
-          "identity一致の一意snapshotのowner/scopeが異なればconflict。同じowner/scopeでrevisionが異なればstale。異なるscopeを古い版に丸めない。",
-          "選択snapshotのpayload member欠落はmissing。present payloadへRFC6901を厳密に解決する。不正escape/不正array index/非pointerはunresolved、正しいpointerの参照先が無ければmissing。明示payload nullで空pointerならpresent nullとして解決する。pointerは同snapshot内の場所であり、両側の配列index同士をjoinする規則ではない。",
-          "resolved valueのPresenceとexpected_valueを比較する。boolとnumber、Absentとnull、array順序/重複を区別する。objectのkey順は意味を持たない。差はconflict、一致はcontent_corresponding。"
+          "以下は左右で独立に適用する先行終了順。endpointが非objectならunresolvedをendpoint rootへ返す。snapshot_ref非objectもunresolved。そのidentity、revision、scope、ownerの順で確認し、string軸のAbsent/null/非string/空string、scopeのAbsent/null/非objectは最初の該当軸をunresolvedにする。pointer member欠落はunresolved。expected_valueはPresenceの厳密形に一致しなければunresolved。ここまで候補配列は空。",
+          "snapshot集合のAbsent/null/非arrayはunresolved。既知arrayでは全occurrenceのidentityを元順に調べ、非object/ref非object/identityのAbsent/null/空/非stringを未知selectorとする。既知同identityだけをcandidate_snapshotsへ元順・重複保持で入れる。未知selectorは候補に入れずoriginal_snapshotsへ原値を保持する。未知selectorが1件でもあれば既知候補数によらずunresolvedを優先し、各未知selectorのidentity pathを元順で返す。",
+          "未知selectorがなく、既知一致候補0件（空集合/既知異identityだけを含む場合）はmissing、2件以上はambiguous。どちらも集合rootを診断pathにする。一意候補だけを後段へ進める。候補のrevision、scope、ownerの順で必須shapeを調べ、不足は該当snapshotの実indexのRef軸へunresolvedを返す。",
+          "一意候補のowner、scopeの順で要求snapshot_refへJSON型付き比較し、最初の差をconflictとして要求側軸pathへ返す。両方一致した場合だけrevisionを比較し、差はstaleとして要求側revision pathへ返す。scope/owner差を古い版に丸めない。",
+          "選択snapshotのpayload member欠落はmissingでsnapshotのpayload pathを返し、expected Absentで埋めない。present payloadは原JSON値として扱う。RFC6901の構文/escapeを確認し、不正はunresolved。空pointerはnull/scalarを含めpayload自身へpresent解決する。object keyはescape復号後のliteral key（数字/空/-もkeyのまま）。arrayでは0または先頭0のない十進非負整数だけをindexとし、leading0/負数/非数字はunresolved、-は存在しない位置としてAbsent。範囲外index/不在object keyはAbsent。途中でnull/scalarへ到達して更に降りる場合は容器入力不足としてmissingを返す。payload型不足を対象値Absentの一致にしない。",
+          "有効pointerのAbsentはresolved_value={presence:\"absent\"}としてexpected_value比較へ進める。双方Absentならcontent_corresponding、actual Absentかつexpected presentならmissingでendpoint.pointerを診断する。actual presentは{presence:\"present\",value:原値}を返す。actual presentとexpected absentまたはpresent値の差はconflictでendpoint.expected_valueを診断する。一致はcontent_corresponding。JSON booleanとnumber、Absentとpresent nullを区別し、number同士は数値として比較する。object key順を無視し、array順序/重複は保持する。"
         ],
         "return": {
-          "core_endpoint": "state、snapshot候補occurrence、resolved valueのPresenceと不足/相反のpath",
-          "os_endpoint": "core側とは独立したstateと同じ保持材料",
-          "association_input": "元のrelation claimを無変換で保持",
-          "original_snapshots": "両側の元payloadとmember有無を保持",
-          "meaning_comparison": "固定not_established。両端の値一致から意味の関係を認定しない。",
-          "actual_source_qualification": "not_established",
-          "effects": "none",
-          "diagnostic_path_rule": "要求Refの不足はassociationのendpointからのpointer、snapshot内不足は該当側snapshot元indexからのpointer、参照先の欠落/不正pointerはendpoint.pointerを指す。複数の未知selectorは元順で全pathを返す。"
+          "core_endpoint": "logical_output_types.EndpointResult。初期値はstate=unresolved,candidate_snapshots=[],resolved_value={presence:\"absent\"},diagnostic_paths=[]。endpoint_orderで候補/解決値が既知になった時だけ更新する。",
+          "os_endpoint": "coreと独立に同じEndpointResultを構成する。",
+          "association_input": "元associationを無変換で保持する。logical_output_types.AssociationResult参照。",
+          "original_snapshots": "元両側snapshot集合の値とmember有無を無変換で保持する。",
+          "meaning_comparison": "固定not_established。内容対応は意味の関係を認定しない。",
+          "actual_source_qualification": "固定not_established。",
+          "effects": "固定none。",
+          "diagnostic_path_rule": "diagnostic_path_rulesとendpoint_orderが唯一の返却path規範。先行終了時に、後段の差からpathを追加しない。"
         },
         "consumer_obligations": [
           "両端content_correspondingだけではrelation claimの意味が正しいとはしない。後続のbinding・disposition・N/A属性・condition occurrence・obligation対応の原比較を省略しない。",
@@ -953,7 +953,8 @@
         "remaining": [
           "source関係claimの意味と実資格、および具体的provider/caller。",
           "binding frame、条件列と原boolean、N/A属性、義務occurrenceの意味対応の具体化。",
-          "後続L5/L8の型、診断path、全呼出し/返却への結線。"
+          "後続L5/L8の型、診断path、全呼出し/返却への結線。",
+          "CORE/OS source改訂時は固定source_basisの役割、原body、pointer、出力Presence/Ref shapeを再照合する。metadata statusだけでreview/admission状態を推定しない。"
         ],
         "name": "明示関係の両端内容照合",
         "operation_effect": "none",
@@ -999,6 +1000,88 @@
           "snapshot": "{ref:{identity:string,revision:string,scope:object,owner:string},payload:原JSON値}。snapshot refはOSが受け取る容器の参照で、内部CORE6軸Refを短縮しない。",
           "endpoint": "{snapshot_ref:4軸の原容器Ref,pointer:RFC6901,expected_value:{presence:present,value:原JSON値}|{presence:absent}}",
           "association": "{relation_ref:原関係claim参照,core_endpoint:endpoint,os_endpoint:endpoint}。relation_refは原claimとして保持するだけで、資格/意味の認定根拠にはしない。"
+        },
+        "logical_output_types": {
+          "JsonValue": "JSONのnull/boolean/number/string/array/object。元値をcastせず保持する。",
+          "Presence": "閉recordの直和。Absent={presence:\"absent\"}のみ。Present={presence:\"present\",value:JsonValue}のみ。value内の任意mapは閉じない。余剰wrapper key/欠落value/未知tagはunresolved。",
+          "EndpointState": [
+            "unresolved",
+            "missing",
+            "ambiguous",
+            "conflict",
+            "stale",
+            "content_corresponding"
+          ],
+          "EndpointResult": {
+            "state": "EndpointState",
+            "candidate_snapshots": "Array<JsonValue>（既知一致identity occurrenceのみ）",
+            "resolved_value": "Presence",
+            "diagnostic_paths": "Array<RFC6901 pointer string>"
+          },
+          "AssociationResult": {
+            "core_endpoint": "EndpointResult",
+            "os_endpoint": "EndpointResult",
+            "association_input": "元associationのJsonValue。member欠落時はnull表示。欠落自体はendpoint rootのunresolvedで保持。",
+            "original_snapshots": "core_snapshots/os_snapshotsのうち入力に存在するmemberだけを原値で持つrecord。Absent memberは補わない。",
+            "meaning_comparison": "literal not_established",
+            "actual_source_qualification": "literal not_established",
+            "effects": "literal none"
+          }
+        },
+        "diagnostic_path_rules": {
+          "variables": "sideはcoreまたはos。E=/association/{side}_endpoint、C=/{side}_snapshots。iは原集合の十進index（候補配列indexではない）。field名とindexはRFC6901 tokenとして組み立てる。",
+          "endpoint_or_ref_shape": "endpoint非object→E、snapshot_ref非object→E/snapshot_ref、要求Ref各軸不足→E/snapshot_ref/{axis}、pointer member欠落→E/pointer、expected wrapper不正→E/expected_value。",
+          "collection_or_cardinality": "集合Absent/null/非array、既知一致0件、複数一致はそれぞれunresolved/missing/ambiguousで[C]。",
+          "unknown_selector": "unresolvedで[C/i/ref/identity]を未知occurrence元順に全件保持。candidate_snapshotsには未知occurrenceを含めない。",
+          "candidate_ref_shape": "unresolvedで[C/i/ref/{axis}]。shape検査順revision,scope,owner。",
+          "owner_or_scope_conflict": "conflictで[E/snapshot_ref/owner]または[E/snapshot_ref/scope]。ownerを先に比較する。snapshot側pathで置換しない。",
+          "revision_stale": "staleで[E/snapshot_ref/revision]。",
+          "payload_absent": "missingで[C/i/payload]。",
+          "pointer_or_container": "不正pointerはunresolved、途中容器不足はmissingで[E/pointer]。",
+          "actual_absent": "expected presentならmissingで[E/pointer]、expected absentならcontent_correspondingで[]。",
+          "value_difference": "conflictで[E/expected_value]。present値差とactual present/expected absentを含む。",
+          "corresponding": "content_correspondingで[]。"
+        },
+        "source_basis_roles": [
+          {
+            "source_basis_index": 0,
+            "role": "CORE投影の設計契約",
+            "document_metadata_status": "draft_candidate_not_independently_reviewed",
+            "interpretation": "このmetadataだけで実未reviewと判断しない。PR3199 exact181bbb97bca2e941c2b135ae150678dc12b8e487は独立review6198372371 no_findings、admission6198424829、read-after6198427477によりmain1b50e0e105f0d51b902b26ba0e48d66381705360へ統合済み。pinはその内容の固定d506読取証拠である。"
+          },
+          {
+            "source_basis_index": 1,
+            "role": "OS原入力の独立oracle材料",
+            "document_metadata_status": "draft_candidate_not_independently_reviewed",
+            "interpretation": "設計fixtureの材料。実OS原記録の成立ではない。"
+          },
+          {
+            "source_basis_index": 2,
+            "role": "批准L3義務",
+            "document_metadata_status": "draft_not_approved",
+            "interpretation": "既存authority_boundaryの承認範囲。source relationから新資格を生成しない。"
+          },
+          {
+            "source_basis_index": 3,
+            "role": "批准L10対oracle",
+            "document_metadata_status": "draft_not_approved",
+            "interpretation": "L3の属性/原出力追跡と不足保持の検証義務。"
+          },
+          {
+            "source_basis_index": 4,
+            "role": "CORE投影の対oracle材料",
+            "document_metadata_status": "draft_candidate_not_independently_reviewed",
+            "interpretation": "source_basis[0]と同じPR3199のreview/統合を確認済み。文書metadataと実review証拠を区別する。"
+          }
+        ],
+        "source_review_evidence": {
+          "pull_request": "https://github.com/RetryYN/HELIX-HARNESS/pull/3199",
+          "exact_head": "181bbb97bca2e941c2b135ae150678dc12b8e487",
+          "review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3199#issuecomment-6198372371",
+          "admission": "https://github.com/RetryYN/HELIX-HARNESS/pull/3199#issuecomment-6198424829",
+          "read_after": "https://github.com/RetryYN/HELIX-HARNESS/pull/3199#issuecomment-6198427477",
+          "merge_revision": "1b50e0e105f0d51b902b26ba0e48d66381705360",
+          "limit": "固定sourceのreview/統合事実だけを示す。OS側実source関係、意味対応、実資格、後続改訂への追従を認定しない。"
         }
       }
     },
