@@ -8187,23 +8187,23 @@
   "authority_effect": "none",
   "operation_effect": "none",
   "scope_limitations": [
-    "原45primary＋既存3local＋追加49局所full wholeの有限比較。2件は不足witness。未見組合せ/全域の意味閉包ではない。",
+    "原45primary＋既存3local＋追加54局所full wholeの有限比較。2件は不足witness。未見組合せ/全域の意味閉包ではない。",
     "primary/assessmentは一つの有限判定契約。追加assessment候補を実資格/宛先/receipt/製品導出へ変換しない。",
     "全92親430対は不変inventoryでありこの局所設計の完成数ではない。",
     "known_fixture_only/qualified_fixture_onlyはfixture内表示。実source/authority qualificationを生成しない。"
   ],
   "local_owner_projections": {
-    "role": "全97公開wholeのassessment。過去照合履歴はhistorical_evidence_refsの既commitへ。",
-    "case_count": 97,
+    "role": "全102公開wholeのassessment。照合根拠はhistorical_evidence_refsの対象commitへ結ぶ。",
+    "case_count": 102,
     "original_case_count": 45,
     "existing_local_count": 3,
-    "additional_case_count": 49,
+    "additional_case_count": 54,
     "unclosed_witness_count": 2
   },
   "l5_candidate_pin": {
     "path": "docs/helix-brain/L5-detail-design/design-input-obligation-trace.json",
     "bytes": 443252,
-    "sha256": "aaf2579933764e2b48855f381ac6f7cb1b92ec33673928e5787a246fdf80c898",
+    "sha256": "78010afce5df05cf6d938ca167ad0e807f72b3e572770eec588f6ebd25b8fd74",
     "state": "candidate_worktree_bytes_not_approved_or_accepted"
   },
   "additional_probes": [
