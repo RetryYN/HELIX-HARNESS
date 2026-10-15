@@ -175,12 +175,16 @@
       ],
       "output_meanings": [
         "適用可能/不適用/unknownと版軸/戻し先",
-        "P未成立とQ元状態の保全"
+        "P未成立とQ元状態の保全",
+        "宣言rangeとstate意味の供給状態（presence/marker/owner照合）の結果をmeaning_binding_resultsで返す。identity/revisionの独立正本targetが無い場合、その値の存在だけを示し真正性を主張しない。",
+        "meaning_return_ownersは未成立の版軸をHARNESS/BRAIN008の責務候補へ戻す。range scopeと対象verification_scopeの不一致はHARNESSへ返し、資格や実ownerを生成しない。"
       ],
       "content_comparison": [
         "required versionは宣言range意味内でのみ参照候補。unknown/range外/mismatchを呼出し成立にしない。",
         "宣言range/state適用の意味を補完せず、旧current/latestへ無言fallbackしない。",
-        "局所の不成立で無関係な有効参照を失効させない。"
+        "局所の不成立で無関係な有効参照を失効させない。",
+        "range/state meaning bindingは宣言recordの必要fieldの供給状態とowner値を検査する。独立identity/revision targetが無い値は一致・資格へ昇格しない。",
+        "range meaning scopeと各側required verification_scopeを別々に照合し、不一致なら当該range軸をHARNESSへ返す。"
       ],
       "qualification_rule": "合成対応を実source資格/互換保証/正式binding/知識採用/実operation/設計閉包へ昇格しない。",
       "operation_effect": "none"
