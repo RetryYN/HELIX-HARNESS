@@ -24357,7 +24357,12 @@
     "r1_independent_wholes": 18,
     "r1_unclosed_witnesses": 5,
     "total_with_r1": 111,
-    "total_materials_with_r1_and_primitives": 115
+    "total_materials_with_r1_and_primitives": 115,
+    "r2_independent_wholes": 6,
+    "r2_unclosed_witnesses": 13,
+    "total_with_r1_r2": 130,
+    "total_materials_with_r1_r2_and_primitives": 140,
+    "r2_input_type_rejections": 6
   },
   "full_goal_scope_preserved": {
     "parents": 92,
@@ -24387,7 +24392,9 @@
     "N01 Raw型の全fieldは必須。型内missing tokenには到達しないため返却enum/when_absent説明をcontent_conflictへ整合。空配列/要素不足等の内容差はcontent_conflictへ縮約し、missingと不一致の別語を返さない。入力member Absent/nullは型外で補完しない。",
     "N01 content_results.stateは両stateの等値tokenだけで、unknown/not_evaluated/verified等の原stateを個別返却へ投影する責務は未実現。同値verifiedを実評価の成功へ昇格しない。",
     "F01/N01 required_inputの空文字/TBD/unknown要素は片側/両側とも内容不整合として比較前に局所検出する。これは不足入力の有限表示語で、任意の自然言語や別markerを完全に同定する仕組みではない。両側同じ空配列の必要集合完全性は未具体化。",
-    "B01契約revisionとrequired knowledge identity/revision/scopeの各比較について、3選択key×4軸の単独wholeで識別力を照合する。その他の全mutation/複合域を網羅したとは主張しない。"
+    "B01契約revisionとrequired knowledge identity/revision/scopeの各比較について、3選択key×4軸の単独wholeで識別力を照合する。その他の全mutation/複合域を網羅したとは主張しない。",
+    "unimplemented_content_qualificationは、required_input以外の各内容fieldに残る未確定語/不足の識別未実現を個別に示す。R2 witnessの対応/retainedは等値/所属という現式の再現であり、要求充足・内容資格・有効版を認定しない。既決の要求意味は保持し、要件への還流は設計リファクタリング時に整理する。",
+    "F01 answer_ref_resultsの片側Absent guardはRawF01の必須3key域から到達しない。欠落6素材は入力型拒否として分離し、型内whole一致や型内分岐網羅へ数えない。原/提出回答のidentity/revisionの別値6wholeは型内比較を識別する。"
   ],
   "local_probes": [
     {
@@ -27652,7 +27659,7 @@
   ],
   "candidate_l5_pin": {
     "path": "docs/helix-brain/L5-detail-design/core-knowledge-reply.json",
-    "sha256": "359d75ffb6d5ed6982f0e51770d839b41806319253e87074d2210844d62aa228",
+    "sha256": "5a44c060fbd801a626433556b8b9b8ab5ba9a0e0a552c13bce095ab1ec644786",
     "binding": "同一candidate文書のbytes。上流履歴pinや不存在のbase revisionとは区別。"
   },
   "r1_independent_probes": [
@@ -31188,14 +31195,6 @@
             "OS002_record"
           ],
           "value": "saved"
-        },
-        {
-          "op": "replace",
-          "path": [
-            "original_states",
-            "CORE_receive"
-          ],
-          "value": "not_received"
         }
       ],
       "expected_patch": [
@@ -31629,6 +31628,4032 @@
       "role": "unclosed_witness",
       "execution_state": "not_executed",
       "qualification": "synthetic_only_not_qualified"
+    }
+  ],
+  "r2_independent_probes": [
+    {
+      "id": "R2-F01-Pattern-IDENTITY",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "provided_answer_refs",
+            "Pattern",
+            "identity"
+          ],
+          "value": "FOREIGN-ANSWER"
+        }
+      ],
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": [
+            "answer_ref_results",
+            "Pattern"
+          ],
+          "value": "content_conflict"
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "FOREIGN-ANSWER",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "expected_output": {
+        "query_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "knowledge_ref": "content_corresponding_in_fixture"
+        },
+        "answer_ref_results": {
+          "Pattern": "content_conflict",
+          "Design Unit": "content_corresponding_in_fixture",
+          "Part": "content_corresponding_in_fixture"
+        },
+        "inferred_input_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"FOREIGN-ANSWER\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "567afbea6d6af24c77a5c35fc8c5c2995d7e3f71a731d3811a135218b4c043f9",
+      "expected_canonical_sha256": "cdd72f1891395d5faa9230d5b54245fdccf6460851e5e3a9ce04e97dca0faf58",
+      "basis": "L3/L4 F01の元回答identity/版対応を独立比較する。knowledge_refやqueryを変えず、提出回答だけが別値なら当該回答をcontent_conflictとし、他rootは原wholeを保持する。",
+      "role": "independent_whole",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-F01-Pattern-REVISION",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "provided_answer_refs",
+            "Pattern",
+            "revision"
+          ],
+          "value": "answer-r2"
+        }
+      ],
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": [
+            "answer_ref_results",
+            "Pattern"
+          ],
+          "value": "content_conflict"
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "answer-r2"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "expected_output": {
+        "query_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "knowledge_ref": "content_corresponding_in_fixture"
+        },
+        "answer_ref_results": {
+          "Pattern": "content_conflict",
+          "Design Unit": "content_corresponding_in_fixture",
+          "Part": "content_corresponding_in_fixture"
+        },
+        "inferred_input_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"answer-r2\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "7783925dd3706211cc62734fb8327db6c7f8f24ef120f1e73edcdb046cecc2e6",
+      "expected_canonical_sha256": "cdd72f1891395d5faa9230d5b54245fdccf6460851e5e3a9ce04e97dca0faf58",
+      "basis": "L3/L4 F01の元回答identity/版対応を独立比較する。knowledge_refやqueryを変えず、提出回答だけが別値なら当該回答をcontent_conflictとし、他rootは原wholeを保持する。",
+      "role": "independent_whole",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-F01-Design_Unit-IDENTITY",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "provided_answer_refs",
+            "Design Unit",
+            "identity"
+          ],
+          "value": "FOREIGN-ANSWER"
+        }
+      ],
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": [
+            "answer_ref_results",
+            "Design Unit"
+          ],
+          "value": "content_conflict"
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "FOREIGN-ANSWER",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "expected_output": {
+        "query_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "knowledge_ref": "content_corresponding_in_fixture"
+        },
+        "answer_ref_results": {
+          "Pattern": "content_corresponding_in_fixture",
+          "Design Unit": "content_conflict",
+          "Part": "content_corresponding_in_fixture"
+        },
+        "inferred_input_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"FOREIGN-ANSWER\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "806dc9b7c9d785d74f597e13789aba388bcc1ebf8ab099834ad1e97d653e7d28",
+      "expected_canonical_sha256": "5274331a521c9429a2887b0c83dfc1ba791f6721c194a13f15141af085928f88",
+      "basis": "L3/L4 F01の元回答identity/版対応を独立比較する。knowledge_refやqueryを変えず、提出回答だけが別値なら当該回答をcontent_conflictとし、他rootは原wholeを保持する。",
+      "role": "independent_whole",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-F01-Design_Unit-REVISION",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "provided_answer_refs",
+            "Design Unit",
+            "revision"
+          ],
+          "value": "answer-r2"
+        }
+      ],
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": [
+            "answer_ref_results",
+            "Design Unit"
+          ],
+          "value": "content_conflict"
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "answer-r2"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "expected_output": {
+        "query_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "knowledge_ref": "content_corresponding_in_fixture"
+        },
+        "answer_ref_results": {
+          "Pattern": "content_corresponding_in_fixture",
+          "Design Unit": "content_conflict",
+          "Part": "content_corresponding_in_fixture"
+        },
+        "inferred_input_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"answer-r2\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "583605b44ab0e4096eebcc4d502f17b80b347d5f71f50b63a594ceaf0e937619",
+      "expected_canonical_sha256": "5274331a521c9429a2887b0c83dfc1ba791f6721c194a13f15141af085928f88",
+      "basis": "L3/L4 F01の元回答identity/版対応を独立比較する。knowledge_refやqueryを変えず、提出回答だけが別値なら当該回答をcontent_conflictとし、他rootは原wholeを保持する。",
+      "role": "independent_whole",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-F01-Part-IDENTITY",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "provided_answer_refs",
+            "Part",
+            "identity"
+          ],
+          "value": "FOREIGN-ANSWER"
+        }
+      ],
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": [
+            "answer_ref_results",
+            "Part"
+          ],
+          "value": "content_conflict"
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "FOREIGN-ANSWER",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "expected_output": {
+        "query_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "knowledge_ref": "content_corresponding_in_fixture"
+        },
+        "answer_ref_results": {
+          "Pattern": "content_corresponding_in_fixture",
+          "Design Unit": "content_corresponding_in_fixture",
+          "Part": "content_conflict"
+        },
+        "inferred_input_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"FOREIGN-ANSWER\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "705dd3e745de6e353636817eeab91a14f2c169e42f1148856d914f16c6ed085d",
+      "expected_canonical_sha256": "f05ccee047a994ed0e564635a2fa982e49fa9b85e92ea4e333fccd24e028c372",
+      "basis": "L3/L4 F01の元回答identity/版対応を独立比較する。knowledge_refやqueryを変えず、提出回答だけが別値なら当該回答をcontent_conflictとし、他rootは原wholeを保持する。",
+      "role": "independent_whole",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-F01-Part-REVISION",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "provided_answer_refs",
+            "Part",
+            "revision"
+          ],
+          "value": "answer-r2"
+        }
+      ],
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": [
+            "answer_ref_results",
+            "Part"
+          ],
+          "value": "content_conflict"
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "answer-r2"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "expected_output": {
+        "query_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "knowledge_ref": "content_corresponding_in_fixture"
+        },
+        "answer_ref_results": {
+          "Pattern": "content_corresponding_in_fixture",
+          "Design Unit": "content_corresponding_in_fixture",
+          "Part": "content_conflict"
+        },
+        "inferred_input_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"answer-r2\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "c758a9f774caa3662c4ca9f1c51b235b2e23c9a605de4cae30acbdf5e315a797",
+      "expected_canonical_sha256": "f05ccee047a994ed0e564635a2fa982e49fa9b85e92ea4e333fccd24e028c372",
+      "basis": "L3/L4 F01の元回答identity/版対応を独立比較する。knowledge_refやqueryを変えず、提出回答だけが別値なら当該回答をcontent_conflictとし、他rootは原wholeを保持する。",
+      "role": "independent_whole",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-F01-CONSTRAINT-PLACEHOLDER-0",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "original_query",
+            "constraint"
+          ],
+          "value": [
+            "TBD"
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "provided_query",
+            "constraint"
+          ],
+          "value": [
+            "TBD"
+          ]
+        }
+      ],
+      "expected_patch": [],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "TBD"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "TBD"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "expected_output": {
+        "query_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "knowledge_ref": "content_corresponding_in_fixture"
+        },
+        "answer_ref_results": {
+          "Pattern": "content_corresponding_in_fixture",
+          "Design Unit": "content_corresponding_in_fixture",
+          "Part": "content_corresponding_in_fixture"
+        },
+        "inferred_input_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"TBD\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"TBD\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "c30698b8f39533dcc5d7c2fd82f3855a1e240d6d9d869e472d42b507843e3f55",
+      "expected_canonical_sha256": "cceb0c79abd38f197b01271b9c200686e59b486591609245ae9ce3b1927fb10d",
+      "basis": "L3/L4 F01の課題/制約/query scopeの内容義務に対し、この比較は両側同値の未確定内容を識別しない。原wholeと同じ対応tokenの再現であり、入力充足や義務成立ではない。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-F01-CONSTRAINT-PLACEHOLDER-1",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "original_query",
+            "constraint"
+          ],
+          "value": [
+            ""
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "provided_query",
+            "constraint"
+          ],
+          "value": [
+            ""
+          ]
+        }
+      ],
+      "expected_patch": [],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              ""
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              ""
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "expected_output": {
+        "query_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "knowledge_ref": "content_corresponding_in_fixture"
+        },
+        "answer_ref_results": {
+          "Pattern": "content_corresponding_in_fixture",
+          "Design Unit": "content_corresponding_in_fixture",
+          "Part": "content_corresponding_in_fixture"
+        },
+        "inferred_input_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "8896a83694a72aefddee0b38401a904586c5910ad269dc0639306968b97a58b0",
+      "expected_canonical_sha256": "cceb0c79abd38f197b01271b9c200686e59b486591609245ae9ce3b1927fb10d",
+      "basis": "L3/L4 F01の課題/制約/query scopeの内容義務に対し、この比較は両側同値の未確定内容を識別しない。原wholeと同じ対応tokenの再現であり、入力充足や義務成立ではない。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-F01-PROBLEM-PLACEHOLDER-0",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "original_query",
+            "problem"
+          ],
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "provided_query",
+            "problem"
+          ],
+          "value": "TBD"
+        }
+      ],
+      "expected_patch": [],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "TBD",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "TBD",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "expected_output": {
+        "query_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "knowledge_ref": "content_corresponding_in_fixture"
+        },
+        "answer_ref_results": {
+          "Pattern": "content_corresponding_in_fixture",
+          "Design Unit": "content_corresponding_in_fixture",
+          "Part": "content_corresponding_in_fixture"
+        },
+        "inferred_input_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"TBD\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"TBD\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "e56839a57f783cf2490f8d1cd4e8bf1088ef79bf0d52f8d56e3082d1a3fa4414",
+      "expected_canonical_sha256": "cceb0c79abd38f197b01271b9c200686e59b486591609245ae9ce3b1927fb10d",
+      "basis": "L3/L4 F01の課題/制約/query scopeの内容義務に対し、この比較は両側同値の未確定内容を識別しない。原wholeと同じ対応tokenの再現であり、入力充足や義務成立ではない。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-F01-SCOPE-PLACEHOLDER-0",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "original_query",
+            "scope"
+          ],
+          "value": "unknown"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "provided_query",
+            "scope"
+          ],
+          "value": "unknown"
+        }
+      ],
+      "expected_patch": [],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "unknown"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "unknown"
+          }
+        }
+      },
+      "expected_output": {
+        "query_results": {
+          "identity": "content_corresponding_in_fixture",
+          "revision": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "knowledge_ref": "content_corresponding_in_fixture"
+        },
+        "answer_ref_results": {
+          "Pattern": "content_corresponding_in_fixture",
+          "Design Unit": "content_corresponding_in_fixture",
+          "Part": "content_corresponding_in_fixture"
+        },
+        "inferred_input_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"unknown\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"unknown\"}}",
+      "raw_sha256": "140196f10c861eccf2f77a154fad70a5b2e33672214b6a53e94d1b86f5c0852d",
+      "expected_canonical_sha256": "cceb0c79abd38f197b01271b9c200686e59b486591609245ae9ce3b1927fb10d",
+      "basis": "L3/L4 F01の課題/制約/query scopeの内容義務に対し、この比較は両側同値の未確定内容を識別しない。原wholeと同じ対応tokenの再現であり、入力充足や義務成立ではない。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-N01-CONSTRAINT-PLACEHOLDER",
+      "function_ref": "BRAIN019-N01",
+      "baseline_case_id": "B019-N01-HELD-OUT-QUERY-REPLY",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/3/concrete_cases/0",
+      "source_case_sha256": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "held_out_original",
+            "constraint"
+          ],
+          "value": [
+            "TBD"
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "held_out_provided",
+            "constraint"
+          ],
+          "value": [
+            "TBD"
+          ]
+        }
+      ],
+      "expected_patch": [],
+      "typed_arguments": {
+        "raw": {
+          "claims_all_composition_complete": false,
+          "claims_field_only_pass": false,
+          "claims_unseen_verified": false,
+          "held_out_original": {
+            "alternative": [
+              "HELDOUT-A@r7",
+              "HELDOUT-B@r8"
+            ],
+            "constraint": [
+              "TBD"
+            ],
+            "knowledge_revision": "knowledge-r7",
+            "negative_example": [
+              "合成反例R"
+            ],
+            "problem": "合成の未見課題R",
+            "required_input": [
+              "HELDOUT-INPUT-X"
+            ],
+            "scope": "QUERY-SCOPE-R",
+            "state": "not_evaluated"
+          },
+          "held_out_provided": {
+            "alternative": [
+              "HELDOUT-A@r7",
+              "HELDOUT-B@r8"
+            ],
+            "constraint": [
+              "TBD"
+            ],
+            "knowledge_revision": "knowledge-r7",
+            "negative_example": [
+              "合成反例R"
+            ],
+            "problem": "合成の未見課題R",
+            "required_input": [
+              "HELDOUT-INPUT-X"
+            ],
+            "scope": "QUERY-SCOPE-R",
+            "state": "not_evaluated"
+          }
+        }
+      },
+      "expected_output": {
+        "content_results": {
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "negative_example": "content_corresponding_in_fixture",
+          "alternative": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "knowledge_revision": "content_corresponding_in_fixture",
+          "state": "content_corresponding_in_fixture"
+        },
+        "coverage": "this_fixture_only",
+        "execution_state": "not_executed",
+        "claim_results": {
+          "field_only_pass": "none",
+          "unseen_verified": "none",
+          "all_composition_complete": "none"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_all_composition_complete\":false,\"claims_field_only_pass\":false,\"claims_unseen_verified\":false,\"held_out_original\":{\"alternative\":[\"HELDOUT-A@r7\",\"HELDOUT-B@r8\"],\"constraint\":[\"TBD\"],\"knowledge_revision\":\"knowledge-r7\",\"negative_example\":[\"合成反例R\"],\"problem\":\"合成の未見課題R\",\"required_input\":[\"HELDOUT-INPUT-X\"],\"scope\":\"QUERY-SCOPE-R\",\"state\":\"not_evaluated\"},\"held_out_provided\":{\"alternative\":[\"HELDOUT-A@r7\",\"HELDOUT-B@r8\"],\"constraint\":[\"TBD\"],\"knowledge_revision\":\"knowledge-r7\",\"negative_example\":[\"合成反例R\"],\"problem\":\"合成の未見課題R\",\"required_input\":[\"HELDOUT-INPUT-X\"],\"scope\":\"QUERY-SCOPE-R\",\"state\":\"not_evaluated\"}}",
+      "raw_sha256": "1338f51e04f2ddda6f89746a630e35e5b8fd795a7f9a76c347a7281de183a265",
+      "expected_canonical_sha256": "8273b5c3961eb41499aa5a34f7aee6907f4d75c709b353b8f1252d617f72dd95",
+      "basis": "L3/L4/L10 N01の内容比較義務に対し、required_input以外の当該fieldは両側同値の未確定内容を識別しない。対応tokenは内容の充足/unknownの解決ではなく、未実現を再現する。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-N01-NEGATIVE_EXAMPLE-PLACEHOLDER",
+      "function_ref": "BRAIN019-N01",
+      "baseline_case_id": "B019-N01-HELD-OUT-QUERY-REPLY",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/3/concrete_cases/0",
+      "source_case_sha256": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "held_out_original",
+            "negative_example"
+          ],
+          "value": [
+            "unknown"
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "held_out_provided",
+            "negative_example"
+          ],
+          "value": [
+            "unknown"
+          ]
+        }
+      ],
+      "expected_patch": [],
+      "typed_arguments": {
+        "raw": {
+          "claims_all_composition_complete": false,
+          "claims_field_only_pass": false,
+          "claims_unseen_verified": false,
+          "held_out_original": {
+            "alternative": [
+              "HELDOUT-A@r7",
+              "HELDOUT-B@r8"
+            ],
+            "constraint": [
+              "合成制約R"
+            ],
+            "knowledge_revision": "knowledge-r7",
+            "negative_example": [
+              "unknown"
+            ],
+            "problem": "合成の未見課題R",
+            "required_input": [
+              "HELDOUT-INPUT-X"
+            ],
+            "scope": "QUERY-SCOPE-R",
+            "state": "not_evaluated"
+          },
+          "held_out_provided": {
+            "alternative": [
+              "HELDOUT-A@r7",
+              "HELDOUT-B@r8"
+            ],
+            "constraint": [
+              "合成制約R"
+            ],
+            "knowledge_revision": "knowledge-r7",
+            "negative_example": [
+              "unknown"
+            ],
+            "problem": "合成の未見課題R",
+            "required_input": [
+              "HELDOUT-INPUT-X"
+            ],
+            "scope": "QUERY-SCOPE-R",
+            "state": "not_evaluated"
+          }
+        }
+      },
+      "expected_output": {
+        "content_results": {
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "negative_example": "content_corresponding_in_fixture",
+          "alternative": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "knowledge_revision": "content_corresponding_in_fixture",
+          "state": "content_corresponding_in_fixture"
+        },
+        "coverage": "this_fixture_only",
+        "execution_state": "not_executed",
+        "claim_results": {
+          "field_only_pass": "none",
+          "unseen_verified": "none",
+          "all_composition_complete": "none"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_all_composition_complete\":false,\"claims_field_only_pass\":false,\"claims_unseen_verified\":false,\"held_out_original\":{\"alternative\":[\"HELDOUT-A@r7\",\"HELDOUT-B@r8\"],\"constraint\":[\"合成制約R\"],\"knowledge_revision\":\"knowledge-r7\",\"negative_example\":[\"unknown\"],\"problem\":\"合成の未見課題R\",\"required_input\":[\"HELDOUT-INPUT-X\"],\"scope\":\"QUERY-SCOPE-R\",\"state\":\"not_evaluated\"},\"held_out_provided\":{\"alternative\":[\"HELDOUT-A@r7\",\"HELDOUT-B@r8\"],\"constraint\":[\"合成制約R\"],\"knowledge_revision\":\"knowledge-r7\",\"negative_example\":[\"unknown\"],\"problem\":\"合成の未見課題R\",\"required_input\":[\"HELDOUT-INPUT-X\"],\"scope\":\"QUERY-SCOPE-R\",\"state\":\"not_evaluated\"}}",
+      "raw_sha256": "57e094768d26ed41b34748bc07d96cbe70a75254b9a91b52b10e8fe5d897786b",
+      "expected_canonical_sha256": "8273b5c3961eb41499aa5a34f7aee6907f4d75c709b353b8f1252d617f72dd95",
+      "basis": "L3/L4/L10 N01の内容比較義務に対し、required_input以外の当該fieldは両側同値の未確定内容を識別しない。対応tokenは内容の充足/unknownの解決ではなく、未実現を再現する。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-N01-ALTERNATIVE-PLACEHOLDER",
+      "function_ref": "BRAIN019-N01",
+      "baseline_case_id": "B019-N01-HELD-OUT-QUERY-REPLY",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/3/concrete_cases/0",
+      "source_case_sha256": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "held_out_original",
+            "alternative"
+          ],
+          "value": [
+            ""
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "held_out_provided",
+            "alternative"
+          ],
+          "value": [
+            ""
+          ]
+        }
+      ],
+      "expected_patch": [],
+      "typed_arguments": {
+        "raw": {
+          "claims_all_composition_complete": false,
+          "claims_field_only_pass": false,
+          "claims_unseen_verified": false,
+          "held_out_original": {
+            "alternative": [
+              ""
+            ],
+            "constraint": [
+              "合成制約R"
+            ],
+            "knowledge_revision": "knowledge-r7",
+            "negative_example": [
+              "合成反例R"
+            ],
+            "problem": "合成の未見課題R",
+            "required_input": [
+              "HELDOUT-INPUT-X"
+            ],
+            "scope": "QUERY-SCOPE-R",
+            "state": "not_evaluated"
+          },
+          "held_out_provided": {
+            "alternative": [
+              ""
+            ],
+            "constraint": [
+              "合成制約R"
+            ],
+            "knowledge_revision": "knowledge-r7",
+            "negative_example": [
+              "合成反例R"
+            ],
+            "problem": "合成の未見課題R",
+            "required_input": [
+              "HELDOUT-INPUT-X"
+            ],
+            "scope": "QUERY-SCOPE-R",
+            "state": "not_evaluated"
+          }
+        }
+      },
+      "expected_output": {
+        "content_results": {
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "negative_example": "content_corresponding_in_fixture",
+          "alternative": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "knowledge_revision": "content_corresponding_in_fixture",
+          "state": "content_corresponding_in_fixture"
+        },
+        "coverage": "this_fixture_only",
+        "execution_state": "not_executed",
+        "claim_results": {
+          "field_only_pass": "none",
+          "unseen_verified": "none",
+          "all_composition_complete": "none"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_all_composition_complete\":false,\"claims_field_only_pass\":false,\"claims_unseen_verified\":false,\"held_out_original\":{\"alternative\":[\"\"],\"constraint\":[\"合成制約R\"],\"knowledge_revision\":\"knowledge-r7\",\"negative_example\":[\"合成反例R\"],\"problem\":\"合成の未見課題R\",\"required_input\":[\"HELDOUT-INPUT-X\"],\"scope\":\"QUERY-SCOPE-R\",\"state\":\"not_evaluated\"},\"held_out_provided\":{\"alternative\":[\"\"],\"constraint\":[\"合成制約R\"],\"knowledge_revision\":\"knowledge-r7\",\"negative_example\":[\"合成反例R\"],\"problem\":\"合成の未見課題R\",\"required_input\":[\"HELDOUT-INPUT-X\"],\"scope\":\"QUERY-SCOPE-R\",\"state\":\"not_evaluated\"}}",
+      "raw_sha256": "f800d4cf95c4cdee84425a1ecba35f974cd9a8ed27b9478bfbb7991b426bc80b",
+      "expected_canonical_sha256": "8273b5c3961eb41499aa5a34f7aee6907f4d75c709b353b8f1252d617f72dd95",
+      "basis": "L3/L4/L10 N01の内容比較義務に対し、required_input以外の当該fieldは両側同値の未確定内容を識別しない。対応tokenは内容の充足/unknownの解決ではなく、未実現を再現する。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-N01-PROBLEM-PLACEHOLDER",
+      "function_ref": "BRAIN019-N01",
+      "baseline_case_id": "B019-N01-HELD-OUT-QUERY-REPLY",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/3/concrete_cases/0",
+      "source_case_sha256": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "held_out_original",
+            "problem"
+          ],
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "held_out_provided",
+            "problem"
+          ],
+          "value": "TBD"
+        }
+      ],
+      "expected_patch": [],
+      "typed_arguments": {
+        "raw": {
+          "claims_all_composition_complete": false,
+          "claims_field_only_pass": false,
+          "claims_unseen_verified": false,
+          "held_out_original": {
+            "alternative": [
+              "HELDOUT-A@r7",
+              "HELDOUT-B@r8"
+            ],
+            "constraint": [
+              "合成制約R"
+            ],
+            "knowledge_revision": "knowledge-r7",
+            "negative_example": [
+              "合成反例R"
+            ],
+            "problem": "TBD",
+            "required_input": [
+              "HELDOUT-INPUT-X"
+            ],
+            "scope": "QUERY-SCOPE-R",
+            "state": "not_evaluated"
+          },
+          "held_out_provided": {
+            "alternative": [
+              "HELDOUT-A@r7",
+              "HELDOUT-B@r8"
+            ],
+            "constraint": [
+              "合成制約R"
+            ],
+            "knowledge_revision": "knowledge-r7",
+            "negative_example": [
+              "合成反例R"
+            ],
+            "problem": "TBD",
+            "required_input": [
+              "HELDOUT-INPUT-X"
+            ],
+            "scope": "QUERY-SCOPE-R",
+            "state": "not_evaluated"
+          }
+        }
+      },
+      "expected_output": {
+        "content_results": {
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "negative_example": "content_corresponding_in_fixture",
+          "alternative": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "knowledge_revision": "content_corresponding_in_fixture",
+          "state": "content_corresponding_in_fixture"
+        },
+        "coverage": "this_fixture_only",
+        "execution_state": "not_executed",
+        "claim_results": {
+          "field_only_pass": "none",
+          "unseen_verified": "none",
+          "all_composition_complete": "none"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_all_composition_complete\":false,\"claims_field_only_pass\":false,\"claims_unseen_verified\":false,\"held_out_original\":{\"alternative\":[\"HELDOUT-A@r7\",\"HELDOUT-B@r8\"],\"constraint\":[\"合成制約R\"],\"knowledge_revision\":\"knowledge-r7\",\"negative_example\":[\"合成反例R\"],\"problem\":\"TBD\",\"required_input\":[\"HELDOUT-INPUT-X\"],\"scope\":\"QUERY-SCOPE-R\",\"state\":\"not_evaluated\"},\"held_out_provided\":{\"alternative\":[\"HELDOUT-A@r7\",\"HELDOUT-B@r8\"],\"constraint\":[\"合成制約R\"],\"knowledge_revision\":\"knowledge-r7\",\"negative_example\":[\"合成反例R\"],\"problem\":\"TBD\",\"required_input\":[\"HELDOUT-INPUT-X\"],\"scope\":\"QUERY-SCOPE-R\",\"state\":\"not_evaluated\"}}",
+      "raw_sha256": "fc3139f95ab89f03778d0274e753f3fc519ed37852e7e1d6790c8a91b0563786",
+      "expected_canonical_sha256": "8273b5c3961eb41499aa5a34f7aee6907f4d75c709b353b8f1252d617f72dd95",
+      "basis": "L3/L4/L10 N01の内容比較義務に対し、required_input以外の当該fieldは両側同値の未確定内容を識別しない。対応tokenは内容の充足/unknownの解決ではなく、未実現を再現する。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-N01-SCOPE-PLACEHOLDER",
+      "function_ref": "BRAIN019-N01",
+      "baseline_case_id": "B019-N01-HELD-OUT-QUERY-REPLY",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/3/concrete_cases/0",
+      "source_case_sha256": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "held_out_original",
+            "scope"
+          ],
+          "value": "unknown"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "held_out_provided",
+            "scope"
+          ],
+          "value": "unknown"
+        }
+      ],
+      "expected_patch": [],
+      "typed_arguments": {
+        "raw": {
+          "claims_all_composition_complete": false,
+          "claims_field_only_pass": false,
+          "claims_unseen_verified": false,
+          "held_out_original": {
+            "alternative": [
+              "HELDOUT-A@r7",
+              "HELDOUT-B@r8"
+            ],
+            "constraint": [
+              "合成制約R"
+            ],
+            "knowledge_revision": "knowledge-r7",
+            "negative_example": [
+              "合成反例R"
+            ],
+            "problem": "合成の未見課題R",
+            "required_input": [
+              "HELDOUT-INPUT-X"
+            ],
+            "scope": "unknown",
+            "state": "not_evaluated"
+          },
+          "held_out_provided": {
+            "alternative": [
+              "HELDOUT-A@r7",
+              "HELDOUT-B@r8"
+            ],
+            "constraint": [
+              "合成制約R"
+            ],
+            "knowledge_revision": "knowledge-r7",
+            "negative_example": [
+              "合成反例R"
+            ],
+            "problem": "合成の未見課題R",
+            "required_input": [
+              "HELDOUT-INPUT-X"
+            ],
+            "scope": "unknown",
+            "state": "not_evaluated"
+          }
+        }
+      },
+      "expected_output": {
+        "content_results": {
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "negative_example": "content_corresponding_in_fixture",
+          "alternative": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "knowledge_revision": "content_corresponding_in_fixture",
+          "state": "content_corresponding_in_fixture"
+        },
+        "coverage": "this_fixture_only",
+        "execution_state": "not_executed",
+        "claim_results": {
+          "field_only_pass": "none",
+          "unseen_verified": "none",
+          "all_composition_complete": "none"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_all_composition_complete\":false,\"claims_field_only_pass\":false,\"claims_unseen_verified\":false,\"held_out_original\":{\"alternative\":[\"HELDOUT-A@r7\",\"HELDOUT-B@r8\"],\"constraint\":[\"合成制約R\"],\"knowledge_revision\":\"knowledge-r7\",\"negative_example\":[\"合成反例R\"],\"problem\":\"合成の未見課題R\",\"required_input\":[\"HELDOUT-INPUT-X\"],\"scope\":\"unknown\",\"state\":\"not_evaluated\"},\"held_out_provided\":{\"alternative\":[\"HELDOUT-A@r7\",\"HELDOUT-B@r8\"],\"constraint\":[\"合成制約R\"],\"knowledge_revision\":\"knowledge-r7\",\"negative_example\":[\"合成反例R\"],\"problem\":\"合成の未見課題R\",\"required_input\":[\"HELDOUT-INPUT-X\"],\"scope\":\"unknown\",\"state\":\"not_evaluated\"}}",
+      "raw_sha256": "67f96acd73b71585ae88b4f1d7e23c30b3b52315385559710feb027f0c916b19",
+      "expected_canonical_sha256": "8273b5c3961eb41499aa5a34f7aee6907f4d75c709b353b8f1252d617f72dd95",
+      "basis": "L3/L4/L10 N01の内容比較義務に対し、required_input以外の当該fieldは両側同値の未確定内容を識別しない。対応tokenは内容の充足/unknownの解決ではなく、未実現を再現する。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-N01-KNOWLEDGE_REVISION-PLACEHOLDER",
+      "function_ref": "BRAIN019-N01",
+      "baseline_case_id": "B019-N01-HELD-OUT-QUERY-REPLY",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/3/concrete_cases/0",
+      "source_case_sha256": "5d55a17265c09fa3be75f0b4000e6ea282146fdee717e2708f26163d4f1965bd",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "held_out_original",
+            "knowledge_revision"
+          ],
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "held_out_provided",
+            "knowledge_revision"
+          ],
+          "value": "TBD"
+        }
+      ],
+      "expected_patch": [],
+      "typed_arguments": {
+        "raw": {
+          "claims_all_composition_complete": false,
+          "claims_field_only_pass": false,
+          "claims_unseen_verified": false,
+          "held_out_original": {
+            "alternative": [
+              "HELDOUT-A@r7",
+              "HELDOUT-B@r8"
+            ],
+            "constraint": [
+              "合成制約R"
+            ],
+            "knowledge_revision": "TBD",
+            "negative_example": [
+              "合成反例R"
+            ],
+            "problem": "合成の未見課題R",
+            "required_input": [
+              "HELDOUT-INPUT-X"
+            ],
+            "scope": "QUERY-SCOPE-R",
+            "state": "not_evaluated"
+          },
+          "held_out_provided": {
+            "alternative": [
+              "HELDOUT-A@r7",
+              "HELDOUT-B@r8"
+            ],
+            "constraint": [
+              "合成制約R"
+            ],
+            "knowledge_revision": "TBD",
+            "negative_example": [
+              "合成反例R"
+            ],
+            "problem": "合成の未見課題R",
+            "required_input": [
+              "HELDOUT-INPUT-X"
+            ],
+            "scope": "QUERY-SCOPE-R",
+            "state": "not_evaluated"
+          }
+        }
+      },
+      "expected_output": {
+        "content_results": {
+          "problem": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture",
+          "negative_example": "content_corresponding_in_fixture",
+          "alternative": "content_corresponding_in_fixture",
+          "scope": "content_corresponding_in_fixture",
+          "knowledge_revision": "content_corresponding_in_fixture",
+          "state": "content_corresponding_in_fixture"
+        },
+        "coverage": "this_fixture_only",
+        "execution_state": "not_executed",
+        "claim_results": {
+          "field_only_pass": "none",
+          "unseen_verified": "none",
+          "all_composition_complete": "none"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_all_composition_complete\":false,\"claims_field_only_pass\":false,\"claims_unseen_verified\":false,\"held_out_original\":{\"alternative\":[\"HELDOUT-A@r7\",\"HELDOUT-B@r8\"],\"constraint\":[\"合成制約R\"],\"knowledge_revision\":\"TBD\",\"negative_example\":[\"合成反例R\"],\"problem\":\"合成の未見課題R\",\"required_input\":[\"HELDOUT-INPUT-X\"],\"scope\":\"QUERY-SCOPE-R\",\"state\":\"not_evaluated\"},\"held_out_provided\":{\"alternative\":[\"HELDOUT-A@r7\",\"HELDOUT-B@r8\"],\"constraint\":[\"合成制約R\"],\"knowledge_revision\":\"TBD\",\"negative_example\":[\"合成反例R\"],\"problem\":\"合成の未見課題R\",\"required_input\":[\"HELDOUT-INPUT-X\"],\"scope\":\"QUERY-SCOPE-R\",\"state\":\"not_evaluated\"}}",
+      "raw_sha256": "06be8aadb24d2e0305eeef1d76127fe00eac9508e58e11df6e478cb6ad9e07bc",
+      "expected_canonical_sha256": "8273b5c3961eb41499aa5a34f7aee6907f4d75c709b353b8f1252d617f72dd95",
+      "basis": "L3/L4/L10 N01の内容比較義務に対し、required_input以外の当該fieldは両側同値の未確定内容を識別しない。対応tokenは内容の充足/unknownの解決ではなく、未実現を再現する。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-B01-ALL-KNOWLEDGE-REVISION-TBD",
+      "function_ref": "BRAIN019-B01",
+      "baseline_case_id": "B019-B01-SUPPLY-NOT-RECEIVE-APPLY-RECORD",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/4/concrete_cases/0",
+      "source_case_sha256": "251f4b28a632b6891ceaaae9db985ff1620efccf730723a69c344c3239acdb78",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "target_knowledge_ref",
+            "revision"
+          ],
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "required_contracts",
+            "BRAIN030",
+            "knowledge_ref",
+            "revision"
+          ],
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "required_contracts",
+            "CONNECT-edge",
+            "knowledge_ref",
+            "revision"
+          ],
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "required_contracts",
+            "CORE-receive",
+            "knowledge_ref",
+            "revision"
+          ],
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "provided_contracts",
+            "BRAIN030",
+            "knowledge_ref",
+            "revision"
+          ],
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "provided_contracts",
+            "CONNECT-edge",
+            "knowledge_ref",
+            "revision"
+          ],
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "provided_contracts",
+            "CORE-receive",
+            "knowledge_ref",
+            "revision"
+          ],
+          "value": "TBD"
+        }
+      ],
+      "expected_patch": [],
+      "typed_arguments": {
+        "raw": {
+          "claims_BRAIN_project_value_decided": false,
+          "claims_supply_as_apply_record": false,
+          "original_states": {
+            "BRAIN_supply": "candidate_only",
+            "CORE009_apply": "not_applied",
+            "CORE_receive": "not_received",
+            "OS002_record": "not_saved"
+          },
+          "provided_contracts": {
+            "BRAIN030": {
+              "identity": "BRAIN030",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "TBD",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "fixture-r1",
+              "state": "qualified_fixture_only"
+            },
+            "CONNECT-edge": {
+              "identity": "CONNECT-edge",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "TBD",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "fixture-r1",
+              "state": "qualified_fixture_only"
+            },
+            "CORE-receive": {
+              "identity": "CORE-receive",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "TBD",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "fixture-r1",
+              "state": "qualified_fixture_only"
+            }
+          },
+          "required_contracts": {
+            "BRAIN030": {
+              "identity": "BRAIN030",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "TBD",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "fixture-r1",
+              "state": "qualified_fixture_only"
+            },
+            "CONNECT-edge": {
+              "identity": "CONNECT-edge",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "TBD",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "fixture-r1",
+              "state": "qualified_fixture_only"
+            },
+            "CORE-receive": {
+              "identity": "CORE-receive",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "TBD",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "fixture-r1",
+              "state": "qualified_fixture_only"
+            }
+          },
+          "requires_future_completion_receipt_before_supply": false,
+          "selected_edges": {
+            "BRAIN030": true,
+            "CONNECT-edge": true
+          },
+          "target_knowledge_ref": {
+            "identity": "KNOWLEDGE-P",
+            "revision": "TBD",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          }
+        }
+      },
+      "expected_output": {
+        "states": {
+          "BRAIN_supply": "candidate_only",
+          "CORE_receive": "not_received",
+          "CORE009_apply": "not_applied",
+          "OS002_record": "not_saved"
+        },
+        "contract_results": {
+          "CORE-receive": "content_corresponding_candidate_only",
+          "BRAIN030": "content_corresponding_candidate_only",
+          "CONNECT-edge": "content_corresponding_candidate_only"
+        },
+        "claim_results": {
+          "supply_as_apply_record": "none",
+          "future_receipt_gate": "none",
+          "BRAIN_project_value_decided": "none"
+        },
+        "owner_return_candidates": [],
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"claims_BRAIN_project_value_decided\":false,\"claims_supply_as_apply_record\":false,\"original_states\":{\"BRAIN_supply\":\"candidate_only\",\"CORE009_apply\":\"not_applied\",\"CORE_receive\":\"not_received\",\"OS002_record\":\"not_saved\"},\"provided_contracts\":{\"BRAIN030\":{\"identity\":\"BRAIN030\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"TBD\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"fixture-r1\",\"state\":\"qualified_fixture_only\"},\"CONNECT-edge\":{\"identity\":\"CONNECT-edge\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"TBD\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"fixture-r1\",\"state\":\"qualified_fixture_only\"},\"CORE-receive\":{\"identity\":\"CORE-receive\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"TBD\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"fixture-r1\",\"state\":\"qualified_fixture_only\"}},\"required_contracts\":{\"BRAIN030\":{\"identity\":\"BRAIN030\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"TBD\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"fixture-r1\",\"state\":\"qualified_fixture_only\"},\"CONNECT-edge\":{\"identity\":\"CONNECT-edge\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"TBD\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"fixture-r1\",\"state\":\"qualified_fixture_only\"},\"CORE-receive\":{\"identity\":\"CORE-receive\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"TBD\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"fixture-r1\",\"state\":\"qualified_fixture_only\"}},\"requires_future_completion_receipt_before_supply\":false,\"selected_edges\":{\"BRAIN030\":true,\"CONNECT-edge\":true},\"target_knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"TBD\",\"scope\":\"KNOWLEDGE-SCOPE-P\"}}",
+      "raw_sha256": "688e77fa810c685bd49aba6f6ffd466ef630bbaa591073c7ce0832b43e956896",
+      "expected_canonical_sha256": "d8a86199a4aa084b43c0c71a30ab04349fa07d307cbe82c4176865e9bbb93195",
+      "basis": "L3/L4 B01の同revision/scope束縛に対し、targetと全選択契約のrevisionを同じTBDにすると現式は対応tokenを返す。実版解決や束縛資格は未実現であり、この一致を義務合格に数えない。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-F03-PLACEHOLDER-CANDIDATE-IDENTITIES",
+      "function_ref": "BRAIN019-F03",
+      "baseline_case_id": "B019-F03-MULTIPLE-CANDIDATES",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/2/concrete_cases/0",
+      "source_case_sha256": "d23e3ebb7ed99df1e7b3eeca5753288db19714598ffcaeba40a9e7d1a37fb2c6",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "original_candidates"
+          ],
+          "value": [
+            "TBD",
+            ""
+          ]
+        },
+        {
+          "op": "replace",
+          "path": [
+            "provided_candidates"
+          ],
+          "value": [
+            "TBD",
+            ""
+          ]
+        }
+      ],
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": [
+            "candidate_results"
+          ],
+          "value": {
+            "TBD": "retained",
+            "": "retained"
+          }
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "case_condition_state": "known_in_fixture",
+          "claims_adopted": false,
+          "claims_conflict_as_multiple_success": false,
+          "claims_recommended": false,
+          "knowledge_state": "consistent_fixture",
+          "maturity": "not_evaluated",
+          "original_candidates": [
+            "TBD",
+            ""
+          ],
+          "provided_candidates": [
+            "TBD",
+            ""
+          ]
+        }
+      },
+      "expected_output": {
+        "candidate_results": {
+          "TBD": "retained",
+          "": "retained"
+        },
+        "condition_result": "known_in_fixture",
+        "knowledge_result": "consistent_fixture",
+        "recommendation": "none",
+        "adoption_claim": "none",
+        "conflict_success_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"case_condition_state\":\"known_in_fixture\",\"claims_adopted\":false,\"claims_conflict_as_multiple_success\":false,\"claims_recommended\":false,\"knowledge_state\":\"consistent_fixture\",\"maturity\":\"not_evaluated\",\"original_candidates\":[\"TBD\",\"\"],\"provided_candidates\":[\"TBD\",\"\"]}",
+      "raw_sha256": "ae0512339ba507d31d4a2be8ace39eb0f1f5bf1354bfe5fd7e4e15ae6e901733",
+      "expected_canonical_sha256": "88cab4b7e2952dfb4c1d5f2d717de8fd7da1278265299a21a7422fd1ca44f4a0",
+      "basis": "L3/L4 F03の複数候補を比較可能に保持する義務に対し、候補名の実identity解決/未確定語識別は未実現。retainedは集合所属の再現に限り、有効候補/推薦/採用ではない。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    },
+    {
+      "id": "R2-F02-PATTERN-MEANING-TBD",
+      "function_ref": "BRAIN019-F02",
+      "baseline_case_id": "B019-F02-FULL-REPLY-AND-TEMPLATE-15",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/1/concrete_cases/0",
+      "source_case_sha256": "d5f0fe1facd56193a155e09ced2d74e874ff40d168db7525fc3f6b7ca070c9b8",
+      "patch": [
+        {
+          "op": "replace",
+          "path": [
+            "original_reply",
+            "Pattern",
+            "meaning"
+          ],
+          "value": "TBD"
+        },
+        {
+          "op": "replace",
+          "path": [
+            "provided_reply",
+            "Pattern",
+            "meaning"
+          ],
+          "value": "TBD"
+        }
+      ],
+      "expected_patch": [],
+      "typed_arguments": {
+        "raw": {
+          "adopted_limited_knowledge_scope": "SEEDFIRST/MSGCONTENT/P3FIRST adopted contents only",
+          "claims_all_patterns_adopted": false,
+          "original_knowledge_state": "not_adopted",
+          "original_reply": {
+            "Design Unit": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 Design Unit",
+              "state": "identified_fixture_only"
+            },
+            "Part": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 Part",
+              "state": "identified_fixture_only"
+            },
+            "Pattern": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "TBD",
+              "state": "identified_fixture_only"
+            },
+            "alternative": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 alternative",
+              "state": "identified_fixture_only"
+            },
+            "applicability": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 applicability",
+              "state": "identified_fixture_only"
+            },
+            "constraint": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 constraint",
+              "state": "identified_fixture_only"
+            },
+            "evidence": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 evidence",
+              "state": "identified_fixture_only"
+            },
+            "exact_version": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 exact_version",
+              "state": "identified_fixture_only"
+            },
+            "maturity": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 maturity",
+              "state": "not_evaluated"
+            },
+            "negative_example": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 negative_example",
+              "state": "identified_fixture_only"
+            },
+            "relation": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 relation",
+              "state": "identified_fixture_only"
+            },
+            "required_input": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 required_input",
+              "state": "identified_fixture_only"
+            },
+            "trade_off": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 trade_off",
+              "state": "identified_fixture_only"
+            }
+          },
+          "original_template_contract": {
+            "applicability": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 applicability",
+              "value_state": "unknown"
+            },
+            "completion": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 completion",
+              "value_state": "unknown"
+            },
+            "downstream kind": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 downstream kind",
+              "value_state": "unknown"
+            },
+            "layer/pair": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 layer/pair",
+              "value_state": "unknown"
+            },
+            "measurement": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 measurement",
+              "value_state": "unknown"
+            },
+            "negative oracle": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 negative oracle",
+              "value_state": "unknown"
+            },
+            "relation": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 relation",
+              "value_state": "unknown"
+            },
+            "required field": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 required field",
+              "value_state": "unknown"
+            },
+            "required input": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 required input",
+              "value_state": "unknown"
+            },
+            "required section": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 required section",
+              "value_state": "unknown"
+            },
+            "supersession": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 supersession",
+              "value_state": "unknown"
+            },
+            "template identity": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 template identity",
+              "value_state": "unknown"
+            },
+            "trace": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 trace",
+              "value_state": "unknown"
+            },
+            "version": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 version",
+              "value_state": "unknown"
+            },
+            "意味owner": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 意味owner",
+              "value_state": "unknown"
+            }
+          },
+          "provided_knowledge_state": "not_adopted",
+          "provided_reply": {
+            "Design Unit": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 Design Unit",
+              "state": "identified_fixture_only"
+            },
+            "Part": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 Part",
+              "state": "identified_fixture_only"
+            },
+            "Pattern": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "TBD",
+              "state": "identified_fixture_only"
+            },
+            "alternative": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 alternative",
+              "state": "identified_fixture_only"
+            },
+            "applicability": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 applicability",
+              "state": "identified_fixture_only"
+            },
+            "constraint": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 constraint",
+              "state": "identified_fixture_only"
+            },
+            "evidence": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 evidence",
+              "state": "identified_fixture_only"
+            },
+            "exact_version": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 exact_version",
+              "state": "identified_fixture_only"
+            },
+            "maturity": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 maturity",
+              "state": "not_evaluated"
+            },
+            "negative_example": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 negative_example",
+              "state": "identified_fixture_only"
+            },
+            "relation": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 relation",
+              "state": "identified_fixture_only"
+            },
+            "required_input": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 required_input",
+              "state": "identified_fixture_only"
+            },
+            "trade_off": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成返却原内容 trade_off",
+              "state": "identified_fixture_only"
+            }
+          },
+          "provided_template_contract": {
+            "applicability": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 applicability",
+              "value_state": "unknown"
+            },
+            "completion": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 completion",
+              "value_state": "unknown"
+            },
+            "downstream kind": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 downstream kind",
+              "value_state": "unknown"
+            },
+            "layer/pair": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 layer/pair",
+              "value_state": "unknown"
+            },
+            "measurement": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 measurement",
+              "value_state": "unknown"
+            },
+            "negative oracle": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 negative oracle",
+              "value_state": "unknown"
+            },
+            "relation": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 relation",
+              "value_state": "unknown"
+            },
+            "required field": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 required field",
+              "value_state": "unknown"
+            },
+            "required input": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 required input",
+              "value_state": "unknown"
+            },
+            "required section": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 required section",
+              "value_state": "unknown"
+            },
+            "supersession": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 supersession",
+              "value_state": "unknown"
+            },
+            "template identity": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 template identity",
+              "value_state": "unknown"
+            },
+            "trace": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 trace",
+              "value_state": "unknown"
+            },
+            "version": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 version",
+              "value_state": "unknown"
+            },
+            "意味owner": {
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "meaning": "合成のtemplate意味 意味owner",
+              "value_state": "unknown"
+            }
+          }
+        }
+      },
+      "expected_output": {
+        "reply_results": {
+          "Pattern": "content_corresponding_in_fixture",
+          "Design Unit": "content_corresponding_in_fixture",
+          "Part": "content_corresponding_in_fixture",
+          "required_input": "content_corresponding_in_fixture",
+          "applicability": "content_corresponding_in_fixture",
+          "alternative": "content_corresponding_in_fixture",
+          "relation": "content_corresponding_in_fixture",
+          "trade_off": "content_corresponding_in_fixture",
+          "negative_example": "content_corresponding_in_fixture",
+          "evidence": "content_corresponding_in_fixture",
+          "maturity": "content_corresponding_in_fixture",
+          "exact_version": "content_corresponding_in_fixture",
+          "constraint": "content_corresponding_in_fixture"
+        },
+        "template_results": {
+          "template identity": "content_corresponding_in_fixture",
+          "version": "content_corresponding_in_fixture",
+          "layer/pair": "content_corresponding_in_fixture",
+          "applicability": "content_corresponding_in_fixture",
+          "required input": "content_corresponding_in_fixture",
+          "required section": "content_corresponding_in_fixture",
+          "required field": "content_corresponding_in_fixture",
+          "relation": "content_corresponding_in_fixture",
+          "意味owner": "content_corresponding_in_fixture",
+          "trace": "content_corresponding_in_fixture",
+          "negative oracle": "content_corresponding_in_fixture",
+          "measurement": "content_corresponding_in_fixture",
+          "completion": "content_corresponding_in_fixture",
+          "downstream kind": "content_corresponding_in_fixture",
+          "supersession": "content_corresponding_in_fixture"
+        },
+        "knowledge_state": "not_adopted",
+        "all_pattern_adoption_claim": "none",
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_CORE_received": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "raw_utf8": "{\"adopted_limited_knowledge_scope\":\"SEEDFIRST/MSGCONTENT/P3FIRST adopted contents only\",\"claims_all_patterns_adopted\":false,\"original_knowledge_state\":\"not_adopted\",\"original_reply\":{\"Design Unit\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 Design Unit\",\"state\":\"identified_fixture_only\"},\"Part\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 Part\",\"state\":\"identified_fixture_only\"},\"Pattern\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"TBD\",\"state\":\"identified_fixture_only\"},\"alternative\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 alternative\",\"state\":\"identified_fixture_only\"},\"applicability\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 applicability\",\"state\":\"identified_fixture_only\"},\"constraint\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 constraint\",\"state\":\"identified_fixture_only\"},\"evidence\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 evidence\",\"state\":\"identified_fixture_only\"},\"exact_version\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 exact_version\",\"state\":\"identified_fixture_only\"},\"maturity\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 maturity\",\"state\":\"not_evaluated\"},\"negative_example\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 negative_example\",\"state\":\"identified_fixture_only\"},\"relation\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 relation\",\"state\":\"identified_fixture_only\"},\"required_input\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 required_input\",\"state\":\"identified_fixture_only\"},\"trade_off\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 trade_off\",\"state\":\"identified_fixture_only\"}},\"original_template_contract\":{\"applicability\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 applicability\",\"value_state\":\"unknown\"},\"completion\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 completion\",\"value_state\":\"unknown\"},\"downstream kind\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 downstream kind\",\"value_state\":\"unknown\"},\"layer/pair\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 layer/pair\",\"value_state\":\"unknown\"},\"measurement\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 measurement\",\"value_state\":\"unknown\"},\"negative oracle\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 negative oracle\",\"value_state\":\"unknown\"},\"relation\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 relation\",\"value_state\":\"unknown\"},\"required field\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 required field\",\"value_state\":\"unknown\"},\"required input\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 required input\",\"value_state\":\"unknown\"},\"required section\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 required section\",\"value_state\":\"unknown\"},\"supersession\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 supersession\",\"value_state\":\"unknown\"},\"template identity\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 template identity\",\"value_state\":\"unknown\"},\"trace\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 trace\",\"value_state\":\"unknown\"},\"version\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 version\",\"value_state\":\"unknown\"},\"意味owner\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 意味owner\",\"value_state\":\"unknown\"}},\"provided_knowledge_state\":\"not_adopted\",\"provided_reply\":{\"Design Unit\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 Design Unit\",\"state\":\"identified_fixture_only\"},\"Part\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 Part\",\"state\":\"identified_fixture_only\"},\"Pattern\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"TBD\",\"state\":\"identified_fixture_only\"},\"alternative\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 alternative\",\"state\":\"identified_fixture_only\"},\"applicability\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 applicability\",\"state\":\"identified_fixture_only\"},\"constraint\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 constraint\",\"state\":\"identified_fixture_only\"},\"evidence\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 evidence\",\"state\":\"identified_fixture_only\"},\"exact_version\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 exact_version\",\"state\":\"identified_fixture_only\"},\"maturity\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 maturity\",\"state\":\"not_evaluated\"},\"negative_example\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 negative_example\",\"state\":\"identified_fixture_only\"},\"relation\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 relation\",\"state\":\"identified_fixture_only\"},\"required_input\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 required_input\",\"state\":\"identified_fixture_only\"},\"trade_off\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成返却原内容 trade_off\",\"state\":\"identified_fixture_only\"}},\"provided_template_contract\":{\"applicability\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 applicability\",\"value_state\":\"unknown\"},\"completion\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 completion\",\"value_state\":\"unknown\"},\"downstream kind\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 downstream kind\",\"value_state\":\"unknown\"},\"layer/pair\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 layer/pair\",\"value_state\":\"unknown\"},\"measurement\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 measurement\",\"value_state\":\"unknown\"},\"negative oracle\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 negative oracle\",\"value_state\":\"unknown\"},\"relation\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 relation\",\"value_state\":\"unknown\"},\"required field\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 required field\",\"value_state\":\"unknown\"},\"required input\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 required input\",\"value_state\":\"unknown\"},\"required section\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 required section\",\"value_state\":\"unknown\"},\"supersession\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 supersession\",\"value_state\":\"unknown\"},\"template identity\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 template identity\",\"value_state\":\"unknown\"},\"trace\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 trace\",\"value_state\":\"unknown\"},\"version\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 version\",\"value_state\":\"unknown\"},\"意味owner\":{\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"meaning\":\"合成のtemplate意味 意味owner\",\"value_state\":\"unknown\"}}}",
+      "raw_sha256": "dcd7068b160ab81d4131f36e21ee841f8dafae0682c296adde463245867af346",
+      "expected_canonical_sha256": "07f6dee161a28bf04f76bbbbf5b6ebeaf96054d6a62a63b87f83054294331edd",
+      "basis": "L3/L4 F02の返却意味非欠落に対し、両側同じTBD meaningは深層等値tokenになる。意味が供給されたことは判定しない。原wholeの再現だけで義務を満たさない。",
+      "role": "unclosed_witness",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified"
+    }
+  ],
+  "unimplemented_content_qualification": [
+    {
+      "function_ref": "BRAIN019-F01",
+      "requirement_ref": "HELIXBRAIN-L3-019-F01",
+      "fields": [
+        "original_query/provided_queryのidentity・revision・scope・problem・constraint要素・knowledge_refのidentity/revision/scope",
+        "original_answer_refs/provided_answer_refs各回答のidentity・revision・knowledge_refのidentity/revision/scope"
+      ],
+      "status": "unimplemented",
+      "behavior_and_limit": "required_inputの有限marker以外は原/提出/target間の内容等値だけを比較。同じ空文字/TBD/unknownを有効内容と区別する判定、空配列の必要集合完全性、任意本文の不足識別は未実現。",
+      "owner": "対象inputはCORE、knowledge意味/版はBRAIN003/008",
+      "obligation_pass": false
+    },
+    {
+      "function_ref": "BRAIN019-F02",
+      "requirement_ref": "HELIXBRAIN-L3-019-F02",
+      "fields": [
+        "original_reply/provided_reply全13項目のmeaning・state・knowledge_ref各軸",
+        "original_template_contract/provided_template_contract全15項目のmeaning・state・knowledge_ref各軸",
+        "original_knowledge_state/provided_knowledge_state・adopted_limited_knowledge_scope"
+      ],
+      "status": "unimplemented",
+      "behavior_and_limit": "返却各objectは有無/深層等値の比較であり、同値の空文字/TBD/unknown、意味不足、版未確定を個別診断しない。stateを含む原/提出値の資格と採用scope充足は未実現。",
+      "owner": "汎用知識はBRAIN、製品input/値はCORE",
+      "obligation_pass": false
+    },
+    {
+      "function_ref": "BRAIN019-F03",
+      "requirement_ref": "HELIXBRAIN-L3-019-F03",
+      "fields": [
+        "original_candidates/provided_candidatesの全候補identity",
+        "case_condition_state・knowledge_state・maturity"
+      ],
+      "status": "unimplemented",
+      "behavior_and_limit": "候補所属だけを比較するため同じTBD/空文字をretainedにする。候補identityの未確定識別、実知識参照解決、自由state本文やmaturityの内容資格は未実現。known/unknown既存返却を実候補の十分性へ昇格しない。",
+      "owner": "不足inputはCORE、意味/版矛盾はBRAIN003/008または親L1",
+      "obligation_pass": false
+    },
+    {
+      "function_ref": "BRAIN019-N01",
+      "requirement_ref": "HELIXBRAIN-L3-019-N01",
+      "fields": [
+        "held_out_original/held_out_providedのproblem・constraint要素・negative_example要素・alternative要素・scope・knowledge_revision・state"
+      ],
+      "status": "unimplemented",
+      "behavior_and_limit": "required_input以外は等値tokenだけで、両側同じ空文字/TBD/unknownや空配列の意味不足を診断しない。unknown/not_evaluatedの原state内容を別返却へ投影する責務も未実現。",
+      "owner": "BRAIN/COREの内容または契約owner",
+      "obligation_pass": false
+    },
+    {
+      "function_ref": "BRAIN019-B01",
+      "requirement_ref": "HELIXBRAIN-L3-019-B01",
+      "fields": [
+        "target_knowledge_refのidentity/revision/scope",
+        "required_contracts/provided_contracts各選択契約のidentity・revision・knowledge_refのidentity/revision/scope・state",
+        "original_statesの4状態"
+      ],
+      "status": "unimplemented",
+      "behavior_and_limit": "identityは選択keyと比較するが、契約revision/knowledge各軸の同じ空文字/TBD/unknownを有効版/有効scopeと区別しない。target自体の独立実資格、契約state内容と四状態の時間・因果診断は未実現。",
+      "owner": "当該BRAIN/CORE/OS/CONNECT owner",
+      "obligation_pass": false
+    }
+  ],
+  "r2_input_type_rejection_probes": [
+    {
+      "id": "R2-F01-Pattern-ABSENT-original_answer_refs",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "remove",
+          "path": [
+            "original_answer_refs",
+            "Pattern"
+          ]
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "dbb79d687ecc31dc17c178a3e18970f0fb26422e22620c966ade9bcfff96e18d",
+      "basis": "RawF01のoriginal_answer_refs/provided_answer_refsには3回答keyが必須。片側key欠落は型外であり関数を呼ばない。型内identity/revision不一致の全返却比較とは別の素材として数える。",
+      "role": "input_type_rejection",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified",
+      "expected_precondition": {
+        "input_type_accepted": false,
+        "function_invoked": false
+      }
+    },
+    {
+      "id": "R2-F01-Pattern-ABSENT-provided_answer_refs",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "remove",
+          "path": [
+            "provided_answer_refs",
+            "Pattern"
+          ]
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "3f3a205576896fb599e798d8177d1a704513995f83a4819705a53051555308df",
+      "basis": "RawF01のoriginal_answer_refs/provided_answer_refsには3回答keyが必須。片側key欠落は型外であり関数を呼ばない。型内identity/revision不一致の全返却比較とは別の素材として数える。",
+      "role": "input_type_rejection",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified",
+      "expected_precondition": {
+        "input_type_accepted": false,
+        "function_invoked": false
+      }
+    },
+    {
+      "id": "R2-F01-Design_Unit-ABSENT-original_answer_refs",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "remove",
+          "path": [
+            "original_answer_refs",
+            "Design Unit"
+          ]
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "01df4bc910c7f0526e0f6dca9dd0470a8bab3ab675f226fcfb7653c0c89fc9d7",
+      "basis": "RawF01のoriginal_answer_refs/provided_answer_refsには3回答keyが必須。片側key欠落は型外であり関数を呼ばない。型内identity/revision不一致の全返却比較とは別の素材として数える。",
+      "role": "input_type_rejection",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified",
+      "expected_precondition": {
+        "input_type_accepted": false,
+        "function_invoked": false
+      }
+    },
+    {
+      "id": "R2-F01-Design_Unit-ABSENT-provided_answer_refs",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "remove",
+          "path": [
+            "provided_answer_refs",
+            "Design Unit"
+          ]
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "93025907206a6d56cdd33ef15cee177b44294c2e176e9693e3b2ffc00eb8a9c1",
+      "basis": "RawF01のoriginal_answer_refs/provided_answer_refsには3回答keyが必須。片側key欠落は型外であり関数を呼ばない。型内identity/revision不一致の全返却比較とは別の素材として数える。",
+      "role": "input_type_rejection",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified",
+      "expected_precondition": {
+        "input_type_accepted": false,
+        "function_invoked": false
+      }
+    },
+    {
+      "id": "R2-F01-Part-ABSENT-original_answer_refs",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "remove",
+          "path": [
+            "original_answer_refs",
+            "Part"
+          ]
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "ab26455ed4ea3481ab7313de8c572d6f56ea244973c7e8cb2c4c2611e5258bee",
+      "basis": "RawF01のoriginal_answer_refs/provided_answer_refsには3回答keyが必須。片側key欠落は型外であり関数を呼ばない。型内identity/revision不一致の全返却比較とは別の素材として数える。",
+      "role": "input_type_rejection",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified",
+      "expected_precondition": {
+        "input_type_accepted": false,
+        "function_invoked": false
+      }
+    },
+    {
+      "id": "R2-F01-Part-ABSENT-provided_answer_refs",
+      "function_ref": "BRAIN019-F01",
+      "baseline_case_id": "B019-F01-QUERY-KNOWLEDGE-PATTERN-UNIT-PART",
+      "source_path": "docs/helix-brain/L9-integration-verification/core-knowledge-reply.json",
+      "source_revision": "cdb1d3bc23a79ff216908b27f89bc7fc767d3f2a",
+      "source_sha256": "6ee97a2d068dd7e0651f84b2fc7603c2ade7b7148dfd6498abf9997ca774286f",
+      "source_case_pointer": "/verification_obligations/0/concrete_cases/0",
+      "source_case_sha256": "a5299362c12a6214e3818f9bbda5e43495de0d1160f97b2f260f47040865dfd2",
+      "patch": [
+        {
+          "op": "remove",
+          "path": [
+            "provided_answer_refs",
+            "Part"
+          ]
+        }
+      ],
+      "typed_arguments": {
+        "raw": {
+          "claims_inferred_input_success": false,
+          "original_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Part": {
+              "identity": "Part-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "original_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          },
+          "provided_answer_refs": {
+            "Design Unit": {
+              "identity": "Design Unit-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            },
+            "Pattern": {
+              "identity": "Pattern-P",
+              "knowledge_ref": {
+                "identity": "KNOWLEDGE-P",
+                "revision": "r1",
+                "scope": "KNOWLEDGE-SCOPE-P"
+              },
+              "revision": "r1"
+            }
+          },
+          "provided_query": {
+            "constraint": [
+              "合成制約P"
+            ],
+            "identity": "QUERY-P",
+            "knowledge_ref": {
+              "identity": "KNOWLEDGE-P",
+              "revision": "r1",
+              "scope": "KNOWLEDGE-SCOPE-P"
+            },
+            "problem": "合成の対象課題P",
+            "required_input": [
+              "INPUT-A",
+              "INPUT-B"
+            ],
+            "revision": "q1",
+            "scope": "QUERY-SCOPE-P"
+          }
+        }
+      },
+      "raw_utf8": "{\"claims_inferred_input_success\":false,\"original_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Part\":{\"identity\":\"Part-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"original_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"},\"provided_answer_refs\":{\"Design Unit\":{\"identity\":\"Design Unit-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"},\"Pattern\":{\"identity\":\"Pattern-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"revision\":\"r1\"}},\"provided_query\":{\"constraint\":[\"合成制約P\"],\"identity\":\"QUERY-P\",\"knowledge_ref\":{\"identity\":\"KNOWLEDGE-P\",\"revision\":\"r1\",\"scope\":\"KNOWLEDGE-SCOPE-P\"},\"problem\":\"合成の対象課題P\",\"required_input\":[\"INPUT-A\",\"INPUT-B\"],\"revision\":\"q1\",\"scope\":\"QUERY-SCOPE-P\"}}",
+      "raw_sha256": "173b2bb7c674f4d0edddfe21a45d26c64b276040b7355e66422678980c9ec16a",
+      "basis": "RawF01のoriginal_answer_refs/provided_answer_refsには3回答keyが必須。片側key欠落は型外であり関数を呼ばない。型内identity/revision不一致の全返却比較とは別の素材として数える。",
+      "role": "input_type_rejection",
+      "execution_state": "not_executed",
+      "qualification": "synthetic_only_not_qualified",
+      "expected_precondition": {
+        "input_type_accepted": false,
+        "function_invoked": false
+      }
     }
   ]
 }

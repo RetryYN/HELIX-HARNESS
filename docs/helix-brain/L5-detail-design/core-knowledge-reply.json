@@ -5823,8 +5823,8 @@
         "TBD",
         "unknown"
       ],
-      "source": "L3/L4 F01の不足input非成功補完、N01同内容oracle、およびL8の空/TBD/unknown入力要素の独立反例",
-      "representation": "本pairの不足表示語を明示的な入力比較として定義。未確定語を実資格/承認へ変えず、新たな作用停止gateを設けない。"
+      "source": "承認済HELIXBRAIN-L3/L4-019-F01の不足inputを成功補完しない義務とL3/L4/L10-019-N01の内容比較からの意味再導出。旧UTW-014（additional_legacy_sourcesの80行）は欠損を空集合へ縮退させない保持点であり、空文字/TBD/unknownというliteral集合そのものの出典ではない。",
+      "representation": "空文字/TBD/unknownは本pairのrequired_input比較だけに明示する有限表示語で、旧sourceに同じliteral集合はない。承認済不足非補完を局所表現した新規設計であり、全fieldの意味充足判定・実資格や追加の承認gateではない。検査未実現の各fieldはunimplemented_content_qualificationへ分ける。"
     }
   },
   "calculation_programs": {
@@ -7260,6 +7260,71 @@
     "N01 Raw型の全fieldは必須。型内missing tokenには到達しないため返却enum/when_absent説明をcontent_conflictへ整合。空配列/要素不足等の内容差はcontent_conflictへ縮約し、missingと不一致の別語を返さない。入力member Absent/nullは型外で補完しない。",
     "N01 content_results.stateは両stateの等値tokenだけで、unknown/not_evaluated/verified等の原stateを個別返却へ投影する責務は未実現。同値verifiedを実評価の成功へ昇格しない。",
     "F01/N01 required_inputの空文字/TBD/unknown要素は片側/両側とも内容不整合として比較前に局所検出する。これは不足入力の有限表示語で、任意の自然言語や別markerを完全に同定する仕組みではない。両側同じ空配列の必要集合完全性は未具体化。",
-    "B01契約revisionとrequired knowledge identity/revision/scopeの各比較について、3選択key×4軸の単独wholeで識別力を照合する。その他の全mutation/複合域を網羅したとは主張しない。"
+    "B01契約revisionとrequired knowledge identity/revision/scopeの各比較について、3選択key×4軸の単独wholeで識別力を照合する。その他の全mutation/複合域を網羅したとは主張しない。",
+    "unimplemented_content_qualificationは、required_input以外の各内容fieldに残る未確定語/不足の識別未実現を個別に示す。R2 witnessの対応/retainedは等値/所属という現式の再現であり、要求充足・内容資格・有効版を認定しない。既決の要求意味は保持し、要件への還流は設計リファクタリング時に整理する。",
+    "F01 answer_ref_resultsの片側Absent guardはRawF01の必須3key域から到達しない。欠落6素材は入力型拒否として分離し、型内whole一致や型内分岐網羅へ数えない。原/提出回答のidentity/revisionの別値6wholeは型内比較を識別する。"
+  ],
+  "unimplemented_content_qualification": [
+    {
+      "function_ref": "BRAIN019-F01",
+      "requirement_ref": "HELIXBRAIN-L3-019-F01",
+      "fields": [
+        "original_query/provided_queryのidentity・revision・scope・problem・constraint要素・knowledge_refのidentity/revision/scope",
+        "original_answer_refs/provided_answer_refs各回答のidentity・revision・knowledge_refのidentity/revision/scope"
+      ],
+      "status": "unimplemented",
+      "behavior_and_limit": "required_inputの有限marker以外は原/提出/target間の内容等値だけを比較。同じ空文字/TBD/unknownを有効内容と区別する判定、空配列の必要集合完全性、任意本文の不足識別は未実現。",
+      "owner": "対象inputはCORE、knowledge意味/版はBRAIN003/008",
+      "obligation_pass": false
+    },
+    {
+      "function_ref": "BRAIN019-F02",
+      "requirement_ref": "HELIXBRAIN-L3-019-F02",
+      "fields": [
+        "original_reply/provided_reply全13項目のmeaning・state・knowledge_ref各軸",
+        "original_template_contract/provided_template_contract全15項目のmeaning・state・knowledge_ref各軸",
+        "original_knowledge_state/provided_knowledge_state・adopted_limited_knowledge_scope"
+      ],
+      "status": "unimplemented",
+      "behavior_and_limit": "返却各objectは有無/深層等値の比較であり、同値の空文字/TBD/unknown、意味不足、版未確定を個別診断しない。stateを含む原/提出値の資格と採用scope充足は未実現。",
+      "owner": "汎用知識はBRAIN、製品input/値はCORE",
+      "obligation_pass": false
+    },
+    {
+      "function_ref": "BRAIN019-F03",
+      "requirement_ref": "HELIXBRAIN-L3-019-F03",
+      "fields": [
+        "original_candidates/provided_candidatesの全候補identity",
+        "case_condition_state・knowledge_state・maturity"
+      ],
+      "status": "unimplemented",
+      "behavior_and_limit": "候補所属だけを比較するため同じTBD/空文字をretainedにする。候補identityの未確定識別、実知識参照解決、自由state本文やmaturityの内容資格は未実現。known/unknown既存返却を実候補の十分性へ昇格しない。",
+      "owner": "不足inputはCORE、意味/版矛盾はBRAIN003/008または親L1",
+      "obligation_pass": false
+    },
+    {
+      "function_ref": "BRAIN019-N01",
+      "requirement_ref": "HELIXBRAIN-L3-019-N01",
+      "fields": [
+        "held_out_original/held_out_providedのproblem・constraint要素・negative_example要素・alternative要素・scope・knowledge_revision・state"
+      ],
+      "status": "unimplemented",
+      "behavior_and_limit": "required_input以外は等値tokenだけで、両側同じ空文字/TBD/unknownや空配列の意味不足を診断しない。unknown/not_evaluatedの原state内容を別返却へ投影する責務も未実現。",
+      "owner": "BRAIN/COREの内容または契約owner",
+      "obligation_pass": false
+    },
+    {
+      "function_ref": "BRAIN019-B01",
+      "requirement_ref": "HELIXBRAIN-L3-019-B01",
+      "fields": [
+        "target_knowledge_refのidentity/revision/scope",
+        "required_contracts/provided_contracts各選択契約のidentity・revision・knowledge_refのidentity/revision/scope・state",
+        "original_statesの4状態"
+      ],
+      "status": "unimplemented",
+      "behavior_and_limit": "identityは選択keyと比較するが、契約revision/knowledge各軸の同じ空文字/TBD/unknownを有効版/有効scopeと区別しない。target自体の独立実資格、契約state内容と四状態の時間・因果診断は未実現。",
+      "owner": "当該BRAIN/CORE/OS/CONNECT owner",
+      "obligation_pass": false
+    }
   ]
 }
