@@ -236,7 +236,8 @@
         "安価でもdomain/tool不適合なら除外する。価格/model名/benchmarkだけの順位やfield存在だけの成立を拒否し、理由と根拠の内容不一致はINT proposal ownerへ返す。",
         "推薦Workerのdomain/tool不適合および推薦と除外の同時成立は、価格/名前/field存在のclaimとは独立に診断する。claimの拒否は実データの条件不適合やOS戻し先を消さない。",
         "推薦identityを原Worker集合へ結び、対応するWorkerが無い提出要素は実array位置から案ownerへ返す。原/提出の除外内容が一致しなければ案ownerへ返し、data所見のstate/fitへの接続を保持する。",
-        "原/提出の推薦内容も除外内容と独立に照合し、元根拠と違う推薦・推薦の消去/異型/重複を案ownerへ返す。原/提出の除外内容不一致と推薦/除外の同時成立は別のfieldで追跡する。"
+        "原/提出の推薦内容も除外内容と独立に照合し、元根拠と違う推薦・推薦の消去/異型/重複を案ownerへ返す。原/提出の除外内容不一致と推薦/除外の同時成立は別のfieldで追跡する。",
+        "推薦が原と同じ値であっても、Absent/null/非配列は内容照合未成立、空配列は候補なしとして所見と未評価を保持する。候補材料の欠落から肯定的な適合を生成しない。"
       ],
       "representation_limit": "候補のscope/適合条件/根拠を比較する合成例。正式schema/実Bench/順位式/資格を採用しない。"
     },
@@ -399,7 +400,7 @@
           "return_owner": "OS-task-fit-owner"
         }
       ],
-      "ordering": "提出推薦の原Workerへのidentity bindingを提出index順→raw Worker配列順の選択対象domain→tools→Bench class→理由対応→原/提出推薦内容→原/提出除外内容→推薦/除外対応→claim宣言順。",
+      "ordering": "提出推薦の形状→提出推薦の原Workerへのidentity bindingを提出index順→raw Worker配列順の選択対象domain→tools→Bench class→理由対応→原/提出推薦内容→原/提出除外内容→推薦/除外対応→claim宣言順。",
       "bench_class": {
         "left": "/original_bench/task_class",
         "right": "/original_scope/task_class",
@@ -463,6 +464,17 @@
         "result": "source_content_conflict",
         "return_owner": "INTELLIGENCE-proposal-owner",
         "basis": "批准L3-F02とL10-F02の同scope根拠・候補適合/事前適合条件との一致。既存案の推薦差替え・消去・異型を根拠に対応した候補へ補完しない。"
+      },
+      "recommendation_shape": {
+        "path": "/submitted_proposal/recommended",
+        "absent_or_null_result": "missing",
+        "nonarray_result": "source_content_conflict",
+        "empty_array_result": "unobserved",
+        "nonempty_array_result": null,
+        "field": "/submitted_proposal/recommended",
+        "return_owner": "INTELLIGENCE-proposal-owner",
+        "comparison": "推薦がAbsent/nullならmissing、供給された非配列ならsource_content_conflict、配列が空なら候補なしでunobserved。いずれもheld_input_unqualified/not_evaluatedへ接続し、原/提出一致によって免除しない。非空配列は既存のidentity bindingと条件照合を続ける。",
+        "boundary": "これは候補内容を照合可能な形かの情報判定。候補の存在を強制せず、空配列から候補適合を生成しない。実Worker admission/dispatch/SEC許可を追加しない。"
       }
     },
     "F04": {
