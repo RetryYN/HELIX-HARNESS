@@ -290,9 +290,9 @@
     }
   ],
   "failure_basis": {
-    "L3L10": "OS/INFRA actual-state/authority separation and partial/stopped/rollback retained; raw failures remain not_executed",
-    "L4": "contracts/F01/F02 and architecture copied by meaning, source content hash pinned",
-    "legacy": "4 exact line spans from 2 assets are rechecked by local verifier"
+    "L3L10": "OS/INFRAのactual-state/authority分離とpartial/stopped/rollback/未完保持。原fixtureはnot_executedのまま。",
+    "L4": "contracts内のF01/F02 source_contract wholeを保持する。architectureは元L4参照であり本文へ複写したとはしない。",
+    "legacy": "2 assetの4区間を元bytes/行hash/台帳と照合。旧runtime実行や実発生証拠ではない。"
   },
   "consumer_connections": [
     {
@@ -329,7 +329,9 @@
   "unclosed_source_supply": [
     "OS/INFRA実source、owner資格、actual/runtime/recovery/rollback観測は未供給。fixture値を実資格にしない。",
     "並行更新/原子性、全状態組合せ、実stage OS014のsource bindingは未評価。",
-    "L6関数設計/L7関数検証と製品実装は別。codec/TDD/CI/L11受入は未成立。"
+    "L6関数設計/L7関数検証と製品実装は別。codec/TDD/CI/L11受入は未成立。",
+    "stop-resume両原値/選択stage target・stage_id・証拠target/refの論理比較をR1で具体化したが、実source custody/OS014 provider/同版証拠の資格・原子更新/実停止再開は未成立。",
+    "既知停止stateとrelation markerの不整合は局所保持。任意state markerの意味/全複合状態は未閉包。"
   ],
   "remaining": [
     "実source・資格・authority・実評価・runtime変更・stage成立は未成立。",
@@ -341,12 +343,20 @@
   "logical_types": [
     {
       "name": "Presence<T>",
-      "members": [
+      "meaning": "raw JSON memberの不存在/null/値を区別する。空文字列・空配列・空objectはvalueとして保持する。",
+      "state_tags": [
         "absent",
         "null",
         "value"
       ],
-      "meaning": "raw JSON memberの不存在/null/値を区別する。空文字列・空配列・空objectはvalueとして保持する。"
+      "constructor": "raw_member_presence",
+      "type_parameter": "T"
+    },
+    {
+      "name": "list<T>",
+      "constructor": "ordered_list",
+      "type_parameter": "T",
+      "meaning": "JSON配列の順序/件数/重複を保全し、itemをTへ再帰照合。空配列も値として保全する。"
     },
     {
       "name": "Target",
@@ -541,29 +551,45 @@
       },
       "signature": "compare_work_resource_relation(input: Input_F01) -> Assessment",
       "reads": [
-        "全Input_F01 fields"
+        "claims",
+        "original_os",
+        "submitted_os",
+        "original_infra",
+        "submitted_infra",
+        "original_relation_state",
+        "original_target",
+        "original_stage",
+        "original_unfinished"
       ],
       "returns": [
-        "Assessment全10 fields"
+        "information_state",
+        "retained_os",
+        "retained_infra",
+        "retained_stage",
+        "retained_unfinished",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "stage_additional_obligation",
+        "actual_effects"
       ],
       "algorithm": [
-        "1. 入力のoriginal_os/original_infra/original_stage/original_unfinishedを出力へそのまま保持し、副作用7項目をfalseにする。",
-        "2. original_relation_stateがpartial/stoppedならまずrelation_state failureをOS/INFRAへ返す。rollback時は特別情報状態を記録する。",
-        "3. OS submitted側をticket_ref,change_ref,actor_ref,evidence_ref,operation_ref,target,ownerの順でoriginal側およびoriginal_targetと照合。original/submittedの必須値がabsent/nullならunknown、target四fieldのいずれかがoriginal_targetと異なればforeign、ownerがOSでなければsubmitted_conflict。ownerはOS。",
-        "4. INFRA側をtopology_ref,actual_ref,deployment_ref,runtime_revision,recovery_state,rollback_ref,target,ownerの順で同様に比較しowner INFRA。",
-        "5. claimsを入力順に走査し既知の3拒否claimをrejected_claimsへ保持し、各々wrong_authority_or_unfinishedをOS/INFRAへ追加。",
-        "6. failureがあればclaimを含むときheld_claim_rejected、他はheld_relation_unqualified。failureがなければrollback特別状態またはrelation_content_requires_actual_qualification。failure ownerは出現順に重複除去。"
+        "1. 原OS/INFRA/stage/unfinishedを同じpresence/値で保持し、7副作用をfalseで初期化する。",
+        "2. 原relationがpartial/stoppedならrelation_state所見を先に返し、rollback表示を保持する。",
+        "3. OSをticket/change/actor/evidence/stop_resume/operation→target→owner順、次にINFRAをtopology/actual/deployment/runtime/recovery/rollback→target→owner順に照合する。各参照は両側不足を1unknown、非null差を1submitted_conflictとする。既知partial/stoppedのstop_resumeと原relation markerが食い違っても停止状態を成功へ丸めない。targetはoriginal/submitted両側を独立original_target四fieldと比較する。",
+        "4. 原claim入力順に3越境claimを拒否しfindingを追加する。所見field_prefix/両側不足の重複抑止はsemanticsに従う。",
+        "5. claim所見→他所見→rollback→通常内容対応の優先で状態を返す。owner候補はfinding順の初出重複除去。stage_selectedはこの関数の判定に読まない。"
       ],
       "preconditions": [
         "有限fixture型の全required rootが存在する。各nullable/missing fieldはPresenceで区別し、L9 rawから勝手に埋めない。",
-        "case外claim/stateの一般域は未評価。"
+        "原44＋既存2＋R1局所反例の有限比較と宣言型を対象にする。未見claim/stateの意味/実source資格/全多重状態は未閉包。"
       ],
       "postconditions": [
         "全期待rootを返し、OS/INFRA所有記録とunfinishedを消去しない。",
         "この関数は資格/承認/変更を生成しない。"
       ],
       "reference_program_ref": "INFRA009-F01",
-      "algorithm_role": "algorithmは人向け要約。有限fixtureの判定・返却の機械的規則はpure_reference_programsの対応idを唯一の実行定義とする。"
+      "algorithm_role": "人向け要約。pure_reference_programs対応idとpure_reference_semantics.actionsが唯一の判定定義。pure_rule_catalogはそのpointer索引のみ。"
     },
     {
       "id": "INFRA009-F02",
@@ -573,30 +599,44 @@
       },
       "signature": "compare_selected_stage_relation(input: Input_F02) -> Assessment",
       "reads": [
-        "全Input_F02 fields"
+        "claims",
+        "stage_selected",
+        "original_stage",
+        "original_target",
+        "original_infra",
+        "original_os",
+        "original_unfinished"
       ],
       "returns": [
-        "Assessment全10 fields"
+        "information_state",
+        "retained_os",
+        "retained_infra",
+        "retained_stage",
+        "retained_unfinished",
+        "failure_reasons",
+        "return_owners",
+        "rejected_claims",
+        "stage_additional_obligation",
+        "actual_effects"
       ],
       "algorithm": [
-        "1. F01同様、全原値保持・副作用false・claim一覧を入力順に保持する。all_helix_required / all_seven_products_required / unrelated_episode_required はstage未選択時に追加要件として採らずrejected_claimsへ記録する。",
-        "2. stage_selectedがabsent/nullなら他条件より先にheld_stage_unknown、stage_selected/unknown/OS-stage-ownerを返す。stage rawや追加証拠からselectionを補完しない。",
-        "3. stage_selected=falseならstage field検証を行わずordinary_relation_without_stage_gateとする。",
-        "4. stage_selected=trueでoriginal_stageがabsent/nullならstage-record-missingをOS/INFRAへ返す。stage_id_is_runtime_revision claimかつstage_idがinfra.runtime_revisionと等しければidentity_coalescedを返す。stage idとruntimeを同一視するclaimは拒否。",
-        "5. 選択stageのevidence composition, update, recovery, same_versionをこの順で検査。member absent/nullはmissing、stage_revisionがstage_idと異なる値ならforeign-stage。最初の問題をOS/INFRAへ返す。",
-        "6. stage pack_ref, contract_ref, artifact_ref, dependency_ref, runtime_revisionを順に確認しabsent/nullをmissingとして返す。stage.runtime_revisionとINFRA runtime_revisionが非同値ならstage-runtime-foreign。",
-        "7. 条件が満たされても情報状態はstage_binding_requires_actual_qualification。stage_additional_obligationはselected_stage_evidence。"
+        "1. 全原値/無作用を初期化し、selection missing/null→unknown、false→通常接続、true→選択証拠義務の順に分ける。false/unknownではstage検査を走らせない。",
+        "2. 選択trueでstage record不足を保持し、存在時はidentity claimかつstage_id=原INFRA runtimeという同一視所見を判定する。拒否claim記録自体の条件とは分ける。",
+        "3. stage_id/stage_revision不足、stage対象とoriginal_target四fieldの不足/差を先に確認する。この対応が成立する場合だけ証拠の局所検査へ進む。",
+        "4. composition/update/recovery/same_version順に、証拠存在→stage_revision→stage_id→target四field→refを比較し最初の問題を保持する。stage_revisionはstage_idではなく原stage.stage_revisionと比較する。診断suffix/優先/返却ownerはprogramとsemanticsで一意にする。",
+        "5. 所見がなければpack/contract/artifact/dependency/runtime不足を順に、続いてstage.runtimeと原INFRA runtimeの対応を確認する。",
+        "6. 既知4claimをselectionに関わらず拒否記録する。全HELIX/全7製品/無関係episodeを必須化しない。全対応でも実資格を生成せず、選択stage表示はrequires_actual_qualificationのまま。submitted_os/infraと原relation_stateはこの関数の判定に読まない。"
       ],
       "preconditions": [
         "F02 finite packet rootはPresenceで欠落/null/値を保持。selection rawはboolean/null。",
-        "stage selection値域・claimsは原44 fixtureに限り定義。"
+        "selectionはJSON booleanまたはPresenceのmissing/null。既知4claimは選択値に関わらず拒否記録し、原44＋R1局所反例で具体化する。未見tokenの意味/全一般域と実stage資格は未閉包。"
       ],
       "postconditions": [
         "stage未選択ではstage evidence obligationを生じさせない。unknownを成功扱いしない。",
         "stage_idとruntime_revisionを統合せず、実stage資格を出力しない。"
       ],
       "reference_program_ref": "INFRA009-F02",
-      "algorithm_role": "algorithmは人向け要約。有限fixtureの判定・返却の機械的規則はpure_reference_programsの対応idを唯一の実行定義とする。"
+      "algorithm_role": "人向け要約。pure_reference_programs対応idとpure_reference_semantics.actionsが唯一の判定定義。pure_rule_catalogはそのpointer索引のみ。"
     }
   ],
   "contracts": [
@@ -712,7 +752,30 @@
         "I009-F01-REJECT-infra_approves_work",
         "I009-F01-REJECT-erase_unfinished_operation"
       ],
-      "l10": "HELIXINFRASTRUCTURE-L10-009-F01"
+      "l10": "HELIXINFRASTRUCTURE-L10-009-F01",
+      "additional_l8_probes": [
+        "LOCAL-I009-F01-COMPOUND-OS-AND-INFRA-UNKNOWN",
+        "R1-I009-STOP-ORIGINAL_OS-NULL",
+        "R1-I009-STOP-ORIGINAL_OS-ABSENT",
+        "R1-I009-STOP-SUBMITTED_OS-NULL",
+        "R1-I009-STOP-SUBMITTED_OS-ABSENT",
+        "R1-I009-STOP-BOTH-NULL",
+        "R1-I009-SUBMITTED-OS-ticket_ref",
+        "R1-I009-SUBMITTED-OS-change_ref",
+        "R1-I009-SUBMITTED-OS-actor_ref",
+        "R1-I009-SUBMITTED-OS-evidence_ref",
+        "R1-I009-SUBMITTED-OS-stop_resume",
+        "R1-I009-SUBMITTED-OS-operation_ref",
+        "R1-I009-SUBMITTED-INFRA-topology_ref",
+        "R1-I009-SUBMITTED-INFRA-actual_ref",
+        "R1-I009-SUBMITTED-INFRA-deployment_ref",
+        "R1-I009-SUBMITTED-INFRA-runtime_revision",
+        "R1-I009-SUBMITTED-INFRA-recovery_state",
+        "R1-I009-SUBMITTED-INFRA-rollback_ref",
+        "R1-I009-TARGET-ORIGINAL_OS",
+        "R1-I009-TARGET-SUBMITTED_OS",
+        "R1-I009-STOPPED-WITH-COMPLETE-RELATION-MARKER"
+      ]
     },
     {
       "l3": "HELIXINFRASTRUCTURE-L3-009-F02",
@@ -742,243 +805,50 @@
         "I009-F02-STAGE-RECORD-MISSING",
         "I009-F02-STAGE-RUNTIME-FOREIGN"
       ],
-      "l10": "HELIXINFRASTRUCTURE-L10-009-F02"
+      "l10": "HELIXINFRASTRUCTURE-L10-009-F02",
+      "additional_l8_probes": [
+        "LOCAL-I009-F02-NULL-SELECTION-DOMINATES",
+        "R1-I009-STAGE-TARGET-resource",
+        "R1-I009-STAGE-TARGET-environment",
+        "R1-I009-STAGE-TARGET-scope",
+        "R1-I009-STAGE-TARGET-target_revision",
+        "R1-I009-STAGE-TARGET-NULL",
+        "R1-I009-STAGE-ID-NULL",
+        "R1-I009-STAGE-TARGET-ABSENT",
+        "R1-I009-STAGE-ID-ABSENT",
+        "R1-I009-STAGE-REVISION-NULL",
+        "R1-I009-EVIDENCE-ID-composition",
+        "R1-I009-EVIDENCE-TARGET-composition",
+        "R1-I009-EVIDENCE-ID-update",
+        "R1-I009-EVIDENCE-TARGET-update",
+        "R1-I009-EVIDENCE-ID-recovery",
+        "R1-I009-EVIDENCE-TARGET-recovery",
+        "R1-I009-EVIDENCE-ID-same_version",
+        "R1-I009-EVIDENCE-TARGET-same_version",
+        "R1-I009-EVIDENCE-NULL-stage_id",
+        "R1-I009-EVIDENCE-NULL-stage_revision",
+        "R1-I009-EVIDENCE-NULL-target",
+        "R1-I009-EVIDENCE-NULL-ref",
+        "R1-I009-SELECTED-CLAIMS-RETAINED",
+        "R1-I009-UNKNOWN-CLAIMS-RETAINED",
+        "R1-I009-UNSELECTED-IDENTITY-CLAIM",
+        "R1-I009-GUARD-IDENTITY-BOTH-NULL",
+        "R1-I009-GUARD-IDENTITY-BOTH-ABSENT",
+        "R1-I009-GUARD-RUNTIME-CONTROL-NULL"
+      ]
     }
   ],
   "case_binding_policy": "L8 case_refはL9のID/source packetを追跡するが評価はraw_utf8を独立parseしてL5規則を再計算。expected_materialのlookupで計算結果を作らない。",
   "pure_rule_catalog": {
     "F01": {
-      "target_fields_in_order": [
-        "resource",
-        "environment",
-        "scope",
-        "target_revision"
-      ],
-      "os_reference_fields_in_order": [
-        "ticket_ref",
-        "change_ref",
-        "actor_ref",
-        "evidence_ref",
-        "operation_ref"
-      ],
-      "infra_reference_fields_in_order": [
-        "topology_ref",
-        "actual_ref",
-        "deployment_ref",
-        "runtime_revision",
-        "recovery_state",
-        "rollback_ref"
-      ],
-      "relation_state_priority": [
-        "partial",
-        "stopped",
-        "rollback"
-      ],
-      "relation_state_failure_owner": "OS/INFRA",
-      "owner_literals": {
-        "OS": "OS",
-        "INFRA": "INFRA"
-      },
-      "claim_literals_in_source_order": [
-        "ticket_is_actual_authority",
-        "infra_approves_work",
-        "erase_unfinished_operation"
-      ],
-      "claim_failure": "wrong_authority_or_unfinished",
-      "presence_failure": "unknown",
-      "target_failure": "foreign",
-      "owner_failure": "submitted_conflict",
-      "failure_field_prefixes": {
-        "OS": "os.",
-        "INFRA": "infra."
-      },
-      "information_state_literals": [
-        "relation_content_requires_actual_qualification",
-        "rollback_relation_requires_actual_qualification",
-        "held_relation_unqualified",
-        "held_claim_rejected"
-      ],
-      "claim_failure_info_priority": "held_claim_rejected when any rejected claim has a failure; otherwise held_relation_unqualified when failures exist",
-      "return_owner_order": "first occurrence in failure order, deduplicated",
-      "effects_all_false": [
-        "work_approval",
-        "resource_change",
-        "source_overwrite",
-        "release",
-        "permission",
-        "acceptance",
-        "implementation_ready"
-      ],
-      "raw_projection": {
-        "retained_os": "/original_os",
-        "retained_infra": "/original_infra",
-        "retained_stage": "/original_stage",
-        "retained_unfinished": "/original_unfinished"
-      },
-      "ordered_transitions": [
-        "relation_state",
-        "os_fields",
-        "infra_fields",
-        "claims",
-        "final_state"
-      ],
-      "required_presence_rule": {
-        "when": "original/submitted reference member absent or null",
-        "result": "unknown",
-        "action": "append failure; do not infer from paired value"
-      },
-      "target_rule": {
-        "source": "/original_target",
-        "compare_fields": [
-          "resource",
-          "environment",
-          "scope",
-          "target_revision"
-        ],
-        "operator": "all four present and exact JSON scalar equality",
-        "result_on_any_absent_or_difference": "foreign"
-      },
-      "owner_rules": [
-        {
-          "path": "/submitted_os/owner",
-          "expected": "OS",
-          "result": "submitted_conflict",
-          "return_owner": "OS"
-        },
-        {
-          "path": "/submitted_infra/owner",
-          "expected": "INFRA",
-          "result": "submitted_conflict",
-          "return_owner": "INFRA"
-        }
-      ],
-      "failure_order": "relation state first; then listed OS fields/target/owner; then listed INFRA fields/target/owner; then rejected claim failures in claims input order",
-      "final_information_state_order": [
-        "if any failure and any rejected claim: held_claim_rejected",
-        "else if any failure: held_relation_unqualified",
-        "else if original_relation_state=rollback: rollback_relation_requires_actual_qualification",
-        "else relation_content_requires_actual_qualification"
-      ],
-      "output_root_mapping": {
-        "retained_os": "original_os",
-        "retained_infra": "original_infra",
-        "retained_stage": "original_stage",
-        "retained_unfinished": "original_unfinished",
-        "failure_reasons": "ordered append-only findings",
-        "return_owners": "failure return_owner first-occurrence unique",
-        "rejected_claims": "recognized F01 claims in input order",
-        "stage_additional_obligation": "not_applicable",
-        "actual_effects": "output_constants.actual_effects"
-      }
+      "program_ref": "#/pure_reference_programs/0",
+      "function_ref": "#/functions/0",
+      "role": "索引のみ。規則/定数を複写せず対応programとsemantics.actionsを唯一の判定定義とする。"
     },
     "F02": {
-      "selection_priority": [
-        "absent_or_null",
-        "false",
-        "true"
-      ],
-      "selected_false_information_state": "ordinary_relation_without_stage_gate",
-      "selected_unknown_information_state": "held_stage_unknown",
-      "selected_unknown_failure": {
-        "field": "stage_selected",
-        "result": "unknown",
-        "owner": "OS-stage-owner"
-      },
-      "stage_evidence_fields_in_order": [
-        "composition",
-        "update",
-        "recovery",
-        "same_version"
-      ],
-      "stage_root_fields_in_order": [
-        "pack_ref",
-        "contract_ref",
-        "artifact_ref",
-        "dependency_ref",
-        "runtime_revision"
-      ],
-      "claim_literals": [
-        "all_helix_required",
-        "all_seven_products_required",
-        "unrelated_episode_required",
-        "stage_id_is_runtime_revision"
-      ],
-      "unselected_claims_rejected": [
-        "all_helix_required",
-        "all_seven_products_required",
-        "unrelated_episode_required"
-      ],
-      "identity_claim_failure": {
-        "field": "stage_id_is_runtime_revision",
-        "result": "identity_coalesced",
-        "owner": "OS/INFRA"
-      },
-      "missing_result": "missing",
-      "foreign_stage_result": "foreign-stage",
-      "foreign_runtime_result": "stage-runtime-foreign",
-      "owner_for_stage_failure": "OS/INFRA",
-      "missing_record_failure": {
-        "field": "stage",
-        "result": "stage-record-missing",
-        "owner": "OS/INFRA"
-      },
-      "selected_unqualified_information_state": "stage_binding_requires_actual_qualification",
-      "selected_failure_information_state": "held_stage_unqualified",
-      "unselected_additional_obligation": "not_applicable",
-      "selected_additional_obligation": "selected_stage_evidence",
-      "unknown_additional_obligation": "unknown_selection",
-      "raw_projection": {
-        "retained_os": "/original_os",
-        "retained_infra": "/original_infra",
-        "retained_stage": "/original_stage",
-        "retained_unfinished": "/original_unfinished"
-      },
-      "selection_precedence": "stage_selected absent/null before any stage record/evidence; false before selected-stage checks; only true enters selected-stage checks",
-      "selection_absent_or_null": {
-        "information_state": "held_stage_unknown",
-        "failure": {
-          "field": "stage_selected",
-          "result": "unknown",
-          "return_owner": "OS-stage-owner"
-        },
-        "stage_additional_obligation": "unknown_selection"
-      },
-      "selection_false": {
-        "information_state": "ordinary_relation_without_stage_gate",
-        "stage_additional_obligation": "not_applicable"
-      },
-      "selection_true_steps": [
-        "original_stage absent/null -> stage-record-missing and stop",
-        "reject stage_id_is_runtime_revision only when stage.stage_id equals original_infra.runtime_revision; append identity_coalesced finding",
-        "for evidence fields in the declared order: absent/null -> missing; otherwise stage_revision unequal to original_stage.stage_revision -> foreign-stage; stop at first failure",
-        "if no prior failure, check root fields in declared order; absent/null -> missing; stop at first failure",
-        "if no prior failure and stage.runtime_revision differs from original_infra.runtime_revision -> stage-runtime-foreign",
-        "with a failure information_state=held_stage_unqualified, otherwise stage_binding_requires_actual_qualification"
-      ],
-      "selected_false_claim_rule": "all_helix_required/all_seven_products_required/unrelated_episode_required are recorded as rejected_claims; they do not create failure or a stage condition",
-      "claim_input_order": "preserve first occurrence order; duplicates collapse only in rejected_claims",
-      "output_root_mapping": {
-        "retained_os": "original_os",
-        "retained_infra": "original_infra",
-        "retained_stage": "original_stage",
-        "retained_unfinished": "original_unfinished",
-        "failure_reasons": "ordered append-only findings",
-        "return_owners": "failure return_owner first-occurrence unique",
-        "rejected_claims": "recognized F02 claims in input order",
-        "actual_effects": "output_constants.actual_effects"
-      }
-    },
-    "output_constants": {
-      "actual_effects": {
-        "work_approval": false,
-        "resource_change": false,
-        "source_overwrite": false,
-        "release": false,
-        "permission": false,
-        "acceptance": false,
-        "implementation_ready": false
-      },
-      "stage_id_and_runtime_revision_are_distinct": true
+      "program_ref": "#/pure_reference_programs/1",
+      "function_ref": "#/functions/1",
+      "role": "索引のみ。規則/定数を複写せず対応programとsemantics.actionsを唯一の判定定義とする。"
     }
   },
   "pure_reference_programs": [
@@ -1036,6 +906,7 @@
             "change_ref",
             "actor_ref",
             "evidence_ref",
+            "stop_resume",
             "operation_ref"
           ],
           "target_path": "original_target",
@@ -1051,7 +922,15 @@
           "target_field": "target",
           "target_result": "foreign",
           "owner_field": "owner",
-          "owner_result": "submitted_conflict"
+          "owner_result": "submitted_conflict",
+          "mismatch_result": "submitted_conflict",
+          "stop_state_field": "stop_resume",
+          "held_states": [
+            "partial",
+            "stopped"
+          ],
+          "known_relation_path": "original_relation_state",
+          "held_return_owner": "OS"
         },
         {
           "op": "check_reference_group",
@@ -1079,7 +958,8 @@
           "target_field": "target",
           "target_result": "foreign",
           "owner_field": "owner",
-          "owner_result": "submitted_conflict"
+          "owner_result": "submitted_conflict",
+          "mismatch_result": "submitted_conflict"
         },
         {
           "op": "reject_claims_f01",
@@ -1203,54 +1083,89 @@
                   "stage_id_field": "stage_id"
                 },
                 {
-                  "op": "check_stage_evidence",
+                  "op": "check_stage_binding",
                   "stage_path": "original_stage",
-                  "evidence_path": "original_stage.evidence",
-                  "fields": [
-                    "composition",
-                    "update",
-                    "recovery",
-                    "same_version"
+                  "target_path": "original_target",
+                  "identity_fields": [
+                    "stage_id",
+                    "stage_revision"
                   ],
-                  "stage_revision_path": "original_stage.stage_revision",
+                  "target_field": "target",
+                  "target_fields": [
+                    "resource",
+                    "environment",
+                    "scope",
+                    "target_revision"
+                  ],
+                  "field_prefix": "stage.",
                   "missing_result": "missing",
                   "foreign_result": "foreign-stage",
                   "return_owner": "OS/INFRA",
-                  "stop_on_first": true,
-                  "field_prefix": "stage.evidence.",
-                  "evidence_revision_field": "stage_revision"
-                },
-                {
-                  "op": "if_no_failures",
                   "steps": [
                     {
-                      "op": "check_stage_root_fields",
+                      "op": "check_stage_evidence",
                       "stage_path": "original_stage",
+                      "evidence_path": "original_stage.evidence",
                       "fields": [
-                        "pack_ref",
-                        "contract_ref",
-                        "artifact_ref",
-                        "dependency_ref",
-                        "runtime_revision"
+                        "composition",
+                        "update",
+                        "recovery",
+                        "same_version"
                       ],
+                      "stage_revision_path": "original_stage.stage_revision",
                       "missing_result": "missing",
+                      "foreign_result": "foreign-stage",
                       "return_owner": "OS/INFRA",
                       "stop_on_first": true,
-                      "field_prefix": "stage."
+                      "field_prefix": "stage.evidence.",
+                      "evidence_revision_field": "stage_revision",
+                      "evidence_stage_id_field": "stage_id",
+                      "stage_id_path": "original_stage.stage_id",
+                      "evidence_target_field": "target",
+                      "target_path": "original_stage.target",
+                      "target_fields": [
+                        "resource",
+                        "environment",
+                        "scope",
+                        "target_revision"
+                      ],
+                      "evidence_reference_field": "ref",
+                      "missing_member_result": "missing"
                     },
                     {
                       "op": "if_no_failures",
                       "steps": [
                         {
-                          "op": "check_stage_runtime",
+                          "op": "check_stage_root_fields",
                           "stage_path": "original_stage",
-                          "stage_field": "runtime_revision",
-                          "runtime_path": "original_infra.runtime_revision",
-                          "failure": {
-                            "field": "stage.runtime_revision",
-                            "result": "stage-runtime-foreign",
-                            "return_owner": "OS/INFRA"
-                          }
+                          "fields": [
+                            "pack_ref",
+                            "contract_ref",
+                            "artifact_ref",
+                            "dependency_ref",
+                            "runtime_revision"
+                          ],
+                          "missing_result": "missing",
+                          "return_owner": "OS/INFRA",
+                          "stop_on_first": true,
+                          "field_prefix": "stage."
+                        },
+                        {
+                          "op": "if_no_failures",
+                          "steps": [
+                            {
+                              "op": "check_stage_runtime",
+                              "stage_path": "original_stage",
+                              "stage_field": "runtime_revision",
+                              "runtime_path": "original_infra.runtime_revision",
+                              "failure": {
+                                "field": "stage.runtime_revision",
+                                "result": "stage-runtime-foreign",
+                                "return_owner": "OS/INFRA"
+                              },
+                              "missing_result": "missing"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -1264,14 +1179,12 @@
         {
           "op": "reject_claims_f02",
           "claims_path": "claims",
-          "unselected_claims": [
+          "claim_literals": [
             "all_helix_required",
             "all_seven_products_required",
-            "unrelated_episode_required"
-          ],
-          "identity_claim": "stage_id_is_runtime_revision",
-          "selection_path": "stage_selected",
-          "unselected_value": false
+            "unrelated_episode_required",
+            "stage_id_is_runtime_revision"
+          ]
         },
         {
           "op": "finalize_f02",
@@ -1291,23 +1204,447 @@
     "actions": {
       "relation_state_failure": "pathの値がstatesのいずれかと厳密一致すればfindingを追加し、result_from_value=trueなら一致した値をresultとして使う。",
       "set_information_if_equal": "pathがvalueと厳密一致するとinformation_stateを指定値へ置換する。",
-      "check_reference_group": "reference_fieldsの順にoriginal/submitted両側を検査する。missing_resultがmissing/nullのfieldへ付く。target_fieldsの順にtarget_field配下をtarget_pathの各fieldと比較し、missing/null/differentならtarget_resultをfield_prefix+target_fieldへ一度追加する。owner_fieldが両側でownerと一致しなければowner_resultをfield_prefix+owner_fieldへ追加する。finding ownerはlabel。",
+      "check_reference_group": "reference_fieldsを配列順に検査する。両側のどちらかがmissing/nullならfield_prefix+fieldへmissing_resultを1件だけ追加（両側不足でも1件）。両方非nullでJSON kind/値が異なれば同fieldへmismatch_resultを1件追加する。それ以外でfield=stop_state_fieldかつ原値がheld_statesにありknown_relation_pathがその原値でない場合、同field/原state/held_return_ownerを追加し既知停止/部分状態を成立へ丸めない。次にoriginal/submittedの両targetをtarget_pathの四fieldへ個別比較する。いずれかmissing/null/differentならfield_prefix+target_field/target_resultを合計1件追加する（各側/各fieldで増幅しない）。両ownerのいずれかがownerと異なる/不在ならfield_prefix+owner_field/owner_resultを合計1件追加する。finding返却ownerは原則label。原値を相手側から補完しない。",
       "reject_claims_f01": "claims_pathの配列を入力順に走査。claim_literalsに含まれる各出現tokenをrejected_claims末尾へ追加し、token/wrong_authority_or_unfinished/return_ownerのfindingをその場で追加。重複tokenも原入力出現回数を保つ。",
       "finalize_f01": "information_state_priorityを先頭から評価する。predicate.kind=finding_result_existsはfailure_reasonsにpredicate.resultがある場合、failure_nonemptyは配列が非空の場合、path_equalsはrawのpredicate.pathがpredicate.valueと厳密一致の場合、alwaysは常に成立。最初の成立rule.valueをinformation_stateへ設定する。",
       "branch_stage_selection": "pathがmissing/nullならunknown分岐、boolean falseならfalse分岐、boolean trueならtrue分岐を実行。other kindは入力型外。branchは指定されたinformation_state/stage_additional_obligationを設定し、failureがあれば追加する。",
       "if_stage_selected": "pathの値がJSON boolean trueの場合だけstepsを記載順に実行する。",
       "stage_record_missing": "path missing/nullなら指定findingを追加する。",
-      "stage_identity_claim": "claims_pathにclaimがあり、stage_path.stage_id_fieldとruntime_pathの値がJSON等値なら指定findingを追加する。",
-      "check_stage_evidence": "fieldsを順に検査。evidence member missing/nullならfield_prefix+fieldへmissing_resultを追加しstop_on_firstなら停止。存在時、evidence_revision_fieldとstage_revision_pathの値が異なればforeign_resultを追加し停止。",
+      "stage_identity_claim": "claims_pathにclaimがあり、stage_path.stage_id_fieldとruntime_pathが両方missing/nullでなく、JSON kind/値が等しいときだけ指定findingを追加する。両null/両missingはcoalescenceの証拠ではない。原claimの拒否記録は別のreject_claims_f02が保持する。",
+      "check_stage_evidence": "fieldsの順に証拠を検査し、最初の問題1件でactionを終了する（stop_on_first=true）。証拠member missing/nullはfield_prefix+field/missing_result。存在時は (1)evidence_revision_field不足ならfield_prefix+field+\".\"+evidence_revision_field/missing_member_result、非nullだがstage_revision_pathと異なれば原L9互換の親field_prefix+field/foreign_result、(2)evidence_stage_id_field不足は同suffixのfield/missing_member_result、異なるstage_id_pathなら同field/foreign_result、(3)証拠targetとtarget_pathのtarget_fields両側でいずれかmissing/nullなら親field+\".\"+evidence_target_field/missing_member_result、欠落なしの値差なら同field/foreign_result、(4)evidence_reference_field不足ならそのsuffix field/missing_member_result、とする。missingは相手側/別証拠から補完しない。既知対応なら次の証拠へ進む。ownerはreturn_owner。",
       "check_stage_root_fields": "fieldsを順に検査し、missing/null最初のfieldへfield_prefix+field/missing_resultのfindingを追加する。stop_on_firstなら停止。",
-      "check_stage_runtime": "stage_path.stage_fieldとruntime_pathが異なると指定failureを追加する。",
-      "reject_claims_f02": "claims_pathを入力順に走査し重複はrejected_claimsだけで除去。unselected_claims tokenはselection_pathがunselected_valueと同一kind・値のとき記録。identity_claim tokenも無条件に記録する。failureは追加しない。",
+      "check_stage_runtime": "stage_path.stage_fieldまたはruntime_pathがmissing/nullなら指定failure.field/missing_result/return_ownerを1件追加する。両方非nullで異なる場合だけ指定failureを追加する。等値のraw内容は実runtime資格ではない。",
+      "reject_claims_f02": "claims_pathを入力順に走査し、claim_literalsにあるtokenをselection値に関わらずrejected_claimsへ初出順で保持し重複だけを除く。failureは追加しない。特にidentity claimの拒否記録と、selected=trueかつstage_id/runtime値同一というstage_identity_claim findingの条件を分離する。選択true/false/unknownのいずれでも全HELIX/全7製品/無関係episodeを新条件として採らない。",
       "finalize_f02": "selection_pathがapply_selection_valueと同一kind・値の場合だけ、failure_reasonsが空でなければfailure_information_state、空ならsuccess_information_stateを設定する。それ以外は現在のinformation_stateを保持する。",
       "if_stage_record_present": "pathがmissing/nullでない場合だけ内側stepsを配列順に実行する。stage_record_missing finding自体は前段で追加済み。",
       "if_no_failures": "実行時点でfailure_reasonsが空配列の場合だけ内側stepsを記載順に実行する。各nested if_no_failuresはその時点で再判定する。",
-      "copy_projection": "initial.projectionの各JSON pointerをrawから取得し、値が存在する場合だけ同じ値を出力keyへコピーする。missingは出力memberを省略しnullへ変換しない。"
+      "copy_projection": "initial.projectionの各JSON pointerをrawから取得し、値が存在する場合だけ同じ値を出力keyへコピーする。missingは出力memberを省略しnullへ変換しない。",
+      "check_stage_binding": "選択かつstage record存在時、identity_fieldsを配列順に検査し最初のmissing/nullへfield_prefix+field/missing_resultを1件追加してこのactionを終了する。次にstage[target_field]とtarget_pathのtarget_fields全てを比較する。いずれかの値がmissing/nullならfield_prefix+target_field/missing_result、欠落がなく一つでも異なれば同field/foreign_resultを合計1件追加して終了する。全て対応する場合だけstepsを配列順に実行する。既に別findingが存在すること自体ではこのactionを省略せず、原identity claim所見を消さない。ownerはreturn_owner。"
     },
     "output_domain": "出力shapeはAssessment型。L8 expected wholeは計算入力に含めず、別比較対象。実資格/実source/実操作を生成しない。",
-    "type_validation": "Presence<T>はmember不在・JSON null・T値を区別し、不在/ nullを許す。Presenceを持たないrecord memberは必須。recordの宣言field以外は不許可。primitiveはJSON kindを厳密確認し、integerはbooleanを含めない。enum/allowed_values/members定義は列挙値のみ許す。fields/enum/domain/same_asのいずれも持たないnamed typeは宣言不足として拒否する。 InformationState/FailureResult/ReturnOwner/StageAdditionalObligationは宣言enumをJSON stringの完全一致で検査する。"
+    "type_validation": "Presence<T>とlist<T>は型constructorでenumではない。Presence<T>はraw member absent/null/T値を区別し空string/list/objectをT値のまま保持する。list<T>は配列順/件数/重複を保持し各itemをTで検査する。Presence無しのrecord memberは必須。宣言recordのextra memberは型外。primitiveのJSON kindは厳密でbooleanをinteger/numberへ含めない。通常named enum/allowed_valuesは列挙されたstring値だけを許し、fields/same_as/enum等の具体型bodyが無いnamed typeは拒否する。constructorのstate_tagsを通常named enumへ流用しない。",
+    "path_notation": {
+      "action_paths": "path/original_path/submitted_path/target_path等はraw rootからのdotted path。dotで宣言record memberを分割して順にgetし、欠如はmissing sentinel。配列index/escaping/名前内dotはこの有限action path域に含めない。",
+      "projection_paths": "initial.projectionとsource/probeのJSON PointerはRFC6901。/で分割し~1→/、~0→~を復号し、配列は整数index。dotted pathに読み替えない。空pointerはroot。",
+      "finding_fields": "field_prefix+fieldは表示用の診断path文字列。os./infra./stage.はrawのoriginal_*名とは別のfixture表示prefixであり、そのままraw resolverへ渡さない。",
+      "field_concatenation": "field_prefixは末尾dotを含む。reference欠落/相反は両側まとめて一件、target/ownerも各group最大一件。F01は全fieldを保持、F02の各局所actionは最初の不備で停止。"
+    }
+  },
+  "comparison_constants": {
+    "authority": "重複値を持たずprogram定数への同一candidate pointer索引。",
+    "actual_effects": {
+      "json_pointer": "/pure_reference_programs/0/initial/actual_effects"
+    },
+    "f01_initial": {
+      "json_pointer": "/pure_reference_programs/0/initial"
+    },
+    "f02_initial": {
+      "json_pointer": "/pure_reference_programs/1/initial"
+    }
+  },
+  "output_literal_domains": {
+    "InformationState": {
+      "logical_type_ref": "#/logical_types/13",
+      "kind": "finite_string_enum"
+    },
+    "FailureResult": {
+      "logical_type_ref": "#/logical_types/14",
+      "kind": "finite_string_enum"
+    },
+    "ReturnOwner": {
+      "logical_type_ref": "#/logical_types/15",
+      "kind": "finite_string_enum"
+    },
+    "StageAdditionalObligation": {
+      "logical_type_ref": "#/logical_types/16",
+      "kind": "finite_string_enum"
+    }
+  },
+  "literal_source_basis": [
+    {
+      "value": "relation_content_requires_actual_qualification",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/0/expected_material/information_state",
+        "value_canonical_sha256": "7e83a72d5a83884cde9b93702c10240b000ee6c0fde0c1b7a0708ec62ae65e54"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "rollback_relation_requires_actual_qualification",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/18/expected_material/information_state",
+        "value_canonical_sha256": "cdbe8861868b5e687d2e484ff5dd111daf1da3ef32c0dee5e4581d043e863a42"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "held_relation_unqualified",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/1/expected_material/information_state",
+        "value_canonical_sha256": "1467573512b996dfb4db272bd0cf639172526160f0a5ba72622f566d7bd1ca48"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "held_claim_rejected",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/19/expected_material/information_state",
+        "value_canonical_sha256": "bb8c3d6ce4d8186aeb35ca7275b341450f4ebc96a632f4058fd86415c7a8be37"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "stage_binding_requires_actual_qualification",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/1/expected_material/information_state",
+        "value_canonical_sha256": "01c409c41fa5a1be0540cc2839443400d590db4f0e45d9213dc9447cfa30a547"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "held_stage_unknown",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/2/expected_material/information_state",
+        "value_canonical_sha256": "012f102ae8e3740c8571d89cafa27caa2c37cad872667f21a079bdd80233e2ea"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "ordinary_relation_without_stage_gate",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/0/expected_material/information_state",
+        "value_canonical_sha256": "909d8be0f17d0321fdceeebd2ed01d0b53ef5c0abeef6fe3d5748716284c66cf"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "held_stage_unqualified",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/3/expected_material/information_state",
+        "value_canonical_sha256": "167886cfeef97477b3672b5a4fa910276ad90615a5c90e0bf9cd7438cfef5bab"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "partial",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/16/expected_material/retained_os/stop_resume",
+        "value_canonical_sha256": "8ac24611cfe47c129e37108bc6adc6843c4fe8fb9c37c27fac8a1835ba660307"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "stopped",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/17/expected_material/retained_os/stop_resume",
+        "value_canonical_sha256": "15b0fb141b7672221ecefd53ca5a29ea042e3bc3bad9e08c11df0cebce279c2e"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "unknown",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/1/expected_material/failure_reasons/0/result",
+        "value_canonical_sha256": "eb8bf0d80db323992f6b634aab492b1e6d9e96a8e87a511c2a0db75ab929452c"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "foreign",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/6/expected_material/failure_reasons/0/result",
+        "value_canonical_sha256": "4ffa77ab3fea71ae6e63fd8eb0fc274022766a5578682961ee80e1184ba7b2c1"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "submitted_conflict",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/7/expected_material/failure_reasons/0/result",
+        "value_canonical_sha256": "6d84be6042d5644546ca2159b56d1f9a12a2617be9e390e48ca13f6a715585d8"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "wrong_authority_or_unfinished",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/19/expected_material/failure_reasons/0/result",
+        "value_canonical_sha256": "2a86faaeb8d56b45757a50cad704c542a453c13dc273282fc5fc5e4cffb2ee1a"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "missing",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/3/expected_material/failure_reasons/0/result",
+        "value_canonical_sha256": "4b62d186290abd5651b6ca8a99670b9e820692e11ed5ff8b5e786d6c59475917"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "foreign-stage",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/4/expected_material/failure_reasons/0/result",
+        "value_canonical_sha256": "125cbd00ba4d89c275cda2a464b017d1f5136f5b193ae5962a66df1c74052611"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "stage-runtime-foreign",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/21/expected_material/failure_reasons/0/result",
+        "value_canonical_sha256": "f019d65717af47de1717dba592b48531fea769cb22a8b34b71d9aba19ff8444f"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "stage-record-missing",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/20/expected_material/failure_reasons/0/result",
+        "value_canonical_sha256": "1db48c5a3b3cb4eebf28d67e344faf4cb7f4989469f6d906c425861917679f25"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "identity_coalesced",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/19/expected_material/failure_reasons/0/result",
+        "value_canonical_sha256": "9e754e35a1cb42f618891213ce2287d89c901fb236114957714a873c1596ea03"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "OS/INFRA",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/16/expected_material/failure_reasons/0/return_owner",
+        "value_canonical_sha256": "c56b9f26d1452a8caa1173b36c045df5addd0c9927fadc32d1ba523c66cdbf6e"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "OS",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/0/expected_material/retained_os/owner",
+        "value_canonical_sha256": "f45957303d925e251b0fd71a0f188b97a3a0e8ef44c7547c71bedf13fbcf00d4"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "INFRA",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/0/expected_material/retained_infra/owner",
+        "value_canonical_sha256": "fd0427f80ec29bb01b723494cf2d0798331573cd15e93440bed43052aaad2788"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "OS-stage-owner",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/1/expected_material/retained_stage/owner",
+        "value_canonical_sha256": "f4dcd491b35f5c832193338e9faa07c5b6ed26dd37d74a7ae3f52aa321d44a41"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "not_applicable",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/0/expected_material/stage_additional_obligation",
+        "value_canonical_sha256": "0296f22b01d3da51783b5e145c24403c9066251dff0d2f86a33204d0d2b0cd38"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "unknown_selection",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/2/expected_material/stage_additional_obligation",
+        "value_canonical_sha256": "ae5d56c60f13487aaab189808221a5a98522ab614a9e3f41198a272c8c005f88"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "selected_stage_evidence",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/1/expected_material/stage_additional_obligation",
+        "value_canonical_sha256": "b90bee4eeac745644d1453109961b82574fb48b185ec3e98d2d09f354f1b0153"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "ticket_is_actual_authority",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/19/expected_material/failure_reasons/0/field",
+        "value_canonical_sha256": "f80a6a1c32857a9da291beb5c88a573f0a849b045979c2e7bed1318e39919a6c"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "infra_approves_work",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/20/expected_material/failure_reasons/0/field",
+        "value_canonical_sha256": "be49afda6c6a8afd81dea857e3992a32f8ec72526510f4aee1ee84b055e88c58"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "erase_unfinished_operation",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/21/expected_material/failure_reasons/0/field",
+        "value_canonical_sha256": "218c7863dfa485a2813b86afe68247c407d6ce14a0f7ed7419b17be3d5c55664"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "all_helix_required",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/16/expected_material/rejected_claims/0",
+        "value_canonical_sha256": "9ef375370d60b82db2fc2d8f3cd2d41d458a31e954d8704075a57617c3e004b5"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "all_seven_products_required",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/17/expected_material/rejected_claims/0",
+        "value_canonical_sha256": "8f7ae290f82395e23b1121a7d3a7bb51d1c2cef272434b7a7708ed0f45751afb"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "unrelated_episode_required",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/18/expected_material/rejected_claims/0",
+        "value_canonical_sha256": "b0ff6f949c3f7bdb9e01b56b21390dbd4962d80dbcc993ab441b25501b372428"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": "stage_id_is_runtime_revision",
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/1/cases/19/expected_material/failure_reasons/0/field",
+        "value_canonical_sha256": "ae345eb2317f3e5304fa5d78e4a409c32dc569c474348467747536f2257a5427"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "value": false,
+      "source": {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/verification_obligations/0/cases/0/expected_material/actual_effects/work_approval",
+        "value_canonical_sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa"
+      },
+      "meaning": "原L9合成返却語彙。実資格/実owner/実作用の成立ではない。"
+    },
+    {
+      "new_diagnostic_fields": [
+        "os.stop_resume",
+        "stage.target",
+        "stage.stage_id",
+        "stage.stage_revision",
+        "stage.evidence.<composition|update|recovery|same_version>.<stage_id|stage_revision|target|ref>"
+      ],
+      "source": {
+        "path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
+        "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+        "json_pointer": "/contracts",
+        "value_canonical_sha256": "41c60621cc2ff2ffcaf584d4dc3a9598c25ca17af61a5372c4eb731a5a587023"
+      },
+      "meaning": "L4既存stop-resume/選択stage対象・同版証拠の義務を局所field診断へ具体化。既存enum結果を適用し新requirement/gate/owner資格は生成しない。診断順はprogramで選んだ有限詳細で全一般域は未閉包。"
+    }
+  ],
+  "constant_source_basis": {
+    "effects_pointer": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json#/verification_obligations/0/cases/0/expected_material/actual_effects",
+    "effects_canonical_sha256": "cc3bae95b159e046ccf24e46e70851f24465bd6ce9183c37947e5afb639c452d",
+    "projection": "原OS/INFRA/stage/unfinishedの値コピー。source値から資格を生成しない。",
+    "field_order": "元44所見順を保持する有限L5具体化。R1追加stop_resumeはevidence後operation前、stage本体対応は証拠前、証拠内部はrevision→ID→target→ref。新しい上流の必須順ではない。"
+  },
+  "r1_resolution": {
+    "review_comment": 6183108822,
+    "exact_review_head": "1d9d677f6b7a6420ada2fd3f886a09e98f030328",
+    "findings_addressed": [
+      "I009-R1-01",
+      "I009-R1-02",
+      "I009-R1-03",
+      "I009-R1-04",
+      "I009-R1-05",
+      "I009-R1-06",
+      "I009-R1-07",
+      "I009-R1-08",
+      "I009-R1-09",
+      "I009-R1-10"
+    ],
+    "status": "saved_pending_parent_and_independent_review",
+    "original_46_raw_and_wholes_preserved": true,
+    "new_independent_wholes_fixed_before_program_edit": 44,
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "additional_null_guard_wholes": 3,
+    "review_body_sha256": "f72c9a7c87eb9b13d94fb051da87b89216162331344e6f5b0dc6c1497702218f"
   }
 }
