@@ -6036,7 +6036,8 @@
           }
         }
       }
-    }
+    },
+    "normative_precedence": "全5関数F01/F02/F03/N01/B01の機械判定の唯一の定義は、各function.program_refが指すprogramsとprogram_definitionsのASTである。条件説明・step・要約は読み方を補足し、別の判定規則や優先順を生成しない。"
   },
   "implementation_readiness": "not_ready",
   "qualification_state": "synthetic_fixture_only_no_actual_source_qualification",

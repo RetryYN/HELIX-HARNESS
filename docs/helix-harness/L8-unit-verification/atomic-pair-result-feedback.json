@@ -6811,7 +6811,7 @@
   "l5_candidate_binding": {
     "path": "docs/helix-harness/L5-detail-design/atomic-pair-result-feedback.json",
     "document_id": "HARNESS-L5-056",
-    "candidate_file_sha256": "e1f83e894839753cd39718548ba9918da9a456c6b9374d5fae83aa6ae3f4ce4e",
+    "candidate_file_sha256": "9962dd8863731b116cd02177e2a869fadc705a353b94cf63028dfe962632c681",
     "meaning": "本L8が照合するL5 candidate bytes。上流承認や実source資格のbindingではない。"
   },
   "independent_comparison_probes": {
@@ -10162,7 +10162,6 @@
           ]
         },
         "resolved_raw_canonical_sha256": "53bb00f0e6e73173a51e3f9bc6596aa199f251c7269b6c92c1233777a4f45ae4",
-        "independent_expected_basis": "L3/L10 N01では、設計定義状態を実行passへ昇格させない。原L9のH056-N01-NORMAL wholeを基底に、origin=new_generation_fixtureを保持し、stateだけを既存raw domainのdesign-defined/not-implementedへ変える。evidence_resultのみnot_executedへ変更し、それ以外の全rootは原expected値を保持する。これはL5正式AST変更前にL3/L4/L10から独立に定めた局所whole期待で、実評価や資格を示さない。",
         "expected_whole": {
           "evidence_result": "not_executed",
           "NFR29_holding": "unmigrated",
@@ -10181,7 +10180,20 @@
           "unaffected_Q": "original_Q"
         },
         "expected_whole_canonical_sha256": "1dd4e88afc825a94ddf8c01b095f3209e5ebdea6c84f36d294de0018f37a9fef",
-        "qualification_limit": "同じsnapshot/revision/scopeかつ新世代originでも、非pass stateは実結果を意味しないことの有限fixture probe。実source資格・実実行は成立しない。"
+        "role": "independent_whole",
+        "execution_state": "not_executed",
+        "source_qualification": "synthetic_only_not_qualified",
+        "argument_binding": {
+          "packet": "source_packet_refのrawをJSON parse後patches適用した全値。hashだけでなくsource+patchで各memberを解決可能。"
+        },
+        "independent_expected_patch": [
+          {
+            "op": "replace",
+            "path": "/evidence_result",
+            "value": "not_executed"
+          }
+        ],
+        "basis": "L3/L4/L10 N01の未実行をpassへ補完しない義務を根拠に、原L9正常wholeのevidence_resultだけnot_executedとして照合する。originとframe、他の返却rootは原値を保持する。有限合成素材で実source資格・実行を生成しない。"
       }
     ]
   },
