@@ -26591,7 +26591,7 @@
   },
   "same_pair_l4_bytes_binding": {
     "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
-    "sha256": "fdfcf80972a6e0df212d5613874167ed115b9c9348dc2a3fc9ecd4d15feaf2e7",
+    "sha256": "0709ea9e3d768bdb9c81149a4cf9c4a22bbbc69a9051eae4fb515a11ee63d305",
     "binding": "同一candidate bytes。過去source revisionに追補が存在したとは主張しない。"
   },
   "source_revision_role": {
