@@ -112,19 +112,9 @@
       "path": "docs/helix-os/L9-integration-verification/management-worker-acceptance-handoff.json",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "whole_sha256": "3f6fc9e0867b9462ce299a24d35f31a590bd3170b7483b17c61721d37f955984"
-    },
-    {
-      "path": "docs/helix-os/L4-basic-design/management-worker-acceptance-handoff.json",
-      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-      "whole_sha256": "6fef79e6fbe82a6b9421639e3ef09d57a2f18248fbfc08efa1be8639608a6d75"
-    },
-    {
-      "path": "docs/helix-os/L9-integration-verification/management-worker-acceptance-handoff.json",
-      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-      "whole_sha256": "3f6fc9e0867b9462ce299a24d35f31a590bd3170b7483b17c61721d37f955984"
     }
   ],
-  "paired_l5_sha256": "f123ccd95ce67e1b46a08e475a83b9b99aa388c62b45c1d7be0faa4d9ee38af5",
+  "paired_l5_sha256": "d44fd7d24c033d3a570bd6e594e3b767957fa775cb2766a75802609e3cfb48eb",
   "source_oracle": {
     "path": "docs/helix-os/L9-integration-verification/management-worker-acceptance-handoff.json",
     "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
@@ -8881,7 +8871,7 @@
     }
   ],
   "verification_boundary": {
-    "scope": "原L9 322 raw/wholeと追加16件の独立入力/独立全返却期待の有限照合。",
+    "scope": "原L9 322 raw/wholeと追加20件の独立入力/独立全返却期待の有限照合。",
     "not_claimed": [
       "実owner/authority資格",
       "実source資格・受渡しreceipt",
@@ -8893,7 +8883,7 @@
   },
   "limits": [
     "原L9の322例をJSON pointerとcanonical hashで結び、原rawと全期待の複製を避ける。",
-    "原L9期待は変更しない。L5の計算契約から322全返却と追加16全返却を照合する。全域totality・実owner/source資格・実受入・実装Readyを示さない。"
+    "原L9期待は変更しない。L5の計算契約から322全返却と追加20全返却を照合する。全域totality・実owner/source資格・実受入・実装Readyを示さない。"
   ],
   "l10_obligation_case_coverage": [
     {
@@ -9084,8 +9074,8 @@
     "input_pointer_template": "/cases/{index}/given/input",
     "independent_oracle_document": "docs/helix-os/L9-integration-verification/management-worker-acceptance-handoff.json",
     "oracle_pointer_template": "/cases/{index}/expected_proposal",
-    "comparison": "原L9 322件とsupplemental_cases 16件をProposalEvaluation全13 rootで再帰比較する。原L9 expectedは照合operandであり計算入力ではない。追加probe期待はrawとL3/L4/L10の規則から独立に固定した全体期待。",
-    "checker": "ignored scaffoldに保存したsource-coupled静的検証素材。正式実行経路ではない。",
+    "comparison": "原L9 322件とsupplemental_cases 20件をProposalEvaluation全13 rootで再帰比較する。原L9 expectedは照合operandであり計算入力ではない。追加probe期待はrawとL3/L4/L10の規則から独立に固定した全体期待。",
+    "checker": "ignored領域に保存したsource-coupled静的照合素材。正式実行経路ではない。",
     "actual_execution_state": "not_executed",
     "authority_or_source_effect": "none",
     "limits": "有限のsynthetic fixtureのみを照合する。実owner/source qualification、実handoff/receipt、source-work completion、semantic resolution、codec、実装、TDD、CI、L11、Ready化の証拠ではない。",
@@ -9140,9 +9130,7 @@
       "actual_observation": "not_observed",
       "expected_full_whole_reference": "/cases/1/expected_proposal",
       "input_patch_target": "source_case_pointerが指す原L9 caseを展開したraw",
-      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal",
-      "raw_canonical_sha256_semantics": "full expanded raw after input_patch",
-      "expected_full_whole_sha256_semantics": "full expected ProposalEvaluation after expected_patch"
+      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal"
     },
     {
       "probe_id": "OS023-PROBE-NULL-SENDER-PROJECT",
@@ -9190,9 +9178,7 @@
       "actual_observation": "not_observed",
       "expected_full_whole_reference": "/cases/1/expected_proposal",
       "input_patch_target": "source_case_pointerが指す原L9 caseを展開したraw",
-      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal",
-      "raw_canonical_sha256_semantics": "full expanded raw after input_patch",
-      "expected_full_whole_sha256_semantics": "full expected ProposalEvaluation after expected_patch"
+      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal"
     },
     {
       "probe_id": "OS023-PROBE-MARKER-SENDER-PROJECT",
@@ -9242,9 +9228,7 @@
       "actual_observation": "not_observed",
       "expected_full_whole_reference": "/cases/1/expected_proposal",
       "input_patch_target": "source_case_pointerが指す原L9 caseを展開したraw",
-      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal",
-      "raw_canonical_sha256_semantics": "full expanded raw after input_patch",
-      "expected_full_whole_sha256_semantics": "full expected ProposalEvaluation after expected_patch"
+      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal"
     },
     {
       "probe_id": "OS023-PROBE-EXTRA-JSON-MEMBER",
@@ -9274,9 +9258,7 @@
       "actual_observation": "not_observed",
       "expected_full_whole_reference": "/cases/1/expected_proposal",
       "input_patch_target": "source_case_pointerが指す原L9 caseを展開したraw",
-      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal",
-      "raw_canonical_sha256_semantics": "full expanded raw after input_patch",
-      "expected_full_whole_sha256_semantics": "full expected ProposalEvaluation after expected_patch"
+      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal"
     },
     {
       "probe_id": "OS023-R1-PROBE-F01-EDGE-JOIN",
@@ -9966,16 +9948,6 @@
             "promotion_worker",
             "management_promotion"
           ]
-        },
-        {
-          "op": "replace",
-          "path": "/context/selected_edges",
-          "value": [
-            "management_promotion",
-            "promotion_worker",
-            "worker_acceptance",
-            "acceptance_management"
-          ]
         }
       ],
       "expected_patch": [
@@ -10199,311 +10171,6 @@
       "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal"
     },
     {
-      "probe_id": "OS023-R1-PROBE-MINOR-EMPTY-SELECTION",
-      "source_case_pointer": "/cases/2",
-      "source_case_id": "OS023-NORMAL-RECONCILE",
-      "source_raw_canonical_sha256": "7202f0cecdc8eca21955a5837f6d4c9d831677d024789a4d43b751a988b4caf2",
-      "source_expected_canonical_sha256": "3bbd748d9d61399e385dae7f6f5f3a2c606092104e8ead326318ab930859a59e",
-      "input_patch": [
-        {
-          "op": "replace",
-          "path": "/selected_edges",
-          "value": []
-        },
-        {
-          "op": "replace",
-          "path": "/context/selected_edges",
-          "value": []
-        }
-      ],
-      "expected_patch": [
-        {
-          "op": "replace",
-          "path": "/condition",
-          "value": "handoff_material_unknown"
-        },
-        {
-          "op": "replace",
-          "path": "/receiver_transfer_material/promotion_worker",
-          "value": false
-        },
-        {
-          "op": "replace",
-          "path": "/receiver_transfer_material/management_promotion",
-          "value": false
-        },
-        {
-          "op": "replace",
-          "path": "/receiver_transfer_material/worker_acceptance",
-          "value": false
-        },
-        {
-          "op": "replace",
-          "path": "/receiver_transfer_material/acceptance_management",
-          "value": false
-        },
-        {
-          "op": "replace",
-          "path": "/connection_material_correspondence/promotion_worker",
-          "value": false
-        },
-        {
-          "op": "replace",
-          "path": "/connection_material_correspondence/management_promotion",
-          "value": false
-        },
-        {
-          "op": "replace",
-          "path": "/connection_material_correspondence/worker_acceptance",
-          "value": false
-        },
-        {
-          "op": "replace",
-          "path": "/connection_material_correspondence/acceptance_management",
-          "value": false
-        },
-        {
-          "op": "replace",
-          "path": "/retained_obligations/promotion_worker",
-          "value": null
-        },
-        {
-          "op": "replace",
-          "path": "/retained_obligations/management_promotion",
-          "value": null
-        },
-        {
-          "op": "replace",
-          "path": "/retained_obligations/worker_acceptance",
-          "value": null
-        },
-        {
-          "op": "replace",
-          "path": "/retained_obligations/acceptance_management",
-          "value": null
-        },
-        {
-          "op": "replace",
-          "path": "/delivery_material_states/promotion_worker",
-          "value": null
-        },
-        {
-          "op": "replace",
-          "path": "/delivery_material_states/management_promotion",
-          "value": null
-        },
-        {
-          "op": "replace",
-          "path": "/delivery_material_states/worker_acceptance",
-          "value": null
-        },
-        {
-          "op": "replace",
-          "path": "/delivery_material_states/acceptance_management",
-          "value": null
-        },
-        {
-          "op": "replace",
-          "path": "/unit_material_states/promotion_worker",
-          "value": null
-        },
-        {
-          "op": "replace",
-          "path": "/unit_material_states/management_promotion",
-          "value": null
-        },
-        {
-          "op": "replace",
-          "path": "/unit_material_states/worker_acceptance",
-          "value": null
-        },
-        {
-          "op": "replace",
-          "path": "/unit_material_states/acceptance_management",
-          "value": null
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/promotion_worker/coverage",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/promotion_worker/delivery",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/promotion_worker/binding",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/promotion_worker/reception",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/promotion_worker/review",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/promotion_worker/unfinished",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/promotion_worker/connection",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/promotion_worker/units",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/management_promotion/coverage",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/management_promotion/delivery",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/management_promotion/binding",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/management_promotion/reception",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/management_promotion/review",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/management_promotion/unfinished",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/management_promotion/connection",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/management_promotion/units",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/worker_acceptance/coverage",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/worker_acceptance/delivery",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/worker_acceptance/binding",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/worker_acceptance/reception",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/worker_acceptance/review",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/worker_acceptance/unfinished",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/worker_acceptance/connection",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/worker_acceptance/units",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/acceptance_management/coverage",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/acceptance_management/delivery",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/acceptance_management/binding",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/acceptance_management/reception",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/acceptance_management/review",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/acceptance_management/unfinished",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/acceptance_management/connection",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/edge_correspondence/acceptance_management/units",
-          "value": "not_selected"
-        },
-        {
-          "op": "replace",
-          "path": "/findings",
-          "value": [
-            {
-              "code": "edge_selection_unresolved",
-              "pointer": "/selected_edges",
-              "return_owner": "management-handoff-owner"
-            }
-          ]
-        }
-      ],
-      "raw_canonical_sha256": "5e492e1cdb445dd952163279fa95cf6df81db2bf08c343de54688ffba8bc5fa0",
-      "expected_full_whole_sha256": "c297fe42d4e361cdefe10b1474a007ff4ced33bb1541a2c5f04017e88f170221",
-      "independent_basis": "両selectionがknown emptyならactive edgeは生じず、L4 diagnostic_contract.algorithmのglobal不足条件によりconditionはunknown、既存selection-unresolved findingを保持する。全facetはnot_selectedのままとし、empty selectionをcorresponding successへ扱わない。",
-      "execution_state": "not_executed",
-      "actual_observation": "not_observed",
-      "expected_full_whole_reference": "/cases/2/expected_proposal",
-      "input_patch_target": "source_case_pointerが指す原L9 caseを展開したraw",
-      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal"
-    },
-    {
       "probe_id": "OS023-R1-PROBE-MINOR-INACTIVE-CLAIM",
       "source_case_pointer": "/cases/259",
       "source_case_id": "OS023-SELECTION-CONFLICT",
@@ -10546,6 +10213,299 @@
       "execution_state": "not_executed",
       "actual_observation": "not_observed",
       "expected_full_whole_reference": "/cases/259/expected_proposal",
+      "input_patch_target": "source_case_pointerが指す原L9 caseを展開したraw",
+      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal"
+    },
+    {
+      "probe_id": "OS023-R2-CE-A-RECEIVER-ACCEPTANCE-BINDING-AUTHORITY",
+      "source_case_pointer": "/cases/2",
+      "source_case_id": "OS023-NORMAL-RECONCILE",
+      "source_raw_canonical_sha256": "7202f0cecdc8eca21955a5837f6d4c9d831677d024789a4d43b751a988b4caf2",
+      "source_expected_canonical_sha256": "3bbd748d9d61399e385dae7f6f5f3a2c606092104e8ead326318ab930859a59e",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/edges/management_promotion/receiver_acceptance/binding/authority_ref",
+          "value": "SYNTHETIC-AUTHORITY-OTHER"
+        }
+      ],
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/condition",
+          "value": "handoff_material_violation"
+        },
+        {
+          "op": "replace",
+          "path": "/edge_correspondence/management_promotion/reception",
+          "value": "violation"
+        },
+        {
+          "op": "replace",
+          "path": "/receiver_transfer_material/management_promotion",
+          "value": false
+        },
+        {
+          "op": "replace",
+          "path": "/connection_material_correspondence/management_promotion",
+          "value": false
+        },
+        {
+          "op": "replace",
+          "path": "/findings",
+          "value": [
+            {
+              "code": "source_conflict",
+              "pointer": "/edges/management_promotion/receiver_acceptance/binding/authority_ref",
+              "return_owner": "management-handoff-owner"
+            }
+          ]
+        }
+      ],
+      "raw_canonical_sha256": "533d1c21d0e1fb8a7216479b987fa6539c69ac150fa0d756d5b23efe2187cfbd",
+      "expected_full_whole_sha256": "0e1401fd5ce6d940ef95de6afbc4af5099e5cbcfda2f8c5e19c8cebbe918ece2",
+      "independent_basis": "L4-F02 algorithm 8 requires receiver-acceptance binding fields to compare to context.receiver. This single actual/context mismatch is a source_conflict in reception; it defeats the old mutation that deleted the authority_ref row. No actual authority is asserted.",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "expected_full_whole_reference": "/cases/2/expected_proposal",
+      "input_patch_target": "source_case_pointerが指す原L9 caseを展開したraw",
+      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal"
+    },
+    {
+      "probe_id": "OS023-R2-CE-B-UNKNOWN-EDGE-INDEX-1",
+      "source_case_pointer": "/cases/258",
+      "source_case_id": "OS023-UNKNOWN-EDGE",
+      "source_raw_canonical_sha256": "2b64c8deaaf5b5643c9324aa6afbc6642c9861bdacf1a7f0089845451a12ace3",
+      "source_expected_canonical_sha256": "a826134c53066c29f22701d5d2cf8d6daeb3c4b56a1785ff94f522f8ee39c0c9",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/selected_edges",
+          "value": [
+            "management_promotion",
+            7
+          ]
+        }
+      ],
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/findings",
+          "value": [
+            {
+              "code": "edge_selection_unresolved",
+              "pointer": "/selected_edges",
+              "return_owner": "management-handoff-owner"
+            },
+            {
+              "code": "unknown_edge_identity",
+              "pointer": "/selected_edges/1",
+              "return_owner": "management-handoff-owner"
+            }
+          ]
+        }
+      ],
+      "raw_canonical_sha256": "e416b4f75c6b6023491dcd193a4bd8f0286f63b80162568841ea230896b4d87a",
+      "expected_full_whole_sha256": "2aecaae313d1e6eae096f12326f300e7f0d3ab896f4af0ba216116e4815015f8",
+      "independent_basis": "L4 selection rule: selection is known only as a unique string list of declared edge IDs; an unknown member is reported at its exact list index, with no fallback to a known subset.",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "expected_full_whole_reference": "/cases/258/expected_proposal",
+      "input_patch_target": "source_case_pointerが指す原L9 caseを展開したraw",
+      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal"
+    },
+    {
+      "probe_id": "OS023-R2-CE-C-INVALID-REVIEW-SHAPE-SKIPS-GROUP",
+      "source_case_pointer": "/cases/2",
+      "source_case_id": "OS023-NORMAL-RECONCILE",
+      "source_raw_canonical_sha256": "7202f0cecdc8eca21955a5837f6d4c9d831677d024789a4d43b751a988b4caf2",
+      "source_expected_canonical_sha256": "3bbd748d9d61399e385dae7f6f5f3a2c606092104e8ead326318ab930859a59e",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/edges/management_promotion/review",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/edges/management_promotion/producer/actor",
+          "value": null
+        }
+      ],
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/condition",
+          "value": "handoff_material_unknown"
+        },
+        {
+          "op": "replace",
+          "path": "/edge_correspondence/management_promotion/review",
+          "value": "unknown"
+        },
+        {
+          "op": "replace",
+          "path": "/connection_material_correspondence/management_promotion",
+          "value": false
+        },
+        {
+          "op": "replace",
+          "path": "/findings",
+          "value": [
+            {
+              "code": "review_record_unresolved",
+              "pointer": "/edges/management_promotion/review",
+              "return_owner": "management-handoff-owner"
+            }
+          ]
+        },
+        {
+          "op": "replace",
+          "path": "/receiver_transfer_material/management_promotion",
+          "value": true
+        }
+      ],
+      "raw_canonical_sha256": "cb73944bb7d4e965d2ee714206b987069c74fa29e3453c313472ea36b1e6acc8",
+      "expected_full_whole_sha256": "102f2e078714b6206eb5142c0728fb32c741ae85f154d29b91e7a913c2657790",
+      "independent_basis": "L4-F02 algorithm 8 gates both review-member and producer-independence comparisons on both review records being dictionaries. A malformed actual review returns its root diagnostic; the producer.actor null is retained input but is not separately compared by this group. L4 F03 transfer投影はbinding/delivery/reception/coverageだけを対象にしreview facetを読まないため、この素材ではreceiver_transfer_material=trueを保つ。",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "expected_full_whole_reference": "/cases/2/expected_proposal",
+      "input_patch_target": "source_case_pointerが指す原L9 caseを展開したraw",
+      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal"
+    },
+    {
+      "probe_id": "OS023-R2-CE-D-RECEIVER-ROLE-SECOND-ROW",
+      "source_case_pointer": "/cases/2",
+      "source_case_id": "OS023-NORMAL-RECONCILE",
+      "source_raw_canonical_sha256": "7202f0cecdc8eca21955a5837f6d4c9d831677d024789a4d43b751a988b4caf2",
+      "source_expected_canonical_sha256": "3bbd748d9d61399e385dae7f6f5f3a2c606092104e8ead326318ab930859a59e",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/edges/management_promotion/receiver_acceptance/binding/role",
+          "value": "SYNTHETIC-WRONG-ROLE"
+        },
+        {
+          "op": "replace",
+          "path": "/context/edges/management_promotion/receiver/role",
+          "value": "SYNTHETIC-WRONG-ROLE"
+        }
+      ],
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/condition",
+          "value": "handoff_material_violation"
+        },
+        {
+          "op": "replace",
+          "path": "/edge_correspondence/management_promotion/reception",
+          "value": "violation"
+        },
+        {
+          "op": "replace",
+          "path": "/receiver_transfer_material/management_promotion",
+          "value": false
+        },
+        {
+          "op": "replace",
+          "path": "/connection_material_correspondence/management_promotion",
+          "value": false
+        },
+        {
+          "op": "replace",
+          "path": "/edge_correspondence/management_promotion/binding",
+          "value": "violation"
+        },
+        {
+          "op": "replace",
+          "path": "/findings",
+          "value": [
+            {
+              "code": "source_conflict",
+              "pointer": "/context/edges/management_promotion/receiver/role",
+              "return_owner": "management-handoff-owner"
+            },
+            {
+              "code": "source_conflict",
+              "pointer": "/edges/management_promotion/receiver/role",
+              "return_owner": "management-handoff-owner"
+            }
+          ]
+        }
+      ],
+      "raw_canonical_sha256": "8bacd14b0fa5aa943e0407a16a844f9174faf9768900ff4c88a79048e57e1668",
+      "expected_full_whole_sha256": "102604d41f070efb09a47ecb64bbc7ddb25ef2775bb2e34a1ec8ef6f08248e97",
+      "independent_basis": "L4 edge_roles fixes management_promotion receiver as promotion. The first receiver-acceptance role row agrees with context, while the second row must independently compare that context role to the fixed edge role. F01はendpoint receiver roleとcontext roleも照合しbindingをviolationにする。F03の2行目はcontext receiver roleを固定edge_rolesのreceiver位置へ照合し、receptionもviolationにする。各所見pointerは各比較のactual側を保持する。",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "expected_full_whole_reference": "/cases/2/expected_proposal",
+      "input_patch_target": "source_case_pointerが指す原L9 caseを展開したraw",
+      "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal"
+    },
+    {
+      "probe_id": "OS023-R2-CE-E-REVIEW-PRODUCER-SAME-ACTOR",
+      "source_case_pointer": "/cases/2",
+      "source_case_id": "OS023-NORMAL-RECONCILE",
+      "source_raw_canonical_sha256": "7202f0cecdc8eca21955a5837f6d4c9d831677d024789a4d43b751a988b4caf2",
+      "source_expected_canonical_sha256": "3bbd748d9d61399e385dae7f6f5f3a2c606092104e8ead326318ab930859a59e",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/edges/management_promotion/review/actor",
+          "value": "SYNTHETIC-SAME-ACTOR"
+        },
+        {
+          "op": "replace",
+          "path": "/context/edges/management_promotion/review/actor",
+          "value": "SYNTHETIC-SAME-ACTOR"
+        },
+        {
+          "op": "replace",
+          "path": "/edges/management_promotion/producer/actor",
+          "value": "SYNTHETIC-SAME-ACTOR"
+        },
+        {
+          "op": "replace",
+          "path": "/context/edges/management_promotion/producer/actor",
+          "value": "SYNTHETIC-SAME-ACTOR"
+        }
+      ],
+      "expected_patch": [
+        {
+          "op": "replace",
+          "path": "/condition",
+          "value": "handoff_material_violation"
+        },
+        {
+          "op": "replace",
+          "path": "/edge_correspondence/management_promotion/review",
+          "value": "violation"
+        },
+        {
+          "op": "replace",
+          "path": "/connection_material_correspondence/management_promotion",
+          "value": false
+        },
+        {
+          "op": "replace",
+          "path": "/findings",
+          "value": [
+            {
+              "code": "producer_self_review",
+              "pointer": "/edges/management_promotion/review/actor",
+              "return_owner": "management-handoff-owner"
+            }
+          ]
+        }
+      ],
+      "raw_canonical_sha256": "50472949630daaa84487364d39b986c0bcdf8fb9f1ee389c50814ff3be43008f",
+      "expected_full_whole_sha256": "f4873b0ed009d4472371bb033353ff7b67a7615b45dd4aea50482fae398b036f",
+      "independent_basis": "L4-F02 algorithm 8 compares reviewer and producer actors when both review records are dictionaries; matching actor values create producer_self_review. Transfer remains based on binding/delivery/reception/coverage and is not changed by review alone.",
+      "execution_state": "not_executed",
+      "actual_observation": "not_observed",
+      "expected_full_whole_reference": "/cases/2/expected_proposal",
       "input_patch_target": "source_case_pointerが指す原L9 caseを展開したraw",
       "expected_patch_target": "expected_full_whole_referenceが指す原L9 expected_proposal"
     }
@@ -11068,7 +11028,7 @@
     "typed_domain_patch_target": "各variationのinput_patchは展開済source rawへ適用し、適用後rawごとのSHA-256を持つ。"
   },
   "mutation_detection_coverage": {
-    "basis": "R1 reviewで指定された8 check familyについて、変更前に固定したprobe raw/independent wholeの差分がどの出力pathを識別するかを示す。変異器を実行した結果ではない。",
+    "basis": "各check familyは固定rawとL4由来の独立whole期待の差分で識別する。変異器は実行していないためkill結果を主張しない。",
     "mutation_execution": "not_executed",
     "coverage": [
       {
@@ -11083,7 +11043,7 @@
         ],
         "expected_observation": "context.sender_outstandingがsource_remainingの部分集合なら、strict supersetを保持して通す。出力配列はraw順を保持する。",
         "mutation_execution": "not_executed",
-        "evidence_scope": "固定rawと独立wholeの差分が比較規則を識別する。変異実行のkill証拠ではない。",
+        "evidence_scope": "固定rawと独立全体期待が識別する出力差を示す。変異を実行した結果ではない。",
         "probe_raw_canonical_sha256": "160b13520c20a39d852623bc09f5cde2f7a12bbeb80dcc01dae7f155b907ec94",
         "independent_expected_whole_sha256": "d7141a13f08942778db2d5829136cbe239d8b4042645640594873ce793f0ea44",
         "expected_whole_reference": "/cases/2/expected_proposal"
@@ -11103,31 +11063,30 @@
         ],
         "expected_observation": "双方のprojectが同じ空文字列でもknown/correspondingにせずunknownとして保持する。",
         "mutation_execution": "not_executed",
-        "evidence_scope": "固定rawと独立wholeの差分が比較規則を識別する。変異実行のkill証拠ではない。",
+        "evidence_scope": "固定rawと独立全体期待が識別する出力差を示す。変異を実行した結果ではない。",
         "probe_raw_canonical_sha256": "b7478a58823056de87f7d47f53122802febf18cba8453a123f624a143ec800ac",
         "independent_expected_whole_sha256": "8dde20dd631e086215ad1fcb499dd21f736c8de68b6f3d4b9fc39f3eb9d5db59",
         "expected_whole_reference": "/cases/2/expected_proposal"
       },
       {
         "check_id": "f01_all_edges",
-        "probe_id": "OS023-R1-PROBE-F01-EDGE-JOIN",
-        "source_case_pointer": "/cases/1",
+        "probe_id": "OS023-R1-PROBE-MINOR-INACTIVE-EDGE",
+        "source_case_pointer": "/cases/259",
         "input_paths": [
-          "/edges/management_promotion/receiver/project",
-          "/context/edges/management_promotion/receiver/project",
-          "/edges/management_promotion/receiver_acceptance/binding/project"
+          "/context/selected_edges",
+          "/edges/promotion_worker/receiver/project",
+          "/edges/promotion_worker/source_completion_claim"
         ],
         "observable_output_paths": [
-          "/condition",
-          "/edge_correspondence/management_promotion/binding",
+          "/edge_correspondence/promotion_worker/binding",
           "/findings"
         ],
         "expected_observation": "receiver/context一致だけでsenderとの9-field joinを省略せず、project不一致をbinding violation/source_conflictへ返す。",
         "mutation_execution": "not_executed",
-        "evidence_scope": "固定rawと独立wholeの差分が比較規則を識別する。変異実行のkill証拠ではない。",
-        "probe_raw_canonical_sha256": "4ff89f95c169bf8d742b1abcc3d6fca4e6164262096e4f0feb25293f7e27d52a",
-        "independent_expected_whole_sha256": "67b08290b86d7c86c8dcf8e53ad5049ffc2824b784a2973261ea9b0c1471d65c",
-        "expected_whole_reference": "/cases/1/expected_proposal"
+        "evidence_scope": "固定rawと独立全体期待が識別する出力差を示す。変異を実行した結果ではない。",
+        "probe_raw_canonical_sha256": "7c38d7f36e52a1742d8b619007f9053eedf0572e4488ddd30de4dc7e9a05ce95",
+        "independent_expected_whole_sha256": "1944d26b43dedad7d8299112e2554e443e8d93574ec8175964704fe1649e78d8",
+        "expected_whole_reference": "/cases/259/expected_proposal"
       },
       {
         "check_id": "retained_sorted",
@@ -11136,7 +11095,10 @@
         "input_paths": [
           "/edges/management_promotion/source_remaining",
           "/edges/management_promotion/sender_outstanding",
-          "/context/edges/management_promotion/sender_outstanding"
+          "/context/edges/management_promotion/sender_outstanding",
+          "/edges/management_promotion/receiver_acceptance/outstanding",
+          "/context/edges/management_promotion/receiver_acceptance/outstanding",
+          "/selected_edges"
         ],
         "observable_output_paths": [
           "/retained_obligations/management_promotion",
@@ -11144,29 +11106,27 @@
         ],
         "expected_observation": "membership比較では順序を無視する一方、retained配列はsource_remainingの原順を維持する。",
         "mutation_execution": "not_executed",
-        "evidence_scope": "固定rawと独立wholeの差分が比較規則を識別する。変異実行のkill証拠ではない。",
+        "evidence_scope": "固定rawと独立全体期待が識別する出力差を示す。変異を実行した結果ではない。",
         "probe_raw_canonical_sha256": "338bccc945a53b6b455eb22d12d080d9738056e0d19cb82466a368e3a315d260",
         "independent_expected_whole_sha256": "b26facf73a68ae03ca12cc7855d9655d8a2a4dceeefef070fac4e74120ea09c1",
         "expected_whole_reference": "/cases/2/expected_proposal"
       },
       {
         "check_id": "drop_ra_authority",
-        "probe_id": "OS023-R1-PROBE-MINOR-DROP-AUTHORITY",
+        "probe_id": "OS023-R2-CE-A-RECEIVER-ACCEPTANCE-BINDING-AUTHORITY",
         "source_case_pointer": "/cases/2",
         "input_paths": [
-          "/edges/management_promotion/receiver/authority_ref",
-          "/context/edges/management_promotion/receiver/authority_ref"
+          "/edges/management_promotion/receiver_acceptance/binding/authority_ref"
         ],
         "observable_output_paths": [
-          "/condition",
-          "/edge_correspondence/management_promotion/binding",
+          "/edge_correspondence/management_promotion/reception",
           "/findings"
         ],
         "expected_observation": "authority_refはreceiver→sender joinから除外するが、同endpointのcontext一致比較から除外しない。",
         "mutation_execution": "not_executed",
-        "evidence_scope": "固定rawと独立wholeの差分が比較規則を識別する。変異実行のkill証拠ではない。",
-        "probe_raw_canonical_sha256": "e65c35ec224af0c28cc9af3d2ede3ad4dd15ac9ca2743e79f74fb543bc8690b7",
-        "independent_expected_whole_sha256": "93904e6bf48e26dec4496a95d42e2c710ab2b176c79ae6a6ac60567f2b718b4b",
+        "evidence_scope": "固定rawと独立全体期待が識別する出力差を示す。変異を実行した結果ではない。",
+        "probe_raw_canonical_sha256": "533d1c21d0e1fb8a7216479b987fa6539c69ac150fa0d756d5b23efe2187cfbd",
+        "independent_expected_whole_sha256": "0e1401fd5ce6d940ef95de6afbc4af5099e5cbcfda2f8c5e19c8cebbe918ece2",
         "expected_whole_reference": "/cases/2/expected_proposal"
       },
       {
@@ -11182,42 +11142,38 @@
           "/edge_correspondence",
           "/findings"
         ],
-        "expected_observation": "両側の既知空selectionはactive edgeを生まずconditionをunknownにする。既存L4/L9にない専用findingは作らず、L4/L9追補候補を別記録する。",
+        "expected_observation": "両側known empty selectionではactive edgeを生まず、L4に基づくedge_selection_unresolvedを保持してconditionをunknownにする。",
         "mutation_execution": "not_executed",
-        "evidence_scope": "固定rawと独立wholeの差分が比較規則を識別する。変異実行のkill証拠ではない。",
+        "evidence_scope": "固定rawと独立全体期待が識別する出力差を示す。変異を実行した結果ではない。",
         "probe_raw_canonical_sha256": "5e492e1cdb445dd952163279fa95cf6df81db2bf08c343de54688ffba8bc5fa0",
         "independent_expected_whole_sha256": "c297fe42d4e361cdefe10b1474a007ff4ced33bb1541a2c5f04017e88f170221",
         "expected_whole_reference": "/cases/2/expected_proposal"
       },
       {
         "check_id": "uei_any",
-        "probe_id": "OS023-R1-PROBE-MINOR-INACTIVE-CLAIM",
-        "source_case_pointer": "/cases/259",
+        "probe_id": "OS023-R2-CE-B-UNKNOWN-EDGE-INDEX-1",
+        "source_case_pointer": "/cases/258",
         "input_paths": [
-          "/edges/promotion_worker/source_completion_claim",
-          "/edges/promotion_worker/meaning_resolved_claim",
-          "/context/selected_edges"
+          "/selected_edges/1"
         ],
         "observable_output_paths": [
-          "/condition",
-          "/findings",
-          "/edge_correspondence/promotion_worker"
+          "/findings"
         ],
         "expected_observation": "known selectionで非選択のpromotion_workerにあるclaimはactive evidence/findingへ集約しない。",
         "mutation_execution": "not_executed",
-        "evidence_scope": "固定rawと独立wholeの差分が比較規則を識別する。変異実行のkill証拠ではない。",
-        "probe_raw_canonical_sha256": "55b5f26bbbe6462f07dd7d1a1c2757091aea8a8c20c7551ce834ab6748643dc6",
-        "independent_expected_whole_sha256": "1944d26b43dedad7d8299112e2554e443e8d93574ec8175964704fe1649e78d8",
-        "expected_whole_reference": "/cases/259/expected_proposal"
+        "evidence_scope": "固定rawと独立全体期待が識別する出力差を示す。変異を実行した結果ではない。",
+        "probe_raw_canonical_sha256": "e416b4f75c6b6023491dcd193a4bd8f0286f63b80162568841ea230896b4d87a",
+        "independent_expected_whole_sha256": "2aecaae313d1e6eae096f12326f300e7f0d3ab896f4af0ba216116e4815015f8",
+        "expected_whole_reference": "/cases/258/expected_proposal"
       },
       {
         "check_id": "inactive_edge_claim",
         "probe_id": "OS023-R1-PROBE-MINOR-INACTIVE-EDGE",
         "source_case_pointer": "/cases/259",
         "input_paths": [
+          "/context/selected_edges",
           "/edges/promotion_worker/receiver/project",
-          "/edges/promotion_worker/source_completion_claim",
-          "/context/selected_edges"
+          "/edges/promotion_worker/source_completion_claim"
         ],
         "observable_output_paths": [
           "/condition",
@@ -11226,16 +11182,72 @@
         ],
         "expected_observation": "非選択edgeのbinding差とclaimを判定対象に混ぜず、他の選択edgeから全体を評価する。",
         "mutation_execution": "not_executed",
-        "evidence_scope": "固定rawと独立wholeの差分が比較規則を識別する。変異実行のkill証拠ではない。",
+        "evidence_scope": "固定rawと独立全体期待が識別する出力差を示す。変異を実行した結果ではない。",
         "probe_raw_canonical_sha256": "7c38d7f36e52a1742d8b619007f9053eedf0572e4488ddd30de4dc7e9a05ce95",
         "independent_expected_whole_sha256": "1944d26b43dedad7d8299112e2554e443e8d93574ec8175964704fe1649e78d8",
         "expected_whole_reference": "/cases/259/expected_proposal"
+      },
+      {
+        "check_id": "review_shape_group_skip",
+        "probe_id": "OS023-R2-CE-C-INVALID-REVIEW-SHAPE-SKIPS-GROUP",
+        "source_case_pointer": "/cases/2",
+        "input_paths": [
+          "/edges/management_promotion/review",
+          "/edges/management_promotion/producer/actor"
+        ],
+        "observable_output_paths": [
+          "/edge_correspondence/management_promotion/review",
+          "/findings"
+        ],
+        "expected_observation": "review recordが非objectなら、review group全体をskipし、別groupのproducer actor unresolvedを追加しない。",
+        "mutation_execution": "not_executed",
+        "evidence_scope": "独立固定raw/wholeが識別する差分。変異実行のkill証拠ではない。",
+        "probe_raw_canonical_sha256": "cb73944bb7d4e965d2ee714206b987069c74fa29e3453c313472ea36b1e6acc8",
+        "independent_expected_whole_sha256": "102f2e078714b6206eb5142c0728fb32c741ae85f154d29b91e7a913c2657790",
+        "expected_whole_reference": "/cases/2/expected_proposal"
+      },
+      {
+        "check_id": "receiver_role_second_row",
+        "probe_id": "OS023-R2-CE-D-RECEIVER-ROLE-SECOND-ROW",
+        "source_case_pointer": "/cases/2",
+        "input_paths": [
+          "/edges/management_promotion/receiver_acceptance/binding/role",
+          "/context/edges/management_promotion/receiver/role"
+        ],
+        "observable_output_paths": [
+          "/edge_correspondence/management_promotion/reception",
+          "/findings"
+        ],
+        "expected_observation": "role比較の第2行も評価し、context上のreceiver role相違をreception violationへ結ぶ。",
+        "mutation_execution": "not_executed",
+        "evidence_scope": "独立固定raw/wholeが識別する差分。変異実行のkill証拠ではない。",
+        "probe_raw_canonical_sha256": "8bacd14b0fa5aa943e0407a16a844f9174faf9768900ff4c88a79048e57e1668",
+        "independent_expected_whole_sha256": "102604d41f070efb09a47ecb64bbc7ddb25ef2775bb2e34a1ec8ef6f08248e97",
+        "expected_whole_reference": "/cases/2/expected_proposal"
+      },
+      {
+        "check_id": "review_producer_independence",
+        "probe_id": "OS023-R2-CE-E-REVIEW-PRODUCER-SAME-ACTOR",
+        "source_case_pointer": "/cases/2",
+        "input_paths": [
+          "/edges/management_promotion/review/actor",
+          "/edges/management_promotion/producer/actor"
+        ],
+        "observable_output_paths": [
+          "/edge_correspondence/management_promotion/review",
+          "/findings"
+        ],
+        "expected_observation": "両review recordがobjectならactor独立性を照合し、same actorをproducer_self_reviewへ結ぶ。",
+        "mutation_execution": "not_executed",
+        "evidence_scope": "独立固定raw/wholeが識別する差分。変異実行のkill証拠ではない。",
+        "probe_raw_canonical_sha256": "50472949630daaa84487364d39b986c0bcdf8fb9f1ee389c50814ff3be43008f",
+        "independent_expected_whole_sha256": "f4873b0ed009d4472371bb033353ff7b67a7615b45dd4aea50482fae398b036f",
+        "expected_whole_reference": "/cases/2/expected_proposal"
       }
     ],
     "limitations": [
       "各probeは有限fixtureの分岐識別を示すだけで、一般domainの完全性を示さない。",
-      "placeholder文字列の形式拒否とauthority/role許可表は上流field/domainが供給されず未閉包。",
-      "両selection既知空時のfailure returnはL10義務に対するL4/L9の具体化がないため、別atomic候補を準備したがこのpairでは実現扱いしない。"
+      "placeholder文字列の形式拒否とauthority/role許可表は上流field/domainが供給されず未閉包。"
     ]
   }
 }

@@ -291,16 +291,6 @@
       "path": "docs/helix-os/L9-integration-verification/management-worker-acceptance-handoff.json",
       "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
       "whole_sha256": "3f6fc9e0867b9462ce299a24d35f31a590bd3170b7483b17c61721d37f955984"
-    },
-    {
-      "path": "docs/helix-os/L4-basic-design/management-worker-acceptance-handoff.json",
-      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-      "whole_sha256": "6fef79e6fbe82a6b9421639e3ef09d57a2f18248fbfc08efa1be8639608a6d75"
-    },
-    {
-      "path": "docs/helix-os/L9-integration-verification/management-worker-acceptance-handoff.json",
-      "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
-      "whole_sha256": "3f6fc9e0867b9462ce299a24d35f31a590bd3170b7483b17c61721d37f955984"
     }
   ],
   "contracts": [
@@ -644,11 +634,9 @@
         "phase_domain_pointer": "JSONPointer",
         "edge_order_pointer": "JSONPointer",
         "actual_selection_pointer": "JSONPointer",
-        "groups": "list<F02GroupRule>。各要素はfacet、plan_pointer、applicable_phases、success_value、failure_code、non_success_code、value_projection.allowed_valuesを持つ。",
-        "owner_literal": "string",
-        "state_priority": "list<FacetState>"
+        "groups": "list<F02GroupRule>。実体はformal_programs[OS023-F02-UNIT-CONNECTION-REVIEW].rule_data.groups。"
       },
-      "rule": "状態projectionの許容値はF02 groupのvalue_projection.allowed_values。unit_failedのみfailure valueに対し、unit_unobservedはunobserved/not_occurredだけに対応する。"
+      "rule": "状態projectionの許容値は各group.value_projection.allowed_values。型宣言に無いrule_data memberを追加要件として推測しない。"
     },
     {
       "name": "F02Evaluation",
@@ -896,7 +884,7 @@
         "phase",
         "selected_edges",
         "receiver_acceptance_comparisons",
-        "receiver_acceptance_role_comparison",
+        "receiver_acceptance_role_comparisons",
         "F01.binding_states",
         "F02.facet_states.delivery",
         "N01.coverage_states",
@@ -932,18 +920,215 @@
     }
   ],
   "formal_rule_catalog": {
-    "ordered_source_rules": [
-      "L9 given.inputは保存用base_ref/replacements/expanded_input_sha256。fixture_inputs[base_ref]を独立deepcopyし、各replacement.path（既存dict keyまたはlist indexの配列）の原位置をvalueへ置換する。展開したinputをJSON UTF-8 sort_keys=true compact separator ensure_ascii=false allow_nan=falseでcanonical化しSHA-256一致を確認した後、以下の意味比較に渡す。これはpaper fixtureだけの保存表現で、正式schema/codec/runtimeへ採用しない。",
-      "phaseはpreflight/receive/reconcileだけ。不明phaseはphase_unresolved→global、selected_phase=null。selected_edges/context.selected_edgesは重複なしstring listかつ全IDが4edge語彙に存在するときだけknown selection。片側不明は原selection root edge_selection_unresolved、未知非空IDは当該list index unknown_edge_identityを併記。両known集合相反はactual selection root edge_selection_conflict。未知を非適用/影響なしへ補完しない。",
-      "known stringは提供された非空文字列。known setは非空string要素のみの重複なし配列で、空配列は既知の空集合。set比較は配列順を無視し、出力として保持するraw配列順は変えない。文字列形式の意味的妥当性（TBD、digest/source-ref形式等）はL4に規則がないため判定しない。",
-      "4edgeを固定順に出力する。actual selectionがknownでedgeを含む場合だけactive。edgeがinactiveなら両selection knownのとき全8 facetをnot_selected、それ以外は全8 facetをunknownとする。inactiveのunit/delivery/retainedはnull、transfer/connectionはfalse。active edgeでもcontext selectionがunknownならcoverageはunknown。",
-      "active全phaseでsender/receiverの10binding fieldとroleを独立context同端へstring比較。context roleは固定edge_rolesへも比較。receiver→senderはauthority_refを除く9fieldを比較する。両端authorityは別owner sourceであり同一権限に固定しない。sender_outstandingを独立context同fieldへset比較、stop_reason_refはstring比較する。source_remainingがset型不明ならsource_obligations_unresolved、knowncontext.sender_outstandingがknownsource_remainingに包含されなければsource_obligation_lost。retained_obligationsはknownsource_remaining原値かnull。",
-      "receive/reconcileだけunit sender/receiver stateを独立context同fieldへ比較する。閉集合success_material/failed_material/unobserved/not_occurred。両known状態相反はsource_conflict、閉集合外は各原位置source_unresolved。actual failed_materialだけunit_failedを出す。actual unobserved/not_occurredではunit_unobservedを出し、success_materialではunit_unobservedを出さない。出力は各原閉集合stateかnullで、原failureを他unit成功で消さない。",
-      "同phaseのdelivery stateはdelivered_material/failed_material/unobserved/not_occurredで同じclosed comparison、actual failedはdelivery_failed、normal以外はdelivery_unobserved。delivery_refをcontext同fieldへstring比較。receiver_acceptance stateはaccepted_material/refused_material/unobserved/not_occurredで同じ比較、actual refusedはreceiver_refused、normal以外はreceiver_unobserved。source_refは独立context acceptance.source_ref、binding10fieldとroleはcontext.receiverへ比較。outstandingがset型不明ならreceiver_obligations_unresolved、context.sender_outstandingがそのknown集合に包含されなければreceiver_obligation_lost。observed=falseはedge_unobserved、true以外はedge_observation_unresolved。ack値とprovider名はこれらの素材を補わない。",
-      "reconcileだけconnection_acceptance.stateをverified_material/failed_material/unobserved/not_occurred閉集合で同context比較し、failedはconnection_acceptance_failed、normal以外はconnection_acceptance_unobserved。source_refは独立context同fieldへ比較。reviewが非dictなら原record root review_record_unresolved、expected非dictならexpected root同code。両dictの場合actor/context/authority_ref/route_refを独立context.reviewへ比較し、producer.actor/contextも独立context.producerへ比較。known reviewer actorがproducer actorと同じならproducer_self_review、knowncontextが同じならreview_context_not_independent。provider名だけで独立性を確定しない。",
-      "receiver_transfer_materialはreceive/reconcileでbinding/delivery/reception/coverageにmarkerが1つもないときだけtrue。unit成功/ACKだけではtransferを生成しない。source_completion_claim=trueでは、そのtransferがfalseならsource_completion_without_receiver、trueでもsource_completion_unprovenとしてsource-work ownerの残る消込契約を未成立に保持。false以外のunknownはsource_completion_claim_unresolved。meaning_resolved_claim=trueはack_not_meaning_resolution、false以外はmeaning_resolution_claim_unresolved。受理と意味解決/検証合格は別で、元義務の消込条件はownerへ戻る。",
-      "connection_material_correspondenceはreconcileでbinding/units/delivery/reception/connection/review/coverageにmarkerが1つもないときだけtrue（unfinishedは独立に原未完を保持）。whole_scope_claim=trueはglobal whole_scope_claim_unproven、false以外はwhole_scope_claim_unresolved。全actual flagsはfalse、whole_composition_verified=false、operation_effect=none。facetはviolation優先、次unknown、次not_selected、他corresponding。conditionはglobalと全edge facetを同じ優先でhandoff_material_violation/handoff_material_unknown/handoff_material_correspondingへ集約し、not_selectedは成功の証拠へ数えない。素材対応・件数・paper再束縛で実構成体/独立actual heldoutを成立させない。"
-    ],
+    "ordered_source_rules": {
+      "phase_names": [
+        "preflight",
+        "receive",
+        "reconcile"
+      ],
+      "edge_roles": {
+        "management_promotion": [
+          "management",
+          "promotion"
+        ],
+        "promotion_worker": [
+          "promotion",
+          "worker"
+        ],
+        "worker_acceptance": [
+          "worker",
+          "acceptance"
+        ],
+        "acceptance_management": [
+          "acceptance",
+          "management"
+        ]
+      },
+      "binding_fields": [
+        "project",
+        "requirement_revision",
+        "scope",
+        "causal_id",
+        "subject_ref",
+        "subject_revision",
+        "subject_digest",
+        "interface_ref",
+        "interface_revision",
+        "authority_ref"
+      ],
+      "join_fields": [
+        "project",
+        "requirement_revision",
+        "scope",
+        "causal_id",
+        "subject_ref",
+        "subject_revision",
+        "subject_digest",
+        "interface_ref",
+        "interface_revision"
+      ],
+      "review_fields": [
+        "actor",
+        "context",
+        "authority_ref",
+        "route_ref"
+      ],
+      "facet_names": [
+        "binding",
+        "units",
+        "delivery",
+        "reception",
+        "connection",
+        "review",
+        "unfinished",
+        "coverage"
+      ],
+      "condition_names": [
+        "handoff_material_corresponding",
+        "handoff_material_unknown",
+        "handoff_material_violation"
+      ],
+      "algorithm": [
+        "L9 given.inputは保存用base_ref/replacements/expanded_input_sha256。fixture_inputs[base_ref]を独立deepcopyし、各replacement.path（既存dict keyまたはlist indexの配列）の原位置をvalueへ置換する。展開したinputをJSON UTF-8 sort_keys=true compact separator ensure_ascii=false allow_nan=falseでcanonical化しSHA-256一致を確認した後、以下の意味比較に渡す。これはpaper fixtureだけの保存表現で、正式schema/codec/runtimeへ採用しない。",
+        "phaseはpreflight/receive/reconcileだけ。不明phaseはphase_unresolved→global、selected_phase=null。selected_edges/context.selected_edgesは重複なしstring listかつ全IDが4edge語彙に存在するときだけknown selection。片側不明は原selection root edge_selection_unresolved、未知非空IDは当該list index unknown_edge_identityを併記。両known集合相反はactual selection root edge_selection_conflict。未知を非適用/影響なしへ補完しない。",
+        "known stringは非空文字列、known setは重複なし非空文字列list（集合自体は空を許す）。比較は片側unknownなら原pointer source_unresolved、両側unknownなら両pointer、両known相反だけactual pointer source_conflict。setはsort比較。固定codeのfacet/violation/unknownは宣言表に従い、generic比較codeのfacetはその比較を記すlaneとする。findingはcode/pointer/return_ownerで一意化し同順sort。ownerはmanagement-handoff-owner。",
+        "4edgeを固定順に出力。actual known selectionに含むedgeだけをactiveにする。inactiveで両側selection knownなら全8facet not_selected、それ以外全8facet unknown。inactiveのunit/delivery/retainedはnull、transfer/connectionはfalse。activeだがexpected selection不明ならcoverage unknownを先に保持。",
+        "active全phaseでsender/receiverの10binding fieldとroleを独立context同端へstring比較。context roleは固定edge_rolesへも比較。receiver→senderはauthority_refを除く9fieldを比較する。両端authorityは別owner sourceであり同一権限に固定しない。sender_outstandingを独立context同fieldへset比較、stop_reason_refはstring比較する。source_remainingがset型不明ならsource_obligations_unresolved、knowncontext.sender_outstandingがknownsource_remainingに包含されなければsource_obligation_lost。retained_obligationsはknownsource_remaining原値かnull。",
+        "receive/reconcileだけunit sender/receiver stateを独立context同fieldへ比較。閉集合success_material/failed_material/unobserved/not_occurred。両known状態相反はsource_conflict、閉集合外は各原位置source_unresolved。actual failed_materialはunit_failed、success_material以外はunit_unobservedを併記。出力は各原閉集合stateかnullで、原failureを他unit成功で消さない。",
+        "同phaseのdelivery stateはdelivered_material/failed_material/unobserved/not_occurredで同じclosed comparison、actual failedはdelivery_failed、normal以外はdelivery_unobserved。delivery_refをcontext同fieldへstring比較。receiver_acceptance stateはaccepted_material/refused_material/unobserved/not_occurredで同じ比較、actual refusedはreceiver_refused、normal以外はreceiver_unobserved。source_refは独立context acceptance.source_ref、binding10fieldとroleはcontext.receiverへ比較。outstandingがset型不明ならreceiver_obligations_unresolved、context.sender_outstandingがそのknown集合に包含されなければreceiver_obligation_lost。observed=falseはedge_unobserved、true以外はedge_observation_unresolved。ack値とprovider名はこれらの素材を補わない。",
+        "reconcileだけconnection_acceptance.stateをverified_material/failed_material/unobserved/not_occurred閉集合で同context比較し、failedはconnection_acceptance_failed、normal以外はconnection_acceptance_unobserved。source_refは独立context同fieldへ比較。reviewが非dictなら原record root review_record_unresolved、expected非dictならexpected root同code。両dictの場合actor/context/authority_ref/route_refを独立context.reviewへ比較し、producer.actor/contextも独立context.producerへ比較。known reviewer actorがproducer actorと同じならproducer_self_review、knowncontextが同じならreview_context_not_independent。provider名だけで独立性を確定しない。",
+        "receiver_transfer_materialはreceive/reconcileでbinding/delivery/reception/coverageにmarkerが1つもないときだけtrue。unit成功/ACKだけではtransferを生成しない。source_completion_claim=trueでは、そのtransferがfalseならsource_completion_without_receiver、trueでもsource_completion_unprovenとしてsource-work ownerの残る消込契約を未成立に保持。false以外のunknownはsource_completion_claim_unresolved。meaning_resolved_claim=trueはack_not_meaning_resolution、false以外はmeaning_resolution_claim_unresolved。受理と意味解決/検証合格は別で、元義務の消込条件はownerへ戻る。",
+        "connection_material_correspondenceはreconcileでbinding/units/delivery/reception/connection/review/coverageにmarkerが1つもないときだけtrue（unfinishedは独立に原未完を保持）。whole_scope_claim=trueはglobal whole_scope_claim_unproven、false以外はwhole_scope_claim_unresolved。全actual flagsはfalse、whole_composition_verified=false、operation_effect=none。facetはviolation優先、次unknown、次not_selected、他corresponding。conditionはglobalと全edge facetを同じ優先でhandoff_material_violation/handoff_material_unknown/handoff_material_correspondingへ集約し、not_selectedは成功の証拠へ数えない。素材対応・件数・paper再束縛で実構成体/独立actual heldoutを成立させない。",
+        "両selectionがknown emptyのとき、対象edge未指定のため充足未成立のglobal理由としてedge_selection_unresolvedを/selected_edges、management-handoff-ownerへ返す。空配列を型unknownへ変えず、全inactive facetのnot_selectedと実作用なしを保持する。"
+      ],
+      "diagnostic_code_facets": {
+        "source_unresolved": "comparison",
+        "source_conflict": "comparison",
+        "phase_unresolved": "global",
+        "edge_selection_unresolved": "global",
+        "edge_selection_conflict": "global",
+        "unknown_edge_identity": "global",
+        "unit_failed": "units",
+        "unit_unobserved": "units",
+        "delivery_failed": "delivery",
+        "delivery_unobserved": "delivery",
+        "receiver_refused": "reception",
+        "receiver_unobserved": "reception",
+        "receiver_obligations_unresolved": "reception",
+        "receiver_obligation_lost": "reception",
+        "connection_acceptance_failed": "connection",
+        "connection_acceptance_unobserved": "connection",
+        "review_record_unresolved": "review",
+        "producer_self_review": "review",
+        "review_context_not_independent": "review",
+        "source_obligations_unresolved": "unfinished",
+        "source_obligation_lost": "unfinished",
+        "source_completion_without_receiver": "unfinished",
+        "source_completion_unproven": "unfinished",
+        "source_completion_claim_unresolved": "unfinished",
+        "ack_not_meaning_resolution": "unfinished",
+        "meaning_resolution_claim_unresolved": "unfinished",
+        "edge_unobserved": "coverage",
+        "edge_observation_unresolved": "coverage",
+        "whole_scope_claim_unproven": "global",
+        "whole_scope_claim_unresolved": "global"
+      },
+      "diagnostic_code_dispositions": {
+        "source_unresolved": "unknown",
+        "source_conflict": "violation",
+        "phase_unresolved": "unknown",
+        "edge_selection_unresolved": "unknown",
+        "edge_selection_conflict": "violation",
+        "unknown_edge_identity": "unknown",
+        "unit_failed": "violation",
+        "unit_unobserved": "unknown",
+        "delivery_failed": "violation",
+        "delivery_unobserved": "unknown",
+        "receiver_refused": "violation",
+        "receiver_unobserved": "unknown",
+        "receiver_obligations_unresolved": "unknown",
+        "receiver_obligation_lost": "violation",
+        "connection_acceptance_failed": "violation",
+        "connection_acceptance_unobserved": "unknown",
+        "review_record_unresolved": "unknown",
+        "producer_self_review": "violation",
+        "review_context_not_independent": "violation",
+        "source_obligations_unresolved": "unknown",
+        "source_obligation_lost": "violation",
+        "source_completion_without_receiver": "violation",
+        "source_completion_unproven": "unknown",
+        "source_completion_claim_unresolved": "unknown",
+        "ack_not_meaning_resolution": "violation",
+        "meaning_resolution_claim_unresolved": "unknown",
+        "edge_unobserved": "unknown",
+        "edge_observation_unresolved": "unknown",
+        "whole_scope_claim_unproven": "violation",
+        "whole_scope_claim_unresolved": "unknown"
+      },
+      "result_fields": [
+        "condition",
+        "selected_phase",
+        "edge_correspondence",
+        "unit_material_states",
+        "delivery_material_states",
+        "receiver_transfer_material",
+        "connection_material_correspondence",
+        "retained_obligations",
+        "findings",
+        "actual_handoff_performed",
+        "actual_source_work_completed",
+        "whole_composition_verified",
+        "operation_effect"
+      ],
+      "finding_fields": [
+        "code",
+        "pointer",
+        "return_owner"
+      ],
+      "return_owner": "management-handoff-owner",
+      "fixed_shape_limit": "展開後の外側shapeと4edge key集合は固定fixture。formal codec/未知外側shape/全graph/資格を扱う実enforcerではない。source receiptを実操作前に生成しない。",
+      "primary_requirement_ref_semantics": "requirement_refsは親4要求の全体trace。primary_requirement_refsは直接concernで、binding/delivery:F01、units/connection/review:F02、reception/unfinished:F03、coverage・global selection/phase/whole scope:N01。positiveは選択phaseの主題、同入力決定性F01、未見/未選択N01、ACKと受理分離F03。件数や参照列挙から完了を生成しない。",
+      "known_empty_selection_return": {
+        "input_pointers": [
+          "/selected_edges",
+          "/context/selected_edges"
+        ],
+        "when": "両operandが存在するarrayで、両方の要素数が0のときだけ適用する。各selectionはknown emptyのまま保持する。片側null/Absent/異種/重複/未知IDはdiagnostic_contract.algorithm第2項のselection規則で扱う。",
+        "diagnostic": {
+          "code": "edge_selection_unresolved",
+          "pointer": "/selected_edges",
+          "return_owner": "management-handoff-owner"
+        },
+        "classification": "selection値の型が不明なのではなく、対象edge未指定による充足未成立のglobal理由を返す。 finding単独ではselection不明と区別せず、同じProposal内のfacetを併読する。両known emptyは全edge全8facetがnot_selected、selection不明は全inactive facetがunknownとなる。新しいcodeは追加しない。",
+        "facet_effect": "全edgeの全8facetはnot_selectedを保持。各非選択素材null、transfer/connection falseを保持する。global unknown以外のfacetへ波及させない。",
+        "aggregate": "conditionはhandoff_material_unknown。diagnostic_contract.algorithm第10項の優先順に従い、別のglobal violationがある場合はhandoff_material_violationとする。",
+        "source_basis": [
+          "HELIXOS-L3-023-N01",
+          "HELIXOS-L10-023-N01"
+        ],
+        "effect": "none",
+        "legacy_basis": {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+          "file_sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+          "selected_line_quotes": [
+            {
+              "line": 250,
+              "text": "immutable contractと、admission/readiness/execution/dispositionの状態軸を分離し、eventからcurrent viewを導出する。BLOCKED/HUMAN_REQUIRED/RECOVERY_REQUIRED/QUARANTINED等を成功と混同しない。参照要求・scope変更はaffected範囲をstale化し、旧権限をfence後に再admitする。無関係更新や観測policy変更で全Ticketをsupersedeしない。",
+              "utf8_sha256": "13c2b99d8566e720f5c4d0bc475148c4d121cf4895b5d1fc88543d35bac457be"
+            },
+            {
+              "line": 258,
+              "text": "正規Ticket/Assignment/Attempt/PR/CI/review/closure factsから進行を導出する。LLM申告、コメント時刻、Issue open率、branch数、手入力%を完成根拠にしない。Bench measurement coverage、実行成功率、要求完成率は異なる分母として表示する。",
+              "utf8_sha256": "c8812991162488f15d83b46542ac621e930a737bd6fc97d64c3757c543020d20"
+            }
+          ],
+          "reuse_class": "semantic_rederivation",
+          "preserve": "状態軸と実際のclosure factsを区別し、充足未成立を成功へ補完しない。",
+          "change": "両selectionの既知空を、対象edge未指定という具体的な不足理由と管理handoff責務候補へ結ぶ。",
+          "reason": "HELIXOS-L3/L10-023-N01の不足を具体的な戻し先へ保持する義務を、空選択境界にも適用する。"
+        }
+      }
+    },
     "known_string": "memberが提供され、非空文字列の場合のみknown。null/absent/異種JSON/空文字列はunknown。",
     "known_set": "非空文字列要素だけの重複なし配列。空配列は既知の空集合。集合比較は順序を無視し、保持値は入力配列順を保つ。",
     "comparison_order": [
@@ -976,7 +1161,7 @@
       "relation=subset_ofの場合、両knownかつsubsetがfalseならfailure_codeをfailure_pointerへ出しfacetをviolationにする。subsetがtrueならstateを保持する。",
       "等値かつknownならfindingを出さずstateを保持する。比較plan pointer順、plan row順、edge_order順で評価し、最後にfinding tupleを一意化して辞書順に並べる。"
     ],
-    "basis": "現行L9の322 source expected wholeを照合資料として保持する。診断codeのfixture内観測は有限範囲に限り、未観測code/domainの閉包は主張しない。",
+    "basis": "原L9の322 source expected wholeを照合資料として保持する。診断codeのfixture内観測は有限範囲に限り、未観測code/domainの閉包は主張しない。",
     "boolean_and_claim_rules": [
       {
         "actual": "/edges/{edge}/observed",
@@ -1080,7 +1265,7 @@
       "whole_scope_claim_unproven",
       "whole_scope_claim_unresolved"
     ],
-    "basis": "現L9 322 source expected proposalsで観測されたcodeのみ。未知のcode/一般域の閉包は未成立。",
+    "basis": "原L9の322 source expected proposalsで観測されたcodeのみ。未知のcode/一般域の閉包は未成立。",
     "owner_literal": "management-handoff-owner",
     "owner_boundary": "L4/L9 synthetic label only, not an actual qualified owner."
   },
@@ -2021,7 +2206,7 @@
         },
         "comparison_priority": [
           "両operandをcomparator_domainで個別判定し、domain外の各operand pointerへunknown_codeを出す。現facetがviolationでなければunknownへする。",
-          "両operandがknownで不一致ならconflict_codeをactual pointerへ出してbinding facetをviolationにする。",
+          "両operandがknownで不一致ならconflict_codeをactual pointerへ出し、そのrowが指定するfacetをviolationにする。binding以外のfacetはbindingへ読み替えない。",
           "relation=subset_ofは両known時に集合包含を判定し、失敗時のみfailure_codeをfailure_pointerへ出してfacetをviolationにする。",
           "すべてknownで一致/包含成立ならstateを変更しない。array set comparatorでは順序を無視し、retained_obligationsは原source_remaining順を保持する。"
         ],
@@ -2282,8 +2467,8 @@
         "selection": "L5 F01のactual selected_edges domainとunknown規則を共有。actual selected_edgesはknown EdgeIdの重複なしlist。それ以外は各F02 facet unknown。known inactive edgeはnot_selected。",
         "phase_behavior": "input.phaseがgroup.applicable_phasesの値と一致するときだけそのgroupを評価する。他phaseまたはunknown phaseではそのgroup state fieldをnull、active facetはcorrespondingとする。phase findingはglobal規則が返す。",
         "comparison_operator": "plan rowのcomparator (closed_enumまたはknown_nonempty_string)を使う。missing/null/wrong kind/enum域外はrow.unknown_codeを各invalid operand pointerへ。両knownで不一致ならrow.conflict_codeをactual pointerへ。finding dispositionでfacet stateを定める。",
-        "state_projection": "applicable active edgeでactual stateがgroup.state_valuesに属す場合だけ値を保持し、それ以外はnull。actual failure valueならfailure_code、success_value以外のvalid stateならnon_success_codeを独立に追加する。",
-        "review_shape": "applicable active edgeでreview source/contextのいずれかがobjectでなければ当該root pointerへreview_record_unresolvedを出し、そのobjectのmember比較をskip。両objectならreview_comparisonsを順に評価。",
+        "state_projection": "applicable active edgeでactual stateが当該group.value_projection.allowed_valuesに属す場合だけ値を保持し、それ以外はnull。actual failure valueならfailure_code、success_value以外のvalid stateならnon_success_codeを独立に追加する。",
+        "review_shape": "reconcileのactive edgeでactual reviewまたはcontext reviewのいずれかがobjectでなければ、該当するroot pointerへreview_record_unresolvedを出し、そのreview groupのmember比較とproducer独立性比較をすべてskipする。両方がobjectの場合に限り、review_comparisonsを配列順に照合し、producer.actor/contextの独立性も検査する。",
         "finding_owner": "management-handoff-owner",
         "finding_sort": [
           "code",
@@ -2445,7 +2630,7 @@
           "known": "array of unique known EdgeId strings; empty array is known empty set",
           "invalid_root_code": "edge_selection_unresolved",
           "unknown_item_code": "unknown_edge_identity",
-          "unknown_item_pointer": "each invalid array index",
+          "unknown_item_pointer": "実selectionの未知edge IDは0始まりの配列indexを用いて/selected_edges/{index}へunknown_edge_identityを出す。selection自体の型不明/欠落等は/selected_edgesのedge_selection_unresolvedで示す。",
           "conflict_code": "edge_selection_conflict",
           "conflict_pointer": "actual selection root",
           "actual_invalid_coverage": "unknown for all edges",
@@ -3076,7 +3261,7 @@
             "connection_material_correspondence": false,
             "retained_obligations": null
           },
-          "empty_actual_selection_condition": "handoff_material_unknown",
+          "empty_actual_selection_condition": "actual selectionがknown emptyで、より高優先のglobal violationがない場合はhandoff_material_unknown。global violationがあればcondition_priority_machineに従ってhandoff_material_violationを優先する。",
           "invalid_selection_findings": "use the existing F01/F02/N01 findings; this assembly stage creates no new diagnostic code",
           "source_basis": "L4 diagnostic_contract.algorithm selection and inactive-edge clauses; no new code or edge-role mapping is inferred"
         },
@@ -3763,7 +3948,7 @@
   "unclosed_program_composition": {
     "status": "finite_static_recalculation_only",
     "formal_program": "OS023-PROPOSAL-WHOLE-ASSEMBLY",
-    "covered": "4つの関数結果・phase・global claimを合成するProposal全13rootを322原例と追加16例で静的照合する。",
+    "covered": "4つの関数結果・phase・global claimを合成するProposal全13rootを322原例と追加20例で静的照合する。",
     "unclosed": "任意の型内入力の全域totality、実source/owner資格、実handoffと実行結果は未成立。"
   },
   "facet_state_domain": [
