@@ -4597,7 +4597,7 @@
             "claim_result": "none",
             "obligation_state": "not_discharged",
             "owner_return_candidates": [
-              "HARNESS-receiver-obligation-owner"
+              "BRAIN-knowledge-meaning-owner"
             ],
             "effects": {
               "actual_knowledge_adopted": false,
@@ -4710,7 +4710,7 @@
             "claim_result": "none",
             "obligation_state": "not_discharged",
             "owner_return_candidates": [
-              "HARNESS-receiver-obligation-owner"
+              "BRAIN-knowledge-meaning-owner"
             ],
             "effects": {
               "actual_knowledge_adopted": false,
@@ -4823,7 +4823,7 @@
             "claim_result": "none",
             "obligation_state": "not_discharged",
             "owner_return_candidates": [
-              "HARNESS-receiver-obligation-owner"
+              "BRAIN-knowledge-meaning-owner"
             ],
             "effects": {
               "actual_knowledge_adopted": false,
@@ -5049,7 +5049,7 @@
             "claim_result": "none",
             "obligation_state": "not_discharged",
             "owner_return_candidates": [
-              "HARNESS-receiver-obligation-owner"
+              "BRAIN-knowledge-meaning-owner"
             ],
             "effects": {
               "actual_knowledge_adopted": false,
@@ -5162,7 +5162,7 @@
             "claim_result": "none",
             "obligation_state": "not_discharged",
             "owner_return_candidates": [
-              "HARNESS-receiver-obligation-owner"
+              "BRAIN-knowledge-meaning-owner"
             ],
             "effects": {
               "actual_knowledge_adopted": false,
@@ -5275,7 +5275,7 @@
             "claim_result": "none",
             "obligation_state": "not_discharged",
             "owner_return_candidates": [
-              "HARNESS-receiver-obligation-owner"
+              "BRAIN-knowledge-meaning-owner"
             ],
             "effects": {
               "actual_knowledge_adopted": false,
@@ -5388,7 +5388,7 @@
             "claim_result": "none",
             "obligation_state": "not_discharged",
             "owner_return_candidates": [
-              "HARNESS-receiver-obligation-owner"
+              "BRAIN-knowledge-meaning-owner"
             ],
             "effects": {
               "actual_knowledge_adopted": false,

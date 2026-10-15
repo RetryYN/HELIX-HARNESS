@@ -225,7 +225,49 @@
         "義務identity/逆trace欠落や別knowledge/版/field/scope joinを保持。片側linkで充足を生成しない。"
       ],
       "qualification_rule": "独立合成内容の照合を実source資格/正式schema/実受取契約/全必要集合の成立へ昇格しない。",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "failure_owner_rules": {
+        "basis": {
+          "requirement_ref": "HELIXBRAIN-L3-030-F03",
+          "system_oracle_ref": "HELIXBRAIN-L10-030-F03",
+          "failure_observation": "知識field意味不足はBRAIN、義務対応/receiver scope不足はHARNESSへ戻す。"
+        },
+        "knowledge_meaning_slots": [
+          "knowledge_identity",
+          "knowledge_revision",
+          "source",
+          "pattern",
+          "unit",
+          "part",
+          "field"
+        ],
+        "receiver_slots": [
+          "scope",
+          "obligation"
+        ],
+        "rules": [
+          {
+            "priority": 1,
+            "condition": "健全な原knowledge意味参照が供給済みで、provided forward/reverseの対応row全体がAbsent/nullの場合。",
+            "return_candidate": "HARNESS-receiver-obligation-owner",
+            "meaning": "受取trace row不足を先に識別する。投影結果の全slot missingを独立した知識意味不足へ分解してBRAINを加えない。"
+          },
+          {
+            "priority": 2,
+            "condition": "provided rowがrecordとして供給され、そのknowledge_meaning_slotsの参照が原対応とmissing/unknown/conflict。または原knowledge意味参照自体が独立にmissing/unknown。",
+            "return_candidate": "BRAIN-knowledge-meaning-owner",
+            "meaning": "knowledge意味参照の不足。receiver row欠落とは別に確認できる原knowledge不足まで抑止しない。"
+          },
+          {
+            "priority": 3,
+            "condition": "receiver scope/obligation対応のmissing/unknown/conflict、または片側linkで義務充足を主張するclaim。",
+            "return_candidate": "HARNESS-receiver-obligation-owner",
+            "meaning": "claimはdata判定を抑止せず、知識意味不足も創作しない。"
+          }
+        ],
+        "composition": "独立した知識意味不足とreceiver不足が同時なら両方の候補を返す。同じ候補は重複排除しBRAIN/HARNESSの表示順。方向やcase IDだけで分類しない。",
+        "qualification_limit": "戻し先候補は意味責務であり、実producerの過失/実owner資格/実配送/義務消込を証明しない。"
+      }
     },
     {
       "id": "HELIXBRAIN-L4-030-F04",
