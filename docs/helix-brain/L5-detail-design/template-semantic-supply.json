@@ -5521,5 +5521,394 @@
       "L6は関数設計、L7は関数検証、実装成果は層外。test/oracle凍結→実装前Red→Green→Refactorと実接続/保存/PO受入は未成立。全92親430対閉包と実装Readyも未成立。",
       "小数/指数（1.0・1e0・0.1）/1e400とencode非JSON値の具体期待stage・失敗対象条件は未固定。L8 unfixed_numeric_and_encode_rangeへ明示し、具体parser/host幅/encode入口や閾値を推測で新設しない。"
     ]
+  },
+  "source_return_contract": {
+    "id": "HELIXBRAIN-L5-032-SOURCE-RETURN",
+    "paired_verification_ref": "HELIXBRAIN-L8-032-SOURCE-RETURN",
+    "scope": "既存9関数・15意味項目・carrierを保ち、必要input定義Ref、候補別限界/反例、既存知識記録追跡、独立比較のjoinだけを具体化する。全意味評価器/実資格取得/受渡しの成立ではない。",
+    "source_basis": [
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointer": "/contracts/0",
+        "file_bytes_sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027",
+        "object_canonical_sha256": "b634b7f3cc9687a6d317edc4111eb79500b7a0b84c682474aaa22414f3869303"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointer": "/contracts/2",
+        "file_bytes_sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027",
+        "object_canonical_sha256": "ebeaa7deee5bd9e479440c65ca23a1b56ab1d32458d63a0668670f2e8b5b1389"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointer": "/contracts/3",
+        "file_bytes_sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027",
+        "object_canonical_sha256": "88df277182589a4ab25a960cd38d1a9e09ff67493d8a8cb22b8ed1e1b4b3b024"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointer": "/contracts/6",
+        "file_bytes_sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027",
+        "object_canonical_sha256": "4ed612c915a4c30f1e7f1e6f8d09c00b93e2ef8c02d9fa6431b8de8c17b416d8"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointer": "/contracts/9",
+        "file_bytes_sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027",
+        "object_canonical_sha256": "c879fbfa079f69661b970b3a3e2b89603ed1b651a0460c643f63b4e9af4f875d"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointer": "/contracts/11",
+        "file_bytes_sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027",
+        "object_canonical_sha256": "54226d80b7340e014e142ff65c805710884383ac02f03d5417d66aedf14565b7"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointer": "/contracts/12",
+        "file_bytes_sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027",
+        "object_canonical_sha256": "3994410ceccd2d73d893c62243385e70dc1ab8f2069938dddd624ba6fa5afc20"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "pointer": "/cases/0",
+        "file_bytes_sha256": "3744770e232c6974c2038e0b638efd3442907dd1213ac7efe1cb2f4ef88d078c",
+        "object_canonical_sha256": "1510c648f17780fed209e8606cf66b2d1e9e67ce6e83c82840ff3de80231216b"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "pointer": "/cases/2",
+        "file_bytes_sha256": "3744770e232c6974c2038e0b638efd3442907dd1213ac7efe1cb2f4ef88d078c",
+        "object_canonical_sha256": "fdfbdc716d6d31844b24b4a2f77158b7f21ba11ca46f6c1eceaa8fd175d6e784"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "pointer": "/cases/3",
+        "file_bytes_sha256": "3744770e232c6974c2038e0b638efd3442907dd1213ac7efe1cb2f4ef88d078c",
+        "object_canonical_sha256": "a8001c54703f34f2ccd4166f6a4dbf0b82e34037113f691587ce601d8e2ec4ee"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "pointer": "/cases/6",
+        "file_bytes_sha256": "3744770e232c6974c2038e0b638efd3442907dd1213ac7efe1cb2f4ef88d078c",
+        "object_canonical_sha256": "2c301ddb9fe977579a7f2bb01d8c94aefcc6152bef0a6f28f9fe1e991b9bc451"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "pointer": "/cases/9",
+        "file_bytes_sha256": "3744770e232c6974c2038e0b638efd3442907dd1213ac7efe1cb2f4ef88d078c",
+        "object_canonical_sha256": "9cd005163d757bf10686d10aca0d2404c835ef15b196e728c13cf17df3ad49a0"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "pointer": "/cases/11",
+        "file_bytes_sha256": "3744770e232c6974c2038e0b638efd3442907dd1213ac7efe1cb2f4ef88d078c",
+        "object_canonical_sha256": "c61163de3fb9f7e2b034215e1a6f76779c60d9f55a4ac1b271af4ad81113a7d0"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "pointer": "/cases/12",
+        "file_bytes_sha256": "3744770e232c6974c2038e0b638efd3442907dd1213ac7efe1cb2f4ef88d078c",
+        "object_canonical_sha256": "be27218b27d47b2eb4727c6e26c19cdb536a6d1691bb919abae5a3cb6847eb9b"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+        "pointer": "/requirements/0",
+        "file_bytes_sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+        "object_canonical_sha256": "f40d88606a3d1373a447e4067b93d82c9c7754867348dc4694e345b88812d7a2"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/7",
+        "file_bytes_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "object_canonical_sha256": "063d36771db1ed0e4ed73743e0dee0de0f05600288285e77016291a256dd4d94"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/4",
+        "file_bytes_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "object_canonical_sha256": "8031f597a4a329d36a8d011f817ff9415e41d7a1d4da14c572b82e128711eeb7"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+        "pointer": "/requirements/0",
+        "file_bytes_sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9",
+        "object_canonical_sha256": "de8c3d4e53c0b8c4cf0c43bc9cb90430c23f9ed96d6a81cc6c44cca68b538905"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+        "pointer": "/requirements/1",
+        "file_bytes_sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9",
+        "object_canonical_sha256": "f0d6f9144bf520ab710d4e8123a518245d404e5d697ed4d9a6599b400c8716fb"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L10-verification/business-verification.json",
+        "pointer": "/cases/0",
+        "file_bytes_sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7",
+        "object_canonical_sha256": "396415ca46e2480b26904724646a3502de4903d7190eb9cdda17f92feca16906"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "pointer": "/cases/7",
+        "file_bytes_sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+        "object_canonical_sha256": "e4595d0f340230a8040d2a1d39cf31d64976adef3e9afa9093933729aa6b417b"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "pointer": "/cases/4",
+        "file_bytes_sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+        "object_canonical_sha256": "cfa8fc2a5e9a23bdc55890925d6b8a20e33b16afd8c897f3a2e7f3191cc0522f"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+        "pointer": "/cases/0",
+        "file_bytes_sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba",
+        "object_canonical_sha256": "e00b4bb11cfc69b34e50a0333fb0b5efce59e5de7086041df781edd3eeb07d84"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+        "pointer": "/cases/1",
+        "file_bytes_sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba",
+        "object_canonical_sha256": "38231e93eae445b7a4327fd4c6ecd431eb35b36701544fcfa4fce456b13851ae"
+      },
+      {
+        "revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/0",
+        "file_bytes_sha256": "60c3b75be3b240112bf5e0dc616c2d8566b419122f32bb16a00df347f1012507",
+        "object_canonical_sha256": "ebc2da3936a606c23ff1c2e08eefd549eb99d2cb51e45cc17e4cd003663cda35"
+      },
+      {
+        "revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/1",
+        "file_bytes_sha256": "60c3b75be3b240112bf5e0dc616c2d8566b419122f32bb16a00df347f1012507",
+        "object_canonical_sha256": "e1c325353009052758b9707e509f652fa63def733c3c4c5a82d3fc4d2a640a3e"
+      },
+      {
+        "revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "pointer": "/cases/0",
+        "file_bytes_sha256": "bb8af60e15b7c6bc6069d4e89cd6e0dae7b3a18f27615c7964e5558627c2b437",
+        "object_canonical_sha256": "ee86fd3f61e9252dbc07b2d92b6dbb571820e7cf3cf4fcfefe2941333cedffd2"
+      },
+      {
+        "revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "pointer": "/cases/1",
+        "file_bytes_sha256": "bb8af60e15b7c6bc6069d4e89cd6e0dae7b3a18f27615c7964e5558627c2b437",
+        "object_canonical_sha256": "19a2fbf38750ddddfd9ff26b6f8f564bd3860ab513fa4dc0a9a8b44293caf739"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointer": "/architecture/determinism",
+        "file_bytes_sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027",
+        "object_canonical_sha256": "26d4cff5a6d6c627c3d2c371e40392c7dac2dd150fd760f04240cd9b6facd767"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointer": "/architecture/descriptor_comparison",
+        "file_bytes_sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027",
+        "object_canonical_sha256": "0c8100f47ecbb7b95b6e0ec2981ff96f73ba777bdf585845bddd4ab65a78b449"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/type_contract/reference_comparison",
+        "file_bytes_sha256": "f444d83316a5f9793be4052baf2537197072fa7ab40943098cfbaa47f26249bd",
+        "object_canonical_sha256": "59e7ffb1a44a5f7769c02b0eb67deb30d5fbaf55f6cddb894b15ec20ea894441"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/type_contract/types/SupplyInput",
+        "file_bytes_sha256": "f444d83316a5f9793be4052baf2537197072fa7ab40943098cfbaa47f26249bd",
+        "object_canonical_sha256": "2b552764448e4f6986958b788fe931f2df3ee436273d32e69783137703f33142"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/functions/1",
+        "file_bytes_sha256": "f444d83316a5f9793be4052baf2537197072fa7ab40943098cfbaa47f26249bd",
+        "object_canonical_sha256": "7a16d22ec98be3e00971030de8a9404a528b1bedf1fb5df42839311028ec64fc"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointer": "/contracts/5",
+        "file_bytes_sha256": "cbf003e1baf15e910c3530c1be3a95af71091a4a765c8d4f2f0038103e32c027",
+        "object_canonical_sha256": "1bbe2096d66ed8d7f101ea86877df9245d7ea4c3ef70c117d84c06458b1dcc95"
+      },
+      {
+        "revision": "204ae527d8334849c87fdcc90d55d1fec5a92cde",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointer": "/type_contract/types/KnowledgeRecord",
+        "file_bytes_sha256": "f444d83316a5f9793be4052baf2537197072fa7ab40943098cfbaa47f26249bd",
+        "object_canonical_sha256": "05670adb5f42a9ee91be4ee6ec6a0a3524516c46dadb974541de9c6c2d72d5fc"
+      }
+    ],
+    "existing_function_bindings": [
+      {
+        "function_ref": "HELIXBRAIN-L5-032-build_supply_analysis",
+        "definition_entries": [
+          "required_input_refs",
+          "knowledge_material",
+          "supplied_source_refs",
+          "construction_issues"
+        ],
+        "output_assignment": {
+          "required_inputs": "required_input_refs(context.validated)",
+          "counterexamples": "knowledge_material(context.validated, 'counterexamples')",
+          "limits": "knowledge_material(context.validated, 'limits')",
+          "source_refs": "supplied_source_refs(context.validated)",
+          "input_issues": "既存validated/composition issuesを保持しconstruction_issues(context.validated)を追加。原knowledge原因の所在診断も同entryから返す。"
+        },
+        "preserve": "comparisonsは既存AnalysisContextの7結果を元binding/producer/軸/理由/ownerごと保存し、input_issuesも保存する。原比較結果はこのconstructorでknown/成功へ書換えない。binding/candidate_refs/side_effect_countは既存契約を維持。"
+      },
+      {
+        "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+        "definition_entries": [
+          "knowledge_trace_axes"
+        ],
+        "output_assignment": "knowledge_trace_axes(context.validated)を既存Comparison.axesへ追加する。既存4昇格ruleの所見と相殺しない。",
+        "preserve": "原operational_stateをAxisResult.stateへ代入しない。採否/評価/登録/独立検証/運用stateを別に辿る。実promotion/実保存は発行しない。"
+      },
+      {
+        "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+        "definition_entries": [
+          "meaning_pair_axes"
+        ],
+        "output_assignment": "同bindingの各DescriptorSlotで2件以上のfactsを比較する場合、meaning_pair_axes(context.validated, slot)の各pair所見を保持する。単独factの通常定義判定、slot missing/meaning null/他failureは既存規則で保持。",
+        "preserve": "qualified falseは当該pair conflict、確定対応と同pair未決命題unknownは別axisで併存。単独の原不足/他pair unknownを消さず、全comparison確定をknownの新条件にしない。 descriptor名pair軸は既存descriptor.definition軸へ置換せず併存。原knowledge owner候補と既存knowledge_owner roleはconstructor_meaning.axis_and_owner_compositionに従う。"
+      }
+    ],
+    "constructor_meaning": {
+      "required_inputs": "選択候補に同template/knowledge/bindingで属するrequired input descriptorの意味定義MeaningFact.refを返す。実案件ValueFactの入力値・実入力Refを要求する出力ではない。原sourceがusableで同bodyへ辿れ、meaningが供給されnullでないfactだけを掲載する。definitionの最終knownは既存比較の責務であり、掲載だけでknownにしない。除外された不足/相反/未資格の原項目は比較軸とimmutable snapshotに残す。",
+      "candidate_locality": "candidate Ref→原rootまたは各DescriptorSlot.binding.template_ref→knowledge_refへjoinする。candidate名からknowledge版/scopeを推定しない。root Aと明示binding Bを併存でき、A source不足をBの材料へ伝播させない。candidateのbinding/sourceを辿れなければその候補は既存source/definition axis未評価のまま。root bindingへ代入して補わない。",
+      "raw_material_entry": {
+        "container": "既存SupplyAnalysis.counterexamples/limitsのRawValue内の配列。新top-level output memberではない。",
+        "fields": {
+          "candidate_ref": "原Binding.template_ref",
+          "knowledge_ref": "原KnowledgeRecord.ref、record未供給時は原Binding.knowledge_ref",
+          "presence": "absent / explicit_null / supplied",
+          "value": "原fieldが供給されたときだけ同じRawValueを置く。未供給時はmember自体を置かない。"
+        },
+        "meaning": "限界/反例の原値と所属の表示材料。配列/空object/空string/nullを意味既知・反例なし・採択へ変換しない。同refで異なる原値recordが複数なら全材料を残し、knowledge traceは一意未確認のunknown。"
+      },
+      "source_refs": "供給QualifiedSource.refを保持する参照一覧。unusable sourceも載せ、掲載をqualified/resolved/receivedとは扱わない。根拠付き採択Ref一覧へ読み替えない。",
+      "knowledge_trace": "AxisResult.axis=knowledge_record_traceは原snapshot内の追跡だけを分類する。resolvedは同knowledge Refの原record値が一意でoperational_stateが供給non-nullという所在確認であり、原stateの内容妥当性/資格/採否/工程成立ではない。unknownはrecordの未供給/異なる原値の重複曖昧/原state未供給/null。backflow_ownerは既存knowledge_ref.owner、未決ownerはnull。",
+      "reference_resolution": "返却original_refs/subject_refとComparison.input_bindingは、関数が読んだ同一immutable snapshotへ束縛する。Refのidentity/revision/scope/owner（両digest供給時はdigest）でKnowledgeRecord.refへjoinし、operational_stateとlimited_adoption_ref/adoption_ref等を別に読む。provenance/evaluation/独立検証/OS登録は原record内の各参照へ辿る。source_refsだけで原recordの実資格を発行しない。snapshotを保持しないconsumerへはこのtrace成立を主張せず、ownerの正式custody/resolver接続を未成立として返す。",
+      "comparison_join": "DescriptorSlot.comparison_refsはcomparison_source_refへの宣言trace。掲載の有無を意味比較の新しい資格条件としない。同immutable snapshot内のMeaningComparisonを同bindingのleft_fact_ref/right_fact_refへjoinし、左右の向きはequivalent比較では対称。同sourceの別pairは混ぜず、同pairの有資格falseを不掲載で失わない。comparison独自ID/registryは作らない。",
+      "validation_result_boundary": "これらのconstructorは同immutable snapshotのvalidate_supply_input出力を内部で読む。caller supplied cached ValidatedSupplyを資格証明として受け取る公開入口ではない。unusable_source_refsの未供給/nullを空の不足一覧へ補完せず、usable=falseとroot InputIssueへ返す。source一覧の存在/bytes一致だけで資格を生成しない。",
+      "comparison_source": "MeaningComparisonの原命題は対応QualifiedSource.content.meaning_comparisonsから解決する。このRawValue内のキーはこのowner命題の所在であり共通registryではない。comparison_source_refの所在だけを除くbody全値を照合し、source bytes/body/資格は先行validateの既存契約へ従い、role=semantic_jsonだけを意味原命題のsourceとする。derived_view/explanation/reference_onlyの所在や資格を意味正本へ変換しない。factsは既存content.descriptor_facts[*].facts[*]へ同様に解決。",
+      "comparison_priority": "同pairのqualifiedなequivalent=falseがあればpair conflict。false無しでqualified trueがあればpair known。それ以外はpair unknown。同pairの別原命題に判定member欠落/null/未資格/非正本/原body未解決/source参照欠落があっても、確定した対応を全comparison確定gateで取り消さず、その命題はmeaning_comparison_source axisのunknownとして状態/原Refs/原理由/knowledge ownerを別に保持する。pair自体unknownの場合は既存pair axisが未評価を保持する。別pairのunknown/conflictをknownで消さない。完全同値命題の複写は未決を増やす独立根拠とせず、元snapshotの全複写を保持。文字列差やdigest差から意味相反を作らない。",
+      "unformattable_pair": "slotのbinding/template_ref/descriptor_kind未供給ではmeaning_pair_axesはnull（未評価）。元所在はInputIssueへ保存する。左右のどちらかのfact Refがobjectでなければ、整列順に依存せずslot.binding.template_refをsubjectにしてunknown、供給された原Refsだけを保存する。slot/fact不足を別candidate成功で相殺しない。",
+      "missing_presence": "as_listの空走査はconstructorが読める要素が無いという局所表現で、元memberを[]へ書換える処理ではない。未供給の必要母集合/slot/source/bindingは先行意味関数のmissing/unknownと元所在へ残し、builderはそれを保存する。decode失敗時はInputIssueを保存し空構成を成功判定に使わない。",
+      "same_pair_unknown_trace": "meaning_comparison_sourceは既存AxisResult[]内の命題診断軸。同pairの原入力命題はslot不掲載でも保持し、別pairの命題は混ぜない。source Refがあればsubject_ref、なければpairの既存fact/subtree Refを使い無sourceを生成しない。original_refsとComparison.input_bindingから元命題/equivalent/null/理由へ辿る。資格取得ではない。完全同値命題の複写は新unknownを増やさない。",
+      "reference_equality": "Refのidentity/revision/scope/ownerは双方供給non-nullで型付きJSON同値の場合のみ同subjectとしてjoinする。sha256は双方供給non-null時だけ比較し、片側未供給/nullをdigest一致の証明にしない。source_locatorは所在で比較identityにしない。pack_dependency_versionsは双方のRef[]について各要素にref_sameの相手があることを双方向へ確認し、順序/完全同値重複/locatorは意味資格にしない。元配列は保持する。scalar版memberは供給確認の上で同値を比較するが、これは同binding追跡の条件で版内容/実資格の成立を保証しない。",
+      "trace_cause_diagnostics": "既存knowledge_record_traceの所在state/理由は保持し、construction_issuesをbuilderのInputIssueへ追加して同subject原record未供給・同Ref異本文複数・operational_state member不在・明示nullの所在と理由を区別する。knowledge_records root member不在は既存root欠落所見を使い、同じ欠落の二重所見を足さない。単なるunknownを意味conflictや運用stateへ変換しない。 同一locator/reason/source_refのInputIssueはcanonical同値ごと一度だけ返す。別bindingから同じ原原因を再発見しても増やさず、異なる所在・理由・原Refの所見はそれぞれ保持する。原binding/recordの複写はsnapshot内に保持する。",
+      "axis_and_owner_composition": {
+        "axis": "meaning_pair_axes.axisは承認descriptor名（例required input）でpairの追加所見。既存required input.definition等の項目定義所見を置換/改名せず同じComparison.axesへ併存させる。qualified false/原不足を別axis knownで相殺しない。",
+        "owner": "既存knowledge_owner等は論理責務role。この追補backflow_ownerは原Binding.knowledge_ref.ownerの候補文字列を保持する。role→原owner候補の対応であり、実recipient資格/通知/権限の生成ではない。未供給ownerはnull。",
+        "builder": "axesはproducer_symbol/input_binding/subject/axis/原refsの由来を保って追加し、既存findingやInputIssueを消さない。knowledge_record_traceのunknownと原因別InputIssueは状態と所在の別観点。全比較確定の新gateを作らない。"
+      }
+    },
+    "pure_reference_notation": {
+      "authority": "この追補のconstructor選択とjoin/優先を示す有限参照記法。下記definitionsの業務path/literalを規範とし、読取器は汎用演算だけを実装する。既存関数の他意味規則は置換しない。",
+      "entry_arguments": {
+        "required_input_refs": {
+          "v": "ValidatedSupply"
+        },
+        "knowledge_material": {
+          "v": "ValidatedSupply",
+          "field": "counterexamples または limits の既存field名"
+        },
+        "knowledge_trace_axes": {
+          "v": "ValidatedSupply"
+        },
+        "meaning_pair_axes": {
+          "v": "ValidatedSupply",
+          "slot": "同じv.input内のDescriptorSlot"
+        },
+        "supplied_source_refs": {
+          "v": "ValidatedSupply"
+        },
+        "construction_issues": {
+          "v": "ValidatedSupply"
+        }
+      },
+      "entry_returns": {
+        "required_input_refs": "Ref[]",
+        "knowledge_material": "RawValue",
+        "knowledge_trace_axes": "AxisResult[]",
+        "meaning_pair_axes": "AxisResult[]|null",
+        "supplied_source_refs": "Ref[]",
+        "construction_issues": "InputIssue[]"
+      },
+      "primitive_operators": {
+        "has": "objectにdecoded keyが供給されたか。",
+        "get": "原member。未供給/非objectはAbsent sentinel、明示default引数があればその値。nullとAbsentは別。",
+        "as_list": "供給listだけを走査し他は空走査。入力は変更しない。",
+        "json_equal": "JSON型付き再帰等値。booleanとnumberは別、JSON numberは値同値。key順は無関係、配列順を保持。Absentは同じsentinelとのみ同値。",
+        "without_key": "objectから指定一keyを除く新objectを返す。object以外は定義域外で呼ばない。owner_body_equalは両objectを先に確認し、原body内RawValue非objectは命題とせず飛ばす。",
+        "len/range/str": "有限listの長さとindex列。strは非boolean整数indexの10進表示だけ。",
+        "sorted_values": "canonical JSONのUnicode文字列による決定的表示順。要素の重複/原値は保つ。",
+        "unique_sorted": "上記順でJSON同値要素を一度だけ出す。候補bindingの同一join重複展開回避、完全同値recordの値一意性、同一fact複写から架空pairを作らないために使う。原snapshotの重複や相反、返却original refsを削除しない。",
+        "sort_by_json": "指定keyがAbsentの要素を全canonical JSON値より前に置く。供給されたkey値はnullを含めcanonical JSONのUnicode文字列順へ整列。同じsort keyの要素は入力順を保つ。keyはdefinitionsで明示し、Absentをnullへ変換しない。",
+        "if/ifexp/and/or/not": "boolean限定、ifとand/orは短絡。RawValue truthinessを使わない。",
+        "for/return/assignment/append": "有限配列の走査と局所値の構成。入力snapshotへの書込みなし。",
+        "object/list/subscript": "JSON object/list構成、定義内で存在を確定したindex/memberの読取りと新局所objectのmember代入。",
+        "is_object/is_array/is_string": "JSON object/list/stringかを判定。",
+        "==/!=/is/is not/in/not in/+": "==/!=はJSON型付き等値。is/is notはNone/True/False singletonの同一/非同一。in/not inは有限listの型付きJSON値所属/非所属。+は整数index加算または明示文字列連結。"
+      },
+      "definitions": "def ref_same(a,b):\n    if not is_object(a) or not is_object(b):\n        return False\n    for key in ['identity','revision','scope','owner']:\n        if not has(a,key) or not has(b,key) or get(a,key) is None or get(b,key) is None or not json_equal(get(a,key),get(b,key)):\n            return False\n    if has(a,'sha256') and has(b,'sha256') and get(a,'sha256') is not None and get(b,'sha256') is not None:\n        return json_equal(get(a,'sha256'),get(b,'sha256'))\n    return True\n\ndef ref_collections_same(a,b):\n    if not is_array(a) or not is_array(b):\n        return False\n    for left in a:\n        found = False\n        for right in b:\n            if ref_same(left,right):\n                found = True\n        if not found:\n            return False\n    for right in b:\n        found = False\n        for left in a:\n            if ref_same(left,right):\n                found = True\n        if not found:\n            return False\n    return True\n\ndef binding_same(a,b):\n    if not is_object(a) or not is_object(b):\n        return False\n    for key in ['template_ref','knowledge_ref','requirement_ref','oracle_ref','pack_ref']:\n        if not ref_same(get(a,key),get(b,key)):\n            return False\n    for key in ['pack_contract_version','pack_artifact_version','version_target']:\n        if not has(a,key) or not has(b,key) or not json_equal(get(a,key),get(b,key)):\n            return False\n    return ref_collections_same(get(a,'pack_dependency_versions'),get(b,'pack_dependency_versions'))\n\ndef snapshot_input(v):\n    if is_object(v) and is_object(get(v,'input')):\n        return get(v,'input')\n    return {}\n\ndef source_usable(v,ref):\n    inp = snapshot_input(v)\n    if not is_array(get(v,'unusable_source_refs')):\n        return False\n    for bad in as_list(get(v,'unusable_source_refs')):\n        if ref_same(bad,ref):\n            return False\n    for source in as_list(get(inp,'sources')):\n        if ref_same(get(source,'ref'),ref) and get(source,'role') == 'semantic_json':\n            return True\n    return False\n\ndef owner_body_equal(a,b,excluded_key):\n    return is_object(a) and is_object(b) and json_equal(without_key(a,excluded_key),without_key(b,excluded_key))\n\ndef fact_usable(v,fact):\n    if not is_object(fact) or not source_usable(v,get(fact,'source_ref')):\n        return False\n    for source in as_list(get(snapshot_input(v),'sources')):\n        if ref_same(get(source,'ref'),get(fact,'source_ref')):\n            for group in as_list(get(get(source,'content'),'descriptor_facts')):\n                for original in as_list(get(group,'facts')):\n                    if ref_same(get(original,'ref'),get(fact,'ref')) and owner_body_equal(original,fact,'source_ref'):\n                        return True\n    return False\n\ndef selected_bindings(v):\n    inp = snapshot_input(v)\n    choices = []\n    if is_object(get(inp,'binding')):\n        choices.append(get(inp,'binding'))\n    for slot in as_list(get(inp,'descriptors')):\n        if is_object(get(slot,'binding')):\n            choices.append(get(slot,'binding'))\n    selected = []\n    for binding in choices:\n        for candidate in as_list(get(inp,'candidates')):\n            if is_object(get(binding,'knowledge_ref')) and ref_same(get(binding,'template_ref'),candidate):\n                selected.append(binding)\n    return unique_sorted(selected)\n\ndef required_input_refs(v):\n    refs = []\n    inp = snapshot_input(v)\n    for binding in selected_bindings(v):\n        for slot in as_list(get(inp,'descriptors')):\n            if get(slot,'descriptor_kind') == 'required input' and binding_same(get(slot,'binding'),binding):\n                for fact in as_list(get(slot,'facts')):\n                    if binding_same(get(fact,'binding'),binding) and has(fact,'meaning') and get(fact,'meaning') is not None and is_object(get(fact,'ref')) and fact_usable(v,fact):\n                        refs.append(get(fact,'ref'))\n    return sorted_values(refs)\n\ndef knowledge_material(v,field):\n    entries = []\n    if field not in ['counterexamples','limits']:\n        return None\n    for binding in selected_bindings(v):\n        matches = []\n        for record in as_list(get(snapshot_input(v),'knowledge_records')):\n            if ref_same(get(record,'ref'),get(binding,'knowledge_ref')):\n                matches.append(record)\n        if len(matches) == 0:\n            entries.append({'candidate_ref':get(binding,'template_ref'),'knowledge_ref':get(binding,'knowledge_ref'),'presence':'absent'})\n        for record in matches:\n            entry = {'candidate_ref':get(binding,'template_ref'),'knowledge_ref':get(record,'ref'),'presence':'absent'}\n            if has(record,field):\n                entry['presence'] = 'explicit_null' if get(record,field) is None else 'supplied'\n                entry['value'] = get(record,field)\n            entries.append(entry)\n    return sorted_values(entries)\n\ndef record_original_refs(record):\n    refs = []\n    if is_object(get(record,'ref')):\n        refs.append(get(record,'ref'))\n    for ref in as_list(get(record,'provenance_refs')):\n        if is_object(ref):\n            refs.append(ref)\n    for key in ['limited_adoption_ref','evaluation_ref','os_registration_ref','independent_verification_ref','adoption_ref']:\n        if is_object(get(record,key)):\n            refs.append(get(record,key))\n    return sorted_values(refs)\n\ndef knowledge_trace_axes(v):\n    axes = []\n    for binding in selected_bindings(v):\n        subject = get(binding,'knowledge_ref')\n        if is_object(subject):\n            matches = []\n            for record in as_list(get(snapshot_input(v),'knowledge_records')):\n                if ref_same(get(record,'ref'),subject):\n                    matches.append(record)\n            state = 'unknown'\n            reason = '同一knowledge Refの原KnowledgeRecordが未供給または一意でない。'\n            refs = []\n            for record in matches:\n                for ref in record_original_refs(record):\n                    refs.append(ref)\n            refs = sorted_values(refs)\n            distinct_records = unique_sorted(matches)\n            if len(distinct_records) == 1:\n                if has(distinct_records[0],'operational_state') and get(distinct_records[0],'operational_state') is not None:\n                    state = 'resolved'\n                    reason = '同一immutable snapshotの原KnowledgeRecordを一意に辿れる。運用成立を意味しない。'\n                else:\n                    reason = '原KnowledgeRecordのoperational_stateが未供給またはnull。'\n            axes.append({'subject_ref':subject,'binding':binding,'axis':'knowledge_record_trace','state':state,'original_refs':refs,'reason':reason,'backflow_owner':None if state == 'resolved' else get(subject,'owner',None)})\n    return sorted_values(axes)\n\ndef comparison_usable(v,comparison):\n    ref = get(comparison,'comparison_source_ref')\n    if not source_usable(v,ref):\n        return False\n    for source in as_list(get(snapshot_input(v),'sources')):\n        if ref_same(get(source,'ref'),ref):\n            for original in as_list(get(get(source,'content'),'meaning_comparisons')):\n                if is_object(original) and owner_body_equal(original,comparison,'comparison_source_ref'):\n                    return True\n    return False\n\ndef meaning_pair_axes(v,slot):\n    results = []\n    if not is_object(get(slot,'binding')) or not is_object(get(get(slot,'binding'),'template_ref')) or not has(slot,'descriptor_kind'):\n        return None\n    facts = sort_by_json(unique_sorted(as_list(get(slot,'facts'))),'ref')\n    for i in range(len(facts)):\n        for j in range(i+1,len(facts)):\n            left = facts[i]\n            right = facts[j]\n            matched = []\n            for comparison in as_list(get(snapshot_input(v),'meaning_comparisons')):\n                pair = (ref_same(get(comparison,'left_fact_ref'),get(left,'ref')) and ref_same(get(comparison,'right_fact_ref'),get(right,'ref'))) or (ref_same(get(comparison,'right_fact_ref'),get(left,'ref')) and ref_same(get(comparison,'left_fact_ref'),get(right,'ref')))\n                if pair and binding_same(get(left,'binding'),get(slot,'binding')) and binding_same(get(right,'binding'),get(slot,'binding')) and fact_usable(v,left) and fact_usable(v,right) and comparison_usable(v,comparison):\n                    matched.append(comparison)\n            state = 'unknown'\n            reason = '同bindingのqualifiedな独立意味比較が未供給または未確定。'\n            for comparison in matched:\n                if get(comparison,'equivalent') is True and state == 'unknown':\n                    state = 'known'\n                    reason = '同bindingのqualifiedな独立意味比較が同義を示す。'\n            for comparison in matched:\n                if get(comparison,'equivalent') is False:\n                    state = 'conflict'\n                    reason = '同bindingのqualifiedな独立意味比較が相反を示す。'\n            refs = []\n            subject = get(get(slot,'binding'),'template_ref')\n            if is_object(get(left,'ref')) and is_object(get(right,'ref')):\n                subject = get(left,'ref')\n            if is_object(get(left,'ref')):\n                refs.append(get(left,'ref'))\n            if is_object(get(right,'ref')):\n                refs.append(get(right,'ref'))\n            for ref in as_list(get(slot,'comparison_refs')):\n                refs.append(ref)\n            for comparison in matched:\n                ref = get(comparison,'comparison_source_ref')\n                if is_object(ref) and ref not in refs:\n                    refs.append(ref)\n            results.append({'subject_ref':subject,'binding':get(slot,'binding'),'axis':get(slot,'descriptor_kind'),'state':state,'original_refs':sorted_values(refs),'reason':reason,'backflow_owner':get(get(get(slot,'binding'),'knowledge_ref'),'owner',None) if state != 'known' else None})\n            if state != 'unknown':\n                for pending_axis in same_pair_pending_axes(v,slot,left,right,subject):\n                    results.append(pending_axis)\n    return sorted_values(results)\n\ndef supplied_source_refs(v):\n    refs = []\n    for source in as_list(get(snapshot_input(v),'sources')):\n        if is_object(get(source,'ref')):\n            refs.append(get(source,'ref'))\n    return sorted_values(refs)\n\n\ndef construction_issues(v):\n    inp = snapshot_input(v)\n    if not is_object(get(v,'input')):\n        return []\n    issues = []\n    if not is_array(get(v,'unusable_source_refs')):\n        issues.append({'locator':'','reason':'先行validation結果のsource資格不足一覧が未供給。sourceをusableへ補完しない。','source_ref':None})\n    for key in ['binding','candidates','descriptors','knowledge_records','sources']:\n        if not has(inp,key):\n            issues.append({'locator':'/'+key,'reason':'返却constructorが読む元memberが未供給。意味充足へ補完しない。','source_ref':None})\n    candidates = as_list(get(inp,'candidates'))\n    bindings = selected_bindings(v)\n    for i in range(len(candidates)):\n        found = False\n        for binding in bindings:\n            if ref_same(get(binding,'template_ref'),candidates[i]):\n                found = True\n        if not found:\n            issues.append({'locator':'/candidates/'+str(i),'reason':'候補に同template Refのbinding/knowledge Refを結べない。','source_ref':candidates[i] if is_object(candidates[i]) else None})\n    slots = as_list(get(inp,'descriptors'))\n    for i in range(len(slots)):\n        for key in ['binding','descriptor_kind']:\n            if not has(slots[i],key):\n                issues.append({'locator':'/descriptors/'+str(i)+'/'+key,'reason':'意味比較constructorが読む元memberが未供給。対象pairを未評価に保つ。','source_ref':None})\n        if is_object(get(slots[i],'binding')) and not is_object(get(get(slots[i],'binding'),'template_ref')):\n            issues.append({'locator':'/descriptors/'+str(i)+'/binding/template_ref','reason':'意味比較のsubject原Refが未供給。対象pairを未評価に保つ。','source_ref':None})\n        facts = as_list(get(slots[i],'facts'))\n        for j in range(len(facts)):\n            if not is_object(get(facts[j],'ref')):\n                issues.append({'locator':'/descriptors/'+str(i)+'/facts/'+str(j)+'/ref','reason':'意味定義factの原Refが未供給。返却Refを生成しない。','source_ref':get(facts[j],'source_ref') if is_object(get(facts[j],'source_ref')) else None})\n    if is_array(get(inp,'knowledge_records')):\n        for binding in selected_bindings(v):\n            subject = get(binding,'knowledge_ref')\n            matches = []\n            indices = []\n            records = get(inp,'knowledge_records')\n            for i in range(len(records)):\n                if ref_same(get(records[i],'ref'),subject):\n                    matches.append(records[i])\n                    indices.append(i)\n            distinct = unique_sorted(matches)\n            if len(distinct) == 0:\n                issues.append({'locator':'/knowledge_records','reason':'同一knowledge Refの原KnowledgeRecordが未供給。','source_ref':subject})\n            elif len(distinct) != 1:\n                issues.append({'locator':'/knowledge_records','reason':'同一knowledge Refに異なる原本文のrecordが複数あり、一意に追跡できない。','source_ref':subject})\n            elif not has(distinct[0],'operational_state'):\n                issues.append({'locator':'/knowledge_records/'+str(indices[0])+'/operational_state','reason':'原KnowledgeRecordのoperational_state memberが未供給。','source_ref':subject})\n            elif get(distinct[0],'operational_state') is None:\n                issues.append({'locator':'/knowledge_records/'+str(indices[0])+'/operational_state','reason':'原KnowledgeRecordのoperational_stateが明示null。','source_ref':subject})\n    return unique_sorted(issues)\n\n\ndef same_pair_pending_axes(v,slot,left,right,pair_subject):\n    results = []\n    for comparison in unique_sorted(as_list(get(snapshot_input(v),'meaning_comparisons'))):\n        pair = (ref_same(get(comparison,'left_fact_ref'),get(left,'ref')) and ref_same(get(comparison,'right_fact_ref'),get(right,'ref'))) or (ref_same(get(comparison,'right_fact_ref'),get(left,'ref')) and ref_same(get(comparison,'left_fact_ref'),get(right,'ref')))\n        ref = get(comparison,'comparison_source_ref')\n        if pair:\n            unresolved = False\n            reason = ''\n            if not is_object(ref):\n                unresolved = True\n                reason = '同pairの独立比較命題のsource参照が未供給。対応結果とは別にunknownを保持する。'\n            elif not source_usable(v,ref):\n                unresolved = True\n                reason = '同pairの独立比較命題のsourceが未資格または意味正本でない。対応結果とは別にunknownを保持する。'\n            elif not comparison_usable(v,comparison):\n                unresolved = True\n                reason = '同pairの独立比較命題を意味正本の原bodyへ結べない。対応結果とは別にunknownを保持する。'\n            elif not has(comparison,'equivalent') or get(comparison,'equivalent') is None:\n                unresolved = True\n                reason = '同pairの独立比較命題が未確定。対応結果とは別にunknownを保持する。'\n            if unresolved:\n                refs = []\n                if is_object(get(left,'ref')):\n                    refs.append(get(left,'ref'))\n                if is_object(get(right,'ref')):\n                    refs.append(get(right,'ref'))\n                subject = pair_subject\n                if is_object(ref):\n                    refs.append(ref)\n                    subject = ref\n                if is_string(get(comparison,'reason')):\n                    reason = reason + ' 原命題の理由: ' + get(comparison,'reason')\n                else:\n                    reason = reason + ' 原命題の理由は未供給またはnull。'\n                results.append({'subject_ref':subject,'binding':get(slot,'binding'),'axis':'meaning_comparison_source','state':'unknown','original_refs':sorted_values(refs),'reason':reason,'backflow_owner':get(get(get(slot,'binding'),'knowledge_ref'),'owner',None)})\n    return sorted_values(results)\n"
+    },
+    "literal_provenance": {
+      "required input": "既存descriptor_meaningsと批准L3/L10-F01/F02（source_basis追加pin）。追加pair軸と既存descriptor.definition軸の責務はaxis_and_owner_compositionで分離。",
+      "knowledge_record_trace/resolved/unknown": "L3-F08/N01/N02とL9-F08の追跡観測を既存AxisResult/source stateへ束縛した表示名。原運用stateではない。",
+      "candidate_ref/knowledge_ref/presence/value": "RawValue内の候補別原値表示の構造名。既存Refと原値の所在を明確にする技術具体化。実資格を生成しない。",
+      "comparison_false_conflict": "既存type_contract.types.MeaningComparisonとL4.descriptor_comparison。",
+      "reason_strings": "上記不足/追跡/意味比較規則を述べた診断文。旧sourceから実権限や運用stateを導かない。",
+      "meaning_comparison_source": "L3/L10-N02の状態/理由/戻し先保持を既存AxisResultへ具体化した診断名。新運用stateや資格手続きではない。",
+      "trace_cause_reasons": "L3/L10-F08/N02の原record不足/相反/未知の保存を既存InputIssueへ局所具体化した診断文。旧AxisResult理由/運用state/実recipient資格を変更しない。"
+    },
+    "legacy_rederivation": {
+      "basis": "既存legacy_comparisonの4F5A/98372/F2C275とfailure_basis UTW014/020/021を保持。",
+      "preserve": "JSON意味正本/view分離、独立元source、局所不足と原trace、他owner実成立を作らない。",
+      "change": "必要input定義Refと原knowledge RawValueの候補別返却、既存Refでの追跡、比較命題joinを具体化。旧registry/整数版/lifecycle/署名/承認gateは移さない。",
+      "reason": "原値不足を空集合やhash成功で隠さず、COREへ必要材料と不足を分けて返す既承認義務を具体化する。"
+    },
+    "limits": [
+      "この追補のprojection対照は全9意味関数のwhole計算や全construction plan機械化ではない。既存105負例/24追加計画/9正常oracleは原値を保持する。",
+      "実MSG各field意味/要否/oracle・relation先、独立比較命題供給元、実資格/root custody、CORE/CONNECT/OSの正式binding/receiptは未成立。",
+      "snapshot内原record追跡と実owner source資格は別。operational_state/限界/反例を存在・同値だけで採択/knownへ昇格しない。",
+      "L6は関数設計、L7は対検証、実装は層外。具体parser/library/数値/資源/配置・実fixture/oracle凍結・実接続・CI/L11/全92親430対意味閉包・実装Readyは未成立。"
+    ]
   }
 }
