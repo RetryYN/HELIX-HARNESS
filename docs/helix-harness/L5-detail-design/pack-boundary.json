@@ -3181,52 +3181,7 @@
             "fact"
           ],
           "body": {
-            "op": "if",
-            "condition": {
-              "op": "and",
-              "items": [
-                {
-                  "op": "equal",
-                  "left": {
-                    "op": "get",
-                    "value": {
-                      "var": "fact"
-                    },
-                    "pointer": "/subject_ref/owner"
-                  },
-                  "right": {
-                    "op": "get",
-                    "value": {
-                      "var": "input"
-                    },
-                    "pointer": "/new_pack_ref/owner"
-                  }
-                },
-                {
-                  "op": "equal",
-                  "left": {
-                    "op": "get",
-                    "value": {
-                      "var": "fact"
-                    },
-                    "pointer": "/subject_ref/scope"
-                  },
-                  "right": {
-                    "op": "get",
-                    "value": {
-                      "var": "input"
-                    },
-                    "pointer": "/new_pack_ref/scope"
-                  }
-                }
-              ]
-            },
-            "then": {
-              "literal": "reference_stale"
-            },
-            "else": {
-              "literal": "reference_conflict"
-            }
+            "literal": "reference_stale"
           }
         },
         "join_findings": {
