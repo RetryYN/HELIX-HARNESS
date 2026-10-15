@@ -521,7 +521,8 @@
           "qualification_state": "string",
           "material_binding_results": "map<string,string>",
           "derivation_data_results": "map<string,string>",
-          "knowledge_binding_state": "string"
+          "knowledge_binding_state": "string",
+          "product_value_data_result": "string"
         },
         "additional_members": "reject"
       },
@@ -813,7 +814,8 @@
         "assessment": "/reference_program/definitions/HELIXBRAIN-L5-022-F01.assessment",
         "primary": "/reference_program/definitions/HELIXBRAIN-L5-022-F01.primary"
       },
-      "primary_output_type": "F01Result"
+      "primary_output_type": "F01Result",
+      "owner_return_reason": "endpointだけ未解決の場合は受領対象の端点照合不足としてHARNESSへ返す。L10-F01のBRAIN003/005意味返却はmaterial差/名前claimで導く。両者を分離するcause sourceが未供給の未知endpoint単独例については、BRAIN意味返却の具体化が残り、HARNESS候補だけで元義務の充足を主張しない。"
     },
     {
       "id": "HELIXBRAIN-L5-022-F02",
@@ -878,7 +880,7 @@
         "material_ref.identity"
       ],
       "algorithm_ja": [
-        "primaryは原材料/製品stateを保存しnot_derived。product_value_invented claimがtrueならrejected、falseでstate=unsetならnone、それ以外はuninterpreted_product_value_held。未供給の状態意味を製品値確定へ補完せず、42という代表文字列だけで分岐しない。",
+        "primaryは原材料/製品stateを保存しnot_derived。product_value_invented claimはtrueならrejected、falseならnone。assessment.product_value_data_resultはstateがunsetの時だけ不在、それ以外はuninterpreted_product_value_held。claim trueでもデータ所見を保持し、未解釈値を製品値確定へ補完しない。",
         "assessmentは全derivation materialとmaterial_ref.identityを照合。derivation_data_resultsは名指し三keyと全供給keyの和集合。欠落→missing_held、全keyにowner=BRAIN/state=derived_complete→BRAIN_product_derivation_rejected、名指し三種外→unsupported_derivation_kind_held、残るowner/state未解釈→owner_or_state_uninterpreted_held、既知候補→candidate_input_only。",
         "製品導出候補はCORE/HARNESS、材料identity不足はBRAIN。knowledge_ref独立target未供給はknowledge_binding_stateに保持し実資格と分ける。",
         "effect=false/unaffected_Q=original_Qは有限fixture無作用表示。実製品導出/採用は行わない。"
@@ -1304,7 +1306,7 @@
     },
     {
       "requirement_ref": "HELIXBRAIN-L3-022-F03",
-      "unclosed": "product_value_stateは自由stringの原値。unset以外の意味変換/製品schemaは未供給なので主所見で未解釈保留する。保留を実捏造の確定/製品採用へ変換しない。"
+      "unclosed": "product_value_stateは自由stringの原値。unset以外の意味変換/製品schemaは未供給なのでassessment.product_value_data_resultで未解釈保留する。保留を実捏造の確定/製品採用へ変換しない。"
     },
     {
       "requirement_ref": "HELIXBRAIN-L3-022-B01",
@@ -5668,28 +5670,8 @@
                   "value": "rejected"
                 },
                 "else": {
-                  "op": "if",
-                  "condition": {
-                    "op": "json_equal",
-                    "left": {
-                      "op": "path",
-                      "path": [
-                        "product_value_state"
-                      ]
-                    },
-                    "right": {
-                      "op": "const",
-                      "value": "unset"
-                    }
-                  },
-                  "then": {
-                    "op": "const",
-                    "value": "none"
-                  },
-                  "else": {
-                    "op": "const",
-                    "value": "uninterpreted_product_value_held"
-                  }
+                  "op": "const",
+                  "value": "none"
                 }
               }
             }
@@ -6248,6 +6230,34 @@
             "knowledge_binding_state": {
               "op": "const",
               "value": "independent_target_not_supplied"
+            },
+            "product_value_data_result": {
+              "op": "if",
+              "condition": {
+                "op": "json_equal",
+                "left": {
+                  "op": "path",
+                  "path": [
+                    "product_value_state"
+                  ]
+                },
+                "right": {
+                  "op": "const",
+                  "value": "unset"
+                }
+              },
+              "then": {
+                "op": "get",
+                "value": {
+                  "op": "const",
+                  "value": {}
+                },
+                "key": "product_value_data_result"
+              },
+              "else": {
+                "op": "const",
+                "value": "uninterpreted_product_value_held"
+              }
             }
           }
         }
@@ -7990,7 +8000,8 @@
           "qualification_state": "string",
           "material_binding_results": "map<string,string>",
           "derivation_data_results": "map<string,string>",
-          "knowledge_binding_state": "string"
+          "knowledge_binding_state": "string",
+          "product_value_data_result": "string"
         },
         "additional_members": "reject"
       },
@@ -8062,7 +8073,10 @@
       "view_meaning_binding_state": [
         "semantic_projection_not_supplied"
       ],
-      "domain_role": "ASTで到達する固定診断表示の目録。candidate_owner_returnsはF04任意key+-ownerの構造表示も含むため閉じたenumではない。copied state/record値は入力型の自由域。"
+      "domain_role": "ASTで到達する固定診断表示の目録。candidate_owner_returnsはF04任意key+-ownerの構造表示も含むため閉じたenumではない。copied state/record値は入力型の自由域。",
+      "product_value_data_result": [
+        "uninterpreted_product_value_held"
+      ]
     }
   },
   "local_probe_inventory": [
@@ -8608,7 +8622,7 @@
       "id": "B022-PRODUCT-STATE-42",
       "function_ref": "HELIXBRAIN-L5-022-F03",
       "raw_sha256": "41fa786458886094270776798059f0bc5d7e2ab91a9bd6488b4a7496d24ebba7",
-      "expected_full_sha256": "194072eedff35dfee6d0988e2c800922e19a928350fcb426ee32701bf288df1b",
+      "expected_full_sha256": "2eb4df06aebb8162dddc25a51a7e11ac9343faa316d494a9d4c669e702d5c11f",
       "role": "independent_whole",
       "source": {
         "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
@@ -8620,7 +8634,7 @@
       "id": "B022-PRODUCT-STATE-known",
       "function_ref": "HELIXBRAIN-L5-022-F03",
       "raw_sha256": "c389043a962ed572ba8543383cf87f530ce5c6d57b84d3683743f3b588c2e478",
-      "expected_full_sha256": "d771121b412551af41d9ebbbce988e9941b341d0c193b8183ce055573aba36dd",
+      "expected_full_sha256": "eebee776ba5fcbe622e8a6f856370716cdfe4fb825f75b78dd10d7fec1f10ac1",
       "role": "independent_whole",
       "source": {
         "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
@@ -8632,7 +8646,7 @@
       "id": "B022-PRODUCT-STATE-unknown",
       "function_ref": "HELIXBRAIN-L5-022-F03",
       "raw_sha256": "1c73e7461fdfeefbd3f9744d3eda41df71a035e14266946b25f3f1e31eaa465a",
-      "expected_full_sha256": "1521c47b77ff25b04e207b453927111f3fd55d5d2765bdeff742a966a5ed2310",
+      "expected_full_sha256": "d978f5739abffd4d1bd0ef8a5fef32da7916fd47e602a6b33eb8beb85a41e4ad",
       "role": "independent_whole",
       "source": {
         "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
@@ -8644,7 +8658,7 @@
       "id": "B022-PRODUCT-STATE-EMPTY",
       "function_ref": "HELIXBRAIN-L5-022-F03",
       "raw_sha256": "68f2aab946b44eaeb2fca0cf7e0ac2e7a98e86baf79d7ef154a85cde3eb171c3",
-      "expected_full_sha256": "c1aebbb33e0e5ecc33942dcca077e4043bd0a603024b46284d5133102a3b52cb",
+      "expected_full_sha256": "afe177f4ac6ea2cb595ca71ccf1b914a66349d8e796acecf18ded2df7a60c9fb",
       "role": "independent_whole",
       "source": {
         "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
@@ -8656,7 +8670,7 @@
       "id": "B022-PRODUCT-STATE-pending",
       "function_ref": "HELIXBRAIN-L5-022-F03",
       "raw_sha256": "2726a70ab9a130f632d84cccbd2d8d3c4612542063cc60a3ddc7d0835942da5d",
-      "expected_full_sha256": "f80c5af084bc3c8dead0a298ae1b608f4821e1b8adf676252c12d83317ba28e3",
+      "expected_full_sha256": "4acfb307d0ae4a728c642355720d6c8c946e63aee539571bd0d62127b380959b",
       "role": "independent_whole",
       "source": {
         "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
@@ -8733,6 +8747,66 @@
       "source": {
         "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
         "pointer": "/additional_probes/48",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-42-WITH-CLAIM",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "6b937bbbf7567c5940b9c66c9d448ae007da9e50ec4ed5bd03a4763b5371d864",
+      "expected_full_sha256": "4f6c09c9a14a004e2a58c9477137dc027cabc3a02912ec2d080cf23fab7d4652",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/49",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-known-WITH-CLAIM",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "29346aa1dc8758808d2b5faf35d8643cbc718208232ed4864aea8630a271f0e8",
+      "expected_full_sha256": "29b8fb7291a14d1c53571088e3c85a882c70a1411be893f08b6606cc9cec5abb",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/50",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-unknown-WITH-CLAIM",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "2917791358df30e8f86af1e8e9a92d44928f847b0a8cd6ff0d2a1be4cbc784ab",
+      "expected_full_sha256": "e3e8b6deee2aeac2201e3a9f3b5ed67734aa0d51ab29669afb2e735797ccc6f7",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/51",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-EMPTY-WITH-CLAIM",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "290a8a19da87604aeee7c686f6c4419e7f1accc95d9e32c4a2add8816e18d8fe",
+      "expected_full_sha256": "5f0fe4c2aed0139db4fd16bc50eeadc73c157ecdd3680e1d987c57dc97261b88",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/52",
+        "revision_binding": "same_candidate_document"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-pending-WITH-CLAIM",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "raw_sha256": "c65adb07adb00c7ca73faa14cf8b09d452d37883cb175fe4620c03c3e18b1e5d",
+      "expected_full_sha256": "102200e34dd5d0c32f6efc98c55a7ddc027c2005cc9ac6895e7d5fe90732c2cb",
+      "role": "independent_whole",
+      "source": {
+        "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
+        "pointer": "/additional_probes/53",
         "revision_binding": "same_candidate_document"
       }
     }
@@ -9944,19 +10018,9 @@
         "canonical_sha256": "d5a7606c75f86f5046e5c8312a9819e4778be8ab33a7e8950d62f7ba620684fe"
       },
       {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.primary/fields/claim_results/fields/product_value_invented/else/condition/right/value",
-        "value": "unset",
-        "canonical_sha256": "ac66e3bc9621458d8b98a8ca6e320ef8828d5f8af56bdc50b2983f7bd0017e4a"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.primary/fields/claim_results/fields/product_value_invented/else/then/value",
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.primary/fields/claim_results/fields/product_value_invented/else/value",
         "value": "none",
         "canonical_sha256": "30a0924a3360be687d1df9fcbbfdff62c01bc0fd14036ab9076cf7f451568666"
-      },
-      {
-        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.primary/fields/claim_results/fields/product_value_invented/else/else/value",
-        "value": "uninterpreted_product_value_held",
-        "canonical_sha256": "21f18a5f646467499f4c1d0ed14ad2d09f8b27fb23e1bb60426e735d3e99e0d8"
       },
       {
         "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.primary/fields/effects/fields/actual_knowledge_adopted/value",
@@ -10150,6 +10214,21 @@
         "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/knowledge_binding_state/value",
         "value": "independent_target_not_supplied",
         "canonical_sha256": "e7d13db325530cbaba737d0668cc7f09e7f51789f8e09b6b15c8f7e28e181c70"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/product_value_data_result/condition/right/value",
+        "value": "unset",
+        "canonical_sha256": "ac66e3bc9621458d8b98a8ca6e320ef8828d5f8af56bdc50b2983f7bd0017e4a"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/product_value_data_result/then/value/value",
+        "value": {},
+        "canonical_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      {
+        "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F03.assessment/value/fields/product_value_data_result/else/value",
+        "value": "uninterpreted_product_value_held",
+        "canonical_sha256": "21f18a5f646467499f4c1d0ed14ad2d09f8b27fb23e1bb60426e735d3e99e0d8"
       },
       {
         "pointer": "/reference_program/definitions/HELIXBRAIN-L5-022-F04.primary/bindings/$contracts/value/then/value",
@@ -10777,13 +10856,8 @@
     ]
   },
   "mutation_observation_boundary": {
-    "observed": "原45＋既存local3＋追加49の全whole。2件は不足witness。",
-    "unclosed": "規則mutationの検出率/未見複合の網羅は未証明。型域摂動とwhole一致を代替にしない。",
-    "historical_review_observation": {
-      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3171#issuecomment-6185179366",
-      "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
-      "role": "旧headのreview観測。現要求/規範/新gateではない。"
-    }
+    "observed": "原45＋local3＋追加54の全whole。2件は不足witness。",
+    "unclosed": "規則mutationの検出率/未見複合の網羅は未証明。型域摂動とwhole一致を代替にしない。"
   },
   "consumer_member_bindings": [
     {
@@ -10834,9 +10908,11 @@
         "assessment.material_binding_results",
         "assessment.derivation_data_results",
         "assessment.knowledge_binding_state",
-        "assessment.candidate_owner_returns"
+        "assessment.candidate_owner_returns",
+        "primary.claim_results.product_value_invented",
+        "assessment.product_value_data_result"
       ],
-      "responsibility": "CORE/HARNESSの三導出先入力とBRAIN材料意味。未供給knowledge targetの不足を製品導出や実資格で補わない。",
+      "responsibility": "CORE/HARNESSの三導出先入力とBRAIN材料意味。未供給knowledge targetの不足を製品導出や実資格で補わない。 禁止claimと未解釈データを別々に読む。data_result不在はstate=unsetを表し実製品値の妥当性の証明ではない。",
       "binding_state": "logical_fixture_projection_not_actual_consumer_receipt",
       "unclosed": "実consumer source/資格/custody/受領receiptは未供給。候補表示から生成しない。"
     },

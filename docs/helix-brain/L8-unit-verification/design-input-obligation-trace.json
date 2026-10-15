@@ -239,7 +239,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/0/final_assessment",
         "canonical_sha256": "7dadfbdd637e23b32ee0ab2af2552cbb82a9445d93ba9b5240b136cd00532502",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -417,7 +417,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/1/final_assessment",
         "canonical_sha256": "9872a78701e254d163412d6d0b2dfc6a46da083124aac08227b594dff575b05f",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -598,7 +598,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/2/final_assessment",
         "canonical_sha256": "9872a78701e254d163412d6d0b2dfc6a46da083124aac08227b594dff575b05f",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -779,7 +779,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/3/final_assessment",
         "canonical_sha256": "9872a78701e254d163412d6d0b2dfc6a46da083124aac08227b594dff575b05f",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -960,7 +960,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/4/final_assessment",
         "canonical_sha256": "9872a78701e254d163412d6d0b2dfc6a46da083124aac08227b594dff575b05f",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -1141,7 +1141,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/5/final_assessment",
         "canonical_sha256": "9872a78701e254d163412d6d0b2dfc6a46da083124aac08227b594dff575b05f",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -1320,7 +1320,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/6/final_assessment",
         "canonical_sha256": "9872a78701e254d163412d6d0b2dfc6a46da083124aac08227b594dff575b05f",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -1491,7 +1491,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/7/final_assessment",
         "canonical_sha256": "7123bfd13702f3e1c5682269384a34637024706a1ed9fe64f825833993180ada",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -1676,7 +1676,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/8/final_assessment",
         "canonical_sha256": "7123bfd13702f3e1c5682269384a34637024706a1ed9fe64f825833993180ada",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -1861,7 +1861,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/9/final_assessment",
         "canonical_sha256": "9872a78701e254d163412d6d0b2dfc6a46da083124aac08227b594dff575b05f",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -2015,7 +2015,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/10/final_assessment",
         "canonical_sha256": "b4f489e76a27d3e7bba820103e644a86973c60f2a0685473728bbf0ffd7182d0",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -2167,7 +2167,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/11/final_assessment",
         "canonical_sha256": "a99fd9d4e6759be3d2e717fc07114bc0ecc435af467588ef7ac9524df08f5941",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -2319,7 +2319,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/12/final_assessment",
         "canonical_sha256": "a99fd9d4e6759be3d2e717fc07114bc0ecc435af467588ef7ac9524df08f5941",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -2471,7 +2471,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/13/final_assessment",
         "canonical_sha256": "a99fd9d4e6759be3d2e717fc07114bc0ecc435af467588ef7ac9524df08f5941",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -2623,7 +2623,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/14/final_assessment",
         "canonical_sha256": "a99fd9d4e6759be3d2e717fc07114bc0ecc435af467588ef7ac9524df08f5941",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -2779,7 +2779,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/15/final_assessment",
         "canonical_sha256": "5031b1c3075f7e0a97b787bf8866557ad0005d58dc709911cf2a0f52f8992537",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -2936,7 +2936,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/16/final_assessment",
         "canonical_sha256": "5031b1c3075f7e0a97b787bf8866557ad0005d58dc709911cf2a0f52f8992537",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -3092,7 +3092,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/17/final_assessment",
         "canonical_sha256": "b4f489e76a27d3e7bba820103e644a86973c60f2a0685473728bbf0ffd7182d0",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -3247,7 +3247,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/18/final_assessment",
         "canonical_sha256": "b4f489e76a27d3e7bba820103e644a86973c60f2a0685473728bbf0ffd7182d0",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -3402,7 +3402,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/19/final_assessment",
         "canonical_sha256": "b4f489e76a27d3e7bba820103e644a86973c60f2a0685473728bbf0ffd7182d0",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -3560,7 +3560,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/20/final_assessment",
         "canonical_sha256": "919281259aed984e274db5db1b3763887f7a57ddf79634e5b258923d2eaef214",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -3740,7 +3740,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/21/final_assessment",
         "canonical_sha256": "919281259aed984e274db5db1b3763887f7a57ddf79634e5b258923d2eaef214",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -3920,7 +3920,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/22/final_assessment",
         "canonical_sha256": "919281259aed984e274db5db1b3763887f7a57ddf79634e5b258923d2eaef214",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -4100,7 +4100,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/23/final_assessment",
         "canonical_sha256": "919281259aed984e274db5db1b3763887f7a57ddf79634e5b258923d2eaef214",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -4280,7 +4280,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/24/final_assessment",
         "canonical_sha256": "919281259aed984e274db5db1b3763887f7a57ddf79634e5b258923d2eaef214",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -4460,7 +4460,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/25/final_assessment",
         "canonical_sha256": "919281259aed984e274db5db1b3763887f7a57ddf79634e5b258923d2eaef214",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -4672,7 +4672,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/26/final_assessment",
         "canonical_sha256": "7dadfbdd637e23b32ee0ab2af2552cbb82a9445d93ba9b5240b136cd00532502",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -4854,7 +4854,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/27/final_assessment",
         "canonical_sha256": "38e74fc6af8ff5347cadaf50043f7ef218064f9fb99a3f25d333468c0729759a",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -5050,7 +5050,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/28/final_assessment",
         "canonical_sha256": "38e74fc6af8ff5347cadaf50043f7ef218064f9fb99a3f25d333468c0729759a",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -5236,7 +5236,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/29/final_assessment",
         "canonical_sha256": "1399bed5c25782ff69222d16d1a186dd124d8d1748f75ba041c2d2a5cfda57e5",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -5432,7 +5432,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/30/final_assessment",
         "canonical_sha256": "1399bed5c25782ff69222d16d1a186dd124d8d1748f75ba041c2d2a5cfda57e5",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -5618,7 +5618,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/31/final_assessment",
         "canonical_sha256": "a6e3a9150d7a2191603990d032d510c626c3baa3143902f14f4158a8e14a3078",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -5814,7 +5814,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/32/final_assessment",
         "canonical_sha256": "a6e3a9150d7a2191603990d032d510c626c3baa3143902f14f4158a8e14a3078",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -6000,7 +6000,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/33/final_assessment",
         "canonical_sha256": "25150a3543c0f7e891a8fae232c6fbd8f50092f4e5387cd6f4a9577c0efb59f4",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -6196,7 +6196,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/34/final_assessment",
         "canonical_sha256": "25150a3543c0f7e891a8fae232c6fbd8f50092f4e5387cd6f4a9577c0efb59f4",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -6392,7 +6392,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/35/final_assessment",
         "canonical_sha256": "7d7487ef76a2ea2403152cc54e01b99592fc48d3429d2f1407fe063e8f692b63",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -6588,7 +6588,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/36/final_assessment",
         "canonical_sha256": "7f6f9bac956cc3b8bbc712ba31c83d3c995139a7151eba0d29d62737b0ead663",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -6707,7 +6707,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/37/final_assessment",
         "canonical_sha256": "60fbe91d2f1a603b6f34ba467b9ed027e4ad74774974398a62b4eced1c93b287",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -6823,7 +6823,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/38/final_assessment",
         "canonical_sha256": "6b717479933e3654264a2287b5c1c30c0fdf135ad6f6021de733cf5a130276c9",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -6941,7 +6941,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/39/final_assessment",
         "canonical_sha256": "9a83871187d32293b56f009b781f962f583974f38d081b3f98d37017ad4f2ff1",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -7060,7 +7060,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/40/final_assessment",
         "canonical_sha256": "dab0fcd9429cd51c0f08ac1eecd0a6377646c75aa1ab23c43b12854604c5f80e",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -7180,7 +7180,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/41/final_assessment",
         "canonical_sha256": "dab0fcd9429cd51c0f08ac1eecd0a6377646c75aa1ab23c43b12854604c5f80e",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -7300,7 +7300,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/42/final_assessment",
         "canonical_sha256": "dab0fcd9429cd51c0f08ac1eecd0a6377646c75aa1ab23c43b12854604c5f80e",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -7420,7 +7420,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/43/final_assessment",
         "canonical_sha256": "dab0fcd9429cd51c0f08ac1eecd0a6377646c75aa1ab23c43b12854604c5f80e",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -7539,7 +7539,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/44/final_assessment",
         "canonical_sha256": "9a83871187d32293b56f009b781f962f583974f38d081b3f98d37017ad4f2ff1",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "expected_full_whole": {
         "primary": {
@@ -7724,7 +7724,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/45/final_assessment",
         "canonical_sha256": "7123bfd13702f3e1c5682269384a34637024706a1ed9fe64f825833993180ada",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "source_refs": [
         "HELIXBRAIN-L3-022-F01",
@@ -7894,7 +7894,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/46/final_assessment",
         "canonical_sha256": "802f43247b5cd31d605e0f06a9dace45a663423812fffa8112fedece1660f56c",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "execution_state": "not_executed",
       "baseline_expected_sha256": "03ca05f77e6c68fe2def4d22066f802ef8d2da6454f3fb02f7e3b543d19377b6",
@@ -8122,7 +8122,7 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/47/final_assessment",
         "canonical_sha256": "25150a3543c0f7e891a8fae232c6fbd8f50092f4e5387cd6f4a9577c0efb59f4",
-        "role": "旧commitの独立照合記録値。期待根拠は原L3/L4と原L9素材/明示patch、演算規範は正式AST。"
+        "role": "補助比較値の根拠。"
       },
       "source_refs": [
         "HELIXBRAIN-L3-022-F04",
@@ -8202,8 +8202,8 @@
   },
   "l5_candidate_pin": {
     "path": "docs/helix-brain/L5-detail-design/design-input-obligation-trace.json",
-    "bytes": 439497,
-    "sha256": "12ad393893dc4b85fa57856fd86ecb49eecfac7c898e8dab5bc500b2d3d9a0dd",
+    "bytes": 443252,
+    "sha256": "aaf2579933764e2b48855f381ac6f7cb1b92ec33673928e5787a246fdf80c898",
     "state": "candidate_worktree_bytes_not_approved_or_accepted"
   },
   "additional_probes": [
@@ -15074,11 +15074,6 @@
           "op": "replace",
           "path": "/product_value_state",
           "value": "42"
-        },
-        {
-          "op": "replace",
-          "path": "/claim_results/product_value_invented",
-          "value": "uninterpreted_product_value_held"
         }
       ],
       "raw": {
@@ -15141,7 +15136,7 @@
           "state_transition": "none",
           "implementation_priority": "none",
           "arrival_complete": "none",
-          "product_value_invented": "uninterpreted_product_value_held"
+          "product_value_invented": "none"
         },
         "effects": {
           "actual_knowledge_adopted": false,
@@ -15171,7 +15166,8 @@
           "state_transition": "candidate_input_only",
           "implementation_priority": "candidate_input_only"
         },
-        "knowledge_binding_state": "independent_target_not_supplied"
+        "knowledge_binding_state": "independent_target_not_supplied",
+        "product_value_data_result": "uninterpreted_product_value_held"
       },
       "expected_full_whole": {
         "primary": {
@@ -15199,7 +15195,7 @@
             "state_transition": "none",
             "implementation_priority": "none",
             "arrival_complete": "none",
-            "product_value_invented": "uninterpreted_product_value_held"
+            "product_value_invented": "none"
           },
           "effects": {
             "actual_knowledge_adopted": false,
@@ -15229,13 +15225,14 @@
             "state_transition": "candidate_input_only",
             "implementation_priority": "candidate_input_only"
           },
-          "knowledge_binding_state": "independent_target_not_supplied"
+          "knowledge_binding_state": "independent_target_not_supplied",
+          "product_value_data_result": "uninterpreted_product_value_held"
         }
       },
       "raw_canonical_sha256": "41fa786458886094270776798059f0bc5d7e2ab91a9bd6488b4a7496d24ebba7",
-      "expected_full_sha256": "194072eedff35dfee6d0988e2c800922e19a928350fcb426ee32701bf288df1b",
-      "expected_canonical_sha256": "194072eedff35dfee6d0988e2c800922e19a928350fcb426ee32701bf288df1b",
-      "basis": "L3/L10-F03 BRAINが製品値を決めない。供給済みunset以外の自由stateを成功/値確定へ補完せず未解釈保留をprimaryへ。42だけの否定リストにしない。",
+      "expected_full_sha256": "2eb4df06aebb8162dddc25a51a7e11ac9343faa316d494a9d4c669e702d5c11f",
+      "expected_canonical_sha256": "2eb4df06aebb8162dddc25a51a7e11ac9343faa316d494a9d4c669e702d5c11f",
+      "basis": "L3/L10-F03の製品値非決定。claim結果と未解釈製品値のデータ所見を別memberで保持する。",
       "role": "independent_whole",
       "execution_state": "not_executed",
       "normative_basis": {
@@ -15264,11 +15261,6 @@
           "op": "replace",
           "path": "/product_value_state",
           "value": "known"
-        },
-        {
-          "op": "replace",
-          "path": "/claim_results/product_value_invented",
-          "value": "uninterpreted_product_value_held"
         }
       ],
       "raw": {
@@ -15331,7 +15323,7 @@
           "state_transition": "none",
           "implementation_priority": "none",
           "arrival_complete": "none",
-          "product_value_invented": "uninterpreted_product_value_held"
+          "product_value_invented": "none"
         },
         "effects": {
           "actual_knowledge_adopted": false,
@@ -15361,7 +15353,8 @@
           "state_transition": "candidate_input_only",
           "implementation_priority": "candidate_input_only"
         },
-        "knowledge_binding_state": "independent_target_not_supplied"
+        "knowledge_binding_state": "independent_target_not_supplied",
+        "product_value_data_result": "uninterpreted_product_value_held"
       },
       "expected_full_whole": {
         "primary": {
@@ -15389,7 +15382,7 @@
             "state_transition": "none",
             "implementation_priority": "none",
             "arrival_complete": "none",
-            "product_value_invented": "uninterpreted_product_value_held"
+            "product_value_invented": "none"
           },
           "effects": {
             "actual_knowledge_adopted": false,
@@ -15419,13 +15412,14 @@
             "state_transition": "candidate_input_only",
             "implementation_priority": "candidate_input_only"
           },
-          "knowledge_binding_state": "independent_target_not_supplied"
+          "knowledge_binding_state": "independent_target_not_supplied",
+          "product_value_data_result": "uninterpreted_product_value_held"
         }
       },
       "raw_canonical_sha256": "c389043a962ed572ba8543383cf87f530ce5c6d57b84d3683743f3b588c2e478",
-      "expected_full_sha256": "d771121b412551af41d9ebbbce988e9941b341d0c193b8183ce055573aba36dd",
-      "expected_canonical_sha256": "d771121b412551af41d9ebbbce988e9941b341d0c193b8183ce055573aba36dd",
-      "basis": "L3/L10-F03 BRAINが製品値を決めない。供給済みunset以外の自由stateを成功/値確定へ補完せず未解釈保留をprimaryへ。42だけの否定リストにしない。",
+      "expected_full_sha256": "eebee776ba5fcbe622e8a6f856370716cdfe4fb825f75b78dd10d7fec1f10ac1",
+      "expected_canonical_sha256": "eebee776ba5fcbe622e8a6f856370716cdfe4fb825f75b78dd10d7fec1f10ac1",
+      "basis": "L3/L10-F03の製品値非決定。claim結果と未解釈製品値のデータ所見を別memberで保持する。",
       "role": "independent_whole",
       "execution_state": "not_executed",
       "normative_basis": {
@@ -15454,11 +15448,6 @@
           "op": "replace",
           "path": "/product_value_state",
           "value": "unknown"
-        },
-        {
-          "op": "replace",
-          "path": "/claim_results/product_value_invented",
-          "value": "uninterpreted_product_value_held"
         }
       ],
       "raw": {
@@ -15521,7 +15510,7 @@
           "state_transition": "none",
           "implementation_priority": "none",
           "arrival_complete": "none",
-          "product_value_invented": "uninterpreted_product_value_held"
+          "product_value_invented": "none"
         },
         "effects": {
           "actual_knowledge_adopted": false,
@@ -15551,7 +15540,8 @@
           "state_transition": "candidate_input_only",
           "implementation_priority": "candidate_input_only"
         },
-        "knowledge_binding_state": "independent_target_not_supplied"
+        "knowledge_binding_state": "independent_target_not_supplied",
+        "product_value_data_result": "uninterpreted_product_value_held"
       },
       "expected_full_whole": {
         "primary": {
@@ -15579,7 +15569,7 @@
             "state_transition": "none",
             "implementation_priority": "none",
             "arrival_complete": "none",
-            "product_value_invented": "uninterpreted_product_value_held"
+            "product_value_invented": "none"
           },
           "effects": {
             "actual_knowledge_adopted": false,
@@ -15609,13 +15599,14 @@
             "state_transition": "candidate_input_only",
             "implementation_priority": "candidate_input_only"
           },
-          "knowledge_binding_state": "independent_target_not_supplied"
+          "knowledge_binding_state": "independent_target_not_supplied",
+          "product_value_data_result": "uninterpreted_product_value_held"
         }
       },
       "raw_canonical_sha256": "1c73e7461fdfeefbd3f9744d3eda41df71a035e14266946b25f3f1e31eaa465a",
-      "expected_full_sha256": "1521c47b77ff25b04e207b453927111f3fd55d5d2765bdeff742a966a5ed2310",
-      "expected_canonical_sha256": "1521c47b77ff25b04e207b453927111f3fd55d5d2765bdeff742a966a5ed2310",
-      "basis": "L3/L10-F03 BRAINが製品値を決めない。供給済みunset以外の自由stateを成功/値確定へ補完せず未解釈保留をprimaryへ。42だけの否定リストにしない。",
+      "expected_full_sha256": "d978f5739abffd4d1bd0ef8a5fef32da7916fd47e602a6b33eb8beb85a41e4ad",
+      "expected_canonical_sha256": "d978f5739abffd4d1bd0ef8a5fef32da7916fd47e602a6b33eb8beb85a41e4ad",
+      "basis": "L3/L10-F03の製品値非決定。claim結果と未解釈製品値のデータ所見を別memberで保持する。",
       "role": "independent_whole",
       "execution_state": "not_executed",
       "normative_basis": {
@@ -15644,11 +15635,6 @@
           "op": "replace",
           "path": "/product_value_state",
           "value": ""
-        },
-        {
-          "op": "replace",
-          "path": "/claim_results/product_value_invented",
-          "value": "uninterpreted_product_value_held"
         }
       ],
       "raw": {
@@ -15711,7 +15697,7 @@
           "state_transition": "none",
           "implementation_priority": "none",
           "arrival_complete": "none",
-          "product_value_invented": "uninterpreted_product_value_held"
+          "product_value_invented": "none"
         },
         "effects": {
           "actual_knowledge_adopted": false,
@@ -15741,7 +15727,8 @@
           "state_transition": "candidate_input_only",
           "implementation_priority": "candidate_input_only"
         },
-        "knowledge_binding_state": "independent_target_not_supplied"
+        "knowledge_binding_state": "independent_target_not_supplied",
+        "product_value_data_result": "uninterpreted_product_value_held"
       },
       "expected_full_whole": {
         "primary": {
@@ -15769,7 +15756,7 @@
             "state_transition": "none",
             "implementation_priority": "none",
             "arrival_complete": "none",
-            "product_value_invented": "uninterpreted_product_value_held"
+            "product_value_invented": "none"
           },
           "effects": {
             "actual_knowledge_adopted": false,
@@ -15799,13 +15786,14 @@
             "state_transition": "candidate_input_only",
             "implementation_priority": "candidate_input_only"
           },
-          "knowledge_binding_state": "independent_target_not_supplied"
+          "knowledge_binding_state": "independent_target_not_supplied",
+          "product_value_data_result": "uninterpreted_product_value_held"
         }
       },
       "raw_canonical_sha256": "68f2aab946b44eaeb2fca0cf7e0ac2e7a98e86baf79d7ef154a85cde3eb171c3",
-      "expected_full_sha256": "c1aebbb33e0e5ecc33942dcca077e4043bd0a603024b46284d5133102a3b52cb",
-      "expected_canonical_sha256": "c1aebbb33e0e5ecc33942dcca077e4043bd0a603024b46284d5133102a3b52cb",
-      "basis": "L3/L10-F03 BRAINが製品値を決めない。供給済みunset以外の自由stateを成功/値確定へ補完せず未解釈保留をprimaryへ。42だけの否定リストにしない。",
+      "expected_full_sha256": "afe177f4ac6ea2cb595ca71ccf1b914a66349d8e796acecf18ded2df7a60c9fb",
+      "expected_canonical_sha256": "afe177f4ac6ea2cb595ca71ccf1b914a66349d8e796acecf18ded2df7a60c9fb",
+      "basis": "L3/L10-F03の製品値非決定。claim結果と未解釈製品値のデータ所見を別memberで保持する。",
       "role": "independent_whole",
       "execution_state": "not_executed",
       "normative_basis": {
@@ -15834,11 +15822,6 @@
           "op": "replace",
           "path": "/product_value_state",
           "value": "pending"
-        },
-        {
-          "op": "replace",
-          "path": "/claim_results/product_value_invented",
-          "value": "uninterpreted_product_value_held"
         }
       ],
       "raw": {
@@ -15901,7 +15884,7 @@
           "state_transition": "none",
           "implementation_priority": "none",
           "arrival_complete": "none",
-          "product_value_invented": "uninterpreted_product_value_held"
+          "product_value_invented": "none"
         },
         "effects": {
           "actual_knowledge_adopted": false,
@@ -15931,7 +15914,8 @@
           "state_transition": "candidate_input_only",
           "implementation_priority": "candidate_input_only"
         },
-        "knowledge_binding_state": "independent_target_not_supplied"
+        "knowledge_binding_state": "independent_target_not_supplied",
+        "product_value_data_result": "uninterpreted_product_value_held"
       },
       "expected_full_whole": {
         "primary": {
@@ -15959,7 +15943,7 @@
             "state_transition": "none",
             "implementation_priority": "none",
             "arrival_complete": "none",
-            "product_value_invented": "uninterpreted_product_value_held"
+            "product_value_invented": "none"
           },
           "effects": {
             "actual_knowledge_adopted": false,
@@ -15989,13 +15973,14 @@
             "state_transition": "candidate_input_only",
             "implementation_priority": "candidate_input_only"
           },
-          "knowledge_binding_state": "independent_target_not_supplied"
+          "knowledge_binding_state": "independent_target_not_supplied",
+          "product_value_data_result": "uninterpreted_product_value_held"
         }
       },
       "raw_canonical_sha256": "2726a70ab9a130f632d84cccbd2d8d3c4612542063cc60a3ddc7d0835942da5d",
-      "expected_full_sha256": "f80c5af084bc3c8dead0a298ae1b608f4821e1b8adf676252c12d83317ba28e3",
-      "expected_canonical_sha256": "f80c5af084bc3c8dead0a298ae1b608f4821e1b8adf676252c12d83317ba28e3",
-      "basis": "L3/L10-F03 BRAINが製品値を決めない。供給済みunset以外の自由stateを成功/値確定へ補完せず未解釈保留をprimaryへ。42だけの否定リストにしない。",
+      "expected_full_sha256": "4acfb307d0ae4a728c642355720d6c8c946e63aee539571bd0d62127b380959b",
+      "expected_canonical_sha256": "4acfb307d0ae4a728c642355720d6c8c946e63aee539571bd0d62127b380959b",
+      "basis": "L3/L10-F03の製品値非決定。claim結果と未解釈製品値のデータ所見を別memberで保持する。",
       "role": "independent_whole",
       "execution_state": "not_executed",
       "normative_basis": {
@@ -16014,7 +15999,7 @@
       "source_case_sha256": "193e88f857341427cba0ff27e9a3f0b0883ab68ce2fc7c5e397f38ecaeaf8503",
       "input_patch": [
         {
-          "op": "replace",
+          "op": "add",
           "path": "/derivation_inputs/extra",
           "value": {
             "material": "STRUCTURE-P",
@@ -16025,7 +16010,7 @@
       ],
       "primary_expected_patch": [
         {
-          "op": "replace",
+          "op": "add",
           "path": "/derivation_inputs/extra",
           "value": {
             "material": "STRUCTURE-P",
@@ -16226,7 +16211,7 @@
       "source_case_sha256": "193e88f857341427cba0ff27e9a3f0b0883ab68ce2fc7c5e397f38ecaeaf8503",
       "input_patch": [
         {
-          "op": "replace",
+          "op": "add",
           "path": "/derivation_inputs/screen_layout",
           "value": {
             "material": "STRUCTURE-P",
@@ -16237,7 +16222,7 @@
       ],
       "primary_expected_patch": [
         {
-          "op": "replace",
+          "op": "add",
           "path": "/derivation_inputs/screen_layout",
           "value": {
             "material": "STRUCTURE-P",
@@ -16438,7 +16423,7 @@
       "source_case_sha256": "193e88f857341427cba0ff27e9a3f0b0883ab68ce2fc7c5e397f38ecaeaf8503",
       "input_patch": [
         {
-          "op": "replace",
+          "op": "add",
           "path": "/derivation_inputs/state_transition_extra",
           "value": {
             "material": "STRUCTURE-P",
@@ -16449,7 +16434,7 @@
       ],
       "primary_expected_patch": [
         {
-          "op": "replace",
+          "op": "add",
           "path": "/derivation_inputs/state_transition_extra",
           "value": {
             "material": "STRUCTURE-P",
@@ -16650,7 +16635,7 @@
       "source_case_sha256": "193e88f857341427cba0ff27e9a3f0b0883ab68ce2fc7c5e397f38ecaeaf8503",
       "input_patch": [
         {
-          "op": "replace",
+          "op": "add",
           "path": "/derivation_inputs/uninterpreted_kind",
           "value": {
             "material": "STRUCTURE-P",
@@ -16661,7 +16646,7 @@
       ],
       "primary_expected_patch": [
         {
-          "op": "replace",
+          "op": "add",
           "path": "/derivation_inputs/uninterpreted_kind",
           "value": {
             "material": "STRUCTURE-P",
@@ -17241,6 +17226,991 @@
         "pointer": "/contracts/2",
         "requirement_ref": "HELIXBRAIN-L3-022-F03"
       }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-42-WITH-CLAIM",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "source_path": "docs/helix-brain/L9-integration-verification/design-input-obligation-trace.json",
+      "source_revision": "bc12b1927e155931b3d8a71a8ca76f1b01644519",
+      "source_sha256": "cfdf7fe9ca09ff3a3d7b27f7eee8472d5a792132c6a43dfc1f0ce6324d1c3390",
+      "source_case_pointer": "/verification_obligations/2/concrete_cases/0",
+      "source_case_sha256": "193e88f857341427cba0ff27e9a3f0b0883ab68ce2fc7c5e397f38ecaeaf8503",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/product_value_state",
+          "value": "42"
+        },
+        {
+          "op": "replace",
+          "path": "/claims_product_value_invented",
+          "value": true
+        }
+      ],
+      "primary_expected_patch": [
+        {
+          "op": "replace",
+          "path": "/product_value_state",
+          "value": "42"
+        },
+        {
+          "op": "replace",
+          "path": "/claim_results/product_value_invented",
+          "value": "rejected"
+        }
+      ],
+      "raw": {
+        "claims_BRAIN_decided": {
+          "implementation_priority": false,
+          "schedule": false,
+          "state_transition": false
+        },
+        "claims_arrival_complete": false,
+        "claims_product_value_invented": true,
+        "derivation_inputs": {
+          "implementation_priority": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "schedule": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "state_transition": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          }
+        },
+        "material_ref": {
+          "identity": "STRUCTURE-P",
+          "knowledge_ref": {
+            "identity": "KNOWLEDGE-P",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          }
+        },
+        "product_value_state": "42"
+      },
+      "primary": {
+        "derivation_inputs": {
+          "schedule": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "state_transition": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "implementation_priority": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          }
+        },
+        "product_value_state": "42",
+        "derivation_state": "not_derived",
+        "claim_results": {
+          "schedule": "none",
+          "state_transition": "none",
+          "implementation_priority": "none",
+          "arrival_complete": "none",
+          "product_value_invented": "rejected"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_product_derivation": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "assessment": {
+        "candidate_owner_returns": [
+          "CORE/HARNESS"
+        ],
+        "qualification_state": "candidate_only_not_actual_owner_qualification",
+        "material_binding_results": {
+          "implementation_priority": "content_corresponding_in_fixture",
+          "schedule": "content_corresponding_in_fixture",
+          "state_transition": "content_corresponding_in_fixture"
+        },
+        "derivation_data_results": {
+          "schedule": "candidate_input_only",
+          "state_transition": "candidate_input_only",
+          "implementation_priority": "candidate_input_only"
+        },
+        "knowledge_binding_state": "independent_target_not_supplied",
+        "product_value_data_result": "uninterpreted_product_value_held"
+      },
+      "expected_full_whole": {
+        "primary": {
+          "derivation_inputs": {
+            "schedule": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            },
+            "state_transition": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            },
+            "implementation_priority": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            }
+          },
+          "product_value_state": "42",
+          "derivation_state": "not_derived",
+          "claim_results": {
+            "schedule": "none",
+            "state_transition": "none",
+            "implementation_priority": "none",
+            "arrival_complete": "none",
+            "product_value_invented": "rejected"
+          },
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_product_derivation": false,
+            "actual_CORE_applied": false,
+            "actual_OS_record_saved": false,
+            "actual_connection": false,
+            "actual_authority": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "assessment": {
+          "candidate_owner_returns": [
+            "CORE/HARNESS"
+          ],
+          "qualification_state": "candidate_only_not_actual_owner_qualification",
+          "material_binding_results": {
+            "implementation_priority": "content_corresponding_in_fixture",
+            "schedule": "content_corresponding_in_fixture",
+            "state_transition": "content_corresponding_in_fixture"
+          },
+          "derivation_data_results": {
+            "schedule": "candidate_input_only",
+            "state_transition": "candidate_input_only",
+            "implementation_priority": "candidate_input_only"
+          },
+          "knowledge_binding_state": "independent_target_not_supplied",
+          "product_value_data_result": "uninterpreted_product_value_held"
+        }
+      },
+      "raw_canonical_sha256": "6b937bbbf7567c5940b9c66c9d448ae007da9e50ec4ed5bd03a4763b5371d864",
+      "expected_full_sha256": "4f6c09c9a14a004e2a58c9477137dc027cabc3a02912ec2d080cf23fab7d4652",
+      "expected_canonical_sha256": "4f6c09c9a14a004e2a58c9477137dc027cabc3a02912ec2d080cf23fab7d4652",
+      "basis": "L3/L10-F03の製品値非決定。禁止claimのrejectedと、unset以外の値の未解釈保留を同時に保持し、claimの有無でデータ所見を隠さない。",
+      "role": "independent_whole",
+      "execution_state": "not_executed",
+      "normative_basis": {
+        "l4_path": "docs/helix-brain/L4-basic-design/design-input-obligation-trace.json",
+        "pointer": "/contracts/2",
+        "requirement_ref": "HELIXBRAIN-L3-022-F03"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-known-WITH-CLAIM",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "source_path": "docs/helix-brain/L9-integration-verification/design-input-obligation-trace.json",
+      "source_revision": "bc12b1927e155931b3d8a71a8ca76f1b01644519",
+      "source_sha256": "cfdf7fe9ca09ff3a3d7b27f7eee8472d5a792132c6a43dfc1f0ce6324d1c3390",
+      "source_case_pointer": "/verification_obligations/2/concrete_cases/0",
+      "source_case_sha256": "193e88f857341427cba0ff27e9a3f0b0883ab68ce2fc7c5e397f38ecaeaf8503",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/product_value_state",
+          "value": "known"
+        },
+        {
+          "op": "replace",
+          "path": "/claims_product_value_invented",
+          "value": true
+        }
+      ],
+      "primary_expected_patch": [
+        {
+          "op": "replace",
+          "path": "/product_value_state",
+          "value": "known"
+        },
+        {
+          "op": "replace",
+          "path": "/claim_results/product_value_invented",
+          "value": "rejected"
+        }
+      ],
+      "raw": {
+        "claims_BRAIN_decided": {
+          "implementation_priority": false,
+          "schedule": false,
+          "state_transition": false
+        },
+        "claims_arrival_complete": false,
+        "claims_product_value_invented": true,
+        "derivation_inputs": {
+          "implementation_priority": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "schedule": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "state_transition": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          }
+        },
+        "material_ref": {
+          "identity": "STRUCTURE-P",
+          "knowledge_ref": {
+            "identity": "KNOWLEDGE-P",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          }
+        },
+        "product_value_state": "known"
+      },
+      "primary": {
+        "derivation_inputs": {
+          "schedule": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "state_transition": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "implementation_priority": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          }
+        },
+        "product_value_state": "known",
+        "derivation_state": "not_derived",
+        "claim_results": {
+          "schedule": "none",
+          "state_transition": "none",
+          "implementation_priority": "none",
+          "arrival_complete": "none",
+          "product_value_invented": "rejected"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_product_derivation": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "assessment": {
+        "candidate_owner_returns": [
+          "CORE/HARNESS"
+        ],
+        "qualification_state": "candidate_only_not_actual_owner_qualification",
+        "material_binding_results": {
+          "implementation_priority": "content_corresponding_in_fixture",
+          "schedule": "content_corresponding_in_fixture",
+          "state_transition": "content_corresponding_in_fixture"
+        },
+        "derivation_data_results": {
+          "schedule": "candidate_input_only",
+          "state_transition": "candidate_input_only",
+          "implementation_priority": "candidate_input_only"
+        },
+        "knowledge_binding_state": "independent_target_not_supplied",
+        "product_value_data_result": "uninterpreted_product_value_held"
+      },
+      "expected_full_whole": {
+        "primary": {
+          "derivation_inputs": {
+            "schedule": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            },
+            "state_transition": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            },
+            "implementation_priority": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            }
+          },
+          "product_value_state": "known",
+          "derivation_state": "not_derived",
+          "claim_results": {
+            "schedule": "none",
+            "state_transition": "none",
+            "implementation_priority": "none",
+            "arrival_complete": "none",
+            "product_value_invented": "rejected"
+          },
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_product_derivation": false,
+            "actual_CORE_applied": false,
+            "actual_OS_record_saved": false,
+            "actual_connection": false,
+            "actual_authority": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "assessment": {
+          "candidate_owner_returns": [
+            "CORE/HARNESS"
+          ],
+          "qualification_state": "candidate_only_not_actual_owner_qualification",
+          "material_binding_results": {
+            "implementation_priority": "content_corresponding_in_fixture",
+            "schedule": "content_corresponding_in_fixture",
+            "state_transition": "content_corresponding_in_fixture"
+          },
+          "derivation_data_results": {
+            "schedule": "candidate_input_only",
+            "state_transition": "candidate_input_only",
+            "implementation_priority": "candidate_input_only"
+          },
+          "knowledge_binding_state": "independent_target_not_supplied",
+          "product_value_data_result": "uninterpreted_product_value_held"
+        }
+      },
+      "raw_canonical_sha256": "29346aa1dc8758808d2b5faf35d8643cbc718208232ed4864aea8630a271f0e8",
+      "expected_full_sha256": "29b8fb7291a14d1c53571088e3c85a882c70a1411be893f08b6606cc9cec5abb",
+      "expected_canonical_sha256": "29b8fb7291a14d1c53571088e3c85a882c70a1411be893f08b6606cc9cec5abb",
+      "basis": "L3/L10-F03の製品値非決定。禁止claimのrejectedと、unset以外の値の未解釈保留を同時に保持し、claimの有無でデータ所見を隠さない。",
+      "role": "independent_whole",
+      "execution_state": "not_executed",
+      "normative_basis": {
+        "l4_path": "docs/helix-brain/L4-basic-design/design-input-obligation-trace.json",
+        "pointer": "/contracts/2",
+        "requirement_ref": "HELIXBRAIN-L3-022-F03"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-unknown-WITH-CLAIM",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "source_path": "docs/helix-brain/L9-integration-verification/design-input-obligation-trace.json",
+      "source_revision": "bc12b1927e155931b3d8a71a8ca76f1b01644519",
+      "source_sha256": "cfdf7fe9ca09ff3a3d7b27f7eee8472d5a792132c6a43dfc1f0ce6324d1c3390",
+      "source_case_pointer": "/verification_obligations/2/concrete_cases/0",
+      "source_case_sha256": "193e88f857341427cba0ff27e9a3f0b0883ab68ce2fc7c5e397f38ecaeaf8503",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/product_value_state",
+          "value": "unknown"
+        },
+        {
+          "op": "replace",
+          "path": "/claims_product_value_invented",
+          "value": true
+        }
+      ],
+      "primary_expected_patch": [
+        {
+          "op": "replace",
+          "path": "/product_value_state",
+          "value": "unknown"
+        },
+        {
+          "op": "replace",
+          "path": "/claim_results/product_value_invented",
+          "value": "rejected"
+        }
+      ],
+      "raw": {
+        "claims_BRAIN_decided": {
+          "implementation_priority": false,
+          "schedule": false,
+          "state_transition": false
+        },
+        "claims_arrival_complete": false,
+        "claims_product_value_invented": true,
+        "derivation_inputs": {
+          "implementation_priority": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "schedule": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "state_transition": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          }
+        },
+        "material_ref": {
+          "identity": "STRUCTURE-P",
+          "knowledge_ref": {
+            "identity": "KNOWLEDGE-P",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          }
+        },
+        "product_value_state": "unknown"
+      },
+      "primary": {
+        "derivation_inputs": {
+          "schedule": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "state_transition": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "implementation_priority": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          }
+        },
+        "product_value_state": "unknown",
+        "derivation_state": "not_derived",
+        "claim_results": {
+          "schedule": "none",
+          "state_transition": "none",
+          "implementation_priority": "none",
+          "arrival_complete": "none",
+          "product_value_invented": "rejected"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_product_derivation": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "assessment": {
+        "candidate_owner_returns": [
+          "CORE/HARNESS"
+        ],
+        "qualification_state": "candidate_only_not_actual_owner_qualification",
+        "material_binding_results": {
+          "implementation_priority": "content_corresponding_in_fixture",
+          "schedule": "content_corresponding_in_fixture",
+          "state_transition": "content_corresponding_in_fixture"
+        },
+        "derivation_data_results": {
+          "schedule": "candidate_input_only",
+          "state_transition": "candidate_input_only",
+          "implementation_priority": "candidate_input_only"
+        },
+        "knowledge_binding_state": "independent_target_not_supplied",
+        "product_value_data_result": "uninterpreted_product_value_held"
+      },
+      "expected_full_whole": {
+        "primary": {
+          "derivation_inputs": {
+            "schedule": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            },
+            "state_transition": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            },
+            "implementation_priority": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            }
+          },
+          "product_value_state": "unknown",
+          "derivation_state": "not_derived",
+          "claim_results": {
+            "schedule": "none",
+            "state_transition": "none",
+            "implementation_priority": "none",
+            "arrival_complete": "none",
+            "product_value_invented": "rejected"
+          },
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_product_derivation": false,
+            "actual_CORE_applied": false,
+            "actual_OS_record_saved": false,
+            "actual_connection": false,
+            "actual_authority": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "assessment": {
+          "candidate_owner_returns": [
+            "CORE/HARNESS"
+          ],
+          "qualification_state": "candidate_only_not_actual_owner_qualification",
+          "material_binding_results": {
+            "implementation_priority": "content_corresponding_in_fixture",
+            "schedule": "content_corresponding_in_fixture",
+            "state_transition": "content_corresponding_in_fixture"
+          },
+          "derivation_data_results": {
+            "schedule": "candidate_input_only",
+            "state_transition": "candidate_input_only",
+            "implementation_priority": "candidate_input_only"
+          },
+          "knowledge_binding_state": "independent_target_not_supplied",
+          "product_value_data_result": "uninterpreted_product_value_held"
+        }
+      },
+      "raw_canonical_sha256": "2917791358df30e8f86af1e8e9a92d44928f847b0a8cd6ff0d2a1be4cbc784ab",
+      "expected_full_sha256": "e3e8b6deee2aeac2201e3a9f3b5ed67734aa0d51ab29669afb2e735797ccc6f7",
+      "expected_canonical_sha256": "e3e8b6deee2aeac2201e3a9f3b5ed67734aa0d51ab29669afb2e735797ccc6f7",
+      "basis": "L3/L10-F03の製品値非決定。禁止claimのrejectedと、unset以外の値の未解釈保留を同時に保持し、claimの有無でデータ所見を隠さない。",
+      "role": "independent_whole",
+      "execution_state": "not_executed",
+      "normative_basis": {
+        "l4_path": "docs/helix-brain/L4-basic-design/design-input-obligation-trace.json",
+        "pointer": "/contracts/2",
+        "requirement_ref": "HELIXBRAIN-L3-022-F03"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-EMPTY-WITH-CLAIM",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "source_path": "docs/helix-brain/L9-integration-verification/design-input-obligation-trace.json",
+      "source_revision": "bc12b1927e155931b3d8a71a8ca76f1b01644519",
+      "source_sha256": "cfdf7fe9ca09ff3a3d7b27f7eee8472d5a792132c6a43dfc1f0ce6324d1c3390",
+      "source_case_pointer": "/verification_obligations/2/concrete_cases/0",
+      "source_case_sha256": "193e88f857341427cba0ff27e9a3f0b0883ab68ce2fc7c5e397f38ecaeaf8503",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/product_value_state",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/claims_product_value_invented",
+          "value": true
+        }
+      ],
+      "primary_expected_patch": [
+        {
+          "op": "replace",
+          "path": "/product_value_state",
+          "value": ""
+        },
+        {
+          "op": "replace",
+          "path": "/claim_results/product_value_invented",
+          "value": "rejected"
+        }
+      ],
+      "raw": {
+        "claims_BRAIN_decided": {
+          "implementation_priority": false,
+          "schedule": false,
+          "state_transition": false
+        },
+        "claims_arrival_complete": false,
+        "claims_product_value_invented": true,
+        "derivation_inputs": {
+          "implementation_priority": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "schedule": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "state_transition": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          }
+        },
+        "material_ref": {
+          "identity": "STRUCTURE-P",
+          "knowledge_ref": {
+            "identity": "KNOWLEDGE-P",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          }
+        },
+        "product_value_state": ""
+      },
+      "primary": {
+        "derivation_inputs": {
+          "schedule": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "state_transition": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "implementation_priority": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          }
+        },
+        "product_value_state": "",
+        "derivation_state": "not_derived",
+        "claim_results": {
+          "schedule": "none",
+          "state_transition": "none",
+          "implementation_priority": "none",
+          "arrival_complete": "none",
+          "product_value_invented": "rejected"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_product_derivation": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "assessment": {
+        "candidate_owner_returns": [
+          "CORE/HARNESS"
+        ],
+        "qualification_state": "candidate_only_not_actual_owner_qualification",
+        "material_binding_results": {
+          "implementation_priority": "content_corresponding_in_fixture",
+          "schedule": "content_corresponding_in_fixture",
+          "state_transition": "content_corresponding_in_fixture"
+        },
+        "derivation_data_results": {
+          "schedule": "candidate_input_only",
+          "state_transition": "candidate_input_only",
+          "implementation_priority": "candidate_input_only"
+        },
+        "knowledge_binding_state": "independent_target_not_supplied",
+        "product_value_data_result": "uninterpreted_product_value_held"
+      },
+      "expected_full_whole": {
+        "primary": {
+          "derivation_inputs": {
+            "schedule": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            },
+            "state_transition": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            },
+            "implementation_priority": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            }
+          },
+          "product_value_state": "",
+          "derivation_state": "not_derived",
+          "claim_results": {
+            "schedule": "none",
+            "state_transition": "none",
+            "implementation_priority": "none",
+            "arrival_complete": "none",
+            "product_value_invented": "rejected"
+          },
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_product_derivation": false,
+            "actual_CORE_applied": false,
+            "actual_OS_record_saved": false,
+            "actual_connection": false,
+            "actual_authority": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "assessment": {
+          "candidate_owner_returns": [
+            "CORE/HARNESS"
+          ],
+          "qualification_state": "candidate_only_not_actual_owner_qualification",
+          "material_binding_results": {
+            "implementation_priority": "content_corresponding_in_fixture",
+            "schedule": "content_corresponding_in_fixture",
+            "state_transition": "content_corresponding_in_fixture"
+          },
+          "derivation_data_results": {
+            "schedule": "candidate_input_only",
+            "state_transition": "candidate_input_only",
+            "implementation_priority": "candidate_input_only"
+          },
+          "knowledge_binding_state": "independent_target_not_supplied",
+          "product_value_data_result": "uninterpreted_product_value_held"
+        }
+      },
+      "raw_canonical_sha256": "290a8a19da87604aeee7c686f6c4419e7f1accc95d9e32c4a2add8816e18d8fe",
+      "expected_full_sha256": "5f0fe4c2aed0139db4fd16bc50eeadc73c157ecdd3680e1d987c57dc97261b88",
+      "expected_canonical_sha256": "5f0fe4c2aed0139db4fd16bc50eeadc73c157ecdd3680e1d987c57dc97261b88",
+      "basis": "L3/L10-F03の製品値非決定。禁止claimのrejectedと、unset以外の値の未解釈保留を同時に保持し、claimの有無でデータ所見を隠さない。",
+      "role": "independent_whole",
+      "execution_state": "not_executed",
+      "normative_basis": {
+        "l4_path": "docs/helix-brain/L4-basic-design/design-input-obligation-trace.json",
+        "pointer": "/contracts/2",
+        "requirement_ref": "HELIXBRAIN-L3-022-F03"
+      }
+    },
+    {
+      "id": "B022-PRODUCT-STATE-pending-WITH-CLAIM",
+      "function_ref": "HELIXBRAIN-L5-022-F03",
+      "source_path": "docs/helix-brain/L9-integration-verification/design-input-obligation-trace.json",
+      "source_revision": "bc12b1927e155931b3d8a71a8ca76f1b01644519",
+      "source_sha256": "cfdf7fe9ca09ff3a3d7b27f7eee8472d5a792132c6a43dfc1f0ce6324d1c3390",
+      "source_case_pointer": "/verification_obligations/2/concrete_cases/0",
+      "source_case_sha256": "193e88f857341427cba0ff27e9a3f0b0883ab68ce2fc7c5e397f38ecaeaf8503",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/product_value_state",
+          "value": "pending"
+        },
+        {
+          "op": "replace",
+          "path": "/claims_product_value_invented",
+          "value": true
+        }
+      ],
+      "primary_expected_patch": [
+        {
+          "op": "replace",
+          "path": "/product_value_state",
+          "value": "pending"
+        },
+        {
+          "op": "replace",
+          "path": "/claim_results/product_value_invented",
+          "value": "rejected"
+        }
+      ],
+      "raw": {
+        "claims_BRAIN_decided": {
+          "implementation_priority": false,
+          "schedule": false,
+          "state_transition": false
+        },
+        "claims_arrival_complete": false,
+        "claims_product_value_invented": true,
+        "derivation_inputs": {
+          "implementation_priority": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "schedule": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "state_transition": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          }
+        },
+        "material_ref": {
+          "identity": "STRUCTURE-P",
+          "knowledge_ref": {
+            "identity": "KNOWLEDGE-P",
+            "revision": "r1",
+            "scope": "KNOWLEDGE-SCOPE-P"
+          }
+        },
+        "product_value_state": "pending"
+      },
+      "primary": {
+        "derivation_inputs": {
+          "schedule": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "state_transition": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          },
+          "implementation_priority": {
+            "material": "STRUCTURE-P",
+            "owner": "CORE-HARNESS",
+            "state": "candidate_input_only"
+          }
+        },
+        "product_value_state": "pending",
+        "derivation_state": "not_derived",
+        "claim_results": {
+          "schedule": "none",
+          "state_transition": "none",
+          "implementation_priority": "none",
+          "arrival_complete": "none",
+          "product_value_invented": "rejected"
+        },
+        "effects": {
+          "actual_knowledge_adopted": false,
+          "actual_product_selected": false,
+          "actual_product_derivation": false,
+          "actual_CORE_applied": false,
+          "actual_OS_record_saved": false,
+          "actual_connection": false,
+          "actual_authority": false,
+          "actual_design_complete": false,
+          "actual_acceptance": false
+        },
+        "unaffected_Q": "original_Q"
+      },
+      "assessment": {
+        "candidate_owner_returns": [
+          "CORE/HARNESS"
+        ],
+        "qualification_state": "candidate_only_not_actual_owner_qualification",
+        "material_binding_results": {
+          "implementation_priority": "content_corresponding_in_fixture",
+          "schedule": "content_corresponding_in_fixture",
+          "state_transition": "content_corresponding_in_fixture"
+        },
+        "derivation_data_results": {
+          "schedule": "candidate_input_only",
+          "state_transition": "candidate_input_only",
+          "implementation_priority": "candidate_input_only"
+        },
+        "knowledge_binding_state": "independent_target_not_supplied",
+        "product_value_data_result": "uninterpreted_product_value_held"
+      },
+      "expected_full_whole": {
+        "primary": {
+          "derivation_inputs": {
+            "schedule": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            },
+            "state_transition": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            },
+            "implementation_priority": {
+              "material": "STRUCTURE-P",
+              "owner": "CORE-HARNESS",
+              "state": "candidate_input_only"
+            }
+          },
+          "product_value_state": "pending",
+          "derivation_state": "not_derived",
+          "claim_results": {
+            "schedule": "none",
+            "state_transition": "none",
+            "implementation_priority": "none",
+            "arrival_complete": "none",
+            "product_value_invented": "rejected"
+          },
+          "effects": {
+            "actual_knowledge_adopted": false,
+            "actual_product_selected": false,
+            "actual_product_derivation": false,
+            "actual_CORE_applied": false,
+            "actual_OS_record_saved": false,
+            "actual_connection": false,
+            "actual_authority": false,
+            "actual_design_complete": false,
+            "actual_acceptance": false
+          },
+          "unaffected_Q": "original_Q"
+        },
+        "assessment": {
+          "candidate_owner_returns": [
+            "CORE/HARNESS"
+          ],
+          "qualification_state": "candidate_only_not_actual_owner_qualification",
+          "material_binding_results": {
+            "implementation_priority": "content_corresponding_in_fixture",
+            "schedule": "content_corresponding_in_fixture",
+            "state_transition": "content_corresponding_in_fixture"
+          },
+          "derivation_data_results": {
+            "schedule": "candidate_input_only",
+            "state_transition": "candidate_input_only",
+            "implementation_priority": "candidate_input_only"
+          },
+          "knowledge_binding_state": "independent_target_not_supplied",
+          "product_value_data_result": "uninterpreted_product_value_held"
+        }
+      },
+      "raw_canonical_sha256": "c65adb07adb00c7ca73faa14cf8b09d452d37883cb175fe4620c03c3e18b1e5d",
+      "expected_full_sha256": "102200e34dd5d0c32f6efc98c55a7ddc027c2005cc9ac6895e7d5fe90732c2cb",
+      "expected_canonical_sha256": "102200e34dd5d0c32f6efc98c55a7ddc027c2005cc9ac6895e7d5fe90732c2cb",
+      "basis": "L3/L10-F03の製品値非決定。禁止claimのrejectedと、unset以外の値の未解釈保留を同時に保持し、claimの有無でデータ所見を隠さない。",
+      "role": "independent_whole",
+      "execution_state": "not_executed",
+      "normative_basis": {
+        "l4_path": "docs/helix-brain/L4-basic-design/design-input-obligation-trace.json",
+        "pointer": "/contracts/2",
+        "requirement_ref": "HELIXBRAIN-L3-022-F03"
+      }
     }
   ],
   "full_output_contract_ref": {
@@ -17255,21 +18225,21 @@
       "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
       "pointer": "/supplemental_correction_history",
       "canonical_sha256": "b89803004474985e4ebfdf9e3beb144a22874187144bc022dd97bccb1f27d687",
-      "role": "旧commit内に保存された判断/照合記録値。現在規範ではない。未公開AST版の再現性を主張しない。"
+      "role": "参照先の照合根拠。現在の計算規範はreference_program。"
     },
     {
       "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
       "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
       "pointer": "/primary_rule_correction_history",
       "canonical_sha256": "ff20f3254e74c82e4f40589d653de20388d718003f204427193abdd3f04bec9f",
-      "role": "旧commit内に保存された判断/照合記録値。現在規範ではない。未公開AST版の再現性を主張しない。"
+      "role": "参照先の照合根拠。現在の計算規範はreference_program。"
     },
     {
       "path": "docs/helix-brain/L8-unit-verification/design-input-obligation-trace.json",
       "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
       "pointer": "/supplemental_correction_history_basis",
       "canonical_sha256": "38e38a0ab8648e950373654d654b265a053f069b616c09c871e3351b773ff2a0",
-      "role": "旧commit内に保存された判断/照合記録値。現在規範ではない。未公開AST版の再現性を主張しない。"
+      "role": "参照先の照合根拠。現在の計算規範はreference_program。"
     }
   ]
 }
